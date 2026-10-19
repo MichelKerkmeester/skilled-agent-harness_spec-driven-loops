@@ -1,0 +1,7 @@
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md:51 | The OpenCode 2.0.32 twin asks for the `bash` tool, but its stream names that tool `shell`. | Use `bash` in the 1.19.3 prompt and `shell` in the 2.0.32 prompt.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/README.md:282 | The default-dispatch check accepts `text`, `sessionID` and exit 0 without requiring `step_start`. | Add a `step_start` requirement.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:326 | The updated section covers versions 1.19.3 and 2.0.32 but describes `timestamp` as ISO 8601; the supplied streams use numeric millisecond values. | Describe `timestamp` as a numeric millisecond value.
+
+FAIL

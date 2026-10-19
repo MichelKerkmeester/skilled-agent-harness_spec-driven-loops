@@ -71,9 +71,9 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Verification
 
-- [x] T018 Run `validate_document.py <doc> --type <type>` on each touched doc, and record each exit status in `doc-inventory.md` (orchestrator) Done: 41 of 41 exit 0.
+- [x] T018 Run `validate_document.py <doc> --type <type>` on each touched doc, and record each exit status in `doc-inventory.md` (orchestrator) Done: 52 of 52 exit 0.
 - [x] T019 Run `extract_structure.py <doc>` on each touched doc, and record its `dqi.total` (orchestrator) Done: lowest 77.
-- [x] T020 Run `hvr_scan.py <doc>` on each touched doc, record its exit status and add a manual human-voice note (orchestrator) Done: 41 of 41 exit 0; manual note in doc-inventory.md.
+- [x] T020 Run `hvr_scan.py <doc>` on each touched doc, record its exit status and add a manual human-voice note (orchestrator) Done: 52 of 52 exit 0; manual note in doc-inventory.md.
 - [x] T021 Run the package checks on each changed skill, playbook package and catalog, and record each exit status (orchestrator) Done: doc-inventory.md Package checks, all exit 0.
 - [x] T022 Run `validate_document.py` with the skill reference type on `install-and-versions.md`, and with the command type on the `/doctor:opencode` route doc (orchestrator) Done in part: install-and-versions.md exits 0 as reference. The /doctor:opencode route doc does not exist; it waits for Q1 (spec.md Files to Change).
 - [x] T023 Rerun the v1-only search from T002, read every hit and record that each one names version 1 (orchestrator) Done: none untagged (doc-inventory.md Version checks).
@@ -130,10 +130,10 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:code-quality -->
 ## Doc Quality
 
-- [x] CHK-010 [P0] Every touched doc exits 0 from its validator. Check: every exit status in `doc-inventory.md` from T018 is 0. 41 of 41.
+- [x] CHK-010 [P0] Every touched doc exits 0 from its validator. Check: every exit status in `doc-inventory.md` from T018 is 0. 52 of 52.
 - [x] CHK-011 [P0] Every changed package exits 0 from its package check. Check: every exit status from T021 is 0. All exit 0.
 - [x] CHK-012 [P1] Every touched doc scores 75 or higher on DQI. Check: every `dqi.total` from T019 is 75 or more. Lowest 77.
-- [x] CHK-013 [P1] Every touched doc passes the human-voice check. Check: every `hvr_scan.py` exit status from T020 is 0. 41 of 41.
+- [x] CHK-013 [P1] Every touched doc passes the human-voice check. Check: every `hvr_scan.py` exit status from T020 is 0. 52 of 52.
 <!-- /ANCHOR:code-quality -->
 
 ---

@@ -28,7 +28,7 @@ contextType: "general"
 ### Overview
 This phase writes the doc changes that phases 002 to 009 need, one doc or small group per dispatch. DeepSeek writes each change with the markdown persona inlined, Luna reviews it and the orchestrator runs every validator, score, package check and search. Each touched doc gets one row in `doc-inventory.md`.
 
-**As delivered:** Luna reviewed in three groups (playbook, skill docs, the rest) rather than one dispatch per doc, and the fixes ran in five grouped rounds, each verified by Luna until verify 4 passed. No two dispatches edited the same doc at once (scratch/decisions.txt 12, 15 and 17).
+**As delivered:** Luna reviewed in three groups (playbook, skill docs, the rest) rather than one dispatch per doc, and the fixes ran in five grouped rounds, each verified by Luna until verify 4 passed. No two dispatches edited the same doc at once (scratch/decisions.txt 12, 15 and 17). The event correction found in phase 011 added rounds 6 to 9 through cli-pi, each reviewed by Luna (decision 18).
 <!-- /ANCHOR:summary -->
 
 ---

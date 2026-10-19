@@ -76,19 +76,20 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents filled | Done | The six documents in this folder, written from the phase 010 brief and research sections 6 and 11 |
-| Inventory and search | Done | 41 docs in `doc-inventory.md`; 32 phase-004 docs reviewed with no regression (`scratch/decisions.txt` 1, 3) |
-| Writes and review | Done | DeepSeek wrote 23 briefs, the catalog, the changelog, two READMEs and five fix rounds; Luna ran three reviews and four verifies, the last PASS (`scratch/reviews/`) |
-| Gates | Done | 41 of 41 validator 0, DQI 77 or more, HVR 0; every package check exit 0; no untagged v1-only hit; no claim line (`doc-inventory.md`) |
+| Inventory and search | Done | 52 docs in `doc-inventory.md`, 11 of them added with the event correction (`scratch/decisions.txt` 18); 32 phase-004 docs reviewed with no regression (`scratch/decisions.txt` 1, 3) |
+| Writes and review | Done | DeepSeek wrote 23 briefs, the catalog, the changelog, two READMEs and five fix rounds; Luna ran three reviews and four verifies, the last PASS. The event correction added rounds 6 to 9 through cli-pi, with two Luna reviews and two verifies (`scratch/reviews/`) |
+| Gates | Done | 52 of 52 validator 0, DQI 77 or more, HVR 0; every package check exit 0; no untagged v1-only hit; no claim line (`doc-inventory.md`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Playbook file count | The research names 20 playbook files, but its own grouped list sums to 21 before the intra-routing-recall group. The named group folders now hold 34 files. The T004 grep sets the real set, and the packet follows that grep: 17 scenarios and the root page. |
-| Criterion 4 reading | A hit counts as naming version 1 when its line, its heading, its table header, the text before its code fence or the doc's version note says so (`scratch/checks/tagctx.py`). 284 of 384 hits are tagged on their own line, and none is untagged. |
+| Criterion 4 reading | A hit counts as naming version 1 when its line, its heading, its table header, the text before its code fence or the doc's version note says so (`scratch/checks/tagctx.py`). 295 of 404 hits are tagged on their own line, and none is untagged. |
 | Rule 7 amended | The facts file's "do not change frontmatter" now covers `version` only, so two wrong descriptions were corrected (`scratch/decisions.txt` 7). |
 | SKILL.md word limit | The package check failed at 5,363 words. HEAD was already over it after phase 006. SKILL.md is now 4,899 (decision 11). |
 | Scope amendments | Two test READMEs, the hub's routing manifest and its authored copy, and the Hermes copy of SKILL.md joined the file list (decisions 10, 13, 14). |
 | Route doc | The `/doctor:opencode` route doc does not exist; it waits for Q1 (008 decisions 4 and 15). |
 | Executor slip | One test harness ran the operator's `opencode2 --version` once by mistake; it failed to exec and changed nothing (decision 16). |
+| Event correction | Phase 011's live runs showed that both versions emit `step_start`, `tool_use`, `text` and `step_finish` with `sessionID`, so the older event names in 26 docs were wrong on OpenCode 1 too. Fixed as an amendment, with 11 docs whose OpenCode 1 lines had no tag (`scratch/decisions.txt` 18). The writer ran through cli-pi because the devin quota was spent. |
 <!-- /ANCHOR:log -->

@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-opencode
@@ -93,7 +93,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
 
 The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message on OpenCode 1. The OpenCode 2 runs captured here end with a `text` event. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
+You get structured JSON events streamed to stdout as the session runs: `step_start`, `tool_use`, `text` and `step_finish`, every one carrying a `sessionID`, with the reply text in `text` events. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
 
 **Step 4: Spawn a parallel detached session (inside OpenCode only).**
 
@@ -109,7 +109,7 @@ opencode run --share --port 4096 \
 
 On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See [`references/install-and-versions.md`](./references/install-and-versions.md).
 
-The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`), inspectable independently via `opencode export <session_id>`. On OpenCode 1, `--share` publishes a browser-accessible URL.
+The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`), inspectable independently via `opencode export <sessionID>`. On OpenCode 1, `--share` publishes a browser-accessible URL.
 
 ---
 
@@ -279,7 +279,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | On OpenCode 1, `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message. On OpenCode 2, the equivalent is `cd . && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Say hello" </dev/null` |
+| Default dispatch | On OpenCode 1, `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream that starts with a `step_start` event, holds at least one `text` event, carries a `sessionID` on every event, and exits 0. On OpenCode 2, the equivalent is `cd . && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Say hello" </dev/null`, with the same event names |
 
 ---
 

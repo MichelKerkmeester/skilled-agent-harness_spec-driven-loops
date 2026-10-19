@@ -1,0 +1,31 @@
+## Review Summary
+
+All three prior P1 findings are **closed**. No new P0 or P1 issues were introduced.
+
+The read-only static audit returned `RESULT: PASSED` (exit 0). A here-document attempt could not create a temporary file; the `python3 -c` rerun passed. No OpenCode binaries or network calls were used.
+
+**Score: 99/100** — correctness 29/30, security 25/25, patterns 20/20, maintainability 15/15, performance 10/10.
+
+## Findings
+
+1. **Closed** — [README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/README.md:282). The v1 stream starts with `step_start`, includes `text`, and carries `sessionID` on every event; the v2 stream has the same distinct event types. Recorded smoke exits are 0 for both. The streams have different lengths (six v1 rows, five v2 rows), but the new wording says the event names match, not their sequence.
+
+2. **Closed** — [dir-flag-working-directory.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md:51). The v1 stream’s tool is `bash`; the v2 stream’s tool is `shell`, matching the revised prompts.
+
+3. **Closed** — [cli-reference.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:326). Both streams use numeric Unix-millisecond timestamps.
+
+**New P0/P1:** none.
+
+## Removal/Iteration Plan
+
+None required.
+
+## Next Steps
+
+No operator action.
+
+**Workspace:** No files were written. The current branch is `worktrees/143-opencode-dual-compat-build`; the worktree is dirty. Final `git status --short --branch` exited 0 with an fsmonitor IPC warning.
+
+Not checked: the literal README “Say hello” commands were not run, as requested; the recorded smoke runs use different prompts and model arguments.
+
+PASS (no open P0 or P1)

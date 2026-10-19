@@ -1,0 +1,9 @@
+P1 | [.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md:9) | CO-013 explicitly omits `--agent`, but the new note adds the unverified routing caveat | Remove the final sentence.
+
+P1 | [.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:9](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:9) | CO-037 dispatches without `--agent`, but the new note adds the unverified routing caveat | Remove the final sentence.
+
+P1 | [.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md:9](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md:9) | CO-025 dispatches without `--agent`, but the new note adds the unverified routing caveat | Remove the final sentence.
+
+Not checked: live CLI behavior, per the no-binary and no-network constraint.
+
+FAIL

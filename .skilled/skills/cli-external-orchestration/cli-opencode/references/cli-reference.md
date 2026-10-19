@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -316,18 +316,18 @@ The cli-opencode skill defers to the calling AI on agent selection. See `referen
 
 `--format default` produces a human-formatted log. `--format json` emits a newline-delimited JSON event stream.
 
-### JSON event shape (OpenCode 1, v1.3.17)
+### JSON event shape (OpenCode 1.19.3 and OpenCode 2.0.32)
 
 Each line is a JSON object with at minimum:
 
 | Field | Meaning |
 |-------|---------|
-| `type` | Event type (`session.started`, `message.delta`, `tool.call`, `tool.result`, `session.completed`, ...) |
-| `timestamp` | ISO 8601 UTC timestamp |
-| `session_id` | The session id assigned by OpenCode |
-| `payload` | Type-specific payload |
+| `type` | Event type (`step_start`, `tool_use`, `text`, `step_finish`) |
+| `timestamp` | Unix time in milliseconds, as a number |
+| `sessionID` | The session id assigned by OpenCode |
+| `part` | Type-specific payload |
 
-External runtimes parse the stream incrementally to surface tool calls, partial messages and the final summary. cli-opencode prompt templates always pass `--format json` so the calling AI parses structured events instead of guessing format boundaries. The OpenCode 2 event shape is unverified on OpenCode 2.0.32.
+External runtimes parse the stream incrementally to surface tool calls, partial messages and the final summary. cli-opencode prompt templates always pass `--format json` so the calling AI parses structured events instead of guessing format boundaries. The two versions emit the same event names.
 
 ---
 
@@ -341,7 +341,7 @@ OpenCode persists session state in a shared SQLite database and storage tree und
 - `storage/`: per-session structured artifacts
 - `snapshot/`: working-tree snapshots
 
-There is no per-session directory under `~/.opencode/state/<session_id>/` on a standard install, so that path does not exist on this runtime layout. To inspect a specific session, use `opencode export <session_id>` (§3) rather than reading files from a state directory. The cli-opencode self-invocation guard's Layer 3 lock-file probe (`~/.opencode/state/<id>/lock`, per ADR-001) targets the older path as a best-effort third layer on top of the env-var and process-ancestry checks. Treat it as a heuristic, not a verified-present artifact, on installs where `~/.opencode/state/` does not exist.
+There is no per-session directory under `~/.opencode/state/<sessionID>/` on a standard install, so that path does not exist on this runtime layout. To inspect a specific session, use `opencode export <sessionID>` (§3) rather than reading files from a state directory. The cli-opencode self-invocation guard's Layer 3 lock-file probe (`~/.opencode/state/<id>/lock`, per ADR-001) targets the older path as a best-effort third layer on top of the env-var and process-ancestry checks. Treat it as a heuristic, not a verified-present artifact, on installs where `~/.opencode/state/` does not exist.
 
 ### Share URLs
 
@@ -377,7 +377,7 @@ This reference is pinned to OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32. If th
 | `OPENCODE_SERVER_PASSWORD required` | Server enforces basic auth | Pass `-p <password>` or set the env var |
 | `provider/model not found` | Provider not configured | Run `opencode providers` to enumerate, then `auth login <provider>` |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
-| Session never finishes | Tool call hung | Run `opencode export <session_id>` and inspect the message log it returns |
+| Session never finishes | Tool call hung | Run `opencode export <sessionID>` and inspect the message log it returns |
 | Plugin load crash | Misconfigured plugin | Rerun with `--pure` (OpenCode 1 only) to bypass all plugins |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session. See ADR-001 |
 | `--share` URL leaks (OpenCode 1 only) | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |

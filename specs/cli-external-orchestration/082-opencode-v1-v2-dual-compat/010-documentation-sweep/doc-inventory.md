@@ -56,8 +56,19 @@ Each row is one doc the build touched. "Before" is the doc at HEAD (`59565c1849`
 | 39 | `.skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md` | feature catalog | `feature_catalog` | write | new | 0 / 89 / 0 |
 | 40 | `.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md` | feature catalog | `feature_catalog` | write | 0 / 91 / 1 | 0 / 91 / 0 |
 | 41 | `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md` | changelog | `changelog` | write | new | 0 / 89 / 0 |
+| 42 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 43 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 44 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 45 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 46 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 47 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/format-default-vs-json.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 48 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 49 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 50 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md` | playbook | `playbook_feature` | write | 0 / 84 / 1 | 0 / 85 / 0 |
+| 51 | `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md` | playbook | `playbook_feature` | write | 0 / 91 / 1 | 0 / 92 / 0 |
+| 52 | `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md` | skill (asset) | `asset` | write | 0 / 83 / 1 | 0 / 83 / 0 |
 
-All 41 rows end at validator exit 0, DQI 77 or more, and HVR exit 0.
+All 52 rows end at validator exit 0, DQI 77 or more, and HVR exit 0. Rows 42 to 52 joined with the event correction (decision 18), and each was scored at HEAD before its write.
 
 The docs phase 004 changed are reviewed separately (`scratch/inventory-review.tsv`, 32 docs). Each has the same validator and HVR exit before and after 004, so the sweep leaves them alone (decision 3, `scratch/checks/review-docs-note.txt`, rechecked at the end in `scratch/checks/review-docs-final.tsv`).
 
@@ -75,7 +86,7 @@ The docs phase 004 changed are reviewed separately (`scratch/inventory-review.ts
 
 ## Version checks
 
-The v1-only search (`--command`, `--dir`, `--share`, `--port`, `--pure`, `--attach`, `--variant`, `1.3.17`) over the 41 inventory docs finds 384 hits. A context pass (`scratch/checks/tagctx.py`) reads each hit's own line, heading, table header, the text before its code fence and the doc's version note. Of the 100 hits whose own line names no version, 56 sit under a tagged heading, 26 beside tagged text and 18 under the doc's version note only, and none is untagged. The 18 note-only hits are listed in `scratch/checks/v1-hits-context.txt`, and each review read them. `rg -n "Verified against OpenCode"` over the touched docs returns no hit.
+The v1-only search (`--command`, `--dir`, `--share`, `--port`, `--pure`, `--attach`, `--variant`, `1.3.17`) over the 52 inventory docs finds 404 hits. A context pass (`scratch/checks/tagctx.py`) reads each hit's own line, heading, table header, the text before its code fence and the doc's version note. Of the 109 hits whose own line names no version, 56 sit under a tagged heading, 26 beside tagged text and 27 under the doc's version note only, and none is untagged. The 27 note-only hits are listed in `scratch/checks/v1-hits-context.txt`, and each review read them. At closeout the first pass covered 41 docs. The event correction found 11 more cli-opencode docs whose OpenCode 1 lines had no tag (OR-10). Decision 1 says the first search ran over the whole hub, and each of the 11 has a hit, so why they were left out of the inventory is not recorded. A whole-hub rerun leaves only historical changelog entries, dated benchmark reports and other CLIs' own flags outside the inventory. `rg -n "Verified against OpenCode"` over the touched docs returns no hit.
 
 ## Human voice
 
@@ -83,7 +94,7 @@ The v1-only search (`--command`, `--dir`, `--share`, `--port`, `--pure`, `--atta
 
 ## Findings
 
-Reviews: `scratch/reviews/review-playbook-luna.txt`, `review-other-luna.txt` and `review-skill-luna.txt`, then verifies 1 to 4. The fix rounds are `scratch/reviews/fix.diff` to `fix5.diff`.
+Reviews: `scratch/reviews/review-playbook-luna.txt`, `review-other-luna.txt` and `review-skill-luna.txt`, then verifies 1 to 4. The fix rounds are `scratch/reviews/fix.diff` to `fix5.diff`. The event correction added `review-events-luna.txt`, its verify `review-events-verify-luna.txt` and `review-vnotes-luna.txt`, over rounds `fix6.diff` to `fix10.diff`.
 
 | ID | Source | Doc | Finding | Ruling | Closed by |
 |----|--------|-----|---------|--------|-----------|
@@ -110,6 +121,14 @@ Reviews: `scratch/reviews/review-playbook-luna.txt`, `review-other-luna.txt` and
 | VF-1 | Verify 1 | base scenario, prompt-templates, README, 4 references | Prompt names v1 events, a twin lacks the check, v2 stream end, v2 route omitted, `--pure` untagged | Taken | Round 2, verify 2 |
 | VF-2 | Verify 2 P1 | 4 scenarios | Pass lines name only v1 events | Taken | Rounds 3 and 4, verify 4 |
 | VF-3 | Verify 2 P2 | SKILL.md | `-x` accepts a directory | Taken | Round 3, verify 3 |
+| OR-9 | Orchestrator, from the phase 011 live runs | 26 cli-opencode docs | Event names, field paths and jq filters named events neither version emits (decision 18) | Taken | Round 6 (`fix6.diff`), events review |
+| EV-1 | Events review P1 | `dir-flag-working-directory.md` | The OpenCode 2 twin asks for the `bash` tool, which 2.0.32 names `shell` | Taken | Round 7 (`fix7.diff`), events verify |
+| EV-2 | Events review P1 | `README.md` | The default-dispatch check no longer requires a `step_start` event | Taken | Round 7, events verify |
+| EV-3 | Events review P1 | `cli-reference.md` | `timestamp` described as ISO 8601, while both streams carry Unix milliseconds | Taken | Round 7, events verify |
+| OR-10 | Orchestrator | 9 scenarios, `minimax-design-context-manifest.md`, `prompt-quality-card.md` | OpenCode 1 only flags with no version tag, and a `v1.3.17` version line | Taken: version notes and the version line | Round 8 (`fix8.diff`), version-note review |
+| OR-11 | Orchestrator | `minimax-design-context-manifest.md`, `prompt-quality-card.md` | HVR exit 1 at HEAD (semicolons and em dashes) | Taken | Round 8, HVR exit 0 |
+| VN-1 | Version-note review P1 | `general-agent-default.md`, `minimax-design-context-manifest.md`, `template-applied-to-real-dispatch.md` | The `--agent` caveat sits on scenarios that pass no `--agent` | Taken: removed, and template-applied gets the `As @review:` body caveat from the facts file | Round 9 (`fix9.diff`), version-note verify |
+| OR-12 | Orchestrator | changelog v1.5.0.0 | The release entry did not mention the event correction it ships | Taken: one bullet | Round 10 (`fix10.diff`), checked against the streams |
 | VF-4 | Verify 3 P2 | SKILL.md | Empty `OPENCODE_BIN` falls through to PATH | Not taken (decision 15) | - |
 | OR-1 | Orchestrator | SKILL.md | Over the 5,000-word limit | Taken | Trim, package check exit 0 |
 | OR-2 | Orchestrator | doctor scripts README | "harness" three times (phase 008 text) | Taken | Round 1, HVR exit 0 |

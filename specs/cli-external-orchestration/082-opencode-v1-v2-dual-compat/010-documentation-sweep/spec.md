@@ -108,7 +108,7 @@ Reconciled with the work: `doc-inventory.md` lists all 41 docs this phase wrote 
 | `.skilled/skills/cli-external-orchestration/cli-opencode/references/` | Modify | `cli-reference.md` (v2 column, two-row matrix, description), `providers-and-models.md` (`#variant` twins), `agent-delegation.md`, `context-budget.md`, `destructive-scope-violations.md`, `integration-patterns.md` and `opencode-tools.md` (version tags and v2 twins). |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md` | Review | Created by phase 007. Validator exit 0, DQI 94, HVR exit 0. |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md` | Modify | v2 renderings beside the invocations. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/` | Modify | The root page and 17 scenarios: version notes, v2 twins and v2 pass readings. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/` | Modify | The root page and 27 scenarios: version notes, v2 twins and v2 pass readings. Ten scenarios joined with the event correction (decision 18). |
 | `.skilled/skills/cli-external-orchestration/feature-catalog/` | Modify, Create | `cli-dispatch-authorization` updated, `opencode-dual-version-dispatch` created, the root index lists it (decision 8). |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md` | Create | The build's release entry (decision 9). |
 | `.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md`, `cli-claude-code/references/claude-tools.md` | Modify | Sibling references that named OpenCode's v1-only flags. |
@@ -231,6 +231,6 @@ Reconciled with the work: `doc-inventory.md` lists all 41 docs this phase wrote 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Answered: the playbook set is the 17 scenarios the v1-only search found, plus the root page (`scratch/inventory.tsv`), not the research's 20.
+- Answered: the playbook set is the 17 scenarios the v1-only search found, plus the root page (`scratch/inventory.tsv`), not the research's 20. The event correction later added ten scenarios with untagged OpenCode 1 lines (decision 18), for 27.
 - Answered: the catalog home is `.skilled/skills/cli-external-orchestration/feature-catalog/`. One entry changed and one was added (decision 8).
 <!-- /ANCHOR:questions -->

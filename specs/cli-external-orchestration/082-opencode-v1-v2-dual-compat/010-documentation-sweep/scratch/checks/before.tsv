@@ -38,3 +38,14 @@ doc	type	validate_exit	dqi	hvr_exit
 .skilled/skills/system-deep-loop/runtime/tests/unit/README.md	code_folder	1	72	1
 .skilled/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md	feature_catalog	0	88	1
 .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md	feature_catalog	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/format-default-vs-json.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md	playbook_feature	0	84	1
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md	playbook_feature	0	91	1
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md	asset	0	83	1

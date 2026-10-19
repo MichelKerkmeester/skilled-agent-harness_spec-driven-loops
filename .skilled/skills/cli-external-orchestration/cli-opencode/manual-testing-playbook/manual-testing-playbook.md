@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -50,7 +50,7 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 
 1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
 2. The orchestrator decides whether to delegate to OpenCode CLI via cli-opencode, picks the right model + agent + variant + format + dir and constructs a Role -> Context -> Action -> Format prompt per the prompt quality card.
-3. The operator captures both the dispatch command and the user-visible outcome (JSON event stream parsed, tool.calls surfaced, session.completed summary).
+3. The operator captures both the dispatch command and the user-visible outcome (JSON event stream parsed, `tool_use` events surfaced, final `text` response).
 4. The scenario passes only when the dispatch is sound, the OpenCode output matches the expected signals and the returned result would satisfy a real user.
 
 ### What Each Feature File Should Explain
@@ -85,8 +85,8 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 - The Role -> Context -> Action -> Format prompt actually dispatched (not just paraphrased)
 - OpenCode JSON event stream captured to file (`.jsonl`)
 - Exit code from `opencode run`
-- Session id captured from the `session.started` event
-- The session.completed payload summary
+- Session id captured from the `sessionID` field of the event stream
+- The final `text` event summary
 - The final user-facing outcome and a PASS, PARTIAL or FAIL verdict with rationale
 - For destructive `--share` scenarios (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)), capture explicit operator confirmation per CHK-033 (or notation that the share URL was NOT published)
 
@@ -120,9 +120,9 @@ For each executed scenario, check:
 
 1. Preconditions were satisfied (especially `OPENCODE_*` env unset for use cases 1 and 3, parallel-session keywords present for use case 2 and the project MCP servers registered).
 2. Prompt and command sequence were executed as written, with the documented model + agent + variant + format + dir.
-3. Expected signals are present in the captured JSON event stream (session.started, message.delta, tool.call, session.completed events).
+3. Expected signals are present in the captured JSON event stream (`step_start`, `tool_use`, `text` and `step_finish` events, with the session id in `sessionID`).
 4. Evidence is complete and readable, including stderr captured via `2>&1` when documented.
-5. Outcome rationale is explicit and references the user-visible deliverable (final summary, tool.call payloads, captured session id).
+5. Outcome rationale is explicit and references the user-visible deliverable (final summary, `tool_use` payloads, captured `sessionID`).
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
@@ -197,13 +197,13 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`) and reads the v2 event names (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`) instead of the OpenCode 1 names. A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`). Both versions emit the same event schema (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor dispatching a fresh OpenCode session via the cli-opencode default invocation shape, send a short request that exercises the full plugin/skill/MCP runtime. Verify the JSON event stream emits a session.started, at least one message.delta and a session.completed event and the process exits 0.
+Prompt summary: As an external-AI conductor dispatching a fresh OpenCode session via the cli-opencode default invocation shape, send a short request that exercises the full plugin/skill/MCP runtime. Verify the JSON event stream contains at least one `step_start` and at least one `text` event, carries the session id in `sessionID`, and the process exits 0.
 
-Expected signals: `command -v opencode` returns a path. No OPENCODE_* env vars set. JSON event stream contains session.started plus session.completed. Exit 0. Runtime under 90s.
+Expected signals: `command -v opencode` returns a path. No OPENCODE_* env vars set. JSON event stream contains at least one `step_start`, at least one `text` event and a `sessionID`. Exit 0. Runtime under 90s.
 
 #### Test Execution
 
@@ -219,7 +219,7 @@ Verify `--format default` returns formatted human-readable output and `--format 
 
 Prompt summary: As an external-AI conductor verifying both opencode run output formats are intact, dispatch the same short prompt twice with --format default and --format json, then compare. Verify the default output is human-readable and the JSON output parses with jq and contains the documented event shape.
 
-Expected signals: Both formats exit 0. Default output mentions the expected concept. JSON output enumerates session.started + message.delta + session.completed events.
+Expected signals: Both formats exit 0. Default output mentions the expected concept. JSON output enumerates `step_start`, `text` and `step_finish` events, with the session id in `sessionID`.
 
 #### Test Execution
 
@@ -287,9 +287,9 @@ Verify a Claude Code-led dispatch via cli-opencode reaches a fresh OpenCode sess
 
 #### Scenario Contract
 
-Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the advisor_status MCP tool and return the daemon status. Context: spec folder `<repo-root>/<spec-folder>` (pre-approved, skip Gate 3). Plugin runtime required (Skill Advisor MCP). Constraints: must load system-spec-kit skill. Must call advisor_status and return its result. Success criteria: dispatched session emits a tool.call event for advisor_status, returns the daemon status. The session.completed event includes the status summary. Memory Epilogue is NOT required for this test.
+Prompt summary: You are Claude Code dispatching from a fresh shell into a new OpenCode session via cli-opencode use case 1. Goal: have OpenCode call the advisor_status MCP tool and return the daemon status. Context: spec folder `<repo-root>/<spec-folder>` (pre-approved, skip Gate 3). Plugin runtime required (Skill Advisor MCP). Constraints: must load system-spec-kit skill. Must call advisor_status and return its result. Success criteria: dispatched session emits a `tool_use` event for advisor_status, returns the daemon status. The final `text` event includes the status summary. Memory Epilogue is NOT required for this test.
 
-Expected signals: Dispatch exits 0. Tool.call event for advisor_status appears. Session.completed references the daemon status.
+Expected signals: Dispatch exits 0. `tool_use` event for advisor_status appears. The final `text` event references the daemon status.
 
 #### Test Execution
 
@@ -369,9 +369,9 @@ Verify an `opencode run` dispatch with `--agent` omitted loads the default agent
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying the unflagged default-agent route, dispatch opencode run WITHOUT any --agent flag, with a prompt that requires a Read tool call against a small project file and a multi-step reasoning summary. Verify the JSON event stream shows a tool.call for Read and the response references content from the file.
+Prompt summary: As an external-AI conductor verifying the unflagged default-agent route, dispatch opencode run WITHOUT any --agent flag, with a prompt that requires a Read tool call against a small project file and a multi-step reasoning summary. Verify the JSON event stream shows a `tool_use` event for Read and the response references content from the file.
 
-Expected signals: Exit 0. Read tool.call appears. The dispatched command line contains no `--agent` flag. Response references the read file's content.
+Expected signals: Exit 0. Read `tool_use` event appears. The dispatched command line contains no `--agent` flag. Response references the read file's content.
 
 #### Test Execution
 
@@ -385,9 +385,9 @@ Verify `--agent context` produces a structured architecture map of a target dire
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor needing a safe read-only architecture map of an unfamiliar module, dispatch --agent context against .skilled/skills/cli-external-orchestration/cli-opencode/. Snapshot mtimes before and after. Verify the response identifies SKILL.md as the entry point, references/ and assets/ as supporting structure and that no mtimes changed and no Edit/Write tool.call events appear.
+Prompt summary: As an external-AI conductor needing a safe read-only architecture map of an unfamiliar module, dispatch --agent context against .skilled/skills/cli-external-orchestration/cli-opencode/. Snapshot mtimes before and after. Verify the response identifies SKILL.md as the entry point, references/ and assets/ as supporting structure and that no mtimes changed and no Edit/Write `tool_use` events appear.
 
-Expected signals: Exit 0. Mtime diff is empty. No Edit/Write tool.calls. Response identifies entry point + supporting structure.
+Expected signals: Exit 0. Mtime diff is empty. No Edit/Write `tool_use` events. Response identifies entry point + supporting structure.
 
 #### Test Execution
 
@@ -403,7 +403,7 @@ Verify `--agent review` produces severity-tagged security findings (P0/P1/P2 OR 
 
 Prompt summary: As an external-AI conductor wanting an independent security audit before merging, write a small TS file with at least one obvious vulnerability to /tmp/co-015-target.ts. Dispatch --agent review against the file with an OWASP checklist (XSS, injection, auth bypass, hardcoded secrets). Verify the response surfaces findings with severity tags and line references and that the target file mtime does NOT change.
 
-Expected signals: Exit 0. Severity tag present. Line reference present. Target file mtime unchanged. Zero Edit/Write tool.calls.
+Expected signals: Exit 0. Severity tag present. Line reference present. Target file mtime unchanged. Zero Edit/Write `tool_use` events.
 
 #### Test Execution
 
@@ -420,7 +420,7 @@ Verify `--agent orchestrate` dispatching `ai-council` (`mode: subagent`) produce
 
 Prompt summary: As an external-AI conductor planning a CommonJS-to-ESM migration of a single hypothetical module, dispatch `--agent orchestrate` with a prompt requesting `@ai-council` to compare three strategies (big-bang rewrite, incremental wrapper, dual-build). Verify the response presents three distinct strategies, scores each across risk/effort/timeline/reversibility, recommends one with rationale and does NOT modify any files in the repo.
 
-Expected signals: Exit 0. Sentinel mtimes unchanged. Zero Edit/Write tool.calls. >=3 distinct strategies. >=3 dimensions scored. Explicit recommendation.
+Expected signals: Exit 0. Sentinel mtimes unchanged. Zero Edit/Write `tool_use` events. >=3 distinct strategies. >=3 dimensions scored. Explicit recommendation.
 
 #### Test Execution
 
@@ -434,9 +434,9 @@ Verify `--agent deep-research` executes a single research iteration against exte
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` (OpenCode 1 only) with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` (OpenCode 1 only) with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a final `text` event referencing findings or hypotheses, and that no Task or sub-agent `tool_use` events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
 
-Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
+Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task `tool_use` events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
 
 #### Test Execution
 
@@ -462,13 +462,13 @@ Expected signals: Exit 0. >= 1 new iteration file under `<packet>/review/iterati
 
 #### Description
 
-Verify `--agent orchestrate` produces a sequenced multi-agent plan naming at least 3 distinct OpenCode agent slugs with explicit handoffs, AND that the JSON event stream contains zero nested `opencode run` tool.call events (per agent-delegation.md §6).
+Verify `--agent orchestrate` produces a sequenced multi-agent plan naming at least 3 distinct OpenCode agent slugs with explicit handoffs, AND that the JSON event stream contains zero nested `opencode run` `tool_use` events (per agent-delegation.md §6).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, where a v2 check reads the `tool_use` event instead of the OpenCode 1 `tool.call` name and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run `tool_use` events appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
 
-Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` tool.call events. Working tree clean. Dispatch line includes `--agent orchestrate`.
+Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` `tool_use` events. Working tree clean. Dispatch line includes `--agent orchestrate`.
 
 #### Test Execution
 
@@ -504,7 +504,7 @@ Verify `-s <id>` (alias `--session <id>`) resumes the named session by its captu
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor managing a captured session id, dispatch a first opencode run with --format json and use jq to extract session_id from the session.started event. Then dispatch a second opencode run with -s <captured-id> and a follow-up question that requires access to the first turn's content.
+Prompt summary: As an external-AI conductor managing a captured session id, dispatch a first opencode run with --format json and use jq to extract the `sessionID` field from the event stream (for example `jq -r '.sessionID' | head -1`). Then dispatch a second opencode run with -s <captured-id> and a follow-up question that requires access to the first turn's content.
 
 Expected signals: Both exit 0. SID captured non-empty. Second turn references prior content. Second turn session id matches captured SID.
 
@@ -544,7 +544,7 @@ Verify a OpenCode-originated cli-opencode dispatch routes to use case 3 (cross-A
 
 Prompt summary: You are OpenCode (or a non-Anthropic external runtime) dispatching from a fresh shell into OpenCode for a spec-kit-specific workflow via cli-opencode use case 3. Goal: have OpenCode run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "self-invocation guard"` and return the top 3 packet pointers.
 
-Expected signals: Exit 0. A tool.call running the lookup script appears. Session.completed references results, or attests a clean no-hit.
+Expected signals: Exit 0. A `tool_use` event running the lookup script appears. The final `text` event references results, or attests a clean no-hit.
 
 #### Test Execution
 
@@ -614,7 +614,7 @@ Verify TEMPLATE 5 (Code Review, TIDD-EC, --agent review) populated with a real t
 
 Prompt summary: As an external-AI conductor reusing a vetted template instead of authoring from scratch, load TEMPLATE 5 (Code Review, TIDD-EC framework, --agent review) from assets/prompt-templates.md and populate it for /tmp/co-025-target.ts with one obvious vulnerability. Dispatch with the populated prompt. Verify the dispatch exits 0, the response surfaces P0/P1/P2-tagged findings with file:line citations and the response respects the template's READ-ONLY constraint (no file writes).
 
-Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity tag present. >=1 line reference.
+Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write `tool_use` events. Severity tag present. >=1 line reference.
 
 #### Test Execution
 
@@ -708,7 +708,7 @@ On OpenCode 1, verify `--dir <other-repo-path>` targets a different repository's
 
 Prompt summary: As an external-AI conductor verifying cross-repo dispatch, dispatch opencode run with --dir set to a different valid repo path on the machine (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <other-repo-path> && opencode2 run ...`). Ask the dispatched session to use the bash tool to list the top 5 entries in its working directory. Verify the listed files match the cross-repo path, not the Public repo.
 
-Expected signals: Exit 0. Cross-repo path referenced in tool.result. Zero references to Public-only files in the listing.
+Expected signals: Exit 0. Cross-repo path referenced in a `tool_use` event's `.part.state.output`. Zero references to Public-only files in the listing.
 
 #### Test Execution
 

@@ -1,0 +1,199 @@
+diff -ru a/assets/prompt-quality-card.md b/assets/prompt-quality-card.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md	2026-10-19 05:16:56
+@@ -10,15 +10,15 @@
+ version: 1.4.0.33
+ ---
+ 
+-# OpenCode CLI — Prompt Quality Card
++# OpenCode CLI: Prompt Quality Card
+ 
+-Fast-path dispatch discipline for `opencode run` prompts. The 7-framework table, task-to-framework map, pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are owned by the canonical card — do not inline them here.
++Fast-path dispatch discipline for `opencode run` prompts. The 7-framework table, task-to-framework map, pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are owned by the canonical card. Do not inline them here.
+ 
+ ## 1. OVERVIEW
+ 
+ ### Purpose
+ 
+-This card is the OpenCode CLI fast-path prompt-quality reference; it delegates the framework table + CLEAR check to the canonical card and records only the OpenCode-specific precedence rule.
++This card is the OpenCode CLI fast-path prompt-quality reference. It delegates the framework table + CLEAR check to the canonical card and records only the OpenCode-specific precedence rule.
+ 
+ ### Usage
+ 
+@@ -26,7 +26,7 @@
+ 
+ ---
+ 
+-## 2. SHARED LAYER (DELEGATED — DO NOT INLINE)
++## 2. SHARED LAYER (DELEGATED, DO NOT INLINE)
+ 
+ The 7-framework selection table, the task->framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
+ 
+@@ -36,9 +36,9 @@
+ 
+ ## 3. OPENCODE SMALL-MODEL DISPATCH
+ 
+-OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card; there are no per-model prompt-craft profiles.
++OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
+ 
+-**Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. MiMo-V2.6-Pro is reached through LLM Gateway only (`llmgateway/mimo-v2.6-pro`). Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
++**Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode 1 maps `--variant low/medium/high` to MiMo's reasoning effort, and OpenCode 2 takes the level on the model id (`#high`). `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. MiMo-V2.6-Pro is reached through LLM Gateway only (`llmgateway/mimo-v2.6-pro`). Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
+ 
+ ---
+ 
+diff -ru a/manual-testing-playbook/agent-routing/context-leaf-agent.md b/manual-testing-playbook/agent-routing/context-leaf-agent.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-014 -- Context LEAF agent (read-only)
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-014`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/agent-routing/general-agent-default.md b/manual-testing-playbook/agent-routing/general-agent-default.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-013 -- Unflagged default-agent route
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-013`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md b/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-017 -- Ultra-think multi-strategy planning
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-017`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/agent-routing/review-agent-security-audit.md b/manual-testing-playbook/agent-routing/review-agent-security-audit.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-015 -- Review agent security audit
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-015`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md b/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-004 -- File attachment via -f / --file flag
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-004`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/cli-invocation/format-default-vs-json.md b/manual-testing-playbook/cli-invocation/format-default-vs-json.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/format-default-vs-json.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/format-default-vs-json.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-002 -- Output format default vs json
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-002`.
+ 
+ ---
+@@ -47,7 +49,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-002 | Output format default vs json | Confirm `--format default` returns formatted human output and `--format json` returns a parseable event stream for the same prompt | `Run the same short prompt with default and JSON output, verify JSON parses with expected event fields, and report the event types.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format default --dir "$(pwd)" "Reply with one short sentence: what is the cli-opencode skill?" > /tmp/co-002-default.log 2>&1` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence: what is the cli-opencode skill?" > /tmp/co-002-json.jsonl 2>&1` -> 3. `bash: wc -l /tmp/co-002-default.log /tmp/co-002-json.jsonl` -> 4. `bash: grep -ciE '(opencode\|cli-opencode\|skill)' /tmp/co-002-default.log` -> 5. `bash: jq -r '.type' /tmp/co-002-json.jsonl \| sort \| uniq -c` -> 6. `bash: jq -e 'select(.type == "step_finish")' /tmp/co-002-json.jsonl > /dev/null && echo OK` | Step 1: default log written non-empty. Step 2: JSON lines written non-empty. Step 3: both files have line counts > 0. Step 4: default log mentions opencode/cli-opencode/skill at least once. Step 5: histogram shows `step_start`, `tool_use`, `text`, `step_finish`. Step 6: prints `OK` | `/tmp/co-002-default.log`, `/tmp/co-002-json.jsonl`, terminal histogram from step 5 | PASS if both exits 0 AND default output is human-readable AND JSON parses with jq AND has step_start + step_finish. FAIL if any check fails | 1. If default log is empty, the assistant may be filtered by a parent process, so re-run interactively. 2. If JSON output has stray non-JSON lines (e.g. `--print-logs` was on), re-run without `--print-logs` and only use stderr for logs. 3. If `jq -r '.type'` errors, validate the file is line-delimited JSON with `head -1 /tmp/co-002-json.jsonl \| jq .`. 4. Confirm version is v1.3.17. Older versions may emit `--format json` as the default and reject the flag |
++| CO-002 | Output format default vs json | Confirm `--format default` returns formatted human output and `--format json` returns a parseable event stream for the same prompt | `Run the same short prompt with default and JSON output, verify JSON parses with expected event fields, and report the event types.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format default --dir "$(pwd)" "Reply with one short sentence: what is the cli-opencode skill?" > /tmp/co-002-default.log 2>&1` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence: what is the cli-opencode skill?" > /tmp/co-002-json.jsonl 2>&1` -> 3. `bash: wc -l /tmp/co-002-default.log /tmp/co-002-json.jsonl` -> 4. `bash: grep -ciE '(opencode\|cli-opencode\|skill)' /tmp/co-002-default.log` -> 5. `bash: jq -r '.type' /tmp/co-002-json.jsonl \| sort \| uniq -c` -> 6. `bash: jq -e 'select(.type == "step_finish")' /tmp/co-002-json.jsonl > /dev/null && echo OK` | Step 1: default log written non-empty. Step 2: JSON lines written non-empty. Step 3: both files have line counts > 0. Step 4: default log mentions opencode/cli-opencode/skill at least once. Step 5: histogram shows `step_start`, `tool_use`, `text`, `step_finish`. Step 6: prints `OK` | `/tmp/co-002-default.log`, `/tmp/co-002-json.jsonl`, terminal histogram from step 5 | PASS if both exits 0 AND default output is human-readable AND JSON parses with jq AND has step_start + step_finish. FAIL if any check fails | 1. If default log is empty, the assistant may be filtered by a parent process, so re-run interactively. 2. If JSON output has stray non-JSON lines (e.g. `--print-logs` was on), re-run without `--print-logs` and only use stderr for logs. 3. If `jq -r '.type'` errors, validate the file is line-delimited JSON with `head -1 /tmp/co-002-json.jsonl \| jq .`. 4. Confirm the version with `opencode --version` (1.19.3) or `opencode2 --version` (2.0.32). On OpenCode 1, older versions may emit `--format json` as the default and reject the flag |
+ 
+ ### Optional Supplemental Checks
+ 
+diff -ru a/manual-testing-playbook/external-dispatch/from-claude-code.md b/manual-testing-playbook/external-dispatch/from-claude-code.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-006 -- External dispatch from Claude Code into OpenCode
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-006`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md b/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-022 -- Memory Epilogue handback to generate-context.js
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-022`.
+ 
+ ---
+diff -ru a/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md b/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-037 -- MiniMax design build dispatch carries a measured Style Reference
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-037`.
+ 
+ ---
+@@ -16,7 +18,7 @@
+ 
+ ### Why This Matters
+ 
+-Small-model dispatch fails quietly when the parent prompt only says "build this UI" and assumes the child will infer or invent colors, type, and spacing. MiniMax-M3 has a profiled TIDD-EC plus dense pre-plan shape, and design builds have an explicit measured-ground-truth gate: the child must build against tokens extracted verbatim from a live source, not from memory. `sk-design-md-generator` measures real CSS; it does not judge design or invent direction. The manual test catches a thin dispatch before the child returns attractive but unmeasured design values.
++Small-model dispatch fails quietly when the parent prompt only says "build this UI" and assumes the child will infer or invent colors, type, and spacing. MiniMax-M3 has a profiled TIDD-EC plus dense pre-plan shape, and design builds have an explicit measured-ground-truth gate: the child must build against tokens extracted verbatim from a live source, not from memory. `sk-design-md-generator` measures real CSS. It does not judge design or invent direction. The manual test catches a thin dispatch before the child returns attractive but unmeasured design values.
+ 
+ ---
+ 
+@@ -30,7 +32,7 @@
+ - Expected execution process: Read `../../assets/prompt-quality-card.md`, read `../../../../sk-design/sk-design-md-generator/references/creation-contract.md`, compose a MiniMax prompt with `<pre-plan>`, Style Reference Manifest, measured-token load step, `## Verification`, and the sk-code handoff card, then dispatch or dry-run the exact packet depending on provider availability.
+ - Expected signals: The prompt names the required sk-design-md-generator files, loads the measured tokens first, requires every built value to trace to a measured token, flags any inferred value as an OPEN RISK, requires the validate step (hex accuracy, section completeness) before ready language, and tells the child not to claim ready/fidelity/handoff unless the validate result and locked-value trace are complete.
+ - Desired user-visible outcome: A MiniMax dispatch packet and child-output check that prove the measured Style Reference was loaded and built against, with missing validate/locked-value proof causing an explicit FAIL rather than accepting design values from memory.
+-- Pass/fail: PASS if the dispatch packet contains the MiniMax profile shape plus the measured Style Reference manifest and fidelity proof; FAIL if the prompt is generic, omits the measured-token manifest, omits the validate/handoff proof, uses `--agent` for the small-model dispatch, invites the child to invent new visual direction, or permits readiness/fidelity claims without complete proof.
++- Pass/fail: PASS if the dispatch packet contains the MiniMax profile shape plus the measured Style Reference manifest and fidelity proof. FAIL if the prompt is generic, omits the measured-token manifest, omits the validate/handoff proof, uses `--agent` for the small-model dispatch, invites the child to invent new visual direction, or permits readiness/fidelity claims without complete proof.
+ 
+ ---
+ 
+@@ -46,7 +48,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-037 | MiniMax design build dispatch carries a measured Style Reference | Verify MiniMax-M3 design/UI build dispatch carries a measured Style Reference manifest instead of thin generic context | `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.` | 1. `bash: rg -n "TYPED CONTEXT ENVELOPE|TYPED PROOF|FAILURE SEMANTICS" .skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md` -> 2. compose `/tmp/co-037-minimax-design-prompt.md` with `<pre-plan>`, Style Reference Manifest, measured-token load step, `## Verification`, and the sk-code handoff card -> 3. `bash: rg -n "LOCKED VALUES|INFERRED VS MEASURED|VALIDATION|Do not claim" /tmp/co-037-minimax-design-prompt.md` -> 4. `bash: opencode run --model minimax-coding-plan/MiniMax-M3 --format json --dir "$(git rev-parse --show-toplevel)" "$(cat /tmp/co-037-minimax-design-prompt.md)" > /tmp/co-037-output.json 2>&1 </dev/null; echo "Exit: $?"` | Step 1: typed context envelope and typed proof headings found; Step 2: prompt has pre-plan, Style Reference Manifest, measured-token load, Verification, and sk-code handoff sections; Step 3: all fidelity-proof fields and claim block are present; Step 4: live dispatch exits 0 when provider is configured, or SKIP records missing MiniMax credentials only | Source grep output, composed prompt packet, optional dispatch JSON, exit code or provider SKIP note, and child output echo if dispatched | PASS if the packet includes no `--agent`, measured-token manifest, fidelity-proof fields, handoff card, and claim block; FAIL if any required manifest/proof is missing or the child is allowed to make unsupported readiness/fidelity claims or invent new direction | (1) If MiniMax model id fails, confirm live id with `opencode models minimax`; (2) if provider auth is missing, validate packet structure and mark live dispatch SKIP; (3) if fidelity-proof fields are missing, re-read the creation-contract.md typed-proof section |
++| CO-037 | MiniMax design build dispatch carries a measured Style Reference | Verify MiniMax-M3 design/UI build dispatch carries a measured Style Reference manifest instead of thin generic context | `Use MiniMax-M3 to build a SaaS onboarding UI against a measured Style Reference. Dispatch it with the sk-design-md-generator Style Reference manifest (measured DESIGN.md tokens), the build-against-measured requirements, and the validate + sk-code-handoff proof requirements.` | 1. `bash: rg -n "TYPED CONTEXT ENVELOPE|TYPED PROOF|FAILURE SEMANTICS" .skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md` -> 2. compose `/tmp/co-037-minimax-design-prompt.md` with `<pre-plan>`, Style Reference Manifest, measured-token load step, `## Verification`, and the sk-code handoff card -> 3. `bash: rg -n "LOCKED VALUES|INFERRED VS MEASURED|VALIDATION|Do not claim" /tmp/co-037-minimax-design-prompt.md` -> 4. `bash: opencode run --model minimax-coding-plan/MiniMax-M3 --format json --dir "$(git rev-parse --show-toplevel)" "$(cat /tmp/co-037-minimax-design-prompt.md)" > /tmp/co-037-output.json 2>&1 </dev/null; echo "Exit: $?"` | Step 1: typed context envelope and typed proof headings found. Step 2: prompt has pre-plan, Style Reference Manifest, measured-token load, Verification, and sk-code handoff sections. Step 3: all fidelity-proof fields and claim block are present. Step 4: live dispatch exits 0 when provider is configured, or SKIP records missing MiniMax credentials only | Source grep output, composed prompt packet, optional dispatch JSON, exit code or provider SKIP note, and child output echo if dispatched | PASS if the packet includes no `--agent`, measured-token manifest, fidelity-proof fields, handoff card, and claim block. FAIL if any required manifest/proof is missing or the child is allowed to make unsupported readiness/fidelity claims or invent new direction | (1) If MiniMax model id fails, confirm live id with `opencode models minimax`. (2) If provider auth is missing, validate packet structure and mark live dispatch SKIP. (3) If fidelity-proof fields are missing, re-read the creation-contract.md typed-proof section |
+ 
+ ### Optional Supplemental Checks
+ 
+diff -ru a/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md b/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md	2026-10-19 05:16:56
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md	2026-10-19 05:16:56
+@@ -6,6 +6,8 @@
+ 
+ # CO-025 -- Template applied to a real dispatch
+ 
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-025`.
+ 
+ ---

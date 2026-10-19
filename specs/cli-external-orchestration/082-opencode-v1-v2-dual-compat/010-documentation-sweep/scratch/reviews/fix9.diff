@@ -1,0 +1,33 @@
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-013 -- Unflagged default-agent route
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-013`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-037 -- MiniMax design build dispatch carries a measured Style Reference
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-037`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-025 -- Template applied to a real dispatch
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 reads an `As @review:` prompt body is unverified on OpenCode 2.0.32.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-025`.
+ 

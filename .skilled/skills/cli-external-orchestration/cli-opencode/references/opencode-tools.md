@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -122,7 +122,7 @@ The skill's smart router gates this use case behind ADR-001's self-invocation si
 
 ### What it does
 
-`--format json` emits a newline-delimited JSON stream with typed events: `session.started`, `message.delta`, `tool.call`, `tool.result`, `session.completed`. Each event has a stable schema and a `session_id`. Whether OpenCode 2 emits the same event schema is unverified on OpenCode 2.0.32.
+`--format json` emits a newline-delimited JSON stream with typed events: `step_start`, `tool_use`, `text` and `step_finish`. Each event carries the session id in `sessionID`, and the two versions emit the same event names.
 
 ### Why it matters
 
@@ -141,9 +141,9 @@ opencode run \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
     type=$(echo "$line" | jq -r '.type')
     case "$type" in
-      session.started) echo "session_id=$(echo "$line" | jq -r '.session_id')" ;;
-      tool.call) echo "tool=$(echo "$line" | jq -r '.payload.name')" ;;
-      session.completed) echo "DONE" ;;
+      step_start) echo "sessionID=$(echo "$line" | jq -r '.sessionID')" ;;
+      tool_use) echo "tool=$(echo "$line" | jq -r '.part.tool')" ;;
+      step_finish) echo "step_finish=$(echo "$line" | jq -r '.part.reason')" ;;
     esac
   done
 ```
@@ -156,9 +156,9 @@ cd /repo && opencode2 run --standalone \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
     type=$(echo "$line" | jq -r '.type')
     case "$type" in
-      session.started) echo "session_id=$(echo "$line" | jq -r '.session_id')" ;;
-      tool.call) echo "tool=$(echo "$line" | jq -r '.payload.name')" ;;
-      session.completed) echo "DONE" ;;
+      step_start) echo "sessionID=$(echo "$line" | jq -r '.sessionID')" ;;
+      tool_use) echo "tool=$(echo "$line" | jq -r '.part.tool')" ;;
+      step_finish) echo "step_finish=$(echo "$line" | jq -r '.part.reason')" ;;
     esac
   done
 ```

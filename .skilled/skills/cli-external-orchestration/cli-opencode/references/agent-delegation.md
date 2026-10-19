@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -62,8 +62,8 @@ opencode run --agent <slug> (EXECUTOR ENTRY)
 OpenCode Session (AGENT EXECUTION)
   |
   |-- Agent shapes the dispatch under its frontmatter constraints
-  |-- Streams JSON events (session.started, message.delta, tool.call,
-  |    tool.result, session.completed) to the calling AI
+  |-- Streams JSON events (step_start, tool_use, text,
+  |    step_finish) to the calling AI
   |-- Honors LEAF agent restrictions (no nested dispatches, read-only)
   |
   v
@@ -109,7 +109,7 @@ On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cro
 4. OpenCode agents operate within their declared tool-permission boundaries. LEAF agents may not write files or dispatch sub-agents.
 5. If an agent returns low-quality output, the calling AI retries with refined instructions or selects a different agent.
 6. Each `opencode run` invocation is **stateless** by default. Include all necessary context in the prompt or use `--continue` / `--session <id>` for explicit continuation.
-7. The calling AI surfaces the JSON event stream to the operator when relevant, especially `tool.call` events.
+7. The calling AI surfaces the JSON event stream to the operator when relevant, especially `tool_use` events.
 
 ### Orchestration boundaries
 
@@ -356,7 +356,7 @@ cd /path/to/repo && opencode2 run --standalone \
   "As @review: audit @src/auth/handler.ts for OWASP Top 10 issues. Surface findings as P0 / P1 / P2 with file:line citations. READ-ONLY — do not propose fixes."
 ```
 
-**Expected handback:** JSON event stream with `tool.call` events for file reads, plus a final assistant message containing the structured P0 / P1 / P2 list.
+**Expected handback:** JSON event stream with `tool_use` events for file reads, plus a final assistant message containing the structured P0 / P1 / P2 list.
 
 **Calling AI follow-up:** Validate that every cited line resolves in the source file. Re-dispatch with refined scope if a finding lacks evidence.
 
@@ -424,11 +424,11 @@ fi
 
 ### Parsing structured output
 
-`--format json` emits newline-delimited JSON events. Each event has at minimum `type`, `timestamp`, `session_id`, and `payload`. The calling AI parses incrementally:
+`--format json` emits newline-delimited JSON events. Each event has at minimum `type`, `timestamp`, `sessionID`, and `part`. The calling AI parses incrementally:
 
 ```bash
-jq -r 'select(.type == "tool.call") | .payload' /tmp/review-events.jsonl
-jq -r 'select(.type == "session.completed") | .payload.summary' /tmp/review-events.jsonl
+jq -r 'select(.type == "tool_use") | .part.tool' /tmp/review-events.jsonl
+jq -r 'select(.type == "text") | .part.text' /tmp/review-events.jsonl
 ```
 
 ### Failure modes
@@ -437,7 +437,7 @@ jq -r 'select(.type == "session.completed") | .payload.summary' /tmp/review-even
 |---------|--------------|----------|
 | `unknown agent <slug>` | Slug not present in `.opencode/agents/` or user-level fallback | Run `opencode agent list` to enumerate, fix the slug, retry |
 | Agent loaded but writes refused | LEAF agent constraint or read-only sandbox | Re-route to `general` / `orchestrate` for write operations |
-| Session never finishes | Tool call hung or infinite loop | Inspect `~/.opencode/state/<session_id>/messages.jsonl`, abort the session, retry with refined scope |
+| Session never finishes | Tool call hung or infinite loop | Inspect `~/.opencode/state/<sessionID>/messages.jsonl`, abort the session, retry with refined scope |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
 | Plugin load crash | Misconfigured plugin in agent context | On OpenCode 1, rerun with `--pure` to bypass plugins, then root-cause the plugin. OpenCode 2 `run` has no `--pure` (see `./install-and-versions.md`) |
 | `provider/model not found` | Model not configured for the agent's chosen provider | Run `opencode providers` to enumerate, then `auth login <provider>` |

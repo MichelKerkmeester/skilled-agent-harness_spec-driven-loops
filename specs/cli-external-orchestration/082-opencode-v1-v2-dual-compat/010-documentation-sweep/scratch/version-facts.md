@@ -51,6 +51,17 @@ These facts were confirmed after the first writes, and the fix pass follows them
 - A provider preflight for OpenCode 2 uses `opencode2 models`, beside the OpenCode 1 `opencode models`.
 - Rule 7 covers the `version` field. A frontmatter `description` that now states a wrong fact is corrected, and nothing else in the frontmatter changes.
 
+## Event correction (found in phase 011)
+
+The addendum above called `session.started`, `message.delta`, `tool.call`, `tool.result`, `session.completed` and `session_id` the OpenCode 1 names. That is wrong for 1.19.3. Two live 1.19.3 runs (`006-cli-opencode-dual-dispatch/scratch/smoke/v1/stdout.jsonl` and `011-two-version-proof-and-closeout/scratch/proof/smoke/v1/stdout.jsonl`) and two 2.0.32 runs emit the same schema:
+
+- Event types: `step_start`, `tool_use`, `text` and `step_finish`, on both versions. No run emits `session.started`, `message.delta`, `tool.call`, `tool.result` or `session.completed`. Those names are from older OpenCode 1 releases and are unverified on 1.19.3.
+- Every event carries the session id in `sessionID`. There is no `session_id` field.
+- Reply text is in `text` events at `.part.text`.
+- A tool call is a `tool_use` event: the tool is `.part.tool` and its result is `.part.state.output`, with `.part.state.status` `completed`. The shell tool is named `bash` on OpenCode 1.19.3 and `shell` on OpenCode 2.0.32.
+- A `step_finish` event closes each step, with `.part.reason` (`tool-calls` or `stop`) and `.part.cost`. The 1.19.3 runs end with a `step_finish` whose reason is `stop`. The 2.0.32 runs captured here end with a `text` event, so a check never requires the last event to be `step_finish`.
+- So a JSON-stream check reads the same on both versions: at least one `step_start`, at least one `text` event, a `sessionID`, and exit 0. Only the shell tool name differs.
+
 ## Human voice
 
 Run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py --all <doc>`. Rewrite every hard finding in prose until the scan exits 0: an em dash (—) or a semicolon (;) becomes two sentences, a comma, a colon or parentheses, whichever keeps the meaning; a flagged word gets a plain one. Leave code blocks and inline code as they are. Keep every fact.
