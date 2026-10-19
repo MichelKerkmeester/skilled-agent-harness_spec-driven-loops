@@ -1,5 +1,5 @@
 {
-  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
+  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -56535,6 +56535,9 @@
     "less doc template bloat": [
       "less doc-template bloat"
     ],
+    "let the continuity writer save into a research": [
+      "let the continuity writer save into a research"
+    ],
     "let the pi fast mode extension stand down": [
       "let the pi fast mode extension stand down"
     ],
@@ -82059,6 +82062,18 @@
     ],
     "research findings remediation": [
       "research findings remediation"
+    ],
+    "research folder continuity": [
+      "research folder continuity"
+    ],
+    "research folder continuity implementation summary": [
+      "research folder continuity implementation summary"
+    ],
+    "research folder continuity plan": [
+      "research folder continuity plan"
+    ],
+    "research folder continuity tasks": [
+      "research folder continuity tasks"
     ],
     "research folders under spec tree root": [
       "research folders under spec-tree root"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "34e35f9f3f1bd77cb4bd7d5e9b54726442a2fbf51c970e08a5ca4d58283584ec",
+  "corpusHash": "5f590425d210709439236780975956eb009d3311ffda1279bb3f07c24353fac3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25305,
+  "includedPathCount": 25309,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25333,10 +25333,14 @@
     "specs/system-speckit/051-symlinked-runtime-root/implementation-summary.md",
     "specs/system-speckit/051-symlinked-runtime-root/plan.md",
     "specs/system-speckit/051-symlinked-runtime-root/spec.md",
-    "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
+    "specs/system-speckit/051-symlinked-runtime-root/tasks.md",
+    "specs/system-speckit/052-research-folder-continuity/implementation-summary.md",
+    "specs/system-speckit/052-research-folder-continuity/plan.md",
+    "specs/system-speckit/052-research-folder-continuity/spec.md",
+    "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
+  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31956,6 +31960,10 @@
     },
     {
       "path": "specs/system-speckit/051-symlinked-runtime-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/052-research-folder-continuity/scratch",
       "reason": "excluded directory"
     },
     {

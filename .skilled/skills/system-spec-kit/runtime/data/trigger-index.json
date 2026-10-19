@@ -1,5 +1,5 @@
 {
-  "manifestHash": "77a80d2e1b0b97d34cc56b6fcbb6456288010e5d1584c163f82350751da2095f",
+  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -14637,7 +14637,11 @@
     "specs/system-speckit/051-symlinked-runtime-root/implementation-summary.md",
     "specs/system-speckit/051-symlinked-runtime-root/plan.md",
     "specs/system-speckit/051-symlinked-runtime-root/spec.md",
-    "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
+    "specs/system-speckit/051-symlinked-runtime-root/tasks.md",
+    "specs/system-speckit/052-research-folder-continuity/implementation-summary.md",
+    "specs/system-speckit/052-research-folder-continuity/plan.md",
+    "specs/system-speckit/052-research-folder-continuity/spec.md",
+    "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -75357,6 +75361,9 @@
     "less doc template bloat": [
       13128
     ],
+    "let the continuity writer save into a research": [
+      14630
+    ],
     "let the pi fast mode extension stand down": [
       7932
     ],
@@ -102713,6 +102720,18 @@
     ],
     "research findings remediation": [
       8077
+    ],
+    "research folder continuity": [
+      14630
+    ],
+    "research folder continuity implementation summary": [
+      14628
+    ],
+    "research folder continuity plan": [
+      14629
+    ],
+    "research folder continuity tasks": [
+      14631
     ],
     "research folders under spec tree root": [
       1882
