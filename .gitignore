@@ -62,6 +62,12 @@ dist/
 .skilled/output/
 
 # ───────────────────────────────────────────
+# sk-vision build output: its bundle step writes the OpenCode hook beside the tracked .ts source
+# ───────────────────────────────────────────
+.opencode/skills/sk-vision/hooks/opencode/sk-vision.js
+.skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+
+# ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.js

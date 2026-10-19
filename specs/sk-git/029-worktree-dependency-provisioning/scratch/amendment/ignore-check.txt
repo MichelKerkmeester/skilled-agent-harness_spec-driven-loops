@@ -1,0 +1,9 @@
+# git check-ignore -v on the sk-vision hook bundle and its tracked source, after the .gitignore line
+.gitignore:68:.skilled/skills/sk-vision/hooks/opencode/sk-vision.js	.skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+sk-vision.ts: not ignored (exit 1)
+# git status --short .skilled/skills/sk-vision/hooks/opencode/
+(no entries)
+# Before: untracked files under hooks/opencode/ when only the previous .gitignore (HEAD bcd2f4d0d1) applies
+.skilled/skills/sk-vision/hooks/opencode/sk-vision.js
+# After: the same listing with the working-tree .gitignore
+(end)

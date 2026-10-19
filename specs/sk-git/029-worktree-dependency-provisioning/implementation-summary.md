@@ -64,6 +64,7 @@ exit code concludes the build succeeded.
 | `scripts/worktree-provision-paths.txt` | Created | The nine packages a worktree needs, as data rather than code |
 | `scripts/worktree-provision-paths.txt` | Modified (amendment) | Adds `.opencode`, which gained a `package.json` after this packet closed |
 | `scripts/worktree-naming.sh`, `scripts/tests/worktree-naming.test.sh` | Modified (amendment) | Installs and builds a `bun.lock` package with bun, resolves a relative worktree path before the dependency walk, with nine fixture assertions |
+| `.gitignore` | Modified (amendment) | Ignores the sk-vision hook bundle the bun build writes |
 | `scripts/worktree-naming.sh` | Modified | `provision` subcommand; `create` calls it unless `--no-provision` |
 | `SKILL.md` | Modified | Rule 8 already named this problem and now names the fix |
 <!-- /ANCHOR:what-built -->
@@ -141,8 +142,4 @@ Node does, bounded at the worktree root, looking for the directory.
    `bun.lock`, so provisioning installs and builds it with bun. Where bun is
    missing, provisioning reports that package as failed and `create` returns 3,
    rather than falling back to an npm install that would write a second lockfile.
-5. **The sk-vision build leaves an untracked file.** `bun run build` also writes
-   `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js`, which no ignore rule
-   covers, so a provisioned worktree shows it as untracked. It must not be
-   committed; a broad `git add -A` would pick it up.
 <!-- /ANCHOR:limitations -->
