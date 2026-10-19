@@ -17,7 +17,7 @@ trigger_phrases:
   - "skilled-loop codex"
   - "skilled-loop hermes"
   - "context handoff to a fresh session"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -40,7 +40,7 @@ Claude's context-nudge handles PostToolUse and UserPromptSubmit. It reads the la
 
 Every adapter asks the same questions before it nudges. A pending record for this session silences the nudge. So does an armed one, until it passes its age limit, because the handoff work is already done. The limit is `SESSION_RELAUNCH_MAX_AGE_MIN`, read from the hook config file and then the environment, as the wrapper reads it. Past that limit the wrapper would decline the record as stale, so the nudge resumes instead of waiting on a relaunch that cannot happen. At the hop cap no adapter nudges, because a prepare there can only decline. A re-nudge also keeps the note path the session already has open: the shared planner returns that session's existing `status: open` note and only otherwise builds a timestamped path.
 
-Both `prepare` and `claim` require `--session <id>`. Only Claude can use `CLAUDE_CODE_SESSION_ID` instead. `CLAUDE_PID` supplies the runtime process id for the shell-child check only. Runtimes without a session-id variable generate an id with `uuidgen` and reuse it for the session.
+Both `prepare` and `claim` require `--session <id>`. Only Claude can use `CLAUDE_CODE_SESSION_ID` instead. `CLAUDE_PID` supplies the runtime process id for the shell-child check, and the Claude Stop hook keeps it as the killer target while it descends from the loop. Runtimes without a session-id variable generate an id with `uuidgen` and reuse it for the session.
 
 Prepare validates the note before checking whether the caller runs under skilled-loop. The nudge passes `--runtime <name>`, which must name one of the seven runtimes. Outside the loop, that value overrides the environment or Claude default and the CLI prints the selected runtime's manual claim command before exiting 3. Inside the loop, a supplied runtime must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. A live child of the runtime process also exits 2 when its command name is one of `sh`, `bash`, `zsh`, `fish`, `dash`, `ksh`, `mksh`, `tcsh`, `csh`, `nu` or `pwsh`, with a leading `-` stripped so a login shell still matches. Any other child program is not detected. A successful prepare below the hop cap writes a pending record and exits 0. At the cap it writes no record: it prints a `hop limit reached` line that names auto-compaction as the fallback, then the manual claim command, logs `prepare-declined` with reason `hop-cap` and exits 3, leaving the note open for the operator's own claim. When a hop goes ahead, prepare marks each note already claimed by this session as `done`, adds `completed_at` and sets `superseded_by` to the new note's basename.
 

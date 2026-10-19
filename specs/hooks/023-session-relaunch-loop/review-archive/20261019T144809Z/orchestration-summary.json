@@ -1,0 +1,26 @@
+{
+  "run_id": "1792349322065-8lohfl",
+  "loop_type": "review",
+  "spec_folder": "specs/hooks/023-session-relaunch-loop",
+  "base_artifact_dir": "specs/hooks/023-session-relaunch-loop/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "needs_input": 0
+  }
+}

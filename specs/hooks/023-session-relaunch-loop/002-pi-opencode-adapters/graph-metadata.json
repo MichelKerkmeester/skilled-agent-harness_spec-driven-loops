@@ -49,8 +49,7 @@
       "implementation-summary.md",
       ".pi/extensions/session-relaunch.ts",
       ".opencode/plugins/session-relaunch.js",
-      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
-      "scratch/spike/SPIKE-REPORT.md"
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs"
     ],
     "entities": [
       {
@@ -105,12 +104,6 @@
         "name": "nudge.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SPIKE-REPORT.md",
-        "kind": "doc",
-        "path": "scratch/spike/SPIKE-REPORT.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verify Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The approved plan marks Pi messageend usage and OpenCode event info.tokens as unverified",
     "created_at": "2026-10-16T20:16:20Z",
-    "last_save_at": "2026-10-18T11:56:55.840Z",
+    "last_save_at": "2026-10-19T18:12:47.279Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:718c28af31604911834ef7f19e6add079e809c925bafc3af3da74194db37af4b",
+    "source_fingerprint": "sha256:add899e95088f15cdc59f781085d8a557720702b7cca7704aae9d667a9eaa484",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d38dc3639af323afd389dc52c2ee25e28352391a23bedccb40a7d9067a2f4adb",
       "plan.md": "e722828c55c1cf481c2ed3715ab71c73f7a0c7b24407a3ba2091520a5f51c27c",
       "tasks.md": "57cadcaa9095b0496101bf2c5b3c5f1b3c0b6b84a87a5348a5d8bd0ea8e45d95",
-      "implementation-summary.md": "ed531db9a1f68cee4b44b170aad08322ffcb94627b634ce45396922ef62d6840"
+      "implementation-summary.md": "dd51ad53bb6c31d9df0a9cd230b368d1218a2f569b47fe36522f17d11017d8c3"
     },
     "last_active_at": null
   }

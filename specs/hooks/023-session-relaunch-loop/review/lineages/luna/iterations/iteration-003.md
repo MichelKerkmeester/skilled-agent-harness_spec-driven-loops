@@ -1,21 +1,30 @@
-# Iteration 3 - Traceability
+# Iteration 003 — Traceability
 
-**Focus:** traceability  
-**Target:** `specs/hooks/023-session-relaunch-loop`  
-**Session:** `fanout-luna-1792349322065-8lohfl`  
-**Timestamp:** 2026-10-18T19:06:09Z
+## Dimension
 
-## Focus
+Traceability — reconcile parent phase scope and transitions with child requirements, acceptance evidence, and closure summaries.
 
-traceability
+## Files Reviewed
 
-## Review scope
+- specs/hooks/023-session-relaunch-loop/spec.md:39
+- specs/hooks/023-session-relaunch-loop/spec.md:51
+- specs/hooks/023-session-relaunch-loop/spec.md:62
+- specs/hooks/023-session-relaunch-loop/spec.md:81
+- specs/hooks/023-session-relaunch-loop/spec.md:98
+- specs/hooks/023-session-relaunch-loop/spec.md:122
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/spec.md:120
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:41
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:44
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:65
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:67
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:102
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:135
+- specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:145
+- specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md:27
+- specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md:27
+- specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md (checked; absent)
 
-This pass traced the parent handoff criteria and phase map into Phase 5's dependency, requirements, acceptance criteria, run-ledger evidence, and the archived review artifacts. The three requested dimensions correctness, security, and traceability have now each had a pass. The original review strategy also lists maintainability, which is not covered because the hard cap is three iterations and each pass is dimension-specific.
-
-## Findings
-
-Findings by severity.
+## Findings by Severity
 
 ### P0 Findings
 
@@ -23,31 +32,30 @@ None.
 
 ### P1 Findings
 
-None.
+1. **P1-001 — AC-003 is marked Met despite evidence failing its literal smoke requirement** (`specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:41`). REQ-003 requires the plain Pi command to exit 0 and the OpenCode import command to print `ok` (`002-pi-opencode-adapters/spec.md:120`). AC-003's evidence instead says the plain Pi command returned rc=1 because of the duplicate `--fast` extension and the OpenCode import printed `function`; the isolated-extension Pi smoke returned rc=0. The recorded evidence does not establish the exact required outcomes, yet the row is Met and the phase is declared closeable. **Recommendation:** rerun the required commands and record matching results, or revise the requirement and acceptance criterion through the packet's change process before treating AC-003 as Met.
 
 ### P2 Findings
 
-1. **[LUNA-004] Phase 5 depends on a review-report path that is absent.** The parent handoff row requires `review/review-report.md` to exist with a verdict and registry (`spec.md:114`); Phase 5 repeats that path as its scope boundary and dependency (`005-deep-review-remediation/spec.md:40,43`). The file is absent at that path. The report and matching registry exist under `review-archive/20261018T184826Z/`, so the evidence was archived without updating the dependency links. The packet's Phase 5 completion therefore cannot be followed from its declared dependency path. Update the links to the archived artifact or maintain the declared canonical path.
+1. **P2-002 — Phase 002 closure summary and acceptance record disagree about AC-006** (`specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:135`). The acceptance record marks AC-006 Met, says the packet is closeable, and reports strict validation passed (`acceptance-criteria.md:44,65-67`), while the implementation summary says AC-006 is Unmet and the packet validator returned RESULT: FAILED; other summary rows still describe revalidation as pending. These cannot all describe the same final closure state. **Recommendation:** reconcile the summary and acceptance record against the final validation evidence, retaining earlier failures only as dated history.
 
-2. **[LUNA-005] The parent handoff criteria still count four children while the phase map lists five.** The metadata says “All four children are Complete” (`spec.md:39`), while the phase map lists phases 1 through 5, all complete (`spec.md:92–98`). Phase 5 is also described as a child in the map and as “Phase 5” in its own spec. This leaves the parent completion rule ambiguous about whether Phase 5 is included. Align the count or name the four phases the criterion means.
+2. **P2-003 — Parent phase contract still describes six phases after Phase 007 was added** (`specs/hooks/023-session-relaunch-loop/spec.md:39`). The phase map lists seven completed children, but the parent handoff criterion and purpose still say six; scope and file summaries stop at Phase 006; the 006→007 handoff row remains TBD. Phase 006 also says “Phase 6 of 6” while Phase 007 identifies itself as “Phase 7 of 7.” **Recommendation:** update the parent phase count, scope/file summaries, and 006→007 handoff criteria, and reconcile the Phase 006 count if it is intended to describe the current sequence.
 
-## Traceability checks
+## Traceability Checks
 
-- **Archived review result:** the archived report says PASS with 0 P0, 0 P1, and 12 P2; its archived registry records the same severity counts. The artifact content supports the Phase 5 dependency's summary, but its location does not match the dependency path.
-- **Phase 5 requirement evidence:** AC-001 maps REQ-001 to named append, transcript, stale-lock, and mode tests and cites the run-ledger red/green rows (`005-deep-review-remediation/acceptance-criteria.md:54`; `scratch/run-ledger.md:429–456`). The cited run-ledger rows are present; this review did not rerun them.
-- **Archived report resolution:** `review-archive/20261018T184826Z/review-report.md` and its registry exist; `review/review-report.md` does not. No current canonical report exists in the packet's shared `review/` root.
-- **Parent/child phase count:** the explicit metadata count and the enumerated phase table disagree. The phase map and Phase 5 title establish five listed phases; whether “four children” intentionally excludes remediation is not stated.
+- `spec_code`: fail. The seven-row phase map conflicts with the six-child parent contract and incomplete 006→007 transition (P2-003).
+- `checklist_evidence`: fail. AC-003's cited outcomes do not satisfy REQ-003 as written, and AC-006 closure status conflicts across the phase documents (P1-001, P2-002).
+- Evidence was read from the packet only. The Pi/OpenCode commands and strict validator were not rerun during this review.
 
-## Conflicts and coverage limits
+## SCOPE VIOLATIONS
 
-The packet's declared completion state conflicts with its live dependency path: Phase 5 is marked complete, but its required report is only in the archive. The dispatcher directs this lineage to record such conflicts and continue, so the discrepancy is captured here as LUNA-004. Generic migration and graph seeding remain skipped because they would write outside the authorized lineage directory. The three-pass cap also leaves maintainability uncovered.
+- The full workflow's graph seeding, resource-map emission, strict packet validation, and continuity save would write outside the dispatcher-bound lineage. They remain skipped; no target packet files were changed.
 
-## Assessment
+## Next Dimension
 
-Dimensions addressed: traceability
+Iteration 004: maintainability and consistency of the runtime-facing documentation and adapter instructions.
 
-## Review verdict
+## Verdict
 
-No P0 or P1 findings were found. The P2 findings concern evidence location and ambiguous completion criteria.
+The packet contains one closure-blocking acceptance-evidence mismatch and two phase-document consistency defects. Continue with maintainability review.
 
-Review verdict: PASS
+Review verdict: CONDITIONAL

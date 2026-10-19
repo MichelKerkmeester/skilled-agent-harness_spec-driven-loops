@@ -1,0 +1,12 @@
+2026-10-19T11:34:56.858Z prepare loopId=75693 status=pending sessionId=6f63a2a7-82ac-4cf2-83e7-d6d35e62d936
+2026-10-19T11:35:04.649Z killer-signal targetPid=75743 signal=SIGTERM
+2026-10-19T11:35:05.362Z relaunch loopId=75693 reason=ready
+2026-10-19T11:36:42.504Z prepare loopId=75633 status=pending sessionId=ses_eac0edafdffe32wJSectMxOl3n
+2026-10-19T11:37:06.308Z prepare loopId=75625 status=pending sessionId=01a153f1-1165-7490-8a9a-88bbcebd7a6e
+2026-10-19T11:37:11.232Z killer-signal targetPid=75709 signal=SIGTERM
+2026-10-19T11:37:11.456Z relaunch loopId=75633 reason=ready
+2026-10-19T11:38:59.883Z killer-signal targetPid=75695 signal=SIGTERM
+2026-10-19T11:39:00.386Z relaunch loopId=75625 reason=ready
+2026-10-19T11:40:02.015Z decline loopId=75625 reason=no-file
+2026-10-19T11:40:02.412Z decline loopId=75693 reason=no-file
+2026-10-19T11:42:21.961Z decline loopId=75633 reason=no-file

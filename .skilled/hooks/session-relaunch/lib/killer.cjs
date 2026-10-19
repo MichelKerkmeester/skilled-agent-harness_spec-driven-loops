@@ -286,11 +286,15 @@ function releaseLock(lockPath, loopId, environment) {
   }
 }
 
-// A killer that dies between the rename and the removal strands its takeover
-// directory; the next mutex holder sweeps leftovers past the stale window.
+// A killer that dies between the rename and the removal strands the renamed
+// directory, a takeover mutex or a non-file lock; the next mutex holder sweeps
+// both kinds of leftover past the stale window.
 function sweepStaleTakeovers(lockPath) {
   const directory = path.dirname(lockPath);
-  const prefix = `${path.basename(lockPath)}.takeover.stale-`;
+  const prefixes = [
+    `${path.basename(lockPath)}.takeover.stale-`,
+    `${path.basename(lockPath)}.stale-`,
+  ];
   let entries;
   try {
     entries = fs.readdirSync(directory);
@@ -299,7 +303,7 @@ function sweepStaleTakeovers(lockPath) {
     throw error;
   }
   for (const entry of entries) {
-    if (!entry.startsWith(prefix)) continue;
+    if (!prefixes.some((prefix) => entry.startsWith(prefix))) continue;
     const stalePath = path.join(directory, entry);
     let stats;
     try {

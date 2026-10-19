@@ -154,6 +154,21 @@ function resolveCodexWindow(modelContextWindow, env = process.env) {
     ?? positiveNumber(modelContextWindow);
 }
 
+// A session can start in a subdirectory while the project settings sit at the repository
+// root, so the walk climbs to the directory holding `.git` (a directory, or a file in a
+// worktree). Outside a repository there is no boundary to stop at, so only the cwd counts.
+function projectDirectories(cwd) {
+  const directories = [];
+  let directory = path.resolve(cwd);
+  for (;;) {
+    directories.push(directory);
+    if (fs.existsSync(path.join(directory, '.git'))) return directories;
+    const parent = path.dirname(directory);
+    if (parent === directory) return [path.resolve(cwd)];
+    directory = parent;
+  }
+}
+
 /**
  * Resolve the context window from the configured setting sources.
  *
@@ -170,11 +185,14 @@ function resolveWindow({
   const fromEnvironment = positiveNumber(env.SESSION_RELAUNCH_WINDOW_TOKENS);
   if (fromEnvironment !== null) return fromEnvironment;
 
-  const settingsPaths = [
-    path.join(cwd, '.claude', 'settings.local.json'),
-    path.join(cwd, '.claude', 'settings.json'),
-    path.join(home, '.claude', 'settings.json'),
-  ];
+  const settingsPaths = [];
+  for (const directory of projectDirectories(cwd)) {
+    settingsPaths.push(
+      path.join(directory, '.claude', 'settings.local.json'),
+      path.join(directory, '.claude', 'settings.json'),
+    );
+  }
+  settingsPaths.push(path.join(home, '.claude', 'settings.json'));
   for (const settingsPath of settingsPaths) {
     const windowTokens = settingsWindow(settingsPath);
     if (windowTokens !== null) return windowTokens;

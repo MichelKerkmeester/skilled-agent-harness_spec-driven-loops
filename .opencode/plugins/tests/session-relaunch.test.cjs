@@ -261,7 +261,10 @@ test('outside a loop, active nudge stops after its planned note file appears', a
 
   const notePath = notePathFromNudge(first[0]);
   fs.mkdirSync(path.dirname(notePath), { recursive: true });
+  // A note that cannot be read as one is no proof of a handoff, so the nudge stays.
   fs.writeFileSync(notePath, 'status: open\n');
+  assert.deepEqual(await transform(hooks, sessionID), first);
+  fs.writeFileSync(notePath, `---\nstatus: open\nsession_id: ${sessionID}\n---\n`);
   assert.deepEqual(await transform(hooks, sessionID), []);
 
   process.env.SKILLED_LOOP_ID = 'invalid/loop-id';
@@ -459,19 +462,16 @@ test('a restarted nudge reuses a matching handoff note', async (t) => {
     `---\n  session_id :  ${sessionID}  \nstatus: open\n---\n`,
   );
   const hooks = await loadPlugin({ directory: root });
-  const existsSync = fs.existsSync.bind(fs);
-  const checkedPaths = [];
-  t.mock.method(fs, 'existsSync', (filePath, ...args) => {
-    checkedPaths.push(filePath);
-    return existsSync(filePath, ...args);
-  });
 
   await hooks.event(assistantEvent(sessionID, 'assistant-after-restart', 90));
   const output = await transform(hooks, sessionID);
 
   assert.deepEqual(output, []);
-  assert.equal(checkedPaths[checkedPaths.length - 1], notePath);
   assert.equal(nudge.readState(sessionID, process.env), 1);
+  // The held nudge names the matching note: once that note is gone it shows again.
+  fs.rmSync(notePath);
+  const [shown] = await transform(hooks, sessionID);
+  assert.equal(notePathFromNudge(shown), notePath);
 });
 
 test('a restarted nudge ignores a closed handoff note and plans a fresh path', async (t) => {
@@ -1137,7 +1137,7 @@ test('a seed path with a literal backslash round-trips unchanged', async (t) => 
   assert.ok(seedText.includes('/tmp/we\\"ird.md'), seedText);
 });
 
-test('a relative or untrimmed seed path falls back to the placeholder', async (t) => {
+test('a relative or untrimmed seed path adds nothing to the system prompt', async (t) => {
   setupEnv(t);
   stubSpawn(t);
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -1155,8 +1155,7 @@ test('a relative or untrimmed seed path falls back to the placeholder', async (t
         part: { messageID: id, type: 'text', text },
       },
     } });
-    const [seedText] = await transform(hooks, sessionID);
-    assert.ok(seedText.includes("claim '<handoff-path>'"), seedText);
+    assert.deepEqual(await transform(hooks, sessionID), []);
   };
 
   await seed(

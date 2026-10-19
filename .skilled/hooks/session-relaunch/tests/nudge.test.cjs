@@ -395,8 +395,16 @@ for (const invalidSpecFolder of [
   });
 }
 
-test('plannedNotePath resolves the repo root and stamps the session id', () => {
+test('plannedNotePath resolves the repo root and stamps the session id', (t) => {
   assert.strictEqual(typeof plannedNotePath, 'function');
+  // Planning creates the handoffs directory, so the relative root lands in a temp cwd.
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-cwd-'));
+  const previousCwd = process.cwd();
+  process.chdir(scratch);
+  t.after(() => {
+    process.chdir(previousCwd);
+    fs.rmSync(scratch, { recursive: true, force: true });
+  });
   const now = new Date('2026-10-18T01:02:03.456Z');
   const resolved = plannedNotePath({
     cwd: '/unrelated/cwd',
@@ -469,6 +477,32 @@ test('plannedNotePath reuses the open note of the session for every later nudge'
 
   assert.equal(first, openNote);
   assert.equal(later, openNote);
+});
+
+test('plannedNotePath reuses the newest open note when the session holds two', (t) => {
+  const suffix = `${SESSION_ID.slice(0, 8)}.md`;
+  const { directory, env } = handoffFixture(t, {
+    [`20261017T000000Z-${suffix}`]: noteText(SESSION_ID, 'open'),
+    [`20261017T090000Z-${suffix}`]: noteText(SESSION_ID, 'open'),
+  });
+
+  assert.equal(
+    plannedNotePath({ sessionId: SESSION_ID, env, now: new Date('2026-10-18T01:02:03.456Z') }),
+    path.join(directory, `20261017T090000Z-${suffix}`),
+  );
+});
+
+test('plannedNotePath creates a private handoffs directory before naming a note in it', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const planned = plannedNotePath({
+    sessionId: SESSION_ID,
+    env: { SESSION_RELAUNCH_REPO_ROOT: root },
+    now: new Date('2026-10-18T01:02:03.456Z'),
+  });
+  const directory = path.dirname(planned);
+  assert.equal(fs.statSync(directory).isDirectory(), true);
+  assert.equal(fs.statSync(directory).mode & 0o777, 0o700);
 });
 
 const SESSION_NOTE_NAME = `20261017T000000Z-${SESSION_ID.slice(0, 8)}.md`;
@@ -886,4 +920,148 @@ test('handoffPending is false when the record cannot be read', (t) => {
   );
 
   assert.equal(handoffPending({ sessionId: SESSION_ID, env: envForLoop(env, loopId) }), false);
+});
+
+const nudgeModule = require('../lib/nudge.cjs');
+
+test('the nudge module exports the one CLI command every adapter prints', () => {
+  assert.equal(
+    nudgeModule.CLI_COMMAND,
+    'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs',
+  );
+});
+
+test('handoff text leaves an unknown spec folder empty instead of a placeholder prepare rejects', () => {
+  const text = handoffText({ notePath: NOTE_PATH, sessionId: SESSION_ID, runtime: 'claude' });
+  assert.match(text, /^   spec_folder: $/m);
+  assert.equal(text.includes('<repo-relative packet path'), false);
+  // An unknown folder still keeps the save step, which the model skips when nothing is bound.
+  assert.ok(text.includes('/speckit:save'));
+});
+
+test('handoff text never writes an invalid spec folder into the note frontmatter', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: `${SPEC_FOLDER}\nstatus: done`,
+    runtime: 'pi',
+  });
+  assert.match(text, /^   spec_folder: $/m);
+  assert.equal(/^\s*status: done$/m.test(text), false);
+  assert.equal(text.includes(SPEC_FOLDER), false);
+});
+
+test('normalizeSpecFolder keeps empty, none and a valid packet path, and drops the rest', () => {
+  const { normalizeSpecFolder } = nudgeModule;
+  assert.equal(normalizeSpecFolder(''), '');
+  assert.equal(normalizeSpecFolder('none'), 'none');
+  assert.equal(normalizeSpecFolder(SPEC_FOLDER), SPEC_FOLDER);
+  for (const value of [undefined, null, 42, 'specs/../etc', `${SPEC_FOLDER}\n`, 'not-a-packet']) {
+    assert.equal(normalizeSpecFolder(value), undefined, String(value));
+  }
+});
+
+test('specFolderInput prefers the payload and falls back to SYSTEM_SPEC_FOLDER', () => {
+  const { specFolderInput } = nudgeModule;
+  const env = { SYSTEM_SPEC_FOLDER: SPEC_FOLDER };
+  assert.equal(specFolderInput({ payload: { spec_folder: 'none' }, env }), 'none');
+  assert.equal(specFolderInput({ payload: {}, env }), SPEC_FOLDER);
+  assert.equal(specFolderInput({ payload: { spec_folder: 'bad value' }, env }), SPEC_FOLDER);
+  assert.equal(specFolderInput({ payload: {}, env: { SYSTEM_SPEC_FOLDER: '' } }), undefined);
+  assert.equal(specFolderInput({ payload: {}, env: { SYSTEM_SPEC_FOLDER: 'specs/x' } }), undefined);
+  assert.equal(specFolderInput({ env: {} }), undefined);
+});
+
+test('seedInstructions returns the seed text for a well-formed seed and null otherwise', () => {
+  const { seedInstructions } = nudgeModule;
+  const seed = `[session-relaunch] claim and continue handoff ${NOTE_PATH}`
+    + ` | Spec folder: ${SPEC_FOLDER} (carried from the handoff; Gate 3 answered in the sending session)`;
+  const text = seedInstructions({ prompt: seed, sessionId: SESSION_ID });
+  assert.ok(text.includes(`claim '${NOTE_PATH}'`), text);
+  assert.ok(text.includes(`/speckit:resume ${SPEC_FOLDER}`), text);
+  assert.ok(text.includes(nudgeModule.CLI_COMMAND), text);
+
+  assert.equal(seedInstructions({
+    prompt: '[session-relaunch] claim and continue handoff relative/note.md',
+    sessionId: SESSION_ID,
+  }), null);
+  assert.equal(seedInstructions({ prompt: 'an ordinary prompt', sessionId: SESSION_ID }), null);
+  assert.equal(seedInstructions({ prompt: undefined, sessionId: SESSION_ID }), null);
+});
+
+test('nudgeDecision folds the threshold, a live handoff, the hop cap and the level', (t) => {
+  const { nudgeDecision } = nudgeModule;
+  const env = { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR };
+
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.5, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: false, level: 0, reason: 'below-threshold' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: true, level: 1, reason: 'threshold' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env, level: 1 }),
+    { nudge: false, level: 1, reason: 'level-spent' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env, level: 1, resume: true }),
+    { nudge: true, level: 1, reason: 'resume' },
+  );
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.81,
+      threshold: 0.8,
+      sessionId: SESSION_ID,
+      env: { ...env, SKILLED_LOOP_HOPS: '3', SESSION_RELAUNCH_MAX_HOPS: '3' },
+    }),
+    { nudge: false, level: 0, reason: 'hop-limit' },
+  );
+
+  const loopId = 'nudge-decision-pending';
+  core.preparePending({
+    loopId,
+    handoffPath: '/tmp/session-relaunch/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'pi',
+    cwd: '/repo',
+    env,
+  });
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.9, threshold: 0.8, sessionId: SESSION_ID, env: envForLoop(env, loopId) }),
+    { nudge: false, level: 0, reason: 'handoff-pending' },
+  );
+});
+
+test('nudgeDecision reads the persisted level when the caller passes none', (t) => {
+  const { nudgeDecision } = nudgeModule;
+  const env = { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR };
+  writeState(SESSION_ID, 1, env);
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.82, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: false, level: 1, reason: 'level-spent' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.86, threshold: 0.8, sessionId: SESSION_ID, env }),
+    { nudge: true, level: 2, reason: 'threshold' },
+  );
+});
+
+test('plannedNotePath leaves the target of a symlinked handoffs directory untouched', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const elsewhere = path.join(root, 'elsewhere');
+  fs.mkdirSync(elsewhere, { mode: 0o755 });
+  fs.chmodSync(elsewhere, 0o755);
+  const stateParent = path.join(root, 'repo', '.skilled', 'skills', '.state', 'session-relaunch');
+  fs.mkdirSync(stateParent, { recursive: true });
+  fs.symlinkSync(elsewhere, path.join(stateParent, 'handoffs'));
+
+  plannedNotePath({
+    sessionId: SESSION_ID,
+    env: { SESSION_RELAUNCH_REPO_ROOT: path.join(root, 'repo') },
+    now: new Date('2026-10-18T01:02:03.456Z'),
+  });
+  assert.equal(fs.statSync(elsewhere).mode & 0o777, 0o755);
 });

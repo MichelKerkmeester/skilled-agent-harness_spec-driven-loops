@@ -19,6 +19,7 @@ const SKIP_SPEC_FOLDER_SUFFIX = ' (Gate 3 answered D, Skip, in the sending sessi
 const COMMAND_RUNTIME_SPEC_FOLDER =
   'specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes';
 const LOOP_ID_PATTERN = /^[0-9]+$/;
+const OPEN_NOTE = '---\nstatus: open\n---\n';
 
 function expectedClaudeManualCommand(handoffPath, specFolder) {
   let suffix = '';
@@ -220,7 +221,7 @@ function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrid
   const markerPath = path.join(sandbox.root, 'arm.marker');
   const handoffPath = path.join(sandbox.root, 'handoff.md');
   fs.writeFileSync(markerPath, markers);
-  fs.writeFileSync(handoffPath, 'handoff');
+  fs.writeFileSync(handoffPath, OPEN_NOTE);
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
 export SESSION_RELAUNCH_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
@@ -244,7 +245,7 @@ node -e '${RUNTIME_SOURCE}' -- "$@"
 }
 
 function writeSpecFolderNote(handoffPath, specFolder) {
-  fs.writeFileSync(handoffPath, `---\nspec_folder: ${specFolder}\n---\n`);
+  fs.writeFileSync(handoffPath, `---\nstatus: open\nspec_folder: ${specFolder}\n---\n`);
 }
 
 function runWrapper(sandbox, args) {
@@ -436,7 +437,7 @@ test('devin runtime dispatch does not fall through to claude', (t) => {
 test('wrapper carries a valid spec folder in the relaunch seed', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-  fs.writeFileSync(handoffPath, `---\nspec_folder: ${SPEC_FOLDER}\n---\n`);
+  fs.writeFileSync(handoffPath, `---\nstatus: open\nspec_folder: ${SPEC_FOLDER}\n---\n`);
 
   const result = runWrapper(sandbox, ['claude']);
 
@@ -451,7 +452,7 @@ test('wrapper carries a valid spec folder in the relaunch seed', (t) => {
 test('wrapper carries Gate 3 Skip in the relaunch seed', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-  fs.writeFileSync(handoffPath, '---\nspec_folder: none\n---\n');
+  fs.writeFileSync(handoffPath, '---\nstatus: open\nspec_folder: none\n---\n');
 
   const result = runWrapper(sandbox, ['claude']);
 
@@ -473,7 +474,7 @@ test('wrapper carries Gate 3 Skip in the relaunch seed', (t) => {
 test('wrapper leaves an empty spec folder unanswered without logging a drop', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-  fs.writeFileSync(handoffPath, '---\nspec_folder: \n---\n');
+  fs.writeFileSync(handoffPath, '---\nstatus: open\nspec_folder: \n---\n');
 
   const result = runWrapper(sandbox, ['claude']);
 
@@ -490,14 +491,13 @@ const invalidSpecFolders = [
   ['shell metacharacters', 'specs/a;touch'],
   ['absolute', '/absolute'],
   ['carriage return', 'specs/hooks\r/invalid'],
-  ['line feed', 'specs/hooks\n/invalid'],
 ];
 
 for (const [label, specFolder] of invalidSpecFolders) {
   test(`wrapper drops ${label} spec folders and logs them`, (t) => {
     const sandbox = createSandbox(t);
     const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
-    fs.writeFileSync(handoffPath, `---\nspec_folder: ${specFolder}\n---\n`);
+    fs.writeFileSync(handoffPath, `---\nstatus: open\nspec_folder: ${specFolder}\n---\n`);
 
     const result = runWrapper(sandbox, ['claude']);
 
@@ -508,17 +508,17 @@ for (const [label, specFolder] of invalidSpecFolders) {
   });
 }
 
-test('wrapper continues the hop with no spec suffix when consumed JSON cannot be parsed', (t) => {
+test('wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
   installMalformedConsumeStub(sandbox);
 
   const result = runWrapper(sandbox, ['claude']);
 
-  assert.equal(result.status, 0, result.stderr);
-  const records = readRecords(recordPath);
-  assert.equal(records.length, 2);
-  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`]);
+  assert.equal(result.status, 1, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  assert.match(result.stderr, /warning: could not read the consumed relaunch record; not relaunching/);
+  assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
 });
 
 test('name scanning stops at -- and relaunch omits the name option', (t) => {
@@ -1084,7 +1084,7 @@ for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 
   test(`declined relaunch prints the ${runtime} manual claim command`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = path.join(sandbox.root, 'handoff-!.md');
-    fs.writeFileSync(handoffPath, 'handoff');
+    fs.writeFileSync(handoffPath, OPEN_NOTE);
     const { recordPath } = installRuntimeStub(sandbox, {
       markers: '1',
       exitCodes: '130',
@@ -1104,7 +1104,7 @@ for (const marker of ['$&', "$'", '$$', '$' + String.fromCharCode(96), '$1']) {
   test(`wrapper and core fill a ${marker} handoff path identically`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = path.join(sandbox.root, `handoff-${marker}.md`);
-    fs.writeFileSync(handoffPath, 'handoff');
+    fs.writeFileSync(handoffPath, OPEN_NOTE);
     const { recordPath } = installRuntimeStub(sandbox, {
       markers: '1',
       PENDING_ON_INVOCATION: '1',
@@ -1126,7 +1126,7 @@ for (const marker of ['$&', "$'", '$$', '$' + String.fromCharCode(96), '$1']) {
 test('wrapper printed argument preserves a bang path in interactive bash', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = path.join(sandbox.root, 'handoff-!.md');
-  fs.writeFileSync(handoffPath, 'handoff');
+  fs.writeFileSync(handoffPath, OPEN_NOTE);
   installRuntimeStub(sandbox, {
     markers: '1',
     exitCodes: '130',
@@ -1471,8 +1471,10 @@ test('wrapper warns and consumes a relaunch record with an empty handoff path', 
     `relaunch-${loopId}.json`,
   );
 
-  assert.equal(result.status, 1, result.stderr);
-  assert.equal(result.stderr.trim(), 'warning: could not read the relaunch record');
+  // A record with no handoff is declined and the runtime's own exit code survives.
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stderr.trim(), '');
+  assert.match(readLog(sandbox), /decline loopId=\d+ reason=incomplete-record/);
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
@@ -1499,7 +1501,7 @@ for (const runtimeCase of RUNTIME_RELAUNCH_CASES) {
           if (specFolder) {
             fs.writeFileSync(
               handoffPath,
-              '---\nspec_folder: ' + specFolder + '\n---\n',
+              '---\nstatus: open\nspec_folder: ' + specFolder + '\n---\n',
             );
           }
 
@@ -1650,7 +1652,7 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
 test('wrapper template and core command escape a special handoff path identically', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = path.join(sandbox.root, 'handoff-! space $ "quoted".md');
-  fs.writeFileSync(handoffPath, 'handoff');
+  fs.writeFileSync(handoffPath, OPEN_NOTE);
   const { recordPath } = installRuntimeStub(sandbox, {
     markers: '1',
     PENDING_ON_INVOCATION: '1',
@@ -1682,7 +1684,7 @@ for (const [label, template] of [
   test(`print_manual_command falls back to the runtime form with ${label}`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = path.join(sandbox.root, 'handoff-!.md');
-    fs.writeFileSync(handoffPath, 'handoff');
+    fs.writeFileSync(handoffPath, OPEN_NOTE);
     const source = fs.readFileSync(WRAPPER_PATH, 'utf8');
     const specFolderSuffix = source.match(/spec_folder_suffix\(\) \{[\s\S]*?\n\}/);
     const match = source.match(/print_manual_command\(\) \{[\s\S]*?\n\}/);
@@ -1743,4 +1745,39 @@ test('wrapper consumes a pending decline record and preserves the runtime exit c
   assert.equal(result.status, 7, result.stderr);
   assert.ok(result.stderr.includes(`skilled-loop claude "${SEED} ${handoffPath}"`));
   assert.equal(fs.existsSync(relaunchPath), false);
+});
+
+for (const [label, writeNote, state] of [
+  ['missing', (handoffPath) => fs.rmSync(handoffPath), 'missing'],
+  ['unparseable', (handoffPath) => fs.writeFileSync(handoffPath, 'status: open\n'), 'invalid'],
+  ['already claimed', (handoffPath) => fs.writeFileSync(handoffPath, '---\nstatus: claimed\n---\n'), 'claimed'],
+]) {
+  test(`wrapper does not relaunch a claim for a ${label} note`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    writeNote(handoffPath);
+
+    const result = runWrapper(sandbox, ['claude']);
+
+    assert.equal(result.status, 1, result.stderr);
+    assert.equal(readRecords(recordPath).length, 1);
+    assert.match(result.stderr, new RegExp(`warning: the handoff note is ${state}; not relaunching`));
+    assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  });
+}
+
+test('wrapper declines a record without a cwd and keeps the runtime exit code', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    exitCodes: '5',
+    RECORDED_CWD: '',
+  });
+
+  const result = runWrapper(sandbox, ['claude']);
+
+  assert.equal(result.status, 5, result.stderr);
+  assert.equal(readRecords(recordPath).length, 1);
+  assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  assert.match(readLog(sandbox), /reason=incomplete-record/);
 });

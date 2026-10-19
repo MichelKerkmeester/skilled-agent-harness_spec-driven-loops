@@ -20,7 +20,7 @@
       "operatorInputs": "None.",
       "evidence": [
         {
-          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
           "bytes": 891,
           "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
         },
@@ -39,7 +39,7 @@
   ],
   "evidence": [
     {
-      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt",
       "bytes": 891,
       "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
     },

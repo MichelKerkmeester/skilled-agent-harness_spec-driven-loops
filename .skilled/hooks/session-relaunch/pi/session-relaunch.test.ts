@@ -689,7 +689,7 @@ describe('session-relaunch Pi extension', () => {
       .toContain('/tmp/we\\"ird.md');
   });
 
-  it('falls back to the placeholder for a relative or untrimmed seed path', async () => {
+  it('leaves the system prompt alone for a relative or untrimmed seed path', async () => {
     setupEnv();
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
@@ -703,8 +703,97 @@ describe('session-relaunch Pi extension', () => {
         systemPromptOptions: {},
       }, makeContext());
 
-      expect((result as { systemPrompt: string }).systemPrompt)
-        .toContain("claim '<handoff-path>'");
+      expect(result).toBeUndefined();
     }
+  });
+});
+
+// The same cases tests/adapter-conformance.test.cjs runs through the other adapters,
+// kept here because this extension loads through a TypeScript transform.
+describe('session-relaunch Pi extension conformance', () => {
+  const NOTE_PATH = '/workspace/handoffs/note.md';
+  const SEED = `[session-relaunch] claim and continue handoff ${NOTE_PATH}`;
+  const CARRIED = ' (carried from the handoff; Gate 3 answered in the sending session)';
+  const SESSION_ID = 'pi-session-0001';
+
+  async function seedPrompt(prompt: string): Promise<string> {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const result = await emit(handlers, 'before_agent_start', {
+      prompt,
+      systemPrompt: 'base system prompt',
+      systemPromptOptions: {},
+    }, makeContext(SESSION_ID));
+    return result === undefined ? '' : (result as { systemPrompt: string }).systemPrompt;
+  }
+
+  async function nudgeAtNinety(configure: () => void): Promise<string> {
+    setupEnv();
+    configure();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext(SESSION_ID));
+    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID));
+    const calls = vi.mocked(api.sendMessage).mock.calls;
+    return calls.length === 0 ? '' : (calls[0][0] as { content: string }).content;
+  }
+
+  it('a well-formed seed adds the claim command and resumes the carried packet', async () => {
+    const text = await seedPrompt(`${SEED} | Spec folder: ${SPEC_FOLDER}${CARRIED}`);
+    expect(text).toContain(`claim '${NOTE_PATH}' --session '${SESSION_ID}'`);
+    expect(text).toContain(`/speckit:resume ${SPEC_FOLDER}`);
+  });
+
+  it('a seed with a relative note path adds nothing', async () => {
+    expect(await seedPrompt('[session-relaunch] claim and continue handoff relative/note.md'))
+      .toBe('');
+  });
+
+  it('a seed carrying an invalid spec folder claims without resuming it', async () => {
+    const text = await seedPrompt(`${SEED} | Spec folder: specs/not-a-packet${CARRIED}`);
+    expect(text).toContain(`claim '${NOTE_PATH}'`);
+    expect(text).not.toContain('/speckit:resume');
+  });
+
+  it('a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note', async () => {
+    const text = await nudgeAtNinety(() => { process.env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER; });
+    expect(text).toMatch(new RegExp(`^ +spec_folder: ${SPEC_FOLDER}$`, 'm'));
+    expect(text).toContain("--runtime 'pi'");
+  });
+
+  it('a nudge drops an invalid spec folder instead of writing it into the note', async () => {
+    const text = await nudgeAtNinety(() => {
+      process.env.SYSTEM_SPEC_FOLDER = `${SPEC_FOLDER}\nstatus: done`;
+    });
+    expect(text).toMatch(/^ +spec_folder: $/m);
+    expect(text).not.toMatch(/^ +status: done$/m);
+  });
+
+  it('a nudge stays silent while this session has a pending handoff', async () => {
+    const text = await nudgeAtNinety(() => {
+      const loopId = 'pi-conformance-loop-0001';
+      process.env.SKILLED_LOOP_ID = loopId;
+      preparePending({
+        loopId,
+        handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'note.md'),
+        sessionId: SESSION_ID,
+        runtime: 'pi',
+        cwd: '/workspace/pi',
+        env: process.env,
+      });
+    });
+    expect(text).toBe('');
+  });
+
+  it('a nudge stays silent at the hop cap', async () => {
+    const text = await nudgeAtNinety(() => {
+      process.env.SKILLED_LOOP_ID = 'pi-conformance-loop-0002';
+      process.env.SKILLED_LOOP_HOPS = '2';
+      process.env.SESSION_RELAUNCH_MAX_HOPS = '2';
+    });
+    expect(text).toBe('');
   });
 });

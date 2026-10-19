@@ -31,12 +31,12 @@ contextType: "implementation"
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-10-16 |
-| **Branch** | worktrees/142-session-relaunch-loop |
+| **Branch** | worktrees/148-session-relaunch-deep-review |
 | **Parent Spec** | None |
 | **Parent Packet** | specs/hooks/023-session-relaunch-loop |
 | **Predecessor** | 022-smart-rule-injection |
 | **Successor** | None |
-| **Handoff Criteria** | All six children are Complete, recursive strict validation reports RESULT: PASSED, the Claude live relaunch is proven and every drift gate is at baseline or better. |
+| **Handoff Criteria** | All nine children are Complete, recursive strict validation reports RESULT: PASSED, the Claude live relaunch is proven and every drift gate is at baseline or better. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,7 +48,7 @@ contextType: "implementation"
 A session near the context limit needs to write a handoff note, end and restart in the same terminal. The operator wants the Skilled repo to own this behavior as a hook and command across its CLI runtimes.
 
 ### Purpose
-The six child phases define a runtime-neutral core, the runtime-specific triggers and commands, and the evidence needed to close the work. The overall outcome is a Claude relaunch at 80% with auto-compaction unchanged as the fallback when a hop fails.
+The nine child phases define a runtime-neutral core, the runtime-specific triggers and commands, and the evidence needed to close the work. The overall outcome is a Claude relaunch at 80% with auto-compaction unchanged as the fallback when a hop fails.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -65,6 +65,9 @@ The six child phases define a runtime-neutral core, the runtime-specific trigger
 - Phase 004 reviews the combined changes, updates the cross-phase docs, runs final live checks and closes the packet.
 - Phase 005 fixes the twelve P2 advisories the deep review left, aligns the new code with the sk-code-opencode checklists and refreshes the docs the fixes touch.
 - Phase 006 fixes what the second deep review finds against the closed phases, aligns the touched code with the sk-code-opencode checklists and refreshes the docs those fixes change.
+- Phase 007 lets a session with no Gate 3 answer write its handoff note without an operator prompt, and pins the OpenCode default model.
+- Phase 008 fixes the fifteen findings of the third deep review, a DeepSeek and Luna fan-out run after phase 007.
+- Phase 009 fixes the verified findings of the DeepSeek and Luna research run after phase 008, moves the decisions every adapter repeats into the shared core and adds an adapter conformance suite.
 
 ### Out of Scope
 - Changing autoCompactEnabled or autoCompactWindow.
@@ -84,6 +87,9 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | Root README, system-spec-kit README, catalog and playbook indexes | Modify | 004-integration-review-and-docs-closure | Cross-phase doc rollup, review and closure evidence. |
 | .skilled/hooks/session-relaunch/lib/ and its adapter folders, their tests, .skilled/bin/skilled-loop, the session-relaunch READMEs, the plugins-and-hooks playbook page, the Pi Fast Mode extension and the sk-doc README checklist script | Create and modify | 005-deep-review-remediation | Advisory fixes with one test per code finding, shared adapter helpers, a balanced Skip suffix and the docs the fixes change. |
 | .skilled/hooks/session-relaunch/lib/, bin/, pi/, claude/, codex/, hermes/, opencode plugin, their tests, the hook registry, .claude/settings.json, .codex/hooks.json, the sk-doc version check, the session-relaunch READMEs, the env reference, the three plugins-and-hooks playbook pages, the feature catalog and the two benchmark run folders | Create and modify | 006-deep-review-2-remediation | Fixes for the second deep review's twelve findings, the code alignment pass, the live-playbook gaps G1 to G25, the docs those fixes change and the dated live-run records. |
+| The spec-gate core and its test, the spec-gate README, AGENTS.md, opencode.json, the session-relaunch playbooks and one benchmark run folder | Modify | 007-handoff-gate-exemptions | The runtime-state exemption in the spec gate and in the Gate 2 and Gate 3 sentences, the OpenCode default model and the run-10 live records. |
+| .skilled/hooks/session-relaunch/lib/ and its tests, the handoff command, the env reference, the phase 002, 006 and 007 records, the run-10 benchmark folder and this parent's spec and goal | Modify | 008-review-3-remediation | Code fixes with a test each, the doc corrections the third review found and the parent's seven-to-eight phase update. |
+| .skilled/hooks/session-relaunch/lib/, bin/, claude/, codex/, hermes/, pi/, the OpenCode plugin, .skilled/bin/skilled-loop, their tests and the new adapter conformance suite, the session-relaunch READMEs, the handoff command, the env reference, the feature catalog entry, the phase 002 record, the research folder and this parent's spec and goal | Create and modify | 009-research-fixes-and-core-consolidation | Research fixes with a failing-first test each, shared nudge and kill-target helpers in the core, the conformance suite, the doc drift the research found and the parent's eight-to-nine phase update. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,6 +108,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 5 | 005-deep-review-remediation/ | Fix the twelve P2 advisories from the deep review, align the new code with sk-code-opencode and refresh the docs it touches. | complete |
 | 6 | 006-deep-review-2-remediation/ | Fix what the second deep review finds against the closed phases, align the touched code with the sk-code-opencode checklists and refresh the docs the fixes change. | complete |
 | 7 | 007-handoff-gate-exemptions/ | Runtime-state handoff notes pass the spec gate and stay out of Gate 2 and Gate 3, and the OpenCode default model is pinned. | complete |
+| 8 | 008-review-3-remediation/ | Fix the fifteen findings of the third deep review: five code fixes with tests, two adapter test gaps and the doc and evidence records that claimed more than they showed. | complete |
+| 9 | 009-research-fixes-and-core-consolidation/ | Fix the verified research findings with a failing-first test each, move the decisions every adapter repeats into the core, add an adapter conformance suite and correct the doc drift. | complete |
 
 ### Phase Transition Rules
 
@@ -118,8 +126,10 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 002-pi-opencode-adapters | 003-command-trigger-runtimes | the from-phase is Done per plan section 7 (all its AC seeds Met, gate PG passed) | validate.sh <child> --strict RESULT: PASSED plus its acceptance-criteria.md rows Met |
 | 003-command-trigger-runtimes | 004-integration-review-and-docs-closure | the from-phase is Done per plan section 7 (all its AC seeds Met, gate PG passed) | validate.sh <child> --strict RESULT: PASSED plus its acceptance-criteria.md rows Met |
 | 004-integration-review-and-docs-closure | 005-deep-review-remediation | the deep review of the closed phases has a report with a finding registry | `review-archive/20261018T184826Z/review-report.md` exists with verdict and registry |
-| 005-deep-review-remediation | 006-deep-review-2-remediation | the second deep review has a report with a finding registry | `review/review-report.md` exists with verdict and registry |
-| 006-deep-review-2-remediation | 007-handoff-gate-exemptions | [Criteria TBD] | [Verification TBD] |
+| 005-deep-review-remediation | 006-deep-review-2-remediation | the second deep review has a report with a finding registry | `review-archive/20261019T144809Z/review-report.md` exists with verdict and registry |
+| 006-deep-review-2-remediation | 007-handoff-gate-exemptions | phase 006 is Complete, and its live runs recorded the Gate 3 and sk-doc prompts G20 and G21 that phase 007 removes | `validate.sh 006-deep-review-2-remediation --strict` RESULT: PASSED, and G20 and G21 are in the 006 implementation summary |
+| 007-handoff-gate-exemptions | 008-review-3-remediation | phase 007 is Complete and the third deep review has a report with a finding registry | `validate.sh 007-handoff-gate-exemptions --strict` RESULT: PASSED, and `review/review-report.md` exists with verdict and registry |
+| 008-review-3-remediation | 009-research-fixes-and-core-consolidation | phase 008 is Complete and the research run after it has a merged report with a verification table | `validate.sh 008-review-3-remediation --strict` RESULT: PASSED, and `research/research.md` exists with its verified findings |
 <!-- /ANCHOR:phase-map -->
 
 ---

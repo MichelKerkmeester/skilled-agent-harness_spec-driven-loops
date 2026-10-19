@@ -18,19 +18,19 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ## 2. CONTRACT
 
-**Inputs:** nothing through `$ARGUMENTS`. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check. Other runtimes must pass the session id. If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session. `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
+**Inputs:** nothing through `$ARGUMENTS`. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and, while it descends from the loop, the killer's target. Other runtimes must pass the session id. If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session. `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
 
 - A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<first 8 chars of the session id>.md`.
 - One `STATUS=` line per the exit code in Step 5.
-- When a spec packet is bound: save continuity before the note is written. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
+- When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
 
 **CLI:** `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs`
 
 | Invocation | Effect | Exit |
 |---|---|---|
-| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` not under `skilled-loop` |
+| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
 
@@ -58,7 +58,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ### Step 2: Save the bound packet
 
-When `spec_folder` is a packet path, save its continuity before writing the note so the receiving session's `/speckit:resume` lands on fresh state. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`. Record the repo-relative packet path in `spec_folder`. When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save. When Gate 3 was never answered, leave `spec_folder` empty.
+When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state. The automatic nudge asks for the note first and the save second. Both orders meet that need. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`. Record the repo-relative packet path in `spec_folder`. When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save. When Gate 3 was never answered, leave `spec_folder` empty.
 
 ### Step 3: Write the handoff note
 
@@ -104,7 +104,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
 - `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
-- `3`: not running under `skilled-loop`. The CLI prints the command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
+- `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
 
 | Runtime | Printed command |
 |---|---|
@@ -130,7 +130,7 @@ A session seeded with `[session-relaunch] claim and continue handoff <path>` is 
 4. Continues the Remaining work.
 5. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
 
-The note's status moves only `open -> claimed -> done`. When this session prepares a successor hop, `prepare` marks every other note this session claimed as `done`, sets `completed_at` and adds `superseded_by` with the new note's basename. It leaves open notes, done notes, notes claimed by another session and the new note unchanged.
+The note's status moves only `open -> claimed -> done`. When this session prepares a successor hop, `prepare` marks as `done` every other note this session claimed and every other open note this session wrote, sets `completed_at` and adds `superseded_by` with the new note's basename. It leaves done notes, notes of another session and the new note unchanged.
 
 ---
 

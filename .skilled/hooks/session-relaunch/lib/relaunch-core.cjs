@@ -22,6 +22,7 @@ const LEGACY_LOCK_MAX_AGE_MS = 10 * 60 * 1000;
 const HANDOFF_SECTIONS = Object.freeze(['Goal', 'Done', 'Remaining work', 'In-flight state']);
 const SPEC_FOLDER_PATTERN =
   /^specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 const RUNTIME_SEED_OPTIONS = Object.freeze({
   opencode: '--prompt',
   hermes: 'chat -q',
@@ -116,7 +117,11 @@ function updateFrontmatter(text, updates) {
   const lineEnding = match[0].includes('\r\n') ? '\r\n' : '\n';
   const fields = match[1].split(/\r?\n/);
   for (const [key, value] of Object.entries(updates)) {
-    const fieldIndex = fields.findIndex((line) => line.startsWith(`${key}:`));
+    // The parser trims around the separator, so `status : open` is the same key and
+    // must be replaced rather than duplicated, which the next parse would reject.
+    // Keys come from this module's own callers and are plain identifiers.
+    const keyPattern = new RegExp(`^\\s*${key}\\s*:`);
+    const fieldIndex = fields.findIndex((line) => keyPattern.test(line));
     const replacement = `${key}: ${value}`;
     if (fieldIndex === -1) fields.push(replacement);
     else fields[fieldIndex] = replacement;
@@ -126,13 +131,18 @@ function updateFrontmatter(text, updates) {
   return replacement + text.slice(match[0].length);
 }
 
+// The model writes the note with its own tool and the default mode; every update
+// the loop makes re-pins it private, like the other relaunch files.
 function writeHandoffUpdate(filePath, text) {
-  const mode = fs.statSync(filePath).mode & 0o777;
-  atomicWriteFile(filePath, text, mode);
+  atomicWriteFile(filePath, text, 0o600);
 }
 
 function validLoopId(loopId) {
   return typeof loopId === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(loopId);
+}
+
+function nonEmptyString(value) {
+  return typeof value === 'string' && value.length > 0;
 }
 
 function assertValidSessionId(sessionId) {
@@ -261,6 +271,29 @@ function validateHandoff(filePath, { sessionId } = {}) {
     }
   }
   return { ok: true };
+}
+
+/**
+ * Classify a handoff note so every reader applies the same rule to it.
+ *
+ * @param {string} filePath - Handoff note path.
+ * @returns {'missing'|'invalid'|'open'|'claimed'|'done'} The note's state. A note that
+ *   exists but cannot be read or parsed, or carries an unknown status, is invalid.
+ */
+function noteState(filePath) {
+  if (!nonEmptyString(filePath)) return 'missing';
+  let text;
+  try {
+    text = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    return error.code === 'ENOENT' ? 'missing' : 'invalid';
+  }
+  try {
+    const { status } = parseHandoff(text).frontmatter;
+    return NOTE_STATUSES.includes(status) ? status : 'invalid';
+  } catch {
+    return 'invalid';
+  }
 }
 
 /**
@@ -407,10 +440,13 @@ function shouldRelaunch(record, { now = Date.now(), maxHops = 10, maxAgeMin = 10
   const nowMs = parseTimestamp(now);
   const armedAtMs = parseTimestamp(record.armedAt);
   const ageLimitMs = Number(maxAgeMin) * 60 * 1000;
+  // A record armed in the future means the clock stepped back since it was
+  // written, so its age is unknown; stale is the safe reading, not fresh.
   if (
     !Number.isFinite(nowMs)
     || !Number.isFinite(armedAtMs)
     || !Number.isFinite(ageLimitMs)
+    || nowMs < armedAtMs
     || nowMs - armedAtMs > ageLimitMs
   ) {
     return { relaunch: false, reason: 'stale' };
@@ -420,6 +456,11 @@ function shouldRelaunch(record, { now = Date.now(), maxHops = 10, maxAgeMin = 10
   const hopLimit = Number(maxHops);
   if (!Number.isFinite(hops) || !Number.isFinite(hopLimit) || hops >= hopLimit) {
     return { relaunch: false, reason: 'hop-cap' };
+  }
+  // A relaunch needs a note to claim and a directory to start in. Declining here keeps
+  // the wrapper on its decline path, which preserves the runtime's own exit code.
+  if (!nonEmptyString(record.handoff) || !nonEmptyString(record.cwd)) {
+    return { relaunch: false, reason: 'incomplete-record' };
   }
   return { relaunch: true };
 }
@@ -477,7 +518,9 @@ function completeHandoff(filePath, { now } = {}) {
 }
 
 /**
- * Complete this session's claimed notes when a new handoff carries the work forward.
+ * Complete this session's earlier notes when a new handoff carries the work forward:
+ * the notes it claimed, and any note it wrote but never prepared, which would
+ * otherwise stay open with no session left to claim it.
  *
  * @param {string} handoffPath - New handoff note path.
  * @param {{sessionId: string, now?: Date|number|string}} options - Session and clock metadata.
@@ -504,10 +547,11 @@ function supersedeClaimed(handoffPath, { sessionId, now } = {}) {
     } catch {
       continue;
     }
-    if (
-      parsed.frontmatter.status !== 'claimed'
-      || parsed.frontmatter.claimed_by !== sessionId
-    ) continue;
+    const claimedHere = parsed.frontmatter.status === 'claimed'
+      && parsed.frontmatter.claimed_by === sessionId;
+    const writtenHere = parsed.frontmatter.status === 'open'
+      && parsed.frontmatter.session_id === sessionId;
+    if (!claimedHere && !writtenHere) continue;
 
     try {
       const updated = updateFrontmatter(text, {
@@ -770,6 +814,40 @@ function findLoopChildPid(loopId, { pid = process.pid, processTable } = {}) {
   return null;
 }
 
+/**
+ * Choose the pid the killer will signal for this loop. A runtime that names its own
+ * pid keeps it only while that pid descends from the loop, because the killer refuses
+ * anything else; otherwise the walk from the calling process finds the loop's direct
+ * child, which is the runtime the loop started.
+ *
+ * @param {string} loopId - Owning loop pid carried by SKILLED_LOOP_ID.
+ * @param {Object} [options] - Preferred target and dependency seams for tests.
+ * @param {number|string} [options.preferredPid] - Pid the runtime reports for itself.
+ * @param {number} [options.pid=process.pid] - Descendant pid to climb from.
+ * @param {string} [options.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @returns {number|null} The pid to signal, or null when no process below the loop is found.
+ */
+function resolveKillerTarget(loopId, { preferredPid, pid = process.pid, processTable } = {}) {
+  const loopPid = Number(loopId);
+  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return null;
+  const table = typeof processTable === 'string' ? processTable : readProcessTable();
+  if (typeof table !== 'string') return null;
+
+  const preferred = Number(preferredPid);
+  if (
+    preferredPid !== undefined
+    && preferredPid !== null
+    && preferredPid !== ''
+    && Number.isSafeInteger(preferred)
+    && preferred > 0
+    && preferred !== loopPid
+    && findLoopChildPid(loopId, { pid: preferred, processTable: table }) !== null
+  ) {
+    return preferred;
+  }
+  return findLoopChildPid(loopId, { pid, processTable: table });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -781,6 +859,7 @@ module.exports = {
   relaunchFilePath,
   parseHandoff,
   validateHandoff,
+  noteState,
   preparePending,
   arm,
   unarm,
@@ -798,4 +877,5 @@ module.exports = {
   liveKillerPid,
   readProcessTable,
   findLoopChildPid,
+  resolveKillerTarget,
 };

@@ -25,7 +25,6 @@ import nudge from '../lib/nudge.cjs';
 // ─────────────────────────────────────────────────────────────────────────────
 
 const CONCERN = 'session-relaunch';
-const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -73,12 +72,8 @@ async function main(expectedEvent) {
   if (!nudge.validSessionId(sessionId)) return done();
 
   if (eventName === 'UserPromptSubmit' && nudge.isSeedPrompt(payload.prompt)) {
-    return emit(eventName, nudge.seedText({
-      notePath: nudge.notePathFromSeed(payload.prompt) ?? '<handoff-path>',
-      specFolder: nudge.specFolderFromSeed(payload.prompt),
-      sessionId,
-      cliPath: CLI_COMMAND,
-    }));
+    const seed = nudge.seedInstructions({ prompt: payload.prompt, sessionId });
+    return seed === null ? done() : emit(eventName, seed);
   }
 
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
@@ -98,18 +93,10 @@ async function main(expectedEvent) {
   }
 
   const ratio = fillRatio(usage.fillTokens, windowTokens);
-  const threshold = nudge.relaunchThreshold(config);
-  if (ratio < threshold) return done();
-
-  // A prepared or armed record means this session already ran the handoff steps.
-  if (nudge.handoffPending({ sessionId })) return done();
-  // A session at its hop cap cannot relaunch, so these steps would prepare nothing.
-  if (nudge.hopLimitReached()) return done();
-
-  const decision = nudge.nextLevel({
+  const decision = nudge.nudgeDecision({
     ratio,
-    threshold,
-    state: nudge.readState(sessionId),
+    threshold: nudge.relaunchThreshold(config),
+    sessionId,
   });
   if (!decision.nudge) return done();
 
@@ -122,9 +109,9 @@ async function main(expectedEvent) {
   return emit(eventName, nudge.handoffText({
     notePath,
     sessionId,
-    specFolder: payload.spec_folder,
+    specFolder: nudge.specFolderInput({ payload }),
     runtime: 'codex',
-    cliPath: CLI_COMMAND,
+    cliPath: nudge.CLI_COMMAND,
     cwd: payload.cwd || process.cwd(),
     ratio,
   }));

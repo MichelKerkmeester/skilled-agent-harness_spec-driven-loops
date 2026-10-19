@@ -125,16 +125,11 @@ function numericSwitch(name, fallback, switches, { integer = false } = {}) {
   return parsed;
 }
 
+const HANDOFF_SEGMENTS = ['.skilled', 'skills', '.state', 'session-relaunch', 'handoffs'];
+
 function handoffPathWithinRepo(filePath) {
   const repository = nudge.resolveRepoRoot(process.env);
-  const handoffDirectory = path.resolve(
-    repository,
-    '.skilled',
-    'skills',
-    '.state',
-    'session-relaunch',
-    'handoffs',
-  );
+  const handoffDirectory = path.resolve(repository, ...HANDOFF_SEGMENTS);
   const candidate = path.resolve(filePath);
   const relative = path.relative(handoffDirectory, candidate);
   if (
@@ -154,6 +149,15 @@ function handoffPathWithinRepo(filePath) {
       throw new Error('session-relaunch handoffs directory is missing');
     }
     throw error;
+  }
+  // Both real paths below resolve through a linked directory, so containment alone
+  // would pass a note stored anywhere. The directory must be the repository's own,
+  // reached without a link below the repository root.
+  const realRepository = fs.realpathSync(repository);
+  if (path.relative(realRepository, realDirectory) !== path.join(...HANDOFF_SEGMENTS)) {
+    throw new Error(
+      'session-relaunch handoffs directory must be a real directory inside the repository',
+    );
   }
 
   let realParent;
@@ -501,6 +505,38 @@ function complete(args) {
   return 0;
 }
 
+function acceptedSpecFolder(candidate) {
+  return candidate === 'none' || core.validSpecFolder(candidate);
+}
+
+// A note whose frontmatter no longer parses can still carry a usable Gate 3 answer for the
+// manual command. One spec_folder line holding an accepted value, with no stray
+// continuation below it, is kept; any other non-empty answer is dropped and logged.
+function specFolderFromBrokenNote(handoffText) {
+  const frontmatter = handoffText.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  const fields = frontmatter ? frontmatter[1].split(/\r?\n/) : [];
+  const answers = [];
+  fields.forEach((field, index) => {
+    if (!/^\s*spec_folder\s*:/.test(field)) return;
+    const continuation = fields.slice(index + 1).find((line) => line.trim() !== '');
+    answers.push({
+      candidate: field.slice(field.indexOf(':') + 1).trim(),
+      continued: Boolean(continuation) && !/^[A-Za-z0-9_-]+\s*:/.test(continuation.trim()),
+    });
+  });
+  if (
+    answers.length === 1
+    && !answers[0].continued
+    && acceptedSpecFolder(answers[0].candidate)
+  ) {
+    return { specFolder: answers[0].candidate, invalid: false };
+  }
+  return {
+    specFolder: '',
+    invalid: answers.some(({ candidate, continued }) => candidate || continued),
+  };
+}
+
 function consume(args) {
   const { options } = parseArgs(args, { flags: ['--loop-id'] });
   const loopId = options['--loop-id'];
@@ -517,25 +553,15 @@ function consume(args) {
       const candidate = typeof note.frontmatter.spec_folder === 'string'
         ? note.frontmatter.spec_folder
         : '';
-      if (candidate === 'none' || core.validSpecFolder(candidate)) specFolder = candidate;
+      if (acceptedSpecFolder(candidate)) specFolder = candidate;
       else if (candidate) invalidSpecFolder = true;
     } catch {
-      const frontmatter = handoffText.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-      const fields = frontmatter ? frontmatter[1].split(/\r?\n/) : [];
-      fields.forEach((field, index) => {
-        if (!/^\s*spec_folder\s*:/.test(field)) return;
-        const candidate = field.slice(field.indexOf(':') + 1).trim();
-        const continuation = fields.slice(index + 1)
-          .find((line) => line.trim() !== '');
-        if (
-          candidate
-          || (continuation && !/^[A-Za-z0-9_-]+\s*:/.test(continuation.trim()))
-        ) {
-          invalidSpecFolder = true;
-        }
-      });
+      ({ specFolder, invalid: invalidSpecFolder } = specFolderFromBrokenNote(handoffText));
     }
   }
+  // The wrapper relaunches only an open note: a claim seed for any other state fails in
+  // the fresh session and loses the hop, so it prints the manual command instead.
+  const note = core.noteState(handoffPath);
   const statePath = core.relaunchFilePath(loopId);
   try {
     fs.unlinkSync(statePath);
@@ -547,7 +573,9 @@ function consume(args) {
       core.appendLog('spec-folder-dropped', { loopId });
     } catch {}
   }
-  process.stdout.write(`${JSON.stringify({ handoff: handoffPath, spec_folder: specFolder })}\n`);
+  process.stdout.write(
+    `${JSON.stringify({ handoff: handoffPath, spec_folder: specFolder, note })}\n`,
+  );
   return 0;
 }
 

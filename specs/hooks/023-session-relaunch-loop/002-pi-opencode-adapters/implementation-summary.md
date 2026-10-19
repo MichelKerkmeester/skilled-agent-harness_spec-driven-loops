@@ -97,18 +97,18 @@ The six copied relaunch logs and matching notes are under `scratch/live-*`. Runs
 | Runtime mirrors and doctor | Runtime mirror sync PASS 189. Doctor checkers rc=0: Codex agents 11, Codex prompts 38, roster OK, catalog OK, Codex hooks OK, Pi agents 11 and Pi prompts 38 (PG3) |
 | Drift guards | 4/4 (PG4) |
 | Shell and rule checks | shellcheck 0 and check-rule-copies 0 (D54 and PG5) |
-| Pi load smoke | Explicit-extension Pi smoke returned rc=0 (AC-2.3 smokes). The plain command returned rc=1 because a pre-existing duplicate `--fast` extension is installed globally and in the worktree. |
-| OpenCode import smoke | Importing the plugin and printing `typeof m.default` produced `function` (D30 and AC-2.3 smokes), not the planned `ok` string. |
-| Lane 2.6c playbook | Document and package validators rc=0, with one pre-existing package warning elsewhere. AC-006 remains open for orchestrator closure revalidation (D60). |
-| Strict packet validation | Pending this closure-doc update. |
+| Pi load smoke | Explicit-extension Pi smoke returned rc=0 (AC-2.3 smokes). The plain command returned rc=1 then, because a duplicate `--fast` extension was installed globally and in the worktree. After that duplicate was removed, the plain command exited 0 on 2026-10-19 (`../008-review-3-remediation/evidence/phase-002-smokes-2026-10-19.txt`). |
+| OpenCode import smoke | Importing the plugin and printing `typeof m.default` produced `function` (D30 and AC-2.3 smokes). The literal planned command printed `ok` on 2026-10-19 (same evidence file). |
+| Lane 2.6c playbook | Document and package validators rc=0, with one pre-existing package warning elsewhere. The orchestrator's own rerun then closed AC-006 (run-ledger.md:194 and 198). |
+| Strict packet validation | RESULT: PASSED once the closure docs were updated. |
 
 ### Deviations from the Ledger Plan
 
 - The D29 shell fixture changed from `bash -c "sleep 30"` to `sleep 30; true` because the shell replaced itself with `sleep`. The assertion was tightened after sandbox `ps` failed with EPERM and caused a false pass. The rerun was 116/116.
 - The spike's OpenCode command bumped its package files. The orchestrator restored both to their HEAD content, leaving the package pin clean (D27).
 - The D53 review found a copied AGENTS rule over the size limit. The orchestrator shortened that line and `check-rule-copies` returned 0.
-- AC-003 uses the isolated Pi extension smoke and the observed OpenCode import result. The originally written plain Pi command still fails on the pre-existing duplicate `--fast` registration. The import prints `function` rather than `ok`.
-- Lane 2.6b stopped after stale playbook anchors. Lane 2.6c later reported its playbook validators passing. The orchestrator still owns AC-006 closure revalidation.
+- AC-003 first closed on the isolated Pi extension smoke and the observed OpenCode import result, because the plain Pi command failed on a duplicate `--fast` registration. Both literal commands passed on the 2026-10-19 rerun.
+- Lane 2.6b stopped after stale playbook anchors. Lane 2.6c later reported its playbook validators passing, and the orchestrator's rerun closed AC-006.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -132,8 +132,8 @@ The six copied relaunch logs and matching notes are under `scratch/live-*`. Runs
 
 | Check | Result |
 |-------|--------|
-| Phase acceptance | AC-001 through AC-005 marked Met with cited evidence. AC-006 remains Unmet pending lane 2.6c playbook revalidation. |
-| Packet validator | RESULT: FAILED. Enforced generated-metadata checks report SOURCE_FINGERPRINT_MISMATCH and description drift. These generated metadata paths are outside the four-file scope and remain orchestrator-owned. |
+| Phase acceptance | AC-001 through AC-006 marked Met with cited evidence. |
+| Packet validator | RESULT: PASSED after the orchestrator refreshed the generated metadata. An earlier run had failed on SOURCE_FINGERPRINT_MISMATCH and description drift. |
 | Evidence boundary | Summary claims cite run-ledger D25-D60, the spike report and the six copied live-run logs plus notes. Orchestrator-run outputs are cited from PG1-PG5. |
 <!-- /ANCHOR:verification -->
 
@@ -142,7 +142,7 @@ The six copied relaunch logs and matching notes are under `scratch/live-*`. Runs
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **AC-006 remains open.** Lane 2.6c reported the playbook document and package validators passing at D60. The orchestrator still owns the requested closure revalidation and strict packet result.
+1. **AC-006 closed late.** Lane 2.6c reported the playbook validators passing at D60, and AC-006 stayed open until the orchestrator's own rerun (run-ledger.md:194 and 198).
 2. **Eight SWE P2 findings carry to phase 004.**
    - D35: the shared `.pi/types` shim lacks the event types the extension uses.
    - D39: a leading-dash value such as `--model --resume` is ambiguous in the wrapper.
@@ -153,7 +153,7 @@ The six copied relaunch logs and matching notes are under `scratch/live-*`. Runs
    - D48: restart lookup ignores note status.
    - D55: corrupt relaunch-file handling calls `appendLog` without a guard at `relaunch-core.cjs:340`.
 3. **Other phase 004 carryovers.** The root feature catalog still says other runtimes are planned (D36). OpenCode offers no slash-command tool to the live model (run F). Pi's low test threshold can chain through the hop cap and the nudge wording should keep handoff steps out of "Remaining work" (Pi run 1).
-4. **Spike limits remain recorded.** Pi TUI seed submission and OpenCode TUI prompt submission were not end-to-end live-tested. OpenCode TUI quit behavior for `session.idle` and wrapper-specific `process.ppid` were not directly captured.
+4. **Spike limits remain recorded.** Pi TUI seed submission and OpenCode TUI prompt submission were not end-to-end live-tested. OpenCode TUI quit behavior for `session.idle` and wrapper-specific `process.ppid` were not directly captured. Later live hops closed part of this: phase 006 round 9 and phase 007 run 10 recorded `session.idle` arming the record after prepare and the killer ending OpenCode within seconds (`../007-handoff-gate-exemptions/implementation-summary.md`, live run 10 row). The killer targets the plugin's own pid, so `process.ppid` no longer matters. `session.idle` on a TUI quit is still uncaptured.
 <!-- /ANCHOR:limitations -->
 
 ---

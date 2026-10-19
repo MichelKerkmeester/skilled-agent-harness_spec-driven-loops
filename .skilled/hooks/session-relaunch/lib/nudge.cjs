@@ -17,7 +17,8 @@ const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending sessi
 const SPEC_FOLDER_SKIP_SUFFIX_LEGACY = ' (Gate 3 answered D) Skip in the sending session)';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
-const DEFAULT_CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
+// Every adapter prints this command, so the model always runs the CLI from the repo root.
+const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/cli/'
   + 'dist/continuity/generate-context.js';
 const NUDGE_STEP = 0.05;
@@ -39,7 +40,7 @@ function shellQuote(value) {
 }
 
 function commandPrefix(cliPath) {
-  if (typeof cliPath !== 'string' || !cliPath.trim()) return DEFAULT_CLI_COMMAND;
+  if (typeof cliPath !== 'string' || !cliPath.trim()) return CLI_COMMAND;
   if (/^node\s/.test(cliPath)) return cliPath;
   return `node ${shellQuote(cliPath)}`;
 }
@@ -59,6 +60,27 @@ function contextSentence(ratio) {
     : `${SEED_PREFIX} Context is about ${Math.round(ratio * 100)}% full.`;
 }
 
+/**
+ * Reduce a spec-folder answer to one prepare accepts: empty when unanswered, `none` for a
+ * Gate 3 skip, or a valid packet path. Anything else, including a value that would add
+ * frontmatter lines, is unknown and returns undefined.
+ */
+function normalizeSpecFolder(value) {
+  if (value === '' || value === 'none') return value;
+  return core.validSpecFolder(value) ? value : undefined;
+}
+
+// No host puts a spec folder in its hook payload today, so the payload field stays a
+// seam for one that does, and the session's bound packet comes from SYSTEM_SPEC_FOLDER.
+// An empty variable says nothing about the answer, so it reads as unknown.
+/** Resolve the spec folder a nudge writes into the note, payload first. */
+function specFolderInput({ payload, env = process.env } = {}) {
+  const fromPayload = normalizeSpecFolder(payload?.spec_folder);
+  if (fromPayload !== undefined) return fromPayload;
+  const fromEnvironment = env?.SYSTEM_SPEC_FOLDER;
+  return fromEnvironment ? normalizeSpecFolder(fromEnvironment) : undefined;
+}
+
 /** Build the context handoff instructions for a runtime nudge. */
 function handoffText({
   notePath,
@@ -73,9 +95,10 @@ function handoffText({
 } = {}) {
   const pathValue = String(notePath ?? '<handoff-path>');
   const sessionValue = String(sessionId ?? '');
-  const specValue = typeof specFolder === 'string'
-    ? specFolder
-    : '<repo-relative packet path, "none" for Gate 3 D) Skip, or empty if unanswered>';
+  // An unknown folder prints empty: the guidance line tells the model what may go there,
+  // and a placeholder copied verbatim is a value prepare rejects.
+  const folder = normalizeSpecFolder(specFolder);
+  const specValue = folder ?? '';
   const command = commandPrefix(cliPath);
   const context = contextSentence(ratio);
   const opening = context === null
@@ -102,11 +125,8 @@ function handoffText({
   ];
 
   let step = 2;
-  const hasSpecFolder = typeof specFolder === 'string' && specFolder.length > 0;
-  if (specFolder === undefined || (hasSpecFolder && specFolder !== 'none')) {
-    const saveTarget = typeof specFolder === 'string' && specFolder
-      ? specFolder
-      : '<spec-folder>';
+  if (folder === undefined || (folder !== '' && folder !== 'none')) {
+    const saveTarget = folder || '<spec-folder>';
     const saveStep = runtime === 'claude'
       ? 'run `/speckit:save` first so its continuity is current.'
       : 'save its continuity first: pipe the save JSON to '
@@ -199,6 +219,20 @@ function notePathFromSeed(prompt) {
   return path.isAbsolute(notePath) ? notePath : null;
 }
 
+// A seed whose note path cannot be read would hand the model a claim command with a
+// placeholder it cannot run, so every adapter adds nothing for it instead.
+/** Build the claim instructions for a relaunch seed, or null when it is not a usable seed. */
+function seedInstructions({ prompt, sessionId, cliPath = CLI_COMMAND } = {}) {
+  const notePath = notePathFromSeed(prompt);
+  if (notePath === null) return null;
+  return seedText({
+    notePath,
+    specFolder: specFolderFromSeed(prompt),
+    sessionId,
+    cliPath,
+  });
+}
+
 // Notes live in the repository that holds this concern, so every reader resolves the same root.
 function resolveRepoRoot(env = process.env) {
   return path.resolve(
@@ -211,6 +245,20 @@ function handoffDir(repoRoot) {
     repoRoot,
     '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
   );
+}
+
+// The nudge hands the model a path, so the directory must exist before the model
+// writes there, and private because a note carries the session's working state.
+// A failure here must not cost the nudge itself; the model's write then fails visibly.
+// chmod follows a symlink, so a linked handoffs directory is left alone rather than
+// opening up whatever it points at; the CLI refuses notes under it anyway.
+function ensureHandoffDir(repoRoot) {
+  const directory = handoffDir(repoRoot);
+  try {
+    fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
+    if (fs.lstatSync(directory).isDirectory()) fs.chmodSync(directory, 0o700);
+  } catch {}
+  return directory;
 }
 
 // A second nudge must name the note the session already has open. Handing it a
@@ -226,8 +274,9 @@ function openNotePathFor({ repoRoot, sessionId }) {
     return null;
   }
 
+  // Note names start with a UTC stamp, so a reverse sort puts the newest note first.
   const suffix = `-${sessionId.slice(0, 8)}.md`;
-  for (const filename of filenames) {
+  for (const filename of filenames.sort().reverse()) {
     if (!filename.endsWith(suffix)) continue;
     const notePath = path.join(directory, filename);
     let frontmatter;
@@ -252,6 +301,7 @@ function plannedNotePath({
   now = new Date(),
 } = {}) {
   const repoRoot = resolveRepoRoot(env);
+  ensureHandoffDir(repoRoot);
   const openNotePath = openNotePathFor({ repoRoot, sessionId });
   if (openNotePath !== null) return openNotePath;
 
@@ -358,6 +408,42 @@ function nextLevel({ ratio, threshold, state } = {}) {
   return { level: level + 1, nudge: true };
 }
 
+/**
+ * Decide whether an adapter should nudge now, in the order every adapter applies:
+ * the threshold, a handoff this session already prepared, the hop cap, then the level.
+ * The state file is read only once the ratio reaches the threshold.
+ *
+ * @param {Object} options - Fill ratio and session state.
+ * @param {number} options.ratio - Measured fill ratio.
+ * @param {number} options.threshold - Resolved nudge threshold.
+ * @param {string} options.sessionId - Session the nudge belongs to.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @param {number} [options.level] - Current level; read from the state file when omitted.
+ * @param {boolean} [options.resume=false] - Re-deliver a spent level after a host restart.
+ * @returns {{nudge: boolean, level: number, reason: string}} The decision and its level.
+ */
+function nudgeDecision({
+  ratio,
+  threshold,
+  sessionId,
+  env = process.env,
+  level,
+  resume = false,
+} = {}) {
+  const knownLevel = Number.isInteger(level) && level >= 0 ? level : undefined;
+  const quiet = (reason) => ({ nudge: false, level: knownLevel ?? 0, reason });
+  if (!(Number(ratio) >= Number(threshold))) return quiet('below-threshold');
+  if (handoffPending({ sessionId, env })) return quiet('handoff-pending');
+  if (hopLimitReached(env)) return quiet('hop-limit');
+
+  const current = knownLevel ?? readState(sessionId, env);
+  if (resume && current >= 1) return { nudge: true, level: current, reason: 'resume' };
+  const next = nextLevel({ ratio, threshold, state: current });
+  return next.nudge
+    ? { nudge: true, level: next.level, reason: 'threshold' }
+    : { nudge: false, level: next.level, reason: 'level-spent' };
+}
+
 /** Validate a session id before using it in a command or state-file name. */
 function validSessionId(id) {
   return typeof id === 'string' && SESSION_ID_PATTERN.test(id);
@@ -400,6 +486,11 @@ function writeState(sessionId, level, env = process.env) {
 }
 
 module.exports = {
+  CLI_COMMAND,
+  normalizeSpecFolder,
+  specFolderInput,
+  seedInstructions,
+  nudgeDecision,
   handoffText,
   seedText,
   completeCommandFor,

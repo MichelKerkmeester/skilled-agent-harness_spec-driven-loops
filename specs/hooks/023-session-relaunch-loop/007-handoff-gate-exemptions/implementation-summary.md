@@ -68,7 +68,7 @@ The repo `opencode.json` now pins `llmgateway/deepseek-v4.1-flash` with variant 
 | `specs/hooks/023-session-relaunch-loop/spec.md` | Modified | Phase map row 7 names the phase and marks it complete |
 | `specs/hooks/023-session-relaunch-loop/goal.md` | Modified | Binding rows for phases 006 and 007 |
 | `specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md` and `implementation-summary.md` | Modified | Pointer sentences saying G20 and G21 are addressed in phase 007 |
-| `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/` | Created | The six phase docs and `evidence/live-run10-2026-10-19/` (`relaunch-run10.log`, three pane captures, `launch-commands.txt`) |
+| `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/` | Created | The six phase docs and `evidence/live-run10-2026-10-19/` (`relaunch-run10.txt`, three pane captures, `launch-commands.txt`) |
 <!-- /ANCHOR:what-built -->
 
 ---

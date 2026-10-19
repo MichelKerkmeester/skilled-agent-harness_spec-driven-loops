@@ -25,6 +25,7 @@ Every test file runs without a live agent runtime. Each file creates its own tem
 
 ```text
 tests/
++-- adapter-conformance.test.cjs   # One case table run through the Claude, Codex, Hermes and OpenCode adapters
 +-- claude-adapters.test.cjs       # Claude Code hook adapters: nudge, stop arm, seed prompt
 +-- codex-adapters.test.cjs        # Codex adapters: nudge, stop arm, spawn recorder
 +-- context-usage.test.cjs         # Context window readers for Claude, Codex, OpenCode and Pi
@@ -43,6 +44,7 @@ tests/
 
 | File | Responsibility |
 |---|---|
+| `adapter-conformance.test.cjs` | Runs one table of seed and nudge cases through the Claude, Codex and Hermes hooks as child processes and through the OpenCode plugin in process. A well-formed seed adds the claim command, a seed with a relative note path adds nothing, an invalid carried folder is not resumed, the nudge writes `SYSTEM_SPEC_FOLDER` and drops an invalid one, and a pending handoff or the hop cap keeps the nudge silent. The Pi extension runs the same cases in `../pi/session-relaunch.test.ts`. |
 | `claude-adapters.test.cjs` | Checks the Claude Code adapters. The nudge fires at the configured context level, the stop arm records a matching pending record and a synchronous killer spawn failure stays armed, and the `UserPromptSubmit` seed carries the claim and completion instructions. |
 | `codex-adapters.test.cjs` | Checks the Codex adapters. The nudge fires once at the threshold and again one step above it, the stop hook ignores an armed record whose killer lock owner is still alive, and the stop target lookup picks the ancestor directly below the loop process. |
 | `context-usage.test.cjs` | Checks how each runtime reports context fill. Claude reads the last main-chain usage entry and ignores sidechain and cumulative totals. Codex prefers the shared window override over the rollout window. OpenCode and Pi read the usage fields of a completed assistant message, and missing fields count as zero. Settings read errors fall back to an absent window. |
@@ -87,14 +89,14 @@ Hermes payloads carry redacted identifiers. Keep new captures redacted in the sa
 Run the suite from the repository root:
 
 ```bash
-node --test .skilled/hooks/session-relaunch/tests/*.test.cjs
+node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs
 ```
 
-Expected result: the run exits with status `0`. The summary ends with the counts below. Node prints each summary line with an info marker, so the lines read `ℹ pass 405` and `ℹ fail 0`. The run takes about one minute.
+Expected result: the run exits with status `0`. The summary ends with the counts below, which include the 39 tests of the OpenCode plugin suite. Node prints each summary line with an info marker, so the lines read `ℹ pass 510` and `ℹ fail 0`. The run takes about one minute.
 
 ```text
-ℹ tests 405
-ℹ pass 405
+ℹ tests 510
+ℹ pass 510
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
@@ -107,9 +109,17 @@ Run one file on its own while you work on a single adapter:
 node --test .skilled/hooks/session-relaunch/tests/killer.test.cjs
 ```
 
+The Pi extension suite runs under vitest:
+
+```bash
+npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+```
+
 ---
 
 ## 7. RELATED
 
 - [`Session relaunch`](../README.md): the hook overview, handoff protocol, state files and switches that these tests exercise.
 - [`Session relaunch hook source`](../bin/session-relaunch.cjs): the entry point the CLI tests call.
+- [`OpenCode plugin tests`](../../../../.opencode/plugins/tests/session-relaunch.test.cjs): the plugin's own suite, which lives beside the plugin and runs with the command in section 6.
+- [`Pi extension tests`](../pi/session-relaunch.test.ts): the vitest suite for the Pi extension.
