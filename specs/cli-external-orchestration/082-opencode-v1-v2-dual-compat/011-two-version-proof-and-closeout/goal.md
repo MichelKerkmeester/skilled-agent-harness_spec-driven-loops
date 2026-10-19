@@ -92,4 +92,5 @@ and findings belong here.
 | Local commit | Spec.md lists committing as out of scope; the operator's standing approval covers a local commit per phase. No push (`scratch/decisions.txt` 9) |
 | v2 agent routing | Verified live after the closeout at the operator's request: `--agent <slug>` runs as that agent on 2.0.32, `general` included, an unknown slug exits 1, an `As @review:` body stays with the default agent (`scratch/decisions.txt` 10) |
 | Agent temperature | Checked against a capture endpoint: 2.0.32 sends no agent `temperature`, 1.19.3 sends it for a primary agent; docs corrected (`scratch/decisions.txt` 11) |
+| Deep review | Five cli-pi DeepSeek iterations (`../review/review-report.md`): CONDITIONAL, 1 P1 and 12 P2. All thirteen fixed and the open check closed by evidence (`scratch/decisions.txt` 12) |
 <!-- /ANCHOR:log -->

@@ -114,7 +114,7 @@ The D8 claim sits in the cli-opencode `SKILL.md` under Prerequisites, at the end
 | `grep -n 'Verified against OpenCode 1.19.3 and 2.0.32 on' .../cli-opencode/SKILL.md` | One line, dated 2026-10-19 |
 | `validate_document.py` on `SKILL.md` (skill), the README (readme) and each reference (reference) | Exit 0 on all ten |
 | `validate_skill_package.py` on `cli-opencode` and on the hub | Exit 0 each (`scratch/claim/`) |
-| SKILL.md words | 4,904 of 5,000 |
+| `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py --check .../cli-opencode` (counts every whitespace-separated word in the file, `package_skill.py:457`) | 4,904 of 5,000 when the claim was written. The later `--agent` routing docs raised it to 4,971 (`wc -w` gives 4,972), and the check still passes |
 | `compiled-route-manifest.cjs refresh`, then `compiled-route-sync.cjs --check` | Fresh, generation 5. Sync exit 0, 55 served copies match |
 | `sync-skills-hermes.cjs --check` | PASS, 68 copies in sync |
 | Sample routes (`scratch/claim/routes.txt`) | cli-opencode, cli-codex, cli-opencode |

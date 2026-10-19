@@ -1,0 +1,19 @@
+Role: code and test editor for `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` and `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`. Match the existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: `resolveDispatchPacket` unwraps three exec wrappers (`EXEC_WRAPPERS`, near line 391: perl, env, timeout). Five more shell prefixes hide the executor from it, so the dispatch gets neither the audit record nor the preflight refusal:
+- `nohup <cmd>`
+- `command <cmd>`, the shell builtin. Not `command -v` or `command -V`, which only look a name up and run nothing.
+- `! <cmd>`
+- a subshell `( <cmd> )`
+- `env -S '<cmd string>'` or `env -S "<cmd string>"`. The current env pattern's `-[a-zA-Z]\s+\S+` branch swallows the first word of the quoted string.
+
+Fix:
+1. Add a pattern for each of the five to `EXEC_WRAPPERS`, each capturing the wrapped command as group 1. For `env -S`, capture the inside of the quotes. Put it before the general env pattern so it wins. For the subshell, match only a segment that starts with `(` and ends with `)`.
+2. Rewrite the comment above `EXEC_WRAPPERS`. Its old rule, add a wrapper only once a dispatch uses it, measured how often wrappers occur. A guard has to recognise every prefix that hides an executor, because an unrecognised prefix is a way around it. Keep the list of what each pattern matches.
+3. If nesting now needs it (for example `nohup env VAR=1 perl -e '...' -- cmd`), raise `MAX_UNWRAP_DEPTH` by the smallest amount, and update its comment so the number stays explained.
+4. Tests in `dispatch-audit.test.mjs` (vitest, `expect`): for each of the five prefixes, `resolveDispatchPacket` on a dispatch such as `nohup opencode run --model x "hi" </dev/null` returns the cli-opencode entry, and `env -S "codex exec hi"` returns the cli-codex entry. Also cover `command -v opencode`, which must return null. Read the existing wrapper tests first and follow them.
+
+Checks:
+- `cd .skilled && npx vitest run hooks/dispatch/lib/dispatch-audit.test.mjs`, using node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin` on PATH. If vitest is missing from `.skilled`, report it and stop.
+- `node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs`
+Report the pass and fail counts. Edit no other file.

@@ -1,0 +1,8 @@
+Done. Both files are updated and the full test file passes: **33 passed, 0 failed**, exit status 0.
+
+- `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` now imports `SUPPORTED_FAMILIES`, uses it for the version guard and the `appliesTo` default, and computes `appliesToAll` with `SUPPORTED_FAMILIES.every(...)`. No `appliesToBoth` references remain.
+- `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` gained one test: a rule without `appliesTo` and severity `error` still blocks when `options.version` is `'unknown'`, using a stub check through `options.checks`.
+- The requested `appliesTo: ['v1']` unknown case already existed in `unknown evaluation preserves shared severity and warns version-specific rules`, which asserts that `v1-only` drops to `warn`, so I did not duplicate it.
+- Verification run: `PATH=/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin:$PATH node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`. Baseline was 32 passed, 0 failed, and the final run was 33 passed, 0 failed.
+
+Only the two named files were edited. Nothing was committed, pushed, stashed or branched. The worktree already contained unrelated changes when I started, and I left them untouched.

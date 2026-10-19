@@ -1,0 +1,16 @@
+Role: code, test and doc editor. Match each file's existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, the marker `SPECKIT_DISPATCH_NEGATIVE_CONTROL=1` (the `NEGATIVE_CONTROL` regex near line 93) is read from the command text. A model-written command can therefore include it and turn off the two Hermes hard rules `hermes-yolo-required-for-writes` and `hermes-explicit-toolsets-required`.
+
+Fix: the marker in the command only counts when the guard's own process also allows it, through an operator-set environment variable the command cannot set.
+1. Add `const NEGATIVE_CONTROL_ALLOW_ENV = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED';` and a helper `negativeControlActive(cmd)` that returns true only when `process.env[NEGATIVE_CONTROL_ALLOW_ENV] === '1'` AND `NEGATIVE_CONTROL.test(cmd)`. Replace the two `NEGATIVE_CONTROL.test(cmd)` calls with it. Extend the comment above `NEGATIVE_CONTROL` with one or two sentences: the command text is model-writable, so the operator opts the guard's own process in, and a dispatch alone cannot.
+2. Tests in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, saving and restoring the env var around each case:
+   - with the marker in the command and the env var unset, both Hermes rules still fail (are violated) for a write toolset without --yolo, and for a toolset list containing `delegation`;
+   - with the env var set to '1' and the marker present, both pass.
+   Read the existing negative-control tests first. Update any that now need the env var set, and keep what they prove.
+3. Docs: in each of these three playbook pages, add one sentence just before the command block that uses the marker. It says the guard honours the marker only when the session running the guard was started with `SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED=1` exported, so export it before you start the session:
+   - `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/prompt-templates/empty-stdout-detection.md`
+   - `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/skills-and-plugins/task-dispatch-guard-blocks-delegation.md`
+   - `.skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/skills-and-plugins/project-skill-preload.md`
+
+Check: `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`. Report the pass and fail counts. Edit no other file.

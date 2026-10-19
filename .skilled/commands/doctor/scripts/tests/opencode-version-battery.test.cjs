@@ -71,6 +71,13 @@ const VERSION_SAMPLES = [
   'opencode v2.0.32\n1.19.3',
 ];
 
+// The shared corpus is written from the reference parser, so this copy is pinned to the
+// same answers every other copy is tested against.
+const VERSION_CORPUS = JSON.parse(fs.readFileSync(path.resolve(
+  __dirname, '..', '..', '..', '..',
+  'hooks', 'dispatch', 'lib', 'opencode-version-corpus.json',
+), 'utf8'));
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURE HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -469,6 +476,13 @@ test('R18: a spaced value that is itself a flag is a usage error, the = form is 
 test('parity: the battery parser and the deep-loop resolver agree on one shared list', () => {
   for (const sample of VERSION_SAMPLES) {
     assert.equal(parseVersion(sample), parseOpencodeVersion(sample), JSON.stringify(sample));
+  }
+});
+
+test('parity: every shared corpus entry keeps its expected family', () => {
+  assert.ok(VERSION_CORPUS.length >= 12);
+  for (const { output, family } of VERSION_CORPUS) {
+    assert.equal(parseVersion(output), family, JSON.stringify(output));
   }
 });
 

@@ -44,6 +44,7 @@
       "implementation-summary.md",
       ".hermes/skills/cli-opencode/SKILL.md",
       "scratch/proof/battery-exits.txt",
+      "scratch/remediation/suites-before.txt",
       "scratch/validate-recursive.txt",
       ".github/workflows/opencode-dual-version.yml",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
@@ -98,6 +99,12 @@
         "name": "battery-exits.txt",
         "kind": "file",
         "path": "scratch/proof/battery-exits.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suites-before.txt",
+        "kind": "file",
+        "path": "scratch/remediation/suites-before.txt",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The build spans eleven phase children",
     "created_at": "2026-10-18T12:45:10Z",
-    "last_save_at": "2026-10-19T05:52:37.865Z",
+    "last_save_at": "2026-10-19T09:45:28.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbef68a7a77a11d00bb55cfcc40d92f8eef33854d51aa0c03467cd50d9d3f6d0",
+    "source_fingerprint": "sha256:4968cba3b4ab84ed21a1bf45ec05d9fd56a0da9bf0c22600c7617c33d504bbfa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d36915a8f8cb8139f80c20c1bdced6ec1bd953a189d5fc2f38aff403930368c5",
       "plan.md": "3b3520898f8b1402419fdb16bcd26894f3cf05cd21bd4c88d14bc4b2512f3976",
       "tasks.md": "80d95516fa66817a37607674e39ec2b05b48288aaaaf5fba2b3d29a99681e04c",
-      "implementation-summary.md": "028e7743ef825bbb24e5d790033991145e6ea016c7ade34405e4446c1f520cf2"
+      "implementation-summary.md": "ff52fef97b7c56335a3e4afb2c710c5d3d3da73430b0ac3d796f1f60bafb05c8"
     },
     "last_active_at": null
   }

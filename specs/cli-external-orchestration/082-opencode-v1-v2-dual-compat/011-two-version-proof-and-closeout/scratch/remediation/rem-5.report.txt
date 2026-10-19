@@ -1,0 +1,40 @@
+| `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` | `isHookEnabled("dispatch")` → `("dispatch-guard")` |
+| `.opencode/plugins/cli-dispatch-audit.js` | Inside `'tool.execute.before'` only: gate → `'dispatch-guard'`, and the `dispatchAuditCore.isAuditDisabled(process.env)` line deleted. `'tool.execute.after'` byte-identical. |
+| `.skilled/hooks/shared/hook-flags.test.cjs` | New test: `CLI_DISPATCH_AUDIT_DISABLED` disables `dispatch` but not `dispatch-guard`; `SYSTEM_DISPATCH_GUARD_DISABLED` disables `dispatch-guard`; `SYSTEM_DISPATCH_DISABLED` disables both. |
+| `.opencode/plugins/tests/source-root-consumers.test.cjs` | New case "the audit-log switch leaves the preflight guard blocking", built on the file's own `BLOCKING_PACKET`/`BLOCKING_RULES` fixture and `opencode run … --agent general` command; snapshots/restores the five competing switches so the case proves `CLI_DISPATCH_AUDIT_DISABLED` alone. |
+| `.skilled/hooks/dispatch/README.md` | §6: new `SYSTEM_DISPATCH_GUARD_DISABLED` row; `CLI_DISPATCH_AUDIT_DISABLED` reworded to audit-only; `SYSTEM_DISPATCH_DISABLED` now names both concerns. |
+| `.skilled/hooks/shared/README.md` | §3 concern list `dispatch` → `dispatch`, `dispatch-guard`; count 21 → 22. (No non-default-shape table change — `dispatch-guard` uses the default shape.) |
+| `.skilled/hooks/hook-flags.env.example` | Added `# SYSTEM_DISPATCH_GUARD_DISABLED=1        # CLI dispatch preflight guard only` in alphabetical position, comment column aligned at 43 like its neighbours; `SYSTEM_DISPATCH_DISABLED` label now "preflight guard + audit trail". |
+
+`concernFlag('dispatch-guard')` confirmed by node: `SYSTEM_DISPATCH_GUARD_DISABLED`.
+
+### Checks (node v26.8.2) — all from the final state
+
+- `node --test .skilled/hooks/shared/hook-flags.test.cjs` → **pass 21, fail 0**, skipped 0, cancelled 0, todo 0.
+- `node --test .opencode/plugins/tests/` → **pass 356, fail 0**, suites 3, skipped 0, cancelled 0, todo 0. Targeted run of `source-root-consumers.test.cjs`: **9/9 pass**, new case listed as `✔ the audit-log switch leaves the preflight guard blocking`.
+- `node --check` → **8 OK, 0 FAIL**: `hook-flags.cjs`, `hook-flags.test.cjs`, the four preflight `.mjs`, `cli-dispatch-audit.js`, `source-root-consumers.test.cjs`. (The only edited file not checkable this way is `pi/dispatch-preflight-lint.ts`, a TypeScript source.)
+
+The new plugin case is load-bearing, not a tautology: under `CLI_DISPATCH_AUDIT_DISABLED=1` the pre-fix gates both answer "stop" — `isAuditDisabled(env)` → `true` and `isHookEnabled('dispatch', env)` → `false`, while `isHookEnabled('dispatch-guard', env)` → `true`. So the deleted line and the old concern were exactly what let the guard fall silent.
+
+### `grep -rn "isHookEnabled(.dispatch" .skilled/hooks/dispatch .opencode/plugins/cli-dispatch-audit.js` (exit 0)
+
+```
+.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs:40:  if (!isHookEnabled('dispatch-guard')) return approve();
+.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:46:  if (!isHookEnabled('dispatch')) return done();
+.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:57:  if (!isHookEnabled('dispatch-guard')) return approve();
+.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:49:  if (!isHookEnabled('dispatch-guard')) return approve();
+.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:40:  if (!isHookEnabled('dispatch')) return done();
+.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs:44:  if (!isHookEnabled('dispatch-guard')) return approve();
+.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:50:  if (!isHookEnabled('dispatch')) return done();
+.skilled/hooks/dispatch/README.md:122:| `SYSTEM_DISPATCH_DISABLED=1` | Full no-op on every runtime. The shared resolver short-circuits both concerns: `isHookEnabled('dispatch')` silences every audit adapter and `isHookEnabled('dispatch-guard')` every preflight adapter. |
+.skilled/hooks/dispatch/pi/dispatch-audit.ts:22:  if (!isHookEnabled("dispatch")) return undefined;
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:218:  if (!isHookEnabled("dispatch-guard")) return undefined;
+.opencode/plugins/cli-dispatch-audit.js:74:        if (!isHookEnabled('dispatch-guard')) return;
+.opencode/plugins/cli-dispatch-audit.js:102:        if (!isHookEnabled('dispatch')) return;
+```
+
+Every preflight adapter reads `dispatch-guard`; every audit adapter (three `*-posttooluse.mjs`, `pi/dispatch-audit.ts`) and the plugin's `tool.execute.after` still read `dispatch`. `git status` shows only the 12 files above changed by me; the worktree's other modifications predate this task.
+
+### One thing outside the frozen scope
+
+`.skilled/hooks/README.md` calls itself "the canonical index of every concern and flag" and `hook-flags.env.example` points operators at it. It still has only the `SYSTEM_DISPATCH_DISABLED` row, so a reader there will not learn that `SYSTEM_DISPATCH_GUARD_DISABLED` exists or that `CLI_DISPATCH_AUDIT_DISABLED` is audit-only. I did not edit it (task: edit no other file) — that row is the operator's call to schedule.

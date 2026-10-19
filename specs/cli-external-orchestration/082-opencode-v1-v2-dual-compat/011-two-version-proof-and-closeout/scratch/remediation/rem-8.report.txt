@@ -1,0 +1,20 @@
+Implemented the trust check and updated tests.
+
+**Changed files**
+- `.skilled/hooks/dispatch/lib/opencode-version.mjs`
+  - Added shared file identity comparison using realpath + size + mtime.
+  - Path-qualified executables are probed only when they match a trusted PATH lookup for `opencode`/`opencode2`, or the operator-set `OPENCODE_BIN`.
+  - Untrusted path-qualified executables return `'unknown'` without execution.
+  - Async dependency injection (`deps.realpath`, `deps.stat`) is used for the trust comparison.
+- `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`
+  - Updated the untrusted path case to expect `'unknown'` and assert a marker file was never written.
+  - Added trusted path-via-PATH and `OPENCODE_BIN` cases.
+  - Updated the async-timeout case to trust its temp binary through PATH.
+
+**Verification**
+- `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`
+  - **37 passed, 0 failed**
+- `cd .skilled && npx vitest run hooks/dispatch/lib/dispatch-audit.test.mjs`
+  - **114 passed, 0 failed**
+
+Both ran with `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin` first on `PATH`. No other files were edited.

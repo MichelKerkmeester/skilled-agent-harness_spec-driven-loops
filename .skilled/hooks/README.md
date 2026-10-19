@@ -43,7 +43,8 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `codex-watchdog` | `CODEX_WATCHDOG_DISABLED` | none | enabled | warn | wired |
 | `permission-policy` | `SYSTEM_PERMISSION_POLICY_DISABLED` | none | enabled | deny | wired |
 | `directive-lifecycle` | `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED` | none | enabled | inject cadence | wired |
-| `dispatch` | `SYSTEM_DISPATCH_DISABLED` | `CLI_DISPATCH_AUDIT_DISABLED` | enabled | deny / audit | wired |
+| `dispatch` | `CLI_DISPATCH_AUDIT_DISABLED` | `SYSTEM_DISPATCH_DISABLED` (both concerns) | enabled | audit | wired |
+| `dispatch-guard` | `SYSTEM_DISPATCH_GUARD_DISABLED` | `SYSTEM_DISPATCH_DISABLED` (both concerns) | enabled | deny (preflight) | wired |
 | `post-edit-quality` | `SK_CODE_POST_EDIT_QUALITY_DISABLED` | none | enabled | warn | wired |
 | `task-dispatch` | `SYSTEM_TASK_DISPATCH_DISABLED` | none | enabled | warn / deny | wired |
 | `mcp-route-guard` | `MCP_ROUTE_GUARD_DISABLED` | none | enabled | warn / audit | wired |

@@ -1,0 +1,14 @@
+**Files edited (only these two):**
+- `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`
+- `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`
+
+**Changes**
+- Added `EXEC_WRAPPERS` patterns, each capturing the wrapped command as group 1: `nohup`, the `command` builtin (excluding `-v`/`-V` lookups), `!`, a `( ... )` subshell segment, and `env -S` for single- and double-quoted command strings, placed before the general `env` pattern.
+- Rewrote the wrapper comment to the completeness rule — every prefix that hides an executor must be unwrapped, or it is a bypass — keeping the per-pattern list.
+- Raised `MAX_UNWRAP_DEPTH` from 3 to 4 for three-deep nesting (`nohup env VAR=1 perl … -- cmd`) plus the final inspection pass; comment updated to match.
+- Added `resolveDispatchPacket` coverage: `nohup`, `command`, `!`, subshell, `env -S` (both quote styles), a four-wrapper nested case, and `command -v opencode` → `null`.
+
+**Verification**
+- `node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs` → exit 0 (`NODE_CHECK_OK`).
+- `cd .skilled && npx vitest run hooks/dispatch/lib/dispatch-audit.test.mjs` → **114 passed, 0 failed** (1 file passed).
+- `git diff` confirms no other file was edited by this task.

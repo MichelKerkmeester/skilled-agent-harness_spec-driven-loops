@@ -59,6 +59,11 @@ interface OpencodeVersionApi {
   readonly clearOpencodeVersionCache: () => void;
 }
 
+interface VersionCorpusEntry {
+  readonly output: string;
+  readonly family: OpencodeVersion;
+}
+
 interface BuilderOptions {
   readonly env?: NodeJS.ProcessEnv;
   readonly loopType?: string;
@@ -115,6 +120,10 @@ const VERSION_OUTPUTS: readonly string[] = [
   TRAILING_SPACE_VERSION_OUTPUT,
   JOINED_VERSION_OUTPUT,
 ];
+const VERSION_CORPUS = JSON.parse(readFileSync(
+  resolve(projectRoot, '.skilled/hooks/dispatch/lib/opencode-version-corpus.json'),
+  'utf8',
+)) as VersionCorpusEntry[];
 
 const MODEL = 'openai/gpt-5.5';
 const EFFORT = 'high';
@@ -248,6 +257,13 @@ describe('OpenCode version resolution', () => {
       () => resolver.resolveOpencodeBinary(envWithPath(binDir)),
       UNPARSEABLE_OUTPUT,
     );
+  });
+
+  it('parses every entry in the shared version corpus', () => {
+    expect(VERSION_CORPUS.length).toBeGreaterThanOrEqual(12);
+    for (const { output, family } of VERSION_CORPUS) {
+      expect(resolver.parseOpencodeVersion(output), JSON.stringify(output)).toBe(family);
+    }
   });
 
   it('A1 finds only opencode2 and reports its parsed version', () => {

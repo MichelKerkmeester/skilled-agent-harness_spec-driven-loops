@@ -174,6 +174,8 @@ Plugin factories register some subset of:
 
 The bridge in `lib/v2-bridge.js` maps that set onto OpenCode 2 registrations: `event` to the event stream, `tool.execute.before`/`after` to the tool execute hooks, `experimental.chat.system.transform` to the session context hook, and `tool` definitions to the tool transform. A key outside the set is reported through `cleanup.skippedKeys`.
 
+One plugin in this repo registers a key outside that set: `sk-vision.js`'s `chat.message` hook, which inspects images when a prompt is submitted. The bridge skips it on OpenCode 2, so automatic image inspection does not run there, while sk-vision's tools still register. Porting the hook to OpenCode 2's prompt hook is not done and not verified.
+
 ---
 
 ## 10. VALIDATION

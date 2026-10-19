@@ -1,0 +1,23 @@
+Done.
+
+## Changed files (only these two)
+
+**`.skilled/hooks/dispatch/lib/opencode-version.mjs`**
+- `isTrustedExecutable()` (boolean) → `trustedExecutableFor()` (returns the matched trusted path, or `null`). It iterates `trustedExecutables()` and returns the entry whose file identity matches — i.e. the path `resolveOnPath` produced, or the `OPENCODE_BIN` value.
+- Both resolvers now set `probePath` from that return value in the path-qualified branch; the command's pathname is only checked for executability and compared, never spawned. The bare-name branch is unchanged.
+- Cache key remains `fileIdentity(probePath, …)`, which canonicalizes via `realpath`, so the key is still the canonical file.
+- Comment on `trustedExecutableFor` now states the reason: the guard spawns the trusted path, the command's pathname is only compared, so a symlink swapped after the check cannot decide what runs. No id, path or phase label in it.
+
+**`.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`**
+- New test: `a symlinked path-qualified executable spawns the trusted path, not the symlink`. Temp `<dir>/bin/opencode` is the PATH candidate and writes `$0` to a marker; `<dir>/link/opencode` is an absolute symlink to it. The test calls `resolveOpencodeVersionSync(symlink)` and asserts `'v1'`, then that the recorded `$0` equals the trusted path and differs from the symlink path.
+- No new export or seam was needed: the trusted script's own `$0` records the spawned path, and `resolveOnPath` returns the absolute candidate, so the path is observable without touching the module's surface.
+
+## Verification
+
+`node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` (node v26.8.2 on PATH):
+- Baseline before edits: **37 pass, 0 fail**
+- Final: **38 pass, 0 fail**, exit 0 (`ℹ tests 38`, `ℹ pass 38`, `ℹ fail 0`)
+
+Mutation check that the new assertion is not vacuous: an in-memory copy of the module with the pre-fix spawn target restored (`probePath = candidate`) returned `'v1'` but spawned `<tmp>/link/opencode` — the symlink — so the new `assert.equal(spawned, trusted, …)` fails on the old behavior. No temp files left behind.
+
+No other file was edited; nothing committed, pushed, or branched. The worktree already carried unrelated modified/untracked files from prior work, and I left them untouched.

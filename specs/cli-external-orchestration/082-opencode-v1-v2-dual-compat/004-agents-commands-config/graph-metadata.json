@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The agents and commands carry wording and file layout that only one host understands",
     "created_at": "2026-10-18T12:45:03Z",
-    "last_save_at": "2026-10-18T18:30:28.419Z",
+    "last_save_at": "2026-10-19T09:45:26.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1eb616446250f8293b9130ae8390d77ca8ee39b237c7cb893f0d855faa866648",
+    "source_fingerprint": "sha256:59a7bbdef879f8a55cd941928bcf348c1a8733b4bfc33f9413f2ba204b68fd7e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f113c90f71c7208b07ebc2789d4450f8a50c315fe9f5c79ce43acc707305663e",

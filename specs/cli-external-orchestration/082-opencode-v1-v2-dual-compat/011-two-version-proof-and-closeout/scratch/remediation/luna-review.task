@@ -1,0 +1,16 @@
+Role: read-only code reviewer. Do not edit any file.
+
+The working tree holds uncommitted fixes for a deep review's findings. The findings are listed in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/review-report.md` section 3. Review the uncommitted diff (`git diff`, plus the untracked files `.skilled/hooks/dispatch/lib/opencode-version-corpus.json` and `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs`, and the untracked `.github/workflows/opencode-dual-version.yml`, which must stay untracked).
+
+For each finding, say whether the diff closes it: R3-P1-001, R3-P2-001, R3-P2-002, R1-P2-001, R1-P2-002, R1-P2-003, R2-P2-001, R2-P2-002, R2-P2-003, R4-P2-001, R4-P2-002, R5-P2-001, R5-P2-002.
+
+Look hardest at:
+- `opencode-version.mjs`: path-qualified probing (could it now run something it should not?) and the execFile async probe;
+- `dispatch-audit.mjs`: the new exec-wrapper patterns. Could they make a non-dispatch read as a dispatch, for example a grep or echo containing `nohup opencode run`? Could a subshell or `!` pattern swallow too much?
+- `hook-flags.cjs` and the six preflight adapters: does any preflight still read the `dispatch` concern, and does `SYSTEM_DISPATCH_DISABLED` still turn both off?
+- `dispatch-rule-checks.mjs`: the negative-control gate and the SUPPORTED_FAMILIES derivation;
+- comments: none may hold a review id, a spec path or a phase number.
+
+The orchestrator has already run the suites; do not rerun gates that need temp files.
+
+Output one line per finding: CLOSED or OPEN, then file:line, then one sentence of reason. Then list any new P0 or P1 the diff introduces, with file:line and a concrete failing input. End with PASS or FAIL.

@@ -1,0 +1,15 @@
+Role: code editor for `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` and its test file. Match the existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+In `evaluate()` (near the end of the file) these two lines hard-code the OpenCode families:
+    const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : ['v1', 'v2'];
+    const appliesToBoth = appliesTo.includes('v1') && appliesTo.includes('v2');
+Adding a third family would then silently change which rules keep their blocking severity when the version is unknown.
+
+Change:
+1. Import `SUPPORTED_FAMILIES` from `./opencode-version.mjs` next to the existing `resolveOpencodeVersionSync` import.
+2. Default `appliesTo` to `SUPPORTED_FAMILIES`, and compute the flag as `const appliesToAll = SUPPORTED_FAMILIES.every((family) => appliesTo.includes(family));`. Rename every use of `appliesToBoth` to `appliesToAll`.
+3. In the same function, `['v1', 'v2', 'unknown'].includes(options.version)` becomes `[...SUPPORTED_FAMILIES, 'unknown'].includes(options.version)`.
+
+Tests in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`: add one case proving a rule with no `appliesTo` and a blocking severity still blocks when `options.version` is 'unknown', and one proving a rule with `appliesTo: ['v1']` drops to 'warn' when the version is 'unknown'. Use a stub check through `options.checks`. Read the existing evaluate tests first and follow their pattern. If equivalent cases already exist, say so and add nothing.
+
+Check: `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`. Report pass and fail counts. Do not edit any other file.

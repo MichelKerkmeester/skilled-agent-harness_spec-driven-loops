@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The research record leaves eleven questions open, and phases 2 to 4 cannot start on a guess about them",
     "created_at": "2026-10-18T12:45:00Z",
-    "last_save_at": "2026-10-18T14:15:17.207Z",
+    "last_save_at": "2026-10-19T09:45:19.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9af3b2b87c21e8deb8f0706c6f7a331fcd4e14819e91c63b0530ddf4352058f",
+    "source_fingerprint": "sha256:d406cec2f9bdb9de99068535794e486de0a2b01d3f9d79d3ce7987a2adc54369",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d20bd1388ec8daa4a898b69042dad7a42dcc7aa131012cf4d7b844f0e9ae51e4",

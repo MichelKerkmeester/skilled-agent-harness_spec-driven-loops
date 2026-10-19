@@ -69,6 +69,8 @@ The claim reads "Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Load
 | `../spec.md`, `../goal.md` | Modified | Phase 11 Complete, packet Complete, the closeout log row |
 | `../010-documentation-sweep/acceptance-criteria.md` | Modified | The Waiver cell its closeout dropped |
 | SKILL.md, the README, four references, the prompt templates and seven playbook pages | Modified | v2 `--agent` routing as observed in place of "unverified", "rejected" scoped to OpenCode 1, and `general` named a subagent (decision 10) |
+| The dispatch hooks (`opencode-version.mjs`, `dispatch-rule-checks.mjs`, `dispatch-audit.mjs`, five preflight adapters), `hook-flags.cjs`, `cli-dispatch-audit.js`, `opencode-setup.sh`, their tests, a shared version corpus, the config-shape test and four READMEs | Modified | Deep-review remediation, all thirteen findings (decision 12) |
+| `001`, `002`, `003`, `004` and this phase's `acceptance-criteria.md`, `proof.md` | Modified | Status Complete, the two missing closure statements and the word-count counter (decision 12) |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -105,6 +107,7 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 | Live dispatch per version (`scratch/proof/smoke/`) | Exit 0 on both, token returned, lineage file written, USD 0.002343 and 0.001197 |
 | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Exit 0, all 4 guards PASSED, 10 non-blocking warnings |
 | `validate_document.py` on the ten claim docs, `validate_skill_package.py` on cli-opencode and the hub | Exit 0 each |
+| Deep review (`../review/review-report.md`) and its remediation suites (`scratch/remediation/suites-before.txt`, `suites-after.txt`) | CONDITIONAL with 1 P1 and 12 P2, all fixed. Every touched suite is at or above its starting count. The Pi preflight and codex shell-tool suites failed before the change and still do |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` | `RESULT: PASSED` (`scratch/validate-recursive.txt`) |
 <!-- /ANCHOR:verification -->
 
@@ -117,7 +120,8 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 2. **Agent temperature has no effect on OpenCode 2.0.32 with the `openai-compatible` provider package.** That package, the only one tested, does not send it to the provider (decision 11). Agents that rely on 0.1 for steadier output get the provider's default there.
 3. **Two v2 agent questions stay open.** Live runs settled top-level `--agent` routing on 2.0.32 (decision 10). No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward. The docs say both.
 4. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
-5. **The CI workflow is untracked.** `.github/workflows/opencode-dual-version.yml` waits for the operator, as phase 008 left it, so no CI run backs this proof.
+5. **sk-vision skips automatic image inspection on OpenCode 2.** Its `chat.message` hook has no bridge mapping, so it does not run there, while its tools still register. Porting it to OpenCode 2's prompt hook is not done (decision 12).
+6. **The CI workflow is untracked.** `.github/workflows/opencode-dual-version.yml` waits for the operator, as phase 008 left it, so no CI run backs this proof.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,1423 @@
+{
+  "sessionId": "2026-10-19T06:42:21.035Z",
+  "parentSessionId": "2026-10-19T06:03:39.878Z",
+  "generation": 1,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R3-P1-001",
+      "severity": "P1",
+      "title": "The closeout child records the packet as not closing while every other document says Complete",
+      "file": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/acceptance-criteria.md",
+      "line": 86,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "v2 bridge drops sk-vision's chat.message hook although research records a v2 destination for it",
+      "file": ".opencode/plugins/lib/v2-bridge.js",
+      "line": 8,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Dispatch version resolver returns 'unknown' for a path-qualified binary, silently downgrading a v1 error rule to a warning",
+      "file": ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+      "line": 186,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Async probe timeout cannot bound the default probe, which runs synchronously on the event loop",
+      "file": ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+      "line": 71,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "A test marker in the evaluated command text disables two Hermes hard rules at enforcement time",
+      "file": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      "line": 93,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "CLI_DISPATCH_AUDIT_DISABLED also turns off the pre-execution dispatch refusal",
+      "file": ".opencode/plugins/cli-dispatch-audit.js",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "Unmodeled command-position prefixes and env -S classify as none, skipping both audit and refusal",
+      "file": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      "line": 391,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Four closed phase children still carry a Draft acceptance-criteria status",
+      "file": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/acceptance-criteria.md",
+      "line": 41,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The proof's word-count row is the one row whose command is not named, and the obvious counter does not reproduce it",
+      "file": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/proof.md",
+      "line": 88,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Four copies of the version-output classifier, and the installer's copy reads a different grammar than the three that agree",
+      "file": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh",
+      "line": 85,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The rule engine's 'applies to both families' test is a literal v1-and-v2 conjunction, so a third family silently changes which rules keep blocking severity",
+      "file": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      "line": 305,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "The dual-version config guard pins one family's shape, and nothing asserts the other — while the agent frontmatter that carries the permission denials is checked by nothing at all",
+      "file": ".skilled/bin/tests/opencode-config-shape.test.cjs",
+      "line": 25,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-002",
+      "severity": "P2",
+      "title": "The two-version battery never runs for a change to agent frontmatter or the dispatch guards, so the one surface that could break on a single major is outside the gate",
+      "file": ".github/workflows/opencode-dual-version.yml",
+      "line": 13,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 12
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 0.861,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 18,
+      "description": "Dimension coverage (44%) is below threshold (80%). 18 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.4444444444444444,
+    "evidenceDensity": 1.1428571428571428,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.861
+  },
+  "candidateCoverage": {
+    "covered": [
+      "count_mismatch",
+      "duplicated_implementation_divergence",
+      "error_handling",
+      "fail_open_widening",
+      "guard_bypass",
+      "hardcoded_enumeration",
+      "hook_registration",
+      "missing_parity_test",
+      "nonreproducible_evidence",
+      "status_divergence"
+    ],
+    "ruledOut": [
+      "ci_injection",
+      "claim_placement_drift",
+      "command_injection",
+      "count_mismatch",
+      "data_egress",
+      "destructive_write",
+      "doc_code_contract_drift",
+      "duplicated_implementation_divergence",
+      "flag_weakening",
+      "hook_registration",
+      "manifest_scope_drift",
+      "null_undefined",
+      "overlay_doc_drift",
+      "path_traversal",
+      "secret_exposure",
+      "subprocess_injection",
+      "thin_install_documentation",
+      "unbounded_state",
+      "v1_v2_plugin_body_duplication",
+      "wrong_directory_child"
+    ],
+    "deferred": [
+      "version_gate"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "hook_registration": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "fail_open_widening": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "error_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "wrong_directory_child": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "null_undefined": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unbounded_state": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "version_gate": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "guard_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "subprocess_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "secret_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "data_egress": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "ci_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "destructive_write": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "flag_weakening": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "status_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "nonreproducible_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "manifest_scope_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "claim_placement_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "overlay_doc_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "duplicated_implementation_divergence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "hardcoded_enumeration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "v1_v2_plugin_body_duplication": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "thin_install_documentation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "missing_parity_test (folded into R4-P2-001 rather than filed separately)": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "doc_code_contract_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5
+        ]
+      },
+      "missing_parity_test": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "version_gate",
+      "disposition": "deferred",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2406"
+      ],
+      "reason": "Needs the cli-opencode SKILL.md invocation contract and the research record's variant verdict; that document is not yet read, so the shape is neither confirmed nor refuted."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "wrong_directory_child",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3767"
+      ],
+      "reason": "cwd is threaded from the builder to the spawn, so the v2 child runs in options.directoryRoot exactly as the v1 child does via --dir."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js",
+        ".opencode/package.json"
+      ],
+      "bugClass": "null_undefined",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/package.json:8",
+        ".opencode/plugins/system-speckit-completion.js:61"
+      ],
+      "reason": "zod 4.1.8 provides z.toJSONSchema, and the reviewed tool definitions pass a raw shape."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "unbounded_state",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:296"
+      ],
+      "reason": "No observed growth path: entries hold two strings and three event types clear them; recorded as an observation instead."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/classifier-injection-screen.js"
+      ],
+      "bugClass": "data_egress",
+      "disposition": "ruled_out",
+      "rationale": "operator-gated, same trust domain as the repo other Jev uses, and the advisory payload cannot carry page text into the system prompt",
+      "evidenceRefs": [
+        ".opencode/plugins/classifier-injection-screen.js:62"
+      ],
+      "reason": "verified by direct read of the adapter and its delegates"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/opencode-goal.js"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "containment is enforced on real paths and the in-scope call site fails closed; the packet path is read-only, never a write target",
+      "evidenceRefs": [
+        ".opencode/plugins/opencode-goal.js:1849"
+      ],
+      "reason": "verified by direct read of the delegate containment code"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "no command-string path reaches the probe target; the adversarial tests pin the argument shape",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs:143"
+      ],
+      "reason": "verified by direct read plus the module adversarial tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/session-cleanup.js"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "no interpolated command string and no model-controlled argument reaches a spawn",
+      "evidenceRefs": [
+        ".opencode/plugins/session-cleanup.js:229"
+      ],
+      "reason": "verified by direct read of every call site"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/sk-git-message-gate.js"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the checked directory follows the commit directory and the documented fail-open is backed by commit-msg, pre-push and CI",
+      "evidenceRefs": [
+        ".opencode/plugins/sk-git-message-gate.js:49"
+      ],
+      "reason": "verified by direct read of both adapter and delegate"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"
+      ],
+      "bugClass": "flag_weakening",
+      "disposition": "ruled_out",
+      "rationale": "already tracked as active correctness finding R1-P2-002; not re-filed",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:319"
+      ],
+      "reason": "duplicate of an existing active finding"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/opencode-dual-version.yml"
+      ],
+      "bugClass": "ci_injection",
+      "disposition": "ruled_out",
+      "rationale": "no attacker-controlled event field reaches a run block",
+      "evidenceRefs": [
+        ".github/workflows/opencode-dual-version.yml:35"
+      ],
+      "reason": "verified by direct read; file is outside the manifest but named by this dimension"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the recorded surface is bounded and scrubbed; only outputBytes is recorded, never output text",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:573"
+      ],
+      "reason": "verified by direct read of the patterns and the line builder"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
+      ],
+      "bugClass": "destructive_write",
+      "disposition": "ruled_out",
+      "rationale": "writes are idempotent, refusal-first on symlinks, and the temp probe dir is cleaned by trap",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:126"
+      ],
+      "reason": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal-file-manifest.txt"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "157 paths plus 2 comment lines equals 159 lines; both figures are correct and iteration 1's 159 total double-counted the comment lines",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal-file-manifest.txt:1"
+      ],
+      "reason": "Mechanically reconciled: the manifest is correct at 157 files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md"
+      ],
+      "bugClass": "claim_placement_drift",
+      "disposition": "ruled_out",
+      "rationale": "The claim's placement claim reproduces exactly, ten documents as stated",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:134"
+      ],
+      "reason": "Verified by exact search across the skill directory"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "overlay_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every page is reachable from the index; only 24 of the 56 are in the manifest, which is a scope fact not a defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:1"
+      ],
+      "reason": "Index covers all 56 pages"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "duplicated_implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:8",
+        ".opencode/plugins/lib/v2-bridge.js:22"
+      ],
+      "reason": "the plugin layer is single-source; version literals concentrate in the four detectors, the rule engine, hard-rules.json and fanout-run, not in plugin bodies"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:29",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:284"
+      ],
+      "reason": "documents are evidentially labelled and the documented helper behavior matches the code at opencode-setup.sh:112"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "all three compiled artifacts are fresh against current sources under the compiler's own hashing convention, so the generated-contract chain carries no drift",
+      "evidenceRefs": [
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md:7",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:406",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:682",
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md:7"
+      ],
+      "reason": "verified by recomputation of all 61 recorded digests"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/agents/",
+        ".skilled/agents/"
+      ],
+      "bugClass": "hook_registration",
+      "disposition": "ruled_out",
+      "rationale": "both agent directories carry the same eleven definitions with the same mode values; the crosswalk document remains unread but the mechanical parity holds",
+      "evidenceRefs": [
+        ".skilled/agents/markdown.md:4",
+        ".opencode/agents/markdown.md:4",
+        ".skilled/agents/markdown.md:4"
+      ],
+      "reason": "verified by directory listing and frontmatter read across both directories"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+        ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
+      ],
+      "bugClass": "duplicated_implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "the classifier-divergence direction is already tracked as active R4-P2-001 and no new divergence was observed on the surfaces read this iteration",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:23"
+      ],
+      "reason": "duplicate of an existing active finding; not re-filed"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ],
+      "bugClass": "wrong_directory_child",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3767"
+      ],
+      "proof": "cwd is threaded from the builder to the spawn, so the v2 child runs in options.directoryRoot exactly as the v1 child does via --dir."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js",
+        ".opencode/package.json"
+      ],
+      "bugClass": "null_undefined",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/package.json:8",
+        ".opencode/plugins/system-speckit-completion.js:61"
+      ],
+      "proof": "zod 4.1.8 provides z.toJSONSchema, and the reviewed tool definitions pass a raw shape."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "unbounded_state",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:296"
+      ],
+      "proof": "No observed growth path: entries hold two strings and three event types clear them; recorded as an observation instead."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/classifier-injection-screen.js"
+      ],
+      "bugClass": "data_egress",
+      "disposition": "ruled_out",
+      "rationale": "operator-gated, same trust domain as the repo other Jev uses, and the advisory payload cannot carry page text into the system prompt",
+      "evidenceRefs": [
+        ".opencode/plugins/classifier-injection-screen.js:62"
+      ],
+      "proof": "verified by direct read of the adapter and its delegates"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/opencode-goal.js"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "containment is enforced on real paths and the in-scope call site fails closed; the packet path is read-only, never a write target",
+      "evidenceRefs": [
+        ".opencode/plugins/opencode-goal.js:1849"
+      ],
+      "proof": "verified by direct read of the delegate containment code"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "no command-string path reaches the probe target; the adversarial tests pin the argument shape",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs:143"
+      ],
+      "proof": "verified by direct read plus the module adversarial tests"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/session-cleanup.js"
+      ],
+      "bugClass": "subprocess_injection",
+      "disposition": "ruled_out",
+      "rationale": "no interpolated command string and no model-controlled argument reaches a spawn",
+      "evidenceRefs": [
+        ".opencode/plugins/session-cleanup.js:229"
+      ],
+      "proof": "verified by direct read of every call site"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/sk-git-message-gate.js"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "the checked directory follows the commit directory and the documented fail-open is backed by commit-msg, pre-push and CI",
+      "evidenceRefs": [
+        ".opencode/plugins/sk-git-message-gate.js:49"
+      ],
+      "proof": "verified by direct read of both adapter and delegate"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"
+      ],
+      "bugClass": "flag_weakening",
+      "disposition": "ruled_out",
+      "rationale": "already tracked as active correctness finding R1-P2-002; not re-filed",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:319"
+      ],
+      "proof": "duplicate of an existing active finding"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".github/workflows/opencode-dual-version.yml"
+      ],
+      "bugClass": "ci_injection",
+      "disposition": "ruled_out",
+      "rationale": "no attacker-controlled event field reaches a run block",
+      "evidenceRefs": [
+        ".github/workflows/opencode-dual-version.yml:35"
+      ],
+      "proof": "verified by direct read; file is outside the manifest but named by this dimension"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs"
+      ],
+      "bugClass": "secret_exposure",
+      "disposition": "ruled_out",
+      "rationale": "the recorded surface is bounded and scrubbed; only outputBytes is recorded, never output text",
+      "evidenceRefs": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:573"
+      ],
+      "proof": "verified by direct read of the patterns and the line builder"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh"
+      ],
+      "bugClass": "destructive_write",
+      "disposition": "ruled_out",
+      "rationale": "writes are idempotent, refusal-first on symlinks, and the temp probe dir is cleaned by trap",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:126"
+      ],
+      "proof": "verified by direct read"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal-file-manifest.txt"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "157 paths plus 2 comment lines equals 159 lines; both figures are correct and iteration 1's 159 total double-counted the comment lines",
+      "evidenceRefs": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal-file-manifest.txt:1"
+      ],
+      "proof": "Mechanically reconciled: the manifest is correct at 157 files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md"
+      ],
+      "bugClass": "claim_placement_drift",
+      "disposition": "ruled_out",
+      "rationale": "The claim's placement claim reproduces exactly, ten documents as stated",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:134"
+      ],
+      "proof": "Verified by exact search across the skill directory"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "overlay_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "Every page is reachable from the index; only 24 of the 56 are in the manifest, which is a scope fact not a defect",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:1"
+      ],
+      "proof": "Index covers all 56 pages"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/plugins/lib/v2-bridge.js"
+      ],
+      "bugClass": "duplicated_implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".opencode/plugins/lib/v2-bridge.js:8",
+        ".opencode/plugins/lib/v2-bridge.js:22"
+      ],
+      "proof": "the plugin layer is single-source; version literals concentrate in the four detectors, the rule engine, hard-rules.json and fanout-run, not in plugin bodies"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:29",
+        ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:284"
+      ],
+      "proof": "documents are evidentially labelled and the documented helper behavior matches the code at opencode-setup.sh:112"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
+      ],
+      "bugClass": "doc_code_contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "all three compiled artifacts are fresh against current sources under the compiler's own hashing convention, so the generated-contract chain carries no drift",
+      "evidenceRefs": [
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md:7",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:406",
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:682",
+        ".skilled/command-support/deep/assets/compiled/deep-review.contract.md:7"
+      ],
+      "proof": "verified by recomputation of all 61 recorded digests"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/agents/",
+        ".skilled/agents/"
+      ],
+      "bugClass": "hook_registration",
+      "disposition": "ruled_out",
+      "rationale": "both agent directories carry the same eleven definitions with the same mode values; the crosswalk document remains unread but the mechanical parity holds",
+      "evidenceRefs": [
+        ".skilled/agents/markdown.md:4",
+        ".opencode/agents/markdown.md:4",
+        ".skilled/agents/markdown.md:4"
+      ],
+      "proof": "verified by directory listing and frontmatter read across both directories"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/dispatch/lib/opencode-version.mjs",
+        ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
+      ],
+      "bugClass": "duplicated_implementation_divergence",
+      "disposition": "ruled_out",
+      "rationale": "the classifier-divergence direction is already tracked as active R4-P2-001 and no new divergence was observed on the surfaces read this iteration",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:23"
+      ],
+      "proof": "duplicate of an existing active finding; not re-filed"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "missing_parity_test",
+      "guard_bypass",
+      "doc_code_contract_drift",
+      "hook_registration"
+    ],
+    "covered": [
+      "missing_parity_test",
+      "guard_bypass"
+    ],
+    "ruledOut": [
+      "doc_code_contract_drift",
+      "hook_registration",
+      "duplicated_implementation_divergence"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

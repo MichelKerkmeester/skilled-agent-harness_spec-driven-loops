@@ -1,0 +1,85 @@
+{
+  "ai-council.md": [
+    "bash",
+    "browser",
+    "chrome_devtools",
+    "patch"
+  ],
+  "code.md": [
+    "browser",
+    "chrome_devtools",
+    "external_directory",
+    "task",
+    "webfetch"
+  ],
+  "context.md": [
+    "bash",
+    "browser",
+    "chrome_devtools",
+    "edit",
+    "patch",
+    "task",
+    "webfetch",
+    "write"
+  ],
+  "debug.md": [
+    "browser",
+    "chrome_devtools",
+    "patch",
+    "task",
+    "webfetch"
+  ],
+  "deep-research.md": [
+    "browser",
+    "chrome_devtools",
+    "patch",
+    "task"
+  ],
+  "deep-review.md": [
+    "browser",
+    "chrome_devtools",
+    "patch",
+    "task",
+    "webfetch"
+  ],
+  "design.md": [
+    "browser",
+    "chrome_devtools",
+    "patch",
+    "task",
+    "webfetch"
+  ],
+  "markdown.md": [
+    "browser",
+    "chrome_devtools",
+    "patch",
+    "task",
+    "webfetch"
+  ],
+  "orchestrate.md": [
+    "glob",
+    "grep",
+    "list",
+    "patch",
+    "webfetch"
+  ],
+  "prompt-improver.md": [
+    "bash",
+    "browser",
+    "chrome_devtools",
+    "edit",
+    "patch",
+    "task",
+    "webfetch",
+    "write"
+  ],
+  "review.md": [
+    "browser",
+    "chrome_devtools",
+    "edit",
+    "patch",
+    "task",
+    "webfetch",
+    "write"
+  ]
+}

@@ -1,0 +1,9 @@
+Role: code and test editor for `.skilled/hooks/dispatch/lib/opencode-version.mjs` and `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`. Match the existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: for a path-qualified value, both resolvers check that its canonical file matches a trusted candidate (the PATH `opencode` or `opencode2`, or `OPENCODE_BIN`). They then probe the ORIGINAL pathname. A symlink swapped between the check and the spawn can still make the guard run a planted file.
+
+Fix: once the trust check matches, probe the trusted candidate's own resolved path (the path that `resolveOnPath` returned, or the `OPENCODE_BIN` value), never the pathname from the command. Do this in both the async and the sync resolver. Keep the cache key on the canonical file. Add or adjust one comment so it states the reason: the guard spawns only a file it trusts, so the command's pathname is never spawned.
+
+Test: one case that calls the sync resolver with an absolute symlink path that points at the trusted temp script, and asserts 'v1'. Then use a spawn spy, or the trusted script's own marker that records its argv[0] or `$0`, to show the spawned path was the trusted candidate path and not the symlink path. If proving which path was spawned needs an export or seam that does not exist, add the smallest test-only seam, mark it as such in a comment, and say so in your report.
+
+Check: `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin` on PATH. Report the pass and fail counts. Edit no other file.

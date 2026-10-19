@@ -1,0 +1,15 @@
+[
+  { "output": "1.19.3", "family": "v1" },
+  { "output": "v1.19.3", "family": "v1" },
+  { "output": "opencode 1.19.3", "family": "v1" },
+  { "output": "1.19.3-beta.1", "family": "v1" },
+  { "output": "2.0.32", "family": "v2" },
+  { "output": "opencode 2.0.32", "family": "v2" },
+  { "output": "opencode v2.0.32", "family": "v2" },
+  { "output": "3.0.0", "family": "unknown" },
+  { "output": "0.9.1", "family": "unknown" },
+  { "output": "not a version", "family": "unknown" },
+  { "output": "", "family": "unknown" },
+  { "output": "\n1.19.3", "family": "v1" },
+  { "output": "WARN: falling back to defaults\n1.19.3", "family": "v1" }
+]

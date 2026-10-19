@@ -7,7 +7,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
-import { clearOpencodeVersionCache } from './opencode-version.mjs';
+import {
+  clearOpencodeVersionCache,
+  parseOpencodeVersion,
+  PROBE_TIMEOUT_MS,
+  resolveOpencodeVersion,
+  resolveOpencodeVersionSync,
+  SUPPORTED_FAMILIES,
+} from './opencode-version.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
@@ -26,6 +33,9 @@ const packetSkillDocs = () =>
       .filter((md) => fs.existsSync(md)));
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
 const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
+const VERSION_CORPUS = JSON.parse(
+  fs.readFileSync(path.join(HERE, 'opencode-version-corpus.json'), 'utf8'),
+);
 
 // The correct Hermes headless prefix, and the same one missing the rules flag. Assembled
 // rather than written whole so the fixtures below read as one difference each.
@@ -145,6 +155,18 @@ test('rules without appliesTo apply to both versions', () => {
   assert.deepEqual(ids('v2'), ['legacy-rule']);
 });
 
+test('a rule without appliesTo stays blocking when the version is unknown', () => {
+  const legacyRule = { id: 'legacy-rule', check: 'always-fail', message: 'legacy', severity: 'error' };
+  const violations = evaluate('opencode run "task"', [legacyRule], {
+    version: 'unknown',
+    checks: { 'always-fail': () => false },
+  });
+
+  assert.deepEqual(violations.map(({ id, severity }) => ({ id, severity })), [
+    { id: 'legacy-rule', severity: 'block' },
+  ]);
+});
+
 test('unknown evaluation preserves shared severity and warns version-specific rules', () => {
   const rules = [
     { id: 'shared-error', check: 'always-fail', message: 'shared', severity: 'error', appliesTo: ['v1', 'v2'] },
@@ -259,6 +281,161 @@ test('evaluate probes one fake binary once across two evaluations', () => {
   }
 });
 
+// The preflight guard resolves the version before it decides whether to refuse a dispatch,
+// so a path the command merely names is not a program the guard may run.
+test('a path-qualified executable outside PATH stays unknown and never runs', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-qualified-'));
+  const markerPath = path.join(directory, 'probe-marker');
+  try {
+    const executable = writeExecutable(directory, 'opencode', [
+      `printf '%s\\n' probed > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' '1.19.3'",
+    ]);
+    clearOpencodeVersionCache();
+    assert.equal(resolveOpencodeVersionSync(executable), 'unknown');
+    assert.equal(fs.existsSync(markerPath), false, 'the sync resolver ran an untrusted file');
+    clearOpencodeVersionCache();
+    assert.equal(await resolveOpencodeVersion(executable), 'unknown');
+    assert.equal(fs.existsSync(markerPath), false, 'the async resolver ran an untrusted file');
+  } finally {
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// PATH already trusts this file, so naming it at its absolute path adds no new program.
+test('a path-qualified executable on PATH resolves its version', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-trusted-path-'));
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  try {
+    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' '1.19.3'"]);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    delete process.env.OPENCODE_BIN;
+    clearOpencodeVersionCache();
+    assert.equal(resolveOpencodeVersionSync(executable), 'v1');
+    clearOpencodeVersionCache();
+    assert.equal(await resolveOpencodeVersion(executable), 'v1');
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// A symlink is the swap window the trust check must survive: the command's pathname can be
+// repointed after it is checked, so the spawned program has to be the trusted path itself.
+test('a symlinked path-qualified executable spawns the trusted path, not the symlink', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-symlink-'));
+  const markerPath = path.join(directory, 'spawned-path');
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  try {
+    const binDirectory = path.join(directory, 'bin');
+    const linkDirectory = path.join(directory, 'link');
+    fs.mkdirSync(binDirectory);
+    fs.mkdirSync(linkDirectory);
+    const trusted = writeExecutable(binDirectory, 'opencode', [
+      `printf '%s\\n' "$0" > ${JSON.stringify(markerPath)}`,
+      "printf '%s\\n' '1.19.3'",
+    ]);
+    const symlink = path.join(linkDirectory, 'opencode');
+    fs.symlinkSync(trusted, symlink);
+    process.env.PATH = [binDirectory, previousPath].filter(Boolean).join(path.delimiter);
+    delete process.env.OPENCODE_BIN;
+    clearOpencodeVersionCache();
+
+    assert.equal(resolveOpencodeVersionSync(symlink), 'v1');
+    // The script records the path it was started as, which is the argv[0] the guard spawned.
+    const spawned = fs.readFileSync(markerPath, 'utf8').trim();
+    assert.equal(spawned, trusted, 'the resolver spawned a path the command named');
+    assert.notEqual(spawned, symlink, 'the resolver spawned the symlink the command named');
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// The operator set OPENCODE_BIN, so its path is trusted even though the command only names
+// the variable.
+test('OPENCODE_BIN makes a path-qualified executable trusted', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-trusted-bin-'));
+  const previousBinary = process.env.OPENCODE_BIN;
+  try {
+    const executable = writeExecutable(directory, 'opencode', ["printf '%s\\n' '1.19.3'"]);
+    process.env.OPENCODE_BIN = executable;
+    clearOpencodeVersionCache();
+    assert.equal(resolveOpencodeVersionSync('$OPENCODE_BIN'), 'v1');
+    clearOpencodeVersionCache();
+    assert.equal(await resolveOpencodeVersion('$OPENCODE_BIN'), 'v1');
+  } finally {
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('a path-qualified missing file stays unknown', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-missing-'));
+  try {
+    const missing = path.join(directory, 'not-installed', 'opencode');
+    clearOpencodeVersionCache();
+    assert.equal(resolveOpencodeVersionSync(missing), 'unknown');
+    assert.equal(await resolveOpencodeVersion(missing), 'unknown');
+  } finally {
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// A blocking default probe starves the event loop, so the async resolver's timer could never
+// fire. Passing no deps.probe exercises the real default against a child that does not exit.
+test('the async resolver times out a probe that never exits', async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dispatch-opencode-slow-'));
+  const previousPath = process.env.PATH;
+  const previousBinary = process.env.OPENCODE_BIN;
+  try {
+    const executable = writeExecutable(directory, 'opencode', ['sleep 10']);
+    process.env.PATH = [directory, previousPath].filter(Boolean).join(path.delimiter);
+    delete process.env.OPENCODE_BIN;
+    clearOpencodeVersionCache();
+    const startedAt = Date.now();
+    const version = await resolveOpencodeVersion(executable);
+    const elapsedMs = Date.now() - startedAt;
+    assert.equal(version, 'unknown');
+    assert.ok(elapsedMs < PROBE_TIMEOUT_MS + 2000, `resolution took ${elapsedMs}ms`);
+  } finally {
+    if (previousPath === undefined) delete process.env.PATH;
+    else process.env.PATH = previousPath;
+    if (previousBinary === undefined) delete process.env.OPENCODE_BIN;
+    else process.env.OPENCODE_BIN = previousBinary;
+    clearOpencodeVersionCache();
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+// Every copy of the version classifier reads this corpus, so a grammar change in one copy
+// fails here before the copies drift apart.
+test('the shared version corpus pins the parser to each expected family', () => {
+  assert.ok(VERSION_CORPUS.length >= 12);
+  for (const { output, family } of VERSION_CORPUS) {
+    assert.equal(parseOpencodeVersion(output), family, JSON.stringify(output));
+  }
+});
+
+test('SUPPORTED_FAMILIES is the frozen list of supported families', () => {
+  assert.deepEqual(SUPPORTED_FAMILIES, ['v1', 'v2']);
+  assert.ok(Object.isFrozen(SUPPORTED_FAMILIES));
+});
+
 test('opencode2 run is evaluated by the hard-rule engine', () => {
   const rules = [{
     id: 'stdin-redirect-required',
@@ -364,6 +541,38 @@ test('hermes rules discriminate on the flags the packet contract pins', () => {
   assert.deepEqual(ids(`${good} --accept-hooks`), ['hooks-user-level']);
   assert.deepEqual(ids('hermes mcp add code_mode --command node'), ['mcp-config-operator-required']);
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
+});
+
+// The marker arrives inside the command, which a model writes, so it must not disarm a rule by
+// itself. Both directions are asserted: unset, the marker is inert text; only an operator-exported
+// variable in the guard's own process makes the control runnable.
+test('the negative-control marker only counts when the guard process allows it', () => {
+  const ALLOW = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED';
+  const saved = process.env[ALLOW];
+  const withAllow = (value, fn) => {
+    if (value === undefined) delete process.env[ALLOW];
+    else process.env[ALLOW] = value;
+    try {
+      return fn();
+    } finally {
+      if (saved === undefined) delete process.env[ALLOW];
+      else process.env[ALLOW] = saved;
+    }
+  };
+  const marker = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL=1';
+  const writeWithoutYolo = `${marker} ${HERMES_BASE} -t terminal,file,todo`;
+  const delegating = `${marker} ${HERMES_BASE} -t delegation,todo`;
+  const yolo = CHECKS['hermes-yolo-required-for-writes'];
+  const toolsets = CHECKS['hermes-explicit-toolsets-required'];
+
+  withAllow(undefined, () => {
+    assert.equal(yolo(writeWithoutYolo), false);
+    assert.equal(toolsets(delegating), false);
+  });
+  withAllow('1', () => {
+    assert.equal(yolo(writeWithoutYolo), true);
+    assert.equal(toolsets(delegating), true);
+  });
 });
 
 test('fail-open: a check that throws never produces a violation', () => {

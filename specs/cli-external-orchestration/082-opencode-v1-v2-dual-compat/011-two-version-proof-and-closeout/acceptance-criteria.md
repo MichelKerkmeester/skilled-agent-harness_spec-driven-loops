@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not started. This section is written when the packet closes, not before.
+All six criteria are Met. AC-001 and AC-002 rest on the suite and battery runs from the final tree (`scratch/suites/`, `scratch/proof/`), AC-003 on the recursive strict run (`scratch/validate-recursive.txt`), AC-004 on the per-child Unmet count, AC-005 on the dated claim at `SKILL.md:134`, and AC-006 on the parent phase map. This statement was left at its scaffold text at closeout, which the deep review caught (`../review/review-report.md`, R3-P1-001). It was written during that remediation, with no criterion changed.
 <!-- /ANCHOR:closure -->

@@ -1,0 +1,23 @@
+**Review score: 68/100. FAIL.** Most guard changes close their findings, but two P2 gaps remain and the path probe adds a P1.
+
+- R3-P1-001: **CLOSED**, `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/acceptance-criteria.md:41`. Status and closure now agree with the completed evidence.
+- R3-P2-001: **CLOSED**, `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/acceptance-criteria.md:41`. Children 001–004 now say Complete, and 001 says Closeable: Yes.
+- R3-P2-002: **CLOSED**, `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/proof.md:117`. The proof names the word-count check and explains why its count differs from `wc -w`.
+- R1-P2-001: **CLOSED**, `.opencode/plugins/README.md:177`. The v2 `chat.message` gap and its unverified port status are recorded.
+- R1-P2-002: **CLOSED**, `.skilled/hooks/dispatch/lib/opencode-version.mjs:223`. Path-qualified executables now resolve their family, preserving the v1-only rule’s blocking severity.
+- R1-P2-003: **CLOSED**, `.skilled/hooks/dispatch/lib/opencode-version.mjs:76`. The async resolver now uses `execFile` with a timeout, so its timer can fire.
+- R2-P2-001: **CLOSED**, `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:98`. The marker only works when the guard process has the separate operator allow flag.
+- R2-P2-002: **CLOSED**, `.opencode/plugins/cli-dispatch-audit.js:74`. The preflight uses `dispatch-guard`; `SYSTEM_DISPATCH_DISABLED` still disables both concerns through the shared aliases.
+- R2-P2-003: **CLOSED**, `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:401`. The new prefixes unwrap before token matching, while quoted text such as `grep 'nohup opencode run'` remains data.
+- R4-P2-001: **OPEN**, `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh:81`. The shared corpus tests parity, but the classifier logic remains duplicated instead of using one shared classifier.
+- R4-P2-002: **CLOSED**, `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:313`. Unknown-version severity now derives from `SUPPORTED_FAMILIES`.
+- R5-P2-001: **OPEN**, `.skilled/bin/tests/opencode-config-shape.test.cjs:143`. The test checks permission value vocabulary and only two v2-native keys; changing an expected agent denial such as `review.md`’s `write: deny` to `allow` would still pass.
+- R5-P2-002: **CLOSED**, `.github/workflows/opencode-dual-version.yml:16`. The filters now include agent definitions and dispatch hooks.
+
+**New P0/P1:** P0: none. P1: `.skilled/hooks/dispatch/lib/opencode-version.mjs:242`. Concrete input: an executable `./opencode` writes `.probe-ran` when called with `--version` and prints `1.19.3`; then `./opencode run -m openai/gpt-5.5 "task"` without `</dev/null` makes the preflight run that side effect before blocking on `stdin-redirect-required`. The skeptic check is that this is the exact user-selected binary and no shell is involved; the finding remains P1 because the probe executes it before the refusal.
+
+**Not checked:** I did not rerun suites or the workflow. The orchestrator already ran the suites, and the workflow remains untracked along with the corpus and setup test. No files were changed during this review.
+
+Next, address the P1 probe execution and the two open P2 gaps before treating the diff as ready.
+
+FAIL

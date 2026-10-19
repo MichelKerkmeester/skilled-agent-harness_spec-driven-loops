@@ -37,7 +37,7 @@ function approve() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('dispatch')) return approve();
+  if (!isHookEnabled('dispatch-guard')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

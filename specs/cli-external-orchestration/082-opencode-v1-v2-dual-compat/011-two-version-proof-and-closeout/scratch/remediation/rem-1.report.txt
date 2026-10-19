@@ -1,0 +1,20 @@
+Verification complete. Report:
+
+## Changes
+
+**`.skilled/hooks/dispatch/lib/opencode-version.mjs`**
+1. **Path-qualified binaries** — removed the early `hasPathSeparator` rejections in both resolvers. A value (or `$OPENCODE_BIN` value) containing a separator is now validated with `accessSync(value, constants.X_OK)` via a new `executableFile()` helper and used as `probePath`; a non-executable/missing path still returns `'unknown'`. Bare names keep the `resolveOnPath` lookup, and the async resolver's injected-`realpath` test seam still bypasses PATH. Cache key (realpath, size, mtime) unchanged.
+2. **Non-blocking async probe** — added `probeBinaryAsync()` using `execFile(..., { timeout: PROBE_TIMEOUT_MS })` wrapped in a Promise, rejecting on error/non-zero exit and joining non-empty stdout/stderr with `\n` exactly as `probeBinary()` does. `resolveOpencodeVersion` now defaults to it, so its timer can actually fire; `probeBinary` (spawnSync) remains the sync resolver's probe, and `deps.probe` overrides still win.
+3. **`SUPPORTED_FAMILIES`** — `Object.freeze(['v1', 'v2'])` added to the constants section with the one-line comment, exported from the exports block.
+
+**`.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`** — extended the existing import and added four cases: path-qualified executable resolves `v1` (sync and async, temp `chmod 755` script printing `1.19.3`), path-qualified missing file stays `unknown`, async resolver times out against a temp `sleep 10` script with no `deps.probe`, and `SUPPORTED_FAMILIES` equals `['v1','v2']` and is frozen. Temp dirs removed in `finally`.
+
+## Verification
+
+Command (node v26.8.2):
+```
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+```
+Result: **tests 32, pass 32, fail 0**, duration 3177 ms; the timeout case itself ran 3001 ms, i.e. `PROBE_TIMEOUT_MS`. `node --check` passes on both files. `git diff --stat` shows only the two in-scope files changed by me; the unrelated `specs/` modifications and untracked files in `git status` pre-date this task.
+
+Caveat: `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` is a vitest suite and no local vitest binary exists, so it was not run. I checked its path-qualified cases by reading them (nonexistent paths → still `'unknown'` without probing), but that is inspection, not observed execution.

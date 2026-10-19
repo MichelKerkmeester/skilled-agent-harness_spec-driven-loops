@@ -1,0 +1,23 @@
+Role: code and test editor. Match each file's existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: four copies of the OpenCode version-output classifier exist, and nothing keeps them in step:
+- `parseOpencodeVersion` in `.skilled/hooks/dispatch/lib/opencode-version.mjs` (the reference; the dispatch guard uses it)
+- `parseOpencodeVersion` in `.skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs` (exported via module.exports)
+- `parseVersion` in `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` (exported)
+- `classify_version` in `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh`, which reads a narrower grammar: v1 only as a bare `1.x.y` line, and v2 only as `opencode 2.x.y`.
+
+Fix with one shared fixture corpus that every copy is tested against. Do not merge the copies into one module.
+
+1. Create `.skilled/hooks/dispatch/lib/opencode-version-corpus.json`: a JSON array of `{ "output": "<probe output>", "family": "v1" | "v2" | "unknown" }`. Include at least: `1.19.3`, `v1.19.3`, `opencode 1.19.3`, `1.19.3-beta.1`, `2.0.32`, `opencode 2.0.32`, `opencode v2.0.32`, `3.0.0`, `0.9.1`, `not a version`, an empty string, and a two-line output whose first line is a warning and whose second line is `1.19.3`. Set each `family` to what the reference `parseOpencodeVersion` in the .mjs actually returns. Run it with node to get the values, and do not guess.
+2. Change `classify_version` in `opencode-setup.sh` to the reference grammar. Per line, check each whitespace-separated token against `^[vV]?([0-9]+)\.[0-9]+\.[0-9]+([-+][^[:space:]]*)?$`. The first matching token decides: major 1 prints v1, major 2 prints v2, any other major prints unknown. With no match on any line it prints unknown. Keep the function's name, its stdin input and its single printed word.
+3. Tests that read the corpus and assert every entry:
+   - in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` for the .mjs parser;
+   - in `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` for `parseVersion`;
+   - in `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts` for the .cjs `parseOpencodeVersion`; read how that file already imports the script;
+   - a new `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs` (node:test) that extracts `classify_version` with `sed -n '/^classify_version()/,/^}/p'`, then for each entry runs `bash -c` with that function defined, pipes the output in with printf, and compares the result.
+
+Checks, using node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`:
+- `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs`
+- `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts`
+- `bash -n .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh`
+Report every pass and fail count, and the corpus you wrote. Edit no other file.

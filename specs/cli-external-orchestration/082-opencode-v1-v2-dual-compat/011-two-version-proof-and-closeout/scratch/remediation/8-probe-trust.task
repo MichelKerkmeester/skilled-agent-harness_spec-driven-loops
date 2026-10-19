@@ -1,0 +1,18 @@
+Role: code and test editor for `.skilled/hooks/dispatch/lib/opencode-version.mjs` and `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`. Match the existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: both resolvers now run any path-qualified executable with `--version` (the `hasPathSeparator(executable) ? executableFile(executable) : ...` branch). The preflight guard calls them before deciding whether to refuse a dispatch. A command like `./opencode run ...` therefore makes the guard execute a file in the working directory, perhaps one a model just wrote, even when the dispatch is then refused.
+
+Fix: never execute a path-qualified file the operator has not already put in reach. A path-qualified value is probed only when its canonical file is the same file as a trusted candidate:
+- the PATH lookup (`resolveOnPath`) of `opencode` and of `opencode2`;
+- the `OPENCODE_BIN` environment value, when it is set. The operator sets it, so it is trusted even when it holds a path.
+Compare by `realpathSync` plus `statSync` size and mtime, the values the cache key already uses. When the file matches, probe it and cache as today. When it does not, return 'unknown' without executing anything. A bare name keeps its current PATH behavior. Keep `deps` injection working in the async resolver: when `deps.realpath` or `deps.stat` is injected, use them for the comparison too.
+
+Add a short comment at the trust check stating the reason: the guard runs before the refusal, so it must not run a file the command merely names.
+
+Tests in `dispatch-rule-checks.test.mjs`:
+- Update the earlier path-qualified case, where a temp script prints 1.19.3. It must now expect 'unknown' and prove the script did NOT run: the script writes a marker file, and the test asserts that file is absent.
+- Add a case where the same temp script is trusted. Put its directory first on PATH under the name `opencode`, call the resolver with its absolute path, and expect 'v1'. Restore PATH afterwards.
+- Add a case where `OPENCODE_BIN` points at the temp script and the resolver gets `$OPENCODE_BIN`. Expect 'v1'.
+Keep the async-timeout case working. It may need the same trust setup, through PATH or OPENCODE_BIN.
+
+Check: `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, then `cd .skilled && npx vitest run hooks/dispatch/lib/dispatch-audit.test.mjs`, both with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin` on PATH. Report the pass and fail counts. Edit no other file.

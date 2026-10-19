@@ -161,6 +161,42 @@ test('dispatch guard reads the command from the hook output args', async () => {
   }
 });
 
+test('the audit-log switch leaves the preflight guard blocking', async () => {
+  // Silencing the log is a request to stop recording, not a request to stop refusing.
+  // The two halves therefore carry separate kill switches; only the whole-surface
+  // SYSTEM_DISPATCH_DISABLED may silence both at once.
+  const root = consumer('.skilled', {
+    'skills/cli-external-orchestration/cli-opencode/SKILL.md': BLOCKING_PACKET,
+    'skills/cli-external-orchestration/cli-opencode/hard-rules.json': BLOCKING_RULES,
+  });
+  const switches = [
+    'CLI_DISPATCH_AUDIT_DISABLED',
+    'SYSTEM_DISPATCH_GUARD_DISABLED',
+    'SYSTEM_DISPATCH_DISABLED',
+    'MK_DISPATCH_DISABLED',
+    'SYSTEM_HOOKS_DISABLED',
+  ];
+  const saved = Object.fromEntries(switches.map((name) => [name, process.env[name]]));
+  try {
+    for (const name of switches) delete process.env[name];
+    process.env.CLI_DISPATCH_AUDIT_DISABLED = '1';
+    const hooks = await load('cli-dispatch-audit.js', root);
+    await assert.rejects(
+      hooks['tool.execute.before'](
+        { tool: 'bash' },
+        { args: { command: 'opencode run -m p/m --agent general "x" </dev/null' } },
+      ),
+      /Dispatch blocked by cli-opencode/,
+    );
+  } finally {
+    for (const name of switches) {
+      if (saved[name] === undefined) delete process.env[name];
+      else process.env[name] = saved[name];
+    }
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('without a source root the guard stays open and the watchdog reports no drift', async () => {
   const root = consumer(null);
   try {

@@ -49,6 +49,18 @@ test("legacy aliases still disable their concern", () => {
   assert.equal(isHookEnabled("dispatch", { OPENCODE_GOAL_PLUGIN_DISABLED: "1" }), true);
 });
 
+test("the preflight guard has its own switch, so silencing the audit log leaves it on", () => {
+  // The two halves share a surface but not a concern: an operator who turns off the
+  // audit log must not lose the pre-execution refusal by accident.
+  assert.equal(isHookEnabled("dispatch", { CLI_DISPATCH_AUDIT_DISABLED: "1" }), false);
+  assert.equal(isHookEnabled("dispatch-guard", { CLI_DISPATCH_AUDIT_DISABLED: "1" }), true);
+  assert.equal(isHookEnabled("dispatch-guard", { SYSTEM_DISPATCH_GUARD_DISABLED: "1" }), false);
+  // The whole-surface switch still turns off both halves at once.
+  const whole = { SYSTEM_DISPATCH_DISABLED: "1" };
+  assert.equal(isHookEnabled("dispatch", whole), false);
+  assert.equal(isHookEnabled("dispatch-guard", whole), false);
+});
+
 test("truthy parsing is case/space-insensitive and strict about falsey", () => {
   for (const v of ["1", "true", "TRUE", " yes ", "On"]) assert.equal(isTruthy(v), true, String(v));
   for (const v of ["0", "false", "", "no", undefined, null, 1]) assert.equal(isTruthy(v), false, String(v));

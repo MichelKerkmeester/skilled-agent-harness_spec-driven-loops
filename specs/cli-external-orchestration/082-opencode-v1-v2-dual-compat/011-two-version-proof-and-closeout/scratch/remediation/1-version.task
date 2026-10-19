@@ -1,0 +1,17 @@
+Role: code editor for `.skilled/hooks/dispatch/lib/opencode-version.mjs` and its tests. Match the file's existing style, section banners and JSDoc. Comments state the durable reason only: never put review ids, spec paths or phase numbers in a comment.
+
+Make three changes.
+
+1. Path-qualified binaries. Today `resolveOpencodeVersion` and `resolveOpencodeVersionSync` return 'unknown' when the binary (or the `$OPENCODE_BIN` value) contains a path separator. The rule engine does match path-qualified binaries like `/usr/local/bin/opencode run`, so those dispatches lose their version. Change both functions so that a value with a path separator is probed directly: if it is an executable file (`accessSync(value, constants.X_OK)` succeeds), use it as `probePath` and skip `resolveOnPath`. Otherwise return 'unknown' as today. A bare name keeps the PATH lookup. Keep the cache key (realpath, size, mtime) unchanged.
+
+2. Async probe that can actually time out. `resolveOpencodeVersion` races a timer against the probe, but the default probe is `spawnSync`, which blocks the event loop, so the timer can never fire. Add an async default probe for the async resolver that uses `execFile` from `node:child_process` (wrapped in a Promise) with the same `PROBE_TIMEOUT_MS` timeout, and return stdout and stderr joined the way `probeBinary` does. Reject on error or a non-zero exit. Keep `probeBinary` (spawnSync) for the sync resolver. Keep `deps.probe` overrides working.
+
+3. Export a constant `SUPPORTED_FAMILIES = Object.freeze(['v1', 'v2'])` from the exports block, with a one-line comment that it is the single list of OpenCode families the rule engine treats as supported.
+
+Tests: add cases to `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, which already imports from this module (read how before adding). Cover:
+- a path-qualified executable resolves (create a temp executable shell script that prints `1.19.3`, chmod 755, call `resolveOpencodeVersionSync('<abs path>')`, expect 'v1'; remove the temp dir after);
+- a path-qualified missing file returns 'unknown';
+- the async resolver times out: pass no `deps.probe`, point it at a temp executable script that runs `sleep 10`, and expect 'unknown' within PROBE_TIMEOUT_MS plus 2 seconds;
+- `SUPPORTED_FAMILIES` equals ['v1','v2'].
+
+Check: run `node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` from the repo root with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`. Report the pass and fail counts. Do not edit any other file.

@@ -1,0 +1,9 @@
+codex-shell ℹ pass 0 ℹ fail 1 
+config-shape ℹ pass 2 ℹ fail 0 
+deep-loop-dual       Tests  23 passed (23) 
+doctor-battery ℹ pass 28 ℹ fail 0 
+guard-node ℹ pass 31 ℹ fail 0 
+guard-vitest       Tests  106 passed (106) 
+hook-flags ℹ pass 20 ℹ fail 0 
+pi-preflight 
+plugins ℹ pass 355 ℹ fail 0 

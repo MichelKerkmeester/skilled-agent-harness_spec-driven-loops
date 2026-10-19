@@ -71,8 +71,7 @@ async function MkCliDispatchAuditPlugin(ctx) {
     async 'tool.execute.before'(input, output) {
       let blocking;
       try {
-        if (!isHookEnabled('dispatch')) return;
-        if (dispatchAuditCore.isAuditDisabled(process.env)) return;
+        if (!isHookEnabled('dispatch-guard')) return;
         if (!input || String(input.tool).toLowerCase() !== 'bash') return;
 
         const args = output?.args;

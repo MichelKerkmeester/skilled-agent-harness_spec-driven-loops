@@ -1,0 +1,17 @@
+Changes are on disk and the check passes.
+
+**Source — `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`**
+- Added `NEGATIVE_CONTROL_ALLOW_ENV = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED'` and `negativeControlActive(cmd)`, which returns true only when `process.env[NEGATIVE_CONTROL_ALLOW_ENV] === '1'` **and** the marker regex matches.
+- The two Hermes checks (`hermes-yolo-required-for-writes`, `hermes-explicit-toolsets-required`) now call `negativeControlActive(cmd)` instead of `NEGATIVE_CONTROL.test(cmd)`.
+- Extended the comment above `NEGATIVE_CONTROL`: the command text is model-writable, so the operator opts the guard's own process in and a dispatch alone never can.
+
+**Tests — `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`**
+- No pre-existing test used the marker, so nothing needed the env var added; the existing `CHECK_FIXTURES` pairs carry no marker and still pass untouched.
+- New test `the negative-control marker only counts when the guard process allows it`, placed beside the Hermes rule test, saving/restoring the env var around each case: with the marker and the var unset both rules report the command as violated (write toolset without `--yolo`; toolset list containing `delegation`); with the var set to `'1'` both accept it.
+
+**Docs** — one sentence inserted between the `### Commands` heading and the fenced block in:
+- `.../manual-testing-playbook/prompt-templates/empty-stdout-detection.md`
+- `.../manual-testing-playbook/skills-and-plugins/task-dispatch-guard-blocks-delegation.md`
+- `.../manual-testing-playbook/skills-and-plugins/project-skill-preload.md`
+
+**Check:** `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin/node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` → **35 pass, 0 fail**, exit 0. Discrimination confirmed: the old predicate returned `true` for the same marker-bearing command under an unset env, so the new unset-case assertion fails without this fix. No file outside the four listed paths (plus the test file) was edited; the other modified files in the worktree are pre-existing work from other workers.

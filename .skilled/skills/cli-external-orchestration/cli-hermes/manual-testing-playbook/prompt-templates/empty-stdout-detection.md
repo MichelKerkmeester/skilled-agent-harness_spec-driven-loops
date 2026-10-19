@@ -1,7 +1,7 @@
 ---
 title: "HERMES-022 -- Empty-stdout detection"
 description: "Confirm a caller-side non-empty-stdout check is required and sufficient to catch the tool-loop failure in which Hermes exits 0 without delivering an answer for `HERMES-022`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-022 -- Empty-stdout detection
@@ -48,6 +48,8 @@ Operators run the exact prompt and command sequence for `HERMES-022` and confirm
 5. Judge the result against the pass/fail criteria and record the verdict with its evidence.
 
 ### Commands
+
+The guard honours the `SPECKIT_DISPATCH_NEGATIVE_CONTROL=1` marker only when the session running the guard was started with `SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED=1` exported, so export it before you start the session.
 
 ```bash
 cat .hermes/prompts/create-manual-testing-playbook.md > "$SCRATCH/qf-009.md"

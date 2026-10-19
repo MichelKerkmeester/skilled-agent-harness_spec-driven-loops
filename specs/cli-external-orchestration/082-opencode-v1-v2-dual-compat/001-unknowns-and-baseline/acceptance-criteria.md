@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 
@@ -87,7 +87,7 @@ The template has no separate evidence column. The Verification column names the 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is `Unmet`. The phase closes only after its probes run and their evidence sits in the Verification column. AC-004 allows one exception, the gitignored sk-vision `dist/` folder, which the parent goal log asks the phase to build. The orchestrator confirms that exception before closure.
+All six criteria are Met, and each Verification cell carries the evidence observed when the probes ran. The AC-004 exception was confirmed: the one path outside this folder is `.skilled/skills/sk-vision/hooks/opencode/sk-vision.js`, an untracked build artifact that is untracked on main too. This statement was first left at its pre-run text and was written during the deep-review remediation, with no criterion changed.
 <!-- /ANCHOR:closure -->

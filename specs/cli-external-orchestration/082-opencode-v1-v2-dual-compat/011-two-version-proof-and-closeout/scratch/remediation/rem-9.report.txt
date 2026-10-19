@@ -1,0 +1,19 @@
+Implemented and verified.
+
+- Added `.skilled/bin/tests/fixtures/agent-permission-denials.json`, generated via Node using the test file’s existing frontmatter reader.
+- Added `repo agent permission denials stay denied` with the required review comment, per-agent/key failure detail, and missing-agent fixture guidance.
+- Proved the check fails against a temporary copy of `context.md` with `write: deny` flipped to `allow`:
+  `context.md: permission.write is "allow", expected deny`
+- Deleted the temporary copy; no proof artifacts remain.
+
+Verification:
+
+```text
+PATH=/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin:$PATH \
+node --test .skilled/bin/tests/opencode-config-shape.test.cjs
+```
+
+- Pass: **6**
+- Fail: **0**
+- Fixture agents: **11**
+- Fixture denied keys: **61**

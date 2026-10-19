@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 11 mechanical plugins export one default function, which is the v1 `server` entry",
     "created_at": "2026-10-18T12:45:01Z",
-    "last_save_at": "2026-10-18T15:54:30.759Z",
+    "last_save_at": "2026-10-19T09:45:22.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:650de805b82d4391e8a2fcefea5210930a3a7e060d27dc5469b4845aa5a33f57",
+    "source_fingerprint": "sha256:853d1219925a83e4d4d430932208ef1d33a04816f239f0582e40431c3bc5b32c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9ff58d51e9865bd4e2f9741f834bf1d90fd9736da81c24d17bc9d20cd20567a6",

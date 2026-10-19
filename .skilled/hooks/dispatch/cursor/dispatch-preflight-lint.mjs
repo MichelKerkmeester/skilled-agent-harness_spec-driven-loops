@@ -54,7 +54,7 @@ function commandFrom(payload) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('dispatch')) return approve();
+  if (!isHookEnabled('dispatch-guard')) return approve();
 
   let payload;
   try {

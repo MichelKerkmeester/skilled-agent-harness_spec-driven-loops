@@ -119,8 +119,9 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 
 | Variable | Effect |
 |---|---|
-| `SYSTEM_DISPATCH_DISABLED=1` | Full no-op on every runtime. The shared resolver (`isHookEnabled('dispatch')`) short-circuits every preflight and audit adapter. |
-| `CLI_DISPATCH_AUDIT_DISABLED=1` | Legacy alias of the canonical flag. Also the audit core's own `KILL_SWITCH_ENV`: the audit adapters additionally call `isAuditDisabled`, so setting this name disables the audit surface directly. |
+| `SYSTEM_DISPATCH_DISABLED=1` | Full no-op on every runtime. The shared resolver short-circuits both concerns: `isHookEnabled('dispatch')` silences every audit adapter and `isHookEnabled('dispatch-guard')` every preflight adapter. |
+| `SYSTEM_DISPATCH_GUARD_DISABLED=1` | Preflight guard only: the adapters stop refusing before execution, while the audit log keeps recording. |
+| `CLI_DISPATCH_AUDIT_DISABLED=1` | Audit log only: the canonical flag of the `dispatch` concern and the audit core's own `KILL_SWITCH_ENV` (the audit adapters additionally call `isAuditDisabled`). The preflight guard keeps running. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
 Set a flag inline for one command, export it for a session, or persist it in `.skilled/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session.

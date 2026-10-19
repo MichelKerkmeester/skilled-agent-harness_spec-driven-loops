@@ -26,7 +26,7 @@ Spec Folder Validation v3.0.0
 + TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
 + FOLDER_NAMING: Folder name '082-opencode-v1-v2-dual-compat' follows naming convention
 + FRONTMATTER_VALUES: Frontmatter values are in the shared list
-! SOURCE_TAGS: 23 of 212 [SOURCE:] citation(s) do not resolve to an existing path and line
+! SOURCE_TAGS: 23 of 308 [SOURCE:] citation(s) do not resolve to an existing path and line
     - specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-003.md:104 [SOURCE: .opencode/plugins/classifier-injection-screen.js:103] past end: the file exists but is shorter than the cited line
     - specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-003.md:124 [SOURCE: .opencode/plugins/classifier-injection-screen.js:105] past end: the file exists but is shorter than the cited line
     - specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-003.md:126 [SOURCE: .opencode/plugins/classifier-injection-screen.js:104] past end: the file exists but is shorter than the cited line

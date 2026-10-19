@@ -1,0 +1,26 @@
+Role: code, test and doc editor. Match each file's existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: the dispatch audit and the dispatch preflight guard share one hook concern, `dispatch`. Its canonical kill switch `CLI_DISPATCH_AUDIT_DISABLED` (in `.skilled/hooks/shared/hook-flags.cjs`) therefore also turns off the pre-execution refusal on every runtime. Someone silencing the audit log loses the guard without meaning to.
+
+Fix: give the guard its own concern, `dispatch-guard`.
+1. `.skilled/hooks/shared/hook-flags.cjs`: the new concern uses the default canonical shape from `concernFlag()`. Confirm by running `concernFlag('dispatch-guard')` with node; it should be `SYSTEM_DISPATCH_GUARD_DISABLED`. Add a `LEGACY_ALIASES['dispatch-guard']` entry of `["SYSTEM_DISPATCH_DISABLED", "MK_DISPATCH_DISABLED"]`, so the documented whole-surface switch still turns off both. Leave the `dispatch` concern's entries as they are.
+2. Preflight adapters: change `isHookEnabled('dispatch')` (or the double-quoted form) to `isHookEnabled('dispatch-guard')` in exactly these files:
+   - `.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`
+   In `.opencode/plugins/cli-dispatch-audit.js`, inside `'tool.execute.before'` only: change its `isHookEnabled('dispatch')` to `'dispatch-guard'` and delete the line `if (dispatchAuditCore.isAuditDisabled(process.env)) return;` from that hook. Leave `'tool.execute.after'` unchanged. Leave every `*-posttooluse.mjs`, `post-tool-use.mjs` and `dispatch-audit.ts` unchanged; those are the audit.
+3. Tests:
+   - in `.skilled/hooks/shared/hook-flags.test.cjs`: `CLI_DISPATCH_AUDIT_DISABLED=1` disables `dispatch` but not `dispatch-guard`; `SYSTEM_DISPATCH_GUARD_DISABLED=1` disables `dispatch-guard`; `SYSTEM_DISPATCH_DISABLED=1` disables both;
+   - in `.opencode/plugins/tests/`: find the test file covering `cli-dispatch-audit.js` with `grep -l cli-dispatch-audit .opencode/plugins/tests/*.cjs`. Add one case: with `CLI_DISPATCH_AUDIT_DISABLED=1`, a command that violates a blocking hard rule still throws from `tool.execute.before`. Follow how the existing tests in that file build a violating command. If no test file covers the plugin, say so and skip this case.
+4. Docs:
+   - `.skilled/hooks/dispatch/README.md` section 6 table: add a row for `SYSTEM_DISPATCH_GUARD_DISABLED=1` (turns off the preflight guard only). Reword the `CLI_DISPATCH_AUDIT_DISABLED` row to say it turns off the audit only and leaves the preflight guard running. Keep `SYSTEM_DISPATCH_DISABLED` as the full no-op for both.
+   - `.skilled/hooks/shared/README.md`: if it lists concerns beyond the non-default table, add `dispatch-guard`. Otherwise add nothing.
+   - If `.skilled/hooks/hook-flags.env.example` lists the dispatch flags, add `SYSTEM_DISPATCH_GUARD_DISABLED` beside them in the same style.
+
+Checks, with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`:
+- `node --test .skilled/hooks/shared/hook-flags.test.cjs`
+- `node --test .opencode/plugins/tests/`
+- `node --check` on each edited .mjs, .cjs and .js file
+Then run `grep -rn "isHookEnabled(.dispatch" .skilled/hooks/dispatch .opencode/plugins/cli-dispatch-audit.js` and report its output. Report every pass and fail count. Edit no other file.

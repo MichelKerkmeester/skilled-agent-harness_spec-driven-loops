@@ -17,6 +17,7 @@ import {
   isAuditDisabled,
   matchDispatchShape,
   recordDispatch,
+  resolveDispatchPacket,
 } from './dispatch-audit.mjs';
 import { evaluate } from './dispatch-rule-checks.mjs';
 import {
@@ -419,6 +420,29 @@ describe('inspectDispatch', () => {
     expect(inspectDispatch('devin -p "unterminated')).toEqual({ kind: 'ambiguous' });
     expect(inspectDispatch('x'.repeat(100_000))).toEqual({ kind: 'none' });
     expect(inspectDispatch(null)).toEqual({ kind: 'none' });
+  });
+});
+
+// ── resolveDispatchPacket ───────────────────────────────────────────────────────────────────
+
+describe('resolveDispatchPacket', () => {
+  const packetFor = (skill) => DISPATCH_SHAPES.find((shape) => shape.skill === skill);
+
+  it.each([
+    ['nohup', 'nohup opencode run --model x "hi" </dev/null', 'cli-opencode'],
+    ['command builtin', 'command opencode run --model x "hi"', 'cli-opencode'],
+    ['negation', '! opencode run --model x "hi"', 'cli-opencode'],
+    ['subshell', '( opencode run --model x "hi" )', 'cli-opencode'],
+    ['env -S double quotes', 'env -S "codex exec hi"', 'cli-codex'],
+    ['env -S single quotes', "env -S 'codex exec hi'", 'cli-codex'],
+    // The prefixes compose; four unwraps is what the bound has to reach.
+    ['nested wrappers', String.raw`! nohup env VAR=1 perl -e 'alarm 300; exec @ARGV' -- opencode run --model x "hi"`, 'cli-opencode'],
+  ])('resolves a dispatch behind %s', (_name, command, skill) => {
+    expect(resolveDispatchPacket(command)).toEqual(packetFor(skill));
+  });
+
+  it('does not unwrap a name lookup', () => {
+    expect(resolveDispatchPacket('command -v opencode')).toBeNull();
   });
 });
 

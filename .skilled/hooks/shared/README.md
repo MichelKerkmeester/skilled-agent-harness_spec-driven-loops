@@ -45,7 +45,7 @@ This concern has no per-runtime adapters: it is consumed by every other concern'
 | CommonJS | `hook-adapter-shared.cjs` | `mcp-route-guard/{claude,codex,devin}`, `task-dispatch/{claude,devin}`, `post-edit-quality/{claude,codex,devin}` | `require()`; `readStdin()` + `parseJsonFailOpen()`. |
 | ESM | `hook-adapter-shared.cjs` | `classifier-injection-screen/{claude,devin}`, `dispatch/{claude,codex,cursor,devin}` (preflight), `dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor`, `task-dispatch/{cursor,claude}` | `import { readStdin } from '../../shared/hook-adapter-shared.cjs'`. Node reads the named exports from the CommonJS file. |
 
-The resolver family currently gates 21 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `session-lifecycle`, `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, `git-commit-hooks`, `live-sync`, and `live-follow`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its five advisory concerns.
+The resolver family currently gates 22 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `dispatch-guard`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `session-lifecycle`, `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, `git-commit-hooks`, `live-sync`, and `live-follow`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its five advisory concerns.
 
 ---
 

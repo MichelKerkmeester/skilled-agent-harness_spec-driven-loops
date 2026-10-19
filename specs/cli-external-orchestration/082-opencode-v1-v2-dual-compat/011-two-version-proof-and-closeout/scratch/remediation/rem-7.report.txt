@@ -1,0 +1,40 @@
+**Files changed (only these four):**
+- `.skilled/bin/tests/opencode-config-shape.test.cjs` — added the three tests; the two existing tests are unchanged.
+- `.github/workflows/opencode-dual-version.yml` — added `.skilled/agents/**`, `.skilled/hooks/dispatch/**`, and `.skilled/bin/tests/opencode-config-shape.test.cjs` to both `paths:` lists. It remains untracked.
+- `.opencode/plugins/README.md` — added the sk-vision `chat.message` gap paragraph after the `cleanup.skippedKeys` paragraph.
+- `.skilled/hooks/README.md` — adjusted the `dispatch` row and added the `dispatch-guard` row.
+
+**Negative proof against a bad temp copy** (created inside the worktree, then removed):
+- `3` tests run, `0` passed, `3` failed, each for the intended reason:
+  - top-level `providers` rejected;
+  - `permission.edit` = `"maybe"` rejected;
+  - `bad-agent.md: permission.write` = `"maybe"` rejected.
+- Temp directory removed; no proof fixture kept.
+
+**Verification:**
+
+`node --test .skilled/bin/tests/opencode-config-shape.test.cjs`
+```
+✔ repo opencode.json keeps the v1 config shape
+✔ rejects a top-level plugins key
+✔ repo opencode.json defines no OpenCode 2-native keys
+✔ repo opencode.json permission leaves are allow, ask or deny
+✔ repo agent permission blocks are allow, ask or deny
+ℹ tests 5
+ℹ pass 5
+ℹ fail 0
+```
+Exit `0`.
+
+`ruby -e 'require "yaml"; YAML.load_file(".github/workflows/opencode-dual-version.yml"); puts "yaml ok"'`
+```
+yaml ok
+```
+Exit `0`.
+
+`git status --short .github/`
+```
+?? .github/workflows/opencode-dual-version.yml
+```
+
+No temp copy remains.

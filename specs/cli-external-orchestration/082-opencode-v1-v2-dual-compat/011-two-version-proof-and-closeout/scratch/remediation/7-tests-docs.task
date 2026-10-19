@@ -1,0 +1,24 @@
+Role: test, CI-config and doc editor. Match each file's existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Four small changes.
+
+1. `.skilled/bin/tests/opencode-config-shape.test.cjs` checks only that `opencode.json` keeps the OpenCode 1 key names. Add three tests and leave the two existing ones as they are:
+   a. `opencode.json` defines none of the OpenCode 2-native keys that OpenCode 1 rejects or ignores: top-level `providers`, and `mcp.servers`. Read the file to find where `mcp` sits.
+   b. Every leaf value under `opencode.json` `permission`, including nested objects, is one of `allow`, `ask` or `deny`.
+   c. Every agent definition `.skilled/agents/*.md` with a `permission:` block in its YAML frontmatter uses only `allow`, `ask` or `deny` as leaf values. Parse the block with a small indentation-aware reader. Add no YAML dependency. Fail with the agent file name and the bad key.
+   Run the new tests once against a deliberately bad temp copy (for example `write: maybe`) to prove each one can fail, then remove the temp copy. Do not keep that run as a test.
+
+2. `.github/workflows/opencode-dual-version.yml` is untracked on purpose. Edit it, but never `git add` it. Add these three paths to BOTH `paths:` lists (pull_request and push), in the same style:
+   - `.skilled/agents/**`
+   - `.skilled/hooks/dispatch/**`
+   - `.skilled/bin/tests/opencode-config-shape.test.cjs`
+
+3. `.opencode/plugins/README.md`: after the paragraph that ends "A key outside the set is reported through `cleanup.skippedKeys`." (in the hooks section near line 175), add one short paragraph. It says one plugin in this repo uses a key outside the set: sk-vision's `chat.message` hook, which inspects images when a prompt is submitted. On OpenCode 2 the bridge skips it, so automatic image inspection does not run there, while sk-vision's tools still register. Porting it to OpenCode 2's prompt hook is not done and not verified.
+
+4. `.skilled/hooks/README.md` is the canonical index of every hook flag, and it lists only `SYSTEM_DISPATCH_DISABLED` for dispatch. A new `dispatch-guard` concern now exists, with canonical flag `SYSTEM_DISPATCH_GUARD_DISABLED`. It turns off only the preflight guard, which refuses a dispatch before it runs. `CLI_DISPATCH_AUDIT_DISABLED` now turns off only the audit, and `SYSTEM_DISPATCH_DISABLED` still turns off both. See `.skilled/hooks/dispatch/README.md` section 6 for the wording already used. Add or adjust the rows in the index table so it states those three facts, in that table's own style.
+
+Checks, with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`:
+- `node --test .skilled/bin/tests/opencode-config-shape.test.cjs`
+- `ruby -e 'require "yaml"; YAML.load_file(".github/workflows/opencode-dual-version.yml"); puts "yaml ok"'`, or a python3 yaml load if ruby is missing
+- `git status --short .github/` must still show `??`
+Report the pass and fail counts and each check's output. Edit no other file.

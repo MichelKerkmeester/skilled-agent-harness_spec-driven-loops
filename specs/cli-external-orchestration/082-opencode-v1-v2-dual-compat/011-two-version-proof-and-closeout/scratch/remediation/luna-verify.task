@@ -1,0 +1,11 @@
+Role: read-only verifier. Do not edit any file.
+
+A first review of the uncommitted remediation diff raised three items. Check whether the working tree closes each one.
+
+1. New P1: `.skilled/hooks/dispatch/lib/opencode-version.mjs`. Both resolvers ran any path-qualified executable with `--version` before the guard refused a dispatch. The fix probes a path-qualified file only when its canonical file matches the PATH lookup of `opencode` or `opencode2`, or the operator-set `OPENCODE_BIN`; otherwise it returns 'unknown' without executing. Check the trust comparison for bypasses, such as a symlink to a planted file, a relative path, a TOCTOU window worth calling P1, or a directory. Check that the tests prove the untrusted file did not run.
+2. R5-P2-001: `.skilled/bin/tests/opencode-config-shape.test.cjs` plus `.skilled/bin/tests/fixtures/agent-permission-denials.json` now pin every agent's current `deny` keys. Check that flipping `review.md`'s `write: deny` to `allow` would fail.
+3. R4-P2-001: four version classifiers. The fix is one shared corpus that all four copies are tested against (`.skilled/hooks/dispatch/lib/opencode-version-corpus.json`), and the installer's grammar was aligned to the reference. The copies were not merged. The review report's plan seed allows "a shared version-family classifier ... or a shared fixture corpus", and a bash script cannot import a JS module. Judge whether the corpus closes the finding as written: "nothing keeps the copies in step".
+
+The orchestrator already ran the suites; do not rerun gates that need temp files.
+
+Output one line per item: CLOSED or OPEN, file:line, one sentence of reason. Then list any new P0 or P1, with a concrete failing input. End with PASS or FAIL.

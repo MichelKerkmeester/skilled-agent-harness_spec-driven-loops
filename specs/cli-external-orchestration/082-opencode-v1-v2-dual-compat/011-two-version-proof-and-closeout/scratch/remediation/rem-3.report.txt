@@ -1,0 +1,40 @@
+- Added corpus assertions to:
+  - `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`
+  - `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`
+  - `.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`
+- Added new `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs`; it extracts `classify_version` with `sed -n '/^classify_version()/,/^}/p'`, then runs each corpus entry through `bash -c` with `printf` and `set -euo pipefail`.
+
+## Verification
+
+| Check | Result |
+|---|---|
+| `bash -n .skilled/skills/cli-external-orchestration/cli-opencode/scripts/opencode-setup.sh` | **PASS** |
+| `node --test` on the three test files | **65 tests, 65 pass, 0 fail, 0 skipped, 0 todo** |
+| — `dispatch-rule-checks.test.mjs` | **34 pass / 0 fail** |
+| — `opencode-version-battery.test.cjs` | **29 pass / 0 fail** |
+| — `opencode-setup-classify.test.cjs` | **2 pass / 0 fail** |
+| `npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts` | **1 file passed, 24 tests, 24 pass, 0 fail** |
+
+Vitest emitted its existing lineage permission warnings; they did not affect the test result.
+
+## Corpus
+
+```json
+[
+  { "output": "1.19.3", "family": "v1" },
+  { "output": "v1.19.3", "family": "v1" },
+  { "output": "opencode 1.19.3", "family": "v1" },
+  { "output": "1.19.3-beta.1", "family": "v1" },
+  { "output": "2.0.32", "family": "v2" },
+  { "output": "opencode 2.0.32", "family": "v2" },
+  { "output": "opencode v2.0.32", "family": "v2" },
+  { "output": "3.0.0", "family": "unknown" },
+  { "output": "0.9.1", "family": "unknown" },
+  { "output": "not a version", "family": "unknown" },
+  { "output": "", "family": "unknown" },
+  { "output": "\n1.19.3", "family": "v1" },
+  { "output": "WARN: falling back to defaults\n1.19.3", "family": "v1" }
+]
+```
+
+No other files were edited.

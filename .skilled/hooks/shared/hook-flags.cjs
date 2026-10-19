@@ -51,6 +51,9 @@ const CONCERN_CANONICAL = {
 const LEGACY_ALIASES = {
   goal: ["OPENCODE_GOAL_PLUGIN_DISABLED", "MK_GOAL_DISABLED", "MK_GOAL_PLUGIN_DISABLED"],
   dispatch: ["SYSTEM_DISPATCH_DISABLED", "MK_DISPATCH_DISABLED", "MK_CLI_DISPATCH_AUDIT_DISABLED"],
+  // The preflight guard split off from the audit log, but the whole-surface
+  // switch that predates the split still has to silence both halves.
+  "dispatch-guard": ["SYSTEM_DISPATCH_DISABLED", "MK_DISPATCH_DISABLED"],
   "skill-advisor": [
     "SYSTEM_SKILL_ADVISOR_HOOK_DISABLED",
     "SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED",

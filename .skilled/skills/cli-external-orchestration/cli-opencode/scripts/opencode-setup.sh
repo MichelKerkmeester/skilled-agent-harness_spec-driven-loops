@@ -77,18 +77,24 @@ print_step() {
     printf '[rollback, never run] %s\n' "$2"
 }
 
-# Classify version output by shape, not by command name; the first matching line decides
+# Classify version output by shape, not by command name; the first matching token decides
 classify_version() {
-    local line
+    local line token
+    local -a tokens
     while IFS= read -r line || [[ -n "$line" ]]; do
         line="${line%$'\r'}"
-        if [[ "$line" =~ ^1\.[0-9]+\.[0-9]+([-+][^[:space:]]*)?[[:space:]]*$ ]]; then
-            printf 'v1\n'
-            return 0
-        fi
-        if [[ "$line" =~ ^opencode[[:space:]]+v?2\.[0-9]+\.[0-9]+([-+][^[:space:]]*)?[[:space:]]*$ ]]; then
-            printf 'v2\n'
-            return 0
+        read -r -a tokens <<< "$line"
+        if [[ ${#tokens[@]} -gt 0 ]]; then
+            for token in "${tokens[@]}"; do
+                if [[ "$token" =~ ^[vV]?([0-9]+)\.[0-9]+\.[0-9]+([-+][^[:space:]]*)?$ ]]; then
+                    case "${BASH_REMATCH[1]}" in
+                        1) printf 'v1\n' ;;
+                        2) printf 'v2\n' ;;
+                        *) printf 'unknown\n' ;;
+                    esac
+                    return 0
+                fi
+            done
         fi
     done
     printf 'unknown\n'

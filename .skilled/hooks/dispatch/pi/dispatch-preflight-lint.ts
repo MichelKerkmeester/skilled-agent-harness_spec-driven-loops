@@ -215,7 +215,7 @@ async function loadDispatchModules(): Promise<{
 
 /** Blocks or warns on a bash dispatch command that violates a target skill's hard rules. */
 export default function dispatchPreflightLint(pi: ExtensionAPI): void {
-  if (!isHookEnabled("dispatch")) return undefined;
+  if (!isHookEnabled("dispatch-guard")) return undefined;
   pi.on("input", (event, ctx) => {
     try {
       if (event.source === "interactive" || event.source === "rpc") {

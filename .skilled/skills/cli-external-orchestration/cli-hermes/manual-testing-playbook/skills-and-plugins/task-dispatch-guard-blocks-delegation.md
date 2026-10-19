@@ -1,7 +1,7 @@
 ---
 title: "HERMES-025 -- Task-dispatch guard blocks a mismatched delegation"
 description: "Confirm the repo's task-dispatch guard evaluates every task of a Hermes delegate_task call and blocks a Deep Route mode mismatch under the guard's reject switch, for `HERMES-025`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-025 -- Task-dispatch guard blocks a mismatched delegation
@@ -46,6 +46,8 @@ Operators run the exact prompt and command sequence for `HERMES-025` and confirm
 5. Judge the result against the pass/fail criteria and record the verdict with its evidence.
 
 ### Commands
+
+The guard honours the `SPECKIT_DISPATCH_NEGATIVE_CONTROL=1` marker only when the session running the guard was started with `SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED=1` exported, so export it before you start the session.
 
 ```bash
 SPECKIT_DISPATCH_NEGATIVE_CONTROL=1 SYSTEM_DEEP_LOOP_GUARD_REJECT=1 HERMES_ENABLE_PROJECT_PLUGINS=1 perl -e 'alarm 300; exec @ARGV' -- hermes chat -Q --oneshot --ignore-rules --source tool \

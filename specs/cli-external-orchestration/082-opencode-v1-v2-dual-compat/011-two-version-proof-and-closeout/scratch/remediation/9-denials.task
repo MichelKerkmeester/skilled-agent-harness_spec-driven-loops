@@ -1,0 +1,11 @@
+Role: test editor for `.skilled/bin/tests/opencode-config-shape.test.cjs`. Match the existing style. Comments state the durable reason only: no review ids, spec paths or phase numbers.
+
+Problem: the agent permission test checks only that leaf values are allow, ask or deny. An agent whose `write: deny` turned into `write: allow` would still pass, so nothing protects the denials that keep read-only agents read-only.
+
+Fix:
+1. Create `.skilled/bin/tests/fixtures/agent-permission-denials.json`, mapping each agent file name under `.skilled/agents/` to the sorted list of permission keys it currently sets to `deny`. Use dotted paths for nested keys. Generate it from the current files with the same frontmatter reader the test file already has. Run node to produce it, and do not write it by hand.
+2. Add a test: for every agent and key in that fixture, the agent's current permission value at that key must still be `deny`. On failure, name the agent, the key and the value found. A new deny that is not in the fixture is fine. A fixture agent whose file is gone fails with a message saying to update the fixture.
+3. Prove the test can fail: run it once against a temp copy of one agent with a deny flipped to allow, then delete the temp copy. Do not keep that as a test.
+Add one comment above the new test: changing a denial is a deliberate act, so it has to show up as a fixture edit in review.
+
+Check: `node --test .skilled/bin/tests/opencode-config-shape.test.cjs` with node from `/Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin`. Report the pass and fail counts, and the number of agents and keys in the fixture. Edit no other file.

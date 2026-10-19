@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 

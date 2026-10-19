@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { resolveOpencodeVersionSync } from './opencode-version.mjs';
+import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
 
 const HARD_RULES_FILENAME = 'hard-rules.json';
 const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
@@ -89,8 +89,15 @@ function repeatedFlagCount(command, names) {
 // write toolset without the approval flag. Without a way to say so, those scenarios are
 // permanently un-runnable, and an operator who cannot run the guard's own proof stops
 // trusting the guard. The marker is an explicit env prefix, so it cannot appear by accident
-// and `grep` finds every use.
+// and `grep` finds every use. The command text is model-writable, so the marker counts only
+// when the operator opts the guard's own process in; a dispatch alone never can.
 const NEGATIVE_CONTROL = /(?:^|\s)SPECKIT_DISPATCH_NEGATIVE_CONTROL=1(?:\s|$)/;
+const NEGATIVE_CONTROL_ALLOW_ENV = 'SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED';
+
+/** A negative control counts only when the operator allowed it for the guard's own process. */
+function negativeControlActive(cmd) {
+  return process.env[NEGATIVE_CONTROL_ALLOW_ENV] === '1' && NEGATIVE_CONTROL.test(cmd);
+}
 
 /**
  * Build a check that refuses a dispatch whose binary is absent from PATH.
@@ -183,7 +190,7 @@ export const CHECKS = {
   // named) are the intended --yolo-less shape and pass.
   'hermes-yolo-required-for-writes': (cmd) => {
     if (!HERMES_CHAT.test(cmd)) return true;
-    if (NEGATIVE_CONTROL.test(cmd)) return true; // a scenario proving the gate must trip it
+    if (negativeControlActive(cmd)) return true; // a scenario proving the gate must trip it
     const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
     if (!toolsets) return true; // no explicit list: the toolset rule reports that case
     if (!HERMES_WRITE_TOOLSETS.test(toolsets[1])) return true;
@@ -200,7 +207,7 @@ export const CHECKS = {
   // leave both out, or it can spawn sub-agents outside the runner's boundary and write memories.
   'hermes-explicit-toolsets-required': (cmd) => {
     if (!HERMES_CHAT.test(cmd)) return true;
-    if (NEGATIVE_CONTROL.test(cmd)) return true; // a scenario proving the refusal must trip it
+    if (negativeControlActive(cmd)) return true; // a scenario proving the refusal must trip it
     const toolsets = cmd.match(/(?:^|\s)(?:-t|--toolsets)(?:\s+|=)([^\s]+)/);
     if (!toolsets) return false;
     if (/(?:^|,)(?:delegation|memory)(?:,|$)/.test(toolsets[1])) return false;
@@ -284,7 +291,7 @@ export const KNOWN_CHECKS = Object.keys(CHECKS);
 export function evaluate(command, rules, options = {}) {
   const registry = options.checks || CHECKS;
   const context = options.context;
-  const hasVersion = ['v1', 'v2', 'unknown'].includes(options.version);
+  const hasVersion = [...SUPPORTED_FAMILIES, 'unknown'].includes(options.version);
   const commandText = String(command || '');
   const opencodeRun = commandText.match(QUOTED_OPENCODE_RUN_BINARY)
     || commandText.match(OPENCODE_RUN_BINARY);
@@ -302,8 +309,8 @@ export function evaluate(command, rules, options = {}) {
   for (const rule of rules) {
     const fn = registry[rule.check];
     if (!fn) continue; // unknown check → skip (the CI validator catches typos, not this hot path)
-    const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : ['v1', 'v2'];
-    const appliesToBoth = appliesTo.includes('v1') && appliesTo.includes('v2');
+    const appliesTo = Array.isArray(rule.appliesTo) ? rule.appliesTo : SUPPORTED_FAMILIES;
+    const appliesToAll = SUPPORTED_FAMILIES.every((family) => appliesTo.includes(family));
     if (filterByVersion && version !== 'unknown' && !appliesTo.includes(version)) continue;
     let passed = true;
     try {
@@ -316,7 +323,7 @@ export function evaluate(command, rules, options = {}) {
       // the availability/self-invocation guards use) denies the dispatch;
       // everything else is advisory. A skill's own SKILL.md severity is the
       // source of truth here.
-      const severity = filterByVersion && version === 'unknown' && !appliesToBoth
+      const severity = filterByVersion && version === 'unknown' && !appliesToAll
         ? 'warn'
         : rule.severity;
       const blocking = severity === 'block' || severity === 'error';

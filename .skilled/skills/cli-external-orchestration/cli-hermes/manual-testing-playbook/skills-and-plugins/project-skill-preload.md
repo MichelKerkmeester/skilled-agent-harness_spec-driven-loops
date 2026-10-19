@@ -1,7 +1,7 @@
 ---
 title: "HERMES-016 -- Project skill preload"
 description: "Confirm `-s cli-hermes` preloads the generated project skill copy into a session, and that the content is attributable to the preload rather than to a search for `HERMES-016`."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # HERMES-016 -- Project skill preload
@@ -48,6 +48,8 @@ Operators run the exact prompt and command sequence for `HERMES-016` and confirm
 5. Judge the result against the pass/fail criteria and record the verdict with its evidence.
 
 ### Commands
+
+The guard honours the `SPECKIT_DISPATCH_NEGATIVE_CONTROL=1` marker only when the session running the guard was started with `SPECKIT_DISPATCH_NEGATIVE_CONTROL_ALLOWED=1` exported, so export it before you start the session.
 
 ```bash
 ls -la .hermes/skills/

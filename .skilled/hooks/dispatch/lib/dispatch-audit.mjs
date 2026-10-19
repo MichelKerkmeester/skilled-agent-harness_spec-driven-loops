@@ -381,23 +381,37 @@ function shellPayloads(command) {
 }
 
 // An exec wrapper runs the real command in its own process, so the tokenizer reads the
-// wrapper as the executor and stops. These are the wrappers this repo actually dispatches
-// through, and missing them meant a guard that enforced nothing on the standard shape:
-// These three, and only these three: a repo-wide count found 38 perl, 64 env and 13 timeout
-// dispatches, and zero for every other wrapper. Add one when a dispatch actually uses it.
+// wrapper as the executor and stops. The list is exhaustive rather than sampled: a prefix the
+// guard fails to unwrap is a way to dispatch without the audit record or the preflight
+// refusal, so every prefix that hides an executor is recognised, whether or not a dispatch
+// has used it yet.
 //   perl -e 'alarm N; exec @ARGV' -- <cmd>   the portable timeout, macOS has no `timeout`
+//   env -S '<cmd>' / env -S "<cmd>"          one quoted command string split by env
 //   env [VAR=V ...] <cmd>                    sets or clears a marker for the child
 //   timeout [flags] <seconds> <cmd>
+//   nohup <cmd>                              detaches the child from the terminal
+//   command [-p] [--] <cmd>                  the shell builtin; -v/-V only look a name up
+//   ! <cmd>                                  negates the pipeline's status, runs it anyway
+//   ( <cmd> )                                runs the command in a subshell
 const EXEC_WRAPPERS = [
   // Everything after a bare `--` is the wrapped command.
   /^\s*(?:\/[^\s]*\/)?perl\s+[\s\S]*?\s--\s+([\s\S]+)$/,
+  // `-S` takes the rest of its arguments as one quoted command string, which the general env
+  // pattern below would split at the first word inside the quotes. Its own patterns win first.
+  /^\s*(?:\/[^\s]*\/)?env\s+-S\s+'([\s\S]*?)'/,
+  /^\s*(?:\/[^\s]*\/)?env\s+-S\s+"([\s\S]*?)"/,
   /^\s*(?:\/[^\s]*\/)?env\s+(?:-[a-zA-Z]\s+\S+\s+|-[a-zA-Z]+\s+|\w+=[^\s]*\s+)*([\s\S]+)$/,
   /^\s*(?:\/[^\s]*\/)?timeout\s+(?:-[^\s]+\s+)*[\d.]+[smhd]?\s+([\s\S]+)$/,
+  /^\s*(?:\/[^\s]*\/)?nohup\s+(?:--\s+)?([\s\S]+)$/,
+  // `-v` and `-V` print a name or its path and run nothing, so they are not unwrapped.
+  /^\s*(?:\/[^\s]*\/)?command\s+(?!-[vV](?:\s|$))(?:-[pP]+\s+)?(?:--\s+)?([\s\S]+)$/,
+  /^\s*!\s+([\s\S]+)$/,
+  /^\s*\(\s*([\s\S]+?)\s*\)\s*$/,
 ];
 
-// The deepest real nesting is two unwraps (`env VAR=1 perl -e ... -- cmd`), and the loop
-// spends one pass inspecting before each. Three is that depth, not a margin.
-const MAX_UNWRAP_DEPTH = 3;
+// The deepest real nesting is three unwraps (`nohup env VAR=1 perl -e ... -- cmd`), and the
+// loop spends one pass inspecting before each. Four is that depth, not a margin.
+const MAX_UNWRAP_DEPTH = 4;
 
 /**
  * Resolve a command to the packet whose rules govern it, or null when nothing does.

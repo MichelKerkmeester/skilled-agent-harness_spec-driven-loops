@@ -1,0 +1,9 @@
+Role: read-only verifier. Do not edit any file.
+
+One item stayed open in your last check: `.skilled/hooks/dispatch/lib/opencode-version.mjs`. The trust check compared a path-qualified file with the trusted candidates, then probed the command's original pathname, so a symlink swapped in between could run a planted file. The fix makes both resolvers spawn the trusted candidate's own path, never the command's pathname. A test in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` asserts which path was spawned.
+
+Check:
+- that both resolvers spawn only a trusted candidate path;
+- whether any remaining way exists to make the guard execute a file that is not the PATH `opencode` or `opencode2` or the operator's `OPENCODE_BIN`;
+- that no comment holds a review id, a spec path or a phase number.
+The orchestrator already ran the suites. Output CLOSED or OPEN with file:line and one sentence of reason, then any new P0 or P1 with a concrete input. End with PASS or FAIL.
