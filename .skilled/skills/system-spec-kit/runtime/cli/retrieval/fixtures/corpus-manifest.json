@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6d90919814456c46e3647ffc568ebf456cf23b5ee96e93831fb5be0befe514f7",
+  "corpusHash": "e794f7ebf1d4325ba9cfc8443d76864d804f8c16e4ab9dac9d39286b685c25cd",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25220,
+  "includedPathCount": 25225,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14970,6 +14970,11 @@
     "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/spec.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/tasks.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/spec.md",
+    "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/acceptance-criteria.md",
+    "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/implementation-summary.md",
+    "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/plan.md",
+    "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/spec.md",
+    "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -25251,7 +25256,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
+  "manifestHash": "fd17f0ec94293e5945589a977dfee5e1558a3154f6a08f25d2ba9ccfb68434ab",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29095,6 +29100,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/scratch",
       "reason": "excluded directory"
     },
     {
