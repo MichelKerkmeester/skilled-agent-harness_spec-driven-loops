@@ -7,13 +7,14 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RuntimeClient } from './runtime/client.js';
 import { PhotonProvider } from './providers/photon.js';
-import { skVisionTools } from './opencode/tools.js';
+import { skVisionTools, toV2Tools } from './opencode/tools.js';
 import { AttachmentInjector, isImagePart } from './opencode/attachments.js';
 import { handleVisionCommand } from './opencode/command.js';
 import { isTextOnlyModel } from './model-modality.js';
 import type { Plugin } from '@opencode-ai/plugin';
 import type { FilePart, Part } from '@opencode-ai/sdk';
 import type { SkVisionMessage } from './runtime/client.js';
+import type { V2ToolDefinition } from './opencode/tools.js';
 import type {
   VisionCommandPluginInput,
   VisionCommandSessionMessage,
@@ -95,8 +96,13 @@ interface V2Registration {
   dispose(): Promise<void>;
 }
 
+interface V2ToolEditor {
+  add(definition: V2ToolDefinition): void;
+}
+
 interface V2AutoInspect {
   evidence(images: readonly FilePart[], guaranteed: boolean): Promise<string | null>;
+  readonly tools?: readonly V2ToolDefinition[];
   dispose(): Promise<void>;
 }
 
@@ -106,6 +112,9 @@ interface V2PluginContext {
     transform(
       callback: (editor: V2CommandEditor) => V2CommandEditor,
     ): Promise<V2Registration>;
+  };
+  readonly tool?: {
+    transform(callback: (editor: V2ToolEditor) => void): Promise<V2Registration>;
   };
   readonly session: {
     context(input: { readonly sessionID: string }): Promise<readonly V2ContextMessage[]>;
@@ -427,8 +436,28 @@ export function createSetup({
       }
     });
 
+    // OpenCode 1 registers the tools from `server`, but OpenCode 2 only calls
+    // `setup`, so the same definitions go through its tool editor here, after the
+    // prompt hook, so a hook that fails to register leaves no tools behind.
+    const tools = auto?.tools ?? [];
+    let toolRegistration: V2Registration | null = null;
+    if (tools.length > 0 && ctx.tool) {
+      try {
+        toolRegistration = await ctx.tool.transform((editor) => {
+          for (const definition of tools) editor.add(definition);
+        });
+      } catch (error: unknown) {
+        // Fail open: the command and image inspection still work without the tools.
+        if (process.env.SK_VISION_DEBUG === '1') {
+          const message = error instanceof Error ? error.message : String(error);
+          process.stderr.write(`[sk-vision] tool registration failed: ${message}\n`);
+        }
+      }
+    }
+
     return async () => {
       await promptRegistration.dispose();
+      await toolRegistration?.dispose();
       await registration.dispose();
       await auto?.dispose();
     };
@@ -442,6 +471,7 @@ function createDefaultAutoInspect(directory: string): V2AutoInspect | null {
   const injector = new AttachmentInjector(() => provider);
   return {
     evidence: (images, guaranteed) => injector.evidenceText(images, guaranteed),
+    tools: toV2Tools(skVisionTools(() => provider)),
     dispose: () => client.close(),
   };
 }

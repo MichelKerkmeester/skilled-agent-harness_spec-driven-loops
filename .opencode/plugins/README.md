@@ -174,7 +174,7 @@ Plugin factories register some subset of:
 
 The bridge in `lib/v2-bridge.js` maps that set onto OpenCode 2 registrations: `event` to the event stream, `tool.execute.before`/`after` to the tool execute hooks, `experimental.chat.system.transform` to the session context hook, and `tool` definitions to the tool transform. A key outside the set is reported through `cleanup.skippedKeys`.
 
-One plugin in this repo registers a key outside that set: `sk-vision.js`'s `chat.message` hook, which inspects images when a prompt is submitted. sk-vision does not go through the bridge. Its own `setup` entry runs the same check on OpenCode 2 through `ctx.session.hook("prompt")` and appends the evidence to the prompt text, when `SK_VISION_AUTOINSPECT=1` as on OpenCode 1. On OpenCode 2 a model not on the text-only list gets the 2-second grace, and a listed one waits for the full analysis. The 13 `sk_vision_*` tools register on OpenCode 1 only.
+One plugin in this repo registers a key outside that set: `sk-vision.js`'s `chat.message` hook, which inspects images when a prompt is submitted. sk-vision does not go through the bridge. Its own `setup` entry runs the same check on OpenCode 2 through `ctx.session.hook("prompt")` and appends the evidence to the prompt text, when `SK_VISION_AUTOINSPECT=1` as on OpenCode 1. On OpenCode 2 a model not on the text-only list gets the 2-second grace, and a listed one waits for the full analysis. The 13 `sk_vision_*` tools register on both versions under the same gate: OpenCode 1 takes them from the `server` entry, and on OpenCode 2 the `setup` entry adds them through `ctx.tool.transform`, where the model reaches them through OpenCode 2's code-mode `execute` tool.
 
 ---
 

@@ -556,3 +556,177 @@ describe("v2 command execute", () => {
     ]);
   });
 });
+
+describe("v2 tool registration", () => {
+  type AutoInspectFactory = NonNullable<Parameters<typeof createSetup>[0]["createAutoInspect"]>;
+  type ToolTransform = NonNullable<SetupContext["tool"]>["transform"];
+  type ToolEditor = Parameters<Parameters<ToolTransform>[0]>[0];
+  type ToolDefinition = Parameters<ToolEditor["add"]>[0];
+
+  function withToolEditor(ctx: SetupContext): { ctx: SetupContext; added: string[]; disposed: string[] } {
+    const added: string[] = [];
+    const disposed: string[] = [];
+    return {
+      ctx: {
+        ...ctx,
+        tool: {
+          transform: async (callback) => {
+            callback({
+              add: (definition: ToolDefinition) => {
+                added.push(definition.name);
+              },
+            });
+            return {
+              dispose: async () => {
+                disposed.push("tool");
+              },
+            };
+          },
+        },
+      },
+      added,
+      disposed,
+    };
+  }
+
+  const fakeTool = (name: string): ToolDefinition => ({
+    name,
+    description: `${name} tool`,
+    input: {},
+    execute: async () => ({ content: name }),
+  });
+
+  it("adds every inspection tool through the v2 tool editor and removes them on dispose", async () => {
+    const fake = withToolEditor(makeContext().ctx);
+    const create: AutoInspectFactory = () => ({
+      evidence: async () => null,
+      tools: [fakeTool("sk_vision_status"), fakeTool("sk_vision_ocr")],
+      dispose: async () => {},
+    });
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: create,
+    })(fake.ctx);
+
+    expect(fake.added).toEqual(["sk_vision_status", "sk_vision_ocr"]);
+    await dispose();
+    expect(fake.disposed).toEqual(["tool"]);
+  });
+
+  it("adds no tools when automatic inspection is off", async () => {
+    const fake = withToolEditor(makeContext().ctx);
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => null,
+    })(fake.ctx);
+
+    expect(fake.added).toEqual([]);
+    await dispose();
+    expect(fake.disposed).toEqual([]);
+  });
+
+  it("keeps the prompt hook and disposes cleanly when tool registration fails", async () => {
+    const base = makeContext();
+    const ctx: SetupContext = {
+      ...base.ctx,
+      tool: {
+        transform: async () => {
+          throw new Error("tool editor unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => ({
+        evidence: async () => null,
+        tools: [fakeTool("sk_vision_status")],
+        dispose: async () => {
+          autoDisposed += 1;
+        },
+      }),
+    })(ctx);
+
+    expect(base.hook()).toBeDefined();
+    await dispose();
+    expect(base.disposed).toEqual(["prompt", "command"]);
+    expect(autoDisposed).toBe(1);
+  });
+
+  it("leaves no tools registered when the prompt hook fails to register", async () => {
+    const base = withToolEditor(makeContext().ctx);
+    const ctx: SetupContext = {
+      ...base.ctx,
+      session: {
+        ...base.ctx.session,
+        hook: async () => {
+          throw new Error("prompt hook unavailable");
+        },
+      },
+    };
+
+    await expect(
+      createSetup({
+        handle: async () => {},
+        readTemplate: () => null,
+        createAutoInspect: () => ({
+          evidence: async () => null,
+          tools: [fakeTool("sk_vision_status")],
+          dispose: async () => {},
+        }),
+      })(ctx),
+    ).rejects.toThrow("prompt hook unavailable");
+    expect(base.added.length).toBe(base.disposed.length);
+  });
+});
+
+describe("v2 grace for models off the text-only list", () => {
+  type AutoInspectFactory = NonNullable<Parameters<typeof createSetup>[0]["createAutoInspect"]>;
+
+  async function guaranteedFor(
+    get: NonNullable<SetupContext["session"]["get"]>,
+  ): Promise<boolean | undefined> {
+    const fake = makeContext([], get);
+    const calls: boolean[] = [];
+    const create: AutoInspectFactory = () => ({
+      evidence: async (_images, guaranteed) => {
+        calls.push(guaranteed);
+        return null;
+      },
+      dispose: async () => {},
+    });
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: create,
+    })(fake.ctx);
+    await fake.hook()?.({
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "what is in this screenshot?",
+        files: [{ uri: "data:image/png;base64,AAAA", name: "shot.png" }],
+      },
+      delivery: "queue",
+    });
+    await dispose();
+    return calls[0];
+  }
+
+  it("asks for the grace, not the full wait, for a model off the text-only list", async () => {
+    const guaranteed = await guaranteedFor(async () => ({
+      model: { id: "claude-opus-4-8", providerID: "anthropic" },
+    }));
+    expect(guaranteed).toBe(false);
+  });
+
+  it("asks for the grace when the host cannot report the session model", async () => {
+    const guaranteed = await guaranteedFor(async () => {
+      throw new Error("no session");
+    });
+    expect(guaranteed).toBe(false);
+  });
+});
