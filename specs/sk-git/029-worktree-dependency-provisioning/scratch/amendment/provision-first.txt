@@ -1,0 +1,3 @@
+  provisioning .opencode (ci)
+provisioned: 1 installed, 0 built, 9 already present, 0 failed
+exit 0

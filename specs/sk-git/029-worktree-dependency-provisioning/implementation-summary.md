@@ -8,9 +8,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/029-worktree-dependency-provisioning"
-    last_updated_at: "2026-09-11T00:00:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Shipped the provision step and proved it end to end"
+    last_updated_at: "2026-10-19T12:00:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Added the missing .opencode entry to the provision list"
     next_safe_action: "None outstanding"
     blockers: []
     key_files:
@@ -62,6 +62,7 @@ exit code concludes the build succeeded.
 | File | Action | Purpose |
 |------|--------|---------|
 | `scripts/worktree-provision-paths.txt` | Created | The nine packages a worktree needs, as data rather than code |
+| `scripts/worktree-provision-paths.txt` | Modified (amendment) | Adds `.opencode`, which gained a `package.json` after this packet closed |
 | `scripts/worktree-naming.sh` | Modified | `provision` subcommand; `create` calls it unless `--no-provision` |
 | `SKILL.md` | Modified | Rule 8 already named this problem and now names the fix |
 <!-- /ANCHOR:what-built -->
@@ -111,6 +112,9 @@ Node does, bounded at the worktree root, looking for the directory.
 | Build in the created worktree, no manual install | PASS. `dist/runtime/advisor-server.js` produced, not merely exit 0 |
 | CLI in the created worktree | PASS. Nine commands |
 | Throwaway removed | PASS. Worktree and branch deleted |
+| Amendment: `provision` on worktree 147 | PASS. `.opencode` installed with `ci`, 1 installed, 9 already present, 0 failed (`scratch/amendment/provision-first.txt`); re-run reported 10 already present (`provision-rerun.txt`) |
+| Amendment: plugin suite in worktree 147 | 80 of 356 before, 355 of 356 after (`scratch/amendment/plugins-before.txt`, `plugins-after.txt`); the remaining failure is the sk-vision bundle, limitation 4 |
+| Amendment: `worktree-naming.test.sh` | 88 pass, 0 fail, before and after (`scratch/amendment/naming-before.txt`, `naming-after.txt`) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,13 +122,20 @@ Node does, bounded at the worktree root, looking for the directory.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **`create` now takes minutes rather than seconds.** Installing nine trees is
+1. **`create` now takes minutes rather than seconds.** Installing ten trees is
    the cost of handing back something usable. `--no-provision` returns the old
    behaviour for a caller who only wants the branch.
 2. **The list is maintained by hand.** A package added to the repository does
    not appear here on its own. A missing entry fails the same loud way it does
-   today rather than a silent one, which is the property worth keeping.
+   today rather than a silent one, which is the property worth keeping. It
+   happened once: `.opencode/` gained a `package.json` on 2026-09-18 and was
+   added only later, by amendment.
 3. **The build script that exits 0 having compiled nothing is untouched.** That
    defect belongs to the package that owns the script. This packet records it;
    the provision step removes the condition that triggered it most often.
+4. **A bun-built bundle is not provisioned.** `.opencode/plugins/sk-vision.js`
+   links to `sk-vision/vision-runtime/dist/plugin.js`, which `bun run build`
+   writes. The list installs with npm only, and `npm install` there, beside its
+   `bun.lock`, would write an untracked lockfile, so a fresh worktree fails one
+   plugin test until the bundle is built by hand.
 <!-- /ANCHOR:limitations -->

@@ -14,8 +14,14 @@
 # packages by walking up from there; without this it finds nothing.
 .
 
-# The plugin/runtime surface. Plugin tests import from here.
+# The shared source tree. Hook and script tests resolve vitest from here, and
+# sk-vision's runtime, which has no install of its own, resolves the plugin SDKs.
 .skilled
+
+# The OpenCode plugins, which live where the OpenCode runtime loads them and
+# resolve the plugin SDK and zod from this tree. Without it the plugin tests
+# that import a plugin fail on import.
+.opencode
 
 # Spec-kit, its shared library, and the two builds that the validation
 # orchestrator and the spec CLI are compiled into. Each build pulls in the

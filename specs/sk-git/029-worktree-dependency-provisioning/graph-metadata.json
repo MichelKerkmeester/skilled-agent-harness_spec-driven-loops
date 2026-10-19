@@ -41,7 +41,11 @@
       "implementation-summary.md",
       ".opencode/skills/sk-git/scripts/worktree-naming.sh",
       ".opencode/bin/worktree-session.sh",
-      ".opencode/skills/sk-git/SKILL.md"
+      "scratch/amendment/provision-first.txt",
+      "scratch/amendment/plugins-before.txt",
+      "scratch/amendment/naming-before.txt",
+      ".opencode/skills/sk-git/SKILL.md",
+      "scratch/amendment/provision-rerun.txt"
     ],
     "entities": [
       {
@@ -81,9 +85,33 @@
         "source": "derived"
       },
       {
+        "name": "provision-first.txt",
+        "kind": "file",
+        "path": "scratch/amendment/provision-first.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugins-before.txt",
+        "kind": "file",
+        "path": "scratch/amendment/plugins-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "naming-before.txt",
+        "kind": "file",
+        "path": "scratch/amendment/naming-before.txt",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "provision-rerun.txt",
+        "kind": "file",
+        "path": "scratch/amendment/provision-rerun.txt",
         "source": "derived"
       },
       {
@@ -153,45 +181,21 @@
         "source": "derived"
       },
       {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria Every",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Creating a worktree provisions its dependencies, because an unprovisioned one fails checks in ways that read as broken code.",
     "created_at": "2026-09-11T19:05:02.173Z",
-    "last_save_at": "2026-10-07T15:56:49.131Z",
+    "last_save_at": "2026-10-19T12:41:39.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8edd2f37d44f4438af1e859bebdc17ccd99009079f4789d894acb39374ad290",
+    "source_fingerprint": "sha256:aa26bbaa70804f9002a5180361625834eb1e30680e2d0880a2471ed528122b1e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "09dfe379319ed9f305d77dfce791d221b6fb5badd56f6f698aabc6dd851a6ed0",
       "plan.md": "36e31e96be6d7d79dd11dedc58438eb2c73c5c83e323907f1a247fa45be4dc1a",
-      "tasks.md": "e117c7e4596f78f4139845a969d44a98ca8906155db4e98252edaf5641492e63",
-      "implementation-summary.md": "8cd5d3733ff94eb35ff181311b247b622ef5309691f66f9af0cfbe3a87ffce07"
+      "tasks.md": "be60e27a44522fc5f95895f8c1fd61a4754b335daee57c52cc0249310ea1bcad",
+      "implementation-summary.md": "88749f6989c87d46262b346e7685ce11a12d2c4dd2588cfd16f72d3401f3e863"
     },
     "last_active_child_id": null,
     "last_active_at": null

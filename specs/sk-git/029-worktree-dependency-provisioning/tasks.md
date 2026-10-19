@@ -63,6 +63,9 @@ _memory:
 - [x] T7 Worktree 051 created via `create`; advisor runtime built (dist produced) and CLI answered 9 commands, no manual install.
 - [x] T8 Re-run reports `0 installed, 9 already present, 0 failed`, exit 0.
 - [x] T9 Worktree and branch `worktrees/051-provision-smoke` removed.
+- [x] T10 Amendment: `.opencode/` gained its own tracked `package.json` in commit e84663a8c5 (2026-09-18), after this packet closed, and the list never named it. A fresh worktree's plugin suite passed 80 of 356, failing with "Cannot find package 'zod'". The list now has a `.opencode` entry, and the `.skilled` entry's comment no longer says plugin tests import from it.
+- [x] T11 `provision` on worktree 147 installed `.opencode` (`ci`) and reported 1 installed, 9 already present, 0 failed, exit 0 (`scratch/amendment/provision-first.txt`, rerun after removing the install so the output was kept). A re-run reported 0 installed, 10 already present, exit 0 (`scratch/amendment/provision-rerun.txt`).
+- [x] T12 Plugin suite after: 355 of 356. The one failure is `sk-vision exports and registers v2 hooks`, which imports sk-vision's bun-built bundle, a separate gap recorded under Known Limitations. `worktree-naming.test.sh`: 88 pass, 0 fail, before and after.
 <!-- /ANCHOR:phase-3 -->
 
 ---
