@@ -1,5 +1,5 @@
 {
-  "manifestHash": "899dd66f07806bf490ba03a8d54542ed6cb5d364ef4620f6d9ed3f4c9bf9175c",
+  "manifestHash": "be73d4a77e52cf1ec2ab5538165d66486c299e252e8555fd0f1027d20e9986d9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7942,6 +7942,9 @@
     ],
     "adapter rss benchmark": [
       "adapter rss benchmark"
+    ],
+    "adapter suite runner ci gap": [
+      "adapter suite runner ci gap"
     ],
     "adapter thin transport completion": [
       "adapter thin transport completion"
@@ -20423,6 +20426,9 @@
     ],
     "cli opencode dual dispatch tasks": [
       "cli opencode dual dispatch tasks"
+    ],
+    "cli opencode flag drift": [
+      "cli-opencode flag drift"
     ],
     "cli opencode frontmatter alignment": [
       "cli-opencode frontmatter alignment"
@@ -36532,6 +36538,9 @@
     "discovery terms": [
       "discovery terms"
     ],
+    "disk derived plugin inventory": [
+      "disk derived plugin inventory"
+    ],
     "dispatch adapter test repair": [
       "dispatch adapter test repair"
     ],
@@ -38496,6 +38505,9 @@
     "doctor update yaml superseded": [
       "doctor-update yaml superseded"
     ],
+    "doctor version battery claims": [
+      "doctor version battery claims"
+    ],
     "doctor vs code mcp wiring false warning": [
       "doctor VS Code MCP wiring false warning"
     ],
@@ -39113,6 +39125,9 @@
     ],
     "dual compare migration decision": [
       "dual-compare migration decision"
+    ],
+    "dual compat drift research": [
+      "dual compat drift research"
     ],
     "dual executor deep research": [
       "dual executor deep research"
@@ -67765,8 +67780,14 @@
     "opencode dual compat review findings": [
       "opencode dual compat review findings"
     ],
+    "opencode dual version ci result": [
+      "opencode dual-version ci result"
+    ],
     "opencode dual version dispatch": [
       "OpenCode Dual-Version Dispatch"
+    ],
+    "opencode dual version remediation list": [
+      "opencode dual version remediation list"
     ],
     "opencode examples model routes": [
       "opencode examples model routes"
@@ -73175,12 +73196,18 @@
     "pi fast mode subagent goal": [
       "pi fast mode subagent goal"
     ],
+    "pi fast mode trusted project": [
+      "pi fast mode trusted project"
+    ],
     "pi fast mode w subagent support": [
       "pi-fast-mode-w-subagent-support",
       "pi_fast_mode_w_subagent_support"
     ],
     "pi fast mode w subagent support contract": [
       "pi_fast_mode_w_subagent_support contract"
+    ],
+    "pi fast mode zero flag": [
+      "pi fast mode zero flag"
     ],
     "pi first jev transport": [
       "pi-first jev transport"
@@ -74847,6 +74874,15 @@
     "post may embedder survey tasks": [
       "post may embedder survey tasks"
     ],
+    "post merge deep research": [
+      "post merge deep research"
+    ],
+    "post merge deep research research": [
+      "post merge deep research research"
+    ],
+    "post merge deep research strategy": [
+      "post merge deep research strategy"
+    ],
     "post merge deep review": [
       "post merge deep review"
     ],
@@ -74859,11 +74895,44 @@
     "post merge deep review tasks": [
       "post merge deep review tasks"
     ],
+    "post merge dual compat research": [
+      "post-merge dual compat research"
+    ],
     "post merge hook": [
       "post-merge hook"
     ],
     "post merge post rewrite missing": [
       "post-merge post-rewrite missing"
+    ],
+    "post merge research cli opencode ci research": [
+      "post merge research cli opencode ci research"
+    ],
+    "post merge research cli opencode doctor and ci": [
+      "post merge research cli-opencode, doctor and ci"
+    ],
+    "post merge research conformance research": [
+      "post merge research conformance research"
+    ],
+    "post merge research provisioning and suites": [
+      "post merge research provisioning and suites"
+    ],
+    "post merge research provisioning research": [
+      "post merge research provisioning research"
+    ],
+    "post merge research sk code skilled and sk doc conformance": [
+      "post merge research sk-code-skilled and sk-doc conformance"
+    ],
+    "post merge research sk vision opencode 2 runtime": [
+      "post merge research sk-vision opencode 2 runtime"
+    ],
+    "post merge research sk vision research": [
+      "post merge research sk vision research"
+    ],
+    "post merge sk code conformance": [
+      "post-merge sk-code conformance"
+    ],
+    "post merge sk doc conformance": [
+      "post-merge sk-doc conformance"
     ],
     "post migration documentation drift": [
       "post-migration documentation drift"
@@ -94523,6 +94592,9 @@
     "sk vision gpu smoke": [
       "sk-vision gpu smoke"
     ],
+    "sk vision grace downgrade": [
+      "sk-vision grace downgrade"
+    ],
     "sk vision graph metadata": [
       "sk-vision graph-metadata"
     ],
@@ -94675,6 +94747,9 @@
     ],
     "sk vision ocr task guard": [
       "sk-vision ocr task guard"
+    ],
+    "sk vision opencode 2 runtime bugs": [
+      "sk-vision opencode 2 runtime bugs"
     ],
     "sk vision opencode adapter": [
       "sk-vision opencode adapter"
@@ -94852,6 +94927,9 @@
     ],
     "sk vision status": [
       "sk_vision_status"
+    ],
+    "sk vision teardown leak": [
+      "sk-vision teardown leak"
     ],
     "sk vision testing playbook": [
       "sk-vision testing playbook"
@@ -107320,6 +107398,9 @@
     "unmeasured requests live": [
       "unmeasured requests live"
     ],
+    "unmounted sk doc frontmatter tests": [
+      "unmounted sk-doc frontmatter tests"
+    ],
     "unnecessary loops": [
       "unnecessary loops"
     ],
@@ -111127,6 +111208,9 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
+    "worktree provision paths missing packages": [
+      "worktree provision paths missing packages"
+    ],
     "worktree provision shared link acceptance criteria": [
       "worktree provision shared link acceptance criteria"
     ],
@@ -111144,6 +111228,9 @@
     ],
     "worktree provisioning": [
       "worktree provisioning"
+    ],
+    "worktree provisioning drift": [
+      "worktree provisioning drift"
     ],
     "worktree provisioning plan": [
       "worktree provisioning plan"
