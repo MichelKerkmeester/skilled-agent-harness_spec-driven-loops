@@ -66,25 +66,17 @@ jobs:
         with:
           node-version: '22'
 
-      # The plugins resolve their packages through this workspace, so it is
-      # installed before anything imports a plugin.
-      - name: Install the plugin workspace
-        run: npm --prefix .opencode ci
-
-      # The plugin folder symlinks sk-vision's bundle, which is a build artifact
-      # and is not committed, so a pinned bun builds it before the battery
-      # imports the plugins.
-      - name: Build the sk-vision bundle the plugin symlink points at
+      # The plugins import the plugin workspace, the spec-kit shared package and
+      # compiled runtimes that are not committed, so the repository's own
+      # worktree provisioning installs and builds every tree it lists.
+      - name: Provision the dependency trees the plugins import
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # The package's build script calls bun by name, so the pinned bun goes on PATH.
+          # Packages that ship a bun.lock install and build with bun by name.
           export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          (
-            cd .skilled/skills/sk-vision/vision-runtime
-            "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile
-            "$RUNNER_TEMP/bun/node_modules/.bin/bun" run build
-          )
+          source .skilled/skills/sk-git/scripts/worktree-naming.sh
+          provision_worktree "$GITHUB_WORKSPACE"
 
       # Both packages claim the `opencode` name, so each family owns its prefix
       # and the battery reaches the binary by its full path.
@@ -135,20 +127,14 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install the plugin workspace
-        run: npm --prefix .opencode ci
-
-      - name: Build the sk-vision bundle the plugin symlink points at
+      - name: Provision the dependency trees the plugins import
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # The package's build script calls bun by name, so the pinned bun goes on PATH.
+          # Packages that ship a bun.lock install and build with bun by name.
           export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
-          (
-            cd .skilled/skills/sk-vision/vision-runtime
-            "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile
-            "$RUNNER_TEMP/bun/node_modules/.bin/bun" run build
-          )
+          source .skilled/skills/sk-git/scripts/worktree-naming.sh
+          provision_worktree "$GITHUB_WORKSPACE"
 
       - name: Install both versions into their own prefixes
         run: |
