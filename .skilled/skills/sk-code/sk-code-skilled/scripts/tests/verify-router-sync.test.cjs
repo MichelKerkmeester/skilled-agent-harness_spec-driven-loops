@@ -147,8 +147,21 @@ test('leg 1b routes nothing from a skill that declares its router twice', (t) =>
   assert.match(out, /orphan \(routable doc no router names\): shared\/references\/router-side\.md/);
 });
 
+// Leg 2 reads the surface inventory from the registry and the hub router's surface entries, so a
+// fixture declares both beside the packets it creates.
+function writeSurfaceRouting(hub, surfaces) {
+  write(path.join(hub, 'mode-registry.json'), JSON.stringify({
+    modes: surfaces.map((surface) => ({ workflowMode: surface, packetKind: 'surface', packet: surface })),
+  }));
+  write(path.join(hub, 'hub-router.json'), JSON.stringify({
+    routerPolicy: { tieBreak: surfaces },
+    routerSignals: Object.fromEntries(surfaces.map((surface) => [surface, { weight: 4, classes: [] }])),
+  }));
+}
+
 // Leg 2 reads the hub-level shared controls from the ROUTER.md list and preamble, so this hub gets
-// a parent map, its surface child and a manifest that names one workflow mode leaf.
+// a parent map, its surface child, that child's hub-router entries and a manifest that names one
+// workflow mode leaf.
 function buildLegTwoHub(t, controls, defaults = []) {
   const { hub, guard } = buildHub(t);
   const parentMap = [
@@ -163,6 +176,7 @@ function buildLegTwoHub(t, controls, defaults = []) {
     write(path.join(hub, surface, 'SKILL.md'), `RESOURCE_MAP = {\n  "DEMO": ["references/${doc}"],\n}\n`);
     write(path.join(hub, surface, 'references', doc), `# ${doc}\n`);
   }
+  writeSurfaceRouting(hub, ['sk-code-skilled']);
   const manifest = { modes: [{ workflowMode: 'sk-code-review', packet: 'sk-code-review', leaves: ['assets/leaf.md'] }] };
   write(path.join(hub, 'leaf-manifest.json'), JSON.stringify(manifest));
   return guard;
@@ -191,9 +205,35 @@ test('leg 2 passes when an example surface packet is not on disk', (t) => {
   write(path.join(hub, 'sk-code-skilled', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/o.md"],\n}\n');
   write(path.join(hub, 'sk-code-skilled', 'references', 'o.md'), '# o.md\n');
   write(path.join(hub, 'leaf-manifest.json'), JSON.stringify({ modes: [] }));
+  writeSurfaceRouting(hub, ['sk-code-skilled']);
   const { status, out } = runGuard(guard, ['--checks', '2']);
   assert.equal(status, 0, out);
   assert.match(out, /PASS check 2/);
+});
+
+test('leg 2 reports a registry surface whose path the hub union omits', (t) => {
+  const { hub, guard } = buildHub(t);
+  writeSurfaceRouting(hub, ['sk-code-demo', 'sk-code-extra']);
+  const router = [
+    'DEFAULT_RESOURCE = [',
+    ']',
+    'RESOURCE_MAP = {',
+    '  "DEMO": ["sk-code-demo/references/routed.md", "shared/references/control.md"],',
+    '}',
+    'SHARED_CONTROL_RESOURCES = [',
+    '    "shared/references/control.md",',
+    ']',
+    '',
+  ].join('\n');
+  write(path.join(hub, 'ROUTER.md'), router);
+  write(path.join(hub, 'shared', 'references', 'control.md'), '# control\n');
+  write(path.join(hub, 'sk-code-extra', 'SKILL.md'), 'RESOURCE_MAP = {\n  "DEMO": ["references/extra.md"],\n}\n');
+  write(path.join(hub, 'sk-code-extra', 'references', 'extra.md'), '# extra\n');
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /FAIL check 2/);
+  assert.match(out, /parent map DEMO is missing child path sk-code-extra\/references\/extra\.md/);
+  assert.doesNotMatch(out, /sk-code-demo\/references\/routed\.md/);
 });
 
 test('leg 3 skips archived gold for a mode the manifest no longer declares', (t) => {

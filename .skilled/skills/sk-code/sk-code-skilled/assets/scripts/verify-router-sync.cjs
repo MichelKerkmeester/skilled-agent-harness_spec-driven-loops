@@ -32,10 +32,18 @@ const NON_ROUTED_ALLOWLIST = new Set([
   'shared/references/workflow-debug.md',
   'shared/references/workflow-verify.md',
 ]);
-// A hub may ship without an example surface, so each list keeps only the packets present on disk.
+// The registry is the surface inventory, and a hub may ship without an example surface, so only
+// registered packets present on disk count.
 const onDisk = (packet) => fs.existsSync(path.join(SKCODE, packet));
-const SURFACES = ['sk-code-ci', 'sk-code-frontend', 'sk-code-skilled'].filter(onDisk);
-const SURFACE_PACKETS = new Set([...SURFACES]);
+function registeredSurfaces() {
+  const file = path.join(SKCODE, 'mode-registry.json');
+  if (!fs.existsSync(file)) return [];
+  const modes = JSON.parse(fs.readFileSync(file, 'utf8')).modes || [];
+  return modes.filter((m) => m && m.packetKind === 'surface' && typeof m.packet === 'string' && onDisk(m.packet));
+}
+const SURFACE_MODES = registeredSurfaces();
+const SURFACES = SURFACE_MODES.map((m) => m.packet);
+const SURFACE_PACKETS = new Set(SURFACES);
 // The hub-level shared controls are declared once in ROUTER.md: its SHARED_CONTROL_RESOURCES
 // list plus its DEFAULT_RESOURCE preamble, and leg 2 reads both. A parent-map path under a
 // workflow mode packet is that packet's own leaf in leaf-manifest.json, not a shared control.
@@ -58,6 +66,31 @@ function sharedControlResources() {
     if (m) for (const x of m[1].matchAll(/["']([^"']+)["']/g)) out.add(x[1]);
   }
   return out;
+}
+
+// A registered surface needs both a tie-break position and a signal entry in hub-router.json, or
+// the hub cannot reach it. Those fields stay authored; the guard only checks that they are present.
+function surfaceSignalProblems(problems) {
+  const file = path.join(SKCODE, 'hub-router.json');
+  let hub = null;
+  if (fs.existsSync(file)) {
+    try {
+      hub = JSON.parse(fs.readFileSync(file, 'utf8'));
+    } catch {
+      problems.push('hub-router.json is not valid JSON');
+    }
+  }
+  const tieBreak = hub && hub.routerPolicy && Array.isArray(hub.routerPolicy.tieBreak) ? hub.routerPolicy.tieBreak : [];
+  const signals = hub && hub.routerSignals && typeof hub.routerSignals === 'object' ? hub.routerSignals : {};
+  for (const mode of SURFACE_MODES) {
+    const key = mode.workflowMode;
+    if (!key) {
+      problems.push(`surface packet ${mode.packet} has no workflowMode in mode-registry.json`);
+      continue;
+    }
+    if (!tieBreak.includes(key)) problems.push(`surface ${key} has no hub-router.json tieBreak position`);
+    if (!Object.prototype.hasOwnProperty.call(signals, key)) problems.push(`surface ${key} has no hub-router.json routerSignals entry`);
+  }
 }
 
 function manifestLeavesByPacket() {
@@ -196,6 +229,7 @@ function legOrphans() {
 // Leg 2: the parent surface RESOURCE_MAP equals the union of the surface children plus the parent tier.
 function legSurfaceMap() {
   const problems = [];
+  surfaceSignalProblems(problems);
   const sharedControls = sharedControlResources();
   if (sharedControls.size === 0) {
     problems.push('ROUTER.md declares no SHARED_CONTROL_RESOURCES, so the parent-tier check would be vacuous');
