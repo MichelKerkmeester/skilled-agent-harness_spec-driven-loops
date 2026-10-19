@@ -21,7 +21,7 @@ suite is green but whether a behaviour could change without a case failing.
    covered by the case that names it.** `codex/stop-arm.mjs` re-exports the core function as
    `findCodexPid` (`[SOURCE: .skilled/hooks/session-relaunch/codex/stop-arm.mjs:143]`) and
    `hermes/session-end-arm.mjs` re-exports it as `findHermesPid`
-   (`[SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:140]`). The two adapter
+   (`[SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:125]`). The two adapter
    tests then call those aliases with a synthetic table and the same numbers
    (`[SOURCE: .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs:504]`,
    `[SOURCE: .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:292]`), which is what

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/011-post-fix-remediation",
+  "spec_folder": "hooks/023-session-relaunch-loop/011-post-fix-remediation",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post fix remediation",
+      "phase 11 post fix remediation",
+      "session relaunch stale re-arm fix",
+      "post fix remediation plan",
+      "post fix remediation tasks",
+      "post fix remediation acceptance criteria",
+      "post fix remediation goal",
+      "post fix remediation implementation summary"
+    ],
+    "key_topics": [
+      "post",
+      "remediation",
+      "phase",
+      "session",
+      "relaunch",
+      "stale",
+      "re-arm",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".opencode/plugins/session-relaunch.js",
+      "tests/README.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/tests/README.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A re-arm of an armed record kept its first `armedAt`, so after a killer died and the session idled past ten minutes, the wrapper printed the manual command instead of relaunching",
+    "created_at": "2026-10-19T19:56:36Z",
+    "last_save_at": "2026-10-19T20:29:28.253Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5fa16579fbfceb9808ef701b51153ac566356ac95417f95dfa57620a84081af5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "498acf03b61b7eb9ff76c534cc2e66a9bf6fd258046d492630a5c73adb158108",
+      "plan.md": "cbdfa9e3207532f9370767673ff6deb3ad25314c07a061b4dddacc54a589b609",
+      "tasks.md": "9227c70607014ed009215d7a9a756326671b59cbedf448e71fc3b7e9e61f3951",
+      "implementation-summary.md": "10fc28b9e8122bcaddabfa8987c411cf400a5ef574e6df0f0cce3cef0d3143c9"
+    },
+    "last_active_at": null
+  }
+}

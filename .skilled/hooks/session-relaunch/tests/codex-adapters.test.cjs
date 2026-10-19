@@ -497,12 +497,44 @@ test('Stop leaves the record pending when no ancestor matches the loop', async (
   assert.match(fs.readFileSync(logPath, 'utf8'), /stop-arm-error stage=target-pid/);
 });
 
-test('Stop target lookup selects the ancestor directly below the loop', async () => {
-  const module = await import(pathToFileURL(STOP_ARM_PATH).href);
+test('Stop signals the loop child it finds above a transient shell, and arms nothing without one', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '100';
+  const { recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
+  const spawns = [];
+  const spawnKiller = (command, args, options) => {
+    spawns.push({ command, args, options });
+    return { unref() {} };
+  };
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeRollout(sandbox, 10),
+  };
+
   // Hook pid 41 sits below a transient bash 50, codex 60, then the loop 100.
-  const table = '41 50\n50 60\n60 100\n100 1\n';
-  assert.equal(module.findCodexPid('100', { pid: 41, processTable: table }), 60);
-  assert.equal(module.findCodexPid('999', { pid: 41, processTable: table }), null);
+  const armed = await armPendingRecord(payload, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 50\n50 60\n60 100\n100 1\n',
+    spawn: spawnKiller,
+  });
+  assert.equal(armed.status, 'armed');
+  assert.equal(spawns.length, 1);
+  assert.equal(spawns[0].args[spawns[0].args.indexOf('--target-pid') + 1], '60');
+
+  const { record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const unmatched = await armPendingRecord(payload, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 50\n50 1\n',
+    spawn: spawnKiller,
+  });
+  assert.equal(unmatched, null);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  assert.equal(spawns.length, 1);
 });
 
 test('Stop arms only a payload that names the Stop event', async (t) => {

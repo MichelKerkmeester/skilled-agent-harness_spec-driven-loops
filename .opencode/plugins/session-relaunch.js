@@ -274,18 +274,13 @@ function sessionRelaunchPlugin(ctx = {}) {
           const loopId = process.env.SKILLED_LOOP_ID;
           if (!loopId) return;
           const record = core.readRelaunchFile(loopId, process.env);
-          if (
-            record === null
-            || record.sessionId !== sessionID
-            || record.runtime !== 'opencode'
-          ) return;
-          // Pending arms here; an armed record belongs to a killer, so it
-          // respawns only when no live killer owns the lock.
-          if (
-            record.status !== 'pending'
-            && (record.status !== 'armed'
-              || core.liveKillerPid(loopId, process.env) !== null)
-          ) return;
+          const verdict = core.armableRecord(record, {
+            loopId,
+            sessionId: sessionID,
+            runtime: 'opencode',
+            env: process.env,
+          });
+          if (!verdict.armable) return;
 
           const directory = typeof ctx.directory === 'string'
             ? ctx.directory

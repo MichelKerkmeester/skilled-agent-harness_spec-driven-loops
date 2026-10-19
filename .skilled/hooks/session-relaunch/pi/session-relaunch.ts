@@ -33,9 +33,17 @@ type CoreModule = {
     cwd: string;
     env: NodeJS.ProcessEnv;
   }): RelaunchRecord | null;
+  armableRecord(
+    record: RelaunchRecord | null,
+    options: { loopId: string; sessionId: string; runtime: string; env: NodeJS.ProcessEnv },
+  ): { armable: boolean; reason: string };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
-  liveKillerPid(loopId: string, env: NodeJS.ProcessEnv): number | null;
 };
+
+// CoreModule is a hand-written view of a CommonJS module no compiler checks it against,
+// so each function it names is checked once at load: a renamed or missing export then
+// fails the load instead of the first arm, which would otherwise fail in silence.
+const CORE_FUNCTIONS = ['appendLog', 'arm', 'armableRecord', 'readRelaunchFile'] as const;
 
 type ContextUsageModule = {
   fillFromPiUsage(usage: unknown): number;
@@ -106,14 +114,26 @@ function asModule<T>(value: unknown): T {
 // path, not the `.pi/extensions/` base this file is typechecked through. The
 // `as string` assertion keeps the typechecker from resolving a missing path
 // while transpilers still emit the literal specifier for the module loader.
+function checkedCore(core: CoreModule): CoreModule {
+  const exports = core as unknown as Record<string, unknown>;
+  for (const name of CORE_FUNCTIONS) {
+    if (typeof exports[name] !== 'function') {
+      throw new Error(`session-relaunch core does not export ${name} as a function`);
+    }
+  }
+  return core;
+}
+
 async function loadCore(): Promise<CoreModule> {
+  let core: CoreModule;
   try {
-    return asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
+    core = asModule<CoreModule>(await import('../lib/relaunch-core.cjs' as string));
   } catch {
-    return asModule<CoreModule>(
+    core = asModule<CoreModule>(
       await import('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs'),
     );
   }
+  return checkedCore(core);
 }
 
 async function loadContextUsage(): Promise<ContextUsageModule> {
@@ -256,7 +276,7 @@ async function spawnKiller(
 }
 
 // Pending arms here; an armed record belongs to a killer, so it respawns only
-// when no live killer owns the lock.
+// when no live killer owns the lock. The core's verdict decides both.
 async function armRelaunch(
   modules: AdapterModules,
   ctx: ExtensionContext,
@@ -266,16 +286,13 @@ async function armRelaunch(
   if (!loopId) return;
 
   const record = modules.core.readRelaunchFile(loopId, process.env);
-  if (
-    record === null
-    || record.sessionId !== sessionId
-    || record.runtime !== 'pi'
-  ) return;
-  if (
-    record.status !== 'pending'
-    && (record.status !== 'armed'
-      || modules.core.liveKillerPid(loopId, process.env) !== null)
-  ) return;
+  const verdict = modules.core.armableRecord(record, {
+    loopId,
+    sessionId,
+    runtime: 'pi',
+    env: process.env,
+  });
+  if (!verdict.armable) return;
 
   const armed = modules.core.arm({ loopId, cwd: ctx.cwd, env: process.env });
   if (armed?.status !== 'armed') return;

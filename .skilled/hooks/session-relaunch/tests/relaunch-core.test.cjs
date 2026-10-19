@@ -466,7 +466,7 @@ test('preparePending writes the exact pending record shape', (t) => {
   );
 });
 
-test('arm changes pending to armed, records the live cwd, and is idempotent', (t) => {
+test('arm changes pending to armed, records the live cwd, and a re-arm restamps both', (t) => {
   const sandbox = createSandbox(t);
   writeRelaunchRecord(sandbox, {
     version: 1,
@@ -485,13 +485,41 @@ test('arm changes pending to armed, records the live cwd, and is idempotent', (t
   assert.equal(armed.status, 'armed');
   assert.equal(armed.armedAt, NOW.toISOString());
   assert.equal(armed.cwd, liveCwd);
-  const repeated = arm({
+  // A re-arm only reaches an armed record once its killer is gone, so the age the
+  // wrapper checks restarts with the killer that replaces it, from the live cwd.
+  const later = new Date(NOW.getTime() + 5000);
+  const repeated = arm({ loopId: LOOP_ID, cwd: '/tmp/later-cwd', env: sandbox.env, now: later });
+  assert.deepEqual(repeated, { ...armed, armedAt: later.toISOString(), cwd: '/tmp/later-cwd' });
+  assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), repeated);
+});
+
+test('a re-arm makes an armed record older than the age limit relaunchable again', (t) => {
+  const sandbox = createSandbox(t);
+  writeRelaunchRecord(sandbox, {
+    version: 1,
+    status: 'pending',
     loopId: LOOP_ID,
-    cwd: '/tmp/ignored-cwd',
-    env: sandbox.env,
-    now: new Date(NOW.getTime() + 5000),
+    handoff: '/tmp/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'claude',
+    name: null,
+    cwd: '/tmp/old-cwd',
+    hops: 0,
+    preparedAt: NOW.toISOString(),
   });
-  assert.deepEqual(repeated, armed);
+  const firstArm = new Date(NOW.getTime() - 20 * 60 * 1000);
+  arm({ loopId: LOOP_ID, cwd: '/tmp/old-cwd', env: sandbox.env, now: firstArm });
+  assert.deepEqual(
+    shouldRelaunch(readRelaunchFile(LOOP_ID, sandbox.env), { now: NOW.getTime(), maxAgeMin: 10 }),
+    { relaunch: false, reason: 'stale' },
+  );
+
+  arm({ loopId: LOOP_ID, cwd: '/tmp/live-cwd', env: sandbox.env, now: NOW });
+
+  assert.deepEqual(
+    shouldRelaunch(readRelaunchFile(LOOP_ID, sandbox.env), { now: NOW.getTime(), maxAgeMin: 10 }),
+    { relaunch: true },
+  );
 });
 
 test('arm returns null when no pending record exists', (t) => {
@@ -972,6 +1000,7 @@ test('readProcessTable bounds the ps spawn with a timeout', (t) => {
       && calls[0].options.timeout <= 5000,
     `ps read must carry a bounded timeout, got ${calls[0].options.timeout}`,
   );
+  assert.equal(calls[0].options.timeout, boundedCore.PROCESS_TABLE_TIMEOUT_MS);
 });
 
 test('liveKillerPid returns a live lock owner and null otherwise', async (t) => {
@@ -1177,4 +1206,171 @@ test('resolveKillerTarget keeps a preferred pid inside the loop and otherwise wa
   assert.equal(resolveKillerTarget('100', { pid: 41, processTable: table }), 60);
   assert.equal(resolveKillerTarget('999', { preferredPid: '60', pid: 41, processTable: table }), null);
   assert.equal(resolveKillerTarget('loop-id', { pid: 41, processTable: table }), null);
+});
+
+test('armableRecord gives every arm path one verdict, ownership before state', (t) => {
+  const sandbox = createSandbox(t);
+  const { armableRecord } = relaunchCore;
+  const mine = { loopId: LOOP_ID, sessionId: SESSION_ID, runtime: 'codex', status: 'pending' };
+  const caller = { loopId: LOOP_ID, sessionId: SESSION_ID, runtime: 'codex', env: sandbox.env };
+  const refused = (reason) => ({ armable: false, reason });
+
+  assert.deepEqual(armableRecord(mine, caller), { armable: true, reason: 'pending' });
+  assert.deepEqual(armableRecord(null, caller), refused('no-record'));
+  assert.deepEqual(armableRecord({ ...mine, loopId: 'loop-other' }, caller), refused('other-loop'));
+  assert.deepEqual(armableRecord({ ...mine, sessionId: 'other' }, caller), refused('other-session'));
+  // A missing session on both sides is no match, so an unnamed payload never arms.
+  assert.deepEqual(
+    armableRecord({ ...mine, sessionId: undefined }, { ...caller, sessionId: undefined }),
+    refused('other-session'),
+  );
+  assert.deepEqual(armableRecord({ ...mine, runtime: 'claude' }, caller), refused('other-runtime'));
+  // A caller that names no runtime takes any; a record without one was prepared for Claude.
+  assert.deepEqual(
+    armableRecord({ ...mine, runtime: 'hermes' }, { ...caller, runtime: undefined }),
+    { armable: true, reason: 'pending' },
+  );
+  const unnamed = { ...mine };
+  delete unnamed.runtime;
+  assert.deepEqual(armableRecord(unnamed, { ...caller, runtime: 'claude' }), { armable: true, reason: 'pending' });
+  assert.deepEqual(armableRecord(unnamed, caller), refused('other-runtime'));
+  for (const status of ['disarmed', 'claimed', 'done', undefined]) {
+    assert.deepEqual(armableRecord({ ...mine, status }, caller), refused('not-armable'));
+  }
+
+  const armedRecord = { ...mine, status: 'armed' };
+  assert.deepEqual(armableRecord(armedRecord, caller), { armable: true, reason: 'killer-gone' });
+  ensureStateDir(sandbox.env);
+  fs.writeFileSync(
+    path.join(stateDir(sandbox.env), `killer-${LOOP_ID}.lock`),
+    `${process.pid} ${new Date().toISOString()}\n`,
+  );
+  assert.deepEqual(armableRecord(armedRecord, caller), refused('killer-live'));
+});
+
+test('the core owns the handoff sections and the runtime list as frozen exports', () => {
+  assert.deepEqual(relaunchCore.HANDOFF_SECTIONS, ['Goal', 'Done', 'Remaining work', 'In-flight state']);
+  assert.equal(Object.isFrozen(relaunchCore.HANDOFF_SECTIONS), true);
+  assert.deepEqual(
+    relaunchCore.RUNTIMES,
+    ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin'],
+  );
+  assert.equal(Object.isFrozen(relaunchCore.RUNTIMES), true);
+});
+
+test('readProcessTable asks for the command column on request and honors a shorter bound', (t) => {
+  const sandbox = createSandbox(t);
+  const binDir = path.join(sandbox.root, 'bin');
+  fs.mkdirSync(binDir, { recursive: true });
+  fs.writeFileSync(path.join(binDir, 'ps'), [
+    '#!/bin/sh',
+    'if [ -n "$PS_TEST_SLEEP" ]; then exec sleep "$PS_TEST_SLEEP"; fi',
+    'printf "%s\\n" "$*"',
+    '',
+  ].join('\n'), { mode: 0o755 });
+  const originalPath = process.env.PATH;
+  process.env.PATH = [binDir, originalPath || ''].join(path.delimiter);
+  t.after(() => {
+    process.env.PATH = originalPath;
+    delete process.env.PS_TEST_SLEEP;
+  });
+
+  assert.equal(readProcessTable(), '-A -o pid=,ppid=\n');
+  assert.equal(readProcessTable({ withCommand: true }), '-A -o pid=,ppid=,comm=\n');
+
+  process.env.PS_TEST_SLEEP = '1';
+  const startedAt = Date.now();
+  assert.equal(readProcessTable({ timeoutMs: 100 }), null);
+  assert.ok(Date.now() - startedAt < 900, 'the caller bound must replace the default one');
+  assert.throws(
+    () => readProcessTable({ timeoutMs: 100, throwOnFailure: true }),
+    /spawnSync ps ETIMEDOUT/,
+  );
+});
+
+test('manualClaimCommand reads the template from the environment it is given', (t) => {
+  const handoffPath = '/tmp/handoff.md';
+  const defaultCommand = 'skilled-loop claude "[session-relaunch] claim and continue handoff '
+    + `${handoffPath}"`;
+  const previousTemplate = process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  t.after(() => {
+    if (previousTemplate === undefined) delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+    else process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
+  });
+  delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  const template = 'skilled-loop claude --model x "[session-relaunch] claim and continue handoff @@HANDOFF@@"';
+
+  assert.equal(
+    manualClaimCommand('claude', handoffPath, '', { SKILLED_LOOP_MANUAL_TEMPLATE: template }),
+    `skilled-loop claude --model x "[session-relaunch] claim and continue handoff ${handoffPath}"`,
+  );
+  process.env.SKILLED_LOOP_MANUAL_TEMPLATE = template;
+  assert.equal(manualClaimCommand('claude', handoffPath, '', {}), defaultCommand);
+});
+
+test('manualTemplateProblem names a template the manual command has to fall back from', () => {
+  const { manualTemplateProblem } = relaunchCore;
+  assert.equal(manualTemplateProblem({}), null);
+  assert.equal(manualTemplateProblem({ SKILLED_LOOP_MANUAL_TEMPLATE: '' }), null);
+  assert.equal(manualTemplateProblem({ SKILLED_LOOP_MANUAL_TEMPLATE: 'run @@HANDOFF@@' }), null);
+  assert.match(
+    manualTemplateProblem({ SKILLED_LOOP_MANUAL_TEMPLATE: 'run plain' }),
+    /holds no @@HANDOFF@@ placeholder/,
+  );
+  assert.match(
+    manualTemplateProblem({ SKILLED_LOOP_MANUAL_TEMPLATE: 'run --name @@HANDOFF@@ "@@HANDOFF@@"' }),
+    /holds 2 @@HANDOFF@@ placeholders/,
+  );
+});
+
+test("payloadEventName applies each runtime's rule for a payload that names no event", () => {
+  const { payloadEventName } = relaunchCore;
+  for (const runtime of ['claude', 'codex', 'hermes']) {
+    assert.equal(payloadEventName({ hook_event_name: 'Stop' }, { runtime, expected: 'Stop' }), 'Stop');
+    assert.equal(payloadEventName({ hook_event_name: 'SessionEnd' }, { runtime, expected: 'Stop' }), null);
+  }
+  // Claude takes any named event and infers an unnamed one from the payload's shape.
+  assert.equal(payloadEventName({ hook_event_name: 'PostToolUse' }, { runtime: 'claude' }), 'PostToolUse');
+  assert.equal(payloadEventName({ prompt: 'hi' }, { runtime: 'claude' }), 'UserPromptSubmit');
+  assert.equal(payloadEventName({ hook_event_name: '', prompt: 'hi' }, { runtime: 'claude' }), 'UserPromptSubmit');
+  assert.equal(payloadEventName({}, { runtime: 'claude' }), 'PostToolUse');
+  // Hermes takes an omitted name as its event, never a present malformed one.
+  const sessionEnd = { runtime: 'hermes', expected: 'on_session_end' };
+  assert.equal(payloadEventName({}, sessionEnd), 'on_session_end');
+  assert.equal(payloadEventName({ hook_event_name: null }, sessionEnd), null);
+  assert.equal(payloadEventName({ hook_event_name: '' }, sessionEnd), null);
+  // Codex refuses a payload that names no event.
+  assert.equal(payloadEventName({}, { runtime: 'codex', expected: 'Stop' }), null);
+  assert.equal(payloadEventName(null, { runtime: 'codex', expected: 'Stop' }), null);
+});
+
+test('isEntrypoint matches a module run directly or through a linked directory, and nothing else', (t) => {
+  const { pathToFileURL } = require('node:url');
+  const sandbox = createSandbox(t);
+  const { isEntrypoint } = relaunchCore;
+  const realDirectory = path.join(sandbox.root, 'real');
+  fs.mkdirSync(realDirectory);
+  const scriptPath = path.join(realDirectory, 'entry.mjs');
+  fs.writeFileSync(scriptPath, '');
+  const linkedDirectory = path.join(sandbox.root, 'linked');
+  fs.symlinkSync(realDirectory, linkedDirectory);
+  // Node hands an ES module its real path, whatever path the process was started with.
+  const moduleUrl = pathToFileURL(fs.realpathSync(scriptPath)).href;
+
+  assert.equal(isEntrypoint(moduleUrl, scriptPath), true);
+  assert.equal(isEntrypoint(moduleUrl, path.join(linkedDirectory, 'entry.mjs')), true);
+  assert.equal(isEntrypoint(moduleUrl, path.join(sandbox.root, 'missing.mjs')), false);
+  assert.equal(isEntrypoint(moduleUrl, undefined), false);
+});
+
+test('shouldRelaunch reads a Date clock the way it reads epoch milliseconds', (t) => {
+  createSandbox(t);
+  const armedAt = NOW.getTime();
+  assert.deepEqual(
+    shouldRelaunch(
+      { status: 'armed', armedAt, hops: 0, handoff: '/repo/note.md', cwd: '/repo' },
+      { now: new Date(armedAt + 60 * 1000), maxHops: 10, maxAgeMin: 10 },
+    ),
+    { relaunch: true },
+  );
 });

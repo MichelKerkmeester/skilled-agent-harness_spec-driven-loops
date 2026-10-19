@@ -6,10 +6,11 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { isEntrypoint } from '../lib/relaunch-core.cjs';
 import { runCodexAdapter } from './shared.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-runCodexAdapter('UserPromptSubmit');
+if (isEntrypoint(import.meta.url)) runCodexAdapter('UserPromptSubmit');

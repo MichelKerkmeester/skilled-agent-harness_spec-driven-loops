@@ -111,6 +111,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 8 | 008-review-3-remediation/ | Fix the fifteen findings of the third deep review: five code fixes with tests, two adapter test gaps and the doc and evidence records that claimed more than they showed. | complete |
 | 9 | 009-research-fixes-and-core-consolidation/ | Fix the verified research findings with a failing-first test each, move the decisions every adapter repeats into the core, add an adapter conformance suite and correct the doc drift. | complete |
 | 10 | 010-post-fix-research/ | Five more research iterations after phase 009, DeepSeek V4.1 Flash max through cli-pi on LLM Gateway, with each finding verified. | complete |
+| 11 | 011-post-fix-remediation/ | Fix all twenty post-fix research findings, the two frontier items and the follow-ups, with failing-first tests and arm conformance cases. | complete |
 
 ### Phase Transition Rules
 
@@ -132,6 +133,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 007-handoff-gate-exemptions | 008-review-3-remediation | phase 007 is Complete and the third deep review has a report with a finding registry | `validate.sh 007-handoff-gate-exemptions --strict` RESULT: PASSED, and `review/review-report.md` exists with verdict and registry |
 | 008-review-3-remediation | 009-research-fixes-and-core-consolidation | phase 008 is Complete and the research run after it has a merged report with a verification table | `validate.sh 008-review-3-remediation --strict` RESULT: PASSED, and `research/research.md` exists with its verified findings |
 | 009-research-fixes-and-core-consolidation | 010-post-fix-research | phase 009 is Complete and merged to main | `validate.sh 009-research-fixes-and-core-consolidation --strict` RESULT: PASSED |
+| 010-post-fix-research | 011-post-fix-remediation | phase 010 is Complete with a verified report | `research/research.md` in 010 gives every finding a verdict |
 <!-- /ANCHOR:phase-map -->
 
 ---

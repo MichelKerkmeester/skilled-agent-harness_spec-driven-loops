@@ -12,6 +12,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
+const { fileURLToPath } = require('node:url');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -23,6 +24,19 @@ const HANDOFF_SECTIONS = Object.freeze(['Goal', 'Done', 'Remaining work', 'In-fl
 const SPEC_FOLDER_PATTERN =
   /^specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
+// The runtimes skilled-loop can launch. The CLI refuses any other, so a runtime the wrapper
+// gains has to be added here or prepare refuses the loops that run it.
+const RUNTIMES = Object.freeze(['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']);
+// preparePending's default, which every reader also assumes for a record without a runtime.
+const DEFAULT_RUNTIME = 'claude';
+// The stop and session-end hooks and the CLI all wait on a process-table read, so a hung
+// `ps` has to fail into each caller's refusal path instead of stalling it.
+const PROCESS_TABLE_TIMEOUT_MS = 2000;
+const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
+// How each hook runtime reads a payload that names no event. Claude infers it from the
+// payload's shape; Hermes takes it as its own event, because its plugin bridge can omit
+// the name; Codex refuses it, because every Codex payload names its event.
+const MISSING_EVENT_POLICIES = Object.freeze({ claude: 'infer', hermes: 'accept', codex: 'refuse' });
 const RUNTIME_SEED_OPTIONS = Object.freeze({
   opencode: '--prompt',
   hermes: 'chat -q',
@@ -97,6 +111,7 @@ function toIsoTimestamp(now) {
 
 function parseTimestamp(value) {
   if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (value instanceof Date) return value.getTime();
   if (typeof value === 'string') return Date.parse(value);
   return Number.NaN;
 }
@@ -315,7 +330,7 @@ function preparePending({
   loopId,
   handoffPath,
   sessionId,
-  runtime = 'claude',
+  runtime = DEFAULT_RUNTIME,
   name = null,
   cwd,
   hops = 0,
@@ -340,7 +355,8 @@ function preparePending({
 }
 
 /**
- * Arm a pending record once the previous runtime has stopped.
+ * Arm a pending record once the previous runtime has stopped, or re-arm an armed one
+ * whose killer has gone, restamping its age and working directory either way.
  *
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
@@ -358,12 +374,45 @@ function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
     throw error;
   }
   if (record === null) return null;
-  if (record.status === 'armed') return record;
-  if (record.status !== 'pending') return null;
+  if (record.status !== 'pending' && record.status !== 'armed') return null;
 
+  // The arm paths reach an armed record only once its killer is gone, and the wrapper
+  // ages a record from armedAt. Keeping the first stamp would leave the replacement
+  // killer guarding a record the wrapper already declines as stale.
   const armed = { ...record, status: 'armed', armedAt: toIsoTimestamp(now), cwd };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(armed)}\n`);
   return armed;
+}
+
+/**
+ * Decide whether an arm path may arm this record for its caller. Every runtime applies
+ * the same order: the record must be this loop's, this session's and this runtime's
+ * before its state counts, and an armed record is re-armed only once no live killer
+ * holds its lock.
+ *
+ * @param {Object|null} record - Record returned by readRelaunchFile.
+ * @param {Object} options - The caller's identity.
+ * @param {string} options.loopId - Loop the caller runs under.
+ * @param {string} options.sessionId - Session the caller reports.
+ * @param {string} [options.runtime] - Runtime the caller arms for; omitted, any runtime matches.
+ * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
+ * @returns {{armable: boolean, reason: string}} The verdict. An armable record reports
+ *   `pending` or `killer-gone`; a refusal reports `no-record`, `other-loop`,
+ *   `other-session`, `other-runtime`, `not-armable` or `killer-live`.
+ */
+function armableRecord(record, { loopId, sessionId, runtime, env = process.env } = {}) {
+  const refuse = (reason) => ({ armable: false, reason });
+  if (!record || typeof record !== 'object') return refuse('no-record');
+  if (record.loopId !== loopId) return refuse('other-loop');
+  if (!nonEmptyString(sessionId) || record.sessionId !== sessionId) return refuse('other-session');
+  if (runtime !== undefined && (record.runtime ?? DEFAULT_RUNTIME) !== runtime) {
+    return refuse('other-runtime');
+  }
+  if (record.status === 'pending') return { armable: true, reason: 'pending' };
+  if (record.status !== 'armed') return refuse('not-armable');
+  return liveKillerPid(loopId, env) === null
+    ? { armable: true, reason: 'killer-gone' }
+    : refuse('killer-live');
 }
 
 /**
@@ -577,9 +626,12 @@ function supersedeClaimed(handoffPath, { sessionId, now } = {}) {
  * @param {string} runtime - Runtime name the wrapper will launch.
  * @param {string} handoffPath - Handoff note path placed inside the quoted seed.
  * @param {string} [specFolder] - Valid packet folder or the answered skip value.
- * @returns {string} The manual claim command line for that runtime's seed form.
+ * @param {NodeJS.ProcessEnv} [env=process.env] - Environment carrying the wrapper's template.
+ * @returns {string} The manual claim command line for that runtime's seed form. A template
+ *   manualTemplateProblem rejects falls back to the plain form, so a caller that prints
+ *   the command asks that function first and says why the options are missing.
  */
-function manualClaimCommand(runtime, handoffPath, specFolder = '') {
+function manualClaimCommand(runtime, handoffPath, specFolder = '', env = process.env) {
   // Interactive Bash expands history inside double quotes, so each bang must sit outside them.
   const escapedPath = handoffPath
     .replace(/[\\"$`]/g, '\\$&')
@@ -592,10 +644,9 @@ function manualClaimCommand(runtime, handoffPath, specFolder = '') {
       + ' (carried from the handoff; Gate 3 answered in the sending session)';
   }
   const handoffSeed = `${escapedPath}${specFolderSuffix}`;
-  const handoffToken = '@@HANDOFF@@';
-  const manualTemplate = process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
-  if (typeof manualTemplate === 'string' && manualTemplate.split(handoffToken).length === 2) {
-    return manualTemplate.replace(handoffToken, () => handoffSeed);
+  const manualTemplate = env?.SKILLED_LOOP_MANUAL_TEMPLATE;
+  if (nonEmptyString(manualTemplate) && manualTemplateProblem(env) === null) {
+    return manualTemplate.replace(MANUAL_TEMPLATE_TOKEN, () => handoffSeed);
   }
   const option = Object.hasOwn(RUNTIME_SEED_OPTIONS, runtime)
     ? RUNTIME_SEED_OPTIONS[runtime]
@@ -603,6 +654,72 @@ function manualClaimCommand(runtime, handoffPath, specFolder = '') {
   const optionPart = option ? ` ${option}` : '';
   const seed = `"[session-relaunch] claim and continue handoff ${handoffSeed}"`;
   return `skilled-loop ${runtime}${optionPart} ${seed}`;
+}
+
+/**
+ * Report why the wrapper's manual-command template cannot be filled. The template repeats
+ * the loop's launch options around one placeholder; with none, or with a second one that
+ * a carried option value introduced, the command falls back to the plain form and those
+ * options are lost, which a caller must say rather than print the plain form silently.
+ *
+ * @param {NodeJS.ProcessEnv} [env=process.env] - Environment carrying the template.
+ * @returns {string|null} The reason, or null when the template is unset or usable.
+ */
+function manualTemplateProblem(env = process.env) {
+  const template = env?.SKILLED_LOOP_MANUAL_TEMPLATE;
+  if (!nonEmptyString(template)) return null;
+  const placeholders = template.split(MANUAL_TEMPLATE_TOKEN).length - 1;
+  if (placeholders === 1) return null;
+  const count = placeholders === 0
+    ? `no ${MANUAL_TEMPLATE_TOKEN} placeholder`
+    : `${placeholders} ${MANUAL_TEMPLATE_TOKEN} placeholders`;
+  return `SKILLED_LOOP_MANUAL_TEMPLATE holds ${count} where the manual command needs exactly one`;
+}
+
+/**
+ * Resolve the event a hook payload is for, under its runtime's rule for a payload that
+ * names none.
+ *
+ * @param {Object|null} payload - Parsed hook payload.
+ * @param {Object} options - Runtime and the event the caller handles.
+ * @param {string} options.runtime - Runtime whose rule applies; one without a rule refuses.
+ * @param {string} [options.expected] - The one event the caller handles; omitted, any event.
+ * @returns {string|null} The event name to handle, or null when the payload is for another event.
+ */
+function payloadEventName(payload, { runtime, expected } = {}) {
+  const matches = (eventName) => (
+    expected === undefined || eventName === expected ? eventName : null
+  );
+  const value = payload?.hook_event_name;
+  if (nonEmptyString(value)) return matches(value);
+  const policy = Object.hasOwn(MISSING_EVENT_POLICIES, runtime)
+    ? MISSING_EVENT_POLICIES[runtime]
+    : 'refuse';
+  if (policy === 'infer') {
+    return matches(typeof payload?.prompt === 'string' ? 'UserPromptSubmit' : 'PostToolUse');
+  }
+  // Only a payload that leaves the field out names no event; a present empty one is malformed.
+  if (policy === 'accept' && payload && value === undefined) return expected ?? null;
+  return null;
+}
+
+/**
+ * Report whether an ES module is the script this process was started with, so a hook
+ * entrypoint acts when run and stays inert when imported. Both paths are compared real,
+ * because a hook started through a linked directory reports the linked path while Node
+ * gives the module its real one.
+ *
+ * @param {string} moduleUrl - The calling module's `import.meta.url`.
+ * @param {string} [scriptPath=process.argv[1]] - Path the process was started with.
+ * @returns {boolean} True when both name the same file.
+ */
+function isEntrypoint(moduleUrl, scriptPath = process.argv[1]) {
+  if (!nonEmptyString(scriptPath)) return false;
+  try {
+    return fs.realpathSync(scriptPath) === fs.realpathSync(fileURLToPath(moduleUrl));
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -760,24 +877,39 @@ function liveKillerPid(loopId, env = process.env) {
 }
 
 /**
- * Snapshot `pid ppid` pairs from the process table.
+ * Snapshot `pid ppid` pairs, or `pid ppid comm` rows, from the process table. Every
+ * reader goes through here so each one waits on the same bound.
  *
- * The read is bounded because the stop and session-end hooks wait on it: a hung
- * `ps` must fail into the null path instead of stalling the hook.
- *
- * @returns {string|null} The table text, or null when `ps` is unavailable or exceeds the bound.
+ * @param {Object} [options] - Columns, bound and failure mode.
+ * @param {boolean} [options.withCommand=false] - Add each process's command name.
+ * @param {number} [options.timeoutMs=PROCESS_TABLE_TIMEOUT_MS] - Longest wait for `ps`.
+ * @param {boolean} [options.throwOnFailure=false] - Throw the reason instead of returning null,
+ *   for a caller that reports why it refused.
+ * @returns {string|null} The table text, or null when `ps` fails or exceeds the bound.
+ * @throws {Error} When the read fails and throwOnFailure is set.
  */
-function readProcessTable() {
+function readProcessTable({
+  withCommand = false,
+  timeoutMs = PROCESS_TABLE_TIMEOUT_MS,
+  throwOnFailure = false,
+} = {}) {
+  let failure;
   try {
-    const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid='], {
+    const result = spawnSync('ps', ['-A', '-o', withCommand ? 'pid=,ppid=,comm=' : 'pid=,ppid='], {
       encoding: 'utf8',
-      timeout: 2000,
+      timeout: timeoutMs,
     });
-    if (result.error || result.status !== 0) return null;
-    return result.stdout;
-  } catch {
-    return null;
+    if (result.error) failure = result.error.message;
+    else if (result.status !== 0) {
+      failure = String(result.stderr || '').trim() || `ps exited ${result.status}`;
+    } else {
+      return result.stdout;
+    }
+  } catch (error) {
+    failure = error.message;
   }
+  if (throwOnFailure) throw new Error(failure);
+  return null;
 }
 
 /**
@@ -853,6 +985,9 @@ function resolveKillerTarget(loopId, { preferredPid, pid = process.pid, processT
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  HANDOFF_SECTIONS,
+  RUNTIMES,
+  PROCESS_TABLE_TIMEOUT_MS,
   validSpecFolder,
   stateDir,
   ensureStateDir,
@@ -862,6 +997,7 @@ module.exports = {
   noteState,
   preparePending,
   arm,
+  armableRecord,
   unarm,
   readRelaunchFile,
   shouldRelaunch,
@@ -869,6 +1005,9 @@ module.exports = {
   completeHandoff,
   supersedeClaimed,
   manualClaimCommand,
+  manualTemplateProblem,
+  payloadEventName,
+  isEntrypoint,
   appendLog,
   readLockState,
   lockOwnerPid,

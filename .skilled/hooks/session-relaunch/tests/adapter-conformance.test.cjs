@@ -9,7 +9,8 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { spawn } = require('node:child_process');
+const childProcess = require('node:child_process');
+const { spawn, spawnSync } = childProcess;
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -27,6 +28,12 @@ const CARRIED = ' (carried from the handoff; Gate 3 answered in the sending sess
 const SEED = `[session-relaunch] claim and continue handoff ${NOTE_PATH}`;
 const WINDOW_TOKENS = 1000;
 const FILL_TOKENS = 900;
+// Arm cases run under a numeric loop, because a target lookup reads the loop id as a pid.
+// The hook pid 41 sits below a transient shell 50 and the runtime 60 that loop 100 started.
+const ARM_LOOP_ID = '100';
+const ARM_HOOK_PID = 41;
+const ARM_PROCESS_TABLE = '41 50\n50 60\n60 100\n100 1\n';
+const STALE_ARM_AGE_MS = 20 * 60 * 1000;
 const ENV_KEYS = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
   'SYSTEM_HOOKS_DISABLED',
@@ -38,6 +45,7 @@ const ENV_KEYS = [
   'SESSION_RELAUNCH_REPO_ROOT',
   'SKILLED_LOOP_ID',
   'SKILLED_LOOP_HOPS',
+  'SKILLED_LOOP_RUNTIME',
   'SYSTEM_SPEC_FOLDER',
   'XDG_RUNTIME_DIR',
   'HOOK_FLAGS_CONFIG',
@@ -123,6 +131,21 @@ async function withProcessEnv(env, callback) {
   }
 }
 
+function recordSpawns(spawns) {
+  return (command, args, options) => {
+    spawns.push({ command, args, options });
+    return { unref() {} };
+  };
+}
+
+function importAdapter(...segments) {
+  return import(pathToFileURL(path.join(HOOK_ROOT, ...segments)).href);
+}
+
+function killerArgument(spawned, flag) {
+  return spawned.args[spawned.args.indexOf(flag) + 1];
+}
+
 async function loadOpenCodePlugin(directory) {
   const url = `${pathToFileURL(OPENCODE_PLUGIN).href}?conformance=${Date.now()}-${Math.random()}`;
   // The default export is the dual OpenCode plugin; `server` is the v1 factory the host calls.
@@ -138,8 +161,9 @@ async function openCodeSystem(hooks) {
   return output.system.join('\n');
 }
 
-// Each driver answers two questions the same way: what a first prompt adds to the
-// model's context, and what a turn at 90% fill adds. An empty string means nothing.
+// Each driver answers three questions the same way: what a first prompt adds to the
+// model's context, what a turn at 90% fill adds, and which killers the stop event starts.
+// An empty string means nothing was added.
 const ADAPTERS = {
   claude: {
     runtime: 'claude',
@@ -160,6 +184,22 @@ const ADAPTERS = {
       },
       root,
     )),
+    killerTarget: '60',
+    arm: async ({ env, root }, { cwd, processTable }) => {
+      const spawns = [];
+      const { armPendingRecord } = await importAdapter('claude', 'stop-arm.mjs');
+      await armPendingRecord(
+        {
+          hook_event_name: 'Stop',
+          session_id: SESSION_ID,
+          cwd,
+          transcript_path: claudeTranscript(root),
+          background_tasks: [],
+        },
+        { env, pid: ARM_HOOK_PID, processTable, spawn: recordSpawns(spawns) },
+      );
+      return spawns;
+    },
   },
   codex: {
     runtime: 'codex',
@@ -180,6 +220,16 @@ const ADAPTERS = {
       },
       root,
     )),
+    killerTarget: '60',
+    arm: async ({ env, root }, { cwd, processTable }) => {
+      const spawns = [];
+      const { armPendingRecord } = await importAdapter('codex', 'stop-arm.mjs');
+      await armPendingRecord(
+        { hook_event_name: 'Stop', session_id: SESSION_ID, cwd, transcript_path: codexRollout(root) },
+        { env, pid: ARM_HOOK_PID, processTable, spawn: recordSpawns(spawns) },
+      );
+      return spawns;
+    },
   },
   hermes: {
     runtime: 'hermes',
@@ -201,6 +251,16 @@ const ADAPTERS = {
       },
       root,
     )).context,
+    killerTarget: '60',
+    arm: async ({ env }, { cwd, processTable }) => {
+      const spawns = [];
+      const { armPendingRecord } = await importAdapter('hermes', 'session-end-arm.mjs');
+      await armPendingRecord(
+        { hook_event_name: 'on_session_end', session_id: SESSION_ID, cwd },
+        { env, pid: ARM_HOOK_PID, processTable, spawn: recordSpawns(spawns) },
+      );
+      return spawns;
+    },
   },
   opencode: {
     runtime: 'opencode',
@@ -226,6 +286,20 @@ const ADAPTERS = {
         },
       } });
       return openCodeSystem(hooks);
+    }),
+    // The plugin runs inside the runtime, so the runtime it ends is its own process.
+    killerTarget: String(process.pid),
+    arm: ({ env }, { cwd }) => withProcessEnv(env, async () => {
+      const spawns = [];
+      const realSpawn = childProcess.spawn;
+      childProcess.spawn = recordSpawns(spawns);
+      try {
+        const hooks = await loadOpenCodePlugin(cwd);
+        await hooks.event({ event: { type: 'session.idle', properties: { sessionID: SESSION_ID } } });
+      } finally {
+        childProcess.spawn = realSpawn;
+      }
+      return spawns;
     }),
   },
 };
@@ -298,6 +372,70 @@ const NUDGE_CASES = [
   },
 ];
 
+function prepareArmRecord({ env, root }, { runtime, sessionId = SESSION_ID, armedAgoMs } = {}) {
+  env.SKILLED_LOOP_ID = ARM_LOOP_ID;
+  core.preparePending({
+    loopId: ARM_LOOP_ID,
+    handoffPath: path.join(root, 'note.md'),
+    sessionId,
+    runtime,
+    cwd: root,
+    env,
+  });
+  if (armedAgoMs !== undefined) {
+    core.arm({ loopId: ARM_LOOP_ID, cwd: root, env, now: Date.now() - armedAgoMs });
+  }
+  return core.readRelaunchFile(ARM_LOOP_ID, env);
+}
+
+function assertUntouched({ record, before, spawns }) {
+  assert.deepEqual(record, before);
+  assert.deepEqual(spawns, []);
+}
+
+const ARM_CASES = [
+  {
+    name: "an arm turns this session's pending record armed from the live cwd and starts one killer",
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime }),
+    check: ({ record, spawns, cwd }, adapter) => {
+      assert.equal(record.status, 'armed');
+      assert.equal(record.cwd, cwd);
+      assert.equal(spawns.length, 1);
+      assert.equal(killerArgument(spawns[0], '--loop-id'), ARM_LOOP_ID);
+      assert.equal(killerArgument(spawns[0], '--target-pid'), adapter.killerTarget);
+    },
+  },
+  {
+    name: 'a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it',
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime, armedAgoMs: STALE_ARM_AGE_MS }),
+    check: ({ record, spawns, cwd }) => {
+      assert.equal(record.status, 'armed');
+      assert.equal(record.cwd, cwd);
+      assert.deepEqual(core.shouldRelaunch(record), { relaunch: true });
+      assert.equal(spawns.length, 1);
+    },
+  },
+  {
+    name: 'an arm leaves a pending record from another session untouched',
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime, sessionId: 'another-session-0001' }),
+    check: assertUntouched,
+  },
+  {
+    name: 'an arm leaves a pending record prepared for another runtime untouched',
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, {
+      runtime: runtime === 'claude' ? 'codex' : 'claude',
+    }),
+    check: assertUntouched,
+  },
+  {
+    name: 'an arm leaves the record pending when no process below the loop is found',
+    looksUpTarget: true,
+    processTable: '41 50\n50 1\n',
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime }),
+    check: assertUntouched,
+  },
+];
+
 for (const [name, adapter] of Object.entries(ADAPTERS)) {
   for (const seedCase of SEED_CASES) {
     test(`${name}: ${seedCase.name}`, async (t) => {
@@ -312,4 +450,53 @@ for (const [name, adapter] of Object.entries(ADAPTERS)) {
       nudgeCase.check(await adapter.nudge(sandbox), adapter.runtime);
     });
   }
+  for (const armCase of ARM_CASES) {
+    // A runtime that signals its own process never looks a target up, so it has no such case.
+    if (armCase.looksUpTarget && adapter.killerTarget === String(process.pid)) continue;
+    test(`${name}: ${armCase.name}`, async (t) => {
+      const sandbox = createSandbox(t);
+      const before = armCase.setup(sandbox, adapter.runtime);
+      const cwd = path.join(sandbox.root, 'live-cwd');
+      const spawns = await adapter.arm(sandbox, {
+        cwd,
+        processTable: armCase.processTable ?? ARM_PROCESS_TABLE,
+      });
+      armCase.check({
+        record: core.readRelaunchFile(ARM_LOOP_ID, sandbox.env),
+        before,
+        spawns,
+        cwd,
+      }, adapter);
+    });
+  }
+}
+
+// A hook entrypoint acts only when started as a script, so a test or another module can
+// import it, and reach its exports, without the import reading stdin or ending the process.
+const ENTRYPOINTS = [
+  ['claude', 'context-nudge.mjs'],
+  ['claude', 'stop-arm.mjs'],
+  ['codex', 'context-nudge.mjs'],
+  ['codex', 'prompt-seed.mjs'],
+  ['codex', 'stop-arm.mjs'],
+  ['hermes', 'context-nudge.mjs'],
+  ['hermes', 'session-end-arm.mjs'],
+];
+
+for (const segments of ENTRYPOINTS) {
+  test(`${segments.join('/')} does nothing when imported`, (t) => {
+    const sandbox = createSandbox(t);
+    const moduleUrl = pathToFileURL(path.join(HOOK_ROOT, ...segments)).href;
+    const source = `await import(${JSON.stringify(moduleUrl)});`
+      + ' await new Promise((resolve) => setTimeout(resolve, 300));'
+      + " process.stdout.write('still running');";
+    const result = spawnSync(process.execPath, ['--input-type=module', '-e', source], {
+      env: sandbox.env,
+      input: '',
+      encoding: 'utf8',
+      timeout: 5000,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout, 'still running');
+  });
 }

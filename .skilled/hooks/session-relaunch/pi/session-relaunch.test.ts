@@ -15,7 +15,7 @@ import type {
   ExtensionContext,
   MessageEndEvent,
 } from '@earendil-works/pi-coding-agent';
-import { arm, preparePending, readRelaunchFile } from '../lib/relaunch-core.cjs';
+import { arm, preparePending, readRelaunchFile, shouldRelaunch } from '../lib/relaunch-core.cjs';
 import sessionRelaunch from './session-relaunch';
 
 const { spawnMock } = vi.hoisted(() => ({ spawnMock: vi.fn(() => ({ unref: vi.fn() })) }));
@@ -561,6 +561,34 @@ describe('session-relaunch Pi extension', () => {
     }
   });
 
+  it('refuses to load a relaunch core that lacks a function it calls', async () => {
+    setupEnv();
+    const actual = await vi.importActual<Record<string, unknown>>('../lib/relaunch-core.cjs');
+    const realCore = (actual.default ?? actual) as Record<string, unknown>;
+    const brokenCore = { default: { ...realCore, arm: undefined } };
+    vi.resetModules();
+    vi.doMock('../lib/relaunch-core.cjs', () => brokenCore);
+    vi.doMock('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs', () => brokenCore);
+
+    try {
+      const brokenModule = await import('./session-relaunch?broken-core');
+      const { api, handlers } = makeExtensionApi();
+      brokenModule.default(api);
+      const ctx = makeContext();
+
+      // The nudge path calls no core function, so only a check at load stops it here.
+      await emit(handlers, 'message_end', {
+        message: { role: 'assistant', usage: { input: 90 } },
+      }, ctx);
+      await emit(handlers, 'agent_end', {}, ctx);
+      expect(api.sendMessage).not.toHaveBeenCalled();
+    } finally {
+      vi.doUnmock('../lib/relaunch-core.cjs');
+      vi.doUnmock('../../.skilled/hooks/session-relaunch/lib/relaunch-core.cjs');
+      vi.resetModules();
+    }
+  });
+
   it('agent_end does nothing without a loop id or when the pending session differs', async () => {
     setupEnv();
     const { api, handlers } = makeExtensionApi();
@@ -795,5 +823,72 @@ describe('session-relaunch Pi extension conformance', () => {
       process.env.SESSION_RELAUNCH_MAX_HOPS = '2';
     });
     expect(text).toBe('');
+  });
+
+  // The arm cases. Pi signals its own process, so the no-target case does not apply here.
+  const ARM_LOOP_ID = 'pi-conformance-arm-0001';
+  const LIVE_CWD = '/workspace/pi-live';
+
+  function prepareArmRecord({
+    runtime = 'pi',
+    sessionId = SESSION_ID,
+    armedAgoMs,
+  }: { runtime?: string; sessionId?: string; armedAgoMs?: number } = {}) {
+    setupEnv();
+    process.env.SKILLED_LOOP_ID = ARM_LOOP_ID;
+    preparePending({
+      loopId: ARM_LOOP_ID,
+      handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'note.md'),
+      sessionId,
+      runtime,
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    if (armedAgoMs !== undefined) {
+      arm({ loopId: ARM_LOOP_ID, cwd: '/workspace/pi', env: process.env, now: Date.now() - armedAgoMs });
+    }
+    return readRelaunchFile(ARM_LOOP_ID, process.env);
+  }
+
+  async function stopEvent(): Promise<void> {
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID, LIVE_CWD));
+  }
+
+  it("an arm turns this session's pending record armed from the live cwd and starts one killer", async () => {
+    prepareArmRecord();
+    await stopEvent();
+    expect(readRelaunchFile(ARM_LOOP_ID, process.env)).toMatchObject({
+      status: 'armed',
+      cwd: LIVE_CWD,
+    });
+    expect(spawnMock).toHaveBeenCalledTimes(1);
+    const [, args] = spawnMock.mock.calls[0];
+    expect(args[args.indexOf('--loop-id') + 1]).toBe(ARM_LOOP_ID);
+    expect(args[args.indexOf('--target-pid') + 1]).toBe(String(process.pid));
+  });
+
+  it('a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it', async () => {
+    prepareArmRecord({ armedAgoMs: 20 * 60 * 1000 });
+    await stopEvent();
+    const record = readRelaunchFile(ARM_LOOP_ID, process.env);
+    expect(record).toMatchObject({ status: 'armed', cwd: LIVE_CWD });
+    expect(shouldRelaunch(record)).toEqual({ relaunch: true });
+    expect(spawnMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('an arm leaves a pending record from another session untouched', async () => {
+    const before = prepareArmRecord({ sessionId: 'another-session-0001' });
+    await stopEvent();
+    expect(readRelaunchFile(ARM_LOOP_ID, process.env)).toEqual(before);
+    expect(spawnMock).not.toHaveBeenCalled();
+  });
+
+  it('an arm leaves a pending record prepared for another runtime untouched', async () => {
+    const before = prepareArmRecord({ runtime: 'claude' });
+    await stopEvent();
+    expect(readRelaunchFile(ARM_LOOP_ID, process.env)).toEqual(before);
+    expect(spawnMock).not.toHaveBeenCalled();
   });
 });

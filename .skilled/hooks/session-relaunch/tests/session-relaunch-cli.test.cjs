@@ -9,6 +9,7 @@ const { spawn, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const core = require('../lib/relaunch-core.cjs');
 const { specFolderFromSeed } = require('../lib/nudge.cjs');
 
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
@@ -408,7 +409,7 @@ test('prepare requires --session for Codex despite a Claude session env', (t) =>
 });
 
 test('prepare accepts every runtime the wrapper can launch', (t) => {
-  for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']) {
+  for (const runtime of core.RUNTIMES) {
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
     sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
@@ -439,7 +440,10 @@ test('prepare exits two for an unknown SKILLED_LOOP_RUNTIME', (t) => {
   const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
 
   assert.equal(result.status, 2, result.stderr);
-  assert.match(result.stderr, /SKILLED_LOOP_RUNTIME/);
+  assert.ok(
+    result.stderr.includes(`SKILLED_LOOP_RUNTIME must be one of ${core.RUNTIMES.join(', ')}`),
+    result.stderr,
+  );
 });
 
 test('prepare succeeds when its result log cannot be written', (t) => {
@@ -476,14 +480,14 @@ test('prepare exits two when CLAUDE_PID has a live bash child', async (t) => {
     'setInterval(() => {}, 1000);',
   ].join(' ');
   const runtime = await startRuntime(sandbox, runtimeScript);
-  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const loopPid = 900000;
+  sandbox.env.SKILLED_LOOP_ID = String(loopPid);
   sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
   sandbox.env.CLAUDE_PID = String(runtime.pid);
   sandbox.env.SESSION_RELAUNCH_TEST_PS_OUTPUT = [
-    String(runtime.pid + 1),
-    String(runtime.pid),
-    '/bin/bash',
-  ].join(' ');
+    `${runtime.pid} ${loopPid} node`,
+    `${runtime.pid + 1} ${runtime.pid} /bin/bash`,
+  ].join('\n');
   try {
     const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
     assert.equal(result.status, 2, result.stderr);
@@ -497,13 +501,14 @@ for (const shellCommand of ['fish', '-zsh']) {
   test(`prepare exits two for a live ${shellCommand} child of the Claude process`, (t) => {
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
+    const loopPid = 900000;
     const runtimePid = 900001;
     const childPid = 900002;
-    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.SKILLED_LOOP_ID = String(loopPid);
     sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
     sandbox.env.CLAUDE_PID = String(runtimePid);
     sandbox.env.SESSION_RELAUNCH_TEST_PS_OUTPUT = [
-      `${runtimePid} 1 node`,
+      `${runtimePid} ${loopPid} node`,
       `${childPid} ${runtimePid} ${shellCommand}`,
     ].join('\n');
 
@@ -516,6 +521,88 @@ for (const shellCommand of ['fish', '-zsh']) {
     );
   });
 }
+
+// CLAUDE_PID is kept only while it names a process below the loop, the rule the killer
+// target follows. One inherited from an outer session points at that session's runtime,
+// whose shell children say nothing about this loop's runtime.
+test('prepare checks the loop child, not a CLAUDE_PID outside the loop', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const loopPid = 900000;
+  sandbox.env.SKILLED_LOOP_ID = String(loopPid);
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = '424242';
+  // The fake ps puts this CLI below the runtime 900001, which the loop started.
+  sandbox.env.SESSION_RELAUNCH_TEST_RUNTIME_PID = '900001';
+  sandbox.env.SESSION_RELAUNCH_TEST_EXTRA_PS_OUTPUT = [
+    '424242 1 node',
+    '424243 424242 bash',
+  ].join('\n');
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox, String(loopPid)), 'utf8')).status, 'pending');
+  const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+  assert.doesNotMatch(fs.readFileSync(logPath, 'utf8'), /running-work-check-skipped/);
+});
+
+test('prepare still refuses a live shell child of the loop child when CLAUDE_PID is outside the loop', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = '900000';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = '424242';
+  sandbox.env.SESSION_RELAUNCH_TEST_RUNTIME_PID = '900001';
+  sandbox.env.SESSION_RELAUNCH_TEST_BUSY_PID = '900002';
+  sandbox.env.SESSION_RELAUNCH_TEST_EXTRA_PS_OUTPUT = '424242 1 node';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /Claude still has a live shell child \(bash, pid 900002\)/);
+});
+
+// The wrapper exports a template that repeats the launch options, and drops to the plain
+// command when a carried value holds the placeholder. The command printed in-session takes
+// the same fallback, so it says so on stderr instead of silently losing those options.
+test('prepare warns on stderr when the manual template cannot be filled and prints the plain command', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { specFolder: '' });
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.SKILLED_LOOP_MANUAL_TEMPLATE = 'skilled-loop claude --name "@@HANDOFF@@" '
+    + '"[session-relaunch] claim and continue handoff @@HANDOFF@@"';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 3, result.stderr);
+  assert.equal(
+    result.stdout,
+    `skilled-loop claude "[session-relaunch] claim and continue handoff ${handoffPath}"\n`,
+  );
+  assert.match(
+    result.stderr,
+    /^\[session-relaunch\] warning: SKILLED_LOOP_MANUAL_TEMPLATE holds 2 @@HANDOFF@@ placeholders/m,
+  );
+});
+
+test('prepare prints a usable manual template without a warning', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { specFolder: '' });
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.SKILLED_LOOP_MANUAL_TEMPLATE = 'skilled-loop claude --model opus '
+    + '"[session-relaunch] claim and continue handoff @@HANDOFF@@"';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 3, result.stderr);
+  assert.equal(
+    result.stdout,
+    'skilled-loop claude --model opus "[session-relaunch] claim and continue handoff '
+      + `${handoffPath}"\n`,
+  );
+  assert.equal(result.stderr, '');
+});
 
 test('prepare ignores an inherited Claude shell child for a Codex loop', async (t) => {
   const sandbox = createSandbox(t);
@@ -1143,7 +1230,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be prepare, should-relaunch, claim, complete, or consume/,
+    /command must be one of prepare, should-relaunch, claim, complete, consume\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');

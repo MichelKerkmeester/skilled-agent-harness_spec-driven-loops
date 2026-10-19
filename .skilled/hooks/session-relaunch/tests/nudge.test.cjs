@@ -1065,3 +1065,44 @@ test('plannedNotePath leaves the target of a symlinked handoffs directory untouc
   });
   assert.equal(fs.statSync(elsewhere).mode & 0o777, 0o755);
 });
+
+test('handoffDir is the handoffs directory every reader shares, the one notes are planned in', (t) => {
+  const { handoffDir } = nudgeModule;
+  assert.equal(typeof handoffDir, 'function');
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  assert.equal(
+    handoffDir(root),
+    path.join(root, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs'),
+  );
+  const planned = plannedNotePath({
+    sessionId: SESSION_ID,
+    env: { SESSION_RELAUNCH_REPO_ROOT: root },
+    now: new Date('2026-10-18T01:02:03.456Z'),
+  });
+  assert.equal(path.dirname(planned), handoffDir(root));
+});
+
+test('handoff text asks for exactly the sections the core validates', () => {
+  const text = handoffText({ notePath: NOTE_PATH, sessionId: SESSION_ID, runtime: 'pi' });
+  const listed = text.match(/followed by (.+), each non-empty\./)[1];
+  assert.equal(listed, core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', '));
+});
+
+test('handoffPending is false for a record that names another loop', (t) => {
+  const env = recordSandbox(t);
+  const loopId = 'nudge-loop-renamed';
+  core.preparePending({
+    loopId,
+    handoffPath: '/tmp/session-relaunch/handoff.md',
+    sessionId: SESSION_ID,
+    runtime: 'pi',
+    cwd: '/repo',
+    env,
+  });
+  const filePath = core.relaunchFilePath(loopId, env);
+  const record = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  fs.writeFileSync(filePath, JSON.stringify({ ...record, loopId: 'nudge-loop-other' }));
+
+  assert.equal(handoffPending({ sessionId: SESSION_ID, env: envForLoop(env, loopId) }), false);
+});

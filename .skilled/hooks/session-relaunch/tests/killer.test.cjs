@@ -1873,3 +1873,163 @@ test('killer restores a permissive state directory to private mode', async (t) =
     killChild(target);
   }
 });
+
+test('the killer reads its ancestry through the core process-table reader', (t) => {
+  const { isLoopAncestor } = require('../lib/killer.cjs');
+  const calls = [];
+  t.mock.method(core, 'readProcessTable', (options) => {
+    calls.push(options);
+    return '41 50\n50 60\n60 100\n100 1\n';
+  });
+  assert.equal(isLoopAncestor(41, 100), true);
+  assert.equal(isLoopAncestor(41, 999), false);
+  assert.deepEqual(calls[0], { throwOnFailure: true });
+
+  // A failed read must still stop the signal, so the reader's failure reaches the caller.
+  core.readProcessTable.mock.mockImplementation(() => {
+    throw new Error('ps exited 1');
+  });
+  assert.throws(() => isLoopAncestor(41, 100), /ps exited 1/);
+});
+
+// The wrapper declines an armed record past its age limit, so a signal would end a
+// session no relaunch follows. The age is read as the wrapper will see it, after the
+// longest wait the killer allows the target to exit.
+for (const { label, ageMs } of [
+  { label: 'past the age limit', ageMs: 5 * 60 * 1000 },
+  { label: 'that will pass the age limit before the wrapper reads it', ageMs: 57 * 1000 },
+]) {
+  test(`killer unarms an armed record ${label} without signalling`, async (t) => {
+    const sandbox = createSandbox(t);
+    const loopId = String(process.pid);
+    const signalPath = path.join(sandbox.root, 'target-signal');
+    const transcriptPath = createTranscript(sandbox);
+    const target = startTarget(sandbox, signalPath);
+    await new Promise((resolve) => target.once('spawn', resolve));
+    core.preparePending({
+      loopId,
+      handoffPath: path.join(sandbox.repoRoot, 'handoff.md'),
+      sessionId: 'session-killer-0001',
+      runtime: 'claude',
+      cwd: sandbox.repoRoot,
+      env: sandbox.env,
+    });
+    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env, now: Date.now() - ageMs });
+    sandbox.env.SESSION_RELAUNCH_MAX_AGE_MIN = '1';
+    const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
+    try {
+      const result = await waitForExit(killer, 3000);
+      assert.equal(result.timedOut, undefined, 'killer should stop on a stale record');
+      assert.equal(result.code, 0);
+      assert.equal(fs.existsSync(signalPath), false, 'a stale record must stop the signal');
+      assert.equal(process.kill(target.pid, 0), true);
+      const record = core.readRelaunchFile(loopId, sandbox.env);
+      assert.equal(record.status, 'disarmed');
+      assert.equal(record.disarmReason, 'stale');
+      const killerLog = readKillerLog(sandbox);
+      assert.match(killerLog, /killer-stale/);
+      assert.doesNotMatch(killerLog, /killer-signal/);
+      assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+    } finally {
+      killChild(killer);
+      killChild(target);
+    }
+  });
+}
+
+test('killer timeout notification fills the manual template from the environment it was given', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SKILLED_LOOP_MANUAL_TEMPLATE = 'skilled-loop claude --model opus '
+    + '"[session-relaunch] claim and continue handoff @@HANDOFF@@"';
+  const previousTemplate = process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    await main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--idle-ms', '200',
+      '--timeout-ms', '50',
+    ], sandbox.env);
+
+    assert.equal(notifications.length, 1);
+    const notification = notifications[0].match(
+      /display notification ("(?:\\.|[^"\\])*") with title /,
+    );
+    assert.ok(notification, 'osascript should receive a quoted notification string');
+    assert.equal(
+      JSON.parse(notification[1]),
+      'skilled-loop claude --model opus "[session-relaunch] claim and continue handoff '
+        + `${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
+    );
+  } finally {
+    childProcess.spawnSync = realSpawnSync;
+    if (previousTemplate !== undefined) process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
+    killChild(target);
+  }
+});
+
+test('killer timeout logs an unusable manual template before its plain notice', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.SKILLED_LOOP_MANUAL_TEMPLATE = 'skilled-loop claude --model opus';
+  const previousTemplate = process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    await main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--idle-ms', '200',
+      '--timeout-ms', '50',
+    ], sandbox.env);
+
+    assert.equal(notifications.length, 1);
+    const logLine = readKillerLog(sandbox).split('\n').find((line) => line.includes('killer-manual-template'));
+    assert.ok(logLine, 'the killer should log why its notice fell back to the plain command');
+    assert.match(logLine, /problem=SKILLED_LOOP_MANUAL_TEMPLATE_holds_no_@@HANDOFF@@_placeholder/);
+  } finally {
+    childProcess.spawnSync = realSpawnSync;
+    if (previousTemplate !== undefined) process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
+    killChild(target);
+  }
+});

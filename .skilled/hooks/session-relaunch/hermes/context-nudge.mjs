@@ -8,7 +8,7 @@ import {
   fillFromHermesUsage,
   fillRatio,
 } from '../lib/context-usage.cjs';
-import { appendLog as appendRelaunchLog } from '../lib/relaunch-core.cjs';
+import { appendLog as appendRelaunchLog, isEntrypoint } from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
 
 const CONCERN = 'session-relaunch';
@@ -106,4 +106,4 @@ async function main() {
   return emit({ context, windowTokens, windowSource });
 }
 
-main().catch(done);
+if (isEntrypoint(import.meta.url)) main().catch(done);
