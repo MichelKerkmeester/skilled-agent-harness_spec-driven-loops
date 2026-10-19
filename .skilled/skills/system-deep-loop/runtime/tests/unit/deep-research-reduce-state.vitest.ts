@@ -2,9 +2,11 @@
 // MODULE: Deep Research Reduce State Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { appendFileSync, existsSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -569,6 +571,169 @@ describe('deep-research reduce-state recovery gate', () => {
       registryValue: 'What canonical question remains?',
       inboxValue: 'What incoming question should replace it?',
     });
+  });
+
+  // In a ledger-backed run the state log is a projection the gateway rebuilds,
+  // so a row the reducer appended beside it vanished at the next append. The
+  // reducer's bookkeeping rows now travel through the gateway as events.
+  it('keeps the reducer conflict row in a ledger-backed run across the next gateway append', () => {
+    const here = dirname(fileURLToPath(import.meta.url));
+    const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..');
+    const gatewayScript = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const runId = 'reducer-ledger-run';
+    const appendEvent = (name: string, event: Record<string, unknown>) => {
+      const eventPath = join(specFolder, `${name}.json`);
+      writeFileSync(eventPath, JSON.stringify(event));
+      const result = spawnSync(process.execPath, [
+        gatewayScript, '--mode', 'research', '--run-directory', researchDir, '--event-json', eventPath,
+      ], { cwd: repoRoot, encoding: 'utf8' });
+      expect(result.status, result.stdout + result.stderr).toBe(0);
+    };
+    const iteration = (run: number) => ({
+      type: 'iteration', run, iteration: run, status: 'complete', focus: 'registry conflict',
+      newInfoRatio: 0.3, ruledOut: [], sessionId: runId, lineageId: runId, timestamp: `2026-10-19T10:0${run}:00Z`,
+    });
+
+    appendEvent('open', {
+      stem: 'deep_research.run_initialized',
+      scope: { runId, lineageId: runId },
+      data: {
+        generation: 1,
+        charterDigest: '1'.repeat(64),
+        configDigest: '2'.repeat(64),
+        executorFingerprint: '3'.repeat(64),
+        replayFingerprint: '4'.repeat(64),
+        maxIterations: 3,
+        convergencePolicyVersion: 'convergence-policy@default',
+      },
+    });
+    appendEvent('iteration-1', iteration(1));
+    writePriorRegistry(specFolder, {
+      keyQuestions: [{
+        id: 'question-canonical-1',
+        text: 'What canonical question remains?',
+        origin: 'operator',
+        source: 'registry',
+        injectedAtIteration: 1,
+        resolved: false,
+      }],
+    });
+    writeInbox(specFolder, [{
+      id: 'inbox-conflict-1',
+      text: 'What incoming question should replace it?',
+      source: 'operator.note',
+      origin: 'operator',
+      injectedAtIteration: 2,
+      promotedQuestionId: 'question-canonical-1',
+    }]);
+
+    const result = reduceResearchState(specFolder, { write: true });
+    const conflictId = result.registry.questionConflicts?.[0]?.conflictId;
+    expect(conflictId).toBeTruthy();
+    appendEvent('iteration-2', iteration(2));
+
+    const conflictRows = readStateRecords(specFolder).filter((record) => record.event === 'question_conflict');
+    expect(conflictRows).toHaveLength(1);
+    expect(conflictRows[0]).toMatchObject({
+      type: 'event',
+      mode: 'research',
+      conflictId,
+      questionId: 'question-canonical-1',
+      inboxId: 'inbox-conflict-1',
+      operatorDecision: 'needs_decision',
+      registryValue: 'What canonical question remains?',
+      inboxValue: 'What incoming question should replace it?',
+    });
+    expect(readdirSync(join(researchDir, 'deep-research-ledger', 'frames'))
+      .filter((name) => name.endsWith('.frame'))).toHaveLength(4);
+
+    // A second reduce sees the projected row and records no second conflict.
+    reduceResearchState(specFolder, { write: true });
+    expect(readStateRecords(specFolder).filter((record) => record.event === 'question_conflict')).toHaveLength(1);
+  });
+
+  it('keeps leaf idea observations and the promotion they earn in a ledger-backed run', () => {
+    const here = dirname(fileURLToPath(import.meta.url));
+    const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..');
+    const gatewayScript = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const runId = 'idea-ledger-run';
+    const appendEvent = (name: string, event: Record<string, unknown>) => {
+      const eventPath = join(specFolder, `${name}.json`);
+      writeFileSync(eventPath, JSON.stringify(event));
+      const result = spawnSync(process.execPath, [
+        gatewayScript, '--mode', 'research', '--run-directory', researchDir, '--event-json', eventPath,
+      ], { cwd: repoRoot, encoding: 'utf8' });
+      expect(result.status, result.stdout + result.stderr).toBe(0);
+    };
+    const iteration = (run: number) => ({
+      type: 'iteration', run, iteration: run, status: 'complete', focus: 'idea backlog',
+      newInfoRatio: 0.3, ruledOut: [], sessionId: runId, lineageId: runId, timestamp: `2026-10-19T11:0${run}:00Z`,
+    });
+    // The row the research agent records through the gateway, in its documented shape.
+    const observation = (run: number) => ({
+      type: 'event',
+      event: 'idea_observed',
+      mode: 'research',
+      run,
+      ideaId: 'idea-cache-stampede',
+      idea: 'Investigate cache stampede mitigation',
+      category: 'ideas',
+      source: `iteration-00${run}.md`,
+      timestamp: `2026-10-19T11:0${run}:30Z`,
+    });
+    const rowsNamed = (event: string) => readStateRecords(specFolder).filter((record) => record.event === event);
+
+    appendEvent('open', {
+      stem: 'deep_research.run_initialized',
+      scope: { runId, lineageId: runId },
+      data: {
+        generation: 1,
+        charterDigest: '1'.repeat(64),
+        configDigest: '2'.repeat(64),
+        executorFingerprint: '3'.repeat(64),
+        replayFingerprint: '4'.repeat(64),
+        maxIterations: 5,
+        convergencePolicyVersion: 'convergence-policy@default',
+      },
+    });
+    appendEvent('iteration-1', iteration(1));
+    appendEvent('idea-1', observation(1));
+    appendEvent('iteration-2', iteration(2));
+    appendEvent('idea-2', observation(2));
+    appendEvent('iteration-3', iteration(3));
+
+    // Both observations outlive the appends after them, field for field.
+    expect(rowsNamed('idea_observed')).toEqual([observation(1), observation(2)]);
+
+    const result = reduceResearchState(specFolder, { write: true });
+    expect(result.registry.promotedIdeas).toEqual([
+      expect.objectContaining({ id: 'idea-cache-stampede', observationCount: 2, rank: 1 }),
+    ]);
+    appendEvent('iteration-4', iteration(4));
+
+    const promotions = rowsNamed('idea_promoted');
+    expect(promotions).toHaveLength(1);
+    expect(promotions[0]).toMatchObject({
+      type: 'event',
+      mode: 'research',
+      ideaId: 'idea-cache-stampede',
+      idea: 'Investigate cache stampede mitigation',
+      observationCount: 2,
+      minIdeaObservations: 2,
+      firstObservedRun: 1,
+      lastObservedRun: 2,
+    });
+    expect(rowsNamed('idea_observed')).toHaveLength(2);
+    expect(readdirSync(join(researchDir, 'deep-research-ledger', 'frames'))
+      .filter((name) => name.endsWith('.frame'))).toHaveLength(8);
+
+    // A second reduce sees the projected promotion and records no second one.
+    reduceResearchState(specFolder, { write: true });
+    expect(rowsNamed('idea_promoted')).toHaveLength(1);
   });
 
   it('marks direct strategy questions as legacy imports and warns when writing', () => {

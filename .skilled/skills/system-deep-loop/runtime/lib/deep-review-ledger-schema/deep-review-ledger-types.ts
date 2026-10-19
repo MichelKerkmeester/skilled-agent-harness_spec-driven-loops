@@ -163,14 +163,16 @@ export interface ReportSectionManifest extends JsonObject {
 // 3. EVENT PAYLOAD DATA
 // ───────────────────────────────────────────────────────────────────
 
-export interface RunInitializedData extends JsonObject {
+// Ledgers written before the topic rode along omit it.
+export type RunInitializedData = JsonObject & {
   readonly target: TargetReference;
   readonly lineageMode: 'fresh' | 'restart' | 'resume';
   readonly maxIterations: Uint32;
   readonly convergencePolicyVersion: Version;
   readonly reviewModeContractDigest: Digest;
   readonly initialReleaseReadinessState: 'blocked' | 'not-assessed' | 'ready';
-}
+  readonly topic?: string;
+};
 
 export interface RunResumedData extends JsonObject {
   readonly priorTailDigest: Digest;

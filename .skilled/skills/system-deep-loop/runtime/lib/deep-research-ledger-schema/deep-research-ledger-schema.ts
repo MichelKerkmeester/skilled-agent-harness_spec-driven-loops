@@ -161,10 +161,37 @@ const SPEC_CONFLICT_KIND_RULE = Object.freeze({
   values: ['generated-fence-manual-edit'],
   nullable: true,
 } as const);
+// The operator decisions the research reducer records on a question conflict;
+// an undecided conflict carries the reducer's own needs_decision marker.
+const QUESTION_DECISION_RULE = Object.freeze({
+  kind: 'enum',
+  values: ['accepted', 'needs_decision', 'rejected', 'superseded'],
+  nullable: true,
+} as const);
 const TERMINAL_STATUS_RULE = Object.freeze({
   kind: 'enum',
   values: ['blocked', 'completed', 'incomplete'],
 } as const);
+
+// The camelCase event name an older idea row was written under. The reducer
+// reads it as the snake_case name, and the projection writes it back as written.
+function eventAliasRule(alias: string): EnumFieldRule {
+  return Object.freeze({ kind: 'enum', values: Object.freeze([alias]) });
+}
+
+// The fields every hand-written idea rejection, and its removal, may carry.
+const IDEA_REJECTION_FIELD_RULES = Object.freeze({
+  mode: 'code',
+  run: 'nullable-uint32',
+  rejectedId: 'prose',
+  ideaId: 'prose',
+  idea: 'prose',
+  pattern: 'prose',
+  category: 'prose',
+  reason: 'prose',
+  sessionId: 'nullable-prose',
+  generation: 'nullable-uint32',
+} as const satisfies Readonly<Record<string, DataFieldRule>>);
 
 const DATA_FIELD_RULES = Object.freeze({
   'deep_research.run_initialized': {
@@ -472,9 +499,85 @@ const DATA_FIELD_RULES = Object.freeze({
     reason: 'prose',
     generatedFence: 'code',
   },
+  'deep_research.idea_promoted': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    ideaId: 'prose',
+    idea: 'prose',
+    category: 'prose',
+    observationCount: 'uint32',
+    minIdeaObservations: 'nullable-uint32',
+    firstObservedRun: 'nullable-uint32',
+    lastObservedRun: 'nullable-uint32',
+  },
+  'deep_research.question_conflict': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    conflictId: 'identifier',
+    questionId: 'prose',
+    inboxId: 'nullable-prose',
+    operatorDecision: QUESTION_DECISION_RULE,
+    inboxValue: 'prose',
+    registryValue: 'prose',
+    source: 'prose',
+    origin: 'code',
+    injectedAtIteration: 'uint32',
+    sessionId: 'nullable-prose',
+    generation: 'nullable-uint32',
+  },
+  'deep_research.idea_observed': {
+    idea: 'prose',
+  },
+  'deep_research.idea_rejected': {},
+  'deep_research.idea_rejected_removed': {},
+  'deep_research.idea_rejected_reset': {},
 } as const satisfies Readonly<
   Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
+
+// Fields a producer may leave out. Ledgers written before a field existed carry
+// no value for it, so it cannot join the required set without failing their
+// replay; when present it is held to the same rule as a required field.
+const OPTIONAL_DATA_FIELD_RULES: Readonly<
+  Partial<Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>>
+> = Object.freeze({
+  'deep_research.run_initialized': Object.freeze({
+    topic: 'prose',
+  }),
+  // The idea rows are hand-written, so beyond the idea text they carry only the
+  // fields their writer gave them; the projection writes back exactly those.
+  'deep_research.idea_promoted': Object.freeze({
+    sessionId: 'nullable-prose',
+    generation: 'nullable-uint32',
+    eventAlias: eventAliasRule('ideaPromoted'),
+  }),
+  'deep_research.idea_observed': Object.freeze({
+    mode: 'code',
+    run: 'nullable-uint32',
+    ideaId: 'prose',
+    category: 'prose',
+    source: 'prose',
+    sessionId: 'nullable-prose',
+    generation: 'nullable-uint32',
+    eventAlias: eventAliasRule('ideaObserved'),
+  }),
+  'deep_research.idea_rejected': Object.freeze({
+    ...IDEA_REJECTION_FIELD_RULES,
+    eventAlias: eventAliasRule('ideaRejected'),
+  }),
+  'deep_research.idea_rejected_removed': Object.freeze({
+    ...IDEA_REJECTION_FIELD_RULES,
+    eventAlias: eventAliasRule('ideaRejectedRemoved'),
+  }),
+  'deep_research.idea_rejected_reset': Object.freeze({
+    mode: 'code',
+    run: 'nullable-uint32',
+    reason: 'prose',
+    sessionId: 'nullable-prose',
+    generation: 'nullable-uint32',
+    eventAlias: eventAliasRule('ideaRejectedReset'),
+  }),
+});
 
 const SCOPE_FIELDS = Object.freeze({
   'deep_research.run_initialized': ['runId', 'lineageId'],
@@ -517,6 +620,12 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.spec_mutation': ['runId', 'lineageId'],
   'deep_research.spec_mutation_conflict': ['runId', 'lineageId'],
   'deep_research.spec_synthesis_deferred': ['runId', 'lineageId'],
+  'deep_research.idea_promoted': ['runId', 'lineageId'],
+  'deep_research.question_conflict': ['runId', 'lineageId'],
+  'deep_research.idea_observed': ['runId', 'lineageId'],
+  'deep_research.idea_rejected': ['runId', 'lineageId'],
+  'deep_research.idea_rejected_removed': ['runId', 'lineageId'],
+  'deep_research.idea_rejected_reset': ['runId', 'lineageId'],
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
@@ -769,17 +878,29 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
 function isData(stem: DeepResearchEventStem, value: unknown): boolean {
   if (!isObject(value) || hasForbiddenMutableField(value)) return false;
   const rules = DATA_FIELD_RULES[stem];
-  const fields = Object.keys(rules);
+  const optionalRules: Readonly<Record<string, DataFieldRule>> = OPTIONAL_DATA_FIELD_RULES[stem] ?? {};
+  const presentOptional = Object.keys(optionalRules)
+    .filter((field) => Object.prototype.hasOwnProperty.call(value, field));
+  const fields = [...Object.keys(rules), ...presentOptional];
   if (!hasExactFields(value, fields)) return false;
   if (!Object.entries(rules).every(([field, rule]) => (
     isFieldValue(rule, value[field])
   ))) return false;
+  if (!presentOptional.every((field) => isFieldValue(optionalRules[field], value[field]))) return false;
   if (stem === 'deep_research.claim_superseded') {
     return value.priorClaimVersionId !== value.successorClaimVersionId;
   }
   if (stem === 'deep_research.convergence_blocked') return value.decision === 'blocked';
   if (stem === 'deep_research.next_focus_selected') {
     return (value.chosenBranchId === null) !== (value.chosenQuestionId === null);
+  }
+  // The reducer drops a rejection with no text to match and a removal that names
+  // no entry, so the ledger refuses to record either one.
+  if (stem === 'deep_research.idea_rejected') {
+    return value.idea !== undefined || value.pattern !== undefined;
+  }
+  if (stem === 'deep_research.idea_rejected_removed') {
+    return ['rejectedId', 'ideaId', 'idea', 'pattern'].some((field) => value[field] !== undefined);
   }
   return true;
 }

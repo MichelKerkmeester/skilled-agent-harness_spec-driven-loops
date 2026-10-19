@@ -400,11 +400,17 @@ workflow:
             const lineageId = lineage.parentSessionId || sessionId;
             const generation = Number(lineage.generation) || 1;
             const configDigest = sha(raw);
+            // The projected config row shows this topic; one the schema cannot hold is left out,
+            // and the row falls back to the run id rather than the run failing to open.
+            const topic = typeof config.topic === "string" && config.topic.trim() !== "" && config.topic.length <= 4096
+              ? config.topic
+              : null;
             const event = {
               stem: "deep_research.run_initialized",
               scope: { runId: sessionId, lineageId },
               data: {
                 generation,
+                ...(topic === null ? {} : { topic }),
                 charterDigest: sha(Buffer.from(JSON.stringify({
                   topic: config.topic,
                   specFolder: config.specFolder || "",

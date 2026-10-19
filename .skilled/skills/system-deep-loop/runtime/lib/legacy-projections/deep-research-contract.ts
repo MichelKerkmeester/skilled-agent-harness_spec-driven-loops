@@ -92,6 +92,35 @@ const SPEC_PROTOCOL_LEGACY_FIELDS: Readonly<
 
 const SPEC_PROTOCOL_EVENT_STEMS = Object.freeze(new Set(Object.keys(SPEC_PROTOCOL_LEGACY_FIELDS)));
 
+// The rows the research reducer reads back (its own bookkeeping, and the idea
+// rows the agent and the operator record) are rebuilt exactly as they were
+// written: the documented key order, the timestamp in its legacy place, a null
+// the row carried kept as a null, and a field the row left out left out.
+// `timestamp` marks where the event's occurrence time goes, and a recorded
+// camelCase alias comes back as the row's event name.
+const IDEA_REJECTION_ROW_FIELDS = Object.freeze([
+  'mode', 'run', 'rejectedId', 'ideaId', 'idea', 'pattern', 'category', 'reason',
+  'timestamp', 'sessionId', 'generation',
+]);
+const REDUCER_ROW_FIELDS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  'deep_research.idea_promoted': Object.freeze([
+    'mode', 'run', 'ideaId', 'idea', 'category', 'observationCount', 'minIdeaObservations',
+    'firstObservedRun', 'lastObservedRun', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.question_conflict': Object.freeze([
+    'mode', 'run', 'conflictId', 'questionId', 'inboxId', 'operatorDecision', 'inboxValue',
+    'registryValue', 'source', 'origin', 'injectedAtIteration', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.idea_observed': Object.freeze([
+    'mode', 'run', 'ideaId', 'idea', 'category', 'source', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.idea_rejected': IDEA_REJECTION_ROW_FIELDS,
+  'deep_research.idea_rejected_removed': IDEA_REJECTION_ROW_FIELDS,
+  'deep_research.idea_rejected_reset': Object.freeze([
+    'mode', 'run', 'reason', 'timestamp', 'sessionId', 'generation',
+  ]),
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 2. FACTORY
 // ───────────────────────────────────────────────────────────────────
@@ -167,9 +196,14 @@ export function createDeepResearchProjectionContract(
         : {};
 
       if (stem === 'deep_research.run_initialized') {
+        // Ledgers written before the event carried the topic still project the
+        // run id in its place, so their state logs keep the bytes they had.
+        const topic = typeof data.topic === 'string' && data.topic.trim() !== ''
+          ? data.topic
+          : typeof scope.runId === 'string' ? scope.runId : 'deep-research';
         row = {
           type: 'config',
-          topic: typeof scope.runId === 'string' ? scope.runId : 'deep-research',
+          topic,
           maxIterations: typeof data.maxIterations === 'number' ? data.maxIterations : 0,
           generation: typeof data.generation === 'number' ? data.generation : 1,
           timestamp: occurredAt,
@@ -262,6 +296,17 @@ export function createDeepResearchProjectionContract(
           event: 'run_completed',
           terminalStatus: typeof data.terminalStatus === 'string' ? data.terminalStatus : 'completed',
           timestamp: occurredAt,
+        };
+      } else if (typeof stem === 'string' && Object.hasOwn(REDUCER_ROW_FIELDS, stem)) {
+        const fields: JsonObject = {};
+        for (const field of REDUCER_ROW_FIELDS[stem]) {
+          if (field === 'timestamp') fields[field] = occurredAt;
+          else if (Object.hasOwn(data, field)) fields[field] = data[field] as JsonValue;
+        }
+        row = {
+          type: 'event',
+          event: typeof data.eventAlias === 'string' ? data.eventAlias : stem.replace(/^deep_research\./, ''),
+          ...fields,
         };
       } else if (typeof stem === 'string' && SPEC_PROTOCOL_EVENT_STEMS.has(stem)) {
         const legacyFields: JsonObject = {};

@@ -9,8 +9,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { spawnSync } = require('node:child_process');
 const { emitResourceMap } = require('../../shared/synthesis/resource-map.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 const {
@@ -23,6 +25,82 @@ const { filterCompletionBearingRecords } = require('../../shared/progress/progre
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
+
+const APPEND_GATEWAY = path.resolve(__dirname, '..', '..', 'runtime', 'scripts', 'append-mode-event.cjs');
+// The gateway binds each append to the checkout's identity and commit, so it
+// runs from the repository root whatever directory the reducer was started in.
+const REPOSITORY_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
+const LEDGER_SCOPE_TOKEN = /^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,255}$/;
+
+/**
+ * True when the state log sits beside a ledger with records, which makes the
+ * file a projection the append gateway rebuilds from that ledger. A row written
+ * straight into such a file is dropped the next time the projection replaces it.
+ */
+function stateLogHasLedger(stateLogPath) {
+  try {
+    return fs.readdirSync(path.join(path.dirname(stateLogPath), 'deep-research-ledger', 'frames'))
+      .some((name) => name.endsWith('.frame'));
+  } catch {
+    return false;
+  }
+}
+
+function ledgerScopeId(sessionId, stateLogPath) {
+  return typeof sessionId === 'string' && LEDGER_SCOPE_TOKEN.test(sessionId)
+    ? sessionId
+    : path.basename(path.dirname(stateLogPath));
+}
+
+function appendThroughGateway(stateLogPath, event) {
+  const eventDir = fs.mkdtempSync(path.join(os.tmpdir(), 'deep-research-reducer-event-'));
+  const eventPath = path.join(eventDir, 'event.json');
+  try {
+    fs.writeFileSync(eventPath, JSON.stringify(event), 'utf8');
+    const result = spawnSync(process.execPath, [
+      APPEND_GATEWAY,
+      '--mode', 'research',
+      '--run-directory', path.dirname(stateLogPath),
+      '--event-json', eventPath,
+    ], { cwd: REPOSITORY_ROOT, encoding: 'utf8' });
+    if (result.status !== 0) {
+      const outcome = String(result.stdout || '').trim().split('\n').at(-1) || String(result.stderr || '').trim();
+      throw new Error(`[deep-research] append gateway refused the reducer's ${event.stem} row: ${outcome}`);
+    }
+  } finally {
+    fs.rmSync(eventDir, { recursive: true, force: true });
+  }
+}
+
+/**
+ * Record the reducer's own bookkeeping rows. A ledger-backed state log takes
+ * them through the append gateway as registered events, so the projection
+ * carries them; a state log with no ledger has no projection to replace it and
+ * keeps the direct append.
+ *
+ * @param {string} stateLogPath - The run's state log.
+ * @param {Object[]} rows - Legacy-shaped rows, as a direct append writes them.
+ * @param {(row: Object) => { stem: string, idempotencyKey: string }} identify - The row's stem and stable key.
+ */
+function recordReducerRows(stateLogPath, rows, identify) {
+  if (!rows.length) return;
+  if (!stateLogHasLedger(stateLogPath)) {
+    fs.appendFileSync(stateLogPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+    return;
+  }
+  for (const row of rows) {
+    const { type: _type, event: _event, timestamp, ...data } = row;
+    const scopeId = ledgerScopeId(row.sessionId, stateLogPath);
+    const { stem, idempotencyKey } = identify(row);
+    appendThroughGateway(stateLogPath, {
+      stem,
+      scope: { runId: scopeId, lineageId: scopeId },
+      data,
+      occurredAt: timestamp,
+      idempotencyKey,
+    });
+  }
+}
 
 const DEFAULT_SPARKLINE_WIDTH = 20;
 const DEFAULT_TREND_FLATLINE_WINDOW = 3;
@@ -717,9 +795,10 @@ function buildIdeaPromotionEvents(promotedIdeas, eventRecords, context = {}) {
 
 function appendIdeaPromotionEvents(stateLogPath, promotedIdeas, eventRecords, context = {}) {
   const rows = buildIdeaPromotionEvents(promotedIdeas, eventRecords, context);
-  if (rows.length) {
-    fs.appendFileSync(stateLogPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
-  }
+  recordReducerRows(stateLogPath, rows, (row) => ({
+    stem: 'deep_research.idea_promoted',
+    idempotencyKey: `research:idea_promoted:${row.ideaId}`,
+  }));
   return rows;
 }
 
@@ -1379,9 +1458,10 @@ function appendQuestionConflictEvents(stateLogPath, questionConflicts, eventReco
     });
   }
 
-  if (rows.length) {
-    fs.appendFileSync(stateLogPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
-  }
+  recordReducerRows(stateLogPath, rows, (row) => ({
+    stem: 'deep_research.question_conflict',
+    idempotencyKey: `research:question_conflict:${row.conflictId}`,
+  }));
 
   return rows;
 }

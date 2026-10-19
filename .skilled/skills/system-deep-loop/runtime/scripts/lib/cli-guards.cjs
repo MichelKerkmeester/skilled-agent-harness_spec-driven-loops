@@ -28,6 +28,10 @@ const LINEAGE_FAILURE_CLASSES = Object.freeze({
   SALVAGE_MISS: 'salvage_miss',
   ARTIFACT_MISS: 'artifact_miss',
   PROJECTION_REFUSAL: 'projection_refusal',
+  // The lineage state log holds rows its ledger never produced: written beside
+  // the append gateway, or with no gateway call at all. A retry replays the same
+  // leaf behavior, so it is terminal.
+  UNATTRIBUTED_STATE_LOG: 'unattributed_state_log',
   NEEDS_INPUT: 'needs_input',
 });
 const LINEAGE_RETRY_VERDICTS = Object.freeze({
@@ -206,11 +210,14 @@ function classifyLineageFailure(error) {
   const exitCode = error && typeof error === 'object' ? readFiniteInteger(error.exitCode) : null;
   const salvage = error && typeof error === 'object' ? normalizeSalvageSummary(error.salvage) : null;
   const projectionRefusal = Boolean(error && typeof error === 'object' && error.projectionRefused === true);
+  const unattributedStateLog = Boolean(error && typeof error === 'object' && error.unattributedStateLog === true);
   const needsInput = Boolean(error && typeof error === 'object' && error.needsInput === true);
 
   let failureClass = LINEAGE_FAILURE_CLASSES.EXIT;
   if (timedOut) {
     failureClass = LINEAGE_FAILURE_CLASSES.TIMEOUT;
+  } else if (unattributedStateLog) {
+    failureClass = LINEAGE_FAILURE_CLASSES.UNATTRIBUTED_STATE_LOG;
   } else if (projectionRefusal) {
     failureClass = LINEAGE_FAILURE_CLASSES.PROJECTION_REFUSAL;
   } else if (needsInput) {

@@ -153,4 +153,24 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
       expect(countLine).not.toContain('state record');
     }
   });
+
+  // The merge reads the reducer's dashboard stamp as proof a lineage registry was
+  // reduced. A CLI leaf runs each iteration inline and treats the brief as its
+  // whole job, so a brief that never names the reducer leaves the registry as the
+  // seeded empty file and the lineage merged with unverified provenance.
+  it('names the workflow reducer, bound to the lineage directory, for every CLI seat', () => {
+    for (const kind of ['cli-pi', 'cli-codex', 'cli-opencode'] as const) {
+      const research = researchPrompt(kind);
+      expect(research, `${kind} research names the reducer step`).toContain('step_reduce_state');
+      expect(research, `${kind} research runs the research reducer on the lineage`).toContain(
+        'node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs specs/test-fanout-in-process --artifact-dir /tmp/fanout-in-process-lineage',
+      );
+      const review = reviewPrompt(kind);
+      expect(review, `${kind} review runs the review reducer on the lineage`).toContain(
+        'node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs specs/test-fanout-in-process --artifact-dir /tmp/fanout-in-process-lineage --create-missing-anchors',
+      );
+    }
+    // A native lineage runs the workflow through the command host, reducer included.
+    expect(researchPrompt('native')).not.toContain('step_reduce_state');
+  });
 });

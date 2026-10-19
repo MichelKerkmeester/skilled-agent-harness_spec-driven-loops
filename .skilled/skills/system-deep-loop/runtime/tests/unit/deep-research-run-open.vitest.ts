@@ -4,7 +4,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -122,6 +122,11 @@ function stateRows(dir: string): Array<Record<string, unknown>> {
     .map((line) => JSON.parse(line) as Record<string, unknown>);
 }
 
+function ledgerFrameCount(dir: string): number {
+  const frames = join(dir, 'deep-research-ledger', 'frames');
+  return existsSync(frames) ? readdirSync(frames).filter((name) => name.endsWith('.frame')).length : 0;
+}
+
 function expectRunOpenAndIteration(dir: string, init: ReturnType<typeof spawnSync>, sessionId: string): void {
   expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
   expect(String(init.stdout)).not.toContain(
@@ -162,6 +167,61 @@ describe('deep-research run open', () => {
     expectRunOpenAndIteration(dir, runInit('auto', dir), sessionId);
   });
 
+  it.each(['auto', 'confirm'] as const)(
+    'the %s init step projects the configured topic into the opening config row',
+    (variant) => {
+      const sessionId = 'research-' + variant + '-topic-run';
+      const dir = researchDir(sessionId);
+      const init = runInit(variant, dir);
+      expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+      expect(stateRows(dir)[0]).toMatchObject({
+        type: 'config',
+        topic: 'Inspect gateway initialization behavior',
+        maxIterations: 3,
+      });
+    },
+  );
+
+  // A lineage that writes its own config row leaves the ledger with no run-open
+  // event. Every later append used to land in the ledger and then fail its
+  // projection, so each retry stacked another copy of the same iteration.
+  it('refuses a hand-written config row before the ledger, and a retry adds no duplicate', () => {
+    const sessionId = 'research-hand-written-run';
+    const dir = researchDir(sessionId, 'lineages/hand-written');
+    const handWritten = JSON.stringify({
+      type: 'config',
+      mode: 'research',
+      topic: 'Inspect gateway initialization behavior',
+      maxIterations: 3,
+      convergenceThreshold: 0.05,
+      sessionId,
+      executor: 'cli-codex',
+      timestamp: '2026-10-19T17:14:56Z',
+    }) + '\n';
+    writeFileSync(join(dir, 'deep-research-state.jsonl'), handWritten);
+
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      const append = gateway(dir, iterationRecord(sessionId));
+      expect(append.status, append.stdout).toBe(2);
+      expect(JSON.parse(append.stdout.trim().split('\n').at(-1) ?? '{}')).toMatchObject({
+        ok: false,
+        phase: 'provenance',
+        code: 'STATE_LOG_UNATTRIBUTED',
+      });
+      expect(ledgerFrameCount(dir), 'attempt ' + attempt + ' leaves the ledger empty').toBe(0);
+    }
+
+    expect(readFileSync(join(dir, 'deep-research-state.jsonl'), 'utf8')).toBe(handWritten);
+    const refusals = readFileSync(join(dir, 'gateway-refusals.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(refusals).toHaveLength(2);
+    for (const refusal of refusals) {
+      expect(refusal).toMatchObject({ phase: 'provenance', code: 'STATE_LOG_UNATTRIBUTED' });
+    }
+  });
+
   it('keeps legacy config rows on the gateway upcaster path', () => {
     const sessionId = 'research-legacy-run';
     const dir = researchDir(sessionId);
@@ -180,6 +240,36 @@ describe('deep-research run open', () => {
     );
     const append = gateway(dir, iterationRecord(sessionId));
     expect(append.status, append.stdout).toBe(0);
+    expect(stateRows(dir).map((row) => row.type)).toEqual(['config', 'iteration']);
+  });
+
+  it('keeps a legacy config row topic through the upcaster into the projected config row', () => {
+    const sessionId = 'research-legacy-topic-run';
+    const dir = researchDir(sessionId);
+    const init = gateway(dir, {
+      type: 'config',
+      schemaVersion: 1,
+      topic: 'Legacy research topic',
+      maxIterations: 3,
+      generation: 1,
+      sessionId,
+      lineageId: sessionId,
+    });
+    expect(init.status, init.stdout).toBe(0);
+    expect(stateRows(dir)[0]).toMatchObject({ type: 'config', topic: 'Legacy research topic' });
+  });
+
+  // The CLI mints a new event id and timestamp on every call, so without a key
+  // derived from the handed-over event a retried append stored a second copy.
+  it('stores a retried identical event once', () => {
+    const sessionId = 'research-retry-run';
+    const dir = researchDir(sessionId);
+    expect(runInit('auto', dir).status).toBe(0);
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      const append = gateway(dir, iterationRecord(sessionId));
+      expect(append.status, append.stdout).toBe(0);
+    }
+    expect(ledgerFrameCount(dir)).toBe(2);
     expect(stateRows(dir).map((row) => row.type)).toEqual(['config', 'iteration']);
   });
 

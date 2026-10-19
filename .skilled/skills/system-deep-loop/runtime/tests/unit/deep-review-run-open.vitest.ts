@@ -120,13 +120,27 @@ describe('deep-review run open', () => {
     expect(rows[1]).toEqual(iterationRecord());
   });
 
-  it('a config row written beside the ledger still blocks the first projected append', () => {
+  it.each(['auto', 'confirm'] as const)('the %s init step projects the configured topic into the config row', (variant) => {
+    const dir = reviewDir();
+    const command = initStepCommand(variant)
+      .replaceAll('{state_paths.config}', join(dir, 'deep-review-config.json'))
+      .replaceAll('{state_paths.state_log}', join(dir, 'deep-review-state.jsonl'));
+    const init = spawnSync('bash', ['-c', command], { cwd: REPO_ROOT, encoding: 'utf8' });
+    expect(init.status, init.stdout + init.stderr).toBe(0);
+    expect(stateRows(dir)[0]).toMatchObject({ type: 'config', topic: 'Review: the hook upgrade' });
+  });
+
+  it('a config row written beside the ledger blocks the first append before it reaches the ledger', () => {
     const dir = reviewDir();
     writeFileSync(join(dir, 'deep-review-state.jsonl'), `${JSON.stringify({
       type: 'config', mode: 'review', reviewTarget: 'the hook upgrade', sessionId: '2026-10-02T11:19:37Z',
     })}\n`);
     const append = gateway(dir, iterationRecord());
     expect(append.status).toBe(2);
-    expect(append.stdout).toContain('Projection replace would drop keys from the existing config row');
+    expect(JSON.parse(append.stdout.trim().split('\n').at(-1) ?? '{}')).toMatchObject({
+      ok: false,
+      phase: 'provenance',
+      code: 'STATE_LOG_UNATTRIBUTED',
+    });
   });
 });

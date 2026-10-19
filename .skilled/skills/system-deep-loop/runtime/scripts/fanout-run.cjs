@@ -822,6 +822,12 @@ function findMissingLineageArtifacts(loopType, lineageDir) {
     .filter((artifactPath) => !hasNonEmptyFile(artifactPath));
 }
 
+// A projection refusal comes after the event is durable; a provenance refusal
+// comes before it, when the state log already holds a config row the ledger never
+// produced. Either one means retrying the lineage replays the same refusal, and its
+// record carries the code that names which one it was.
+const GATEWAY_STATE_REFUSAL_PHASES = new Set(['projection', 'provenance']);
+
 function readGatewayProjectionRefusal(lineageDir, attemptStartedAtIso) {
   const attemptStartedAtMs = Date.parse(attemptStartedAtIso);
   if (!Number.isFinite(attemptStartedAtMs)) return null;
@@ -846,7 +852,7 @@ function readGatewayProjectionRefusal(lineageDir, attemptStartedAtIso) {
 
     const refusedAtMs = Date.parse(record?.at);
     if (
-      record?.phase === 'projection'
+      GATEWAY_STATE_REFUSAL_PHASES.has(record?.phase)
       && Number.isFinite(refusedAtMs)
       && refusedAtMs >= attemptStartedAtMs
     ) {
@@ -859,8 +865,51 @@ function readGatewayProjectionRefusal(lineageDir, attemptStartedAtIso) {
 function attachGatewayProjectionRefusal(failure, record) {
   if (!record) return;
   failure.projectionRefused = true;
+  if (record.code === UNATTRIBUTED_STATE_LOG_CODE) failure.unattributedStateLog = true;
   if (typeof record.code === 'string') failure.code = record.code;
   if (typeof record.reason === 'string') failure.reason = record.reason;
+}
+
+// The code the append gateway gives a state log whose rows its ledger never
+// produced; the runner names a lineage that never reached the gateway the same way.
+const UNATTRIBUTED_STATE_LOG_CODE = 'STATE_LOG_UNATTRIBUTED';
+
+const LEDGER_DIR_BY_LOOP_TYPE = {
+  research: 'deep-research-ledger',
+  review: 'deep-review-ledger',
+};
+
+function countLineageLedgerFrames(loopType, lineageDir) {
+  const ledgerName = LEDGER_DIR_BY_LOOP_TYPE[loopType];
+  if (!ledgerName) return null;
+  try {
+    return fs.readdirSync(path.join(lineageDir, ledgerName, 'frames'))
+      .filter((name) => name.endsWith('.frame'))
+      .length;
+  } catch {
+    return 0;
+  }
+}
+
+/**
+ * Name a CLI lineage whose state log has rows while its ledger has none.
+ *
+ * The state log is a projection the append gateway rebuilds from the ledger,
+ * so a lineage that ran the workflow leaves at least one ledger record behind
+ * every state row. Rows with no ledger record were written straight to the
+ * file, and the gateway itself never saw the run, so no refusal record exists
+ * to explain it. Native lineages run the workflow through the command host and
+ * are held to the gateway there.
+ */
+function findUnledgeredStateLog({ loopType, lineage, lineageDir, stateRead }) {
+  if (lineage.kind === 'native') return null;
+  if (!stateRead || !stateRead.statePath || stateRead.missing) return null;
+  const frames = countLineageLedgerFrames(loopType, lineageDir);
+  if (frames === null || frames > 0) return null;
+  const rowCount = stateRead.records.length;
+  const rows = stateRead.parseError ? 'rows' : `${rowCount} row${rowCount === 1 ? '' : 's'}`;
+  return `${path.basename(stateRead.statePath)} holds ${rows} but ${LEDGER_DIR_BY_LOOP_TYPE[loopType]} `
+    + 'holds no records: the lineage wrote its state log without the append gateway';
 }
 
 function findMissingLineageStateLog(loopType, lineageDir) {
@@ -1511,6 +1560,13 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
   // A state row written beside the ledger carries keys the projection cannot rebuild,
   // so the gateway refuses every later projection and the lineage records nothing.
   const stateLogName = lineageStateLogName(loopType);
+  // The workflow keeps its reducer on the lineage directory during fan-out, and the
+  // merge reads the reducer's dashboard stamp as proof the lineage registry was
+  // reduced rather than left as the seeded empty file. A leaf that runs each
+  // iteration inline reads this list as the whole job, so the reducer is named here.
+  const reducerCommand = loopType === 'review'
+    ? `node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs ${specFolder} --artifact-dir ${promptDir} --create-missing-anchors`
+    : `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs ${specFolder} --artifact-dir ${promptDir}`;
   const inProcessDirective = lineage.kind !== 'native'
     ? [
         `EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.`,
@@ -1521,6 +1577,9 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.`,
         `Never create, append to, or rewrite ${stateLogName} yourself: a row written there beside the`,
         `ledger makes the gateway refuse every later projection, and the lineage fails.`,
+        `After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:`,
+        `${reducerCommand}`,
+        `It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.`,
         `NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no`,
         `'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.`,
         `The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this`,
@@ -4002,6 +4061,19 @@ async function main() {
           });
         }
         attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
+        throw failure;
+      }
+
+      const unledgeredStateLog = findUnledgeredStateLog({ loopType, lineage, lineageDir, stateRead });
+      if (unledgeredStateLog) {
+        const failure = new Error(`lineage ${lineage.label} ${unledgeredStateLog}`);
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = false;
+        failure.salvage = salvage;
+        failure.unattributedStateLog = true;
+        failure.code = UNATTRIBUTED_STATE_LOG_CODE;
+        failure.reason = unledgeredStateLog;
         throw failure;
       }
 

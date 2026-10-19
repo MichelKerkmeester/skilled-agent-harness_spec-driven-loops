@@ -37,6 +37,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../../lib/event-envelope/index.js';
+import { createDeepResearchProjectionContract } from '../../lib/legacy-projections/index.js';
 
 import type {
   GatewayAllowProof,
@@ -50,6 +51,7 @@ import type {
   DeepResearchScopeMap,
 } from '../../lib/deep-research-ledger-schema/index.js';
 import type {
+  EventReadResult,
   EventTypeRegistry,
   EventWritePreflight,
   JsonObject,
@@ -530,6 +532,60 @@ function dataFor<TStem extends DeepResearchEventStem>(
       reason: 'confirm_mode_deferred_writeback',
       generatedFence: 'deep-research/spec-findings',
     },
+    'deep_research.idea_promoted': {
+      mode: 'research',
+      run: 3,
+      ideaId: 'idea-ideas-0f2c',
+      idea: 'Compare the relaunch nudge thresholds across runtimes',
+      category: 'ideas',
+      observationCount: 2,
+      minIdeaObservations: 2,
+      firstObservedRun: 1,
+      lastObservedRun: 3,
+      sessionId: null,
+      generation: null,
+    },
+    'deep_research.question_conflict': {
+      mode: 'research',
+      run: 2,
+      conflictId: 'question-conflict-0f2c',
+      questionId: 'question-canonical-1',
+      inboxId: null,
+      operatorDecision: 'needs_decision',
+      inboxValue: 'What incoming question should replace it?',
+      registryValue: 'What canonical question remains?',
+      source: 'research-inbox',
+      origin: 'operator',
+      injectedAtIteration: 2,
+      sessionId: 'session-1',
+      generation: 1,
+    },
+    'deep_research.idea_observed': {
+      mode: 'research',
+      run: 7,
+      ideaId: 'idea-cache-stampede',
+      idea: 'Investigate cache stampede mitigation',
+      category: 'ideas',
+      source: 'iteration-007.md',
+    },
+    'deep_research.idea_rejected': {
+      mode: 'research',
+      run: 7,
+      ideaId: 'idea-cache-stampede',
+      idea: 'Investigate cache stampede mitigation',
+      category: 'ideas',
+      reason: 'Already rejected by environment evidence',
+    },
+    'deep_research.idea_rejected_removed': {
+      mode: 'research',
+      pattern: 'Retry HTTP/3 as the primary latency fix',
+      category: 'next-focus',
+      eventAlias: 'ideaRejectedRemoved',
+    },
+    'deep_research.idea_rejected_reset': {
+      mode: 'research',
+      reason: 'Operator wants previously rejected ideas eligible again',
+    },
   };
   return data[stem] as DeepResearchPayloadMap[TStem];
 }
@@ -870,6 +926,31 @@ describe('deep-research typed ledger schema', () => {
     }
   });
 
+  // The run-open event carries the research topic so the projected config row
+  // can show it, but ledgers written before the field existed must still pass.
+  it('accepts run initialization with or without a prose topic and refuses a blank or oversized one', () => {
+    const registry = createDeepResearchEventRegistry();
+    expect(() => prepareDeepResearchEvent(
+      eventInput('deep_research.run_initialized', 1, '0'.repeat(64)),
+      registry,
+    )).not.toThrow();
+    expect(() => prepareDeepResearchEvent(
+      eventInputWithDataField('deep_research.run_initialized', 1, 'topic', 'How does the relaunch loop recover?'),
+      registry,
+    )).not.toThrow();
+    for (const value of ['   ', 'x'.repeat(4_097), 42, null]) {
+      expect(() => prepareDeepResearchEvent(
+        eventInputWithDataField('deep_research.run_initialized', 1, 'topic', value),
+        registry,
+      )).toThrow();
+    }
+    // The optional field is a run-open field only.
+    expect(() => prepareDeepResearchEvent(
+      eventInputWithDataField('deep_research.run_resumed', 2, 'topic', 'not a resume field'),
+      registry,
+    )).toThrow();
+  });
+
   it('rejects whitespace-only source and passage locator selectors before append', async () => {
     const harness = createHarness();
     const blankSelectors = [' ', '\u00a0'.repeat(2)];
@@ -1095,7 +1176,7 @@ describe('deep-research typed ledger schema', () => {
     }).status).toBe('migrate');
     expect(decideDeepResearchCompatibility({
       type: 'event',
-      event: 'idea_promoted',
+      event: 'pivot_started',
       schemaVersion: 1,
     }).status).toBe('pin-old-runtime');
     expect(decideDeepResearchCompatibility({ type: 'unknown', schemaVersion: 1 }).status)
@@ -1376,12 +1457,6 @@ describe('deep-research typed ledger schema', () => {
 
   it('pins every reducer-side legacy event shape without a lossless ledger target', () => {
     const reducerEventShapes = [
-      'ideaObserved',
-      'ideaPromoted',
-      'ideaRejected',
-      'idea_rejected_removed',
-      'idea_rejected_reset',
-      'question_conflict',
       'novelty_signal_inert',
       'trend_flatline',
       'pivot_started',
@@ -1401,6 +1476,138 @@ describe('deep-research typed ledger schema', () => {
         reasonCode: 'legacy-event-has-no-lossless-mode-event',
         targetStem: null,
       });
+    }
+  });
+
+  // The rows the research reducer, the research agent and the operator write, in
+  // their documented shapes. Each one must come back from the projection as the
+  // same row, key for key, or a ledger-backed run changes what the reducer reads.
+  const reducerReadRows = [
+    {
+      stem: 'deep_research.idea_observed',
+      record: {
+        type: 'event', event: 'idea_observed', mode: 'research', run: 7,
+        ideaId: 'idea-cache-stampede', idea: 'Investigate cache stampede mitigation as a follow-up focus',
+        category: 'ideas', source: 'iteration-007.md', timestamp: '2026-05-24T00:00:00Z',
+      },
+    },
+    {
+      stem: 'deep_research.idea_promoted',
+      record: {
+        type: 'event', event: 'idea_promoted', mode: 'research', run: 8,
+        ideaId: 'idea-cache-stampede', idea: 'Investigate cache stampede mitigation as a follow-up focus',
+        category: 'ideas', observationCount: 2, minIdeaObservations: 2, firstObservedRun: 6,
+        lastObservedRun: 7, timestamp: '2026-05-24T00:02:00Z', sessionId: null, generation: null,
+      },
+    },
+    {
+      stem: 'deep_research.idea_promoted',
+      record: {
+        type: 'event', event: 'idea_promoted', mode: 'research', run: 8,
+        ideaId: 'idea-cache-stampede', idea: 'Investigate cache stampede mitigation as a follow-up focus',
+        category: 'ideas', observationCount: 2, minIdeaObservations: 2, firstObservedRun: 6,
+        lastObservedRun: 7, timestamp: '2026-05-24T00:02:00Z',
+      },
+    },
+    {
+      stem: 'deep_research.idea_rejected',
+      record: {
+        type: 'event', event: 'idea_rejected', mode: 'research', run: 7,
+        ideaId: 'idea-cache-stampede', idea: 'Investigate cache stampede mitigation as a follow-up focus',
+        category: 'ideas', reason: 'Already rejected by environment evidence', timestamp: '2026-05-24T00:00:00Z',
+      },
+    },
+    {
+      stem: 'deep_research.idea_rejected_removed',
+      record: {
+        type: 'event', event: 'ideaRejectedRemoved', mode: 'research',
+        pattern: 'Retry HTTP/3 as the primary latency fix', category: 'next-focus',
+        timestamp: '2026-05-24T00:00:00Z',
+      },
+    },
+    {
+      stem: 'deep_research.idea_rejected_reset',
+      record: {
+        type: 'event', event: 'ideaRejectedReset', mode: 'research',
+        reason: 'Operator wants previously rejected ideas eligible again', timestamp: '2026-05-24T00:00:00Z',
+      },
+    },
+    {
+      stem: 'deep_research.question_conflict',
+      record: {
+        type: 'event', event: 'question_conflict', mode: 'research', run: 2,
+        conflictId: 'question-conflict-0f2c', questionId: 'question-canonical-1', inboxId: 'inbox-conflict-1',
+        operatorDecision: 'needs_decision', inboxValue: 'What incoming question should replace it?',
+        registryValue: 'What canonical question remains?', source: 'operator.note', origin: 'operator',
+        injectedAtIteration: 2, timestamp: '2026-10-19T10:02:00.000Z', sessionId: 'session-1', generation: 1,
+      },
+    },
+  ] as const;
+
+  it.each(reducerReadRows)('upcasts a legacy $record.event row to $stem and projects the same row back', ({ stem, record }) => {
+    const context = {
+      scope: { runId: 'run-ideas-1', lineageId: 'lineage-ideas-1', iteration: 7 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-reducer-rows'),
+    };
+    expect(decideDeepResearchCompatibility(record)).toMatchObject({
+      status: 'migrate',
+      reasonCode: 'registered-pure-upcaster',
+      targetStem: stem,
+    });
+    const result = upcastLegacyDeepResearchRecord(record, context);
+    if (result.status !== 'migrated') throw new Error(result.decision.reasonCode);
+    expect(result.targetStem).toBe(stem);
+    expect(result.scope).toEqual({ runId: 'run-ideas-1', lineageId: 'lineage-ideas-1' });
+    expect(result.occurredAt).toBe(record.timestamp);
+
+    const prepared = prepareDeepResearchEvent({
+      stem,
+      scope: result.scope,
+      prevEventHash: result.prevEventHash,
+      replay: result.replay,
+      data: result.data,
+      eventId: 'event-legacy-row',
+      streamId: 'deep-research-run-1',
+      streamSequence: 1,
+      occurredAt: result.occurredAt as string,
+      recordedAt: TIMESTAMP,
+      producer: { name: 'deep-research-shadow-schema', version: '1' },
+      authorityEpoch: 1,
+      correlationId: 'run-ideas-1',
+      causationId: null,
+      idempotencyKey: 'legacy-reducer-row',
+    } as DeepResearchEventInput<typeof stem>, createDeepResearchEventRegistry());
+    const contract = createDeepResearchProjectionContract();
+    const projected = contract.reduce(contract.base.state, {
+      effective: prepared,
+    } as unknown as EventReadResult);
+    expect(projected.rows).toEqual([record]);
+    expect(Object.keys(projected.rows[0])).toEqual(Object.keys(record));
+  });
+
+  it('refuses a reducer-read row it cannot carry losslessly, naming why', () => {
+    const context = {
+      scope: { runId: 'run-ideas-1', lineageId: 'lineage-ideas-1' },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-reducer-rows'),
+    };
+    const observed = {
+      type: 'event', event: 'idea_observed', mode: 'research', run: 7,
+      idea: 'Investigate cache stampede mitigation', timestamp: '2026-05-24T00:00:00Z',
+    };
+    const refusals = [
+      [{ ...observed, title: 'Cache stampede' }, 'idea-observed-fields-unrecognized'],
+      [{ ...observed, idea: undefined }, 'idea-observed-fields-missing'],
+      [{ ...observed, timestamp: '2026-05-24 00:00:00' }, 'legacy-row-timestamp-invalid'],
+      [{ type: 'event', event: 'idea_rejected', mode: 'research', timestamp: '2026-05-24T00:00:00Z' },
+        'idea-rejected-fields-missing'],
+    ] as const;
+    for (const [record, reasonCode] of refusals) {
+      const result = upcastLegacyDeepResearchRecord(JSON.parse(JSON.stringify(record)), context);
+      expect(result.status, reasonCode).toBe('refused');
+      if (result.status !== 'refused') continue;
+      expect(result.decision).toMatchObject({ status: 'pin-old-runtime', reasonCode });
     }
   });
 

@@ -34,6 +34,7 @@ import {
   type SpawnCjsResult,
 } from '../helpers/spawn-cjs';
 import { detectSameKindFromStack } from '../../lib/deep-loop/executor-audit.js';
+import { gatewayAppendShell } from '../helpers/gateway-backed-lineage';
 import {
   CURSOR_DEFAULT_MODEL as TS_CURSOR_DEFAULT_MODEL,
   CURSOR_SUPPORTED_MODELS,
@@ -224,8 +225,17 @@ function writePendingQuestionStubBinary(binDir: string, name: string): string {
   return stubPath;
 }
 
-function writeProjectionRefusalStubBinary(binDir: string, name: string): string {
+function writeProjectionRefusalStubBinary(
+  binDir: string,
+  name: string,
+  refusal: { phase: string; code: string; reason: string } = {
+    phase: 'projection',
+    code: 'PROJECTION_FAILED',
+    reason: 'stub projection refresh failed',
+  },
+): string {
   const stubPath = join(binDir, name);
+  const refusalFields = JSON.stringify(refusal);
   writeFileSync(
     stubPath,
     [
@@ -236,7 +246,7 @@ function writeProjectionRefusalStubBinary(binDir: string, name: string): string 
       'node - "$lineage_dir" <<\'NODE\'',
       'const fs = require("node:fs");',
       'const path = require("node:path");',
-      'const record = { at: new Date().toISOString(), mode: "deep-research", phase: "projection", code: "PROJECTION_FAILED", reason: "stub projection refresh failed", stem: "deep_research.iteration_recorded" };',
+      `const record = { at: new Date().toISOString(), mode: "deep-research", ...${refusalFields}, stem: "deep_research.iteration_recorded" };`,
       'fs.appendFileSync(path.join(process.argv.at(-1), "gateway-refusals.jsonl"), JSON.stringify(record) + "\\n");',
       'NODE',
       'echo "stub-projection-refused"',
@@ -280,7 +290,19 @@ function writeFlakySalvageMissStubBinary(binDir: string, name: string, counterPa
       'if [ ! -f "$counter" ]; then',
       '  echo first > "$counter"',
       '  mkdir -p "$lineage_dir"',
-      '  printf \'{"type":"iteration","iteration":1,"run":1,"status":"complete"}\\n\' > "$lineage_dir/deep-research-state.jsonl"',
+      // The short first attempt still records its iteration through the gateway,
+      // as a real lineage does, so the retry inherits a ledger-backed state log.
+      gatewayAppendShell('research', {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        focus: 'salvage retry',
+        newInfoRatio: 0.5,
+        ruledOut: [],
+        sessionId: 'stub-salvage-run',
+        lineageId: 'stub-salvage-run',
+      }),
       '  echo "short"',
       '  exit 1',
       'fi',
@@ -3352,6 +3374,140 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
       .split('\n')
       .map((line) => JSON.parse(line) as Record<string, unknown>);
     expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toHaveLength(0);
+  });
+
+  // The gateway refuses before the append when the lineage state log opens with a
+  // config row its ledger never produced. Retrying replays the same refusal, so the
+  // runner treats it like a projection refusal and keeps the gateway's own code.
+  it('carries a pre-append provenance refusal through with its own code, without retrying', async () => {
+    const binDir = makeTempDir('fanout-run-provenance-refusal-bin-');
+    const baseDir = makeTempDir('fanout-run-provenance-refusal-base-');
+    writeProjectionRefusalStubBinary(binDir, 'opencode', {
+      phase: 'provenance',
+      code: 'STATE_LOG_UNATTRIBUTED',
+      reason: 'State log deep-research-state.jsonl opens with a config row the ledger never produced',
+    });
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'provenance-refusal', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 5,
+    });
+    const hermetic = useHermeticEnv('provenance-refusal');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-provenance-refusal',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    const lineageDir = join(baseDir, 'lineages', 'provenance-refusal');
+    expect(readFileSync(join(lineageDir, 'projection-attempts.log'), 'utf8').trim().split(/\r?\n/))
+      .toHaveLength(1);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        status?: string;
+        retry_attempts?: number;
+        error?: { failure_class?: string; code?: string; reason?: string };
+      }>;
+    };
+    expect(payload.results?.[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 0,
+      error: {
+        failure_class: 'unattributed_state_log',
+        retryable: false,
+        code: 'STATE_LOG_UNATTRIBUTED',
+      },
+    });
+    expect(payload.results?.[0]?.error?.reason).toContain('config row the ledger never produced');
+  });
+
+  // A leaf that writes its state log straight to disk and never calls the gateway
+  // leaves no refusal record behind, so the runner reads the ledger itself: state
+  // rows with no ledger record cannot have come through the gateway.
+  it('fails a CLI lineage whose state log has rows but whose ledger has none, without retrying', async () => {
+    const binDir = makeTempDir('fanout-run-unledgered-bin-');
+    const baseDir = makeTempDir('fanout-run-unledgered-base-');
+    writeFileSync(
+      join(binDir, 'opencode'),
+      [
+        '#!/bin/sh',
+        OPENCODE_VERSION_PROBE,
+        writeFanoutArtifactsShell(),
+        'printf "attempt\\n" >> "$lineage_dir/unledgered-attempts.log"',
+        'mkdir -p "$lineage_dir/iterations"',
+        'printf "# Iteration 1\\n" > "$lineage_dir/iterations/iteration-001.md"',
+        'printf \'{"type":"config","topic":"hand-written"}\\n{"type":"iteration","iteration":1,"run":1,"status":"complete"}\\n\' > "$lineage_dir/deep-research-state.jsonl"',
+        'echo "stub-unledgered"',
+        'exit 0',
+        '',
+      ].join('\n'),
+      { mode: 0o755 },
+    );
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'unledgered', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 5,
+    });
+    const hermetic = useHermeticEnv('unledgered');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-unledgered',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    const lineageDir = join(baseDir, 'lineages', 'unledgered');
+    expect(readFileSync(join(lineageDir, 'unledgered-attempts.log'), 'utf8').trim().split(/\r?\n/)).toHaveLength(1);
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        status?: string;
+        retry_attempts?: number;
+        error?: { failure_class?: string; retryable?: boolean; code?: string; reason?: string };
+      }>;
+    };
+    expect(payload.results?.[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 0,
+      error: {
+        failure_class: 'unattributed_state_log',
+        retryable: false,
+        code: 'STATE_LOG_UNATTRIBUTED',
+      },
+    });
+    expect(payload.results?.[0]?.error?.reason).toContain('deep-research-ledger holds no records');
+    const summary = parseJsonFile<{ failure_classes?: Record<string, number> }>(
+      join(baseDir, 'orchestration-summary.json'),
+    );
+    expect(summary.failure_classes?.unattributed_state_log).toBe(1);
   });
 
   it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {
