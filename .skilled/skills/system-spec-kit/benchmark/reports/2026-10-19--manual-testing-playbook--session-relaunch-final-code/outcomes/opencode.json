@@ -1,0 +1,69 @@
+{
+  "scenarioId": "session-relaunch-pi-opencode",
+  "runtime": "opencode",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Round 9 is the only round in this folder: one live run in a clean tmux environment inside a git worktree of this repository, driven by skilled-loop on openai/gpt-6-luna on the frozen final code with SESSION_RELAUNCH_THRESHOLD=0.05, SESSION_RELAUNCH_WINDOW_TOKENS=100 and SESSION_RELAUNCH_MAX_HOPS=1. The run prepared a note, took SIGTERM and relaunched with the claim seed. The receiver claimed the note with the positional path and --session, ran complete on the positional path with no output, and reported 248 lines with Session Relaunch as the first heading. The wrapper declined a further hop with reason no-file, no operator input was recorded, and wrapper-exits.txt records WRAPPER_EXIT=0 beside that decline.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "openai/gpt-6-luna",
+  "runs": [
+    {
+      "run": "9",
+      "loopId": 78816,
+      "verdict": "PASS",
+      "reason": "Prepare at 09:44:24.248Z, SIGTERM at 09:44:37.070Z and relaunch reason=ready at 09:44:37.238Z, 12.8 s from prepare to SIGTERM. The receiver ran claim with the positional note path and --session, ran complete with the positional path and no output, and reported 248 lines with Session Relaunch as the first heading. The wrapper declined a further hop at 09:51:04.661Z with reason=no-file.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run9.log",
+          "bytes": 1190,
+          "sha256": "157501e2ec0a1753c68bd8b2618b321691e8925f43b7d6edb8cc2af5292b0556"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc9-pane.txt",
+          "bytes": 5224,
+          "sha256": "3100d515bc31730500bf22b00cac055058196c2837226b5ed9ebd6bbd1f9d2b5"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/launch-commands-final.txt",
+          "bytes": 6803,
+          "sha256": "aaebeaa03d6ff00dc1328acaed52c5c54ad0e2b538d4578524cd39a0643c209e"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/wrapper-exits.txt",
+          "bytes": 1314,
+          "sha256": "2955f877f543130383b23752dcab6e6e62e5631789517d4db389f398acb79367"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run9.log",
+      "bytes": 1190,
+      "sha256": "157501e2ec0a1753c68bd8b2618b321691e8925f43b7d6edb8cc2af5292b0556"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc9-pane.txt",
+      "bytes": 5224,
+      "sha256": "3100d515bc31730500bf22b00cac055058196c2837226b5ed9ebd6bbd1f9d2b5"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/launch-commands-final.txt",
+      "bytes": 6803,
+      "sha256": "aaebeaa03d6ff00dc1328acaed52c5c54ad0e2b538d4578524cd39a0643c209e"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/wrapper-exits.txt",
+      "bytes": 1314,
+      "sha256": "2955f877f543130383b23752dcab6e6e62e5631789517d4db389f398acb79367"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

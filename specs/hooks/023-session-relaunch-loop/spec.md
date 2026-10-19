@@ -36,7 +36,7 @@ contextType: "implementation"
 | **Parent Packet** | specs/hooks/023-session-relaunch-loop |
 | **Predecessor** | 022-smart-rule-injection |
 | **Successor** | None |
-| **Handoff Criteria** | All four children are Complete, recursive strict validation reports RESULT: PASSED, the Claude live relaunch is proven and every drift gate is at baseline or better. |
+| **Handoff Criteria** | All six children are Complete, recursive strict validation reports RESULT: PASSED, the Claude live relaunch is proven and every drift gate is at baseline or better. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,7 +48,7 @@ contextType: "implementation"
 A session near the context limit needs to write a handoff note, end and restart in the same terminal. The operator wants the Skilled repo to own this behavior as a hook and command across its CLI runtimes.
 
 ### Purpose
-The four child phases define a runtime-neutral core, the runtime-specific triggers and commands, and the evidence needed to close the work. The overall outcome is a Claude relaunch at 80% with auto-compaction unchanged as the fallback when a hop fails.
+The six child phases define a runtime-neutral core, the runtime-specific triggers and commands, and the evidence needed to close the work. The overall outcome is a Claude relaunch at 80% with auto-compaction unchanged as the fallback when a hop fails.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -63,6 +63,8 @@ The four child phases define a runtime-neutral core, the runtime-specific trigge
 - Phase 002 verifies Pi and OpenCode events and adds automatic triggers only where the spike supports them.
 - Phase 003 verifies Codex, Cursor, Devin and Hermes entry points and uses the command trigger unless a spike confirms an automatic event.
 - Phase 004 reviews the combined changes, updates the cross-phase docs, runs final live checks and closes the packet.
+- Phase 005 fixes the twelve P2 advisories the deep review left, aligns the new code with the sk-code-opencode checklists and refreshes the docs the fixes touch.
+- Phase 006 fixes what the second deep review finds against the closed phases, aligns the touched code with the sk-code-opencode checklists and refreshes the docs those fixes change.
 
 ### Out of Scope
 - Changing autoCompactEnabled or autoCompactWindow.
@@ -80,6 +82,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | .skilled/hooks/session-relaunch/pi/, session-relaunch/opencode/, .pi/extensions/, OpenCode plugin files and wrapper case arms | Create and modify | 002-pi-opencode-adapters | Pi and OpenCode adapters, verified wrapper arms and runtime documentation. |
 | .skilled/bin/skilled-loop runtime arms, verified adapters, registry rows and command mirrors | Modify | 003-command-trigger-runtimes | Codex, Cursor, Devin and Hermes entry points based on spike evidence. |
 | Root README, system-spec-kit README, catalog and playbook indexes | Modify | 004-integration-review-and-docs-closure | Cross-phase doc rollup, review and closure evidence. |
+| .skilled/hooks/session-relaunch/lib/ and its adapter folders, their tests, .skilled/bin/skilled-loop, the session-relaunch READMEs, the plugins-and-hooks playbook page, the Pi Fast Mode extension and the sk-doc README checklist script | Create and modify | 005-deep-review-remediation | Advisory fixes with one test per code finding, shared adapter helpers, a balanced Skip suffix and the docs the fixes change. |
+| .skilled/hooks/session-relaunch/lib/, bin/, pi/, claude/, codex/, hermes/, opencode plugin, their tests, the hook registry, .claude/settings.json, .codex/hooks.json, the sk-doc version check, the session-relaunch READMEs, the env reference, the three plugins-and-hooks playbook pages, the feature catalog and the two benchmark run folders | Create and modify | 006-deep-review-2-remediation | Fixes for the second deep review's twelve findings, the code alignment pass, the live-playbook gaps G1 to G25, the docs those fixes change and the dated live-run records. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -95,6 +99,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 2 | 002-pi-opencode-adapters/ | Automatic triggers for Pi and OpenCode where verified, using the shared core. | complete |
 | 3 | 003-command-trigger-runtimes/ | Codex, Cursor, Devin and Hermes enter the loop by command unless a spike confirms an automatic event. | complete |
 | 4 | 004-integration-review-and-docs-closure/ | Cross-phase review, doc rollup, final live runs and closure. | complete |
+| 5 | 005-deep-review-remediation/ | Fix the twelve P2 advisories from the deep review, align the new code with sk-code-opencode and refresh the docs it touches. | complete |
+| 6 | 006-deep-review-2-remediation/ | Fix what the second deep review finds against the closed phases, align the touched code with the sk-code-opencode checklists and refresh the docs the fixes change. | complete |
 
 ### Phase Transition Rules
 
@@ -110,6 +116,8 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 001-claude-relaunch-loop | 002-pi-opencode-adapters | the from-phase is Done per plan section 7 (all its AC seeds Met, gate PG passed) | validate.sh <child> --strict RESULT: PASSED plus its acceptance-criteria.md rows Met |
 | 002-pi-opencode-adapters | 003-command-trigger-runtimes | the from-phase is Done per plan section 7 (all its AC seeds Met, gate PG passed) | validate.sh <child> --strict RESULT: PASSED plus its acceptance-criteria.md rows Met |
 | 003-command-trigger-runtimes | 004-integration-review-and-docs-closure | the from-phase is Done per plan section 7 (all its AC seeds Met, gate PG passed) | validate.sh <child> --strict RESULT: PASSED plus its acceptance-criteria.md rows Met |
+| 004-integration-review-and-docs-closure | 005-deep-review-remediation | the deep review of the closed phases has a report with a finding registry | `review-archive/20261018T184826Z/review-report.md` exists with verdict and registry |
+| 005-deep-review-remediation | 006-deep-review-2-remediation | the second deep review has a report with a finding registry | `review/review-report.md` exists with verdict and registry |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -130,3 +138,5 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 - Phase 002: 002-pi-opencode-adapters/spec.md and plan.md
 - Phase 003: 003-command-trigger-runtimes/spec.md and plan.md
 - Phase 004: 004-integration-review-and-docs-closure/spec.md and plan.md
+- Phase 005: 005-deep-review-remediation/spec.md and plan.md
+- Phase 006: 006-deep-review-2-remediation/spec.md and plan.md

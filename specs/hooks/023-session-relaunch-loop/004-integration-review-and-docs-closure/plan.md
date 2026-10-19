@@ -225,7 +225,7 @@ The phase 001 procedure, run once per AUTO runtime:
 N/A. The phase plan names no deployment backup or rollout flag.
 
 ### Rollback Procedure
-The failure behavior is in the Phase Halts and Common Halts table. A rejected lane is re-dispatched narrower rather than reverted.
+The failure behavior is in the Applicable Halts table. A rejected lane is re-dispatched narrower rather than reverted.
 
 ### Data Reversal
 - **Has data migrations?** The phase plan names none.

@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Session Relaunch CLI Tests
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const { test } = require('node:test');
@@ -22,8 +22,8 @@ const SPEC_FOLDER_CASES = [
 ];
 const SPEC_FOLDER_SUFFIX = ` | Spec folder: ${SPEC_FOLDER}`
   + ' (carried from the handoff; Gate 3 answered in the sending session)';
-const SKIP_SPEC_FOLDER_SUFFIX = ' | Spec folder: none (Gate 3 answered D)'
-  + ' Skip in the sending session)';
+const SKIP_SPEC_FOLDER_SUFFIX = ' | Spec folder: none'
+  + ' (Gate 3 answered D, Skip, in the sending session)';
 const SESSION_ID = 'session-cli-00000001';
 const LOOP_ID = 'loop-cli-00000001';
 const NOW = new Date('2026-10-16T12:00:00.000Z');
@@ -43,6 +43,7 @@ function createSandbox(t) {
     psPath,
     [
       '#!/bin/sh',
+      'if [ -n "$SESSION_RELAUNCH_TEST_PS_SLEEP" ]; then sleep "$SESSION_RELAUNCH_TEST_PS_SLEEP"; fi',
       'if [ -n "$SESSION_RELAUNCH_TEST_RUNTIME_PID" ]; then',
       '  printf "%s %s node\\n" "$SESSION_RELAUNCH_TEST_RUNTIME_PID" "$SKILLED_LOOP_ID"',
       '  printf "%s %s bash\\n" "$SESSION_RELAUNCH_TEST_BUSY_PID" '
@@ -61,10 +62,11 @@ function createSandbox(t) {
     ...process.env,
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
-    REPO_ROOT: repoRoot,
+    SESSION_RELAUNCH_REPO_ROOT: repoRoot,
     PATH: [binDir, process.env.PATH || ''].join(path.delimiter),
     SESSION_RELAUNCH_TEST_PS_OUTPUT: '',
     SESSION_RELAUNCH_TEST_PS_EXIT_CODE: '0',
+    SESSION_RELAUNCH_TEST_PS_SLEEP: '',
     SESSION_RELAUNCH_TEST_RUNTIME_PID: '',
     SESSION_RELAUNCH_TEST_BUSY_PID: '',
     SESSION_RELAUNCH_TEST_EXTRA_PS_OUTPUT: '',
@@ -298,6 +300,80 @@ test('prepare exits zero under the loop with a Claude process that has no childr
   }
 });
 
+// A runtime that surfaces stdout but not the exit status leaves a silent success looking
+// like a command that never ran, so the run that arms the record also says so.
+test('prepare under the loop prints the prepared handoff and the stop instruction', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(
+    result.stdout,
+    '[session-relaunch] handoff prepared; stop now and end this turn.'
+      + ' The loop ends this session when it goes idle and a fresh session continues from '
+      + `${handoffPath}.\n`,
+  );
+});
+
+// A record written past the hop cap can only be declined by the wrapper, yet its killer
+// still ends the session, so prepare has to decline before it arms anything.
+test('prepare declines at the hop limit without writing a relaunch record', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_HOPS = '1';
+  sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 3, result.stderr);
+  assert.ok(
+    result.stdout.includes(
+      '[session-relaunch] hop limit reached; continue in this session'
+        + ' (auto-compaction remains the fallback)',
+    ),
+    result.stdout,
+  );
+  assert.ok(
+    result.stdout.includes(
+      'skilled-loop claude "[session-relaunch] claim and continue handoff '
+        + `${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
+    ),
+    result.stdout,
+  );
+  assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, new RegExp(`prepare-declined loopId=${LOOP_ID} reason=hop-cap`));
+  assert.match(fs.readFileSync(handoffPath, 'utf8'), /^status: open$/m);
+});
+
+test('prepare still arms a pending record below the hop limit', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_HOPS = '0';
+  sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 0, result.stderr);
+  const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
+  assert.equal(record.status, 'pending');
+  assert.equal(record.hops, 0);
+});
+
 test('prepare records the runtime from SKILLED_LOOP_RUNTIME', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -417,6 +493,30 @@ test('prepare exits two when CLAUDE_PID has a live bash child', async (t) => {
   }
 });
 
+for (const shellCommand of ['fish', '-zsh']) {
+  test(`prepare exits two for a live ${shellCommand} child of the Claude process`, (t) => {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox);
+    const runtimePid = 900001;
+    const childPid = 900002;
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(runtimePid);
+    sandbox.env.SESSION_RELAUNCH_TEST_PS_OUTPUT = [
+      `${runtimePid} 1 node`,
+      `${childPid} ${runtimePid} ${shellCommand}`,
+    ].join('\n');
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    assert.equal(result.status, 2, result.stderr);
+    assert.ok(
+      result.stderr.includes(`live shell child (${shellCommand}, pid ${childPid})`),
+      result.stderr,
+    );
+  });
+}
+
 test('prepare ignores an inherited Claude shell child for a Codex loop', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.handoffPath = writeHandoff(sandbox);
@@ -471,6 +571,29 @@ test('prepare names the runtime when ps fails', (t) => {
 
   assert.equal(result.status, 2, result.stderr);
   assert.match(result.stderr, /could not inspect Codex child processes: ps exited 1/);
+});
+
+test('prepare gives up on a hung ps instead of stalling the hook', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.SESSION_RELAUNCH_TEST_PS_SLEEP = '8';
+
+  const startedAt = Date.now();
+  const result = runCli(sandbox, [
+    'prepare',
+    '--handoff',
+    handoffPath,
+    '--session',
+    SESSION_ID,
+  ]);
+  const elapsed = Date.now() - startedAt;
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /could not inspect Codex child processes: spawnSync ps/);
+  assert.ok(elapsed < 4000, `the ps read must be bounded, took ${elapsed}ms`);
 });
 
 test('prepare refuses a live shell child without CLAUDE_PID', async (t) => {
@@ -644,6 +767,14 @@ test('prepare resolves an absolute note under the CLI repository from a subdirec
     'lib',
     'relaunch-core.cjs',
   );
+  const copiedNudge = path.join(
+    sandbox.repoRoot,
+    '.skilled',
+    'hooks',
+    'session-relaunch',
+    'lib',
+    'nudge.cjs',
+  );
   const copiedHookFlags = path.join(
     sandbox.repoRoot,
     '.skilled',
@@ -663,6 +794,7 @@ test('prepare resolves an absolute note under the CLI repository from a subdirec
   fs.mkdirSync(path.dirname(copiedHookFlags), { recursive: true });
   fs.copyFileSync(CLI_PATH, copiedCli);
   fs.copyFileSync(path.resolve(__dirname, '../lib/relaunch-core.cjs'), copiedCore);
+  fs.copyFileSync(path.resolve(__dirname, '../lib/nudge.cjs'), copiedNudge);
   fs.copyFileSync(path.resolve(__dirname, '../../shared/hook-flags.cjs'), copiedHookFlags);
   fs.copyFileSync(
     path.resolve(__dirname, '../../shared/env-aliases.cjs'),
@@ -672,7 +804,7 @@ test('prepare resolves an absolute note under the CLI repository from a subdirec
   const subdirectory = path.join(sandbox.repoRoot, 'nested', 'working-directory');
   fs.mkdirSync(subdirectory, { recursive: true });
   const environment = { ...sandbox.env };
-  delete environment.REPO_ROOT;
+  delete environment.SESSION_RELAUNCH_REPO_ROOT;
   environment.CLAUDE_CODE_SESSION_ID = SESSION_ID;
   environment.CLAUDE_PID = 'not-a-pid';
   const result = spawnSync(process.execPath, [
@@ -952,6 +1084,79 @@ test('complete exits zero for a claimed note', (t) => {
   const handoffPath = writeHandoff(sandbox, { status: 'claimed' });
   const result = runCli(sandbox, ['complete', handoffPath]);
   assert.equal(result.status, 0, result.stderr);
+});
+
+test('claim --help prints the claim usage on stdout and exits zero', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['claim', '--help']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /claim <handoff-path> \[--session <session-id>\]/);
+  assert.equal(result.stderr, '');
+});
+
+test('-h after a subcommand prints the full usage listing', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['prepare', '-h']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /prepare --handoff <handoff-path>/);
+  assert.match(result.stdout, /consume --loop-id <loop-id>/);
+});
+
+// Both declines print the same claim command and exit 3, so the summary has to name
+// the hop limit beside the outside-a-loop case or a reader takes one path for both.
+test('prepare usage names the outside-a-loop and hop-limit declines', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['prepare', '-h']);
+
+  assert.equal(result.status, 0, result.stderr);
+  const summary = result.stdout
+    .split('\n')
+    .find((line) => line.includes('Validate the note and arm the relaunch'));
+  assert.ok(summary, result.stdout);
+  assert.match(summary, /outside a loop/);
+  assert.match(summary, /hop limit/);
+  assert.match(summary, /exits 3/);
+});
+
+test('no subcommand prints every subcommand syntax on stdout and exits zero', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, []);
+
+  assert.equal(result.status, 0, result.stderr);
+  for (const syntax of [
+    'prepare --handoff <handoff-path>',
+    'should-relaunch --loop-id <loop-id>',
+    'claim <handoff-path>',
+    'complete <handoff-path>',
+    'consume --loop-id <loop-id>',
+  ]) {
+    assert.ok(result.stdout.includes(syntax), `${syntax}: ${result.stdout}`);
+  }
+});
+
+test('an unknown subcommand exits two and lists the commands on stderr', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['claaim', 'x']);
+
+  assert.equal(result.status, 2);
+  assert.match(
+    result.stderr,
+    /command must be prepare, should-relaunch, claim, complete, or consume/,
+  );
+  assert.match(result.stderr, /claim <handoff-path>/);
+  assert.equal(result.stdout, '');
+});
+
+test('complete names its usage line for an option it does not take', (t) => {
+  const sandbox = createSandbox(t);
+  const result = runCli(sandbox, ['complete', '--handoff', 'x']);
+
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /unknown option --handoff/);
+  assert.match(result.stderr, /complete <handoff-path>/);
+  assert.doesNotMatch(result.stderr, /Usage: node /);
 });
 
 test('should-relaunch prints one no-file JSON line for a corrupt record', (t) => {

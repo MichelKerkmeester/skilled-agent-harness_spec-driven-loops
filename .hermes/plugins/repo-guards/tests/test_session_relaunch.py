@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Repo Guards Session Relaunch Tests
+# ───────────────────────────────────────────────────────────────
 """Checks the Hermes bridge for session relaunch context and turn-end arming."""
 
 from __future__ import annotations

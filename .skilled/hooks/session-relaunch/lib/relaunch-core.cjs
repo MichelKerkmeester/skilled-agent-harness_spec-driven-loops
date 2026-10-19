@@ -11,12 +11,14 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
+const { spawnSync } = require('node:child_process');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const STATE_DIRECTORY_NAME = 'skilled-relaunch';
+const LEGACY_LOCK_MAX_AGE_MS = 10 * 60 * 1000;
 const HANDOFF_SECTIONS = Object.freeze(['Goal', 'Done', 'Remaining work', 'In-flight state']);
 const SPEC_FOLDER_PATTERN =
   /^specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -41,6 +43,16 @@ function validSpecFolder(value) {
 function ensureStateDir(env) {
   const directory = stateDir(env);
   fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
+  // mkdirSync succeeds through a symlink and says nothing about who owns the
+  // directory, so re-inspect the real entry: a redirected or foreign-owned state
+  // directory would let another user read or steer the relaunch records.
+  const stats = fs.lstatSync(directory);
+  const ownerUid = typeof process.getuid === 'function' ? process.getuid() : null;
+  if (!stats.isDirectory() || (ownerUid !== null && stats.uid !== ownerUid)) {
+    throw new Error(
+      `relaunch state directory must be a real directory owned by the current user: ${directory}`,
+    );
+  }
   fs.chmodSync(directory, 0o700);
   return directory;
 }
@@ -136,11 +148,18 @@ function assertValidSessionId(sessionId) {
 /**
  * Resolve the per-user runtime directory without creating it during reads.
  *
+ * The temp fallback carries the uid, because a shared temp directory would
+ * otherwise hand the second user on a host a directory the first user created.
+ *
  * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment overrides.
  * @returns {string} The private relaunch state directory path.
  */
 function stateDir(env = process.env) {
-  return path.join(env?.XDG_RUNTIME_DIR || os.tmpdir(), STATE_DIRECTORY_NAME);
+  if (env?.XDG_RUNTIME_DIR) return path.join(env.XDG_RUNTIME_DIR, STATE_DIRECTORY_NAME);
+  const directoryName = typeof process.getuid === 'function'
+    ? `${STATE_DIRECTORY_NAME}-${process.getuid()}`
+    : STATE_DIRECTORY_NAME;
+  return path.join(os.tmpdir(), directoryName);
 }
 
 /**
@@ -523,7 +542,7 @@ function manualClaimCommand(runtime, handoffPath, specFolder = '') {
     .replace(/!/g, "\"'!'\"");
   let specFolderSuffix = '';
   if (specFolder === 'none') {
-    specFolderSuffix = ' | Spec folder: none (Gate 3 answered D) Skip in the sending session)';
+    specFolderSuffix = ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)';
   } else if (validSpecFolder(specFolder)) {
     specFolderSuffix = ` | Spec folder: ${specFolder}`
       + ' (carried from the handoff; Gate 3 answered in the sending session)';
@@ -563,15 +582,192 @@ function appendLog(event, fields = {}, env = process.env, now) {
   const line = `${toIsoTimestamp(now)} ${event}${values.length ? ` ${values.join(' ')}` : ''}`;
   const directory = ensureStateDir(env);
   const logPath = path.join(directory, 'relaunch.log');
-  let previous = '';
+  const fileDescriptor = fs.openSync(logPath, 'a+', 0o600);
   try {
-    previous = fs.readFileSync(logPath, 'utf8');
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
+    // A pre-existing log may carry a permissive mode; re-pin it on every append.
+    fs.fchmodSync(fileDescriptor, 0o600);
+    // A truncated write leaves a partial final line; the next event starts on
+    // its own line so readers keep one event per line.
+    let separator = '';
+    const size = fs.fstatSync(fileDescriptor).size;
+    if (size > 0) {
+      const lastByte = Buffer.alloc(1);
+      fs.readSync(fileDescriptor, lastByte, 0, 1, size - 1);
+      if (lastByte[0] !== 0x0a) separator = '\n';
+    }
+    const text = `${separator}${line}\n`;
+    const expectedBytes = Buffer.byteLength(text);
+    const writtenBytes = fs.writeSync(fileDescriptor, text);
+    // A short write (disk full, file-size limit) truncates the event line while
+    // still looking like success; concurrent appenders rule out a retry loop, so
+    // the truncation is surfaced instead of silently losing the event.
+    if (writtenBytes < expectedBytes) {
+      throw new Error(
+        `relaunch log short write: wrote ${writtenBytes} of ${expectedBytes} bytes to ${logPath}`,
+      );
+    }
+    fs.fsyncSync(fileDescriptor);
+  } finally {
+    fs.closeSync(fileDescriptor);
   }
-  const separator = previous && !previous.endsWith('\n') ? '\n' : '';
-  atomicWriteFile(logPath, `${previous}${separator}${line}\n`);
   return line;
+}
+
+/**
+ * Read a killer lock once and report both facts that decide ownership.
+ *
+ * Owner and expiry have to come from the same snapshot: a lock unlinked between
+ * two separate reads would otherwise report a live owner for a lock that is
+ * already gone.
+ *
+ * The lock only names a pid and a timestamp, so a killer killed with SIGKILL
+ * pins the loop whenever its pid is reused by a long-lived process; the
+ * recorded expiry bounds that window. Locks written before the expiry field
+ * existed are aged out from their creation stamp instead.
+ *
+ * @param {string} lockPath - Killer lock file path.
+ * @param {number} [now=Date.now()] - Clock value in epoch milliseconds.
+ * @returns {{ ownerPid: number|null, expired: boolean }} Recorded owner and expiry verdict.
+ */
+function readLockState(lockPath, now = Date.now()) {
+  let lockContents;
+  try {
+    lockContents = fs.readFileSync(lockPath, 'utf8');
+  } catch (error) {
+    // A non-file at the lock path records no owner either: a read of a directory
+    // fails the same way a missing lock does, and reporting no owner leaves the
+    // caller's staleness rule in charge instead of aborting the caller.
+    if (error.code === 'ENOENT' || error.code === 'EACCES' || error.code === 'EISDIR') {
+      return { ownerPid: null, expired: false };
+    }
+    throw error;
+  }
+  const fields = lockContents.trim().split(/\s+/);
+  const ownerPid = Number(fields[0]);
+  const expiry = Date.parse(fields[2] ?? '');
+  let expired = false;
+  if (Number.isFinite(expiry)) {
+    expired = now >= expiry;
+  } else {
+    const created = Date.parse(fields[1] ?? '');
+    if (Number.isFinite(created)) expired = now >= created + LEGACY_LOCK_MAX_AGE_MS;
+  }
+  return {
+    ownerPid: Number.isSafeInteger(ownerPid) && ownerPid > 0 ? ownerPid : null,
+    expired,
+  };
+}
+
+/**
+ * Read the owning pid from a killer lock file.
+ *
+ * @param {string} lockPath - Killer lock file path.
+ * @returns {number|null} The recorded owner pid, or null when unreadable or absent.
+ */
+function lockOwnerPid(lockPath) {
+  return readLockState(lockPath).ownerPid;
+}
+
+/**
+ * Decide whether a killer lock has outlived the killer that wrote it.
+ *
+ * @param {string} lockPath - Killer lock file path.
+ * @param {number} [now=Date.now()] - Clock value in epoch milliseconds.
+ * @returns {boolean} True once the recorded expiry has passed.
+ */
+function lockIsExpired(lockPath, now = Date.now()) {
+  return readLockState(lockPath, now).expired;
+}
+
+/**
+ * Probe whether a pid still refers to a running process.
+ *
+ * @param {number|null} pid - Process identifier to probe.
+ * @returns {boolean} True while the process exists; EPERM counts as alive.
+ */
+function isProcessAlive(pid) {
+  if (!Number.isSafeInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    if (error.code === 'ESRCH') return false;
+    if (error.code === 'EPERM') return true;
+    throw error;
+  }
+}
+
+/**
+ * Return the pid of the killer that currently owns this loop's lock.
+ * An armed record only suppresses a new killer while a live killer holds the
+ * lock, so arm paths re-spawn when the recorded killer has died or the lock has
+ * expired.
+ *
+ * @param {string} loopId - Wrapper process identifier.
+ * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment.
+ * @returns {number|null} The live lock owner's pid, or null when no live killer owns it.
+ */
+function liveKillerPid(loopId, env = process.env) {
+  if (!validLoopId(loopId)) return null;
+  const lockPath = path.join(stateDir(env), `killer-${loopId}.lock`);
+  const { ownerPid, expired } = readLockState(lockPath);
+  if (!isProcessAlive(ownerPid)) return null;
+  return expired ? null : ownerPid;
+}
+
+/**
+ * Snapshot `pid ppid` pairs from the process table.
+ *
+ * The read is bounded because the stop and session-end hooks wait on it: a hung
+ * `ps` must fail into the null path instead of stalling the hook.
+ *
+ * @returns {string|null} The table text, or null when `ps` is unavailable or exceeds the bound.
+ */
+function readProcessTable() {
+  try {
+    const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid='], {
+      encoding: 'utf8',
+      timeout: 2000,
+    });
+    if (result.error || result.status !== 0) return null;
+    return result.stdout;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Resolve the loop's direct child above a descendant adapter process.
+ * The adapter can run below a transient shell, so process.ppid is not a stable
+ * kill target.
+ *
+ * @param {string} loopId - Owning loop pid carried by SKILLED_LOOP_ID.
+ * @param {Object} [options] - Dependency seams for tests.
+ * @param {number} [options.pid=process.pid] - Descendant pid to climb from.
+ * @param {string} [options.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @returns {number|null} The ancestor pid whose parent is the loop, or null when unmatched.
+ */
+function findLoopChildPid(loopId, { pid = process.pid, processTable } = {}) {
+  const loopPid = Number(loopId);
+  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return null;
+  const table = typeof processTable === 'string' ? processTable : readProcessTable();
+  if (typeof table !== 'string') return null;
+
+  const parents = new Map();
+  for (const line of table.split(/\r?\n/)) {
+    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
+    if (match) parents.set(Number(match[1]), Number(match[2]));
+  }
+
+  let current = Number(pid);
+  const visited = new Set();
+  while (Number.isSafeInteger(current) && current > 0 && !visited.has(current)) {
+    visited.add(current);
+    const parent = parents.get(current);
+    if (parent === loopPid) return current;
+    current = parent;
+  }
+  return null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -581,6 +777,7 @@ function appendLog(event, fields = {}, env = process.env, now) {
 module.exports = {
   validSpecFolder,
   stateDir,
+  ensureStateDir,
   relaunchFilePath,
   parseHandoff,
   validateHandoff,
@@ -594,4 +791,11 @@ module.exports = {
   supersedeClaimed,
   manualClaimCommand,
   appendLog,
+  readLockState,
+  lockOwnerPid,
+  lockIsExpired,
+  isProcessAlive,
+  liveKillerPid,
+  readProcessTable,
+  findLoopChildPid,
 };

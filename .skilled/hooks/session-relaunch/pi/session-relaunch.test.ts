@@ -4,18 +4,25 @@
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { EventEmitter } from 'node:events';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
-import { preparePending, readRelaunchFile } from '../lib/relaunch-core.cjs';
+import type {
+  AgentEndEvent,
+  BeforeAgentStartEvent,
+  ExtensionAPI,
+  ExtensionContext,
+  MessageEndEvent,
+} from '@earendil-works/pi-coding-agent';
+import { arm, preparePending, readRelaunchFile } from '../lib/relaunch-core.cjs';
 import sessionRelaunch from './session-relaunch';
 
 const { spawnMock } = vi.hoisted(() => ({ spawnMock: vi.fn(() => ({ unref: vi.fn() })) }));
 vi.mock('node:child_process', () => ({ spawn: spawnMock }));
 
-type Handler = (event: any, ctx: any) => unknown;
+type ExtensionEvent = AgentEndEvent | BeforeAgentStartEvent | MessageEndEvent;
+type Handler = (event: ExtensionEvent, ctx: ExtensionContext) => unknown;
 
 const envKeys = [
   'SYSTEM_SESSION_RELAUNCH_DISABLED',
@@ -23,9 +30,10 @@ const envKeys = [
   'SESSION_RELAUNCH_WINDOW_TOKENS',
   'SKILLED_LOOP_ID',
   'SKILLED_LOOP_HOPS',
+  'SESSION_RELAUNCH_MAX_HOPS',
   'SYSTEM_SPEC_FOLDER',
   'XDG_RUNTIME_DIR',
-  'REPO_ROOT',
+  'SESSION_RELAUNCH_REPO_ROOT',
   'HOOK_FLAGS_CONFIG',
 ];
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
@@ -49,13 +57,14 @@ function setupEnv() {
   const root = mkdtempSync(path.join(tmpdir(), 'session-relaunch-pi-'));
   roots.push(root);
   process.env.XDG_RUNTIME_DIR = root;
-  process.env.REPO_ROOT = root;
+  process.env.SESSION_RELAUNCH_REPO_ROOT = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SESSION_RELAUNCH_WINDOW_TOKENS;
   delete process.env.SKILLED_LOOP_ID;
   delete process.env.SKILLED_LOOP_HOPS;
+  delete process.env.SESSION_RELAUNCH_MAX_HOPS;
   delete process.env.SYSTEM_SPEC_FOLDER;
 }
 
@@ -73,7 +82,7 @@ function makeContext(sessionId = 'pi-session-0001', cwd = '/workspace/pi') {
 async function emit(handlers: Map<string, Handler>, name: string, event: unknown, ctx: unknown) {
   const handler = handlers.get(name);
   expect(handler).toBeTypeOf('function');
-  return handler?.(event, ctx);
+  return handler?.(event as ExtensionEvent, ctx as ExtensionContext);
 }
 
 afterEach(() => {
@@ -133,6 +142,105 @@ describe('session-relaunch Pi extension', () => {
     expect(api.sendMessage).not.toHaveBeenCalled();
   });
 
+  it('message_end does nothing while this session already has a prepared handoff', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const loopId = 'pi-loop-prepared-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    preparePending({
+      loopId,
+      handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'handoff.md'),
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext());
+
+    expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('keeps the agent quiet at the hop limit', async () => {
+    setupEnv();
+    process.env.SKILLED_LOOP_HOPS = '1';
+    process.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    await emit(handlers, 'agent_end', {}, ctx);
+
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('retires a held nudge once the hop count reaches the cap before delivery', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    process.env.SKILLED_LOOP_HOPS = '1';
+    process.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+    await emit(handlers, 'agent_end', {}, ctx);
+
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('agent_end delivers the nudge held from message_end exactly once', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    expect(api.sendMessage).not.toHaveBeenCalled();
+
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const [, options] = api.sendMessage.mock.calls[0];
+    expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
+
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+  });
+
+  it('agent_end stays quiet when the prepare call left a pending handoff', async () => {
+    setupEnv();
+    const loopId = 'pi-loop-pending-handoff';
+    process.env.SKILLED_LOOP_ID = loopId;
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    preparePending({
+      loopId,
+      handoffPath: '/workspace/pi/handoff.md',
+      sessionId: 'pi-session-0001',
+      runtime: 'pi',
+      cwd: '/workspace/pi',
+      env: process.env,
+    });
+    await emit(handlers, 'agent_end', {}, ctx);
+
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
   it(
     'sends threshold nudges once, including the 0.05 reminder, then stays quiet',
     async () => {
@@ -143,21 +251,40 @@ describe('session-relaunch Pi extension', () => {
       await emit(handlers, 'message_end', {
         message: { role: 'assistant', usage: { input: 80 } },
       }, ctx);
+      await emit(handlers, 'agent_end', {}, ctx);
       await emit(handlers, 'message_end', {
         message: { role: 'assistant', usage: { input: 85 } },
       }, ctx);
+      await emit(handlers, 'agent_end', {}, ctx);
       await emit(handlers, 'message_end', {
         message: { role: 'assistant', usage: { input: 90 } },
       }, ctx);
+      await emit(handlers, 'agent_end', {}, ctx);
 
       expect(api.sendMessage).toHaveBeenCalledTimes(2);
       for (const [message, options] of api.sendMessage.mock.calls) {
         expect(message).toMatchObject({ customType: 'session-relaunch', display: false });
         expect(message.content).toContain('session-relaunch');
-        expect(options).toEqual({ deliverAs: 'nextTurn' });
+        expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
       }
     },
   );
+
+  it('delivers the nudge without waiting for an operator turn', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext());
+    expect(api.sendMessage).not.toHaveBeenCalled();
+
+    await emit(handlers, 'agent_end', {}, makeContext());
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const [, options] = api.sendMessage.mock.calls[0];
+    expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
+  });
 
   it('includes the save step when SYSTEM_SPEC_FOLDER is unset', async () => {
     setupEnv();
@@ -167,6 +294,7 @@ describe('session-relaunch Pi extension', () => {
     await emit(handlers, 'message_end', {
       message: { role: 'assistant', usage: { input: 90 } },
     }, makeContext());
+    await emit(handlers, 'agent_end', {}, makeContext());
 
     expect(api.sendMessage).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -174,7 +302,7 @@ describe('session-relaunch Pi extension', () => {
           /\n2\. When a spec packet is bound to this session, save its continuity first:/,
         ),
       }),
-      { deliverAs: 'nextTurn' },
+      { deliverAs: 'followUp', triggerTurn: true },
     );
     const nudge = api.sendMessage.mock.calls[0][0] as { content: string };
     expect(nudge.content).toContain(
@@ -249,7 +377,7 @@ describe('session-relaunch Pi extension', () => {
       expect(spawnMock.mock.results[0].value.unref).toHaveBeenCalledOnce();
 
       const expectedKiller = path.resolve(
-        process.env.REPO_ROOT!,
+        process.env.SESSION_RELAUNCH_REPO_ROOT!,
         '.skilled',
         'hooks',
         'session-relaunch',
@@ -260,9 +388,42 @@ describe('session-relaunch Pi extension', () => {
     },
   );
 
+  it(
+    'agent_end respawns one killer for an armed record whose killer is gone',
+    async () => {
+      setupEnv();
+      const loopId = 'pi-loop-respawn-0001';
+      process.env.SKILLED_LOOP_ID = loopId;
+      preparePending({
+        loopId,
+        handoffPath: '/workspace/pi/handoff.md',
+        sessionId: 'pi-session-0001',
+        runtime: 'pi',
+        cwd: '/workspace/pi',
+        env: process.env,
+      });
+      arm({ loopId, cwd: '/workspace/pi', env: process.env });
+      const { api, handlers } = makeExtensionApi();
+      sessionRelaunch(api);
+
+      await emit(handlers, 'agent_end', {}, makeContext());
+      expect(spawnMock).toHaveBeenCalledTimes(1);
+
+      const stateDir = path.join(process.env.XDG_RUNTIME_DIR!, 'skilled-relaunch');
+      mkdirSync(stateDir, { recursive: true });
+      writeFileSync(
+        path.join(stateDir, `killer-${loopId}.lock`),
+        `${process.pid} ${new Date().toISOString()}\n`,
+      );
+      await emit(handlers, 'agent_end', {}, makeContext());
+      expect(spawnMock).toHaveBeenCalledTimes(1);
+      expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
+    },
+  );
+
   it('spawns the killer from the repo lib when cwd is a repo subdirectory', async () => {
     setupEnv();
-    delete process.env.REPO_ROOT;
+    delete process.env.SESSION_RELAUNCH_REPO_ROOT;
     const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url));
     const subdir = path.join(repoRoot, '.skilled', 'hooks');
     const loopId = 'pi-loop-subdir';
@@ -391,6 +552,7 @@ describe('session-relaunch Pi extension', () => {
       await emit(handlers, 'message_end', event, ctx);
       expect(api.sendMessage).not.toHaveBeenCalled();
       await emit(handlers, 'message_end', event, ctx);
+      await emit(handlers, 'agent_end', {}, ctx);
       expect(api.sendMessage).toHaveBeenCalledOnce();
     } finally {
       vi.doUnmock('../lib/nudge.cjs');
@@ -419,5 +581,130 @@ describe('session-relaunch Pi extension', () => {
 
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'pending' });
     expect(spawnMock).not.toHaveBeenCalled();
+  });
+
+  it('plans the handoff note under the resolved repo root', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext());
+    await emit(handlers, 'agent_end', {}, makeContext());
+
+    const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content: string };
+    const match = nudgeMessage.content.match(/Write the handoff note at '([^']+)'/);
+    expect(match).not.toBeNull();
+    const notePath = match![1];
+    expect(path.dirname(notePath)).toBe(
+      path.join(
+        process.env.SESSION_RELAUNCH_REPO_ROOT!,
+        '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+      ),
+    );
+    expect(path.basename(notePath)).toMatch(/^\d{8}T\d{6}Z-pi-sessi\.md$/);
+  });
+
+  it('resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async () => {
+    setupEnv();
+    process.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, makeContext());
+    await emit(handlers, 'agent_end', {}, makeContext());
+
+    const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content: string };
+    const match = nudgeMessage.content.match(/Write the handoff note at '([^']+)'/);
+    expect(match).not.toBeNull();
+    const notePath = match![1];
+    expect(path.isAbsolute(notePath)).toBe(true);
+    expect(path.dirname(notePath)).toBe(
+      path.join(
+        process.cwd(),
+        'relative-repo',
+        '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+      ),
+    );
+  });
+
+  it('keeps the default threshold when the env switch is invalid', async () => {
+    setupEnv();
+    writeFileSync(
+      process.env.HOOK_FLAGS_CONFIG!,
+      'SESSION_RELAUNCH_THRESHOLD=0.5\n',
+    );
+    process.env.SESSION_RELAUNCH_THRESHOLD = 'bogus';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 60 } },
+    }, makeContext());
+    expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('reads the hook flags file once per message_end event', async () => {
+    setupEnv();
+    delete process.env.SESSION_RELAUNCH_THRESHOLD;
+    vi.resetModules();
+    vi.doMock('../../.skilled/hooks/shared/hook-flags.mjs', async (importOriginal) => {
+      const actual = await importOriginal<
+        typeof import('../../.skilled/hooks/shared/hook-flags.mjs')
+      >();
+      return { ...actual, loadConfigFile: vi.fn(actual.loadConfigFile) };
+    });
+    try {
+      const hookFlags = await import('../../.skilled/hooks/shared/hook-flags.mjs');
+      const countedModule = await import('./session-relaunch?counted-config');
+      const { api, handlers } = makeExtensionApi();
+      countedModule.default(api);
+
+      await emit(handlers, 'message_end', {
+        message: { role: 'assistant', usage: { input: 90 } },
+      }, makeContext());
+
+      expect(api.sendMessage).not.toHaveBeenCalled();
+      expect(vi.mocked(hookFlags.loadConfigFile)).toHaveBeenCalledTimes(1);
+
+      await emit(handlers, 'agent_end', {}, makeContext());
+      expect(api.sendMessage).toHaveBeenCalledOnce();
+    } finally {
+      vi.doUnmock('../../.skilled/hooks/shared/hook-flags.mjs');
+      vi.resetModules();
+    }
+  });
+
+  it('round-trips a literal backslash in the seed handoff path', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const result = await emit(handlers, 'before_agent_start', {
+      prompt: '[session-relaunch] claim and continue handoff /tmp/we\\"ird.md',
+      systemPrompt: 'base system prompt',
+      systemPromptOptions: {},
+    }, makeContext());
+
+    expect((result as { systemPrompt: string }).systemPrompt)
+      .toContain('/tmp/we\\"ird.md');
+  });
+
+  it('falls back to the placeholder for a relative or untrimmed seed path', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    for (const prompt of [
+      '[session-relaunch] claim and continue handoff relative/handoff.md',
+      '[session-relaunch] claim and continue handoff /workspace/note.md ',
+    ]) {
+      const result = await emit(handlers, 'before_agent_start', {
+        prompt,
+        systemPrompt: 'base system prompt',
+        systemPromptOptions: {},
+      }, makeContext());
+
+      expect((result as { systemPrompt: string }).systemPrompt)
+        .toContain("claim '<handoff-path>'");
+    }
   });
 });

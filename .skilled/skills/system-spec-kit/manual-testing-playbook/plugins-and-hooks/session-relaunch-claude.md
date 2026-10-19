@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.0.0
+version: 1.0.1.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -41,7 +41,9 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries. | PASS when the same handoff reaches done after a new Claude process starts with the seed. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
+| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries. | PASS when the same handoff reaches done after a new Claude process starts with the seed. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
+
+Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for this live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed.
 
 ### Supplemental Checks
 
@@ -103,7 +105,7 @@ const killer = require('./.skilled/hooks/session-relaunch/lib/killer.cjs');
     const env = {
       ...process.env,
       XDG_RUNTIME_DIR: path.join(root, 'runtime'),
-      REPO_ROOT: root,
+      SESSION_RELAUNCH_REPO_ROOT: root,
       SKILLED_LOOP_ID: String(process.pid)
     };
     fs.mkdirSync(env.XDG_RUNTIME_DIR, { recursive: true });
@@ -166,7 +168,7 @@ try {
   const env = {
     ...process.env,
     XDG_RUNTIME_DIR: path.join(root, 'runtime'),
-    REPO_ROOT: repo,
+    SESSION_RELAUNCH_REPO_ROOT: repo,
     SKILLED_LOOP_ID: loopId,
     SYSTEM_SESSION_RELAUNCH_DISABLED: '1'
   };
@@ -222,6 +224,8 @@ node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 
 Evidence: with `SESSION_RELAUNCH_MAX_HOPS=2`, the test records three launches total, with hop counts 0, 1 and 2. PASS when the wrapper stops after the second relaunch. FAIL when it starts another Claude process.
 
+The cap also stops the sender, and the other suites cover that side. `prepare` at the cap writes no record: it prints a `hop limit reached` line naming auto-compaction as the fallback, then the manual claim command, logs `prepare-declined` with reason `hop-cap` and exits 3, leaving the note open. The adapters emit no nudge at the cap, and the killer un-arms an armed record that reached it with reason `hop-cap`, logs `killer-hop-cap` and signals nothing. The cases are `prepare declines at the hop limit without writing a relaunch record`, `context-nudge emits nothing at the hop limit` and `killer unarms an armed record at the hop limit without signalling`.
+
 #### Zero limits and corrupt relaunch file (Automatable)
 
 Run the CLI suite:
@@ -264,6 +268,78 @@ node --test .skilled/hooks/session-relaunch/tests/killer.test.cjs
 
 Evidence: the suite checks that only an armed record is signalled, that a held lock logs `killer-lock-held`, that a stale lock logs `killer-lock-stale`, and that a target lost during SIGTERM logs `target-gone`. The killer polls every 100 ms and starts a separate 5000 ms grace period after SIGTERM. PASS when the expected state and log lines match. FAIL when the killer signals an unarmed record or leaves a held or stale lock in the wrong state.
 
+#### Killer transcript grace (Automatable)
+
+Run the killer suite. One failed transcript read must not end supervision. A transcript that stays unreadable for 1 s must un-arm the record with reason `killer-timeout`.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/killer.test.cjs
+~~~
+
+Evidence: `killer survives one transient transcript stat failure and still signals` and `killer gives up when the transcript stays missing past the stat grace window` pass. PASS when both pass. FAIL when a single failed stat aborts the killer. FAIL also when a transcript that stayed missing past 1 s leaves the record armed.
+
+#### Killer takeover mutex (Automatable)
+
+Run the killer suite. The takeover cases cover a dead owner's mutex, a live owner's old mutex, the sweep of leftover `.stale-` directories, a mutex that holds extra or foreign files, an unreadable owner file and a failed mutex removal.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/killer.test.cjs
+~~~
+
+Evidence: each test below passes. The filtered run covers the same nine tests:
+
+~~~bash
+node --test --test-name-pattern "takeover|leftover|stray|owner cannot|removal throws" .skilled/hooks/session-relaunch/tests/killer.test.cjs
+~~~
+
+- `killer reclaims a takeover mutex whose recorded owner is dead`
+- `killer leaves a takeover mutex to its live owner even when the directory is old`
+- `killer sweeps an old leftover takeover directory but keeps a fresh one`
+- `killer reclaims a stale takeover directory that holds extra files`
+- `killer reclaims the takeover when a stale leftover already holds its pid`
+- `killer releases a takeover directory that gained a stray file`
+- `killer leaves a takeover directory a contender replaced while it was held`
+- `killer exits non-zero when the takeover owner cannot be read`
+- `killer keeps its result when the takeover removal throws`
+
+PASS when all nine pass. FAIL when a live owner's mutex is reclaimed. FAIL also when a dead owner's mutex blocks the takeover. FAIL also when a killer deletes a takeover directory it did not create. FAIL also when a mutex release error overrides a successful takeover, meaning the killer exits non-zero, drops the lock it acquired or stops supervising the target.
+
+#### Arm restarts a dead killer (Automatable)
+
+Run the Claude adapter suite. A Stop that finds an armed record with no live killer must spawn exactly one killer. A Stop while a killer owns the lock must spawn none.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+~~~
+
+Evidence: `stop-arm respawns one killer for an armed record whose killer is gone` passes. The Codex, Hermes, Pi and OpenCode suites carry the same respawn case for their arm events. PASS when the test passes. FAIL when a Stop leaves an armed record with no killer. FAIL also when a Stop spawns a second killer while one owns the lock.
+
+#### relaunch.log line integrity (Automatable)
+
+Run the relaunch-core suite. Concurrent writers must each keep one line. A partial last line must not merge with the next event. A permissive log must return to mode 0600.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+~~~
+
+Evidence: each test below passes.
+
+- `appendLog keeps every line when eight processes append concurrently`
+- `appendLog starts the next event on its own line after a partial line`
+- `appendLog restores private mode on an existing permissive log file`
+
+PASS when all three pass. FAIL when a concurrent append is lost. FAIL also when a partial line merges with the next event. FAIL also when the log keeps a mode other than 0600.
+
+#### Gate 3 Skip seed spelling (Automatable)
+
+Run the nudge suite. The current Skip suffix and the older spelling must both read as `none` for the receiving session.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs
+~~~
+
+Evidence: `specFolderFromSeed reads only a valid carried folder and accepts suffixed seeds` passes. PASS when both the current and the legacy Skip seeds return `none`. FAIL when the legacy spelling returns an empty folder, so the receiver asks Gate 3 again.
+
 #### Wrapper edge cases (Automatable)
 
 Run the wrapper suite:
@@ -276,7 +352,7 @@ Evidence: tests cover the Claude default with no args or a prompt, first-launch 
 
 ### Expected
 
-During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification.
+During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none.
 
 ### Evidence
 

@@ -5,12 +5,13 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { spawnSync } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const {
   stateDir,
+  ensureStateDir,
   relaunchFilePath,
   parseHandoff,
   validateHandoff,
@@ -25,6 +26,11 @@ const {
   appendLog,
   manualClaimCommand,
   validSpecFolder,
+  findLoopChildPid,
+  readProcessTable,
+  liveKillerPid,
+  lockIsExpired,
+  readLockState,
 } = require('../lib/relaunch-core.cjs');
 
 const SESSION_ID = 'session-test-00000001';
@@ -47,7 +53,7 @@ function createSandbox(t) {
     ...process.env,
     HOME: path.join(root, 'home'),
     XDG_RUNTIME_DIR: xdgRuntimeDir,
-    REPO_ROOT: repoRoot,
+    SESSION_RELAUNCH_REPO_ROOT: repoRoot,
   };
   for (const key of [
     'SKILLED_LOOP_ID',
@@ -122,6 +128,64 @@ test('stateDir and relaunchFilePath use the isolated runtime directory', (t) => 
   assert.equal(
     relaunchFilePath(LOOP_ID, sandbox.env),
     path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `relaunch-${LOOP_ID}.json`),
+  );
+});
+
+test('stateDir falls back to a per-user temp directory without a runtime dir', (t) => {
+  const sandbox = createSandbox(t);
+  const env = { ...sandbox.env };
+  delete env.XDG_RUNTIME_DIR;
+
+  const expectedName = typeof process.getuid === 'function'
+    ? `skilled-relaunch-${process.getuid()}`
+    : 'skilled-relaunch';
+  assert.equal(stateDir(env), path.join(os.tmpdir(), expectedName));
+  assert.ok(stateDir(env).endsWith(expectedName), stateDir(env));
+  assert.equal(stateDir(sandbox.env), path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch'));
+});
+
+test('ensureStateDir refuses a state path that is a symlink', (t) => {
+  const sandbox = createSandbox(t);
+  const redirectTarget = path.join(sandbox.root, 'redirect-target');
+  fs.mkdirSync(redirectTarget, { recursive: true });
+  const targetMode = fs.statSync(redirectTarget).mode & 0o777;
+  const statePath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.symlinkSync(redirectTarget, statePath, 'dir');
+
+  assert.throws(
+    () => ensureStateDir(sandbox.env),
+    (error) => error instanceof Error && error.message.includes(statePath),
+  );
+  assert.equal(fs.statSync(redirectTarget).mode & 0o777, targetMode);
+});
+
+test('ensureStateDir refuses a state path that is a regular file', (t) => {
+  const sandbox = createSandbox(t);
+  const statePath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.writeFileSync(statePath, 'not a directory');
+
+  assert.throws(
+    () => ensureStateDir(sandbox.env),
+    (error) => error instanceof Error && error.message.includes(statePath),
+  );
+});
+
+test('ensureStateDir refuses a state directory owned by another user', (t) => {
+  const getuid = process.getuid;
+  if (typeof getuid !== 'function') return;
+
+  const sandbox = createSandbox(t);
+  const statePath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
+  fs.mkdirSync(statePath, { recursive: true, mode: 0o700 });
+
+  t.after(() => {
+    process.getuid = getuid;
+  });
+  process.getuid = () => getuid.call(process) + 1;
+
+  assert.throws(
+    () => ensureStateDir(sandbox.env),
+    (error) => error instanceof Error && error.message.includes(statePath),
   );
 });
 
@@ -471,19 +535,7 @@ test('readRelaunchFile still returns null when the corruption log write fails', 
   const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, '{invalid');
-
-  const originalOpenSync = fs.openSync;
-  fs.openSync = function (openPath, ...args) {
-    if (typeof openPath === 'string' && path.basename(openPath).startsWith('.relaunch.log.')) {
-      const error = new Error('permission denied');
-      error.code = 'EACCES';
-      throw error;
-    }
-    return originalOpenSync.call(this, openPath, ...args);
-  };
-  t.after(() => {
-    fs.openSync = originalOpenSync;
-  });
+  fs.mkdirSync(path.join(stateDir(sandbox.env), 'relaunch.log'), { recursive: true });
 
   assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
 });
@@ -568,6 +620,18 @@ test('appendLog writes exactly one formatted line for every call', (t) => {
   ]);
 });
 
+test('appendLog restores private mode on an existing permissive log file', (t) => {
+  const sandbox = createSandbox(t);
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.writeFileSync(logPath, '');
+  fs.chmodSync(logPath, 0o644);
+
+  appendLog('mode-repair', { loopId: LOOP_ID }, sandbox.env, NOW);
+
+  assert.equal(fs.statSync(logPath).mode & 0o777, 0o600);
+});
+
 test('manualClaimCommand places the quoted seed where each runtime expects it', () => {
   const handoffPath = '/tmp/handoff.md';
   const seed = `"[session-relaunch] claim and continue handoff ${handoffPath}"`;
@@ -589,7 +653,7 @@ test('manualClaimCommand carries packet and skip answers in the seed', () => {
   const handoffPath = '/tmp/handoff.md';
   const packetSuffix = ' | Spec folder: specs/hooks/001-session-relaunch'
     + ' (carried from the handoff; Gate 3 answered in the sending session)';
-  const skipSuffix = ' | Spec folder: none (Gate 3 answered D) Skip in the sending session)';
+  const skipSuffix = ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)';
 
   assert.equal(
     manualClaimCommand('claude', handoffPath, 'specs/hooks/001-session-relaunch'),
@@ -741,5 +805,266 @@ test('manualClaimCommand keeps dollar sequences literal inside the template fill
     } else {
       process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
     }
+  }
+});
+
+test('appendLog keeps every line when eight processes append concurrently', async (t) => {
+  const sandbox = createSandbox(t);
+  const corePath = path.resolve(__dirname, '../lib/relaunch-core.cjs');
+  const workerCount = 8;
+  const linesPerWorker = 25;
+  const startAt = Date.now() + 750;
+  const workers = [];
+  for (let worker = 0; worker < workerCount; worker += 1) {
+    const script = [
+      `const core = require(${JSON.stringify(corePath)});`,
+      `const env = { XDG_RUNTIME_DIR: ${JSON.stringify(sandbox.xdgRuntimeDir)} };`,
+      `while (Date.now() < ${startAt}) {}`,
+      `for (let index = 0; index < ${linesPerWorker}; index += 1) {`,
+      `  core.appendLog('concurrent', { worker: ${worker}, index }, env);`,
+      '}',
+      '',
+    ].join('\n');
+    workers.push(spawn(process.execPath, ['-e', script], { stdio: 'ignore' }));
+  }
+  const exitCodes = await Promise.all(workers.map((worker) => new Promise((resolve) => {
+    worker.once('error', () => resolve(-1));
+    worker.once('exit', (code) => resolve(code ?? -1));
+  })));
+  assert.deepEqual(exitCodes, Array(workerCount).fill(0));
+
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  const lines = fs.readFileSync(logPath, 'utf8').trimEnd().split('\n');
+  assert.equal(lines.length, workerCount * linesPerWorker);
+  const written = new Set(lines.map((line) => line.split(' ').slice(2).join(' ')));
+  assert.equal(written.size, workerCount * linesPerWorker);
+});
+
+test('appendLog starts the next event on its own line after a partial line', (t) => {
+  const sandbox = createSandbox(t);
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.writeFileSync(logPath, 'partial');
+
+  appendLog('after-partial', { loopId: LOOP_ID }, sandbox.env, NOW);
+
+  const lines = fs.readFileSync(logPath, 'utf8').split('\n');
+  assert.equal(lines[0], 'partial');
+  assert.match(lines[1], /after-partial loopId=loop-test-00000001/);
+  assert.equal(lines[2], '');
+
+  appendLog('after-full', { loopId: LOOP_ID }, sandbox.env, NOW);
+  const updated = fs.readFileSync(logPath, 'utf8').split('\n');
+  assert.equal(updated[3], '');
+  assert.match(updated[2], /after-full loopId=loop-test-00000001/);
+});
+
+test('appendLog rejects a short write instead of reporting success', (t) => {
+  const sandbox = createSandbox(t);
+  const originalWriteSync = fs.writeSync;
+  fs.writeSync = (descriptor, text) => {
+    originalWriteSync(descriptor, String(text).slice(0, 10));
+    return 10;
+  };
+
+  try {
+    assert.throws(
+      () => appendLog('short-write', { loopId: LOOP_ID }, sandbox.env, NOW),
+      /relaunch log short write: wrote 10 of \d+ bytes/,
+    );
+  } finally {
+    fs.writeSync = originalWriteSync;
+  }
+});
+
+test('findLoopChildPid selects the ancestor directly below the loop', () => {
+  const table = '41 50\n50 60\n60 100\n100 1\n';
+  assert.equal(findLoopChildPid('100', { pid: 41, processTable: table }), 60);
+  assert.equal(findLoopChildPid('999', { pid: 41, processTable: table }), null);
+  assert.equal(findLoopChildPid('loop-id', { pid: 41, processTable: table }), null);
+  assert.equal(findLoopChildPid('100', { pid: 41, processTable: null }), null);
+});
+
+test('readProcessTable returns null instead of blocking on a stuck ps', (t) => {
+  const sandbox = createSandbox(t);
+  const binDir = path.join(sandbox.root, 'bin');
+  fs.mkdirSync(binDir, { recursive: true });
+  fs.writeFileSync(path.join(binDir, 'ps'), '#!/bin/sh\nsleep 5\n', { mode: 0o755 });
+  const originalPath = process.env.PATH;
+  process.env.PATH = [binDir, originalPath || ''].join(path.delimiter);
+  t.after(() => {
+    process.env.PATH = originalPath;
+  });
+
+  const startedAt = Date.now();
+
+  assert.equal(readProcessTable(), null);
+  assert.ok(Date.now() - startedAt < 4000, 'a stuck ps read must be bounded below the 5s shim');
+});
+
+test('readProcessTable bounds the ps spawn with a timeout', (t) => {
+  const modulePath = require.resolve('../lib/relaunch-core.cjs');
+  const childProcess = require('node:child_process');
+  const originalSpawnSync = childProcess.spawnSync;
+  const calls = [];
+  childProcess.spawnSync = (command, args, options) => {
+    calls.push({ command, args, options });
+    return {
+      error: Object.assign(new Error('spawnSync ps ETIMEDOUT'), { code: 'ETIMEDOUT' }),
+      status: null,
+      stdout: '',
+      stderr: '',
+    };
+  };
+  delete require.cache[modulePath];
+  t.after(() => {
+    childProcess.spawnSync = originalSpawnSync;
+    delete require.cache[modulePath];
+  });
+
+  const boundedCore = require('../lib/relaunch-core.cjs');
+
+  assert.equal(boundedCore.readProcessTable(), null);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].command, 'ps');
+  assert.ok(
+    Number.isInteger(calls[0].options.timeout)
+      && calls[0].options.timeout > 0
+      && calls[0].options.timeout <= 5000,
+    `ps read must carry a bounded timeout, got ${calls[0].options.timeout}`,
+  );
+});
+
+test('liveKillerPid returns a live lock owner and null otherwise', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'loop-live-killer-0001';
+  const lockPath = path.join(stateDir(sandbox.env), `killer-${loopId}.lock`);
+
+  assert.equal(liveKillerPid(loopId, sandbox.env), null);
+  assert.equal(liveKillerPid('../escape', sandbox.env), null);
+
+  fs.mkdirSync(path.dirname(lockPath), { recursive: true });
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  assert.equal(liveKillerPid(loopId, sandbox.env), process.pid);
+
+  const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
+  await new Promise((resolve) => deadOwner.once('exit', resolve));
+  fs.writeFileSync(lockPath, `${deadOwner.pid} ${new Date().toISOString()}\n`);
+  assert.equal(liveKillerPid(loopId, sandbox.env), null);
+
+  fs.writeFileSync(lockPath, '');
+  assert.equal(liveKillerPid(loopId, sandbox.env), null);
+});
+
+test('liveKillerPid ignores a lock whose recorded expiry has passed', (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'loop-lock-expiry-0001';
+  const lockPath = path.join(stateDir(sandbox.env), `killer-${loopId}.lock`);
+  fs.mkdirSync(path.dirname(lockPath), { recursive: true });
+  const createdIso = new Date(Date.now() - 60000).toISOString();
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${createdIso} ${new Date(Date.now() - 1000).toISOString()}\n`,
+  );
+  assert.equal(liveKillerPid(loopId, sandbox.env), null);
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${createdIso} ${new Date(Date.now() + 60000).toISOString()}\n`,
+  );
+  assert.equal(liveKillerPid(loopId, sandbox.env), process.pid);
+});
+
+test('liveKillerPid ages out a legacy lock without an expiry field', (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'loop-lock-legacy-0001';
+  const lockPath = path.join(stateDir(sandbox.env), `killer-${loopId}.lock`);
+  fs.mkdirSync(path.dirname(lockPath), { recursive: true });
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${new Date(Date.now() - 11 * 60 * 1000).toISOString()}\n`,
+  );
+  assert.equal(liveKillerPid(loopId, sandbox.env), null);
+
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  assert.equal(liveKillerPid(loopId, sandbox.env), process.pid);
+});
+
+test('liveKillerPid reads the killer lock once so a vanished lock reports no owner', (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = 'loop-lock-single-read-0001';
+  const lockPath = path.join(stateDir(sandbox.env), `killer-${loopId}.lock`);
+  const originalReadFileSync = fs.readFileSync;
+  let lockReads = 0;
+  fs.readFileSync = function (readPath, ...args) {
+    if (readPath === lockPath) {
+      lockReads += 1;
+      if (lockReads === 1) {
+        return `${process.pid} ${new Date().toISOString()} `
+          + `${new Date(Date.now() + 60000).toISOString()}\n`;
+      }
+      const error = new Error('no such file or directory');
+      error.code = 'ENOENT';
+      throw error;
+    }
+    return originalReadFileSync.call(this, readPath, ...args);
+  };
+  t.after(() => {
+    fs.readFileSync = originalReadFileSync;
+  });
+
+  assert.equal(liveKillerPid(loopId, sandbox.env), process.pid);
+  assert.equal(lockReads, 1);
+});
+
+test('readLockState reports the owner and expiry from one read', (t) => {
+  const sandbox = createSandbox(t);
+  const lockPath = path.join(sandbox.root, 'killer-lock-state.lock');
+  const createdIso = new Date(Date.now() - 60000).toISOString();
+
+  assert.deepEqual(readLockState(path.join(sandbox.root, 'killer-lock-state-absent.lock')), {
+    ownerPid: null,
+    expired: false,
+  });
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${createdIso} ${new Date(Date.now() - 1000).toISOString()}\n`,
+  );
+  assert.deepEqual(readLockState(lockPath), { ownerPid: process.pid, expired: true });
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${createdIso} ${new Date(Date.now() + 60000).toISOString()}\n`,
+  );
+  assert.deepEqual(readLockState(lockPath), { ownerPid: process.pid, expired: false });
+
+  fs.writeFileSync(
+    lockPath,
+    `${process.pid} ${new Date(Date.now() - 11 * 60 * 1000).toISOString()}\n`,
+  );
+  assert.deepEqual(readLockState(lockPath), { ownerPid: process.pid, expired: true });
+});
+
+test('lockIsExpired keeps an unparseable lock', (t) => {
+  const sandbox = createSandbox(t);
+  const lockPath = path.join(sandbox.root, 'killer-unparseable.lock');
+
+  assert.equal(lockIsExpired(path.join(sandbox.root, 'killer-absent.lock')), false);
+  fs.writeFileSync(lockPath, `${process.pid} not-a-timestamp\n`);
+  assert.equal(lockIsExpired(lockPath), false);
+  assert.equal(lockIsExpired(lockPath, Date.now() + 60 * 60 * 1000), false);
+});
+
+test('manual claim commands balance their parentheses for every spec answer', () => {
+  for (const specFolder of ['none', 'specs/hooks/001-example', '']) {
+    const command = manualClaimCommand('claude', '/tmp/handoff.md', specFolder);
+    assert.equal(
+      (command.match(/\(/g) || []).length,
+      (command.match(/\)/g) || []).length,
+      command,
+    );
   }
 });

@@ -164,6 +164,20 @@ function claudeCommands(): CommandRegistration[] {
   return out;
 }
 
+function codexCommands(): CommandRegistration[] {
+  const doc = readJson('.codex/hooks.json') as { hooks?: Record<string, unknown> };
+  const out: CommandRegistration[] = [];
+  for (const [event, groups] of Object.entries(doc.hooks ?? {})) {
+    if (!Array.isArray(groups)) continue;
+    for (const group of groups as Array<{ hooks?: Array<{ command?: unknown }> }>) {
+      for (const hook of group.hooks ?? []) {
+        if (typeof hook.command === 'string') out.push({ runtime: 'codex', event, command: hook.command });
+      }
+    }
+  }
+  return out;
+}
+
 function cursorCommands(): CommandRegistration[] {
   const doc = readJson('.cursor/hooks.json') as { hooks?: Record<string, unknown> };
   const out: CommandRegistration[] = [];
@@ -181,6 +195,22 @@ function cursorCommands(): CommandRegistration[] {
 // config carries for its own backgrounded reconcile command.
 function isBackgroundedReconcile(command: string): boolean {
   return command.includes('git-primary-reconcile.sh') && command.includes('&');
+}
+
+// The `|| { ... }` branch is the only form that answers the host: a progress
+// line on stderr plus a hook-shaped JSON envelope on stdout. Commands
+// registered as `none` or backgrounded carry no branch at all, so they are
+// not fallbacks and owe the host no answer.
+function hasEnvelopeFallback(command: string): boolean {
+  return command.includes('|| {');
+}
+
+// The fallback JSON is written shell-quoted, so its inner quotes arrive escaped.
+// Parsing it proves the payload is JSON Codex can read, not merely the right words.
+function fallbackEnvelope(command: string): Record<string, unknown> {
+  const match = command.match(/printf %s "(.*)"; \}'$/u);
+  if (!match) throw new Error(`no fallback envelope in command: ${command}`);
+  return JSON.parse(match[1].replace(/\\"/gu, '"')) as Record<string, unknown>;
 }
 
 const allRegistrations: Registration[] = [
@@ -232,6 +262,45 @@ describe('hook adapter path parity', () => {
       if (isBackgroundedReconcile(command)) continue;
       expect(command, `${runtime}:${event}`).toContain('mkHookDrift');
       expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
+    }
+  });
+
+  // Codex rejects any `hookSpecificOutput` key it does not define and discards
+  // the whole response, so a drift marker in the envelope costs the message it
+  // was meant to flag. The stderr line is the part Codex still reads.
+  it('keeps every codex fallback off the rejected drift marker', () => {
+    const commands = codexCommands();
+    const fallbacks = commands.filter(({ command }) => hasEnvelopeFallback(command));
+    expect(fallbacks.length).toBeGreaterThan(0);
+    for (const { runtime, event, command } of fallbacks) {
+      expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
+    }
+    for (const { runtime, event, command } of commands) {
+      expect(command, `${runtime}:${event}`).not.toContain('mkHookDrift');
+    }
+  });
+
+  // Codex accepts `hookSpecificOutput` only on the events that take additional
+  // context; its Stop and PreCompact parsers reject the key and discard the whole
+  // response, so their fallback carries the message as a plain systemMessage.
+  it('answers codex Stop and PreCompact fallbacks with a systemMessage envelope', () => {
+    const fallbacks = codexCommands().filter(({ command }) => hasEnvelopeFallback(command));
+    const stopped = new Set(fallbacks.map(({ event }) => event));
+    expect(stopped.has('Stop')).toBe(true);
+    expect(stopped.has('PreCompact')).toBe(true);
+
+    for (const { runtime, event, command } of fallbacks) {
+      expect(command, `${runtime}:${event}`).toContain(`mk-hook-drift host=${runtime} event=${event} `);
+      const envelope = fallbackEnvelope(command);
+      if (event === 'Stop' || event === 'PreCompact') {
+        expect(Object.keys(envelope), `${runtime}:${event}`).toEqual(['systemMessage']);
+        expect(typeof envelope.systemMessage, `${runtime}:${event}`).toBe('string');
+      } else {
+        expect(envelope.hookSpecificOutput, `${runtime}:${event}`).toMatchObject({
+          hookEventName: event,
+          additionalContext: expect.any(String),
+        });
+      }
     }
   });
 });

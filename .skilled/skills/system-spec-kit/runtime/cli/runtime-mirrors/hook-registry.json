@@ -1044,7 +1044,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
             "timeout": 5,
-            "fallback": "none"
+            "fallback": "envelope"
           },
           {
             "event": "UserPromptSubmit",
@@ -1054,7 +1054,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
             "timeout": 5,
-            "fallback": "none"
+            "fallback": "envelope"
           },
           {
             "event": "Stop",
@@ -1064,7 +1064,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
             "timeout": 10,
-            "fallback": "none",
+            "fallback": "envelope",
             "async": true
           }
         ],
@@ -1077,7 +1077,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
             "timeout": 5,
-            "fallback": "none"
+            "fallback": "envelope"
           },
           {
             "event": "PostToolUse",
@@ -1087,7 +1087,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
             "timeout": 5,
-            "fallback": "none"
+            "fallback": "envelope"
           },
           {
             "event": "Stop",
@@ -1097,7 +1097,7 @@
             "runner": "node",
             "script": ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
             "timeout": 10,
-            "fallback": "none"
+            "fallback": "envelope"
           }
         ]
       },

@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.0.0
+version: 1.0.1.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -78,7 +78,7 @@ Evidence: stdout is `function` and the command exits 0.
 ./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 ~~~
 
-Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold nudges, seed injection and `agent_end` arming.
+Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold nudges, seed injection, `agent_end` arming and `agent_end respawns one killer for an armed record whose killer is gone`.
 
 #### OpenCode adapter suite (Automatable)
 
@@ -86,7 +86,7 @@ Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold 
 node --test .opencode/plugins/tests/session-relaunch.test.cjs
 ~~~
 
-Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin import, events, transform injection, seed handling and idle arming.
+Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin import, events, transform injection, seed handling, idle arming and `session.idle respawns one killer for an armed record whose killer is gone`.
 
 #### Wrapper runtime arms (Automatable)
 
@@ -98,7 +98,7 @@ Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before t
 
 ### Live Checks
 
-Each live launch overrides the threshold and window-token limit then sets the hop cap to one. These values are test overrides only. Defaults stay unchanged. Submit the exact prompt from the scenario contract. After the first answer, send `Continue.` so the queued context nudge reaches a model turn. Follow the adapter's generated handoff and `prepare` instructions. Observe the record arm, process handoff and claim seed in the receiving TUI.
+Each live launch overrides the threshold and window-token limit then sets the hop cap to one. These values are test overrides only. Defaults stay unchanged. Submit the exact prompt from the scenario contract and then wait for the nudge, which reaches the model without an operator turn. Pi holds it from `message_end` to `agent_end` and delivers it as a follow-up that starts its own turn. OpenCode carries it in the system prompt on the session's next request. Follow the adapter's generated handoff and `prepare` instructions. Observe the record arm, process handoff and claim seed in the receiving TUI.
 
 #### Recorded Results
 
@@ -111,9 +111,11 @@ Each live launch overrides the threshold and window-token limit then sets the ho
 | OpenCode | Run D (`loopId=18795`) | Pass. | `2026-10-17T12:55:14.333Z prepare loopId=18795 status=pending sessionId=ses_eb61236dbffeJIAGr440Q3hdVT`<br>`2026-10-17T12:55:27.400Z killer-signal targetPid=18858 signal=SIGTERM`<br>`2026-10-17T12:55:27.589Z relaunch loopId=18795 reason=ready` | Answered Gate 3 with A. After the claim, told the session not to prepare and to complete the task. |
 | OpenCode | Run E (`loopId=66034`) | Pass. | `2026-10-17T13:42:01.958Z prepare loopId=66034 status=pending sessionId=ses_eb5e7ae9cffe88hvn2m9fkmscW`<br>`2026-10-17T13:42:12.628Z killer-signal targetPid=66052 signal=SIGTERM`<br>`2026-10-17T13:42:12.820Z relaunch loopId=66034 reason=ready`<br>`2026-10-17T14:21:30.627Z decline loopId=66034 reason=no-file` | Answered Gate 3 with A. After the claim, told the session the test had no task and to complete. |
 | OpenCode | Run F (`loopId=49691`) | Pass. | `2026-10-17T16:32:59.469Z prepare loopId=49691 status=pending sessionId=ses_eb55200afffeBCSDET2x5MbmO4`<br>`2026-10-17T16:33:12.721Z killer-signal targetPid=49710 signal=SIGTERM`<br>`2026-10-17T16:33:12.884Z relaunch loopId=49691 reason=ready`<br>`2026-10-17T16:34:42.303Z decline loopId=49691 reason=no-file` | Before relaunch, the orchestrator allowed the continuity writer once. After relaunch: none. The seed carried the folder answer. The session claimed and completed without a question or reply. |
-| OpenCode | Run A (no `loopId` recorded) | Not a hop: the one-shot system transform was absent when OpenCode rebuilt the prompt for the next request, so the model did not write a note. | No saved `relaunch.log` copy. The ledger records that 0.05 did not fire. At 0.02, the nudge reached level 1. No note or prepare followed, so there was no hop. Wrapper exit: 0. | No follow-up input recorded. |
+| OpenCode | Run A (no `loopId` recorded) | Not a hop: the one-shot system transform was absent when OpenCode rebuilt the prompt for the next request, so the model did not write a note. The claim instructions now repeat on every request until the note leaves `open`, so that cause no longer applies. | No saved `relaunch.log` copy. The ledger records that 0.05 did not fire. At 0.02, the nudge reached level 1. No note or prepare followed, so there was no hop. Wrapper exit: 0. | No follow-up input recorded. |
 | OpenCode | Run B (`loopId=36553`) | Not a hop: Bun set `process.execPath` to `opencode.exe`, so the spawn launched OpenCode instead of the killer. A second Ctrl-C interrupted the fresh session before it claimed the note. | `2026-10-17T11:54:16.759Z prepare loopId=36553 status=pending sessionId=ses_eb64a06c2ffe6wXkUEP2W7PJwK`<br>`2026-10-17T12:01:05.149Z relaunch loopId=36553 reason=ready`<br>No `killer-signal` line. | Manually exited after the killer failed to run. Sent a second Ctrl-C two seconds after the relaunch, interrupting the fresh session before the claim. |
 | OpenCode | Run C (no `loopId` recorded) | Not a hop: the model ran a made-up `prepare.mjs` command, which failed with `MODULE_NOT_FOUND`. The nudge stopped after the note existed. | No saved `relaunch.log` copy. The ledger records `decline reason=no-file` and `WRAPPER_EXIT=0`. No claim or relaunch was recorded. | Sent one Ctrl-C to end the session after the command failed. |
+
+The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator inputs and evidence paths: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed.
 
 #### Live Pi hop in tmux (Live)
 
@@ -128,7 +130,7 @@ tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
 
-Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_end`. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. Positional seed auto-send in Pi's TUI remains UNVERIFIED until this check is observed live.
+Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_end`. Pi only decides the nudge at `message_end` and holds the text until `agent_end`, which re-checks the record and the hop limit before sending it as a follow-up that starts a turn. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. The 2026-10-19 benchmark report for this scenario records the seed claims those runs made in the receiving TUI.
 
 #### Live OpenCode hop in tmux (Live)
 
@@ -143,7 +145,7 @@ tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
 
-Observe `message.updated` usage handling, `message.part.updated` seed capture and the system transform. Confirm a matching record arms on `session.idle`, the killer ends the current OpenCode process and the wrapper restarts it with `--prompt "<seed>"` and no name flag. Confirm the receiving TUI claims the note and continues the task. TUI auto-submit for `--prompt` and `session.idle` on TUI quit remain UNVERIFIED until observed live.
+Observe `message.updated` usage handling, `message.part.updated` seed capture and the system transform. The claim instructions stay in the system prompt for every request until the note leaves `open` or a new non-seed user message arrives, so an auxiliary request that consumes the first copy no longer drops them. Confirm a matching record arms on `session.idle`, the killer ends the current OpenCode process and the wrapper restarts it with `--prompt "<seed>"` and no name flag. Confirm the receiving TUI claims the note and continues the task. The 2026-10-19 benchmark report for this scenario records the claim and completion those runs reached. `session.idle` on TUI quit remains UNVERIFIED.
 
 ---
 

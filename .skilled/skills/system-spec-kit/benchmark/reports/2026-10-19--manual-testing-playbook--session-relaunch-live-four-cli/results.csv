@@ -1,0 +1,14 @@
+scenario_id,runtime,run,evidence_class,verdict
+session-relaunch-claude,claude,1,cross-cli-dispatch,PASS
+session-relaunch-claude,claude,2,cross-cli-dispatch,PASS
+session-relaunch-claude,claude,3,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,1,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,2,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,3,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,4,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,5,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,opencode,1,cross-cli-dispatch,FAIL
+session-relaunch-pi-opencode,opencode,2,cross-cli-dispatch,FAIL
+session-relaunch-pi-opencode,opencode,3,cross-cli-dispatch,PASS
+session-relaunch-command-runtimes,codex,1,cross-cli-dispatch,PASS
+session-relaunch-command-runtimes,codex,3,cross-cli-dispatch,PASS

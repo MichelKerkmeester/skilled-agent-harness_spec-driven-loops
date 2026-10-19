@@ -1,4 +1,6 @@
-// COMPONENT: OpenCode session-relaunch plugin tests.
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Session Relaunch Plugin Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const assert = require('node:assert/strict');
@@ -32,7 +34,8 @@ const ENV_KEYS = [
   'SESSION_RELAUNCH_THRESHOLD',
   'SESSION_RELAUNCH_WINDOW_TOKENS',
   'SESSION_RELAUNCH_MAX_AGE_MIN',
-  'REPO_ROOT',
+  'SESSION_RELAUNCH_MAX_HOPS',
+  'SESSION_RELAUNCH_REPO_ROOT',
   'SKILLED_LOOP_ID',
   'SKILLED_LOOP_HOPS',
   'SYSTEM_SPEC_FOLDER',
@@ -46,13 +49,16 @@ function setupEnv(t) {
   process.env.XDG_RUNTIME_DIR = root;
   process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
   process.env.SESSION_RELAUNCH_THRESHOLD = '0.8';
-  delete process.env.REPO_ROOT;
+  // The note root is the repo root, never the session directory, so each test points
+  // the repo root at its own sandbox to keep note files out of the real state dir.
+  process.env.SESSION_RELAUNCH_REPO_ROOT = root;
   delete process.env.SYSTEM_SESSION_RELAUNCH_DISABLED;
   delete process.env.SYSTEM_HOOKS_DISABLED;
   delete process.env.MK_HOOKS_DISABLED;
   delete process.env.SESSION_RELAUNCH_WINDOW_TOKENS;
   delete process.env.SKILLED_LOOP_ID;
   delete process.env.SKILLED_LOOP_HOPS;
+  delete process.env.SESSION_RELAUNCH_MAX_HOPS;
   delete process.env.SYSTEM_SPEC_FOLDER;
   t.after(() => {
     fs.rmSync(root, { recursive: true, force: true });
@@ -288,6 +294,46 @@ test('loop nudge stops for matching pending and armed records', async (t) => {
   assert.equal(core.arm({ loopId, cwd: root, env: process.env }).status, 'armed');
   assert.deepEqual(await transform(hooks, sessionID), []);
 });
+test('a usage above threshold queues no nudge while this session has a prepared handoff', async (t) => {
+  const root = setupEnv(t);
+  const sessionID = 'ses-loop-prepared-0001';
+  const loopId = 'opencode-loop-prepared-0001';
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  process.env.SKILLED_LOOP_ID = loopId;
+  const hooks = await loadPlugin({ directory: root });
+  core.preparePending({
+    loopId,
+    handoffPath: path.join(root, 'handoff.md'),
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: root,
+    env: process.env,
+  });
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-at-threshold', 90));
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  // The recorded level proves nothing was queued, not just that delivery was
+  // withheld: a queued nudge advances the level even when the transform hides it.
+  assert.equal(nudge.readState(sessionID, process.env), 0);
+});
+
+test('a hop count at the cap queues no nudge', async (t) => {
+  const root = setupEnv(t);
+  const sessionID = 'ses-loop-hop-cap-0001';
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  process.env.SKILLED_LOOP_ID = 'opencode-loop-hop-cap-0001';
+  process.env.SKILLED_LOOP_HOPS = '1';
+  process.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+  const hooks = await loadPlugin({ directory: root });
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-at-threshold', 90));
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+  // The recorded level proves nothing was queued, not just that delivery was
+  // withheld: a queued nudge advances the level even when the transform hides it.
+  assert.equal(nudge.readState(sessionID, process.env), 0);
+});
 
 test('a stale armed record no longer suppresses the loop nudge', async (t) => {
   const sessionID = 'ses-loop-stale-armed-0001';
@@ -514,7 +560,7 @@ test('seed stays pending across later text parts', async (t) => {
   assert.equal(first.length, 1);
   assert.match(first[0], /claim/);
   assert.ok(first[0].includes("claim '/workspace/note.md'"));
-  assert.deepEqual(second, []);
+  assert.deepEqual(second, first);
 });
 
 test('OpenCode uses the carried spec folder and keeps the suffixed note path intact', async (t) => {
@@ -554,6 +600,153 @@ test('OpenCode uses the carried spec folder and keeps the suffixed note path int
     /\/speckit:resume specs\/hooks\/023-session-relaunch-loop\/002-pi-opencode-adapters/,
   );
   assert.doesNotMatch(seedText, /specs\/from-environment/);
+});
+
+test('the seed repeats on every transform until the note is closed', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-repeat-0001';
+  const notePath = path.join(root, 'repeat-note.md');
+  const writeNote = (status) => fs.writeFileSync(
+    notePath,
+    `---\nsession_id: ${sessionID}\nstatus: ${status}\n---\n`,
+  );
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-seed-repeat', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-repeat',
+        type: 'text',
+        text: `[session-relaunch] claim and continue handoff ${notePath}`,
+      },
+    },
+  } });
+  writeNote('open');
+
+  const first = await transform(hooks, sessionID);
+  const second = await transform(hooks, sessionID);
+  assert.equal(first.length, 1);
+  assert.ok(first[0].includes(`claim '${notePath}'`), first[0]);
+  assert.deepEqual(second, first);
+
+  writeNote('done');
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('a claimed note pushes one completion reminder instead of the claim text', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-claimed-0001';
+  const notePath = path.join(root, 'claimed-note.md');
+  fs.writeFileSync(notePath, `---\nsession_id: ${sessionID}\nstatus: claimed\n---\n`);
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-seed-claimed', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-claimed',
+        type: 'text',
+        text: `[session-relaunch] claim and continue handoff ${notePath}`,
+      },
+    },
+  } });
+
+  const output = await transform(hooks, sessionID);
+
+  assert.equal(output.length, 1);
+  const reminder = output[0];
+  assert.equal(reminder.split('\n').length, 1, reminder);
+  assert.ok(
+    reminder.startsWith(`[session-relaunch] This session claimed handoff note ${notePath}.`),
+    reminder,
+  );
+  assert.ok(reminder.includes(`complete '${notePath}'`), reminder);
+  assert.ok(reminder.endsWith('` to close the note.'), reminder);
+  assert.equal(reminder.includes("claim '"), false);
+  assert.equal(reminder.includes('Write the handoff note'), false);
+
+  assert.deepEqual(await transform(hooks, sessionID), output);
+});
+
+test('a done note clears the seed and pushes nothing', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-done-0001';
+  const notePath = path.join(root, 'done-note.md');
+  const writeNote = (status) => fs.writeFileSync(
+    notePath,
+    `---\nsession_id: ${sessionID}\nstatus: ${status}\n---\n`,
+  );
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-seed-done', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-done',
+        type: 'text',
+        text: `[session-relaunch] claim and continue handoff ${notePath}`,
+      },
+    },
+  } });
+  writeNote('done');
+
+  assert.deepEqual(await transform(hooks, sessionID), []);
+
+  // Reopening the same note proves the seed was cleared, not merely silent.
+  writeNote('open');
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('a repeated seed message update keeps the seed while a new user message clears it', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-repeat-user-0001';
+  const notePath = path.join(root, 'open-note.md');
+  fs.writeFileSync(notePath, `---\nsession_id: ${sessionID}\nstatus: open\n---\n`);
+  const userEvent = (id) => ({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id, role: 'user' } },
+  } });
+
+  await hooks.event(userEvent('msg-seed-open'));
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-open',
+        type: 'text',
+        text: `[session-relaunch] claim and continue handoff ${notePath}`,
+      },
+    },
+  } });
+  const first = await transform(hooks, sessionID);
+
+  await hooks.event(userEvent('msg-seed-open'));
+  assert.deepEqual(await transform(hooks, sessionID), first);
+
+  await hooks.event(userEvent('msg-after-seed'));
+  assert.deepEqual(await transform(hooks, sessionID), []);
 });
 
 test('a different user message clears the pending seed', async (t) => {
@@ -728,6 +921,40 @@ test(
   },
 );
 
+test(
+  'session.idle respawns one killer for an armed record whose killer is gone',
+  async (t) => {
+  const root = setupEnv(t);
+  const spawn = stubSpawn(t);
+  const loopId = 'opencode-loop-respawn-0001';
+  const sessionID = 'ses-respawn-session-0001';
+  process.env.SKILLED_LOOP_ID = loopId;
+  core.preparePending({
+    loopId,
+    handoffPath: '/workspace/opencode/handoff.md',
+    sessionId: sessionID,
+    runtime: 'opencode',
+    cwd: '/workspace/opencode',
+    env: process.env,
+  });
+  core.arm({ loopId, cwd: '/workspace/opencode', env: process.env });
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  assert.equal(spawn.calls.length, 1);
+
+  const stateDir = path.join(root, 'skilled-relaunch');
+  fs.mkdirSync(stateDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(stateDir, `killer-${loopId}.lock`),
+    `${process.pid} ${new Date().toISOString()}\n`,
+  );
+  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+  assert.equal(spawn.calls.length, 1);
+  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+  },
+);
+
 test('session.idle uses node under Bun and ignores killer spawn errors', async (t) => {
   setupEnv(t);
   const spawn = stubSpawn(t);
@@ -821,6 +1048,125 @@ test('session.idle logs a synchronous killer spawn throw and leaves the record a
     .filter((line) => line.includes('session-idle-arm-error stage=spawn'));
   assert.equal(spawnErrors.length, 1);
   assert.match(spawnErrors[0], /message=sync_spawn_denied/);
+});
+
+test('the planned note path lands under the env repo root, not the session directory', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-note-path-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-note-path', 90));
+  const active = await transform(hooks, sessionID);
+  const notePath = notePathFromNudge(active[0]);
+
+  assert.equal(
+    path.dirname(notePath),
+    path.join(
+      root,
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+  assert.equal(notePath.startsWith(`${path.sep}workspace${path.sep}`), false);
+  assert.match(path.basename(notePath), /^\d{8}T\d{6}Z-ses-note\.md$/);
+});
+
+test('a relative SESSION_RELAUNCH_REPO_ROOT still yields an absolute planned note path', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  process.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-relative-root-0001';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-relative-root', 90));
+  const active = await transform(hooks, sessionID);
+  const notePath = notePathFromNudge(active[0]);
+
+  assert.equal(path.isAbsolute(notePath), true, notePath);
+  assert.equal(
+    path.dirname(notePath),
+    path.join(
+      process.cwd(),
+      'relative-repo',
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+});
+
+test('an invalid env threshold never falls through to the config file', async (t) => {
+  const root = setupEnv(t);
+  stubSpawn(t);
+  fs.writeFileSync(
+    path.join(root, 'hook-flags.env'),
+    'SESSION_RELAUNCH_THRESHOLD=0.5\n',
+  );
+  process.env.SESSION_RELAUNCH_THRESHOLD = 'bogus';
+  process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-invalid-threshold-01';
+
+  await hooks.event(assistantEvent(sessionID, 'assistant-invalid-threshold', 60));
+  assert.deepEqual(await transform(hooks, sessionID), []);
+});
+
+test('a seed path with a literal backslash round-trips unchanged', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-escape-0001';
+
+  await hooks.event({ event: {
+    type: 'message.updated',
+    properties: { sessionID, info: { id: 'msg-seed-escape', role: 'user' } },
+  } });
+  await hooks.event({ event: {
+    type: 'message.part.updated',
+    properties: {
+      sessionID,
+      part: {
+        messageID: 'msg-seed-escape',
+        type: 'text',
+        text: '[session-relaunch] claim and continue handoff /tmp/we\\"ird.md',
+      },
+    },
+  } });
+
+  const [seedText] = await transform(hooks, sessionID);
+  assert.ok(seedText.includes('/tmp/we\\"ird.md'), seedText);
+});
+
+test('a relative or untrimmed seed path falls back to the placeholder', async (t) => {
+  setupEnv(t);
+  stubSpawn(t);
+  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+  const sessionID = 'ses-seed-invalid-path';
+
+  const seed = async (id, text) => {
+    await hooks.event({ event: {
+      type: 'message.updated',
+      properties: { sessionID, info: { id, role: 'user' } },
+    } });
+    await hooks.event({ event: {
+      type: 'message.part.updated',
+      properties: {
+        sessionID,
+        part: { messageID: id, type: 'text', text },
+      },
+    } });
+    const [seedText] = await transform(hooks, sessionID);
+    assert.ok(seedText.includes("claim '<handoff-path>'"), seedText);
+  };
+
+  await seed(
+    'msg-seed-relative',
+    '[session-relaunch] claim and continue handoff relative/handoff.md',
+  );
+  await seed(
+    'msg-seed-untrimmed',
+    '[session-relaunch] claim and continue handoff /workspace/note.md ',
+  );
 });
 
 test('malformed plugin events and transforms never throw', async (t) => {

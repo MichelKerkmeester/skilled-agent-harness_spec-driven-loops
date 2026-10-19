@@ -167,7 +167,7 @@ Lane 1.0 recorded the usage fields input_tokens, cache_creation_input_tokens and
 
 - **Trigger**: A hop fails or a killer cannot complete its idle-session action.
 - **Procedure**: Auto-compaction stays as the fallback when a hop fails. After 30 seconds the killer gives up, unarms the file and sends a notification with the manual command. The plan defines no separate phase rollback.
-### Phase Halts and Common Halts
+### Halts for This Phase and Common Halts
 
 | ID | Trigger | Action |
 |----|---------|--------|
@@ -224,7 +224,7 @@ Lane 1.0 recorded the usage fields input_tokens, cache_creation_input_tokens and
 N/A. The phase plan names no deployment backup or rollout flag.
 
 ### Rollback Procedure
-The failure behavior is in the Phase Halts and Common Halts table. Auto-compaction remains the fallback when a hop fails.
+The failure behavior is in the Halts for This Phase and Common Halts table. Auto-compaction remains the fallback when a hop fails.
 
 ### Data Reversal
 - **Has data migrations?** The phase plan names none.

@@ -7,7 +7,9 @@
     "hooks/023-session-relaunch-loop/001-claude-relaunch-loop",
     "hooks/023-session-relaunch-loop/002-pi-opencode-adapters",
     "hooks/023-session-relaunch-loop/003-command-trigger-runtimes",
-    "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure"
+    "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure",
+    "hooks/023-session-relaunch-loop/005-deep-review-remediation",
+    "hooks/023-session-relaunch-loop/006-deep-review-2-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -42,10 +44,13 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "review-archive/20261018T184826Z/review-report.md",
+      "review/review-report.md",
       "001-claude-relaunch-loop/goal.md",
       "002-pi-opencode-adapters/goal.md",
       "003-command-trigger-runtimes/goal.md",
-      "004-integration-review-and-docs-closure/goal.md"
+      "004-integration-review-and-docs-closure/goal.md",
+      "005-deep-review-remediation/goal.md"
     ],
     "entities": [
       {
@@ -58,6 +63,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-archive/20261018T184826Z/review-report.md",
         "source": "derived"
       },
       {
@@ -135,19 +146,19 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-18T11:57:08.681Z",
+    "last_save_at": "2026-10-19T10:06:35.791Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:649e0c893117fcc7560cf9ce168381d9cc44ddf0df23d87eba4cfc6f29f9754e",
+    "source_fingerprint": "sha256:70194561f4f1a8b374c148c6f70fd8bcf06ba8af0cfad15d5fbc650686134966",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9889a88562170ff4feb2df86e6c7dc202fecd4c680de2fd92d72df0febb5bfd"
+      "spec.md": "c17181fc60199ee7b8725d3fef0c46811d4958d876873eaec39ec6ee0ce25ca0"
     },
-    "last_active_child_id": "hooks/023-session-relaunch-loop/002-pi-opencode-adapters",
-    "last_active_at": "2026-10-18T11:56:55.862Z"
+    "last_active_child_id": "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
+    "last_active_at": "2026-10-19T10:05:59.074Z"
   }
 }

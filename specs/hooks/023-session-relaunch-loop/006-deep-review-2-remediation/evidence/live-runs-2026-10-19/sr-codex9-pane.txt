@@ -1,0 +1,50 @@
+› [session-relaunch] claim and continue handoff /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95d7f40/scratchpad/codex-live-c…
+    ## In-flight state
+    No source edits are in progress. The new session should use this note's `spec_folder: none` and continue the read-only task.
+    + 6 lines (⌃t to expand)
+
+• The handoff is claimed. Its remaining work is read-only: fully read the session-relaunch README and killer.cjs, then provide exactly three summary bullets for each and the README’s line count and
+  first heading. I’m reading both files now.
+
+• Explored
+  └ Read killer.cjs, README.md
+    + Show details
+
+• Both requested files are fully read. Closing the handoff updates its state, so I’m checking the repository’s write rules before running the requested close command.
+
+• Explored
+  └ Read REPO RULES.md, evidence-and-proof.md
+    + Show details
+
+• Ran node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95…
+  └ (no output)
+    + Show details
+
+• Explored
+  └ Read 20261019T094525Z-01a1538b.md, README.md
+    + Show details
+
+• The requested reads are finished. The handoff complete command exited 0, and the note now shows status: done. The README has 248 lines and its first heading is “# Session Relaunch.” No tests were
+  run for this read-only task. Git status and branch were not checked.
+
+  ### README
+
+  • Describes the relaunch system across runtimes, including how adapters and skilled-loop carry model and runtime settings, and which runtimes use command-only handoffs.
+  • Explains the nudge, prepare, claim and relaunch flow, including note states, Gate 3 handoff and killer behavior.
+  • Documents configuration defaults, state files, troubleshooting, tests and the directory structure.
+
+  ### killer.cjs
+
+  • Validates CLI options, tracks termination signals and waits for the target to go idle using transcript timestamps or a timer.
+  • Uses owner and expiry checks plus a takeover mutex to prevent competing killers from supervising the same loop.
+  • Rechecks the handoff record, hop cap and process ancestry before signaling. On timeout, it disarms the record and may send a manual-claim notification.
+
+  The handoff note is closed. Nothing is waiting on you.
+
+  Worked for 1m 13s • 11:47
+
+
+› Ask Codex to do anything
+
+  GPT-6-Luna max fast · Context 25% used · 5h 54% left · weekly 41% left
+  ? for shortcuts                                                                                                                                                              ⚠ 1 warning · f2 to view

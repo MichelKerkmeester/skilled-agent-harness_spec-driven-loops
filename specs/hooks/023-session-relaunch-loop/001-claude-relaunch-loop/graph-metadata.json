@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Near the context limit, a Claude session needs a handoff note and a fresh session in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-18T11:56:53.393Z",
+    "last_save_at": "2026-10-18T16:24:09.240Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac309ba96083c23de315818b0ce9e66ff2f41fbf9110a062e82acc74aecc86f4",
+    "source_fingerprint": "sha256:829f378e41f68b2fe61ffe8be63d8d01b01e413d4135dfc7036f814a2efda3df",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1d02667cf662dce957efa024d64db7e69d3816dbeaa45bfc7b064786d161cc2",
-      "plan.md": "3cbc78fe7bf87d10d9f4c108dd3b39c8c9a4d8b25184a5da23c7a5f492a488fa",
+      "plan.md": "c2f94c4d4ffcf32b442dd3a9cbf2e0c25dfc1753d284930c8b8419759d5532fe",
       "tasks.md": "e957635b3b086fec547664adc859d215593bf724f5d9bb724f1da80f31d27897",
       "implementation-summary.md": "d3009903764caeea930c19e6132c215783cd69e4c4ff2ba87aa91051a251754f"
     },

@@ -6,8 +6,6 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import path from 'node:path';
-
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
 import { appendLog } from '../lib/relaunch-core.cjs';
@@ -20,7 +18,6 @@ import nudge from '../lib/nudge.cjs';
 
 const CONCERN = 'session-relaunch';
 const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
-const DEFAULT_THRESHOLD = 0.8;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -50,22 +47,6 @@ function eventNameOf(payload) {
   return typeof payload?.prompt === 'string' ? 'UserPromptSubmit' : 'PostToolUse';
 }
 
-function relaunchThreshold(config) {
-  const switches = { ...config, ...process.env };
-  const parsed = Number(switches.SESSION_RELAUNCH_THRESHOLD);
-  return Number.isFinite(parsed) && parsed > 0 && parsed <= 1 ? parsed : DEFAULT_THRESHOLD;
-}
-
-function plannedNotePath(payload, sessionId) {
-  const repoRoot = process.env.REPO_ROOT || payload?.cwd || process.cwd();
-  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
-  return path.join(
-    repoRoot,
-    '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
-    `${stamp}-${sessionId.slice(0, 8)}.md`,
-  );
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -89,7 +70,7 @@ async function main() {
 
   if (nudge.isSeedPrompt(payload.prompt)) {
     return emit(eventName, nudge.seedText({
-      notePath: '<handoff-path>',
+      notePath: nudge.notePathFromSeed(payload.prompt) ?? '<handoff-path>',
       specFolder: nudge.specFolderFromSeed(payload.prompt),
       sessionId,
       cliPath: CLI_COMMAND,
@@ -115,8 +96,13 @@ async function main() {
 
   // The boundary can only rise from the base threshold, so the state file is
   // read only once the ratio reaches it; below it the read would be wasted IO.
-  const threshold = relaunchThreshold(config);
+  const threshold = nudge.relaunchThreshold(config);
   if (ratio < threshold) return done();
+
+  // A prepared or armed record means this session already ran the handoff steps.
+  if (nudge.handoffPending({ sessionId })) return done();
+  // A session at its hop cap cannot relaunch, so these steps would prepare nothing.
+  if (nudge.hopLimitReached()) return done();
 
   const decision = nudge.nextLevel({
     ratio,
@@ -125,7 +111,7 @@ async function main() {
   });
   if (!decision.nudge) return done();
 
-  const notePath = plannedNotePath(payload, sessionId);
+  const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
   try {
     nudge.writeState(sessionId, decision.level);
   } catch (error) {

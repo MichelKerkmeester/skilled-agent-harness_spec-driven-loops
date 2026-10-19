@@ -12,7 +12,13 @@ const os = require('node:os');
 const path = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 2. HELPERS
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const DEFAULT_TAIL_BYTES = 262144;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
 function positiveNumber(value) {
@@ -36,7 +42,7 @@ function readTail(filePath, tailBytes) {
     const requestedBytes = Number(tailBytes);
     const byteCount = Number.isFinite(requestedBytes)
       ? Math.max(0, Math.floor(requestedBytes))
-      : 262144;
+      : DEFAULT_TAIL_BYTES;
     const start = Math.max(0, size - byteCount);
     const buffer = Buffer.alloc(size - start);
     let bytesRead = 0;
@@ -66,7 +72,7 @@ function parseTranscriptEntry(line) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. CORE LOGIC
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -77,7 +83,7 @@ function parseTranscriptEntry(line) {
  * @returns {{fillTokens: number, model: string|null}|null} Usage, or null when no
  * assistant entry exists or the transcript cannot be read.
  */
-function readClaudeFill(transcriptPath, { tailBytes = 262144 } = {}) {
+function readClaudeFill(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
   let tail;
   try {
     tail = readTail(transcriptPath, tailBytes);
@@ -109,7 +115,7 @@ function readClaudeFill(transcriptPath, { tailBytes = 262144 } = {}) {
 }
 
 /** Read the latest Codex rollout token count from a transcript tail. */
-function readCodexUsage(transcriptPath, { tailBytes = 262144 } = {}) {
+function readCodexUsage(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
   let tail;
   try {
     tail = readTail(transcriptPath, tailBytes);
@@ -215,7 +221,7 @@ function fillFromHermesUsage(usage) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. EXPORTS
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

@@ -1,8 +1,6 @@
-// --------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Hermes Session Context Nudge
-// --------------------------------------------------
-
-import path from 'node:path';
+// ───────────────────────────────────────────────────────────────────
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
@@ -15,9 +13,6 @@ import nudge from '../lib/nudge.cjs';
 
 const CONCERN = 'session-relaunch';
 const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
-const DEFAULT_THRESHOLD = 0.8;
-const SEED_COMMAND = '[session-relaunch] claim and continue handoff ';
-const SPEC_MARKER = ' | Spec folder: ';
 
 function finish() {
   process.exit(0);
@@ -54,38 +49,6 @@ function resolveHermesWindow(payload, usage) {
   return { windowTokens: 200000, windowSource: 'default' };
 }
 
-function relaunchThreshold(config) {
-  const value = process.env.SESSION_RELAUNCH_THRESHOLD
-    ?? config.SESSION_RELAUNCH_THRESHOLD;
-  const threshold = Number(value);
-  return Number.isFinite(threshold) && threshold > 0 && threshold <= 1
-    ? threshold
-    : DEFAULT_THRESHOLD;
-}
-
-function plannedNotePath(payload, sessionId) {
-  const root = path.resolve(process.env.REPO_ROOT || payload.cwd || process.cwd());
-  const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
-  return path.join(
-    root,
-    '.skilled',
-    'skills',
-    '.state',
-    'session-relaunch',
-    'handoffs',
-    `${stamp}-${sessionId.slice(0, 8)}.md`,
-  );
-}
-
-function notePathFromSeed(prompt) {
-  if (!nudge.isSeedPrompt(prompt) || !prompt.startsWith(SEED_COMMAND)) return null;
-  let notePath = prompt.slice(SEED_COMMAND.length);
-  const marker = notePath.indexOf(SPEC_MARKER);
-  if (marker >= 0) notePath = notePath.slice(0, marker);
-  if (!notePath || notePath !== notePath.trim() || /[\r\n]/.test(notePath)) return null;
-  return path.isAbsolute(notePath) ? notePath : null;
-}
-
 async function main() {
   const config = loadConfigFile(configPath());
   if (!isHookEnabled(CONCERN, process.env, config)) return done();
@@ -99,7 +62,7 @@ async function main() {
     ? payload.user_message
     : typeof payload.prompt === 'string' ? payload.prompt : '';
   if (payload.is_first_turn === true && nudge.isSeedPrompt(userMessage)) {
-    const notePath = notePathFromSeed(userMessage);
+    const notePath = nudge.notePathFromSeed(userMessage);
     if (!notePath) return done();
     const specFolder = nudge.specFolderFromSeed(userMessage);
     return emit({
@@ -117,8 +80,13 @@ async function main() {
   const fillTokens = fillFromHermesUsage(usage);
   const { windowTokens, windowSource } = resolveHermesWindow(payload, usage);
   const ratio = fillRatio(fillTokens, windowTokens);
-  const threshold = relaunchThreshold(config);
+  const threshold = nudge.relaunchThreshold(config);
   if (ratio < threshold) return done();
+
+  // A prepared or armed record means this session already ran the handoff steps.
+  if (nudge.handoffPending({ sessionId })) return done();
+  // A session at its hop cap cannot relaunch, so these steps would prepare nothing.
+  if (nudge.hopLimitReached()) return done();
 
   const decision = nudge.nextLevel({
     ratio,
@@ -128,7 +96,7 @@ async function main() {
   if (!decision.nudge) return done();
 
   const cwd = payload.cwd || process.cwd();
-  const notePath = plannedNotePath(payload, sessionId);
+  const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
   try {
     nudge.writeState(sessionId, decision.level);
   } catch (error) {

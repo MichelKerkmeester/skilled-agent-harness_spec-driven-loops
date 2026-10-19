@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Codex, Cursor, Devin and Hermes expose no usage signal at all, so the context-threshold nudge and the Stop-event arming built for Claude, Pi and OpenCode cannot fire for them",
     "created_at": "2026-10-16T20:16:21Z",
-    "last_save_at": "2026-10-18T11:56:34.466Z",
+    "last_save_at": "2026-10-18T16:03:42.442Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a5471ab6946487643e9f5c62f3831b5346872088b944c23b3b50d1685a94f92",
+    "source_fingerprint": "sha256:6ab12f5c2200433f864534410a9a052f94428759a35f8241775e66491b17947c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77be6816321050908caa2b0f011adeb8c77eddaf2c57d8f6ce9f3fc9f2105715",
       "plan.md": "1362f20cf6cbe2fc82d8653f80d29b44488b1f28b5079a9411d9f371da612e5a",
-      "tasks.md": "f6330c0bec98ddfb072c52bcbd74223ee8618d67cfde1604302b9f69639c0d48",
+      "tasks.md": "a7cb243b635c8d00f6e6e4f366cc7825ed7b1fbb85b7b186b7b4af6b6cc60ac4",
       "implementation-summary.md": "52afdc715880f04a84955c49bb17fe0ccb7b61acec76309533c2c3e98c25f3f0"
     },
     "last_active_at": null

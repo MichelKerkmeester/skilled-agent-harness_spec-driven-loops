@@ -1,0 +1,1419 @@
+{
+  "sessionId": "2026-10-18T12:41:21.177Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 7,
+    "timestamp": "2026-10-18T13:23:39.107Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F7-P2-001",
+      "severity": "P2",
+      "title": "Wrapper exit-contract sentence inverted in the bin README and the command-runtimes playbook",
+      "file": ".skilled/bin/README.md",
+      "line": null,
+      "description": "",
+      "findingClass": "documentation_drift",
+      "deltaStatus": null,
+      "scopeProof": ".skilled/bin/README.md is a declared review-scope file and the SL-405 target; the playbook is a declared review-scope file reached by SL-209 tasks.md:56.",
+      "affectedSurfaceHints": [
+        ".skilled/bin/README.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/README.md"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "M4-P2-001",
+      "severity": "P2",
+      "title": "plannedNotePath copied into five adapters and drifted on path resolution",
+      "file": ".skilled/hooks/session-relaunch/codex/shared.mjs",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "M4-P2-002",
+      "severity": "P2",
+      "title": "Pi adapter re-reads hook config per event and keeps a fourth threshold copy",
+      "file": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      "line": 140,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "M4-P2-003",
+      "severity": "P2",
+      "title": "notePathFromSeed has three divergent parsers across adapters",
+      "file": ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+      "line": 80,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "M5-P2-001",
+      "severity": "P2",
+      "title": "Claude stop-arm re-arms an already-armed record and spawns a redundant killer",
+      "file": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      "line": 90,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "appendLog read-modify-write drops concurrent log lines",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 554,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Gate-3 Skip suffix has an unbalanced parenthesis across printers, README and tests",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 526,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Killer aborts on an unreadable transcript instead of failing open",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Stale-lock takeover is not atomic; two killers can both supervise and double-signal",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 250,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Shared-temp state-dir fallback lets another local user pre-create the lock or record and suppress or spoof the killer",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 143,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "T3-P2-001",
+      "severity": "P2",
+      "title": "Checklist evidence pointers name locations that do not exist or stop short of the claimed content",
+      "file": "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md",
+      "line": 144,
+      "description": "",
+      "findingClass": "documentation-evidence-defect",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "T3-P2-002",
+      "severity": "P2",
+      "title": "Interface contract section 7 states two opposite relaunch orders and does not mark the superseded sentence",
+      "file": "specs/hooks/023-session-relaunch-loop/scratch/contracts/interface-contract.md",
+      "line": 97,
+      "description": "",
+      "findingClass": "contract-self-contradiction",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 12
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9167,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 1
+  },
+  "candidateCoverage": {
+    "covered": [
+      "adapter_payload_handling",
+      "argument_forwarding",
+      "catalog_code_drift",
+      "command_injection",
+      "command_mirror_parity",
+      "comment_hygiene",
+      "concurrency",
+      "contract_code_divergence",
+      "documentation_drift",
+      "duplicated_logic",
+      "env_trust",
+      "file_permissions",
+      "io_error_handling",
+      "notification_injection",
+      "path_traversal",
+      "pid_reuse",
+      "playbook_code_drift",
+      "process_safety",
+      "runtime_parity",
+      "stale_evidence_pointer",
+      "state_transition",
+      "user_facing_text"
+    ],
+    "ruledOut": [
+      "adapter_payload_handling",
+      "argument_forwarding",
+      "catalog_code_drift",
+      "command_injection",
+      "command_mirror_parity",
+      "comment_hygiene",
+      "duplicated_logic",
+      "env_trust",
+      "mirror_link_shape",
+      "notification_injection",
+      "path_traversal",
+      "pid_reuse",
+      "playbook_code_drift",
+      "quantitative_doc_claim",
+      "runtime_parity",
+      "stale_evidence_pointer",
+      "state_transition",
+      "test_coverage_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "concurrency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "io_error_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "argument_forwarding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "process_safety": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "user_facing_text": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "file_permissions": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "command_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "pid_reuse": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "env_trust": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "notification_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "adapter_payload_handling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          5
+        ]
+      },
+      "stale_evidence_pointer": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "contract_code_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "command_mirror_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "catalog_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "mirror_link_shape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "quantitative_doc_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          7
+        ]
+      },
+      "duplicated_logic": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          7
+        ]
+      },
+      "comment_hygiene": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          7
+        ]
+      },
+      "test_coverage_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          7
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "All transitions and guards match contract section 4 and their unit tests.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:554"
+      ],
+      "reason": "Verified by direct read of relaunch-core.cjs, killer.cjs and the transition tests."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "argument_forwarding",
+      "disposition": "ruled_out",
+      "rationale": "Documented intended behavior, not a defect.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:98"
+      ],
+      "reason": "Contract 11.6-11.7 and wrapper test \"second invocation uses only the seed and name\" define the carry set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every metacharacter that matters inside the double-quoted seed is escaped before splicing.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:519",
+        ".skilled/bin/skilled-loop:42",
+        ".skilled/bin/skilled-loop:134"
+      ],
+      "reason": "Escaping verified in both builders; no eval or shell interpolation of the seed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Parent and file realpath checks close the symlinked-directory and symlinked-file variants.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:96",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:123"
+      ],
+      "reason": "Containment is enforced at the CLI boundary for prepare, claim and complete."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "pid_reuse",
+      "disposition": "ruled_out",
+      "rationale": "Residual risk accepted and documented; the ancestry check plus armed-record gate bounds the blast radius.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:322",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:336"
+      ],
+      "reason": "Reuse window is one synchronous read, SIGTERM is permission-bounded to the same user, and portable Node has no pidfd identity check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-106",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "env_trust",
+      "disposition": "ruled_out",
+      "rationale": "An attacker-controlled environment already controls the process that prints the command.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:231",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:519"
+      ],
+      "reason": "Template is wrapper-produced and the seed is escaped before substitution."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-107",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "notification_injection",
+      "disposition": "ruled_out",
+      "rationale": "Only display text is passed; no script statements are concatenated.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:306"
+      ],
+      "reason": "argv-only spawn plus JSON quoting prevents AppleScript string termination."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".claude/settings.json",
+        ".codex/hooks.json"
+      ],
+      "bugClass": "runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "Parity verified at the index level, not by name only.",
+      "evidenceRefs": [
+        ".claude/settings.json:247",
+        ".claude/settings.json:126",
+        ".claude/settings.json:192",
+        ".codex/hooks.json:1"
+      ],
+      "reason": "All six bindings match the registry by event, group and script, and no undeclared session-relaunch row exists."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-204",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/speckit/handoff.md",
+        ".claude/commands/speckit/handoff.md",
+        ".codex/prompts/speckit-handoff.md",
+        ".cursor/commands/speckit-handoff.md",
+        ".hermes/prompts/speckit-handoff.md",
+        ".pi/prompts/speckit-handoff.md"
+      ],
+      "bugClass": "command_mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "Presence and canonical-pointer parity confirmed; per-command body routing not traced.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:1",
+        ".codex/prompts/speckit-handoff.md:1",
+        ".hermes/prompts/speckit-handoff.md:1",
+        ".pi/prompts/speckit-handoff.md:1"
+      ],
+      "reason": "No surface is missing and none names a path other than the canonical command."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-206",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "catalog_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Sampled claims confirmed; quantitative claims deferred as SL-208.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:19",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:21",
+        ".skilled/bin/skilled-loop:62"
+      ],
+      "reason": "All four sampled catalog claims match the code exactly."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-207",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs"
+      ],
+      "bugClass": "playbook_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Only the documented argv forms were compared; live-run claims were not re-exercised.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:120",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:424",
+        ".skilled/bin/skilled-loop:62"
+      ],
+      "reason": "The four documented relaunch forms match the wrapper arms and the stub assertions."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib",
+        ".skilled/hooks/session-relaunch/claude",
+        ".skilled/hooks/session-relaunch/codex",
+        ".skilled/hooks/session-relaunch/hermes",
+        ".skilled/hooks/session-relaunch/pi",
+        ".skilled/hooks/session-relaunch/opencode",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "grep returned no ephemeral artifact labels in the touched code",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs:33",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:226"
+      ],
+      "reason": "negative grep over all named adapter, lib and wrapper files"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".cursor/commands/speckit-handoff.md",
+        ".claude/commands/speckit/handoff.md",
+        ".pi/extensions/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/README.md"
+      ],
+      "bugClass": "mirror_link_shape",
+      "disposition": "ruled_out",
+      "rationale": "SL-205 closed with link-mode evidence.",
+      "evidenceRefs": [],
+      "reason": "Both handoff mirrors and the Pi extension are real symlinks; the README claim is accurate."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
+      ],
+      "bugClass": "adapter_payload_handling",
+      "disposition": "ruled_out",
+      "rationale": "The deferred D2 argv audit is now complete.",
+      "evidenceRefs": [],
+      "reason": "All five spawn sites are argv-only; SL-108 closed."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-208",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "quantitative_doc_claim",
+      "disposition": "ruled_out",
+      "rationale": "Every code-backed catalog constant matches; the 0.12 sentence is a recorded live-run observation.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:11",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:12",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:14",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:34",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:35",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:384",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:390",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:401",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:51",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:372",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:373",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:177"
+      ],
+      "reason": "Six quantitative claims checked against their constants; no drift."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-209",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:56",
+        ".skilled/hooks/README.md"
+      ],
+      "bugClass": "stale_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Line 56 resolves cleanly; the T009 pointers are the active T3-P2-001 class and are folded there; the playbook sentence is F7-P2-001.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:56",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:58",
+        ".skilled/hooks/README.md:30",
+        ".skilled/hooks/README.md:186",
+        ".skilled/hooks/README.md:278",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:40"
+      ],
+      "reason": "No new pointer finding; existing T3-P2-001 owns the T009 evidence-row defect."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
+        ".opencode/plugins/tests/session-relaunch.test.cjs"
+      ],
+      "bugClass": "test_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "The suite exercises every behavior the catalog attributes to the adapter; the reviewed path is the symlink to the tested real file.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/session-relaunch.test.cjs:143",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:292",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:731",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:826"
+      ],
+      "reason": "No named adapter behavior is untested."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-502",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs"
+      ],
+      "bugClass": "duplicated_logic",
+      "disposition": "ruled_out",
+      "rationale": "Iteration-5 adjudication folds the byte-identical findCodexPid/findHermesPid pair into the M4-P2-001/M4-P2-003 shared-helper remediation; noted that the helper must take the pid resolvers with it.",
+      "evidenceRefs": [
+        "deep-review-findings-registry.json"
+      ],
+      "reason": "Fold confirmed at remediation level; not a separate finding."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "All transitions and guards match contract section 4 and their unit tests.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:554"
+      ],
+      "proof": "Verified by direct read of relaunch-core.cjs, killer.cjs and the transition tests."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "argument_forwarding",
+      "disposition": "ruled_out",
+      "rationale": "Documented intended behavior, not a defect.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:98"
+      ],
+      "proof": "Contract 11.6-11.7 and wrapper test \"second invocation uses only the seed and name\" define the carry set."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-103",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "command_injection",
+      "disposition": "ruled_out",
+      "rationale": "Every metacharacter that matters inside the double-quoted seed is escaped before splicing.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:519",
+        ".skilled/bin/skilled-loop:42",
+        ".skilled/bin/skilled-loop:134"
+      ],
+      "proof": "Escaping verified in both builders; no eval or shell interpolation of the seed."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-104",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "Parent and file realpath checks close the symlinked-directory and symlinked-file variants.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:96",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:123"
+      ],
+      "proof": "Containment is enforced at the CLI boundary for prepare, claim and complete."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-105",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "pid_reuse",
+      "disposition": "ruled_out",
+      "rationale": "Residual risk accepted and documented; the ancestry check plus armed-record gate bounds the blast radius.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:322",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:336"
+      ],
+      "proof": "Reuse window is one synchronous read, SIGTERM is permission-bounded to the same user, and portable Node has no pidfd identity check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-106",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "env_trust",
+      "disposition": "ruled_out",
+      "rationale": "An attacker-controlled environment already controls the process that prints the command.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:231",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:519"
+      ],
+      "proof": "Template is wrapper-produced and the seed is escaped before substitution."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-107",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "notification_injection",
+      "disposition": "ruled_out",
+      "rationale": "Only display text is passed; no script statements are concatenated.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:306"
+      ],
+      "proof": "argv-only spawn plus JSON quoting prevents AppleScript string termination."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-203",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        ".claude/settings.json",
+        ".codex/hooks.json"
+      ],
+      "bugClass": "runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "Parity verified at the index level, not by name only.",
+      "evidenceRefs": [
+        ".claude/settings.json:247",
+        ".claude/settings.json:126",
+        ".claude/settings.json:192",
+        ".codex/hooks.json:1"
+      ],
+      "proof": "All six bindings match the registry by event, group and script, and no undeclared session-relaunch row exists."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-204",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/speckit/handoff.md",
+        ".claude/commands/speckit/handoff.md",
+        ".codex/prompts/speckit-handoff.md",
+        ".cursor/commands/speckit-handoff.md",
+        ".hermes/prompts/speckit-handoff.md",
+        ".pi/prompts/speckit-handoff.md"
+      ],
+      "bugClass": "command_mirror_parity",
+      "disposition": "ruled_out",
+      "rationale": "Presence and canonical-pointer parity confirmed; per-command body routing not traced.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:1",
+        ".codex/prompts/speckit-handoff.md:1",
+        ".hermes/prompts/speckit-handoff.md:1",
+        ".pi/prompts/speckit-handoff.md:1"
+      ],
+      "proof": "No surface is missing and none names a path other than the canonical command."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-206",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "catalog_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Sampled claims confirmed; quantitative claims deferred as SL-208.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:19",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:21",
+        ".skilled/bin/skilled-loop:62"
+      ],
+      "proof": "All four sampled catalog claims match the code exactly."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-207",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs"
+      ],
+      "bugClass": "playbook_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "Only the documented argv forms were compared; live-run claims were not re-exercised.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:120",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:424",
+        ".skilled/bin/skilled-loop:62"
+      ],
+      "proof": "The four documented relaunch forms match the wrapper arms and the stub assertions."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-404",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib",
+        ".skilled/hooks/session-relaunch/claude",
+        ".skilled/hooks/session-relaunch/codex",
+        ".skilled/hooks/session-relaunch/hermes",
+        ".skilled/hooks/session-relaunch/pi",
+        ".skilled/hooks/session-relaunch/opencode",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "grep returned no ephemeral artifact labels in the touched code",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs:33",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:226"
+      ],
+      "proof": "negative grep over all named adapter, lib and wrapper files"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-503",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs"
+      ],
+      "bugClass": "io_error_handling",
+      "disposition": "not_applicable",
+      "rationale": "The sweep produced evidence for the re-confirmation table, not a new defect.",
+      "evidenceRefs": [],
+      "proof": "Re-confirmation sweep of existing findings; nine confirmed and one carried, no new finding beyond M5-P2-001."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-504",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".cursor/commands/speckit-handoff.md",
+        ".claude/commands/speckit/handoff.md",
+        ".pi/extensions/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/README.md"
+      ],
+      "bugClass": "mirror_link_shape",
+      "disposition": "ruled_out",
+      "rationale": "SL-205 closed with link-mode evidence.",
+      "evidenceRefs": [],
+      "proof": "Both handoff mirrors and the Pi extension are real symlinks; the README claim is accurate."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-505",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
+      ],
+      "bugClass": "adapter_payload_handling",
+      "disposition": "ruled_out",
+      "rationale": "The deferred D2 argv audit is now complete.",
+      "evidenceRefs": [],
+      "proof": "All five spawn sites are argv-only; SL-108 closed."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-208",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "quantitative_doc_claim",
+      "disposition": "ruled_out",
+      "rationale": "Every code-backed catalog constant matches; the 0.12 sentence is a recorded live-run observation.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:11",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:12",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:14",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:34",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:35",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:384",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:390",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:401",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:51",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:372",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:373",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:177"
+      ],
+      "proof": "Six quantitative claims checked against their constants; no drift."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-209",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:56",
+        ".skilled/hooks/README.md"
+      ],
+      "bugClass": "stale_evidence_pointer",
+      "disposition": "ruled_out",
+      "rationale": "Line 56 resolves cleanly; the T009 pointers are the active T3-P2-001 class and are folded there; the playbook sentence is F7-P2-001.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:56",
+        "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md:58",
+        ".skilled/hooks/README.md:30",
+        ".skilled/hooks/README.md:186",
+        ".skilled/hooks/README.md:278",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:40"
+      ],
+      "proof": "No new pointer finding; existing T3-P2-001 owns the T009 evidence-row defect."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-406",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
+        ".opencode/plugins/tests/session-relaunch.test.cjs"
+      ],
+      "bugClass": "test_coverage_gap",
+      "disposition": "ruled_out",
+      "rationale": "The suite exercises every behavior the catalog attributes to the adapter; the reviewed path is the symlink to the tested real file.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/session-relaunch.test.cjs:143",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:292",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:731",
+        ".opencode/plugins/tests/session-relaunch.test.cjs:826"
+      ],
+      "proof": "No named adapter behavior is untested."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-502",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs"
+      ],
+      "bugClass": "duplicated_logic",
+      "disposition": "ruled_out",
+      "rationale": "Iteration-5 adjudication folds the byte-identical findCodexPid/findHermesPid pair into the M4-P2-001/M4-P2-003 shared-helper remediation; noted that the helper must take the pid resolvers with it.",
+      "evidenceRefs": [
+        "deep-review-findings-registry.json"
+      ],
+      "proof": "Fold confirmed at remediation level; not a separate finding."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "quantitative_doc_claim",
+      "stale_evidence_pointer",
+      "documentation_drift",
+      "test_coverage_gap",
+      "duplicated_logic"
+    ],
+    "covered": [
+      "documentation_drift"
+    ],
+    "ruledOut": [
+      "quantitative_doc_claim",
+      "stale_evidence_pointer",
+      "test_coverage_gap",
+      "duplicated_logic"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

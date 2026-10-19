@@ -1,6 +1,6 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Skilled Loop Wrapper Tests
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const { test } = require('node:test');
@@ -15,7 +15,7 @@ const WRAPPER_PATH = path.resolve(__dirname, '../../../bin/skilled-loop');
 const SEED = '[session-relaunch] claim and continue handoff';
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
-const SKIP_SPEC_FOLDER_SUFFIX = ' (Gate 3 answered D) Skip in the sending session)';
+const SKIP_SPEC_FOLDER_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
 const COMMAND_RUNTIME_SPEC_FOLDER =
   'specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes';
 const LOOP_ID_PATTERN = /^[0-9]+$/;
@@ -200,7 +200,7 @@ function createSandbox(t) {
   fs.mkdirSync(home, { recursive: true });
   fs.mkdirSync(binDir, { recursive: true });
   fs.mkdirSync(recordedCwd, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, REPO_ROOT: repoRoot };
+  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
   for (const key of [
     'SKILLED_LOOP_ID',
     'SKILLED_LOOP_HOPS',
@@ -461,6 +461,12 @@ test('wrapper carries Gate 3 Skip in the relaunch seed', (t) => {
   assert.deepEqual(records[1].args, [
     `${SEED} ${handoffPath} | Spec folder: none${SKIP_SPEC_FOLDER_SUFFIX}`,
   ]);
+  const seed = records[1].args[0];
+  assert.equal(
+    (seed.match(/\(/g) || []).length,
+    (seed.match(/\)/g) || []).length,
+    seed,
+  );
   assert.doesNotMatch(readLog(sandbox), /spec-folder-dropped/);
 });
 

@@ -1,25 +1,27 @@
 {
+  "level": "2",
   "specFolder": "hooks/023-session-relaunch-loop",
-  "description": "Session relaunch loop: auto-handoff near the context limit with a fresh session in the same terminal",
+  "description": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
   "keywords": [
     "session",
-    "relaunch",
-    "loop",
-    "auto-handoff",
     "near",
     "context",
     "limit",
-    "fresh",
+    "needs",
+    "write",
+    "handoff",
+    "note",
+    "end",
+    "restart",
     "same",
     "terminal"
   ],
-  "lastUpdated": "2026-10-16T20:16:19.443Z",
+  "lastUpdated": "2026-10-18T16:00:09.749Z",
   "specId": "023",
   "folderSlug": "session-relaunch-loop",
   "parentChain": [
     "hooks"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

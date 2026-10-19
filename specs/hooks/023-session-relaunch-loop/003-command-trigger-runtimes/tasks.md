@@ -50,10 +50,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Docs and gate
 
-- [x] T006 Lane 3.6 README runtime matrix in `.skilled/hooks/session-relaunch/README.md` (runtime, trigger, seed syntax, mirror form, evidence), via the named sk-doc mode. Evidence: the matrix at `.skilled/hooks/session-relaunch/README.md:13-21` carries runtime, trigger, seed syntax, mirror form, spike evidence and verdict columns; run-ledger D78 and D82 (validate_document rc=0, 0 issues).
+- [x] T006 Lane 3.6 README runtime matrix in `.skilled/hooks/session-relaunch/README.md` (runtime, trigger, seed syntax, mirror form, evidence), via the named sk-doc mode. Evidence: the matrix at `.skilled/hooks/session-relaunch/README.md:15-23` carries runtime, trigger, seed syntax, mirror form, spike evidence and verdict columns; run-ledger D78 and D82 (validate_document rc=0, 0 issues).
 - [x] T007 Lane 3.6 catalog entry update under `system-spec-kit/feature-catalog/context-preservation/` plus the `feature-catalog.md` index. Evidence: `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md` names all seven runtimes; run-ledger D78 (validate_document 9/9 rc=0).
 - [x] T008 Lane 3.6 playbook scenarios per runtime plus the playbook index under `system-spec-kit/manual-testing-playbook/plugins-and-hooks/`. Evidence: `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md` covers all four runtimes with 4 automatable checks and 4 live checks; run-ledger D78 (package validator rc=0).
-- [x] T009 Lane 3.6 coverage matrix rows in `.skilled/hooks/README.md`. Evidence: `.skilled/hooks/README.md:28` names the concern across all seven runtimes, `:186` carries the per-runtime adapter row and `:274` the coverage matrix row; run-ledger D78.
+- [x] T009 Lane 3.6 coverage matrix rows in `.skilled/hooks/README.md`. Evidence: `.skilled/hooks/README.md:30` names the concern across all seven runtimes, `:188` carries the per-runtime adapter row and `:278` the coverage matrix row; run-ledger D78.
 - [x] T010 Lane 3.7 gate PG: the orchestrator runs section 11 items 1 to 10 from the final state. Evidence: run-ledger.md:290-299 "Gate PG for phase 003" — PG1 node 214/214 + pytest 59/59 + vitest 7/7, PG2 sync-hook PASS (delta = 3 Codex rows), PG3 mirrors PASS 192, PG4 drift guards 4/4 + hygiene 0 hits, PG5 shellcheck 0, PG6 docs validators green, PG7 playbook recorded, PG8 scope receipt mapped.
 <!-- /ANCHOR:phase-3 -->
 
@@ -140,8 +140,8 @@ contextType: "general"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No test shows a signal reaching a non-descendant pid or the wrapper acting without `SKILLED_LOOP_ID`; any such result is H9 (plan section 8). Evidence: no H9 halt was raised in D57-D83; the guarded-kill and wrapper-gating tests pass inside PG1 `fail 0` (killer ancestry guard tests in `killer.test.cjs`, wrapper `SKILLED_LOOP_ID` gating in `skilled-loop.test.cjs`).
-- [x] CHK-031 [P0] The killer's ancestry guard is asserted by a named test before any `AUTO` adapter ships (plan section 9 killer bullets). Evidence: `.skilled/hooks/session-relaunch/lib/killer.test.cjs` asserts the descendant-only guard and shipped in phase 001, before the Codex and Hermes adapters (D64-D66); PG1 keeps it green.
+- [x] CHK-030 [P0] No test shows a signal reaching a non-descendant pid or the wrapper acting without `SKILLED_LOOP_ID`; any such result is H9 (plan section 8). Evidence: no H9 halt was raised in D57-D83; the guarded-kill and wrapper-gating tests pass inside PG1 `fail 0` (killer ancestry guard test at `.skilled/hooks/session-relaunch/tests/killer.test.cjs:393`, wrapper `SKILLED_LOOP_ID` gating in `skilled-loop.test.cjs`).
+- [x] CHK-031 [P0] The killer's ancestry guard is asserted by a named test before any `AUTO` adapter ships (plan section 9 killer bullets). Evidence: `.skilled/hooks/session-relaunch/tests/killer.test.cjs:393` asserts the descendant-only guard and shipped in phase 001 (ledger D11), before the Codex and Hermes adapters (D64-D66); PG1 keeps it green.
 - [x] CHK-032 [P1] No worker probed its own runtime; the lane 3.1 assignments held (SWE on Codex, Cursor, Hermes; Luna on Devin). Evidence: SPIKE-codex.md and SPIKE-cursor-hermes.md are SWE captures (D57, D58) and SPIKE-devin.md is the Luna probe (D62); the assignment split is recorded in plan.md and held in the ledger.
 <!-- /ANCHOR:security -->
 

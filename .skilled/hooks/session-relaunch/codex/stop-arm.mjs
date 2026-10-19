@@ -7,12 +7,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
-import { arm, appendLog, readRelaunchFile } from '../lib/relaunch-core.cjs';
+import {
+  arm,
+  appendLog,
+  findLoopChildPid,
+  liveKillerPid,
+  readRelaunchFile,
+} from '../lib/relaunch-core.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -40,51 +46,6 @@ function logEvent(event, fields) {
   try {
     appendLog(event, fields, process.env);
   } catch {}
-}
-
-function readProcessTable() {
-  try {
-    const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid='], {
-      encoding: 'utf8',
-    });
-    if (result.error || result.status !== 0) return null;
-    return result.stdout;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Resolve the loop's direct child above this adapter.
- * The adapter can run below a transient shell, so process.ppid is not a stable kill target.
- *
- * @param {string} loopId - Owning loop pid carried by SKILLED_LOOP_ID.
- * @param {Object} [options] - Dependency seams for tests.
- * @param {number} [options.pid=process.pid] - Adapter pid to climb from.
- * @param {string} [options.processTable] - `pid ppid` pairs; the live table when omitted.
- * @returns {number|null} The ancestor pid whose parent is the loop, or null when unmatched.
- */
-function findCodexPid(loopId, { pid = process.pid, processTable } = {}) {
-  const loopPid = Number(loopId);
-  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return null;
-  const table = typeof processTable === 'string' ? processTable : readProcessTable();
-  if (typeof table !== 'string') return null;
-
-  const parents = new Map();
-  for (const line of table.split(/\r?\n/)) {
-    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
-    if (match) parents.set(Number(match[1]), Number(match[2]));
-  }
-
-  let current = Number(pid);
-  const visited = new Set();
-  while (Number.isSafeInteger(current) && current > 0 && !visited.has(current)) {
-    visited.add(current);
-    const parent = parents.get(current);
-    if (parent === loopPid) return current;
-    current = parent;
-  }
-  return null;
 }
 
 async function spawnKiller(loopId, targetPid, transcriptPath) {
@@ -139,8 +100,13 @@ async function main() {
   if (
     record === null
     || record.loopId !== loopId
-    || record.status !== 'pending'
     || record.sessionId !== payload.session_id
+  ) return done();
+  // Pending arms here; an armed record belongs to a killer, so it respawns
+  // only when no live killer owns the lock.
+  if (
+    record.status !== 'pending'
+    && (record.status !== 'armed' || liveKillerPid(loopId, process.env) !== null)
   ) return done();
 
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
@@ -149,7 +115,7 @@ async function main() {
   }
 
   // Resolve before arming so a missing ancestor leaves the record pending.
-  const targetPid = findCodexPid(loopId);
+  const targetPid = findLoopChildPid(loopId);
   if (targetPid === null) {
     logEvent('stop-arm-error', { stage: 'target-pid', loopId });
     return done();
@@ -174,4 +140,4 @@ async function main() {
 
 if (isMain()) main().catch(done);
 
-export { findCodexPid };
+export { findLoopChildPid as findCodexPid };

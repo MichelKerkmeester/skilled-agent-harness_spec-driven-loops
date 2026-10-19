@@ -28,6 +28,14 @@ const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const TAG = '[hook-registration-sync]';
 const REGISTRY_PATH = path.join(__dirname, 'hook-registry.json');
 const JSON_RUNTIMES = ['claude', 'codex', 'cursor', 'devin'];
+// Codex rejects any `hookSpecificOutput` key it does not define and discards
+// the whole response, which would swallow the very message the envelope exists
+// to deliver. These runtimes carry the drift marker on stderr alone.
+const ENVELOPE_REJECTS_UNKNOWN_KEYS = new Set(['codex']);
+// Codex accepts `hookSpecificOutput` only on the events that take additional
+// context; Stop and PreCompact reject it and discard the whole response, so
+// their fallback carries the message as a plain `systemMessage` instead.
+const SYSTEM_MESSAGE_EVENTS = new Set(['codex:Stop', 'codex:PreCompact']);
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -52,9 +60,11 @@ function loadRegistry(registryPath = REGISTRY_PATH) {
 // 4. WRAPPER GRAMMAR
 // ───────────────────────────────────────────────────────────────────
 
-function driftEnvelope(event, message) {
-  const json = JSON.stringify({ hookSpecificOutput: { hookEventName: event, additionalContext: message, mkHookDrift: true } });
-  return json.replace(/"/g, '\\"');
+function fallbackEnvelope(runtime, event, message) {
+  if (SYSTEM_MESSAGE_EVENTS.has(`${runtime}:${event}`)) return JSON.stringify({ systemMessage: message }).replace(/"/g, '\\"');
+  const hookSpecificOutput = { hookEventName: event, additionalContext: message };
+  if (!ENVELOPE_REJECTS_UNKNOWN_KEYS.has(runtime)) hookSpecificOutput.mkHookDrift = true;
+  return JSON.stringify({ hookSpecificOutput }).replace(/"/g, '\\"');
 }
 
 /** The base invocation every wrapper shares: runner, script and arguments. */
@@ -78,7 +88,7 @@ function renderProjectDirCommand(runtime, runtimeConfig, binding) {
     case 'background': inner = `${base} >/dev/null 2>&1 &`; break;
     case 'echo': inner = `${base} >/dev/null 2>&1 || echo "${message}"`; break;
     case 'envelope':
-      inner = `${base}${silence} || { printf "%s\\n" "mk-hook-drift host=${runtime} event=${binding.event} adapter=${adapter}" >&2; printf %s "${driftEnvelope(binding.event, message)}"; }`;
+      inner = `${base}${silence} || { printf "%s\\n" "mk-hook-drift host=${runtime} event=${binding.event} adapter=${adapter}" >&2; printf %s "${fallbackEnvelope(runtime, binding.event, message)}"; }`;
       break;
     default: throw new Error(`unknown fallback "${binding.fallback}" on ${runtime} ${binding.script}`);
   }

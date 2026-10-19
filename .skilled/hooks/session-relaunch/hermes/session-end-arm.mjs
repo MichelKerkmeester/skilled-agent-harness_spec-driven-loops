@@ -1,9 +1,9 @@
-// --------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Hermes Session End Arm
-// --------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
@@ -11,6 +11,8 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import {
   arm,
   appendLog,
+  findLoopChildPid,
+  liveKillerPid,
   readRelaunchFile,
 } from '../lib/relaunch-core.cjs';
 
@@ -32,41 +34,6 @@ function logEvent(event, fields, env) {
   try {
     appendLog(event, fields, env);
   } catch {}
-}
-
-function readProcessTable() {
-  try {
-    const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid='], {
-      encoding: 'utf8',
-    });
-    if (result.error || result.status !== 0) return null;
-    return result.stdout;
-  } catch {
-    return null;
-  }
-}
-
-function findHermesPid(loopId, { pid = process.pid, processTable } = {}) {
-  const loopPid = Number(loopId);
-  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return null;
-  const table = typeof processTable === 'string' ? processTable : readProcessTable();
-  if (typeof table !== 'string') return null;
-
-  const parents = new Map();
-  for (const line of table.split(/\r?\n/)) {
-    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
-    if (match) parents.set(Number(match[1]), Number(match[2]));
-  }
-
-  let current = Number(pid);
-  const visited = new Set();
-  while (Number.isSafeInteger(current) && current > 0 && !visited.has(current)) {
-    visited.add(current);
-    const parent = parents.get(current);
-    if (parent === loopPid) return current;
-    current = parent;
-  }
-  return null;
 }
 
 function positivePid(value) {
@@ -98,13 +65,19 @@ function armPendingRecord(payload, dependencies = {}) {
 
     const record = readRelaunchFile(loopId, env);
     if (
-      record?.status !== 'pending'
+      record === null
       || record.sessionId !== sessionId
       || record.runtime !== 'hermes'
     ) return null;
+    // Pending arms here; an armed record belongs to a killer, so it respawns
+    // only when no live killer owns the lock.
+    if (
+      record.status !== 'pending'
+      && (record.status !== 'armed' || liveKillerPid(loopId, env) !== null)
+    ) return null;
 
     const targetPid = positivePid(dependencies.targetPid)
-      ?? findHermesPid(loopId, {
+      ?? findLoopChildPid(loopId, {
         pid: dependencies.pid ?? process.pid,
         processTable: dependencies.processTable,
       });
@@ -164,4 +137,4 @@ async function main() {
 
 if (isMain()) main().catch(() => done());
 
-export { armPendingRecord, findHermesPid };
+export { armPendingRecord, findLoopChildPid as findHermesPid };

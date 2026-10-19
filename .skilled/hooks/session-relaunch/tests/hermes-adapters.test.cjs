@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hermes Session Relaunch Adapter Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const assert = require('node:assert/strict');
@@ -24,7 +27,9 @@ function sandbox(t) {
     'MK_HOOKS_DISABLED',
     'SESSION_RELAUNCH_THRESHOLD',
     'SESSION_RELAUNCH_WINDOW_TOKENS',
+    'SESSION_RELAUNCH_MAX_HOPS',
     'SKILLED_LOOP_ID',
+    'SKILLED_LOOP_HOPS',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, env };
@@ -134,6 +139,47 @@ test('context nudge fires once at threshold and once at threshold plus five poin
   assert.match(JSON.parse(next.stdout).context, /prepare --handoff.*--runtime 'hermes'/);
 });
 
+test('context nudge stays quiet while this session already has a prepared handoff', async (t) => {
+  const env = sandbox(t).env;
+  env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
+  env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const loopId = 'hermes-loop-prepared-0001';
+  env.SKILLED_LOOP_ID = loopId;
+  makePending(env, loopId, 'session-a');
+
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: 'continue work',
+    is_first_turn: false,
+    session_id: 'session-a',
+    cwd: process.cwd(),
+    usage: { input_tokens: 2048 },
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(result.stdout).context, '');
+});
+
+test('context nudge stays quiet at the hop limit', async (t) => {
+  const { root, env } = sandbox(t);
+  env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
+  env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
+  env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  env.SKILLED_LOOP_ID = 'hermes-loop-hop-cap-0001';
+  env.SKILLED_LOOP_HOPS = '1';
+  env.SESSION_RELAUNCH_MAX_HOPS = '1';
+
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: 'continue work',
+    is_first_turn: false,
+    session_id: 'session-a',
+    cwd: process.cwd(),
+    usage: { input_tokens: 2048 },
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(result.stdout).context, '');
+});
+
 test('reported and default Hermes windows identify their source', async (t) => {
   const env = sandbox(t).env;
   env.SESSION_RELAUNCH_THRESHOLD = '0.80';
@@ -196,6 +242,10 @@ test('session end arms only a matching pending Hermes loop and detaches its kill
   assert.equal(calls[0].options.detached, true);
   assert.equal(calls[0].options.stdio, 'ignore');
   assert.deepEqual(calls[1], { unref: true });
+  fs.writeFileSync(
+    path.join(core.stateDir(sandboxed.env), `killer-${loopId}.lock`),
+    `${process.pid} ${new Date().toISOString()}\n`,
+  );
   assert.equal(
     await module.armPendingRecord(
       { session_id: 'session-a' },
@@ -203,6 +253,35 @@ test('session end arms only a matching pending Hermes loop and detaches its kill
     ),
     null,
   );
+  assert.equal(calls.length, 2);
+});
+
+test('session end respawns one killer for an armed record whose killer is gone', async (t) => {
+  const sandboxed = sandbox(t);
+  const loopId = '4321';
+  sandboxed.env.SKILLED_LOOP_ID = loopId;
+  makePending(sandboxed.env, loopId, 'session-e');
+  const module = await import(pathToFileURL(armAdapter).href);
+  await module.armPendingRecord(
+    { session_id: 'session-e' },
+    { env: sandboxed.env, targetPid: 4321, spawn() { return { unref() {} }; } },
+  );
+  assert.equal(core.readRelaunchFile(loopId, sandboxed.env).status, 'armed');
+
+  const calls = [];
+  const respawned = await module.armPendingRecord(
+    { session_id: 'session-e' },
+    {
+      env: sandboxed.env,
+      targetPid: 4321,
+      spawn(command, args, options) {
+        calls.push({ command, args, options });
+        return { unref() { calls.push({ unref: true }); } };
+      },
+    },
+  );
+  assert.equal(respawned.status, 'armed');
+  assert.ok(calls[0].args[0].endsWith('/lib/killer.cjs'));
   assert.equal(calls.length, 2);
 });
 
@@ -279,6 +358,111 @@ test('session end keeps the record armed on an asynchronous spawn error', async 
   assert.equal(core.readRelaunchFile(loopId, sandboxed.env).status, 'armed');
   const logPath = path.join(core.stateDir(sandboxed.env), 'relaunch.log');
   assert.match(fs.readFileSync(logPath, 'utf8'), /session-end-arm-error stage=spawn/);
+});
+
+test('context nudge plans the handoff note under the resolved repo root', async (t) => {
+  const sandboxed = sandbox(t);
+  const env = sandboxed.env;
+  env.SESSION_RELAUNCH_REPO_ROOT = sandboxed.root;
+  env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
+  env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: 'continue work',
+    is_first_turn: false,
+    session_id: 'session-note-path-01',
+    cwd: process.cwd(),
+    usage: { input_tokens: 2048 },
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout);
+  const match = output.context.match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      sandboxed.root,
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+  assert.match(path.basename(match[1]), /^\d{8}T\d{6}Z-session-\.md$/);
+});
+
+test('context nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {
+  const sandboxed = sandbox(t);
+  const env = sandboxed.env;
+  env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
+  env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
+  env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: 'continue work',
+    is_first_turn: false,
+    session_id: 'session-note-path-02',
+    cwd: process.cwd(),
+    usage: { input_tokens: 2048 },
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout);
+  const match = output.context.match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(path.isAbsolute(match[1]), true, match[1]);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      process.cwd(),
+      'relative-repo',
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+});
+
+test('context nudge keeps the default threshold when the env switch is invalid', async (t) => {
+  const sandboxed = sandbox(t);
+  const env = sandboxed.env;
+  env.HOOK_FLAGS_CONFIG = path.join(sandboxed.root, 'hook-flags.env');
+  fs.writeFileSync(env.HOOK_FLAGS_CONFIG, 'SESSION_RELAUNCH_THRESHOLD=0.5\n');
+  env.SESSION_RELAUNCH_THRESHOLD = 'bogus';
+  env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: 'continue',
+    is_first_turn: false,
+    session_id: 'session-threshold-pin',
+    cwd: process.cwd(),
+    usage: { input_tokens: 600 },
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(JSON.parse(result.stdout).context, '');
+});
+
+test('a seed with a relative or untrimmed handoff path gets no context', async (t) => {
+  const env = sandbox(t).env;
+  for (const notePath of [
+    'relative/handoff.md',
+    '/tmp/trailing-space.md ',
+    ' /tmp/leading-space.md',
+    '/tmp/line\nbreak.md',
+  ]) {
+    const result = await runAdapter(contextAdapter, env, {
+      user_message: '[session-relaunch] claim and continue handoff ' + notePath,
+      is_first_turn: true,
+      session_id: 'session-seed-invalid',
+      cwd: process.cwd(),
+    });
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(JSON.parse(result.stdout).context, '', JSON.stringify(notePath));
+  }
+});
+
+test('a seed path with a literal backslash round-trips unchanged', async (t) => {
+  const env = sandbox(t).env;
+  const result = await runAdapter(contextAdapter, env, {
+    user_message: '[session-relaunch] claim and continue handoff /tmp/we\\"ird.md',
+    is_first_turn: true,
+    session_id: 'session-seed-escape',
+    cwd: process.cwd(),
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout);
+  assert.ok(output.context.includes('/tmp/we\\"ird.md'), output.context);
 });
 
 test('session end ignores mismatched, non-Hermes, and disabled records', async (t) => {

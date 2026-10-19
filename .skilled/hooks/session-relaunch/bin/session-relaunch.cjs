@@ -1,23 +1,78 @@
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Session Relaunch CLI
-// ────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const core = require('../lib/relaunch-core.cjs');
+const nudge = require('../lib/nudge.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin'];
+// Non-shell children run no job the killer could interrupt, so they are not detected.
+const LIVE_SHELL_NAMES = new Set([
+  'sh', 'bash', 'zsh', 'fish', 'dash', 'ksh', 'mksh', 'tcsh', 'csh', 'nu', 'pwsh',
+]);
+// The invocation every hook prints, so a caller copying the help text runs the same command.
+const USAGE_PROGRAM = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
+// One row per subcommand and the only place its syntax is written, so the help listing
+// and the failure hint cannot drift apart.
+const SUBCOMMANDS = {
+  prepare: {
+    syntax: 'prepare --handoff <handoff-path> [--session <session-id>] [--runtime <runtime>]',
+    summary: 'Validate the note and arm the relaunch; outside a loop, or at the hop limit'
+      + ' inside one, it prints the claim command and exits 3.',
+  },
+  'should-relaunch': {
+    syntax: 'should-relaunch --loop-id <loop-id>',
+    summary: 'Print the relaunch decision as JSON; exits 0 to relaunch and 1 to stay.',
+  },
+  claim: {
+    syntax: 'claim <handoff-path> [--session <session-id>]',
+    summary: 'Mark an open note claimed and print its body.',
+  },
+  complete: {
+    syntax: 'complete <handoff-path>',
+    summary: 'Mark a claimed note done.',
+  },
+  consume: {
+    syntax: 'consume --loop-id <loop-id>',
+    summary: 'Print the handoff path and its spec folder, then remove the relaunch record.',
+  },
+};
 
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+
+// An argument-parser failure is always a malformed invocation, so it carries the flag that
+// main needs to answer with the subcommand syntax instead of the error message alone.
+function invocationError(message) {
+  const error = new Error(message);
+  error.showUsage = true;
+  return error;
+}
+
+function usageText() {
+  const lines = [`Usage: ${USAGE_PROGRAM} <command> [options]`, '', 'Commands:'];
+  for (const { syntax, summary } of Object.values(SUBCOMMANDS)) {
+    lines.push(`  ${syntax}`, `    ${summary}`);
+  }
+  lines.push('', 'Options:', '  -h, --help  Print this text and exit 0', '');
+  return lines.join('\n');
+}
+
+function usageHint(command) {
+  const syntax = Object.hasOwn(SUBCOMMANDS, command) ? SUBCOMMANDS[command].syntax : null;
+  // A known subcommand gets the single line it needed; an unknown one gets the listing.
+  return syntax === null ? usageText() : `Usage: ${syntax}\n`;
+}
 
 function parseArgs(args, { flags = [], positionalCount = 0 } = {}) {
   const allowedFlags = new Set(flags);
@@ -30,16 +85,18 @@ function parseArgs(args, { flags = [], positionalCount = 0 } = {}) {
       positional.push(value);
       continue;
     }
-    if (!allowedFlags.has(value)) throw new Error(`unknown option ${value}`);
-    if (options[value] !== undefined) throw new Error(`duplicate option ${value}`);
+    if (!allowedFlags.has(value)) throw invocationError(`unknown option ${value}`);
+    if (options[value] !== undefined) throw invocationError(`duplicate option ${value}`);
     const next = args[index + 1];
-    if (next === undefined || next.startsWith('--')) throw new Error(`missing value for ${value}`);
+    if (next === undefined || next.startsWith('--')) {
+      throw invocationError(`missing value for ${value}`);
+    }
     options[value] = next;
     index += 1;
   }
 
   if (positional.length !== positionalCount) {
-    throw new Error('unexpected or missing command arguments');
+    throw invocationError('unexpected or missing command arguments');
   }
   return { options, positional };
 }
@@ -69,9 +126,7 @@ function numericSwitch(name, fallback, switches, { integer = false } = {}) {
 }
 
 function handoffPathWithinRepo(filePath) {
-  const repository = path.resolve(
-    process.env.REPO_ROOT || path.resolve(__dirname, '..', '..', '..', '..'),
-  );
+  const repository = nudge.resolveRepoRoot(process.env);
   const handoffDirectory = path.resolve(
     repository,
     '.skilled',
@@ -148,9 +203,14 @@ function parseProcessTable(stdout) {
   return processes;
 }
 
-function readProcessTable(runtime) {
+// Reads `comm` too for live-shell detection and fails closed; the core reader returns only `pid ppid`.
+// Bounded like the core reader, so a hung `ps` reaches the caller's error path instead of stalling it.
+function readProcessTableWithCommands(runtime) {
   const name = runtime.charAt(0).toUpperCase() + runtime.slice(1);
-  const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid=,comm='], { encoding: 'utf8' });
+  const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid=,comm='], {
+    encoding: 'utf8',
+    timeout: 2000,
+  });
   if (result.error) {
     throw new Error(
       `could not inspect ${name} child processes: ${result.error.message}`,
@@ -174,25 +234,21 @@ function cliAncestorsOf(processes) {
   return cliAncestors;
 }
 
+// The ancestor walk lives in the core module so this CLI and the runtime adapters share one implementation.
 function runtimePidFromLoop(loopId, processes) {
-  const visited = new Set();
-  let pid = process.pid;
-  while (Number.isInteger(pid) && pid > 0 && !visited.has(pid)) {
-    visited.add(pid);
-    const current = processes.get(pid);
-    if (!current) return null;
-    if (current.ppid === loopId) return current.pid;
-    pid = current.ppid;
-  }
-  return null;
+  const processTable = [...processes.values()]
+    .map((processInfo) => `${processInfo.pid} ${processInfo.ppid}`)
+    .join('\n');
+  return core.findLoopChildPid(loopId, { pid: process.pid, processTable });
 }
 
-function shellChildOfRuntime(runtimePid, runtime, processes = readProcessTable(runtime)) {
+function shellChildOfRuntime(runtimePid, runtime, processes = readProcessTableWithCommands(runtime)) {
   const cliAncestors = cliAncestorsOf(processes);
 
   return [...processes.values()].find((processInfo) => (
     processInfo.ppid === runtimePid
-    && ['zsh', 'bash', 'sh'].includes(processInfo.command)
+    // A login shell reports its argv[0] with a leading dash, so strip one before the lookup.
+    && LIVE_SHELL_NAMES.has(processInfo.command.replace(/^-/, ''))
     && !cliAncestors.has(processInfo.pid)
   )) || null;
 }
@@ -207,7 +263,7 @@ function refuseForShellChild(loopId, runtime) {
       throw new Error('CLAUDE_PID must be a positive process id');
     }
   } else {
-    processes = readProcessTable(runtime);
+    processes = readProcessTableWithCommands(runtime);
     const loopPid = Number(loopId);
     runtimePid = Number.isInteger(loopPid) && loopPid > 0
       ? runtimePidFromLoop(loopPid, processes)
@@ -268,9 +324,9 @@ function stateForLoop(loopId) {
   return core.readRelaunchFile(loopId);
 }
 
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // 3. COMMANDS
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 
 function prepare(args) {
   const envRuntime = process.env.SKILLED_LOOP_RUNTIME || 'claude';
@@ -337,6 +393,28 @@ function prepare(args) {
     throw new Error('SKILLED_LOOP_HOPS must be a non-negative integer');
   }
 
+  // At the hop cap the wrapper declines any record this session prepares, while the
+  // killer its record arms would still end the session. So decline here instead: the
+  // note stays open for the operator's own claim and nothing is armed.
+  const maxHops = numericSwitch(
+    'SESSION_RELAUNCH_MAX_HOPS',
+    10,
+    resolvedSwitches(),
+    { integer: true },
+  );
+  if (hops >= maxHops) {
+    process.stdout.write(
+      '[session-relaunch] hop limit reached; continue in this session'
+        + ' (auto-compaction remains the fallback)\n',
+    );
+    printManualClaim(handoffPath, runtime, specFolder);
+    // The decline is the prepare result; its log is best-effort.
+    try {
+      core.appendLog('prepare-declined', { loopId, reason: 'hop-cap' });
+    } catch {}
+    return 3;
+  }
+
   const record = core.preparePending({
     loopId,
     handoffPath,
@@ -352,6 +430,14 @@ function prepare(args) {
   try {
     core.appendLog('prepare', { loopId, status: record.status, sessionId });
   } catch {}
+  // A caller that shows output but not the exit status reads a silent success as a
+  // command that never ran, so the arming run states its outcome and the one action
+  // left: end the turn and let the idle hop take over.
+  process.stdout.write(
+    '[session-relaunch] handoff prepared; stop now and end this turn.'
+      + ' The loop ends this session when it goes idle and a fresh session continues from '
+      + `${handoffPath}.\n`,
+  );
   return 0;
 }
 
@@ -472,32 +558,41 @@ function consume(args) {
  * @returns {number} Process exit code.
  */
 function main(args = process.argv.slice(2)) {
+  const [command, ...commandArgs] = args;
+  // Help answers before dispatch, because asking for the syntax must never fail on the
+  // syntax of the arguments that asked for it.
+  if (command === undefined || args.includes('--help') || args.includes('-h')) {
+    process.stdout.write(usageText());
+    return 0;
+  }
+
   try {
-    const [command, ...commandArgs] = args;
     switch (command) {
       case 'prepare': return prepare(commandArgs);
       case 'should-relaunch': return shouldRelaunch(commandArgs);
       case 'claim': return claim(commandArgs);
       case 'complete': return complete(commandArgs);
       case 'consume': return consume(commandArgs);
-      default: throw new Error(
+      default: throw invocationError(
         'command must be prepare, should-relaunch, claim, complete, or consume',
       );
     }
   } catch (error) {
     process.stderr.write(`[session-relaunch] ${error.message}\n`);
+    // A malformed invocation answers with the syntax it missed, not the error alone.
+    if (error.showUsage === true) process.stderr.write(usageHint(command));
     return 2;
   }
 }
 
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // 4. EXECUTION
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 
 if (require.main === module) process.exitCode = main();
 
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
-// ────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { main };

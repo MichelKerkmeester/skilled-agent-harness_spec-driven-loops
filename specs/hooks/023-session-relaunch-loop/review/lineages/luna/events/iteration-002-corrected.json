@@ -1,0 +1,288 @@
+{
+  "stem": "deep_review.iteration_recorded",
+  "scope": {
+    "runId": "fanout-luna-1792349322065-8lohfl",
+    "sessionId": "fanout-luna-1792349322065-8lohfl"
+  },
+  "data": {
+    "record": {
+      "type": "iteration",
+      "iteration": 2,
+      "mode": "review",
+      "target_agent": "deep-review",
+      "agent_definition_loaded": true,
+      "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+      "run": "fanout-luna-1792349322065-8lohfl",
+      "status": "complete",
+      "focus": "security",
+      "dimensions": [
+        "security"
+      ],
+      "filesReviewed": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:20,42-46,143-145",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135,395-415",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176,285-388,440-480",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:22-43,958-982,1074-1112",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "findingsCount": 3,
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 3
+      },
+      "findingsNew": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 2
+      },
+      "findingDetails": [
+        {
+          "id": "LUNA-001",
+          "severity": "P2",
+          "title": "appendLog accepts a short write as complete",
+          "summary": "appendLog ignores fs.writeSync's returned byte count, then fsyncs and returns success; a short write can leave the event suffix permanently missing.",
+          "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:580",
+          "confidence": 0.72,
+          "classification": "static inference; a stubbed short-write result would confirm the failure path"
+        },
+        {
+          "id": "LUNA-002",
+          "severity": "P2",
+          "title": "The fallback state directory is shared across users on systems with a shared temp directory",
+          "summary": "When XDG_RUNTIME_DIR is absent and os.tmpdir is shared, the fixed skilled-relaunch path can be pre-created by another account, causing ensureStateDir chmod to fail and denying relaunch state.",
+          "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46,143-145",
+          "confidence": 0.75,
+          "classification": "conditional static inference; an isolated shared-temp fallback setup would confirm the denial path"
+        },
+        {
+          "id": "LUNA-003",
+          "severity": "P2",
+          "title": "The killer can signal a reused PID after its ancestry check",
+          "summary": "The killer validates ancestry and liveness, reads the armed record, then signals the numeric PID; PID reuse in that interval can direct SIGTERM to a replacement process.",
+          "file": ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464",
+          "confidence": 0.62,
+          "classification": "low-probability static inference; an injected PID-reuse case or stable process handle would confirm or close the gap"
+        }
+      ],
+      "traceabilityChecks": {
+        "requirementLinks": "deferred to iteration 3",
+        "implementationEvidence": [
+          ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46,143-145",
+          ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464"
+        ],
+        "testEvidence": [
+          ".skilled/hooks/session-relaunch/tests/killer.test.cjs:22-43,958-982,1074-1112",
+          ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+        ],
+        "testExecution": "not run; this is a read-only review"
+      },
+      "newFindingsRatio": 0.67,
+      "sessionId": "fanout-luna-1792349322065-8lohfl",
+      "generation": 1,
+      "lineageMode": "new",
+      "timestamp": "2026-10-18T19:04:17Z",
+      "durationMs": 204000,
+      "reviewDepthSchemaVersion": 2,
+      "reviewDepthApplicability": {
+        "scopeClass": "complex",
+        "enforcement": "strict",
+        "reason": "The packet scope lists 152 paths; this pass applies strict evidence tracking to security boundaries.",
+        "evidenceRefs": [
+          ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464"
+        ]
+      },
+      "targetSelection": {
+        "selectedTargets": [
+          ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+          ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+          ".skilled/hooks/session-relaunch/lib/killer.cjs",
+          ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+          ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs"
+        ],
+        "selectionReason": "Review filesystem ownership boundaries, symlink containment, lock takeover, transcript disappearance, and process-signal targeting.",
+        "discoveryMethods": [
+          "direct_read",
+          "exact_search"
+        ],
+        "omittedHighRiskTargets": [
+          "packet requirement and implementation evidence links; scheduled for the traceability pass"
+        ],
+        "graphStatus": "unavailable",
+        "semanticSearchStatus": "unavailable",
+        "evidenceRefs": [
+          ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46,143-145"
+        ]
+      },
+      "searchCoverage": {
+        "requiredBugClasses": [
+          "cross_user_state_directory_collision",
+          "pid_reuse_before_signal",
+          "handoff_path_escape",
+          "stale_lock_takeover_race",
+          "transcript_disappearance_signal"
+        ],
+        "covered": [
+          "cross_user_state_directory_collision",
+          "pid_reuse_before_signal"
+        ],
+        "ruledOut": [
+          "handoff_path_escape",
+          "stale_lock_takeover_race",
+          "transcript_disappearance_signal"
+        ],
+        "deferred": [],
+        "blocked": [],
+        "graphCoverageMode": "graphless_fallback"
+      },
+      "searchLedger": [
+        {
+          "id": "LUNA-SL-006",
+          "dimension": "security",
+          "targetRefs": [
+            ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:20,42-46,143-145",
+            ".skilled/hooks/session-relaunch/tests/killer.test.cjs:22-43"
+          ],
+          "hypothesis": "The fallback state path is predictable and shared when XDG_RUNTIME_DIR is absent, allowing another user to pre-create it.",
+          "searchActions": [
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:20,42-46,143-145",
+              "result": "The fallback uses os.tmpdir plus one fixed directory name, then chmods that path without checking owner.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:20,42-46,143-145"
+              ]
+            },
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/tests/killer.test.cjs:22-43",
+              "result": "The common killer fixture supplies XDG_RUNTIME_DIR, so it does not exercise the shared-temp fallback.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/tests/killer.test.cjs:22-43"
+              ]
+            }
+          ],
+          "disposition": "finding",
+          "rationale": "On a shared temp directory, another account can pre-create the fixed name; the user's subsequent chmod fails on the other-owned directory.",
+          "linkedFindingId": "LUNA-002",
+          "bugClass": "cross_user_state_directory_collision"
+        },
+        {
+          "id": "LUNA-SL-007",
+          "dimension": "security",
+          "targetRefs": [
+            ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464"
+          ],
+          "hypothesis": "A process may exit and its numeric PID may be reused after ancestry validation but before SIGTERM.",
+          "searchActions": [
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464",
+              "result": "The ancestry check and liveness check use a numeric PID; a state-file read occurs before process.kill sends SIGTERM to the same number.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/lib/killer.cjs:449-464"
+              ]
+            }
+          ],
+          "disposition": "finding",
+          "rationale": "The target identity is not bound across the validation-to-signal interval, so PID reuse could redirect the signal.",
+          "linkedFindingId": "LUNA-003",
+          "bugClass": "pid_reuse_before_signal"
+        },
+        {
+          "id": "LUNA-SL-008",
+          "dimension": "security",
+          "targetRefs": [
+            ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+            ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+          ],
+          "invariant": "A handoff path that resolves outside the trusted handoffs directory is rejected.",
+          "searchActions": [
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+              "result": "The validator checks lexical containment and resolves the real directory, parent, and existing candidate before returning it.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135"
+              ]
+            },
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274",
+              "result": "Test source covers lexical traversal rejection.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+              ]
+            }
+          ],
+          "disposition": "ruled_out",
+          "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+          "ruledOutReason": "No static path escape was found in the checked entry path.",
+          "bugClass": "handoff_path_escape"
+        },
+        {
+          "id": "LUNA-SL-009",
+          "dimension": "security",
+          "targetRefs": [
+            ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+            ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+          ],
+          "invariant": "Only one concurrent killer takes over a stale lock.",
+          "searchActions": [
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+              "result": "The takeover mutex rechecks owner liveness before unlinking and exclusively creates the replacement lock.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388"
+              ]
+            },
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112",
+              "result": "Test source starts two contenders and asserts one signal.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+              ]
+            }
+          ],
+          "disposition": "ruled_out",
+          "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+          "ruledOutReason": "No double-takeover path was identified for the inspected scenario.",
+          "bugClass": "stale_lock_takeover_race"
+        },
+        {
+          "id": "LUNA-SL-010",
+          "dimension": "security",
+          "targetRefs": [
+            ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+            ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+          ],
+          "invariant": "A missing transcript must not be treated as idle and cause a signal.",
+          "searchActions": [
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+              "result": "A missing transcript for the grace period returns false from waitForIdle before the signal branch.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176"
+              ]
+            },
+            {
+              "method": "direct_read",
+              "queryOrPath": ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982",
+              "result": "Test source removes the transcript and checks the session is disarmed without a signal.",
+              "evidenceRefs": [
+                ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+              ]
+            }
+          ],
+          "disposition": "ruled_out",
+          "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+          "ruledOutReason": "The transcript-disappearance path returns before SIGTERM.",
+          "bugClass": "transcript_disappearance_signal"
+        }
+      ]
+    }
+  }
+}

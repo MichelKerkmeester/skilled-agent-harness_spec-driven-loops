@@ -68,6 +68,7 @@ phase and binds as if written here.
 | 002-pi-opencode-adapters | `002-pi-opencode-adapters/goal.md` |
 | 003-command-trigger-runtimes | `003-command-trigger-runtimes/goal.md` |
 | 004-integration-review-and-docs-closure | `004-integration-review-and-docs-closure/goal.md` |
+| 005-deep-review-remediation | `005-deep-review-remediation/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -81,7 +82,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All four phase folders print `RESULT: PASSED` under `validate.sh --strict`, with every row in their `acceptance-criteria.md` files Met
+- [x] All five phase folders print `RESULT: PASSED` under `validate.sh --strict`, with every row in their `acceptance-criteria.md` files Met
 - [x] `validate.sh specs/hooks/023-session-relaunch-loop --recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -105,6 +106,7 @@ and findings belong here.
 | Phase 002 complete | Done | 002 strict PASSED 0/0, AC 6/6 Met, goal 5/5; live hops on Pi (runs 1, 2) and OpenCode (runs D, E, F; F unattended after relaunch) |
 | D7 added | Done | Operator, 2026-10-17: "only gpt provider has usage" |
 | Phases 003 and 004 complete, all criteria met | Done | Every phase strict PASSED with all rows Met (26/26); recursive strict PASSED; final gate green (004 closure-evidence.md, Closure section) |
+| Phase 005 complete | Done | 005 acceptance-criteria 7/7 Met; final gate node 375/375; recursive strict PASSED |
 
 ### Deviations and findings
 
@@ -116,5 +118,6 @@ and findings belong here.
 | D5 amendment | Operator, 2026-10-17: Codex quota out until Oct 22 08:13; "I build these two fixes", then SWE takes the Luna lanes |
 | D7 amendment 2 | Operator, 2026-10-18: Codex live run waits for its reset; "Skip hermes"; "Devin can use swe2 skip cursor"; Cursor stays command-only |
 | D3 amendment 2 | Live Codex hop 2026-10-18: the sender answered Gate 3 Skip, the seed carried nothing and the receiver asked again; an explicit `none` now carries the Skip, and an empty field still asks |
+| Phase 005 added | Deep review 2026-10-18 (deepseek-v4.1-flash max, 7 iterations, converged): PASS with 12 P2 advisories; phase 005 fixes them, so criteria 1, 2 and 4 reopen until it closes |
 | Nothing deferred | Operator, 2026-10-18: "Get to perfection nothing deferred or not tested". Every carried P2 is fixed in this run |
 <!-- /ANCHOR:log -->

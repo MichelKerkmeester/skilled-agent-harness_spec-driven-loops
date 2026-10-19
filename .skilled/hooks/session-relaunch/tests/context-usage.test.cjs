@@ -31,7 +31,7 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, REPO_ROOT: repoRoot };
+  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
   for (const key of [
     'SESSION_RELAUNCH_WINDOW_TOKENS',
     'SYSTEM_SESSION_RELAUNCH_DISABLED',

@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
-import { arm, appendLog, readRelaunchFile } from '../lib/relaunch-core.cjs';
+import { arm, appendLog, liveKillerPid, readRelaunchFile } from '../lib/relaunch-core.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -88,6 +88,13 @@ async function main() {
     return done();
   }
   if (record === null || record.sessionId !== payload.session_id) return done();
+
+  // An already-armed record belongs to a killer, so a repeated Stop spawns a
+  // second one only when no live killer owns the lock.
+  if (
+    record.status === 'armed'
+    && liveKillerPid(loopId, process.env) !== null
+  ) return done();
 
   // The killer watches the transcript for idleness, so a payload without its
   // path can never finish arming: the record stays pending for the next Stop

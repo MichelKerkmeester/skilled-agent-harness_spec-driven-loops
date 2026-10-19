@@ -25,7 +25,7 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, REPO_ROOT: repoRoot };
+  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
   for (const key of [
     'SKILLED_LOOP_ID',
     'SKILLED_LOOP_HOPS',
@@ -35,6 +35,7 @@ function createSandbox(t) {
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
     'SESSION_RELAUNCH_THRESHOLD',
     'SESSION_RELAUNCH_WINDOW_TOKENS',
+    'SESSION_RELAUNCH_MAX_HOPS',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, env };
@@ -73,13 +74,13 @@ function runAdapter(sandbox, adapterPath, payload) {
   });
 }
 
-function createPendingRecord(sandbox, loopId, sessionId, handoffPath) {
+function createPendingRecord(sandbox, loopId, sessionId, handoffPath, status = 'pending') {
   const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
   fs.mkdirSync(stateDir, { recursive: true });
   const recordPath = path.join(stateDir, `relaunch-${loopId}.json`);
   const record = {
     version: 1,
-    status: 'pending',
+    status,
     loopId: String(loopId),
     handoff: handoffPath,
     sessionId,
@@ -147,6 +148,33 @@ test('context-nudge emits nothing below the configured threshold', async (t) => 
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 799);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing while this session already has a prepared handoff', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const loopId = 'claude-loop-prepared-0001';
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  const transcriptPath = writeTranscript(sandbox, 900);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('context-nudge emits nothing at the hop limit', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.HOOK_FLAGS_CONFIG = path.join(sandbox.home, 'hook-flags.env');
+  sandbox.env.SKILLED_LOOP_ID = 'claude-loop-hop-cap-0001';
+  sandbox.env.SKILLED_LOOP_HOPS = '1';
+  sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '1';
+  const transcriptPath = writeTranscript(sandbox, 900);
   const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
@@ -224,7 +252,7 @@ test('UserPromptSubmit seed resumes its carried packet folder', async (t) => {
 test('UserPromptSubmit seed carries Gate 3 Skip without a resume command', async (t) => {
   const sandbox = createSandbox(t);
   const prompt = '[session-relaunch] continue the handoff | Spec folder: none '
-    + '(Gate 3 answered D) Skip in the sending session)';
+    + '(Gate 3 answered D, Skip, in the sending session)';
   const payload = {
     ...USER_PROMPT_SUBMIT,
     session_id: SESSION_ID,
@@ -406,6 +434,104 @@ test('stop-arm logs a synchronous killer spawn throw and leaves the record armed
   assert.match(spawnErrors[0], /message=spawn_denied/);
 });
 
+test('context-nudge plans the handoff note under the resolved repo root', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const match = output.hookSpecificOutput.additionalContext
+    .match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      sandbox.repoRoot,
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+  assert.match(path.basename(match[1]), /^\d{8}T\d{6}Z-session-\.md$/);
+});
+
+test('context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const output = JSON.parse(result.stdout.trim());
+  const match = output.hookSpecificOutput.additionalContext
+    .match(/Write the handoff note at '([^']+)'/);
+  assert.ok(match);
+  assert.equal(path.isAbsolute(match[1]), true, match[1]);
+  assert.equal(
+    path.dirname(match[1]),
+    path.join(
+      fs.realpathSync(sandbox.repoRoot),
+      'relative-repo',
+      '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+    ),
+  );
+});
+
+test('context-nudge keeps the default threshold when the env switch is invalid', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = 'bogus';
+  sandbox.env.HOOK_FLAGS_CONFIG = path.join(sandbox.root, 'hook-flags.env');
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SESSION_RELAUNCH_THRESHOLD=0.5\n');
+  const transcriptPath = writeTranscript(sandbox, 600);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});
+
+test('UserPromptSubmit seed claims the absolute note path it carries', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-relaunch] claim and continue handoff /real/handoff.md',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes("claim '/real/handoff.md'"), context);
+  assert.ok(!context.includes("claim '<handoff-path>'"), context);
+});
+
+test('UserPromptSubmit seed with a relative note path keeps the placeholder', async (t) => {
+  const sandbox = createSandbox(t);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-relaunch] claim and continue handoff relative/handoff.md',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.ok(context.includes("claim '<handoff-path>'"), context);
+});
+
 test('stop-arm makes no change without SKILLED_LOOP_ID and prints nothing', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = 'loop-without-environment';
@@ -417,4 +543,105 @@ test('stop-arm makes no change without SKILLED_LOOP_ID and prints nothing', asyn
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
   assert.equal(fs.readFileSync(recordPath, 'utf8'), before);
+});
+
+test('stop-arm spawns exactly one killer across repeated Stop payloads on a pending record', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
+  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
+  fs.writeFileSync(recorderPath, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = [], options = {}) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    '    fs.appendFileSync(',
+    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
+    '      JSON.stringify({ command, args, options }) + "\\n",',
+    '    );',
+    '    return { unref() { return this; } };',
+    '  }',
+    '  return originalSpawn.call(this, command, args, options);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
+  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+
+  const first = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(first.code, 0, first.stderr);
+  const lockPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `killer-${loopId}.lock`);
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  const second = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(second.code, 0, second.stderr);
+
+  const spawns = fs.readFileSync(spawnLog, 'utf8').trim().split('\n');
+  assert.equal(spawns.length, 1);
+});
+
+test('stop-arm respawns one killer for an armed record whose killer is gone', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath, 'armed');
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
+  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
+  fs.writeFileSync(recorderPath, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = [], options = {}) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    '    fs.appendFileSync(',
+    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
+    '      JSON.stringify({ command, args, options }) + "\\n",',
+    '    );',
+    '    return { unref() { return this; } };',
+    '  }',
+    '  return originalSpawn.call(this, command, args, options);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
+  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+
+  const respawn = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(respawn.code, 0, respawn.stderr);
+  const spawns = fs.readFileSync(spawnLog, 'utf8').trim().split('\n');
+  assert.equal(spawns.length, 1);
+
+  const lockPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `killer-${loopId}.lock`);
+  fs.writeFileSync(lockPath, `${process.pid} ${new Date().toISOString()}\n`);
+  const suppressed = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+  assert.equal(suppressed.code, 0, suppressed.stderr);
+  assert.equal(fs.readFileSync(spawnLog, 'utf8').trim().split('\n').length, 1);
 });

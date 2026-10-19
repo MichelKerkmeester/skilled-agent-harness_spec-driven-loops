@@ -107,8 +107,9 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 |----------|---------|------|-------------|--------|
 | `SESSION_RELAUNCH_THRESHOLD` | `0.80` | number (0..1) | Fraction of the effective context window that triggers the handoff nudge. Keep it well above a fresh session's startup fill plus its remaining work. Codex live runs chained at `0.12` because each fresh session reached about 10% on startup alone. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_WINDOW_TOKENS` | (unset) | number (positive int, tokens) | Overrides the effective context window the fill ratio is measured against. Unset resolves `autoCompactWindow` from the Claude settings files, then the model default. | `.skilled/hooks/session-relaunch/` |
-| `SESSION_RELAUNCH_MAX_HOPS` | `10` | number (positive int) | Relaunches allowed per `skilled-loop` run. | `.skilled/hooks/session-relaunch/` |
+| `SESSION_RELAUNCH_MAX_HOPS` | `10` | number (non-negative int) | Relaunches allowed per `skilled-loop` run. The cap is enforced at three points: the wrapper declines a record at or above it, `prepare` writes no record and exits 3 with the manual claim command, and the killer unarms the record with reason `hop-cap` and sends no signal. Adapters stop nudging at the cap. Zero is accepted and declines every hop. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | number (minutes) | Minutes an armed relaunch file stays valid. | `.skilled/hooks/session-relaunch/` |
+| `SESSION_RELAUNCH_REPO_ROOT` | (unset) | string (absolute path) | Repository root that planned handoff note paths resolve under. Unset falls back to the install root that holds the concern, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. | `.skilled/hooks/session-relaunch/` |
 
 ### Hook-level lifecycle flags
 
