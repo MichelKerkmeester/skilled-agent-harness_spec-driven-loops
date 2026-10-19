@@ -142,7 +142,7 @@ and findings belong here.
 | 009 cross-packet edit | One census row in `specs/system-deep-loop/036-deep-loop-innovation/` changed so a projection test matches the moved manifest path (009 decision 7) |
 | 010 SKILL.md word limit | Phase 006 had taken SKILL.md past its 5,000-word limit; 010 cut it to 4,899, so phase 011's verification line has about 100 words of room (010 decision 11) |
 | 010 routing manifest | SKILL.md bytes feed the hub's compiled routing policy, so 010 re-minted the live manifest and its authored copy under `specs/sk-doc/z_archive/` (010 decision 14); any later SKILL.md edit, phase 011's included, needs the same re-mint |
-| 010 v2 twins unrun | The OpenCode 2 doc twins come from saved help; none was dispatched in 010. The 011 smoke runs carried no `--agent`, so v2 `--agent` routing stays marked unverified |
+| 010 v2 twins unrun | The OpenCode 2 doc twins come from saved help; none was dispatched in 010. v2 `--agent` routing was later verified live in 011 (011 decision 10) |
 | 010 event correction | 011's live runs showed both versions emit `step_start`, `tool_use`, `text` and `step_finish` with `sessionID`; the older names in 26 cli-opencode docs were wrong on OpenCode 1 too. Amended in 010 with 11 docs whose OpenCode 1 lines had no tag; DeepSeek wrote through cli-pi because the devin quota was spent (010 decision 18) |
 | 010 harness slip | A mis-quoted test harness ran the operator's `opencode2 --version` once; it failed to exec and changed nothing (010 decision 16) |
 <!-- /ANCHOR:log -->

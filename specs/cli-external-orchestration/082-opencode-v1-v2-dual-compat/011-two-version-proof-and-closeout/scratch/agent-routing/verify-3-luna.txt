@@ -1,0 +1,16 @@
+Both prior P1s are closed. I found no new P0 or P1 in the changed lines.
+
+- **Closed — direct v2 `--agent review` guidance:** [agent-delegation.md:237](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:237) routes review through `orchestrate`; line 268 clarifies the v2 prompt-prefix limitation.
+- **Closed — `general` labeled Primary:** [agent-delegation.md:137](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:137) and [SKILL.md:192](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:192) identify it as a subagent, consistent with the captured v1 and v2 inventories.
+
+**New P0/P1 findings:** None.
+
+**Score:** 100/100 — correctness 30/30, security 25/25, patterns 20/20, maintainability 15/15, performance 10/10. The changed guidance preserves the caveat that v2 subagent routing through `orchestrate` remains untested.
+
+**Verification:** `git apply --reverse --check --whitespace=error` and `git -c core.fsmonitor=false diff --check` exited 0; the v2 JSON shape check returned `true`. Git printed a local temporary-directory fallback warning. No files were edited, and I ran no OpenCode binary or network call.
+
+Not checked: Live OpenCode 2 behavior; this review uses the saved probe results.
+
+Operator action: none.
+
+PASS (no open P0 or P1)

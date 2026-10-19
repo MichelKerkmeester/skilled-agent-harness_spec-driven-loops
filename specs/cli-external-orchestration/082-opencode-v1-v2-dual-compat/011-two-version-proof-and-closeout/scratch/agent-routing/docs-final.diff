@@ -1,0 +1,298 @@
+diff --git a/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json b/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
+index 9e4eb1faea..de732c5158 100644
+--- a/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
++++ b/.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json
+@@ -1 +1 @@
+-{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"5514aa6be3bbbe5c63c43dbdb9a3ccf6029b469ae60a7695a6de854b301cfca4","generation":5},"servingAuthority":"compiled","shadowOnly":false}
++{"schemaVersion":"V1","selectedPolicy":{"effectivePolicyHash":"478a2d61af2590b542a47aa83c2bcbade4b3cbfa3413a371806b7dfcf6fe5e45","generation":5},"servingAuthority":"compiled","shadowOnly":false}
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+index 0e962829cf..263946684f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -261,7 +261,7 @@ A: When you are inside OpenCode and want a second session with its own state and
+ 
+ **Q: Why no top-level `--agent`?**
+ 
+-A: Current OpenCode treats named agents like `general` as subagents and rejects them at the top level, so the dispatch fails outright. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
++A: OpenCode 1 treats named agents like `general` as subagents and rejects them at the top level, so the dispatch fails outright. OpenCode 2.0.32 accepts `--agent general`. The default agent already covers the general case. For a specific profile, describe the role in the prompt body.
+ 
+ **Q: Why does a non-interactive dispatch hang without `</dev/null`?**
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+index 10d4e8ad33..0743d36aa3 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+@@ -159,7 +159,7 @@ The one-shot pre-flight bash, the decision trees and the error-recovery contract
+ 
+ > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here without a version or an effort tier on purpose, so this line does not go stale when the family ships a point release. The runner resolves the current id, and a drift test keeps the two in the same family.
+ 
+-> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: named agents like `general` are rejected. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after `opencode run --help` confirms acceptance. On OpenCode 2.0.32, `--agent` is listed, but slug routing, frontmatter precedence and "As @review" bodies are unverified. Full roster and top-level rules: [`references/agent-delegation.md`](./references/agent-delegation.md).
++> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: on OpenCode 1, named agents like `general` are rejected. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after `opencode run --help` confirms acceptance. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, `general` included, an unknown slug exits 1, and an "As @review" body stays with the default agent. Full roster and top-level rules: [`references/agent-delegation.md`](./references/agent-delegation.md).
+ 
+ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use the default invocation above.
+ 
+@@ -189,7 +189,7 @@ The calling AI is the conductor. OpenCode distinguishes **primary agents** (invo
+ 
+ #### Primary agents, directly invokable via `--agent`
+ 
+-OpenCode defines `general`, `plan`, and `orchestrate` as primary agents. **Never pass `--agent general`** (rejected at the top level, and the default agent covers that case). Pin `--agent plan|orchestrate` only when the task needs that profile AND `opencode run --help` confirms top-level acceptance, otherwise state the role in the prompt body.
++OpenCode lists `plan` and the repo's `orchestrate` as primary agents and `general` as a subagent, on 1.19.3 and 2.0.32. **Never pass `--agent general`** (OpenCode 1 rejects it at the top level, and the default agent covers that case on both versions). Pin `--agent plan|orchestrate` only when the task needs that profile AND `opencode run --help` confirms top-level acceptance, otherwise state the role in the prompt body.
+ 
+ #### Subagents, dispatched as Task subagents from a primary
+ 
+@@ -199,7 +199,7 @@ See [agent-delegation.md](./references/agent-delegation.md) for the full roster
+ 
+ ### Essential Commands
+ 
+-On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](./references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1 (unverified on OpenCode 2.0.32).
++On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](./references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1. OpenCode 2.0.32 runs the session as `orchestrate`, and how it then routes subagents is untested.
+ 
+ ### Error Handling
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+index 126f1c0526..d496670cdd 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+@@ -222,9 +222,9 @@ cd /repo && opencode2 run --standalone \
+   "Use the <slug> subagent: <prompt>" 2>&1
+ ```
+ 
+-How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+ 
+-- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (rejected at the top level).
++- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (OpenCode 1 rejects it at the top level, and OpenCode 2.0.32 accepts it, but the default agent covers that case on both).
+ - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
+ - **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
+ - **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
+@@ -302,7 +302,7 @@ Personality: rigorous, evidence-first, no speculation.
+ Experiment: <list of files to read and queries to run>
+ ```
+ 
+-Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned and rejected at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
++Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned. OpenCode 1 rejects it at the top level the same way any other subagent slug is, and OpenCode 2.0.32 would accept it but bypass the command that owns the loop. Trigger a real iteration by invoking the owning command instead:
+ 
+ ```bash
+ # On OpenCode 1 (1.19.3):
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md
+index e353926082..85c29ee5c7 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md
+@@ -6,7 +6,7 @@ version: 1.4.1.0
+ 
+ # CO-014 -- Context LEAF agent (read-only)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-014`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md
+index 0af88e9a8e..6fc956c15d 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md
+@@ -18,7 +18,7 @@ This scenario validates the unflagged default-agent route for `CO-013`. It focus
+ 
+ ### Why This Matters
+ 
+-`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by the installed binary (SKILL.md §3 "The `--agent` flag" note and hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
++`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by OpenCode 1 (OpenCode 2.0.32 accepts it, and the rule still forbids it) (SKILL.md §3 "The `--agent` flag" note and hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md
+index c38e56db8a..8af16347c4 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md
+@@ -6,7 +6,7 @@ version: 1.4.2.0
+ 
+ # CO-017 -- Ultra-think multi-strategy planning
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-017`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+index f1a1e08753..a628db83d6 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+@@ -6,7 +6,7 @@ version: 1.4.2.0
+ 
+ # CO-034 -- Orchestrate agent multi-agent coordination
+ 
+-**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-034`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md
+index 0a1427db5e..1a0bcf8e31 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md
+@@ -6,7 +6,7 @@ version: 1.4.1.0
+ 
+ # CO-015 -- Review agent security audit
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-015`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
+index 42e6bb8880..3d9a9bfd75 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
+@@ -466,7 +466,7 @@ Verify `--agent orchestrate` produces a sequenced multi-agent plan naming at lea
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run `tool_use` events appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run `tool_use` events appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
+ 
+ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` `tool_use` events. Working tree clean. Dispatch line includes `--agent orchestrate`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
+index 271f293e52..f3715f94a4 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md
+@@ -6,7 +6,7 @@ version: 1.4.1.0
+ 
+ # CO-025 -- Template applied to a real dispatch
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. How OpenCode 2 reads an `As @review:` prompt body is unverified on OpenCode 2.0.32.
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first. On OpenCode 2.0.32, an `As @review:` prompt body is read as plain text, and the session stays with the default agent.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-025`.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+index 589c350523..df230eaa8b 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+@@ -79,7 +79,7 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
+ 
+ ### Invocation pattern
+ 
+-`--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
++On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. OpenCode 2.0.32 also accepts `general` and a subagent slug at the top level, but the routing rules in this section still apply there. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
+ 
+ ```bash
+ # OpenCode 1 only
+@@ -101,7 +101,7 @@ cd /repo && opencode2 run --standalone \
+   "<prompt>"
+ ```
+ 
+-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. Whether OpenCode 2 routes a slug the same way and applies the same frontmatter precedence is unverified on OpenCode 2.0.32.
++On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
+ 
+ ### Conductor rules
+ 
+@@ -134,7 +134,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
+ 
+ | Slug | Class | Role | When to dispatch |
+ |------|-------|------|-------------------|
+-| `general` | Primary, top-level `--agent` REJECTED, use default (omit `--agent`) | Default implementation, complex tasks | Routine multi-step work that does not match a specialist. Never pass `--agent general`, because the default agent already runs when `--agent` is omitted |
++| `general` | Subagent (built-in) on 1.19.3 and 2.0.32. Top-level `--agent` REJECTED on OpenCode 1, accepted on 2.0.32. Use default (omit `--agent`) | Default implementation, complex tasks | Routine multi-step work that does not match a specialist. Never pass `--agent general`, because the default agent already runs when `--agent` is omitted |
+ | `orchestrate` | Primary, directly invokable via `--agent orchestrate` | Multi-agent coordination | Complex workflows that span several agents, or to Task-dispatch a subagent below |
+ | `context` | Subagent, routed via `--agent orchestrate`, never direct | Read-only retrieval and codebase exploration | Search, pattern discovery, context loading. LEAF agent: no sub-dispatches, no writes |
+ | `markdown` | Subagent, routed via `--agent orchestrate`, never direct | Template-first documentation generation | Creating READMEs, skills, guides, spec docs |
+@@ -206,7 +206,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
+ 
+ **Best for:** Architecture decisions, complex planning that benefits from comparing 3+ solution strategies.
+ 
+-**Command-only (as of `mode: subagent`).** Direct `opencode run --agent ai-council` is no longer reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which is rejected at the top level).
++**Command-only (as of `mode: subagent`).** On OpenCode 1, direct `opencode run --agent ai-council` is not reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. OpenCode 2.0.32 does select a subagent slug directly, so there the routing rule, not the binary, keeps `ai-council` behind its command. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which OpenCode 1 rejects at the top level).
+ 
+ **Delegate when:** The calling AI needs a fundamentally different planning approach or wants to compare strategies before committing to one.
+ 
+@@ -239,7 +239,7 @@ Pick the agent that matches the task type. Default to omitting `--agent` (the `g
+ | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden. The parent command owns iteration state, JSONL, and convergence. |
+ | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden. The parent command owns iteration state and severity-weighted convergence. |
+ | Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+-| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because it is rejected at the top level |
++| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because OpenCode 1 rejects it at the top level |
+ 
+ ---
+ 
+@@ -265,7 +265,7 @@ cd /repo && opencode2 run --standalone \
+   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
+ ```
+ 
+-On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. Whether OpenCode 2 reads the same prefix is unverified on OpenCode 2.0.32.
++On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. OpenCode 2.0.32 does not: an `As @review:` body runs under the default agent there. The routing rule above still sends review work through `--agent orchestrate`, whose subagent routing is untested on OpenCode 2.0.32.
+ 
+ ### When to prefer `--agent` vs `As @<agent>:`
+ 
+@@ -328,7 +328,7 @@ Some agents are LEAF agents by design. Most MUST NOT dispatch sub-agents, use th
+ | `deep-review` | LEAF: single iteration, externalized state, no nested dispatches |
+ | `ai-council` | LEAF, no sub-dispatches, but SCOPED-WRITE (not read-only): writes and edits confined to the pre-bound packet's `ai-council/**` subtree only |
+ 
+-The calling AI must NOT request a write outside `ai-council/**` or a sub-dispatch from a LEAF agent. If the prompt would require either, route to `orchestrate` instead (never `general`, which is rejected at the top level).
++The calling AI must NOT request a write outside `ai-council/**` or a sub-dispatch from a LEAF agent. If the prompt would require either, route to `orchestrate` instead (never `general`, which OpenCode 1 rejects at the top level).
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+index 6aee6525eb..b875f5e742 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+@@ -112,7 +112,7 @@ The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column
+ | `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` | same |
+ | `--share` (OpenCode 1 only) | boolean | Publish a shareable URL for this session | absent on `run` |
+ | `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4-flash` | `-m provider/model#<level>` (model and effort in one flag) |
+-| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Slug routing and frontmatter loading are unverified on OpenCode 2.0.32 |
++| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Runs the session as that agent, `general` included. An unknown slug exits 1 |
+ | `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
+ | `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
+ | `--title` | string | Session title (truncated message used when omitted) | same |
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+index a741fcc89a..000d83db9f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+@@ -98,7 +98,7 @@ cd "$REPO_ROOT" && opencode2 run \
+   "<prompt-from-template>" 2>&1
+ ```
+ 
+-How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
++On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+ 
+ OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+index ae54a4969b..e15902ea1f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+@@ -61,7 +61,6 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
+ # On OpenCode 1 (1.19.3):
+ opencode run \
+   --model opencode-go/deepseek-v4-flash \
+-  --agent general \
+   --variant max \
+   --format json \
+   --dir "$REPO_ROOT" \
+@@ -70,15 +69,13 @@ opencode run \
+ 
+ ```bash
+ # OpenCode 2 (2.0.32):
+-# Agent routing unverified on OpenCode 2.0.32.
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  --agent general \
+   -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
+ ```
+ 
+-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
++On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
+ 
+ On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
+ 
+@@ -171,7 +168,7 @@ cd /repo && opencode2 run --standalone \
+ 
+ ### What it does
+ 
+-The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. Whether OpenCode 2 applies the same agent frontmatter is unverified on OpenCode 2.0.32.
++The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
+ 
+ ### Why it matters
+ 

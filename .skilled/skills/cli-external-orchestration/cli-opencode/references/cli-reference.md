@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -112,7 +112,7 @@ The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column
 | `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` | same |
 | `--share` (OpenCode 1 only) | boolean | Publish a shareable URL for this session | absent on `run` |
 | `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4-flash` | `-m provider/model#<level>` (model and effort in one flag) |
-| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Slug routing and frontmatter loading are unverified on OpenCode 2.0.32 |
+| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Runs the session as that agent, `general` included. An unknown slug exits 1 |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
 | `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
 | `--title` | string | Session title (truncated message used when omitted) | same |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -61,7 +61,6 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
 # On OpenCode 1 (1.19.3):
 opencode run \
   --model opencode-go/deepseek-v4-flash \
-  --agent general \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -70,15 +69,13 @@ opencode run \
 
 ```bash
 # OpenCode 2 (2.0.32):
-# Agent routing unverified on OpenCode 2.0.32.
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  --agent general \
   -m opencode-go/deepseek-v4.1-flash#max \
   --format json \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
+On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, but these examples omit it and use the default agent, as on OpenCode 1.
 
 On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
 
@@ -171,7 +168,7 @@ cd /repo && opencode2 run --standalone \
 
 ### What it does
 
-The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. Whether OpenCode 2 applies the same agent frontmatter is unverified on OpenCode 2.0.32.
+The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
 
 ### Why it matters
 

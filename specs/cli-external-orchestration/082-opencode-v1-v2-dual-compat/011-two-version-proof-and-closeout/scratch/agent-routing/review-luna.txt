@@ -1,0 +1,4 @@
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104; .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:174 | The probe confirms which agent served the reply and records registration metadata, but does not show that permissions or temperature were applied. | Limit the claim to agent selection and mark permission and temperature behavior unverified.
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104 | The pinned-model caveat says “OpenCode 2,” while the probe is scoped to 2.0.32. | Change it to “OpenCode 2.0.32.”
+
+FAIL

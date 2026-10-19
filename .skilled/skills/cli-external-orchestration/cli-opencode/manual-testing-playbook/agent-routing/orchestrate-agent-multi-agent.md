@@ -1,12 +1,12 @@
 ---
 title: "CO-034 -- Orchestrate agent multi-agent coordination"
 description: "This scenario validates the orchestrate agent for `CO-034`. It focuses on confirming `--agent orchestrate` produces a sequenced multi-agent decomposition without nested opencode run invocations."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # CO-034 -- Orchestrate agent multi-agent coordination
 
-**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1. How the agent then routes subagents is untested there.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-034`.
 

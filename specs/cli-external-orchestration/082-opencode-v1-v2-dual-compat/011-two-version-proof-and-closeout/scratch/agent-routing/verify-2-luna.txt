@@ -1,0 +1,26 @@
+**Prior findings**
+
+- **Permission registration: CLOSED.** `agent-delegation.md:104` and `opencode-tools.md:171` now distinguish registering permissions from applying them at runtime. The captured [`review` record](</Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/scratch/agent-routing/v2-agents-repo.json:2831>) includes a permissions array corresponding to the policy block in [`review.md:6`](</Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/agents/review.md:6>). Runtime enforcement remains marked unverified.
+- **Unversioned `--agent general` rejection: CLOSED.** [`prompt-templates.md:227`](</Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:227>) distinguishes OpenCode 1 rejection from 2.0.32 acceptance; the saved probe records exit 0.
+- **Pinned-model caveat: CLOSED.** [`agent-delegation.md:104`](</Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104>) names OpenCode 2.0.32 and says no repo agent pins a model. The model-field search returned no matches.
+
+**New findings**
+
+P1 | [.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:268](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:268) | It tells v2 readers to pass `--agent review` directly, contradicting the same document’s rule that `review` routes through `orchestrate` and is never direct. | Tell readers to use `--agent orchestrate` and request a review subagent.
+
+P1 | [.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:137](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:137) | The updated row labels `general` “Primary” while describing its v2 acceptance; the captured 2.0.32 record lists `general` as `mode: subagent` at [`v2-agents-repo.json:100`](</Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/scratch/agent-routing/v2-agents-repo.json:100>). | Qualify the class by version and identify its recorded v2 mode.
+
+**Adversarial check**
+
+| Finding | Skeptic challenge | Referee |
+|---|---|---|
+| Direct `review` instruction | Could be an intended v2 exception; the document says routing rules still apply on v2. | Confirmed P1 |
+| `general` class label | “Primary” could describe only v1, but the updated row does not say so. | Confirmed P1 |
+
+**Verification:** `git apply --reverse --check docs-final.diff`, `git diff --check`, and `jq empty v2-agents-repo.json` all exited 0. No OpenCode binary or network call was used. I made no edits; the worktree was dirty at review time.
+
+**Not checked:** Live OpenCode 2 behavior, as requested. The review uses the saved probe results.
+
+Operator action: resolve the two P1s before relying on the updated routing guidance.
+
+FAIL

@@ -1,0 +1,15 @@
+**FAIL:** One original P1 remains open, the other is closed, and I found one new P1. No P0 found. Score: **82/100** — correctness 18/30, security 22/25, patterns 18/20, maintainability 14/15, performance 10/10.
+
+1. **Original P1 #1 — OPEN** — `.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104` and `.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:174`. The revision says runtime application of permissions and temperature is unverified, but still claims permissions are registered. The captured agent metadata has mode and temperature, but no permission field; the probe only checked agent selection. Remove the permission-registration claim or provide evidence for it.
+
+2. **Original P1 #2 — CLOSED** — `agent-delegation.md:104`. The pinned-model caveat now names OpenCode 2.0.32 explicitly.
+
+3. **New P1:** `P1 | .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:227 | The blanket “never pass --agent general” instruction contradicts the documented and captured OpenCode 2.0.32 run, which selected general and exited 0. | Scope the rejection to OpenCode 1 and state that 2.0.32 accepts the tested general slug.`
+
+The saved probes distinguish successful named-agent selection, an unknown slug, and an `As @review` body. The revision also correctly marks runtime permission and temperature application and pinned-model precedence as unverified.
+
+**Verification:** The input and target files exist, and the changed routing manifest parses as valid JSON. The strict phase validator exited 2 with `RESULT: FAILED`: it reported generated-metadata drift and could not run four checks because the read-only environment blocked temporary-file creation. The worktree is dirty on `worktrees/143-opencode-dual-compat-build`; I made no edits.
+
+**Not checked:** Live OpenCode 2 behavior, as requested: no OpenCode binary or network call was used.
+
+FAIL

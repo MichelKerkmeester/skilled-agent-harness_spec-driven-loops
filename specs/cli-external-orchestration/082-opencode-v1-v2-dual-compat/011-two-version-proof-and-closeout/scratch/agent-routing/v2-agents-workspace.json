@@ -1,0 +1,74 @@
+[
+  {
+    "id": "build",
+    "mode": "primary"
+  },
+  {
+    "id": "general",
+    "mode": "subagent"
+  },
+  {
+    "id": "explore",
+    "mode": "subagent"
+  },
+  {
+    "id": "compaction",
+    "mode": "primary"
+  },
+  {
+    "id": "title",
+    "mode": "primary"
+  },
+  {
+    "id": "summary",
+    "mode": "primary"
+  },
+  {
+    "id": "plan",
+    "mode": "primary"
+  },
+  {
+    "id": "ai-council",
+    "mode": "subagent"
+  },
+  {
+    "id": "code",
+    "mode": "subagent"
+  },
+  {
+    "id": "context",
+    "mode": "subagent"
+  },
+  {
+    "id": "debug",
+    "mode": "subagent"
+  },
+  {
+    "id": "deep-research",
+    "mode": "subagent"
+  },
+  {
+    "id": "deep-review",
+    "mode": "subagent"
+  },
+  {
+    "id": "design",
+    "mode": "subagent"
+  },
+  {
+    "id": "markdown",
+    "mode": "all"
+  },
+  {
+    "id": "orchestrate",
+    "mode": "primary"
+  },
+  {
+    "id": "prompt-improver",
+    "mode": "subagent"
+  },
+  {
+    "id": "review",
+    "mode": "subagent"
+  }
+]

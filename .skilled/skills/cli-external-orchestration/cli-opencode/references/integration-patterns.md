@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -98,7 +98,7 @@ cd "$REPO_ROOT" && opencode2 run \
   "<prompt-from-template>" 2>&1
 ```
 
-How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
 OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
 

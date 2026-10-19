@@ -72,6 +72,20 @@ The count was stable across the three runs. The OpenCode 2 legs run against a pr
 
 Both streams carry the same four event names, each event with a `sessionID`. That contradicted the event names the docs used, and phase 010 was amended to correct them (010 decision 18).
 
+## Agent routing on OpenCode 2
+
+Run at the operator's request after the closeout (`scratch/agent-routing/`, decision 10). A private v2 server lists 18 agents for the repo, the 7 built-ins plus the 11 from `.opencode/agents/`, each with its frontmatter mode. Five cheap runs went against a private server in a workspace holding a copy of the agents, and each session's stored assistant message names the agent that served it:
+
+| Case | Served by | Exit |
+|------|-----------|------|
+| `--agent orchestrate` (primary) | `orchestrate` | 0 |
+| `--agent review` (subagent) | `review` | 0 |
+| `--agent general` (built-in, rejected on OpenCode 1) | `general` | 0 |
+| `--agent no-such-agent-xyz` | none, `error` event `Agent not found` | 1 |
+| `As @review:` body, no `--agent` | `build`, no tool call | 0 |
+
+Total cost about USD 0.0053, and the process list was unchanged. Untested: whether an agent-pinned model beats `-m`, since no repo agent pins one, and how an agent routes subagents onward.
+
 ## Drift guards
 
 `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0: all 4 guards PASSED, with 10 non-blocking warnings, the same as phase 009 (`scratch/proof/drift-guards.txt`).

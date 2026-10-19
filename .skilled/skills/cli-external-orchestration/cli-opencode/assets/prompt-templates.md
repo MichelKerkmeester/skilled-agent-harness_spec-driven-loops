@@ -11,7 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -222,9 +222,9 @@ cd /repo && opencode2 run --standalone \
   "Use the <slug> subagent: <prompt>" 2>&1
 ```
 
-How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (rejected at the top level).
+- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (OpenCode 1 rejects it at the top level, and OpenCode 2.0.32 accepts it, but the default agent covers that case on both).
 - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
 - **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
 - **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
@@ -302,7 +302,7 @@ Personality: rigorous, evidence-first, no speculation.
 Experiment: <list of files to read and queries to run>
 ```
 
-Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned and rejected at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
+Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned. OpenCode 1 rejects it at the top level the same way any other subagent slug is, and OpenCode 2.0.32 would accept it but bypass the command that owns the loop. Trigger a real iteration by invoking the owning command instead:
 
 ```bash
 # On OpenCode 1 (1.19.3):

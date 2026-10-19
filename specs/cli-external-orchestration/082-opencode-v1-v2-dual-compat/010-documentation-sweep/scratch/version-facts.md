@@ -65,3 +65,7 @@ The addendum above called `session.started`, `message.delta`, `tool.call`, `tool
 ## Human voice
 
 Run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py --all <doc>`. Rewrite every hard finding in prose until the scan exits 0: an em dash (—) or a semicolon (;) becomes two sentences, a comma, a colon or parentheses, whichever keeps the meaning; a flagged word gets a plain one. Leave code blocks and inline code as they are. Keep every fact.
+
+## Agent routing (verified in phase 011)
+
+The `--agent` line above is settled. A live probe on 2.0.32 (`011-two-version-proof-and-closeout/scratch/agent-routing/`) showed that v2 registers the repo agents from `.opencode/agents/` with their frontmatter mode, permissions and temperature. `--agent <slug>` runs the session as that agent at top level, whether the agent is primary (`orchestrate`), a subagent (`review`) or the built-in `general`. An unknown slug exits 1 with an `error` event, `Agent not found`. An `As @review:` body without `--agent` runs under the default `build` agent. No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward.

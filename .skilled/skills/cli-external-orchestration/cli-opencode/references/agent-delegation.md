@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -79,7 +79,7 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
 
 ### Invocation pattern
 
-`--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
+On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. OpenCode 2.0.32 also accepts `general` and a subagent slug at the top level, but the routing rules in this section still apply there. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
 
 ```bash
 # OpenCode 1 only
@@ -101,7 +101,7 @@ cd /repo && opencode2 run --standalone \
   "<prompt>"
 ```
 
-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. Whether OpenCode 2 routes a slug the same way and applies the same frontmatter precedence is unverified on OpenCode 2.0.32.
+On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. Whether it applies those permissions and that temperature during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
 
 ### Conductor rules
 
@@ -134,7 +134,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
 
 | Slug | Class | Role | When to dispatch |
 |------|-------|------|-------------------|
-| `general` | Primary, top-level `--agent` REJECTED, use default (omit `--agent`) | Default implementation, complex tasks | Routine multi-step work that does not match a specialist. Never pass `--agent general`, because the default agent already runs when `--agent` is omitted |
+| `general` | Subagent (built-in) on 1.19.3 and 2.0.32. Top-level `--agent` REJECTED on OpenCode 1, accepted on 2.0.32. Use default (omit `--agent`) | Default implementation, complex tasks | Routine multi-step work that does not match a specialist. Never pass `--agent general`, because the default agent already runs when `--agent` is omitted |
 | `orchestrate` | Primary, directly invokable via `--agent orchestrate` | Multi-agent coordination | Complex workflows that span several agents, or to Task-dispatch a subagent below |
 | `context` | Subagent, routed via `--agent orchestrate`, never direct | Read-only retrieval and codebase exploration | Search, pattern discovery, context loading. LEAF agent: no sub-dispatches, no writes |
 | `markdown` | Subagent, routed via `--agent orchestrate`, never direct | Template-first documentation generation | Creating READMEs, skills, guides, spec docs |
@@ -206,7 +206,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
 
 **Best for:** Architecture decisions, complex planning that benefits from comparing 3+ solution strategies.
 
-**Command-only (as of `mode: subagent`).** Direct `opencode run --agent ai-council` is no longer reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which is rejected at the top level).
+**Command-only (as of `mode: subagent`).** On OpenCode 1, direct `opencode run --agent ai-council` is not reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. OpenCode 2.0.32 does select a subagent slug directly, so there the routing rule, not the binary, keeps `ai-council` behind its command. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which OpenCode 1 rejects at the top level).
 
 **Delegate when:** The calling AI needs a fundamentally different planning approach or wants to compare strategies before committing to one.
 
@@ -239,7 +239,7 @@ Pick the agent that matches the task type. Default to omitting `--agent` (the `g
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden. The parent command owns iteration state, JSONL, and convergence. |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden. The parent command owns iteration state and severity-weighted convergence. |
 | Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
-| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because it is rejected at the top level |
+| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because OpenCode 1 rejects it at the top level |
 
 ---
 
@@ -265,7 +265,7 @@ cd /repo && opencode2 run --standalone \
   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
 ```
 
-On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. Whether OpenCode 2 reads the same prefix is unverified on OpenCode 2.0.32.
+On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. OpenCode 2.0.32 does not: an `As @review:` body runs under the default agent there. The routing rule above still sends review work through `--agent orchestrate`, whose subagent routing is untested on OpenCode 2.0.32.
 
 ### When to prefer `--agent` vs `As @<agent>:`
 
@@ -328,7 +328,7 @@ Some agents are LEAF agents by design. Most MUST NOT dispatch sub-agents, use th
 | `deep-review` | LEAF: single iteration, externalized state, no nested dispatches |
 | `ai-council` | LEAF, no sub-dispatches, but SCOPED-WRITE (not read-only): writes and edits confined to the pre-bound packet's `ai-council/**` subtree only |
 
-The calling AI must NOT request a write outside `ai-council/**` or a sub-dispatch from a LEAF agent. If the prompt would require either, route to `orchestrate` instead (never `general`, which is rejected at the top level).
+The calling AI must NOT request a write outside `ai-council/**` or a sub-dispatch from a LEAF agent. If the prompt would require either, route to `orchestrate` instead (never `general`, which OpenCode 1 rejects at the top level).
 
 ---
 

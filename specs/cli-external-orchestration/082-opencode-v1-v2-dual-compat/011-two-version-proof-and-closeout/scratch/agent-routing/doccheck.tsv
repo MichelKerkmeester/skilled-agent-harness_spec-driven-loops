@@ -1,0 +1,15 @@
+doc	type	validate_exit	dqi	hvr_exit
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md	readme	0	86	0
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md	skill	0	95	0
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md	asset	0	95	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md	playbook_feature	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md	playbook_feature	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md	playbook_feature	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md	playbook_feature	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md	playbook_feature	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md	playbook	0	91	0
+.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md	playbook_feature	0	85	0
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md	reference	0	92	0
+.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md	reference	0	93	0
+.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md	reference	0	95	0
+.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md	reference	0	96	0

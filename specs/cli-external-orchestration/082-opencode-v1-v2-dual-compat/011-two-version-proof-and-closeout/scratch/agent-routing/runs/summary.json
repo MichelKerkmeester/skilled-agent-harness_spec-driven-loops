@@ -1,0 +1,115 @@
+[
+  {
+    "label": "agent-orchestrate",
+    "argv": [
+      "opencode2",
+      "run",
+      "--server",
+      "http://127.0.0.1:51880",
+      "-m",
+      "llmgateway/deepseek-v4.1-flash",
+      "--agent",
+      "orchestrate",
+      "--format",
+      "json",
+      "<prompt>"
+    ],
+    "exit": 0,
+    "signal": null,
+    "sessionID": "ses_ead960fecffeHydCDwozXXkjHq",
+    "text": "AGENT-PROBE-OK",
+    "tools": [],
+    "cost": 0,
+    "stderrHead": ""
+  },
+  {
+    "label": "agent-review",
+    "argv": [
+      "opencode2",
+      "run",
+      "--server",
+      "http://127.0.0.1:51880",
+      "-m",
+      "llmgateway/deepseek-v4.1-flash",
+      "--agent",
+      "review",
+      "--format",
+      "json",
+      "<prompt>"
+    ],
+    "exit": 0,
+    "signal": null,
+    "sessionID": "ses_ead960649ffe7c3RqYCo0sy8IS",
+    "text": "AGENT-PROBE-OK",
+    "tools": [],
+    "cost": 0,
+    "stderrHead": ""
+  },
+  {
+    "label": "agent-general",
+    "argv": [
+      "opencode2",
+      "run",
+      "--server",
+      "http://127.0.0.1:51880",
+      "-m",
+      "llmgateway/deepseek-v4.1-flash",
+      "--agent",
+      "general",
+      "--format",
+      "json",
+      "<prompt>"
+    ],
+    "exit": 0,
+    "signal": null,
+    "sessionID": "ses_ead95ffaaffe8aXwHnvsG2el3w",
+    "text": "AGENT-PROBE-OK",
+    "tools": [],
+    "cost": 0,
+    "stderrHead": ""
+  },
+  {
+    "label": "agent-unknown",
+    "argv": [
+      "opencode2",
+      "run",
+      "--server",
+      "http://127.0.0.1:51880",
+      "-m",
+      "llmgateway/deepseek-v4.1-flash",
+      "--agent",
+      "no-such-agent-xyz",
+      "--format",
+      "json",
+      "<prompt>"
+    ],
+    "exit": 1,
+    "signal": null,
+    "sessionID": "ses_ead95fa59ffeEEtmqUNXQ0ccS6",
+    "text": "",
+    "tools": [],
+    "cost": 0,
+    "stderrHead": ""
+  },
+  {
+    "label": "body-at-review",
+    "argv": [
+      "opencode2",
+      "run",
+      "--server",
+      "http://127.0.0.1:51880",
+      "-m",
+      "llmgateway/deepseek-v4.1-flash",
+      "--format",
+      "json",
+      "<prompt>"
+    ],
+    "exit": 0,
+    "signal": null,
+    "sessionID": "ses_ead95f9e7ffeNPalwE46tMfvd1",
+    "text": "AGENT-PROBE-OK",
+    "tools": [],
+    "cost": 0,
+    "stderrHead": ""
+  }
+]

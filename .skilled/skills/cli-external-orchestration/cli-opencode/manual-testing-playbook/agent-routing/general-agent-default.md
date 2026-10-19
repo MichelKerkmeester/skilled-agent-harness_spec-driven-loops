@@ -1,7 +1,7 @@
 ---
 title: "CO-013 -- Unflagged default-agent route"
 description: "This scenario validates the unflagged default-agent route for `CO-013`. It focuses on confirming that OMITTING `--agent` (never passing `--agent general`) produces the expected implementation-style behavior."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # CO-013 -- Unflagged default-agent route
@@ -18,7 +18,7 @@ This scenario validates the unflagged default-agent route for `CO-013`. It focus
 
 ### Why This Matters
 
-`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by the installed binary (SKILL.md §3 "The `--agent` flag" note and hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
+`general` is an OpenCode built-in, not a project-local agent file under `.opencode/agents/`, and the current cli-opencode contract explicitly forbids passing it at the top level: `opencode run --agent general` is rejected by OpenCode 1 (OpenCode 2.0.32 accepts it, and the rule still forbids it) (SKILL.md §3 "The `--agent` flag" note and hard rule `no-bare-agent-general`). The default agent already runs whenever `--agent` is omitted, which is what every ordinary dispatch should do. If the unflagged path silently fails or produces degraded behavior, the entire default-routing contract collapses and every other scenario that relies on the unflagged shape inherits the failure.
 
 ---
 

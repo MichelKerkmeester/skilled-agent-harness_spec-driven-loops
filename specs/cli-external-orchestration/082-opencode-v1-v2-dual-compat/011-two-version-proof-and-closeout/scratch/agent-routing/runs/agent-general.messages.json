@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "id": "msg_1526a053c002goOfn9as1XuyzH",
+      "time": {
+        "created": 1792384042300
+      },
+      "type": "idle",
+      "outcome": "succeeded"
+    },
+    {
+      "id": "msg_1526a0062001O501CKgcWNLJ1d",
+      "time": {
+        "created": 1792384041061,
+        "streamed": 1792384042299,
+        "completed": 1792384042299
+      },
+      "type": "assistant",
+      "agent": "general",
+      "model": {
+        "id": "deepseek-v4.1-flash",
+        "providerID": "llmgateway",
+        "variant": "default"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "AGENT-PROBE-OK"
+        }
+      ],
+      "finish": "stop",
+      "rawFinish": "stop",
+      "cost": 0.0003920292,
+      "tokens": {
+        "input": 2790,
+        "output": 8,
+        "reasoning": 0,
+        "cache": {
+          "read": 4096,
+          "write": 0
+        }
+      }
+    },
+    {
+      "id": "msg_1526a00580014NR06113N3v1Wp",
+      "time": {
+        "created": 1792384041055
+      },
+      "text": "\"Reply with exactly AGENT-PROBE-OK and nothing else. Do not use any tool.\"",
+      "files": [],
+      "type": "user"
+    },
+    {
+      "id": "msg_1526a0059001RqxfbPXYH0RDBR",
+      "time": {
+        "created": 1792384041049
+      },
+      "type": "agent-switched",
+      "agent": "general",
+      "previous": "general"
+    }
+  ],
+  "cursor": {
+    "previous": "eyJpZCI6Im1zZ18xNTI2YTA1M2MwMDJnb09mbjlhczFYdXl6SCIsIm9yZGVyIjoiZGVzYyIsImRpcmVjdGlvbiI6InByZXZpb3VzIn0",
+    "next": "eyJpZCI6Im1zZ18xNTI2YTAwNTkwMDFScXhmYlBYWUgwUkRCUiIsIm9yZGVyIjoiZGVzYyIsImRpcmVjdGlvbiI6Im5leHQifQ"
+  }
+}

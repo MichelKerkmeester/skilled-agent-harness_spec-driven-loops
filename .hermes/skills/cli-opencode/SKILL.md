@@ -164,7 +164,7 @@ The one-shot pre-flight bash, the decision trees and the error-recovery contract
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here without a version or an effort tier on purpose, so this line does not go stale when the family ships a point release. The runner resolves the current id, and a drift test keeps the two in the same family.
 
-> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: named agents like `general` are rejected. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after `opencode run --help` confirms acceptance. On OpenCode 2.0.32, `--agent` is listed, but slug routing, frontmatter precedence and "As @review" bodies are unverified. Full roster and top-level rules: [`references/agent-delegation.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md).
+> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: on OpenCode 1, named agents like `general` are rejected. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after `opencode run --help` confirms acceptance. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, `general` included, an unknown slug exits 1, and an "As @review" body stays with the default agent. Full roster and top-level rules: [`references/agent-delegation.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md).
 
 Honor explicit user model, port, and handback phrasing verbatim. Otherwise use the default invocation above.
 
@@ -194,7 +194,7 @@ The calling AI is the conductor. OpenCode distinguishes **primary agents** (invo
 
 #### Primary agents, directly invokable via `--agent`
 
-OpenCode defines `general`, `plan`, and `orchestrate` as primary agents. **Never pass `--agent general`** (rejected at the top level, and the default agent covers that case). Pin `--agent plan|orchestrate` only when the task needs that profile AND `opencode run --help` confirms top-level acceptance, otherwise state the role in the prompt body.
+OpenCode lists `plan` and the repo's `orchestrate` as primary agents and `general` as a subagent, on 1.19.3 and 2.0.32. **Never pass `--agent general`** (OpenCode 1 rejects it at the top level, and the default agent covers that case on both versions). Pin `--agent plan|orchestrate` only when the task needs that profile AND `opencode run --help` confirms top-level acceptance, otherwise state the role in the prompt body.
 
 #### Subagents, dispatched as Task subagents from a primary
 
@@ -204,7 +204,7 @@ See [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cl
 
 ### Essential Commands
 
-On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1 (unverified on OpenCode 2.0.32).
+On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1. OpenCode 2.0.32 runs the session as `orchestrate`, and how it then routes subagents is untested.
 
 ### Error Handling
 
