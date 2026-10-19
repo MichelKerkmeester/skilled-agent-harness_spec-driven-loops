@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 47,
-    "missing-frontmatter": 7049,
-    "ok": 14398,
+    "missing-frontmatter": 7051,
+    "ok": 14404,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 24994,
+  "documentsScanned": 25002,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5a953ffdfdc9481f7ba8a2165158eb1e8ac833b0c9055afa0c8fd5b47affe0d9",
+  "manifestHash": "73f377204a3bb8f4723f2373ac2e668a785acc7959ee41c276cce53575798137",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36680,
+      "ok": 36687,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -33977,6 +33977,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -68864,6 +68876,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
       "reason": "excluded directory"
     },
     {

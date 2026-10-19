@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7bc37471e8be4a5604d34f6c564189700942559ccf04185d2305d4ee2d149453",
+  "corpusHash": "d656a21cc4fe95bc4b429757ec8bda5d7a3817e4c779a1a7282978805b19f373",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24994,
+  "includedPathCount": 25002,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7923,6 +7923,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/source.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
@@ -9990,6 +9992,12 @@
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/plan.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/goal.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/plan.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
@@ -25025,7 +25033,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5a953ffdfdc9481f7ba8a2165158eb1e8ac833b0c9055afa0c8fd5b47affe0d9",
+  "manifestHash": "73f377204a3bb8f4723f2373ac2e668a785acc7959ee41c276cce53575798137",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26721,6 +26729,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
       "reason": "excluded directory"
     },
     {

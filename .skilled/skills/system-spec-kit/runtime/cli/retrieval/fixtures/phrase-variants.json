@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5a953ffdfdc9481f7ba8a2165158eb1e8ac833b0c9055afa0c8fd5b47affe0d9",
+  "manifestHash": "73f377204a3bb8f4723f2373ac2e668a785acc7959ee41c276cce53575798137",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49988,6 +49988,24 @@
     "handoff contract tasks": [
       "handoff-contract tasks"
     ],
+    "handoff gate exemptions": [
+      "handoff gate exemptions"
+    ],
+    "handoff gate exemptions acceptance criteria": [
+      "handoff gate exemptions acceptance criteria"
+    ],
+    "handoff gate exemptions goal": [
+      "handoff gate exemptions goal"
+    ],
+    "handoff gate exemptions implementation summary": [
+      "handoff gate exemptions implementation summary"
+    ],
+    "handoff gate exemptions plan": [
+      "handoff gate exemptions plan"
+    ],
+    "handoff gate exemptions tasks": [
+      "handoff gate exemptions tasks"
+    ],
     "handover": [
       "handover"
     ],
@@ -71805,6 +71823,9 @@
     ],
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
+    ],
+    "phase 7 handoff gate exemptions": [
+      "phase 7 handoff gate exemptions"
     ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
