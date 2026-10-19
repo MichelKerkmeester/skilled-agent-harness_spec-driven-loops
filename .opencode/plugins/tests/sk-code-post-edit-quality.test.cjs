@@ -211,6 +211,45 @@ test('resolveDispatch: frontmatter-versions fires for every in-scope skill doc, 
   assert.deepEqual(packet[0].args, ['--skill', 'sk-doc']);
 });
 
+test('resolveDispatch: a runtime state concern README keeps the version gate, deeper state stays out', () => {
+  const concernReadme = '.skilled/skills/.state/goal/README.md';
+  const readmeEntries = router.resolveDispatch(concernReadme, '/tmp/proj');
+  assert.equal(readmeEntries.length, 1, 'the tracked state concern README is a versioned doc');
+  assert.equal(readmeEntries[0].label, 'frontmatter-versions');
+  assert.deepEqual(readmeEntries[0].args, ['--skill', '.state']);
+  assert.equal(
+    router.resolveDispatch(concernReadme, '/tmp/proj', { env: { SPECKIT_VALIDATE_LINKS: 'true' } })[0].label,
+    'frontmatter-versions',
+    'a state dir is no skill, so the opt-in links row never takes the state README over',
+  );
+  assert.equal(
+    router.resolveDispatch('.opencode/skills/.state/goal/README.md', '/tmp/proj')[0].label,
+    'frontmatter-versions',
+    'the same state dir read through the linked source root',
+  );
+
+  const handoff = '.skilled/skills/.state/session-relaunch/handoffs/20261019T000000Z-abcd1234.md';
+  for (const out of [
+    handoff,
+    '.opencode/skills/.state/session-relaunch/handoffs/20261019T000000Z-abcd1234.md',
+    '.skilled/skills/.state/goal/notes.md',
+    '.skilled/skills/.state/goal/nested/README.md',
+    '.skilled/skills/sk-doc/.state/notes.md',
+  ]) {
+    assert.deepEqual(router.resolveDispatch(out, '/tmp/proj'), [], `${out} is not a versioned skill doc`);
+  }
+  assert.deepEqual(
+    router.resolveDispatch(handoff, '/tmp/proj', { env: { SPECKIT_VALIDATE_LINKS: 'true' } }),
+    [],
+    'the opt-in wikilinks row must not scope a whole-tree scan to runtime state',
+  );
+  assert.equal(
+    router.resolveDispatch('.skilled/skills/sk-doc/references/x.md', '/tmp/proj')[0].label,
+    'frontmatter-versions',
+    'a real skill reference doc still fires the version gate',
+  );
+});
+
 test('resolveDispatch: adversarial -- box-drawing glyphs in a non-flowchart doc do not trigger the flowchart checker', (t) => {
   const tmpDir = temporaryDirectory(t, 'post-edit-router-boxdraw-');
   const docPath = writeFile(
