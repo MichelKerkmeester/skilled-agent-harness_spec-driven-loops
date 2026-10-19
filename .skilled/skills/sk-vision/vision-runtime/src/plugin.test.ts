@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { Part } from "@opencode-ai/sdk";
 import type { VisionCommandPluginInput } from "./opencode/command.js";
-import { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "./plugin.js";
+import plugin, { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "./plugin.js";
 
 type SetupContext = Parameters<ReturnType<typeof createSetup>>[0];
 type PromptHookCallback = Parameters<SetupContext["session"]["hook"]>[1];
@@ -615,16 +615,18 @@ describe("v2 tool registration", () => {
   });
 
   it("adds no tools when automatic inspection is off", async () => {
+    const saved = process.env.SK_VISION_AUTOINSPECT;
+    delete process.env.SK_VISION_AUTOINSPECT;
     const fake = withToolEditor(makeContext().ctx);
-    const dispose = await createSetup({
-      handle: async () => {},
-      readTemplate: () => null,
-      createAutoInspect: () => null,
-    })(fake.ctx);
-
-    expect(fake.added).toEqual([]);
-    await dispose();
-    expect(fake.disposed).toEqual([]);
+    try {
+      const dispose = await plugin.setup(fake.ctx);
+      expect(fake.added).toEqual([]);
+      await dispose();
+      expect(fake.disposed).toEqual([]);
+    } finally {
+      if (saved === undefined) delete process.env.SK_VISION_AUTOINSPECT;
+      else process.env.SK_VISION_AUTOINSPECT = saved;
+    }
   });
 
   it("keeps the prompt hook and disposes cleanly when tool registration fails", async () => {
@@ -656,8 +658,9 @@ describe("v2 tool registration", () => {
     expect(autoDisposed).toBe(1);
   });
 
-  it("leaves no tools registered when the prompt hook fails to register", async () => {
-    const base = withToolEditor(makeContext().ctx);
+  it("releases everything setup holds when the prompt hook fails to register", async () => {
+    const made = makeContext();
+    const base = withToolEditor(made.ctx);
     const ctx: SetupContext = {
       ...base.ctx,
       session: {
@@ -667,6 +670,7 @@ describe("v2 tool registration", () => {
         },
       },
     };
+    let autoDisposed = 0;
 
     await expect(
       createSetup({
@@ -675,11 +679,53 @@ describe("v2 tool registration", () => {
         createAutoInspect: () => ({
           evidence: async () => null,
           tools: [fakeTool("sk_vision_status")],
-          dispose: async () => {},
+          dispose: async () => {
+            autoDisposed += 1;
+          },
         }),
       })(ctx),
     ).rejects.toThrow("prompt hook unavailable");
     expect(base.added.length).toBe(base.disposed.length);
+    expect(made.disposed).toEqual(["command"]);
+    expect(autoDisposed).toBe(1);
+  });
+
+  it("still releases the inspection client and keeps the hook error when command disposal fails", async () => {
+    const base = makeContext();
+    const ctx: SetupContext = {
+      ...base.ctx,
+      command: {
+        transform: async (callback) => {
+          callback({ add: () => {} });
+          return {
+            dispose: () => {
+              throw new Error("command dispose failed");
+            },
+          };
+        },
+      },
+      session: {
+        ...base.ctx.session,
+        hook: () => {
+          throw new Error("prompt hook unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+
+    await expect(
+      createSetup({
+        handle: async () => {},
+        readTemplate: () => null,
+        createAutoInspect: () => ({
+          evidence: async () => null,
+          dispose: async () => {
+            autoDisposed += 1;
+          },
+        }),
+      })(ctx),
+    ).rejects.toThrow("prompt hook unavailable");
+    expect(autoDisposed).toBe(1);
   });
 });
 

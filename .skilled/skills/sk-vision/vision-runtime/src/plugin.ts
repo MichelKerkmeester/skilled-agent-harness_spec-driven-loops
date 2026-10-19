@@ -385,7 +385,8 @@ export function createSetup({
     const auto = createAutoInspect?.(ctx.location.directory) ?? null;
     if (template === null && auto === null) return () => registration.dispose();
 
-    const promptRegistration = await ctx.session.hook('prompt', async (input) => {
+    // Deferred so a host that throws synchronously still reaches the cleanup below.
+    const promptRegistration = await Promise.resolve().then(() => ctx.session.hook('prompt', async (input) => {
       try {
         if (template !== null) {
           const question = matchVisionTemplate(template, input.prompt.text);
@@ -434,6 +435,10 @@ export function createSetup({
           process.stderr.write(`[sk-vision] prompt hook failed: ${message}\n`);
         }
       }
+    })).catch(async (error: unknown) => {
+      // Setup never returns its cleanup when it throws, so release what it holds first.
+      await Promise.allSettled([registration, auto].map(async (held) => held?.dispose()));
+      throw error;
     });
 
     // OpenCode 1 registers the tools from `server`, but OpenCode 2 only calls
