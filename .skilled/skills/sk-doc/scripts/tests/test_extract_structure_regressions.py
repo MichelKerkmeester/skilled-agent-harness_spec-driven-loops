@@ -56,3 +56,32 @@ def test_comma_form_allowed_tools_is_flagged_for_skills_only():
 
     _, command_issues, _ = module.parse_frontmatter(content, "command")
     assert not any("array format" in issue for issue in command_issues)
+
+
+def test_readme_checklist_rejects_table_of_contents():
+    module = _load_module()
+
+    def readme_statuses(content):
+        parsed, issues, raw = module.parse_frontmatter(content, "readme")
+        fm_data = {"parsed": parsed, "issues": issues, "raw": raw}
+        headings = module.extract_headings(content)
+        checklist = module.run_checklist("readme", fm_data, headings, content)
+        return {item["id"]: item["status"] for item in checklist["results"]}
+
+    no_toc_readme = (
+        "# Title\n\n"
+        "> A short description.\n\n"
+        "## 1. FIRST\n\n"
+        "Content.\n"
+    )
+    assert readme_statuses(no_toc_readme)["no_toc"] == "pass"
+
+    toc_readme = (
+        "# Title\n\n"
+        "> A short description.\n\n"
+        "## TABLE OF CONTENTS\n\n"
+        "- [First](#1-first)\n\n"
+        "## 1. FIRST\n\n"
+        "Content.\n"
+    )
+    assert readme_statuses(toc_readme)["no_toc"] == "fail"
