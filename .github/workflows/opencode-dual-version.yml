@@ -78,6 +78,8 @@ jobs:
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          # The package's build script calls bun by name, so the pinned bun goes on PATH.
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
           (
             cd .skilled/skills/sk-vision/vision-runtime
             "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile
@@ -140,6 +142,8 @@ jobs:
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          # The package's build script calls bun by name, so the pinned bun goes on PATH.
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
           (
             cd .skilled/skills/sk-vision/vision-runtime
             "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile

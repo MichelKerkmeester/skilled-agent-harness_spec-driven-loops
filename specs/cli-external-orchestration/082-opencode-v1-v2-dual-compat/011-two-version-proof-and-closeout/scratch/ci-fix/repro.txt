@@ -1,0 +1,10 @@
+# CI runs of opencode-dual-version.yml on main before the fix (gh run list)
+39294766387 fe1f8a9a53 failure
+39295542006 1135276484 failure
+39299540911 6358d81eba failure
+# failing step log (gh run view 39299540911 --log-failed)
+/usr/bin/bash: line 1: bun: command not found
+error: script "build" exited with code 127
+# local reproduction: bun@1.3.9 installed by npm into a temp prefix, no bun on PATH
+old step: build exit=127 (error: script "build" exited with code 127)
+fixed step (pinned bun on PATH): build exit=0, dist/plugin.js written
