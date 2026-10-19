@@ -49,6 +49,7 @@
       "scratch/validate-recursive.txt",
       "scratch/ci-fix/repro.txt",
       "scratch/ci-fix/provision.txt",
+      "scratch/ci-fix/green-run.txt",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
@@ -134,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "green-run.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/green-run.txt",
+        "source": "derived"
+      },
+      {
         "name": "opencode-version-battery.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The build spans eleven phase children",
     "created_at": "2026-10-18T12:45:10Z",
-    "last_save_at": "2026-10-19T19:17:45.485Z",
+    "last_save_at": "2026-10-19T19:22:34.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc91a13a1b3f632c2ca066eea67626e0c85f6a1a2b3f24b67da60e617f9cdaaf",
+    "source_fingerprint": "sha256:6008f4edd3f4a2d3532d344dcc2cc95d3871bba3b6d4fc2493827d458bcde1ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d36915a8f8cb8139f80c20c1bdced6ec1bd953a189d5fc2f38aff403930368c5",
       "plan.md": "3b3520898f8b1402419fdb16bcd26894f3cf05cd21bd4c88d14bc4b2512f3976",
       "tasks.md": "80d95516fa66817a37607674e39ec2b05b48288aaaaf5fba2b3d29a99681e04c",
-      "implementation-summary.md": "0f684eb7b7eae30892d336191a4441c2bb9f9b4e4d9fc79299383977d924dc93"
+      "implementation-summary.md": "4951a2b3e1c4cfb2899ff3f8867ac64f768242b915c3827070b39ffe0b1ade26"
     },
     "last_active_at": null
   }
