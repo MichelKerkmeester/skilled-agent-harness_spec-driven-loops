@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e794f7ebf1d4325ba9cfc8443d76864d804f8c16e4ab9dac9d39286b685c25cd",
+  "corpusHash": "aea4e7d7c32a330b75c8b57f84867937f3321f8509c996b07824fa1c9f3cfd26",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25225,
+  "includedPathCount": 25230,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10179,6 +10179,11 @@
     "specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/review/review-report.md",
     "specs/hooks/023-session-relaunch-loop/spec.md",
+    "specs/hooks/024-dispatch-adapter-test-repair/acceptance-criteria.md",
+    "specs/hooks/024-dispatch-adapter-test-repair/implementation-summary.md",
+    "specs/hooks/024-dispatch-adapter-test-repair/plan.md",
+    "specs/hooks/024-dispatch-adapter-test-repair/spec.md",
+    "specs/hooks/024-dispatch-adapter-test-repair/tasks.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
@@ -25256,7 +25261,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "fd17f0ec94293e5945589a977dfee5e1558a3154f6a08f25d2ba9ccfb68434ab",
+  "manifestHash": "e6ed7c23bb7cfa476e91d0207e32fd6b68f7c0e2d067ad13b6c669211a364e40",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27023,6 +27028,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/024-dispatch-adapter-test-repair/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/z_archive",
       "reason": "excluded directory"
     },
@@ -28360,6 +28369,10 @@
     },
     {
       "path": "specs/sk-git/028-crawlable-commit-history/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/029-worktree-dependency-provisioning/scratch",
       "reason": "excluded directory"
     },
     {

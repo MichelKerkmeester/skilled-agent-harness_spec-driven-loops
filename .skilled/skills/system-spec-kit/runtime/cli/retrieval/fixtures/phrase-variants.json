@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fd17f0ec94293e5945589a977dfee5e1558a3154f6a08f25d2ba9ccfb68434ab",
+  "manifestHash": "e6ed7c23bb7cfa476e91d0207e32fd6b68f7c0e2d067ad13b6c669211a364e40",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24002,6 +24002,9 @@
     "codex shape fold in plan": [
       "codex shape fold-in plan"
     ],
+    "codex shell tool test node test": [
+      "codex shell tool test node test"
+    ],
     "codex skill advisor runtime fixed": [
       "Codex skill advisor runtime fixed"
     ],
@@ -36529,6 +36532,21 @@
     "discovery terms": [
       "discovery terms"
     ],
+    "dispatch adapter test repair": [
+      "dispatch adapter test repair"
+    ],
+    "dispatch adapter test repair acceptance criteria": [
+      "dispatch adapter test repair acceptance criteria"
+    ],
+    "dispatch adapter test repair implementation summary": [
+      "dispatch adapter test repair implementation summary"
+    ],
+    "dispatch adapter test repair plan": [
+      "dispatch adapter test repair plan"
+    ],
+    "dispatch adapter test repair tasks": [
+      "dispatch adapter test repair tasks"
+    ],
     "dispatch audit trail": [
       "dispatch audit trail"
     ],
@@ -38543,6 +38561,9 @@
     ],
     "document the enabled system": [
       "document the enabled system"
+    ],
+    "document the owning runner for the dispatch adapter": [
+      "document the owning runner for the dispatch adapter"
     ],
     "document type addition": [
       "document type addition"
@@ -73379,6 +73400,9 @@
     ],
     "pi passthrough model selection": [
       "pi passthrough model selection"
+    ],
+    "pi preflight lint test hooks vitest config": [
+      "pi preflight lint test hooks vitest config"
     ],
     "pi print mode": [
       "pi print mode"
