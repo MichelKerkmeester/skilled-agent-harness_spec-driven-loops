@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks/023-session-relaunch-loop/010-post-fix-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-10-19T19:31:27.979Z",
+  "specId": "010",
+  "folderSlug": "post-fix-research",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

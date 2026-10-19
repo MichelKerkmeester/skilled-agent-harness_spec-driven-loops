@@ -1,0 +1,247 @@
+{
+  "mergedFrom": [
+    "deepseek-pi"
+  ],
+  "lineageExecutors": {
+    "deepseek-pi": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**`HANDOFF_SECTIONS` is still declared twice, so the nudge cannot promise the shape",
+      "text": "**`HANDOFF_SECTIONS` is still declared twice, so the nudge cannot promise the shape",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**`main()`'s unknown-command message hardcodes the subcommand list that `SUBCOMMANDS` owns.**",
+      "text": "**`main()`'s unknown-command message hardcodes the subcommand list that `SUBCOMMANDS` owns.**",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**`manualClaimCommand` reads `process.env` directly while the same function hands",
+      "text": "**`manualClaimCommand` reads `process.env` directly while the same function hands",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**`print_manual_command`'s fallback half is unreachable, and it carries the second and third",
+      "text": "**`print_manual_command`'s fallback half is unreachable, and it carries the second and third",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**`refuseForShellChild` trusts `CLAUDE_PID` without the descent check the killer target",
+      "text": "**`refuseForShellChild` trusts `CLAUDE_PID` without the descent check the killer target",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**`tests/README.md` pins an exact five-line test summary that any added case invalidates.**",
+      "text": "**`tests/README.md` pins an exact five-line test summary that any added case invalidates.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**A payload with no event name is accepted by two adapters and dropped by one.** Claude infers",
+      "text": "**A payload with no event name is accepted by two adapters and dropped by one.** Claude infers",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**One decision — \"is this record mine and still armable\" — has six implementations and three",
+      "text": "**One decision — \"is this record mine and still armable\" — has six implementations and three",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**Re-arming after a killer death keeps the original `armedAt`, so the wrapper consumes the",
+      "text": "**Re-arming after a killer death keeps the original `armedAt`, so the wrapper consumes the",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**The bounded process-table read is implemented three times with the same literal bound.** The",
+      "text": "**The bounded process-table read is implemented three times with the same literal bound.** The",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**The concern's README carries no frontmatter while every sibling hook README and its own tests",
+      "text": "**The concern's README carries no frontmatter while every sibling hook README and its own tests",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**The conformance table has no arm case, so the decision it exists to protect is outside it.**",
+      "text": "**The conformance table has no arm case, so the decision it exists to protect is outside it.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**The environment reference documents every caller-facing switch and no `SKILLED_LOOP_*`",
+      "text": "**The environment reference documents every caller-facing switch and no `SKILLED_LOOP_*`",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**The handoffs directory is declared twice, and the CLI cannot import the nudge's copy.** The",
+      "text": "**The handoffs directory is declared twice, and the CLI cannot import the nudge's copy.** The",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**The packet this research feeds names a branch its predecessor and its parent no longer use,",
+      "text": "**The packet this research feeds names a branch its predecessor and its parent no longer use,",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**The Pi adapter hand-declares the core's shape, so a core change compiles clean and fails at",
+      "text": "**The Pi adapter hand-declares the core's shape, so a core change compiles clean and fails at",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**The README's test command omits the conformance suite, so the documented verification runs",
+      "text": "**The README's test command omits the conformance suite, so the documented verification runs",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**The runtime identity is a bare string in five files and an array in a sixth.** `prepare`",
+      "text": "**The runtime identity is a bare string in five files and an array in a sixth.** `prepare`",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**Three of the five entrypoints run on import, which is why the arm paths cannot be tested",
+      "text": "**Three of the five entrypoints run on import, which is why the arm paths cannot be tested",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**Two adapter tests assert the core through an alias, so neither adapter's arm path is",
+      "text": "**Two adapter tests assert the core through an alias, so neither adapter's arm path is",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek-pi/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek-pi"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 20,
+    "sourceFindings": 20,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {}
+  }
+}

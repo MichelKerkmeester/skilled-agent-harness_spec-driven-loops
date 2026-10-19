@@ -12,7 +12,8 @@
     "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
     "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions",
     "hooks/023-session-relaunch-loop/008-review-3-remediation",
-    "hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation"
+    "hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation",
+    "hooks/023-session-relaunch-loop/010-post-fix-research"
   ],
   "manual": {
     "depends_on": [],
@@ -61,7 +62,8 @@
       "006-deep-review-2-remediation/goal.md",
       "007-handoff-gate-exemptions/goal.md",
       "008-review-3-remediation/goal.md",
-      "009-research-fixes-and-core-consolidation/goal.md"
+      "009-research-fixes-and-core-consolidation/goal.md",
+      "010-post-fix-research/goal.md"
     ],
     "entities": [
       {
@@ -155,7 +157,7 @@
         "source": "derived"
       },
       {
-        "name": "Skip",
+        "name": "usage",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -193,7 +195,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-19T18:14:14.336Z",
+    "last_save_at": "2026-10-19T19:49:37.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +203,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f6d88073114154100314014c960a27d9bbcf7a10c3602e6675ba3ecf346da47d",
+    "source_fingerprint": "sha256:ca4891c798738a6df98a4ffae1c7e867a181c506dac55f8efbe5d3a49c4b761e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e57283b043c04666a6e853c2e6aaf3890b89064067480e2e42c9b759728e7307",
+      "spec.md": "0216222546c2747f8253f140a7feba9b715d992f67309fc16b746e71e408340a",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
