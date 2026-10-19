@@ -1,0 +1,7 @@
+P2 `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:429` - Startup cancellation remains deferred, which is sound for this change - `close()` returns while `child` is null; OpenCode 1 disposal uses the same close path.
+
+Confirmed: `plugin.ts:247` maps `bmp`; `plugin.test.ts:458` asserts hook registration, so removing it fails the test. The focused Bun test passed: 1 pass, exit 0. No `RuntimeClient` code changed. The checkout lacks a captured pre-fix diff, so I can’t independently verify the exact inter-review delta.
+
+Read-only review; the worktree remains dirty. Nothing is blocked on you.
+
+PASS (no P0/P1)

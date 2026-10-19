@@ -14,7 +14,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook"
   ],
   "manual": {
     "depends_on": [],
@@ -65,11 +66,11 @@
       "009-sk-code-opencode-alignment/goal.md",
       "010-documentation-sweep/goal.md",
       "011-two-version-proof-and-closeout/goal.md",
+      "012-sk-vision-v2-prompt-hook/goal.md",
       "research/steering-log.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
-      ".opencode/package.json",
-      ".skilled/package.json"
+      ".opencode/package.json"
     ],
     "entities": [
       {
@@ -181,13 +182,13 @@
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "and",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "and",
+        "name": "reasons",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -219,7 +220,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-19T05:01:02.181Z",
+    "last_save_at": "2026-10-19T11:46:55.628Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,10 +228,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cdc7c0b11a29f92eb16d2f3db606e8bfb0a176d8de9d1d82b0ab39ea3e1e5aa2",
+    "source_fingerprint": "sha256:91e09396e74eb4f0f9a9c983239ca83955589318a17fa8650a769874cc33302b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c445e86840320d7199bb47c633bfbe38181a1bca5ff6f7349c7baffdee573809",
+      "spec.md": "1506759f46466e7320b7d87609391508e1a45df70570624ecf5ba130cec3da36",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

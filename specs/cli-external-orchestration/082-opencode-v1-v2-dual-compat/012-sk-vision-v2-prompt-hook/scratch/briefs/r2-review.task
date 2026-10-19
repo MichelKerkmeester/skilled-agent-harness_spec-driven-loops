@@ -1,0 +1,7 @@
+ROLE: Read-only code reviewer. Do not edit any file.
+
+CONTEXT: Your earlier review of the sk-vision OpenCode 2 prompt-hook port (`git diff -- .skilled/skills/sk-vision/vision-runtime/src`) passed with three P2s: (a) `PROMPT_FILE_MIME` in `src/plugin.ts` lacked `bmp`; (b) the test "skips inspection when the prompt has no image file" in `src/plugin.test.ts` did not fail when the hook was removed; (c) `RuntimeClient.close()` returns without cancelling a startup still in progress. (a) and (b) were fixed. (c) is left as is, because `RuntimeClient` is unchanged by this diff and OpenCode 1's `server` disposal has the same behaviour.
+
+ACTION: Confirm (a) and (b) are fixed and that nothing else changed in the fix, and say whether leaving (c) out of this change is sound. Note: your sandbox cannot create temp dirs or load Homebrew's simdutf, so the orchestrator runs the full suites; run only what your sandbox allows.
+
+FORMAT: Findings as `P0|P1|P2 file:line - claim - evidence`, then one verdict line: PASS (no P0/P1) or FAIL. Under 120 words.
