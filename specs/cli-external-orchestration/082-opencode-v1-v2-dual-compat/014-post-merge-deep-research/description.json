@@ -15,16 +15,17 @@
     "adapter-runner",
     "work"
   ],
-  "lastUpdated": "2026-10-19T20:03:51.389Z",
+  "lastUpdated": "2026-10-19T21:50:59.249Z",
   "specId": "014",
   "folderSlug": "post-merge-deep-research",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "19-10-26_21-00__deep-research-complete-for-angles-a21-a22-a26-a30.md",
-    "19-10-26_21-03__deep-research-complete-research-research-md-holds.md"
+    "19-10-26_21-03__deep-research-complete-research-research-md-holds.md",
+    "19-10-26_22-50__recorded-continuity-for-a-finished-deep-research.md"
   ]
 }

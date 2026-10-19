@@ -10,19 +10,20 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research"
-    last_updated_at: "2026-10-19T18:30:00Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Scaffolded the research record before the first iteration"
-    next_safe_action: "Run iteration 21 with the Pi fast-mode focus"
+    last_updated_at: "2026-10-19T21:50:59Z"
+    last_updated_by: "generate-context"
+    recent_action: "Synthesized four iterations into research.md, ending on a manual stop"
+    next_safe_action: "Fix the ranked remediation list in research/research.md section 9"
     blockers: []
     key_files:
       - "research/research.md"
       - "research/steering-log.md"
+      - "research/deep-research-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "082-014-post-merge-deep-research"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---

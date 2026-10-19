@@ -39,6 +39,7 @@
       "spec.md",
       "research/research.md",
       "research/steering-log.md",
+      "research/deep-research-state.jsonl",
       ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
       "research/iterations/iteration-001.md",
       "research/deltas/iter-001.jsonl",
@@ -64,6 +65,12 @@
         "name": "steering-log.md",
         "kind": "doc",
         "path": "research/steering-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -177,17 +184,17 @@
     ],
     "causal_summary": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the dispatch adapter suite runner",
     "created_at": "2026-10-19T18:19:07Z",
-    "last_save_at": "2026-10-19T20:04:41.797Z",
+    "last_save_at": "2026-10-19T21:50:59.249Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:899d86bbd3928051a125d9ab6603ceb48983fab1ac269dd7c6823ca2898f0478",
+    "source_fingerprint": "sha256:3480988e193eaf37caf5388547e993afa84fcfc9555da0ec9d675401017d337e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80ec36fd04e3962fb2bcb3452d98901dd13f45d0a08c5d5b038d213c00788421",
+      "spec.md": "415735421cb5a9299d2d96a18bde7f6f75b32fff28ef790c5199e696c7f313e1",
       "research/research.md": "c1e68886e4c2f71b2bd42937c4707426e2d4480a6c171365deb0b4e0fa542346"
     },
     "last_active_at": null

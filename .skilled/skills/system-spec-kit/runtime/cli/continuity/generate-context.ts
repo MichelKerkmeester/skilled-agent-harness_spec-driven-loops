@@ -102,7 +102,7 @@ Output:
   when the packet's trigger phrases changed.
   Every planner mode writes description.json, graph-metadata.json and the
   phase-parent pointers. Only --full-auto also writes the continuity fields
-  into the leaf's implementation-summary.md.
+  into the leaf's implementation-summary.md, or a research record's spec.md.
 
 Preferred save path (JSON-PRIMARY):
   - ALWAYS use --stdin, --json, or a JSON temp file.

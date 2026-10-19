@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.55
+version: 1.6.1.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -260,7 +260,7 @@ Every planner mode refreshes `description.json`, `graph-metadata.json` and the p
 |------|-----------------------|-------------------|
 | `plan-only` (default) | Refreshed | Not written |
 | `hybrid` | Refreshed | Not written; behaves like `plan-only` |
-| `full-auto` | Refreshed | Written into the leaf's `implementation-summary.md` |
+| `full-auto` | Refreshed | Written into the leaf's `implementation-summary.md`, or a research record's `spec.md` |
 
 ### Validation Checkpoints
 

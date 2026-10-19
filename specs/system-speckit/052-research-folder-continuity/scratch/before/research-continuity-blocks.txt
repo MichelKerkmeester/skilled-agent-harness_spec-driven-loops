@@ -1,0 +1,95 @@
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research"
+    last_updated_at: "2026-10-19T18:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded the research record before the first iteration"
+    next_safe_action: "Run iteration 21 with the Pi fast-mode focus"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/steering-log.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "082-014-post-merge-deep-research"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision"
+    last_updated_at: "2026-10-19T18:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded the research record before the first iteration"
+    next_safe_action: "Run the A23 iterations"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/steering-log.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "082-015-post-merge-research-sk-vision"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci"
+    last_updated_at: "2026-10-19T18:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded the research record before the first iteration"
+    next_safe_action: "Run the A24 and A25 iterations"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/steering-log.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "082-016-post-merge-research-cli-opencode-ci"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning"
+    last_updated_at: "2026-10-19T18:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded the research record before the first iteration"
+    next_safe_action: "Run the A27 iterations"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/steering-log.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "082-017-post-merge-research-provisioning"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance"
+    last_updated_at: "2026-10-19T18:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded the research record before the first iteration"
+    next_safe_action: "Run the A28 and A29 iterations"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/steering-log.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "082-018-post-merge-research-conformance"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---

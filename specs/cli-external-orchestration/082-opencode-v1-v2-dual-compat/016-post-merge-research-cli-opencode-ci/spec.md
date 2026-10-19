@@ -8,19 +8,19 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci"
-    last_updated_at: "2026-10-19T18:30:00Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Scaffolded the research record before the first iteration"
-    next_safe_action: "Run the A24 and A25 iterations"
+    last_updated_at: "2026-10-19T21:51:04Z"
+    last_updated_by: "generate-context"
+    recent_action: "Synthesized two iterations on the cli-opencode docs, doctor battery and CI"
+    next_safe_action: "Fix the backlog in research/research.md section 4"
     blockers: []
     key_files:
       - "research/research.md"
-      - "research/steering-log.md"
+      - "research/deep-research-state.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "082-016-post-merge-research-cli-opencode-ci"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---

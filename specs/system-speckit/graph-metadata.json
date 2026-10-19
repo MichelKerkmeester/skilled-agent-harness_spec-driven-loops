@@ -20,7 +20,8 @@
     "system-speckit/048-doctor-command-audit",
     "system-speckit/049-doctor-audit-followups",
     "system-speckit/050-open-knowledge-format-adoption",
-    "system-speckit/051-symlinked-runtime-root"
+    "system-speckit/051-symlinked-runtime-root",
+    "system-speckit/052-research-folder-continuity"
   ],
   "manual": {
     "depends_on": [],
