@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning",
+  "description": "Worktree provisioning and adapter suite runner research after the merge",
+  "keywords": [
+    "worktree",
+    "provisioning",
+    "adapter",
+    "suite",
+    "runner",
+    "research",
+    "merge"
+  ],
+  "lastUpdated": "2026-10-19T18:30:36.282Z",
+  "specId": "017",
+  "folderSlug": "post-merge-research-provisioning",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "research"
+}
