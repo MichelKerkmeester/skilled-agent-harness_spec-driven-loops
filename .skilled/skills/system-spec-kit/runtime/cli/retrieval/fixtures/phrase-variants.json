@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
+  "manifestHash": "fd17f0ec94293e5945589a977dfee5e1558a3154f6a08f25d2ba9ccfb68434ab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20928,6 +20928,21 @@
     ],
     "cli pi v1 5 9 0": [
       "cli-pi v1.5.9.0"
+    ],
+    "cli pi worktree extension clash": [
+      "cli pi worktree extension clash"
+    ],
+    "cli pi worktree extension clash acceptance criteria": [
+      "cli pi worktree extension clash acceptance criteria"
+    ],
+    "cli pi worktree extension clash implementation summary": [
+      "cli pi worktree extension clash implementation summary"
+    ],
+    "cli pi worktree extension clash plan": [
+      "cli pi worktree extension clash plan"
+    ],
+    "cli pi worktree extension clash tasks": [
+      "cli pi worktree extension clash tasks"
     ],
     "cli playbook model swap": [
       "cli playbook model swap"
@@ -45073,6 +45088,9 @@
     "flag eval driver fix tasks": [
       "flag eval driver fix tasks"
     ],
+    "flag fast conflicts with": [
+      "flag --fast conflicts with"
+    ],
     "flag governance plan": [
       "flag governance plan"
     ],
@@ -56468,6 +56486,9 @@
     ],
     "less doc template bloat": [
       "less doc-template bloat"
+    ],
+    "let the pi fast mode extension stand down": [
+      "let the pi fast mode extension stand down"
     ],
     "level 2 3 3 required docs": [
       "level 2 3 3+ required docs"

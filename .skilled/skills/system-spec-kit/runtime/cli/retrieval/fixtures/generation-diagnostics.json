@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7131,
-    "ok": 14541,
+    "ok": 14546,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25220,
+  "documentsScanned": 25225,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
+  "manifestHash": "fd17f0ec94293e5945589a977dfee5e1558a3154f6a08f25d2ba9ccfb68434ab",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36891,
+      "ok": 36898,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71511,6 +71511,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/040-cli-pi-worktree-extension-clash/scratch",
       "reason": "excluded directory"
     },
     {
