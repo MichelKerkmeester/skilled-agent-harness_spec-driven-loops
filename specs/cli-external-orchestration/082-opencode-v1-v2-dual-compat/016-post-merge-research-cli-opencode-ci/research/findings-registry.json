@@ -1,0 +1,211 @@
+{
+  "sessionId": "2026-10-19T19:09:07.051Z",
+  "parentSessionId": "2026-10-19T18:32:04.735Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-cli-opencode-docs-flags-and-subcommands-drift-from-opencode-1-19-3-and-2-0",
+      "inboxId": null,
+      "text": "Which cli-opencode docs, flags and subcommands drift from OpenCode 1.19.3 and 2.0.32 as installed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-do-the-doctor-battery-and-the-dual-version-ci-workflow-test-what-they-claim-and-",
+      "inboxId": null,
+      "text": "Do the doctor battery and the dual-version CI workflow test what they claim, and did CI pass on main?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-cli-opencode-docs-flags-and-subcommands-drift-from-opencode-1-19-3-and-2-0",
+      "inboxId": null,
+      "text": "Which cli-opencode docs, flags and subcommands drift from OpenCode 1.19.3 and 2.0.32 as installed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-do-the-doctor-battery-and-the-dual-version-ci-workflow-test-what-they-claim-and-",
+      "inboxId": null,
+      "text": "Do the doctor battery and the dual-version CI workflow test what they claim, and did CI pass on main?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which agent directory (`.opencode/agents/` vs `.skilled/agents/`) does the installed binary actually read — resolvable with `opencode agent list` / `opencode debug agent <slug>` in a later iteration that permits non-help read-only subcommands.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v1 1.19.3 accept `--share` functionally at runtime (hidden alias), or is the documented `--share` detached-session flow simply broken against the installed baseline? Requires a runtime probe outside this iteration's help-only constraint.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which specific battery leg failed in run 39308825187 (the JSON artifact `battery-*` from that run, or the fuller failed-log body, names it), and is the same leg failing locally for the same reason?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The v1 `plugin-load` import-harness failure detail at 6d7f6b84 (which plugin, what message) was truncated in the retrieved log tail; the `battery-v1` artifact JSON would name it if a later investigation needs it.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "\"Is the same leg failing locally for the same reason?\" stays open: resolving it needs a battery run against the local installs (a repo-test execution and a private v2 server) and/or a look at the shared service — both outside this iteration's declared check surface (`gh` read-only + battery source; shared service PID 46220 untouchable). CI evidence covers the pinned-version-on-runner case only.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Iteration-1 leftovers untouched here (declared out of A25's surface): which agent directory the installed binary reads (`opencode agent list` / `opencode debug agent` probe), and whether v1 1.19.3 accepts `--share` functionally.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-ci-both-job-s-expectations-match-installed-reality-verbatim-it-asserts-opencode-",
+      "text": "CI `both` job's expectations match installed reality verbatim: it asserts `opencode --version` == `1.19.3` and `opencode2 --version` == `opencode v2.0.32`, the exact strings the local binaries print.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-cli-reference-8-state-layout-claim-matches-this-machine-opencode-state-does-not-",
+      "text": "cli-reference §8 state-layout claim matches this machine: `~/.opencode/state` does not exist; `~/.local/share/opencode/` does.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-deep-loop-resolver-opencode-version-cjs-matches-reality-per-directory-opencode2-",
+      "text": "Deep-loop resolver `opencode-version.cjs` matches reality: per-directory `opencode2`-before-`opencode` PATH scan, `OPENCODE_BIN` override, and a `VERSION_PATTERN` that accepts both observed output shapes and maps major 1→v1, 2→v2 ([SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:24] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs:202]).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-v1-only-flags-command-appears-in-installed-1-19-3-run-help-and-not-in-v2-s-sourc",
+      "text": "v1-only flags: `--command` appears in installed 1.19.3 `run --help` and not in v2's ([SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:174]); `--variant`, `--dir`, `--port` present on v1, absent on v2 `run`; `--pure` present on v1 run, absent on v2.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-v2-surface-max-model-suffix-shape-agent-standalone-server-f-title-thinking-forma",
+      "text": "v2 surface: `#max` model-suffix shape, `--agent`, `--standalone`, `--server`, `-f`, `--title`, `--thinking`, `--format (default|json)` all present exactly as documented ([SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:239]).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-version-baselines-opencode-version-1-19-3-opencode2-version-opencode-v2-0-32-exa",
+      "text": "Version baselines: `opencode --version` → `1.19.3`; `opencode2 --version` → `opencode v2.0.32` — exactly the shapes SKILL.md §3 and install-and-versions §5 pin ([SOURCE: .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:134]).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-pass-on-main-latest-main-run-39309852507-push-2026-10-19t19-18-20z-head-793b50cc",
+      "text": "**PASS on main.** Latest main run `39309852507` (push, 2026-10-19T19:18:20Z, head `793b50cc`, \"merge(system-spec-kit): bring the rebuilt trigger index into the CI fix\"): completed **success**, all three jobs (`Battery on OpenCode v2`, `Battery on OpenCode v1`, `Both versions installed at once`) green — https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops/actions/runs/39309852507.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-both-job-v2-plugin-active-fail-the-stable-read-shows-missing-or-inactive-plugins",
+      "text": "both job: v2 **`plugin-active` FAIL — \"the stable read shows missing or inactive plugins\"** with details `system-skill-advisor.js: status failed` and `system-spec-gate.js: status failed`; `skill-visible` PASS \"57 skill entries visible\" (59 entries, 57 visible); exit 1.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-so-the-regression-window-is-2026-10-19-19-11-19-18z-and-was-closed-by-the-ci-fix",
+      "text": "So the regression window is 2026-10-19 ~19:11→19:18Z and was closed by the CI-fix merge `793b50cc`; the failing legs were v1 `plugin-load` and v2 `plugin-active` on `system-skill-advisor.js` / `system-spec-gate.js`, both of which are present and (per the later green run) now loading/active on the pinned versions.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-immediately-preceding-main-run-39308825187-2026-10-19t19-11-04z-head-6d7f6b8",
+      "text": "The immediately preceding main run `39308825187` (2026-10-19T19:11:04Z, head `6d7f6b84`) failed all three jobs; its battery artifacts (`battery-v1`, `battery-v2`, `battery-both`) exist and its logs answer the carried-forward question:",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-v1-matrix-job-plugin-discovered-pass-all-17-plugin-files-discovered-then-plugin-",
+      "text": "v1 matrix job: `plugin-discovered` PASS (\"all 17 plugin files discovered\"), then **`plugin-load` FAIL — \"the import harness could not load every plugin\"**, exit 1.",
+      "addedAtIteration": 2,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 2,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 11,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/151-post-merge-research-cli-opencode-ci/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
