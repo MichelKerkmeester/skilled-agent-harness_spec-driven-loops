@@ -24,7 +24,10 @@ function temporaryDirectory(): string {
   return mkdtempSync(join(tmpdir(), "sk-vision-"));
 }
 
-function makeContext(context: ContextMessages = []): {
+function makeContext(
+  context: ContextMessages = [],
+  get?: NonNullable<SetupContext["session"]["get"]>,
+): {
   ctx: SetupContext;
   registeredCommands: string[];
   command: () => CommandDefinition | undefined;
@@ -55,6 +58,7 @@ function makeContext(context: ContextMessages = []): {
     },
     session: {
       context: async () => context,
+      ...(get ? { get } : {}),
       prompt: async () => ({}),
       hook: async (name, callback) => {
         promptHook = callback;
@@ -369,6 +373,150 @@ describe("v2 setup prompt hook", () => {
 
     await dispose();
     expect(fake.disposed).toEqual(["command"]);
+  });
+});
+
+describe("v2 automatic image inspection", () => {
+  type AutoInspectFactory = NonNullable<
+    Parameters<typeof createSetup>[0]["createAutoInspect"]
+  >;
+  type AutoInspectInstance = NonNullable<ReturnType<AutoInspectFactory>>;
+  type EvidenceImages = Parameters<AutoInspectInstance["evidence"]>[0];
+
+  function makeFakeAutoInspect(evidence: () => Promise<string | null>): {
+    create: AutoInspectFactory;
+    calls: Array<{ images: EvidenceImages; guaranteed: boolean }>;
+    disposeCount: () => number;
+  } {
+    const calls: Array<{ images: EvidenceImages; guaranteed: boolean }> = [];
+    let disposed = 0;
+    const create: AutoInspectFactory = () => ({
+      evidence: async (images, guaranteed) => {
+        calls.push({ images, guaranteed });
+        return evidence();
+      },
+      dispose: async () => {
+        disposed += 1;
+      },
+    });
+    return { create, calls, disposeCount: () => disposed };
+  }
+
+  it("guarantees evidence for a text-only model and appends it after a blank line", async () => {
+    const fake = makeContext([], async () => ({
+      model: { id: "deepseek-v4.1-flash", providerID: "llmgateway" },
+    }));
+    const auto = makeFakeAutoInspect(async () => "VISION EVIDENCE");
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: auto.create,
+    })(fake.ctx);
+
+    const input: PromptHookInput = {
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "what is in this screenshot?",
+        files: [{ uri: "data:image/png;base64,AAAA", name: "shot.png" }],
+      },
+      delivery: "queue",
+    };
+
+    expect(fake.hook()).toBeDefined();
+    await fake.hook()?.(input);
+
+    expect(auto.calls).toHaveLength(1);
+    expect(auto.calls[0]?.guaranteed).toBe(true);
+    expect(auto.calls[0]?.images).toHaveLength(1);
+    expect(auto.calls[0]?.images[0]?.mime).toBe("image/png");
+    expect(input.prompt.text).toBe("what is in this screenshot?\n\nVISION EVIDENCE");
+
+    await dispose();
+    expect(auto.disposeCount()).toBe(1);
+  });
+
+  it("skips inspection when the prompt has no image file", async () => {
+    const fake = makeContext();
+    const auto = makeFakeAutoInspect(async () => "VISION EVIDENCE");
+    await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: auto.create,
+    })(fake.ctx);
+
+    const input: PromptHookInput = {
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "read these notes",
+        files: [{ uri: "file:///tmp/notes.txt", name: "notes.txt" }],
+      },
+      delivery: "queue",
+    };
+
+    expect(fake.hook()).toBeDefined();
+    await fake.hook()?.(input);
+
+    expect(auto.calls).toHaveLength(0);
+    expect(input.prompt.text).toBe("read these notes");
+  });
+
+  it("leaves a template prompt to the command path without inspecting", async () => {
+    const handled: string[] = [];
+    const fake = makeContext();
+    const auto = makeFakeAutoInspect(async () => "VISION EVIDENCE");
+    await createSetup({
+      handle: async (_pluginInput, input) => {
+        handled.push(input.command);
+      },
+      readTemplate: () => TEMPLATE,
+      createAutoInspect: auto.create,
+    })(fake.ctx);
+
+    const input: PromptHookInput = {
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "TEMPLATE what is this BETWEEN what is this END",
+        files: [{ uri: "data:image/png;base64,AAAA", name: "shot.png" }],
+      },
+      delivery: "queue",
+    };
+
+    await fake.hook()?.(input);
+
+    expect(handled).toEqual(["vision"]);
+    expect(auto.calls).toHaveLength(0);
+  });
+
+  it("fails open when evidence rejects", async () => {
+    const fake = makeContext([], async () => ({
+      model: { id: "deepseek-v4.1-flash", providerID: "llmgateway" },
+    }));
+    const auto = makeFakeAutoInspect(async () => {
+      throw new Error("runtime unavailable");
+    });
+    await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: auto.create,
+    })(fake.ctx);
+
+    const input: PromptHookInput = {
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "what is in this screenshot?",
+        files: [{ uri: "data:image/png;base64,AAAA", name: "shot.png" }],
+      },
+      delivery: "queue",
+    };
+
+    await expect(fake.hook()?.(input)).resolves.toBeUndefined();
+
+    expect(auto.calls).toHaveLength(1);
+    expect(input.prompt.text).toBe("what is in this screenshot?");
   });
 });
 

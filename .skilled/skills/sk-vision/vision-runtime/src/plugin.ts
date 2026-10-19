@@ -4,13 +4,15 @@
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { RuntimeClient } from './runtime/client.js';
 import { PhotonProvider } from './providers/photon.js';
 import { skVisionTools } from './opencode/tools.js';
 import { AttachmentInjector, isImagePart } from './opencode/attachments.js';
 import { handleVisionCommand } from './opencode/command.js';
+import { isTextOnlyModel } from './model-modality.js';
 import type { Plugin } from '@opencode-ai/plugin';
-import type { Part } from '@opencode-ai/sdk';
+import type { FilePart, Part } from '@opencode-ai/sdk';
 import type { SkVisionMessage } from './runtime/client.js';
 import type {
   VisionCommandPluginInput,
@@ -93,6 +95,11 @@ interface V2Registration {
   dispose(): Promise<void>;
 }
 
+interface V2AutoInspect {
+  evidence(images: readonly FilePart[], guaranteed: boolean): Promise<string | null>;
+  dispose(): Promise<void>;
+}
+
 interface V2PluginContext {
   readonly location: { readonly directory: string };
   readonly command: {
@@ -102,6 +109,9 @@ interface V2PluginContext {
   };
   readonly session: {
     context(input: { readonly sessionID: string }): Promise<readonly V2ContextMessage[]>;
+    get?(input: {
+      readonly sessionID: string;
+    }): Promise<{ readonly model?: { readonly id: string; readonly providerID: string } }>;
     prompt(input: {
       readonly sessionID: string;
       readonly text: string;
@@ -234,6 +244,7 @@ const PROMPT_FILE_MIME: Record<string, string> = {
   jpeg: 'image/jpeg',
   webp: 'image/webp',
   gif: 'image/gif',
+  bmp: 'image/bmp',
   pdf: 'application/pdf',
 };
 
@@ -245,6 +256,24 @@ function promptFileMime(file: V2PromptFile): string {
     return /\.([a-z0-9]+)$/i.exec(path)?.[1]?.toLowerCase() ?? '';
   };
   return PROMPT_FILE_MIME[extension(file.name ?? '')] ?? PROMPT_FILE_MIME[extension(file.uri)] ?? '';
+}
+
+function promptFileParts(input: V2PromptHookInput): FilePart[] {
+  return (input.prompt.files ?? []).flatMap((file, index): FilePart[] => {
+    const mime = promptFileMime(file);
+    if (!mime.startsWith('image/') && mime !== 'application/pdf') return [];
+    return [
+      {
+        id: `prt_${input.messageID}_${index}`,
+        sessionID: input.sessionID,
+        messageID: input.messageID,
+        type: 'file',
+        mime,
+        filename: file.name,
+        url: file.uri.startsWith('file://') ? fileURLToPath(file.uri) : file.uri,
+      },
+    ];
+  });
 }
 
 function createV2CommandInput(
@@ -296,18 +325,20 @@ function createV2CommandInput(
 interface VisionSetupDeps {
   handle: typeof handleVisionCommand;
   readTemplate: (directory: string) => string | null;
+  createAutoInspect?: (directory: string) => V2AutoInspect | null;
 }
 
 /**
  * On OpenCode 2 a repository's `.opencode/commands/vision.md` shadows the
  * plugin-registered command, so that command runs as a Markdown expansion and
  * the plugin's own `execute` never runs. The `prompt` hook sees the expanded
- * text before it reaches the model and is the remaining place to attach the
- * evidence the template promises.
+ * text before it reaches the model, attaches the evidence the template promises,
+ * and also carries automatic image inspection.
  */
 export function createSetup({
   handle,
   readTemplate,
+  createAutoInspect,
 }: VisionSetupDeps): (ctx: V2PluginContext) => Promise<() => Promise<void>> {
   return async (ctx) => {
     const registration = await ctx.command.transform((editor) => {
@@ -342,27 +373,51 @@ export function createSetup({
     });
 
     const template = readTemplate(ctx.location.directory);
-    if (template === null) return () => registration.dispose();
+    const auto = createAutoInspect?.(ctx.location.directory) ?? null;
+    if (template === null && auto === null) return () => registration.dispose();
 
     const promptRegistration = await ctx.session.hook('prompt', async (input) => {
       try {
-        const question = matchVisionTemplate(template, input.prompt.text);
-        if (question === null) return;
+        if (template !== null) {
+          const question = matchVisionTemplate(template, input.prompt.text);
+          if (question !== null) {
+            const output = { parts: [] as Part[] };
+            await handle(
+              createV2CommandInput(ctx, input.prompt.files ?? []),
+              { command: 'vision', sessionID: input.sessionID, arguments: question },
+              output,
+            );
 
-        const output = { parts: [] as Part[] };
-        await handle(
-          createV2CommandInput(ctx, input.prompt.files ?? []),
-          { command: 'vision', sessionID: input.sessionID, arguments: question },
-          output,
+            const commandText = output.parts
+              .map((part) => (part.type === 'text' ? part.text : ''))
+              .filter((text) => text.length > 0)
+              .join('\n');
+            input.prompt.text = [input.prompt.text, commandText]
+              .filter((text) => text.length > 0)
+              .join('\n\n');
+            return;
+          }
+        }
+
+        if (auto === null) return;
+        const images = promptFileParts(input);
+        if (images.length === 0) return;
+
+        let model: { readonly id: string; readonly providerID: string } | undefined;
+        try {
+          model = (await ctx.session.get?.({ sessionID: input.sessionID }))?.model;
+        } catch {
+          model = undefined;
+        }
+        const guaranteed = isTextOnlyModel(
+          model ? { providerID: model.providerID, modelID: model.id } : undefined,
         );
-
-        const commandText = output.parts
-          .map((part) => (part.type === 'text' ? part.text : ''))
-          .filter((text) => text.length > 0)
-          .join('\n');
-        input.prompt.text = [input.prompt.text, commandText]
-          .filter((text) => text.length > 0)
-          .join('\n\n');
+        const evidence = await auto.evidence(images, guaranteed);
+        if (evidence !== null) {
+          input.prompt.text = [input.prompt.text, evidence]
+            .filter((text) => text.length > 0)
+            .join('\n\n');
+        }
       } catch (error: unknown) {
         // Fail open: a broken analysis must never block the command turn.
         if (process.env.SK_VISION_DEBUG === '1') {
@@ -375,10 +430,26 @@ export function createSetup({
     return async () => {
       await promptRegistration.dispose();
       await registration.dispose();
+      await auto?.dispose();
     };
   };
 }
 
-const setup = createSetup({ handle: handleVisionCommand, readTemplate: readVisionTemplate });
+function createDefaultAutoInspect(directory: string): V2AutoInspect | null {
+  if (process.env.SK_VISION_AUTOINSPECT !== '1') return null;
+  const client = new RuntimeClient();
+  const provider = new PhotonProvider(client, { projectDir: directory });
+  const injector = new AttachmentInjector(() => provider);
+  return {
+    evidence: (images, guaranteed) => injector.evidenceText(images, guaranteed),
+    dispose: () => client.close(),
+  };
+}
+
+const setup = createSetup({
+  handle: handleVisionCommand,
+  readTemplate: readVisionTemplate,
+  createAutoInspect: createDefaultAutoInspect,
+});
 
 export default { id: 'sk-vision', server, setup };
