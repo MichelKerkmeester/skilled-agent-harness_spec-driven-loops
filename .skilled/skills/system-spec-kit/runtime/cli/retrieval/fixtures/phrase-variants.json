@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ba26dd18f146d5e5de69e02426f5bfe56e0a0ce13e0efa081af7337946cd621",
+  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10115,6 +10115,24 @@
     ],
     "agents cleanup tasks": [
       "agents cleanup tasks"
+    ],
+    "agents commands config": [
+      "agents commands config"
+    ],
+    "agents commands config acceptance criteria": [
+      "agents commands config acceptance criteria"
+    ],
+    "agents commands config goal": [
+      "agents commands config goal"
+    ],
+    "agents commands config implementation summary": [
+      "agents commands config implementation summary"
+    ],
+    "agents commands config plan": [
+      "agents commands config plan"
+    ],
+    "agents commands config tasks": [
+      "agents commands config tasks"
     ],
     "agents md": [
       "agents.md"
@@ -20358,6 +20376,9 @@
     "cli opencode 1 4 9 0": [
       "cli-opencode 1.4.9.0"
     ],
+    "cli opencode 1 5 0 0": [
+      "cli-opencode 1.5.0.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -20384,6 +20405,24 @@
     ],
     "cli opencode deepseek deferred dispatch": [
       "cli-opencode deepseek deferred dispatch"
+    ],
+    "cli opencode dual dispatch": [
+      "cli opencode dual dispatch"
+    ],
+    "cli opencode dual dispatch acceptance criteria": [
+      "cli opencode dual dispatch acceptance criteria"
+    ],
+    "cli opencode dual dispatch goal": [
+      "cli opencode dual dispatch goal"
+    ],
+    "cli opencode dual dispatch implementation summary": [
+      "cli opencode dual dispatch implementation summary"
+    ],
+    "cli opencode dual dispatch plan": [
+      "cli opencode dual dispatch plan"
+    ],
+    "cli opencode dual dispatch tasks": [
+      "cli opencode dual dispatch tasks"
     ],
     "cli opencode frontmatter alignment": [
       "cli-opencode frontmatter alignment"
@@ -20513,6 +20552,9 @@
     ],
     "cli opencode v1 4 9 0": [
       "cli-opencode v1.4.9.0"
+    ],
+    "cli opencode v1 5 0 0": [
+      "cli-opencode v1.5.0.0"
     ],
     "cli opencode version detection": [
       "cli-opencode version detection"
@@ -36670,6 +36712,9 @@
     "dispatch shapes hermes entry": [
       "DISPATCH_SHAPES hermes entry"
     ],
+    "dispatch to opencode 1 or 2": [
+      "dispatch to opencode 1 or 2"
+    ],
     "dispatch tokenizer plan": [
       "dispatch tokenizer plan"
     ],
@@ -37251,6 +37296,24 @@
     ],
     "doctor alignment plan": [
       "doctor alignment plan"
+    ],
+    "doctor and ci": [
+      "doctor and ci"
+    ],
+    "doctor and ci acceptance criteria": [
+      "doctor and ci acceptance criteria"
+    ],
+    "doctor and ci goal": [
+      "doctor and ci goal"
+    ],
+    "doctor and ci implementation summary": [
+      "doctor and ci implementation summary"
+    ],
+    "doctor and ci plan": [
+      "doctor and ci plan"
+    ],
+    "doctor and ci tasks": [
+      "doctor and ci tasks"
     ],
     "doctor asset health checks": [
       "doctor asset health checks"
@@ -38537,6 +38600,27 @@
     ],
     "documentation quality review": [
       "documentation quality review"
+    ],
+    "documentation sweep": [
+      "documentation sweep"
+    ],
+    "documentation sweep acceptance criteria": [
+      "documentation sweep acceptance criteria"
+    ],
+    "documentation sweep doc inventory": [
+      "documentation sweep doc inventory"
+    ],
+    "documentation sweep goal": [
+      "documentation sweep goal"
+    ],
+    "documentation sweep implementation summary": [
+      "documentation sweep implementation summary"
+    ],
+    "documentation sweep plan": [
+      "documentation sweep plan"
+    ],
+    "documentation sweep tasks": [
+      "documentation sweep tasks"
     ],
     "documentation template conformance": [
       "documentation template conformance"
@@ -50091,6 +50175,24 @@
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
     ],
+    "hard plugins": [
+      "hard plugins"
+    ],
+    "hard plugins acceptance criteria": [
+      "hard plugins acceptance criteria"
+    ],
+    "hard plugins goal": [
+      "hard plugins goal"
+    ],
+    "hard plugins implementation summary": [
+      "hard plugins implementation summary"
+    ],
+    "hard plugins plan": [
+      "hard plugins plan"
+    ],
+    "hard plugins tasks": [
+      "hard plugins tasks"
+    ],
     "hard rule reader repoint": [
       "hard rule reader repoint"
     ],
@@ -53275,6 +53377,24 @@
     "install git hooks": [
       "install git hooks"
     ],
+    "install guidance and setup helper": [
+      "install guidance and setup helper"
+    ],
+    "install guidance and setup helper acceptance criteria": [
+      "install guidance and setup helper acceptance criteria"
+    ],
+    "install guidance and setup helper goal": [
+      "install guidance and setup helper goal"
+    ],
+    "install guidance and setup helper implementation summary": [
+      "install guidance and setup helper implementation summary"
+    ],
+    "install guidance and setup helper plan": [
+      "install guidance and setup helper plan"
+    ],
+    "install guidance and setup helper tasks": [
+      "install guidance and setup helper tasks"
+    ],
     "install guide cocoindex deletion": [
       "install guide cocoindex deletion"
     ],
@@ -53319,6 +53439,9 @@
     ],
     "install official orca skill": [
       "install official orca skill"
+    ],
+    "install opencode v1 and v2": [
+      "install opencode v1 and v2"
     ],
     "install plugin into vault manually": [
       "install plugin into vault manually"
@@ -67465,6 +67588,9 @@
     "opencode": [
       "opencode"
     ],
+    "opencode 1 and opencode 2 lineage argv": [
+      "OpenCode 1 and OpenCode 2 lineage argv"
+    ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
     ],
@@ -67570,6 +67696,9 @@
     "opencode cross repo dispatch": [
       "opencode cross-repo dispatch"
     ],
+    "opencode db isolation": [
+      "opencode db isolation"
+    ],
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
     ],
@@ -67581,6 +67710,21 @@
     ],
     "opencode dispatch framework precedence": [
       "opencode dispatch framework precedence"
+    ],
+    "opencode dual compat doc findings": [
+      "opencode dual compat doc findings"
+    ],
+    "opencode dual compat findings": [
+      "opencode dual compat findings"
+    ],
+    "opencode dual compat proof": [
+      "opencode dual compat proof"
+    ],
+    "opencode dual compat review findings": [
+      "opencode dual compat review findings"
+    ],
+    "opencode dual version dispatch": [
+      "OpenCode Dual-Version Dispatch"
     ],
     "opencode examples model routes": [
       "opencode examples model routes"
@@ -67654,6 +67798,9 @@
     ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
+    ],
+    "opencode install": [
+      "opencode install"
     ],
     "opencode integration patterns": [
       "opencode integration patterns"
@@ -67898,6 +68045,9 @@
     "opencode shell style guide": [
       "opencode shell style guide"
     ],
+    "opencode side by side": [
+      "opencode side by side"
+    ],
     "opencode side by side install": [
       "opencode side by side install"
     ],
@@ -67979,11 +68129,17 @@
     "opencode universal patterns": [
       "opencode universal patterns"
     ],
+    "opencode upgrade major": [
+      "opencode upgrade major"
+    ],
     "opencode v1 v2 dual compat research": [
       "opencode v1 v2 dual compat research"
     ],
     "opencode v1 v2 dual compat research spec": [
       "opencode v1 v2 dual compat research spec"
+    ],
+    "opencode v1 v2 open questions": [
+      "opencode v1 v2 open questions"
     ],
     "opencode v2 plugin migration": [
       "opencode v2 plugin migration"
@@ -67993,6 +68149,9 @@
     ],
     "opencode verification reality": [
       "opencode verification reality"
+    ],
+    "opencode version detection": [
+      "opencode version detection"
     ],
     "opencode version drift": [
       "opencode version drift"
@@ -68011,6 +68170,9 @@
     ],
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
+    ],
+    "opencode2 launcher": [
+      "opencode2 launcher"
     ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
@@ -71272,6 +71434,12 @@
     "phase 1 typo proof parsers": [
       "phase 1 typo proof parsers"
     ],
+    "phase 1 unknowns and baseline": [
+      "phase 1 unknowns and baseline"
+    ],
+    "phase 10 documentation sweep": [
+      "phase 10 documentation sweep"
+    ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
@@ -71320,6 +71488,9 @@
     "phase 11 template phrase census and cleanup": [
       "phase 11 template phrase census and cleanup"
     ],
+    "phase 11 two version proof and closeout": [
+      "phase 11 two version proof and closeout"
+    ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
     ],
@@ -71341,6 +71512,9 @@
     "phase 12 review findings tasks": [
       "phase 12 review findings tasks"
     ],
+    "phase 12 sk vision v2 prompt hook": [
+      "phase 12 sk vision v2 prompt hook"
+    ],
     "phase 12 template phrase cleanup round two": [
       "phase 12 template phrase cleanup round two"
     ],
@@ -71361,6 +71535,9 @@
     ],
     "phase 13 root cause and ux research": [
       "phase 13 root cause and ux research"
+    ],
+    "phase 13 sk vision v2 tools and loose": [
+      "phase 13 sk vision v2 tools and loose"
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
@@ -71521,6 +71698,9 @@
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
     ],
+    "phase 2 pins imports dual export": [
+      "phase 2 pins imports dual export"
+    ],
     "phase 2 playbook path repair": [
       "phase 2 playbook path repair"
     ],
@@ -71671,6 +71851,9 @@
     "phase 3 goal exemplars": [
       "phase 3 goal exemplars"
     ],
+    "phase 3 hard plugins": [
+      "phase 3 hard plugins"
+    ],
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
@@ -71709,6 +71892,9 @@
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
+    ],
+    "phase 4 agents commands config": [
+      "phase 4 agents commands config"
     ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
@@ -71839,8 +72025,14 @@
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
     ],
+    "phase 5 version aware guards": [
+      "phase 5 version aware guards"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
+    ],
+    "phase 6 cli opencode dual dispatch": [
+      "phase 6 cli opencode dual dispatch"
     ],
     "phase 6 closeout deep review": [
       "phase 6 closeout deep review"
@@ -71923,6 +72115,9 @@
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
     ],
+    "phase 7 install guidance and setup helper": [
+      "phase 7 install guidance and setup helper"
+    ],
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
     ],
@@ -71958,6 +72153,9 @@
     ],
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"
+    ],
+    "phase 8 doctor and ci": [
+      "phase 8 doctor and ci"
     ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
@@ -72009,6 +72207,9 @@
     ],
     "phase 9 second review remediation": [
       "phase 9 second review remediation"
+    ],
+    "phase 9 sk code opencode alignment": [
+      "phase 9 sk code opencode alignment"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -73515,6 +73716,24 @@
     ],
     "pinned sample verdicts identical": [
       "pinned sample verdicts identical"
+    ],
+    "pins imports dual export": [
+      "pins imports dual export"
+    ],
+    "pins imports dual export acceptance criteria": [
+      "pins imports dual export acceptance criteria"
+    ],
+    "pins imports dual export goal": [
+      "pins imports dual export goal"
+    ],
+    "pins imports dual export implementation summary": [
+      "pins imports dual export implementation summary"
+    ],
+    "pins imports dual export plan": [
+      "pins imports dual export plan"
+    ],
+    "pins imports dual export tasks": [
+      "pins imports dual export tasks"
     ],
     "pipe bdg output to jq": [
       "pipe bdg output to jq"
@@ -82280,6 +82499,9 @@
     "resolvemode fix fallback": [
       "resolveMode fix fallback"
     ],
+    "resolveopencodebinary version probe": [
+      "resolveOpencodeBinary version probe"
+    ],
     "resolveprovider cloud fallback": [
       "resolveProvider cloud fallback"
     ],
@@ -90030,6 +90252,9 @@
     "sibling shape parity check": [
       "sibling shape parity check"
     ],
+    "side by side opencode installs": [
+      "side-by-side opencode installs"
+    ],
     "sidecar 110 findings synthesis": [
       "sidecar 110 findings synthesis"
     ],
@@ -91157,7 +91382,26 @@
       "sk-code onboard implement tasks"
     ],
     "sk code opencode alignment": [
+      "sk code opencode alignment",
       "sk-code opencode alignment"
+    ],
+    "sk code opencode alignment acceptance criteria": [
+      "sk code opencode alignment acceptance criteria"
+    ],
+    "sk code opencode alignment findings": [
+      "sk code opencode alignment findings"
+    ],
+    "sk code opencode alignment goal": [
+      "sk code opencode alignment goal"
+    ],
+    "sk code opencode alignment implementation summary": [
+      "sk code opencode alignment implementation summary"
+    ],
+    "sk code opencode alignment plan": [
+      "sk code opencode alignment plan"
+    ],
+    "sk code opencode alignment tasks": [
+      "sk code opencode alignment tasks"
     ],
     "sk code opencode rename impact": [
       "sk-code-opencode rename impact"
@@ -94593,6 +94837,39 @@
     ],
     "sk vision v0 3 6 0": [
       "sk-vision v0.3.6.0"
+    ],
+    "sk vision v2 prompt hook": [
+      "sk vision v2 prompt hook"
+    ],
+    "sk vision v2 prompt hook acceptance criteria": [
+      "sk vision v2 prompt hook acceptance criteria"
+    ],
+    "sk vision v2 prompt hook goal": [
+      "sk vision v2 prompt hook goal"
+    ],
+    "sk vision v2 prompt hook implementation summary": [
+      "sk vision v2 prompt hook implementation summary"
+    ],
+    "sk vision v2 prompt hook plan": [
+      "sk vision v2 prompt hook plan"
+    ],
+    "sk vision v2 prompt hook tasks": [
+      "sk vision v2 prompt hook tasks"
+    ],
+    "sk vision v2 tools and loose ends": [
+      "sk vision v2 tools and loose ends"
+    ],
+    "sk vision v2 tools and loose ends acceptance criteria": [
+      "sk vision v2 tools and loose ends acceptance criteria"
+    ],
+    "sk vision v2 tools and loose ends implementation summary": [
+      "sk vision v2 tools and loose ends implementation summary"
+    ],
+    "sk vision v2 tools and loose ends plan": [
+      "sk vision v2 tools and loose ends plan"
+    ],
+    "sk vision v2 tools and loose ends tasks": [
+      "sk vision v2 tools and loose ends tasks"
     ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
@@ -106476,6 +106753,27 @@
     "two variable comparison": [
       "two variable comparison"
     ],
+    "two version proof": [
+      "two version proof"
+    ],
+    "two version proof and closeout": [
+      "two version proof and closeout"
+    ],
+    "two version proof and closeout acceptance criteria": [
+      "two version proof and closeout acceptance criteria"
+    ],
+    "two version proof and closeout goal": [
+      "two version proof and closeout goal"
+    ],
+    "two version proof and closeout implementation summary": [
+      "two version proof and closeout implementation summary"
+    ],
+    "two version proof and closeout plan": [
+      "two version proof and closeout plan"
+    ],
+    "two version proof and closeout tasks": [
+      "two version proof and closeout tasks"
+    ],
     "type annotation patterns": [
       "type annotation patterns"
     ],
@@ -106952,6 +107250,24 @@
     ],
     "unknown surface fallback": [
       "unknown surface fallback"
+    ],
+    "unknowns and baseline": [
+      "unknowns and baseline"
+    ],
+    "unknowns and baseline acceptance criteria": [
+      "unknowns and baseline acceptance criteria"
+    ],
+    "unknowns and baseline goal": [
+      "unknowns and baseline goal"
+    ],
+    "unknowns and baseline implementation summary": [
+      "unknowns and baseline implementation summary"
+    ],
+    "unknowns and baseline plan": [
+      "unknowns and baseline plan"
+    ],
+    "unknowns and baseline tasks": [
+      "unknowns and baseline tasks"
     ],
     "unlink tasks": [
       "unlink tasks"
@@ -108990,6 +109306,24 @@
     ],
     "version authority tasks": [
       "version authority tasks"
+    ],
+    "version aware guards": [
+      "version aware guards"
+    ],
+    "version aware guards acceptance criteria": [
+      "version aware guards acceptance criteria"
+    ],
+    "version aware guards goal": [
+      "version aware guards goal"
+    ],
+    "version aware guards implementation summary": [
+      "version aware guards implementation summary"
+    ],
+    "version aware guards plan": [
+      "version aware guards plan"
+    ],
+    "version aware guards tasks": [
+      "version aware guards tasks"
     ],
     "version bump decision rules": [
       "version bump decision rules"

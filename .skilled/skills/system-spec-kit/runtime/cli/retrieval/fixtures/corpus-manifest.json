@@ -1,5 +1,5 @@
 {
-  "corpusHash": "404460c69daa5c583347743affb4134633c36a2d03387a58a8c79ad58583b61d",
+  "corpusHash": "6d90919814456c46e3647ffc568ebf456cf23b5ee96e93831fb5be0befe514f7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25119,
+  "includedPathCount": 25220,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1450,6 +1450,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.7.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.8.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.9.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-research-agent-iterations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/deep-review-agent-audit.md",
@@ -1510,6 +1511,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
@@ -1738,6 +1740,7 @@
     ".skilled/skills/cli-external-orchestration/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md",
     ".skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md",
+    ".skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/budget-rejection.md",
@@ -8749,6 +8752,88 @@
     "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/plan.md",
     "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/spec.md",
     "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/findings.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/findings.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/doc-inventory.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/proof.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/goal.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/iterations/iteration-001.md",
@@ -8794,6 +8879,22 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/research.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/resource-map.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review-archive/20261019T064206Z/deep-review-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review-archive/20261019T064206Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/deep-review-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/deep-review-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/iterations/iteration-003.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/iterations/iteration-004.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/iterations/iteration-005.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/prompts/iteration-3.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/prompts/iteration-4.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/prompts/iteration-5.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/review/review-report.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -25150,7 +25251,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5ba26dd18f146d5e5de69e02426f5bfe56e0a0ce13e0efa081af7337946cd621",
+  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26110,6 +26211,58 @@
     },
     {
       "path": "specs/cli-external-orchestration/081-claude-5-5-roster-and-effort-levels/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/scratch",
       "reason": "excluded directory"
     },
     {
