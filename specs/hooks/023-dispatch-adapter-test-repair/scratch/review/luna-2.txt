@@ -1,0 +1,7 @@
+**FAIL**
+
+- **P2 —** [dispatch/README.md:89](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/hooks/dispatch/README.md:89) still labels `dispatch-audit.test.mjs` as `npx vitest run`. That stale label can send readers to the wrong Vitest; the validation commands themselves now use the pinned binary.
+
+The round-1 `node --test` finding is closed: I reproduced the documented Codex `config` error. Vitest reports version 5.0.3. Sandbox `EPERM` prevented test collection, so I could not verify the reported pass counts or the no-config behavior. The imports and hooks alias support the README’s explanation, but an unrestricted run would confirm it.
+
+SKILL ROUTING: general approach; advisor candidates were ambiguous.

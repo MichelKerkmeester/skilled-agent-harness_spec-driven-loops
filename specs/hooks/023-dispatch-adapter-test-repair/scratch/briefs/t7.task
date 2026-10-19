@@ -1,0 +1,14 @@
+ROLE: documentation editor. Replace one line in one file.
+
+FILE: .skilled/hooks/dispatch/README.md, line 89, inside the ```text tree of section "## 4. DIRECTORY TREE".
+
+Replace this exact line:
+|   `-- dispatch-audit.test.mjs        # npx vitest run
+with this exact line:
+|   `-- dispatch-audit.test.mjs        # vitest, the pinned .skilled binary
+
+Change nothing else.
+
+VERIFY: `grep -c "npx vitest" .skilled/hooks/dispatch/README.md` returns 0.
+
+RETURN: the grep output.

@@ -1,0 +1,5 @@
+FAIL
+
+- **P2, `.skilled/hooks/dispatch/README.md:154`:** The added sentence blames the missing root `package.json` for using the pinned Vitest binary. The local evidence shows Vitest is installed under `.skilled/node_modules`; the missing manifest alone does not establish `npx` resolution. Reword the explanation around the nested install.
+
+The commands and suite labels match the config and imports. `git diff --check` exited 0. I did not run Vitest; the orchestrator’s unsandboxed rerun is pending. No files changed.

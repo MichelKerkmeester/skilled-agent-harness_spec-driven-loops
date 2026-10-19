@@ -1,0 +1,48 @@
+✔ reads the real hard rules from the sidecar beside each SKILL.md (2.386083ms)
+✔ CI GUARD: every declared check id maps to a known check (a typo fails loudly) (7.716791ms)
+✔ stdin-redirect-required covers every headless CLI shape, not just opencode run (0.689959ms)
+✔ availability checks pass for a resolvable binary and never refuse without PATH (0.160833ms)
+✔ AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof) (0.858458ms)
+✔ other checks discriminate correctly (0.453208ms)
+✔ appliesTo evaluates only rules for the resolved version (0.151667ms)
+✔ rules without appliesTo apply to both versions (0.07625ms)
+✔ a rule without appliesTo stays blocking when the version is unknown (0.091584ms)
+✔ unknown evaluation preserves shared severity and warns version-specific rules (0.094125ms)
+✔ v2 slash-command fixture warns with session.command and never blocks (0.27825ms)
+✔ evaluate resolves quoted, wrapped, and path-qualified OpenCode executors (255.289959ms)
+✔ evaluate probes one fake binary once across two evaluations (139.051958ms)
+✔ a path-qualified executable outside PATH stays unknown and never runs (7.850292ms)
+✔ a path-qualified executable on PATH resolves its version (37.080625ms)
+✔ a symlinked path-qualified executable spawns the trusted path, not the symlink (132.338334ms)
+✔ OPENCODE_BIN makes a path-qualified executable trusted (32.6125ms)
+✔ a path-qualified missing file stays unknown (1.062083ms)
+✔ the async resolver times out a probe that never exits (3007.027208ms)
+✔ the shared version corpus pins the parser to each expected family (0.379916ms)
+✔ SUPPORTED_FAMILIES is the frozen list of supported families (0.122292ms)
+✔ opencode2 run is evaluated by the hard-rule engine (0.120084ms)
+✔ every runtime with a preflight adapter has it registered (3.488375ms)
+✔ pi dispatches need --offline and a provider-qualified model (0.640666ms)
+✔ predicate bypasses: equals-form flags and unquoted slash prompts are caught (0.747ms)
+✔ hermes headless shapes need stdin handled: --query-file counts, a bare -q does not (0.121917ms)
+✔ hermes rules discriminate on the flags the packet contract pins (1.646333ms)
+✔ the negative-control marker only counts when the guard process allows it (0.315083ms)
+✔ fail-open: a check that throws never produces a violation (0.117042ms)
+✔ readHardRules reads the sibling sidecar and fails open on malformed input (55.619917ms)
+✔ severity maps error and block to a blocking violation; anything else advises (0.328417ms)
+✔ every runtime dispatch shape resolves to its skill (mutation-proof) (1.653ms)
+✔ a dispatch is resolved from the command, not from text that merely contains one (2.304833ms)
+✔ ENFORCEMENT GUARD: every check names a command it accepts and one it refuses (1.454667ms)
+✔ a jev dispatch is governed from the command, and mentions of it are not (0.537625ms)
+✔ ENFORCEMENT GUARD: every cli packet declares at least one rule (1.196125ms)
+✔ ENFORCEMENT GUARD: every appliesTo is a non-empty supported-version list (1.297792ms)
+✔ ENFORCEMENT GUARD: declared checks and implemented checks are a bijection (0.703875ms)
+[mcp-route-guard] 16/16 assertions passed
+✔ .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs (201.799125ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3762.712458

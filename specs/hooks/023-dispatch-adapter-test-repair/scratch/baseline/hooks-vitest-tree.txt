@@ -1,0 +1,10 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair
+
+{"timestamp":"2026-10-19T11:31:31.170Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+
+ Test Files  5 passed (5)
+      Tests  177 passed (177)
+   Start at  13:31:30
+   Duration  1.33s (tests 81%, transform 11%, import 7%, worker 1%)
+

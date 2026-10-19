@@ -1,0 +1,17 @@
+ROLE: documentation editor. Replace one sentence in one file.
+
+FILE: .skilled/hooks/dispatch/README.md, section "## 8. VALIDATION".
+
+The sentence below is inaccurate: a vitest run without `--config` loads the codex and directive-dedup files fine, and only the Pi preflight file fails there.
+
+Replace this exact line:
+Neither `node --test` nor a vitest run without `--config` can load these three files: the first fails on the missing vitest runner, the second on the Pi adapters' `hook-flags.mjs` import.
+
+with this exact line:
+`node --test` loads none of these files, because they are written for the vitest runner. A vitest run without `--config` loads two of them, but not `dispatch-preflight-lint.test.ts`, which fails on the Pi adapter's `hook-flags.mjs` import.
+
+Change nothing else.
+
+VERIFY: `grep -n "node --test. loads none" .skilled/hooks/dispatch/README.md` returns one line, and `grep -c "Neither \`node --test\`" .skilled/hooks/dispatch/README.md` returns 0.
+
+RETURN: both grep outputs.

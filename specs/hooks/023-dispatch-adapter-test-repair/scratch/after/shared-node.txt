@@ -1,0 +1,53 @@
+✔ never-closed stdin resolves at the deadline with the bytes read, and the process exits (3048.238125ms)
+✔ input that ends before the deadline comes back whole (37.486083ms)
+✔ enabled by default when no flag is set (0.504791ms)
+✔ master switch disables every concern (0.069042ms)
+✔ canonical per-concern switch disables only that concern (0.05225ms)
+✔ concernFlag derives the canonical env name (0.042334ms)
+✔ legacy aliases still disable their concern (0.120417ms)
+✔ the preflight guard has its own switch, so silencing the audit log leaves it on (0.1155ms)
+✔ truthy parsing is case/space-insensitive and strict about falsey (0.089458ms)
+✔ .mjs and .ts facades re-export identical behavior (23.350917ms)
+✔ config file disables a concern (master, canonical, and aliases) (0.128209ms)
+✔ environment overrides the config file both ways (0.102792ms)
+✔ explicit env without a config arg ignores the config file (test isolation) (0.0555ms)
+✔ loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed (5.974917ms)
+✔ a missing config file is fail-open (empty object, no throw) (0.513292ms)
+✔ live file path resolves via HOOK_FLAGS_CONFIG and env still wins (6.968375ms)
+✔ the shell mirror reads the config file of whichever source root the checkout carries (86.153916ms)
+✔ isFlagOn reads a named switch with the kill-switch precedence (0.147375ms)
+✔ hook_flag_on reads a named switch from the environment first, then the config file (65.17075ms)
+✔ a '#' after a space or tab ends a value in every reader of the file (219.132792ms)
+✔ a byte order mark before the first line hides nothing from any reader (143.7675ms)
+✔ every reader trims only a value's edges and lets any set environment value answer (880.00025ms)
+✔ an example line uncommented as-is, trailing comment and all, disables its hook (48.101834ms)
+▶ every ESM hook exits 0 at the stdin deadline when its host never closes stdin
+  ✔ classifier-injection-screen/claude (0.639792ms)
+  ✔ classifier-injection-screen/devin (0.095833ms)
+  ✔ dispatch/claude preflight (0.044333ms)
+  ✔ dispatch/codex preflight (0.104625ms)
+  ✔ dispatch/cursor preflight (0.080958ms)
+  ✔ dispatch/devin preflight (0.038958ms)
+  ✔ dispatch/claude audit (0.026541ms)
+  ✔ dispatch/codex audit (0.051542ms)
+  ✔ dispatch/devin audit (0.0525ms)
+  ✔ goal/cursor (0.0495ms)
+  ✔ goal/devin (0.024083ms)
+  ✔ mcp-route-guard/cursor (0.020041ms)
+  ✔ task-dispatch/cursor (0.046417ms)
+  ✔ task-dispatch/claude fable (0.045375ms)
+  ✔ git-preflight/shared (0.086833ms)
+  ✔ git-message-gate/shared (0.053167ms)
+  ✔ sk-vision/devin (0.028167ms)
+✔ every ESM hook exits 0 at the stdin deadline when its host never closes stdin (3067.613458ms)
+✔ the Claude and Devin preflight lints still flag a dispatch sent on a normal payload (729.341625ms)
+✔ the Claude and Devin dispatch audits still record a dispatch sent on a normal payload (86.227875ms)
+✔ the Cursor preflight, MCP route and Task guards still answer a normal payload (536.85175ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4469.48375

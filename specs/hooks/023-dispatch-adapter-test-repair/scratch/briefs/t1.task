@@ -1,0 +1,22 @@
+ROLE: documentation editor. One change in one file.
+
+FILE: .skilled/hooks/dispatch/README.md, section "## 8. VALIDATION".
+
+CONTEXT: The section lists two suites. Three more suites in this concern are vitest files that only load under the hooks vitest config, because the Pi adapters import hook-flags by a path written for their `.pi/extensions/` symlink and the config's alias maps it to the real tree. Run under `node --test`, the codex file fails with "Cannot read properties of undefined (reading 'config')". Run with vitest but without the config, the Pi file fails with "Cannot find module '../../.skilled/hooks/shared/hook-flags.mjs'".
+
+ACTION: Directly after the existing first bash block (the one ending with the dispatch-audit vitest line) and before the line "Expected result: all tests pass.", insert a second bash block that is EXACTLY:
+
+```bash
+# The adapter suites are vitest files that load only under the hooks config, whose alias resolves the Pi adapters' link-relative imports
+npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
+```
+
+Then directly after that block, before "Expected result: all tests pass.", add this one paragraph (a blank line before and after):
+
+Neither `node --test` nor a vitest run without `--config` can load these three files: the first fails on the missing vitest runner, the second on the Pi adapters' `hook-flags.mjs` import.
+
+Change nothing else.
+
+VERIFY: run `sed -n '/^## 8. VALIDATION/,/^## 9/p' .skilled/hooks/dispatch/README.md` and then run the inserted npx command from the worktree root; it must report 3 test files passed.
+
+RETURN: the sed output and the vitest summary lines (Test Files / Tests).

@@ -1,0 +1,9 @@
+pi-preflight exit=0  Test Files  1 passed (1)       Tests  38 passed (38) 
+codex-shell exit=0  Test Files  1 passed (1)       Tests  5 passed (5) 
+pi-dedup exit=0  Test Files  1 passed (1)       Tests  15 passed (15) 
+hooks-vitest-tree exit=0  Test Files  5 passed (5)       Tests  177 passed (177) 
+guard-vitest exit=0  Test Files  1 passed (1)       Tests  114 passed (114) 
+guard-node exit=0 ℹ pass 39 ℹ fail 0 
+shared-node exit=0 ℹ pass 44 ℹ fail 0 
+wrong-runner-codex exit=1 ℹ pass 0 ℹ fail 1 
+wrong-runner-pi exit=1  Test Files  1 failed (1) 

@@ -1,0 +1,9 @@
+
+ RUN  v5.0.5 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  13:31:28
+   Duration  199ms (transform 44%, import 41%, tests 7%, worker 7%)
+

@@ -1,0 +1,30 @@
+file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2727
+		validateTags(runner.config, suiteTags);
+		                    ^
+
+TypeError: Cannot read properties of undefined (reading 'config')
+    at initSuite (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2727:23)
+    at createSuiteCollector (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2607:2)
+    at Object.suiteFn (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:2811:10)
+    at chain (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/node_modules/vitest/dist/chunks/run.BTlFXlnv.js:1859:14)
+    at file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:38:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.8.2
+✖ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs (70.864167ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.252084
+
+✖ failing tests:
+
+test at .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:1:1
+✖ .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs (70.864167ms)
+  'test failed'

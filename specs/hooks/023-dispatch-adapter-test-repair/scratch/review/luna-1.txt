@@ -1,0 +1,6 @@
+FAIL
+
+- **P1 — `.skilled/hooks/README.md:206` and `.skilled/hooks/dispatch/README.md:151`:** The documented root-level `npx vitest` command tried the npm registry and failed with `ENOTFOUND`. The repo has no root `package.json`; Vitest is installed under `.skilled/node_modules`. The Pi import itself appears intentional: [.pi/extensions/README.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.pi/extensions/README.md:16) defines symlink-relative imports, and the hooks Vitest config maps them back to the real tree.
+- **P2 — `.skilled/hooks/dispatch/README.md:154`:** “`node --test` loads none of these files” is inaccurate. I reproduced the Codex failure: Node loaded the file, then Vitest threw `Cannot read properties of undefined (reading 'config')`.
+
+The Pi run without the hooks config and the configured pass command could not be verified: Vitest hit `EPERM` creating temporary directories/config files. A direct Node import of the real Pi adapter failed on the expected link-relative path. Thus the runner/config root-cause explanation is supported, but the reported passes remain unconfirmed here. No files changed during this review.

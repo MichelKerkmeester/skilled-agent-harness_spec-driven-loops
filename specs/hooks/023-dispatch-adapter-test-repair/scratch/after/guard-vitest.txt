@@ -1,0 +1,9 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/hooks/dispatch/lib
+
+
+ Test Files  1 passed (1)
+      Tests  114 passed (114)
+   Start at  13:53:06
+   Duration  293ms (tests 59%, transform 25%, import 15%, worker 1%)
+

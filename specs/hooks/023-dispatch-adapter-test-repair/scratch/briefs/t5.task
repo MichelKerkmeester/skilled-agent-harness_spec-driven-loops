@@ -1,0 +1,16 @@
+ROLE: documentation editor. Replace two adjacent lines in one file.
+
+FILE: .skilled/hooks/README.md, section "## 5. VALIDATION", inside the first ```bash block.
+
+Replace these two exact lines:
+# Pi preflight is a vitest suite whose relative imports are written for the extension symlink base
+npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+with these two exact lines:
+# The dispatch adapter suites are vitest files; the hooks config's alias resolves the Pi adapters' imports, written for the extension symlink base
+npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
+
+Change nothing else.
+
+VERIFY: run `git diff .skilled/hooks/README.md`, then run the new npx command from the worktree root; it must report 3 test files passed.
+
+RETURN: the diff and the vitest summary lines.

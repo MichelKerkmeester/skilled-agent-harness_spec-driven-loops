@@ -1,0 +1,24 @@
+ROLE: documentation editor. Two small changes in one file.
+
+FILE: .skilled/hooks/dispatch/README.md
+
+CHANGE 1, section "## 7. BOUNDARIES AND FLOW", the "Imports" row. Its cell currently starts "`lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree." That is wrong for Pi: `pi/dispatch-preflight-lint.ts` and `pi/dispatch-audit.ts` import `../../.skilled/hooks/shared/hook-flags.mjs`, a path written against their `.pi/extensions/` symlink, because Pi resolves an extension's relative imports from the symlink path. Insert, directly after the sentence ending "nothing outside this tree.", this sentence:
+
+The Pi adapters are the exception: they import `../../.skilled/hooks/shared/hook-flags.mjs`, a path written for their `.pi/extensions/` symlink, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree.
+
+Keep the rest of the cell unchanged and keep the table row on one line.
+
+CHANGE 2, section "## 4. DIRECTORY TREE", inside the ```text block. Replace the line
++-- codex/    (same pair)
+with
++-- codex/    (same pair), codex-shell-tool.test.mjs  # vitest, hooks config
+and replace the line
++-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them)
+with
++-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
+
+Change nothing else.
+
+VERIFY: run `git diff .skilled/hooks/dispatch/README.md` and confirm only these edits plus the earlier section 8 addition appear.
+
+RETURN: the git diff output.

@@ -1,0 +1,14 @@
+ROLE: documentation editor. Replace one line in one file.
+
+FILE: .skilled/hooks/dispatch/README.md, section "## 8. VALIDATION".
+
+Replace this exact line:
+# The adapter suites are vitest files that load only under the hooks config, whose alias resolves the Pi adapters' link-relative imports
+with this exact line:
+# The adapter suites are vitest files; run them under the hooks config, whose alias resolves the Pi adapters' link-relative imports
+
+Change nothing else.
+
+VERIFY: `grep -n "run them under the hooks config" .skilled/hooks/dispatch/README.md` returns one line.
+
+RETURN: the grep output.

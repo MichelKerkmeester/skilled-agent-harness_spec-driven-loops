@@ -1,0 +1,14 @@
+ROLE: documentation editor. Replace one sentence in one file.
+
+FILE: .skilled/hooks/dispatch/README.md, line 154.
+
+Replace this exact sentence:
+Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because the repository root has no `package.json` for `npx` to resolve it from.
+with this exact sentence:
+Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because vitest is installed under `.skilled/node_modules` and not at the repository root, so `npx vitest` run from the root does not find it and fetches or reuses a different copy.
+
+Keep the rest of line 154 unchanged. Change nothing else.
+
+VERIFY: `grep -c "fetches or reuses a different copy" .skilled/hooks/dispatch/README.md` returns 1.
+
+RETURN: the grep output.

@@ -1,0 +1,9 @@
+codex-shell.txt:  Test Files  1 passed (1)       Tests  5 passed (5) 
+guard-node.txt: ℹ pass 39 ℹ fail 0 
+guard-vitest.txt:  Test Files  1 passed (1)       Tests  114 passed (114) 
+hooks-vitest-tree.txt:  Test Files  5 passed (5)       Tests  177 passed (177) 
+pi-dedup.txt:  Test Files  1 passed (1)       Tests  15 passed (15) 
+pi-preflight.txt:  Test Files  1 passed (1)       Tests  38 passed (38) 
+shared-node.txt: ℹ pass 44 ℹ fail 0 
+wrong-runner-codex.txt: TypeError: Cannot read properties of undefined (reading 'config') ℹ pass 0 ℹ fail 1 
+wrong-runner-pi.txt: Error: Cannot find module '../../.skilled/hooks/shared/hook-flags.mjs' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/147-dispatch-adapter-test-repair/.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts  Test Files  1 failed (1) 

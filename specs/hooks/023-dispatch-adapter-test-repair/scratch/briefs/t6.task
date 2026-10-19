@@ -1,0 +1,21 @@
+ROLE: documentation editor. Exact text replacements in two files.
+
+WHY: The repository root has no package.json, so `npx vitest` run from the root does not use the repo's pinned vitest 5.0.3 under `.skilled/node_modules`. It fell back to a cached vitest 5.0.5, and with no cache and no network it fails with ENOTFOUND. Each command must call the pinned binary `.skilled/node_modules/.bin/vitest` instead.
+
+FILE 1: .skilled/hooks/README.md
+- Line 203: replace `npx vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs` with `.skilled/node_modules/.bin/vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs`
+- Line 206: replace the leading `npx vitest run --config` with `.skilled/node_modules/.bin/vitest run --config` and keep the rest of that line.
+
+FILE 2: .skilled/hooks/dispatch/README.md
+- Line 146: replace `npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs` with `.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`
+- Line 151: replace the leading `npx vitest run --config` with `.skilled/node_modules/.bin/vitest run --config` and keep the rest of that line.
+- Replace this exact line:
+`node --test` loads none of these files, because they are written for the vitest runner. A vitest run without `--config` loads two of them, but not `dispatch-preflight-lint.test.ts`, which fails on the Pi adapter's `hook-flags.mjs` import.
+with this exact line:
+`node --test` cannot run these files, because they are vitest suites: the codex file fails with `Cannot read properties of undefined (reading 'config')`. A vitest run without `--config` runs two of them, but not `dispatch-preflight-lint.test.ts`, which fails on the Pi adapter's `hook-flags.mjs` import. Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because the repository root has no `package.json` for `npx` to resolve it from.
+
+Leave line 89 of the dispatch README (the tree comment) unchanged. Change nothing else.
+
+VERIFY: `grep -n "npx vitest" .skilled/hooks/README.md .skilled/hooks/dispatch/README.md` returns only dispatch/README.md line 89. Then run the line-151 command of the dispatch README from the worktree root; it must report 3 test files passed.
+
+RETURN: the grep output and the vitest summary lines.
