@@ -590,7 +590,7 @@ test('shouldRelaunch accepts an armed record at exactly ten minutes old', (t) =>
   createSandbox(t);
   const armedAt = NOW.getTime();
   const result = shouldRelaunch(
-    { status: 'armed', armedAt, hops: 0 },
+    { status: 'armed', armedAt, hops: 0, handoff: '/repo/note.md', cwd: '/repo' },
     { now: armedAt + 10 * 60 * 1000, maxHops: 10, maxAgeMin: 10 },
   );
   assert.deepEqual(result, { relaunch: true });
@@ -624,7 +624,7 @@ test('shouldRelaunch accepts hop nine below the default cap', (t) => {
   createSandbox(t);
   assert.deepEqual(
     shouldRelaunch(
-      { status: 'armed', armedAt: NOW.getTime(), hops: 9 },
+      { status: 'armed', armedAt: NOW.getTime(), hops: 9, handoff: '/repo/note.md', cwd: '/repo' },
       { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 },
     ),
     { relaunch: true },
@@ -1106,4 +1106,75 @@ test('manual claim commands balance their parentheses for every spec answer', ()
       command,
     );
   }
+});
+
+const relaunchCore = require('../lib/relaunch-core.cjs');
+
+test('shouldRelaunch declines a fresh armed record that names no handoff or no cwd', (t) => {
+  createSandbox(t);
+  const fresh = { status: 'armed', armedAt: NOW.getTime(), hops: 0 };
+  const options = { now: NOW.getTime(), maxHops: 10, maxAgeMin: 10 };
+  for (const record of [
+    { ...fresh, cwd: '/repo' },
+    { ...fresh, handoff: '/repo/note.md' },
+    { ...fresh, handoff: '', cwd: '/repo' },
+    { ...fresh, handoff: '/repo/note.md', cwd: 42 },
+  ]) {
+    assert.deepEqual(
+      shouldRelaunch(record, options),
+      { relaunch: false, reason: 'incomplete-record' },
+      JSON.stringify(record),
+    );
+  }
+  // Staleness still wins, so a reader that only asks about age keeps its answer.
+  assert.deepEqual(
+    shouldRelaunch({ ...fresh, armedAt: NOW.getTime() - 11 * 60 * 1000 }, options),
+    { relaunch: false, reason: 'stale' },
+  );
+});
+
+test('claimHandoff updates a status key written with a space before the colon', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  fs.writeFileSync(handoffPath, readNote(handoffPath).replace('status: open', 'status : open'));
+
+  claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+
+  const parsed = parseHandoff(readNote(handoffPath));
+  assert.equal(parsed.frontmatter.status, 'claimed');
+  assert.equal(readNote(handoffPath).match(/^\s*status\s*:/gm).length, 1);
+});
+
+test('noteState classifies a note as missing, invalid, open, claimed or done', (t) => {
+  const sandbox = createSandbox(t);
+  const { noteState } = relaunchCore;
+  const handoffPath = writeHandoff(sandbox);
+  assert.equal(noteState(handoffPath), 'open');
+  fs.writeFileSync(handoffPath, handoffText({ status: 'claimed', claimedBy: SESSION_ID }));
+  assert.equal(noteState(handoffPath), 'claimed');
+  fs.writeFileSync(handoffPath, handoffText({ status: 'done' }));
+  assert.equal(noteState(handoffPath), 'done');
+  fs.writeFileSync(handoffPath, handoffText({ status: 'archived' }));
+  assert.equal(noteState(handoffPath), 'invalid');
+  fs.writeFileSync(handoffPath, 'status: open\n');
+  assert.equal(noteState(handoffPath), 'invalid');
+  assert.equal(noteState(path.join(sandbox.repoRoot, 'absent.md')), 'missing');
+  assert.equal(noteState(''), 'missing');
+  assert.equal(noteState(undefined), 'missing');
+  // A directory at the note path is unreadable as a note, not absent.
+  assert.equal(noteState(sandbox.repoRoot), 'invalid');
+});
+
+test('resolveKillerTarget keeps a preferred pid inside the loop and otherwise walks to the loop child', () => {
+  const { resolveKillerTarget } = relaunchCore;
+  // 41 is the hook, 50 its shell, 60 the runtime below loop 100; 70 is a sibling of the loop.
+  const table = '41 50\n50 60\n60 100\n100 1\n70 1\n';
+  assert.equal(resolveKillerTarget('100', { preferredPid: '60', pid: 41, processTable: table }), 60);
+  assert.equal(resolveKillerTarget('100', { preferredPid: 50, pid: 41, processTable: table }), 50);
+  assert.equal(resolveKillerTarget('100', { preferredPid: '70', pid: 41, processTable: table }), 60);
+  assert.equal(resolveKillerTarget('100', { preferredPid: 'abc', pid: 41, processTable: table }), 60);
+  assert.equal(resolveKillerTarget('100', { preferredPid: '100', pid: 41, processTable: table }), 60);
+  assert.equal(resolveKillerTarget('100', { pid: 41, processTable: table }), 60);
+  assert.equal(resolveKillerTarget('999', { preferredPid: '60', pid: 41, processTable: table }), null);
+  assert.equal(resolveKillerTarget('loop-id', { pid: 41, processTable: table }), null);
 });

@@ -11,7 +11,8 @@
     "hooks/023-session-relaunch-loop/005-deep-review-remediation",
     "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
     "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions",
-    "hooks/023-session-relaunch-loop/008-review-3-remediation"
+    "hooks/023-session-relaunch-loop/008-review-3-remediation",
+    "hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation"
   ],
   "manual": {
     "depends_on": [],
@@ -25,7 +26,9 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "session relaunch research",
+      "session relaunch architecture"
     ],
     "key_topics": [
       "session",
@@ -46,6 +49,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "research/research.md",
       "review-archive/20261018T184826Z/review-report.md",
       "review-archive/20261019T144809Z/review-report.md",
       "review/review-report.md",
@@ -56,7 +60,8 @@
       "005-deep-review-remediation/goal.md",
       "006-deep-review-2-remediation/goal.md",
       "007-handoff-gate-exemptions/goal.md",
-      "008-review-3-remediation/goal.md"
+      "008-review-3-remediation/goal.md",
+      "009-research-fixes-and-core-consolidation/goal.md"
     ],
     "entities": [
       {
@@ -69,6 +74,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -122,7 +133,7 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "goal.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -148,21 +159,53 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Session Relaunch Loop After Phase",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Findings The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Both",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Outside This Packet The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-19T16:56:07.972Z",
+    "last_save_at": "2026-10-19T18:14:14.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:9504cb9abc62a05cd8504092ac5e6f7090fff19e56088d69449e9903abfb1d5b",
+    "source_fingerprint": "sha256:f6d88073114154100314014c960a27d9bbcf7a10c3602e6675ba3ecf346da47d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43b05b92be8371b890c7bc7c8beb00381725a4b59d3b48a4341c33cd18be2753"
+      "spec.md": "e57283b043c04666a6e853c2e6aaf3890b89064067480e2e42c9b759728e7307",
+      "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
     "last_active_at": "2026-10-19T10:05:59.074Z"

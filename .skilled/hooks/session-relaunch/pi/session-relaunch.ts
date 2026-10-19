@@ -42,9 +42,10 @@ type ContextUsageModule = {
   fillRatio(fillTokens: number, windowTokens: number): number;
 };
 
-type NudgeDecision = { level: number; nudge: boolean };
+type NudgeDecision = { level: number; nudge: boolean; reason: string };
 
 type NudgeModule = {
+  CLI_COMMAND: string;
   handoffText(options: {
     notePath: string;
     sessionId: string;
@@ -55,8 +56,8 @@ type NudgeModule = {
     ratio: number;
   }): string;
   isSeedPrompt(text: unknown): boolean;
-  specFolderFromSeed(text: unknown): string;
-  notePathFromSeed(prompt: unknown): string | null;
+  seedInstructions(options: { prompt: unknown; sessionId: string }): string | null;
+  specFolderInput(options: { env?: NodeJS.ProcessEnv }): string | undefined;
   resolveRepoRoot(env?: NodeJS.ProcessEnv): string;
   plannedNotePath(options: {
     cwd: string;
@@ -73,18 +74,12 @@ type NudgeModule = {
     config?: Record<string, string>,
     env?: NodeJS.ProcessEnv,
   ): number;
-  nextLevel(options: {
+  nudgeDecision(options: {
     ratio: number;
     threshold: number;
-    state: number;
-  }): NudgeDecision;
-  readState(sessionId: string, env: NodeJS.ProcessEnv): number;
-  seedText(options: {
-    notePath: string;
-    specFolder: string;
     sessionId: string;
-    cliPath: string;
-  }): string;
+    env?: NodeJS.ProcessEnv;
+  }): NudgeDecision;
   validSessionId(sessionId: unknown): boolean;
   writeState(sessionId: string, level: number, env: NodeJS.ProcessEnv): void;
 };
@@ -96,7 +91,6 @@ type AdapterModules = {
 };
 
 const CONCERN = 'session-relaunch';
-const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 let modulesPromise: Promise<AdapterModules> | null = null;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -316,28 +310,20 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
 
       const fillTokens = modules.contextUsage.fillFromPiUsage(event.message.usage);
       const ratio = modules.contextUsage.fillRatio(fillTokens, windowTokens);
-      const threshold = modules.nudge.relaunchThreshold(config);
-      if (ratio < threshold) return;
-
-      // A prepared or armed record means this session already ran the handoff steps.
-      if (modules.nudge.handoffPending({ sessionId })) return;
-      // At the hop cap the wrapper declines the record, so the nudge would ask for a
-      // handoff that cannot relaunch.
-      if (modules.nudge.hopLimitReached()) return;
-
-      const decision = modules.nudge.nextLevel({
+      const decision = modules.nudge.nudgeDecision({
         ratio,
-        threshold,
-        state: modules.nudge.readState(sessionId, process.env),
+        threshold: modules.nudge.relaunchThreshold(config),
+        sessionId,
+        env: process.env,
       });
       if (!decision.nudge) return;
 
       const text = modules.nudge.handoffText({
         notePath: modules.nudge.plannedNotePath({ cwd: ctx.cwd, sessionId }),
         sessionId,
-        specFolder: process.env.SYSTEM_SPEC_FOLDER || undefined,
+        specFolder: modules.nudge.specFolderInput({ env: process.env }),
         runtime: 'pi',
-        cliPath: CLI_COMMAND,
+        cliPath: modules.nudge.CLI_COMMAND,
         cwd: ctx.cwd,
         ratio,
       });
@@ -360,12 +346,8 @@ export default function sessionRelaunch(pi: ExtensionAPI): void {
       const sessionId = sessionIdOf(ctx, modules.nudge);
       if (!sessionId || !modules.nudge.isSeedPrompt(event.prompt)) return;
 
-      const text = modules.nudge.seedText({
-        notePath: modules.nudge.notePathFromSeed(event.prompt) ?? '<handoff-path>',
-        specFolder: modules.nudge.specFolderFromSeed(event.prompt),
-        sessionId,
-        cliPath: CLI_COMMAND,
-      });
+      const text = modules.nudge.seedInstructions({ prompt: event.prompt, sessionId });
+      if (text === null) return;
       return { systemPrompt: `${event.systemPrompt}\n\n${text}` };
     } catch {
       return undefined;

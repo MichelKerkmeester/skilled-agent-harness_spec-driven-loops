@@ -7,7 +7,6 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import fs from 'node:fs';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
@@ -23,8 +22,10 @@ const hookFlags = require('../hooks/shared/hook-flags.cjs');
 
 const CONCERN = 'session-relaunch';
 const MAX_SESSIONS = 1_000;
-const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 const KILLER_PATH = require.resolve('../hooks/session-relaunch/lib/killer.cjs');
+// Both the nudge and the seed read a note through the core's one classification:
+// a note that is missing or cannot be parsed proves nothing was written or claimed.
+const NOTE_NOT_WRITTEN = new Set(['missing', 'invalid']);
 
 function positiveNumber(value) {
   const number = Number(value);
@@ -59,35 +60,18 @@ function shouldPushActiveNudge(activeNudge, sessionID) {
   if (!activeNudge) return false;
   // A session at its hop cap cannot relaunch, so even a held nudge is spent.
   if (nudge.hopLimitReached(process.env)) return false;
-  // Without a usable loop id there is no record to consult, so an existing note
-  // is the only proof this session already wrote its handoff.
-  if (!validLoopId(process.env.SKILLED_LOOP_ID)) return !fs.existsSync(activeNudge.notePath);
+  // Without a usable loop id there is no record to consult, so a readable note is the
+  // only proof this session already wrote its handoff; a missing or broken one is not.
+  if (!validLoopId(process.env.SKILLED_LOOP_ID)) {
+    return NOTE_NOT_WRITTEN.has(core.noteState(activeNudge.notePath));
+  }
   return !nudge.handoffPending({ sessionId: sessionID, env: process.env });
-}
-
-// A turn rebuilds the system prompt for every model request, and an auxiliary
-// request may consume the first one, so the claim instructions stay in place
-// until the note leaves the open state. A note that cannot be read keeps them
-// too: a failed read is no proof that the note was claimed.
-function seedNoteStatus(seed) {
-  if (!seed.notePath) return 'open';
-  let contents;
-  try {
-    contents = fs.readFileSync(seed.notePath, 'utf8');
-  } catch {
-    return 'open';
-  }
-  try {
-    return core.parseHandoff(contents).frontmatter.status;
-  } catch {
-    return 'open';
-  }
 }
 
 // A claimed note already ran the claim steps, so repeating the full seed text asks
 // for work the note records as done. The completion step is the one still owed.
 function claimedReminder(seed) {
-  const complete = nudge.completeCommandFor(seed.notePath, CLI_COMMAND);
+  const complete = nudge.completeCommandFor(seed.notePath, nudge.CLI_COMMAND);
   return `[${CONCERN}] This session claimed handoff note ${seed.notePath}. `
     + `When the remaining work is done, run \`${complete}\` to close the note.`;
 }
@@ -135,16 +119,15 @@ function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
   if (ratio < threshold) return;
 
   const persistedLevel = nudge.readState(sessionID, process.env);
-  const currentLevel = Math.max(persistedLevel, state.nudgeLevel);
-  const isRestartedNudge = !state.activeNudge && persistedLevel >= 1;
-  // A prepared or armed record means this session already ran the handoff steps.
-  if (nudge.handoffPending({ sessionId: sessionID, env: process.env })) return;
-  // A session at its hop cap cannot relaunch, so the nudge would only ask for work
-  // that its own prepare has to decline.
-  if (nudge.hopLimitReached(process.env)) return;
-  const decision = isRestartedNudge
-    ? { level: currentLevel, nudge: true }
-    : nudge.nextLevel({ ratio, threshold, state: currentLevel });
+  // A restarted plugin host has lost the nudge it held, so a spent level is shown again.
+  const decision = nudge.nudgeDecision({
+    ratio,
+    threshold,
+    sessionId: sessionID,
+    env: process.env,
+    level: Math.max(persistedLevel, state.nudgeLevel),
+    resume: !state.activeNudge && persistedLevel >= 1,
+  });
   if (!decision.nudge) return;
 
   // Reusing the note this session already has open is the shared planner's job.
@@ -156,9 +139,9 @@ function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
     text: nudge.handoffText({
       notePath,
       sessionId: sessionID,
-      specFolder: process.env.SYSTEM_SPEC_FOLDER || undefined,
+      specFolder: nudge.specFolderInput({ env: process.env }),
       runtime: 'opencode',
-      cliPath: CLI_COMMAND,
+      cliPath: nudge.CLI_COMMAND,
       cwd: directory || process.cwd(),
       ratio,
     }),
@@ -275,17 +258,12 @@ export default function sessionRelaunchPlugin(ctx = {}) {
             || part.messageID !== state.latestUserMessageId
           ) return;
 
-          if (nudge.isSeedPrompt(part.text)) {
-            const notePath = nudge.notePathFromSeed(part.text);
+          const seedText = nudge.seedInstructions({ prompt: part.text, sessionId: sessionID });
+          if (seedText !== null) {
             state.activeSeed = {
               messageID: part.messageID,
-              notePath,
-              text: nudge.seedText({
-                notePath: notePath ?? '<handoff-path>',
-                specFolder: nudge.specFolderFromSeed(part.text),
-                sessionId: sessionID,
-                cliPath: CLI_COMMAND,
-              }),
+              notePath: nudge.notePathFromSeed(part.text),
+              text: seedText,
             };
           }
           return;
@@ -342,10 +320,13 @@ export default function sessionRelaunchPlugin(ctx = {}) {
           );
         }
 
+        // A turn rebuilds the system prompt for every model request, and an auxiliary
+        // request may consume the first one, so the claim instructions stay in place
+        // until the note leaves the open state; a note not yet readable keeps them too.
         if (state.activeSeed) {
           const seed = state.activeSeed;
-          const status = seedNoteStatus(seed);
-          if (status === 'open') {
+          const status = core.noteState(seed.notePath);
+          if (status === 'open' || NOTE_NOT_WRITTEN.has(status)) {
             if (!output.system.includes(seed.text)) output.system.push(seed.text);
           } else if (status === 'claimed') {
             const reminder = claimedReminder(seed);

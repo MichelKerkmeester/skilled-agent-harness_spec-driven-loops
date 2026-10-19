@@ -36,6 +36,7 @@ function createSandbox(t) {
     'SESSION_RELAUNCH_THRESHOLD',
     'SESSION_RELAUNCH_WINDOW_TOKENS',
     'SESSION_RELAUNCH_MAX_HOPS',
+    'SYSTEM_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, env };
@@ -215,7 +216,7 @@ test('context-nudge emits nothing when session_id fails the charset gate', async
     ...USER_PROMPT_SUBMIT,
     session_id: badSessionId,
     cwd: sandbox.repoRoot,
-    prompt: '[session-relaunch] continue the handoff',
+    prompt: '[session-relaunch] claim and continue handoff /real/handoff.md',
   };
   const seed = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, seedPayload);
   assert.equal(seed.code, 0, seed.stderr);
@@ -236,7 +237,7 @@ test('context-nudge emits nothing when session_id fails the charset gate', async
 
 test('UserPromptSubmit relaunch seed receives claim and completion instructions', async (t) => {
   const sandbox = createSandbox(t);
-  const payload = { ...USER_PROMPT_SUBMIT, session_id: SESSION_ID, cwd: sandbox.repoRoot, prompt: '[session-relaunch] continue the handoff' };
+  const payload = { ...USER_PROMPT_SUBMIT, session_id: SESSION_ID, cwd: sandbox.repoRoot, prompt: '[session-relaunch] claim and continue handoff /real/handoff.md' };
   const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   const output = JSON.parse(result.stdout.trim());
@@ -248,7 +249,7 @@ test('UserPromptSubmit relaunch seed receives claim and completion instructions'
 test('UserPromptSubmit seed resumes its carried packet folder', async (t) => {
   const sandbox = createSandbox(t);
   const specFolder = 'specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop';
-  const prompt = '[session-relaunch] continue the handoff | Spec folder: ' + specFolder
+  const prompt = '[session-relaunch] claim and continue handoff /real/handoff.md | Spec folder: ' + specFolder
     + ' (carried from the handoff; Gate 3 answered in the sending session)';
   const payload = {
     ...USER_PROMPT_SUBMIT,
@@ -268,7 +269,7 @@ test('UserPromptSubmit seed resumes its carried packet folder', async (t) => {
 
 test('UserPromptSubmit seed carries Gate 3 Skip without a resume command', async (t) => {
   const sandbox = createSandbox(t);
-  const prompt = '[session-relaunch] continue the handoff | Spec folder: none '
+  const prompt = '[session-relaunch] claim and continue handoff /real/handoff.md | Spec folder: none '
     + '(Gate 3 answered D, Skip, in the sending session)';
   const payload = {
     ...USER_PROMPT_SUBMIT,
@@ -291,7 +292,7 @@ test('UserPromptSubmit seed without a suffix has no resume or Skip instruction',
     ...USER_PROMPT_SUBMIT,
     session_id: SESSION_ID,
     cwd: sandbox.repoRoot,
-    prompt: '[session-relaunch] continue the handoff',
+    prompt: '[session-relaunch] claim and continue handoff /real/handoff.md',
   };
 
   const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
@@ -536,7 +537,7 @@ test('UserPromptSubmit seed claims the absolute note path it carries', async (t)
   assert.ok(!context.includes("claim '<handoff-path>'"), context);
 });
 
-test('UserPromptSubmit seed with a relative note path keeps the placeholder', async (t) => {
+test('UserPromptSubmit seed with a relative note path emits nothing', async (t) => {
   const sandbox = createSandbox(t);
   const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
     ...USER_PROMPT_SUBMIT,
@@ -545,8 +546,7 @@ test('UserPromptSubmit seed with a relative note path keeps the placeholder', as
     prompt: '[session-relaunch] claim and continue handoff relative/handoff.md',
   });
   assert.equal(result.code, 0, result.stderr);
-  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
-  assert.ok(context.includes("claim '<handoff-path>'"), context);
+  assert.equal(result.stdout, '');
 });
 
 test('stop-arm makes no change without SKILLED_LOOP_ID and prints nothing', async (t) => {
@@ -661,4 +661,152 @@ test('stop-arm respawns one killer for an armed record whose killer is gone', as
   const suppressed = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(suppressed.code, 0, suppressed.stderr);
   assert.equal(fs.readFileSync(spawnLog, 'utf8').trim().split('\n').length, 1);
+});
+
+function installKillerRecorder(sandbox) {
+  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
+  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
+  fs.writeFileSync(recorderPath, [
+    "'use strict';",
+    "const fs = require('node:fs');",
+    "const childProcess = require('node:child_process');",
+    "const { syncBuiltinESMExports } = require('node:module');",
+    'const originalSpawn = childProcess.spawn;',
+    'childProcess.spawn = function (command, args = [], options = {}) {',
+    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
+    '    fs.appendFileSync(',
+    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
+    '      JSON.stringify({ args, hookPid: process.pid, hookParent: process.ppid }) + "\\n",',
+    '    );',
+    '    return { unref() { return this; } };',
+    '  }',
+    '  return originalSpawn.call(this, command, args, options);',
+    '};',
+    'syncBuiltinESMExports();',
+    '',
+  ].join('\n'));
+  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
+  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
+  return () => (fs.existsSync(spawnLog)
+    ? fs.readFileSync(spawnLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line))
+    : []);
+}
+
+function targetPidOf(spawnRecord) {
+  return spawnRecord.args[spawnRecord.args.indexOf('--target-pid') + 1];
+}
+
+test('stop-arm without CLAUDE_PID targets the loop child, never the hook parent', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  const [spawned] = spawns();
+  // The hook here runs directly under the loop, so the loop child is the hook itself;
+  // the old fallback named its parent, which is the loop.
+  assert.equal(targetPidOf(spawned), String(spawned.hookPid));
+  assert.notEqual(targetPidOf(spawned), loopId);
+});
+
+test('stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  };
+  try {
+    sandbox.env.CLAUDE_PID = String(target.pid);
+    assert.equal((await runAdapter(sandbox, STOP_ARM_PATH, payload)).code, 0);
+    assert.equal(targetPidOf(spawns()[0]), String(target.pid));
+
+    createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
+    sandbox.env.CLAUDE_PID = '1';
+    assert.equal((await runAdapter(sandbox, STOP_ARM_PATH, payload)).code, 0);
+    const second = spawns()[1];
+    assert.equal(targetPidOf(second), String(second.hookPid));
+  } finally {
+    killChild(target);
+  }
+});
+
+test('stop-arm leaves the record pending when no process below the loop can be found', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '999999999';
+  const { recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'),
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  assert.deepEqual(spawns(), []);
+  const log = fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8');
+  assert.match(log, /stop-arm-error stage=target-pid/);
+});
+
+test('stop-arm defers an armed record with a dead killer while background tasks run', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { stateDir } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'), 'armed',
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [{ task_id: 'task-1' }],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.deepEqual(spawns(), []);
+  assert.match(fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'), /deferred-background-tasks/);
+});
+
+test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.SYSTEM_SPEC_FOLDER = 'specs/hooks/001-session-relaunch';
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 800),
+    cwd: sandbox.repoRoot,
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
 });

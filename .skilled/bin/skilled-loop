@@ -69,8 +69,22 @@ consume_record() {
   if consumed_record_json=$(node "$relaunch_cli" consume --loop-id "$SKILLED_LOOP_ID"); then
     return 0
   fi
+  consumed_record_json=''
   printf '%s\n' 'warning: could not consume the relaunch record' >&2
   return 0
+}
+
+# Prints the consumed note state, or nothing when consume failed or printed no JSON.
+consumed_note_state() {
+  local note_state=''
+  if [[ -n "$consumed_record_json" ]]; then
+    note_state=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      process.stdout.write(typeof record.note === "string" ? record.note : "");
+    ' <<< "$consumed_record_json" 2>/dev/null) || note_state=''
+  fi
+  printf '%s' "$note_state"
 }
 
 consumed_spec_folder() {
@@ -454,6 +468,20 @@ while true; do
         exit 130
       fi
       consume_record
+      # A seed for a note that is not open, or one that lost its Gate 3 answer because
+      # consume failed, sends the fresh session into a claim that cannot succeed.
+      note_state=$(consumed_note_state)
+      if [[ "$note_state" != 'open' ]]; then
+        if [[ -z "$note_state" ]]; then
+          printf '%s\n' \
+            'warning: could not read the consumed relaunch record; not relaunching' >&2
+        else
+          printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
+        fi
+        spec_folder=$(consumed_spec_folder)
+        print_manual_command "$handoff_path" "$spec_folder"
+        exit 1
+      fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
       export SKILLED_LOOP_HOPS
 
@@ -489,7 +517,7 @@ while true; do
           'warning: the handoff path contains a line break; no manual command printed' >&2
       elif [[ -n "$handoff_path" ]]; then
         case "$decision_reason" in
-          not-armed|stale|hop-cap)
+          not-armed|stale|hop-cap|incomplete-record)
             spec_folder=$(consumed_spec_folder)
             print_manual_command "$handoff_path" "$spec_folder"
             ;;

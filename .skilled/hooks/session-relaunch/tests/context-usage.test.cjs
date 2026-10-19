@@ -275,3 +275,42 @@ test('resolveCodexWindow prefers the shared override to the rollout window', () 
   assert.equal(resolveCodexWindow(258400, {}), 258400);
   assert.equal(resolveCodexWindow(null, {}), null);
 });
+
+test('resolveWindow reads the repository settings from a subdirectory cwd', (t) => {
+  const sandbox = createSandbox(t);
+  fs.mkdirSync(path.join(sandbox.repoRoot, '.git'));
+  writeSettings(sandbox.repoRoot, 'settings.json', 620000);
+  writeSettings(sandbox.home, 'settings.json', 590000);
+  const subdirectory = path.join(sandbox.repoRoot, 'packages', 'app');
+  fs.mkdirSync(subdirectory, { recursive: true });
+  assert.equal(
+    resolveWindow({ env: sandbox.env, cwd: subdirectory, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    620000,
+  );
+  // A nearer settings file wins over the repository root's.
+  writeSettings(path.join(sandbox.repoRoot, 'packages'), 'settings.local.json', 640000);
+  assert.equal(
+    resolveWindow({ env: sandbox.env, cwd: subdirectory, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    640000,
+  );
+});
+
+test('resolveWindow stops at the repository boundary and walks nowhere outside a repository', (t) => {
+  const sandbox = createSandbox(t);
+  // A worktree marks its root with a .git file rather than a directory.
+  fs.writeFileSync(path.join(sandbox.repoRoot, '.git'), 'gitdir: /elsewhere\n');
+  writeSettings(sandbox.root, 'settings.json', 700000);
+  const inside = path.join(sandbox.repoRoot, 'sub');
+  fs.mkdirSync(inside);
+  assert.equal(
+    resolveWindow({ env: sandbox.env, cwd: inside, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    200000,
+  );
+
+  const outside = path.join(sandbox.root, 'loose', 'dir');
+  fs.mkdirSync(outside, { recursive: true });
+  assert.equal(
+    resolveWindow({ env: sandbox.env, cwd: outside, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    200000,
+  );
+});

@@ -153,7 +153,7 @@ The six copied relaunch logs and matching notes are under `scratch/live-*`. Runs
    - D48: restart lookup ignores note status.
    - D55: corrupt relaunch-file handling calls `appendLog` without a guard at `relaunch-core.cjs:340`.
 3. **Other phase 004 carryovers.** The root feature catalog still says other runtimes are planned (D36). OpenCode offers no slash-command tool to the live model (run F). Pi's low test threshold can chain through the hop cap and the nudge wording should keep handoff steps out of "Remaining work" (Pi run 1).
-4. **Spike limits remain recorded.** Pi TUI seed submission and OpenCode TUI prompt submission were not end-to-end live-tested. OpenCode TUI quit behavior for `session.idle` and wrapper-specific `process.ppid` were not directly captured.
+4. **Spike limits remain recorded.** Pi TUI seed submission and OpenCode TUI prompt submission were not end-to-end live-tested. OpenCode TUI quit behavior for `session.idle` and wrapper-specific `process.ppid` were not directly captured. Later live hops closed part of this: phase 006 round 9 and phase 007 run 10 recorded `session.idle` arming the record after prepare and the killer ending OpenCode within seconds (`../007-handoff-gate-exemptions/implementation-summary.md`, live run 10 row). The killer targets the plugin's own pid, so `process.ppid` no longer matters. `session.idle` on a TUI quit is still uncaptured.
 <!-- /ANCHOR:limitations -->
 
 ---

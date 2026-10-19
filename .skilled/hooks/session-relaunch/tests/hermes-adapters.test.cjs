@@ -30,6 +30,7 @@ function sandbox(t) {
     'SESSION_RELAUNCH_MAX_HOPS',
     'SKILLED_LOOP_ID',
     'SKILLED_LOOP_HOPS',
+    'SYSTEM_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, env };

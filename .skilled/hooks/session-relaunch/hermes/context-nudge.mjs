@@ -12,7 +12,6 @@ import { appendLog as appendRelaunchLog } from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
 
 const CONCERN = 'session-relaunch';
-const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 
 function finish() {
   process.exit(0);
@@ -62,17 +61,8 @@ async function main() {
     ? payload.user_message
     : typeof payload.prompt === 'string' ? payload.prompt : '';
   if (payload.is_first_turn === true && nudge.isSeedPrompt(userMessage)) {
-    const notePath = nudge.notePathFromSeed(userMessage);
-    if (!notePath) return done();
-    const specFolder = nudge.specFolderFromSeed(userMessage);
-    return emit({
-      context: nudge.seedText({
-        notePath,
-        specFolder: specFolder || undefined,
-        sessionId,
-        cliPath: CLI_COMMAND,
-      }),
-    });
+    const seed = nudge.seedInstructions({ prompt: userMessage, sessionId });
+    return seed === null ? done() : emit({ context: seed });
   }
 
   const usage = payload.usage;
@@ -80,18 +70,10 @@ async function main() {
   const fillTokens = fillFromHermesUsage(usage);
   const { windowTokens, windowSource } = resolveHermesWindow(payload, usage);
   const ratio = fillRatio(fillTokens, windowTokens);
-  const threshold = nudge.relaunchThreshold(config);
-  if (ratio < threshold) return done();
-
-  // A prepared or armed record means this session already ran the handoff steps.
-  if (nudge.handoffPending({ sessionId })) return done();
-  // A session at its hop cap cannot relaunch, so these steps would prepare nothing.
-  if (nudge.hopLimitReached()) return done();
-
-  const decision = nudge.nextLevel({
+  const decision = nudge.nudgeDecision({
     ratio,
-    threshold,
-    state: nudge.readState(sessionId),
+    threshold: nudge.relaunchThreshold(config),
+    sessionId,
   });
   if (!decision.nudge) return done();
 
@@ -109,9 +91,9 @@ async function main() {
   const context = nudge.handoffText({
     notePath,
     sessionId,
-    specFolder: payload.spec_folder,
+    specFolder: nudge.specFolderInput({ payload }),
     runtime: 'hermes',
-    cliPath: CLI_COMMAND,
+    cliPath: nudge.CLI_COMMAND,
     cwd,
     ratio,
   });

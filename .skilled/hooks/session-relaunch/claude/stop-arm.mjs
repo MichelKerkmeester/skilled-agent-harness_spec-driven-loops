@@ -12,7 +12,13 @@ import { fileURLToPath } from 'node:url';
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
-import { arm, appendLog, liveKillerPid, readRelaunchFile } from '../lib/relaunch-core.cjs';
+import {
+  arm,
+  appendLog,
+  liveKillerPid,
+  readRelaunchFile,
+  resolveKillerTarget,
+} from '../lib/relaunch-core.cjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -104,11 +110,11 @@ async function main() {
     return done();
   }
 
-  // Live background work would be killed mid-run, so the record stays pending
-  // and the next Stop retries once the tasks have drained.
+  // Live background work would be killed mid-run, so the record stays as it is and
+  // the next Stop retries once the tasks have drained. An armed record reaches here
+  // only when its killer has died, and a fresh killer would end the same live work.
   if (
-    record.status === 'pending'
-    && Array.isArray(payload.background_tasks)
+    Array.isArray(payload.background_tasks)
     && payload.background_tasks.length > 0
   ) {
     logEvent('deferred-background-tasks', {
@@ -116,6 +122,15 @@ async function main() {
       sessionId: record.sessionId,
       tasks: payload.background_tasks.length,
     });
+    return done();
+  }
+
+  // The hook runs under a `bash -c` shell, so its parent is no stable target. CLAUDE_PID
+  // is kept while it names a process below the loop; otherwise the walk finds the loop's
+  // direct child. Resolving before arming leaves the record pending when neither exists.
+  const targetPid = resolveKillerTarget(loopId, { preferredPid: process.env.CLAUDE_PID });
+  if (targetPid === null) {
+    logEvent('stop-arm-error', { stage: 'target-pid', loopId });
     return done();
   }
 
@@ -128,8 +143,7 @@ async function main() {
   }
   if (armed === null || armed.status !== 'armed') return done();
 
-  const targetPid = process.env.CLAUDE_PID || String(process.ppid);
-  await spawnKiller(loopId, targetPid, payload.transcript_path);
+  await spawnKiller(loopId, String(targetPid), payload.transcript_path);
   return done();
 }
 

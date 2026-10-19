@@ -22,6 +22,7 @@ const LEGACY_LOCK_MAX_AGE_MS = 10 * 60 * 1000;
 const HANDOFF_SECTIONS = Object.freeze(['Goal', 'Done', 'Remaining work', 'In-flight state']);
 const SPEC_FOLDER_PATTERN =
   /^specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const NOTE_STATUSES = Object.freeze(['open', 'claimed', 'done']);
 const RUNTIME_SEED_OPTIONS = Object.freeze({
   opencode: '--prompt',
   hermes: 'chat -q',
@@ -116,7 +117,11 @@ function updateFrontmatter(text, updates) {
   const lineEnding = match[0].includes('\r\n') ? '\r\n' : '\n';
   const fields = match[1].split(/\r?\n/);
   for (const [key, value] of Object.entries(updates)) {
-    const fieldIndex = fields.findIndex((line) => line.startsWith(`${key}:`));
+    // The parser trims around the separator, so `status : open` is the same key and
+    // must be replaced rather than duplicated, which the next parse would reject.
+    // Keys come from this module's own callers and are plain identifiers.
+    const keyPattern = new RegExp(`^\\s*${key}\\s*:`);
+    const fieldIndex = fields.findIndex((line) => keyPattern.test(line));
     const replacement = `${key}: ${value}`;
     if (fieldIndex === -1) fields.push(replacement);
     else fields[fieldIndex] = replacement;
@@ -134,6 +139,10 @@ function writeHandoffUpdate(filePath, text) {
 
 function validLoopId(loopId) {
   return typeof loopId === 'string' && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(loopId);
+}
+
+function nonEmptyString(value) {
+  return typeof value === 'string' && value.length > 0;
 }
 
 function assertValidSessionId(sessionId) {
@@ -262,6 +271,29 @@ function validateHandoff(filePath, { sessionId } = {}) {
     }
   }
   return { ok: true };
+}
+
+/**
+ * Classify a handoff note so every reader applies the same rule to it.
+ *
+ * @param {string} filePath - Handoff note path.
+ * @returns {'missing'|'invalid'|'open'|'claimed'|'done'} The note's state. A note that
+ *   exists but cannot be read or parsed, or carries an unknown status, is invalid.
+ */
+function noteState(filePath) {
+  if (!nonEmptyString(filePath)) return 'missing';
+  let text;
+  try {
+    text = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    return error.code === 'ENOENT' ? 'missing' : 'invalid';
+  }
+  try {
+    const { status } = parseHandoff(text).frontmatter;
+    return NOTE_STATUSES.includes(status) ? status : 'invalid';
+  } catch {
+    return 'invalid';
+  }
 }
 
 /**
@@ -424,6 +456,11 @@ function shouldRelaunch(record, { now = Date.now(), maxHops = 10, maxAgeMin = 10
   const hopLimit = Number(maxHops);
   if (!Number.isFinite(hops) || !Number.isFinite(hopLimit) || hops >= hopLimit) {
     return { relaunch: false, reason: 'hop-cap' };
+  }
+  // A relaunch needs a note to claim and a directory to start in. Declining here keeps
+  // the wrapper on its decline path, which preserves the runtime's own exit code.
+  if (!nonEmptyString(record.handoff) || !nonEmptyString(record.cwd)) {
+    return { relaunch: false, reason: 'incomplete-record' };
   }
   return { relaunch: true };
 }
@@ -777,6 +814,40 @@ function findLoopChildPid(loopId, { pid = process.pid, processTable } = {}) {
   return null;
 }
 
+/**
+ * Choose the pid the killer will signal for this loop. A runtime that names its own
+ * pid keeps it only while that pid descends from the loop, because the killer refuses
+ * anything else; otherwise the walk from the calling process finds the loop's direct
+ * child, which is the runtime the loop started.
+ *
+ * @param {string} loopId - Owning loop pid carried by SKILLED_LOOP_ID.
+ * @param {Object} [options] - Preferred target and dependency seams for tests.
+ * @param {number|string} [options.preferredPid] - Pid the runtime reports for itself.
+ * @param {number} [options.pid=process.pid] - Descendant pid to climb from.
+ * @param {string} [options.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @returns {number|null} The pid to signal, or null when no process below the loop is found.
+ */
+function resolveKillerTarget(loopId, { preferredPid, pid = process.pid, processTable } = {}) {
+  const loopPid = Number(loopId);
+  if (!Number.isSafeInteger(loopPid) || loopPid < 1) return null;
+  const table = typeof processTable === 'string' ? processTable : readProcessTable();
+  if (typeof table !== 'string') return null;
+
+  const preferred = Number(preferredPid);
+  if (
+    preferredPid !== undefined
+    && preferredPid !== null
+    && preferredPid !== ''
+    && Number.isSafeInteger(preferred)
+    && preferred > 0
+    && preferred !== loopPid
+    && findLoopChildPid(loopId, { pid: preferred, processTable: table }) !== null
+  ) {
+    return preferred;
+  }
+  return findLoopChildPid(loopId, { pid, processTable: table });
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -788,6 +859,7 @@ module.exports = {
   relaunchFilePath,
   parseHandoff,
   validateHandoff,
+  noteState,
   preparePending,
   arm,
   unarm,
@@ -805,4 +877,5 @@ module.exports = {
   liveKillerPid,
   readProcessTable,
   findLoopChildPid,
+  resolveKillerTarget,
 };

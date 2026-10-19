@@ -1275,6 +1275,7 @@ test('consume returns the handoff path and its spec folder', (t) => {
   assert.deepEqual(JSON.parse(result.stdout), {
     handoff: handoffPath,
     spec_folder: SPEC_FOLDER,
+    note: 'open',
   });
   assert.equal(fs.existsSync(filePath), false);
 });
@@ -1295,6 +1296,7 @@ test('consume preserves a Gate 3 Skip as a valid spec-folder value', (t) => {
   assert.deepEqual(JSON.parse(result.stdout), {
     handoff: handoffPath,
     spec_folder: 'none',
+    note: 'open',
   });
   assert.equal(fs.existsSync(filePath), false);
   assert.equal(fs.existsSync(logPath), false);
@@ -1313,7 +1315,7 @@ test('consume leaves an empty spec folder unanswered without logging a drop', (t
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '' });
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
   assert.equal(fs.existsSync(logPath), false);
 });
 
@@ -1342,7 +1344,7 @@ test('consume drops a spec folder invalidated after prepare', (t) => {
     : [];
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '' });
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
   assert.equal(
     logLines.filter((line) => /\sspec-folder-dropped(?:\s|$)/.test(line)).length,
     1,
@@ -1371,7 +1373,7 @@ test('consume logs a spec folder carried by any frontmatter line', (t) => {
     : [];
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '' });
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'invalid' });
   assert.equal(
     logLines.filter((line) => /\sspec-folder-dropped(?:\s|$)/.test(line)).length,
     1,
@@ -1443,7 +1445,7 @@ test('consume prints JSON and exits zero when dropped-folder logging fails', (t)
   const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '' });
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
   assert.equal(fs.existsSync(filePath), false);
 });
 
@@ -1476,4 +1478,87 @@ test('claim refuses a ../ handoff path outside the handoffs directory', (t) => {
 
   assert.equal(result.status, 2);
   assert.match(result.stderr, /handoff path must be inside/);
+});
+
+test('consume keeps a valid answer from a note whose frontmatter no longer parses', (t) => {
+  for (const specFolder of ['none', CHILD_SPEC_FOLDER]) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox, { specFolder });
+    fs.writeFileSync(
+      handoffPath,
+      fs.readFileSync(handoffPath, 'utf8').replace('runtime: claude', 'runtime claude'),
+    );
+    writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: handoffPath });
+
+    const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+    const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+
+    assert.equal(result.status, 0, result.stderr);
+    assert.deepEqual(
+      JSON.parse(result.stdout),
+      { handoff: handoffPath, spec_folder: specFolder, note: 'invalid' },
+    );
+    assert.equal(fs.existsSync(logPath), false, specFolder);
+  }
+});
+
+test('consume reports a missing note and a note that is no longer open', (t) => {
+  const sandbox = createSandbox(t);
+  const missingPath = path.join(handoffDirectory(sandbox), 'gone.md');
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: missingPath });
+  let result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: missingPath, spec_folder: '', note: 'missing' });
+
+  const claimedPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: SESSION_ID });
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: claimedPath });
+  result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(JSON.parse(result.stdout).note, 'claimed');
+
+  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed' });
+  result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+  assert.deepEqual(JSON.parse(result.stdout), { handoff: '', spec_folder: '', note: 'missing' });
+});
+
+test('claim refuses a note reached through a symlinked handoffs directory', (t) => {
+  const sandbox = createSandbox(t);
+  const elsewhere = path.join(sandbox.root, 'elsewhere');
+  fs.mkdirSync(elsewhere);
+  fs.writeFileSync(path.join(elsewhere, 'handoff.md'), handoffText());
+  fs.mkdirSync(path.dirname(handoffDirectory(sandbox)), { recursive: true });
+  fs.symlinkSync(elsewhere, handoffDirectory(sandbox));
+
+  const result = runCli(sandbox, [
+    'claim',
+    path.join(handoffDirectory(sandbox), 'handoff.md'),
+    '--session',
+    SESSION_ID,
+  ]);
+
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /handoffs directory must be a real directory inside the repository/);
+  assert.match(fs.readFileSync(path.join(elsewhere, 'handoff.md'), 'utf8'), /^status: open$/m);
+});
+
+test('claim refuses a handoffs directory whose parent links outside the repository', (t) => {
+  const sandbox = createSandbox(t);
+  const elsewhere = path.join(sandbox.root, 'elsewhere-state');
+  fs.mkdirSync(path.join(elsewhere, 'handoffs'), { recursive: true });
+  fs.writeFileSync(path.join(elsewhere, 'handoffs', 'handoff.md'), handoffText());
+  fs.mkdirSync(path.join(sandbox.repoRoot, '.skilled', 'skills', '.state'), { recursive: true });
+  fs.symlinkSync(
+    elsewhere,
+    path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch'),
+  );
+
+  const result = runCli(sandbox, [
+    'claim',
+    path.join(handoffDirectory(sandbox), 'handoff.md'),
+    '--session',
+    SESSION_ID,
+  ]);
+
+  assert.equal(result.status, 2);
+  assert.match(result.stderr, /handoffs directory must be a real directory inside the repository/);
 });

@@ -79,6 +79,7 @@ function createSandbox(t) {
     'CODEX_SESSION_ID',
     'CODEX_KILLER_ARGS_FILE',
     'NODE_OPTIONS',
+    'SYSTEM_SPEC_FOLDER',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   return { root, repoRoot, xdgRuntimeDir, home, env };
@@ -695,7 +696,7 @@ test('UserPromptSubmit seed claims the absolute note path it carries', async (t)
   assert.ok(!context.includes("claim '<handoff-path>'"), context);
 });
 
-test('UserPromptSubmit seed with a relative note path keeps the placeholder', async (t) => {
+test('UserPromptSubmit seed with a relative note path emits nothing', async (t) => {
   const sandbox = createSandbox(t);
   const result = await runAdapter(sandbox, PROMPT_SEED_PATH, {
     ...USER_PROMPT_SUBMIT,
@@ -704,6 +705,5 @@ test('UserPromptSubmit seed with a relative note path keeps the placeholder', as
     prompt: '[session-relaunch] claim and continue handoff relative/handoff.md',
   });
   assert.equal(result.code, 0, result.stderr);
-  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
-  assert.ok(context.includes("claim '<handoff-path>'"), context);
+  assert.equal(result.stdout, '');
 });
