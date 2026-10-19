@@ -141,9 +141,9 @@ The work ran as one change per dispatch, on disjoint files, with the orchestrato
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **G20: the framework Gate 3 question reaches a live read-only session.** A live session that never answered Gate 3 is asked it before the handoff note is written, which is a framework prompt and not a hook prompt. It lives in the AGENTS.md gate rules, so the fix belongs to the framework rather than to this loop. Workaround: answer the prompt once, or start the live session with a Gate 3 answer already carried.
+1. **G20: the framework Gate 3 question reaches a live read-only session.** A live session that never answered Gate 3 is asked it before the handoff note is written, which is a framework prompt and not a hook prompt. It lives in the AGENTS.md gate rules, so the fix belongs to the framework rather than to this loop. Workaround: answer the prompt once, or start the live session with a Gate 3 answer already carried. Phase 007 (`../007-handoff-gate-exemptions/`) addresses this.
 
-2. **G21: the Gate 2 artifact trigger routes the handoff note through sk-doc.** The trigger fires on the first `.md` write, and the sk-doc router answers with a clarify, which stalls a session whose only job is one note. Also a framework behavior. Workaround: the same as G20, answer the clarify or scope the session so the trigger does not apply.
+2. **G21: the Gate 2 artifact trigger routes the handoff note through sk-doc.** The trigger fires on the first `.md` write, and the sk-doc router answers with a clarify, which stalls a session whose only job is one note. Also a framework behavior. Workaround: the same as G20, answer the clarify or scope the session so the trigger does not apply. Phase 007 (`../007-handoff-gate-exemptions/`) addresses this.
 
 3. **The OpenCode default model fails provider routing.** The default (MiMo through the LLM Gateway) answers "Direct provider routing is not available", so every OpenCode live run selects `openai/gpt-6-luna` explicitly. The loop's code is not involved; a different default model or a fixed gateway would close it.
 

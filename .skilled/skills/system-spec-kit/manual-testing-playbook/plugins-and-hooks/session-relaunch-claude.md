@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.1.0
+version: 1.0.2.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -43,7 +43,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 |---|---|---|---|---|---|---|---|---|
 | session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries. | PASS when the same handoff reaches done after a new Claude process starts with the seed. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
 
-Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for this live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed.
+Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for this live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed, and [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md) records the run with no Gate 3 answer.
 
 ### Supplemental Checks
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.1.0
+version: 1.0.2.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -115,7 +115,7 @@ Each live launch overrides the threshold and window-token limit then sets the ho
 | OpenCode | Run B (`loopId=36553`) | Not a hop: Bun set `process.execPath` to `opencode.exe`, so the spawn launched OpenCode instead of the killer. A second Ctrl-C interrupted the fresh session before it claimed the note. | `2026-10-17T11:54:16.759Z prepare loopId=36553 status=pending sessionId=ses_eb64a06c2ffe6wXkUEP2W7PJwK`<br>`2026-10-17T12:01:05.149Z relaunch loopId=36553 reason=ready`<br>No `killer-signal` line. | Manually exited after the killer failed to run. Sent a second Ctrl-C two seconds after the relaunch, interrupting the fresh session before the claim. |
 | OpenCode | Run C (no `loopId` recorded) | Not a hop: the model ran a made-up `prepare.mjs` command, which failed with `MODULE_NOT_FOUND`. The nudge stopped after the note existed. | No saved `relaunch.log` copy. The ledger records `decline reason=no-file` and `WRAPPER_EXIT=0`. No claim or relaunch was recorded. | Sent one Ctrl-C to end the session after the command failed. |
 
-The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator inputs and evidence paths: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed.
+The 2026-10-19 benchmark reports for this scenario hold the outcomes, operator inputs and evidence paths: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. A third record, [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md), covers the run with no Gate 3 answer on Pi and OpenCode.
 
 #### Live Pi hop in tmux (Live)
 

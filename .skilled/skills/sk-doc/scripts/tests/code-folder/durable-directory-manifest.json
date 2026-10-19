@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 782,
+  "derived_count": 783,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -688,6 +688,7 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/outcomes",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli",
     ".skilled/skills/system-spec-kit/config",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands",

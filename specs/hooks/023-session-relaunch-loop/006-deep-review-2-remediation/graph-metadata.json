@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The round-2 deep review passed the session relaunch loop with twelve confirmed P2 advisories and no P0 or P1",
     "created_at": "2026-10-18T19:42:42Z",
-    "last_save_at": "2026-10-19T10:05:59.042Z",
+    "last_save_at": "2026-10-19T11:56:27.289Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fbeaa9ef56c0dbdd94d276494b836f9ae8ce644fba4c5a80b4a2b6a3fc2b7ee5",
+    "source_fingerprint": "sha256:897fb80a8efb821b4bb96a73f2dfb6bc23dc19f2624cb8d28e6359011d9f7c83",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae35b95088e133e84c0d8b29d4b57bdda30c082daa68ca657faf3997630beb5d",
+      "spec.md": "84d639c7471069a58117c727fc31d28900dbfd893850a4bae3f56596ce02ae15",
       "plan.md": "c04964c1fe9080985ea0c92cc59180a1294eec83ee6e1b944a3ddb4a58910c50",
       "tasks.md": "e19afcdc4b15a9936b06b4c14c43e4e88d466b2c5bd3d2194a2af351452a2e87",
-      "implementation-summary.md": "d71c57b04612b70af22847984b623235ebfcc1032238584cd9d54636de83a65e"
+      "implementation-summary.md": "5c8776b344494f7a36a805a23de3fb5e17c99b5b1156aeb6feb5f41b936b0395"
     },
     "last_active_at": null
   }

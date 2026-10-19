@@ -169,7 +169,7 @@ Each row is one gap a live playbook run found, the behavior that closes it and t
 | G24 | OpenCode dropped the complete step once the note left `open`, so the receiver never closed it | The claimed note keeps one reminder line with the complete command | `a claimed note pushes one completion reminder instead of the claim text` |
 | G25 | A successful `prepare` printed nothing, so the receiver read the CLI source to confirm it worked | One line says the handoff is prepared and the session should stop | `prepare under the loop prints the prepared handoff and the stop instruction` |
 
-Not hook defects, recorded for the operator: **G20** the framework Gate 3 question reached a read-only live session that had never answered it, and **G21** the Gate 2 artifact trigger routed the handoff note through sk-doc, which answered with a clarify. Both live in the framework's gate rules and the sk-doc router, not in this phase's code. The OpenCode default model (MiMo through the LLM Gateway) fails with "Direct provider routing is not available", so the live runs select `openai/gpt-6-luna` explicitly.
+Not hook defects, recorded for the operator: **G20** the framework Gate 3 question reached a read-only live session that had never answered it, and **G21** the Gate 2 artifact trigger routed the handoff note through sk-doc, which answered with a clarify. Both live in the framework's gate rules and the sk-doc router, not in this phase's code. The OpenCode default model (MiMo through the LLM Gateway) fails with "Direct provider routing is not available", so the live runs select `openai/gpt-6-luna` explicitly. Phase 007 (`../007-handoff-gate-exemptions/`) addresses G20. G21 is addressed there too.
 <!-- /ANCHOR:requirements -->
 
 ---

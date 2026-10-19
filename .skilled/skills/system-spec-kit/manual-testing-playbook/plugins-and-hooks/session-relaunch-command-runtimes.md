@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.2.0
+version: 1.0.3.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -91,7 +91,7 @@ The example launches override the threshold and window-token limit. `SESSION_REL
 
 #### Recorded Results
 
-Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for the Codex live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. Codex and Devin passed live checks. Hermes and Cursor were not run by operator decision.
+Two 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for the Codex live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, and [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed. A third record, [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md), covers the run with no Gate 3 answer on Claude, Pi and OpenCode, not Codex. Codex and Devin passed live checks. Hermes and Cursor were not run by operator decision.
 
 | Runtime | Run date | Result | `relaunch.log` evidence | Operator inputs |
 |---|---|---|---|---|

@@ -893,6 +893,62 @@ test('exempt path: /tmp scratchpad, dist, node_modules, .git, out-of-repo', () =
   }
 });
 
+test('exempt path: runtime state under .skilled/skills/.state, but never its concern README', () => {
+  const { root } = makeWorkspace();
+  const sessionID = nextSessionID();
+  core.classifyIntent({ prompt: 'implement the new handler', sessionID, projectDir: root });
+  const stateDir = join(root, '.skilled', 'skills', '.state');
+
+  const decide = (filePath) => core.evaluateMutation({
+    tool: 'Write',
+    filePath,
+    sessionID,
+    projectDir: root,
+    env: { [core.ENFORCE_ENV]: '1' },
+  }).decision;
+
+  try {
+    assert.equal(decide(join(stateDir, 'session-relaunch', 'handoffs', '20261019T000000Z-abc.md')), 'allow');
+    assert.equal(decide(join(stateDir, 'session-relaunch', 'README.md')), 'deny');
+    assert.equal(decide(join(root, 'src', '.state', 'cache.json')), 'deny');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('runtime-state exemption holds against lookalike, joined and outside-root paths', () => {
+  const { root } = makeWorkspace();
+  const sessionID = nextSessionID();
+  core.classifyIntent({ prompt: 'implement the new handler', sessionID, projectDir: root });
+  const skills = join(root, '.skilled', 'skills');
+
+  const cases = [
+    ['lookalike delimiter', join(skills, '.stateful', 'note.md'), 'deny'],
+    ['joined escape', `${join(skills, '.state', 'session-relaunch')}/../../sk-doc/SKILL.md`, 'deny'],
+    ['relative joined escape', '.skilled/skills/.state/../../../src/login.ts', 'deny'],
+    ['state dir itself', join(skills, '.state'), 'deny'],
+    ['root-level state README', join(skills, '.state', 'README.md'), 'allow'],
+    ['deeper README is state, not the concern README', join(skills, '.state', 'session-relaunch', 'handoffs', 'README.md'), 'allow'],
+    ['relative handoff note', '.skilled/skills/.state/session-relaunch/handoffs/a.md', 'allow'],
+    ['outside root stays exempt', '/completely/outside/.skilled/skills/.state/x/README.md', 'allow'],
+  ];
+
+  try {
+    for (const [label, filePath, expected] of cases) {
+      const { decision } = core.evaluateMutation({
+        tool: 'Write',
+        filePath,
+        sessionID,
+        projectDir: root,
+        env: { [core.ENFORCE_ENV]: '1' },
+      });
+      assert.equal(decision, expected, label);
+    }
+  } finally {
+    cleanup(root);
+  }
+});
+
 // ───────────────────────────────────────────────────────────────────
 // Bash is always advise-only
 // ───────────────────────────────────────────────────────────────────

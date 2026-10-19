@@ -1,0 +1,7 @@
+Run 10, 2026-10-19 ~11:34Z, G20/G21 reproduction with no Gate 3 answer in the prompt.
+Env: PATH=<worktree>/.skilled/bin:$PATH SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1
+Prompt: 'Carry this short task through a context handoff, then finish it in the new session. Tell me when you are ready. The task: report the line count of .skilled/hooks/session-relaunch/README.md and name its first heading.'
+skilled-loop pi --provider openai --model gpt-6-luna '<prompt>'
+skilled-loop opencode --prompt '<prompt>'      (no -m: proves the repo default model)
+skilled-loop claude '<prompt>'
+Each run in a detached tmux session started through clean-tmux.sh (Claude session env vars, SKILLED_LOOP_ID and AI_SESSION_CHILD unset).
