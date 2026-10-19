@@ -27,25 +27,28 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 |---|---|---|
 | `claude-task-dispatch-guard.test.cjs` | Claude adapter over the shared dispatch-guard core | Adapter behavior over the shared core. |
 | `opencode-goal-capabilities.test.cjs` | `opencode-goal.js` | Goal capability and operator-status reporting. |
-| `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior; uses `helpers/continuation-log.cjs`. |
+| `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, `.__test` surface). |
-| `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking; uses `helpers/continuation-log.cjs`. |
+| `opencode-goal-lifecycle.test.cjs` | `opencode-goal.js` | Goal lifecycle events and usage tracking, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-render-parity.test.cjs` | `opencode-goal.js` + `hooks/goal/lib/goal-core.cjs` | Pins the shared injection label set across both renderers and the brief cache key's write sensitivity. |
-| `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence; uses `helpers/continuation-log.cjs`. |
+| `opencode-goal-state.test.cjs` | `opencode-goal.js` | Session-keyed goal persistence, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-supervisor.test.cjs` | `opencode-goal.js` | Verifier results and durable goal state. |
 | `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution, packet bind, resent, packet read and the injected resend reminder. |
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
-| `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior; `tool.execute.before`/`after` callID correlation. |
+| `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior, including `tool.execute.before`/`after` callID correlation. |
 | `sk-git-message-gate.test.cjs` | `sk-git-message-gate.js` | Refuses a nonconforming commit in a throwaway repository with its rule id, passes a conforming one, a non-bash tool and a repository without a contract, and refuses when the rules block cannot be read. |
 | `source-root-consumers.test.cjs` | `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`, `codex-hooks-watchdog.js` | Each reads its rules or installer under whichever source root a consumer project carries, and stays silent with neither. |
 | `speckit-goal-offer-contract.test.cjs` | goal-offer command wiring | Goal-offer command wiring outside the plugin entrypoint set. |
-| `system-completion-sentinel.test.cjs` | `system-completion-sentinel.js` | Completion-sentinel lifecycle behavior; `session.idle` resolution via stubbed `ctx.client`. |
+| `system-completion-sentinel.test.cjs` | `system-completion-sentinel.js` | Completion-sentinel lifecycle behavior, including `session.idle` resolution via stubbed `ctx.client`. |
 | `system-deep-loop-guard.test.cjs` | `system-deep-loop-guard.js` | Deep-loop guard identity, repeat detection, and fail-open paths. |
 | `system-dist-freshness-guard.test.cjs` | `system-dist-freshness-guard.js` | Freshness detection and terminal-output guarantees. |
-| `system-skill-advisor.test.cjs` | `system-skill-advisor.js` | Advisor caching, lifecycle, and bridge behavior; bridge imported via `pathToFileURL`. |
+| `system-skill-advisor.test.cjs` | `system-skill-advisor.js` | Advisor caching, lifecycle, and bridge behavior, with the bridge imported via `pathToFileURL`. |
 | `system-spec-gate.test.cjs` | `system-spec-gate.js` | Mutation-gate kill-switch ordering (disabled checked before `output` read), hook behavior when enabled. |
 | `system-speckit-completion.test.cjs` | `system-speckit-completion.js` | Completion-tool kill-switch behavior. |
-| `helpers/` | — | Shared fixture utilities (see `helpers/README.md`). |
+| `v2-bridge.test.cjs` | `../lib/v2-bridge.js` + `../lib/tool-identity.js` | Event aliases and mappings, the v1 client adapters, hook registration and cleanup, tool result conversion and the `tool` identity contract. |
+| `v2-hard-plugins.test.cjs` | `system-completion-sentinel.js`, `system-spec-gate.js`, `system-skill-advisor.js`, `opencode-goal.js`, `sk-vision.js` | Registration plus behavior cases on a stub v2 context: completion advisory logging, a denied write through `execute.before`, goal continuation queued through `session.prompt`, goal evidence and token usage from session events, plus advisor transform dedup cleared after compaction. |
+| `v2-registration.test.cjs` | `classifier-injection-screen.js`, `cli-dispatch-audit.js`, `codex-hooks-watchdog.js`, `mcp-route-guard.js`, `session-cleanup.js`, `sk-code-post-edit-quality.js`, `sk-git-message-gate.js`, `sk-git-preflight-advisory.js`, `system-deep-loop-guard.js`, `system-dist-freshness-guard.js`, `system-speckit-completion.js` | The default export shape (a plain object with a string id, plus `setup` and `server` functions) and the setup contract: at least one v2 hook registered and a cleanup function returned. |
+| `helpers/` | n/a | Shared fixture utilities (see `helpers/README.md`). |
 
 ---
 
@@ -103,7 +106,7 @@ Tests manage their own env per test (save/restore). The kill-switch env each sui
 | Hermetic | Temporary directories, in-process `import()`, stubbed `ctx.client` / bridge / subprocess seams, per-test env save/restore. No live OpenCode session, daemon, or network. |
 | Kill-switch ordering | A disabled plugin must be a genuine full no-op, checked before any `output` read or mutation: not just a no-emit no-op that still normalizes `output.system`. |
 | Fail-open boundary | A missing payload, a subprocess timeout, a parse failure, or any internal error resolves to a no-op. |
-| CJS shell, ESM under test | Tests are `.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`; the ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
+| CJS shell, ESM under test | Tests are `.test.cjs` so they can `require()` Node builtins and `hook-flags.cjs`. The ESM plugin under test is imported via `import(pathToFileURL(...))`. Cache-busting query strings or `data:text/javascript;base64,...` instrumented modules give a fresh module instance per test where needed. |
 | `.__test` surface | Several plugins expose internal helpers hanging off the default export so tests can reach them without a stray named export being mistaken for a second plugin. |
 | Helpers | Shared fixture utilities live under `helpers/` (see `helpers/README.md`). |
 

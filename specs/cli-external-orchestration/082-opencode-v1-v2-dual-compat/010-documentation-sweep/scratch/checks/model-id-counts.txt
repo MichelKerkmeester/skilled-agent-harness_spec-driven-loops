@@ -1,0 +1,27 @@
+HEAD counts of the two default-model spellings in each doc the sweep writes (git show HEAD:<doc>).
+v4-flash	v4.1-flash	doc
+1	5	.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+5	0	.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+7	1	.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+3	12	.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+5	0	.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+5	0	.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+4	0	.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+2	0	.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+12	0	.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+3	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md
+3	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
+5	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/ablation-suite.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md
+1	0	.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+4	0	.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md
+1	0	.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md

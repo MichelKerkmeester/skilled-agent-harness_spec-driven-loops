@@ -1,10 +1,12 @@
 ---
 title: "CO-001 -- Base non-interactive invocation"
 description: "This scenario validates the canonical opencode run dispatch for `CO-001`. It focuses on confirming the default skill shape (model + agent + variant + format + dir) returns a coherent JSON event stream and exits cleanly."
-version: 1.4.0.21
+version: 1.4.1.0
 ---
 
 # CO-001 -- Base non-interactive invocation
+
+**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-001`.
 
@@ -12,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Base non-interactive invocation for `CO-001`. It focuses on confirming the canonical `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root> "<prompt>"` dispatch returns a coherent JSON event stream and exits cleanly from a non-OpenCode runtime.
+On OpenCode 1, this scenario validates Base non-interactive invocation for `CO-001`. It focuses on confirming the canonical `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root> "<prompt>"` dispatch returns a coherent JSON event stream and exits cleanly from a non-OpenCode runtime. The OpenCode 2 twin starts in the directory and carries the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`.
 
 ### Why This Matters
 
@@ -24,13 +26,13 @@ Every other scenario in this playbook builds on this baseline. If the default sk
 
 Operators run the exact prompt and command sequence for `CO-001` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm that the canonical default invocation `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "<prompt>" 2>&1` returns a parseable JSON event stream and exits 0.
-- Real user request: `From a fresh shell (no OpenCode parent), use opencode run with the cli-opencode default shape to ask: explain what the cli-opencode skill does in two sentences. Verify the JSON event stream parses and we get a session.completed event.`
-- Prompt: `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.`
+- Objective: Confirm that the canonical default invocation `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "<prompt>" 2>&1` (OpenCode 1 only) returns a parseable JSON event stream and exits 0.
+- Real user request: `From a fresh shell (no OpenCode parent), use opencode run with the cli-opencode default shape to ask: explain what the cli-opencode skill does in two sentences. On OpenCode 1, verify the JSON event stream parses and we get a session.completed event. On OpenCode 2, use the opencode2 twin instead and verify the JSON event stream parses and ends with a text event.`
+- Prompt: `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events on OpenCode 1 or step_start/tool_use/text/step_finish events on OpenCode 2, and report the session id plus event count.`
 - Expected execution process: External-AI orchestrator (Claude Code, OpenCode, Copilot or raw shell) confirms self-invocation guard does NOT trip, runs `command -v opencode`, dispatches with the default shape, captures stdout+stderr via `2>&1` and parses the newline-delimited JSON events with `jq`.
-- Expected signals: `command -v opencode` returns a path. No `OPENCODE_*` env vars set. JSON event stream starts with `session.started`, contains at least one `message.delta` and ends with `session.completed`. Exit code 0. Runtime under 90 seconds for a short prompt.
+- Expected signals: On OpenCode 1, `command -v opencode` returns a path. No `OPENCODE_*` env vars set. JSON event stream starts with `session.started`, contains at least one `message.delta` and ends with `session.completed`. Exit code 0. Runtime under 90 seconds for a short prompt. On OpenCode 2, `command -v opencode2` returns a path. No `OPENCODE_*` env vars set. JSON event stream contains at least one `step_start` and at least one `step_finish` event and ends with a `text` event. Exit code 0. Runtime under 90 seconds for a short prompt.
 - Desired user-visible outcome: A short paragraph explaining the skill plus a one-line verdict naming the session id, event count and PASS or FAIL with reason.
-- Pass/fail: PASS if exit 0 AND `session.started` + `session.completed` events both present AND no self-invocation refusal AND total runtime under 90s. FAIL if any condition fails.
+- Pass/fail: On OpenCode 1, PASS if exit 0 AND `session.started` + `session.completed` events both present AND no self-invocation refusal AND total runtime under 90s. On OpenCode 2, PASS if exit 0 AND `step_start` + `step_finish` events both present AND no self-invocation refusal AND total runtime under 90s. FAIL if any condition fails.
 
 ---
 
@@ -40,7 +42,7 @@ Operators run the exact prompt and command sequence for `CO-001` and confirm the
 
 1. Restate the user request in plain user language.
 2. Confirm the orchestrator runtime is NOT OpenCode itself (no `OPENCODE_*` env vars, no `opencode` parent process, no live state lock).
-3. Confirm `opencode` is on PATH and version is at or near v1.3.17.
+3. On OpenCode 1, confirm `opencode` is on PATH and version is at or near v1.3.17.
 4. Execute the deterministic steps exactly as written.
 5. Parse the JSON event stream with `jq` and count event types.
 6. Compare the observed output against the desired user-visible outcome.
@@ -48,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-001` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`; Step 2: returns binary path and version starting with `1.`; Step 3: writes JSON event lines; Step 4: exit 0; Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1); Step 6: prints a non-empty session id | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed both present AND no self-invocation refusal AND runtime under 90s; FAIL if any condition fails | 1. Verify `command -v opencode` returns a path; if missing run `brew install opencode` (macOS) or the standalone installer; 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode); 3. Run `opencode providers` to confirm anthropic is configured; 4. If JSON is malformed re-run with `--print-logs --log-level DEBUG` and inspect stderr |
+| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events on OpenCode 1 or step_start/tool_use/text/step_finish events on OpenCode 2, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` (OpenCode 1 only. On OpenCode 2, check `command -v opencode2 && opencode2 --version` instead, which prints `opencode v2.0.32`) -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1`) -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started" or .type == "step_start") \| (.session_id // .sessionID)' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`. Step 2: returns binary path and version starting with `1.`. Step 3: writes JSON event lines. Step 4: exit 0. Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1) on OpenCode 1, or `step_start` (>=1), `text` (>=1), `step_finish` (>=1) on OpenCode 2. Step 6: prints a non-empty `session_id` (OpenCode 1) or `sessionID` (OpenCode 2) | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed (OpenCode 1) or step_start + step_finish (OpenCode 2) both present AND no self-invocation refusal AND runtime under 90s. FAIL if any condition fails | 1. Verify `command -v opencode` returns a path. If missing, run `brew install opencode` (macOS) or the standalone installer. 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode). 3. Run `opencode providers` to confirm anthropic is configured. 4. If JSON is malformed, re-run with `--print-logs --log-level DEBUG` and inspect stderr. |
 
 ### Optional Supplemental Checks
 
@@ -70,7 +72,7 @@ If the base scenario passes, optionally re-run with `--print-logs --log-level DE
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Skill default invocation contract (section 3 "Default Invocation") and ALWAYS rules 3 + 4 + 9 |
-| `../../references/cli-reference.md` | Authoritative `opencode run` flag inventory pinned to v1.3.17 |
+| `../../references/cli-reference.md` | Authoritative `opencode run` flag inventory pinned to v1.3.17 on OpenCode 1, with the OpenCode 2 column beside it |
 
 ---
 

@@ -1,0 +1,853 @@
+--- a/.opencode/plugins/README.md
++++ b/.opencode/plugins/README.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "OpenCode Plugin Entrypoints"
+-description: "JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools, and post-action checks. OpenCode discovers these via a flat glob over .opencode/plugins/; each module exports a default plugin factory."
++description: "JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools, and post-action checks. OpenCode discovers these via a flat glob over .opencode/plugins/; each module default-exports the object `{ id, setup, server }`."
+ trigger_phrases:
+   - "OpenCode plugins"
+   - "plugin entrypoints"
+@@ -26,7 +26,7 @@
+ | File | Concern | Hook surface | Responsibility |
+ |---|---|---|---|
+ | `classifier-injection-screen.js` | `injection-screen` | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | Screens fetched `webfetch` text for instructions aimed at the agent. Buffers one advisory per session and drains it on the next transform, the model call that reads the fetch result. Never writes stdout/stderr. |
+-| `cli-dispatch-audit.js` | `dispatch` | `tool.execute.after` for Bash | Records redacted dispatch telemetry after completed CLI calls. Recognizes an `opencode` invocation and appends a bounded audit record. |
++| `cli-dispatch-audit.js` | `dispatch` | `tool.execute.after` for Bash | Records redacted dispatch telemetry after completed CLI calls. Recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
+ | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
+ | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
+ | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`), `experimental.chat.system.transform`, `tool` (goal tools) | Binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`), or holds a text goal. Largest plugin. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
+--- a/.skilled/command-support/doctor/scripts/README.md
++++ b/.skilled/command-support/doctor/scripts/README.md
+@@ -73,7 +73,7 @@
+ | `git-setup-check.cjs` | Runs the read-only sk-git setup battery for `/doctor:git setup`: eleven checks, each PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read and one repair per failure. It exits 0 when every check passes or skips, 3 when a check is UNKNOWN or a gate is saved off, 1 on any failure and 2 on a usage error. It loads every helper from its own install root and never runs code from the repository it inspects. |
+ | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
+ | `doctor-phrase-reach.cjs` | Scores every activated doctor phrase and each runnable doctor command through the built advisor scorer, then keeps the three results the hooks show. It fails when a phrase reaches neither the top pick nor the second line. It also fails if a runnable command does not rank first or an activated phrase has fewer than three words. It exits 2 when the advisor build is missing or stale. |
+-| `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import harness. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
++| `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import check. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
+ 
+ ---
+ 
+@@ -135,7 +135,7 @@
+ 
+ - `family-present`: PASS when a candidate's `--version` succeeds and parses to that family.
+ - `plugin-discovered`: PASS when OpenCode 1's `debug config` exits 0 with parseable JSON, the plugin folder holds at least one top-level `.js` file, none is a broken symlink and every one is listed.
+-- `plugin-load`: PASS when the import harness exits 0 and reports every top-level `.js` file loaded.
++- `plugin-load`: PASS when the import check exits 0 and reports every top-level `.js` file loaded.
+ - `plugin-active`: PASS when two consecutive reads give the same non-zero count and, on that read, every top-level `.js` file has an entry under the inspected root with status active.
+ - `skill-visible`: PASS when the skill listing parses and has an entry that mentions the inspected root.
+ 
+@@ -161,7 +161,7 @@
+ | `git-hook-gates.cjs` | `list` is read-only. `set` is a dry run until `--apply`, which writes only `speckit.hooks.<key>` in local or global git config. |
+ | `git-standards.cjs` | `status` and `check` are read-only. `init`, `set` and `disable` are dry runs until `--apply`, which writes only `.sk-git/` or the `skgit.contractDir` directory, never the shipped sk-git templates. |
+ | `git-setup-check.cjs` | Read-only. It writes no file and no git config value, and calls no allocator or `--apply` mode. |
+-| `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import harness runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
++| `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import check runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
+ 
+ Do not invoke a mutating path from a route classified as read-only.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+@@ -18,7 +18,7 @@
+ 
+ Copy-paste templates for `opencode run` dispatches. Each template names the use case it serves, the framework it applies, and the canonical invocation shape. Each rendered invocation is shown for OpenCode 1 (1.19.3). Its OpenCode 2 (2.0.32) form sits beside it. Where a flag has no OpenCode 2 form, the template says so and links `../references/install-and-versions.md`.
+ 
+-> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup. Without explicit closed stdin, dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect, which works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
++> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup, and without explicit closed stdin dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. The hang is observed on OpenCode 1 and unverified on OpenCode 2.0.32, so the redirect stays on both versions. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect, which works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
+ 
+ ## 1. OVERVIEW
+ 
+@@ -85,7 +85,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
+@@ -132,7 +132,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
+@@ -186,7 +186,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
+@@ -214,7 +214,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --agent orchestrate \
+   --format json \
+   "Use the <slug> subagent: <prompt>" 2>&1
+@@ -270,7 +270,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>" 2>&1
+ ```
+@@ -353,7 +353,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>" 2>&1
+ ```
+@@ -402,7 +402,7 @@
+ # OpenCode 2 (2.0.32):
+ for n in $(seq 1 8); do
+   cd /repo && opencode2 run --standalone \
+-    -m opencode-go/deepseek-v4-flash#max \
++    -m opencode-go/deepseek-v4.1-flash#max \
+     --format json \
+     "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
+ done
+@@ -446,7 +446,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>" 2>&1
+ ```
+@@ -483,7 +483,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --agent orchestrate \
+   --format json \
+   "Dispatch @ai-council: <prompt>" 2>&1
+@@ -519,7 +519,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --agent markdown \
+   --format json \
+   "<prompt>" 2>&1
+@@ -755,7 +755,7 @@
+ ```bash
+ # OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md
+@@ -25,10 +25,9 @@
+ - **The guard audits both versions.** Every hard rule declares the versions it applies to, so an `opencode2` run is checked instead of passing unaudited. When the version cannot be read, version-specific rules drop to a warning rather than blocking a dispatch they cannot prove wrong.
+ - **OpenCode 2 changes the flags.** The reasoning level rides on the model id (`-m provider/model#level`) and the dispatch starts in the target directory, with `--standalone` on every OpenCode 2 child dispatch. `--variant`, `--dir` and `--command` are OpenCode 1 only, and an OpenCode 2 slash prompt goes through `session.command` instead.
+ - **Install has a helper and a reference.** `scripts/opencode-setup.sh` builds the side-by-side, OpenCode 1-only or OpenCode 2-only layout and refuses to shadow the other version. `references/install-and-versions.md` covers the `opencode2` launcher, the shared config folder and the `upgrade --major` warning.
+-- **Every copied command names its version.** The skill's README, references and playbook scenarios label the OpenCode 1-only flags, and each example gains its OpenCode 2 twin.
+ 
+ &nbsp;
+ 
+ ## Upgrade
+ 
+-No migration required. The OpenCode 1 dispatch line is unchanged. With both versions installed, a dispatch with no `OPENCODE_BIN` pin now goes to OpenCode 2, so set `OPENCODE_BIN=opencode` to keep it on OpenCode 1.
++No migration required. The OpenCode 1 dispatch line is unchanged. With both versions installed, a dispatch with no `OPENCODE_BIN` pin follows `PATH` order, where an earlier directory wins and `opencode2` comes first only within a directory, so set `OPENCODE_BIN=opencode` to keep it on OpenCode 1.
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-034 -- Orchestrate agent multi-agent coordination
+ 
+-**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md).
++**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-034`.
+ 
+@@ -49,7 +49,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-034 | Orchestrate agent multi-agent coordination | Verify --agent orchestrate produces a sequenced multi-agent plan with no nested opencode run dispatches | `As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch opencode run --agent orchestrate --variant high --format json --dir <repo-root> "Plan a comprehensive audit of the cli-opencode skill itself. Decompose into a sequence of OpenCode specialist agents (e.g., context, review, write, ai-council) with explicit handoffs between steps. Name each agent slug, the artifact each step produces, and what it hands to the next step. Do not dispatch nested opencode run invocations." Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m provider/model#high --format json ...`) | 1. `bash: rm -rf /tmp/co-034-events.jsonl && git status --porcelain > /tmp/co-034-pre.txt` -> 2. `opencode run --model opencode-go/deepseek-v4-flash --agent orchestrate --variant max --format json --dir "$(pwd)" "Plan a comprehensive audit of the cli-opencode skill itself. Decompose into a sequence of OpenCode specialist agents (for example context, review, write, ai-council) with explicit handoffs between steps. Name each agent slug, the artifact each step produces, and what it hands to the next step. Do not dispatch nested opencode run invocations." > /tmp/co-034-events.jsonl 2>&1` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#max --format json "..."`, once the provider is confirmed in `opencode2 models`) -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "session.completed") \| .payload.summary // empty' /tmp/co-034-events.jsonl > /tmp/co-034-summary.txt` -> 5. `bash: grep -ciE '(general\|context\|review\|write\|debug\|deep-research\|deep-review\|ai-council)' /tmp/co-034-summary.txt` -> 6. `bash: grep -ciE '(step [0-9]+\|handoff\|hand off\|hands to\|passes to)' /tmp/co-034-summary.txt` -> 7. `bash: jq -r 'select(.type == "tool.call") \| .payload.input.command // empty' /tmp/co-034-events.jsonl \| grep -ciE 'opencode run' \| tr -d ' '` -> 8. `bash: git status --porcelain > /tmp/co-034-post.txt && diff /tmp/co-034-pre.txt /tmp/co-034-post.txt && echo OK_TREE_CLEAN` | Step 1: pre-snapshot captured. Step 2: dispatch captured. Step 3: exit 0. Step 4: session.completed summary extracted. Step 5: distinct agent-slug count >= 3 (across multiple grep hits). Step 6: handoff or step keyword count >= 2. Step 7: nested `opencode run` count = 0. Step 8: `OK_TREE_CLEAN` printed | `/tmp/co-034-events.jsonl`, `/tmp/co-034-summary.txt`, pre and post tree-status diff | PASS if exit 0 AND >= 3 distinct agent slugs AND handoffs described AND nested opencode-run count = 0 AND working tree clean AND `--agent orchestrate` in dispatch. FAIL if any check misses or nested runs appear | (1) If nested `opencode run` count > 0, the orchestrator violated the no-nested-run constraint, file a high-severity bug per agent-delegation.md §6. (2) If fewer than 3 slugs are named, refine the prompt to require explicit decomposition into at least 3 specialists. (3) If `--agent orchestrate` is rejected, run `opencode agent list` to confirm the agent is registered |
++| CO-034 | Orchestrate agent multi-agent coordination | Verify --agent orchestrate produces a sequenced multi-agent plan with no nested opencode run dispatches | `As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch opencode run --agent orchestrate --variant high --format json --dir <repo-root> "Plan a comprehensive audit of the cli-opencode skill itself. Decompose into a sequence of OpenCode specialist agents (e.g., context, review, write, ai-council) with explicit handoffs between steps. Name each agent slug, the artifact each step produces, and what it hands to the next step. Do not dispatch nested opencode run invocations." Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m provider/model#high --format json ...`) | 1. `bash: rm -rf /tmp/co-034-events.jsonl && git status --porcelain > /tmp/co-034-pre.txt` -> 2. `opencode run --model opencode-go/deepseek-v4-flash --agent orchestrate --variant max --format json --dir "$(pwd)" "Plan a comprehensive audit of the cli-opencode skill itself. Decompose into a sequence of OpenCode specialist agents (for example context, review, write, ai-council) with explicit handoffs between steps. Name each agent slug, the artifact each step produces, and what it hands to the next step. Do not dispatch nested opencode run invocations." > /tmp/co-034-events.jsonl 2>&1` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#max --format json "..."`, once the provider is confirmed in `opencode2 models`) -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "session.completed" or .type == "text") \| (.payload.summary // .part.text) // empty' /tmp/co-034-events.jsonl > /tmp/co-034-summary.txt` -> 5. `bash: grep -ciE '(general\|context\|review\|write\|debug\|deep-research\|deep-review\|ai-council)' /tmp/co-034-summary.txt` -> 6. `bash: grep -ciE '(step [0-9]+\|handoff\|hand off\|hands to\|passes to)' /tmp/co-034-summary.txt` -> 7. `bash: jq -r 'select(.type == "tool.call" or .type == "tool_use") \| (.payload.input.command // .part.state.input.command) // empty' /tmp/co-034-events.jsonl \| grep -ciE 'opencode run' \| tr -d ' '` -> 8. `bash: git status --porcelain > /tmp/co-034-post.txt && diff /tmp/co-034-pre.txt /tmp/co-034-post.txt && echo OK_TREE_CLEAN` | Step 1: pre-snapshot captured. Step 2: dispatch captured. Step 3: exit 0. Step 4: `session.completed` summary extracted on OpenCode 1, `text` event on OpenCode 2. Step 5: distinct agent-slug count >= 3 (across multiple grep hits). Step 6: handoff or step keyword count >= 2. Step 7: nested `opencode run` count = 0 (`tool.call` payloads on OpenCode 1, `tool_use` on OpenCode 2). Step 8: `OK_TREE_CLEAN` printed | `/tmp/co-034-events.jsonl`, `/tmp/co-034-summary.txt`, pre and post tree-status diff | PASS if exit 0 AND >= 3 distinct agent slugs AND handoffs described AND nested opencode-run count = 0 AND working tree clean AND `--agent orchestrate` in dispatch. FAIL if any check misses or nested runs appear | (1) If nested `opencode run` count > 0, the orchestrator violated the no-nested-run constraint, file a high-severity bug per agent-delegation.md §6. (2) If fewer than 3 slugs are named, refine the prompt to require explicit decomposition into at least 3 specialists. (3) If `--agent orchestrate` is rejected, run `opencode agent list` to confirm the agent is registered |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-001 -- Base non-interactive invocation
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-001`.
+ 
+@@ -14,7 +14,7 @@
+ 
+ ## 1. OVERVIEW
+ 
+-On OpenCode 1, this scenario validates Base non-interactive invocation for `CO-001`. It focuses on confirming the canonical `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root> "<prompt>"` dispatch returns a coherent JSON event stream and exits cleanly from a non-OpenCode runtime. The OpenCode 2 twin starts in the directory and carries the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"`.
++On OpenCode 1, this scenario validates Base non-interactive invocation for `CO-001`. It focuses on confirming the canonical `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root> "<prompt>"` dispatch returns a coherent JSON event stream and exits cleanly from a non-OpenCode runtime. The OpenCode 2 twin starts in the directory and carries the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`.
+ 
+ ### Why This Matters
+ 
+@@ -50,7 +50,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` (OpenCode 1 only. On OpenCode 2, check `command -v opencode2 && opencode2 --version` instead, which prints `opencode v2.0.32`) -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1`) -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`. Step 2: returns binary path and version starting with `1.`. Step 3: writes JSON event lines. Step 4: exit 0. Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1). Step 6: prints a non-empty session id | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed both present AND no self-invocation refusal AND runtime under 90s. FAIL if any condition fails | 1. Verify `command -v opencode` returns a path. If missing, run `brew install opencode` (macOS) or the standalone installer. 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode). 3. Run `opencode providers` to confirm anthropic is configured. 4. If JSON is malformed, re-run with `--print-logs --log-level DEBUG` and inspect stderr. |
++| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` (OpenCode 1 only. On OpenCode 2, check `command -v opencode2 && opencode2 --version` instead, which prints `opencode v2.0.32`) -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1`) -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started" or .type == "step_start") \| (.session_id // .sessionID)' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`. Step 2: returns binary path and version starting with `1.`. Step 3: writes JSON event lines. Step 4: exit 0. Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1) on OpenCode 1, or `step_start` (>=1), `text` (>=1), `step_finish` (>=1) on OpenCode 2. Step 6: prints a non-empty `session_id` (OpenCode 1) or `sessionID` (OpenCode 2) | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed (OpenCode 1) or step_start + step_finish (OpenCode 2) both present AND no self-invocation refusal AND runtime under 90s. FAIL if any condition fails | 1. Verify `command -v opencode` returns a path. If missing, run `brew install opencode` (macOS) or the standalone installer. 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode). 3. Run `opencode providers` to confirm anthropic is configured. 4. If JSON is malformed, re-run with `--print-logs --log-level DEBUG` and inspect stderr. |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-003 -- Working directory pinning via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the directory instead: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the directory instead: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-003`.
+ 
+@@ -48,7 +48,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-003 | Working directory pinning via --dir | Confirm `--dir` pins the dispatched session's working directory rather than inheriting the caller's CWD (OpenCode 1 only, OpenCode 2 starts in the directory) | `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.` (OpenCode 1 only) | 1. `bash: REPO_ROOT="$(pwd)" && REPO_BASENAME="$(basename "$REPO_ROOT")" && cd /tmp && pwd && echo "REPO_ROOT=$REPO_ROOT REPO_BASENAME=$REPO_BASENAME"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$REPO_ROOT" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1`) -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "tool.result") \| .payload' /tmp/co-003-events.jsonl \| grep -c "$REPO_BASENAME"` -> 5. `bash: jq -r 'select(.type == "tool.result") \| .payload' /tmp/co-003-events.jsonl \| grep -c "/tmp"` | Step 1: REPO_ROOT captured (must equal the operator's project root) and parent CWD changed to `/tmp`. Step 2: events captured non-empty. Step 3: exit 0. Step 4: count of `$REPO_BASENAME` references >= 1 (the dispatched session sees the pinned path). Step 5: count of `/tmp` references = 0 in tool.result payloads (the parent CWD did not leak in) | `/tmp/co-003-events.jsonl`, terminal transcript including parent CWD before dispatch and the captured REPO_ROOT/REPO_BASENAME | PASS if exit 0 AND pinned path basename appears in tool.result AND `/tmp` does not appear in tool.result. FAIL if dispatched session reports CWD as `/tmp` or fails to surface the pinned path | 1. On OpenCode 1, verify `--dir` is spelled exactly with two dashes and no equal sign. 2. Run `opencode run --help` and check `--dir` is still the canonical name (drift handled per `references/cli-reference.md` §9). 3. If the session's bash tool prints `/tmp`, the binary may be ignoring `--dir`. File a bug and fall back to running from the repo root directly. |
++| CO-003 | Working directory pinning via --dir | Confirm `--dir` pins the dispatched session's working directory rather than inheriting the caller's CWD (OpenCode 1 only, OpenCode 2 starts in the directory) | `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.` (OpenCode 1 only) | 1. `bash: REPO_ROOT="$(pwd)" && REPO_BASENAME="$(basename "$REPO_ROOT")" && cd /tmp && pwd && echo "REPO_ROOT=$REPO_ROOT REPO_BASENAME=$REPO_BASENAME"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$REPO_ROOT" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1`) -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use") \| (.payload // .part.state.output)' /tmp/co-003-events.jsonl \| grep -c "$REPO_BASENAME"` -> 5. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use") \| (.payload // .part.state.output)' /tmp/co-003-events.jsonl \| grep -c "/tmp"` | Step 1: REPO_ROOT captured (must equal the operator's project root) and parent CWD changed to `/tmp`. Step 2: events captured non-empty. Step 3: exit 0. Step 4: count of `$REPO_BASENAME` references >= 1 (the dispatched session sees the pinned path). Step 5: count of `/tmp` references = 0 in `tool.result` payloads on OpenCode 1 and `tool_use` output on OpenCode 2 (the parent CWD did not leak in) | `/tmp/co-003-events.jsonl`, terminal transcript including parent CWD before dispatch and the captured REPO_ROOT/REPO_BASENAME | PASS if exit 0 AND pinned path basename appears in the tool payload (tool.result on OpenCode 1, tool_use output on OpenCode 2) AND `/tmp` does not appear in that payload. FAIL if dispatched session reports CWD as `/tmp` or fails to surface the pinned path | 1. On OpenCode 1, verify `--dir` is spelled exactly with two dashes and no equal sign. 2. Run `opencode run --help` and check `--dir` is still the canonical name (drift handled per `references/cli-reference.md` §9). 3. If the session's bash tool prints `/tmp`, the binary may be ignoring `--dir`. File a bug and fall back to running from the repo root directly. |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md
+@@ -49,7 +49,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-005 | Plugin disable and verbose logs | Confirm `--pure` (OpenCode 1 only), `--print-logs` and `--log-level DEBUG` work without contaminating the JSON event stream on stdout | `Run baseline, --pure, and --print-logs variants of the same prompt; verify exits, JSON parseability, plugin silence, and stderr logs.` (OpenCode 1 only) | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-baseline.jsonl 2> /tmp/co-005-baseline.err && echo "BASELINE: $?"` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-baseline.jsonl 2> /tmp/co-005-baseline.err && echo "BASELINE: $?"`) -> 2. `bash: opencode run --pure --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-pure.jsonl 2> /tmp/co-005-pure.err && echo "PURE: $?"` (OpenCode 1 only, since OpenCode 2 `run` has no `--pure`, see the [install reference](../../references/install-and-versions.md)) -> 3. `bash: opencode run --print-logs --log-level DEBUG --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-debug.jsonl 2> /tmp/co-005-debug.err && echo "DEBUG: $?"` (`--print-logs` is kept on OpenCode 2, while `--log-level` is unverified on OpenCode 2.0.32, see the [install reference](../../references/install-and-versions.md)) -> 4. `bash: jq -e 'select(.type == "session.completed")' /tmp/co-005-baseline.jsonl > /dev/null && echo "BASELINE_JSON_OK"` -> 5. `bash: jq -e 'select(.type == "session.completed")' /tmp/co-005-debug.jsonl > /dev/null && echo "DEBUG_JSON_OK"` -> 6. `bash: grep -ciE '(plugin.*(error\|fail\|crash))' /tmp/co-005-pure.err` -> 7. `bash: wc -l /tmp/co-005-debug.err` | Step 1: BASELINE exit 0. Step 2: PURE exit 0. Step 3: DEBUG exit 0. Step 4: BASELINE_JSON_OK printed. Step 5: DEBUG_JSON_OK printed. Step 6: plugin error count = 0 in --pure stderr. Step 7: --debug stderr line count > 0 | `/tmp/co-005-baseline.{jsonl,err}`, `/tmp/co-005-pure.{jsonl,err}`, `/tmp/co-005-debug.{jsonl,err}`, terminal echoes for each variant | PASS if all 3 exits = 0 AND baseline + debug stdout JSON parses AND --pure stderr has no plugin errors AND --debug stderr is non-empty. FAIL if any check fails | 1. On OpenCode 1, if --pure fails with a plugin error, the binary may not honor the flag. File a bug and confirm version v1.3.17. 2. If --debug stderr is empty, --print-logs may have been ignored, so re-run and double-check spelling. 3. If JSON event stream contains stderr-style log lines, --print-logs may be writing to stdout instead of stderr. Separate redirects (`> stdout.log 2> stderr.log`) show this immediately. 4. NEVER use --pure for production dispatches per SKILL.md NEVER rule 5 |
++| CO-005 | Plugin disable and verbose logs | Confirm `--pure` (OpenCode 1 only), `--print-logs` and `--log-level DEBUG` work without contaminating the JSON event stream on stdout | `Run baseline, --pure, and --print-logs variants of the same prompt; verify exits, JSON parseability, plugin silence, and stderr logs.` (OpenCode 1 only) | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-baseline.jsonl 2> /tmp/co-005-baseline.err && echo "BASELINE: $?"` (OpenCode 1 only) -> 2. `bash: opencode run --pure --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-pure.jsonl 2> /tmp/co-005-pure.err && echo "PURE: $?"` (OpenCode 1 only, since OpenCode 2 `run` has no `--pure`, see the [install reference](../../references/install-and-versions.md)) -> 3. `bash: opencode run --print-logs --log-level DEBUG --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Reply with one short sentence acknowledging the prompt." > /tmp/co-005-debug.jsonl 2> /tmp/co-005-debug.err && echo "DEBUG: $?"` (`--print-logs` is kept on OpenCode 2, while `--log-level` is unverified on OpenCode 2.0.32, see the [install reference](../../references/install-and-versions.md)) -> 4. `bash: jq -e 'select(.type == "session.completed")' /tmp/co-005-baseline.jsonl > /dev/null && echo "BASELINE_JSON_OK"` -> 5. `bash: jq -e 'select(.type == "session.completed")' /tmp/co-005-debug.jsonl > /dev/null && echo "DEBUG_JSON_OK"` -> 6. `bash: grep -ciE '(plugin.*(error\|fail\|crash))' /tmp/co-005-pure.err` -> 7. `bash: wc -l /tmp/co-005-debug.err` | Step 1: BASELINE exit 0. Step 2: PURE exit 0. Step 3: DEBUG exit 0. Step 4: BASELINE_JSON_OK printed. Step 5: DEBUG_JSON_OK printed. Step 6: plugin error count = 0 in --pure stderr. Step 7: --debug stderr line count > 0 | `/tmp/co-005-baseline.{jsonl,err}`, `/tmp/co-005-pure.{jsonl,err}`, `/tmp/co-005-debug.{jsonl,err}`, terminal echoes for each variant | PASS if all 3 exits = 0 AND baseline + debug stdout JSON parses AND --pure stderr has no plugin errors AND --debug stderr is non-empty. FAIL if any check fails | 1. On OpenCode 1, if --pure fails with a plugin error, the binary may not honor the flag. File a bug and confirm version v1.3.17. 2. If --debug stderr is empty, --print-logs may have been ignored, so re-run and double-check spelling. 3. If JSON event stream contains stderr-style log lines, --print-logs may be writing to stdout instead of stderr. Separate redirects (`> stdout.log 2> stderr.log`) show this immediately. 4. NEVER use --pure for production dispatches per SKILL.md NEVER rule 5 |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-029 -- Cross-repo dispatch via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
+ 
+-**Version note.** The commands in this scenario target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin given beside each (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** The commands in this scenario target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin given beside each (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-029`.
+ 
+@@ -42,13 +42,13 @@
+ 
+ 1. Restate the user request in plain user language.
+ 2. Pick a valid different directory (the parent of `$(pwd)` is safe and reachable).
+-3. On OpenCode 1, in ONE shell invocation: derive `PARENT`/`PARENT_BASENAME`, dispatch with `--dir "$PARENT"` and a list-top-files prompt, and capture the dispatch's own exit status immediately (`status=$?`) before running any other command. A later, separate shell would see `PARENT`/`PARENT_BASENAME` empty and `$?` would report an unrelated command's status, not the dispatch's. The OpenCode 2 twin starts in the directory instead: `cd "$PARENT" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"`.
++3. On OpenCode 1, in ONE shell invocation: derive `PARENT`/`PARENT_BASENAME`, dispatch with `--dir "$PARENT"` and a list-top-files prompt, and capture the dispatch's own exit status immediately (`status=$?`) before running any other command. A later, separate shell would see `PARENT`/`PARENT_BASENAME` empty and `$?` would report an unrelated command's status, not the dispatch's. The OpenCode 2 twin starts in the directory instead: `cd "$PARENT" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`.
+ 4. Inspect the response for the cross-repo path or its files.
+ 5. Return a verdict naming the path and one listed file.
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-029 | Cross-repo dispatch via --dir (OpenCode 1 only) | Confirm, on OpenCode 1, that `--dir <other-repo-path>` targets a different repo's runtime and the dispatched session reports that path as CWD | `Dispatch opencode with --dir set to another valid repo path; verify the session lists that path, not <repo-root>.` (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <other-repo-path> && opencode2 run ...`) | 1. `bash: PARENT=$(dirname "$(pwd)"); PARENT_BASENAME="$(basename "$PARENT")"; echo "Cross-repo target: $PARENT (basename=$PARENT_BASENAME)"; ls -1 "$PARENT" \| head -5; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$PARENT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -5\`. In your final reply, name the working directory exactly as pwd printed it and list the top 5 entries you saw." > /tmp/co-029-events.jsonl 2>&1; status=$?; echo "Exit: $status"` (OpenCode 1 only. OpenCode 2 twin: `cd "$PARENT" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"`, confirming the provider in `opencode2 models` first, because v2 lists no `opencode-go` provider) -> 2. `bash: jq -r 'select(.type == "tool.result" or .type == "session.completed" or .type == "message.delta") \| .payload' /tmp/co-029-events.jsonl \| grep -ci "$PARENT_BASENAME"` -> 3. `bash: jq -r 'select(.type == "tool.result" or .type == "session.completed" or .type == "message.delta") \| .payload' /tmp/co-029-events.jsonl \| grep -ciE '(\.skilled/skill\|cli-opencode/SKILL\.md)'` | Step 1 (single shell): PARENT/PARENT_BASENAME derived and listed. Events captured. `Exit: 0` reflects the dispatch's OWN status, captured in the same shell before any other command could overwrite `$?`. Step 2: count of `$PARENT_BASENAME` references >= 1 (the cross-repo path appeared), so re-derive `PARENT_BASENAME` if running this step in a fresh shell. Step 3: count of operator-repo-only file references = 0 (the dispatched session is NOT seeing the operator repo as its CWD) | `/tmp/co-029-events.jsonl`, terminal listings (PARENT + PARENT_BASENAME), grep counts | PASS if exit 0 AND cross-repo path referenced AND zero operator-repo-only file references in the listing. FAIL if response says CWD is the operator repo or fails to list cross-repo files | 1. If the response says CWD is the operator repo, the binary may be ignoring `--dir`. File a regression bug. 2. If the response is generic (no listing), re-prompt with stronger explicit "use the bash tool" instruction. 3. If the cross-repo target does not exist, swap to another known-good directory like `~` or `/tmp` (note: `/tmp` will not have plugins, but the CWD test still works). 4. If `PARENT`/`PARENT_BASENAME` are empty in a later step, re-derive them or re-run step 1 as one shell block, because playbook steps do not share shell state. 5. On OpenCode 1, confirm version v1.3.17 and `--dir` is the canonical name (OpenCode 2 has no `--dir` and starts in the directory instead). |
++| CO-029 | Cross-repo dispatch via --dir (OpenCode 1 only) | Confirm, on OpenCode 1, that `--dir <other-repo-path>` targets a different repo's runtime and the dispatched session reports that path as CWD | `Dispatch opencode with --dir set to another valid repo path; verify the session lists that path, not <repo-root>.` (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <other-repo-path> && opencode2 run ...`) | 1. `bash: PARENT=$(dirname "$(pwd)"); PARENT_BASENAME="$(basename "$PARENT")"; echo "Cross-repo target: $PARENT (basename=$PARENT_BASENAME)"; ls -1 "$PARENT" \| head -5; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$PARENT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -5\`. In your final reply, name the working directory exactly as pwd printed it and list the top 5 entries you saw." > /tmp/co-029-events.jsonl 2>&1; status=$?; echo "Exit: $status"` (OpenCode 1 only. OpenCode 2 twin: `cd "$PARENT" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`, confirming the provider in `opencode2 models` first, because v2 lists no `opencode-go` provider) -> 2. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use" or .type == "session.completed" or .type == "step_finish" or .type == "message.delta" or .type == "text") \| (.payload // .part)' /tmp/co-029-events.jsonl \| grep -ci "$PARENT_BASENAME"` -> 3. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use" or .type == "session.completed" or .type == "step_finish" or .type == "message.delta" or .type == "text") \| (.payload // .part)' /tmp/co-029-events.jsonl \| grep -ciE '(\.skilled/skill\|cli-opencode/SKILL\.md)'` | Step 1 (single shell): PARENT/PARENT_BASENAME derived and listed. Events captured. `Exit: 0` reflects the dispatch's OWN status, captured in the same shell before any other command could overwrite `$?`. Step 2: count of `$PARENT_BASENAME` references >= 1 (the cross-repo path appeared), so re-derive `PARENT_BASENAME` if running this step in a fresh shell. Step 3: count of operator-repo-only file references = 0 (the dispatched session is NOT seeing the operator repo as its CWD) | `/tmp/co-029-events.jsonl`, terminal listings (PARENT + PARENT_BASENAME), grep counts | PASS if exit 0 AND cross-repo path referenced AND zero operator-repo-only file references in the listing. FAIL if response says CWD is the operator repo or fails to list cross-repo files | 1. If the response says CWD is the operator repo, the binary may be ignoring `--dir`. File a regression bug. 2. If the response is generic (no listing), re-prompt with stronger explicit "use the bash tool" instruction. 3. If the cross-repo target does not exist, swap to another known-good directory like `~` or `/tmp` (note: `/tmp` will not have plugins, but the CWD test still works). 4. If `PARENT`/`PARENT_BASENAME` are empty in a later step, re-derive them or re-run step 1 as one shell block, because playbook steps do not share shell state. 5. On OpenCode 1, confirm version v1.3.17 and `--dir` is the canonical name (OpenCode 2 has no `--dir` and starts in the directory instead). |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
+@@ -44,7 +44,7 @@
+ 
+ This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
+ 
+-Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m provider/model#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
++Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+ 
+ ### Realistic Test Model
+ 
+@@ -197,7 +197,7 @@
+ 
+ #### Description
+ 
+-On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run ...`) and spells the effort as `-m provider/model#max`.
++On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`) and reads the v2 event names (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`) instead of the OpenCode 1 names. A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ #### Scenario Contract
+ 
+@@ -343,11 +343,11 @@
+ 
+ #### Description
+ 
+-On OpenCode 1, verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op. OpenCode 2 carries the same levels on the model id, as `-m provider/model#minimal` and `-m provider/model#max`.
++On OpenCode 1, verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op. OpenCode 2 carries the same levels on the model id, as `-m opencode-go/deepseek-v4.1-flash#minimal` and `-m opencode-go/deepseek-v4.1-flash#max`. A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max (OpenCode 1 only, with the OpenCode 2 twin carrying the level on the model id: `-m provider/model#minimal` and `-m provider/model#max`). Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
++Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max (OpenCode 1 only, with the OpenCode 2 twin carrying the level on the model id: `-m opencode-go/deepseek-v4.1-flash#minimal` and `-m opencode-go/deepseek-v4.1-flash#max`). Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
+ 
+ Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte count. Max-variant covers more dimensions.
+ 
+@@ -434,7 +434,7 @@
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --agent deep-research -m provider/model#high --format json ...`) with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
++Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` (OpenCode 1 only) with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
+ 
+ Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
+ 
+@@ -466,7 +466,7 @@
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --agent orchestrate -m provider/model#high --format json ...`) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.
++Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, where a v2 check reads the `tool_use` event instead of the OpenCode 1 `tool.call` name and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.
+ 
+ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` tool.call events. Working tree clean. Dispatch line includes `--agent orchestrate`.
+ 
+@@ -684,7 +684,7 @@
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal (OpenCode 1 only, because OpenCode 2 carries the level on the model id as `-m provider/model#<level>` and has no `--share`/`--port`, see the [install reference](../references/install-and-versions.md)), both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
++Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal (OpenCode 1 only, because OpenCode 2 carries the level on the model id as `-m opencode-go/deepseek-v4.1-flash#<level>` and has no `--share`/`--port`, see the [install reference](../references/install-and-versions.md), and its v2 reader checks `opencode2 models` first since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used), both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
+ 
+ Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-012 -- Variant levels (minimal/low/medium/high)
+ 
+-**Version note.** The commands in this scenario target OpenCode 1 (1.19.3). Each has its OpenCode 2 (2.0.32) twin beside it. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../../references/install-and-versions.md).
++**Version note.** The commands in this scenario target OpenCode 1 (1.19.3). Each has its OpenCode 2 (2.0.32) twin beside it. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../../references/install-and-versions.md).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-012`.
+ 
+@@ -18,7 +18,7 @@
+ 
+ ### Why This Matters
+ 
+-On OpenCode 1, the cli-opencode skill defaults to `--variant high` because routine dispatches benefit from elevated reasoning effort (per SKILL.md §3 and `references/cli-reference.md` §5). On OpenCode 2 the same effort rides on the model id (`-m opencode-go/deepseek-v4-flash#high`). If the variant flag is silently ignored or the levels leave reasoning depth unchanged, the skill default loses its value and operators have no real way to dial cost vs depth. This test proves the variant flag is functional by comparing `minimal` vs `high` (the skill's own verified default for `opencode-go/deepseek-v4-flash`, not an unverified `max` value, which is not enumerated for this provider anywhere in the current skill) for the same prompt and confirming the response byte count and depth differ materially.
++On OpenCode 1, the cli-opencode skill defaults to `--variant high` because routine dispatches benefit from elevated reasoning effort (per SKILL.md §3 and `references/cli-reference.md` §5). On OpenCode 2 the same effort rides on the model id (`-m opencode-go/deepseek-v4.1-flash#high`). If the variant flag is silently ignored or the levels leave reasoning depth unchanged, the skill default loses its value and operators have no real way to dial cost vs depth. This test proves the variant flag is functional by comparing `minimal` vs `high` (the skill's own verified default for `opencode-go/deepseek-v4-flash`, not an unverified `max` value, which is not enumerated for this provider anywhere in the current skill) for the same prompt and confirming the response byte count and depth differ materially.
+ 
+ ---
+ 
+@@ -26,9 +26,9 @@
+ 
+ Operators run the exact prompt and command sequence for `CO-012` and confirm the expected signals without contradictory evidence.
+ 
+-- Objective: On OpenCode 1, confirm `--variant minimal` and `--variant high` produce materially different response depth for the same prompt on `opencode-go/deepseek-v4-flash`, proving the variant flag drives provider reasoning effort. On OpenCode 2 the same comparison rides on the model selector (`-m opencode-go/deepseek-v4-flash#minimal` versus `-m opencode-go/deepseek-v4-flash#high`). `high` is used as the upper comparison point because it is the one variant value this skill's own docs (SKILL.md §3 default invocation, `references/cli-reference.md` §5) vouch for on this provider, while `max` is not enumerated for deepseek anywhere in the current skill and its acceptance is unverified.
++- Objective: On OpenCode 1, confirm `--variant minimal` and `--variant high` produce materially different response depth for the same prompt on `opencode-go/deepseek-v4-flash`, proving the variant flag drives provider reasoning effort. On OpenCode 2 the same comparison rides on the model selector (`-m opencode-go/deepseek-v4.1-flash#minimal` versus `-m opencode-go/deepseek-v4.1-flash#high`). `high` is used as the upper comparison point because it is the one variant value this skill's own docs (SKILL.md §3 default invocation, `references/cli-reference.md` §5) vouch for on this provider, while `max` is not enumerated for deepseek anywhere in the current skill and its acceptance is unverified.
+ - Real user request: On OpenCode 1, `Run the same prompt twice — once with --variant minimal and once with --variant high — and show me how much longer and more detailed the high-effort response is.` On OpenCode 2 the same request is dispatched with the level on the model id (`-m provider/model#<level>`).
+-- Prompt: On OpenCode 1, `Run the same architecture prompt with --variant minimal and high; compare response byte counts and trade-off dimension coverage.` On OpenCode 2 the level rides on the model id (`-m provider/model#<level>`).
++- Prompt: `Run the same architecture prompt with --variant minimal and high; compare response byte counts and trade-off dimension coverage.` On OpenCode 1, the levels ride on `--variant`. On OpenCode 2 the level rides on the model id (`-m provider/model#<level>`).
+ - Expected execution process: External-AI orchestrator dispatches the same prompt twice, captures both event streams, computes the response byte count for each, counts trade-off dimensions in each and validates the high-effort variant produces materially deeper output.
+ - Expected signals: Both dispatches exit 0. High-variant response byte count is at least 2x the minimal-variant byte count. High response weighs at least 2 more distinct trade-off dimensions than minimal. Both runs identify the same model.
+ - Desired user-visible outcome: Verdict naming both byte counts, both dimension counts and the variant ratio.
+@@ -41,14 +41,14 @@
+ ### Recommended Orchestration Process
+ 
+ 1. Restate the user request in plain user language.
+-2. On OpenCode 1, dispatch with `--variant minimal` and capture the response. On OpenCode 2, the twin is `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#minimal --format json "<prompt>"`.
+-3. On OpenCode 1, dispatch with `--variant high` and capture the response. On OpenCode 2, the twin is `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#high --format json "<prompt>"`.
++2. On OpenCode 1, dispatch with `--variant minimal` and capture the response. On OpenCode 2, the twin is `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#minimal --format json "<prompt>"`.
++3. On OpenCode 1, dispatch with `--variant high` and capture the response. On OpenCode 2, the twin is `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`.
+ 4. Compute byte counts and count trade-off dimensions for each.
+ 5. Compare and return a verdict naming both metrics.
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-012 | Variant levels (minimal/low/medium/high) | Confirm `--variant minimal` and `--variant high` produce materially different response depth for the same prompt on `opencode-go/deepseek-v4-flash` | `Run the same architecture prompt with --variant minimal and high; compare response byte counts and trade-off dimension coverage.` | On OpenCode 1: 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant minimal --format json --dir "$(pwd)" "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-minimal.jsonl 2>&1 && echo "MINIMAL: $?"` -> 1b. (OpenCode 2) `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#minimal --format json "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-minimal.jsonl 2>&1 && echo "MINIMAL: $?"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-high.jsonl 2>&1 && echo "HIGH: $?"` -> 2b. (OpenCode 2) `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-high.jsonl 2>&1 && echo "HIGH: $?"` -> 3. `bash: MIN=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-minimal.jsonl \| wc -c); HIGH=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-high.jsonl \| wc -c); echo "MIN_BYTES=$MIN HIGH_BYTES=$HIGH RATIO=$(echo "scale=2; $HIGH/$MIN" \| bc)"` -> 4. `bash: MIN_DIMS=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-minimal.jsonl \| grep -ciE '(consistency\|query performance\|learning curve\|scalability\|ops cost)'); HIGH_DIMS=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-high.jsonl \| grep -ciE '(consistency\|query performance\|learning curve\|scalability\|ops cost)'); echo "MIN_DIMS=$MIN_DIMS HIGH_DIMS=$HIGH_DIMS"` A v2 reader confirms the provider in `opencode2 models` first, because this machine's v2 list has no `opencode-go` provider. | Step 1: MINIMAL exit 0. Step 2: HIGH exit 0. Step 3: HIGH_BYTES is at least 2x MIN_BYTES (RATIO >= 2.0). Step 4: HIGH_DIMS is at least MIN_DIMS + 2 (or both at the cap of 5, whichever indicates the depth lever moved) | `/tmp/co-012-minimal.jsonl`, `/tmp/co-012-high.jsonl`, terminal byte and dimension counts | PASS if both exit 0 AND HIGH_BYTES >= 2x MIN_BYTES AND HIGH response covers more dimensions. FAIL if variant has no effect or either dispatch fails | 1. If RATIO is close to 1.0, the variant flag may be silently ignored. Re-run with `--print-logs --log-level DEBUG` and look for a variant resolution log line. On OpenCode 2, `--print-logs` is kept on `run`, while `--log-level` is unverified on OpenCode 2.0.32. 2. If the model id resolution differs between runs, the variant may be coercing model selection. Verify both runs use the same model id. 3. For direct deepseek reasoning models, use the reasoning-effort variant accepted on that provider. 4. On OpenCode 1, confirm version v1.3.17. Older versions may use a different flag name (`--reasoning`) per `references/cli-reference.md` §9. On OpenCode 2 the effort rides on the model id (`-m provider/model#<level>`), since `run` has no `--variant` |
++| CO-012 | Variant levels (minimal/low/medium/high) | Confirm `--variant minimal` and `--variant high` produce materially different response depth for the same prompt on `opencode-go/deepseek-v4-flash` | `Run the same architecture prompt with --variant minimal and high; compare response byte counts and trade-off dimension coverage.` | On OpenCode 1: 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant minimal --format json --dir "$(pwd)" "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-minimal.jsonl 2>&1 && echo "MINIMAL: $?"` -> 1b. (OpenCode 2) `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#minimal --format json "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-minimal.jsonl 2>&1 && echo "MINIMAL: $?"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-high.jsonl 2>&1 && echo "HIGH: $?"` -> 2b. (OpenCode 2) `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Compare event sourcing vs traditional CRUD for an order management system across consistency, query performance, learning curve, scalability, and ops cost. Recommend one with confidence." > /tmp/co-012-high.jsonl 2>&1 && echo "HIGH: $?"` -> 3. `bash: MIN=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-minimal.jsonl \| wc -c); HIGH=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-high.jsonl \| wc -c); echo "MIN_BYTES=$MIN HIGH_BYTES=$HIGH RATIO=$(echo "scale=2; $HIGH/$MIN" \| bc)"` -> 4. `bash: MIN_DIMS=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-minimal.jsonl \| grep -ciE '(consistency\|query performance\|learning curve\|scalability\|ops cost)'); HIGH_DIMS=$(jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-012-high.jsonl \| grep -ciE '(consistency\|query performance\|learning curve\|scalability\|ops cost)'); echo "MIN_DIMS=$MIN_DIMS HIGH_DIMS=$HIGH_DIMS"` On OpenCode 2, the step 3 and step 4 checks read the response text from the `text` events (`jq -r 'select(.type == "text") \| .part.text'`). A v2 reader confirms the provider in `opencode2 models` first, because this machine's v2 list has no `opencode-go` provider. | Step 1: MINIMAL exit 0. Step 2: HIGH exit 0. Step 3: HIGH_BYTES is at least 2x MIN_BYTES (RATIO >= 2.0). Step 4: HIGH_DIMS is at least MIN_DIMS + 2 (or both at the cap of 5, whichever indicates the depth lever moved) | `/tmp/co-012-minimal.jsonl`, `/tmp/co-012-high.jsonl`, terminal byte and dimension counts | PASS if both exit 0 AND HIGH_BYTES >= 2x MIN_BYTES AND HIGH response covers more dimensions. FAIL if variant has no effect or either dispatch fails | 1. If RATIO is close to 1.0, the variant flag may be silently ignored. Re-run with `--print-logs --log-level DEBUG` and look for a variant resolution log line. On OpenCode 2, `--print-logs` is kept on `run`, while `--log-level` is unverified on OpenCode 2.0.32. 2. If the model id resolution differs between runs, the variant may be coercing model selection. Verify both runs use the same model id. 3. For direct deepseek reasoning models, use the reasoning-effort variant accepted on that provider. 4. On OpenCode 1, confirm version v1.3.17. Older versions may use a different flag name (`--reasoning`) per `references/cli-reference.md` §9. On OpenCode 2 the effort rides on the model id (`-m provider/model#<level>`), since `run` has no `--variant` |
+ 
+ ### Optional Supplemental Checks
+ 
+@@ -56,7 +56,7 @@
+ 
+ | Model | Variant range to sweep |
+ |---|---|
+-| `opencode-go/deepseek-v4-flash` | On OpenCode 1, reasoning model pinned to `--variant max` (its top thinking tier) by policy, now the skill's operative default. Treat any other value as unverified until smoke-tested. On OpenCode 2 the effort rides on the model id (`-m opencode-go/deepseek-v4-flash#max`). The v2 reader confirms the provider in `opencode2 models` first |
++| `opencode-go/deepseek-v4-flash` | On OpenCode 1, reasoning model pinned to `--variant max` (its top thinking tier) by policy, now the skill's operative default. Treat any other value as unverified until smoke-tested. On OpenCode 2 the effort rides on the model id (`-m opencode-go/deepseek-v4.1-flash#max`). The v2 reader confirms the provider in `opencode2 models` first |
+ | `llmgateway/mimo-v2.6-pro` | On OpenCode 1, `--variant` maps to MiMo reasoning effort (`none`/`low`/`medium`/`high`), so always use `high` per the MiMo effort map. On OpenCode 2 the level rides on the model id (`-m llmgateway/mimo-v2.6-pro#high`). Whether the gateway accepts it is unverified on OpenCode 2.0.32 |
+ | `openai/gpt-6-sol` | On OpenCode 1, `--variant` maps to OpenAI reasoning effort (`none`/`low`/`medium`/`high`/`xhigh`). On OpenCode 2 the level rides on the model id (`-m openai/gpt-6-sol#<level>`). Whether the provider accepts it is unverified on OpenCode 2.0.32 |
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-018 -- Continue last session via -c / --continue
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. The `-c`/`--continue` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-c`/`--continue` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-018`.
+ 
+@@ -48,7 +48,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-018 | Continue last session via -c | Confirm `-c` resumes the most recent project session and the follow-up has access to prior context | `As an external-AI conductor running a 2-step opencode workflow, dispatch the first opencode run to define a unique technical concept (the "snowflake reducer") in one paragraph. Then dispatch the second opencode run with -c and a follow-up question about the concept (e.g. "what was the key invariant?"). Verify the second response references the snowflake reducer concept without asking for re-explanation. Return a concise pass/fail verdict naming the invariant from the second turn.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Define the (fictional) snowflake reducer pattern in one short paragraph: it is a parallel-fold reducer over a binary tree that requires the snowflake commutativity invariant to produce deterministic output. The key invariant is snowflake commutativity (operands must commute pairwise across all six branches)." > /tmp/co-018-turn1.jsonl 2>&1 && echo "TURN1: $?"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>" > /tmp/co-018-turn1.jsonl 2>&1 && echo "TURN1: $?"`, once the provider is confirmed in `opencode2 models`) -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" -c "Recall the pattern we just discussed. What is its key invariant? Answer in one short sentence." > /tmp/co-018-turn2.jsonl 2>&1 && echo "TURN2: $?"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json -c "<prompt>" > /tmp/co-018-turn2.jsonl 2>&1 && echo "TURN2: $?"`) -> 3. `bash: jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-018-turn2.jsonl \| grep -ciE '(snowflake\|commutativity\|invariant)'` -> 4. `bash: jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-018-turn2.jsonl \| grep -ciE '(could you describe\|what is\|please define\|context.*missing)'` | Step 1: TURN1 exit 0. Step 2: TURN2 exit 0. Step 3: count of snowflake/commutativity/invariant references >= 1 (the second turn referenced the prior concept). Step 4: count of re-explanation phrases = 0 (no "what is X?" or context-missing language) | `/tmp/co-018-turn1.jsonl`, `/tmp/co-018-turn2.jsonl`, terminal grep counts | PASS if both exit 0 AND second turn references snowflake concept AND no re-explanation requests. FAIL if second turn asks for re-explanation or is generic | 1. If second turn asks for re-explanation, `-c` may not have resumed. Verify the most recent session is correct via `~/.opencode/state/<id>/metadata.json`. 2. If second turn is generic, the resume may have loaded the wrong session. Try `--session <id>` with the explicit id from turn 1's `session.started` event. 3. If `-c` is rejected with `unknown option`, version drift is the likely cause. Fall back to the `--continue` long form. 4. If both turns share the same session id in JSON, that is correct and indicates resume worked |
++| CO-018 | Continue last session via -c | Confirm `-c` resumes the most recent project session and the follow-up has access to prior context | `As an external-AI conductor running a 2-step opencode workflow, dispatch the first opencode run to define a unique technical concept (the "snowflake reducer") in one paragraph. Then dispatch the second opencode run with -c and a follow-up question about the concept (e.g. "what was the key invariant?"). Verify the second response references the snowflake reducer concept without asking for re-explanation. Return a concise pass/fail verdict naming the invariant from the second turn.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Define the (fictional) snowflake reducer pattern in one short paragraph: it is a parallel-fold reducer over a binary tree that requires the snowflake commutativity invariant to produce deterministic output. The key invariant is snowflake commutativity (operands must commute pairwise across all six branches)." > /tmp/co-018-turn1.jsonl 2>&1 && echo "TURN1: $?"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>" > /tmp/co-018-turn1.jsonl 2>&1 && echo "TURN1: $?"`, once the provider is confirmed in `opencode2 models`) -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" -c "Recall the pattern we just discussed. What is its key invariant? Answer in one short sentence." > /tmp/co-018-turn2.jsonl 2>&1 && echo "TURN2: $?"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json -c "<prompt>" > /tmp/co-018-turn2.jsonl 2>&1 && echo "TURN2: $?"`) -> 3. `bash: jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-018-turn2.jsonl \| grep -ciE '(snowflake\|commutativity\|invariant)'` -> 4. `bash: jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-018-turn2.jsonl \| grep -ciE '(could you describe\|what is\|please define\|context.*missing)'` On OpenCode 2, the step 3 and step 4 checks read the response text from the `text` events (`jq -r 'select(.type == "text") \| .part.text'`). | Step 1: TURN1 exit 0. Step 2: TURN2 exit 0. Step 3: count of snowflake/commutativity/invariant references >= 1 (the second turn referenced the prior concept). Step 4: count of re-explanation phrases = 0 (no "what is X?" or context-missing language) | `/tmp/co-018-turn1.jsonl`, `/tmp/co-018-turn2.jsonl`, terminal grep counts | PASS if both exit 0 AND second turn references snowflake concept AND no re-explanation requests. FAIL if second turn asks for re-explanation or is generic | 1. If second turn asks for re-explanation, `-c` may not have resumed. Verify the most recent session is correct via `~/.opencode/state/<id>/metadata.json`. 2. If second turn is generic, the resume may have loaded the wrong session. Try `--session <id>` with the explicit id from turn 1's `session.started` event. 3. If `-c` is rejected with `unknown option`, version drift is the likely cause. Fall back to the `--continue` long form. 4. If both turns share the same session id in JSON, that is correct and indicates resume worked |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-020 -- Fork session (--fork) and share URL gate (--share) (OpenCode 1 only for the `--share` gate, with the OpenCode 2 fork twin beside each command)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent (see the [install reference](../../references/install-and-versions.md)).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-020`.
+ 
+@@ -47,7 +47,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-020 | Fork session and share URL gate | Confirm `--fork --continue` creates a new session id distinct from parent, and `--share` is opt-in per CHK-033 (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../../references/install-and-versions.md)) | `As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is documented as opt-in requiring operator confirmation per CHK-033. Return a concise pass/fail verdict naming both session ids and the CHK-033 confirmation rule.` (the `--share` clause is OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../../references/install-and-versions.md)) | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Briefly say hello and acknowledge this is turn 1 of a fork test." > /tmp/co-020-turn1.jsonl 2>&1; echo "TURN1: $?"; SID1=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-020-turn1.jsonl \| head -1); echo "SID1=$SID1"; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" --fork --continue "Briefly acknowledge this is the forked turn." > /tmp/co-020-turn2.jsonl 2>&1; echo "TURN2: $?"; SID2=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-020-turn2.jsonl \| head -1); echo "SID2=$SID2"; [ "$SID1" != "$SID2" ] && [ -n "$SID1" ] && [ -n "$SID2" ] && echo "FORK_OK: distinct session ids" \|\| echo "FORK_FAIL: ids identical or empty"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"` for turn 1 and the same with `--fork --continue` for turn 2, once the provider is confirmed in `opencode2 models`) -> 2. `bash: grep -nE 'NEVER pass.*--share' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` -> 3. `bash: grep -nE 'CHK-033' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md \| head -3` | Step 1 (single shell): TURN1 exit 0. SID1 captured non-empty. TURN2 exit 0. SID2 captured non-empty. Prints `FORK_OK: distinct session ids`. Step 2: NEVER rule 2 cited (`NEVER pass --share without operator confirmation`). Step 3: CHK-033 reference appears in SKILL.md | `/tmp/co-020-turn1.jsonl`, `/tmp/co-020-turn2.jsonl`, captured SID1 + SID2 in terminal, grep matches | PASS if both exit 0 AND SID1 != SID2 AND SKILL.md cites the CHK-033 share confirmation rule. FAIL if ids match (fork failed), either is empty, or CHK-033 rule is missing | 1. If `--fork` is rejected with "requires --continue or --session", spell the parent flag explicitly. 2. If SID1 and SID2 match, the fork silently degraded to a continue, so file a bug. 3. If SID1 or SID2 print empty, the launch and capture steps were accidentally split across separate tool-call shells. Re-run as one shell block. 4. If CHK-033 reference is missing in SKILL.md, the share gate documentation has regressed. File a P0 documentation bug. 5. NEVER actually dispatch `--share` in this test, because that would publish session contents (CHK-033 protects against accidental publication) |
++| CO-020 | Fork session and share URL gate | Confirm `--fork --continue` creates a new session id distinct from parent, and `--share` is opt-in per CHK-033 (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../../references/install-and-versions.md)) | `As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is documented as opt-in requiring operator confirmation per CHK-033. Return a concise pass/fail verdict naming both session ids and the CHK-033 confirmation rule.` (the `--share` clause is OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../../references/install-and-versions.md)) | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Briefly say hello and acknowledge this is turn 1 of a fork test." > /tmp/co-020-turn1.jsonl 2>&1; echo "TURN1: $?"; SID1=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-020-turn1.jsonl \| head -1); echo "SID1=$SID1"; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" --fork --continue "Briefly acknowledge this is the forked turn." > /tmp/co-020-turn2.jsonl 2>&1; echo "TURN2: $?"; SID2=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-020-turn2.jsonl \| head -1); echo "SID2=$SID2"; [ "$SID1" != "$SID2" ] && [ -n "$SID1" ] && [ -n "$SID2" ] && echo "FORK_OK: distinct session ids" \|\| echo "FORK_FAIL: ids identical or empty"` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` for turn 1 and the same with `--fork --continue` for turn 2, with both ids read from the `step_start` events (`jq -r 'select(.type == "step_start") \| .sessionID' \| head -1`), once the provider is confirmed in `opencode2 models`) -> 2. `bash: grep -nE 'NEVER pass.*--share' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` -> 3. `bash: grep -nE 'CHK-033' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md \| head -3` | Step 1 (single shell): TURN1 exit 0. SID1 captured non-empty. TURN2 exit 0. SID2 captured non-empty. Prints `FORK_OK: distinct session ids`. Step 2: NEVER rule 2 cited (`NEVER pass --share without operator confirmation`). Step 3: CHK-033 reference appears in SKILL.md | `/tmp/co-020-turn1.jsonl`, `/tmp/co-020-turn2.jsonl`, captured SID1 + SID2 in terminal, grep matches | PASS if both exit 0 AND SID1 != SID2 AND SKILL.md cites the CHK-033 share confirmation rule. FAIL if ids match (fork failed), either is empty, or CHK-033 rule is missing | 1. If `--fork` is rejected with "requires --continue or --session", spell the parent flag explicitly. 2. If SID1 and SID2 match, the fork silently degraded to a continue, so file a bug. 3. If SID1 or SID2 print empty, the launch and capture steps were accidentally split across separate tool-call shells. Re-run as one shell block. 4. If CHK-033 reference is missing in SKILL.md, the share gate documentation has regressed. File a P0 documentation bug. 5. NEVER actually dispatch `--share` in this test, because that would publish session contents (CHK-033 protects against accidental publication) |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-019 -- Resume specific session by id (-s / --session)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-019`.
+ 
+@@ -47,7 +47,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-019 | Resume specific session by id (-s) | Confirm `-s <id>` resumes the named session and the resumed turn references prior content | `Run one opencode turn, capture its session id, resume with -s, and verify the follow-up references prior content.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Define a fictional concept named the (echo-cascade verifier): it is a CRDT replication primitive that uses cascaded echoes to detect lost updates. State that the cascade depth is fixed at 7." > /tmp/co-019-turn1.jsonl 2>&1; echo "TURN1: $?"; SID=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-019-turn1.jsonl \| head -1); echo "Captured session_id: $SID"; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" -s "$SID" "What is the cascade depth we discussed? Answer in one short sentence." > /tmp/co-019-turn2.jsonl 2>&1; echo "TURN2: $?"; jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-019-turn2.jsonl \| grep -ciE '(echo-cascade\|cascade depth\|7\|seven)'; jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-019-turn2.jsonl \| head -1` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"` for turn 1 and the same with `-s "$SID"` for the resume, once the provider is confirmed in `opencode2 models`) | Step 1 (single shell): TURN1 exit 0 with session.started event present. SID captured non-empty. TURN2 exit 0 using that SAME `$SID`. Count of cascade/depth/7/seven references >= 1. TURN2 session_id matches the captured SID (resume worked, not a new session) | `/tmp/co-019-turn1.jsonl`, `/tmp/co-019-turn2.jsonl`, captured SID in terminal | PASS if both exit 0 AND SID captured AND second turn references prior content AND second turn session id matches captured SID. FAIL if SID capture fails, second turn cannot resume, or second turn opens a fresh session | 1. If `jq` returns empty for session_id, the JSON event stream may use a different field name. Try `.payload.session_id` or inspect the raw line. 2. If `-s <id>` is rejected with "session not found", the session may have expired or the id may be malformed. Re-capture from a fresh dispatch. 3. If second turn opens a new session id, the resume failed silently. Verify the captured id via `opencode export "$SID"` rather than a state-directory read. 4. If `SID` is empty in the second half of the command, the launch and capture steps were accidentally split across separate tool-call shells. Re-run as one shell block. 5. If the prior content is not referenced, the resume may have loaded the wrong session. Try `--continue` instead and capture which session it resumed |
++| CO-019 | Resume specific session by id (-s) | Confirm `-s <id>` resumes the named session and the resumed turn references prior content | `Run one opencode turn, capture its session id, resume with -s, and verify the follow-up references prior content.` | 1. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Define a fictional concept named the (echo-cascade verifier): it is a CRDT replication primitive that uses cascaded echoes to detect lost updates. State that the cascade depth is fixed at 7." > /tmp/co-019-turn1.jsonl 2>&1; echo "TURN1: $?"; SID=$(jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-019-turn1.jsonl \| head -1); echo "Captured session_id: $SID"; opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" -s "$SID" "What is the cascade depth we discussed? Answer in one short sentence." > /tmp/co-019-turn2.jsonl 2>&1; echo "TURN2: $?"; jq -r 'select(.type == "message.delta" or .type == "session.completed") \| .payload' /tmp/co-019-turn2.jsonl \| grep -ciE '(echo-cascade\|cascade depth\|7\|seven)'; jq -r 'select(.type == "session.started") \| .session_id' /tmp/co-019-turn2.jsonl \| head -1` (OpenCode 1 only, with the OpenCode 2 twin as `cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` for turn 1 and the same with `-s "$SID"` for the resume, with the id read from the `step_start` events (`jq -r 'select(.type == "step_start") \| .sessionID' \| head -1`) and the response text from the `text` events (`jq -r 'select(.type == "text") \| .part.text'`), once the provider is confirmed in `opencode2 models`) | Step 1 (single shell): TURN1 exit 0 with session.started event present. SID captured non-empty. TURN2 exit 0 using that SAME `$SID`. Count of cascade/depth/7/seven references >= 1. TURN2 session_id matches the captured SID (resume worked, not a new session) | `/tmp/co-019-turn1.jsonl`, `/tmp/co-019-turn2.jsonl`, captured SID in terminal | PASS if both exit 0 AND SID captured AND second turn references prior content AND second turn session id matches captured SID. FAIL if SID capture fails, second turn cannot resume, or second turn opens a fresh session | 1. If `jq` returns empty for session_id, the JSON event stream may use a different field name. Try `.payload.session_id` or inspect the raw line. 2. If `-s <id>` is rejected with "session not found", the session may have expired or the id may be malformed. Re-capture from a fresh dispatch. 3. If second turn opens a new session id, the resume failed silently. Verify the captured id via `opencode export "$SID"` rather than a state-directory read. 4. If `SID` is empty in the second half of the command, the launch and capture steps were accidentally split across separate tool-call shells. Re-run as one shell block. 5. If the prior content is not referenced, the resume may have loaded the wrong session. Try `--continue` instead and capture which session it resumed |
+ 
+ ### Optional Supplemental Checks
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -36,7 +36,7 @@
+ 
+ ### What It Does
+ 
+-cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. On OpenCode 1 (1.19.3) the default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. On OpenCode 2 (2.0.32) it is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "<prompt>"`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
++cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. On OpenCode 1 (1.19.3) the default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. On OpenCode 2 (2.0.32) it is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+ 
+ It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
+ 
+@@ -85,15 +85,15 @@
+ ```bash
+ # On OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Act as a context-retrieval agent: search the spec docs with the ripgrep retrieval conventions and return the top findings." \
+   </dev/null
+ ```
+ 
+-The two versions do not always list the same providers, so on OpenCode 2 confirm the provider appears in `opencode2 models` before you rely on this default.
++The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
++You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
+ 
+ **Step 4: Spawn a parallel detached session (inside OpenCode only).**
+ 
+@@ -143,7 +143,7 @@
+ 
+ ### Provider Auth Pre-Flight
+ 
+-Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
++Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`, or `opencode2 models <provider-id>` on OpenCode 2. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+ 
+ ### Agent Delegation
+ 
+@@ -267,7 +267,7 @@
+ 
+ **Q: Which model do I pick?**
+ 
+-A: On OpenCode 1, default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. On OpenCode 2, the level rides on the model id as `-m opencode-go/deepseek-v4-flash#max`. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `llmgateway/mimo-v2.6-pro` for MiMo or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
++A: On OpenCode 1, default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. On OpenCode 2, the level rides on the model id as `-m opencode-go/deepseek-v4.1-flash#max`. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `llmgateway/mimo-v2.6-pro` for MiMo or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+ 
+ ---
+ 
+@@ -279,7 +279,7 @@
+ |---|---|
+ | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
+ | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
+-| Default dispatch | On OpenCode 1, `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message. On OpenCode 2, the equivalent is `cd . && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#max --format json "Say hello" </dev/null` |
++| Default dispatch | On OpenCode 1, `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message. On OpenCode 2, the equivalent is `cd . && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Say hello" </dev/null` |
+ 
+ ---
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+@@ -94,12 +94,12 @@
+ # OpenCode 2
+ cd /repo && opencode2 run --standalone \
+   --agent <slug> \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>"
+ ```
+ 
+-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch. The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2.
++On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch. The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. Whether OpenCode 2 routes a slug the same way and applies the same frontmatter precedence is unverified on OpenCode 2.0.32.
+ 
+ ### Conductor rules
+ 
+@@ -229,15 +229,15 @@
+ 
+ | Task type | Agent | Invocation pattern |
+ |-----------|-------|---------------------|
+-| Codebase exploration | `context` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the context subagent: map the dependency graph for src/"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Use the context subagent: map the dependency graph for src/"` |
+-| Multi-agent coordination | `orchestrate` | On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Coordinate review and testing of auth module"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Coordinate review and testing of auth module"` |
+-| Documentation generation | `markdown` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the markdown subagent: generate a README for the cli-opencode skill"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Use the markdown subagent: generate a README for the cli-opencode skill"` |
+-| Code review | `review` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the review subagent: review @src/auth.ts for security issues"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Use the review subagent: review @src/auth.ts for security issues"`. Or use the `As @review:` prompt-prefix pattern in §5, with no `--agent` flag at all |
+-| Root cause debugging | `debug` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Use the debug subagent: debug this error: <error>"` |
++| Codebase exploration | `context` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the context subagent: map the dependency graph for src/"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the context subagent: map the dependency graph for src/"` |
++| Multi-agent coordination | `orchestrate` | On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Coordinate review and testing of auth module"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Coordinate review and testing of auth module"` |
++| Documentation generation | `markdown` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the markdown subagent: generate a README for the cli-opencode skill"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the markdown subagent: generate a README for the cli-opencode skill"` |
++| Code review | `review` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the review subagent: review @src/auth.ts for security issues"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the review subagent: review @src/auth.ts for security issues"`. Or use the `As @review:` prompt-prefix pattern in §5, with no `--agent` flag at all |
++| Root cause debugging | `debug` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the debug subagent: debug this error: <error>"` |
+ | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden. The parent command owns iteration state, JSONL, and convergence. |
+ | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden. The parent command owns iteration state and severity-weighted convergence. |
+-| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+-| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#high --format json "<prompt>"`. Never pass `--agent general`, because it is rejected at the top level |
++| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
++| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because it is rejected at the top level |
+ 
+ ---
+ 
+@@ -258,12 +258,12 @@
+ ```bash
+ # OpenCode 2
+ cd /repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
+ ```
+ 
+-The dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent.
++On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. Whether OpenCode 2 reads the same prefix is unverified on OpenCode 2.0.32.
+ 
+ ### When to prefer `--agent` vs `As @<agent>:`
+ 
+@@ -299,7 +299,7 @@
+ # OpenCode 2
+ cd /repo && opencode2 run --standalone \
+   --agent orchestrate \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Coordinate a code review for the approved spec folder. Dispatch @review for the code. Aggregate findings."
+ ```
+@@ -351,7 +351,7 @@
+ ```bash
+ # OpenCode 2
+ cd /path/to/repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "As @review: audit @src/auth/handler.ts for OWASP Top 10 issues. Surface findings as P0 / P1 / P2 with file:line citations. READ-ONLY — do not propose fixes."
+ ```
+@@ -380,7 +380,7 @@
+ ```bash
+ # OpenCode 2
+ cd /path/to/repo && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "As @debug: Login returns 401 despite valid credentials. Error at @src/auth/handler.ts:45. Prior attempts: verified token expiry, checked DB connection, confirmed env vars. Run the Observe -> Analyze -> Hypothesize -> Fix methodology. Write findings to debug-delegation.md."
+ ```
+@@ -402,7 +402,7 @@
+   "As @review: review @src/auth.ts" > /tmp/review-events.jsonl
+ 
+ # OpenCode 2
+-cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#high --format json \
++cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json \
+   "As @review: review @src/auth.ts" > /tmp/review-events.jsonl
+ 
+ # Capture stdout to a variable (no --agent; subagent role carried in the prompt)
+@@ -411,7 +411,7 @@
+   "As @context: list exported symbols in src/")
+ 
+ # OpenCode 2
+-RESULT=$(cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4-flash#high --format json \
++RESULT=$(cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json \
+   "As @context: list exported symbols in src/")
+ 
+ # Check exit status
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+@@ -1,6 +1,6 @@
+ ---
+ title: "OpenCode CLI - Complete Command Reference"
+-description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Pinned to v1.3.17."
++description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 1.19.3 and 2.0.32."
+ trigger_phrases:
+   - "opencode cli reference"
+   - "opencode run flags"
+@@ -110,7 +110,7 @@
+ | `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` | same |
+ | `--share` (OpenCode 1 only) | boolean | Publish a shareable URL for this session | absent on `run` |
+ | `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4-flash` | `-m provider/model#<level>` (model and effort in one flag) |
+-| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | same |
++| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Slug routing and frontmatter loading are unverified on OpenCode 2.0.32 |
+ | `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
+ | `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
+ | `--title` | string | Session title (truncated message used when omitted) | same |
+@@ -144,7 +144,7 @@
+ # OpenCode 2
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+   --agent <agent-slug> \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>"
+ ```
+@@ -161,7 +161,7 @@
+ 
+ ### Stdin handling: `</dev/null` is required for non-interactive dispatch
+ 
+-> **opencode v1.14.39 reads stdin at startup before session creation.** If you redirect stdout/stderr to files in automation (`> stdout.log 2> stderr.log`), opencode hangs at 0% CPU after the `+60s snapshot prune cleanup` log line because stdin remains attached to the parent terminal and never receives EOF.
++> **On OpenCode 1 (v1.14.39), opencode reads stdin at startup before session creation.** If you redirect stdout/stderr to files in automation (`> stdout.log 2> stderr.log`), opencode hangs at 0% CPU after the `+60s snapshot prune cleanup` log line because stdin remains attached to the parent terminal and never receives EOF. The hang is observed on OpenCode 1, and whether OpenCode 2 shares it is unverified on OpenCode 2.0.32, so the redirect stays on both versions.
+ 
+ ALWAYS append `</dev/null` AFTER the prompt argument and BEFORE the stdout/stderr redirects:
+ 
+@@ -183,7 +183,7 @@
+ 
+ ### Provider Auth Pre-Flight (smart fallback)
+ 
+-Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>`, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
++Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>` on OpenCode 1 or `opencode2 models <provider-id>` on OpenCode 2, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
+ 
+ ```bash
+ # Pre-flight: one check per provider id, once per session
+@@ -191,12 +191,13 @@
+ opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
+ opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token)
+ opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # LLM Gateway (DevPass); the only MiMo route
++opencode2 models opencode-go        >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode 2: the same check through the v2 binary
+ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
+ ```
+ 
+ | State | OPENCODE_GO_OK | Action |
+ |-------|----------------|--------|
+-| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
++| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
+ | Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model). Do not dispatch until configured |
+ 
+ **MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
+@@ -275,7 +276,7 @@
+ 
+ ## 5. MODEL SELECTION
+ 
+-On OpenCode 1 the default model is `opencode-go/deepseek-v4-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
++On OpenCode 1 the default model is `opencode-go/deepseek-v4-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
+ 
+ **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+@@ -137,7 +137,7 @@
+ ```bash
+ # OpenCode 2
+ cd /Users/<you>/MEGA/Development/Code_Environment/<short-name>-review && opencode2 run --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "<prompt>" \
+   </dev/null
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+@@ -90,7 +90,7 @@
+ ```bash
+ cd "$REPO_ROOT" && opencode2 run \
+   --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --agent general \
+   --format json \
+   "<prompt-from-template>" 2>&1
+@@ -231,7 +231,7 @@
+ ```bash
+ cd "$REPO_ROOT" && opencode2 run \
+   --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --agent general \
+   --format json \
+   "<prompt-from-template>" 2>&1
+@@ -396,7 +396,7 @@
+ ```bash
+ timeout 720 opencode2 run \
+   --standalone \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --auto \
+   "$(cat prompt.md)" \
+   </dev/null \
+@@ -404,7 +404,7 @@
+   2> "$LOG_DIR/iter-N-stderr.log"
+ ```
+ 
+-`--pure` has no OpenCode 2 `run` form, and the v1-only `--dangerously-skip-permissions` alias becomes `--auto` (see `./install-and-versions.md`). This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
++`--pure` has no OpenCode 2 `run` form. The fanout passes `--auto` on OpenCode 2, where it approves permissions that are not explicitly denied. Whether `--auto` equals the v1-only `--dangerously-skip-permissions` is unverified (see `./install-and-versions.md`). This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
+ 
+ ### Upstream
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+@@ -70,14 +70,14 @@
+ # OpenCode 2 (2.0.32):
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+   --agent general \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
+ ```
+ 
+-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch.
++On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch. Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
+ 
+-The dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline.
++On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
+ 
+ ---
+ 
+@@ -151,7 +151,7 @@
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+   --format json \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   "<prompt>" 2>/dev/null | while IFS= read -r line; do
+     type=$(echo "$line" | jq -r '.type')
+     case "$type" in
+@@ -191,7 +191,7 @@
+ # OpenCode 2 (2.0.32):
+ cd /repo && opencode2 run --standalone \
+   --agent deep-review \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
+ ```
+@@ -229,7 +229,7 @@
+ # From a session in repo A, dispatch into repo B's runtime
+ cd /path/to/other-repo && opencode2 run --standalone \
+   --agent general \
+-  -m opencode-go/deepseek-v4-flash#max \
++  -m opencode-go/deepseek-v4.1-flash#max \
+   --format json \
+   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
+ ```
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+@@ -132,8 +132,8 @@
+ ### Prerequisites
+ 
+ ```bash
+-# Binary pick ($OPENCODE_BIN, else PATH order) and version check: references/install-and-versions.md §4-5.
+-OC=${OPENCODE_BIN:-opencode}
++# Binary pick ($OPENCODE_BIN, else PATH order) and version check: references/install-and-versions.md §4-5. PATH order decides.
++OC=${OPENCODE_BIN:-$(command -v opencode2 || command -v opencode)}
+ "$OC" --version   # `1.19.3` = OpenCode 1, `opencode v2.0.32` = OpenCode 2; either major passes
+ 
+ # Self-invocation guard
+@@ -157,7 +157,7 @@
+ 
+ > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here without a version or an effort tier on purpose, so this line does not go stale when the family ships a point release. The runner resolves the current id, and a drift test keeps the two in the same family.
+ 
+-> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: named agents like `general` are rejected at the top level. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after confirming acceptance via `opencode run --help`. Full roster and top-level rules: [`references/agent-delegation.md`](./references/agent-delegation.md).
++> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`: named agents like `general` are rejected. The default agent (used when `--agent` is omitted) is correct for almost every dispatch. **To target a specific agent profile, describe the role in the prompt body instead** (e.g. "Act as a code-review agent: …"). Only pass `--agent <name>` after `opencode run --help` confirms acceptance. On OpenCode 2.0.32, `--agent` is listed, but slug routing, frontmatter precedence and "As @review" bodies are unverified. Full roster and top-level rules: [`references/agent-delegation.md`](./references/agent-delegation.md).
+ 
+ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use the default invocation above.
+ 
+@@ -165,7 +165,7 @@
+ 
+ Core flags on OpenCode 1: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, session/fork flags, `--share` and `--port` for detached sessions, `--file`, `--thinking`, `--pure`, and log flags. On OpenCode 2 the effort collapses onto `-m provider/model#<level>`, `--dir` becomes a start-in-directory `cd`, and `--share`, `--port` and `--pure` are absent on `run` (see [`references/install-and-versions.md`](./references/install-and-versions.md)).
+ 
+-> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation. Without it, opencode can inherit parent-terminal stdin and hang (see `references/integration-patterns.md` §6).
++> **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation, on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2 (see `references/integration-patterns.md` §6).
+ 
+ > **Always pin the model with `-m <provider/model>`**: a run that inherits an out-of-quota default provider retries the `429` forever and prints nothing, which looks like a deadlock or a snapshot-lock hang. This is the most common cause of a "hung" `opencode run`, including command-driven deep-loop runs where the orchestrator inherits the default even though `--executor`/`--model` were passed for the leaf. Diagnose with `--print-logs --log-level DEBUG` and look for `stream error … Error 429`, then pin a provider/model with live quota.
+ 
+@@ -173,7 +173,7 @@
+ 
+ ### Model Selection
+ 
+-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
++Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices, or `opencode2 models <provider>` on OpenCode 2. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
+ 
+ **Five providers are reachable** (`opencode-go` default, `openai`, `cline-pass`, `llmgateway` (**DevPass**), `minimax`), with the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md). This file deliberately does not restate it: two copies of a model list is how the two disagree.
+ 
+@@ -197,7 +197,7 @@
+ 
+ ### Essential Commands
+ 
+-On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](./references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on both versions.
++On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](./references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1 (unverified on OpenCode 2.0.32).
+ 
+ ### Error Handling
+ 
+--- a/.skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md
++++ b/.skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md
+@@ -31,7 +31,7 @@
+ 
+ `buildLineageCommand` routes a lineage to its kind adapter, and the `cli-opencode` adapter composes the argv from the resolved family. It refuses with an input error when the executor cannot be resolved, so an absent binary is a refusal before the run rather than a spawn failure inside it.
+ 
+-On OpenCode 1 the argv is `run --model <provider/model> --format json --dir <directory-root>`, with `--dangerously-skip-permissions` added for a `danger-full-access` sandbox and `--variant <effort>` added when a reasoning effort is set. On OpenCode 2 the argv is `run --standalone -m <model>#<effort> --format json`, with `--auto` added for the same sandbox and the effort folded into the model selector when one is set. OpenCode 2 has no directory flag, so the builder pins the working directory through the child process environment instead and the run starts in the directory root.
++On OpenCode 1 the argv is `run --model <provider/model> --format json --dir <directory-root>`, with `--dangerously-skip-permissions` added for a `danger-full-access` sandbox and `--variant <effort>` added when a reasoning effort is set. On OpenCode 2 the argv is `run --standalone -m <model>#<effort> --format json`, with `--auto` added for the same sandbox and the effort folded into the model selector when one is set. OpenCode 2 has no directory flag, so the builder sets the spawn `cwd` to the directory root instead.
+ 
+ The native lineage adapter is version-aware in the same way. It resolves the same binary and refuses to start on OpenCode 2, because that generation has no registered-command route on `run` and a native lineage needs one.
+ 
+--- a/.skilled/skills/system-deep-loop/runtime/scripts/README.md
++++ b/.skilled/skills/system-deep-loop/runtime/scripts/README.md
+@@ -47,7 +47,7 @@
+ | `fanout-run.cjs` | Runs research or review fan-out lineages through CLI subprocesses. |
+ | `fanout-salvage.cjs` | Recovers missing iteration artifacts from captured subprocess output. |
+ | `loop-lock.cjs` | Adapts shared loop-lock acquisition, heartbeat, reclaim and release to the CLI. |
+-| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else PATH with `opencode2` before `opencode`, parses `--version` into v1 or v2 and refuses a dispatch on an unparsable version. `fanout-run.cjs` uses it to build the v1 or v2 `run` line. |
++| `opencode-version.cjs` | Resolves the OpenCode binary from `$OPENCODE_BIN`, else PATH in directory order, where `opencode2` comes before `opencode` only inside one directory, parses `--version` into v1 or v2 and refuses a dispatch on an unparsable version. `fanout-run.cjs` uses it to build the v1 or v2 `run` line. |
+ | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
+ | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
+ | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |

@@ -73,7 +73,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `git-setup-check.cjs` | Runs the read-only sk-git setup battery for `/doctor:git setup`: eleven checks, each PASS, FAIL, SKIP, UNKNOWN or DEGRADED with the source it read and one repair per failure. It exits 0 when every check passes or skips, 3 when a check is UNKNOWN or a gate is saved off, 1 on any failure and 2 on a usage error. It loads every helper from its own install root and never runs code from the repository it inspects. |
 | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails. Prose divergence reports and fails only under `--strict`. |
 | `doctor-phrase-reach.cjs` | Scores every activated doctor phrase and each runnable doctor command through the built advisor scorer, then keeps the three results the hooks show. It fails when a phrase reaches neither the top pick nor the second line. It also fails if a runnable command does not rank first or an activated phrase has fewer than three words. It exits 2 when the advisor build is missing or stale. |
-| `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import harness. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
+| `opencode-version-battery.cjs` | Checks this repository's OpenCode plugins on OpenCode 1 and 2. On 1 it proves plugin discovery through `debug config` and plugin load through an import check. On 2 it starts and stops a private server with the v2 binary it selected (`$OPENCODE_BIN`, `opencode` or `opencode2`, whichever reports a v2 version) and reads plugin and skill state from it. It exits 0 when every requested leg passes, 1 on a failed leg, 2 on a usage error, a crash or an `--out` file it cannot write and 3 when a leg is degraded or skipped. |
 
 ---
 
@@ -135,7 +135,7 @@ The battery runs five legs:
 
 - `family-present`: PASS when a candidate's `--version` succeeds and parses to that family.
 - `plugin-discovered`: PASS when OpenCode 1's `debug config` exits 0 with parseable JSON, the plugin folder holds at least one top-level `.js` file, none is a broken symlink and every one is listed.
-- `plugin-load`: PASS when the import harness exits 0 and reports every top-level `.js` file loaded.
+- `plugin-load`: PASS when the import check exits 0 and reports every top-level `.js` file loaded.
 - `plugin-active`: PASS when two consecutive reads give the same non-zero count and, on that read, every top-level `.js` file has an entry under the inspected root with status active.
 - `skill-visible`: PASS when the skill listing parses and has an entry that mentions the inspected root.
 
@@ -161,7 +161,7 @@ On this repository all legs pass on OpenCode 1.19.3 and 2.0.32. OpenCode 1.19.3 
 | `git-hook-gates.cjs` | `list` is read-only. `set` is a dry run until `--apply`, which writes only `speckit.hooks.<key>` in local or global git config. |
 | `git-standards.cjs` | `status` and `check` are read-only. `init`, `set` and `disable` are dry runs until `--apply`, which writes only `.sk-git/` or the `skgit.contractDir` directory, never the shipped sk-git templates. |
 | `git-setup-check.cjs` | Read-only. It writes no file and no git config value, and calls no allocator or `--apply` mode. |
-| `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import harness runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
+| `opencode-version-battery.cjs` | The battery itself writes only the `--out` file and temporary folders it removes when each step ends. The private server's folder is also removed on `SIGINT` and `SIGTERM`, and the server is stopped. The import check runs each plugin's v1 factory in a child process rooted at the repository, so anything a plugin does when it loads happens during the check. It never touches the shared v2 service and never prints the private server's password. OpenCode 1 writes into a temporary data folder, not the user's. |
 
 Do not invoke a mutating path from a route classified as read-only.
 

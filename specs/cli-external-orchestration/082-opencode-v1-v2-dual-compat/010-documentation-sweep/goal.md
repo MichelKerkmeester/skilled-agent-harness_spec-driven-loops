@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-documentation-sweep"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Every touched doc exits 0 from the validator named by its sk-doc mode
-- [ ] Every changed skill, hub and playbook package exits 0 from its sk-doc package check
-- [ ] Every touched doc scores 75 or higher for `dqi.total` in `extract_structure.py` output
-- [ ] A search for `--command`, `--dir`, `--share`, `--port` and `--pure` across the touched docs returns only lines that name version 1
-- [ ] Every touched doc passes `hvr_scan.py` with exit status 0, and its manual human-voice note is recorded
+- [x] Every touched doc exits 0 from the validator named by its sk-doc mode
+- [x] Every changed skill, hub and playbook package exits 0 from its sk-doc package check
+- [x] Every touched doc scores 75 or higher for `dqi.total` in `extract_structure.py` output
+- [x] A search for `--command`, `--dir`, `--share`, `--port` and `--pure` across the touched docs returns only lines that name version 1
+- [x] Every touched doc passes `hvr_scan.py` with exit status 0, and its manual human-voice note is recorded
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,13 +76,19 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents filled | Done | The six documents in this folder, written from the phase 010 brief and research sections 6 and 11 |
-| Inventory and search | Pending | None yet |
-| Writes and review | Pending | None yet |
-| Gates | Pending | None yet |
+| Inventory and search | Done | 41 docs in `doc-inventory.md`; 32 phase-004 docs reviewed with no regression (`scratch/decisions.txt` 1, 3) |
+| Writes and review | Done | DeepSeek wrote 23 briefs, the catalog, the changelog, two READMEs and five fix rounds; Luna ran three reviews and four verifies, the last PASS (`scratch/reviews/`) |
+| Gates | Done | 41 of 41 validator 0, DQI 77 or more, HVR 0; every package check exit 0; no untagged v1-only hit; no claim line (`doc-inventory.md`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Playbook file count | The research names 20 playbook files, but its own grouped list sums to 21 before the intra-routing-recall group. The named group folders now hold 34 files. The T004 grep sets the real set, and the packet follows that grep. |
+| Playbook file count | The research names 20 playbook files, but its own grouped list sums to 21 before the intra-routing-recall group. The named group folders now hold 34 files. The T004 grep sets the real set, and the packet follows that grep: 17 scenarios and the root page. |
+| Criterion 4 reading | A hit counts as naming version 1 when its line, its heading, its table header, the text before its code fence or the doc's version note says so (`scratch/checks/tagctx.py`). 284 of 384 hits are tagged on their own line, and none is untagged. |
+| Rule 7 amended | The facts file's "do not change frontmatter" now covers `version` only, so two wrong descriptions were corrected (`scratch/decisions.txt` 7). |
+| SKILL.md word limit | The package check failed at 5,363 words. HEAD was already over it after phase 006. SKILL.md is now 4,899 (decision 11). |
+| Scope amendments | Two test READMEs, the hub's routing manifest and its authored copy, and the Hermes copy of SKILL.md joined the file list (decisions 10, 13, 14). |
+| Route doc | The `/doctor:opencode` route doc does not exist; it waits for Q1 (008 decisions 4 and 15). |
+| Executor slip | One test harness ran the operator's `opencode2 --version` once by mistake; it failed to exec and changed nothing (decision 16). |
 <!-- /ANCHOR:log -->

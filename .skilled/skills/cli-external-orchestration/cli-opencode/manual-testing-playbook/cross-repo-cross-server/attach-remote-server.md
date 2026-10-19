@@ -1,10 +1,12 @@
 ---
 title: "CO-030 -- Cross-server dispatch via --attach"
 description: "This scenario validates cross-server dispatch for `CO-030`. It focuses on confirming the documented `--attach <url>` flag combined with `--dir <remote-path>` is documented and reachable; live remote server execution is out-of-scope (operator-environment-dependent)."
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
-# CO-030 -- Cross-server dispatch via --attach
+# CO-030 -- Cross-server dispatch via --attach (OpenCode 1 only, OpenCode 2 uses `--server`)
+
+**Version note.** The commands in this scenario target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin as `--server <url>` in place of `--attach <url>` and starting in the directory in place of `--dir` (see the [install reference](../../references/install-and-versions.md)).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-030`.
 
@@ -12,11 +14,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Cross-server dispatch via `--attach` for `CO-030`. It focuses on confirming the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface and that the documentation contract for cross-server dispatch is intact. Live cross-server execution requires a running remote OpenCode server with credentials and is intentionally out-of-scope for this scenario. Operators in the right environment can extend the test, but the playbook validates the documentation and dry-run path only.
+On OpenCode 1, this scenario validates Cross-server dispatch via `--attach` for `CO-030`. It focuses on confirming the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface and that the documentation contract for cross-server dispatch is intact. The OpenCode 2 twins are `--server <url>` in place of `--attach <url>` and starting in the directory in place of `--dir` (see the [install reference](../../references/install-and-versions.md)). Live cross-server execution requires a running remote OpenCode server with credentials and is intentionally out-of-scope for this scenario. Operators in the right environment can extend the test, but the playbook validates the documentation and dry-run path only.
 
 ### Why This Matters
 
-Cross-server dispatch is the documented capability that lets an operator target a remote OpenCode server's runtime via `--attach <url>` (per `references/opencode-tools.md` §6 + `references/cli-reference.md` §3 subcommand map). It is the path for "OpenCode A wants to dispatch into OpenCode B running on a remote machine". If the documentation contract is broken or the flag does not appear in `opencode run --help`, the entire cross-server workflow loses its anchor. This test validates the documentation and CLI surface. The actual remote dispatch is exercised only by operators with a real server.
+On OpenCode 1, cross-server dispatch is the documented capability that lets an operator target a remote OpenCode server's runtime via `--attach <url>` (per `references/opencode-tools.md` §6 + `references/cli-reference.md` §3 subcommand map). It is the path for "OpenCode A wants to dispatch into OpenCode B running on a remote machine". If the documentation contract is broken or the flag does not appear in `opencode run --help`, the entire cross-server workflow loses its anchor. This test validates the documentation and CLI surface. The actual remote dispatch is exercised only by operators with a real server. OpenCode 2 uses `--server <url>` in place of `--attach <url>`.
 
 ---
 
@@ -24,13 +26,13 @@ Cross-server dispatch is the documented capability that lets an operator target 
 
 Operators run the exact prompt and command sequence for `CO-030` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm the `--attach <url>` flag is documented in the cli-opencode references AND appears in the `opencode run --help` output, AND that the SKILL.md documents `attach` as a supported subcommand.
-- Real user request: `Verify the cross-server dispatch documentation: --attach <url> should be in the CLI flag table, and `opencode attach <url>` should be in the subcommand map. Confirm both surfaces exist before we attempt a real remote dispatch.`
-- Prompt: `Verify --attach is documented in cli-reference.md, opencode attach appears in the subcommand map, and run help exposes the flag.`
-- Expected execution process: External-AI orchestrator greps `references/cli-reference.md` for the `--attach` flag in §4, greps the §3 subcommand map for `opencode attach`, runs `opencode run --help` and confirms `--attach` appears in the help output.
-- Expected signals: cli-reference.md §4 includes a row for `--attach <url>`. Cli_reference.md §3 documents `opencode attach <url>` as a supported subcommand. `opencode run --help` output mentions `--attach`. SKILL.md §1 activation triggers mention "Cross-server dispatch".
+- Objective: On OpenCode 1, confirm the `--attach <url>` flag is documented in the cli-opencode references AND appears in the `opencode run --help` output, AND that the SKILL.md documents `attach` as a supported subcommand (OpenCode 2 twin: `--server <url>` in place of `--attach <url>`).
+- Real user request: `Verify the cross-server dispatch documentation: --attach <url> should be in the CLI flag table, and `opencode attach <url>` should be in the subcommand map. Confirm both surfaces exist before we attempt a real remote dispatch.` (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>` in place of `--attach <url>`, see the [install reference](../../references/install-and-versions.md))
+- Prompt: `Verify --attach is documented in cli-reference.md, opencode attach appears in the subcommand map, and run help exposes the flag.` (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>` in place of `--attach <url>`, see the [install reference](../../references/install-and-versions.md))
+- Expected execution process: On OpenCode 1, the external-AI orchestrator greps `references/cli-reference.md` for the `--attach` flag in §4, greps the §3 subcommand map for `opencode attach`, runs `opencode run --help` and confirms `--attach` appears in the help output. OpenCode 2 uses `--server <url>` in place of `--attach <url>`.
+- Expected signals: On OpenCode 1, cli-reference.md §4 includes a row for `--attach <url>`. Cli_reference.md §3 documents `opencode attach <url>` as a supported subcommand. `opencode run --help` output mentions `--attach`. SKILL.md §1 activation triggers mention "Cross-server dispatch". OpenCode 2 uses `--server <url>` in place of `--attach <url>`.
 - Desired user-visible outcome: Verdict naming each documented surface (flag table, subcommand map, help output, SKILL.md trigger).
-- Pass/fail: PASS if all four surfaces document `--attach`/`attach`. FAIL if any surface is missing the documentation.
+- Pass/fail: PASS if all four surfaces document `--attach`/`attach` (OpenCode 1 only). FAIL if any surface is missing the documentation.
 
 ---
 
@@ -39,19 +41,19 @@ Operators run the exact prompt and command sequence for `CO-030` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Grep cli-reference.md flag table for `--attach`.
+2. On OpenCode 1, grep cli-reference.md flag table for `--attach`.
 3. Grep cli-reference.md subcommand map for `opencode attach`.
-4. Run `opencode run --help` and grep for `--attach`.
+4. On OpenCode 1, run `opencode run --help` and grep for `--attach` (unverified on OpenCode 2.0.32).
 5. Grep SKILL.md activation triggers for cross-server.
 6. Return a verdict naming each found surface.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-030 | Cross-server dispatch via --attach | Confirm `--attach <url>` is documented in references and surfaces in the live `opencode run --help` output | `Verify --attach is documented in cli_reference.md, opencode attach appears in the subcommand map, and run help exposes the flag.` | 1. `bash: grep -nE '\| .--attach.' .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` -> 2. `bash: grep -nE 'opencode attach' .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` -> 3. `bash: opencode run --help 2>&1 \| grep -iE 'attach' \| head -3` -> 4. `bash: grep -inE 'cross-server\|Cross-server' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md \| head -3` -> 5. `bash: grep -inE 'remote opencode server' .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md \| head -3` | Step 1: cli_reference.md flag table includes `--attach` row (count >= 1); Step 2: subcommand map mentions `opencode attach <url>` (count >= 1); Step 3: live binary help output includes `--attach` (count >= 1); Step 4: SKILL.md activation triggers mention cross-server dispatch (count >= 1); Step 5: opencode_tools.md references "remote opencode server" or equivalent (count >= 1) | Terminal grep output for each check | PASS if all 5 surfaces show the documented `--attach` / `attach` / cross-server contract; FAIL if any surface is missing | 1. If `--attach` is missing from the live binary's help, the version may have renamed or removed the flag — see `references/cli-reference.md` §9 version drift; 2. If documentation is missing, the cli-opencode skill has regressed — file a P0 documentation bug naming the missing surface; 3. NEVER attempt a real `--attach <url>` dispatch in this test — that requires a running remote server and credentials, both out-of-scope for the playbook; 4. If the operator wants to extend with a real remote dispatch, document the URL, password, and `--dir` separately and treat it as an environment-specific add-on |
+| CO-030 | Cross-server dispatch via --attach (OpenCode 1 only) | Confirm, on OpenCode 1, that `--attach <url>` is documented in references and surfaces in the live `opencode run --help` output | `Verify --attach is documented in cli-reference.md, opencode attach appears in the subcommand map, and run help exposes the flag.` (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>` in place of `--attach <url>`, see the [install reference](../../references/install-and-versions.md)) | 1. `bash: grep -nE '\| .--attach.' .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` -> 2. `bash: grep -nE 'opencode attach' .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` -> 3. `bash: opencode run --help 2>&1 \| grep -iE 'attach' \| head -3` (OpenCode 1 only, unverified on OpenCode 2.0.32) -> 4. `bash: grep -inE 'cross-server\|Cross-server' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md \| head -3` -> 5. `bash: grep -inE 'remote opencode server' .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md \| head -3` | Step 1: cli_reference.md flag table includes `--attach` row (count >= 1). Step 2: subcommand map mentions `opencode attach <url>` (count >= 1). Step 3: live binary help output includes `--attach` (count >= 1, OpenCode 1 only, unverified on OpenCode 2.0.32). Step 4: SKILL.md activation triggers mention cross-server dispatch (count >= 1). Step 5: opencode_tools.md references "remote opencode server" or equivalent (count >= 1) | Terminal grep output for each check | PASS if all 5 surfaces show the documented `--attach` / `attach` / cross-server contract. FAIL if any surface is missing | 1. If `--attach` is missing from the live binary's help, the version may have renamed or removed the flag (see `references/cli-reference.md` §9 version drift). 2. If documentation is missing, the cli-opencode skill has regressed, so file a P0 documentation bug naming the missing surface. 3. NEVER attempt a real `--attach <url>` dispatch in this test, because that requires a running remote server and credentials, both out-of-scope for the playbook. 4. If the operator wants to extend with a real remote dispatch, document the URL, password, and `--dir` separately and treat it as an environment-specific add-on. On OpenCode 2 the twins are `--server <url>` in place of `--attach <url>` and starting in the directory in place of `--dir`. |
 
 ### Optional Supplemental Checks
 
-For operators in environments with a running remote OpenCode server, optionally extend with a real `opencode run --attach <url> -p <password> --dir <remote-path>` dispatch and validate the JSON event stream. Document the remote URL and the dispatched response. This is an environment-specific extension, not a baseline playbook requirement.
+On OpenCode 1, for operators in environments with a running remote OpenCode server, optionally extend with a real `opencode run --attach <url> -p <password> --dir <remote-path>` dispatch and validate the JSON event stream. The OpenCode 2 twins are `--server <url>` in place of `--attach <url>` and starting in the directory in place of `--dir`. Document the remote URL and the dispatched response. This is an environment-specific extension, not a baseline playbook requirement.
 
 ---
 
@@ -69,7 +71,7 @@ For operators in environments with a running remote OpenCode server, optionally 
 | File | Role |
 |---|---|
 | `../../SKILL.md` | §1 activation triggers (cross-server dispatch), §3 unique OpenCode capabilities table (cross-server row) |
-| `../../references/cli-reference.md` (§3 subcommand map + §4 `--attach` row) | Subcommand and flag documentation |
+| `../../references/cli-reference.md` (§3 subcommand map + §4 `--attach` row) | Subcommand and flag documentation (OpenCode 1 only) |
 
 ---
 

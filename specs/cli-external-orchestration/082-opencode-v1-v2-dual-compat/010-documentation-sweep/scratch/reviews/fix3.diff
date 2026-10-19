@@ -1,0 +1,55 @@
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+@@ -133,7 +133,7 @@
+ 
+ ```bash
+ # Binary pick and version check: references/install-and-versions.md §4-5.
+-OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for b in opencode2 opencode; do [ -x "$d/$b" ] && OC="$d/$b" && break 2; done; done; unset IFS; fi
++OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for b in opencode2 opencode; do [ -f "$d/$b" ] && [ -x "$d/$b" ] && OC="$d/$b" && break 2; done; done; unset IFS; fi
+ "$OC" --version   # `1.19.3` = OpenCode 1, `opencode v2.0.32` = OpenCode 2; either major passes
+ 
+ # Self-invocation guard
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-034 -- Orchestrate agent multi-agent coordination
+ 
+-**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
++**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2 the binary is `opencode2`, the stream has `step_start` and `step_finish` events and ends with a `text` event, and the no-nested-run check reads `tool_use` events.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-034`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-020 -- Fork session (--fork) and share URL gate (--share) (OpenCode 1 only for the `--share` gate, with the OpenCode 2 fork twin beside each command)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2 the binary is `opencode2`, the stream has `step_start` and `step_finish` events and ends with a `text` event, and the session id is the `sessionID` field. The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent (see the [install reference](../../references/install-and-versions.md)).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-020`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-019 -- Resume specific session by id (-s / --session)
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
++**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2 the binary is `opencode2`, the stream has `step_start` and `step_finish` events and ends with a `text` event, and the session id is the `sessionID` field. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-019`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-001 -- Base non-interactive invocation
+ 
+-**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
++**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 2 the binary is `opencode2`, the stream has `step_start` and `step_finish` events and ends with a `text` event, and the session id is the `sessionID` field.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-001`.
+ 

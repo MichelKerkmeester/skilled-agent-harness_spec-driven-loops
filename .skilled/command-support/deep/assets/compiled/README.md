@@ -24,7 +24,7 @@ importance_tier: "important"
 
 The generated contracts combine maintained command, workflow, skill, reference and agent sources into grep-checkable executor instructions. Maintained source files remain authoritative.
 
-The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`; no legacy body in that directory lacks a compiled counterpart.
+The compiled inventory is intentionally limited to the three commands registered with the contract compiler and renderer: `deep/ai-council`, `deep/research` and `deep/review`. Each has one matching legacy body in `../legacy/`. No legacy body in that directory lacks a compiled counterpart.
 
 ---
 
@@ -109,7 +109,7 @@ Check the JSONL structure from the repository root:
 ```bash
 node -e '
 const fs = require("fs");
-const lines = fs.readFileSync(".skilled/commands/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
+const lines = fs.readFileSync(".skilled/command-support/deep/assets/compiled/manifest.jsonl", "utf8").trim().split("\n");
 for (const line of lines) JSON.parse(line);
 console.log(`OK ${lines.length} manifest rows`);
 '

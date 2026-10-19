@@ -1,10 +1,12 @@
 ---
 title: "CO-003 -- Working directory pinning via --dir"
 description: "This scenario validates `--dir` for `CO-003`. It focuses on confirming the dispatched session's working directory matches the pinned path so the session loads the correct repository's plugins, skills, and MCP servers."
-version: 1.4.0.18
+version: 1.4.1.0
 ---
 
-# CO-003 -- Working directory pinning via --dir
+# CO-003 -- Working directory pinning via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
+
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the directory instead: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-003`.
 
@@ -12,11 +14,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Working directory pinning via `--dir` for `CO-003`. It focuses on confirming `--dir <path>` correctly pins the dispatched OpenCode session's working directory and that the session loads plugins, skills and MCP servers from that path rather than the caller's CWD.
+On OpenCode 1, this scenario validates Working directory pinning via `--dir` for `CO-003`. It focuses on confirming `--dir <path>` correctly pins the dispatched OpenCode session's working directory and that the session loads plugins, skills and MCP servers from that path rather than the caller's CWD.
 
 ### Why This Matters
 
-The cli-opencode default invocation always pins `--dir <repo-root>` to avoid CWD ambiguity (per SKILL.md §3 "Default Invocation"). If `--dir` is silently ignored or overridden by the caller's CWD, cross-repo dispatch (use case from CO-029) silently breaks and the dispatched session loads the wrong project's plugins. This is the foundational test that proves `--dir` actually pins the CWD inside the dispatched session.
+On OpenCode 1, the cli-opencode default invocation always pins `--dir <repo-root>` to avoid CWD ambiguity (per SKILL.md §3 "Default Invocation"). If `--dir` is silently ignored or overridden by the caller's CWD, cross-repo dispatch (use case from CO-029) silently breaks and the dispatched session loads the wrong project's plugins. This is the foundational test that proves `--dir` pins the CWD inside the dispatched session.
 
 ---
 
@@ -24,12 +26,12 @@ The cli-opencode default invocation always pins `--dir <repo-root>` to avoid CWD
 
 Operators run the exact prompt and command sequence for `CO-003` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm the `--dir` flag pins the dispatched session's working directory so a `pwd`-equivalent inside the session returns the pinned path, not the caller's CWD.
-- Real user request: `Run opencode run from /tmp but pin --dir to the Public repo, and have OpenCode tell me which directory it sees as its working dir. Confirm it matches the pinned path.`
-- Prompt: `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.`
-- Expected execution process: External-AI orchestrator captures the operator's repo root via `REPO_ROOT="$(pwd)"`, runs `cd /tmp` (or otherwise changes the parent shell's CWD), dispatches with `--dir "$REPO_ROOT"` and a prompt that asks the session to surface its working directory, then validates the response references the captured `REPO_ROOT` rather than `/tmp`.
+- Objective: Confirm the `--dir` flag (OpenCode 1 only) pins the dispatched session's working directory so a `pwd`-equivalent inside the session returns the pinned path, not the caller's CWD.
+- Real user request (OpenCode 1 only): `Run opencode run from /tmp but pin --dir to the Public repo, and have OpenCode tell me which directory it sees as its working dir. Confirm it matches the pinned path.`
+- Prompt: `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.` (OpenCode 1 only)
+- Expected execution process: On OpenCode 1, the external-AI orchestrator captures the operator's repo root via `REPO_ROOT="$(pwd)"`, runs `cd /tmp` (or otherwise changes the parent shell's CWD), dispatches with `--dir "$REPO_ROOT"` and a prompt that asks the session to surface its working directory, then validates the response references the captured `REPO_ROOT` rather than `/tmp`.
 - Expected signals: Dispatch exits 0. The session response references the Public repo path or names project-specific files like `AGENTS.md`, `opencode.json` or `.skilled/`. The response does NOT mention `/tmp` as the working directory.
-- Desired user-visible outcome: Verdict naming the observed working directory and confirming it matches the pinned `--dir` path.
+- Desired user-visible outcome: Verdict naming the observed working directory and confirming it matches the pinned `--dir` path (OpenCode 1 only).
 - Pass/fail: PASS if exit 0 AND response names the pinned directory or project-specific files AND does not name `/tmp`. FAIL if response says it sees `/tmp` or fails to surface the pinned path.
 
 ---
@@ -39,18 +41,18 @@ Operators run the exact prompt and command sequence for `CO-003` and confirm the
 ### Recommended Orchestration Process
 
 1. Restate the user request in plain user language.
-2. Change parent shell CWD to `/tmp` to make the difference observable.
-3. Dispatch with `--dir <Public-repo-root>` and a prompt that asks the session to print its working directory and list a few entries.
+2. Change parent shell CWD to `/tmp` so the difference is observable.
+3. On OpenCode 1, dispatch with `--dir <Public-repo-root>` and a prompt that asks the session to print its working directory and list a few entries. On OpenCode 2, start in the directory instead: `cd <Public-repo-root> && opencode2 run --standalone ...`.
 4. Inspect the session's reply for the pinned path or project-specific markers.
 5. Return a verdict naming the observed working directory.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-003 | Working directory pinning via --dir | Confirm `--dir` pins the dispatched session's working directory rather than inheriting the caller's CWD | `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.` | 1. `bash: REPO_ROOT="$(pwd)" && REPO_BASENAME="$(basename "$REPO_ROOT")" && cd /tmp && pwd && echo "REPO_ROOT=$REPO_ROOT REPO_BASENAME=$REPO_BASENAME"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1` -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "tool.result") \| .payload' /tmp/co-003-events.jsonl \| grep -c "$REPO_BASENAME"` -> 5. `bash: jq -r 'select(.type == "tool.result") \| .payload' /tmp/co-003-events.jsonl \| grep -c "/tmp"` | Step 1: REPO_ROOT captured (must equal the operator's project root) and parent CWD changed to `/tmp`; Step 2: events captured non-empty; Step 3: exit 0; Step 4: count of `$REPO_BASENAME` references >= 1 (the dispatched session sees the pinned path); Step 5: count of `/tmp` references = 0 in tool.result payloads (the parent CWD did not leak in) | `/tmp/co-003-events.jsonl`, terminal transcript including parent CWD before dispatch and the captured REPO_ROOT/REPO_BASENAME | PASS if exit 0 AND pinned path basename appears in tool.result AND `/tmp` does not appear in tool.result; FAIL if dispatched session reports CWD as `/tmp` or fails to surface the pinned path | 1. Verify `--dir` is spelled exactly with two dashes and no equal sign; 2. Run `opencode run --help` and check `--dir` is still the canonical name (drift handled per `references/cli-reference.md` §9); 3. If the session's bash tool prints `/tmp`, the binary may be ignoring `--dir` — file a bug and fall back to running from the repo root directly |
+| CO-003 | Working directory pinning via --dir | Confirm `--dir` pins the dispatched session's working directory rather than inheriting the caller's CWD (OpenCode 1 only, OpenCode 2 starts in the directory) | `From /tmp, run opencode with --dir pinned to <repo-root>; verify the session reports the pinned directory, not /tmp.` (OpenCode 1 only) | 1. `bash: REPO_ROOT="$(pwd)" && REPO_BASENAME="$(basename "$REPO_ROOT")" && cd /tmp && pwd && echo "REPO_ROOT=$REPO_ROOT REPO_BASENAME=$REPO_BASENAME"` -> 2. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$REPO_ROOT" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Use the bash tool to run \`pwd\` and \`ls -1 \| head -3\`. In your final reply, name the working directory exactly as pwd printed it." > /tmp/co-003-events.jsonl 2>&1`) -> 3. `bash: echo "Exit: $?"` -> 4. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use") \| (.payload // .part.state.output)' /tmp/co-003-events.jsonl \| grep -c "$REPO_BASENAME"` -> 5. `bash: jq -r 'select(.type == "tool.result" or .type == "tool_use") \| (.payload // .part.state.output)' /tmp/co-003-events.jsonl \| grep -c "/tmp"` | Step 1: REPO_ROOT captured (must equal the operator's project root) and parent CWD changed to `/tmp`. Step 2: events captured non-empty. Step 3: exit 0. Step 4: count of `$REPO_BASENAME` references >= 1 (the dispatched session sees the pinned path). Step 5: count of `/tmp` references = 0 in `tool.result` payloads on OpenCode 1 and `tool_use` output on OpenCode 2 (the parent CWD did not leak in) | `/tmp/co-003-events.jsonl`, terminal transcript including parent CWD before dispatch and the captured REPO_ROOT/REPO_BASENAME | PASS if exit 0 AND pinned path basename appears in the tool payload (tool.result on OpenCode 1, tool_use output on OpenCode 2) AND `/tmp` does not appear in that payload. FAIL if dispatched session reports CWD as `/tmp` or fails to surface the pinned path | 1. On OpenCode 1, verify `--dir` is spelled exactly with two dashes and no equal sign. 2. Run `opencode run --help` and check `--dir` is still the canonical name (drift handled per `references/cli-reference.md` §9). 3. If the session's bash tool prints `/tmp`, the binary may be ignoring `--dir`. File a bug and fall back to running from the repo root directly. |
 
 ### Optional Supplemental Checks
 
-For cross-repo verification, repeat the test with `--dir <other-repo-root>` (any other repo on the machine, captured into a `OTHER_REPO_ROOT` variable on the operator side) and confirm the dispatched session reports the second repo's path. This is the foundation for the cross-repo dispatch tested in CO-029.
+On OpenCode 1, for cross-repo verification, repeat the test with `--dir <other-repo-root>` (any other repo on the machine, captured into a `OTHER_REPO_ROOT` variable on the operator side) and confirm the dispatched session reports the second repo's path. OpenCode 2 has no `--dir`, so it starts in the other repo instead: `cd "$OTHER_REPO_ROOT" && opencode2 run --standalone ...` ([install reference](../../references/install-and-versions.md)). This is the foundation for the cross-repo dispatch tested in CO-029.
 
 ---
 
@@ -61,14 +63,14 @@ For cross-repo verification, repeat the test with `--dir <other-repo-root>` (any
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
-| `../../references/cli-reference.md` (§4 `--dir` row in flag table) | Documents the working directory contract |
+| `../../references/cli-reference.md` (§4 `--dir` row in flag table, OpenCode 1 only) | Documents the working directory contract |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | ALWAYS rule 3 (pin `--dir <repo-root>`) and §3 default invocation shape |
-| `../../references/opencode-tools.md` (§6 Cross-Repo Dispatch via --dir) | Documents the cross-repo capability that depends on this pinning |
+| `../../SKILL.md` | ALWAYS rule 3 (pin `--dir <repo-root>`, OpenCode 1 only) and §3 default invocation shape |
+| `../../references/opencode-tools.md` (§6 Cross-Repo Dispatch via --dir, OpenCode 1 only) | Documents the cross-repo capability that depends on this pinning |
 
 ---
 

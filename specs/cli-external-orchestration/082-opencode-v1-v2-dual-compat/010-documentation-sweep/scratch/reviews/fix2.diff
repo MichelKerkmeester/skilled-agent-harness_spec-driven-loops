@@ -1,0 +1,126 @@
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -93,7 +93,7 @@
+ 
+ The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+ 
+-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
++You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message on OpenCode 1. The OpenCode 2 runs captured here end with a `text` event. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
+ 
+ **Step 4: Spawn a parallel detached session (inside OpenCode only).**
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+@@ -132,8 +132,8 @@
+ ### Prerequisites
+ 
+ ```bash
+-# Binary pick ($OPENCODE_BIN, else PATH order) and version check: references/install-and-versions.md §4-5. PATH order decides.
+-OC=${OPENCODE_BIN:-$(command -v opencode2 || command -v opencode)}
++# Binary pick and version check: references/install-and-versions.md §4-5.
++OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for b in opencode2 opencode; do [ -x "$d/$b" ] && OC="$d/$b" && break 2; done; done; unset IFS; fi
+ "$OC" --version   # `1.19.3` = OpenCode 1, `opencode v2.0.32` = OpenCode 2; either major passes
+ 
+ # Self-invocation guard
+@@ -288,9 +288,7 @@
+ 
+ ### Reference Loading Notes
+ 
+-- Load only references needed for current intent.
+ - Smart Routing (Section 2) is the single routing authority.
+-- `cli-reference.md` and `prompt-quality-card.md` are ALWAYS loaded as baseline.
+ - The router discovers reference, asset, and script docs dynamically: resources from `references/`, templates from `assets/`, automation from `scripts/` when present.
+ 
+ ### Related Skills
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+@@ -149,7 +149,7 @@
+   "<prompt>"
+ ```
+ 
+-On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms the provider in `opencode2 models` first.
++On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+ 
+ | Flag | Default | Reason |
+ |------|---------|--------|
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+@@ -99,7 +99,7 @@
+   "<prompt>"
+ ```
+ 
+-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch. The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. Whether OpenCode 2 routes a slug the same way and applies the same frontmatter precedence is unverified on OpenCode 2.0.32.
++On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. Whether OpenCode 2 routes a slug the same way and applies the same frontmatter precedence is unverified on OpenCode 2.0.32.
+ 
+ ### Conductor rules
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+@@ -96,7 +96,7 @@
+   "<prompt-from-template>" 2>&1
+ ```
+ 
+-OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models` first.
++OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+ 
+ ### Why it matters
+ 
+@@ -404,7 +404,7 @@
+   2> "$LOG_DIR/iter-N-stderr.log"
+ ```
+ 
+-`--pure` has no OpenCode 2 `run` form. The fanout passes `--auto` on OpenCode 2, where it approves permissions that are not explicitly denied. Whether `--auto` equals the v1-only `--dangerously-skip-permissions` is unverified (see `./install-and-versions.md`). This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
++`--pure` (OpenCode 1 only) has no OpenCode 2 `run` form. The fanout passes `--auto` on OpenCode 2, where it approves permissions that are not explicitly denied. Whether `--auto` equals the v1-only `--dangerously-skip-permissions` is unverified (see `./install-and-versions.md`). This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-research and deep-review YAML workflow files. Any new automation that dispatches opencode MUST follow it.
+ 
+ ### Upstream
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+@@ -68,6 +68,7 @@
+ 
+ ```bash
+ # OpenCode 2 (2.0.32):
++# Agent routing unverified on OpenCode 2.0.32.
+ cd "$REPO_ROOT" && opencode2 run --standalone \
+   --agent general \
+   -m opencode-go/deepseek-v4.1-flash#max \
+@@ -75,7 +76,7 @@
+   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
+ ```
+ 
+-On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch. Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
++On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
+ 
+ On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+@@ -89,6 +89,8 @@
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
++
++On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+ 
+ ---
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md
+@@ -28,7 +28,7 @@
+ 
+ - Objective: Confirm that the canonical default invocation `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "<prompt>" 2>&1` (OpenCode 1 only) returns a parseable JSON event stream and exits 0.
+ - Real user request: `From a fresh shell (no OpenCode parent), use opencode run with the cli-opencode default shape to ask: explain what the cli-opencode skill does in two sentences. Verify the JSON event stream parses and we get a session.completed event.`
+-- Prompt: `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.`
++- Prompt: `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events on OpenCode 1 or step_start/tool_use/text/step_finish events on OpenCode 2, and report the session id plus event count.`
+ - Expected execution process: External-AI orchestrator (Claude Code, OpenCode, Copilot or raw shell) confirms self-invocation guard does NOT trip, runs `command -v opencode`, dispatches with the default shape, captures stdout+stderr via `2>&1` and parses the newline-delimited JSON events with `jq`.
+ - Expected signals: `command -v opencode` returns a path. No `OPENCODE_*` env vars set. JSON event stream starts with `session.started`, contains at least one `message.delta` and ends with `session.completed`. Exit code 0. Runtime under 90 seconds for a short prompt.
+ - Desired user-visible outcome: A short paragraph explaining the skill plus a one-line verdict naming the session id, event count and PASS or FAIL with reason.
+@@ -50,7 +50,7 @@
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` (OpenCode 1 only. On OpenCode 2, check `command -v opencode2 && opencode2 --version` instead, which prints `opencode v2.0.32`) -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1`) -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started" or .type == "step_start") \| (.session_id // .sessionID)' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`. Step 2: returns binary path and version starting with `1.`. Step 3: writes JSON event lines. Step 4: exit 0. Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1) on OpenCode 1, or `step_start` (>=1), `text` (>=1), `step_finish` (>=1) on OpenCode 2. Step 6: prints a non-empty `session_id` (OpenCode 1) or `sessionID` (OpenCode 2) | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed (OpenCode 1) or step_start + step_finish (OpenCode 2) both present AND no self-invocation refusal AND runtime under 90s. FAIL if any condition fails | 1. Verify `command -v opencode` returns a path. If missing, run `brew install opencode` (macOS) or the standalone installer. 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode). 3. Run `opencode providers` to confirm anthropic is configured. 4. If JSON is malformed, re-run with `--print-logs --log-level DEBUG` and inspect stderr. |
++| CO-001 | Base non-interactive invocation | Confirm the canonical `opencode run` default invocation returns a parseable JSON event stream and exits 0 | `Run a fresh default opencode invocation, verify session.started/message.delta/session.completed events on OpenCode 1 or step_start/tool_use/text/step_finish events on OpenCode 2, and report the session id plus event count.` | 1. `bash: env \| grep -q '^OPENCODE_' && echo "ABORT: in-OpenCode" \|\| echo "OK: not in OpenCode"` -> 2. `bash: command -v opencode && opencode --version` (OpenCode 1 only. On OpenCode 2, check `command -v opencode2 && opencode2 --version` instead, which prints `opencode v2.0.32`) -> 3. `bash: opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$(pwd)" "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1` (OpenCode 1 only. OpenCode 2 twin: `bash: cd "$(pwd)" && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Explain what the cli-opencode skill does in two sentences." > /tmp/co-001-events.jsonl 2>&1`) -> 4. `bash: echo "Exit: $?"` -> 5. `bash: jq -r '.type' /tmp/co-001-events.jsonl \| sort \| uniq -c` -> 6. `bash: jq -r 'select(.type == "session.started" or .type == "step_start") \| (.session_id // .sessionID)' /tmp/co-001-events.jsonl` | Step 1: prints `OK: not in OpenCode`. Step 2: returns binary path and version starting with `1.`. Step 3: writes JSON event lines. Step 4: exit 0. Step 5: counts include `session.started` (>=1), `message.delta` (>=1), `session.completed` (>=1) on OpenCode 1, or `step_start` (>=1), `text` (>=1), `step_finish` (>=1) on OpenCode 2. Step 6: prints a non-empty `session_id` (OpenCode 1) or `sessionID` (OpenCode 2) | `/tmp/co-001-events.jsonl` plus terminal transcript with timestamps, exit code, and event-type histogram | PASS if exit 0 AND session.started + session.completed (OpenCode 1) or step_start + step_finish (OpenCode 2) both present AND no self-invocation refusal AND runtime under 90s. FAIL if any condition fails | 1. Verify `command -v opencode` returns a path. If missing, run `brew install opencode` (macOS) or the standalone installer. 2. Verify no `OPENCODE_*` env var is set (if set, run from a fresh shell outside OpenCode). 3. Run `opencode providers` to confirm anthropic is configured. 4. If JSON is malformed, re-run with `--print-logs --log-level DEBUG` and inspect stderr. |
+ 
+ ### Optional Supplemental Checks
+ 

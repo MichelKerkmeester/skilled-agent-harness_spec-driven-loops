@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/010-documentation-sweep` |
 | **Parent Spec** | ../spec.md |
@@ -49,7 +49,7 @@ This is **Phase 10** of the OpenCode v1 and v2 dual compatibility build specific
 - `doc-inventory.md` in this folder, with one row per touched doc. Each row names its mode, its validator, its DQI score and its human-voice result.
 - A reviewed `install-and-versions.md` and `/doctor:opencode` route doc, validated under their modes.
 
-**Executor (D6)**: DeepSeek (DeepSeek V4.1 Flash max, through cli-devin) writes each doc change. The markdown agent persona from `.claude/agents/markdown.md` is inlined into every DeepSeek dispatch. Luna (GPT-6 Luna max fast, through cli-codex) reviews each doc change. The orchestrator runs every validator, score, package check and grep itself.
+**Executor (D6)**: DeepSeek (DeepSeek V4.1 Flash max, through cli-devin) writes each doc change. The markdown agent persona from `.claude/agents/markdown.md` is inlined into every DeepSeek dispatch. Luna (GPT-6 Luna max fast, through cli-codex) reviews each doc change. The orchestrator runs every validator, score, package check and grep itself (scratch/decisions.txt 0).
 
 **Frozen decisions that bind this phase**:
 - D2: `opencode.json` stays in the v1 shape, with the singular `permission` map and `mcp.servers`. Docs show it that way and never show `permissions`, `plugins` or `disabled`.
@@ -60,7 +60,7 @@ This is **Phase 10** of the OpenCode v1 and v2 dual compatibility build specific
 - D8: Docs carry no public compatibility claim. Phase 011 writes the scoped claim.
 
 **Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name. No phase of this packet has a ../changelog/ folder, and none was created. The build's release note is the cli-opencode changelog entry v1.5.0.0, which this phase writes.
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -98,24 +98,29 @@ Every doc that the build touched or needed passes its sk-doc validator and its p
 
 ### Files to Change
 
-The paths below are known from the phase plans and research. The final list comes from `doc-inventory.md`, which T001 builds from the 002 to 008 diffs and a grep.
+Reconciled with the work: `doc-inventory.md` lists all 41 docs this phase wrote or reviewed, one row each, with its mode, validator and results. The table groups them. Rows marked amendment joined after planning, each for the reason given (scratch/decisions.txt).
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/plugins/README.md` | Modify | Code-folder README through readme mode. Covers the plugin shape, the v2 `setup` leg and the test layout. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | Dispatch shape at the line sites that `research/iterations/iteration-013.md` F7 lists. The version guard fix from phase 006 lands here too. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/README.md` | Modify | Overview lines that describe a v1-only dispatch shape. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md` | Modify | Flag table with a v2 column. The version pin becomes a two-row matrix. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md` | Modify | Every `--variant` example gains its v2 `#variant` twin. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md` | Modify | The six rendered invocations gain a v2 rendering. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md` | Review | Created by phase 007. Validated here under the skill reference mode. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/` | Modify | Scenarios that name the v1 flag set. The set comes from the grep in T004. |
-| `.skilled/skills/cli-external-orchestration/feature-catalog/` | Modify | Catalog entries for the plugin and dispatch changes. The exact entries come from the phase 002 to 008 diffs. |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/` | Create | Changelog entry for the build, through the changelog mode. |
-| `.skilled/commands/doctor/` route doc for `/doctor:opencode` | Review | Written by phase 008 in command mode. Validated here. |
-| Agent and command files that phase 004 changed | Review | Validated through the sk-doc agent or command mode. The wording comes from phase 004. |
-| READMEs in script folders that phases 002 to 008 changed | Modify | Code-folder READMEs through the readme mode, code_folder type. |
-| `doc-inventory.md` in this folder | Create | One row per touched doc, with its mode, validator, DQI and human-voice result. |
+| `.opencode/plugins/README.md` | Modify | The dual export, `lib/`, the v2 tests, and the audit's `opencode2` match. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` | Modify | Dispatch shapes for both versions, the binary pick that matches the resolver, the install-reference link, a cut back under the 5,000-word limit (decision 11), version 1.5.0.0. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/README.md` | Modify | Overview and FAQ lines for both versions. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/references/` | Modify | `cli-reference.md` (v2 column, two-row matrix, description), `providers-and-models.md` (`#variant` twins), `agent-delegation.md`, `context-budget.md`, `destructive-scope-violations.md`, `integration-patterns.md` and `opencode-tools.md` (version tags and v2 twins). |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md` | Review | Created by phase 007. Validator exit 0, DQI 94, HVR exit 0. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md` | Modify | v2 renderings beside the invocations. |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/` | Modify | The root page and 17 scenarios: version notes, v2 twins and v2 pass readings. |
+| `.skilled/skills/cli-external-orchestration/feature-catalog/` | Modify, Create | `cli-dispatch-authorization` updated, `opencode-dual-version-dispatch` created, the root index lists it (decision 8). |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md` | Create | The build's release entry (decision 9). |
+| `.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md`, `cli-claude-code/references/claude-tools.md` | Modify | Sibling references that named OpenCode's v1-only flags. |
+| `.skilled/command-support/deep/assets/compiled/README.md` | Modify | The manifest path phase 009 moved. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/README.md` | Modify | The `opencode-version.cjs` entry. |
+| `.opencode/plugins/tests/README.md`, `.skilled/skills/system-deep-loop/runtime/tests/unit/README.md` | Modify (amendment) | Their test tables lacked the build's new suites (decision 10). |
+| `.skilled/command-support/doctor/scripts/README.md` | Review, Modify | Phase 008's battery doc. Validated as `readme`. Its three uses of a blocked word, phase 008's own text, were replaced. |
+| `/doctor:opencode` route doc | Not written | It waits for Q1 with its route entry (008 decisions 4 and 15). The battery is documented in the doctor scripts README. |
+| Agent, command and support docs that phase 004 changed | Review | 32 docs, each with the same validator and HVR exit before and after 004 (decision 3). |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` and its authored copy under `specs/sk-doc/z_archive/019-skill-routing-refactor/` | Modify (amendment) | Re-minted, because the hub's policy hash covers every packet SKILL.md byte (decision 14). |
+| `.hermes/skills/cli-opencode/SKILL.md` | Regenerate (amendment) | The generated Hermes copy of SKILL.md (decision 13). |
+| `doc-inventory.md` in this folder | Create | One row per doc, the findings and how each closed. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -226,6 +231,6 @@ The paths below are known from the phase plans and research. The final list come
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- The research names 20 playbook files. Its own grouped list sums to 21 before the `intra-routing-recall` group, and the named group folders now hold 34 files. The T004 grep sets the real set, and this packet follows that grep rather than either number.
-- The plugins have no feature catalog folder of their own. The candidate is `.skilled/skills/cli-external-orchestration/feature-catalog/`. The phase 002 to 008 diffs confirm which entries change.
+- Answered: the playbook set is the 17 scenarios the v1-only search found, plus the root page (`scratch/inventory.tsv`), not the research's 20.
+- Answered: the catalog home is `.skilled/skills/cli-external-orchestration/feature-catalog/`. One entry changed and one was added (decision 8).
 <!-- /ANCHOR:questions -->

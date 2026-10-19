@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.0.44
+version: 1.4.1.0
 ---
 
 # cli-opencode
@@ -36,7 +36,7 @@ An external session that needs the project's whole runtime has no native path to
 
 ### What It Does
 
-cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. The default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. On OpenCode 1 (1.19.3) the default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. On OpenCode 2 (2.0.32) it is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
 
@@ -73,6 +73,7 @@ Expected when configured: a table of providers with status and default indicator
 **Step 3: Run the default dispatch.**
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --model opencode-go/deepseek-v4-flash --variant max \
   --format json \
@@ -81,20 +82,34 @@ opencode run \
   </dev/null
 ```
 
-You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message. The `</dev/null` is mandatory on non-interactive runs. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
+```bash
+# On OpenCode 2 (2.0.32):
+cd "$REPO_ROOT" && opencode2 run --standalone \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  --format json \
+  "Act as a context-retrieval agent: search the spec docs with the ripgrep retrieval conventions and return the top findings." \
+  </dev/null
+```
+
+The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+
+You get structured JSON events streamed to stdout as the session runs, ending with a final tool-result message on OpenCode 1. The OpenCode 2 runs captured here end with a `text` event. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
 
 **Step 4: Spawn a parallel detached session (inside OpenCode only).**
 
-> **Confirm before you share.** `--share` publishes the session and exposes its contents at a browser-accessible URL. Get operator confirmation first, per the skill's `share-requires-confirmation` hard rule.
+> **Confirm before you share.** `--share` (OpenCode 1 only) publishes the session and exposes its contents at a browser-accessible URL. Get operator confirmation first, per the skill's `share-requires-confirmation` hard rule.
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run --share --port 4096 \
   --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" \
   "Run a parallel research branch for the approved spec folder." \
   </dev/null &
 ```
 
-The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`), inspectable independently via `opencode export <session_id>`. `--share` publishes a browser-accessible URL.
+On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See [`references/install-and-versions.md`](./references/install-and-versions.md).
+
+The session runs under its own session id in the shared `~/.local/share/opencode/` database (`opencode.db`, `storage/`, `snapshot/`), inspectable independently via `opencode export <session_id>`. On OpenCode 1, `--share` publishes a browser-accessible URL.
 
 ---
 
@@ -128,7 +143,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster; restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`, or `opencode2 models <provider-id>` on OpenCode 2. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 
@@ -227,7 +242,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `provider/model not found` or `401 Unauthorized` | The default `opencode-go` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
-| Unknown `--share` or `--variant` flag | Binary older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade |
+| Unknown `--share` or `--variant` flag on OpenCode 1 | Binary older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade. On OpenCode 2 neither flag has a `run` form. See [`references/install-and-versions.md`](./references/install-and-versions.md) |
 | Context too large or truncated | The prompt references broad paths instead of specific files | Split large tasks and use `--file` for attachments |
 
 ---
@@ -240,7 +255,7 @@ A: A sibling cli-* skill dispatches to a single provider's binary. cli-opencode 
 
 **Q: When do I need a parallel detached session?**
 
-A: When you are inside OpenCode and want a second session with its own state and session id. Common patterns are an ablation suite across sessions, a worker farm for parallel research, a `--share` URL for browser inspection and a cross-repo research branch. The prompt must contain explicit parallel-session keywords or the self-invocation guard blocks the dispatch.
+A: When you are inside OpenCode and want a second session with its own state and session id. Common patterns are an ablation suite across sessions, a worker farm for parallel research, a `--share` URL for browser inspection and a cross-repo research branch. On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See [`references/install-and-versions.md`](./references/install-and-versions.md). The prompt must contain explicit parallel-session keywords or the self-invocation guard blocks the dispatch.
 
 **Q: Why no top-level `--agent`?**
 
@@ -252,7 +267,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `llmgateway/mimo-v2.6-pro` for MiMo or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+A: On OpenCode 1, default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. On OpenCode 2, the level rides on the model id as `-m opencode-go/deepseek-v4.1-flash#max`. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `llmgateway/mimo-v2.6-pro` for MiMo or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 
@@ -264,7 +279,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message |
+| Default dispatch | On OpenCode 1, `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message. On OpenCode 2, the equivalent is `cd . && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "Say hello" </dev/null` |
 
 ---
 
@@ -273,7 +288,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
-| [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider, model, `--variant` effort and dispatch-shape catalog |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Provider, model and dispatch-shape catalog: `--variant` effort levels (OpenCode 1 only) and the `#level` model-id form on OpenCode 2 |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and version drift handling |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases, the self-invocation guard and the silent-stdin trap |
 | [`references/opencode-tools.md`](./references/opencode-tools.md) | Unique value versus sibling cli-* skills |

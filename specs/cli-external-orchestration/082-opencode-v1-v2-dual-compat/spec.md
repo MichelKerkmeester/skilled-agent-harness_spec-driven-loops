@@ -120,7 +120,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 7 | 007-install-guidance-and-setup-helper/ | Install reference and `opencode-setup.sh` for side by side, v1 only and v2 only | Complete |
 | 8 | 008-doctor-and-ci/ | `/doctor:opencode` battery and a two-prefix CI workflow | Complete |
 | 9 | 009-sk-code-opencode-alignment/ | Align every new and changed code file with the sk-code OPENCODE surface | Complete |
-| 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Pending |
+| 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Complete |
 | 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Pending |
 
 ### Phase Transition Rules

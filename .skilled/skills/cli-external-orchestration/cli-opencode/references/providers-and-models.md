@@ -9,23 +9,23 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.32
+version: 1.4.1.0
 ---
 
 # cli-opencode Providers, Models & Invocation
 
-The single catalog of the providers, model ids, defaults, `--variant` effort levers, and dispatch shapes the cli-opencode mode can reach.
+The single catalog of the providers, model ids, defaults, the `--variant` effort lever (OpenCode 1 only), and dispatch shapes the cli-opencode mode can reach.
 
 ---
 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-opencode. This mode is the multi-provider master — it reaches more providers than any other cli mode.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-opencode. This mode is the multi-provider master, reaching more providers than any other cli mode.
 
 ### When to Use
 - Choosing a `--model provider/model-id` for an `opencode run` dispatch
-- Mapping a desired reasoning effort onto the `--variant` flag for a given provider
+- Mapping a desired reasoning effort onto the `--variant` flag (OpenCode 1 only) for a given provider. On OpenCode 2 the level rides on the model id instead (`-m provider/model#<level>`).
 - Recalling the default model and the canonical non-interactive invocation shape
 
 ### Scope
@@ -40,19 +40,19 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** — `--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids — so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first — never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and those extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
+> **CLOSED ROSTER: non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** (`--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids), so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first. Never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and those extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
-OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install — but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
+OpenCode resolves models through configured providers. The model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install, but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
 ### minimax
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `minimax/MiniMax-M3` | — | MiniMax Direct API (pay-per-token); needs `MINIMAX_API_KEY` |
+| `minimax/MiniMax-M3` | no | MiniMax Direct API (pay-per-token), needs `MINIMAX_API_KEY` |
 
 ### openai
 
-GPT-6 via the `openai` provider — two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
+GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
 
 | Persona | Base | Fast (low-latency) |
 |---------|------|--------------------|
@@ -61,45 +61,45 @@ GPT-6 via the `openai` provider — two personas (sol/luna) × two speed tiers (
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route — the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
+opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route, since the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway — **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` by policy, a tier this route carries. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost — $0.15 in / $0.60 out per 1M, cached reads $0.003 — and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
-| `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
-| `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max` by policy; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
-| `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
-| `opencode-go/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant`. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
-| `opencode-go/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via the Go gateway, with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. No variants are listed, so omit `--variant`. Dispatch-verified 2026-09-30 with a `PONG` reply |
+| `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway, **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` (OpenCode 1 only) by policy, a tier this route carries. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost ($0.15 in / $0.60 out per 1M, cached reads $0.003) and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
+| `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
+| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
+| `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. A live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
+| `opencode-go/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
+| `opencode-go/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Go gateway, with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. No variants are listed, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 with a `PONG` reply |
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4.1 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The fan-out runner accepts this route too: `pinReasoningEffortForModel` in the deep-loop runtime's `executor-config.ts` pins any `cline-pass/` DeepSeek V4.1 Flash id to `xhigh`, so a fan-out lineage here never sends the unsupported `max`. Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible). Pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow), where the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4.1 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** (OpenCode 1 only). Dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. The fan-out runner accepts this route too: `pinReasoningEffortForModel` in the deep-loop runtime's `executor-config.ts` pins any `cline-pass/` DeepSeek V4.1 Flash id to `xhigh`, so a fan-out lineage here never sends the unsupported `max`. Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here. The interactive TUI picker remembers the effort per model on its own.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier). **Dispatch-verified 2026-10-05:** `opencode models cline-pass` lists the id, a one-turn `opencode run` at `--variant xhigh` replied `PONG` with exit 0, and 80 headless `--auto` runs the same day all exited 0, edit tasks included. It supersedes the older `cline-pass/cline-pass/deepseek-v4-flash` id. Context and output limits have not been measured. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
-| `cline-pass/cline-pass/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via the Cline provider, covered by the Cline Pass. Reasoning and image-capable, 1M context and 131K output. Pass the three-segment id. Cline's `xiaomi/mimo-v2.6-pro` id bills Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so it is not on the roster. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
-| `cline-pass/cline-pass/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via the Cline provider, on the Pass like the Pro row above and with the same limits and id rule. Dispatch-verified 2026-09-30 with a `PONG` reply |
+| `cline-pass/cline-pass/deepseek-v4.1-flash` | no | DeepSeek V4.1 Flash via the Cline provider, a reasoning model. **Default effort `--variant xhigh`** (OpenCode 1 only, its top thinking tier, no `max` tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. **Dispatch-verified 2026-10-05:** `opencode models cline-pass` lists the id, a one-turn `opencode run` at `--variant xhigh` replied `PONG` with exit 0, and 80 headless `--auto` runs the same day all exited 0, edit tasks included. It supersedes the older `cline-pass/cline-pass/deepseek-v4-flash` id. Context and output limits have not been measured. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
+| `cline-pass/cline-pass/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Cline provider, covered by the Cline Pass. Reasoning and image-capable, 1M context and 131K output. Pass the three-segment id. Cline's `xiaomi/mimo-v2.6-pro` id bills Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so it is not on the roster. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
+| `cline-pass/cline-pass/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Cline provider, on the Pass like the Pro row above and with the same limits and id rule. Dispatch-verified 2026-09-30 with a `PONG` reply |
 
 > **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
 ### llmgateway
 
-DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible; pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login` — the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway`.
+DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway`.
 
-> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`); those names are informational and are never sent.
+> **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`). Those names are informational and are never sent.
 
 > **DevPass bills per token at normal API list rates.** The plan buys credits at a 3x bonus, which discounts the bill rather than removing it, so a cached read still costs less than an uncached one and neither is free. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). All three models below are **Standard**, so **no weekly cap applies to this roster**.
 
-> **`llmgateway` fronts 262 models; exactly the four below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
+> **`llmgateway` fronts 262 models. Exactly the four below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `llmgateway/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via DevPass; reasoning **and images**; pinned `--variant max`, which the route accepts; context 1.05M, output 384K; $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
-| `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
-| `llmgateway/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via DevPass; active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. The Xiaomi Direct API and Token Plan routes left the roster on 2026-09-23, and the gateway serves no ultraspeed tier. Always pass `--variant high`. No OpenCode round-trip on this route is recorded yet |
-| `llmgateway/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via DevPass, the cheaper MiMo tier. Reasoning and image-capable, 1M context, 131K output, variants `none`/`low`/`medium`/`high`, and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. Always pass `--variant high`. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
+| `llmgateway/deepseek-v4.1-flash` | no | DeepSeek V4.1 Flash via DevPass, reasoning **and images**. Pinned `--variant max` (OpenCode 1 only), which the route accepts. On OpenCode 2 the equivalent is `-m llmgateway/deepseek-v4.1-flash#max`. Context 1.05M, output 384K, $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
+| `llmgateway/glm-5.3-flash` | no | GLM-5.3-Flash via DevPass, a reasoning route with the full ladder including **both `xhigh` and `max`**, the only GLM-5.3-Flash route carrying both, so `--variant max` (OpenCode 1 only). On OpenCode 2 the equivalent is `-m llmgateway/glm-5.3-flash#max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
+| `llmgateway/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via DevPass, an active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. The Xiaomi Direct API and Token Plan routes left the roster on 2026-09-23, and the gateway serves no ultraspeed tier. Always pass `--variant high` (OpenCode 1 only). On OpenCode 2 the equivalent is `-m llmgateway/mimo-v2.6-pro#high`. No OpenCode round-trip on this route is recorded yet |
+| `llmgateway/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via DevPass, the cheaper MiMo tier. Reasoning and image-capable, 1M context, 131K output, variants `none`/`low`/`medium`/`high`, and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. Always pass `--variant high` (OpenCode 1 only). On OpenCode 2 the equivalent is `-m llmgateway/mimo-v2.6-flash#high`. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 
 ---
 
@@ -110,10 +110,11 @@ Dispatch this mode's default without opening any other file:
 | Field | Value |
 |-------|-------|
 | Default model | `opencode-go/deepseek-v4.1-flash` |
-| Default effort | `--variant max` (flash is max-tier-pinned by policy) |
+| Default effort | On OpenCode 1, `--variant max` (flash is max-tier-pinned by policy). On OpenCode 2, `-m opencode-go/deepseek-v4.1-flash#max` |
 | Default format | `--format json` |
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --model opencode-go/deepseek-v4.1-flash \
   --variant max \
@@ -122,21 +123,31 @@ opencode run \
   "<prompt>" </dev/null
 ```
 
-If the default provider is not configured, the mode ASKS the operator before substituting — never silently swaps a model. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §4.
+```bash
+# On OpenCode 2 (2.0.32):
+cd "$REPO_ROOT" && opencode2 run --standalone \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  --format json \
+  "<prompt>" </dev/null
+```
+
+The two versions do not always list the same providers, so on OpenCode 2 confirm the provider appears in `opencode2 models` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
+
+If the default provider is not configured, the mode ASKS the operator before substituting. It never silently swaps a model. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §4.
 
 ---
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-opencode expresses reasoning effort through the **`--variant`** flag, which maps to a provider-specific effort scale. Default skill behavior is `--variant high` for non-pinned models; the `opencode-go/deepseek-v4.1-flash` default is pinned to `--variant max` by policy.
+cli-opencode expresses reasoning effort through the **`--variant`** flag (OpenCode 1 only), which maps to a provider-specific effort scale. On OpenCode 2 the level rides on the model id instead (`-m provider/model#<level>`). Default skill behavior is `--variant high` for non-pinned models, and the `opencode-go/deepseek-v4.1-flash` default is pinned to `--variant max` by policy. The ladders below are observed on OpenCode 1 and are unverified on OpenCode 2.0.32.
 
-| Provider | `--variant` behavior |
+| Provider | `--variant` behavior (OpenCode 1 only) |
 |----------|----------------------|
-| `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
-| `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
-| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
-| `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` and `mimo-v2.6-flash` carry `none`/`low`/`medium`/`high`, and **`--variant high`** is the standing MiMo default. Always pass `--variant` explicitly here |
+| `opencode-go` (`deepseek-v4.1-flash`) | reasoning model pinned to `--variant max` (OpenCode 1 only, max thinking tier) by policy. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`. The fan-out builder upgrades a lower requested effort automatically |
+| `minimax` (MiniMax-M3) | behavior unverified, omitted by default. Confirm before relying |
+| `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**, with Pro tiers at `medium`/`high`/`xhigh`. The `-fast` slugs are the low-latency Fast tier with the same range |
+| `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted, with tiers `none`/`low`/`medium`/`high`/**`xhigh`** and **no `max`**. **Default/pinned `--variant xhigh`** (OpenCode 1 only, top thinking tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh` |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`. `glm-5.3-flash` carries the full ladder to `max`. `mimo-v2.6-pro` and `mimo-v2.6-flash` carry `none`/`low`/`medium`/`high`, and **`--variant high`** (OpenCode 1 only) is the standing MiMo default. On OpenCode 2 the equivalent is `-m llmgateway/mimo-v2.6-pro#high`. Always pass the level explicitly here |
 
 ---
 
@@ -146,23 +157,32 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
 
 ```bash
+# On OpenCode 1 (1.19.3):
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
   --model opencode-go/deepseek-v4.1-flash --variant max --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 
-- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
-- `</dev/null` — REQUIRED before stdout/stderr redirects; opencode reads stdin at startup and hangs at 0% CPU without an EOF. See [integration-patterns.md](./integration-patterns.md) §6.
+```bash
+# On OpenCode 2 (2.0.32):
+cd "$REPO_ROOT" && SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 \
+  opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json \
+  "<prompt>" </dev/null > stdout.log 2> stderr.log
+```
+
+- `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1`: neutralizes the spec-gate for a bound child worker so it does not stall waiting on an interactive Gate-3 answer.
+- `</dev/null`: REQUIRED before stdout/stderr redirects. opencode reads stdin at startup and hangs at 0% CPU without an EOF. See [integration-patterns.md](./integration-patterns.md) §6.
+- `--standalone` (OpenCode 2 only): REQUIRED on every child dispatch.
 
 ### Self-invocation guard
-An opencode dispatch must not recursively re-enter the same session/worker. The guard is packet-local — see [self-invocation-guard.md](./self-invocation-guard.md).
+An opencode dispatch must not recursively re-enter the same session/worker. The guard is packet-local. See [self-invocation-guard.md](./self-invocation-guard.md).
 
 ### Parallel / fan-out
-Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub — see §6.
+Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub. See §6.
 
 ---
 
-## 6. ENFORCEMENT & PROFILES (authoritative elsewhere — do not duplicate here)
+## 6. ENFORCEMENT & PROFILES (authoritative elsewhere, do not duplicate here)
 
 - **Fan-out dispatcher** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
 - **Live model ids** → `opencode models <provider>` on the target install
@@ -171,6 +191,6 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 
 ## 7. RELATED
 
-- [cli-reference.md](./cli-reference.md) — full `opencode run` flags, subcommands, auth pre-flight, troubleshooting
-- [integration-patterns.md](./integration-patterns.md) — dispatch shapes + failure-mode matrix
-- [../SKILL.md](../SKILL.md) — cli-opencode mode overview and routing
+- [cli-reference.md](./cli-reference.md): full `opencode run` flags, subcommands, auth pre-flight, troubleshooting
+- [integration-patterns.md](./integration-patterns.md): dispatch shapes + failure-mode matrix
+- [../SKILL.md](../SKILL.md): cli-opencode mode overview and routing

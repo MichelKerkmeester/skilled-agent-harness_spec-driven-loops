@@ -10,7 +10,7 @@ trigger_phrases:
   - "claude code plan mode read-only"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.14
+version: 1.5.1.0
 ---
 
 # Claude Code CLI Built-in Tools Reference
@@ -23,7 +23,7 @@ Reference for all Claude Code CLI capabilities, highlighting unique features and
 
 ### Core Principle
 
-Delegate to Claude Code CLI for capabilities other AIs lack natively — especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
+Delegate to Claude Code CLI for capabilities other AIs lack natively, especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
 
 ### Purpose
 
@@ -42,7 +42,7 @@ Covers all built-in capabilities of Claude Code CLI, highlights what is unique c
 
 ### Extended Thinking
 
-**Deep extended-thinking reasoning.** Claude's extended thinking produces detailed internal reasoning before responding, leading to higher quality outputs for complex tasks. Do not assume the raw chain-of-thought is exposed verbatim in every output mode — verify against the current `--output-format` and effort-level behavior before relying on internal reasoning being visible.
+**Deep extended-thinking reasoning.** Claude's extended thinking produces detailed internal reasoning before responding, leading to higher quality outputs for complex tasks. Do not assume the raw chain-of-thought is exposed verbatim in every output mode. Verify against the current `--output-format` and effort-level behavior before relying on internal reasoning being visible.
 
 **Capabilities:**
 - Multi-step logical reasoning with deeper internal deliberation at higher `--effort` levels
@@ -69,13 +69,13 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Algorithm design requiring correctness proofs or edge case analysis
 - Technical decisions that will be hard to reverse
 
-**Compared to other CLIs:** OpenCode has reasoning capabilities via provider-specific `--variant` reasoning effort (its own `--effort`-shaped lever); Claude's `--effort` levels are especially strong for multi-dimensional trade-off analysis, but do not assume its internal reasoning is rendered as visible chain-of-thought without checking the current output mode.
+**Compared to other CLIs:** On OpenCode 1, reasoning capabilities come via provider-specific `--variant` reasoning effort (its own `--effort`-shaped lever). OpenCode 2 sets model and effort together with `-m provider/model#<level>`. Claude's `--effort` levels are especially strong for multi-dimensional trade-off analysis, but do not assume its internal reasoning is rendered as visible chain-of-thought without checking the current output mode.
 
 ---
 
 ### Edit Tool (Built-in)
 
-**Surgical diff-based code editing.** Claude Code's Edit tool makes precise, targeted changes to files — replacing specific strings without rewriting entire files.
+**Surgical diff-based code editing.** Claude Code's Edit tool makes precise, targeted changes to files: replacing specific strings without rewriting entire files.
 
 **Capabilities:**
 - Replace specific code blocks while preserving surrounding context
@@ -109,7 +109,7 @@ claude -p "Analyze the trade-offs of our current caching strategy" \
 - Isolate complex subtasks without context pollution
 - Agent types: general-purpose, Explore (fast search), Plan (architecture)
 
-**How it works:** When delegating a complex task to Claude Code, it may internally spawn subagents to handle subtasks. The calling AI doesn't need to manage this — it's transparent.
+**How it works:** When delegating a complex task to Claude Code, it may internally spawn subagents to handle subtasks. The calling AI doesn't need to manage this. It's transparent.
 
 **Best For:**
 - Complex tasks that naturally decompose into independent subtasks
@@ -154,7 +154,7 @@ claude -p "Audit @src/auth.ts for security issues" \
 
 ### Permission Mode: Plan (Read-Only)
 
-**Safe read-only exploration mode.** `--permission-mode plan` restricts Claude Code to read-only operations — no file writes, no shell commands.
+**Safe read-only exploration mode.** `--permission-mode plan` restricts Claude Code to read-only operations: no file writes, no shell commands.
 
 **Capabilities:**
 - All read tools available (Read, Glob, Grep, WebFetch, WebSearch)
@@ -211,7 +211,7 @@ claude -p "Full security audit of the entire src/ directory" \
 
 **On-demand specialized workflows.** Claude Code loads SKILL.md files that provide domain-specific instructions, reference materials, and routing logic.
 
-**How it works:** Skills are loaded dynamically based on task intent. Each skill provides structured guidance including when to use, how to route, rules, and reference materials. This is an internal Claude Code capability — the calling AI doesn't invoke skills directly.
+**How it works:** Skills are loaded dynamically based on task intent. Each skill provides structured guidance including when to use, how to route, rules, and reference materials. This is an internal Claude Code capability. The calling AI doesn't invoke skills directly.
 
 ---
 
@@ -219,7 +219,7 @@ claude -p "Full security audit of the entire src/ directory" \
 
 **Persistent structured context across sessions.** Claude Code carries project context, decisions, and implementation history in the repository's spec folders rather than in a service.
 
-**How it works:** `/speckit:save` writes continuity into the packet's canonical spec docs, `/speckit:search` retrieves it with the trigger index and the documented ripgrep recipes, and `/speckit:resume` walks `handover.md` -> `_memory.continuity` -> the spec docs. This enables Claude Code to recall prior decisions across sessions. The calling AI benefits because Claude Code can leverage historical project context that the calling AI doesn't have.
+**How it works:** `/speckit:save` writes continuity into the packet's canonical spec docs, `/speckit:search` retrieves it with the trigger index and the documented ripgrep recipes, and `/speckit:resume` walks `handover.md` -> `_memory.continuity` -> the spec docs. This enables Claude Code to recall prior decisions across sessions. The calling AI benefits because Claude Code can use historical project context that the calling AI doesn't have.
 
 ---
 
@@ -235,23 +235,23 @@ claude -p "Full security audit of the entire src/ directory" \
 
 ### Claude Code vs OpenCode
 
-Every OpenCode-side claim below is sourced from a live `opencode run --help` capture and `cli-opencode/references/cli-reference.md` (both current as of this fix); no claim is carried over unverified from an older comparison.
+Every OpenCode-side claim below is sourced from a live `opencode run --help` capture and `cli-opencode/references/cli-reference.md` (both current as of this fix). No claim is carried over unverified from an older comparison.
 
 | Capability | Claude Code | OpenCode |
 |------------|-------------|-----------|
-| **Deep Reasoning** | `--effort` (low/medium/high/xhigh/max) | `--variant` (provider-specific reasoning effort — e.g. `high` default on `opencode-go/deepseek-v4-flash`, up to `xhigh` on the `openai/gpt-5.6-*` family) |
+| **Deep Reasoning** | `--effort` (low/medium/high/xhigh/max) | `--variant` (OpenCode 1 only): provider-specific reasoning effort, e.g. `high` default on `opencode-go/deepseek-v4-flash`, up to `xhigh` on the `openai/gpt-5.6-*` family. OpenCode 2 sets model and effort together with `-m provider/model#<level>` |
 | **Code Editing** | Built-in Edit tool (surgical diff-based) | Workspace-write sandbox via its own agent tool permissions |
 | **Structured Output** | `--json-schema` (schema-validated) | `--format json` newline-delimited event stream (prompt-shaped, not schema-validated) |
-| **Read-Only Mode** | `--permission-mode plan` (session-level flag) | No CLI-level read-only flag; achieved via a read-only agent's own tool permissions (e.g. the `context` subagent) |
+| **Read-Only Mode** | `--permission-mode plan` (session-level flag) | No CLI-level read-only flag, achieved via a read-only agent's own tool permissions (e.g. the `context` subagent) |
 | **Cost Control** | `--max-budget-usd` | No equivalent flag documented for `opencode run` |
-| **Agent System** | 11 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 11 agents via `.skilled/agents/*.md`, split into 3 classes: primary (`general`, `plan`, `orchestrate` — only `orchestrate` is a project file usable with top-level `--agent`), subagent (`context`, `markdown`, `review`, `debug`, `ai-council` — routed via `--agent orchestrate`, never direct), and command-owned (`deep-research`, `deep-review`, `prompt-improver` — dispatched only by their parent `/deep:*` command) |
+| **Agent System** | 11 agents via `.claude/agents/*.md`, all directly invokable with `--agent <name>` | 11 agents via `.skilled/agents/*.md`, split into 3 classes: primary (`general`, `plan`, `orchestrate`, of which only `orchestrate` is a project file usable with top-level `--agent`), subagent (`context`, `markdown`, `review`, `debug`, `ai-council`, routed via `--agent orchestrate`, never direct), and command-owned (`deep-research`, `deep-review`, `prompt-improver`, dispatched only by their parent `/deep:*` command) |
 | **Session Continuity** | `--continue`/`-c`, `--resume [id]`/`-r`, `--fork-session` | `--continue`/`-c`, `--session <id>`/`-s`, `--fork` (all flags on `opencode run`, not standalone subcommands) |
 | **File Attachment** | `--file <specs...>` (downloads named file resources at startup) | `-f`/`--file <files...>` (attaches files to the message) |
-| **Memory System** | Spec-folder continuity docs via `/speckit:save` and `/speckit:search` | The same spec-folder continuity docs — `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition; this is NOT an area where Claude Code has an advantage |
-| **Hooks** | Pre/post tool-call hooks (configured in settings) | Not documented in the current cli-opencode skill surface — unverified, do not assume absence without checking `opencode`'s own docs |
+| **Memory System** | Spec-folder continuity docs via `/speckit:save` and `/speckit:search` | The same spec-folder continuity docs: `cli-opencode` dispatches load the project's full plugin/skill/MCP runtime, which is the skill's own primary value proposition. This is NOT an area where Claude Code has an advantage |
+| **Hooks** | Pre/post tool-call hooks (configured in settings) | Not documented in the current cli-opencode skill surface, so it is unverified. Do not assume absence without checking `opencode`'s own docs |
 | **Model Count** | 3 named tiers (opus, sonnet, haiku), each with dated release ids | Five providers, each with several models: `opencode-go` (default), `openai`, `cline-pass`, `llmgateway` and `minimax`. Per-model roster: [cli-opencode's providers reference](../../cli-opencode/references/providers-and-models.md) |
-| **Auth Methods** | Claude subscription OAuth only — `claude auth login`, or `claude setup-token` (CI/CD); no API key | Per-provider `opencode providers login <provider>` / `opencode auth login` (OAuth-style) flows plus API keys |
-| **Nesting Guard** | `$CLAUDECODE` env var + process ancestry + `~/.claude/state/<id>/lock` probe | `OPENCODE_*` env vars + process ancestry + a best-effort `~/.opencode/state/<id>/lock` probe (ADR-001) — OpenCode has its own three-layer guard, not "N/A" |
+| **Auth Methods** | Claude subscription OAuth only: `claude auth login`, or `claude setup-token` (CI/CD). No API key | Per-provider `opencode providers login <provider>` / `opencode auth login` (OAuth-style) flows plus API keys |
+| **Nesting Guard** | `$CLAUDECODE` env var + process ancestry + `~/.claude/state/<id>/lock` probe | `OPENCODE_*` env vars + process ancestry + a best-effort `~/.opencode/state/<id>/lock` probe (ADR-001). OpenCode has its own three-layer guard, not "N/A" |
 | **Non-Interactive** | `-p "prompt"` (print mode) | `opencode run "prompt"` (there is no separate `exec` subcommand) |
 | **Background Exec** | `& 2>&1` (shell) plus the native `--bg`/`claude agents` background-session lifecycle | `& 2>&1` (shell) |
 | **MCP Support** | Built-in, plus `--mcp-config` | `opencode mcp` subcommand for registrations, full runtime load on every `opencode run` dispatch |
@@ -262,10 +262,10 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 |------|-------------|-----|
 | Deep extended-effort reasoning | **Claude Code** | `--effort high`/`xhigh` with the most explicit reasoning-depth lever for this skill's default model |
 | Surgical code edits | **Claude Code** | Edit tool operates at diff level |
-| Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure; OpenCode's `--format json` is an event stream, not schema-validated |
-| Read-only exploration | **Claude Code** | `--permission-mode plan` is an explicit CLI flag; OpenCode's read-only guarantee comes from agent-level permissions, not a CLI flag |
-| Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in; no OpenCode equivalent documented |
-| Full project runtime (plugins/skills/MCP/memory) in one dispatch | **OpenCode** | `cli-opencode`'s stated reason to exist — every `opencode run` loads the full project runtime |
+| Schema-validated JSON | **Claude Code** | `--json-schema` guarantees structure. OpenCode's `--format json` is an event stream, not schema-validated |
+| Read-only exploration | **Claude Code** | `--permission-mode plan` is an explicit CLI flag. OpenCode's read-only guarantee comes from agent-level permissions, not a CLI flag |
+| Cost-controlled batch ops | **Claude Code** | `--max-budget-usd` built-in. No OpenCode equivalent documented |
+| Full project runtime (plugins/skills/MCP/memory) in one dispatch | **OpenCode** | `cli-opencode`'s stated reason to exist: every `opencode run` loads the full project runtime |
 | Multi-model / multi-provider flexibility | **OpenCode** | Many providers and models vs Claude Code's 3 named tiers |
 | Native background-session lifecycle | **Claude Code** | `--bg` plus `claude agents` for managing background sessions, beyond plain shell `&` |
 
@@ -275,7 +275,7 @@ Every OpenCode-side claim below is sourced from a live `opencode run --help` cap
 
 ### Combine CLI Strengths
 
-External AIs can leverage multiple CLIs in a single workflow:
+External AIs can use multiple CLIs in a single workflow:
 
 ```text
 1. OpenCode: Web research (--search flag)

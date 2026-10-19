@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-documentation-sweep"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-18
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Evidence | Status | Waiver |
 |-------|-----|---------------------|--------------|----------|--------|--------|
-| AC-001 | REQ-001, REQ-006 | Given each touched doc, When its sk-doc validator runs with the type from its inventory row, Then the exit status is 0 | Run `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <doc> --type <type>` for each touched doc. Observe each exit status in `doc-inventory.md` | | Unmet | - |
-| AC-002 | REQ-002 | Given each changed skill, hub and playbook package, When its sk-doc package check runs, Then the exit status is 0 | Run `validate_skill_package.py <skill folder>` for each changed skill or hub. Run `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package <playbook folder>` for each changed playbook. Run `validate_catalog_package.py --package <ID>` for each changed catalog | | Unmet | - |
-| AC-003 | REQ-003, REQ-007 | Given the touched docs, When the v1-only flags are searched, Then each hit names version 1 or says the claim is unverified | Run `rg -n -e '--command' -e '--dir' -e '--share' -e '--port' -e '--pure' <touched docs>` and read each hit | | Unmet | - |
-| AC-004 | REQ-004 | Given each touched doc, When its DQI is scored, Then `dqi.total` is 75 or higher | Run `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <doc>` and read `dqi.total` for each touched doc | | Unmet | - |
-| AC-005 | REQ-005 | Given each touched doc, When the human-voice scan runs, Then its exit status is 0 and a manual human-voice note is recorded | Run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <doc>` for each touched doc. Record the manual note in `doc-inventory.md` | | Unmet | - |
+| AC-001 | REQ-001, REQ-006 | Given each touched doc, When its sk-doc validator runs with the type from its inventory row, Then the exit status is 0 | Run `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <doc> --type <type>` for each touched doc. Observe each exit status in `doc-inventory.md`. Evidence: doc-inventory.md:60 and scratch/checks/after.tsv | 41 of 41 docs exit 0 from `validate_document.py` with the type in their row. Three READMEs run as `readme`, their type of record (scratch/decisions.txt 4) | Met
+| AC-002 | REQ-002 | Given each changed skill, hub and playbook package, When its sk-doc package check runs, Then the exit status is 0 | Run `validate_skill_package.py <skill folder>` for each changed skill or hub. Run `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package <playbook folder>` for each changed playbook. Run `validate_catalog_package.py --package <ID>` for each changed catalog. Evidence: doc-inventory.md:68 | cli-opencode exit 0 (4,899 words), the hub exit 0 after the manifest re-mint, cli-devin and cli-claude-code exit 0, playbook package exit 0 (55 scenarios, 0 violations), catalog package exit 0 | Met
+| AC-003 | REQ-003, REQ-007 | Given the touched docs, When the v1-only flags are searched, Then each hit names version 1 or says the claim is unverified | Run `rg -n -e '--command' -e '--dir' -e '--share' -e '--port' -e '--pure' <touched docs>` and read each hit. Evidence: doc-inventory.md:78 and scratch/checks/v1-hits-context.txt | 384 hits over the 41 inventory docs. 284 carry the version on their own line. Of the other 100, 56 sit under a tagged heading, 26 beside tagged text and 18 under the version note. None is untagged | Met
+| AC-004 | REQ-004 | Given each touched doc, When its DQI is scored, Then `dqi.total` is 75 or higher | Run `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <doc>` and read `dqi.total` for each touched doc. Evidence: doc-inventory.md:60 | Every `dqi.total` is 77 or more. The lowest is 77 | Met
+| AC-005 | REQ-005 | Given each touched doc, When the human-voice scan runs, Then its exit status is 0 and a manual human-voice note is recorded | Run `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <doc>` for each touched doc. Record the manual note in `doc-inventory.md`. Evidence: doc-inventory.md:82 | Every `hvr_scan.py` exit is 0 with no hard finding. The manual pass is the reviews' check 6, recorded in doc-inventory.md | Met
 
 The Verification cell holds the exact check to run. The Evidence cell stays empty until the orchestrator runs that check. Then it holds the observed output and exit status.
 
@@ -82,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not started. This section is written when the packet closes, not before.
+All five criteria are Met, each checked by the orchestrator on the final tree on 2026-10-19. The reviews and their closures are in doc-inventory.md, and the rulings are scratch/decisions.txt.
 <!-- /ANCHOR:closure -->

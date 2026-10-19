@@ -1,0 +1,31 @@
+### Findings
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md:34 | Says an unpinned dispatch always selects OpenCode 2, but PATH directory order can select OpenCode 1 first | State that `opencode2` is preferred within each PATH directory; directory order still wins.
+
+P1 | .skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md:34 | Says the builder sets the working directory through the child process environment; the code sets the spawn `cwd` | Say the builder sets `cwd` to the directory root.
+
+P2 | .skilled/skills/system-deep-loop/runtime/scripts/README.md:50 | The resolver summary omits that PATH directory order wins over the `opencode2` preference | Describe the directory-by-directory search and preference within each directory.
+
+P2 | .opencode/plugins/README.md:3 | Frontmatter says each module exports a default factory, while the updated overview says the default export is an object containing `server` and `setup` | Update the description to match the dual export shape.
+
+P2 | .opencode/plugins/README.md:29 | The audit description names `opencode` but omits `opencode2`, which the classifier also recognizes | Name both executable forms.
+
+P2 | .skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md:28 | The bullet about copied commands naming versions is documentation housekeeping rather than a user-facing release change | Remove the bullet or replace it with a user impact.
+
+Verification: the HVR scan found hard blockers in two pre-existing docs; `git diff --check` exited 0. No tests, OpenCode binaries, or network calls were used.
+
+Not checked: live OpenCode host behavior.
+
+### Pre-existing
+
+P1 | .opencode/plugins/README.md:20 | The blanket shared kill-switch claim includes `sk-vision`, whose bundled plugin does not read `isHookEnabled` or `SYSTEM_HOOKS_DISABLED`; this also conflicts with line 141 | Exempt `sk-vision` and document its actual control.
+
+P2 | .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:182 | Claims OpenCode has `--sandbox read-only`, unsupported by the saved run help and contradicted by line 245 | Remove the claim or mark it unverified with its version and source.
+
+P2 | .skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md:281 | Presents `--search` as an OpenCode flag, but neither saved run-help lists it | Mark it unverified or rewrite the example without the flag.
+
+P2 | .opencode/plugins/tests/README.md:30 | HVR hard punctuation findings remain at lines 30, 32, 34, 38, 42, 45 and 51 | Split the semicolon sentences and remove the em dash.
+
+P2 | .skilled/skills/system-deep-loop/runtime/tests/unit/README.md:75 | HVR flags “harness” in the unchanged description | Replace it with “test fixture” or “test setup”.
+
+FAIL

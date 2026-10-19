@@ -1,0 +1,13 @@
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:31 | The exact prompt now names v1 and v2 events; the table prompt does too at :53.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:93 | The v2 preflight includes the confirmed `llmgateway/deepseek-v4.1-flash#max` route.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:136 | The directory-first loop matches the resolver’s PATH order at opencode-version.cjs:199 and :202.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:71 | The v2 `--agent` example is marked unverified; the prose repeats the caveat at :79.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/README.md:96 | The tool-result claim is scoped to v1; the captured v2 log ends with `text` at run-slash.jsonl:13. No general compatibility claim was added, and the cross-version stdin advice states v2 is unverified.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:102 | The provider route is included here and at cli-reference.md:152, integration-patterns.md:99, and opencode-tools.md:79.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:407 | `--pure` is labeled OpenCode 1 only; no other changed OpenCode 1-only flag is untagged.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:64 | The removed loading notes remain represented by the intent-mapped row at :65 and `LOADING_LEVELS` at :105.
+New P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:33 | The overview still requires the v1 binary and events at :32, :33, and :35, so a valid v2 run conflicts with the scenario summary.
+New P2 | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:136 | `OPENCODE_BIN=''` falls through here, but the resolver rejects it at opencode-version.cjs:185; `-x` also accepts directories, unlike its regular-file check at :48.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/README.md:96 | The added-prose HVR scan found 0 hard blockers and exited 0.
+
+FAIL

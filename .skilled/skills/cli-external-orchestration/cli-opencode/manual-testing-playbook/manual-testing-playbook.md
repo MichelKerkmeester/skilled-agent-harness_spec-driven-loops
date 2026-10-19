@@ -1,14 +1,14 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-opencode: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords (OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -40,9 +40,11 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category); 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
+**Version note.** The scenario commands in this playbook are written for OpenCode 1 (1.19.3) unless a scenario says otherwise. Each scenario names its OpenCode 2 (2.0.32) twin or says v2 has none. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../references/install-and-versions.md).
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
+
+Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
@@ -65,13 +67,13 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
-3. OpenCode CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
+3. On OpenCode 1, the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. OpenCode 2 is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). Drift handled per `references/cli-reference.md` §9.
 4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
-8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). Most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in. The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
-9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
+8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). On OpenCode 1, most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in (OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`). The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
+9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. These are OpenCode 1 only scenarios, because OpenCode 2 `run` has no `--share` or `--dir` ([install reference](../references/install-and-versions.md)). Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
 
 ---
 
@@ -86,7 +88,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 - Session id captured from the `session.started` event
 - The session.completed payload summary
 - The final user-facing outcome and a PASS, PARTIAL or FAIL verdict with rationale
-- For destructive `--share` scenarios, capture explicit operator confirmation per CHK-033 (or notation that the share URL was NOT published)
+- For destructive `--share` scenarios (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)), capture explicit operator confirmation per CHK-033 (or notation that the share URL was NOT published)
 
 ---
 
@@ -142,7 +144,7 @@ Release is `READY` only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 34`; currently `COVERED_FEATURES == 32` because CO-007 and CO-021 have no feature file yet, so this criterion stays unmet and release stays BLOCKED until both are authored).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 34`, currently `COVERED_FEATURES == 32` because CO-007 and CO-021 have no feature file yet, so this criterion stays unmet and release stays BLOCKED until both are authored).
 4. No unresolved blocking triage item remains.
 5. Self-invocation guard has been tested at least once (CO-008) and refused correctly.
 6. The cross-repo nested guard (CO-031) has confirmed cross-repo alone does NOT bypass the self-invocation refusal.
@@ -168,7 +170,7 @@ This section records wave planning and capacity guidance for the manual testing 
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.
 6. After each wave, save context and evidence (JSON event streams, session ids, ratio computations), then begin the next wave.
 7. Record utilization table, per-feature file references and evidence paths in the final report.
-8. Operator confirmation required per CHK-033 before any `--share` URL is actually published. The playbook validates session creation only.
+8. Operator confirmation required per CHK-033 before any `--share` URL is actually published (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The playbook validates session creation only.
 
 ### Recommended Wave Plan
 
@@ -195,7 +197,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
+On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`) and reads the v2 event names (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`) instead of the OpenCode 1 names. A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 #### Scenario Contract
 
@@ -223,15 +225,15 @@ Expected signals: Both formats exit 0. Default output mentions the expected conc
 
 > **Feature File:** [CO-002](../manual-testing-playbook/cli-invocation/format-default-vs-json.md)
 
-### CO-003 | Working directory pinning via --dir
+### CO-003 | Working directory pinning via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
 
 #### Description
 
-Verify `--dir <path>` pins the dispatched session's working directory rather than inheriting the caller's CWD, even when the caller is in a different directory.
+On OpenCode 1, verify `--dir <path>` pins the dispatched session's working directory rather than inheriting the caller's CWD, even when the caller is in a different directory. OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying --dir pinning works, change to /tmp before dispatching, but pin --dir to the Public repo root. Ask the dispatched session to use its bash tool to print the working directory and the first three entries it sees. Verify the working directory matches the pinned --dir, not /tmp.
+Prompt summary: As an external-AI conductor verifying --dir pinning works (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <repo-root> && opencode2 run ...`), change to /tmp before dispatching, but pin --dir to the Public repo root. Ask the dispatched session to use its bash tool to print the working directory and the first three entries it sees. Verify the working directory matches the pinned --dir, not /tmp.
 
 Expected signals: Dispatched session reports CWD as the pinned path. Tool.result payloads do NOT mention `/tmp`. Project files (e.g., `AGENTS.md`, `.skilled/`) appear in the listing.
 
@@ -259,13 +261,13 @@ Expected signals: Dispatch exits 0. Reply mentions the unique function name `hel
 
 #### Description
 
-Verify `--pure` runs without external plugins, `--print-logs --log-level DEBUG` streams verbose logs to stderr and the stdout JSON event stream remains parseable in both cases.
+On OpenCode 1, verify `--pure` runs without external plugins, `--print-logs --log-level DEBUG` streams verbose logs to stderr and the stdout JSON event stream remains parseable in both cases. OpenCode 2 `run` has no `--pure` ([install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor exercising the diagnostic flag surface, dispatch the same short prompt three times: (1) baseline default. (2) with --pure to disable plugins. (3) with --print-logs --log-level DEBUG to capture verbose logs. Verify (1) and (3) produce parseable JSON event streams on stdout, (2) exits without plugin loader errors and (3) writes a non-empty stderr log.
+Prompt summary: As an external-AI conductor exercising the diagnostic flag surface, dispatch the same short prompt three times: (1) baseline default. (2) with --pure to disable plugins. (3) with --print-logs --log-level DEBUG to capture verbose logs. Step (2) uses `--pure`, which is OpenCode 1 only, because OpenCode 2 `run` has no `--pure` ([install reference](../references/install-and-versions.md)). Verify (1) and (3) produce parseable JSON event streams on stdout, (2) exits without plugin loader errors and (3) writes a non-empty stderr log.
 
-Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pure stderr has no plugin errors. --debug stderr is non-empty.
+Expected signals: All three exit 0. Baseline + debug stdout JSON parseable. --pure stderr has no plugin errors (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). --debug stderr is non-empty.
 
 #### Test Execution
 
@@ -331,21 +333,21 @@ Expected signals: Layer 1 (env var) detection trips. Refusal message in referenc
 
 This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (opencode-go Go gateway as default, kimi-for-coding direct plan) plus the variant-level reasoning effort range.
 
-### CO-011 | RETIRED — deepseek direct API
+### CO-011 | RETIRED: deepseek direct API
 
 #### Description
 
-The direct DeepSeek API provider was retired from the cli-opencode roster; the former CO-011 dispatch contract (direct `deepseek/deepseek-v4-*` ids) is no longer a supported scenario and its feature file was removed. DeepSeek V4 Flash coverage continues via the opencode-go gateway route — see CO-012 for the variant-level contract.
+The direct DeepSeek API provider was retired from the cli-opencode roster. The former CO-011 dispatch contract (direct `deepseek/deepseek-v4-*` ids) is no longer a supported scenario and its feature file was removed. DeepSeek V4 Flash coverage continues via the opencode-go gateway route. See CO-012 for the variant-level contract.
 
 ### CO-012 | Variant levels (minimal/low/medium/high/max)
 
 #### Description
 
-Verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op.
+On OpenCode 1, verify `--variant minimal` and `--variant max` produce materially different response depth for the same prompt, proving the variant flag actually drives provider reasoning effort rather than being a no-op. OpenCode 2 carries the same levels on the model id, as `-m opencode-go/deepseek-v4.1-flash#minimal` and `-m opencode-go/deepseek-v4.1-flash#max`. A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max. Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
+Prompt summary: As an external-AI conductor verifying the variant flag truly drives reasoning depth, dispatch the same multi-dimensional architecture trade-off prompt twice with --variant minimal and --variant max (OpenCode 1 only, with the OpenCode 2 twin carrying the level on the model id: `-m opencode-go/deepseek-v4.1-flash#minimal` and `-m opencode-go/deepseek-v4.1-flash#max`). Verify both runs exit 0, the max-variant response is at least 2x longer than the minimal response and the max response weighs at least 2 more dimensions than the minimal response.
 
 Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte count. Max-variant covers more dimensions.
 
@@ -357,7 +359,7 @@ Expected signals: Both exit 0. Max-variant byte count >= 2x minimal-variant byte
 
 ## 10. AGENT ROUTING (`CO-013..CO-017`, `CO-032..CO-034`)
 
-This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 3 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins; orchestrate as the repo-defined primary) from N subagents (context, review, write, debug, ai-council, deep-research, deep-review, prompt-improver) which dispatch as Task subagents from a primary (`ai-council` additionally reachable via its own `/deep:ai-council` command). CO-013..CO-017 + CO-032..CO-034 exercise both surfaces — direct primary invocation and primary-dispatches-subagent routing.
+This category covers 8 scenario summaries while the linked feature files remain the canonical execution contract. cli-opencode distinguishes 3 primary agents (directly invokable via --agent: general + plan as OpenCode built-ins, and orchestrate as the repo-defined primary) from N subagents (context, review, write, debug, ai-council, deep-research, deep-review, prompt-improver) which dispatch as Task subagents from a primary (`ai-council` additionally reachable via its own `/deep:ai-council` command). CO-013..CO-017 + CO-032..CO-034 exercise both surfaces: direct primary invocation and primary-dispatches-subagent routing.
 
 ### CO-013 | General agent default route
 
@@ -432,7 +434,7 @@ Verify `--agent deep-research` executes a single research iteration against exte
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
+Prompt summary: As an external-AI conductor (or `/deep:research` simulator) running a single research iteration, dispatch `opencode run --agent deep-research --variant high --format json --dir <repo-root>` (OpenCode 1 only) with state externalized at `/tmp/co-032-state.jsonl` and a prompt asking for at least 2 findings or open hypotheses. Verify the dispatch exits 0, the JSON event stream contains a session.completed event referencing findings or hypotheses, and that no Task or sub-agent tool.call events appear. Return a verdict naming the iteration findings count and confirming LEAF compliance.
 
 Expected signals: Exit 0. JSON parseable. >= 2 findings or hypotheses. Zero Task tool.call events. Zero nested `opencode run` invocations. Dispatch line includes `--agent deep-research`.
 
@@ -448,7 +450,7 @@ Verify `/deep:review:auto` against a pre-bound scratch spec packet runs at least
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor exercising the production deep-review loop, dispatch `opencode run --command deep/review` against a pre-bound scratch spec packet targeting `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference), with a tight iteration cap. Verify the dispatch exits 0, a new iteration file with a P0, P1 or P2 finding appears under `<packet>/review/iterations/` and `<packet>/review/deep-review-state.jsonl` gained at least one record. Return a verdict naming the highest-severity finding and the state-file record count delta.
+Prompt summary: As an external-AI conductor exercising the production deep-review loop, dispatch `opencode run --command deep/review` (OpenCode 1 only, since OpenCode 2 has no `run` flag for a registered command and runs it through the server API, `POST /api/session/{id}/command`, instead) against a pre-bound scratch spec packet targeting `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` (attached as an `@./` file reference), with a tight iteration cap. Verify the dispatch exits 0, a new iteration file with a P0, P1 or P2 finding appears under `<packet>/review/iterations/` and `<packet>/review/deep-review-state.jsonl` gained at least one record. Return a verdict naming the highest-severity finding and the state-file record count delta.
 
 Expected signals: Exit 0. >= 1 new iteration file under `<packet>/review/iterations/` with a severity tag (P0, P1 or P2) and a file or line citation. State JSONL line count increased. No raw `--agent deep-review` or `--agent orchestrate` simulation dispatch. Scratch packet removed afterwards.
 
@@ -464,7 +466,7 @@ Verify `--agent orchestrate` produces a sequenced multi-agent plan naming at lea
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.
+Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, where a v2 check reads the `tool_use` event instead of the OpenCode 1 `tool.call` name and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
 
 Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` tool.call events. Working tree clean. Dispatch line includes `--agent orchestrate`.
 
@@ -476,7 +478,7 @@ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs descri
 
 ## 11. SESSION CONTINUITY (`CO-018..CO-020`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` URL gate (CHK-033).
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` URL gate (CHK-033), which is OpenCode 1 only, with no OpenCode 2 `run` equivalent ([install reference](../references/install-and-versions.md)).
 
 ### CO-018 | Continue last session via -c
 
@@ -514,13 +516,13 @@ Expected signals: Both exit 0. SID captured non-empty. Second turn references pr
 
 #### Description
 
-Verify `--fork --continue` creates a new session id distinct from the parent, AND that `--share` is documented as opt-in requiring operator confirmation per CHK-033 (NEVER rule 2).
+Verify `--fork --continue` creates a new session id distinct from the parent, AND that `--share` is documented as opt-in requiring operator confirmation per CHK-033 (NEVER rule 2). The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent ([install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is documented as opt-in requiring operator confirmation per CHK-033.
+Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is documented as opt-in requiring operator confirmation per CHK-033 (OpenCode 1 only, because OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
 
-Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--share` confirmation requirement. CHK-033 referenced.
+Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--share` confirmation requirement (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). CHK-033 referenced.
 
 #### Test Execution
 
@@ -646,11 +648,11 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `opencode run --share --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard.
+Verify `opencode run --share --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --share --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused.
+Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --share --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Exit 0. New SID captured non-empty. State directory exists. Zero refusal messages.
 
@@ -666,7 +668,7 @@ Verify a 3-worker farm loop with the documented `</dev/null` redirect spawns all
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --share --port (4100 + N) and a small isolated task. Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
+Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --share --port (4100 + N) and a small isolated task (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)). Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
 
 Expected signals: WAIT exit 0. 3 logs with content. 3 distinct session ids. Each worker references its own number.
 
@@ -682,7 +684,7 @@ Verify two parallel detached sessions running an ablation comparison (variant hi
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal, both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
+Prompt summary: As an in-OpenCode operator (or fresh shell) running an ablation suite per TEMPLATE 7 (CIDI framework), dispatch two parallel detached opencode run sessions on different ports, one with --variant high and one with --variant minimal (OpenCode 1 only, because OpenCode 2 carries the level on the model id as `-m opencode-go/deepseek-v4.1-flash#<level>` and has no `--share`/`--port`, see the [install reference](../references/install-and-versions.md), and its v2 reader checks `opencode2 models` first since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used), both asking the same multi-dimensional architecture trade-off question. Capture each session's output to its own log file. Compute the byte-count ratio between the two responses. Verify the high-variant response is at least 2x larger than the minimal-variant response.
 
 Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
 
@@ -694,17 +696,17 @@ Expected signals: WAIT exit 0. Distinct session ids. HIGH/MIN ratio >= 2.0.
 
 ## 15. CROSS-REPO AND CROSS-SERVER (`CO-029..CO-031`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises cli-opencode's unique cross-repo dispatch capability via `--dir` (per `references/opencode-tools.md` §6), the documented cross-server dispatch contract via `--attach` (operator-environment-dependent) and the critical safety contract that cross-repo alone does NOT bypass the self-invocation guard.
+On OpenCode 1, this category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises cli-opencode's unique cross-repo dispatch capability via `--dir` (per `references/opencode-tools.md` §6), the documented cross-server dispatch contract via `--attach` (operator-environment-dependent) and the critical safety contract that cross-repo alone does NOT bypass the self-invocation guard. OpenCode 2 has no `--dir` and uses `--server <url>` in place of `--attach` ([install reference](../references/install-and-versions.md)).
 
-### CO-029 | Cross-repo dispatch via --dir
+### CO-029 | Cross-repo dispatch via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
 
 #### Description
 
-Verify `--dir <other-repo-path>` targets a different repository's plugin / skill / MCP runtime and the dispatched session reports the cross-repo path as its working directory rather than the caller's CWD.
+On OpenCode 1, verify `--dir <other-repo-path>` targets a different repository's plugin / skill / MCP runtime and the dispatched session reports the cross-repo path as its working directory rather than the caller's CWD. OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <other-repo-path> && opencode2 run ...`.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying cross-repo dispatch, dispatch opencode run with --dir set to a different valid repo path on the machine. Ask the dispatched session to use the bash tool to list the top 5 entries in its working directory. Verify the listed files match the cross-repo path, not the Public repo.
+Prompt summary: As an external-AI conductor verifying cross-repo dispatch, dispatch opencode run with --dir set to a different valid repo path on the machine (OpenCode 1 only, with the OpenCode 2 twin starting in the directory instead: `cd <other-repo-path> && opencode2 run ...`). Ask the dispatched session to use the bash tool to list the top 5 entries in its working directory. Verify the listed files match the cross-repo path, not the Public repo.
 
 Expected signals: Exit 0. Cross-repo path referenced in tool.result. Zero references to Public-only files in the listing.
 
@@ -712,17 +714,17 @@ Expected signals: Exit 0. Cross-repo path referenced in tool.result. Zero refere
 
 > **Feature File:** [CO-029](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md)
 
-### CO-030 | Cross-server dispatch via --attach
+### CO-030 | Cross-server dispatch via --attach (OpenCode 1 only, OpenCode 2 uses `--server`)
 
 #### Description
 
-Verify the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface. Live remote server execution is out of scope. The test validates documentation and CLI surface contract.
+On OpenCode 1, verify the documented `--attach <url>` flag combined with `--dir <remote-path>` is part of the cli-opencode skill surface (the OpenCode 2 twins are `--server <url>` and starting in the directory, see the [install reference](../references/install-and-versions.md)). Live remote server execution is out of scope. The test validates documentation and CLI surface contract.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor preparing to dispatch into a remote OpenCode server, verify the cli-opencode documentation contract for cross-server dispatch is intact. Grep the cli-reference.md flag table for --attach, grep the subcommand map for opencode attach and run opencode run --help to confirm the flag is in the live binary's help output.
+Prompt summary: As an external-AI conductor preparing to dispatch into a remote OpenCode server, verify the cli-opencode documentation contract for cross-server dispatch is intact. Grep the cli-reference.md flag table for --attach, grep the subcommand map for opencode attach and run opencode run --help to confirm the flag is in the live binary's help output (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>`, see the [install reference](../references/install-and-versions.md)).
 
-Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode attach`. Live binary help includes `--attach`. SKILL.md activation triggers reference cross-server dispatch.
+Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode attach` (OpenCode 1 only, with the OpenCode 2 twin as `--server <url>`, see the [install reference](../references/install-and-versions.md)). Live binary help includes `--attach`. SKILL.md activation triggers reference cross-server dispatch.
 
 #### Test Execution
 
@@ -732,11 +734,11 @@ Expected signals: cli-reference.md §4 + §3 document `--attach` and `opencode a
 
 #### Description
 
-Verify the documented self-invocation guard correctly refuses a nested cli-opencode dispatch even when the nested target is a different repo via `--dir`. Cross-repo does NOT bypass the guard. Only the explicit parallel-session keywords do.
+On OpenCode 1, verify the documented self-invocation guard correctly refuses a nested cli-opencode dispatch even when the nested target is a different repo via `--dir`. OpenCode 2 has no `--dir` ([install reference](../references/install-and-versions.md)). Cross-repo does NOT bypass the guard. Only the explicit parallel-session keywords do.
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths.
+Prompt summary: As an in-OpenCode operator (simulated by exporting OPENCODE_CONFIG_DIR=/tmp/co-031-fake) attempting a nested cross-repo dispatch, restate the request as a generic cross-repo cli-opencode invocation with --dir pointing at a different path but WITHOUT any parallel-session keywords. Verify the smart router refuses with the documented self-invocation message AND the refusal message includes the parallel-session keyword option among the three remediation paths (OpenCode 1 only, because OpenCode 2 `run` has no `--dir`, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Layer 1 trips. SKILL.md `has_parallel_session_keywords` is the only bypass. Integration_patterns.md §5 lists parallel-session keywords as remediation. Cross-repo NOT a bypass. No real dispatch.
 
@@ -760,7 +762,7 @@ Verify the native `opencode-goal` plugin's actions, opaque persistence, validate
 
 Prompt summary: As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior.
 
-Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_prompt`; every new state basename is 64 lowercase hex characters plus `.json`; a 140-character id persists; a valid legacy file migrates only after embedded-session validation; A/B state remains isolated; native tokens total exactly with `usage_source=opencode-native-tokens`; one matching injection block appears; every disabled action fails closed; and all seven suites pass 125/125. A live headless `opencode run` attempt remains a documented SKIP, not a plugin failure.
+Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_prompt`. Every new state basename is 64 lowercase hex characters plus `.json`. A 140-character id persists. A valid legacy file migrates only after embedded-session validation. A/B state remains isolated. Native tokens total exactly with `usage_source=opencode-native-tokens`. One matching injection block appears. Every disabled action fails closed. All seven suites pass 125/125. A live headless `opencode run` attempt remains a documented SKIP, not a plugin failure.
 
 #### Test Execution
 
@@ -794,7 +796,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 - CO-001: [Base non-interactive invocation](../manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md)
 - CO-002: [Output format default vs json](../manual-testing-playbook/cli-invocation/format-default-vs-json.md)
-- CO-003: [Working directory pinning via --dir](../manual-testing-playbook/cli-invocation/dir-flag-working-directory.md)
+- CO-003: [Working directory pinning via --dir](../manual-testing-playbook/cli-invocation/dir-flag-working-directory.md) (OpenCode 1 only, OpenCode 2 starts in the directory)
 - CO-004: [File attachment via -f / --file flag](../manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md)
 - CO-005: [Plugin disable and verbose logs](../manual-testing-playbook/cli-invocation/pure-and-print-logs.md)
 
@@ -806,7 +808,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### MULTI-PROVIDER
 
-- CO-011: RETIRED (deepseek direct API removed from the roster — feature file deleted; flash coverage lives in CO-012)
+- CO-011: RETIRED (deepseek direct API removed from the roster, feature file deleted. Flash coverage lives in CO-012)
 - CO-012: [Variant levels (minimal/low/medium/high/max)](../manual-testing-playbook/multi-provider/variant-levels-comparison.md)
 
 ### AGENT ROUTING
@@ -845,8 +847,8 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### CROSS-REPO AND CROSS-SERVER
 
-- CO-029: [Cross-repo dispatch via --dir](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md)
-- CO-030: [Cross-server dispatch via --attach](../manual-testing-playbook/cross-repo-cross-server/attach-remote-server.md)
+- CO-029: [Cross-repo dispatch via --dir](../manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md) (OpenCode 1 only, OpenCode 2 starts in the directory)
+- CO-030: [Cross-server dispatch via --attach](../manual-testing-playbook/cross-repo-cross-server/attach-remote-server.md) (OpenCode 1 only, OpenCode 2 uses `--server`)
 - CO-031: [Self-invocation guard fires on nested cross-repo dispatch](../manual-testing-playbook/cross-repo-cross-server/self-invocation-guard-nested.md)
 
 ### GOAL HOOK
@@ -893,7 +895,7 @@ This category runs the shared hermetic stress-matrix cells for the `cli-opencode
 model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
 transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
 integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
-external OpenCode process; there is no operator-facing prompt beyond the run-this-test instruction.
+external OpenCode process. There is no operator-facing prompt beyond the run-this-test instruction.
 
 - `cli-opencode-EC-001`: [Authentication failure](stress/auth-failure.md)
 - `cli-opencode-EC-002`: [Model or balance failure](stress/model-or-balance.md)

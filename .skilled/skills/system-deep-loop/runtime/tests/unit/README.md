@@ -8,6 +8,8 @@ trigger_phrases:
 
 # Unit Tests
 
+> Per-module unit tests for the system-deep-loop runtime contracts, one file per contract so a failure names the owning module before the integration suites run.
+
 ---
 
 ## 1. OVERVIEW
@@ -72,7 +74,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `fanout-pool.vitest.ts` | Executable checks for the fanout pool runtime contract. |
 | `fanout-run.vitest.ts` | Executable checks for the fanout run runtime contract. |
 | `fanout-salvage.vitest.ts` | Executable checks for the fanout salvage runtime contract. |
-| `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration harness runtime contract. |
+| `health-degeneration-harness.vitest.ts` | Executable checks for the health degeneration runtime contract. |
 | `jsonl-repair.vitest.ts` | Executable checks for the jsonl repair runtime contract. |
 | `legacy-projections.test.ts` | Executable checks for the legacy projections runtime contract. |
 | `lifecycle-taxonomy-guards.vitest.ts` | Executable checks for the lifecycle taxonomy guards runtime contract. |
@@ -84,6 +86,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `loop-lock.vitest.ts` | Executable checks for the loop lock runtime contract. |
 | `next-focus.vitest.ts` | Executable checks for the next focus runtime contract. |
 | `observability-events.vitest.ts` | Executable checks for the observability events runtime contract. |
+| `opencode-dual-dispatch.vitest.ts` | Executable checks for the OpenCode dual dispatch runtime contract: version parsing and binary resolution precedence, cache invalidation, CJS/ESM parser parity and the per-version lineage argv builders, including the refusal to dispatch native v2. |
 | `optimizer-manifest-anti-convergence.vitest.ts` | Executable checks for the optimizer manifest anti convergence runtime contract. |
 | `partial-failure-policy.vitest.ts` | Executable checks for the partial failure policy runtime contract. |
 | `path-coverage-termination.vitest.ts` | Executable checks for the path coverage termination runtime contract. |

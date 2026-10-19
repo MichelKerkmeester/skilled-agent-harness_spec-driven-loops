@@ -1,0 +1,5 @@
+Review-only docs changed by phase 004 (review-docs.tsv). Every doc's validator exit after 004 matches its exit before 004:
+- .hermes/skills/agent-*/SKILL.md and .skilled/bin/agent-mirror-crosswalk.md: validator exit 1 at f8f6156c2d^ and at HEAD, with the same error lines. Pre-existing, not introduced by this packet.
+- .skilled/command-support/deep/assets/compiled/*.contract.md (R099) and legacy/*.body.md (R100): moved from .skilled/commands/deep/assets/ by f8f6156c2d. The only blocking error is "Missing required section: overview" under --type reference. These are generated command contracts, not reference docs, so the type does not fit them; the content is unchanged by the move (one path line in each contract).
+- HVR exit 1 on most rows: the scans already failed before 004 (these docs are outside the sweep's write set and were not rewritten).
+No action in this phase.

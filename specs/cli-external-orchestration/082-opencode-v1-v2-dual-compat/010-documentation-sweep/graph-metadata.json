@@ -34,7 +34,7 @@
       "cli-opencode"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,13 +42,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".claude/agents/markdown.md",
       ".opencode/plugins/README.md",
+      ".opencode/plugins/tests/README.md",
+      "runtime/scripts/README.md",
+      ".hermes/skills/cli-opencode/SKILL.md",
+      "scratch/checks/after.tsv",
+      "scratch/checks/v1-hits-context.txt",
+      "scratch/checks/review-docs-final.tsv",
+      ".claude/agents/markdown.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md"
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md"
     ],
     "entities": [
       {
@@ -88,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "markdown.md",
-        "kind": "doc",
-        "path": ".claude/agents/markdown.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/plugins/README.md",
@@ -102,25 +103,55 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "path": ".hermes/skills/cli-opencode/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "cli-reference.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "name": "after.tsv",
+        "kind": "file",
+        "path": "scratch/checks/after.tsv",
         "source": "derived"
       },
       {
-        "name": "providers-and-models.md",
+        "name": "v1-hits-context.txt",
+        "kind": "file",
+        "path": "scratch/checks/v1-hits-context.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-docs-final.tsv",
+        "kind": "file",
+        "path": "scratch/checks/review-docs-final.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "path": ".claude/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
         "source": "derived"
       },
       {
         "name": "prompt-templates.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
         "source": "derived"
       },
       {
@@ -170,35 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Mode",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "One Luna",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The build changes the cli-opencode dispatch shape, the install steps, the plugin layout and the agent and command trees",
     "created_at": "2026-10-18T12:45:09Z",
-    "last_save_at": "2026-10-18T13:08:44.787Z",
+    "last_save_at": "2026-10-19T02:18:17.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:980ae5c67ccba7ffb37e7e75877b511d8f4ab9022ef2a639d2a47870cce1ad8b",
+    "source_fingerprint": "sha256:6e078453b3ee9885a75adee67d4eb0c322dd1a87a8cef806c069ce6e3405bfc2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8cb59c3b713e48750ddf00c45a9e930e9d07c72581a54bb029e458b2edf722fb",
-      "plan.md": "d41e57bd232cae31bf5d7b76da1a2f78ee346aabd303c0641a9484d9dd5fe2ca",
-      "tasks.md": "9f78af3c03b2a9711d8aafb71b66a684a653c695df4d012b783a255b8dd996ba",
-      "implementation-summary.md": "0380c84d47495b3515dc180614c877cd6575abfdd444aa33eda52cf7227c6022"
+      "spec.md": "35008a1fc96723952bf69f7bc24be4508784a3a66874e31346ccae893e02f524",
+      "plan.md": "aa7f32b79dd8aca947b2e7e45531c2f6aceffaa20aca2bd40b2c7e3ae72c5cb3",
+      "tasks.md": "b1c59275f002b662d3d6004137e4be1298b77646a61a6e64cced353b1e8f9814",
+      "implementation-summary.md": "55b20d8a8ae09bc6e5f0c0a09e2267244a39870df7c5e35a659815f172c16ca7"
     },
     "last_active_at": null
   }

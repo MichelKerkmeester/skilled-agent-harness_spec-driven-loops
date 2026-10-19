@@ -11,7 +11,7 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "cli-hermes dispatch"
 last_updated: "2026-09-20"
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -22,7 +22,7 @@ This catalog inventories the live `cli-external-orchestration` hub surface. The 
 
 ## 1. OVERVIEW
 
-Use this catalog as the current-state inventory for the `cli-external-orchestration` hub. The hub does not itself run a CLI session; it resolves which executor packet conducts it.
+Use this catalog as the current-state inventory for the `cli-external-orchestration` hub. The hub does not itself run a CLI session. It resolves which executor packet conducts it.
 
 ---
 
@@ -36,7 +36,7 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Current Reality
 
-The seven workflow packets are `packetKind: "workflow"`; each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
+The seven workflow packets are `packetKind: "workflow"`. Each dispatches writes into this repository's own workspace. The transport this hub used to carry, `cli-jev`, moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-jev` packet, and the `transport-axis` extension went with it, so this registry declares no extension at all. `cli-hermes` carries its own catalog package at [`../cli-hermes/feature-catalog/feature-catalog.md`](../cli-hermes/feature-catalog/feature-catalog.md). The router defers rather than silently defaulting to `cli-opencode` on genuine ambiguity.
 
 #### Source Files
 
@@ -72,7 +72,7 @@ See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.
 
 #### Current Reality
 
-The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 prebinding, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. The prebind validates `SYSTEM_SPEC_FOLDER` or opens explicitly enabled state for top-level sessions while preserving disabled and child-session no-ops. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths; prompt-submit and pre-compact delivery remain unconfirmed.
+The committed `.cursor/hooks.json` registers lifecycle, session-start Gate-3 prebinding, mutation-gate, post-tool, task-dispatch, prompt-submit, pre-compact, and MCP advisory adapters. The prebind validates `SYSTEM_SPEC_FOLDER` or opens explicitly enabled state for top-level sessions while preserving disabled and child-session no-ops. `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, and `beforeMCPExecution` have confirmed delivery paths. Prompt-submit and pre-compact delivery remain unconfirmed.
 
 #### Source Files
 
@@ -104,12 +104,30 @@ See [`cli-dispatch-authorization/cli-dispatch-authorization.md`](cli-dispatch-au
 
 #### Description
 
-The runtime-neutral goal core stores one record per workspace, runtime, and native session id, and binds that session to a spec packet whose `goal.md` is the directive. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook; Devin supplies it to its `SessionStart` and `UserPromptSubmit` hooks. The OpenCode-native `opencode-goal` plugin remains a separate per-session system that shares the packet slice module.
+The runtime-neutral goal core stores one record per workspace, runtime, and native session id, and binds that session to a spec packet whose `goal.md` is the directive. Pi supplies identity through its extension session manager. Cursor supplies identity to its `sessionStart` hook. Devin supplies it to its `SessionStart` and `UserPromptSubmit` hooks. The OpenCode-native `opencode-goal` plugin remains a separate per-session system that shares the packet slice module.
 
 #### Current Reality
 
-Pi has a native registered `/goal-pi` management command (bind, resent, log, packet, set and the lifecycle actions) plus session-bound injection with the resend reminder and turn-end verification. Cursor has session-bound injection with the reminder and a session-free `/goal-cursor packet <path>` read; every management action still fails with `UNSUPPORTED_SESSION_BINDING`. Devin is injection-only through `.skilled/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command and reach the packet goal through the speckit workflows. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
+Pi has a native registered `/goal-pi` management command (bind, resent, log, packet, set and the lifecycle actions) plus session-bound injection with the resend reminder and turn-end verification. Cursor has session-bound injection with the reminder and a session-free `/goal-cursor packet <path>` read. Every management action still fails with `UNSUPPORTED_SESSION_BINDING`. Devin is injection-only through `.skilled/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command and reach the packet goal through the speckit workflows. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
 
 #### Source Files
 
 See [`.skilled/hooks/goal/README.md`](../../../hooks/goal/README.md) for the support matrix, state layout, command examples, rollback, and automated verification. The operator scenario is [`goal-manage-cli.md`](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md).
+
+---
+
+## 7. OPENCODE DUAL-VERSION DISPATCH
+
+### OpenCode Dual-Version Dispatch
+
+#### Description
+
+A `cli-opencode` lineage resolves the installed OpenCode binary, parses its `--version` output into a version family, and builds the OpenCode 1 or OpenCode 2 command line from that family rather than from the binary name.
+
+#### Current Reality
+
+The runtime resolves the binary, probes its `--version` output, and composes the argv from the parsed family, so a binary named `opencode` that reports a 2.x version is dispatched as OpenCode 2 and an `opencode2` that reports a 1.x version is dispatched as OpenCode 1. The two generations receive different command lines, a probe that finds no supported version refuses the lineage instead of guessing, and a native lineage refuses to start on OpenCode 2. Run the dual-dispatch suite (`npx vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts .skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts`). All cases are expected to pass.
+
+#### Source Files
+
+See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencode-dual-version-dispatch/opencode-dual-version-dispatch.md) for the resolution and probe contract, the per-family argv, and the durable test anchors.

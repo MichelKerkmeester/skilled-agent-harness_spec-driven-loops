@@ -1,0 +1,21 @@
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:53 | The exact prompt still asks for OpenCode 1 event names, despite the v2-specific checks below it.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:9 | The v2 model IDs use `deepseek-v4.1-flash` and include the provider check.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52 | CO-005 is labeled OpenCode 1 only and no longer includes a v2 baseline step.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:437 | CO-032’s v2 twin was removed; the remaining scenario is labeled OpenCode 1 only.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:469 | CO-034’s v2 twin now includes `--standalone`.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md:24 | The changelog says PATH directory order wins and prefers `opencode2` only within each directory.
+Closed | .skilled/skills/cli-external-orchestration/feature-catalog/opencode-dual-version-dispatch/opencode-dual-version-dispatch.md:34 | The builder’s OpenCode 2 working directory is correctly described as spawn `cwd`.
+Closed | .skilled/skills/system-deep-loop/runtime/scripts/README.md:50 | The resolver description now covers directory-by-directory PATH order and within-directory preference.
+Closed | .opencode/plugins/README.md:3 | The description matches the `{ id, setup, server }` default export.
+Closed | .opencode/plugins/README.md:29 | The audit description names both `opencode` and `opencode2`.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.5.0.0.md:26 | The documentation-housekeeping bullet was removed; the remaining entries describe user-facing changes.
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:88 | The v2 model ID is corrected, but this example still lacks the required provider preflight.
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:136 | This `command -v` order can select a later `opencode2` instead of the resolver’s earlier PATH directory.
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:72 | The runnable v2 example still passes `--agent general` although v2 routing is marked unverified.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:80 | Skill loading, MCP use and continuity writes are scoped to OpenCode 1; v2 behavior is marked unverified.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:407 | `--auto` behavior is described and its equivalence to the OpenCode 1 permission flag is marked unverified.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:194 | The provider preflight uses `opencode2 models` for OpenCode 2.
+New P1 | .skilled/skills/cli-external-orchestration/cli-opencode/README.md:96 | The version-neutral event claim says the JSON stream ends with a tool-result message, which the v2 event facts do not establish.
+New P1 | .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:102 | The provider check omits the confirmed `llmgateway/deepseek-v4.1-flash` route; the same omission appears in cli-reference.md:152, integration-patterns.md:99 and opencode-tools.md:78.
+New P2 | .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:407 | The `--pure` mention does not label the flag OpenCode 1 only, as the version facts require.
+FAIL

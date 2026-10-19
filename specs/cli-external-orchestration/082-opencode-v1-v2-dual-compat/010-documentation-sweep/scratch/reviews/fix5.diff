@@ -1,0 +1,44 @@
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+@@ -95,6 +95,8 @@
+   --format json \
+   "<prompt-from-template>" 2>&1
+ ```
++
++How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+ 
+ OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
+@@ -466,7 +466,7 @@
+ 
+ #### Scenario Contract
+ 
+-Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, where a v2 check reads the `tool_use` event instead of the OpenCode 1 `tool.call` name and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint.
++Prompt summary: As an external-AI conductor facing a complex task that requires multiple OpenCode specializations in sequence, dispatch `opencode run --agent orchestrate --variant high --format json --dir <repo-root>` (OpenCode 1 only, with the OpenCode 2 twin as `cd <repo-root> && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json ...`, where a v2 check reads the `tool_use` event instead of the OpenCode 1 `tool.call` name and the v2 reader checks `opencode2 models` first, since `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used) and ask for a decomposition naming at least 3 specialist agents (for example context, review, write, ai-council) and explicit handoffs. Verify the response names at least 3 distinct agent slugs in sequence with handoffs and that zero nested opencode-run tool.calls appear. Return a verdict naming the agents in planned order and confirming the no-nested-run constraint. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+ 
+ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs described. Zero nested `opencode run` tool.call events. Working tree clean. Dispatch line includes `--agent orchestrate`.
+ 
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+@@ -221,6 +221,8 @@
+   --format json \
+   "Use the <slug> subagent: <prompt>" 2>&1
+ ```
++
++How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+ 
+ - **Default / general**: omit `--agent` entirely, and never pass `--agent general` (rejected at the top level).
+ - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md
+@@ -6,7 +6,7 @@
+ 
+ # CO-034 -- Orchestrate agent multi-agent coordination
+ 
+-**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
++**Version note.** The commands in this scenario are written for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each one. The side-by-side layout lives in the [install reference](../../references/install-and-versions.md). On OpenCode 2, check `opencode2 models` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. How OpenCode 2 routes `--agent <slug>` is unverified on OpenCode 2.0.32.
+ 
+ This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-034`.
+ 

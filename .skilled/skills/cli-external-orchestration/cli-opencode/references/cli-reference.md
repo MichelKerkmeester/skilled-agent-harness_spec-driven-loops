@@ -1,6 +1,6 @@
 ---
 title: "OpenCode CLI - Complete Command Reference"
-description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Pinned to v1.3.17."
+description: "Comprehensive reference for OpenCode CLI subcommands, flags, models, configuration, agent flags, sandbox boundaries, and troubleshooting. Covers OpenCode 1.19.3 and 2.0.32."
 trigger_phrases:
   - "opencode cli reference"
   - "opencode run flags"
@@ -10,12 +10,12 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.48
+version: 1.4.1.0
 ---
 
 # OpenCode CLI - Complete Command Reference
 
-Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target, and the failure modes that need explicit handling. Pinned to v1.3.17 baseline.
+Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-opencode skill dispatches against, the flag set it relies on, the agent surface it can target and the failure modes that need explicit handling. Version baselines: OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32.
 
 ---
 
@@ -27,7 +27,7 @@ OpenCode is the framework that owns this repository. The same binary that hosts 
 
 ### Purpose
 
-Provide a single-source reference for the OpenCode CLI surface — every subcommand cli-opencode invokes, every flag it pins, every agent it can route to, the version baseline it is built against, and the error envelopes that need explicit recovery.
+Provide a single-source reference for the OpenCode CLI surface: every subcommand cli-opencode invokes, every flag it pins, every agent it can route to, the version baselines it is built against and the error envelopes that need explicit recovery.
 
 ### When to Use
 
@@ -43,8 +43,9 @@ Provide a single-source reference for the OpenCode CLI surface — every subcomm
 |--------|-----|
 | **Binary** | `$(command -v opencode)` (typically `~/.superset/bin/opencode` or another local bin path) |
 | **Repository** | https://github.com/sst/opencode |
-| **Version baseline** | v1.3.17 (pinned in this reference) |
-| **Runtime** | Node.js 18+ for the npm install path; standalone binary on macOS |
+| **Version baseline** | OpenCode 1: 1.19.3 |
+| **Version baseline** | OpenCode 2: 2.0.32 |
+| **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |
 
 ---
 
@@ -58,7 +59,7 @@ Provide a single-source reference for the OpenCode CLI surface — every subcomm
 | **Upgrade** | `opencode upgrade [target]` | Pin a specific version with the `target` argument |
 | **Uninstall** | `opencode uninstall` | Removes the binary and related state |
 
-After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to v1.3.17. Newer binaries may add or rename flags — consult Section 9 (Version Drift) before relying on a non-pinned flag.
+After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to two baselines: OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32. Newer binaries may add or rename flags, so consult Section 9 (Version Drift) before relying on a non-pinned flag.
 
 ---
 
@@ -95,38 +96,41 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 
 ### Core flags
 
-| Flag / Option | Type | Purpose |
-|---------------|------|---------|
-| `[message..]` | positional | One or more positional message strings; place the message before variadic `-f` flags |
-| `--print-logs` | boolean | Stream logs to stderr |
-| `--log-level` | enum | `DEBUG`, `INFO`, `WARN`, `ERROR` |
-| `--pure` | boolean | Run without external plugins (skill loads disabled) |
-| `--command` | string | Run a known command, the message becomes its args |
-| `-c`, `--continue` | boolean | Continue the last session in this project |
-| `-s`, `--session` | string | Continue a specific session id |
-| `--fork` | boolean | Fork before continuing — requires `--continue` or `--session` |
-| `--share` | boolean | Publish a shareable URL for this session |
-| `-m`, `--model` | string | Provider/model selector — e.g. `opencode-go/deepseek-v4-flash` |
-| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) |
-| `--format` | enum | `default` (formatted) or `json` (raw event stream) |
-| `-f`, `--file` | array | Attach files to the message; the positional message must come first |
-| `--title` | string | Session title (truncated message used when omitted) |
-| `--attach` | string | Attach to a running OpenCode server URL |
-| `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) |
-| `--dir` | string | Working directory or remote-server path |
-| `--port` | number | Local server port (random when omitted) |
-| `--variant` | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) |
-| `--thinking` | boolean | Show thinking blocks (default false) |
+The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column gives the 2.0.32 counterpart, says when the flag is absent on `run` or marks the behavior unverified. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
+
+| Flag / Option | Type | Purpose | OpenCode 2 |
+|---------------|------|---------|------------|
+| `[message..]` | positional | One or more positional message strings. Place the message before variadic `-f` flags | same |
+| `--print-logs` | boolean | Stream logs to stderr | same |
+| `--log-level` | enum | `DEBUG`, `INFO`, `WARN`, `ERROR` | unverified on OpenCode 2.0.32 |
+| `--pure` (OpenCode 1 only) | boolean | Run without external plugins (skill loads disabled) | absent on `run` |
+| `--command` (OpenCode 1 only) | string | Run a known command, the message becomes its args | No `run` flag. A registered command runs through the server API (`POST /api/session/{id}/command`) |
+| `-c`, `--continue` | boolean | Continue the last session in this project | same |
+| `-s`, `--session` | string | Continue a specific session id | same |
+| `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` | same |
+| `--share` (OpenCode 1 only) | boolean | Publish a shareable URL for this session | absent on `run` |
+| `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4-flash` | `-m provider/model#<level>` (model and effort in one flag) |
+| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Slug routing and frontmatter loading are unverified on OpenCode 2.0.32 |
+| `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
+| `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
+| `--title` | string | Session title (truncated message used when omitted) | same |
+| `--attach` (OpenCode 1 only) | string | Attach to a running OpenCode server URL | `--server <url>` |
+| `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) | unverified on OpenCode 2.0.32 |
+| `--dir` (OpenCode 1 only) | string | Working directory or remote-server path | No `--dir`. Start in the directory: `cd <path> && opencode2 run ...` |
+| `--port` (OpenCode 1 only) | number | Local server port (random when omitted) | absent on `run` |
+| `--variant` (OpenCode 1 only) | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) | No `--variant`. Effort rides in the model selector: `-m provider/model#<level>` |
+| `--thinking` | boolean | Show thinking blocks (default false) | same |
 
 > **Message/file ordering:** Because `[message..]` is variadic, put the prompt before every `-f`/`--file` flag: `opencode run "prompt" -f /path/to/file`. Putting `-f` first can make the parser consume the prompt as another file argument.
 
-> **`--command` semantics (verified on v1.17.4):** the `run` message is plain text — slash-command syntax inside it (`opencode run "/speckit:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`speckit/search` for `/speckit:search`); a wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`; the raw-text form only measures the model freestyling without the contract. Consequences: (a) any behavior/adherence probe of a slash command MUST use `--command`, and the raw-text form is only valid as a labeled negative control; (b) inside `` !`…` `` template injections `$ARGUMENTS` expands like `"$@"` — one word per argument — so renderer scripts must join argv themselves.
+> **`--command` semantics (OpenCode 1 only, verified on v1.17.4):** the `run` message is plain text. Slash-command syntax inside it (`opencode run "/speckit:search query"`) is NOT expanded, so the command's template never reaches the model. Executing a registered command non-interactively requires `--command <family>/<name>` with the args as the message (they become `$ARGUMENTS`). Registry names are slash-namespaced (`speckit/search` for `/speckit:search`). A wrong name fails with the full registry list. Behavior probes of slash commands MUST use `--command`. The raw-text form only measures the model freestyling without the contract. Consequences: (a) any behavior/adherence probe of a slash command MUST use `--command`, and the raw-text form is only valid as a labeled negative control. (b) Inside `` !`…` `` template injections `$ARGUMENTS` expands like `"$@"`, one word per argument, so renderer scripts must join argv themselves. On OpenCode 2 there is no `run` flag for a registered command: the command runs through the server API (`POST /api/session/{id}/command`).
 
 ### cli-opencode default invocation shape
 
-The skill builds every dispatch from a base shape and overlays use-case-specific flags:
+The skill builds every dispatch from a base shape and overlays use-case-specific flags. The base shape on each version:
 
 ```bash
+# OpenCode 1 only
 opencode run \
   --model opencode-go/deepseek-v4-flash \
   --agent <agent-slug> \
@@ -136,17 +140,28 @@ opencode run \
   "<prompt>"
 ```
 
+```bash
+# OpenCode 2
+cd "$REPO_ROOT" && opencode2 run --standalone \
+  --agent <agent-slug> \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  --format json \
+  "<prompt>"
+```
+
+On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model — max-tier-pinned reasoning; operator may override (e.g. `opencode-go/glm-5.3-flash`, or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
-| `--agent` | per use case | Required for use case 1 / 3; optional for use case 2 |
-| `--variant max` | max | Flash is max-tier-pinned by policy — a lower requested effort is upgraded automatically |
+| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model with max-tier-pinned reasoning. The operator may override it (e.g. `opencode-go/glm-5.3-flash` or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
+| `--agent` | per use case | Required for use case 1 / 3, optional for use case 2 |
+| `--variant max` (OpenCode 1 only) | max | Flash is max-tier-pinned by policy, so a lower requested effort is upgraded automatically. On OpenCode 2 the effort rides on `-m` as `#max` |
 | `--format json` | json | Structured event stream is what external runtimes parse |
-| `--dir` | repo root | Pin the working directory to avoid CWD ambiguity |
+| `--dir` (OpenCode 1 only) | repo root | Pin the working directory to avoid CWD ambiguity. On OpenCode 2 there is no `--dir`, so start the dispatch in the repo root: `cd "$REPO_ROOT" && opencode2 run ...` |
 
-### Stdin handling — `</dev/null` is required for non-interactive dispatch
+### Stdin handling: `</dev/null` is required for non-interactive dispatch
 
-> **opencode v1.14.39 reads stdin at startup before session creation.** If you redirect stdout/stderr to files in automation (`> stdout.log 2> stderr.log`), opencode hangs at 0% CPU after the `+60s snapshot prune cleanup` log line because stdin remains attached to the parent terminal and never receives EOF.
+> **On OpenCode 1 (v1.14.39), opencode reads stdin at startup before session creation.** If you redirect stdout/stderr to files in automation (`> stdout.log 2> stderr.log`), opencode hangs at 0% CPU after the `+60s snapshot prune cleanup` log line because stdin remains attached to the parent terminal and never receives EOF. The hang is observed on OpenCode 1, and whether OpenCode 2 shares it is unverified on OpenCode 2.0.32, so the redirect stays on both versions.
 
 ALWAYS append `</dev/null` AFTER the prompt argument and BEFORE the stdout/stderr redirects:
 
@@ -160,15 +175,15 @@ Foreground `| tail` accidentally works because the upstream pipe stage provides 
 
 ### Sessions, share URLs, and ports
 
-`--share` publishes the session over the OpenCode share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). External-runtime dispatches do NOT publish share URLs by default.
+On OpenCode 1, `--share` publishes the session over the OpenCode share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). External-runtime dispatches do NOT publish share URLs by default. On OpenCode 2, `--share` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
 
-`--port` only matters when the dispatch needs to bind a known port (e.g. for a parallel detached session that another tool will attach to). The default random port is correct for one-shot dispatches.
+On OpenCode 1, `--port` only matters when the dispatch needs to bind a known port (e.g. for a parallel detached session that another tool will attach to). The default random port is correct for one-shot dispatches. On OpenCode 2, `--port` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
 
 `--continue` and `--session <id>` reuse prior session state. `--fork` branches an existing session into a new one. cli-opencode uses session continuation in memory handback flows where the calling AI wants to thread context across multiple delegations.
 
 ### Provider Auth Pre-Flight (smart fallback)
 
-Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>`, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session; only re-run on auth failure.
+Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>` on OpenCode 1 or `opencode2 models <provider-id>` on OpenCode 2, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
 
 ```bash
 # Pre-flight: one check per provider id, once per session
@@ -176,31 +191,32 @@ opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OP
 opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
 opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token)
 opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # LLM Gateway (DevPass); the only MiMo route
+opencode2 models opencode-go        >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode 2: the same check through the v2 binary
 echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
 
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
-| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` |
-| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model) — do not dispatch until configured |
+| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
+| Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model). Do not dispatch until configured |
 
-**MiniMax routing** (default = Token Plan; Direct API is the pay-per-token alternative):
-
-| State | Condition | Action |
-|-------|-----------|--------|
-| MiniMax requested (default) | `MINIMAX_TOKEN_OK=1` | Proceed with `--model minimax-coding-plan/MiniMax-M3` — **omit `--agent`** (rejected on opencode 1.15.13) |
-| Token Plan not configured | `MINIMAX_TOKEN_OK=0` | **ASK user** to run `opencode auth login` → MiniMax Token Plan — never substitute silently |
-| Direct API explicitly requested | `MINIMAX_DIRECT_OK=1` | Proceed with `--model minimax/MiniMax-M3` (pay-per-token; confirm the live id via `opencode models minimax`) |
-| Direct API requested, not configured | `MINIMAX_DIRECT_OK=0` | **ASK user** to configure the `minimax` provider (`MINIMAX_API_KEY`) — do not substitute silently |
-
-**MiMo routing** (LLM Gateway only; the Xiaomi Direct API and Token Plan routes are not on this roster):
+**MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
 
 | State | Condition | Action |
 |-------|-----------|--------|
-| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` |
-| LLM Gateway not configured | `LLMGATEWAY_OK=0` | **ASK user** to run `opencode auth login` → DevPass (LLM Gateway) — never substitute silently |
+| MiniMax requested (default) | `MINIMAX_TOKEN_OK=1` | Proceed with `--model minimax-coding-plan/MiniMax-M3` and **omit `--agent`** (rejected on opencode 1.15.13) |
+| Token Plan not configured | `MINIMAX_TOKEN_OK=0` | **ASK user** to run `opencode auth login` → MiniMax Token Plan. Never substitute silently |
+| Direct API explicitly requested | `MINIMAX_DIRECT_OK=1` | Proceed with `--model minimax/MiniMax-M3` (pay-per-token, confirm the live id via `opencode models minimax`) |
+| Direct API requested, not configured | `MINIMAX_DIRECT_OK=0` | **ASK user** to configure the `minimax` provider (`MINIMAX_API_KEY`). Do not substitute silently |
 
-**Login / setup command shapes** (the AI surfaces these to the user; the user runs them in their own terminal):
+**MiMo routing** (LLM Gateway only, the Xiaomi Direct API and Token Plan routes are not on this roster):
+
+| State | Condition | Action |
+|-------|-----------|--------|
+| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2. **Omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` |
+| LLM Gateway not configured | `LLMGATEWAY_OK=0` | **ASK user** to run `opencode auth login` → DevPass (LLM Gateway). Never substitute silently |
+
+**Login / setup command shapes** (the AI surfaces these to the user, who runs them in their own terminal):
 
 ```bash
 # Recommended default — OpenCode Go gateway
@@ -232,8 +248,8 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 ```text
 The skill default `opencode-go/deepseek-v4-flash` is not configured on this machine.
 A configured fallback is available. Pick one:
-  A) Use `openai/gpt-6-sol --variant high` (OpenAI flagship persona, configured now — paid)
-  B) Use `llmgateway/mimo-v2.6-pro --variant high` (MiMo through DevPass LLM Gateway, configured now — per token)
+  A) Use `openai/gpt-6-sol --variant high` on OpenCode 1 or `-m openai/gpt-6-sol#high` on OpenCode 2 (OpenAI flagship persona, configured now, paid)
+  B) Use `llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2 (MiMo through DevPass LLM Gateway, configured now, per token)
   C) Use `kimi-for-coding/k2p7` (Kimi For Coding plan, configured now — subscription)
   D) Run `opencode providers login opencode-go` first, then retry the original dispatch
   E) Name a different model — paste the `--model <provider/model>` you want to use
@@ -260,9 +276,9 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-Default model `opencode-go/deepseek-v4-flash --variant max` (Go gateway; flash is max-tier-pinned by policy). Reasoning effort is expressed through the `--variant` flag, which maps to a provider-specific effort scale. The model string passed to `--model` is always `provider/model-id`; run `opencode models <provider>` for the live list on a given install.
+On OpenCode 1 the default model is `opencode-go/deepseek-v4-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
 
-**Full provider/model roster, the GPT-6 slug grid, and the per-provider `--variant` effort map → [providers-and-models.md](./providers-and-models.md).**
+**Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 
 ---
 
@@ -292,7 +308,7 @@ Default model `opencode-go/deepseek-v4-flash --variant max` (Go gateway; flash i
 | `deep-review` | Iterative code review loop executor |
 | `ai-council` | Multi-strategy planning |
 
-The cli-opencode skill defers to the calling AI on agent selection — see `references/agent-delegation.md` for the routing matrix and `assets/prompt-templates.md` for canonical invocation shapes.
+The cli-opencode skill defers to the calling AI on agent selection. See `references/agent-delegation.md` for the routing matrix and `assets/prompt-templates.md` for canonical invocation shapes.
 
 ---
 
@@ -300,7 +316,7 @@ The cli-opencode skill defers to the calling AI on agent selection — see `refe
 
 `--format default` produces a human-formatted log. `--format json` emits a newline-delimited JSON event stream.
 
-### JSON event shape (v1.3.17)
+### JSON event shape (OpenCode 1, v1.3.17)
 
 Each line is a JSON object with at minimum:
 
@@ -311,7 +327,7 @@ Each line is a JSON object with at minimum:
 | `session_id` | The session id assigned by OpenCode |
 | `payload` | Type-specific payload |
 
-External runtimes parse the stream incrementally to surface tool calls, partial messages, and the final summary. cli-opencode prompt templates always pass `--format json` so the calling AI parses structured events instead of guessing format boundaries.
+External runtimes parse the stream incrementally to surface tool calls, partial messages and the final summary. cli-opencode prompt templates always pass `--format json` so the calling AI parses structured events instead of guessing format boundaries. The OpenCode 2 event shape is unverified on OpenCode 2.0.32.
 
 ---
 
@@ -321,21 +337,21 @@ External runtimes parse the stream incrementally to surface tool calls, partial 
 
 OpenCode persists session state in a shared SQLite database and storage tree under `~/.local/share/opencode/`:
 
-- `opencode.db` (`-shm`/`-wal` companions) — the session/message database
-- `storage/` — per-session structured artifacts
-- `snapshot/` — working-tree snapshots
+- `opencode.db` (`-shm`/`-wal` companions): the session/message database
+- `storage/`: per-session structured artifacts
+- `snapshot/`: working-tree snapshots
 
-There is no per-session directory under `~/.opencode/state/<session_id>/` on a standard install — that path does not exist on this runtime layout. To inspect a specific session, use `opencode export <session_id>` (§3) rather than reading files from a state directory. The cli-opencode self-invocation guard's Layer 3 lock-file probe (`~/.opencode/state/<id>/lock`, per ADR-001) targets the older path as a best-effort third layer on top of the env-var and process-ancestry checks; treat it as a heuristic, not a verified-present artifact, on installs where `~/.opencode/state/` does not exist.
+There is no per-session directory under `~/.opencode/state/<session_id>/` on a standard install, so that path does not exist on this runtime layout. To inspect a specific session, use `opencode export <session_id>` (§3) rather than reading files from a state directory. The cli-opencode self-invocation guard's Layer 3 lock-file probe (`~/.opencode/state/<id>/lock`, per ADR-001) targets the older path as a best-effort third layer on top of the env-var and process-ancestry checks. Treat it as a heuristic, not a verified-present artifact, on installs where `~/.opencode/state/` does not exist.
 
 ### Share URLs
 
-`--share` publishes a session URL via OpenCode's share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). The CHK-033 P1 checklist item requires operator confirmation before publishing a share URL because the URL exposes the session contents.
+On OpenCode 1, `--share` publishes a session URL via OpenCode's share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). The CHK-033 P1 checklist item requires operator confirmation before publishing a share URL because the URL exposes the session contents. On OpenCode 2, `--share` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
 
 ---
 
 ## 9. VERSION DRIFT
 
-This reference is pinned to OpenCode v1.3.17. If the live binary reports a different version, do the following:
+This reference is pinned to OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32. If the live binary reports a different version, do the following:
 
 1. Run `opencode run --help` and diff the flag list against Section 4.
 2. Run `opencode --help` and diff the subcommand list against Section 3.
@@ -346,10 +362,10 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 
 | Symptom | Likely cause |
 |---------|--------------|
-| `unknown option --variant` | v1.2 or earlier — variant flag was named `--reasoning` |
-| `unknown option --share` | Older standalone build without share infrastructure |
-| `unknown option --format json` | v1.0 — JSON event stream was the default and the flag did not exist |
-| `MODULE_NOT_FOUND` | Plugin loader crash; rerun with `--pure` to bypass plugins |
+| `unknown option --variant` (OpenCode 1 only) | v1.2 or earlier, when the variant flag was named `--reasoning`. On OpenCode 2 the effort rides on the model id instead (`-m provider/model#<level>`) |
+| `unknown option --share` (OpenCode 1 only) | Older standalone build without share infrastructure. `--share` is absent on `run` on OpenCode 2 |
+| `unknown option --format json` | v1.0, when the JSON event stream was the default and the flag did not exist |
+| `MODULE_NOT_FOUND` | Plugin loader crash, so rerun with `--pure` (OpenCode 1 only) to bypass plugins |
 
 ---
 
@@ -362,9 +378,9 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 | `provider/model not found` | Provider not configured | Run `opencode providers` to enumerate, then `auth login <provider>` |
 | Empty output stream | `--format default` with non-TTY parent | Pass `--format json` and parse the event stream |
 | Session never finishes | Tool call hung | Run `opencode export <session_id>` and inspect the message log it returns |
-| Plugin load crash | Misconfigured plugin | Rerun with `--pure` to bypass all plugins |
-| Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session — see ADR-001 |
-| `--share` URL leaks | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |
+| Plugin load crash | Misconfigured plugin | Rerun with `--pure` (OpenCode 1 only) to bypass all plugins |
+| Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session. See ADR-001 |
+| `--share` URL leaks (OpenCode 1 only) | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |
 
 ---
 

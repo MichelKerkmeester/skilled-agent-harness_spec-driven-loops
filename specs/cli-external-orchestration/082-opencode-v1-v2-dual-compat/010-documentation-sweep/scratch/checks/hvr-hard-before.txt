@@ -1,0 +1,35 @@
+101 {'—': 58, ';': 43} cli-opencode/SKILL.md
+72 {'—': 43, ';': 29} references/providers-and-models.md
+48 {'—': 37, ';': 11} references/agent-delegation.md
+41 {'—': 24, ';': 17} references/cli-reference.md
+40 {'—': 26, ';': 14} references/providers-and-models.md
+25 {'—': 15, ';': 8, 'leverage': 2} references/claude-tools.md
+22 {';': 8, '—': 12, 'harness': 2} references/destructive-scope-violations.md
+19 {'—': 18, ';': 1} references/integration-patterns.md
+19 {';': 15, '—': 4} plugins/README.md
+18 {';': 14, '—': 4} manual-testing-playbook/manual-testing-playbook.md
+16 {'—': 6, ';': 10} multi-provider/variant-levels-comparison.md
+16 {'—': 5, ';': 11} session-continuity/fork-and-share.md
+15 {'—': 6, ';': 9} session-continuity/resume-by-session-id.md
+15 {';': 10, '—': 5} agent-routing/deep-review-agent-audit.md
+14 {'—': 4, ';': 10} parallel-detached/parallel-detached-session.md
+14 {';': 9, '—': 5} agent-routing/deep-research-agent-iterations.md
+14 {';': 11, '—': 3} parallel-detached/worker-farm-loop.md
+13 {'—': 4, ';': 9} cross-repo-cross-server/cross-repo-dispatch.md
+13 {';': 10, '—': 3} parallel-detached/ablation-suite.md
+13 {';': 10, '—': 3} cli-invocation/pure-and-print-logs.md
+11 {';': 9, '—': 2} cross-repo-cross-server/self-invocation-guard-nested.md
+11 {';': 8, '—': 3} cross-repo-cross-server/attach-remote-server.md
+10 {';': 7, '—': 3} session-continuity/continue-last-session.md
+10 {';': 7, '—': 3} references/context-budget.md
+10 {';': 10} cli-invocation/base-non-interactive-invocation.md
+10 {';': 10} agent-routing/orchestrate-agent-multi-agent.md
+8 {';': 7, '—': 1} cli-invocation/dir-flag-working-directory.md
+3 {'harness': 3} scripts/README.md
+3 {'—': 3} references/opencode-tools.md
+3 {';': 3} intra-routing-recall/cross-repo.md
+1 {';': 1} compiled/README.md
+1 {';': 1} cli-opencode/README.md
+1 {';': 1} assets/prompt-templates.md
+0 {} scripts/README.md
+0 {} references/install-and-versions.md

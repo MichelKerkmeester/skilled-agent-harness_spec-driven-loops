@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode truncation marker"
 importance_tier: normal
 contextType: general
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # cli-opencode Context Budget Mirror
@@ -21,7 +21,7 @@ Sentinel-style pointer that applies the canonical small-model context-budget sem
 
 ### Purpose
 
-cli-opencode applies context-budget semantics to its dispatches; this file records the cli-opencode-specific model windows (§4) and truncation marker syntax (§5) so callers can compose bounded prompts without a second implementation or a drift-prone ruleset.
+cli-opencode applies context-budget semantics to its dispatches. This file records the cli-opencode-specific model windows (§4) and truncation marker syntax (§5), so callers can compose bounded prompts without a second implementation or a drift-prone ruleset.
 
 ### When to Use
 
@@ -29,7 +29,7 @@ Consult this reference when composing a bounded cli-opencode prompt and you need
 
 ### Core Principle
 
-Keep prompts within the selected model window; apply the truncation marker and eviction discipline below so callers compose bounded prompts without a drift-prone ruleset.
+Keep prompts within the selected model window. Apply the truncation marker and eviction discipline below so callers compose bounded prompts without a drift-prone ruleset.
 
 ---
 
@@ -51,7 +51,7 @@ Apply these disciplines when composing a bounded cli-opencode prompt:
 - priority eviction order.
 - marker interpretation.
 
-The cli-opencode-specific model windows are in §4; the truncation marker syntax is in §5.
+The cli-opencode-specific model windows are in §4. The truncation marker syntax is in §5.
 
 ---
 
@@ -61,9 +61,9 @@ The active cli-opencode small-model set is registry-driven, not duplicated here.
 
 | Model | Context window | cli-opencode note |
 | --- | ---: | --- |
-| `opencode-go/deepseek-v4-flash` | — | Default cli-opencode model; window not re-verified on this install — confirm via `opencode models opencode-go` before budget-sensitive dispatches. |
-| `kimi-k2.7-code` | 262,144 | Largest active window (256k via `kimi-for-coding/k2p7`; supersedes the retired `kimi-k2.6`); useful for long-file inspection, still follows the budget discipline. At `--variant high` cap reads + budget 1200s+ (over-explores broad scopes — observed 2026-06-17). |
-| `qwen3.6` | 32,000 | Smallest active cli-opencode window; needs the strictest scope and file anchors. |
+| `opencode-go/deepseek-v4-flash` | Not verified | Default cli-opencode model. The window is not re-verified on this install. Confirm via `opencode models opencode-go` before budget-sensitive dispatches. |
+| `kimi-k2.7-code` | 262,144 | Largest active window (256k via `kimi-for-coding/k2p7`, supersedes the retired `kimi-k2.6`). It is useful for long-file inspection and still follows the budget discipline. At `--variant high` (OpenCode 1 only) cap reads + budget 1200s+ (over-explores broad scopes, observed 2026-06-17). On OpenCode 2 the equivalent is `-m provider/model#high`. The over-exploration behavior is unverified on OpenCode 2.0.32. |
+| `qwen3.6` | 32,000 | Smallest active cli-opencode window. It needs the strictest scope and file anchors. |
 
 Larger windows change what can be retained, not the rule shape. The caller may include more evidence for Kimi-k2.7-code, but should still apply the summary threshold, truncation marker, and eviction priority discipline.
 

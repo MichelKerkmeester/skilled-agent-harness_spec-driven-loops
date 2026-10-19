@@ -9,12 +9,12 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.0.31
+version: 1.4.1.0
 ---
 
 # OpenCode CLI - Unique Capabilities
 
-What `opencode run` brings that the sibling cli-* dispatches do not. Each capability includes the invocation shape and the use case where it pays off.
+What `opencode run` brings that the sibling cli-* dispatches do not. Each capability includes the invocation shape and the use case where it pays off. Each shape is shown for OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) form beside it where one exists and a link to `./install-and-versions.md` where one does not.
 
 ---
 
@@ -45,15 +45,18 @@ When `opencode run` starts a session, the runtime loads every plugin, skill, and
 - Every project-local plugin
 - The repo's CLAUDE.md / AGENTS.md instruction set as the system prompt
 
+Whether OpenCode 2 loads the same runtime is unverified on OpenCode 2.0.32.
+
 ### Why it matters
 
-A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no plugins and no MCP. To get the same plugin / skill / MCP context inside Claude Code the operator would need to run a TUI session and import the project — not a one-shot invocation.
+A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no plugins and no MCP. To get the same plugin / skill / MCP context inside Claude Code the operator would need to run a TUI session and import the project. That is not a one-shot invocation.
 
 `opencode run` is the only one-shot path that loads the full runtime.
 
 ### Invocation shape
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --model opencode-go/deepseek-v4-flash \
   --agent general \
@@ -63,7 +66,19 @@ opencode run \
   "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
 ```
 
-The dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline.
+```bash
+# OpenCode 2 (2.0.32):
+# Agent routing unverified on OpenCode 2.0.32.
+cd "$REPO_ROOT" && opencode2 run --standalone \
+  --agent general \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  --format json \
+  "Analyze the skill-advisor daemon health using advisor_status, then propose three improvements with concrete file:line citations."
+```
+
+On OpenCode 2, the effort level rides the model id as a `#<level>` suffix and the working directory moves into a `cd`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm the provider in `opencode2 models` before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). Whether OpenCode 2 routes `--agent` the same way is unverified on OpenCode 2.0.32.
+
+On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, calls `advisor_status` (an MCP tool), inspects the daemon state, and writes the proposal back through the normal `/speckit:save` continuity pipeline. Whether the OpenCode 2 session does the same is unverified on OpenCode 2.0.32.
 
 ---
 
@@ -71,7 +86,7 @@ The dispatched session loads the `system-skill-advisor` skill, calls `advisor_st
 
 ### What it does
 
-A second `opencode run --share --port <N>` invocation from inside an existing OpenCode session spawns a separate session with its own session id, its own state directory, and a publishable share URL. The original session continues unaffected.
+On OpenCode 1, a second `opencode run --share --port <N>` invocation from inside an existing OpenCode session spawns a separate session with its own session id, its own state directory, and a publishable share URL. The original session continues unaffected.
 
 ### Why it matters
 
@@ -85,6 +100,7 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 ### Invocation shape
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --share \
   --port 4096 \
@@ -96,6 +112,8 @@ opencode run \
   "Run iteration N of the deep-research loop for the approved spec folder. State file at scratch/iteration-N.jsonl."
 ```
 
+On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See `./install-and-versions.md`.
+
 The skill's smart router gates this use case behind ADR-001's self-invocation signal. When the signal trips AND the prompt explicitly names a parallel detached session, the router permits the dispatch. Otherwise it refuses (see `./integration-patterns.md` for the full decision tree).
 
 ---
@@ -104,7 +122,7 @@ The skill's smart router gates this use case behind ADR-001's self-invocation si
 
 ### What it does
 
-`--format json` emits a newline-delimited JSON stream with typed events: `session.started`, `message.delta`, `tool.call`, `tool.result`, `session.completed`. Each event has a stable schema and a `session_id`.
+`--format json` emits a newline-delimited JSON stream with typed events: `session.started`, `message.delta`, `tool.call`, `tool.result`, `session.completed`. Each event has a stable schema and a `session_id`. Whether OpenCode 2 emits the same event schema is unverified on OpenCode 2.0.32.
 
 ### Why it matters
 
@@ -113,6 +131,7 @@ External runtimes (Claude Code, OpenCode, Copilot) parse the event stream increm
 ### Invocation shape
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --format json \
   --model opencode-go/deepseek-v4-flash \
@@ -129,21 +148,37 @@ opencode run \
   done
 ```
 
+```bash
+# OpenCode 2 (2.0.32):
+cd /repo && opencode2 run --standalone \
+  --format json \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  "<prompt>" 2>/dev/null | while IFS= read -r line; do
+    type=$(echo "$line" | jq -r '.type')
+    case "$type" in
+      session.started) echo "session_id=$(echo "$line" | jq -r '.session_id')" ;;
+      tool.call) echo "tool=$(echo "$line" | jq -r '.payload.name')" ;;
+      session.completed) echo "DONE" ;;
+    esac
+  done
+```
+
 ---
 
 ## 5. AGENT DISPATCH VIA `--agent`
 
 ### What it does
 
-The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target.
+The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. Whether OpenCode 2 applies the same agent frontmatter is unverified on OpenCode 2.0.32.
 
 ### Why it matters
 
-Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-opencode's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter — its own routing decisions, its own tool permissions, its own constraints.
+Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-opencode's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter: its own routing decisions, its own tool permissions, its own constraints.
 
 ### Invocation shape
 
 ```bash
+# On OpenCode 1 (1.19.3):
 opencode run \
   --agent deep-review \
   --model opencode-go/deepseek-v4-flash \
@@ -153,29 +188,49 @@ opencode run \
   "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
 ```
 
+```bash
+# OpenCode 2 (2.0.32):
+cd /repo && opencode2 run --standalone \
+  --agent deep-review \
+  -m opencode-go/deepseek-v4.1-flash#max \
+  --format json \
+  "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
+```
+
 See `./agent-delegation.md` for the full routing matrix.
 
 ---
 
-## 6. CROSS-REPO DISPATCH VIA `--dir`
+## 6. CROSS-REPO DISPATCH VIA `--dir` (OpenCode 1 only)
 
 ### What it does
 
-The `--dir <path>` flag pins the session's working directory. Combined with `--attach <url>`, it can also point at a remote OpenCode server's path on the remote machine.
+On OpenCode 1, the `--dir <path>` flag pins the session's working directory. Combined with `--attach <url>`, it can also point at a remote OpenCode server's path on the remote machine. On OpenCode 2, `--dir` has no `run` form, so the session starts in the target directory instead, and `--server <url>` replaces `--attach`. See `./install-and-versions.md`.
 
 ### Why it matters
 
-A calling AI in one repo (e.g. a sibling project) can dispatch into a different repo's plugin / skill / MCP runtime without leaving its own session. cli-opencode is the only cli-* skill that natively understands the cross-repo dispatch pattern because the four siblings' binaries have no equivalent of `--dir` (their CWD is wherever the calling AI lives).
+A calling AI in one repo (e.g. a sibling project) can dispatch into a different repo's plugin / skill / MCP runtime without leaving its own session. cli-opencode is the only cli-* skill that natively understands the cross-repo dispatch pattern because the four siblings' binaries have no equivalent of the OpenCode 1 `--dir` flag (their CWD is wherever the calling AI lives).
 
 ### Invocation shape
 
 ```bash
+# On OpenCode 1 (1.19.3):
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
   --dir /path/to/other-repo \
   --model opencode-go/deepseek-v4-flash \
   --agent general \
   --variant max \
+  --format json \
+  "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
+```
+
+```bash
+# OpenCode 2 (2.0.32):
+# From a session in repo A, dispatch into repo B's runtime
+cd /path/to/other-repo && opencode2 run --standalone \
+  --agent general \
+  -m opencode-go/deepseek-v4.1-flash#max \
   --format json \
   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
 ```
@@ -189,7 +244,7 @@ opencode run \
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
 | **cli-opencode** | Shared `~/.local/share/opencode/` SQLite database + storage tree (`opencode.db`, `storage/`, `snapshot/`), inspectable per-session via `opencode export <id>` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP** |
 
-The shared session database at `~/.local/share/opencode/` is what makes use case 2 (parallel detached sessions) possible — each session id is independently addressable via `opencode export <id>`, even though sessions share the same underlying database rather than each getting its own filesystem directory.
+The shared session database at `~/.local/share/opencode/` is what makes use case 2 (parallel detached sessions) possible. Each session id is independently addressable via `opencode export <id>`, even though sessions share the same underlying database rather than each getting its own filesystem directory. Whether OpenCode 2 keeps the same database layout is unverified on OpenCode 2.0.32.
 
 ---
 

@@ -1,0 +1,5 @@
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:33 | P1 remains: the overview still requires OpenCode 1 event names, so a valid v2 run conflicts with its expected signals and pass gate.
+
+Open | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:136 | P2 remains: an empty `OPENCODE_BIN` still falls through to PATH, while the resolver rejects an explicit empty override. Other changed hunks match the supplied facts. No untagged v1 flags, compatibility claim, or hard HVR blocker found. The HVR scan exited 0.
+
+FAIL

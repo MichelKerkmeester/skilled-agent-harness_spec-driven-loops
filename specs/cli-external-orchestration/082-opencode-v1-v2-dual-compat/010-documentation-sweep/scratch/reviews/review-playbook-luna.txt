@@ -1,0 +1,21 @@
+## Findings
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md:52; cli-invocation/base-non-interactive-invocation.md:53; cli-invocation/dir-flag-working-directory.md:51; cli-invocation/pure-and-print-logs.md:52; cross-repo-cross-server/cross-repo-dispatch.md:51; manual-testing-playbook.md:437,469; multi-provider/variant-levels-comparison.md:51; session-continuity/continue-last-session.md:51; fork-and-share.md:50; resume-by-session-id.md:50 | The v2 twins reuse v1 JSON event names and fields such as `session.started`, `message.delta`, `tool.call`, and `session_id`; the saved v2 probe instead shows `step_start`, `tool_use`, `text`, `step_finish`, and `sessionID` (006-cli-opencode-dual-dispatch/scratch/probes/run-slash.jsonl:1,2,4,13) | Add v2-specific event and field checks, or mark those v2 assertions unverified.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md:52; cli-invocation/base-non-interactive-invocation.md:9,53; cli-invocation/dir-flag-working-directory.md:9,51; cli-invocation/pure-and-print-logs.md:52; cross-repo-cross-server/cross-repo-dispatch.md:45,51; manual-testing-playbook.md:200; multi-provider/variant-levels-comparison.md:44,45; session-continuity/continue-last-session.md:51; fork-and-share.md:50; resume-by-session-id.md:50 | These v2 twins use `opencode-go/deepseek-v4-flash`, but the v2 provider capture lists no `opencode-go` entries and lists `llmgateway/deepseek-v4.1-flash` instead (version-facts.md:27-28; 006-cli-opencode-dual-dispatch/scratch/probes/v2-model-providers.txt:6-7) | Use a model confirmed in the v2 provider list, or mark the affected twin unverified until one is selected.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/pure-and-print-logs.md:52 | CO-005 says the scenario runs on OpenCode 1 only, but its baseline step includes an OpenCode 2 command | Remove the v2 step or separate it as a distinct baseline check.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:437 | The new CO-032 v2 twin directly selects `deep-research` with `--agent`, although the linked feature contract uses a command-owned iteration; the twin also omits required `--standalone` | Remove the twin and align the summary with the canonical CO-032 contract.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:469 | The new CO-034 v2 child dispatch omits the required `--standalone` flag | Add `--standalone`.
+
+Not checked: Live OpenCode commands and network access, per request.
+
+## Pre-existing
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:433 | CO-032 still describes direct `--agent deep-research` invocation, contrary to the linked feature contract | Align the root summary with the command-owned route and packet-local state.
+
+P1 | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/ablation-suite.md:57 | The worker labeled “variant high” runs `--variant max`, so the command does not match the scenario’s stated comparison | Make the command and objective use the same supported level.
+
+FAIL

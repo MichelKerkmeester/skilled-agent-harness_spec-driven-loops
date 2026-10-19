@@ -1,0 +1,7 @@
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:35 | P1 closed: OpenCode 2’s pass gate checks `step_start` and `step_finish`, matching expected signals at :33. Both versions use the same 90-second limit.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md:33 | OpenCode 2 event facts match; both versions require at least 3 slugs, handoffs, and zero nested runs.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md:33 | OpenCode 2 `sessionID` matches the facts; `--share` is labeled OpenCode 1 only. Pass criteria match.
+Closed | .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md:33 | OpenCode 2 `sessionID` in `step_start` matches the facts; pass criteria match.
+Closed | specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep/scratch/reviews/fix4.diff:1 | No untagged v1-only flag, compatibility claim, or HVR hard finding. All four HVR scans exited 0 with zero hard blockers; reverse apply check exited 0.
+
+PASS (no open P0 or P1)
