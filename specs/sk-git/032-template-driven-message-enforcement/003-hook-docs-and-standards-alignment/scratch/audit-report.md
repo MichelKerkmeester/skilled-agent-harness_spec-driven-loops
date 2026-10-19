@@ -67,7 +67,7 @@ Replace with:
 
 ## 2. Code standards
 
-**P1 — `Spec:` validation normalizes paths without checking containment.** [message-contract.mjs:506](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-git/scripts/lib/message-contract.mjs:506) joins the configured root and trailer value, then asks whether the resulting path exists. `Spec: ../README.md` normalizes outside `specs/` and can pass if the repository-root README exists. The containment check required by [security-testing-and-exemptions.md:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md:36) is absent.
+**P1 — `Spec:` validation normalizes paths without checking containment.** [message-contract.mjs:506](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-git/scripts/lib/message-contract.mjs:506) joins the configured root and trailer value, then asks whether the resulting path exists. `Spec: ../README.md` normalizes outside `specs/` and can pass if the repository-root README exists. The containment check required by [security-testing-and-exemptions.md:36](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:36) is absent.
 
 Replace the join/check with a normalized-root containment check:
 
@@ -89,7 +89,7 @@ Move `v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-ba
 
 Keep the `HEAD` and overwritten-ref exclusions, but exempt a rewrite copy only when a stronger identity also matches, such as tree and full message. Otherwise report the existing ID as a collision.
 
-**P1 — Staged-blob read errors silently omit files from comment hygiene.** [git-hooks/pre-commit:100](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/scripts/git-hooks/pre-commit:100) and [hooks/git/pre-commit:46](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/hooks/git/pre-commit:46) use `git show ... || continue`. If a blob read fails, the staged file is not checked. This ignores an error instead of following the shell error-recovery standard in [validation-security-and-shellcheck.md:119](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md:119).
+**P1 — Staged-blob read errors silently omit files from comment hygiene.** [git-hooks/pre-commit:100](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/scripts/git-hooks/pre-commit:100) and [hooks/git/pre-commit:46](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/hooks/git/pre-commit:46) use `git show ... || continue`. If a blob read fails, the staged file is not checked. This ignores an error instead of following the shell error-recovery standard in [validation-security-and-shellcheck.md:119](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:119).
 
 Replace both lines with:
 
@@ -100,7 +100,7 @@ if ! git show ":$file" > "$HYGIENE_DIR/$file"; then
 fi
 ```
 
-**P2 — Temporary hygiene directories lack exit cleanup.** Both [git-hooks/pre-commit:96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/scripts/git-hooks/pre-commit:96) and [hooks/git/pre-commit:42](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/hooks/git/pre-commit:42) create temporary directories and clean them only on the normal path. The shell standard requires cleanup traps ([validation-security-and-shellcheck.md:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md:79), [validation-security-and-shellcheck.md:132](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md:132)).
+**P2 — Temporary hygiene directories lack exit cleanup.** Both [git-hooks/pre-commit:96](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/scripts/git-hooks/pre-commit:96) and [hooks/git/pre-commit:42](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/hooks/git/pre-commit:42) create temporary directories and clean them only on the normal path. The shell standard requires cleanup traps ([validation-security-and-shellcheck.md:79](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:79), [validation-security-and-shellcheck.md:132](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/075-git-hook-review-fixes/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:132)).
 
 Add immediately after each `mktemp`:
 
@@ -108,7 +108,7 @@ Add immediately after each `mktemp`:
 trap 'rm -rf "$HYGIENE_DIR"' EXIT
 ```
 
-I found no sk-code-opencode standards violations in the changed TypeScript or CommonJS runtime files in B.
+I found no sk-code-skilled standards violations in the changed TypeScript or CommonJS runtime files in B.
 
 ## 3. Code READMEs
 

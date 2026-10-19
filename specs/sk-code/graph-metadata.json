@@ -5,7 +5,7 @@
   "parent_id": null,
   "children_ids": [
     "sk-code/001-sk-code-parent",
-    "sk-code/002-rust-standards-for-code-opencode",
+    "sk-code/002-rust-standards-for-code-skilled",
     "sk-code/003-content-quality-remediation",
     "sk-code/004-code-conformance-alignment",
     "sk-code/005-dist-staleness-rebuild-on-drift",
@@ -14,7 +14,8 @@
     "sk-code/008-sk-code-mobile-cli-mode",
     "sk-code/009-sk-code-mobile-cli-deprecation",
     "sk-code/010-drift-guard-cleanup",
-    "sk-code/011-sk-code-poinytail-based-refinement"
+    "sk-code/011-sk-code-poinytail-based-refinement",
+    "sk-code/012-sk-code-skilled-rename"
   ],
   "manual": {
     "depends_on": [],

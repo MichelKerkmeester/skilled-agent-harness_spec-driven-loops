@@ -11,8 +11,8 @@ traceability — core spec_code and checklist_evidence plus the four overlays. W
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/goal.md:92-94` | criteria 1-3 rerun live on the worktree | criterion 1: 11 PASSED / 2 FAILED (expected 13/0); criterion 2: 35 (expected 36); criterion 3: 0 and a dirty tree (expected 37 and clean) — R8-TRA-001 |
 | 7 x `010-round-three-remediation/*/implementation-summary.md` | version, deletion, fixture, hook and count claims vs code | hold; exceptions: 010-001 limitation 5 remains a documented deviation (REQ-004/T125) |
 | 8 x `011-round-four-remediation/*/implementation-summary.md` | the same | hold except 011-005's test count — R8-TRA-002 |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | live `grep -c '^test('` and iteration 7 run | 12 tests declared, 12 pass; summary claims 10 total — R8-TRA-002 |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs:81` | `--root is not a directory` usage line, exit 2 | confirmed by read and test names 9-11 |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` | live `grep -c '^test('` and iteration 7 run | 12 tests declared, 12 pass; summary claims 10 total — R8-TRA-002 |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs:81` | `--root is not a directory` usage line, exit 2 | confirmed by read and test names 9-11 |
 | `.skilled/skills/sk-code/hub-router.json:7` | tieBreak order | `quality, review, opencode, obsidian, webflow` — 011-003 order claim confirmed |
 | `.skilled/skills/sk-code{,-review,-webflow,-quality,-opencode}/SKILL.md:1` | versions | 2.2.7.0 / 1.7.1.0 / 1.1.2.0 / 1.2.0.0 / 1.2.1.0, each matching the latest child claim |
 | `.skilled/skills/system-spec-kit/runtime/hooks/shared-stdin.ts:23`, `runtime/hooks/lib/hook-adapter-shared.mjs:17` | 500 ms constant | both 500 — 011-007 claim confirmed |
@@ -42,11 +42,11 @@ None.
    Recommendation: re-derive the two folders' metadata (`repair-derived.cjs --apply`), cut the goal durable slice below 4000 chars, re-run both criteria to green, and either amend criterion 3's binding text to the post-merge state or move that clause to the Log; finish 012's summary only when the review actually completes.
    Severity rationale: no shipped-code defect (all functional gates rerun green this iteration), the repair path is documented, and part of the failure is the in-flight 012 packet; but the epic's own definition of done currently fails its three printed commands.
 2. **R8-TRA-002 — The 011-005 implementation summary undercounts its own test suite: claims "10 in total", the live suite declares 12** — [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md:61]
-   The summary's Files Changed row says "Four new test cases, 10 in total"; the 010-005 summary says "Six tests" (010-.../005-opencode-and-guards/implementation-summary.md:61). Live: `grep -c '^test(' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` prints **12**, and iteration 7 executed the suite as 12 pass / 0 fail. 6 + 4 = 10 does not account for two of the twelve top-level cases.
+   The summary's Files Changed row says "Four new test cases, 10 in total"; the 010-005 summary says "Six tests" (010-.../005-opencode-and-guards/implementation-summary.md:61). Live: `grep -c '^test(' .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` prints **12**, and iteration 7 executed the suite as 12 pass / 0 fail. 6 + 4 = 10 does not account for two of the twelve top-level cases.
    Case: a later reader auditing claim coverage from the summaries undercounts the suite by two; the "Four new test cases" attribution cannot be reconciled with the live file from the summaries alone.
    Finding class: spec/code count drift (one file, two summaries).
    Scope proof: live count plus the twelve `^test(` names; iteration-007.md table row "12 pass, 0 fail".
-   Affected surface hints: [".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs", "011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"]
+   Affected surface hints: [".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs", "011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"]
    Recommendation: correct the count (or the "10 in total" phrase) in both summaries, or name the two extra cases so the summary arithmetic closes.
 
 ## Traceability Checks

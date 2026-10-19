@@ -17,7 +17,7 @@ _memory:
     next_safe_action: "Commit when the operator asks"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs"
       - "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md"
     session_dedup:
@@ -61,8 +61,8 @@ The dead-route check skips any `SKILL.md` carrying the generated-copy marker, be
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Skip generated skill copies in the dead-route check |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Regression test for a generated copy |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Skip generated skill copies in the dead-route check |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Regression test for a generated copy |
 | `.hermes/plugins/repo-guards/__init__.py` | Modified | House-style shebang |
 | `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | Modified | Prune `lineages` under `specs/` whatever the parent |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts` | Modified | Probes and divergence entry for the widened rule |

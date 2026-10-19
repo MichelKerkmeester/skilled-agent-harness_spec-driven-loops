@@ -292,9 +292,9 @@ file_path	match_count	area	phase
 .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/plan.md	1	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/spec.md	1	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/tasks.md	2	spec-folder-active	003
-.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md	1	spec-folder-active	003
-.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json	2	spec-folder-active	003
-.opencode/specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md	4	spec-folder-active	003
+.opencode/specs/skilled-agent-orchestration/066-sk-code-skilled-merger/resource-map.md	1	spec-folder-active	003
+.opencode/specs/skilled-agent-orchestration/066-sk-code-skilled-merger/review/deep-review-config.json	2	spec-folder-active	003
+.opencode/specs/skilled-agent-orchestration/066-sk-code-skilled-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md	4	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal/implementation-summary.md	1	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/review/iterations/iteration-004.md	4	spec-folder-active	003
 .opencode/specs/skilled-agent-orchestration/067-mcp-figma-transfer/review/iterations/iteration-006.md	1	spec-folder-active	003
@@ -958,9 +958,9 @@ specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/desc
 specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/plan.md	1	spec-folder-active	003
 specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/spec.md	1	spec-folder-active	003
 specs/skilled-agent-orchestration/065-skill-advisor-reindex-and-stress-test/tasks.md	2	spec-folder-active	003
-specs/skilled-agent-orchestration/066-sk-code-opencode-merger/resource-map.md	1	spec-folder-active	003
-specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/deep-review-config.json	2	spec-folder-active	003
-specs/skilled-agent-orchestration/066-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md	4	spec-folder-active	003
+specs/skilled-agent-orchestration/066-sk-code-skilled-merger/resource-map.md	1	spec-folder-active	003
+specs/skilled-agent-orchestration/066-sk-code-skilled-merger/review/deep-review-config.json	2	spec-folder-active	003
+specs/skilled-agent-orchestration/066-sk-code-skilled-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md	4	spec-folder-active	003
 specs/skilled-agent-orchestration/067-mcp-figma-transfer/003-mcp-figma-skill-removal/implementation-summary.md	1	spec-folder-active	003
 specs/skilled-agent-orchestration/067-mcp-figma-transfer/review/iterations/iteration-004.md	4	spec-folder-active	003
 specs/skilled-agent-orchestration/067-mcp-figma-transfer/review/iterations/iteration-006.md	1	spec-folder-active	003

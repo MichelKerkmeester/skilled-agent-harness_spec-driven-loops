@@ -18,17 +18,17 @@ Primary files (READ ALL):
 1. .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts (1,157 lines)
 2. .opencode/skills/system-spec-kit/scripts/types/session-types.ts (534 lines)
 3. .opencode/skills/system-spec-kit/SKILL.md
-4. .opencode/skills/sk-code-opencode/SKILL.md
+4. .opencode/skills/sk-code-skilled/SKILL.md
 5. .opencode/skills/sk-doc/SKILL.md
 
 Specific questions to answer:
-1. Do the type definitions in session-types.ts use naming conventions from sk-code-opencode? (camelCase vs PascalCase, interface naming)
+1. Do the type definitions in session-types.ts use naming conventions from sk-code-skilled? (camelCase vs PascalCase, interface naming)
 2. Are the importance tier names (critical/important/normal/low) consistent across spec-kit SKILL.md and importance-tiers.ts?
-3. Does the P0/P1/P2 priority system in the spec's checklist match the definitions in sk-code-opencode?
+3. Does the P0/P1/P2 priority system in the spec's checklist match the definitions in sk-code-skilled?
 4. Are there naming conflicts between DataSource types and any sk-doc document types?
 5. Does the input-normalizer handle all field aliases documented in the spec-kit SKILL.md?
-6. Is the file header convention (MODULE comment block) consistent with sk-code-opencode standards?
-7. Are export patterns (named vs default, barrel files) aligned with sk-code-opencode?
+6. Is the file header convention (MODULE comment block) consistent with sk-code-skilled standards?
+7. Are export patterns (named vs default, barrel files) aligned with sk-code-skilled?
 
 OUTPUT FORMAT: For each finding:
 - FINDING-ID (e.g., ALIGN-001, NAMING-001)
@@ -77,12 +77,12 @@ AGENTS.md
 .opencode/skills/cli-codex/SKILL.md
 .opencode/skills/sk-code-full-stack/SKILL.md
 .opencode/skills/sk-doc/SKILL.md
-.opencode/skills/sk-code-opencode/SKILL.md
+.opencode/skills/sk-code-skilled/SKILL.md
 .opencode/skills/sk-code-web/SKILL.md
 .opencode/skills/system-spec-kit/SKILL.md
 .opencode/skills/sk-deep-research/SKILL.md
 exec
-/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Cross-system alignment audit checking consistency between system-spec-kit, sk-code-opencode, sk-doc, and implementation files input-normalizer.ts/session-types.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Cross-system alignment audit checking consistency between system-spec-kit, sk-code-skilled, sk-doc, and implementation files input-normalizer.ts/session-types.ts" --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 [
   {
     "skill": "system-spec-kit",
@@ -93,18 +93,18 @@ exec
     "reason": "Matched: !audit(multi), !intent:memory, !session, !session(multi), !spec"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.23,
     "passes_threshold": true,
-    "reason": "Matched: !code(multi), !opencode, !sk-code-opencode(explicit), check~, code(name)"
+    "reason": "Matched: !code(multi), !opencode, !sk-code-skilled(explicit), check~, code(name)"
   },
   {
     "skill": "sk-doc",
     "kind": "skill",
 codex
-SKILL ROUTING: `system-spec-kit`, `sk-code-opencode`, `sk-doc`, and `sk-code-review` all crossed the threshold, and the user explicitly directed review of those skill definitions. I’m reading the relevant sections from those skills plus the implementation files, then I’ll trace each question against the exact normalization and type definitions.
+SKILL ROUTING: `system-spec-kit`, `sk-code-skilled`, `sk-doc`, and `sk-code-review` all crossed the threshold, and the user explicitly directed review of those skill definitions. I’m reading the relevant sections from those skills plus the implementation files, then I’ll trace each question against the exact normalization and type definitions.
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
@@ -130,10 +130,10 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -174,7 +174,7 @@ Unified specialist providing: (1) Document quality pipeline with structure enfor
 
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -264,7 +264,7 @@ exec
 .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:188:  const trailingSegments = normalizedInput.split('/');
 .opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:194:      const hasSpecsParent = isUnderApprovedSpecsRoot(normalizedInput);
 exec
-/bin/zsh -lc 'rg -n "camelCase|PascalCase|interface|MODULE|header|default export|named export|barrel|P0|P1|P2|priority|critical|important|normal|low|document type|playbook|feature catalog|README|frontmatter" .opencode/skills/sk-code-opencode .opencode/skills/system-spec-kit .opencode/skills/sk-doc' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "camelCase|PascalCase|interface|MODULE|header|default export|named export|barrel|P0|P1|P2|priority|critical|important|normal|low|document type|playbook|feature catalog|README|frontmatter" .opencode/skills/sk-code-skilled .opencode/skills/system-spec-kit .opencode/skills/sk-doc' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:3:description: Template for per-feature scenario files stored directly under manual_testing_playbook category directories.
 .opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:8:Per-feature scenario files for split manual testing playbooks. Use this template for the one-file-per-feature contract described in the main playbook template.
 .opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md:14:Each feature file is the canonical home for full scenario execution detail. The root `MANUAL_TESTING_PLAYBOOK.md` stays readable by summarizing the feature and linking here, while the feature file carries the realistic user-testing context, orchestration process, 9-column test row, structured source references, and concise metadata. The file shape should intentionally mirror the Feature Catalog snippet pattern so operators can move between the catalog and the playbook without relearning the document structure.
@@ -302,7 +302,7 @@ Running a read-only consistency audit across the implementation and three skill 
   • Compare the implementation against each of the seven requested alignment checks and capture evidence
   • Return findings in the requested findings-first format with severity, file list, evidence, and recommendations
 exec
-/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-code-opencode/references/typescript/style_guide.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-code-skilled/references/typescript/style_guide.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 title: TypeScript Style Guide
 description: Formatting standards and naming conventions for TypeScript files in the OpenCode development environment.
@@ -325,7 +325,7 @@ Defines consistent styling rules for TypeScript files to ensure readability, mai
 
 exec
 /bin/zsh -lc "sed -n '1,260p' .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/types/session-types.ts .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/utils/importance-tiers.ts .opencode/skills/sk-code-opencode/references/typescript/style_guide.md .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/types/session-types.ts .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-skilled/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/utils/importance-tiers.ts .opencode/skills/sk-code-skilled/references/typescript/style_guide.md .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 title: YAML Frontmatter Templates
 description: Templates and validation rules for YAML frontmatter across all document types in the OpenCode ecosystem.
@@ -347,15 +347,15 @@ Templates and validation rules for YAML frontmatter by document type.
 ```yaml
 ---
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 wc: .opencode/skills/system-spec-kit/scripts/utils/importance-tiers.ts: open: No such file or directory
     1217 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts
      534 .opencode/skills/system-spec-kit/scripts/types/session-types.ts
      845 .opencode/skills/system-spec-kit/SKILL.md
-     703 .opencode/skills/sk-code-opencode/SKILL.md
+     703 .opencode/skills/sk-code-skilled/SKILL.md
      856 .opencode/skills/sk-doc/SKILL.md
-     705 .opencode/skills/sk-code-opencode/references/typescript/style_guide.md
-     571 .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md
+     705 .opencode/skills/sk-code-skilled/references/typescript/style_guide.md
+     571 .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md
      796 .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md
     6227 total
  succeeded in 0ms:
@@ -383,9 +383,9 @@ exec
 /bin/zsh -lc "rg --files .opencode/skills/system-spec-kit/scripts | rg 'importance-tiers\\.ts"'$'"'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public exited 1 in 0ms:
 
 exec
-/bin/zsh -lc 'rg -n "default export|named export|barrel|index.ts|export patterns|export style|export all|re-export" .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-code-opencode/references/typescript/style_guide.md .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:191:**Legacy Exception**: `IEmbeddingProvider` and `IVectorStore` retain their `I` prefix for backward compatibility with re-export aliases across the codebase. All NEW interfaces omit the prefix. This exception is documented in the migration plan (Decision D5).
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:304:vector-index.ts
+/bin/zsh -lc 'rg -n "default export|named export|barrel|index.ts|export patterns|export style|export all|re-export" .opencode/skills/sk-code-skilled/SKILL.md .opencode/skills/sk-code-skilled/references/typescript/style_guide.md .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:191:**Legacy Exception**: `IEmbeddingProvider` and `IVectorStore` retain their `I` prefix for backward compatibility with re-export aliases across the codebase. All NEW interfaces omit the prefix. This exception is documented in the migration plan (Decision D5).
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:304:vector-index.ts
 exec
 /bin/zsh -lc 'rg -n "Document Type|README|SKILL.md|Command|Knowledge|Spec|manual testing playbook|feature catalog|catalog|playbook|document types" .opencode/skills/sk-doc/SKILL.md .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md .opencode/skills/sk-doc/references/specific/*.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:3:description: Templates and validation rules for YAML frontmatter across all document types in the OpenCode ecosystem.
@@ -409,7 +409,7 @@ exec
 .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:117:| **README** | ⚪ Rarely | Only if in `.opencode/skills/*/` | — |
 .opencode/skills/sk-doc/assets/documentation/frontmatter_templates.md:122:- Knowledge files (reference documentation)
 exec
-/bin/zsh -lc 'rg -n "P0|P1|P2|priority" .opencode/skills/sk-code-opencode .opencode/skills/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "P0|P1|P2|priority" .opencode/skills/sk-code-skilled .opencode/skills/system-spec-kit' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:472:  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md). These are indexed with higher priority than regular memories. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
 .opencode/skills/system-spec-kit/mcp_server/context-server.ts:318:    // P1-11 FIX: Module-level guard avoids redundant calls on every tool invocation
 .opencode/skills/system-spec-kit/mcp_server/context-server.ts:369:                // P1-06 FIX: Recalculate token count from the full envelope
@@ -422,14 +422,14 @@ exec
 .opencode/skills/system-spec-kit/mcp_server/context-server.ts:993:    // P0-3: Async ingestion job queue initialization + crash recovery reset.
 .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1008:    // P1-7: Optional real-time markdown watcher for automatic re-indexing.
 .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1052:  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:23:| P0 | HARD BLOCKER | Must fix before commit |
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:24:| P1 | Required | Must fix or get explicit approval |
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:25:| P2 | Recommended | Can defer with justification |
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:31:## 2. P0 - HARD BLOCKERS
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:122:## 3. P1 - REQUIRED
-.opencode/skills/sk-code-opencode/assets/checklists/shell_checklist.md:222:## 4. P2 - RECOMMENDED
-.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md:23:| P0 | HARD BLOCKER | Must fix before commit |
-.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md:24:| P1 | Required | Must fix or get explicit approval |
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:23:| P0 | HARD BLOCKER | Must fix before commit |
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:24:| P1 | Required | Must fix or get explicit approval |
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:25:| P2 | Recommended | Can defer with justification |
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:31:## 2. P0 - HARD BLOCKERS
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:122:## 3. P1 - REQUIRED
+.opencode/skills/sk-code-skilled/assets/checklists/shell_checklist.md:222:## 4. P2 - RECOMMENDED
+.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md:23:| P0 | HARD BLOCKER | Must fix before commit |
+.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md:24:| P1 | Required | Must fix or get explicit approval |
 exec
 /bin/zsh -lc 'rg -n "importance_tier|importance tier|critical|important|normal|low|constitutional|temporary|deprecated" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/system-spec-kit/references .opencode/skills/system-spec-kit/scripts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/system-spec-kit/SKILL.md:3:description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, and Spec Kit Memory for context preservation. Mandatory for all file modifications."
@@ -630,7 +630,7 @@ def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_i
     selected = [ranked[0][0]]
     if len(ranked) > 1:
 exec
-/bin/zsh -lc "sed -n '261,520p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '261,520p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '521,845p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
         ├─ Fall back to keyword matching
         └─ Prompt user if ambiguous
@@ -676,7 +676,7 @@ Memory files are always saved to the child folder's `memory/` directory (e.g., `
 exec
 /bin/zsh -lc "sed -n '521,856p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '521,703p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '521,703p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '261,520p' .opencode/skills/sk-doc/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
 // MODULE: Importance Tiers
@@ -795,7 +795,7 @@ exec
     19	  ACTION?: string;
     20	  MODIFICATION_MAGNITUDE?: ModificationMagnitude;
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/references/typescript/style_guide.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/references/typescript/style_guide.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
      2	title: TypeScript Style Guide
      3	description: Formatting standards and naming conventions for TypeScript files in the OpenCode development environment.
@@ -951,27 +951,27 @@ exec
   1059	              || matchesSpecAffinityText(ex.userInput, specAffinityTargets)
   1060	            )
 exec
-/bin/zsh -lc "rg -n \"export default|default export|named export|barrel|index.ts|re-export|export \\{.*\\}|export \\*\" .opencode/skills/sk-code-opencode/references/typescript/style_guide.md .opencode/skills/sk-code-opencode/references/shared/*.md .opencode/skills/sk-code-opencode/assets/checklists/*.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
-.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md:135:export { function_name };
-.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md:136:export default function_name;
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:191:**Legacy Exception**: `IEmbeddingProvider` and `IVectorStore` retain their `I` prefix for backward compatibility with re-export aliases across the codebase. All NEW interfaces omit the prefix. This exception is documented in the migration plan (Decision D5).
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:304:vector-index.ts
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:537:export * from './module';
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:540:export { MemoryError, ErrorCode } from './errors/core';
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:643:  export default config;
-.opencode/skills/sk-code-opencode/references/typescript/style_guide.md:673:export { memorySearch, loadConfig };
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:165:├── index.ts                # Entry point, exports public API
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:182:### Barrel Files (index.ts)
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:184:Use barrel files to expose public API:
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:187:// lib/errors/index.ts - Barrel file
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:188:export { MemoryError, ErrorCodes, buildErrorResponse } from './core';
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:189:export { getRecoveryHint, ERROR_CODES } from './recovery-hints';
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:341:// Barrel file (index.ts) — re-exports from submodules
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:342:export { MemoryError, ErrorCode } from './errors/core';
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:343:export { VectorIndex } from './search/vector-index';
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:346:// Default export (use sparingly — named exports preferred)
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:347:export default class ContextServer { }
-.opencode/skills/sk-code-opencode/references/shared/code_organization.md:350:export * from './module';
+/bin/zsh -lc "rg -n \"export default|default export|named export|barrel|index.ts|re-export|export \\{.*\\}|export \\*\" .opencode/skills/sk-code-skilled/references/typescript/style_guide.md .opencode/skills/sk-code-skilled/references/shared/*.md .opencode/skills/sk-code-skilled/assets/checklists/*.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md:135:export { function_name };
+.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md:136:export default function_name;
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:191:**Legacy Exception**: `IEmbeddingProvider` and `IVectorStore` retain their `I` prefix for backward compatibility with re-export aliases across the codebase. All NEW interfaces omit the prefix. This exception is documented in the migration plan (Decision D5).
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:304:vector-index.ts
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:537:export * from './module';
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:540:export { MemoryError, ErrorCode } from './errors/core';
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:643:  export default config;
+.opencode/skills/sk-code-skilled/references/typescript/style_guide.md:673:export { memorySearch, loadConfig };
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:165:├── index.ts                # Entry point, exports public API
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:182:### Barrel Files (index.ts)
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:184:Use barrel files to expose public API:
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:187:// lib/errors/index.ts - Barrel file
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:188:export { MemoryError, ErrorCodes, buildErrorResponse } from './core';
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:189:export { getRecoveryHint, ERROR_CODES } from './recovery-hints';
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:341:// Barrel file (index.ts) — re-exports from submodules
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:342:export { MemoryError, ErrorCode } from './errors/core';
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:343:export { VectorIndex } from './search/vector-index';
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:346:// Default export (use sparingly — named exports preferred)
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:347:export default class ContextServer { }
+.opencode/skills/sk-code-skilled/references/shared/code_organization.md:350:export * from './module';
 exec
 /bin/zsh -lc "nl -ba .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts | sed -n '621,1040p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    621	  }
@@ -995,7 +995,7 @@ exec
    639	    }
    640	    if (s.messageCount !== undefined && (typeof s.messageCount !== 'number'
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '320,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/SKILL.md | sed -n '320,470p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    320	The recurring verifier at `scripts/verify_alignment_drift.py` applies severity-aware reporting:
    321	
    322	- Output format includes rule id and severity: `[{RULE_ID}] [{ERROR|WARN}]`.
@@ -1079,8 +1079,8 @@ exec
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:413:| **Memory Not Found** | Search returns no results | Check `memory_search({ specFolder: "..." })` |
 .opencode/skills/system-spec-kit/references/debugging/troubleshooting.md:429:  specFolder: "###-feature-name",
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/references/typescript/style_guide.md | sed -n '520,690p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/references/shared/code_organization.md | sed -n '180,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/references/typescript/style_guide.md | sed -n '520,690p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/references/shared/code_organization.md | sed -n '180,370p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    180	```
    181	
    182	### Barrel Files (index.ts)
@@ -1390,7 +1390,7 @@ Recommendation: Make one source of truth explicit and update the template docs t
 
 **ALIGN-004**  
 Severity: INCONSISTENT  
-Files involved: [session-types.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L1), [input-normalizer.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1), [style_guide.md#L31](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/typescript/style_guide.md#L31), [sk-code-opencode/SKILL.md#L341](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L341), [sk-code-opencode/SKILL.md#L412](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L412)  
+Files involved: [session-types.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L1), [input-normalizer.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1), [style_guide.md#L31](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/typescript/style_guide.md#L31), [sk-code-skilled/SKILL.md#L341](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L341), [sk-code-skilled/SKILL.md#L412](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L412)  
 Description: Both TypeScript files use ASCII dashed module banners, while the TypeScript standard requires the box-drawing `MODULE:` header format and treats header compliance as a P0 gate.  
 Recommendation: Normalize these files to the documented TypeScript header convention, or relax the standard so the current ASCII banner is explicitly allowed.
 
@@ -1402,10 +1402,10 @@ Recommendation: Import shared types from `session-types.ts` where shapes truly m
 
 **No Additional Findings**
 
-- `Q1`: Interface and type names themselves are aligned with `sk-code-opencode`. Examples like `SessionMetadata`, `GitMetadata`, and `DecisionRecord` are PascalCase and do not use new `I*` prefixes; the drift is in field-schema naming, not interface naming. See [session-types.ts#L104](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L104) and [style_guide.md#L171](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/typescript/style_guide.md#L171).
-- `Q3`: The checklist priority semantics are materially aligned. `system-spec-kit` says P0 cannot defer, P1 needs approval to defer, P2 can defer; `sk-code-opencode` says the same with slightly different wording. See [system-spec-kit/SKILL.md#L420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L420) and [sk-code-opencode/SKILL.md#L427](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L427).
+- `Q1`: Interface and type names themselves are aligned with `sk-code-skilled`. Examples like `SessionMetadata`, `GitMetadata`, and `DecisionRecord` are PascalCase and do not use new `I*` prefixes; the drift is in field-schema naming, not interface naming. See [session-types.ts#L104](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L104) and [style_guide.md#L171](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/typescript/style_guide.md#L171).
+- `Q3`: The checklist priority semantics are materially aligned. `system-spec-kit` says P0 cannot defer, P1 needs approval to defer, P2 can defer; `sk-code-skilled` says the same with slightly different wording. See [system-spec-kit/SKILL.md#L420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L420) and [sk-code-skilled/SKILL.md#L427](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L427).
 - `Q4`: I did not find a naming collision between `DataSource` values (`file`, `opencode-capture`, `simulation`, etc.) and sk-doc document types (`README`, `SKILL`, `Knowledge`, `Command`, `Spec`, `Generic`). See [input-normalizer.ts#L21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L21) and [sk-doc/SKILL.md#L300](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L300).
-- `Q7`: Export style is aligned. These modules use named exports, no default exports, and the codebase already uses barrel files where a public API is needed. See [input-normalizer.ts#L1207](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1207), [loaders/index.ts#L9](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/index.ts#L9), and [code_organization.md#L182](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/shared/code_organization.md#L182).
+- `Q7`: Export style is aligned. These modules use named exports, no default exports, and the codebase already uses barrel files where a public API is needed. See [input-normalizer.ts#L1207](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1207), [loaders/index.ts#L9](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/index.ts#L9), and [code_organization.md#L182](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/shared/code_organization.md#L182).
 tokens used
 401,719
 **Findings**
@@ -1430,7 +1430,7 @@ Recommendation: Make one source of truth explicit and update the template docs t
 
 **ALIGN-004**  
 Severity: INCONSISTENT  
-Files involved: [session-types.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L1), [input-normalizer.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1), [style_guide.md#L31](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/typescript/style_guide.md#L31), [sk-code-opencode/SKILL.md#L341](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L341), [sk-code-opencode/SKILL.md#L412](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L412)  
+Files involved: [session-types.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L1), [input-normalizer.ts#L1](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1), [style_guide.md#L31](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/typescript/style_guide.md#L31), [sk-code-skilled/SKILL.md#L341](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L341), [sk-code-skilled/SKILL.md#L412](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L412)  
 Description: Both TypeScript files use ASCII dashed module banners, while the TypeScript standard requires the box-drawing `MODULE:` header format and treats header compliance as a P0 gate.  
 Recommendation: Normalize these files to the documented TypeScript header convention, or relax the standard so the current ASCII banner is explicitly allowed.
 
@@ -1442,7 +1442,7 @@ Recommendation: Import shared types from `session-types.ts` where shapes truly m
 
 **No Additional Findings**
 
-- `Q1`: Interface and type names themselves are aligned with `sk-code-opencode`. Examples like `SessionMetadata`, `GitMetadata`, and `DecisionRecord` are PascalCase and do not use new `I*` prefixes; the drift is in field-schema naming, not interface naming. See [session-types.ts#L104](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L104) and [style_guide.md#L171](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/typescript/style_guide.md#L171).
-- `Q3`: The checklist priority semantics are materially aligned. `system-spec-kit` says P0 cannot defer, P1 needs approval to defer, P2 can defer; `sk-code-opencode` says the same with slightly different wording. See [system-spec-kit/SKILL.md#L420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L420) and [sk-code-opencode/SKILL.md#L427](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L427).
+- `Q1`: Interface and type names themselves are aligned with `sk-code-skilled`. Examples like `SessionMetadata`, `GitMetadata`, and `DecisionRecord` are PascalCase and do not use new `I*` prefixes; the drift is in field-schema naming, not interface naming. See [session-types.ts#L104](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/types/session-types.ts#L104) and [style_guide.md#L171](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/typescript/style_guide.md#L171).
+- `Q3`: The checklist priority semantics are materially aligned. `system-spec-kit` says P0 cannot defer, P1 needs approval to defer, P2 can defer; `sk-code-skilled` says the same with slightly different wording. See [system-spec-kit/SKILL.md#L420](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L420) and [sk-code-skilled/SKILL.md#L427](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L427).
 - `Q4`: I did not find a naming collision between `DataSource` values (`file`, `opencode-capture`, `simulation`, etc.) and sk-doc document types (`README`, `SKILL`, `Knowledge`, `Command`, `Spec`, `Generic`). See [input-normalizer.ts#L21](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L21) and [sk-doc/SKILL.md#L300](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L300).
-- `Q7`: Export style is aligned. These modules use named exports, no default exports, and the codebase already uses barrel files where a public API is needed. See [input-normalizer.ts#L1207](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1207), [loaders/index.ts#L9](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/index.ts#L9), and [code_organization.md#L182](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/references/shared/code_organization.md#L182).
+- `Q7`: Export style is aligned. These modules use named exports, no default exports, and the codebase already uses barrel files where a public API is needed. See [input-normalizer.ts#L1207](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts#L1207), [loaders/index.ts#L9](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/loaders/index.ts#L9), and [code_organization.md#L182](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/references/shared/code_organization.md#L182).

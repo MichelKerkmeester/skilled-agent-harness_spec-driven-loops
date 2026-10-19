@@ -1,4 +1,4 @@
-● Todo added: Review collect-session-data.ts against sk-code-opencode rules
+● Todo added: Review collect-session-data.ts against sk-code-skilled rules
 
 ● Read .opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts lines 1-300
   └ 300 lines read
@@ -17,7 +17,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** Header is `// MODULE: Collect Session Data` with spaces/colon format, not PascalCase module token.
 - **Expected Behavior:** Use PascalCase module header comment format (e.g., `// MODULE SessionExtractor`).
-- **Root Cause:** File header convention diverges from sk-code-opencode P0 rule.
+- **Root Cause:** File header convention diverges from sk-code-skilled P0 rule.
 - **Suggested Fix:** Replace top header with a single-line PascalCase module marker, e.g. `// MODULE CollectSessionData`.
 - **Effort:** TRIVIAL (<5 min)
 

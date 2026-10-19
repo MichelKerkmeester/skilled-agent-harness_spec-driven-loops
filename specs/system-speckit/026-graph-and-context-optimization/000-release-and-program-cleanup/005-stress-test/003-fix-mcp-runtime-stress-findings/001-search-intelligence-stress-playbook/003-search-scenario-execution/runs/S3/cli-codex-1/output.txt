@@ -2856,7 +2856,7 @@ rg: specs: No such file or directory (os error 2)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/deep-research-dashboard.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/findings-registry.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements/research/002-advisor-hook-followup-research/deep-research-state.jsonl
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/skill-advisor-sk-code-opencode-audit.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/skill-advisor-sk-code-skilled-audit.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/tasks.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/description.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-gemini/evidence/CG-003/meta-bad.txt
@@ -3224,7 +3224,7 @@ rg: specs: No such file or directory (os error 2)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-advisor-setup-command/review-followup/deep-review-config.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-opencode/evidence/CO-024/results.txt
 .opencode/specs/system-spec-kit/z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/004-opencode-mnemosyne-main/research/deep-research-strategy.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-opencode-audit-report.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-skilled-audit-report.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/003-code-graph-hook-improvements/research/013-code-graph-hook-improvements-pt-02/deep-research-strategy.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin/scratch/area-f-notes.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/003-smart-remediation-opencode-plugin/scratch/area-de-notes.md
@@ -3283,7 +3283,7 @@ rg: specs: No such file or directory (os error 2)
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/codex-runner.sh
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/readme-cleanup-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/remediation-runner.sh
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-opencode-audit-prompt.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-skilled-audit-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-gemini/evidence/CG-007/output.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-gemini/evidence/CG-007/meta.txt
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/011-manual-testing-playbook-coverage-and-run/scratch/cli-playbook-results/cli-gemini/evidence/CG-007/raw.txt

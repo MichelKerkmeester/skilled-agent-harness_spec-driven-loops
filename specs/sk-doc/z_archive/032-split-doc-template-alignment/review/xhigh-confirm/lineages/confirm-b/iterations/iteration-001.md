@@ -21,8 +21,8 @@ Correctness: replay the complete structural contract and directly confirm the fo
 
 - Full configured corpus: 163 Git-tracked Markdown paths under the five existing reference/asset roots (136 reference paths, 27 asset paths, including six README files).
 - Canonical authorities: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:55-81`, `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-109`, and `.opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175`.
-- Direct remediation replay: `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-31`, `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:14-30`, `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10`, and `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:65-78`.
-- Intro evidence: `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20`, `.opencode/skills/sk-code/code-opencode/references/workflow_implement.md:14-20`, `.opencode/skills/sk-code/code-opencode/references/workflow_verify.md:14-20`, their three code-webflow symlink aliases, and `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23`.
+- Direct remediation replay: `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-31`, `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:14-30`, `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10`, and `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md:65-78`.
+- Intro evidence: `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20`, `.opencode/skills/sk-code/code-skilled/references/workflow_implement.md:14-20`, `.opencode/skills/sk-code/code-skilled/references/workflow_verify.md:14-20`, their three code-webflow symlink aliases, and `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23`.
 
 ## Findings - New
 
@@ -36,7 +36,7 @@ None.
 
 ### P2 Findings
 
-1. **F001: Seven lexical paths still exceed the one-to-two-sentence intro contract** -- `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20` -- The shared debugging, implementation, and verification references each use three introductory sentences and are exposed through both code-opencode and code-webflow symlink paths; the CSS quality reference also uses three sentences. R3 requires a one-to-two-sentence intro before Overview [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`], and the reference template repeats that limit [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:56-87`].
+1. **F001: Seven lexical paths still exceed the one-to-two-sentence intro contract** -- `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20` -- The shared debugging, implementation, and verification references each use three introductory sentences and are exposed through both code-skilled and code-webflow symlink paths; the CSS quality reference also uses three sentences. R3 requires a one-to-two-sentence intro before Overview [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`], and the reference template repeats that limit [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:56-87`].
    - Finding class: `class-of-bug`
    - Scope proof: a full-corpus opening-shape scan isolated seven lexical paths representing four resolved documents; all other target intros satisfy the sentence limit.
    - Affected surface hints: `shared workflow references`, `code-webflow CSS quality reference`, `reference template conformance`

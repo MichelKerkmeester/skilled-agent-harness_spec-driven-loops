@@ -110,13 +110,13 @@ sk-code	webflow	RESOLVED	sk-code	0.587847	sk-code-webflow	ROUTE	sk-code-webflow	
 sk-code	frontend	RESOLVED	sk-code	0.637197	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	cdn	RESOLVED	sk-code	0.619733	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	browser test	RESOLVED	sk-code	0.720553	sk-code-webflow	ROUTE	sk-code-webflow	compiled
-sk-code	opencode	RESOLVED	sk-code	0.70898	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	system code	RESOLVED	sk-code	0.763829	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	mcp	RESOLVED	sk-code	0.541933	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	typescript	RESOLVED	sk-code	0.637197	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	python	RESOLVED	sk-code	0.619733	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	shell	RESOLVED	sk-code	0.513333	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	jsonc	RESOLVED	sk-code	0.521192	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	opencode	RESOLVED	sk-code	0.70898	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	system code	RESOLVED	sk-code	0.763829	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	mcp	RESOLVED	sk-code	0.541933	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	typescript	RESOLVED	sk-code	0.637197	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	python	RESOLVED	sk-code	0.619733	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	shell	RESOLVED	sk-code	0.513333	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	jsonc	RESOLVED	sk-code	0.521192	sk-code-skilled	ROUTE	sk-code-skilled	compiled
 sk-code	alignment verifier	RESOLVED	sk-code	0.591194	sk-code-quality	ROUTE	sk-code-quality	compiled
 sk-code	motion.dev integration	RESOLVED	sk-code	0.773126	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	motion-dev integration	RESOLVED	sk-code	0.773127	sk-code-webflow	ROUTE	sk-code-webflow	compiled
@@ -126,16 +126,16 @@ sk-code	motion api	RESOLVED	sk-code	0.650347	sk-code-webflow	ROUTE	sk-code-webfl
 sk-code	motion snippets	RESOLVED	sk-code	0.63843	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	motion decision matrix	RESOLVED	sk-code	0.830723	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	add set -euo pipefail	RESOLVED	sk-code	0.708937	sk-code-quality	ROUTE	sk-code-quality	compiled
-sk-code	console.error fallback	RESOLVED	sk-code	0.707583	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	argparse block	RESOLVED	sk-code	0.556267	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	vitest covering	RESOLVED	sk-code	0.7	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	stable jsonl keys	MULTI	sk-code	0.73205	sk-code-quality,sk-code-opencode	MULTI	sk-code-quality,sk-code-opencode	compiled
+sk-code	console.error fallback	RESOLVED	sk-code	0.707583	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	argparse block	RESOLVED	sk-code	0.556267	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	vitest covering	RESOLVED	sk-code	0.7	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	stable jsonl keys	MULTI	sk-code	0.73205	sk-code-quality,sk-code-skilled	MULTI	sk-code-quality,sk-code-skilled	compiled
 sk-code	lenis smooth-scroll	RESOLVED	sk-code	0.717464	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	gsap timeline	RESOLVED	sk-code	0.564125	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	hls.js video	RESOLVED	sk-code	0.606667	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	intersectionobserver gate	RESOLVED	sk-code	0.60141	sk-code-webflow	ROUTE	sk-code-webflow	compiled
-sk-code	build a tiny script	RESOLVED	sk-code	0.729666	sk-code-opencode	ROUTE	sk-code-opencode	compiled
-sk-code	tiny script that counts	RESOLVED	sk-code	0.707859	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	build a tiny script	RESOLVED	sk-code	0.729666	sk-code-skilled	ROUTE	sk-code-skilled	compiled
+sk-code	tiny script that counts	RESOLVED	sk-code	0.707859	sk-code-skilled	ROUTE	sk-code-skilled	compiled
 sk-code	code review	RESOLVED	sk-code	0.846794	sk-code-review	ROUTE	sk-code-review	compiled
 sk-code	pr review	RESOLVED	sk-code	0.778564	sk-code-review	ROUTE	sk-code-review	compiled
 sk-code	security review	RESOLVED	sk-code	0.760364	sk-code-review	ROUTE	sk-code-review	compiled
@@ -159,13 +159,13 @@ sk-code	mobile cli source conventions	RESOLVED	sk-code	0.867034	sk-code-mobile-c
 sk-code	sk-code	DEFERRED	sk-code	0.641673		DEFER		compiled
 sk-code	surface-aware code implementation	DEFERRED	sk-code	0.806527		DEFER		compiled
 sk-code	frontend implementation standards	RESOLVED	sk-code	0.77816	sk-code-webflow	ROUTE	sk-code-webflow	compiled
-sk-code	opencode typescript verification	RESOLVED	sk-code	0.83116	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	opencode typescript verification	RESOLVED	sk-code	0.83116	sk-code-skilled	ROUTE	sk-code-skilled	compiled
 sk-code	motion animation integration	RESOLVED	sk-code	0.851462	sk-code-webflow	ROUTE	sk-code-webflow	compiled
 sk-code	stack-specific code quality gate	RESOLVED	sk-code	0.7911	sk-code-quality	ROUTE	sk-code-quality	compiled
 sk-code	language-specific verification commands	DEFERRED	sk-code	0.480427		DEFER		compiled
 sk-code	surface detection routing	DEFERRED	sk-code	0.365493		DEFER		compiled
 sk-code	webflow frontend workflow	RESOLVED	sk-code	0.847681	sk-code-webflow	ROUTE	sk-code-webflow	compiled
-sk-code	opencode system code workflow	RESOLVED	sk-code	0.913455	sk-code-opencode	ROUTE	sk-code-opencode	compiled
+sk-code	opencode system code workflow	RESOLVED	sk-code	0.913455	sk-code-skilled	ROUTE	sk-code-skilled	compiled
 sk-code	alignment verifier workflow	RESOLVED	sk-code	0.785093	sk-code-quality	ROUTE	sk-code-quality	compiled
 sk-code	code quality gate	RESOLVED	sk-code	0.864819	sk-code-quality	ROUTE	sk-code-quality	compiled
 sk-code	verification commands	DEFERRED	sk-code	0.50376		DEFER		compiled

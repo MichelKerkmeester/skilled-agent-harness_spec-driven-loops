@@ -1,0 +1,8 @@
+{
+  "hook_event_name": "on_session_finalize",
+  "tool_name": null,
+  "tool_input": null,
+  "session_id": "session-redacted",
+  "cwd": "<repo>",
+  "extra": {}
+}

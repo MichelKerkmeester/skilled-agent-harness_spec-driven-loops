@@ -20,7 +20,7 @@ Judge each artifact against its sk-doc authoring mode contract, read from `.skil
 - `sk-create-changelog/` for both changelogs
 - the Human Voice Rules in `sk-create-with-human-voice/` for all prose
 
-Judge code against `.skilled/skills/sk-code/sk-code-opencode/`: SKILL.md section 3, the
+Judge code against `.skilled/skills/sk-code/sk-code-skilled/`: SKILL.md section 3, the
 JavaScript and shell checklists in `assets/checklists/`, and the shared references.
 
 Check that every place in the repo that lists doctor commands, sk-git surfaces or the

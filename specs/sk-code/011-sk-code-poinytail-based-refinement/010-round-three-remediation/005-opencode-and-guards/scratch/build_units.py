@@ -14,7 +14,7 @@ import sys
 
 FOLDER = "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards"
 UNITS_DIR = FOLDER + "/scratch/units"
-OC = ".skilled/skills/sk-code/sk-code-opencode"
+OC = ".skilled/skills/sk-code/sk-code-skilled"
 GUARD = OC + "/assets/scripts/verify_router_sync.cjs"
 GUARD_TEST = OC + "/scripts/tests/verify_router_sync.test.cjs"
 UMBRELLA = OC + "/scripts/run-all-drift-guards.sh"
@@ -152,14 +152,14 @@ edit("Add two leg 2 tests to the router-sync guard test.", GUARD_TEST,
 function buildLegTwoHub(t, controls, defaults = []) {
   const { hub, guard } = buildHub(t);
   const parentMap = [
-    '"DEMO": ["sk-code-webflow/references/w.md", "sk-code-opencode/references/o.md",',
+    '"DEMO": ["sk-code-webflow/references/w.md", "sk-code-skilled/references/o.md",',
     '"shared/references/control.md", "shared/references/undeclared.md", "sk-code-review/assets/leaf.md"],',
   ].join(' ');
   const block = controls.map((c) => `    "${c}",`).join('\\n');
   const preamble = defaults.map((c) => `    "${c}",`).join('\\n');
   const router = `DEFAULT_RESOURCE = [\\n${preamble}\\n]\\nRESOURCE_MAP = {\\n  ${parentMap}\\n}\\n`;
   write(path.join(hub, 'ROUTER.md'), `${router}SHARED_CONTROL_RESOURCES = [\\n${block}\\n]\\n`);
-  for (const [surface, doc] of [['sk-code-webflow', 'w.md'], ['sk-code-opencode', 'o.md']]) {
+  for (const [surface, doc] of [['sk-code-webflow', 'w.md'], ['sk-code-skilled', 'o.md']]) {
     write(path.join(hub, surface, 'SKILL.md'), `RESOURCE_MAP = {\\n  "DEMO": ["references/${doc}"],\\n}\\n`);
     write(path.join(hub, surface, 'references', doc), `# ${doc}\\n`);
   }
@@ -205,12 +205,12 @@ edit("Count four guards in the umbrella header.", UMBRELLA,
 # tiers in the sk-code prose). Each was runnable only on its own.""",
      grepc("# sk-code has four drift guards", UMBRELLA), "1")
 edit("Name the checker path in the umbrella.", UMBRELLA,
-     """ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs"
+     """ROUTER_SYNC="${CODE_SKILLED_DIR}/assets/scripts/verify_router_sync.cjs"
 """,
-     """ROUTER_SYNC="${CODE_OPENCODE_DIR}/assets/scripts/verify_router_sync.cjs"
-DOC_CLAIMS="${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs"
+     """ROUTER_SYNC="${CODE_SKILLED_DIR}/assets/scripts/verify_router_sync.cjs"
+DOC_CLAIMS="${CODE_SKILLED_DIR}/assets/scripts/verify_doc_claims.cjs"
 """,
-     grepc('DOC_CLAIMS="${CODE_OPENCODE_DIR}/assets/scripts/verify_doc_claims.cjs"', UMBRELLA), "1")
+     grepc('DOC_CLAIMS="${CODE_SKILLED_DIR}/assets/scripts/verify_doc_claims.cjs"', UMBRELLA), "1")
 edit("Run the checker as the fourth guard.", UMBRELLA,
      """# and 4 in warn-only mode.
 
@@ -377,13 +377,13 @@ edit("Rename the two hand-off targets.", SKILL,
      "hand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.",
      grepc("to `sk-code-review` and author-side quality gates to `sk-code-quality`.", SKILL), "1")
 edit("Rename the packet in the routing-block intro.", SKILL,
-     "This block is the deterministic projection of code-opencode's own",
-     "This block is the deterministic projection of sk-code-opencode's own",
-     grepc("projection of sk-code-opencode's own", SKILL), "1")
+     "This block is the deterministic projection of code-skilled's own",
+     "This block is the deterministic projection of sk-code-skilled's own",
+     grepc("projection of sk-code-skilled's own", SKILL), "1")
 edit("Rename the packet in the routing-block comment.", SKILL,
-     "# code-opencode owns its intent -> reference/asset routing.",
-     "# sk-code-opencode owns its intent -> reference/asset routing.",
-     grepc("# sk-code-opencode owns its intent", SKILL), "1")
+     "# code-skilled owns its intent -> reference/asset routing.",
+     "# sk-code-skilled owns its intent -> reference/asset routing.",
+     grepc("# sk-code-skilled owns its intent", SKILL), "1")
 edit("Rename the sibling map in the routing-block comment.", SKILL,
      "the sibling code-webflow map plus the",
      "the sibling sk-code-webflow map plus the",
@@ -424,13 +424,13 @@ edit("Rename the sibling in the troubleshooting row.", README, "| Both this surf
 
 # ── scripts/README.md ───────────────────────────────────────────────────────
 edit("Rename the packet and count four guards in the overview.", SREADME,
-     "`scripts/` holds the one drift-guard entrypoint for the `code-opencode` mode. It runs three drift guards (alignment-drift, stack-folder, router-sync) in sequence",
-     "`scripts/` holds the one drift-guard entrypoint for the `sk-code-opencode` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence",
+     "`scripts/` holds the one drift-guard entrypoint for the `code-skilled` mode. It runs three drift guards (alignment-drift, stack-folder, router-sync) in sequence",
+     "`scripts/` holds the one drift-guard entrypoint for the `sk-code-skilled` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence",
      grepc("It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims)", SREADME), "1")
 edit("Rename the packet in check 3 of the overview.", SREADME,
-     "`leaf-manifest.json` and the code-opencode RESOURCE_MAP agree",
-     "`leaf-manifest.json` and the sk-code-opencode RESOURCE_MAP agree",
-     grepc("and the sk-code-opencode RESOURCE_MAP agree", SREADME), "1")
+     "`leaf-manifest.json` and the code-skilled RESOURCE_MAP agree",
+     "`leaf-manifest.json` and the sk-code-skilled RESOURCE_MAP agree",
+     grepc("and the sk-code-skilled RESOURCE_MAP agree", SREADME), "1")
 edit("Describe the doc-claims guard at the end of the overview.", SREADME,
      "covers the compiled side of (3) and (4), in CI only, in warn-only mode.",
      "covers the compiled side of (3) and (4), in CI only, in warn-only mode. The doc-claims guard (`assets/scripts/verify_doc_claims.cjs`) checks the sk-code prose: path references resolve, no retired packet name remains, every surface count matches the three-surface hub and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`.",
@@ -444,17 +444,17 @@ edit("Say the router-sync test now covers leg 2.", SREADME,
      "reports an unrouted doc, runs without `--checks` and proves check 2 reads the `ROUTER.md` shared-controls block.",
      grepc("proves check 2 reads the `ROUTER.md` shared-controls block.", SREADME), "1")
 edit("Add the doc-claims test row.", SREADME,
-     "Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`. |",
-     "Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`. |\n| `tests/verify_doc_claims.test.cjs` | Builds a throwaway hub and proves each check of `verify_doc_claims.cjs` passes on a clean tree and fails on its own known-bad input, and that an allowlisted line stays quiet. Run it with `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs`. |",
+     "Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs`. |",
+     "Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs`. |\n| `tests/verify_doc_claims.test.cjs` | Builds a throwaway hub and proves each check of `verify_doc_claims.cjs` passes on a clean tree and fails on its own known-bad input, and that an allowlisted line stays quiet. Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs`. |",
      grepc("| `tests/verify_doc_claims.test.cjs` |", SREADME), "1")
 edit("Expect four guards in the validation section.", SREADME,
      "Expected: a `PASS: router-sync` line, `run-all-drift-guards: all 3 guards PASSED` and exit code 0.",
      "Expected: a `PASS: router-sync` line, a `PASS: doc-claims` line, `run-all-drift-guards: all 4 guards PASSED` and exit code 0.",
      grepc("`run-all-drift-guards: all 4 guards PASSED`", SREADME), "1")
-edit("Rename the SKILL.md link label.", SREADME, "- [`code-opencode SKILL.md`](../SKILL.md)", "- [`sk-code-opencode SKILL.md`](../SKILL.md)",
-     grepc("- [`sk-code-opencode SKILL.md`](../SKILL.md)", SREADME), "1")
-edit("Rename the README.md link label.", SREADME, "- [`code-opencode README.md`](../README.md)", "- [`sk-code-opencode README.md`](../README.md)",
-     grepc("- [`sk-code-opencode README.md`](../README.md)", SREADME), "1")
+edit("Rename the SKILL.md link label.", SREADME, "- [`code-skilled SKILL.md`](../SKILL.md)", "- [`sk-code-skilled SKILL.md`](../SKILL.md)",
+     grepc("- [`sk-code-skilled SKILL.md`](../SKILL.md)", SREADME), "1")
+edit("Rename the README.md link label.", SREADME, "- [`code-skilled README.md`](../README.md)", "- [`sk-code-skilled README.md`](../README.md)",
+     grepc("- [`sk-code-skilled README.md`](../README.md)", SREADME), "1")
 
 # ── assets/scripts/README.md ────────────────────────────────────────────────
 edit("Count seven code files.", AREADME, "| Code files | 6 |", "| Code files | 7 |", grepc("| Code files | 7 |", AREADME), "1")
@@ -462,27 +462,27 @@ edit("Add the checker row before the router-sync row.", AREADME,
      "| `verify_router_sync.cjs` |",
      "| `verify_doc_claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve, no retired packet name remains, every surface count matches the three-surface hub and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`, with an allowlist for deliberate legacy names. Usage: `node verify_doc_claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]`. |\n| `verify_router_sync.cjs` |",
      grepc("| `verify_doc_claims.cjs` |", AREADME), "1")
-edit("Rename the packet in the stack-folder row.", AREADME, "Verifies code-opencode language reference folders", "Verifies sk-code-opencode language reference folders",
-     grepc("Verifies sk-code-opencode language reference folders", AREADME), "1")
+edit("Rename the packet in the stack-folder row.", AREADME, "Verifies code-skilled language reference folders", "Verifies sk-code-skilled language reference folders",
+     grepc("Verifies sk-code-skilled language reference folders", AREADME), "1")
 
 # ── alignment-verification-automation.md ────────────────────────────────────
-edit("Rename the packet in check 3.", AVA, "`leaf-manifest.json` and the code-opencode", "`leaf-manifest.json` and the sk-code-opencode",
-     grepc("`leaf-manifest.json` and the sk-code-opencode", AVA), "1")
-edit("Rename the packet in the section 6 heading.", AVA, "## 6. ALIGNMENT AUTHORITY INTERFACE (code-opencode)", "## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-opencode)",
-     grepc("## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-opencode)", AVA), "1")
-edit("Rename the packet in the section 6 opening.", AVA, "code-opencode has exactly one alignment source of truth", "sk-code-opencode has exactly one alignment source of truth",
-     grepc("sk-code-opencode has exactly one alignment source of truth", AVA), "1")
-edit("Rename the packet in the doc pointer item.", AVA, "This file plus the code-opencode `SKILL.md`", "This file plus the sk-code-opencode `SKILL.md`",
-     grepc("This file plus the sk-code-opencode `SKILL.md`", AVA), "1")
+edit("Rename the packet in check 3.", AVA, "`leaf-manifest.json` and the code-skilled", "`leaf-manifest.json` and the sk-code-skilled",
+     grepc("`leaf-manifest.json` and the sk-code-skilled", AVA), "1")
+edit("Rename the packet in the section 6 heading.", AVA, "## 6. ALIGNMENT AUTHORITY INTERFACE (code-skilled)", "## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-skilled)",
+     grepc("## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-skilled)", AVA), "1")
+edit("Rename the packet in the section 6 opening.", AVA, "code-skilled has exactly one alignment source of truth", "sk-code-skilled has exactly one alignment source of truth",
+     grepc("sk-code-skilled has exactly one alignment source of truth", AVA), "1")
+edit("Rename the packet in the doc pointer item.", AVA, "This file plus the code-skilled `SKILL.md`", "This file plus the sk-code-skilled `SKILL.md`",
+     grepc("This file plus the sk-code-skilled `SKILL.md`", AVA), "1")
 edit("Count four guards in the orchestrator item.", AVA, "runs all three drift guards and exits non-zero if any fails.", "runs all four drift guards and exits non-zero if any fails.",
      grepc("runs all four drift guards", AVA), "1")
-edit("Rename the packet in the extension rule.", AVA, "Any new check that needs code-opencode RESOURCE_MAP", "Any new check that needs sk-code-opencode RESOURCE_MAP",
-     grepc("needs sk-code-opencode RESOURCE_MAP", AVA), "1")
+edit("Rename the packet in the extension rule.", AVA, "Any new check that needs code-skilled RESOURCE_MAP", "Any new check that needs sk-code-skilled RESOURCE_MAP",
+     grepc("needs sk-code-skilled RESOURCE_MAP", AVA), "1")
 
 # ── Other references ────────────────────────────────────────────────────────
 edit("Rename the packet in the Rust layout note.", OC + "/references/shared/code-organization/directory-and-test-conventions.md",
-     "Rust code under `code-opencode` follows", "Rust code under `sk-code-opencode` follows",
-     grepc("Rust code under `sk-code-opencode` follows", OC + "/references/shared/code-organization/directory-and-test-conventions.md"), "1")
+     "Rust code under `code-skilled` follows", "Rust code under `sk-code-skilled` follows",
+     grepc("Rust code under `sk-code-skilled` follows", OC + "/references/shared/code-organization/directory-and-test-conventions.md"), "1")
 edit("Label the comment budget as the OpenCode setting and point to the shared rule.", NAC,
      "1. **Quantity limit:** Maximum 3 comments per 10 lines of code",
      "1. **Quantity limit (OpenCode surface setting):** Maximum 3 comments per 10 lines of code. This number is the OpenCode surface's budget. The comment-density rule it applies, and the rule that each surface sets its own budget, live in the shared [code style guide](../../../../shared/references/universal/code-style-guide.md).",
@@ -521,17 +521,17 @@ edit("Make the stale link label match its target.", JSG,
 
 # ── Playbook ────────────────────────────────────────────────────────────────
 PBR = PB + "/manual-testing-playbook.md"
-edit("Rename the packet in the playbook title.", PBR, "# code-opencode: Manual Testing Playbook", "# sk-code-opencode: Manual Testing Playbook",
-     grepc("# sk-code-opencode: Manual Testing Playbook", PBR), "1")
-edit("Rename the packet in the playbook intro.", PBR, "Routing-recall corpus for the `code-opencode` surface.", "Routing-recall corpus for the `sk-code-opencode` surface.",
-     grepc("for the `sk-code-opencode` surface.", PBR), "1")
+edit("Rename the packet in the playbook title.", PBR, "# code-skilled: Manual Testing Playbook", "# sk-code-skilled: Manual Testing Playbook",
+     grepc("# sk-code-skilled: Manual Testing Playbook", PBR), "1")
+edit("Rename the packet in the playbook intro.", PBR, "Routing-recall corpus for the `code-skilled` surface.", "Routing-recall corpus for the `sk-code-skilled` surface.",
+     grepc("for the `sk-code-skilled` surface.", PBR), "1")
 for s in ["authoring-verification/code-quality-gate.md", "authoring-verification/implementation-authoring.md",
           "authoring-verification/verification-alignment.md", "config-hooks/config-schema.md", "config-hooks/hooks-wiring.md",
           "language-standards/python-standards.md", "language-standards/rust-standards.md",
           "language-standards/shell-standards.md", "language-standards/typescript-standards.md"]:
     f = PB + "/" + s
-    edit("Rename the packet in the scenario group.", f, "- Group: code-opencode routing", "- Group: sk-code-opencode routing",
-         grepc("- Group: sk-code-opencode routing", f), "1")
+    edit("Rename the packet in the scenario group.", f, "- Group: code-skilled routing", "- Group: sk-code-skilled routing",
+         grepc("- Group: sk-code-skilled routing", f), "1")
 VA = PB + "/authoring-verification/verification-alignment.md"
 edit("Count the four drift guards in the scenario.", VA,
      "two drift guards (`verify_alignment_drift.py` and `verify_stack_folders.py`) run through",

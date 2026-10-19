@@ -32,7 +32,7 @@ Following them does not fail — it silently benchmarks the **wrong lane**.
 
 **Backticked/prose path refs (invisible to the link guard, but still wrong instructions):**
 - `sk-code/ROUTER.md:311` — tells readers to run the deleted `skill-benchmark/tests/sk-code-router-sync.vitest.ts`; the sk-code router block is now **unguarded**
-- `sk-code-opencode/references/shared/alignment-verification-automation.md:112` — calls that same deleted test "the equality authority" (new find; not just prose — a contract claim)
+- `sk-code-skilled/references/shared/alignment-verification-automation.md:112` — calls that same deleted test "the equality authority" (new find; not just prose — a contract claim)
 - `sk-code-quality/SKILL.md:140`, `sk-code-mobile-cli/SKILL.md:89` — justify design by "the deterministic skill-benchmark router-replay"
 - `sk-create-skill/references/skill/upgrading-a-skill-to-v4.md:222`, `references/parent-skill/compiled-routing-architecture.md:66`, `parent-skills-nested-packets.md:255`, `parent-hub-router-schema.md:30` — invoke/name deleted lane scripts and `/deep:skill-benchmark`
 - `sk-create-manual-testing-playbook/SKILL.md:285` + `assets/manual-testing-playbook-snippet-template.md:55-64,170-171` — "Lane C" contracts

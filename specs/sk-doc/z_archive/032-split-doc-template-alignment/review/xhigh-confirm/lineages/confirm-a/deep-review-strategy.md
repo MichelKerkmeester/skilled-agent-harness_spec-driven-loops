@@ -118,7 +118,7 @@ Review `.opencode/specs/sk-doc/032-split-doc-template-alignment` against its str
 
 ### Bounded Context Snapshot
 
-- Target pointers: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and all Markdown under the declared `code-opencode`, `code-webflow`, and `code-quality` reference/asset trees.
+- Target pointers: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and all Markdown under the declared `code-skilled`, `code-webflow`, and `code-quality` reference/asset trees.
 - Behavior claims: 163 files conform; all split names are snake_case; required frontmatter/version/overview structure is present; substantive content is preserved; renamed-file references resolve.
 - Reuse and conventions: create-skill resource templates and `validate_document.py` are the documented authorities.
 - Review risks and gaps: memory retrieval is unavailable; the packet notes that surface `SKILL.md` package checks and two pre-existing non-navigational artifacts are out of scope.
@@ -144,7 +144,7 @@ Review `.opencode/specs/sk-doc/032-split-doc-template-alignment` against its str
 | File or scope | Dimensions Reviewed | Last Iteration | Findings | Status |
 |---------------|---------------------|----------------|----------|--------|
 | `.opencode/specs/sk-doc/032-split-doc-template-alignment/*.md` | correctness, security, traceability, maintainability | 4 | 2 P2 | maintenance authority is explicit; stale follow-up prose and non-replayable evidence-row contracts remain |
-| `.opencode/skills/sk-code/code-opencode/{references,assets}/**/*.md` | correctness, security, traceability, maintainability | 4 | 0 | no new packet-caused maintenance blocker found by explicit-root stabilization search |
+| `.opencode/skills/sk-code/code-skilled/{references,assets}/**/*.md` | correctness, security, traceability, maintainability | 4 | 0 | no new packet-caused maintenance blocker found by explicit-root stabilization search |
 | `.opencode/skills/sk-code/code-webflow/{references,assets}/**/*.md` | correctness, security, traceability, maintainability | 4 | 1 P2 | P2-001 remains active and distinct; P2-002 counterevidence remains current |
 | `.opencode/skills/sk-code/code-quality/{references,assets}/**/*.md` | correctness, security, traceability, maintainability | 4 | 0 | three asset files remain the existing surface; absent references root is exhausted |
 

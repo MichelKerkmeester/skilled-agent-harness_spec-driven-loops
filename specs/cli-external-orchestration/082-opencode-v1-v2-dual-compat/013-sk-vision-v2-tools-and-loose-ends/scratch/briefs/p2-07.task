@@ -1,0 +1,18 @@
+ROLE: You make literal edits to two TypeScript files. Re-read each first. Make exactly these edits and nothing else.
+
+ACTION:
+
+1. In `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`, replace these three lines:
+
+      await registration.dispose();
+      await auto?.dispose();
+      throw error;
+
+with these two lines:
+
+      await Promise.allSettled([registration.dispose(), auto?.dispose()]);
+      throw error;
+
+2. In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts`, directly after the line `    await mkdirAsync(venv, { recursive: true });`, insert the line `    this.throwIfClosed();`.
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test 2>&1 | tail -5` and print the output verbatim, nothing else.

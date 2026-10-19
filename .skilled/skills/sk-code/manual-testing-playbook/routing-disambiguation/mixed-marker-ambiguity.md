@@ -1,7 +1,7 @@
 ---
 title: "RD-001: Mixed-Marker Ambiguity"
-description: "Verify sk-code asks for clarification (or applies a documented precedence rule) when WEBFLOW library markers and OPENCODE path markers co-occur in the same prompt."
-version: 1.5.2.0
+description: "Verify sk-code asks for clarification (or applies a documented precedence rule) when WEBFLOW library markers and SKILLED path markers co-occur in the same prompt."
+version: 1.5.3.0
 ---
 
 # RD-001: Mixed-Marker Ambiguity
@@ -10,12 +10,12 @@ version: 1.5.2.0
 
 This scenario verifies sk-code's behavior when surface detection is genuinely ambiguous: the prompt mentions a WEBFLOW library (e.g. Lenis) AND targets a file under `.skilled/`. Expected behavior is one of:
 
-A) Apply a documented precedence rule (e.g. "OPENCODE target path overrides WEBFLOW library marker").
+A) Apply a documented precedence rule (e.g. "SKILLED target path overrides WEBFLOW library marker").
 B) Ask the user for explicit clarification.
 
 Either is acceptable IF the chosen behavior is documented in SKILL.md. What is NOT acceptable: silently picking one without surfacing the conflict.
 
-> **Note**: This scenario was the validation target for F-NEW-001 from the 2026-05-04 deep-review iteration. SKILL.md smart router pseudocode previously had a precedence bug (WEBFLOW markers capturing OPENCODE-targeted prompts; unconditional `SURFACE="UNKNOWN"` overwriting prior matches). **REMEDIATED 2026-05-04**: pseudocode restructured with explicit `if/elif/else` precedence — OPENCODE target/CWD wins over WEBFLOW markers. This scenario now exercises the documented precedence (Outcome A).
+> **Note**: This scenario was the validation target for F-NEW-001 from the 2026-05-04 deep-review iteration. SKILL.md smart router pseudocode previously had a precedence bug (WEBFLOW markers capturing SKILLED-targeted prompts; unconditional `SURFACE="UNKNOWN"` overwriting prior matches). **REMEDIATED 2026-05-04**: pseudocode restructured with explicit `if/elif/else` precedence — SKILLED target/CWD wins over WEBFLOW markers. This scenario now exercises the documented precedence (Outcome A).
 
 ---
 
@@ -32,13 +32,13 @@ Prompt: `Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-serve
 
 **Markers present**:
 - WEBFLOW library marker: `Lenis` (matches `shared/references/stack-detection.md:30-37`)
-- OPENCODE path marker: the `.skilled/` prefix of the prompt's target path
+- SKILLED path marker: the `.skilled/` prefix of the prompt's target path
 
 **Expected behavior** (one of two acceptable outcomes):
 
-**Outcome A (documented precedence)**: SKILL.md states OPENCODE target path overrides WEBFLOW library marker. sk-code reports `SURFACE: OPENCODE`, `LANGUAGE: JAVASCRIPT`, loads `sk-code-opencode/references/javascript/*` + shared. Does NOT load `sk-code-webflow/references/*`.
+**Outcome A (documented precedence)**: SKILL.md states SKILLED target path overrides WEBFLOW library marker. sk-code reports `SURFACE: SKILLED`, `LANGUAGE: JAVASCRIPT`, loads `sk-code-skilled/references/javascript/*` + shared. Does NOT load `sk-code-webflow/references/*`.
 
-**Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use OPENCODE) or a Webflow shipping artifact you happened to place under `.skilled/` (use WEBFLOW)?"
+**Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use SKILLED) or a Webflow shipping artifact you happened to place under `.skilled/` (use WEBFLOW)?"
 
 **Unacceptable**: Silent choice (e.g. WEBFLOW silently wins because of marker order in pseudocode) without documenting the precedence.
 
@@ -60,12 +60,12 @@ Prompt: `Add Lenis smooth-scroll to .skilled/skills/sk-doc/scripts/preview-serve
 
 ### Expected Signals
 
-Expected signals: surface resolves to `OPENCODE` with a documented precedence rule (Outcome A) or to `AMBIGUOUS` with an explicit clarification question (Outcome B); no silent choice.
+Expected signals: surface resolves to `SKILLED` with a documented precedence rule (Outcome A) or to `AMBIGUOUS` with an explicit clarification question (Outcome B); no silent choice.
 
 ### Pass/Fail Criteria
 
 - **PASS** iff:
-  - **Outcome A**: surface == OPENCODE AND no `sk-code-webflow/references/*` loaded AND SKILL.md documents this precedence.
+  - **Outcome A**: surface == SKILLED AND no `sk-code-webflow/references/*` loaded AND SKILL.md documents this precedence.
   - **Outcome B**: surface reported as AMBIGUOUS AND a clarification question is asked AND no surface-specific refs are loaded yet.
 - **FAIL** iff: surface silently picked without surfacing the conflict AND no documented precedence exists in SKILL.md.
 
@@ -73,8 +73,8 @@ Evidence: `/tmp/skc-RD001-response.txt` (surface decision and clarification ques
 
 ### Failure Triage
 
-1. If WEBFLOW silently wins (current state per F-NEW-001): this is the documented bug. Fix the smart router pseudocode in SKILL.md to make OPENCODE target/CWD detection an explicit override before workspace-wide WEBFLOW marker checks.
-2. If OPENCODE silently wins WITH no documentation: add the precedence rule to SKILL.md "Smart Router" section.
+1. If WEBFLOW silently wins (current state per F-NEW-001): this is the documented bug. Fix the smart router pseudocode in SKILL.md to make SKILLED target/CWD detection an explicit override before workspace-wide WEBFLOW marker checks.
+2. If SKILLED silently wins WITH no documentation: add the precedence rule to SKILL.md "Smart Router" section.
 3. If AMBIGUOUS but no clarification question: the router is detecting ambiguity but not surfacing it. Verify the disambiguation-question rule is documented.
 
 ---

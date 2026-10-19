@@ -4,18 +4,18 @@
     "005-stress-test-expansion-alignment",
     "stress test alignment",
     "stress test coverage",
-    "sk-code-opencode stress test"
+    "sk-code-skilled stress test"
   ],
   "contextType": "implementation",
   "importance_tier": "important",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
-  "description": "stresstest had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map",
+  "description": "stresstest had useful coverage but uneven sk-code-skilled alignment and no scoped catalog coverage map",
   "keywords": [
     "stresstest",
     "useful",
     "coverage",
     "uneven",
-    "sk-code-opencode",
+    "sk-code-skilled",
     "alignment",
     "scoped",
     "catalog",

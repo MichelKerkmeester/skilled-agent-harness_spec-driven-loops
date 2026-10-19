@@ -74,8 +74,8 @@ def case(cid, prompt, modes, hint=None):
 
 WF5 = "Add an integration test and unit test coverage plan for a Webflow animation, including vitest checks."
 WF13 = "Check a Webflow TypeScript .ts helper and CommonJS .cjs bundle wrapper for docstring and language standards before publish."
-OW = ["sk-code-opencode", "sk-code-webflow"]
-WO = ["sk-code-webflow", "sk-code-opencode"]
+OW = ["sk-code-skilled", "sk-code-webflow"]
+WO = ["sk-code-webflow", "sk-code-skilled"]
 new_cases = "\n".join([
     case("surface-hint-absent-webflow-testing", WF5, OW),
     case("surface-hint-webflow-testing", WF5, WO, "WEBFLOW"),

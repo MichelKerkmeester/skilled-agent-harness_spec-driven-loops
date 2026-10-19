@@ -53,7 +53,7 @@ playbook-package validator, and the per-document section validator. Each is run 
 `sk-code-obsidian` and its result recorded exactly. Where a result looks like a defect on first read
 — the package validator's `standalone` classification, the document validator's three
 `missing_required_section` failures — the same validator is re-run against the sibling SURFACE
-packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`) before any finding is written
+packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`) before any finding is written
 down as unique to this packet. The `standalone` classification turns out to be a validator limitation
 against hub SURFACE packets generally (they carry no `graph-metadata.json` by design). The missing
 sections turn out to be a shared, structural divergence across the entire SURFACE packet class, with
@@ -84,7 +84,7 @@ satisfying the validator's generic vocabulary in isolation.
       `missing_required_section` failures (`SKILL.md`; `manual-testing-playbook.md`;
       `references/quality/doc-quality-gate.md`).
 - [x] The identical document validator re-run against `sk-code-mobile-cli` (3 missing),
-      `sk-code-webflow` (4 missing), `sk-code-opencode` (4 missing), and the template's own playbook
+      `sk-code-webflow` (4 missing), `sk-code-skilled` (4 missing), and the template's own playbook
       index, confirming the divergence is class-wide and this packet is joint-best.
 - [x] The decision to leave `## 1. WHEN THE HUB BUNDLES THIS` unrenamed recorded with its reasoning
       and its explicit reversal condition.
@@ -120,7 +120,7 @@ problem.
   section names it does not find, not for the absence of the underlying content.
 - **Cross-sibling comparison (the decisive step)**: the same `validate_document.py` pass run against
   every other SURFACE packet in the family. `sk-code-mobile-cli` shows 3 missing, `sk-code-webflow`
-  shows 4, `sk-code-opencode` shows 4, and the template's own playbook index fails identically. Every
+  shows 4, `sk-code-skilled` shows 4, and the template's own playbook index fails identically. Every
   SURFACE packet diverges the same way; this packet is joint-best of the four. This is what turns the
   012 audit from "fix these three files" into "record why these three files are not fixed here."
 - **Withheld fix, with a reversal condition**: renaming `## 1. WHEN THE HUB BUNDLES THIS` to a
@@ -161,7 +161,7 @@ recording every result and the reasoning behind each accepted-not-fixed finding.
 | Skill-package validation | Confirm the packet passes package-level structural checks | `validate_skill_package.py <sk-code-obsidian path>` (rc 0, PASS, `Detected kind: standalone` noted) |
 | Playbook-package validation | Confirm the manual-testing-playbook passes strict, fail-closed validation | `validate-playbook-package.cjs --package <playbook path>` (rc 0, PASS, strict on, tier=FAIL_CLOSED, scenarios=7, violations=0, warnings=0) |
 | Per-document section validation | Confirm every packet markdown against required sections | `validate_document.py` across every non-symlinked packet markdown (34 PASS, 3 `missing_required_section`) |
-| Cross-sibling comparison | Confirm whether the 3 failures are unique to this packet or class-wide | `validate_document.py` against `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-opencode` (4 missing), and the template's playbook index |
+| Cross-sibling comparison | Confirm whether the 3 failures are unique to this packet or class-wide | `validate_document.py` against `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-skilled` (4 missing), and the template's playbook index |
 
 <!-- /ANCHOR:testing -->
 ---
@@ -174,7 +174,7 @@ recording every result and the reasoning behind each accepted-not-fixed finding.
 | `sk-doc/sk-create-skill/scripts/validate_skill_package.py` | Internal | Green — rc 0 | The only tool that checks package-level structural conformance for this packet |
 | `sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Internal | Green — rc 0 | The only tool that checks the playbook package strictly, fail-closed |
 | `sk-doc/scripts/validate_document.py` (and `sk-doc/shared/scripts/validate_document.py`) | Internal | Green on 34/37 files — 3 known, class-wide `missing_required_section` findings | The only per-document section validator this runtime has; no `/doc:quality` command exists as an alternative |
-| Sibling SURFACE packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`) | Internal | Read-only comparison targets | Without this comparison, the 3 findings would be misclassified as unique defects instead of a class-wide, structural divergence |
+| Sibling SURFACE packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`) | Internal | Read-only comparison targets | Without this comparison, the 3 findings would be misclassified as unique defects instead of a class-wide, structural divergence |
 
 <!-- /ANCHOR:dependencies -->
 ---

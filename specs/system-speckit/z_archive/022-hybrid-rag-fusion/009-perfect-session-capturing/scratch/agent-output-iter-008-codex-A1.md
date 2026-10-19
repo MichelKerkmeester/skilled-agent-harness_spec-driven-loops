@@ -503,7 +503,7 @@ exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---

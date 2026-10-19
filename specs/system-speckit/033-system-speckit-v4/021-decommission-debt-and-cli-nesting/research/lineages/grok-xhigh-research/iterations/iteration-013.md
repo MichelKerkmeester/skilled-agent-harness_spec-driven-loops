@@ -13,7 +13,7 @@ This packet has not claimed complete. F-I9-004's grandfather worry does not fire
 
 ### F-I13-002 — T009's written purpose is standards and READMEs, not a second decommission. CONFIRMED. P2
 Purpose: recorded debt fixed, one data folder under runtime, every code folder conforms and carries a current-state code README. [SOURCE: .opencode/specs/system-speckit/054-decommission-debt-fixes/spec.md:36-39]
-T009 text: align `runtime/` and `scripts/` with `sk-code-opencode` and refresh every code README. [SOURCE: .opencode/specs/system-speckit/054-decommission-debt-fixes/tasks.md:52]
+T009 text: align `runtime/` and `scripts/` with `sk-code-skilled` and refresh every code README. [SOURCE: .opencode/specs/system-speckit/054-decommission-debt-fixes/tasks.md:52]
 INFERRED: leftover `rebuildAutoEntities`, `sqlite-vec`, and the ignored `mcp-server/` tree are D6 residue the 052 LOG deferred or did not see. They fit D6 ("a doc or hook that describes or serves a surface that no longer exists") better than T009's README contract. Folding them into T009 without an amendment would hide them as "alignment".
 Smallest fix: keep T009 as written; add explicit 054 follow-on rows (or a new packet) for leftover sqlite writers, unused vector deps, leftover mcp-server directory, and doctor-update snapshot paths.
 

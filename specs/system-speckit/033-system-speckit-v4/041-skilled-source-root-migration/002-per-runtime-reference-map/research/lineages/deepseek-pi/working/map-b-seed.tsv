@@ -149,7 +149,7 @@ path	hit_lines	area	subarea	ext	md_fenced_lines	md_inline_lines
 .hermes/skills/mcp-tooling/SKILL.md	2	runtime:hermes	skills	md	0	2
 .hermes/skills/sk-code-mobile-cli/SKILL.md	1	runtime:hermes	skills	md	0	1
 .hermes/skills/sk-code-obsidian/SKILL.md	2	runtime:hermes	skills	md	0	2
-.hermes/skills/sk-code-opencode/SKILL.md	6	runtime:hermes	skills	md	0	6
+.hermes/skills/sk-code-skilled/SKILL.md	6	runtime:hermes	skills	md	0	6
 .hermes/skills/sk-code-quality/SKILL.md	13	runtime:hermes	skills	md	0	13
 .hermes/skills/sk-code-review/SKILL.md	5	runtime:hermes	skills	md	1	4
 .hermes/skills/sk-code-webflow/SKILL.md	1	runtime:hermes	skills	md	0	1

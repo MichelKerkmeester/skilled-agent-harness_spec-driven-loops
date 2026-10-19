@@ -1,10 +1,10 @@
 ---
 title: "Skill-Advisor Standards Alignment"
-description: "Resolved a conflict between the sk-code-opencode CommonJS rule and the OpenCode plugin ESM requirement. Added an OpenCode Plugin Exemption Tier to the JavaScript quality standards and aligned the skill-advisor plugin file with documentation standards."
+description: "Resolved a conflict between the sk-code-skilled CommonJS rule and the OpenCode plugin ESM requirement. Added an OpenCode Plugin Exemption Tier to the JavaScript quality standards and aligned the skill-advisor plugin file with documentation standards."
 trigger_phrases:
   - "skill advisor standards alignment"
   - "opencode plugin exemption tier"
-  - "sk-code-opencode esm exemption"
+  - "sk-code-skilled esm exemption"
   - "skill advisor jsdoc"
   - "skill advisor box header"
   - "spec kit internals advisor standards alignment changelog"
@@ -22,7 +22,7 @@ contextType: "implementation"
 
 ### Summary
 
-The packet resolved a conflict between the sk-code-opencode JavaScript CommonJS rule and the OpenCode plugin loader contract. The loader requires ESM default exports, which the existing CommonJS rule prohibited. This packet added an OpenCode Plugin Exemption Tier to the quality standards reference, annotated the affected checklist item, and updated the skill-advisor plugin file with standard header fields, section dividers, and JSDoc. No behavior or logic changed.
+The packet resolved a conflict between the sk-code-skilled JavaScript CommonJS rule and the OpenCode plugin loader contract. The loader requires ESM default exports, which the existing CommonJS rule prohibited. This packet added an OpenCode Plugin Exemption Tier to the quality standards reference, annotated the affected checklist item, and updated the skill-advisor plugin file with standard header fields, section dividers, and JSDoc. No behavior or logic changed.
 
 ### Added
 
@@ -53,8 +53,8 @@ The packet resolved a conflict between the sk-code-opencode JavaScript CommonJS 
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` | Modified | Added §10 OpenCode Plugin Exemption Tier, renumbered Related Resources from §10 to §11 |
-| `.opencode/skills/sk-code-opencode/references/javascript/javascript_checklist.md` | Modified | Added CommonJS P1 checklist exception note pointing at the new exemption |
+| `.opencode/skills/sk-code-skilled/references/javascript/quality_standards.md` | Modified | Added §10 OpenCode Plugin Exemption Tier, renumbered Related Resources from §10 to §11 |
+| `.opencode/skills/sk-code-skilled/references/javascript/javascript_checklist.md` | Modified | Added CommonJS P1 checklist exception note pointing at the new exemption |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modified | Added COMPONENT/PURPOSE header fields, 6 section dividers, 7 JSDoc blocks |
 
 ### Follow-Ups

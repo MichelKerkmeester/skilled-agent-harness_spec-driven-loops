@@ -46,18 +46,15 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
       "benchmark/reports/README.md",
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".hermes/skills/cli-classifier/SKILL.md",
-      ".hermes/skills/cli-deem/SKILL.md",
       ".skilled/skills/cli-classifier/SKILL.md",
       ".skilled/skills/cli-classifier/mode-registry.json",
       ".skilled/skills/cli-classifier/graph-metadata.json",
       ".skilled/skills/cli-classifier/leaf-manifest.json",
-      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       "scratch/build/build-evidence.md",
       "scratch/build/replay/stage2-replay.cjs"
@@ -91,18 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
         "source": "derived"
       },
       {
@@ -145,6 +130,12 @@
         "name": "trigger-index.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json",
         "source": "derived"
       },
       {
@@ -206,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
     "created_at": "2026-09-27T09:21:54Z",
-    "last_save_at": "2026-09-28T11:28:40.055Z",
+    "last_save_at": "2026-10-18T20:45:03.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:760c62ed47a955f7f76411cfef1f0fb3eab19bbbf038cd1a1805c29bee858c7e",
+    "source_fingerprint": "sha256:03fabfb1577ed10916cbacc03893381794dd96da232311a488c20af3c2fe86a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19153b5b757048bf411781f8a2a1e7ef96ff20cd0ad1834b2065b364cd9ea9b7",
-      "plan.md": "a064e4b691951ba72cf43d8908d577c08cfe489e94c351eda07d54816ec396cf",
-      "tasks.md": "5fc958c3ae1f94b3315e76eb87de1a4b15020ce6f13fa3e79a0018fb7dfd35fa",
-      "implementation-summary.md": "9da10ce66f26d3cfb769ba1daa9b2cf90b9678cb9ca1bc1da60197a5886a1580"
+      "spec.md": "f451d641fddfc7539489ad7d6770629b82500d330adc25b3db118c9983a7d111",
+      "plan.md": "73d3461ca8df111e7869fa5a4ad5cc5ae275bebaacfc0b3e482486b5e77ea0d4",
+      "tasks.md": "69d3db0ac56a4bb15c2bbd57a9c21cae4897595d1ee1edc2d7f6d25679c68ce9",
+      "implementation-summary.md": "6d594517e4f1debbf4054e69bccd30d9290cf8686296d452c727d1399b7654dc"
     },
     "last_active_at": null
   }

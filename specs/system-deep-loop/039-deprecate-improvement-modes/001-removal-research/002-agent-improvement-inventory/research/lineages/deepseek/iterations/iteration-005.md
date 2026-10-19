@@ -54,7 +54,7 @@ Inventory `.skilled/agents/` (agent definition + roster), the hooks surface (`ta
 - .skilled/hooks/git/pre-commit:82; README.md:138
 - .skilled/scripts/git-hooks/pre-commit:165
 - .skilled/CROSS-CLI.md:89
-- .skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md:37,65,73
+- .skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md:37,65,73
 - .github/workflows/agent-mirror-sync.yml:17; .github/scripts/tests/broken-move-drill.sh:133-134
 - .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs:32,188-192
 - .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json:63-95,180

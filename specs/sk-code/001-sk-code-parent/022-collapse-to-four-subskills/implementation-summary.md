@@ -66,7 +66,7 @@ Phase 022 completed the sk-code parent hub collapse from eight sub-skills to exa
 | `.opencode/skills/sk-code/code-animation/` | Folded into Webflow and removed as a skill | Move animation references/assets under `code-webflow` and drop the separate animation surface | `531cf1a0c8` |
 | `.opencode/skills/sk-code/shared/references/workflow_{implement,debug,verify}.md` | Added | Preserve generic implement/debug/verify doctrine once in shared references | `531cf1a0c8` |
 | `.opencode/skills/sk-code/code-{opencode,webflow}/references/` | Updated | Symlink shared workflow doctrine into both surviving surface skills | `531cf1a0c8` |
-| `.opencode/skills/sk-code/code-opencode/assets/scripts/` | Updated | Preserve dissolved verify scripts under the opencode surface assets | `531cf1a0c8` |
+| `.opencode/skills/sk-code/code-skilled/assets/scripts/` | Updated | Preserve dissolved verify scripts under the opencode surface assets | `531cf1a0c8` |
 | `.opencode/skills/sk-code/code-webflow/{references,assets}/animation/` | Added | Preserve folded animation references and assets as Webflow-owned non-skill resources | `531cf1a0c8` |
 | `.opencode/skills/sk-code/{hub-router.json,mode-registry.json}` | Updated | Drop dissolved-mode and animation-skill routing and trim tie-breaks to surviving skills | `531cf1a0c8` |
 | `.opencode/skills/sk-code/shared/references/smart_routing.md` | Updated | Repoint animation resources to Webflow and remove dissolved-mode routes from RESOURCE_MAP | `531cf1a0c8` |
@@ -97,7 +97,7 @@ Stage B (`3a6fae70e1`) re-baselined the benchmark layer against the new hub shap
 
 | Decision | Rationale |
 |----------|-----------|
-| Collapse to four routable sub-skills | The target model was surface-primary: `code-opencode`, `code-webflow`, `code-review`, and `code-quality` carry the real routing surface |
+| Collapse to four routable sub-skills | The target model was surface-primary: `code-skilled`, `code-webflow`, `code-review`, and `code-quality` carry the real routing surface |
 | Move generic workflow doctrine to shared references | Implement/debug/verify were near-empty shells; shared doctrine preserves the behaviour once without retaining routable sub-skills |
 | Symlink shared doctrine into both surfaces | Surviving surfaces remain self-contained for load paths while `shared/` stays the source of truth |
 | Fold animation into Webflow as non-skill resources | Motion.dev animation is an overlay on Webflow work, not a standalone routable surface |
@@ -132,7 +132,7 @@ None. The structural collapse, zero-loss preservation, routing reconciliation, e
 
 | Area | Result |
 |------|--------|
-| Hub shape | Exactly 4 SKILL.md remain under sk-code: `code-opencode/`, `code-webflow/`, `code-review/`, and `code-quality/` |
+| Hub shape | Exactly 4 SKILL.md remain under sk-code: `code-skilled/`, `code-webflow/`, `code-review/`, and `code-quality/` |
 | Content preservation | Workflow doctrine, verify scripts, checklists, and animation resources preserved at their new locations |
 | Routing consistency | Parent-hub strict check, vocab-sync, rule-copy canary, and router drift guard all pass |
 | Benchmark gate | Full skill-benchmark vitest suite passes 107/107; router-final remains CONDITIONAL 71 |

@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -55,7 +55,7 @@ Core rules:
 - **One mode array**: every packet is one entry in `mode-registry.json > modes[]`; do not add a second array such as `surfacePackets[]`.
 - **Mode kind**: every mode entry declares `packetKind: "workflow" | "surface" | "transport"`. Workflow and surface are the two primary axes; `transport` is a narrow third kind for packets that bridge to an external tool's CLI/MCP surface (declared via the `transport-axis` extension) and never perform the hub's own judgment.
 - **Workflow packets**: process or lifecycle modes such as implement, quality, review, research, or audit. They may mutate or stay read-only according to their role.
-- **Surface packets**: read-only evidence bases such as `code-webflow` or `code-opencode` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
+- **Surface packets**: read-only evidence bases such as `code-webflow` or `code-skilled` (hub-prefixed, matching `folder == packetSkillName`). They are advisor-invisible and enrich a workflow rather than becoming advisor identities.
 - **One advisor identity**: the hub's `graph-metadata.json` is the advisor identity input. Hub-only `description.json` is doctor metadata; packets never carry either file. No mode packet or `shared/` directory holds them. The full per-class rule for every root-level metadata JSON is canonical in [skill-root-metadata-contract.md](../shared/skill-root-metadata-contract.md).
 - **Required router**: every hub has `hub-router.json` with `routerPolicy`, `routerSignals`, `vocabularyClasses`, and resource paths that resolve on disk.
 - **Stage-two control document**: every hub also carries one root `ROUTER.md` declaring `router_state: stage1-only` or `active`. A fresh scaffold is `stage1-only` with empty maps, delegating all routing to stage one; `active` requires non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs. Promote only after authoring a concrete leaf map — never synthetic intents. `ROUTER.md` is a control-plane companion, never a leaf, advisor identity, or class discriminator.
@@ -167,7 +167,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
 
 | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`code-webflow`, `code-opencode`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; router vocabulary includes surface signal classes inside workflow modes. |
+| `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`code-webflow`, `code-skilled`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; router vocabulary includes surface signal classes inside workflow modes. |
 | `sk-design` | Four workflow modes (`sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart`, `sk-design-diagram`); no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. The hub was decommissioned into two standalone skills in August 2026 and reinstated with four modes in September; `sk-prompt`, which briefly held this row, is a standalone root. | No runtime-loop extension; fundamentals uses the shared reference base, the md-generator mode runs its extraction backend, and the chart and diagram modes generate self-contained artefacts. | None; all modes use `metadata` under the single `sk-design` identity, so their vocabulary reaches the advisor only through the hub's `graph-metadata.json` `intent_signals`. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None; what `016` retired stays retired. | Transform-verbs example. |
 | `system-deep-loop` | Workflow-only active modes; no surface packets. | Declares runtime-loop semantics for research, review, and council modes. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | None declared (`deprecatedModes: []`); the retired standalone context loop survives only as an advisor comment, not a registry deprecation. | Extension-heavy example: runtime-loop and advisor-projection semantics. |
 | `sk-doc` | Workflow-only; no surface axis, zero named extensions. Several workflowModes may multiplex onto one packet (N modes → 1 packet) when that packet's `SKILL.md` declares each mode. | No runtime-loop extension. | None; all modes use `metadata` under the single `sk-doc` identity. | None. | None. | Workflow-only, zero-extension example — the pure two-tier core scaffolded by this doctrine. |
@@ -280,7 +280,7 @@ Changelog policy:
 Naming policy:
 
 - Workflow packet folders use the hub's naming convention. Prefix workflow packets when the hub family uses a prefix; otherwise use the established packet name.
-- Surface packet folders use the hub-prefixed convention (`folder == packetSkillName == [hub-prefix]-<surface>`), such as `code-webflow` or `code-opencode`.
+- Surface packet folders use the hub-prefixed convention (`folder == packetSkillName == [hub-prefix]-<surface>`), such as `code-webflow` or `code-skilled`.
 - `folder == packetSkillName` is the default for every new packet.
 - **Mode multiplexing (N→1)**: several `workflowMode` entries may point at one packet folder when that packet's `SKILL.md` declares each mode it serves (sk-doc and deep-loop do this). `folder == packetSkillName` still holds for the packet; the multiplexed modes share it.
 - `grandfatheredFolderMismatch: true` is only for an existing mismatch that must be preserved.

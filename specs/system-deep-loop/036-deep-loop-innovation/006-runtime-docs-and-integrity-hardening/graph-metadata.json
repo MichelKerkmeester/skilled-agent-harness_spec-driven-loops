@@ -5,7 +5,7 @@
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
   "children_ids": [
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/001-runtime-code-readmes",
-    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/003-artifact-certificate-binding",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/004-alignment-coverage-integrity",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/005-mode-gate-and-contract-binding",
@@ -93,16 +93,16 @@
     ],
     "causal_summary": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening, deep-loop test-debt clearance, and the deep-loop alignment review.",
     "created_at": "2026-09-20T08:33:46.791Z",
-    "last_save_at": "2026-10-03T14:37:12.407Z",
+    "last_save_at": "2026-10-18T20:45:26.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e5196083bd210368635e3d7f200df8f3281ac4be617a63337d59a12b42cad23c",
+    "source_fingerprint": "sha256:66181368e5235d0b95eb8a09e247465e254df666e81659083735154a54999f20",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "442d8c14269f9506a8fe64a04353f463275bd1e2c105892e47a5fb6ab5de18db"
+      "spec.md": "006649ec85e034b7eb6d3c1e043bb31454bdf2eacde638cc732e1ceb5e989712"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
     "last_active_at": null

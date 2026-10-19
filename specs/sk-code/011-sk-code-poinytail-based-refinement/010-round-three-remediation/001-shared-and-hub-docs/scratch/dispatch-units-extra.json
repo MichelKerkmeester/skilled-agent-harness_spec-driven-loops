@@ -22,10 +22,10 @@
   {
     "task": "T148",
     "files": [
-      ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md"
+      ".skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md, replace the exact text <<<OLD\n- `sk-code-webflow/assets/checklists/verification_checklist.md`\nOLD>>> with <<<NEW\n- `sk-code-webflow/assets/webflow-verification-checklist.md`\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md, replace the exact text <<<OLD\n- `sk-code-webflow/assets/checklists/verification_checklist.md`\nOLD>>> with <<<NEW\n- `sk-code-webflow/assets/webflow-verification-checklist.md`\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T148",
     "expect": "LANDED T148"
   },
@@ -45,7 +45,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md, replace the exact text <<<OLD\n(`code-webflow` / `code-opencode` / `code-review` / `quality`)\nOLD>>> with <<<NEW\n(`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`)\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md, replace the exact text <<<OLD\n(`code-webflow` / `code-skilled` / `code-review` / `quality`)\nOLD>>> with <<<NEW\n(`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`)\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T150",
     "expect": "LANDED T150"
   },
@@ -65,7 +65,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nevery known code-opencode language has\nOLD>>> with <<<NEW\nevery known sk-code-opencode language has\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nevery known code-skilled language has\nOLD>>> with <<<NEW\nevery known sk-code-skilled language has\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T152",
     "expect": "LANDED T152"
   },
@@ -75,7 +75,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nThe code-opencode skill documents stack evidence\nOLD>>> with <<<NEW\nThe sk-code-opencode skill documents stack evidence\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nThe code-skilled skill documents stack evidence\nOLD>>> with <<<NEW\nThe sk-code-skilled skill documents stack evidence\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T153",
     "expect": "LANDED T153"
   },
@@ -85,7 +85,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nthe documented code-opencode languages\nOLD>>> with <<<NEW\nthe documented sk-code-opencode languages\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\nthe documented code-skilled languages\nOLD>>> with <<<NEW\nthe documented sk-code-skilled languages\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T154",
     "expect": "LANDED T154"
   },
@@ -95,7 +95,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\ncode-opencode language reference folder validator.\nOLD>>> with <<<NEW\nsk-code-opencode language reference folder validator.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/manual-testing-playbook/design-restraint/stack-folders-validator.md, replace the exact text <<<OLD\ncode-skilled language reference folder validator.\nOLD>>> with <<<NEW\nsk-code-skilled language reference folder validator.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T155",
     "expect": "LANDED T155"
   },
@@ -155,7 +155,7 @@
       ".skilled/skills/sk-code/graph-metadata.json"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/graph-metadata.json, replace the exact text <<<OLD\ntwo workflow modes (quality, code-review) or bundles one of three read-only surface evidence packets (code-webflow, code-opencode, code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay, and code-obsidian carries\nOLD>>> with <<<NEW\ntwo workflow modes (sk-code-quality, sk-code-review) or bundles one of three read-only surface evidence packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; sk-code-webflow also carries the Motion.dev animation overlay, and sk-code-obsidian carries\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/graph-metadata.json, replace the exact text <<<OLD\ntwo workflow modes (quality, code-review) or bundles one of three read-only surface evidence packets (code-webflow, code-skilled, code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay, and code-obsidian carries\nOLD>>> with <<<NEW\ntwo workflow modes (sk-code-quality, sk-code-review) or bundles one of three read-only surface evidence packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; sk-code-webflow also carries the Motion.dev animation overlay, and sk-code-obsidian carries\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit-extra.cjs T161",
     "expect": "LANDED T161"
   }

@@ -10,8 +10,8 @@ This is a lineage-local synthesis map. The target packet had no source `resource
 
 | Surface | Lexical Markdown paths | Review status | Findings |
 |---|---:|---|---|
-| code-opencode references | 50 | reviewed | F001 shared class |
-| code-opencode assets | 15 | reviewed | none |
+| code-skilled references | 50 | reviewed | F001 shared class |
+| code-skilled assets | 15 | reviewed | none |
 | code-webflow references | 86 | reviewed | F001 shared class |
 | code-webflow assets | 9 | reviewed | none |
 | code-quality assets | 3 | reviewed | none |
@@ -24,7 +24,7 @@ The 163 resource paths resolve to 160 documents because three shared workflow fi
 
 | Finding | Primary path | Dimension | Iterations | Status |
 |---|---|---|---|---|
-| F001 | `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md` | correctness | 1, 3, 4 | active P2 |
+| F001 | `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md` | correctness | 1, 3, 4 | active P2 |
 | F002 | `.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md` | traceability | 3, 4 | active P1 |
 | F003 | `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md` | traceability | 3, 4 | active P2 |
 

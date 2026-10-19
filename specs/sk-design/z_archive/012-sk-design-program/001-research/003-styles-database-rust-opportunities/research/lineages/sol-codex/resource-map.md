@@ -28,10 +28,10 @@ trigger_phrases: []
 | `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts` | Analyzed | 7 | Existing shared TypeScript registry/fallback surface |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/README.md` | Analyzed | 7 | Memory-specific candidate/fusion/rerank/filter semantics |
 | `.opencode/specs/system-code-graph/035-rust-backend-rewrite/001-research/spec.md` | Analyzed | 7 | Code-graph-specific native/JS residency and domain boundary |
-| `.opencode/skills/sk-code/code-opencode/references/rust/quick-reference/overview-and-boundary-template.md` | Analyzed | 8, 9 | Pure-core/thin-adapter/TypeScript-shell contract |
-| `.opencode/skills/sk-code/code-opencode/references/rust/quality-standards/overview-and-data-ownership.md` | Analyzed | 9 | Behavior authority, owned DTOs, error/safety boundaries |
-| `.opencode/skills/sk-code/code-opencode/references/rust/quality-standards/determinism-and-parity.md` | Analyzed | 4, 8, 9 | Pinned TypeScript oracle and byte-for-byte release gate |
-| `.opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-errors-and-parity.md` | Analyzed | 9 | AsyncTask, fallback ownership, native/WASM parity fixtures |
+| `.opencode/skills/sk-code/code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` | Analyzed | 8, 9 | Pure-core/thin-adapter/TypeScript-shell contract |
+| `.opencode/skills/sk-code/code-skilled/references/rust/quality-standards/overview-and-data-ownership.md` | Analyzed | 9 | Behavior authority, owned DTOs, error/safety boundaries |
+| `.opencode/skills/sk-code/code-skilled/references/rust/quality-standards/determinism-and-parity.md` | Analyzed | 4, 8, 9 | Pinned TypeScript oracle and byte-for-byte release gate |
+| `.opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-errors-and-parity.md` | Analyzed | 9 | AsyncTask, fallback ownership, native/WASM parity fixtures |
 | Styles corpus under `.opencode/skills/sk-design/styles/` | Counted | 1 | 1,290 non-internal directories, 1,290 canonical JSON files, ~135 MiB tree |
 
 ## External Primary and Upstream Sources

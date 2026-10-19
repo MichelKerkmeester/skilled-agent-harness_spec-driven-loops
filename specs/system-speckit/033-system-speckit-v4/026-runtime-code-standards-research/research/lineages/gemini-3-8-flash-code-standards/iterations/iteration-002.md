@@ -2,7 +2,7 @@
 
 ## Focus
 Audit of previously unopened surfaces: `runtime/hooks` (claude, codex, cursor, devin, lib, pi), `.cjs` and `.mjs` scripts under `runtime/cli` outside retrieval, and `@spec-kit/shared` beyond frontmatter and path containment.
-Standards evaluated: hook authoring and reachability conventions (`sk-code-opencode/references/shared/hooks.md`), universal code quality standards (`sk-code/shared/references/universal/code-quality-standards.md`), JavaScript style guide (`sk-code-opencode/references/javascript/style-guide.md`), and TypeScript style guide (`sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`).
+Standards evaluated: hook authoring and reachability conventions (`sk-code-skilled/references/shared/hooks.md`), universal code quality standards (`sk-code/shared/references/universal/code-quality-standards.md`), JavaScript style guide (`sk-code-skilled/references/javascript/style-guide.md`), and TypeScript style guide (`sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`).
 Audit angles evaluated: error handling & swallowed rejections, path resolution bugs, dead code residue, module boundary inversions, and test script parity.
 
 ---
@@ -101,7 +101,7 @@ Audit angles evaluated: error handling & swallowed rejections, path resolution b
 
 ### F2.8 [P2] Header and Directive Placement Inconsistencies in CLI Scripts
 - **Code:** `runtime/cli/lib/wave-convergence.cjs:1-5`, `runtime/cli/metrics/fable-metrics.cjs:1-5`, `runtime/cli/check-markdown-links.cjs:4-6`, `runtime/cli/validation/ephemeral-pointer-audit.mjs:2-31`
-- **Violated Clause:** `sk-code-opencode/references/javascript/style-guide.md §2, §3` and `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md §2`.
+- **Violated Clause:** `sk-code-skilled/references/javascript/style-guide.md §2, §3` and `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md §2`.
 - **What is actually present:** In `wave-convergence.cjs` and `fable-metrics.cjs`, `'use strict';` is placed on line 1 before the boxed module header block, violating the requirement that files begin with the boxed header immediately followed by `'use strict';`. In `check-markdown-links.cjs`, the header uses an unadorned filename title rather than `// MODULE:`. In `ephemeral-pointer-audit.mjs`, the boxed header is entirely replaced by a docstring block.
 - **Severity:** P2 (cosmetic formatting and header convention divergences).
 - **One-line fix:** **mechanical** — place boxed headers on line 1 followed by `'use strict';` and adopt the standard `// MODULE:` template.
@@ -126,8 +126,8 @@ Audit angles evaluated: error handling & swallowed rejections, path resolution b
 - `runtime/cli/metrics/fable-metrics.cjs:1-10`
 - `runtime/cli/check-markdown-links.cjs:1-10`
 - `runtime/cli/validation/ephemeral-pointer-audit.mjs:1-15`
-- `sk-code-opencode/references/shared/hooks.md §1-3`
-- `sk-code-opencode/references/javascript/style-guide.md §2-3`
+- `sk-code-skilled/references/shared/hooks.md §1-3`
+- `sk-code-skilled/references/javascript/style-guide.md §2-3`
 - `universal/code-quality-standards.md §1, §3, §4`
 
 ---

@@ -38,14 +38,14 @@ contextType: "implementation"
 
 This is **Phase 3** of the external surface priority build. It builds research recommendation R2, phase P10 of `../../025-external-surface-priority-research/research/research.md` section 14.1, as the verification pass narrowed it: an existence filter replaces the minted discriminator (X20), leg 3 and the leg 1a anchor join it (F83, F95), the doc-claims surface count joins it (F94), and the surface-hint test moved to the guide (X24).
 
-**Scope Boundary**: `verify-router-sync.cjs` and `verify-doc-claims.cjs` under `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/` and their tests under `sk-code-opencode/scripts/tests/`, plus one sk-code-opencode release.
+**Scope Boundary**: `verify-router-sync.cjs` and `verify-doc-claims.cjs` under `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/` and their tests under `sk-code-skilled/scripts/tests/`, plus one sk-code-skilled release.
 
 **Dependencies**:
 - None. Builds in parallel with 001 and 002.
 
 **Deliverables**:
 - Four guard changes, each with a test that fails before and passes after.
-- One sk-code-opencode release.
+- One sk-code-skilled release.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
@@ -57,7 +57,7 @@ This is **Phase 3** of the external surface priority build. It builds research r
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-opencode/SKILL.md:175`). After the documented removal of the examples it can never pass (F85, run V3): check 2 throws ENOENT on the hard-coded `sk-code-webflow/SKILL.md` because `SURFACES` and `SURFACE_PACKETS` are fixed lists (`verify-router-sync.cjs:31-32`); check 3 reports `compiled destination resolves to no leaf-owning mode` for archived route-gold cases of the deleted modes (`:244-251`, F83); leg 1a reports `ROUTER.md section anchors not found` once the Webflow prose map is removed, because it starts at the literal `## 4. WEBFLOW MAP` (`:124-131`, F95); and doc-claims fails any "two surfaces" wording because it assumes three (`verify-doc-claims.cjs:42-44`, `:319`, F94).
+`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-skilled/SKILL.md:175`). After the documented removal of the examples it can never pass (F85, run V3): check 2 throws ENOENT on the hard-coded `sk-code-webflow/SKILL.md` because `SURFACES` and `SURFACE_PACKETS` are fixed lists (`verify-router-sync.cjs:31-32`); check 3 reports `compiled destination resolves to no leaf-owning mode` for archived route-gold cases of the deleted modes (`:244-251`, F83); leg 1a reports `ROUTER.md section anchors not found` once the Webflow prose map is removed, because it starts at the literal `## 4. WEBFLOW MAP` (`:124-131`, F95); and doc-claims fails any "two surfaces" wording because it assumes three (`verify-doc-claims.cjs:42-44`, `:319`, F94).
 
 ### Purpose
 The guards describe whatever surfaces the tree ships, so an adopter who removed an example can pass the completion gate, and the operator's tree gives the same results as today.
@@ -74,7 +74,7 @@ The guards describe whatever surfaces the tree ships, so an adopter who removed 
 - **Leg 1a anchor.** The prose scan starts at the first `## N. <NAME> MAP` heading instead of the literal `## 4. WEBFLOW MAP`, and keeps its end anchor.
 - **Doc-claims count.** The `surfaces` rule derives the surface count from `mode-registry.json` (modes with `packetKind` `surface`) and flags wording that states a different count, instead of assuming three.
 - One test per change in the existing test files: T1 to T4.
-- One release of the sk-code-opencode mode packet: its `SKILL.md` version and one changelog entry.
+- One release of the sk-code-skilled mode packet: its `SKILL.md` version and one changelog entry.
 
 ### Out of Scope
 - A minted union-child discriminator such as `surfaceRole` or `surfaceChildren` (X20).
@@ -87,13 +87,13 @@ The guards describe whatever surfaces the tree ships, so an adopter who removed 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` | Modify | Existence filter, archived gold skip, leg 1a anchor |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` | Modify | Registry-derived surface count |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` | Modify | T1 to T3 |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` | Modify | T4 |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`, `.skilled/skills/sk-code/sk-code-opencode/changelog/` | Modify, Create | One release, and the surfaces sentence |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`, `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | The surfaces rule described by the registry |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Regenerate | Hermes copy of the released SKILL.md, written by `sync-skills-hermes.cjs` |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modify | Existence filter, archived gold skip, leg 1a anchor |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` | Modify | Registry-derived surface count |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modify | T1 to T3 |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs` | Modify | T4 |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md`, `.skilled/skills/sk-code/sk-code-skilled/changelog/` | Modify, Create | One release, and the surfaces sentence |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md`, `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | The surfaces rule described by the registry |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Regenerate | Hermes copy of the released SKILL.md, written by `sync-skills-hermes.cjs` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -115,7 +115,7 @@ The guards describe whatever surfaces the tree ships, so an adopter who removed 
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | T1 to T4 each fail before their change and pass after; one sk-code-opencode release is added and the sk-code doctor's 13d passes |
+| REQ-006 | T1 to T4 each fail before their change and pass after; one sk-code-skilled release is added and the sk-code doctor's 13d passes |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

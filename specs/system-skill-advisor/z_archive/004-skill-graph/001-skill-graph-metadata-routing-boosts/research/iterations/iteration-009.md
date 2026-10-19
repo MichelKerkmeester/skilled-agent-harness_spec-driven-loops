@@ -6,7 +6,7 @@ The main result is reassuring but not zero-risk:
 
 - The official regression harness still passes cleanly: `44/44` cases passed, `top1_accuracy=1.0`, `p0_pass_rate=1.0`, `command_bridge_fp_rate=0.0`.
 - Only `1/44` cases changed top-1 when compared against a controlled no-graph-boost baseline.
-- That single top-1 flip was `P1-FULLSTACK-001`, where graph family affinity promoted `sk-code-full-stack` over `sk-code-opencode`. This is not currently a regression because the fixture explicitly allows either winner (`.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl:38`).
+- That single top-1 flip was `P1-FULLSTACK-001`, where graph family affinity promoted `sk-code-full-stack` over `sk-code-skilled`. This is not currently a regression because the fixture explicitly allows either winner (`.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl:38`).
 - The three requested edge-case prompts did not change top-1 with graph boosts enabled.
 
 Method used for the with-graph vs without-graph comparison:
@@ -91,7 +91,7 @@ Changed case detail:
 
 ```json
 {
-  "skill": "sk-code-opencode",
+  "skill": "sk-code-skilled",
   "kind": "skill",
   "confidence": 0.89,
   "uncertainty": 0.2,
@@ -319,7 +319,7 @@ Full output:
     "reason": "Matched: !code(multi), !graph:enhances(sk-code-review,0.7), code(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.77,
     "uncertainty": 0.28,
@@ -341,7 +341,7 @@ Graph-risk assessment:
 
 - Top-1 is stable with and without graph boosts: `sk-code-review`.
 - The CLI routing lane remains intact because `cli-claude-code` stays second with or without graph boosts.
-- The main graph side effect is again secondary inflation, especially `sk-code-full-stack`, `sk-code-web`, and `sk-code-opencode` via `sk-code-review` relationship propagation.
+- The main graph side effect is again secondary inflation, especially `sk-code-full-stack`, `sk-code-web`, and `sk-code-skilled` via `sk-code-review` relationship propagation.
 
 ## Risk Assessment
 

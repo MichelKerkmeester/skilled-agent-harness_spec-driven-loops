@@ -52,7 +52,7 @@ Two live-tier scorer corrections in `score-skill-benchmark.cjs`: fold the model'
 | Target | Old Mode-B | New Mode-B |
 |--------|-----------|-----------|
 | code-quality | 31 | 100 |
-| code-opencode | 56 | 88 |
+| code-skilled | 56 | 88 |
 | code-webflow | 57 | 86 |
 | deep-research | 80 | 91 |
 | deep-review | 71 | 87 |

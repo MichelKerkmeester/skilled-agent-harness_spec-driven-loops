@@ -6,7 +6,7 @@
 // Drives verify_doc_claims.cjs against a throwaway hub, so each check can be made to pass and to
 // fail without touching the live tree. The known-bad inputs live in this file, one per check.
 // Run from the repository root:
-//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs
+//   node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -58,7 +58,7 @@ function buildHub(t) {
   ].join('\n'));
   write(path.join(hub, 'sk-code-quality', 'SKILL.md'), '<!-- Keywords: code-quality, code-webflow -->\n');
   write(path.join(hub, 'sk-code-demo', 'changelog', 'v1.0.0.0.md'), 'Renamed code-webflow, which had two surfaces.\n');
-  write(path.join(hub, 'sk-code-demo', 'benchmark', 'reports', 'run.md'), 'Routed to code-opencode.\n');
+  write(path.join(hub, 'sk-code-demo', 'benchmark', 'reports', 'run.md'), 'Routed to code-skilled.\n');
   return hub;
 }
 

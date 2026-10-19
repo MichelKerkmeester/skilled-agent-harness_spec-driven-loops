@@ -16,10 +16,10 @@ I’m auditing the catalog against the actual implementation now. I’ll invento
 I’ve got the catalog inventory and routing. Next I’m loading the review/overlay guidance plus the 22 catalog files, then I’ll cross-check each claim against both `mcp_server` and `scripts`.
 
 ● Read SKILL.md
-  │ .agents/skills/sk-code-opencode/SKILL.md
+  │ .agents/skills/sk-code-skilled/SKILL.md
   └ 1 line read
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read review_core.md
   │ .agents/skills/sk-code-review/references/review_core.md

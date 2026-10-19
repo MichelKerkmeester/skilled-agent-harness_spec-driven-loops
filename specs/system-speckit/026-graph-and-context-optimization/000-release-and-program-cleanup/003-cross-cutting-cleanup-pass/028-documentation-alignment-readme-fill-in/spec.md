@@ -103,7 +103,7 @@ Bring all five surfaces into alignment with sk-doc's canonical templates in a si
 - Merger of `mcp_server/skill_advisor/operator_runbook/` (43 scenarios) into `mcp_server/skill_advisor/manual_testing_playbook/`. Operator_runbook directory **physically deleted** post-merge (no archival, no symlink, no tombstone). All cross-repo references updated.
 
 ### Out of Scope
-- Sk-code surface alignment work — handled by separate sibling packet `002-sk-code-opencode-alignment` under same parent.
+- Sk-code surface alignment work — handled by separate sibling packet `002-sk-code-skilled-alignment` under same parent.
 - Executable-code changes in `predicates/` or `utils/` — README addition only.
 - Scenario-content semantic changes inside operator_runbook or manual_testing_playbook — only structural reframing to sk-doc per-feature template.
 - Renaming category dirs in the merged playbook (`python-compat/` stays at `10--`; no renumbering to close the `09--` gap).

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
+  "spec_folder": "sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
+  "parent_id": "sk-code/002-rust-standards-for-code-skilled",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 012 gate verification rollup",
+      "sk-code reference hygiene rollup",
+      "018 parent rollup ws2",
+      "018 phase 012 plan rollup",
+      "018 phase 012 tasks rollup",
+      "018 phase 012 summary rollup"
+    ],
+    "key_topics": [
+      "phase",
+      "gate",
+      "verification",
+      "rollup",
+      "sk-code",
+      "reference",
+      "hygiene",
+      "parent",
+      "ws2",
+      "plan",
+      "tasks",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Terminal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready All",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Mode",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Terminal",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Deterministic",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract",
+    "created_at": "2026-07-11T18:03:16.099Z",
+    "last_save_at": "2026-10-18T19:17:03.651Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec412069faa72f5a5c2ab5262fbebb753a007a3079006879de60766d44c1a18d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "01bbbd7c3ab708c240494751ec3691a12e5dafb6a7d934be9a91c36e3bf455a7",
+      "plan.md": "60639a07dc02a524c323f5277c182dfb96d10a1e0343d4b7cb4d1da50dd0db3e",
+      "tasks.md": "50d012cc09147ddb614b07cdba74bbd0c7f26b4a9a6cd8a67ef34af11dd67478",
+      "implementation-summary.md": "5ad441c679b141dca2fc94f105352d0fd93cf3a15009046c3cf4d21626dea7da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

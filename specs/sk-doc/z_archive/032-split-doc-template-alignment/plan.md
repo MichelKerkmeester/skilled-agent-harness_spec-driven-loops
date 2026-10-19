@@ -25,7 +25,7 @@ _memory:
 ### Technical Context
 Documentation authoring; no code/runtime change. Executed by GPT-5.6-sol-fast agents (opencode, --variant medium) in an isolated worktree, orchestrator-verified.
 ### Overview
-Conform ~163 mechanically-split reference/asset files across code-opencode, code-webflow, code-quality to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + version, OVERVIEW wrapper, in-hub reference updates.
+Conform ~163 mechanically-split reference/asset files across code-skilled, code-webflow, code-quality to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + version, OVERVIEW wrapper, in-hub reference updates.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,7 +51,7 @@ Serial per-subtree GPT batches (batches serialize on each surface's shared SKILL
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 1. code-quality assets (pilot).
-2. code-opencode references (config/python/js/shell/typescript/rust/shared) + assets.
+2. code-skilled references (config/python/js/shell/typescript/rust/shared) + assets.
 3. code-webflow references (animation/css/html/debugging/deployment/performance/verification/js/shared/implementation) + assets.
 4. Full-hub verification: 0 hyphenated, 0 broken links to renamed files, all validate 0.
 <!-- /ANCHOR:phases -->

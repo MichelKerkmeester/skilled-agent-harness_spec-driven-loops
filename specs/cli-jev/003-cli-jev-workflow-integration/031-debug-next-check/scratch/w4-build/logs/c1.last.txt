@@ -1,6 +1,6 @@
 STATUS: DONE. S1 is on disk, both required checks are green, and only the two named paths were created.
 
-Two housekeeping lines first: `SKILL ROUTING: sk-code (compiled route → sk-code-opencode; evidence-base surface)` and `REPO RULES: prevent-overengineering.md, evidence-and-proof.md, uncertainty-and-honesty.md`.
+Two housekeeping lines first: `SKILL ROUTING: sk-code (compiled route → sk-code-skilled; evidence-base surface)` and `REPO RULES: prevent-overengineering.md, evidence-and-proof.md, uncertainty-and-honesty.md`.
 
 **Amendment proposed (PLAN-WORKFLOW LOCK step 4 — design followed, fix named, not absorbed):**
 `scratch/w4-build/design.md` §2 line 1, the seam rule. OBSERVED: S holds `next_check` at `score-debug-next-check.mjs:40` and T at `debug-next-check.vitest.ts:84`, and `git grep` searches index-tracked files (confirmed against a staged temp repo). DERIVED: once the orchestrator commits S and T, they are tracked files outside `specs/` that name `next_check`, so this rule prints `seam: <path>` and the goal's "prints `seam: none`" criterion can never hold; the `default run` test fails from the committed state. One-line replacement: append `':!.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check'` and `':!.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts'` to `seamSearch`'s `git grep` exclusion list (mirror it in design.md). Decision needed before the S8 suite: apply those exclusions or restate the rule; any D1–D6 doc that writes the literal needs the same treatment.

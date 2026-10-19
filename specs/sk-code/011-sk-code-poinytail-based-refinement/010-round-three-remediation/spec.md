@@ -85,7 +85,7 @@ Fix every one of them in seven children that own disjoint files, planned by Opus
 | `.skilled/skills/sk-code/sk-code-review/**`, `.skilled/agents/review.md` and its mirrors | Modify, Create | 002 | Review mode agnosticism and contract agreement |
 | `.skilled/skills/sk-code/sk-code-quality/**` | Modify | 003 | Quality mode hook naming and stale rows |
 | `.skilled/skills/sk-code/sk-code-webflow/**`, `.skilled/skills/sk-code/sk-code-obsidian/**` | Modify | 004 | Templates, pointers, phantom assets, playbook issues |
-| `.skilled/skills/sk-code/sk-code-opencode/**`, the sk-code canary fixture | Modify, Create | 005 | OpenCode prose and the new drift guards |
+| `.skilled/skills/sk-code/sk-code-skilled/**`, the sk-code canary fixture | Modify, Create | 005 | OpenCode prose and the new drift guards |
 | `.skilled/skills/system-deep-loop/runtime/**`, `.skilled/skills/cli-external-orchestration/cli-pi/**` | Modify | 006 | Reducer finding shape and the cli-pi environment filter |
 | `.skilled/skills/system-spec-kit/runtime/hooks/**` | Modify | 007 | Stdin deadlines for the spec-kit hooks |
 <!-- /ANCHOR:scope -->

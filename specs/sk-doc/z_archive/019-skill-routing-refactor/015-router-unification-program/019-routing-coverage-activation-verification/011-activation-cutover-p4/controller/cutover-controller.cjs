@@ -516,7 +516,7 @@ function findVerifyAlignmentDrift() {
   // The markdown drift gate is a committed checker at a known location, wired
   // into the drift-guard runner. Confirm the checker exists.
   const direct = path.join(
-    SKILLS_ROOT, 'sk-code', 'code-opencode', 'assets', 'scripts', 'verify_alignment_drift.py');
+    SKILLS_ROOT, 'sk-code', 'code-skilled', 'assets', 'scripts', 'verify_alignment_drift.py');
   return exists(direct) ? direct : null;
 }
 

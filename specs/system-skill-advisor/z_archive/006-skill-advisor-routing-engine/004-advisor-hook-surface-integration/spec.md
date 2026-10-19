@@ -180,7 +180,7 @@ See research output for full file list. Architectural anchors:
 
 1. **Given** a Claude Code session starts with an active spec folder, **when** the first turn's prompt arrives, **then** the session-prime hook surfaces a one-line advisor brief naming the top-1 skill + confidence.
 2. **Given** the user types two prompts with identical prompt text in the same session, **when** the second prompt arrives, **then** the advisor brief is served from cache (marked `cached=true`) with no new `skill_advisor.py` subprocess.
-3. **Given** a user edits `.opencode/skills/sk-code-opencode/SKILL.md` mid-session, **when** the next prompt arrives, **then** the advisor brief shows `freshness=stale` and prompts a background refresh.
+3. **Given** a user edits `.opencode/skills/sk-code-skilled/SKILL.md` mid-session, **when** the next prompt arrives, **then** the advisor brief shows `freshness=stale` and prompts a background refresh.
 4. **Given** a Gemini CLI session is running, **when** the user types a prompt, **then** the same one-line advisor brief appears in Gemini's context prime (via the shared-payload envelope).
 5. **Given** a Copilot CLI session is running, **when** the user types a prompt, **then** the hook refreshes the managed custom-instructions block for the next prompt; same-current-turn parity is not claimed for Copilot.
 6. **Given** the skill-advisor Python subprocess is unavailable (binary missing, dependency error), **when** a prompt arrives, **then** the hook returns `freshness=unavailable` and the brief omits the skill recommendation rather than blocking the turn.

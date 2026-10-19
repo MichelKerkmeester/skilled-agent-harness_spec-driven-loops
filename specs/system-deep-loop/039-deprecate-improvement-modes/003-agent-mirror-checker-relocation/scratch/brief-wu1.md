@@ -41,7 +41,7 @@ STEP 3. Repoint callers. Replace the old path with the new one, nothing else on 
   - .claude/SYNC.md:57,100
   - .github/workflows/agent-mirror-sync.yml:17
   - .github/scripts/tests/broken-move-drill.sh:133,134
-  - .skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md:37,65,73
+  - .skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md:37,65,73
   - .skilled/bin/agent-mirror-crosswalk.md:52
   Crosswalk links: in .skilled/agents/README.txt:11 and .claude/agents/README.txt:11 replace
     .skilled/skills/system-deep-loop/deep-improvement/references/shared/agent-mirror-crosswalk.md

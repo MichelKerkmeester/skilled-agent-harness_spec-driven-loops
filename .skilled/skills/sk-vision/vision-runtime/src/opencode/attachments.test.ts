@@ -58,3 +58,25 @@ describe("AttachmentInjector guaranteed vision", () => {
     expect(injectedText(output)).not.toContain(SENTINEL);
   });
 });
+
+describe("AttachmentInjector evidenceText grace", () => {
+  const SENTINEL = "SENTINEL_OCR_TEXT";
+  const image = {
+    type: "file",
+    mime: "image/png",
+    url: "data:image/png;base64,AAAA",
+  } as unknown as Parameters<AttachmentInjector["evidenceText"]>[0][number];
+
+  it("returns without an analysis that is still running when the grace runs out", async () => {
+    const injector = new AttachmentInjector(() => slowProvider(400, SENTINEL), 20);
+    const started = Date.now();
+    const text = await injector.evidenceText([image], false);
+    expect(Date.now() - started).toBeLessThan(400);
+    expect(text ?? "").not.toContain(SENTINEL);
+  });
+
+  it("includes an analysis that finishes inside the grace", async () => {
+    const injector = new AttachmentInjector(() => slowProvider(5, SENTINEL), 300);
+    expect(await injector.evidenceText([image], false)).toContain(SENTINEL);
+  });
+});

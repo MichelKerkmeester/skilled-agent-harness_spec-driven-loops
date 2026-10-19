@@ -94,7 +94,7 @@ Close each gap in its own child phase, built by haiku agents and verified by the
 | `.skilled/hooks/shared/hook-adapter-shared.cjs` | Modify | 004 | Stdin deadline |
 | `.skilled/hooks/shared/hook-adapter-shared.test.cjs`, `.skilled/hooks/shared/README.md` | Create, Modify | 004 | Deadline tests, helper description |
 | `.skilled/hooks/post-edit-quality/{claude,codex,devin}/` | Modify | 004 | Use the shared reader |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/` | Create, Modify | 005 | Router-sync guard and umbrella wiring |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/` | Create, Modify | 005 | Router-sync guard and umbrella wiring |
 <!-- /ANCHOR:scope -->
 
 ---

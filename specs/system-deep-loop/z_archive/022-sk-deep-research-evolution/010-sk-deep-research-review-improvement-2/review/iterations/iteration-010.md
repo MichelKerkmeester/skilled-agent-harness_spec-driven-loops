@@ -219,7 +219,7 @@ Full details: `.opencode/skills/sk-git/`
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
-| **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
+| **OpenCode system code**  | sk-code-skilled skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |
@@ -384,7 +384,7 @@ exec
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -434,7 +434,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 
@@ -591,7 +591,7 @@ def detect_overlay_skill(task, workspace_files=None, changed_files=None) -> str:
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if "opencode" in text or ".opencode/" in files or "jsonc" in text or "mcp" in text:
-        return "sk-code-opencode"
+        return "sk-code-skilled"
     if any(term in text for term in ["frontend", "web", "css", "dom", "browser", "webflow"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
@@ -720,7 +720,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
+- Implementation tasks (use `sk-code-skilled` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -6198,10 +6198,10 @@ user cancelled MCP tool call
 codex
 I’ve got the repo-wide review rules and the deep-review contract loaded. The next pass is narrowing to the exact handler set: locating the spec packet, the coverage-graph handler entrypoints, and the shared schema/namespace helpers they depend on so I can check consistency rather than just one file at a time.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -6469,7 +6469,7 @@ Escalation rule: if confidence is low but impact is high, classify toward the hi
 
 Apply this skill as the baseline first, then pair it with exactly one overlay:
 
-- OpenCode system code -> `sk-code-opencode`
+- OpenCode system code -> `sk-code-skilled`
 - Frontend/web code -> `sk-code-web`
 - Default/other stacks -> `sk-code-full-stack`
 
@@ -6730,7 +6730,7 @@ Review prompt:
 - [solid_checklist.md](./solid_checklist.md) - Architecture cohesion and coupling checks.
 - [removal_plan.md](./removal_plan.md) - Safe deletion and deferred removal planning.
 
-Overlay portability: use this baseline with stack-specific controls from `sk-code-opencode`, `sk-code-web`, or `sk-code-full-stack`.
+Overlay portability: use this baseline with stack-specific controls from `sk-code-skilled`, `sk-code-web`, or `sk-code-full-stack`.
 <!-- /ANCHOR:related-resources -->
 
 exec

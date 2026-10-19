@@ -57,7 +57,7 @@ FAILURE MODES:
 OpenCode now ships two lines that load plugins, read config and parse the `run` command differently. Version 1.19.3 calls a plugin's `server()` entry and version 2.0.32 calls its `setup()` entry. All 16 repo plugins load only on v1, the dispatch guards do not see `opencode2`, and cli-opencode builds a v1-only command line. A user who clones the repo with only v2 installed gets plugins that never load and guards that never fire, with no error.
 
 ### Purpose
-Every repo surface loads and runs on both pinned versions, cli-opencode dispatches to either version and documents side-by-side and single-version installs, and the remaining capability gaps are listed where users will see them. The research findings live in `research/research.md`, and the build runs as the eleven phase children in the map below.
+Every repo surface loads and runs on both pinned versions, cli-opencode dispatches to either version and documents side-by-side and single-version installs, and the remaining capability gaps are listed where users will see them. The research findings live in `research/research.md`, and the build runs as the phase children in the map below: eleven, plus a twelfth added after the closeout that ports sk-vision's automatic image check.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -122,6 +122,8 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 9 | 009-sk-code-opencode-alignment/ | Align every new and changed code file with the sk-code OPENCODE surface | Complete |
 | 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Complete |
 | 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Complete |
+| 12 | 012-sk-vision-v2-prompt-hook/ | Run sk-vision's automatic image check through the OpenCode 2 prompt hook | Complete |
+| 13 | 013-sk-vision-v2-tools-and-loose-ends/ | Register sk-vision's tools on OpenCode 2 and close phase 012's loose ends | Complete |
 
 ### Phase Transition Rules
 
@@ -144,4 +146,6 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 008-doctor-and-ci | 009-sk-code-opencode-alignment | The battery passes on both pinned versions | The battery output |
 | 009-sk-code-opencode-alignment | 010-documentation-sweep | The drift guards exit 0 and no P0 or P1 finding is open | `run-all-drift-guards.sh` |
 | 010-documentation-sweep | 011-two-version-proof-and-closeout | Every touched doc passes its sk-doc validator | `validate_document.py` and the package checks |
+| 011-two-version-proof-and-closeout | 012-sk-vision-v2-prompt-hook | The closeout lists the OpenCode 2 image-inspection gap as limitation 5 | `011/implementation-summary.md` |
+| 012-sk-vision-v2-prompt-hook | 013-sk-vision-v2-tools-and-loose-ends | Phase 012 lists the OpenCode 2 tools gap, the untested grace path and disposal during startup as open | `012/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->

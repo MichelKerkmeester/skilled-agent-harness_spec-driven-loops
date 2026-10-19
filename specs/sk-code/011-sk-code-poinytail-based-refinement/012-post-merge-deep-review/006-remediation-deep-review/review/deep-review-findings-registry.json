@@ -449,14 +449,14 @@
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "exit_code_drift",
       "disposition": "ruled_out",
       "rationale": "exit codes measured identical on both fixture families and preserved on the forced-failure path",
       "evidenceRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:466",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:80"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:80"
       ],
       "reason": "pre-fix replay plus forced-failure probe"
     },
@@ -465,13 +465,13 @@
       "id": "SL-008",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "count_mismatch",
       "disposition": "ruled_out",
       "rationale": "independent counting reproduces the printed per-guard and total counts",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:44"
       ],
       "reason": "counts match exactly"
     },
@@ -513,7 +513,7 @@
       "id": "SL-013",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"
       ],
       "bugClass": "count_mismatch",
@@ -598,7 +598,7 @@
         ".skilled/skills/sk-git/SKILL.md:6",
         ".skilled/skills/sk-vision/SKILL.md:5",
         ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:5",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:5",
         ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
       ],
       "bugClass": "version_drift",
@@ -695,7 +695,7 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/README.md:8",
-        ".skilled/skills/sk-code/sk-code-opencode/README.md:8",
+        ".skilled/skills/sk-code/sk-code-skilled/README.md:8",
         ".skilled/skills/system-deep-loop/deep-improvement/README.md:10"
       ],
       "bugClass": "version_drift",
@@ -711,16 +711,16 @@
       "id": "SL-I5-001",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "injection",
       "disposition": "ruled_out",
       "rationale": "no unquoted expansion reaches a command position and no dynamic evaluation exists",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:42",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:60",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:42",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:44",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:60",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20"
       ],
       "reason": "static read plus syntax check plus live green run"
     },
@@ -788,7 +788,7 @@
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
       ],
       "bugClass": "overengineering",
@@ -796,7 +796,7 @@
       "rationale": "no new abstraction, option or fallback; added state is minimal and directly required by the two findings",
       "evidenceRefs": [
         ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:45",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:45",
         ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
       ],
       "reason": "diff read against the rule plus helper-reuse proof"
@@ -930,14 +930,14 @@
       "dimension": "correctness",
       "targetRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "exit_code_drift",
       "disposition": "ruled_out",
       "rationale": "exit codes measured identical on both fixture families and preserved on the forced-failure path",
       "evidenceRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs:466",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:80"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:80"
       ],
       "proof": "pre-fix replay plus forced-failure probe"
     },
@@ -946,13 +946,13 @@
       "id": "SL-008",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "count_mismatch",
       "disposition": "ruled_out",
       "rationale": "independent counting reproduces the printed per-guard and total counts",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:44"
       ],
       "proof": "counts match exactly"
     },
@@ -994,7 +994,7 @@
       "id": "SL-013",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md"
       ],
       "bugClass": "count_mismatch",
@@ -1079,7 +1079,7 @@
         ".skilled/skills/sk-git/SKILL.md:6",
         ".skilled/skills/sk-vision/SKILL.md:5",
         ".skilled/skills/sk-code/sk-code-webflow/SKILL.md:5",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:5",
         ".skilled/skills/system-deep-loop/deep-improvement/SKILL.md:5"
       ],
       "bugClass": "version_drift",
@@ -1176,7 +1176,7 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/sk-code/sk-code-webflow/README.md:8",
-        ".skilled/skills/sk-code/sk-code-opencode/README.md:8",
+        ".skilled/skills/sk-code/sk-code-skilled/README.md:8",
         ".skilled/skills/system-deep-loop/deep-improvement/README.md:10"
       ],
       "bugClass": "version_drift",
@@ -1192,16 +1192,16 @@
       "id": "SL-I5-001",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       ],
       "bugClass": "injection",
       "disposition": "ruled_out",
       "rationale": "no unquoted expansion reaches a command position and no dynamic evaluation exists",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:42",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:60",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:42",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:44",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:60",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20"
       ],
       "proof": "static read plus syntax check plus live green run"
     },
@@ -1269,7 +1269,7 @@
       "dimension": "security",
       "targetRefs": [
         ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs"
       ],
       "bugClass": "overengineering",
@@ -1277,7 +1277,7 @@
       "rationale": "no new abstraction, option or fallback; added state is minimal and directly required by the two findings",
       "evidenceRefs": [
         ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs:40",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:45",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:45",
         ".skilled/hooks/shared/hook-adapter-shared.cjs:20"
       ],
       "proof": "diff read against the rule plus helper-reuse proof"

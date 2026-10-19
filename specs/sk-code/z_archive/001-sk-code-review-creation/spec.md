@@ -59,7 +59,7 @@ Promote `sk-code-review` as a first-class, stack-agnostic review baseline that:
 - Rebuild SKILL.md router to `sk-doc` parity (resource domains, loading levels, weighted scoring, ambiguity handling, unknown fallback, guarded recursive discovery).
 - Add baseline+overlay contract and precedence matrix:
   - baseline: `sk-code-review`
-  - overlay: one of `sk-code-opencode`, `sk-code-web`, `sk-code-full-stack`
+  - overlay: one of `sk-code-skilled`, `sk-code-web`, `sk-code-full-stack`
   - precedence: overlay style/process/build/test overrides generic guidance; baseline security/correctness minimums are always enforced.
 - Update review agents and orchestrators across runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to document and follow baseline+overlay contract.
 - Update `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` wrappers to require the same baseline+overlay contract when delegating to canonical chatgpt playbooks.

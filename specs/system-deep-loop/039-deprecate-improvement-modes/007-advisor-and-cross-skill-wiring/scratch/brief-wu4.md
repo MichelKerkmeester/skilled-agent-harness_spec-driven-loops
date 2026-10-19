@@ -42,15 +42,15 @@ FILES (lines are where the mentions are today)
   .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md: 360
   .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md: 80,134,231
   .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md: 294
-  .skilled/skills/sk-code/sk-code-opencode/SKILL.md: 175
-  .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md: 73
-  .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh: 58
+  .skilled/skills/sk-code/sk-code-skilled/SKILL.md: 175
+  .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md: 73
+  .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh: 58
   .skilled/skills/sk-code/sk-code-quality/SKILL.md: 150
 
 SPECIAL CASES
 - Agent rosters and counts (cursor, devin, opencode, claude-code docs and playbooks): drop `deep-improvement` and lower any stated agent count by one.
 - cli-classifier measurement doc pi-transport-integration.md: if it records a past measurement run that used a removed mode, it is history; keep the measurement and only drop present-tense instructions that send the reader to a removed mode or command.
-- sk-code-opencode/scripts/run-all-drift-guards.sh: if it runs a guard that lived in the deleted packet, delete that call; if it calls the agent mirror checker by its old path, point it at `.skilled/bin/check-agent-mirror-sync.cjs`.
+- sk-code-skilled/scripts/run-all-drift-guards.sh: if it runs a guard that lived in the deleted packet, delete that call; if it calls the agent mirror checker by its old path, point it at `.skilled/bin/check-agent-mirror-sync.cjs`.
 
 DON'T
 - BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, git rebase, git branch, rm -rf, npm install, editing anything under specs/.
@@ -59,7 +59,7 @@ DON'T
 - ALLOWED WRITE PATHS: the files listed above only.
 
 VERIFY (report each exit status)
-  bash -n .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+  bash -n .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
   rg -n -i "agent-improvement|model-benchmark|deep-improvement" .skilled/skills/cli-classifier .skilled/skills/cli-external-orchestration .skilled/skills/sk-code --glob '!**/changelog/**' --glob '!**/benchmark/reports/**'
 
 HANDBACK: list every file you changed, then each VERIFY result. Name any remaining rg hit you left on purpose and why.

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The first thing a user reads, `README.md:800`, presents three equal surfaces, and the adaptation block (`README.md:1384`, `:1447`) tells them to replace all three, the native OpenCode packet included, with paths that do not name where the packets nest (F28, F75, F77)",
     "created_at": "2026-10-13T04:45:55Z",
-    "last_save_at": "2026-10-13T10:13:32.959Z",
+    "last_save_at": "2026-10-18T20:45:19.701Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:449957cd395fbed70b647c7318bd57d5dcf123101234d7f075288ead5593e325",
+    "source_fingerprint": "sha256:bce675f11a37956825d32c9831e8c98d7991ec13a16033050b1b7f4e640e81d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0c49e8d63b557118bc3ebb1e69913d943b21c96127075a2edfab422f588f451c",
+      "spec.md": "4decbf31f55ed2814fdd9e3479afc86bf973cbb6fde1d17a6eaec611b3bd9f6f",
       "plan.md": "8782f4e1f87e85d58813196bfd4fe50720d90085da5d50a6eda934af8658c41d",
       "tasks.md": "2a5d52e6b4a8702c4d0d6d965cf9efe6a65f35632e9ae65644fc5903c11f3345",
-      "implementation-summary.md": "8d7cd280507cb6063ea77513a082ce2b8fdddf384b29301d653d43a25fd4e970"
+      "implementation-summary.md": "f0d74d121e370294919f833c32bf5718e36b1d42bc7fd86ecbf6b1913bf49a0b"
     },
     "last_active_at": null
   }

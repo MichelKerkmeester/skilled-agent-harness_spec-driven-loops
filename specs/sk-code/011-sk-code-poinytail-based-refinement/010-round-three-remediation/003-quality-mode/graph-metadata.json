@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The quality mode owns the comment-hygiene gate, yet its `SKILL.md` names `scripts/hooks/claude-posttooluse.sh` as the write-time warning and `.skilled/hooks/git/pre-commit` as the pre-commit block (lines 132, 133 and 136, plus lines 94, 112 and 322)",
     "created_at": "2026-10-10T10:07:19Z",
-    "last_save_at": "2026-10-11T05:17:08.992Z",
+    "last_save_at": "2026-10-18T20:45:14.643Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc1110449d700aa653ad0e43e536ad0453e0cf91442fdeaeb7f2aeb84c65d36c",
+    "source_fingerprint": "sha256:4d0cfb27393a9f4be9171f5174293d758b23e53d46dd046009ffd4a82aff96c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4ecfa872f5a14a53f06367483e7582b3780e12003119a94000b6547d83e179bc",
-      "plan.md": "f83d18ff91a66923e0e1671fdf87048089a1ea016fbf49e2a17ce40815ae5244",
-      "tasks.md": "c3aa169b8b9e6e4d97d89b35d3051a9afc8883a3758cd6b004f6e5b9abddb3c4",
-      "implementation-summary.md": "04c23c26f7a738088faa901965668370e250615eda3492930a3eebe9eb52fda8"
+      "spec.md": "54291f6a4305e2fbb07cb7aa8bb0dbb3c203ab6d7e6c132691f2bd33538107ca",
+      "plan.md": "d99e71d163ef02c71d646c1b17f5f2481168374664a6750b649b9002b2ab13e7",
+      "tasks.md": "7ea369d9cf139e8384ff44e081b84e86244c4b6f3729510be58d7648cbab3a73",
+      "implementation-summary.md": "101238c6f198ed181c07d0ac05a2be5e044f11cf10d14c98f68e844a912588c4"
     },
     "last_active_at": null
   }

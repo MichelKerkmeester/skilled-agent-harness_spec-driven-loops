@@ -45,21 +45,21 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/README.md",
       "scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
-      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md",
       ".skilled/skills/sk-code/leaf-manifest.json",
       ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       "scratch/plan-doc-claims.txt",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md"
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md"
     ],
     "entities": [
       {
@@ -95,31 +95,31 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/README.md",
         "source": "derived"
       },
       {
         "name": "workflow-guardrails.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
         "source": "derived"
       },
       {
         "name": "v1.2.0.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md",
         "source": "derived"
       },
       {
@@ -149,19 +149,19 @@
       {
         "name": "alignment-verification-automation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
         "name": "directory-and-test-conventions.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
         "source": "derived"
       },
       {
         "name": "naming-and-commenting.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Every round-three drift cluster sits in prose that no guard reads: the routers and manifests were updated after each rename and all pass, while the docs that cite them kept dead paths, pre-rename packet names and two-surface wording (f-iter020-003)",
     "created_at": "2026-10-10T10:07:21Z",
-    "last_save_at": "2026-10-11T05:17:08.851Z",
+    "last_save_at": "2026-10-18T20:45:14.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10a8f6735fd9cd0544dbaa0087af36e122060de42d33eec7d4ebd15ff27a632d",
+    "source_fingerprint": "sha256:e64f9e1c8eab83621bd531c5bf46661708c9f1ad916f4e87af527923b3b1ae96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "243f0f3ce32f836c8ac0ecd791b4975eddd2e8664a34a81b4a63b9d9a4bff3c7",
-      "plan.md": "f8410777e0abbbf0c6d277941f66fcfa075b293419afa7a7db1471eedf807b90",
-      "tasks.md": "f2d6a73ab3b5b2639e840b7bb2b142d9fa968e502e3900d7253f6e756b273e05",
-      "implementation-summary.md": "e839924deee74624bb48ea40f64e6f9a5fcb1ec0620c89f246626f15c2c94a06"
+      "spec.md": "f724dced90487e3a69c07a893b889c13248a2746cceb1f6f87a62fa784ca29a2",
+      "plan.md": "0e6d94f804e46972cb4e813cd06a8412ed2c27a64354c822e653e500550722b4",
+      "tasks.md": "619c53c82b5bf22d2ecbf203e835d412f23bf354a891326087c02e43d9a5e9eb",
+      "implementation-summary.md": "860e87d14836c1d84927874f88a402ca745407eeaf8cefaa205bffe149372a2f"
     },
     "last_active_at": null
   }

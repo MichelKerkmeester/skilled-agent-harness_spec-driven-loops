@@ -3,7 +3,7 @@
 I’m loading the relevant review standards and scanning all five files for the requested convention checks, then I’ll distill only concrete file:line findings.
 
 ● Read SKILL.md
-  │ .agents/skills/sk-code-opencode/SKILL.md
+  │ .agents/skills/sk-code-skilled/SKILL.md
   └ 1 line read
 
 ● Read input-normalizer.ts

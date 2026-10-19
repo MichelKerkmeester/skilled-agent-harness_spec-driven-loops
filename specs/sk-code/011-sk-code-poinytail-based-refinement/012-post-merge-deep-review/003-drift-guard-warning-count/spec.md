@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 3** of the Fix the confirmed P2 findings of the post-merge review specification.
 
-**Scope Boundary**: The umbrella script and its README inside `.skilled/skills/sk-code/sk-code-opencode/scripts/`, plus the packet version line and one changelog.
+**Scope Boundary**: The umbrella script and its README inside `.skilled/skills/sk-code/sk-code-skilled/scripts/`, plus the packet version line and one changelog.
 
 **Dependencies**:
 - Review finding 5 (R7-MNT-001) in `../review/review-report.md`
@@ -72,7 +72,7 @@ The umbrella's PASS line and summary show how many non-blocking warnings each ru
 - Count `[WARN]` lines per guard and show them on that guard's PASS line
 - Add the total to the success line
 - Update the README's expected output and table row
-- Bump `sk-code-opencode` to 1.2.2.0 and add `changelog/v1.2.2.0.md`
+- Bump `sk-code-skilled` to 1.2.2.0 and add `changelog/v1.2.2.0.md`
 
 ### Out of Scope
 - Turning on `--fail-on-warn`, which would turn the gate red on 272 existing warnings and fails the restraint test the review applied
@@ -83,11 +83,11 @@ The umbrella's PASS line and summary show how many non-blocking warnings each ru
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Warning counts on PASS lines and the summary |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Expected output and table row |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Version 1.2.2.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md` | Create | Changelog entry |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Modify | Regenerated Hermes copy |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Warning counts on PASS lines and the summary |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Expected output and table row |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Version 1.2.2.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md` | Create | Changelog entry |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Modify | Regenerated Hermes copy |
 <!-- /ANCHOR:scope -->
 
 ---

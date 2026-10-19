@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-opencode", "sk-code-obsidian", "sk-code-webflow"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled", "sk-code-obsidian", "sk-code-webflow"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -33,10 +33,10 @@
       "classes": ["code-webflow-aliases", "code-webflow-runtime"],
       "resources": ["sk-code-webflow/SKILL.md"]
     },
-    "sk-code-opencode": {
+    "sk-code-skilled": {
       "weight": 4,
-      "classes": ["code-opencode-aliases", "code-opencode-runtime", "code-opencode-authoring"],
-      "resources": ["sk-code-opencode/SKILL.md"]
+      "classes": ["code-skilled-aliases", "code-skilled-runtime", "code-skilled-authoring"],
+      "resources": ["sk-code-skilled/SKILL.md"]
     },
 
     "sk-code-obsidian": {
@@ -76,13 +76,13 @@
     "code-webflow-runtime": {
       "keywords": ["html", "css", "javascript", "cdn", "gsap", "lenis", "swiper", "hls.js", "filepond", "intersectionobserver", "browser"]
     },
-    "code-opencode-aliases": {
+    "code-skilled-aliases": {
       "keywords": ["opencode system code", "opencode system code workflow", "opencode typescript verification", "opencode", "system code", "system-code", "mcp"]
     },
-    "code-opencode-runtime": {
+    "code-skilled-runtime": {
       "keywords": ["typescript", "python", "shell", "json", "jsonc", "config", "rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "wasm-bindgen", "wasm_bindgen", "wasi", "cdylib", "vitest", "argparse", "console.error", "tiny script"]
     },
-    "code-opencode-authoring": {
+    "code-skilled-authoring": {
       "keywords": ["skill authoring", "agent authoring", "command authoring", "mcp server authoring"]
     },
 

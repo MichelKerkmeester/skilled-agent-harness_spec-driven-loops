@@ -55,7 +55,7 @@ This is **Phase 6** of the sk-code Ponytail 5 refinement specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it. The retired Lane C index carries no successor note at all.
+The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-skilled/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it. The retired Lane C index carries no successor note at all.
 
 ### Purpose
 A reader can tell, for each retired guard, what covers it now or that nothing does.
@@ -70,7 +70,7 @@ A reader can tell, for each retired guard, what covers it now or that nothing do
 - Add a successor or gap note for each retired guard in `run-all-drift-guards.sh`
 - Point the retired router-sync guard at `.github/workflows/routing-registry-drift.yml` as partial coverage
 - Add the same note to the retired Lane C index
-- Point the docs that describe the retired router-sync suite at the same successor note: `sk-code-opencode/scripts/README.md:12`, `sk-code-opencode/SKILL.md:55-59` and `:173`, and `sk-code-opencode/references/shared/alignment-verification-automation.md`
+- Point the docs that describe the retired router-sync suite at the same successor note: `sk-code-skilled/scripts/README.md:12`, `sk-code-skilled/SKILL.md:55-59` and `:173`, and `sk-code-skilled/references/shared/alignment-verification-automation.md`
 
 ### Out of Scope
 - Reviving any retired guard
@@ -79,11 +79,11 @@ A reader can tell, for each retired guard, what covers it now or that nothing do
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Retirement notes |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Retirement notes |
 | `.skilled/skills/sk-code/benchmark/README.md` | Modify | Lane C successor note |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Successor note |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Successor note |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Successor note |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Successor note |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Successor note |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Successor note |
 <!-- /ANCHOR:scope -->
 
 ---

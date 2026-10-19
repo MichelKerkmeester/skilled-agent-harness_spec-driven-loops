@@ -58,7 +58,7 @@ Custom agents share the same role definitions across 4 runtime directories. Open
 | 4 | `mcp-chrome-devtools` | Browser | v1.0.7.0 | Chrome DevTools orchestrator with CLI (bdg) and MCP approaches. CLI prioritized for speed, MCP fallback for multi-tool integration |
 | 5 | `mcp-clickup` | Project Mgmt | v1.0.0 | ClickUp project management orchestrator. CLI-first (cu) for speed, MCP for enterprise features like docs, goals, webhooks, and bulk operations |
 | 6 | `sk-code-full-stack` | Multi-Stack | v1.1.0.0 | Stack-agnostic development orchestrator with auto-detection via marker files. Supports Go, Node.js, React/Next.js, React Native/Expo, Swift |
-| 7 | `sk-code-opencode` | System Code | v1.2.0.0 | Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) |
+| 7 | `sk-code-skilled` | System Code | v1.2.0.0 | Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) |
 | 8 | `sk-code-web` | Web Dev | v1.1.0.0 | Development orchestrator for frontend: implementation, debugging, verification across 6 specialized code quality sub-skills |
 | 9 | `sk-code-review` | Review | v1.2.0.0 | Stack-agnostic code review baseline. Findings-first severity analysis, mandatory security/correctness minimums, baseline+overlay compatibility |
 | 10 | `sk-doc` | Docs | v1.1.2.0 | Unified markdown and OpenCode component specialist. Document quality enforcement, content optimization, component creation workflows, ASCII flowcharts, install guides |
@@ -75,7 +75,7 @@ Custom agents share the same role definitions across 4 runtime directories. Open
 |----------|-------|--------|
 | Cross-AI CLI | 4 | cli-gemini, cli-codex, cli-claude-code, cli-copilot |
 | MCP Integration | 4 | mcp-code-mode, mcp-figma, mcp-chrome-devtools, mcp-clickup |
-| Code Workflows | 4 | sk-code-full-stack, sk-code-opencode, sk-code-web, sk-code-review |
+| Code Workflows | 4 | sk-code-full-stack, sk-code-skilled, sk-code-web, sk-code-review |
 | Documentation | 2 | system-spec-kit, sk-doc |
 | Git | 1 | sk-git |
 | Prompt Engineering | 1 | sk-improve-prompt |

@@ -44,11 +44,11 @@ _memory:
 **Status**: Accepted
 
 <!-- ANCHOR:adr-001-context -->
-**Context**: `sk-code` deliberately centralized resource routing in the parent `shared/references/smart_routing.md` (a two-layer hub run: `hub-router.json` picks the child mode; `loadSurfaceRouter` reads `smart_routing.md`; `assembleResources` slices by the literal `code-webflow/` / `code-opencode/` prefixes against `registryPacketRoots`). That means the surface children (`code-webflow`, `code-opencode`) had only a descriptive REFERENCE MAP — no parseable inline router — so `router-replay --skill <child>` could not score their intra-routing recall in isolation.
+**Context**: `sk-code` deliberately centralized resource routing in the parent `shared/references/smart_routing.md` (a two-layer hub run: `hub-router.json` picks the child mode; `loadSurfaceRouter` reads `smart_routing.md`; `assembleResources` slices by the literal `code-webflow/` / `code-skilled/` prefixes against `registryPacketRoots`). That means the surface children (`code-webflow`, `code-skilled`) had only a descriptive REFERENCE MAP — no parseable inline router — so `router-replay --skill <child>` could not score their intra-routing recall in isolation.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
-**Decision**: Move each surface child's slice of the parent `RESOURCE_MAP` INTO that child's `SKILL.md` as an inline `## 2b. SMART ROUTING (machine-readable)` block (`INTENT_SIGNALS` + `RESOURCE_MAP` over child-relative paths). Rewrite the parent `smart_routing.md` `RESOURCE_MAP` as the **mechanical union** = each child map re-prefixed with `code-webflow/` / `code-opencode/`, plus the parent-owned universal/shared/Motion tier.
+**Decision**: Move each surface child's slice of the parent `RESOURCE_MAP` INTO that child's `SKILL.md` as an inline `## 2b. SMART ROUTING (machine-readable)` block (`INTENT_SIGNALS` + `RESOURCE_MAP` over child-relative paths). Rewrite the parent `smart_routing.md` `RESOURCE_MAP` as the **mechanical union** = each child map re-prefixed with `code-webflow/` / `code-skilled/`, plus the parent-owned universal/shared/Motion tier.
 <!-- /ANCHOR:adr-001-decision -->
 
 <!-- ANCHOR:adr-001-alternatives -->
@@ -65,7 +65,7 @@ _memory:
 <!-- /ANCHOR:adr-001-five-checks -->
 
 <!-- ANCHOR:adr-001-impl -->
-**Implementation**: child `## 2b` routers in `sk-code/{code-webflow,code-opencode}/SKILL.md`; parent union in `sk-code/shared/references/smart_routing.md`; enforcement in `.../skill-benchmark/tests/sk-code-router-sync.vitest.ts` (7/7 green).
+**Implementation**: child `## 2b` routers in `sk-code/{code-webflow,code-skilled}/SKILL.md`; parent union in `sk-code/shared/references/smart_routing.md`; enforcement in `.../skill-benchmark/tests/sk-code-router-sync.vitest.ts` (7/7 green).
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
@@ -77,7 +77,7 @@ _memory:
 
 **Context**: Once routing is duplicated between children and the parent projection, nothing structural stops them from drifting.
 
-**Decision**: Extend `.../skill-benchmark/tests/sk-code-router-sync.vitest.ts` with a describe block that asserts, for the surface set `['code-webflow','code-opencode']`: (1) every child router is self-parseable and non-empty; (2) every child-declared path exists on disk; (3) `parent RESOURCE_MAP == union(re-prefix(child maps)) + PARENT_TIER_ALLOWLIST`. The allowlist enumerates the parent-owned, non-prefixed tier (`references/universal/*`, `shared/assets/patterns/README.md`, `code-review/assets/code_quality_checklist.md`).
+**Decision**: Extend `.../skill-benchmark/tests/sk-code-router-sync.vitest.ts` with a describe block that asserts, for the surface set `['code-webflow','code-skilled']`: (1) every child router is self-parseable and non-empty; (2) every child-declared path exists on disk; (3) `parent RESOURCE_MAP == union(re-prefix(child maps)) + PARENT_TIER_ALLOWLIST`. The allowlist enumerates the parent-owned, non-prefixed tier (`references/universal/*`, `shared/assets/patterns/README.md`, `code-review/assets/code_quality_checklist.md`).
 
 **Consequences**: A routing edit to either a child or the parent that breaks the projection fails CI. `parseRouter` takes SKILL.md **text** (not a path) — the guard reads the file then parses, matching the engine's `parseRouter(readFileSync(skillMd), skillRoot)` contract.
 
@@ -120,7 +120,7 @@ _memory:
 
 **Measured (all 7 un-gated children; live `resourceRecall` in parens)**:
 - `deep-research` 91→80 gap **11** (rr 1.00) · `deep-review` 93→71 gap **22** (rr 0.89) · `deep-improvement` 91→62 gap **29** (rr 0.90) — deep-loop routers hold up live (real capability).
-- `code-opencode` 84→56 gap **28** (rr 0.70) · `code-webflow` 91→57 gap **34** (rr 0.51) — sk-code surface children partial.
+- `code-skilled` 84→56 gap **28** (rr 0.70) · `code-webflow` 91→57 gap **34** (rr 0.51) — sk-code surface children partial.
 - `code-quality` 89→31 gap **58** (rr 0.00) — thin single-route, live misses it (consistent with ADR-004).
 - `code-review` 100→0 gap **100** (rr 0.00) — **most router-overfit**: perfect Mode-A, zero live corroboration.
 

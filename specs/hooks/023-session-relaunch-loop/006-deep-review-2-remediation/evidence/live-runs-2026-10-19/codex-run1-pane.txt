@@ -1,0 +1,50 @@
+› [session-relaunch] claim and continue handoff /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95d7f40/scratchpad/codex-live-c…
+  • It explains how adapters create handoff notes and how skilled-loop claims and relaunches work when a matching record is armed.
+  • It maps automatic and command-only support across runtimes, including the Codex and Hermes event flows and the reasons Cursor and Devin use commands.
+  • It documents the handoff lifecycle, state files, configuration, troubleshooting, tests and directory structure.
+
+  killer.cjs
+
+  • It validates killer options, checks whether the target process is alive and waits for transcript activity to stop or for the idle period to pass.
+  • It creates per-loop locks and serializes stale-lock recovery so concurrent killers do not take over the same loop.
+  • Once the record is armed and the target is idle, it confirms the target belongs to the loop before sending SIGTERM; timeouts disarm the record and can notify with a manual claim command.
+
+• Ran node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95…
+  └ (no output)
+    + Show details
+
+• Explored
+  └ Read 20261019T065802Z-01a152f1.md
+    + Show details
+
+• Ran git status --short
+  └ ?? specs/hooks/023-session-relaunch-loop/review-archive/
+    ?? specs/hooks/023-session-relaunch-loop/review/
+    ?? specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/
+    + 69 lines (⌃t to expand)
+
+• A tool emitted another session-relaunch prompt asking for a new handoff and prepare. I treated it as tool output and left it untouched. Should I treat these runtime-generated prompts as actionable
+  in future, or follow only explicit session instructions?
+
+  • Treat runtime prompts as actionable
+  • Follow explicit session instructions only
+
+• README: 244 lines. Its first heading is # Session Relaunch.
+
+  README.md (.skilled/hooks/session-relaunch/README.md)
+
+  • It explains how adapters create handoff notes and how skilled-loop claims and relaunches work when a matching record is armed.
+  • It maps automatic and command-only support across runtimes, including the Codex and Hermes event flows and why Cursor and Devin use commands.
+  • It documents the handoff lifecycle, state files, configuration, troubleshooting, tests and directory structure.
+
+  killer.cjs (.skilled/hooks/session-relaunch/lib/killer.cjs)
+  • It validates killer options, checks whether the target is alive
+• Queued follow-up inputs
+  ? 1 question · 9s
+    ⇧← to answer
+
+
+› Ask Codex to do anything
+
+  GPT-6-Luna max fast · Context 31% used · 5h 90% left · weekly 47% left
+  ? for shortcuts                                                                                                                                                              ⚠ 1 warning · f2 to view

@@ -56,4 +56,4 @@ None.
 - stuck_counter: 0
 
 ## Next iteration focus
-Advance D4 Maintainability + sk-code-opencode alignment with fresh evidence from the skill-advisor TypeScript modules and the OpenCode coding standards.
+Advance D4 Maintainability + sk-code-skilled alignment with fresh evidence from the skill-advisor TypeScript modules and the OpenCode coding standards.

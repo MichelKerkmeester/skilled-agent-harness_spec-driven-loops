@@ -1,5 +1,5 @@
 {
-  "topic": "Comprehensive hybrid-rag-fusion system analysis: pipeline architecture, scoring calibration, automation opportunities, dead code/bugs, and alignment with sk-code-opencode and sk-doc standards",
+  "topic": "Comprehensive hybrid-rag-fusion system analysis: pipeline architecture, scoring calibration, automation opportunities, dead code/bugs, and alignment with sk-code-skilled and sk-doc standards",
   "maxIterations": 20,
   "convergenceThreshold": 0.02,
   "stuckThreshold": 5,

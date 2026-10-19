@@ -12,7 +12,7 @@ _memory:
     recent_action: "Phases 010-017 shipped and pushed; packet validates 18/18 at 0/0"
     next_safe_action: "None required; see handover section 3.2 for opt-in work"
     blockers: []
-    key_files: [".cursor/hooks.json", ".cursor/mcp.json", ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md"]
+    key_files: [".cursor/hooks.json", ".cursor/mcp.json", ".opencode/skills/sk-code/code-skilled/references/shared/hooks.md"]
     session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "cli-cursor-hooks-session", parent_session_id: null }
     completion_pct: 100
     open_questions: []
@@ -39,7 +39,7 @@ _memory:
 | 010 | `.cursor/hooks.json` created and committed — the registration ADR-001 always specified but never shipped |
 | 011 | Expanded toward Claude parity: `postToolUse` chain, `Task`-matcher guard, 5 repo-guard scripts |
 | 012 | Hooks-category playbook re-executed independently — 3 PASS, 1 documented SKIP |
-| 013 | All Cursor `.mjs` hooks aligned to `sk-code/code-opencode` P0 standards; `hooks.md` gained a Cursor section |
+| 013 | All Cursor `.mjs` hooks aligned to `sk-code/code-skilled` P0 standards; `hooks.md` gained a Cursor section |
 | 014 | `.cursor/hooks/` discovery mirror (13 symlinks) |
 | 016 | `.cursor/mcp.json` symlinked; `mcp-route-guard.mjs` dead wire found and fixed, then wired |
 | 017 | `.codex/hooks/` (16) and `.claude/hooks/` (18) discovery mirrors |
@@ -79,7 +79,7 @@ Phase 015 (`hook-code-style-cross-runtime`) belongs to a concurrent session, not
 - `.cursor/hooks/` (13), `.codex/hooks/` (16), `.claude/hooks/` (18) — each with a README
 
 **Docs:**
-- `sk-code/code-opencode/references/shared/hooks.md` — Cursor is now a first-class runtime alongside Claude/OpenCode/Copilot (was entirely absent)
+- `sk-code/code-skilled/references/shared/hooks.md` — Cursor is now a first-class runtime alongside Claude/OpenCode/Copilot (was entirely absent)
 - `cli-external-orchestration/feature-catalog/feature-catalog.md`, `cli-cursor/references/hook-contract.md`, playbook root + `hooks/` scenarios
 
 ### 2.4 Traps & Scar Tissue
@@ -123,7 +123,7 @@ Nothing is blocking. The packet is complete, pushed, and validating clean. Pick 
 
 ### 3.3 Critical Context to Load
 
-1. `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` — **the canonical cross-runtime hook reference.** Now documents all four runtimes plus the split-shape and discovery-mirror caveats. Start here.
+1. `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md` — **the canonical cross-runtime hook reference.** Now documents all four runtimes plus the split-shape and discovery-mirror caveats. Start here.
 2. `.cursor/hooks.json` — live Cursor wiring (also read by the Cursor **editor**; changes have cross-surface impact).
 3. `016-cursor-mcp-wiring-and-route-guard-fix/implementation-summary.md` — the dead-wire investigation, including the evidence table.
 4. `014-cursor-hooks-discovery-mirror/implementation-summary.md` — the entrypoint-guard root cause.

@@ -16,7 +16,7 @@ const SK_CODE_ROUTE_GOLD = path.join(REPO_ROOT, 'specs', 'sk-doc', '019-skill-ro
 const SK_CODE_ROUTE_GOLD_ARCHIVED = path.join(REPO_ROOT, 'specs', 'sk-doc', 'z_archive', '019-skill-routing-refactor', '015-router-unification-program', '009-parent-hub-rollout', '001-sk-code', 'compiled', 'route-gold.typed.json');
 
 const NON_ROUTED_ALLOWLIST = new Set(['ROUTER.md', 'references/stack-detection.md', 'references/phase-detection.md']);
-const SURFACES = process.env.PROTO_SURFACES ? process.env.PROTO_SURFACES.split(',') : ['sk-code-webflow', 'sk-code-opencode', 'sk-code-mobile-cli'];
+const SURFACES = process.env.PROTO_SURFACES ? process.env.PROTO_SURFACES.split(',') : ['sk-code-webflow', 'sk-code-skilled', 'sk-code-mobile-cli'];
 const SURFACE_PACKETS = new Set([...SURFACES, 'sk-code-obsidian']);
 const PARENT_TIER_ALLOWLIST = new Set([
   'shared/references/universal/multi-agent-research.md',
@@ -186,16 +186,16 @@ function check3() {
     for (const c of gold.cases || []) for (const id of c.targetQualifiedIds || []) ids.add(id);
     for (const id of ids) if (!LEAF_CONTRACT.qualifiedIdToLeaf(id, { modeIndex }).ok) problems.push(`compiled destination without a leaf-owning mode: ${id}`);
   }
-  const codeOpencode = modeIndex['sk-code-opencode'];
-  if (!codeOpencode) {
-    problems.push('leaf-manifest.json declares no sk-code-opencode mode');
+  const codeSkilled = modeIndex['sk-code-skilled'];
+  if (!codeSkilled) {
+    problems.push('leaf-manifest.json declares no sk-code-skilled mode');
   } else {
-    const md = fs.readFileSync(path.join(SKCODE, 'sk-code-opencode', 'SKILL.md'), 'utf8');
-    const router = lib.parseRouter(md, path.join(SKCODE, 'sk-code-opencode'));
+    const md = fs.readFileSync(path.join(SKCODE, 'sk-code-skilled', 'SKILL.md'), 'utf8');
+    const router = lib.parseRouter(md, path.join(SKCODE, 'sk-code-skilled'));
     const paths = new Set();
     for (const r of router.defaultResource || []) paths.add(norm(r));
     for (const list of Object.values(router.resourceMap)) for (const p of list) paths.add(norm(p));
-    for (const p of paths) if (!codeOpencode.leaves.has(p)) problems.push(`RESOURCE_MAP entry not a manifest leaf: ${p}`);
+    for (const p of paths) if (!codeSkilled.leaves.has(p)) problems.push(`RESOURCE_MAP entry not a manifest leaf: ${p}`);
   }
   return problems;
 }
@@ -256,7 +256,7 @@ function check4() {
 const CHECKS = [
   ['1 machine-router paths: parse, dead routes, orphans, prose paths', check1],
   ['2 surface RESOURCE_MAP equals children union plus parent tier', check2],
-  ['3 qualifiedIdToLeaf bijection: manifest, route-gold, code-opencode RESOURCE_MAP', check3],
+  ['3 qualifiedIdToLeaf bijection: manifest, route-gold, code-skilled RESOURCE_MAP', check3],
   ['4 playbook expected_resource is emitted by the router', check4],
 ];
 

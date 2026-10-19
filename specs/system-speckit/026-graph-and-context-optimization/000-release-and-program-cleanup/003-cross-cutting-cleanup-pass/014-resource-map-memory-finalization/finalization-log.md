@@ -50,7 +50,7 @@ Generated: 2026-04-29T20:41:19+02:00
 | `006-runtime-matrix-execution-validation` | 23560 | 0 | OK | OK | 0 | OK |
 | `011-cli-matrix-adapter-runners` | 8647 | 0 | OK | OK | 0 | OK |
 | `003-post-program-quality-pass` | 5719 | 0 | OK | OK | 0 | OK |
-| `003-post-program-quality-pass/001-sk-code-opencode-standards-audit` | 9109 | 0 | OK | OK | 0 | OK |
+| `003-post-program-quality-pass/001-sk-code-skilled-standards-audit` | 9109 | 0 | OK | OK | 0 | OK |
 | `003-post-program-quality-pass/002-feature-catalog-trio-alignment` | 5904 | 0 | OK | OK | 0 | OK |
 | `003-post-program-quality-pass/003-testing-playbook-trio-alignment` | 6141 | 0 | OK | OK | 0 | OK |
 | `003-post-program-quality-pass/004-sk-doc-template-alignment` | 6269 | 0 | OK | OK | 0 | OK |

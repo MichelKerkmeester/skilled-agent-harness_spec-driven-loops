@@ -83,7 +83,7 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 - [x] Ratify ADR-001..ADR-006; enumerate the parent-owned-tier allowlist (`decision-record.md`)
 
 ## P2 — Per-child routers (×8)
-- [x] `code-opencode` inline §2b router (6 intents, 30 paths) — commit `2b0ec3de0d`
+- [x] `code-skilled` inline §2b router (6 intents, 30 paths) — commit `2b0ec3de0d`
 - [x] `code-webflow` inline §2b router (13 intents) — commit `2b0ec3de0d`
 - [x] `code-quality` thin §2b router (QUALITY → checklist) — commit `5fcd621310`
 - [x] `code-review` gold tightened to exact `assets/*` paths
@@ -96,7 +96,7 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 - [x] sk-code hub Mode-A byte-identical to the P0 baseline (invariant held)
 
 ## P4 — Per-child Type-1 gold (×8)
-- [x] `code-opencode` playbook (8 scenarios) → Mode-A PASS 84 — commit `79812f3393`
+- [x] `code-skilled` playbook (8 scenarios) → Mode-A PASS 84 — commit `79812f3393`
 - [x] `code-quality` playbook (1 scenario) → Mode-A PASS 89 — commit `c72367b125`
 - [x] `code-webflow` playbook (13 scenarios) → Mode-A PASS 91 — commit `9ff574a5dd`
 - [x] `code-review` playbook (7 scenarios) → Mode-A PASS 100 — commit `97c0f01d30`
@@ -116,7 +116,7 @@ Legend: `[x]` done · `[~]` partial/representative · `[ ]` gated/deferred.
 
 ## P7 — Mode-B runs (advisory)
 - [x] Live pipeline proven (`scoringMethod: mode-b-live`, `traceMode: live`)
-- [x] All 7 un-gated children scored live — captured under each child's `benchmark/2026-07-10--live-mode-b--live/`: deep-research 80, deep-review 71, deep-improvement 62, code-webflow 57, code-opencode 56, code-quality 31, code-review 0
+- [x] All 7 un-gated children scored live — captured under each child's `benchmark/2026-07-10--live-mode-b--live/`: deep-research 80, deep-review 71, deep-improvement 62, code-webflow 57, code-skilled 56, code-quality 31, code-review 0
 - [x] sk-code hub Mode-B — CONDITIONAL 67 (30 scenarios), captured under `sk-code/benchmark/reports/2026-07-10--live-mode-b--live/`
 - [x] `deep-ai-council` Mode-B — CONDITIONAL 76 (rr 0.91); `system-deep-loop` hub Mode-B — PASS 93 (20 scenarios)
 

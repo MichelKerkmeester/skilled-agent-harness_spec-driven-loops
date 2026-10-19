@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`parseIterationMarkdownFindings` (`iteration-findings.cjs` lines 5 to 32) trims every line of the `## Findings` section before matching `^\\d+\\.\\s+`, so a numbered sub-step indented under a finding counts as a finding of its own",
     "created_at": "2026-10-10T14:44:46Z",
-    "last_save_at": "2026-10-10T16:51:32.167Z",
+    "last_save_at": "2026-10-18T20:45:15.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f3175066ea7130c0a37ad220666bb2d65f2b5e65a54a95c02c5fc9d0bcee408",
+    "source_fingerprint": "sha256:6620d4774a4400f515b3844c0b9f29961e360a4e0e7e8297da43b6aee9edd744",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1d8a09bdfb496a93189e0f496763f6d888282b34be8c4e6d4f1eec171004108",
-      "plan.md": "cae3f619fe06664e54f081cd2413182956d25e580165347541d8ea68cef6eaa7",
-      "tasks.md": "ccc6a8f29611a14e6a301d5668d036605fe60138624d4f9bf1b7aaaac577c019",
+      "plan.md": "5150b0978016d02e6a33e140c894aa8e3ec2bc8e658de7097903c44926ad0479",
+      "tasks.md": "fdbe8a5e8eba053caef1ac043722b0d898fdcde023b1002d8dbfde0470068696",
       "implementation-summary.md": "cacb512f920632b0e20c1aa43e01d868761aa1a85a1d3df5565ec46256fb0376"
     },
     "last_active_at": null

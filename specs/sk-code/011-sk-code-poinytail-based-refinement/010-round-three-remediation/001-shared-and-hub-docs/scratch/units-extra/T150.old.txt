@@ -1,1 +1,1 @@
-(`code-webflow` / `code-opencode` / `code-review` / `quality`)
+(`code-webflow` / `code-skilled` / `code-review` / `quality`)

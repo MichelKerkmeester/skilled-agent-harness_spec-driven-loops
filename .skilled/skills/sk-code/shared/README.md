@@ -3,7 +3,7 @@ title: sk-code shared
 description: Shared surface-router and cross-mode reference index for sk-code: navigation over the surface-detection, phase-lifecycle, workflow-doctrine, and universal-standards references consumed by every sk-code mode.
 importance_tier: normal
 contextType: general
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # sk-code shared
@@ -14,7 +14,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-`shared/` holds the routing and doctrine references common to every sk-code surface packet (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads the universal quality standards below for its Phase 1.5 gate.
+`shared/` holds the routing and doctrine references common to every sk-code surface packet (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads the universal quality standards below for its Phase 1.5 gate.
 
 Layout:
 
@@ -27,7 +27,7 @@ Layout:
 
 | File | What it covers |
 |---|---|
-| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN) plus OpenCode language sub-detection: the primary routing key, resolved from CWD and changed/target files before intent classification. |
+| [`references/stack-detection.md`](./references/stack-detection.md) | Surface detection (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN) plus OpenCode language sub-detection: the primary routing key, resolved from CWD and changed/target files before intent classification. |
 | [`../ROUTER.md`](../ROUTER.md) | Authoritative root surface router: intent classification, surface-to-resource maps, declared shared controls, load tiers, verification commands, and UNKNOWN fallback. |
 | [`references/phase-detection.md`](./references/phase-detection.md) | Phase 1/2/3 development lifecycle (Implementation / Testing + Debugging / Verification) with per-surface resource expectations. |
 
@@ -49,7 +49,7 @@ Surface-agnostic workflow doctrine consumed by every surface packet; none of the
 
 | File | What it covers |
 |---|---|
-| [`references/universal-verification-checklist.md`](./references/universal-verification-checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across WEBFLOW or OPENCODE. |
+| [`references/universal-verification-checklist.md`](./references/universal-verification-checklist.md) | Stack-agnostic verification gate to walk before any done / works / complete / passing claim across WEBFLOW or SKILLED. |
 | [`references/universal-debugging-checklist.md`](./references/universal-debugging-checklist.md) | Stack-agnostic 4-phase debugging workflow: reproduce reliably → identify root cause → test one hypothesis at a time → fix at source. |
 | [`references/performance-loading-checklist.md`](./references/performance-loading-checklist.md) | Release gate for interaction-, viewport-, or idle-gated deferred loading: proves startup wins without a worse first-use experience. |
 

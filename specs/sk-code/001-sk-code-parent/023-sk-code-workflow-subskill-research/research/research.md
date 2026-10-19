@@ -20,7 +20,7 @@ Initial highest-leverage upgrade candidates are documentation/contract refinemen
 
 ## Open Questions
 
-- Are the delegated `code-opencode` checklist contents themselves sufficient and non-overlapping?
+- Are the delegated `code-skilled` checklist contents themselves sufficient and non-overlapping?
 - Do Webflow debug/verify references cover real browser and minification edge cases without duplicating `code-webflow` process?
 - Which proposal should be ranked highest after asset-level inspection?
 
@@ -28,11 +28,11 @@ Initial highest-leverage upgrade candidates are documentation/contract refinemen
 
 `code-implement` is strongest as a small orchestration contract: it owns Phase 0 research, Phase 1 mutation, read-first discipline, baseline/blast-radius capture, restraint-ladder application, and explicit handoff, while delegating deep evidence to sibling surface packets. Its main friction is wording: README quick-start calls the delegated resources “packet-owned references,” even though local inventory shows only `SKILL.md` and `README.md` under `code-implement`. [SOURCE: research/iterations/iteration-002.md]
 
-`code-quality` is operationally useful because it has local gate assets and scripts: a Webflow/general quality checklist, comment-hygiene checker, dist-staleness warning checker, hook shim, tests, and README guidance. Its upgrade need is sharper than `code-implement`'s: normalize stale `assets/opencode-checklists/` wording to the actual `../code-opencode/assets/checklists/` location, and resolve the contradiction where shared smart routing points CODE_QUALITY at `code-review/assets/code_quality_checklist.md` even though author-side quality owns `code-quality/assets/code_quality_checklist.md`. [SOURCE: research/iterations/iteration-002.md]
+`code-quality` is operationally useful because it has local gate assets and scripts: a Webflow/general quality checklist, comment-hygiene checker, dist-staleness warning checker, hook shim, tests, and README guidance. Its upgrade need is sharper than `code-implement`'s: normalize stale `assets/opencode-checklists/` wording to the actual `../code-skilled/assets/checklists/` location, and resolve the contradiction where shared smart routing points CODE_QUALITY at `code-review/assets/code_quality_checklist.md` even though author-side quality owns `code-quality/assets/code_quality_checklist.md`. [SOURCE: research/iterations/iteration-002.md]
 
 ## Ranked Proposals After Iteration 2
 
-1. Fix `code-quality` OpenCode checklist path vocabulary to actual `../code-opencode/assets/checklists/` paths.
+1. Fix `code-quality` OpenCode checklist path vocabulary to actual `../code-skilled/assets/checklists/` paths.
 2. Resolve author-side quality vs findings-first review checklist ownership in shared routing.
 3. Clarify `code-implement` delegated-resource wording instead of adding local duplicate references.
 4. Document `check-dist-staleness.sh` as advisory and require escalation/handoff when it prints stale warnings.
@@ -47,7 +47,7 @@ Initial highest-leverage upgrade candidates are documentation/contract refinemen
 ## Ranked Proposals After Iteration 3
 
 1. Repair or relocate `code-verify/assets/scripts/verify_stack_folders.py` so it targets the current two-axis registry/surface-packet layout instead of an older monolithic `STACK_FOLDERS` contract.
-2. Normalize stale `code-debug` and `code-verify` Resource Domains/checklist path vocabulary to the delegated `../code-webflow/...`, `../code-opencode/...`, and `../shared/...` paths.
+2. Normalize stale `code-debug` and `code-verify` Resource Domains/checklist path vocabulary to the delegated `../code-webflow/...`, `../code-skilled/...`, and `../shared/...` paths.
 3. Add a compact cross-mode handoff matrix: implement → quality → debug → verify, plus verify handbacks to debug/implement/quality.
 4. Keep `verify_alignment_drift.py` as a high-value OpenCode verification asset and document its passing/failing semantics alongside targeted tests.
 5. Treat missing local debug/verify `references/` directories as intentional delegation, not as a need to duplicate surface evidence.

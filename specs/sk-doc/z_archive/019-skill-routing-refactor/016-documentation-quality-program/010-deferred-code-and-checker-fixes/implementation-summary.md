@@ -58,7 +58,7 @@ The five deferred follow-ups were resolved: three by fixing, two by an evidence-
 
 ### Skill and command Title-Case flip
 
-The scan found only 2 SKILL.md offenders (`code-opencode`, `create-flowchart`, 11 headers) and 0 command offenders. The two files were uppercased with the same exempt-preserving transform, and `h2UppercaseRequired` was flipped for skill and command. All 49 SKILL.md and 51 command files pass.
+The scan found only 2 SKILL.md offenders (`code-skilled`, `create-flowchart`, 11 headers) and 0 command offenders. The two files were uppercased with the same exempt-preserving transform, and `h2UppercaseRequired` was flipped for skill and command. All 49 SKILL.md and 51 command files pass.
 
 ### Not fixed, with evidence
 

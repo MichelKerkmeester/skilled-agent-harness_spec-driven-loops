@@ -44,7 +44,7 @@
       "tasks.md",
       "implementation-summary.md",
       "assets/phase0-triage.md",
-      "assets/code-opencode-language-split-design.md",
+      "assets/code-skilled-language-split-design.md",
       "assets/deep-research-router-precision-finding.md"
     ],
     "entities": [
@@ -79,9 +79,9 @@
         "source": "derived"
       },
       {
-        "name": "code-opencode-language-split-design.md",
+        "name": "code-skilled-language-split-design.md",
         "kind": "doc",
-        "path": "assets/code-opencode-language-split-design.md",
+        "path": "assets/code-skilled-language-split-design.md",
         "source": "derived"
       },
       {

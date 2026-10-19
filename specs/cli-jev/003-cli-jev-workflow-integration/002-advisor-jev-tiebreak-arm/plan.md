@@ -101,7 +101,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 ### Build Roles
 
-D5 of the parent goal sets who builds. A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` (probe passed 2026-09-28) and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies each result, gets a cross-family review of the code and commits. Code follows sk-code's OpenCode route, `sk-code-opencode`, and the skill docs go through sk-doc (D6 of the parent goal). The live `--jev` and `--deem` runs are the orchestrator session's, never an executor's.
+D5 of the parent goal sets who builds. A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` (probe passed 2026-09-28) and Cursor `grok-4.7-xhigh-fast`. The orchestrator session verifies each result, gets a cross-family review of the code and commits. Code follows sk-code's OpenCode route, `sk-code-skilled`, and the skill docs go through sk-doc (D6 of the parent goal). The live `--jev` and `--deem` runs are the orchestrator session's, never an executor's.
 
 ### First Slice, in Order
 

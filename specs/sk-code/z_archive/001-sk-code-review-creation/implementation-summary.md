@@ -46,7 +46,7 @@ SPECKIT_TEMPLATE_SOURCE: "impl-summary-core | v2.2"
 - Updated `@review` runtime docs across all runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to explicit standards-loading order:
   1. load `sk-code-review` baseline,
   2. detect stack,
-  3. load one overlay (`sk-code-opencode` / `sk-code-web` / `sk-code-full-stack`),
+  3. load one overlay (`sk-code-skilled` / `sk-code-web` / `sk-code-full-stack`),
   4. apply precedence rules.
 - Updated orchestrators in all runtime profiles (`.opencode`, `.opencode/chatgpt`, `.gemini`, `.claude`) to document `@review` as baseline+overlay instead of generic `sk-code-*` only.
 - Updated `.codex/agents/review.toml` and `.codex/agents/orchestrate.toml` so Codex runtime wrappers explicitly enforce the same baseline+overlay review contract while pointing to canonical chatgpt playbooks.

@@ -18,7 +18,7 @@ D4 Maintainability — helper placement and duplication against the recorded D2/
 - `.skilled/skills/sk-doc/sk-create-repo-rule/scripts/build-rule-cards.cjs`, `check-repo-rules.cjs` (inline `findUnknownOption` copies)
 - `.skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs`, `check-projection-coverage.cjs`, `check-protocol-append-sites.cjs` (inline variants)
 - `.skilled/skills/sk-create-skill/scripts/ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs`, `ci-skill-root-metadata.cjs`, `ci-router-vocabulary-reach.cjs`, `generate-leaf-manifest.cjs`, `generate-router-intent-signals.cjs`, `validate-compiled-routing-scenarios.cjs`, `validate-playbook-topology.cjs`
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs`
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs`
 - `.skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs`, `runtime/scripts/codex-dispatch.cjs`, `runtime/scripts/loop-lock.cjs`
 - All added comment lines in the build diff (comment-hygiene sweep)
 
@@ -34,11 +34,11 @@ None.
 
 ### P2 Findings
 
-1. **Unknown-option error in `verify-router-sync.cjs` reuses the check-ID usage suffix and contradicts itself** -- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:325-330`
-   - Case: `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs --bogus-xyz` prints `verify-router-sync.cjs: unknown option: --bogus-xyz` followed by `usage: verify-router-sync [--checks 1a,1b,2,3,4] (unknown: none given)`; the `(unknown: none given)` suffix was built for check-ID validation and reads as retracting the unknown option named on the line above.
-   - Evidence: reproduced above, exit 2. The new loop prints the shared usage string that ends with the ID-validation suffix (`[SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:325-330]`); the suffix is only meaningful for the `--checks` value path at `:333-337`.
+1. **Unknown-option error in `verify-router-sync.cjs` reuses the check-ID usage suffix and contradicts itself** -- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:325-330`
+   - Case: `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --bogus-xyz` prints `verify-router-sync.cjs: unknown option: --bogus-xyz` followed by `usage: verify-router-sync [--checks 1a,1b,2,3,4] (unknown: none given)`; the `(unknown: none given)` suffix was built for check-ID validation and reads as retracting the unknown option named on the line above.
+   - Evidence: reproduced above, exit 2. The new loop prints the shared usage string that ends with the ID-validation suffix (`[SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:325-330]`); the suffix is only meaningful for the `--checks` value path at `:333-337`.
    - Finding class: instance-only
-   - Scope proof: `rg -n "unknown option" .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` shows one new site; the suffix string is shared with the ID path, so both callers print it. The fix is a plain usage line without the suffix.
+   - Scope proof: `rg -n "unknown option" .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` shows one new site; the suffix string is shared with the ID path, so both callers print it. The fix is a plain usage line without the suffix.
    - Affected surface hints: ["verify-router-sync.cjs usage output"]
    - Recommendation: print `usage: verify-router-sync [--checks <id,id,...>]` (no `(unknown: ...)` suffix) in the unknown-option branch; keep the suffix only for the ID-validation branch.
 

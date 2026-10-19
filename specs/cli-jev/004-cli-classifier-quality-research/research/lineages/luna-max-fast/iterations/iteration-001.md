@@ -38,7 +38,7 @@ Audit the cli-classifier hub and cli-jev documentation against the applicable sk
 ## Questions Remaining
 
 - Full document-by-document sk-doc compliance, including the generated or historical benchmark reports and every playbook leaf.
-- Script and test quality under sk-code-opencode.
+- Script and test quality under sk-code-skilled.
 - Advisor routing, leaf manifests, graph metadata, and prompt-to-hub reachability.
 - External-install and benchmark-operator UX, and visibility of with-and-without measurements.
 - Cross-surface accuracy and drift beyond the shared-tier README.

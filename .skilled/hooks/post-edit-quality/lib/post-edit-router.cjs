@@ -47,8 +47,12 @@ const SPEC_DOC_BASENAMES = new Set(['spec.md', 'plan.md', 'tasks.md', 'checklist
 const WIKILINKS_ENABLE_ENV = 'SPECKIT_VALIDATE_LINKS';
 // Mirror frontmatter-version.mjs inScope(), so the version gate fires on exactly the
 // docs the checker validates: every doc under a skill except changelog entries, test
-// input, generated output and spec-doc examples.
-const VERSION_SKIPPED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
+// input, generated output and spec-doc examples. A runtime state dir sits beside the
+// skills and git keeps exactly one tracked doc per concern in it, the concern README,
+// ignoring every other path, so that depth alone stays versioned and the rest does not.
+const RUNTIME_STATE_DIR = '.state';
+const RUNTIME_STATE_README = 'README.md';
+const VERSION_SKIPPED_DIRS = new Set([RUNTIME_STATE_DIR, 'changelog', 'scratch', 'node_modules', '.git', 'dist']);
 const VERSION_DOC_SUBTREES = new Set(['references', 'assets', 'feature-catalog', 'manual-testing-playbook']);
 const VERSION_TEST_DIRS = new Set(['tests', 'fixtures']);
 const VERSION_CORPUS_DIRS = new Set(['runtime', 'benchmark', 'behavior-benchmark']);
@@ -123,6 +127,7 @@ function isFlowchartCandidate(basename, segments) {
  */
 function isVersionedSkillDoc(basename, segments) {
   const dirs = segments.slice(2, -1);
+  if (dirs[0] === RUNTIME_STATE_DIR) return dirs.length === 2 && basename === RUNTIME_STATE_README;
   if (dirs.some((d) => VERSION_SKIPPED_DIRS.has(d))) return false;
   if (basename === 'SKILL.md') return true;
   if (dirs.some((d) => VERSION_TEST_DIRS.has(d))) return false;
@@ -188,13 +193,19 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 
     // The source tree sits under .skilled or .opencode, and a runtime reports an edit
     // by its real path, which names .skilled even where .opencode links to it.
-    const underSkillsRoot = ['.skilled', '.opencode'].includes(segments[0]) && segments[1] === 'skills' && segments.length >= 4;
+    const underSkillsRoot = ['.skilled', '.opencode'].includes(segments[0])
+      && segments[1] === 'skills'
+      && segments.length >= 4;
+    // Runtime state occupies the skill-name slot without being a skill, so a whole-tree row
+    // never scopes to it. Its concern README still reaches the version row below.
+    const runtimeStateSlot = segments[2] === RUNTIME_STATE_DIR;
 
     // Row 3: frontmatter-versions -- versioned skill doc, scoped by --skill.
     // Nearly every skill doc is versioned, so an operator who opts into the wikilinks
     // check gets it on every doc but SKILL.md; the pre-commit gate still raises versions.
     const wikilinksOptIn = String(environment[WIKILINKS_ENABLE_ENV]).toLowerCase() === 'true';
-    if (underSkillsRoot && !(wikilinksOptIn && basename !== 'SKILL.md')) {
+    const wikilinksTakesOver = wikilinksOptIn && basename !== 'SKILL.md' && !runtimeStateSlot;
+    if (underSkillsRoot && !wikilinksTakesOver) {
       const skillName = segments[2];
       if (isVersionedSkillDoc(basename, segments)) {
         return [{
@@ -224,7 +235,7 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
     // Bounded cost is the point: this is the heaviest checker (whole-tree
     // scan), so it stays default-off and only fires for markdown edits
     // already inside a skill directory.
-    if (underSkillsRoot && String(environment[WIKILINKS_ENABLE_ENV]).toLowerCase() === 'true') {
+    if (underSkillsRoot && !runtimeStateSlot && String(environment[WIKILINKS_ENABLE_ENV]).toLowerCase() === 'true') {
       const skillName = segments[2];
       return [{
         label: 'wikilinks',

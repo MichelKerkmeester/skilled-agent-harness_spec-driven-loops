@@ -25,8 +25,8 @@ expect(parsed.metadata.effectiveThresholds).toEqual({
 ```ts
 // codex-prompt-wrapper.vitest.ts
 expect(output).toEqual({
-  promptWrapper: 'Advisor: live; use sk-code-opencode 0.91/0.23 pass.',
-  wrappedPrompt: '<!-- advisor brief: Advisor: live; use sk-code-opencode 0.91/0.23 pass. -->\\nimplement a TypeScript hook',
+  promptWrapper: 'Advisor: live; use sk-code-skilled 0.91/0.23 pass.',
+  wrappedPrompt: '<!-- advisor brief: Advisor: live; use sk-code-skilled 0.91/0.23 pass. -->\\nimplement a TypeScript hook',
 });
 ```
 

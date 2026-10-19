@@ -65,11 +65,11 @@ All six assigned focus questions passed with executable evidence; zero new findi
 
 ## Next Focus
 - Dimension: security (rotation from correctness).
-- Focus area: remaining remediation commits e0b32e5e11..d1741a28f7 — sk-code-webflow minified-runtime callback-cap reporting, sk-code-opencode drift-guard summary counts, sk-code hub doc pointers, claim corrections and mirror-checker header, trigger-index rebuild.
+- Focus area: remaining remediation commits e0b32e5e11..d1741a28f7 — sk-code-webflow minified-runtime callback-cap reporting, sk-code-skilled drift-guard summary counts, sk-code hub doc pointers, claim corrections and mirror-checker header, trigger-index rebuild.
 - Reason: the assigned correctness focus for the deadline commit is now covered; the orchestrator rotates dimensions while the commit range remains.
 - Rotation status: D1 correctness complete (PASS).
 - Carry-forward: productive — git archive replay plus source-anchored timing proved the deadline and the pre-fix failures; blocked: none.
 - Required evidence: per-file reads plus targeted command proof per commit; pre-fix replay wherever a fix records a pre-fix failure.
-- Recovery note: if prose-only commits yield nothing, prefer the executable changes (sk-code-webflow/assets/scripts/test-minified-runtime.mjs, sk-code-opencode/scripts/run-all-drift-guards.sh) before doc-only surfaces.
+- Recovery note: if prose-only commits yield nothing, prefer the executable changes (sk-code-webflow/assets/scripts/test-minified-runtime.mjs, sk-code-skilled/scripts/run-all-drift-guards.sh) before doc-only surfaces.
 
 Review verdict: PASS

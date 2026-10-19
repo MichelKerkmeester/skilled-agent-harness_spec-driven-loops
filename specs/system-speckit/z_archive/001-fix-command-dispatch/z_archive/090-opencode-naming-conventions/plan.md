@@ -64,7 +64,7 @@ Directory-by-directory migration with backward-compatible exports
 - **MCP Handlers** (`mcp_server/handlers/`): Highest risk - external API surface
 - **MCP Core** (`mcp_server/core/` + `shared/`): Server config, startup
 - **Scripts** (`scripts/`): Build/utility scripts
-- **Skill Docs** (`sk-code-opencode/`): Convention documentation
+- **Skill Docs** (`sk-code-skilled/`): Convention documentation
 
 ### Data Flow
 Function definitions are renamed → Call sites updated in same file → Cross-file imports updated in sweep → MCP exports get backward-compat aliases
@@ -80,7 +80,7 @@ Function definitions are renamed → Call sites updated in same file → Cross-f
 - [x] Document plan, tasks, checklist, decision record
 
 ### Phase 2: Skill Documentation (Part A)
-- [ ] Update 9 files in `sk-code-opencode/` (parallel)
+- [ ] Update 9 files in `sk-code-skilled/` (parallel)
 
 ### Phase 3: JS Migration (Part B)
 - [ ] Migrate 10 directory groups in parallel

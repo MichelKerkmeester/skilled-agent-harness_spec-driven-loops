@@ -8,7 +8,7 @@ I’m locating the existing deep-loop packet and reading the reducer implementat
 ● Read CODEX.md
   └ L1:220 (219 lines read)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Route relevant skill (shell)
   │ python3 .opencode/skills/scripts/skill_advisor.py "Fix correctness bugs in deep-loop reducers and
@@ -462,9 +462,9 @@ I’ve got the right test runners mapped now. Next I’m running the exact suite
 
 ● Run alignment verifier on changed scopes (shell)
   │ cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && python3
-  │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
+  │ .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
   │ .opencode/skills/sk-deep-review && python3
-  │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
+  │ .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
   │ .opencode/skills/sk-deep-research && python3 …
   └ 29 lines...
 
@@ -677,7 +677,7 @@ I’m tracing the affected coverage-graph and optimizer paths first, then I’ll
 
 I found the main query leaks: a few nested edge lookups and contradiction joins still rely on partial keys, and the optimizer scripts currently trust caller paths too much. I’m reading the surrounding helpers now so the fixes stay minimal instead of bolting on new behavior.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Search (grep)
   │ "computeScoped|sessionId|required|admin|scopeMode|all_sessions_default"
@@ -1059,7 +1059,7 @@ I’m pinning down the existing spec context first, then I’ll make the targete
 
 I found an existing related packet for **wave executor** work, so I’m using that context rather than inventing a new scope. Next I’m reading the affected modules and the related spec/docs together to keep the edits surgical.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read package.json
   └ 5 lines read
@@ -1606,7 +1606,7 @@ I found the actual bug: the SCC depth logic was dropping the first indexed node 
   └ 8 lines...
 
 ● Run alignment verifier on scripts scope (shell)
-  │ python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
+  │ python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
   │ .opencode/skills/system-spec-kit/scripts
   └ 11 lines...
 
@@ -1642,7 +1642,7 @@ Tokens    ↑ 8.6m • ↓ 47.3k • 8.2m (cached) • 18.1k (reasoning)
 --- Batch 3-wave-and-libs done | Sun Apr 12 14:05:27 CEST 2026 ---
 
 --- Batch 4-workflows-and-docs | Sun Apr 12 14:05:27 CEST 2026 ---
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● memory_match_triggers (MCP: spec_kit_memory) · prompt: "Fix workflow YAML issues, agent definitio…
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
@@ -2261,7 +2261,7 @@ The edits are in place. I’m running the repo’s scoped alignment check plus a
   └ 38 lines...
 
 ● Run alignment verifier on .opencode (shell)
-  │ python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode
+  │ python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode
   └ 15 lines...
 
 The broad `.opencode` verifier tripped on existing repo-wide findings, not just this patch. I’m narrowing it to the touched files/directories now so I can confirm the actual changed surface cleanly.
@@ -2275,10 +2275,10 @@ The broad `.opencode` verifier tripped on existing repo-wide findings, not just 
   └ No matches found
 
 ● Run narrower alignment checks (shell)
-  │ python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
-  │ .opencode/agent && python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+  │ python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
+  │ .opencode/agent && python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
   │ --root .opencode/commands/deep/assets && python3
-  │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
+  │ .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
   │ .opencode/commands/speckit/assets && python3 …
   └ 59 lines...
 
@@ -2363,7 +2363,7 @@ Tokens    ↑ 4.3m • ↓ 46.4k • 4.1m (cached) • 14.8k (reasoning)
 --- Batch 4-workflows-and-docs done | Sun Apr 12 14:20:05 CEST 2026 ---
 
 --- Batch 5-tests | Sun Apr 12 14:20:05 CEST 2026 ---
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Search (glob)
   │ ".opencode/skills/system-spec-kit/scripts/tests/*coverage-graph*.vitest.ts"

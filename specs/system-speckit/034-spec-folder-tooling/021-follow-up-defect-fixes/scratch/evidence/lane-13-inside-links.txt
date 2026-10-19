@@ -92,7 +92,7 @@ Other verification
 ------------------
 - python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <six source/test files>: exit 0.
 - node --check .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs: exit 0.
-- bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh: exit 0; both guards passed, 247 warnings and 0 errors in alignment-drift.
+- bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh: exit 0; both guards passed, 247 warnings and 0 errors in alignment-drift.
 - git -c core.fsmonitor=false diff --check <six source/test files>: exit 0.
 - bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict: exit 2, RESULT: FAILED. It reports GENERATED_METADATA_INTEGRITY (SOURCE_FINGERPRINT_MISMATCH) and GENERATED_METADATA_DRIFT (description differs from fresh derived text). No packet docs were edited by this lane.
 

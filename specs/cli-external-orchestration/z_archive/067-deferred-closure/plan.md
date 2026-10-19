@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-067-deferred-closure"
@@ -41,7 +41,7 @@ Six findings, one shape: a producer emitting a claim that is not true, and a pil
 downstream of it. The whole plan follows from refusing to fix the pile.
 
 The drift gate is the clearest case. It reported 6,248 findings and 3,513 errors, and a note in
-`sk-code-opencode/SKILL.md` told readers to measure a packet-scoped delta against it rather than
+`sk-code-skilled/SKILL.md` told readers to measure a packet-scoped delta against it rather than
 expect rc 0. Measured by area, 4,515 findings sat in `barter/`, `.worktrees/` and `tmp/` — every one
 gitignored. A scan of the working tree is not a scan of the repository, and no amount of editing
 those files would have changed that.
@@ -112,7 +112,7 @@ guards keep their existing contract.
 
 | Surface | Speaks the old contract as | Handling |
 |---------|---------------------------|----------|
-| `sk-code-opencode/SKILL.md` | "the wrapper scans the whole repository … report a packet-scoped delta" | Replaced; the gate now requires rc 0 |
+| `sk-code-skilled/SKILL.md` | "the wrapper scans the whole repository … report a packet-scoped delta" | Replaced; the gate now requires rc 0 |
 | `hooks/dispatch/README.md` | Already correct about the vitest runner | Untouched |
 | Runtime recursion guard | Enforces self-dispatch for codex/cursor/devin | Untouched; only the frontmatter duplicate is removed |
 | `/doctor` runtime mirrors | Checks `sync-agents-pi.cjs --check` | Untouched and still in sync |

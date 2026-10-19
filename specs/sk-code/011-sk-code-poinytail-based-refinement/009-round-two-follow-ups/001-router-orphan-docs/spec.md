@@ -59,7 +59,7 @@ This is **Phase 1** of the Round two follow-ups specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPT_IN_LEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it. A new doc that no router names therefore passes every gate. Two causes sit behind the nine. Three are the canonical `shared/references/workflow-*.md` docs, which each surface reaches through a symlink that no router lists. Six are `sk-code-obsidian` references that no intent in `SKILL.md` section 2b carries, and the Obsidian playbook records that as drift.
+`node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPT_IN_LEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it. A new doc that no router names therefore passes every gate. Two causes sit behind the nine. Three are the canonical `shared/references/workflow-*.md` docs, which each surface reaches through a symlink that no router lists. Six are `sk-code-obsidian` references that no intent in `SKILL.md` section 2b carries, and the Obsidian playbook records that as drift.
 
 ### Purpose
 Leg 1b runs by default and in the umbrella and passes, because the six references are routed, the three shared docs are allowlisted by exact path with the reason beside the list, and a test proves the check still fails on an unrouted doc.
@@ -92,13 +92,13 @@ Leg 1b runs by default and in the umbrella and passes, because the six reference
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` | Modify | Allowlist the three shared workflow docs by exact path with the reason beside the list, delete `OPT_IN_LEGS` and its filter |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` | Create | New `node:test` file with three cases, run against a throwaway hub (the `scripts/tests/` folder is new) |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Pass `--checks 1a,1b,2,3,4`, rewrite the header line and the note under the router-sync call |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Overview sentence, umbrella table row and one row for the new test |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Pointer comment, wrapper description, leg 1b sentence and version 1.1.0.0 to 1.1.1.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Table row, gap note and entry-point line that call leg 1b out of the umbrella |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md` | Create | Changelog entry for OpenCode 1.1.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` | Modify | Allowlist the three shared workflow docs by exact path with the reason beside the list, delete `OPT_IN_LEGS` and its filter |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` | Create | New `node:test` file with three cases, run against a throwaway hub (the `scripts/tests/` folder is new) |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Pass `--checks 1a,1b,2,3,4`, rewrite the header line and the note under the router-sync call |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Overview sentence, umbrella table row and one row for the new test |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Pointer comment, wrapper description, leg 1b sentence and version 1.1.0.0 to 1.1.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Table row, gap note and entry-point line that call leg 1b out of the umbrella |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md` | Create | Changelog entry for OpenCode 1.1.1.0 |
 | `.skilled/skills/sk-code/benchmark/README.md` | Modify | Successor note that says leg 1b is not wired |
 | `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` | Modify | Section 2b: seven keywords, six `RESOURCE_MAP` entries, version 0.1.1.0 to 0.1.2.0 |
 | `.skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md` | Create | Changelog entry for Obsidian 0.1.2.0 |
@@ -109,7 +109,7 @@ Leg 1b runs by default and in the umbrella and passes, because the six reference
 | `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json` | Modify only if stale | Authored copy of the same manifest, copied over only after a re-mint |
 | `.skilled/skills/sk-code/leaf-manifest.json` | Modify only if stale | Leaf manifest, regenerated only if the freshness check fails for sk-code (no change expected) |
 | `.hermes/skills/sk-code-obsidian/SKILL.md` | Regenerate (orchestrator) | Output of `sync-skills-hermes.cjs`, run once after all builds. The builder runs only `--check` |
-| `.hermes/skills/sk-code-opencode/SKILL.md` | Regenerate (orchestrator) | Same generator, same rule |
+| `.hermes/skills/sk-code-skilled/SKILL.md` | Regenerate (orchestrator) | Same generator, same rule |
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md` | Modify | Filled from the evidence at the end of the build |
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/scratch/` | Create | Baselines, red and green test output, the replay script and the reach probe |
 <!-- /ANCHOR:scope -->
@@ -123,11 +123,11 @@ Leg 1b runs by default and in the umbrella and passes, because the six reference
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A bare guard run includes leg 1b and passes | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` prints `PASS check 1b` and `router-sync: 5/5 checks passed` and exits 0 |
-| REQ-002 | The umbrella runs leg 1b and passes | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, prints `PASS check 1b`, a `PASS: router-sync` line naming `--checks 1a,1b,2,3,4`, `Errors: 0` and `all 3 guards PASSED` |
+| REQ-001 | A bare guard run includes leg 1b and passes | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` prints `PASS check 1b` and `router-sync: 5/5 checks passed` and exits 0 |
+| REQ-002 | The umbrella runs leg 1b and passes | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0, prints `PASS check 1b`, a `PASS: router-sync` line naming `--checks 1a,1b,2,3,4`, `Errors: 0` and `all 3 guards PASSED` |
 | REQ-003 | The six Obsidian references are routed under existing intents | The `RESOURCE_MAP` block of `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` names all six paths, the intent count stays 5, `--checks 1b` passes and a probe prompt per doc reaches it |
 | REQ-004 | The three shared workflow docs are allowlisted by exact path and any other unrouted `shared/` doc is still reported | `NON_ROUTED_ALLOWLIST` holds six exact paths and no folder entry, and the test case with a stray `shared/references/stray.md` sees `FAIL check 1b` |
-| REQ-005 | The check has a test | `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` prints `pass 3` and `fail 0`, the same file prints `fail 3` against the unedited guard, and `run-node-tests.mjs --list` finds it |
+| REQ-005 | The check has a test | `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` prints `pass 3` and `fail 0`, the same file prints `fail 3` against the unedited guard, and `run-node-tests.mjs --list` finds it |
 | REQ-006 | Compiled routing, leaf manifest and rule copies stay green | `compiled-route-guard.cjs` lists sk-code `fresh`, the leaf freshness check prints `failed=0`, `check-rule-copies.js` exits 0 and `validate_skill_package.py` on the hub exits 0 |
 
 ### P1 - Required (complete OR user-approved deferral)

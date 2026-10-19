@@ -84,7 +84,7 @@ Close each follow-up in its own child phase, planned and built by Sonnet agents 
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` and its playbook, `sk-code-opencode/assets/scripts/verify_router_sync.cjs` and a new test, `sk-code-opencode/scripts/run-all-drift-guards.sh`, both packets' changelogs | Modify, Create | 001 | Route six docs, allowlist three, make check 1b default |
+| `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` and its playbook, `sk-code-skilled/assets/scripts/verify_router_sync.cjs` and a new test, `sk-code-skilled/scripts/run-all-drift-guards.sh`, both packets' changelogs | Modify, Create | 001 | Route six docs, allowlist three, make check 1b default |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md`, its `changelog/` | Modify, Create | 002 | Scripts list, version, changelog |
 | `.skilled/agents/deep-review.md`, its Claude fork and mirrors, deep-review templates | Modify | 003 | Reproducing case in findings |
 | `AGENTS.md` and, where a pointer needs a target, `.skilled/repo-rules/*.md` | Modify | 004 | Pointers instead of duplicates |

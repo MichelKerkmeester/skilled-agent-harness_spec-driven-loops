@@ -67,12 +67,12 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 2. B) Direct call: run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --format json` when no hook brief is present or when diagnosing hook behavior.
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
+- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write, route through `sk-code`. Before the FIRST `.md` write, route through `sk-doc`, except spec-folder docs, which are `system-spec-kit`'s, and gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note, which no skill owns. Routing means loading what the router resolves, under the same loading rule as Gate 5. A skill already in context is not re-read. A resolved contract that is wrong for this case is followed and amended, as PLAN-WORKFLOW LOCK step 4 says.
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
 - Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §6 exemption class.
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK — ASKED FIRST
-**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone. A read-only word next to a write trigger does not disqualify it.
+**Fires when** the turn will write a file — creating, editing, deleting, moving, or generating one — or will write continuity state (a save, a resume, a further iteration). **Does not fire** when the request is purely read-only: review, audit, inspect, analyze, explain, standing alone, or when its only write is gitignored runtime state under `.skilled/skills/.state/`, such as a session-relaunch handoff note. A read-only word next to a write trigger does not disqualify it.
 
 - **Machine contract:** `system-spec-kit/shared/gate-3-classifier.ts` (`classifyPrompt()`) owns the exact vocabulary and is authoritative for runtimes that call it; the sentence above is the human-readable form for runtimes that do not.
 - **Options (stable labels):**
@@ -82,7 +82,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
   - **D) Skip** - Explicitly skip documentation after the required warning or when an existing exemption applies. Never make this the default.
 - **Which to choose:** `system-spec-kit/references/workflows/quick-reference.md` §8 and §9 for the priority, `system-spec-kit/references/structure/phase-definitions.md` §2 for the two phase thresholds and the series parent.
 - **Router commands:** evaluate Gate 3 per selected route, not once for the router. A route that only reads needs no write path; one that writes anything is bound like any mutation.
-- **The answer holds for the ENTIRE session.** Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
+- **The answer holds for the ENTIRE session.** A relaunch hop is the same session. Re-ask only when the user says "new task" or "different feature", names a different spec folder, or asks you to.
 - **Autonomous child-dispatch exemption.** `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory. Gate 3 is PRE-RESOLVED; in that directory Law 4, Halt Conditions, Logic-Sync, Escalation and stop-for-yes are record-and-continue; acting outside it is barred. Interactive sessions always ask.
 
 #### GATE 4: SKILL-OWNED WORKFLOW TIEBREAKERS

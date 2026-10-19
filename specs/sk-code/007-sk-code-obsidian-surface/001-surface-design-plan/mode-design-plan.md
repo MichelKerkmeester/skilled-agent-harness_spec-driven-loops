@@ -37,7 +37,7 @@ live file in `$HUB/.opencode/skills/sk-code/` (the hub) or `002-repo-convention-
 ## 3. THE `mode-registry.json` ENTRY
 
 Verified live: `extensions.surface-axis.surfaces` currently reads
-`["sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli"]`
+`["sk-code-webflow", "sk-code-skilled", "sk-code-mobile-cli"]`
 (`mode-registry.json:19`). This packet appends a fourth name.
 
 ```jsonc
@@ -70,10 +70,10 @@ Verified live: `extensions.surface-axis.surfaces` currently reads
 
 ```jsonc
 // extensions.surface-axis.surfaces — append "sk-code-obsidian"
-"surfaces": ["sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli", "sk-code-obsidian"]
+"surfaces": ["sk-code-webflow", "sk-code-skilled", "sk-code-mobile-cli", "sk-code-obsidian"]
 ```
 
-`toolSurface` is byte-identical in shape to `sk-code-webflow`, `sk-code-opencode`, and `sk-code-mobile-cli`'s entries (`mode-registry.json:62-76, 78-95, 96-113`) — every surface is read-only with the same four tools, per the surface-packet constraint that `toolSurface.allowed` is limited to read/search commands and `mutatesWorkspace` is `false` (`parent-skills-nested-packets.md` §1).
+`toolSurface` is byte-identical in shape to `sk-code-webflow`, `sk-code-skilled`, and `sk-code-mobile-cli`'s entries (`mode-registry.json:62-76, 78-95, 96-113`) — every surface is read-only with the same four tools, per the surface-packet constraint that `toolSurface.allowed` is limited to read/search commands and `mutatesWorkspace` is `false` (`parent-skills-nested-packets.md` §1).
 
 **Alias disjointness, checked against the live file.** The five registered modes carry 33 aliases today (`mode-registry.json:36, 55, 73, 91, 109`): 13, 10, 3, 3, and 5 respectively. None reads `"obsidian plugin implementation"`, `"obsidian plugin code"`, `"note database plugin"`, `"obsidian plugin surface"`, or `"db-* class grammar"` — the five proposed aliases are disjoint from all 33 and already lowercase, per the case-folded match requirement (`parent-skills-nested-packets.md` §7).
 
@@ -81,7 +81,7 @@ Verified live: `extensions.surface-axis.surfaces` currently reads
 
 ## 4. THE `hub-router.json` WIRING
 
-Verified live: `routerSignals` has one entry per registered `workflowMode`, each weighted `4` (`hub-router.json:17-41`); `routerPolicy.tieBreak` currently reads `["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli"]` (`hub-router.json:7`) — workflow modes first, surfaces after, per doctrine (`parent-skills-nested-packets.md` §2, "Tie-break order lists workflow modes first and surface packets after them").
+Verified live: `routerSignals` has one entry per registered `workflowMode`, each weighted `4` (`hub-router.json:17-41`); `routerPolicy.tieBreak` currently reads `["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-skilled", "sk-code-mobile-cli"]` (`hub-router.json:7`) — workflow modes first, surfaces after, per doctrine (`parent-skills-nested-packets.md` §2, "Tie-break order lists workflow modes first and surface packets after them").
 
 ```jsonc
 // routerSignals — new key, weight matches every existing surface
@@ -114,7 +114,7 @@ Verified live: `routerSignals` has one entry per registered `workflowMode`, each
 // routerPolicy.tieBreak — append at the end, after sk-code-mobile-cli
 "tieBreak": [
   "sk-code-quality", "sk-code-review", "sk-code-webflow",
-  "sk-code-opencode", "sk-code-mobile-cli", "sk-code-obsidian"
+  "sk-code-skilled", "sk-code-mobile-cli", "sk-code-obsidian"
 ]
 ```
 

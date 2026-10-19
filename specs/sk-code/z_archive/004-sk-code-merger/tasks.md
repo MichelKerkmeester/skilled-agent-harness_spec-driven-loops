@@ -132,7 +132,7 @@ _memory:
 - [ ] T060 Update `sk-code-web/graph-metadata.json` (deprecated: true, superseded_by: sk-code, advisor_weight: 0)
 - [ ] T061 [P] Update `sk-code-full-stack/graph-metadata.json` (same)
 - [ ] T062 [P] Update `sk-code-review/graph-metadata.json` (enhanced_by retarget: [sk-code-web, sk-code-full-stack] → [sk-code])
-- [ ] T063 [P] Update `sk-code-opencode/graph-metadata.json` (sibling weight retarget)
+- [ ] T063 [P] Update `sk-code-skilled/graph-metadata.json` (sibling weight retarget)
 - [ ] T064 [P] Update `mcp-chrome-devtools/graph-metadata.json` (enhances: sk-code-web → sk-code)
 - [ ] T065 [P] Update `mcp-figma/graph-metadata.json` (same)
 - [ ] T066 [P] Update `system-spec-kit/.../skill_advisor/graph-metadata.json` (routing edges)
@@ -140,7 +140,7 @@ _memory:
 ### Tier 3: Sister SKILL.md cross-refs (7 files)
 
 - [ ] T070 Update `sk-code-review/SKILL.md` (2 refs)
-- [ ] T071 [P] Update `sk-code-opencode/SKILL.md` (2 refs)
+- [ ] T071 [P] Update `sk-code-skilled/SKILL.md` (2 refs)
 - [ ] T072 [P] Update `mcp-chrome-devtools/SKILL.md` (1 ref, "Phase 3 browser testing")
 - [ ] T073 [P] Update `cli-claude-code/SKILL.md` (2 refs)
 - [ ] T074 [P] Update `cli-codex/SKILL.md` (1 ref)
@@ -192,7 +192,7 @@ _memory:
 - [ ] T122 Trigger test: "Fix Webflow animation flicker" → `sk-code` (WEB route, full content)
 - [ ] T123 [P] Trigger test: "Add a React component to my Next.js app" → `sk-code` (REACT placeholder)
 - [ ] T124 [P] Trigger test: "Help me debug a Go service" → `sk-code` (GO placeholder)
-- [ ] T125 [P] Trigger test: "Audit OpenCode plugin loader" → `sk-code-opencode` (UNCHANGED)
+- [ ] T125 [P] Trigger test: "Audit OpenCode plugin loader" → `sk-code-skilled` (UNCHANGED)
 - [ ] T126 [P] Trigger test: "Review this PR" → `sk-code-review` (UNCHANGED)
 - [ ] T127 `cd .opencode/skills/system-spec-kit/mcp_server && npm test -- lane-attribution` passes
 - [ ] T128 Cross-repo regrep returns only intentional residuals

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions",
+  "spec_folder": "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handoff gate exemptions",
+      "phase 7 handoff gate exemptions",
+      "handoff gate exemptions plan",
+      "handoff gate exemptions tasks",
+      "handoff gate exemptions acceptance criteria",
+      "handoff gate exemptions goal",
+      "handoff gate exemptions implementation summary"
+    ],
+    "key_topics": [
+      "handoff",
+      "gate",
+      "exemptions",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "session"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      "specs/hooks/023-session-relaunch-loop/spec.md",
+      "specs/hooks/023-session-relaunch-loop/goal.md",
+      "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md",
+      ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+      "runtime/hooks/lib/spec-gate/README.md",
+      "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-pi10-pane.txt",
+      "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113443Z-6f63a2a7.md",
+      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113650Z-01a153f1.md",
+      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113449Z-ses_eac0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "gate-3-classifier.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sr-pi10-pane.txt",
+        "kind": "file",
+        "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-pi10-pane.txt",
+        "source": "derived"
+      },
+      {
+        "name": "launch-commands.txt",
+        "kind": "file",
+        "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+        "source": "derived"
+      },
+      {
+        "name": "20261019T113443Z-6f63a2a7.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113443Z-6f63a2a7.md",
+        "source": "derived"
+      },
+      {
+        "name": "20261019T113650Z-01a153f1.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113650Z-01a153f1.md",
+        "source": "derived"
+      },
+      {
+        "name": "20261019T113449Z-ses_eac0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113449Z-ses_eac0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A session that has no Gate 3 answer and reaches its context limit hands off by writing a note under `.skilled/skills/.state/`",
+    "created_at": "2026-10-19T11:28:53Z",
+    "last_save_at": "2026-10-19T12:03:50.761Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2db10690b23f67d156805ed9a60ccbc3940c79c030ab16d6affb2b9d47f6537e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6bdfbe74a9de3068f6c137a3fb76caf2c7c00bf92dde973a4dbf5c6828fa2861",
+      "plan.md": "8c1a61cb50b087c807c7b9bd85712e9bb74e4543cc10f1c07e0ba8b02bb89e9c",
+      "tasks.md": "3550387677ee981b16302736885173c8a53fcd2e2d388fbdcfc8f584f9cff46f",
+      "implementation-summary.md": "d269910cec7e35bbd912bc72059e75bdec5c3ffd0dd0d4a74c6d0bb40f127fce"
+    },
+    "last_active_at": null
+  }
+}

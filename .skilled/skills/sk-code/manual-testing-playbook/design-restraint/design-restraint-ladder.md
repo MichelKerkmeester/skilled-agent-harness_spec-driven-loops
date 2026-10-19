@@ -1,7 +1,7 @@
 ---
 title: "DR-001: Design Restraint Ladder (pre-write rung selection)"
 description: "Verify sk-code walks the Design Restraint Ladder and selects the laziest viable rung before writing new code, after surface and intent routing, without overriding surface precedence or the Iron Law."
-version: 1.5.0.1
+version: 1.5.1.0
 ---
 
 # DR-001: Design Restraint Ladder (pre-write rung selection)
@@ -10,7 +10,7 @@ version: 1.5.0.1
 
 This scenario verifies that for an implementation-intent request, sk-code climbs the Design Restraint Ladder and picks the laziest viable rung before writing any new code: does this need to exist at all (YAGNI), then a helper, component, service or pattern already in this codebase, then a standard-library primitive, a native platform or runtime feature, an already-installed dependency, a one-line expression, and only then minimal custom code.
 
-The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
+The ladder is a post-read reflex that runs AFTER surface and intent routing, so it consumes the detected surface but changes neither surface precedence (SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN) nor the Iron Law (Phase 3 verification is still required). It is gated to the Phase 0 to Phase 1 transition and named in the SKILL.md Phase Overview.
 
 The ladder is defined in `shared/references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `shared/references/phase-detection.md`.
 
@@ -28,7 +28,7 @@ Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that 
 Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.skilled/`)
+- Surface: `SKILLED` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
 
@@ -37,7 +37,7 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 - `ROUTER.md`
 - `shared/references/universal/code-quality-standards.md`
 - `shared/references/phase-detection.md`
-- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
+- `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`
 
 **Expected ladder behavior**:
 - The ladder runs AFTER surface and intent routing, not before.
@@ -74,13 +74,13 @@ Prompt: `Add a helper to .skilled/skills/system-spec-kit/runtime/lib/util/unique
 | Step | Signal |
 |---|---|
 | 2 | Advisor: top_skill == sk-code, score >= 0.80. |
-| 3 | sk-code router emits `SURFACE: OPENCODE` BEFORE any ladder reasoning. |
+| 3 | sk-code router emits `SURFACE: SKILLED` BEFORE any ladder reasoning. |
 | 4 | The ladder checks the codebase-reuse rung, then selects an existing helper, a standard-library or a one-line rung (e.g. `new Set`) and explicitly rejects writing a custom loop. |
 | 4 | The Phase 0 to 1 gate is honored: the rung is chosen before new code. |
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (codebase reuse / stdlib / native / one-liner over custom) per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored.
+- **PASS** iff: surface == SKILLED AND the ladder runs after routing AND the selected rung is the laziest viable one (codebase reuse / stdlib / native / one-liner over custom) per `shared/references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `shared/references/phase-detection.md` is honored.
 - **FAIL** iff: the AI jumps straight to custom code, runs the ladder before routing, overrides surface precedence, or picks a lazy rung without citing the Phase 0 to 1 gate.
 
 Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR001-ladder.txt` (ladder trace).

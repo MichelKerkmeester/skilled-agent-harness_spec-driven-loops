@@ -40,7 +40,7 @@
     {
       "category": "generic-trigger",
       "line": 8,
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/research.md",
       "rawKey": "research",
       "reason": "single token \"research\" repeats a token of its own packet folder, the shape the frontmatter editor's folder-token fallback produces; reported, never adopted as index input",
       "severity": "warn"

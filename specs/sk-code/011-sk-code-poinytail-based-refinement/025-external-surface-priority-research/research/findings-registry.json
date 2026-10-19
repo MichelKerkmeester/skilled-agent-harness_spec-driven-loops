@@ -74,9 +74,9 @@
       ]
     },
     {
-      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "id": "question-1-q7-f10-which-shared-or-sk-code-skilled-leaves-could-serve-the-stack-agnostic-ro",
       "inboxId": null,
-      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "text": "Q7: F10, which shared/ or sk-code-skilled leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -119,9 +119,9 @@
       ]
     },
     {
-      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-skilled-registry-priority-fi",
       "inboxId": null,
-      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "text": "Q3: How should a user-added surface outrank sk-code-skilled (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -708,7 +708,7 @@
     },
     {
       "id": "ruled-out-3cd2d480cb46",
-      "text": "Docs-only insertion convention (insert before `sk-code-opencode` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
+      "text": "Docs-only insertion convention (insert before `sk-code-skilled` in `tieBreak` + `routerSignals`): two lists must agree and have already drifted in a sibling hub; insertion position is unenforced; stale-manifest stub on hand edit (carried).",
       "contentHash": "3cd2d480cb46",
       "addedAtIteration": 6,
       "_lineages": [

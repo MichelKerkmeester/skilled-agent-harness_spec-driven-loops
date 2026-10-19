@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "hooks/023-session-relaunch-loop/003-command-trigger-runtimes",
+  "description": "Phase 3: command-trigger-runtimes",
+  "keywords": [
+    "phase",
+    "command-trigger-runtimes"
+  ],
+  "lastUpdated": "2026-10-18T11:56:34.466Z",
+  "specId": "003",
+  "folderSlug": "command-trigger-runtimes",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_12-56__closed-the-last-two-phase-003-checklist-items-the.md",
+    "18-10-26_12-56__restored-phase-003-key-files-after-the-writer.md"
+  ]
+}

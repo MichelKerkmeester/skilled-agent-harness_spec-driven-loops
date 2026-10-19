@@ -69,7 +69,7 @@ findings were unique to it.
    `how_it_works`), `manual-testing-playbook.md` (missing `overview`), and
    `references/quality/doc-quality-gate.md` (missing `overview`).
 4. **The decisive comparison.** The same validator was run against every sibling SURFACE packet:
-   `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-opencode` (4 missing).
+   `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-skilled` (4 missing).
    The template's own playbook index fails identically. Every SURFACE packet in the family diverges
    from the validator's expected section vocabulary the same way, and `sk-code-obsidian` is
    joint-best of the four. This is what turns the audit from "fix these three files" into "record why
@@ -106,7 +106,7 @@ mode enabled and a `FAIL_CLOSED` tier confirmed against zero violations and zero
 packet, producing 34 passes and 3 `missing_required_section` failures with the exact missing-section
 names listed per file. To determine whether those 3 failures indicated a defect specific to this
 packet, the identical document validator was re-run against `sk-code-mobile-cli`, `sk-code-webflow`,
-and `sk-code-opencode`, and against the template's own playbook index — each showing the same class
+and `sk-code-skilled`, and against the template's own playbook index — each showing the same class
 of failure at 3, 4, 4, and one more respectively, confirming the divergence as structural to the
 SURFACE packet class rather than isolated to this packet.
 
@@ -136,7 +136,7 @@ SURFACE packet class rather than isolated to this packet.
 | `validate_document.py` across packet markdown | 34 PASS, 3 `missing_required_section` (SKILL.md, manual-testing-playbook.md, references/quality/doc-quality-gate.md) |
 | `validate_document.py` against `sk-code-mobile-cli` | 3 missing — same class of finding |
 | `validate_document.py` against `sk-code-webflow` | 4 missing — same class of finding |
-| `validate_document.py` against `sk-code-opencode` | 4 missing — same class of finding |
+| `validate_document.py` against `sk-code-skilled` | 4 missing — same class of finding |
 | `sk-code-obsidian` rank among the four SURFACE packets on this check | Joint-best (tied at 3, the lowest count observed) |
 
 <!-- /ANCHOR:verification -->
@@ -154,7 +154,7 @@ SURFACE packet class rather than isolated to this packet.
    `graph-metadata.json` by design. Fixing it requires a change to shared `sk-doc` validator code,
    outside this packet's write boundary.
 3. **The reversal condition is explicit, not implied.** If the SURFACE-packet class (`sk-code-obsidian`,
-   `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`) ever adopts the generic section
+   `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`) ever adopts the generic section
    vocabulary together, this packet's `SKILL.md` follows in that same change. A future phase that
    renames only this packet's header without the others would recreate the exact inconsistency this
    phase avoided.

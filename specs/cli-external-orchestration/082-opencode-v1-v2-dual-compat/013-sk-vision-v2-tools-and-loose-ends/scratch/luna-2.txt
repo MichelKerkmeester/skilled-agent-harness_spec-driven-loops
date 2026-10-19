@@ -1,0 +1,9 @@
+VERDICT: FAIL
+
+- **P2 — provisioning can outlive `close()`** at [client.ts:226](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:226) and [client.ts:442](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:442). The guard at `client.ts:303` blocks the `runtime.py` spawn once `ensurePython()` settles. But `close()` returns when there is no runtime child, while `runProvision()` has no timeout or cancellation. If provisioning hangs, its child remains alive and `ready` never settles. The accepted residual assumes provisioning exits, so that reasoning is incomplete.
+
+The v2 adapter fits the installed 2.0.32 types: the v1 plugin exposes Zod 4.1.8, which implements `StandardSchemaV1`, and the API probe confirms v2 accepts and calls it. String results map to content; object results preserve metadata and file attachments. Missing `ctx.tool` skips registration, rejected transforms fail open, and cleanup disposes prompt, tool, command, then client. The v1 `server` path has no diff and retains its environment gate.
+
+Mutation evidence is discriminating for the close fix, round-1 fail-open and attachment mapping, and grace behavior. The original-code tools run errors on missing `toV2Tools`, so it does not separately mutation-test each adapter assertion. Live-off records zero vision tools; live-on records 13 and a status call. The corrected comments match the plugin symlinks, and the comment-hygiene search found no matches.
+
+`git diff --check` exited 0 and required artifacts exist. I reviewed supplied test logs without rerunning tests. No files were changed by this review.

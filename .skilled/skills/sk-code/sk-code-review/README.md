@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # sk-code-review mode
@@ -71,7 +71,7 @@ The advisor prints the recommended skill route when confidence lands at or above
 **Files reviewed**: 3 files, 127 lines changed
 **Overall assessment**: REQUESTED_CHANGES
 **Baseline used**: sk-code (sk-code-review)
-**Surface evidence used**: OPENCODE
+**Surface evidence used**: SKILLED
 
 ## Findings
 
@@ -150,7 +150,7 @@ Reach for the `sk-code-review` mode when you want severity-ranked findings with 
 
 | Skill | Relationship |
 |---|---|
-| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |
+| `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |
 | `sk-code-quality` | Runs author-side quality gates before review |
 | `deep-review` | The multi-iteration review loop with JSONL state, deltas and convergence, built on the same severity taxonomy and evidence rules from `references/review-core.md` |
 
@@ -185,7 +185,7 @@ A: The `sk-code-review` mode is the single-pass baseline. One report, one status
 
 **Q: How does this differ from sibling sk-code modes?**
 
-A: The surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
+A: The surface packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
 
 **Q: Why the mandatory status line?**
 

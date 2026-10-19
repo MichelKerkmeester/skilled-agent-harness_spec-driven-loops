@@ -1,0 +1,50 @@
+› [session-relaunch] claim and continue handoff /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95d7f40/scratchpad/codex-live-c…
+• Explored
+  └ Read README.md, killer.cjs
+    + Show details
+
+• Ran node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Complete the generated session-relaunch handoff note through its prescribed CLI. The CLI updates only the status metadat…
+  └     }
+      }
+    }
+    + 28 lines (⌃t to expand)
+
+• Explored
+  └ List skills
+    Search (^|/)(sk-doc|doc-[^/]*)/|SKILL\.md$
+    Read README.md
+    + Show details
+
+• Ran cat .skilled/skills/sk-doc/ROUTER.md .skilled/skills/sk-doc/hub-router.json
+  └     }
+      }
+    }
+    + 882 lines (⌃t to expand)
+
+• I’ve confirmed the README is 244 lines and both source files support the summaries below. The sk-doc router has no mode for handoff lifecycle metadata, so I’m using the prescribed session-relaunch
+  complete command to close the claimed note, then I’ll verify its status.
+
+• Ran node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95…
+  └ (no output)
+    + Show details
+
+• Explored
+  └ Read 20261019T080048Z-01a1532a.md
+    + Show details
+
+• Ran git status --short --branch
+  └ ?? specs/hooks/023-session-relaunch-loop/review-archive/
+    ?? specs/hooks/023-session-relaunch-loop/review/
+    ?? specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/
+    + 80 lines (⌃t to expand)
+
+• The handoff is closed. claim and complete both exited 0, and the note now records status: done. Gate 3 remained Skip, so I did not resume a spec packet or save continuity.
+
+  ### Session Relaunch README
+  • Explains the shared relaunch system and wrapper, including
+
+
+› Ask Codex to do anything
+
+  GPT-6-Luna max fast · Context 37% used · 5h 75% left · weekly 44% left
+  ? for shortcuts                                                                                                                                                              ⚠ 1 warning · f2 to view

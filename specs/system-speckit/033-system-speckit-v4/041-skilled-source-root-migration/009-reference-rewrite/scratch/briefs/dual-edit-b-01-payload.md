@@ -8,7 +8,7 @@ OLD:
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
-        return "sk-code:code-opencode"
+        return "sk-code:code-skilled"
 ~~~~
 
 NEW:
@@ -17,5 +17,5 @@ NEW:
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if ".skilled/" in files or ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
-        return "sk-code:code-opencode"
+        return "sk-code:code-skilled"
 ~~~~

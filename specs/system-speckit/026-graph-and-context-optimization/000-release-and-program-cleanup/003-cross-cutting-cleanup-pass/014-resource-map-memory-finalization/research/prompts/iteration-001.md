@@ -32,7 +32,7 @@ specs/system-spec-kit/026-graph-and-context-optimization/
 ├── 006-runtime-matrix-execution-validation/
 ├── 011-cli-matrix-adapter-runners/
 ├── 003-post-program-quality-pass/                          ← phase parent
-│   ├── 001-sk-code-opencode-standards-audit/
+│   ├── 001-sk-code-skilled-standards-audit/
 │   ├── 002-feature-catalog-trio-alignment/
 │   ├── 003-testing-playbook-trio-alignment/
 │   ├── 004-sk-doc-template-alignment/

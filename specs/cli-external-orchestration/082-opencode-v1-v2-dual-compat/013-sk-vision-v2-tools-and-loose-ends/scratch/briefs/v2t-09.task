@@ -1,0 +1,61 @@
+ROLE: You move one block in a TypeScript function and add one test. Re-read each file first. Make exactly these edits and nothing else.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`, `createSetup` registers the v2 tools before it registers the prompt hook. If `ctx.session.hook()` then rejects, setup throws before it returns its cleanup, and the tool registration is never disposed. Registering the tools after the prompt hook removes that window. A failed tool registration already fails open.
+
+ACTION:
+
+1. In `plugin.ts`, inside `createSetup`, cut this whole block (from the comment line through the closing `}` of the `if`) out of its current place, which is directly after the line `    const auto = createAutoInspect?.(ctx.location.directory) ?? null;`:
+
+    // OpenCode 1 registers the tools from `server`, but OpenCode 2 only calls
+    // `setup`, so the same definitions go through its tool editor here.
+    const tools = auto?.tools ?? [];
+    let toolRegistration: V2Registration | null = null;
+    if (tools.length > 0 && ctx.tool) {
+      try {
+        toolRegistration = await ctx.tool.transform((editor) => {
+          for (const definition of tools) editor.add(definition);
+        });
+      } catch (error: unknown) {
+        // Fail open: the command and image inspection still work without the tools.
+        if (process.env.SK_VISION_DEBUG === '1') {
+          const message = error instanceof Error ? error.message : String(error);
+          process.stderr.write(`[sk-vision] tool registration failed: ${message}\n`);
+        }
+      }
+    }
+
+and paste it, unchanged, between the line `    });` that closes the `const promptRegistration = await ctx.session.hook('prompt', async (input) => {` call and the line `    return async () => {` that follows it, with one blank line before it and one blank line after it. Then replace its first comment line, `    // OpenCode 1 registers the tools from \`server\`, but OpenCode 2 only calls`, and the second, `    // \`setup\`, so the same definitions go through its tool editor here.`, with these three lines:
+
+    // OpenCode 1 registers the tools from `server`, but OpenCode 2 only calls
+    // `setup`, so the same definitions go through its tool editor here, after the
+    // prompt hook, so a hook that fails to register leaves no tools behind.
+
+2. In `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`, inside `describe("v2 tool registration", () => {`, directly after the closing `});` of the test `it("keeps the prompt hook and disposes cleanly when tool registration fails", async () => {`, insert this test:
+
+  it("leaves no tools registered when the prompt hook fails to register", async () => {
+    const base = withToolEditor(makeContext().ctx);
+    const ctx: SetupContext = {
+      ...base.ctx,
+      session: {
+        ...base.ctx.session,
+        hook: async () => {
+          throw new Error("prompt hook unavailable");
+        },
+      },
+    };
+
+    await expect(
+      createSetup({
+        handle: async () => {},
+        readTemplate: () => null,
+        createAutoInspect: () => ({
+          evidence: async () => null,
+          tools: [fakeTool("sk_vision_status")],
+          dispose: async () => {},
+        }),
+      })(ctx),
+    ).rejects.toThrow("prompt hook unavailable");
+    expect(base.added.length).toBe(base.disposed.length);
+  });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -4` and print the output verbatim, nothing else.

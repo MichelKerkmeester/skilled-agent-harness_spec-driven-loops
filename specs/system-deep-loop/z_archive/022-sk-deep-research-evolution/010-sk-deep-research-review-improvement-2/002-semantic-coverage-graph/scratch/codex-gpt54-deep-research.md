@@ -1022,7 +1022,7 @@ Full details: `.opencode/skills/sk-git/`
 | **Complex multi-step**    | Task tool → Decompose → Delegate → Synthesize                                                                                      |
 | **Documentation**         | sk-doc skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                            |
 | **Web code**              | sk-code-web skill → Webflow/CDN standards, minification, browser testing                                                           |
-| **OpenCode system code**  | sk-code-opencode skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
+| **OpenCode system code**  | sk-code-skilled skill → JS/TS/Python/Shell standards, language detection, quality checklists                                       |
 | **Git workflow**          | sk-git skill → Worktree setup / Commit / Finish (PR)                                                                                |
 | **Phase workflow**        | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → `create.sh --phase` → Populate → Plan first child  |
 | **Database maintenance**  | `/memory:manage` → stats, health, cleanup, checkpoint, ingest operations                                                           |

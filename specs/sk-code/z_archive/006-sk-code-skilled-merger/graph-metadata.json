@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/006-sk-code-skilled-merger",
+  "spec_folder": "sk-code/z_archive/006-sk-code-skilled-merger",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code-skilled merger",
+      "merge sk-code-skilled into sk-code",
+      "remove go react from sk-code",
+      "single sk-code",
+      "sk-code-skilled merger plan",
+      "single sk-code plan",
+      "resource map",
+      "sk-code-skilled merger tasks",
+      "single sk-code tasks",
+      "sk-code-skilled merger adr",
+      "single sk-code decision",
+      "sk-code-skilled merger summary"
+    ],
+    "key_topics": [
+      "sk-code-skilled",
+      "merger",
+      "merge",
+      "sk-code",
+      "remove",
+      "react",
+      "single",
+      "plan",
+      "resource",
+      "map",
+      "tasks",
+      "adr"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/agents/code.md",
+      ".opencode/agents/review.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/code.md",
+      ".claude/agents/review.md",
+      ".claude/agents/deep-review.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/code.toml",
+      ".codex/agents/review.toml",
+      ".codex/agents/deep-review.toml",
+      ".codex/agents/orchestrate.toml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "review.toml",
+        "kind": "file",
+        "path": ".codex/agents/review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Intent Classification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Before",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while `sk-code-skilled` separately owned OpenCode system-code standards",
+    "created_at": "2026-05-03T11:04:06Z",
+    "last_save_at": "2026-10-18T19:17:03.537Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:731f2dc7de21c188cf3a248259147be5d3bd52940dc6ab5717fbd5f9d45b27a7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "960beac21d75fdc5bf1926a0c42d098948fadd8c9e89f2adf7e5e8e6824a9465",
+      "plan.md": "9a81e9364830eb0485b530f55d528870585099cc06e432b953e9351b8f7c68ca",
+      "tasks.md": "1f3c3e74680d30d7245da6128fdf8dbe4f7c9f61145bdedcb995502db747aac4",
+      "decision-record.md": "902aff984d4f8a351a9e19d65896f5f67cb49df50e5f2755c1d8f3114a6372f1",
+      "implementation-summary.md": "b412ed3143567171365f5aa715e5379077c2672eff5f115a0781f1f264b75532",
+      "resource-map.md": "9eca0cd358c853fd7e1219d19869ee300b7bcbc035f86fe7903021177982217a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

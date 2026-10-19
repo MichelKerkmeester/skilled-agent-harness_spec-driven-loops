@@ -83,7 +83,7 @@ Acceptance coverage is advisory but could not be refreshed because strict packet
 
 ## Deferred Items
 
-- The known `package_skill.py --check` failures for code-opencode and code-webflow surface `SKILL.md` section headers reproduce and remain explicitly out of scope.
+- The known `package_skill.py --check` failures for code-skilled and code-webflow surface `SKILL.md` section headers reproduce and remain explicitly out of scope.
 - No resource map existed at initialization, so no Resource Map Coverage Gate section is emitted.
 - No P2 advisories remain after narrowing findings to contract-relevant defects.
 
@@ -104,7 +104,7 @@ Acceptance coverage is advisory but could not be refreshed because strict packet
 - Git-tracked structural matrix: 163 files, 0 hyphenated basenames, 0 missing metadata/version/H1/OVERVIEW, 0 missing mode sections, 0 numbering defects, 0 misplaced RELATED RESOURCES sections.
 - Semantic matrix: 21 intro/Purpose duplicates.
 - Tracked hub link scan: 328 Markdown files, 2 unresolved `.md` links.
-- `package_skill.py --check`: code-quality PASS with two unrelated skill-level warnings; code-opencode and code-webflow fail only the documented out-of-scope required-section header check.
+- `package_skill.py --check`: code-quality PASS with two unrelated skill-level warnings; code-skilled and code-webflow fail only the documented out-of-scope required-section header check.
 - Strict spec validation: not executed because the compiled validation orchestrator is stale; this is recorded as an infrastructure caveat, not a target-file finding.
 
 ### Convergence Replay

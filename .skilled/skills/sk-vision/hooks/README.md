@@ -4,7 +4,7 @@ description: "How sk-vision reaches its runtime on each of four coding hosts, an
 trigger_phrases:
   - "sk-vision host adapters"
   - "sk-vision hooks"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-vision host adapters
@@ -63,4 +63,4 @@ Its timeout is 60 seconds. A warm model answers well inside that. A cold first l
 
 ## 4. FRESH-CHECKOUT NOTE
 
-`vision-runtime/dist/` and `opencode/sk-vision.js` are gitignored build artifacts. Run `bun run scripts/build.ts` in `vision-runtime/` before the OpenCode plugin, the Devin hook or the Cursor CLI can work. Until then the Devin hook resolves nothing and stays silent by design, rather than raising on every turn.
+`vision-runtime/dist/` is a gitignored build artifact, and OpenCode loads its `plugin.js`. The same build writes `opencode/sk-vision.js` beside its tracked `.ts` source; it is generated, so never commit it. Run `bun run scripts/build.ts` in `vision-runtime/` before the OpenCode plugin, the Devin hook or the Cursor CLI can work. Until then the Devin hook resolves nothing and stays silent by design, rather than raising on every turn.

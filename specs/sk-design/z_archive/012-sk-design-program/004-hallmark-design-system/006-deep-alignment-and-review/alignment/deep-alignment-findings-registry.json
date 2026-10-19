@@ -583,7 +583,7 @@
           "message": "Four catch-block comments begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts",
           "matchesStandard": false,
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:374] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:380] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:386] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:392] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:374] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:380] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:386] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/a11y-extract.ts:392] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -594,7 +594,7 @@
           "layer": "reasoning-agent",
           "message": "crawl.ts is 1,043 lines and combines crawling, browser lifecycle, consent handling, link prioritization, interaction triggering, screenshots, and throttling. This substantially exceeds sk-code's 400-line recommendation even when treated as a main entry point; extract domain modules.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts:1043] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/crawl.ts:1043] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]"
         },
         {
           "severity": "P2",
@@ -603,7 +603,7 @@
           "layer": "reasoning-agent",
           "message": "css-analyzer.ts is 563 lines and combines stylesheet acquisition, selector/declaration parsing, media queries, transitions, animations, and aggregate analysis. It exceeds sk-code's 200-line utility recommendation; split by analysis domain.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts:563] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts:563] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]"
         },
         {
           "severity": "P2",
@@ -612,7 +612,7 @@
           "layer": "reasoning-agent",
           "message": "dark-mode-detect.ts is 266 lines, exceeding sk-code's 200-line utility recommendation. Separate detection/switching from variable and screenshot capture if this module continues growing.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/dark-mode-detect.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dark-mode-detect.ts:266] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dark-mode-detect.ts:266] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]"
         },
         {
           "severity": "P2",
@@ -621,7 +621,7 @@
           "layer": "reasoning-agent",
           "message": "design-boundary-detect.ts is 311 lines and combines six scoring dimensions, anomaly detection, summaries, pair aggregation, and classification. It exceeds sk-code's 200-line utility recommendation; extract scoring helpers by concern.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/design-boundary-detect.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/design-boundary-detect.ts:311] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/design-boundary-detect.ts:311] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]"
         },
         {
           "severity": "P2",
@@ -631,7 +631,7 @@
           "layer": "reasoning-agent",
           "message": "dom-collector.ts is 575 lines and combines CSS-variable, computed-style, pseudo-element, gradient, SVG, font, and logo-color extraction. It exceeds sk-code's 200-line utility recommendation; split the independent collectors into focused modules.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:575] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:575] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -643,7 +643,7 @@
           "layer": "reasoning-agent",
           "message": "Several standalone and inline comments begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:115] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:177] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:179] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:181] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:409] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:420] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:510] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:515] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:115] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:177] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:179] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:181] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:409] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:420] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:510] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/dom-collector.ts:515] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -655,7 +655,7 @@
           "layer": "reasoning-agent",
           "message": "extract.ts is 681 lines and its main pipeline coordinates crawling, browser extraction, dark-mode and framework analysis, token construction, merging, and output serialization. It exceeds sk-code's 400-line main-entry recommendation; extract pipeline stages into focused modules.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:251] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:681] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:113]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:251] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:681] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:113]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -667,7 +667,7 @@
           "layer": "reasoning-agent",
           "message": "Multiple standalone comments begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:367] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:485] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:497] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:499] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:582] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:587] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:601] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:618] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:367] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:485] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:497] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:499] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:582] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:587] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:601] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts:618] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -679,7 +679,7 @@
           "layer": "reasoning-agent",
           "message": "formatters-v3.ts is 404 lines and combines color naming, token formatting, motion tables, typography normalization, Quick Start generation, and schema dispatch. It exceeds sk-code's 200-line utility recommendation; split formatter domains into focused modules.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:404] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:107]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:404] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:107]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -691,7 +691,7 @@
           "layer": "reasoning-agent",
           "message": "Standalone and inline comments begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:68] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:120] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:205] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:68] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:120] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/formatters-v3.ts:205] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]",
           "authority": "sk-code",
           "artifactClass": "code"
         },
@@ -702,7 +702,7 @@
           "layer": "reasoning-agent",
           "message": "icon-detect.ts is 248 lines, exceeding sk-code's 200-line recommendation for utility/helper modules. Split page-dependent label detection or distribution helpers into a focused module.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts:248] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:111]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/icon-detect.ts:248] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:111]"
         },
         {
           "severity": "P2",
@@ -711,7 +711,7 @@
           "layer": "reasoning-agent",
           "message": "interaction-capture.ts is 799 lines, nearly four times sk-code's 200-line recommendation for utility/helper modules. Extract the independent state-detection and interaction-capture concerns into focused modules.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:799] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:111]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:799] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:111]"
         },
         {
           "severity": "P2",
@@ -720,7 +720,7 @@
           "layer": "reasoning-agent",
           "message": "Multiple standalone and continuation comments begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:273] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:429] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:721] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:795] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:273] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:429] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:721] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/interaction-capture.ts:795] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
         },
         {
           "severity": "P2",
@@ -729,7 +729,7 @@
           "layer": "reasoning-agent",
           "message": "Several comment lines begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:6] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:45] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:83] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:6] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:45] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts:83] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
         },
         {
           "severity": "P2",
@@ -738,7 +738,7 @@
           "layer": "reasoning-agent",
           "message": "Several comment lines begin with lowercase text, contradicting sk-code's mandatory comment-capitalization rule.",
           "artifactPath": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:73] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:256] [SOURCE: .opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:73] [SOURCE: .opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts:256] [SOURCE: .opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:233]"
         },
         {
           "severity": "P1",
@@ -791,7 +791,7 @@
           "surface": "OPENCODE",
           "message": "The significant JavaScript module transitions directly from its preamble to imports and contains no numbered section dividers, contrary to the OpenCode organization standard.",
           "artifactPath": ".opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs:12] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md:102]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/generation-manifest.mjs:12] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md:102]"
         },
         {
           "severity": "P2",
@@ -802,7 +802,7 @@
           "surface": "OPENCODE",
           "message": "The 1,281-line JavaScript module transitions directly from its preamble to imports and contains no numbered section dividers, contrary to the OpenCode organization standard.",
           "artifactPath": ".opencode/skills/sk-design/styles/lib/database/indexer.mjs",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/indexer.mjs:5] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md:102]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/indexer.mjs:5] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md:102]"
         },
         {
           "severity": "P2",
@@ -813,7 +813,7 @@
           "surface": "OPENCODE",
           "message": "The significant JavaScript module transitions directly from its preamble to imports and contains no numbered section dividers, contrary to the OpenCode organization standard.",
           "artifactPath": ".opencode/skills/sk-design/styles/lib/database/operator.mjs",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/operator.mjs:6] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md:102]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/operator.mjs:6] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md:102]"
         },
         {
           "severity": "P2",
@@ -824,7 +824,7 @@
           "surface": "OPENCODE",
           "message": "The 554-line JavaScript module transitions directly from its preamble to imports and contains no numbered section dividers, contrary to the OpenCode organization standard.",
           "artifactPath": ".opencode/skills/sk-design/styles/lib/database/retrieval.mjs",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/retrieval.mjs:5] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md:102]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/retrieval.mjs:5] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md:102]"
         },
         {
           "severity": "P2",
@@ -835,7 +835,7 @@
           "surface": "OPENCODE",
           "message": "The significant JavaScript module transitions directly from its preamble to imports and contains no numbered section dividers, contrary to the OpenCode organization standard.",
           "artifactPath": ".opencode/skills/sk-design/styles/lib/database/schema.mjs",
-          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/schema.mjs:5] [SOURCE: .opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md:102]"
+          "evidence": "[SOURCE: .opencode/skills/sk-design/styles/lib/database/schema.mjs:5] [SOURCE: .opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md:102]"
         },
         {
           "severity": "P2",

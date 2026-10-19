@@ -1,0 +1,60 @@
+ROLE: You make literal edits to one TypeScript test file. Re-read it first. Make exactly these edits and nothing else.
+
+FILE: `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`
+
+ACTION:
+
+1. Replace the line `import { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "./plugin.js";` with `import plugin, { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "./plugin.js";`.
+
+2. Replace the whole test that starts with `  it("adds no tools when automatic inspection is off", async () => {` (through its closing `  });`) with:
+
+  it("adds no tools when automatic inspection is off", async () => {
+    const saved = process.env.SK_VISION_AUTOINSPECT;
+    delete process.env.SK_VISION_AUTOINSPECT;
+    const fake = withToolEditor(makeContext().ctx);
+    try {
+      const dispose = await plugin.setup(fake.ctx);
+      expect(fake.added).toEqual([]);
+      await dispose();
+      expect(fake.disposed).toEqual([]);
+    } finally {
+      if (saved === undefined) delete process.env.SK_VISION_AUTOINSPECT;
+      else process.env.SK_VISION_AUTOINSPECT = saved;
+    }
+  });
+
+3. Replace the whole test that starts with `  it("leaves no tools registered when the prompt hook fails to register", async () => {` (through its closing `  });`) with:
+
+  it("releases everything setup holds when the prompt hook fails to register", async () => {
+    const made = makeContext();
+    const base = withToolEditor(made.ctx);
+    const ctx: SetupContext = {
+      ...base.ctx,
+      session: {
+        ...base.ctx.session,
+        hook: async () => {
+          throw new Error("prompt hook unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+
+    await expect(
+      createSetup({
+        handle: async () => {},
+        readTemplate: () => null,
+        createAutoInspect: () => ({
+          evidence: async () => null,
+          tools: [fakeTool("sk_vision_status")],
+          dispose: async () => {
+            autoDisposed += 1;
+          },
+        }),
+      })(ctx),
+    ).rejects.toThrow("prompt hook unavailable");
+    expect(base.added.length).toBe(base.disposed.length);
+    expect(made.disposed).toEqual(["command"]);
+    expect(autoDisposed).toBe(1);
+  });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -6` and print the output verbatim, nothing else.

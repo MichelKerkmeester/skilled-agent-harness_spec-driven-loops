@@ -63,7 +63,7 @@ All ten ranked recommendations of the 034 research [SOURCE: specs/system-skill-a
 - Trigger phrases for `/doctor:env` and plain-word phrases for `/doctor:update`, plus a corrected `_routes.yaml` header.
 - An install step for the `yaml` parser in every CI job that runs the bridge generator and lacks it.
 - Added 2026-10-15 by the operator during implementation: manual testing playbook scenarios and feature catalog entries for the doctor routing behavior, written so an external agent with no context can run them, plus a `/doctor:setup` row in the spec-kit doctor catalog and the root README command list.
-- Added 2026-10-16 by the operator after the deep review: fix every finding in `review/review-report.md`, with the umbrella sk-git leg treated as P1, so the work keeps to the sk-doc authoring modes and sk-code-opencode (REQ-017 to REQ-025).
+- Added 2026-10-16 by the operator after the deep review: fix every finding in `review/review-report.md`, with the umbrella sk-git leg treated as P1, so the work keeps to the sk-doc authoring modes and sk-code-skilled (REQ-017 to REQ-025).
 - Added 2026-10-16 by the operator after two further reviews: fix every P1 and P2 in `scratch/review-v4.0.0.12-code.md` and `scratch/review-v4.0.0.12-docs.md`, with short skill prompts that return nothing as the top priority (REQ-026 to REQ-039).
 
 ### Operator Decision (settled, not reopened)

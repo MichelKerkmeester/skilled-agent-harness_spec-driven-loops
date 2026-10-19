@@ -45,7 +45,7 @@ Walk CHANGELOG-v4.0.0.0.md section by section; for every checkable claim record 
 | Design (L278) | "Open Design ... removed end to end" | TRUE | Breaking retire commit a38f8d7da78 | git log |
 | Code (L293) | "All 128 relocated files were repointed" | UNVERIFIED | Not countable statically without the commit; mode/surface shape confirmed | — |
 | Code (L293) | "router benchmark rose from 44 to 71" | UNVERIFIED | Benchmark not runnable here | — |
-| Code (L305) | "Rust ... first-class on the opencode surface" | UNVERIFIED | No rust reference docs found under sk-code-opencode/references in this pass | it.7 |
+| Code (L305) | "Rust ... first-class on the opencode surface" | UNVERIFIED | No rust reference docs found under sk-code-skilled/references in this pass | it.7 |
 | Git (L321) | "Only main, skilled/v* releases, and names you have added to an allowlist file go up without asking; enforced ... as a pre-push hook" | TRUE | remote-branch-allowlist.txt + scripts/hooks/ + push policy docs in sk-git | it.7 |
 | Git (L327) | "blocks any commit or push that removes more than a threshold (default 100) of tracked files" | UNVERIFIED | Mass-deletion guard not traced this pass | — |
 | Git (L333) | "grammar is <skill>/{NNNN}-{slug} ... owner-first form" | STALE | worktrees/NNN-slug or branches/NNN-slug; owner-first REJECTED | worktree-naming.sh (it.7) |

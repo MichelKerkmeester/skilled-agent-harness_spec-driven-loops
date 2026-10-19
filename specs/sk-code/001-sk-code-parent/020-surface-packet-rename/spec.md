@@ -53,7 +53,7 @@ Rename the four sub-skill folders to the `code-` prefix so every acting/evidence
 ## 3. SCOPE
 
 ### In Scope
-- Rename four folders: `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-opencode`, `animation -> code-animation` (via `git mv`, preserving history).
+- Rename four folders: `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-skilled`, `animation -> code-animation` (via `git mv`, preserving history).
 - Update the two-axis contract: `mode-registry.json` (`workflowMode`, `packet`, `packetSkillName`, `surfaces`), `hub-router.json` (`tieBreak`, `routerSignals` keys, `resources`, and the ten `<mode>-*` vocabulary classes), and each renamed packet's `SKILL.md` `name:` field.
 - Fix every internal markdown link the rename broke (the workflow-mode and `code-webflow` packets link to the surface packets via `../webflow/`, `../opencode/`, `../animation/`, `../review/`).
 - Update every live textual `sk-code/{name}/` path reference across the repo (hub docs, playbooks, scripts, external command assets, agent docs).

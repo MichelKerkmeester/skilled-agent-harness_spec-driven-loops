@@ -34,4 +34,4 @@ I audited the checked-in skill advisor regression corpus and the local Python sc
 - Should the regression harness store per-case results in its JSON report so future audits do not need a custom diagnostic table?
 
 ## Next Focus
-Follow up with a targeted corpus expansion around mixed-intent prompts: review-only, edit-only, and review-plus-edit. The useful next pass is not more broad fixture sampling; it is calibrating disambiguation rules between `sk-code-review`, `sk-code`, and `sk-code-opencode`.
+Follow up with a targeted corpus expansion around mixed-intent prompts: review-only, edit-only, and review-plus-edit. The useful next pass is not more broad fixture sampling; it is calibrating disambiguation rules between `sk-code-review`, `sk-code`, and `sk-code-skilled`.

@@ -87,8 +87,8 @@ Each check reports what is true: a registered adapter reads as registered, a dri
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modify | Resolve an identifier default export to its top-level declaration |
 | `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Modify | One test per declaration form and a negative test |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | Skip `scratch` and `z_archive` below `specs/` |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modify | Spec scratch and archive skip test |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Skip `scratch` and `z_archive` below `specs/` |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modify | Spec scratch and archive skip test |
 | `.skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs` | Modify | Add `'use strict';` |
 | `.skilled/skills/sk-design/shared/scripts/render-screenshots.cjs` | Modify | Add `'use strict';` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs` | Modify | Add `'use strict';` |

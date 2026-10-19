@@ -222,7 +222,7 @@ work that would actually move it is separated from the work that would only look
 - Maximum length: prompts are full sentences by design, since the point is to measure how people write rather than which keywords they hit.
 
 ### Error Scenarios
-- A prompt mentions a product name in passing: one boundary row lost at score 0.920 to `sk-code-opencode` for that reason alone, and a near-identical prompt without the word returned nothing.
+- A prompt mentions a product name in passing: one boundary row lost at score 0.920 to `sk-code-skilled` for that reason alone, and a near-identical prompt without the word returned nothing.
 - A repeat call hits the cache: several rows showed `cache.hit: true` on a verbatim repeat with an identical result, which is what makes the second run a reproduction rather than a new sample.
 
 ---

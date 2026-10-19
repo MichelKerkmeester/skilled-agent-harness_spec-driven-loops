@@ -49,9 +49,9 @@ description: "Auto-generated review resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=5; Iterations=3 |
-| .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/SKILL.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=5; Iterations=3 |
+| .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/SKILL.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 
 ---
 

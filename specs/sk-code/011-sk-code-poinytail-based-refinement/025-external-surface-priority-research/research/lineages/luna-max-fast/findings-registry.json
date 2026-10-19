@@ -31,9 +31,9 @@
       "resolved": true
     },
     {
-      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-skilled-registry-priority-fi",
       "inboxId": null,
-      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "text": "Q3: How should a user-added surface outrank sk-code-skilled (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -104,9 +104,9 @@
       "resolvedAtIteration": 4
     },
     {
-      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-opencode-registry-priority-fi",
+      "id": "question-3-q3-how-should-a-user-added-surface-outrank-sk-code-skilled-registry-priority-fi",
       "inboxId": null,
-      "text": "Q3: How should a user-added surface outrank sk-code-opencode (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
+      "text": "Q3: How should a user-added surface outrank sk-code-skilled (registry priority field, native or fallback flag, tieBreak derived at mint time, --surface-hint, other), and which option is cheapest at acceptable risk?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,

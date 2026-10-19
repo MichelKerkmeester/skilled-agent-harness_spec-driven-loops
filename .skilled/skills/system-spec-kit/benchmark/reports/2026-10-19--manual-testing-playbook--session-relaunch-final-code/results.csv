@@ -1,0 +1,5 @@
+scenario_id,runtime,run,evidence_class,verdict
+session-relaunch-claude,claude,9,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,pi,9,cross-cli-dispatch,PASS
+session-relaunch-pi-opencode,opencode,9,cross-cli-dispatch,PASS
+session-relaunch-command-runtimes,codex,9,cross-cli-dispatch,PASS

@@ -60,7 +60,7 @@ Further improvements to sk-deep-research v1.5.0.0, sk-deep-review v1.2.0.0, and 
 - Re-litigating already-closed 042 review findings (closed at commits `460c243a8` through `dc8886955c`).
 - Modifying any file outside `{spec_folder}/research/`.
 - Introducing new skills or renaming existing ones.
-- Investigating non-deep-loop skills (sk-code-opencode, sk-doc, sk-git, etc.) except where they are imported by the deep-loop skills.
+- Investigating non-deep-loop skills (sk-code-skilled, sk-doc, sk-git, etc.) except where they are imported by the deep-loop skills.
 
 ---
 

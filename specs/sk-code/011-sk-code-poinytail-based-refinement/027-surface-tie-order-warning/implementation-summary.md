@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Surface tie order warning"
-description: "The parent-skill doctor now reports, as check 5l, a sk-code surface that a user placed by hand after sk-code-opencode in tieBreak, unless it is one of the two shipped examples, and names the fix."
+description: "The parent-skill doctor now reports, as check 5l, a sk-code surface that a user placed by hand after sk-code-skilled in tieBreak, unless it is one of the two shipped examples, and names the fix."
 trigger_phrases:
   - "surface tie order warning implementation summary"
 importance_tier: "normal"
@@ -49,17 +49,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-If you edit `.skilled/skills/sk-code/hub-router.json` by hand and list your own surface after `sk-code-opencode` in `routerPolicy.tieBreak`, the doctor now tells you. Before this phase that surface lost every keyword tie to the native surface and every check passed.
+If you edit `.skilled/skills/sk-code/hub-router.json` by hand and list your own surface after `sk-code-skilled` in `routerPolicy.tieBreak`, the doctor now tells you. Before this phase that surface lost every keyword tie to the native surface and every check passed.
 
 ### Check 5l
 
-`checkNativeSurfaceLast` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs` runs on the sk-code hub only, right after 5i. It finds `sk-code-opencode` in `tieBreak` and lists each surface mode after it that is not `sk-code-obsidian` or `sk-code-webflow`. Any such mode is a soft failure:
+`checkNativeSurfaceLast` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs` runs on the sk-code hub only, right after 5i. It finds `sk-code-skilled` in `tieBreak` and lists each surface mode after it that is not `sk-code-obsidian` or `sk-code-webflow`. Any such mode is a soft failure:
 
 ```
-FAIL: 5l: tieBreak places surface(s) [sk-code-acme] after the native surface "sk-code-opencode", so they lose every keyword tie to it; move them ahead of "sk-code-opencode" in routerPolicy.tieBreak, or re-add them with /create:skill-parent update --surfaces
+FAIL: 5l: tieBreak places surface(s) [sk-code-acme] after the native surface "sk-code-skilled", so they lose every keyword tie to it; move them ahead of "sk-code-skilled" in routerPolicy.tieBreak, or re-add them with /create:skill-parent update --surfaces
 ```
 
-With none, it prints `PASS: 5l: tieBreak places no added surface after the native surface "sk-code-opencode"`. Under `PARENT_HUB_CHECK_STRICT=0` the failure prints as WARN. A tree without `sk-code-opencode` and every other hub print no 5l line.
+With none, it prints `PASS: 5l: tieBreak places no added surface after the native surface "sk-code-skilled"`. Under `PARENT_HUB_CHECK_STRICT=0` the failure prints as WARN. A tree without `sk-code-skilled` and every other hub print no 5l line.
 
 ### Files Changed
 
@@ -83,11 +83,11 @@ Commits: `a682c06d3d` (build), `c69ada168f` (review fix and review packet), and 
 
 | ID | Test | Before | After |
 |----|------|--------|-------|
-| T1 | 5l fails when a hand-added sk-code surface sorts after sk-code-opencode | before: fail | after: pass |
-| T2 | 5l passes on the shipped sk-code order, with both examples after sk-code-opencode | before: fail | after: pass |
-| T3 | 5l passes when the examples are removed and an added surface sorts ahead of sk-code-opencode | before: fail | after: pass |
+| T1 | 5l fails when a hand-added sk-code surface sorts after sk-code-skilled | before: fail | after: pass |
+| T2 | 5l passes on the shipped sk-code order, with both examples after sk-code-skilled | before: fail | after: pass |
+| T3 | 5l passes when the examples are removed and an added surface sorts ahead of sk-code-skilled | before: fail | after: pass |
 
-The three ran against the checker from `c62d7d1399` (copied aside, run, restored): T1 failed with `expected "FAIL: 5l: ...sk-code-acme"`, T2 and T3 with `expected "PASS: 5l:"`. After the build all three pass. The review added a fourth, `5l prints nothing on an sk-code tree whose tieBreak has no sk-code-opencode`, under RV-3.
+The three ran against the checker from `c62d7d1399` (copied aside, run, restored): T1 failed with `expected "FAIL: 5l: ...sk-code-acme"`, T2 and T3 with `expected "PASS: 5l:"`. After the build all three pass. The review added a fourth, `5l prints nothing on an sk-code tree whose tieBreak has no sk-code-skilled`, under RV-3.
 
 ### Review
 
@@ -95,9 +95,9 @@ A five-iteration `/deep:review :auto` ran over `c62d7d1399..a682c06d3d` on cli-d
 
 | ID | Sev | Disposition | Proof or reason |
 |----|-----|-------------|-----------------|
-| RV-1 | P2 | Fixed | R1-P2-002: the T1 assertion now also matches `move them ahead of "sk-code-opencode"` and `/create:skill-parent update --surfaces`; with the message trimmed, T1 fails (`c69ada168f`) |
-| RV-2 | P2 | Rejected | R1-P2-001: dropping the sk-code basename gate changes no output on a hub without `sk-code-opencode`, because the `nativeAt < 0` return still fires, so the claimed regression cannot occur; RV-3 pins that return. A clean-fixture absence assertion was tried and removed because that mutation left it green |
-| RV-3 | P2 | Fixed | R3-P2-001: a new test asserts no 5l line on an sk-code tree without `sk-code-opencode`; with the early return removed, it fails (`c69ada168f`) |
+| RV-1 | P2 | Fixed | R1-P2-002: the T1 assertion now also matches `move them ahead of "sk-code-skilled"` and `/create:skill-parent update --surfaces`; with the message trimmed, T1 fails (`c69ada168f`) |
+| RV-2 | P2 | Rejected | R1-P2-001: dropping the sk-code basename gate changes no output on a hub without `sk-code-skilled`, because the `nativeAt < 0` return still fires, so the claimed regression cannot occur; RV-3 pins that return. A clean-fixture absence assertion was tried and removed because that mutation left it green |
+| RV-3 | P2 | Fixed | R3-P2-001: a new test asserts no 5l line on an sk-code tree without `sk-code-skilled`; with the early return removed, it fails (`c69ada168f`) |
 | RV-4 | P2 | Rejected | R2-P2-001: `hub-router.json` is repository config at the checker's own trust level, the exit code is unaffected, and 5b, 5c, 5d, 5e, 5f and 5i interpolate config strings the same way, so a sanitiser belongs in the shared emit helpers as its own change |
 | RV-5 | P2 | Rejected | R4-P2-001: two copies of a one-line `packetKind` map are not a pattern; each check stays self-contained, as the file's other checks are |
 | RV-6 | P2 | Rejected | R5-P2-001: every 5l assertion reads only the 5l line, and an sk-code fixture stays red from 5k-canary whatever the helper writes, so canon-cleaning it adds writes no assertion reads |
@@ -135,6 +135,6 @@ A five-iteration `/deep:review :auto` ran over `c62d7d1399..a682c06d3d` on cli-d
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Renaming the native or an example surface means editing two constants.** The README tells users to keep `sk-code-opencode`, and a rename touches many other files anyway.
+1. **Renaming the native or an example surface means editing two constants.** The README tells users to keep `sk-code-skilled`, and a rename touches many other files anyway.
 2. **The review's graph-convergence rows are not in its state log.** `convergence.cjs` ran before every iteration, but the append gateway refused the hand-built event for its payload shape. Under stop policy `max-iterations` those rows decide nothing.
 <!-- /ANCHOR:limitations -->

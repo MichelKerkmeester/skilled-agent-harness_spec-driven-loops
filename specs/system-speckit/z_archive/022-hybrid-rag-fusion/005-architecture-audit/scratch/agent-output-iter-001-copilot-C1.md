@@ -65,7 +65,7 @@ I’m pulling the review baseline plus the actual core files now, then I’ll ex
   │ 1. Read review guidance and all requested core files completely.…
   └ 6 lines...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 `workflow.ts` is the main hotspot, so I’m chunking it and mapping the big functions before I score the concrete risks.
 

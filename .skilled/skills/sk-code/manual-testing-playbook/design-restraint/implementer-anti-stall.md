@@ -1,7 +1,7 @@
 ---
 title: "DR-002: Implementer anti-stall rule"
 description: "Verify that when part of a requirement looks unnecessary, sk-code builds the simplest correct implementation as specified AND raises a scope-amendment recommendation in the same response, without stalling to ask and without silently cutting scope."
-version: 1.5.0.1
+version: 1.5.1.0
 ---
 
 # DR-002: Implementer anti-stall rule
@@ -28,7 +28,7 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .skilled/skills/system-spec-kit/runtime/lib/config/load.ts. It only runs once at startup.`
 
 **Expected detection**:
-- Surface: `OPENCODE` (target path contains `/.skilled/`)
+- Surface: `SKILLED` (target path contains `/.skilled/`)
 - Intent: implementation (write work)
 
 **Expected behavior**:

@@ -160,7 +160,7 @@ Required inventories:
 | Regression | Flowchart validator on a no-box input | The regression fixture, added before the fix |
 | Contract | No suite skips | Test-runner output parsed for skip counts; any skip fails this child |
 | Contract | No remaining hardcoded checkout root | `rg -n '/Users/'` over authored code |
-| No-regression gate | `.opencode/bin` shell strict mode | `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/bin` — baseline FAIL/3 errors, target PASS/0 |
+| No-regression gate | `.opencode/bin` shell strict mode | `python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/bin` — baseline FAIL/3 errors, target PASS/0 |
 | Integration | Advisor package verification command | The package's documented command, which must now exercise the repaired test |
 | Manual | Per-command tolerance inventory review | Reading each script against its inventory before the flag lands |
 <!-- /ANCHOR:testing -->

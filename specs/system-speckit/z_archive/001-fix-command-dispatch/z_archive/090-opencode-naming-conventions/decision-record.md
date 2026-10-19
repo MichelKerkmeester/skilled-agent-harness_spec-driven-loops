@@ -1,6 +1,6 @@
 ---
 title: "Decis [system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions/decision-record]"
-description: "The sk-code-opencode skill enforces snake_case for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtu..."
+description: "The sk-code-skilled skill enforces snake_case for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtu..."
 trigger_phrases:
   - "decision"
   - "record"
@@ -34,7 +34,7 @@ contextType: "planning"
 
 ### Context
 
-The `sk-code-opencode` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtually all JS libraries use `camelCase`. The current convention creates friction when reading/writing code and contradicts what every JS developer expects.
+The `sk-code-skilled` skill enforces `snake_case` for JavaScript functions, parameters, and exports. This is non-standard for JS — MDN, Airbnb style guide, Node.js core, and virtually all JS libraries use `camelCase`. The current convention creates friction when reading/writing code and contradicts what every JS developer expects.
 
 ### Constraints
 - ~206 JS files need migration (large blast radius)

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/012-sk-code-skilled-rename/001-rename-impact-research",
+  "description": "Phase 1: rename-impact-research",
+  "keywords": [
+    "phase",
+    "rename-impact-research"
+  ],
+  "lastUpdated": "2026-10-18T18:05:51.641Z",
+  "specId": "001",
+  "folderSlug": "rename-impact-research",
+  "parentChain": [
+    "sk-code",
+    "012-sk-code-skilled-rename"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-10-26_19-05__deep-research-completed-5-iterations-on-cli-devin.md"
+  ]
+}

@@ -202,7 +202,7 @@ function reviewFindingsAreEnumerated(record, deltaRecords, iteration, narrativeP
   }
   const listedInDelta = deltaRecords.some((row) => row
     && row.type === 'finding'
-    && isRankedReviewFinding(row, ['id'])
+    && isRankedReviewFinding(row, ['id', 'findingId'])
     && typeof row.iteration === 'number'
     && row.iteration === iteration);
   if (listedInDelta) return true;

@@ -14,9 +14,9 @@ _memory:
     next_safe_action: "Orchestrator runs sync-skills-hermes.cjs in write mode, then reruns the goal criteria"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs"
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       - ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -63,13 +63,13 @@ The Obsidian playbook root, the OB-H06 scenario and the OB-019 scenario called t
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` | Modified | Three exact-path allowlist entries with the reason beside the set, `OPT_IN_LEGS` and its filter removed |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` | Created | Three-case `node:test` file run against a throwaway hub (the `scripts/tests/` folder is new) |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modified | Passes `--checks 1a,1b,2,3,4`, header line and the note under the call rewritten |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modified | Overview sentence, umbrella table row and one row for the new test |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Pointer comment, wrapper description, leg 1b sentence, version 1.1.0.0 to 1.1.1.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modified | Table row, gap note and entry-point line |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md` | Created | Changelog entry for 1.1.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` | Modified | Three exact-path allowlist entries with the reason beside the set, `OPT_IN_LEGS` and its filter removed |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` | Created | Three-case `node:test` file run against a throwaway hub (the `scripts/tests/` folder is new) |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modified | Passes `--checks 1a,1b,2,3,4`, header line and the note under the call rewritten |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modified | Overview sentence, umbrella table row and one row for the new test |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modified | Pointer comment, wrapper description, leg 1b sentence, version 1.1.0.0 to 1.1.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modified | Table row, gap note and entry-point line |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md` | Created | Changelog entry for 1.1.1.0 |
 | `.skilled/skills/sk-code/benchmark/README.md` | Modified | Successor note now says every check is wired |
 | `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` | Modified | Seven keywords, six `RESOURCE_MAP` entries, version 0.1.1.0 to 0.1.2.0 |
 | `.skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md` | Created | Changelog entry for 0.1.2.0 |
@@ -90,7 +90,7 @@ The build captured every baseline first (guard, umbrella, compiled guard, leaf m
 
 The routing replay of all 27 Obsidian scenarios shows an identical intents column before and after, no lost resource and rising counts only (OB-011 15 to 21, OB-015 19 to 25, OB-017 6 to 8, OB-019 12 to 15). A reach probe with one plain-words prompt per new route printed six `MISS` lines before and six `OK` lines after.
 
-Hermes copy regeneration: deferred to the orchestrator. The build ran only `sync-skills-hermes.cjs --check`, which was `PASS: 70 Hermes skill copies in sync` before the edits and now prints `DRIFT sk-code-obsidian` and `DRIFT sk-code-opencode` with `FAIL: 2 drifted, 0 stale`, the two expected lines. T065 and T066 were both skipped because the compiled manifest and the leaf manifest were already fresh. Nothing is committed.
+Hermes copy regeneration: deferred to the orchestrator. The build ran only `sync-skills-hermes.cjs --check`, which was `PASS: 70 Hermes skill copies in sync` before the edits and now prints `DRIFT sk-code-obsidian` and `DRIFT sk-code-skilled` with `FAIL: 2 drifted, 0 stale`, the two expected lines. T065 and T066 were both skipped because the compiled manifest and the leaf manifest were already fresh. Nothing is committed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -126,7 +126,7 @@ Hermes copy regeneration: deferred to the orchestrator. The build ran only `sync
 | Voice scan | PASS: both changelogs 0 hard blockers, no edited file count rose (OpenCode `SKILL.md` 26 to 25, holdout 11 to 3, ceiling 10 to 7, playbook root 83 to 82) |
 | Stale-wording search over `.skilled/skills/sk-code` | PASS: prints nothing, `exit=1` |
 | Alignment lint of the new test, git discovery blocked | PASS: `Scanned files: 1`, `Findings: 0`, `exit=0` |
-| Hermes check | EXPECTED DRIFT: `DRIFT sk-code-obsidian` and `DRIFT sk-code-opencode`, nothing else. The orchestrator regenerates them |
+| Hermes check | EXPECTED DRIFT: `DRIFT sk-code-obsidian` and `DRIFT sk-code-skilled`, nothing else. The orchestrator regenerates them |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -134,9 +134,9 @@ Hermes copy regeneration: deferred to the orchestrator. The build ran only `sync
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Hermes copies are not regenerated.** `.hermes/skills/sk-code-obsidian/SKILL.md` and `.hermes/skills/sk-code-opencode/SKILL.md` drift until the orchestrator runs `sync-skills-hermes.cjs` once.
+1. **The Hermes copies are not regenerated.** `.hermes/skills/sk-code-obsidian/SKILL.md` and `.hermes/skills/sk-code-skilled/SKILL.md` drift until the orchestrator runs `sync-skills-hermes.cjs` once.
 2. **Three dead entries sit in `NON_ROUTED_ALLOWLIST`.** `ROUTER.md`, `references/stack-detection.md` and `references/phase-detection.md` never match a walked path, because the walk yields hub-relative paths such as `shared/references/stack-detection.md`. They were left alone as out of scope.
-3. **A stale count remains in a playbook scenario.** `.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md` (line 28) still says "two drift guards" where the umbrella runs three.
+3. **A stale count remains in a playbook scenario.** `.skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md` (line 28) still says "two drift guards" where the umbrella runs three.
 4. **Section 4 of the Obsidian `SKILL.md` names three assets that do not exist.** `assets/renderer-implementation-checklist.md`, `assets/comment-grammar-checklist.md` and `assets/debug-checklist.md` are listed, and the assets folder holds seven other files. Left unchanged.
 5. **Five of the six routed docs still have no row in section 2 of the Obsidian `SKILL.md`.** `accessibility.md`, `theme-variables.md`, `setup/setup.md`, `operations/operations.md` and `quality/doc-quality-gate.md` are reached through the section 2b map only. `skill-reference-integrity.md` already had a row, so the task text that said six was off by one.
 6. **Operator decision, not made here.** Routing the three workflow docs through each surface `RESOURCE_MAP` and dropping their allowlist entries would let leg 1b see them, but it changes what three surfaces load.

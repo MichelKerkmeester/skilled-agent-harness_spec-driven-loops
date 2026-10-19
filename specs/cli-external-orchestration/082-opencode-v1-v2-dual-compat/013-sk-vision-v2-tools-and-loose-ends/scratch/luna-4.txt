@@ -1,0 +1,16 @@
+VERDICT: PASS
+
+- P2 - [client.ts:108](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:108): Closing during an interpreter probe returns before that probe ends. `ensurePython()` can then start more probes or create the venv directory. The guards prevent the installer and runtime from spawning, and `ready` eventually settles, but shutdown can leave bounded probe processes running.
+- P2 - [plugin.ts:385](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:385): If prompt-hook registration rejects, the command registration and auto-inspection client already exist. Setup throws before returning its cleanup function. The new test at [plugin.test.ts:659](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:659) checks that no tools registered, but not whether those earlier resources are disposed.
+- P2 - [plugin.test.ts:617](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:617): The “inspection off” test injects a factory that returns `null`; it does not exercise the `SK_VISION_AUTOINSPECT` gate. The live final-off proof confirms this bundle’s behavior, but no recorded mutation shows the test catches a broken gate.
+- P2 - [hooks/README.md:66](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/hooks/README.md:66): The README says the generated hook bundle is gitignored, but Git reports it as untracked. Both plugin symlinks target `vision-runtime/dist/plugin.js`; none targets `hooks/opencode/sk-vision.js`.
+
+The v2 adapter’s runtime shapes match 2.0.32: Zod input, both v1 result forms, file content mapping and disposal order. Missing `ctx.tool` skips registration; rejected transforms fail open. The v1 server path is unchanged. The corrected comments are true, and the comment scan found no spec paths or ephemeral IDs. Mutation records cover the adapter’s missing registration, result mapping, close regressions and grace behavior.
+
+`git diff --check` passed. Strict validation ran but could not finish its temp-file checks in the read-only sandbox. The typecheck aborted before TypeScript started because Node could not load `libsimdutf.36.dylib`. No tests were rerun.
+
+Operator action: decide whether to accept the P2 findings or request fixes.
+
+Not checked: clean typecheck and strict validation; their execution was blocked by the environment, and the validator also reported one spec sufficiency warning.
+
+Review status: COMMENTED

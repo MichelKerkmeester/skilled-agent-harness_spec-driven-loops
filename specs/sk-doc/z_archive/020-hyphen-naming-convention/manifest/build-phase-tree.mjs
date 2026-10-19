@@ -49,7 +49,7 @@ function codebaseSkill(slug, { hasRuntime = false, hasAssets = false, hasFeature
 
 // ---- 008 component fan-out ---------------------------------------------------
 
-const sk_code = hubSkill('001-sk-code', ['code-opencode', 'code-quality', 'code-review', 'code-webflow'], { hasFeatureCatalog: false });
+const sk_code = hubSkill('001-sk-code', ['code-skilled', 'code-quality', 'code-review', 'code-webflow'], { hasFeatureCatalog: false });
 
 const sk_design = hubSkill('002-sk-design',
   ['design-interface', 'design-foundations', 'design-motion', 'design-audit', 'design-md-generator', 'design-mcp-open-design'],

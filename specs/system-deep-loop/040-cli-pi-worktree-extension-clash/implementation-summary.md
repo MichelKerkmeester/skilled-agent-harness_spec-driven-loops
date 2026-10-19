@@ -82,6 +82,7 @@ The orchestrator reproduced the crash, read Pi's loader to find the cause and ca
 | First copy in a load wins | Pi's own conflict rule is load order, and the extension API exposes no cwd at load time. In print mode Pi loads the project copy first (`scratch/smoke-*.json`) |
 | Withdraw the cwd-based check | It reads `process.cwd()`, which differs from the session cwd on `--resume`, and could leave no copy registered |
 | Leave `~/.pi` alone | Out of bounds; the live proof used an overlay in the session scratchpad |
+| Keep this fix over main's global-only check when merging main | Main meanwhile shipped a check that lets only the copy at the global extensions path register. Pi dedupes the checkout the global link points to and keeps the project path, so that check left no copy registered there: `pi --help` listed no `--fast` in the main checkout, while this fix lists it once in both the main checkout and a worktree, and the code before either fix lists it twice in a worktree (`scratch/main-merge/fast-flag-matrix.txt`). The merge keeps this branch's `src/index.ts` and tests and corrects main's README wording |
 <!-- /ANCHOR:decisions -->
 
 ---

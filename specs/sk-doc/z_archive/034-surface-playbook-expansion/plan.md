@@ -102,7 +102,7 @@ Build the 7 category directories in both `sk-code-mobile-cli/manual-testing-play
 
 ### Phase 3: Verification
 
-Run `validate-playbook-package.cjs --package <pkg> --strict` for both packages; confirm `PASS`/`FAIL_CLOSED`/`0 violations`/`exit=0`; confirm every `expected_resources` path resolves on disk; record the unrelated `sk-code-opencode` `JAVASCRIPT`-scenario gap as a known limitation.
+Run `validate-playbook-package.cjs --package <pkg> --strict` for both packages; confirm `PASS`/`FAIL_CLOSED`/`0 violations`/`exit=0`; confirm every `expected_resources` path resolves on disk; record the unrelated `sk-code-skilled` `JAVASCRIPT`-scenario gap as a known limitation.
 
 <!-- /ANCHOR:phases -->
 

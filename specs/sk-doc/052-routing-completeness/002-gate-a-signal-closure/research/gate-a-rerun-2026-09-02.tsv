@@ -78,9 +78,9 @@ sk-doc	new benchmark	RESOLVED	sk-doc	0.574142	sk-create-benchmark
 sk-doc	benchmark package	RESOLVED	sk-doc	0.574142	sk-create-benchmark
 sk-doc	before and after document	RESOLVED	sk-doc	0.731698	sk-create-diff
 sk-doc	document diff	RESOLVED	sk-doc	0.77258	sk-create-diff
-sk-doc	opencode skill	WRONG_HUB	sk-code	0.839661	sk-code-opencode
-sk-doc	opencode agent	WRONG_HUB	sk-code	0.709567	sk-code-opencode
-sk-doc	opencode command	WRONG_HUB	sk-code	0.724528	sk-code-opencode
+sk-doc	opencode skill	WRONG_HUB	sk-code	0.839661	sk-code-skilled
+sk-doc	opencode agent	WRONG_HUB	sk-code	0.709567	sk-code-skilled
+sk-doc	opencode command	WRONG_HUB	sk-code	0.724528	sk-code-skilled
 sk-doc	scaffold a new skill	RESOLVED	sk-doc	0.67358	sk-create-skill
 sk-doc	create a new skill	RESOLVED	sk-doc	0.708671	sk-create-skill
 sk-doc	sk-doc	DEFERRED	sk-doc	0.6325	
@@ -102,13 +102,13 @@ sk-code	webflow	RESOLVED	sk-code	0.588434	sk-code-webflow
 sk-code	frontend	RESOLVED	sk-code	0.637335	sk-code-webflow
 sk-code	cdn	RESOLVED	sk-code	0.619733	sk-code-webflow
 sk-code	browser test	RESOLVED	sk-code	0.720715	sk-code-webflow
-sk-code	opencode	RESOLVED	sk-code	0.709567	sk-code-opencode
-sk-code	system code	RESOLVED	sk-code	0.764553	sk-code-opencode
-sk-code	mcp	RESOLVED	sk-code	0.541933	sk-code-opencode
-sk-code	typescript	RESOLVED	sk-code	0.637335	sk-code-opencode
-sk-code	python	RESOLVED	sk-code	0.619733	sk-code-opencode
-sk-code	shell	RESOLVED	sk-code	0.513333	sk-code-opencode
-sk-code	jsonc	RESOLVED	sk-code	0.521254	sk-code-opencode
+sk-code	opencode	RESOLVED	sk-code	0.709567	sk-code-skilled
+sk-code	system code	RESOLVED	sk-code	0.764553	sk-code-skilled
+sk-code	mcp	RESOLVED	sk-code	0.541933	sk-code-skilled
+sk-code	typescript	RESOLVED	sk-code	0.637335	sk-code-skilled
+sk-code	python	RESOLVED	sk-code	0.619733	sk-code-skilled
+sk-code	shell	RESOLVED	sk-code	0.513333	sk-code-skilled
+sk-code	jsonc	RESOLVED	sk-code	0.521254	sk-code-skilled
 sk-code	alignment verifier	RESOLVED	sk-code	0.59147	sk-code-quality
 sk-code	motion.dev integration	RESOLVED	sk-code	0.77354	sk-code-webflow
 sk-code	motion-dev integration	RESOLVED	sk-code	0.77354	sk-code-webflow
@@ -118,16 +118,16 @@ sk-code	motion api	RESOLVED	sk-code	0.650485	sk-code-webflow
 sk-code	motion snippets	RESOLVED	sk-code	0.638568	sk-code-webflow
 sk-code	motion decision matrix	RESOLVED	sk-code	0.831645	sk-code-webflow
 sk-code	add set -euo pipefail	RESOLVED	sk-code	0.708937	sk-code-quality
-sk-code	console.error fallback	RESOLVED	sk-code	0.707583	sk-code-opencode
-sk-code	argparse block	RESOLVED	sk-code	0.556267	sk-code-opencode
-sk-code	vitest covering	RESOLVED	sk-code	0.7	sk-code-opencode
-sk-code	stable jsonl keys	MULTI	sk-code	0.732112	sk-code-quality,sk-code-opencode
+sk-code	console.error fallback	RESOLVED	sk-code	0.707583	sk-code-skilled
+sk-code	argparse block	RESOLVED	sk-code	0.556267	sk-code-skilled
+sk-code	vitest covering	RESOLVED	sk-code	0.7	sk-code-skilled
+sk-code	stable jsonl keys	MULTI	sk-code	0.732112	sk-code-quality,sk-code-skilled
 sk-code	lenis smooth-scroll	RESOLVED	sk-code	0.717602	sk-code-webflow
 sk-code	gsap timeline	RESOLVED	sk-code	0.564187	sk-code-webflow
 sk-code	hls.js video	RESOLVED	sk-code	0.606667	sk-code-webflow
 sk-code	intersectionobserver gate	RESOLVED	sk-code	0.601548	sk-code-webflow
-sk-code	build a tiny script	RESOLVED	sk-code	0.729728	sk-code-opencode
-sk-code	tiny script that counts	RESOLVED	sk-code	0.707921	sk-code-opencode
+sk-code	build a tiny script	RESOLVED	sk-code	0.729728	sk-code-skilled
+sk-code	tiny script that counts	RESOLVED	sk-code	0.707921	sk-code-skilled
 sk-code	code review	RESOLVED	sk-code	0.847519	sk-code-review
 sk-code	pr review	RESOLVED	sk-code	0.778702	sk-code-review
 sk-code	security review	RESOLVED	sk-code	0.760502	sk-code-review
@@ -151,13 +151,13 @@ sk-code	mobile cli source conventions	RESOLVED	sk-code	0.868144	sk-code-mobile-c
 sk-code	sk-code	DEFERRED	sk-code	0.642595	
 sk-code	surface-aware code implementation	DEFERRED	sk-code	0.807445	
 sk-code	frontend implementation standards	RESOLVED	sk-code	0.779078	sk-code-webflow
-sk-code	opencode typescript verification	RESOLVED	sk-code	0.832078	sk-code-opencode
+sk-code	opencode typescript verification	RESOLVED	sk-code	0.832078	sk-code-skilled
 sk-code	motion animation integration	RESOLVED	sk-code	0.85238	sk-code-webflow
 sk-code	stack-specific code quality gate	RESOLVED	sk-code	0.792018	sk-code-quality
 sk-code	language-specific verification commands	DEFERRED	sk-code	0.481345	
 sk-code	surface detection routing	DEFERRED	sk-code	0.366411	
 sk-code	webflow frontend workflow	RESOLVED	sk-code	0.848599	sk-code-webflow
-sk-code	opencode system code workflow	RESOLVED	sk-code	0.914373	sk-code-opencode
+sk-code	opencode system code workflow	RESOLVED	sk-code	0.914373	sk-code-skilled
 sk-code	alignment verifier workflow	RESOLVED	sk-code	0.786011	sk-code-quality
 sk-code	code quality gate	RESOLVED	sk-code	0.865737	sk-code-quality
 sk-code	verification commands	DEFERRED	sk-code	0.504678	

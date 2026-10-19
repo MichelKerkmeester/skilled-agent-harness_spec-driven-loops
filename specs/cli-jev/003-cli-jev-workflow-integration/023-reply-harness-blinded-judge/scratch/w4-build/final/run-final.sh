@@ -9,7 +9,7 @@ O=$P/scratch/w4-build/final/gates
 rm -rf "$O"; mkdir -p "$O"
 bash $P/scratch/w4-build/baseline/run-baseline.sh "$O" > /dev/null
 H=.skilled/skills/sk-communication/benchmark/reply-harness
-A=.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py
+A=.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py
 python3 $A --root $H > "$O/align-harness-default.txt" 2>&1; echo "align-harness-default rc=$?" >> "$O/rc.txt"
 python3 $A --root $H --check-exact-headers > "$O/align-harness-exact-headers.txt" 2>&1; echo "align-harness-exact-headers rc=$?" >> "$O/rc.txt"
 S=.skilled/skills/sk-communication

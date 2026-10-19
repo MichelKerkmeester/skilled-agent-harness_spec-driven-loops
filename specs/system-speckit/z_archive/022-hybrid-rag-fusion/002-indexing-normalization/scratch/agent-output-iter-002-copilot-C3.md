@@ -2,7 +2,7 @@
 
 I’m loading the review standards and the target files together so I can answer with evidence instead of guesses. After that I’ll synthesize the failure paths, type boundaries, and any data-loss risks.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the target review lenses loaded. Next I’m pulling the collector, workflow entry/exit, and type definitions together with a few focused searches for fallback and validation paths so the findings are grounded in exact code paths.
 
@@ -34,11 +34,11 @@ I’ve got the target review lenses loaded. Next I’m pulling the collector, wo
   └ 206 lines read
 
 ● Read quick_reference.md
-  │ .agents/skills/sk-code-opencode/references/typescript/quick_reference.md
+  │ .agents/skills/sk-code-skilled/references/typescript/quick_reference.md
   └ 539 lines read
 
 ● Read universal_patterns.md
-  │ .agents/skills/sk-code-opencode/references/shared/universal_patterns.md
+  │ .agents/skills/sk-code-skilled/references/shared/universal_patterns.md
   └ 571 lines read
 
 ● Read workflow.ts

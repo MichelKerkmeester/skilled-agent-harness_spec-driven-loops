@@ -1,13 +1,13 @@
 {
   "specFolder": "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
-  "description": "Align every file the cli-jev 003 packet created with sk-code-opencode and sk-doc, proved by their own validators. The 2026-09-30 audit found 23 files ",
+  "description": "Align every file the cli-jev 003 packet created with sk-code-skilled and sk-doc, proved by their own validators. The 2026-09-30 audit found 23 files ",
   "keywords": [
     "align",
     "every",
     "file",
     "cli-jev",
     "packet",
-    "sk-code-opencode",
+    "sk-code-skilled",
     "sk-doc",
     "proved",
     "own",

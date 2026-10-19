@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The human-voice scan reports 36 hard blockers in `.skilled/skills/sk-code/SKILL.md`: 27 semicolons and 9 em dashes",
     "created_at": "2026-10-11T04:49:30Z",
-    "last_save_at": "2026-10-11T04:54:55.205Z",
+    "last_save_at": "2026-10-18T20:45:18.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3055f5d8a62044e0db6f5f469af36b2d0546d5e574fd11e8640adb8ab1676233",
+    "source_fingerprint": "sha256:ca032c4d23b20390a6fec9a8c360694506e4be1275c5ba14aa1a46ea62151dda",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "738b05fefb61bdadfb7bd89731c484af9b2af764430f4c71ed5f7b2c43b7c1f1",

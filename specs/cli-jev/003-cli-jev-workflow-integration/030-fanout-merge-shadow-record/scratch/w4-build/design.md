@@ -1,6 +1,6 @@
 # Build design: 030-fanout-merge-shadow-record
 
-Read with `spec.md`, `plan.md`, `tasks.md`, `goal.md`. Code route: `sk-code-opencode` + `sk-create-quality`. Docs: sk-doc modes named per step. Facts below are from the tree at HEAD `812dc819ca`.
+Read with `spec.md`, `plan.md`, `tasks.md`, `goal.md`. Code route: `sk-code-skilled` + `sk-create-quality`. Docs: sk-doc modes named per step. Facts below are from the tree at HEAD `812dc819ca`.
 
 ## 1. Premises
 
@@ -135,7 +135,7 @@ Script exits: 0 on every completed run including a gate stop, 2 on bad invocatio
 
 ## 4. Build steps
 
-Executor per parent D5: **Devin `deepseek-v4-1-flash-max`** for code, **Pi `llmgateway/mimo-v2.6-pro`** for docs, **orchestrator** for gates, runs, review, commit. Code steps follow `sk-code-opencode` (JS standards + `references/shared/universal-patterns/naming-and-commenting.md`): comments carry the durable WHY only, never a spec path, phase number or requirement id. Doc steps follow sk-doc.
+Executor per parent D5: **Devin `deepseek-v4-1-flash-max`** for code, **Pi `llmgateway/mimo-v2.6-pro`** for docs, **orchestrator** for gates, runs, review, commit. Code steps follow `sk-code-skilled` (JS standards + `references/shared/universal-patterns/naming-and-commenting.md`): comments carry the durable WHY only, never a spec path, phase number or requirement id. Doc steps follow sk-doc.
 
 **X1 (orchestrator, tasks T001/T002).** Record the runtime vitest baseline at HEAD in `goal.md`'s log: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage` — 1,xxx passed, record the exact line. Re-check the §1 premises in `fanout-merge.cjs`; log any drift.
 

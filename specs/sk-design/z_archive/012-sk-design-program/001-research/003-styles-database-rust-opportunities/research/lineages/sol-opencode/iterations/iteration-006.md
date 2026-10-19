@@ -53,7 +53,7 @@ The genuinely new product capability is a joint-profile lane: index one or more 
 
 The sequence with the lowest contract risk is: (1) add a screenshot/evidence identity contract; (2) derive DOM spacing/layout fingerprints in the crawler; (3) add native-backed palette statistics and perceptual hashes as deterministic ingestion features; (4) validate whether those features improve dedupe, drift detection, facets, or retrieval; and only then (5) run a shadow multimodal profile against labeled image/text relevance cases.
 
-TypeScript should continue to own capture, viewport policy, content hashes, schema/generation publication, feature flags, fusion, fallback, and telemetry. A Rust core should receive immutable image bytes plus an explicit algorithm/model profile and return deterministic derived values. Combining all visual processing in Rust before measurements would turn four separable features into one release and failure boundary and would violate the repository's narrow-kernel rule. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md:33-52]
+TypeScript should continue to own capture, viewport policy, content hashes, schema/generation publication, feature flags, fusion, fallback, and telemetry. A Rust core should receive immutable image bytes plus an explicit algorithm/model profile and return deterministic derived values. Combining all visual processing in Rust before measurements would turn four separable features into one release and failure boundary and would violate the repository's narrow-kernel rule. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md:33-52]
 
 ## Questions Answered
 

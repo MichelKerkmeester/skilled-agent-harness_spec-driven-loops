@@ -1,4 +1,4 @@
-SKILL ROUTING: sk-code → compiled router resolved `sk-code-opencode` (evidence-base); Python references loaded. REPO RULES: none in this repository (no `REPO RULES.md`).
+SKILL ROUTING: sk-code → compiled router resolved `sk-code-skilled` (evidence-base); Python references loaded. REPO RULES: none in this repository (no `REPO RULES.md`).
 
 STATUS: DONE
 FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+167/-0)

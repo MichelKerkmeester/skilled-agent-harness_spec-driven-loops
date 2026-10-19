@@ -68,7 +68,7 @@ The program is complete — **all 8 children and both hubs scored in both modes*
 | `deep-research` | PASS | 91 | router already canonical |
 | `deep-improvement` | PASS | 91 | router already canonical |
 | `code-quality` | PASS | 89 | thin single-intent router (hybrid; path precision is a unit test) |
-| `code-opencode` | PASS | 84 | new inline §2b router (6 intents, 30 paths) |
+| `code-skilled` | PASS | 84 | new inline §2b router (6 intents, 30 paths) |
 | `system-deep-loop` hub | PASS | 100 | 20 hub scenarios; parent→child route-gold |
 | `sk-code` hub | baseline | 85 | union projection; byte-identical before/after P3 |
 
@@ -90,7 +90,7 @@ Delivery used the existing benchmark engine, a sk-code projection guard, and rep
 > | Target | orig | **corrected** | | Target | orig | **corrected** |
 > |---|---|---|---|---|---|---|
 > | code-quality | 31 | **100** | | deep-improvement | 62 | **80** |
-> | code-opencode | 56 | **88** | | deep-ai-council | 76 | **90** |
+> | code-skilled | 56 | **88** | | deep-ai-council | 76 | **90** |
 > | code-webflow | 57 | **86** | | **code-review** | **0** | **100** (via 002) |
 > | deep-research | 80 | **91** | | sk-code hub | 67 | **66** |
 > | deep-review | 71 | **87** | | system-deep-loop hub | 93 | **93** |
@@ -105,7 +105,7 @@ The live pipeline is proven (`scoringMethod: mode-b-live`, `traceMode: live`). *
 | `deep-review` | 93 | 71 (COND) | **22** | 0.89 | holds up live → real capability |
 | `deep-improvement` | 91 | 62 (COND) | **29** | 0.90 | holds up live |
 | `deep-ai-council` | 92 | 76 (COND) | **16** | 0.91 | holds up live → real capability |
-| `code-opencode` | 84 | 56 (COND) | **28** | 0.70 | partial live recall |
+| `code-skilled` | 84 | 56 (COND) | **28** | 0.70 | partial live recall |
 | `code-webflow` | 91 | 57 (COND) | **34** | 0.51 | partial live recall |
 | `code-quality` | 89 | 31 (FAIL) | **58** | 0.00 | thin single-route; live misses it |
 | `code-review` | 100 | 0 (FAIL) | **100** | 0.00 | **most router-overfit** — perfect Mode-A, zero live corroboration |

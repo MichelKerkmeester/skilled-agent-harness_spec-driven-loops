@@ -13,7 +13,7 @@ Make the shipped-but-inert compiled skill-router **perfectly integrated, enabled
 - Turning on `SPECKIT_COMPILED_ROUTING` (and eventually leaving it unset) makes the compiled decision actually **reach an agent** and be consumed — today it does not.
 - Every routing decision stays **byte-identical to legacy** (this program never changes what routes; it changes what is *served*, *observed*, and *documented*).
 - Coverage is real: the router is **documented** (feature catalogs), **benchmarked** (a compiled Lane C parity gate), **manually testable** (playbook scenarios with GPT-5.6 LUNA HIGH as the routed subject), and its results are **durably archived** outside the spec tree.
-- All routing code is aligned to `sk-code:code-opencode` (the machine-readable router `RESOURCE_MAP`), and every authored MD uses the correct `sk-doc` mode template.
+- All routing code is aligned to `sk-code:code-skilled` (the machine-readable router `RESOURCE_MAP`), and every authored MD uses the correct `sk-doc` mode template.
 - Every step is **byte-exact reversible** and the three frozen benchmark scorer files are **never edited**.
 
 ## 2. What the research changed (read this before building)

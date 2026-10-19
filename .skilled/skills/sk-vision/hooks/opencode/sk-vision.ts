@@ -4,8 +4,8 @@
 // ║ PURPOSE: Register the 13 sk_vision_* tools with OpenCode and auto-inspect ║
 // ║          attached images. Kept beside the Pi adapter under hooks/ so both ║
 // ║          hosts load from the skill; owns host glue only — the vision core ║
-// ║          lives in vision-runtime. OpenCode loads a bundled .js, so the    ║
-// ║          build emits the sibling sk-vision.js the plugin path links to.   ║
+// ║          lives in vision-runtime. The build still emits a sibling         ║
+// ║          sk-vision.js, but OpenCode loads vision-runtime/dist/plugin.js.  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 // MODULE: sk-vision OpenCode Plugin
 

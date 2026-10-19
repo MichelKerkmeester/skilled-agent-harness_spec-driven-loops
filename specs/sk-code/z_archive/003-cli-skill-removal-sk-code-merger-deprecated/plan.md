@@ -91,7 +91,7 @@ spec.md → plan.md → tasks.md → execute (delete + edit + sql) → validator
 - **Sub-phase 2C — Advisor data**: skill_advisor.py (DEPRECATED_SKILLS frozenset, comments) + skill-graph.json (Python json round-trip: count 22→20, families, adjacency, signals) + advisor graph-metadata.json
 - **Sub-phase 2D — Eval / telemetry / regression fixtures**: skill_advisor_regression_cases.jsonl (retarget P1-FULLSTACK-001) + labeled-prompts.jsonl + compliance.jsonl
 - **Sub-phase 2E — Doc surfaces**: root README, .opencode/skills/README, .opencode/install_guides/* (3 files), AGENTS.md, CLAUDE.md
-- **Sub-phase 2F — Cross-skill refs**: sk-code-review (SKILL.md, README.md, graph-metadata.json, references/*.md), sk-code-opencode, mcp-chrome-devtools, cli-claude-code, cli-codex, cli-gemini, cli-opencode, sk-doc, sk-git, sk-improve-prompt, system-spec-kit references
+- **Sub-phase 2F — Cross-skill refs**: sk-code-review (SKILL.md, README.md, graph-metadata.json, references/*.md), sk-code-skilled, mcp-chrome-devtools, cli-claude-code, cli-codex, cli-gemini, cli-opencode, sk-doc, sk-git, sk-improve-prompt, system-spec-kit references
 - **Sub-phase 2G — Agent definitions**: four runtime deep-review files
 - **Sub-phase 2H — SQLite DBs**: skill-graph (DELETE 2 nodes + cascade edges), code-graph (DELETE files under deprecated paths), voyage memory_index/lineage purge
 

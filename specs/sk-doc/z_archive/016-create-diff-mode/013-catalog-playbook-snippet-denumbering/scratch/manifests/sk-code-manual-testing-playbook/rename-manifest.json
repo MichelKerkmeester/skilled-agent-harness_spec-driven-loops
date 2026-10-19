@@ -5,7 +5,7 @@
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/002-opencode-detection.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/003-unknown-fallback.md",
@@ -13,19 +13,19 @@
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/004-opencode-typescript.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/005-opencode-python.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/006-opencode-shell.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/007-opencode-config.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/03--routing-disambiguation/008-mixed-marker-ambiguity.md",
@@ -77,7 +77,7 @@
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/020-opencode-plus-motion-dev.md",
-    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md"
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md"
   },
   {
     "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/021-decision-matrix-routing.md",

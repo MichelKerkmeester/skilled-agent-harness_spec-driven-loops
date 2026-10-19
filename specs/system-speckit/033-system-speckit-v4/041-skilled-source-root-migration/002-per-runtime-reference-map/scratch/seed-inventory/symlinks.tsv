@@ -194,7 +194,7 @@ root	link	raw_target	target_kind	resolves_into_opencode	target_names_opencode	da
 .opencode	.opencode/changelog/mcp-tooling/parent	../../skills/mcp-tooling/changelog	relative	yes	no	no	.opencode/skills/mcp-tooling/changelog
 .opencode	.opencode/changelog/sk-code/code-mobile-cli	../../skills/sk-code/sk-code-mobile-cli/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-mobile-cli/changelog
 .opencode	.opencode/changelog/sk-code/code-obsidian	../../skills/sk-code/sk-code-obsidian/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-obsidian/changelog
-.opencode	.opencode/changelog/sk-code/code-opencode	../../skills/sk-code/sk-code-opencode/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-opencode/changelog
+.opencode	.opencode/changelog/sk-code/code-skilled	../../skills/sk-code/sk-code-skilled/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-skilled/changelog
 .opencode	.opencode/changelog/sk-code/code-quality	../../skills/sk-code/sk-code-quality/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-quality/changelog
 .opencode	.opencode/changelog/sk-code/code-review	../../skills/sk-code/sk-code-review/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-review/changelog
 .opencode	.opencode/changelog/sk-code/code-webflow	../../skills/sk-code/sk-code-webflow/changelog	relative	yes	no	no	.opencode/skills/sk-code/sk-code-webflow/changelog
@@ -341,9 +341,9 @@ root	link	raw_target	target_kind	resolves_into_opencode	target_names_opencode	da
 .opencode	.opencode/skills/sk-code/sk-code-obsidian/references/workflow-debug.md	../../shared/references/workflow-debug.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
 .opencode	.opencode/skills/sk-code/sk-code-obsidian/references/workflow-implement.md	../../shared/references/workflow-implement.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
 .opencode	.opencode/skills/sk-code/sk-code-obsidian/references/workflow-verify.md	../../shared/references/workflow-verify.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
-.opencode	.opencode/skills/sk-code/sk-code-opencode/references/workflow-debug.md	../../shared/references/workflow-debug.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
-.opencode	.opencode/skills/sk-code/sk-code-opencode/references/workflow-implement.md	../../shared/references/workflow-implement.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
-.opencode	.opencode/skills/sk-code/sk-code-opencode/references/workflow-verify.md	../../shared/references/workflow-verify.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
+.opencode	.opencode/skills/sk-code/sk-code-skilled/references/workflow-debug.md	../../shared/references/workflow-debug.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
+.opencode	.opencode/skills/sk-code/sk-code-skilled/references/workflow-implement.md	../../shared/references/workflow-implement.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
+.opencode	.opencode/skills/sk-code/sk-code-skilled/references/workflow-verify.md	../../shared/references/workflow-verify.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
 .opencode	.opencode/skills/sk-code/sk-code-webflow/references/workflow-debug.md	../../shared/references/workflow-debug.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
 .opencode	.opencode/skills/sk-code/sk-code-webflow/references/workflow-implement.md	../../shared/references/workflow-implement.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
 .opencode	.opencode/skills/sk-code/sk-code-webflow/references/workflow-verify.md	../../shared/references/workflow-verify.md	relative	yes	no	no	.opencode/skills/sk-code/shared/references/workflow-verify.md

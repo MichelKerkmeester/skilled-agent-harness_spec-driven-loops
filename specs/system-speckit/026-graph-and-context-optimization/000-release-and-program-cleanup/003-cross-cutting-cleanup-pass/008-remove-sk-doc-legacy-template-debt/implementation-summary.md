@@ -184,13 +184,13 @@ The remediation used the audit report as the playbook, then applied a protected-
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/275-code-graph-readiness-contract.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/277-code-graph-fast-fail.md` | Non-spec manual playbook source-file section backfill. |
 | G12 | `.opencode/skills/mcp-coco-index/README.md` | Non-spec README structure rewrite. |
-| G12 | `.opencode/skills/sk-code-opencode/README.md` | Non-spec README structure rewrite. |
+| G12 | `.opencode/skills/sk-code-skilled/README.md` | Non-spec README structure rewrite. |
 | G12 | `.opencode/skills/system-spec-kit/README.md` | Non-spec README structure rewrite. |
 | G15 | `.opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md` | Reference-doc retrieval anchor restructuring. |
 | G15 | `.opencode/skills/system-spec-kit/references/intake-contract.md` | Reference-doc retrieval anchor restructuring. |
 | G16 | `.opencode/skills/system-spec-kit/feature_catalog/analysis/02-causal-graph-statistics-memorycausalstats.md` | Non-spec feature catalog source metadata section backfill. |
 | G17 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Reference-doc frontmatter/title normalization outside spec-folder scope. |
-| G18 | `.opencode/skills/sk-code-opencode/references/shared/alignment_verification_automation.md` | Reference-doc frontmatter/title normalization outside spec-folder scope. |
+| G18 | `.opencode/skills/sk-code-skilled/references/shared/alignment_verification_automation.md` | Reference-doc frontmatter/title normalization outside spec-folder scope. |
 | G19 | `.opencode/skills/mcp-coco-index/references/tool_reference.md` | Reference-doc overview restructuring outside spec-folder scope. |
-| G20 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/tasks.md` | HVR banned setup phrase rewrite. |
+| G20 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/tasks.md` | HVR banned setup phrase rewrite. |
 <!-- /ANCHOR:limitations -->

@@ -46,7 +46,7 @@ contextType: "general"
 - [x] T006 [P] Name the new tool in the sk-git shell hook comments (`sk-git/scripts/hooks/`)
 - [x] T007 [P] Add the `Bash` tests: spec-gate enforce and a new Codex dispatch adapter test
 - [x] T008 [P] Record the Codex verdict, the rename and hook trust in the matrix, rationale, task-dispatch README and cli-codex hook contract
-- [x] T009 [P] Bring the JavaScript and universal checklist header lines to the style guide (`sk-code-opencode/assets/checklists/`)
+- [x] T009 [P] Bring the JavaScript and universal checklist header lines to the style guide (`sk-code-skilled/assets/checklists/`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

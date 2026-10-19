@@ -167,14 +167,14 @@
     ],
     "causal_summary": "An external user who clones the repository and follows the README block \"What Adapting `sk-code` Looks Like\" cannot reach a green check battery",
     "created_at": "2026-10-13T18:45:41Z",
-    "last_save_at": "2026-10-13T21:54:10.504Z",
+    "last_save_at": "2026-10-18T20:45:19.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:c62f4c20921843fbe7d19b9d0f08cd94c864691288a52b5a64ee2182514bcb55",
+    "source_fingerprint": "sha256:67d985bd000d31fb7671077463e9c72baf307e17c612728cda67efbca60425a6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "76fe6bf99f2861d22a6a42b892ee383c56ca2978a3256e08c6fa1e8a87575ddb"

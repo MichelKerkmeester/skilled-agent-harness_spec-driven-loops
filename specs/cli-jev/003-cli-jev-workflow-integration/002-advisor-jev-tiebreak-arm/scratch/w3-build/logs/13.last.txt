@@ -1,7 +1,7 @@
 The phase goal is already set. The Deem arm now records one noul probability for every labeled prompt after the choice block, including when that block is skipped, and prints the calibration line from those raw probabilities.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript script and its parity test)
-ARTIFACT: sk-code → sk-code-opencode JavaScript standards
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript script and its parity test)
+ARTIFACT: sk-code → sk-code-skilled JavaScript standards
 REPO RULES: evidence-and-proof.md
 
 The syntax check is the listed gate. The orchestrator runs the parity suite and any commit.

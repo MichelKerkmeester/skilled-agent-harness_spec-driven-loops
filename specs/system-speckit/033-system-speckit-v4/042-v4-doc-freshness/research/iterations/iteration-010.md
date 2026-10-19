@@ -33,7 +33,7 @@ Final verification iteration: re-check every proposed replacement from the itera
 - A2: deep-loop registry modes keys 0-4, five total, and `.skilled/commands/deep/` holds five command files (agent-improvement, ai-council, model-benchmark, research, review) plus an assets directory. The "five" replacements hold.
 - A3: `repo-rules/` holds 13 files, `answer-the-actual-request.md` among them. The "Thirteen" replacement holds.
 - A4: `wc -l AGENTS.md` gives 284. The "to 284" replacement holds.
-- A5: `sk-code/` ships `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` plus the quality and review modes, with no mobile-cli packet. The drop-and-delete replacement holds.
+- A5: `sk-code/` ships `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` plus the quality and review modes, with no mobile-cli packet. The drop-and-delete replacement holds.
 - A6: `.hermes/agents -> ../.skilled/agents` is a symlink and `.hermes/skills` is a generated-copy directory. The narrowed parenthetical holds.
 - A14: `communication-handoff.md` and `communication-decisions.md` are present and the two old names are absent. The rename-list addition holds.
 - A15: `git log --oneline 1d43dbd38b..HEAD | wc -l` gives 231, and the changelog's last touch is `1d43dbd38b 2026-09-16`. The post-draft section holds.

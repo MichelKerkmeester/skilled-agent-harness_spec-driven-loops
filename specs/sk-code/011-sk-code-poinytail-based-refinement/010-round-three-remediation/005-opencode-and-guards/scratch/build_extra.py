@@ -7,7 +7,7 @@ import json, os, re, sys
 
 FOLDER = "specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards"
 SH = ".skilled/skills/sk-code/shared/references/"
-OC = ".skilled/skills/sk-code/sk-code-opencode"
+OC = ".skilled/skills/sk-code/sk-code-skilled"
 NEW = OC + "/references/shared/workflow-guardrails.md"
 SKILL = OC + "/SKILL.md"
 LOG = OC + "/changelog/v1.2.0.0.md"

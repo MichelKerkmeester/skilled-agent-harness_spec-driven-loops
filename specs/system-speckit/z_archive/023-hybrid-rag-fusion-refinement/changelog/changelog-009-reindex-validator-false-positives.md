@@ -1,6 +1,6 @@
 ## [v0.9.0] - 2026-04-01
 
-This release matters because bulk rebuilds had started rejecting good files and keeping older context labels alive. In `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives`, Phase 009 addresses 25 issues across validation behavior, shared context labeling and database cleanup so valid content can be rebuilt instead of blocked. The forced full rebuild path now drops blocked files from 1,106 to 0, total passing tests rise from 134 to 139, clean distribution rebuilds pass and the sk-code-opencode alignment verifier reports 0 findings. Two lower-priority follow-ups remain deferred: summary counts during rate limiting and per-file skip reasons.
+This release matters because bulk rebuilds had started rejecting good files and keeping older context labels alive. In `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives`, Phase 009 addresses 25 issues across validation behavior, shared context labeling and database cleanup so valid content can be rebuilt instead of blocked. The forced full rebuild path now drops blocked files from 1,106 to 0, total passing tests rise from 134 to 139, clean distribution rebuilds pass and the sk-code-skilled alignment verifier reports 0 findings. Two lower-priority follow-ups remain deferred: summary counts during rate limiting and per-file skip reasons.
 
 > Spec folder: `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives` (Level 2)
 
@@ -166,11 +166,11 @@ The verification work focused on proving the real failure path was fixed and tha
 
 **Fix:** Clean distribution rebuilds now pass across the affected workspaces. The release was verified as something that can be shipped, not just something that passes local source checks.
 
-### The sk-code-opencode alignment verifier now confirms the shared code matches project standards
+### The sk-code-skilled alignment verifier now confirms the shared code matches project standards
 
 **Problem:** Shared code can still drift away from project standards even when tests pass. A standards check helps catch that kind of mismatch before release.
 
-**Fix:** The sk-code-opencode alignment verifier passed with zero findings on the shared code that changed in this phase. That gives an extra confirmation that the release matches the project's coding contract.
+**Fix:** The sk-code-skilled alignment verifier passed with zero findings on the shared code that changed in this phase. That gives an extra confirmation that the release matches the project's coding contract.
 
 ---
 
@@ -183,7 +183,7 @@ The verification work focused on proving the real failure path was fixed and tha
 | TypeScript errors | 0 | 0 |
 | Files blocked during forced full rebuild | 1,106 | 0 |
 
-Five new regression tests were added for the exact false-positive path. Clean distribution rebuilds passed and the sk-code-opencode alignment verifier reported 0 findings.
+Five new regression tests were added for the exact false-positive path. Clean distribution rebuilds passed and the sk-code-skilled alignment verifier reported 0 findings.
 
 ---
 

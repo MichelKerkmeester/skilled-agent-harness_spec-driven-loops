@@ -25,8 +25,8 @@ _none_
 
 ## Findings - P1
 
-- P1: The comment begins with lowercase text and records the ephemeral Unit H label, violating comment-hygiene requirements. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/scorer/projection-fallback-049-005.vitest.ts:205] [SOURCE: .opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:235]
-- P1: The CommonJS strict-mode directive is separated from the module banner by a blank line, violating the required immediate placement. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/project-router-vocab.cjs:5] [SOURCE: .opencode/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:56]
+- P1: The comment begins with lowercase text and records the ephemeral Unit H label, violating comment-hygiene requirements. [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/tests/scorer/projection-fallback-049-005.vitest.ts:205] [SOURCE: .opencode/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:235]
+- P1: The CommonJS strict-mode directive is separated from the module banner by a blank line, violating the required immediate placement. [SOURCE: .opencode/specs/sk-doc/019-skill-routing-refactor/033-json-optimization-implementation/010-parent-intent-projection-spike/scratch/project-router-vocab.cjs:5] [SOURCE: .opencode/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:56]
 
 ## Findings - P2
 

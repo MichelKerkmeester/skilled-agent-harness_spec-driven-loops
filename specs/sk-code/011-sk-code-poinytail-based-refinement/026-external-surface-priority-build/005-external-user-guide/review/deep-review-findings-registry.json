@@ -566,14 +566,14 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/sk-code/shared/references/phase-detection.md:16",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46"
       ],
       "bugClass": "stale_reference",
       "disposition": "ruled_out",
       "rationale": "recipe gap ruled out",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:320"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:320"
       ],
       "reason": "the verify battery flags the stale count on the next removal run"
     },
@@ -843,14 +843,14 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".skilled/skills/sk-code/shared/references/phase-detection.md:16",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46"
       ],
       "bugClass": "stale_reference",
       "disposition": "ruled_out",
       "rationale": "recipe gap ruled out",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:320"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:320"
       ],
       "proof": "the verify battery flags the stale count on the next removal run"
     },
@@ -915,14 +915,14 @@
       "dimension": "correctness",
       "targetRefs": [
         "README.md:1384",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:86"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:86"
       ],
       "bugClass": "stale_reference",
       "disposition": "not_applicable",
       "rationale": "advisory re-confirmed at cited lines",
       "evidenceRefs": [
         "README.md:1384",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:86"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:86"
       ],
       "proof": "carried P2 R1-P2-002 re-verified and still holds; no new finding claimed"
     },

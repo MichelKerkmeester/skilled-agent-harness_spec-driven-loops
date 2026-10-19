@@ -278,7 +278,7 @@ Introduce a durable lineage contract that makes temporal state resolution explic
 - [x] Historical state queries reviewed for determinism
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment verified during implementation
+- [x] `sk-code-skilled` alignment verified during implementation
 - [x] Migration and rollback test plan approved
 - [x] Operator-facing lineage procedures added to playbook
 

@@ -2,7 +2,7 @@
 
 Scope: audit the shipped cli-classifier work — the `.skilled/skills/cli-classifier` hub, its `cli-jev` packet, `shared/` transport and scorer-report scripts, `benchmark/`, feature catalog, manual testing playbook, changelogs and READMEs, and every live caller of `shared/scripts/jev-transport.mjs` and `shared/scripts/scorer-report.mjs` — on seven axes. Read only; every finding cites `file:line` and names how it was confirmed. Lineage `deepseek-v4-1-flash-max` of run `fanout-deepseek-v4-1-flash-max-1791118713156-9uew1r`; five iterations, stop policy `max-iterations`.
 
-Method: five focused iterations — surface map and caller inventory (1), sk-doc compliance sweep (2), sk-code-opencode compliance and bug reads (3), advisor integration and UX (4), drift and results-visibility consolidation (5) — each with its narrative under `iterations/` and structured findings under `deltas/`. All 79 hub markdown docs were run through the repo's own validator; all four hub test suites (153 cases) were executed with temp writes redirected inside this lineage; the hub's README verification commands, the compiled route, the parent-hub checker and the dispatch-engine suite were run live; a `git status` containment check after every execution batch showed no repository writes.
+Method: five focused iterations — surface map and caller inventory (1), sk-doc compliance sweep (2), sk-code-skilled compliance and bug reads (3), advisor integration and UX (4), drift and results-visibility consolidation (5) — each with its narrative under `iterations/` and structured findings under `deltas/`. All 79 hub markdown docs were run through the repo's own validator; all four hub test suites (153 cases) were executed with temp writes redirected inside this lineage; the hub's README verification commands, the compiled route, the parent-hub checker and the dispatch-engine suite were run live; a `git status` containment check after every execution batch showed no repository writes.
 
 ## Findings, ranked
 
@@ -24,7 +24,7 @@ Method: five focused iterations — surface map and caller inventory (1), sk-doc
 
 Everything else complies: hub `SKILL.md`/`README.md`, `ROUTER.md`, all 13 changelog entries, hub and packet feature-catalogs (explicit `--type feature_catalog`), both playbook indexes (explicit `--type playbook`), all 22 packet playbook scenarios, all six measurement docs, the benchmark and shared READMEs — 0 issues each.
 
-## 2. sk-code-opencode compliance and bugs (axes 2 and 6) — no functional bugs; one count defect
+## 2. sk-code-skilled compliance and bugs (axes 2 and 6) — no functional bugs; one count defect
 
 All nine hub scripts pass `node --check`. Headers match the JavaScript style guide's canonical form — 67-character `// ───` divider + `// MODULE: [Name]` (`style-guide.md:36-63`); the three `.cjs` callers use the older `╔═╗` box, which the same guide explicitly grandfathers. No commented-out code, UPPER_SNAKE constants, JSDoc on public functions, guard clauses, no stray `console.*`. `scorer-report.mjs` was read end to end and behaves as documented; one robustness observation (not a finding): `pinRowSet` spreads `extras` over computed fields, so a caller passing a reserved key would shadow it — no current caller does.
 
@@ -89,7 +89,7 @@ No divergent pivots were recorded in this lineage (convergence mode `default`; p
 - Hub root: `.skilled/skills/cli-classifier/` (`SKILL.md`, `README.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `leaf-manifest.json`, `description.json`, `graph-metadata.json`, `changelog/`, `benchmark/`, `feature-catalog/`, `manual-testing-playbook/`, `shared/`).
 - Packet: `.skilled/skills/cli-classifier/cli-jev/` (SKILL.md, README.md, references/, assets/, hard-rules.json, playbook, benchmark, changelog).
 - Callers: `sk-doc/sk-create-skill/scripts/score-clarify-default.cjs`, `sk-doc/shared/scripts/cite-drift-scan.mjs`, `benchmark/injection-screen/score-injection-screen.mjs`, `system-deep-loop/deep-improvement/scripts/model-benchmark/{scorer/score-d4-agreement.cjs,lib/score-verdict-fallback.cjs}`, `system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs`, `system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts`.
-- Standards and tooling: `sk-doc/shared/scripts/validate_document.py`; `sk-code/sk-code-opencode/references/javascript/style-guide.md` + `assets/checklists/javascript-checklist.md`; `.skilled/hooks/dispatch/`; `.skilled/commands/doctor/scripts/parent-skill-check.cjs`; `.skilled/bin/compiled-route.cjs`.
+- Standards and tooling: `sk-doc/shared/scripts/validate_document.py`; `sk-code/sk-code-skilled/references/javascript/style-guide.md` + `assets/checklists/javascript-checklist.md`; `.skilled/hooks/dispatch/`; `.skilled/commands/doctor/scripts/parent-skill-check.cjs`; `.skilled/bin/compiled-route.cjs`.
 - Packet records: `specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/`, `037-pi-native-classifier-transport/`, `049-jev-feature-improvement-build/004-injection-screen-improvements/`.
 - Per-iteration evidence: `iterations/iteration-001.md` … `iteration-005.md`; `deltas/iter-001.jsonl` … `iter-005.jsonl`; `resource-map.md`.
 
@@ -99,7 +99,7 @@ No divergent pivots were recorded in this lineage (convergence mode `default`; p
 - Total iterations: 5
 - Questions answered: 5 / 5 (each key question reached an evidence-backed answer or clean line)
 - Remaining questions: 0 open in this lineage (three operator-call items noted above)
-- Last 3 iteration summaries: run 3: sk-code-opencode compliance and bugs (0.5); run 4: advisor integration and UX (0.6); run 5: drift consolidation and verification (0.5)
+- Last 3 iteration summaries: run 3: sk-code-skilled compliance and bugs (0.5); run 4: advisor integration and UX (0.6); run 5: drift consolidation and verification (0.5)
 - Convergence threshold: 0.05 (telemetry only under `stopPolicy: max-iterations`)
 - NewInfoRatio trend: 1.0 → 0.7 → 0.5 → 0.6 → 0.5
 - Divergence summary: no divergent pivots recorded

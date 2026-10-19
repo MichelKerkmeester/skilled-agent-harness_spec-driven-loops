@@ -49,18 +49,18 @@
       "evidence/metrics-log-modes.txt",
       "evidence/dependabot-dismissals.txt",
       "scripts/README.md",
-      ".hermes/skills/sk-code-opencode/SKILL.md",
+      ".hermes/skills/sk-code-skilled/SKILL.md",
       "evidence/goal-reverify/harness-notes.txt",
       ".github/dependabot.yml",
       "evidence/validate-other-folders.txt",
       "evidence/validate-five-more-folders.txt",
       "evidence/goal-reverify/sandbox-daemon-live-state.txt",
       "evidence/goal-reverify/ledger.tsv",
-      "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
-      "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/README.md"
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md"
     ],
     "entities": [
       {
@@ -114,7 +114,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".hermes/skills/sk-code-opencode/SKILL.md",
+        "path": ".hermes/skills/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
@@ -154,21 +154,21 @@
         "source": "derived"
       },
       {
-        "name": "package-lock.json",
-        "kind": "config",
-        "path": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/package-lock.json",
-        "source": "derived"
-      },
-      {
-        "name": "Gemfile.lock",
-        "kind": "file",
-        "path": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/Gemfile.lock",
-        "source": "derived"
-      },
-      {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "verification-alignment.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 10's close-out listed seven small problems it had seen outside its own scope",
     "created_at": "2026-09-27T11:43:49Z",
-    "last_save_at": "2026-09-27T14:42:24.562Z",
+    "last_save_at": "2026-10-18T20:45:28.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b288b75e4f1e28762f0d60b0fa5a951b62a5125c92fad9c23967ccefb3776a83",
+    "source_fingerprint": "sha256:4439429c8f914d28b923e809e343174eb221270f5043e1e2037d6959cafb587c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecbe5be385efe48b6b3c94cf079d6f96c077bd92471080bde1c53d05f6341135",
-      "plan.md": "248802ed512c22445a657751ce96e7935b74352a20f43095d7c578f7397b9adc",
-      "tasks.md": "96a6dc15c19089de6a861591970a14c1b4c02e6944486a1d9f11ff38c2a10780",
-      "implementation-summary.md": "12bfa14df2edc566266060ec11670a013cb4352d7d030ca3d0816cf4c13b534d"
+      "spec.md": "ce880588261d1acb4b979174fff1f3f8a87bd345d54150243f95f7d8f76592cb",
+      "plan.md": "e1a569a75e323ee2141ce62e420ce06aca7e61a8ff0d38031012645b66a1cd36",
+      "tasks.md": "8a428054ded7ad22d0947adc3e5ad32820b8bc3dda4c7809558f89a192a25039",
+      "implementation-summary.md": "b9532573103c4cd5a7d04e6bd255ccbabf3bec6767415c56303e0ac54499695e"
     },
     "last_active_at": null
   }

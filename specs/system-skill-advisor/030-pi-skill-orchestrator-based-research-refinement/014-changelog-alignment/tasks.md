@@ -48,7 +48,7 @@ contextType: "general"
 - [x] T007 [P] Write system-spec-kit v4.1.4.0 (`system-spec-kit/changelog/v4.1.4.0.md`)
 - [x] T008 [P] Write deep-loop runtime v1.5.1.0, deep-review v1.11.1.0 and deep-research v1.15.1.0 (`system-deep-loop/*/changelog/`)
 - [x] T009 [P] Write cli-codex v1.9.5.0 and cli-external-orchestration v1.7.1.0 (`cli-external-orchestration/**/changelog/`)
-- [x] T010 [P] Write sk-code-opencode v1.0.1.0 (`sk-code/sk-code-opencode/changelog/v1.0.1.0.md`)
+- [x] T010 [P] Write sk-code-skilled v1.0.1.0 (`sk-code/sk-code-skilled/changelog/v1.0.1.0.md`)
 - [x] T011 Set each bumped `SKILL.md` to its anchor and the hub artifacts to the hub version, re-mint the stale hub manifest and rebuild the bumped Hermes copies. Only cli-external-orchestration went stale, and its authored copy took the same bytes
 - [x] T012 Add the skill advisor work to the release notes (`.skilled/changelog/skilled/v4.0.0.2.md`)
 <!-- /ANCHOR:phase-2 -->

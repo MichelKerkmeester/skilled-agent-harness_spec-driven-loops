@@ -1,12 +1,12 @@
 ---
 title: "Code Graph Phase 008: Backend Resilience"
-description: "15 tasks shipped across 5 backend resilience streams. After implementation, a 10-iteration deep-review found 5 P0 and 12 P1 findings. All were closed in a remediation pass. A follow-up sk-code-opencode audit found 1 P0 and 10 P1 findings. All were closed in a second remediation pass. Test suite at 99.8 percent pass."
+description: "15 tasks shipped across 5 backend resilience streams. After implementation, a 10-iteration deep-review found 5 P0 and 12 P1 findings. All were closed in a remediation pass. A follow-up sk-code-skilled audit found 1 P0 and 10 P1 findings. All were closed in a second remediation pass. Test suite at 99.8 percent pass."
 trigger_phrases:
   - "phase 008 changelog"
   - "code graph backend resilience"
   - "5 backend streams"
   - "deep review remediation"
-  - "sk-code-opencode audit"
+  - "sk-code-skilled audit"
   - "code graph backend resilience changelog"
 importance_tier: "important"
 contextType: "implementation"
@@ -29,7 +29,7 @@ After the 15-task implementation landed, a 10-iteration deep-review cycle found 
 
 All 5 P0 and 12 P1 findings were closed in a remediation pass via cli-codex. Tests passed. Build passed.
 
-A follow-up sk-code-opencode audit found 1 P0 and 10 P1 additional findings. The P0 was a test-isolation leak where a module-level singleton was not reset between vitest cases. All 11 audit findings were closed in a second remediation pass.
+A follow-up sk-code-skilled audit found 1 P0 and 10 P1 additional findings. The P0 was a test-isolation leak where a module-level singleton was not reset between vitest cases. All 11 audit findings were closed in a second remediation pass.
 
 Final state: 99.8 percent test pass rate. All 5 backend resilience streams verified. Two deferred findings remain (test-isolation hardening for copilot-hook-wiring and mtime-based staleness in the incremental scan path).
 
@@ -63,7 +63,7 @@ Final state: 99.8 percent test pass rate. All 5 backend resilience streams verif
 - Vitest suite: 99.8 percent pass (one pre-existing failure in copilot-hook-wiring.vitest.ts, out of scope).
 - Build (`npm run build`): exit 0 after every task.
 - Deep-review: 10 iterations, 5 P0 and 12 P1 findings all closed.
-- Sk-code-opencode audit: 1 P0 and 10 P1 findings all closed.
+- Sk-code-skilled audit: 1 P0 and 10 P1 findings all closed.
 - Transactional-wraparound test: mid-indexing kill confirmed rollback with no partial data.
 - Query-timeout test: long-running query confirmed graceful deadline abort.
 

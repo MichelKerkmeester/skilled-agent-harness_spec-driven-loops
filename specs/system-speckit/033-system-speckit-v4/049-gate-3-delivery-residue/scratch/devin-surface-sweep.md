@@ -4,7 +4,7 @@
 
 Recon complete. The commit touched 41 files; the worktree also has uncommitted 049-packet state (excluded from findings). Now dispatching the four read-only sweep subagents in parallel.
 
-While the sweep agents run, I'll do my own repo-wide term sweep and start the sk-code-opencode alignment check.
+While the sweep agents run, I'll do my own repo-wide term sweep and start the sk-code-skilled alignment check.
 
 Grep timed out on the full root (node_modules). Scoping to relevant trees.
 
@@ -18,7 +18,7 @@ Grep timed out on the full root (node_modules). Scoping to relevant trees.
 
 The 049 packet's own scope list (excluded from findings, usable as cross-check) names several known-stale surfaces. Verifying each independently:
 
-Now the sk-code-opencode alignment check. Reading the exact header contracts and the touched files' headers:
+Now the sk-code-skilled alignment check. Reading the exact header contracts and the touched files' headers:
 
 
 
@@ -135,9 +135,9 @@ All verifications complete. Producing the consolidated report.
 - All Gate-3 test suites assert the new behavior (`spec-gate-core.test.mjs`, per-runtime `.test.mjs`, Pi vitest, OpenCode `.test.cjs`).
 - Changelogs and `specs/**` archives: historical by nature, excluded.
 
-## sk-code-opencode alignment
+## sk-code-skilled alignment
 
-- Ran the authoritative checker read-only: `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/hooks --root .skilled/skills/system-spec-kit/runtime/tests --root .opencode/plugins --check-exact-headers` → **FAIL, 11 EXACT-HEADER errors**. Commit-touched files among them: `hooks/{claude,codex,cursor,devin}/spec-gate-{classify,enforce}.mjs` (8), `hooks/devin/spec-gate-devin.test.mjs`, `hooks/lib/spec-gate/spec-gate-core.test.mjs` — all lack a `COMPONENT:`/`MODULE:` marker in the first 40 lines. One more (`devin/permission-request-policy.test.mjs`) is untouched. The check is opt-in; the **default run is clean**. `git show 8c63174469^:<file>` proves the headers were already absent pre-commit — pre-existing drift in touched files, not introduced by the commit.
+- Ran the authoritative checker read-only: `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/hooks --root .skilled/skills/system-spec-kit/runtime/tests --root .opencode/plugins --check-exact-headers` → **FAIL, 11 EXACT-HEADER errors**. Commit-touched files among them: `hooks/{claude,codex,cursor,devin}/spec-gate-{classify,enforce}.mjs` (8), `hooks/devin/spec-gate-devin.test.mjs`, `hooks/lib/spec-gate/spec-gate-core.test.mjs` — all lack a `COMPONENT:`/`MODULE:` marker in the first 40 lines. One more (`devin/permission-request-policy.test.mjs`) is untouched. The check is opt-in; the **default run is clean**. `git show 8c63174469^:<file>` proves the headers were already absent pre-commit — pre-existing drift in touched files, not introduced by the commit.
 - `.mjs` + `'use strict'`: correctly exempt (`check_javascript` returns early for `.mjs`; JS style guide §3). No violation.
 - `.js`/`.cjs`: `.opencode/plugins/system-spec-gate.js` and `tests/system-spec-gate.test.cjs` carry box header + `'use strict'`. `hooks/claude/spec-gate-claude.test.mjs` keeps the older 78-char box — accepted where it already exists.
 - `.ts`: `pi/spec-gate-classify.ts`, `pi/spec-gate-enforce.ts`, `spec-gate-pi-extension.vitest.ts`, `vitest.config.ts` all have `// MODULE:` headers. Minor: `vitest.config.ts:1` divider is 66 chars vs the standard 70 (`// ` + 67 box chars) — not verifier-detected, cosmetic only.

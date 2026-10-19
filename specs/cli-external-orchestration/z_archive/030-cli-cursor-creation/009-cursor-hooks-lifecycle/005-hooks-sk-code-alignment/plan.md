@@ -1,6 +1,6 @@
 ---
-title: "Implementation Plan: cli-cursor hook code sk-code/code-opencode alignment"
-description: "Plan for auditing and aligning Cursor hook .mjs files against sk-code's code-opencode standards, plus closing a Cursor documentation gap in hooks.md."
+title: "Implementation Plan: cli-cursor hook code sk-code/code-skilled alignment"
+description: "Plan for auditing and aligning Cursor hook .mjs files against sk-code's code-skilled standards, plus closing a Cursor documentation gap in hooks.md."
 trigger_phrases: ["cli-cursor hooks sk-code alignment plan"]
 importance_tier: "normal"
 contextType: "general"
@@ -20,11 +20,11 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: cli-cursor hook code sk-code/code-opencode alignment
+# Implementation Plan: cli-cursor hook code sk-code/code-skilled alignment
 
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-Read `sk-code`'s routing hub and the `code-opencode` surface's JavaScript/TypeScript standards to establish the actual current rules, audit all 8 Cursor hook adapter files against them, fix the 2 real P0 gaps found in the 5 `.mjs` files (missing box header, forbidden `'use strict'`), verify via `node --check` + functional smoke test + the surface's own `verify_alignment_drift.py`, and close a documentation gap where `code-opencode`'s canonical `hooks.md` omitted Cursor CLI entirely.
+Read `sk-code`'s routing hub and the `code-skilled` surface's JavaScript/TypeScript standards to establish the actual current rules, audit all 8 Cursor hook adapter files against them, fix the 2 real P0 gaps found in the 5 `.mjs` files (missing box header, forbidden `'use strict'`), verify via `node --check` + functional smoke test + the surface's own `verify_alignment_drift.py`, and close a documentation gap where `code-skilled`'s canonical `hooks.md` omitted Cursor CLI entirely.
 <!-- /ANCHOR:summary -->
 
 <!-- ANCHOR:quality-gates -->
@@ -40,16 +40,16 @@ Read `sk-code`'s routing hub and the `code-opencode` surface's JavaScript/TypeSc
 
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-No new architecture — this phase is a style/documentation alignment pass. Reads `sk-code/SKILL.md` → `code-opencode/SKILL.md` → the TypeScript and JavaScript style guides + checklists to establish ground truth, then applies mechanical header/directive edits to 5 existing `.mjs` files and extends one existing reference document (`hooks.md`) with a new section following its existing pattern.
+No new architecture — this phase is a style/documentation alignment pass. Reads `sk-code/SKILL.md` → `code-skilled/SKILL.md` → the TypeScript and JavaScript style guides + checklists to establish ground truth, then applies mechanical header/directive edits to 5 existing `.mjs` files and extends one existing reference document (`hooks.md`) with a new section following its existing pattern.
 <!-- /ANCHOR:architecture -->
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Research
-- [x] Read `sk-code/SKILL.md` — confirmed the two-axis router (`quality`/`code-review` workflow modes, `code-webflow`/`code-opencode` surface evidence packets).
-- [x] Read `code-opencode/SKILL.md` — confirmed the surface's reference map, including a dedicated `references/shared/hooks.md` for "runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability."
-- [x] Read `code-opencode/references/shared/hooks.md` in full — found it documents Claude/OpenCode/GitHub-Copilot in detail with zero mention of Cursor CLI.
+- [x] Read `sk-code/SKILL.md` — confirmed the two-axis router (`quality`/`code-review` workflow modes, `code-webflow`/`code-skilled` surface evidence packets).
+- [x] Read `code-skilled/SKILL.md` — confirmed the surface's reference map, including a dedicated `references/shared/hooks.md` for "runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability."
+- [x] Read `code-skilled/references/shared/hooks.md` in full — found it documents Claude/OpenCode/GitHub-Copilot in detail with zero mention of Cursor CLI.
 - [x] Read the TypeScript style guide (`overview-strict-and-naming.md`) — confirmed all 5 existing Cursor `.ts` hook files already match (header format, PascalCase types, kebab-case filenames, no `any`).
 - [x] Read the JavaScript style guide (`style-guide.md`) — found the P0 box-header requirement and the `.mjs`-specific `'use strict'` prohibition.
 - [x] Read the JavaScript checklist (`javascript-checklist.md`) — confirmed box header is a P0 hard blocker with an exact COMPONENT/PURPOSE format, cross-checked against a real precedent (`install-codex-hooks.mjs`).
@@ -79,7 +79,7 @@ Three independent layers: (1) `node --check` for syntax validity, (2) a function
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| `sk-code/code-opencode` surface packet | Internal | Green (read in full) | Source of the standards this phase aligns against |
+| `sk-code/code-skilled` surface packet | Internal | Green (read in full) | Source of the standards this phase aligns against |
 | `verify_alignment_drift.py` | Internal | Green (ran successfully) | Independent automated confirmation |
 | Phases 004/010/011's hook adapters | Internal | Green (all committed) | The files this phase edits |
 <!-- /ANCHOR:dependencies -->
@@ -112,4 +112,4 @@ Low blast radius: cosmetic header/directive edits to 5 files (no logic touched, 
 
 ## RELATED DOCUMENTS
 - `spec.md`, `tasks.md`, `checklist.md`
-- `.opencode/skills/sk-code/code-opencode/SKILL.md`, `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md`
+- `.opencode/skills/sk-code/code-skilled/SKILL.md`, `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md`

@@ -1,7 +1,7 @@
 # Research Strategy — COMPLETED
 
 ## Topic
-System-Spec-Kit full architecture audit: logic improvements, structural optimizations, automation opportunities, UX friction, bugs, and misalignments with sk-code-opencode and sk-doc standards.
+System-Spec-Kit full architecture audit: logic improvements, structural optimizations, automation opportunities, UX friction, bugs, and misalignments with sk-code-skilled and sk-doc standards.
 
 ## Key Questions — ALL ANSWERED
 - [x] Q1: What logic in scripts/ modules can be simplified, consolidated, or made more robust?
@@ -12,7 +12,7 @@ System-Spec-Kit full architecture audit: logic improvements, structural optimiza
   → Inconsistent MCP error contracts, raw errors reaching clients, confusing startup failures, missing recovery hints.
 - [x] Q4: What bugs, edge cases, or error handling gaps exist in extractors, memory scripts, or MCP handlers?
   → 48+ HIGH bugs found. Top: save pipeline atomicity, score normalization, checkpoint incompleteness, embedding dimension mismatches, session dedup for id-less memories.
-- [x] Q5: Where do system-spec-kit patterns misalign with sk-code-opencode or sk-doc standards?
+- [x] Q5: Where do system-spec-kit patterns misalign with sk-code-skilled or sk-doc standards?
   → Mixed logging (console vs structuredLog), silent error suppression in capture adapters, no common failure contract across extractors, export * barrel hygiene issues.
 
 ## What Worked

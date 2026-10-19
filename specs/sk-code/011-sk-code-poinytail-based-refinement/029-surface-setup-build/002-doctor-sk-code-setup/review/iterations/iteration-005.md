@@ -15,7 +15,7 @@ Final correctness pass over the `/doctor:sk-code` setup battery. Prior iteration
 - `.skilled/commands/doctor/assets/doctor-sk-code-setup.yaml:49`
 - `.skilled/commands/doctor/assets/doctor-sk-code-presentation.txt:50`
 - `.skilled/commands/doctor/scripts/README.md:61`
-- Leg/repair binary existence sweep (all ten present): `.skilled/bin/{compiled-route-guard,compiled-route-sync,compiled-route,compiled-route-manifest}.cjs`, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, `.skilled/skills/sk-doc/sk-create-skill/scripts/{ci-skill-derived-freshness,ci-skill-root-metadata,regenerate-skill-derived}.cjs`, `.skilled/skills/sk-git/scripts/worktree-naming.sh`
+- Leg/repair binary existence sweep (all ten present): `.skilled/bin/{compiled-route-guard,compiled-route-sync,compiled-route,compiled-route-manifest}.cjs`, `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, `.skilled/skills/sk-doc/sk-create-skill/scripts/{ci-skill-derived-freshness,ci-skill-root-metadata,regenerate-skill-derived}.cjs`, `.skilled/skills/sk-git/scripts/worktree-naming.sh`
 - Review state: `deep-review-config.json`, `deep-review-findings-registry.json`, `deltas/iter-004.jsonl`
 
 ## Findings by Severity

@@ -30,7 +30,7 @@ Each task ID maps to a REQ in `spec.md §4` and a phase in `plan.md §2`. `[009/
 | ID | Task | Priority | Rationale |
 |---|---|---|---|
 | T-001 | Rewrite runtime matrix + cross-runtime fallback prose in `.opencode/skills/system-spec-kit/references/config/hook_system.md`: Codex native `SessionStart` (post-05), Claude `UserPromptSubmit` in four-event example, OpenCode plugin bridge, Copilot `.claude/settings.local.json` wrappers | P0 | [009/01, 04, 05, 06, 07, 10] — top hotspot, 6 sub-packets flagged |
-| T-002 | Update top-level `AGENTS.md`: Gate 2 hook-brief primary + `skill_advisor.py` fallback; Codex SessionStart parity note; OpenCode plugin ESM exemption in `sk-code-opencode` language table | P0 | [009/01, 05, 09] |
+| T-002 | Update top-level `AGENTS.md`: Gate 2 hook-brief primary + `skill_advisor.py` fallback; Codex SessionStart parity note; OpenCode plugin ESM exemption in `sk-code-skilled` language table | P0 | [009/01, 05, 09] |
 | T-003 | Update `.opencode/skills/system-spec-kit/SKILL.md` startup/recovery: Claude four-event + `UserPromptSubmit`; Codex post-05 native `SessionStart`; Copilot `.claude/settings.local.json` startup surface | P0 | [009/01, 03, 04, 06, 10] |
 | T-004 | Update `.opencode/skills/system-spec-kit/ARCHITECTURE.md`: Copilot file-based transport (`custom-instructions.ts` writing to `$HOME/.copilot/copilot-instructions.md`); OpenCode plugin bridge ESM default-export entrypoint + per-instance state / dedup / cap/eviction | P0 | [009/04, 08, 09] |
 <!-- /ANCHOR:phase-1 -->

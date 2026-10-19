@@ -25,7 +25,7 @@ This phase parent groups 6 child phases spanning 2026-04-29 to 2026-04-30. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-001-sk-code-opencode-standards-audit.md](./changelog-003-001-sk-code-opencode-standards-audit.md) | 2026-04-29 | Quality Pass 003/001: sk-code-opencode Standards Audit |
+| [changelog-003-001-sk-code-skilled-standards-audit.md](./changelog-003-001-sk-code-skilled-standards-audit.md) | 2026-04-29 | Quality Pass 003/001: sk-code-skilled Standards Audit |
 | [changelog-003-002-feature-catalog-trio-alignment.md](./changelog-003-002-feature-catalog-trio-alignment.md) | 2026-04-29 | Feature Catalog Trio Alignment for Packets 031-036 |
 | [changelog-003-003-testing-playbook-trio-alignment.md](./changelog-003-003-testing-playbook-trio-alignment.md) | 2026-04-30 | Testing Playbook Trio: Manual Scenario Coverage for Packets 031-036 |
 | [changelog-003-004-sk-doc-template-alignment.md](./changelog-003-004-sk-doc-template-alignment.md) | 2026-04-29 | Post-Program Quality Pass Phase 004: sk-doc Template Alignment |

@@ -1,0 +1,12 @@
+ROLE: TypeScript test author for the sk-vision runtime (bun:test).
+
+CONTEXT: `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts` `createSetup` now takes an optional `createAutoInspect(directory)` returning `{ evidence(images, guaranteed), dispose() }` or null. When it is non-null, the OpenCode 2 prompt hook (registered even with no template) turns `prompt.files` with an image or PDF mime into file parts, reads the session model via the optional `ctx.session.get`, passes `guaranteed = true` for a text-only model such as `deepseek`, and appends a non-null evidence string to `prompt.text` after a blank line. A prompt matching the vision template still takes the command path and skips auto-inspection. Errors fail open. The test file `src/plugin.test.ts` already has a `makeContext()` stub and a `describe("v2 setup prompt hook")` block.
+
+ACTION: Add one new `describe("v2 automatic image inspection")` block to `src/plugin.test.ts` with exactly these four tests, using a fake `createAutoInspect` that records its calls (no real runtime):
+1. A non-template prompt with a `data:image/png;base64,...` file, a `ctx.session.get` stub returning model `{ id: "deepseek-v4.1-flash", providerID: "llmgateway" }`, and `readTemplate: () => null`: the hook is registered, `evidence` is called once with one part of mime `image/png` and `guaranteed === true`, the prompt text becomes `<original>\n\n<evidence>`, and disposal calls the fake's `dispose`.
+2. A prompt whose only file is `file:///tmp/notes.txt`: `evidence` is never called and the text is unchanged.
+3. A prompt matching the template with an image file: the command handler runs and `evidence` is never called.
+4. `evidence` rejecting: the hook resolves and the text is unchanged.
+Extend `makeContext` only as far as these tests need (for example an optional `get` stub). Do not change other tests or any source file.
+
+FORMAT: Edit the test file, then run from `.skilled/skills/sk-vision/vision-runtime`: `bun test` and `bunx tsc --noEmit`. Report both exit codes with pass and fail counts. Under 100 words.

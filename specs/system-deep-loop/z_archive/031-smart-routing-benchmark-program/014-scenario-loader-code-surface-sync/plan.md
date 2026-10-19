@@ -35,7 +35,7 @@ _memory:
 | **Testing** | Direct path-extractor proof, targeted code-surface parse regression tests, harness Vitest suite, temporary end-to-end recall/verdict proof, spec close-out validation |
 
 ### Overview
-This packet repairs a second silent Lane-C benchmark harness regression, companion to the router-replay surface-slicing fix. The scenario loader and live-result parser still recognized only `references/`, `assets/`, and `../shared/` path prefixes, while sk-code per-surface resources now live under `code-webflow/`, `code-opencode/`, and `code-animation/` packet folders. Gold such as `code-animation/references/decision_matrix.md` was silently truncated to `references/decision_matrix.md`, which neither exists nor matches the corrected router. The fix adds the `code-[a-z]+/` alternative to four prefix regexes, exports `extractForbiddenPrefixes` for direct tests, adds a two-test guard, proves whole-path parsing, and records the downstream gold translation and re-baseline as a separate follow-up.
+This packet repairs a second silent Lane-C benchmark harness regression, companion to the router-replay surface-slicing fix. The scenario loader and live-result parser still recognized only `references/`, `assets/`, and `../shared/` path prefixes, while sk-code per-surface resources now live under `code-webflow/`, `code-skilled/`, and `code-animation/` packet folders. Gold such as `code-animation/references/decision_matrix.md` was silently truncated to `references/decision_matrix.md`, which neither exists nor matches the corrected router. The fix adds the `code-[a-z]+/` alternative to four prefix regexes, exports `extractForbiddenPrefixes` for direct tests, adds a two-test guard, proves whole-path parsing, and records the downstream gold translation and re-baseline as a separate follow-up.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -53,7 +53,7 @@ This packet repairs a second silent Lane-C benchmark harness regression, compani
 - [x] `load-playbook-scenarios.cjs` teaches `extractPaths` and `extractForbiddenPrefixes` the `code-[a-z]+/` prefix alternative.
 - [x] `live-executor.cjs` teaches both the prose-fallback parser and observed-reads parser the same `code-[a-z]+/` prefix alternative.
 - [x] `extractForbiddenPrefixes` is exported so forbidden-prefix parsing is unit-testable.
-- [x] Regression guard `tests/code-surface-path-parse.vitest.ts` locks whole-path parsing for `code-webflow`, `code-opencode`, `code-animation`, and `code-<surface>/` forbidden globs.
+- [x] Regression guard `tests/code-surface-path-parse.vitest.ts` locks whole-path parsing for `code-webflow`, `code-skilled`, `code-animation`, and `code-<surface>/` forbidden globs.
 - [x] Direct proof confirms `extractPaths("- code-animation/references/decision_matrix.md ...")` returns the whole path and does not emit `references/decision_matrix.md`.
 - [x] Harness Vitest result is honestly recorded as baseline 1 failed / 104 passed to post-fix 1 failed / 106 passed; the single failure is the same pre-existing out-of-scope intents assertion.
 - [x] Temporary end-to-end proof is recorded as recall ~0 to 66% and router-mode verdict 47 FAIL to 71 CONDITIONAL, then reverted so the follow-up owns gold translation and re-baseline.

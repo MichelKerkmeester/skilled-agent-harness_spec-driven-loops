@@ -87,7 +87,7 @@ string, not these files.
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation --recursive --strict` prints `RESULT: PASSED` 9 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/00[1-8]-*/implementation-summary.md | wc -l` prints 8
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/011-round-four-remediation/'` prints 8 or more, one per child, and `git status --short` prints nothing
-- [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `node .skilled/bin/compiled-route-guard.cjs`, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` each exit 0
+- [ ] In the worktree, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js`, `node .skilled/bin/compiled-route-guard.cjs`, `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` each exit 0
 <!-- /ANCHOR:completion -->
 
 ---

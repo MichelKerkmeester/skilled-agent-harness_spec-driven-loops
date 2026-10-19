@@ -104,8 +104,8 @@
           {
             "id": {
               "skillId": "sk-code",
-              "workflowMode": "code-opencode",
-              "packetId": "code-opencode",
+              "workflowMode": "code-skilled",
+              "packetId": "code-skilled",
               "packetKind": "surface",
               "backendKind": "evidence-base"
             },
@@ -116,7 +116,7 @@
         "authority": "WithheldUntilVerify",
         "expectedLegacy": {
           "intents": ["quality"],
-          "resources": ["code-quality/SKILL.md", "code-opencode/SKILL.md"]
+          "resources": ["code-quality/SKILL.md", "code-skilled/SKILL.md"]
         }
       },
       "riskSlice": {

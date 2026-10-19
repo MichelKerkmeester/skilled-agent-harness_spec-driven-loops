@@ -49,7 +49,7 @@
 - `sk-create-benchmark/scripts/archive-compiled-routing.cjs:34-41` — **top-level** requires of deleted `build-report.cjs` and `compiled-routing-parity.cjs`; `_args.cjs` additionally at `:222-225`. Throws at load.
 - `sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs:387-390` — the deleted `_args.cjs` require sits inside `if (require.main === module)`, so **library use is fine** (its test `tests/validate-compiled-routing-scenarios.test.cjs:19` requires it and passes), but **CLI invocation crashes**. This matches the packet's wording ("failing only on the path that reaches its require").
 - `init_skill.py` (both copies) writes a dead command and a one-sided writer contract into every newly scaffolded skill (see §2).
-- **Two packet limitations are STALE (damage has been fixed since the packet was written):** `sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:51-54` now records the third guard as missing with an explanatory comment (no deleted vitest path; script prints "all 2 guards PASSED", `:61-62`); and `sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs` now requires only surviving modules (all six resolve), contrary to the packet's "throws at require time" claim.
+- **Two packet limitations are STALE (damage has been fixed since the packet was written):** `sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:51-54` now records the third guard as missing with an explanatory comment (no deleted vitest path; script prints "all 2 guards PASSED", `:61-62`); and `sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs` now requires only surviving modules (all six resolve), contrary to the packet's "throws at require time" claim.
 
 ## 4. Over-removal check
 

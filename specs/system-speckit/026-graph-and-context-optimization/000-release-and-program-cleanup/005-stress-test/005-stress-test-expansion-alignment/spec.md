@@ -1,12 +1,12 @@
 ---
 title: "Feature Specification: 052 Stress Test Expansion and Alignment"
-description: "Align stress_test TypeScript with sk-code-opencode and close high-value feature catalog coverage gaps."
+description: "Align stress_test TypeScript with sk-code-skilled and close high-value feature catalog coverage gaps."
 template_source: "SPECKIT_TEMPLATE_SOURCE: level_2 | v2.2"
 trigger_phrases:
   - "005-stress-test-expansion-alignment"
   - "stress test alignment"
   - "stress test coverage"
-  - "sk-code-opencode stress test"
+  - "sk-code-skilled stress test"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 ### Problem Statement
-stress_test had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map.
+stress_test had useful coverage but uneven sk-code-skilled alignment and no scoped catalog coverage map.
 ### Purpose
 Make stress_test auditable as a standards-aligned, catalog-aware regression suite.
 <!-- /ANCHOR:problem -->

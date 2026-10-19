@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/012-sk-code-skilled-rename/003-markdown-reference-sweep",
+  "description": "Phase 3: markdown-reference-sweep",
+  "keywords": [
+    "phase",
+    "markdown-reference-sweep"
+  ],
+  "lastUpdated": "2026-10-18T17:32:14.596Z",
+  "specId": "003",
+  "folderSlug": "markdown-reference-sweep",
+  "parentChain": [
+    "sk-code",
+    "012-sk-code-skilled-rename"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

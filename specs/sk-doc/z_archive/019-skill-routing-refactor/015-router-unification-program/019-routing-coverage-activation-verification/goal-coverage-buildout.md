@@ -12,7 +12,7 @@ trigger_phrases: []
 
 **REMAINING WORK — to reach true END-TO-END:**
 
-- **R1 — `sk-code:code-opencode` alignment gate** (explicit goal criterion): run the RESOURCE_MAP alignment / drift-guard gate (`verify_alignment_drift.py` + `run-all-drift-guards.sh`); confirm PASS or fix any drift the coverage build-out introduced (never touching frozen files or what legacy routes).
+- **R1 — `sk-code:code-skilled` alignment gate** (explicit goal criterion): run the RESOURCE_MAP alignment / drift-guard gate (`verify_alignment_drift.py` + `run-all-drift-guards.sh`); confirm PASS or fix any drift the coverage build-out introduced (never touching frozen files or what legacy routes).
 - **R2 — every MD via the right sk-doc mode** (explicit goal criterion): audit + conform every Markdown this program created/edited (7 `feature-catalog/.../compiled-routing-and-legacy-fallback.md` leaves → create-feature-catalog; 2 create-skill parent templates; `013` spec docs → system-spec-kit templates) against its governing sk-doc-mode validator.
 - **R3 — EXHAUSTIVE MANUAL VERIFICATION** (operator directive: *"every related testing playbook scenario manually run and verified, every benchmark, EVERYTHING"*):
   - **Every manual-testing-playbook scenario, every hub** — NOT just the compiled-routing subset. For each scenario in each hub's `manual-testing-playbook/`, run it against the now-default-on compiled router and verify all four: routing target, expected detection markers, exact resource-loading paths, and user-visible outcome match the playbook's contract. Cover all 7 flipped hubs; confirm the 5 non-hubs still route legacy.

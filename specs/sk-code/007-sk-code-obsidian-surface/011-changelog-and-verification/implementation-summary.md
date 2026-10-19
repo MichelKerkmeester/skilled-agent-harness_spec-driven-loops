@@ -112,7 +112,7 @@ the top level and four purpose-named subfolders (`operations/`, `quality/`, `rel
 directly for the `sk-code-obsidian`/`OBSIDIAN`/`code-obsidian-*` entries, confirming the wiring the
 changelog reports. `ROUTER.md` was grepped the same way and returned zero matches, and the
 router-sync drift-guard test's `SURFACES` constant was confirmed to list only
-`sk-code-webflow`, `sk-code-opencode`, `sk-code-mobile-cli` — `sk-code-obsidian` is not in it. Both
+`sk-code-webflow`, `sk-code-skilled`, `sk-code-mobile-cli` — `sk-code-obsidian` is not in it. Both
 are consistent with the packet exposing no stage-two leaf resources, not with an incomplete wiring
 pass. The plugin gate suite was re-run live: `scan-naming.mjs` PASS (253 scanned), `scan-comments.mjs`
 FAIL (249 violations, confirmed the known gap), `tsc` PASS, `build` PASS, `vitest` 386/49 PASS,

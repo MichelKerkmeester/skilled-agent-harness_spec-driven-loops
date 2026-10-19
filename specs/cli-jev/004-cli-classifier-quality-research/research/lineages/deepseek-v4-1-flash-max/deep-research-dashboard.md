@@ -23,7 +23,7 @@ Complete. All five iterations ran to the cap and verified (narrative + route-pro
 |------|-------|-------|--------|----------|
 | 1 | Surface map, caller inventory, first documentation-accuracy pass | 1.0 | complete | F-001, F-002 |
 | 2 | sk-doc compliance sweep of every hub and packet doc | 0.7 | complete | F-003, F-004 |
-| 3 | sk-code-opencode compliance and bugs in scripts and tests | 0.5 | complete | F-005 |
+| 3 | sk-code-skilled compliance and bugs in scripts and tests | 0.5 | complete | F-005 |
 | 4 | Skill-advisor integration (axis 3) and UX (axis 4) | 0.6 | complete | F-006, F-007 |
 | 5 | Drift consolidation, results visibility, top-finding verification | 0.5 | complete | F-008, F-009 |
 

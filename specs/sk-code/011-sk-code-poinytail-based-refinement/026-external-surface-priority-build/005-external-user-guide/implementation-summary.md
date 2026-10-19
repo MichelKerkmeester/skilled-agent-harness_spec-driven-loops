@@ -84,10 +84,10 @@ A second copy ran the same block in two stages, removal only first. After three 
 |----|-------|-------|
 | P11-1 | Pass | Copy after the agent's removal (`ls -d .skilled/skills/sk-code/sk-code-*` lists no webflow or obsidian packet): `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` printed `all hard invariants passed`, `ci-skill-root-metadata.cjs` `checked=14 passed=14 failed=0`, `compiled-route-guard.cjs` `All hubs fresh or excused`, `compiled-route-sync.cjs --check` `all 55 served copies match their authored files`, `run-all-drift-guards.sh` `all 4 guards PASSED`, each exit 0. The removal-only second copy printed exit 0 on all five as well |
 | P11-2 | Pass | Same copy after the agent added `sk-code-acme` (its `references/` holds the three `workflow-*.md` links): the same five commands exit 0 with the output above; `node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs` 6 pass, 0 fail; `test_readme_manifest.py` `reproduced=True` |
-| P11-3 | Pass | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "update the typescript config in the acme service"` in the copy printed `orderedBundle` with targets `["sk-code-acme","sk-code-opencode"]`; `tieBreak` is `["sk-code-quality","sk-code-review","sk-code-acme","sk-code-opencode"]` |
+| P11-3 | Pass | `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "update the typescript config in the acme service"` in the copy printed `orderedBundle` with targets `["sk-code-acme","sk-code-skilled"]`; `tieBreak` is `["sk-code-quality","sk-code-review","sk-code-acme","sk-code-skilled"]` |
 | P11-4 | Pass | `pi -p --no-extensions "$(cat r9.prompt)" --model llmgateway/deepseek-v4.1-flash --thinking max --mode text --offline </dev/null`, run three times; the prompt held only the preamble, the persona, the block (md5 `07ce2065d2faaeebcb7d440f0947dcfa`, equal to `awk` over the copy's README) and the task. A diff of the copy's `.skilled` against the worktree touched no checker or guard script |
-| P11-5 | Pass | Worktree: `sed -n 40p .skilled/skills/sk-code/SKILL.md` prints "OPENCODE (`sk-code-opencode`), the native surface for this framework's own code, and two optional example surfaces"; `sed -n 800p README.md` prints "One native surface and two optional examples"; `sed -n 1384p README.md` prints "Keep the native OpenCode surface, and remove or replace the optional example Webflow and Obsidian surfaces"; the sk-code README rows 23, 55 to 57 and 90 say native or optional example; goal criterion 1 prints `ok` |
-| P11-6 | Pass | Worktree: `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` printed `all 4 guards PASSED`, exit 0; `python3 .skilled/skills/sk-doc/scripts/validate_document.py` printed `Total issues: 0` on `README.md`, the sk-code `SKILL.md` and `README.md` and `v4.0.0.5.md` |
+| P11-5 | Pass | Worktree: `sed -n 40p .skilled/skills/sk-code/SKILL.md` prints "OPENCODE (`sk-code-skilled`), the native surface for this framework's own code, and two optional example surfaces"; `sed -n 800p README.md` prints "One native surface and two optional examples"; `sed -n 1384p README.md` prints "Keep the native OpenCode surface, and remove or replace the optional example Webflow and Obsidian surfaces"; the sk-code README rows 23, 55 to 57 and 90 say native or optional example; goal criterion 1 prints `ok` |
+| P11-6 | Pass | Worktree: `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` printed `all 4 guards PASSED`, exit 0; `python3 .skilled/skills/sk-doc/scripts/validate_document.py` printed `Total issues: 0` on `README.md`, the sk-code `SKILL.md` and `README.md` and `v4.0.0.5.md` |
 
 ### Review
 
@@ -123,7 +123,7 @@ A five-iteration `/deep:review :auto` ran over `d99ddaff7d..1895122d37` on cli-p
 |-------|--------|
 | Live battery at the base | All five exit 0 (doctor, CI metadata 14 of 14, guard, sync `--check`, drift wrapper) |
 | Live battery at the end | All five exit 0, unchanged |
-| Reader test | Shipped tree to green battery and `[sk-code-acme, sk-code-opencode]` in three runs of one prompt |
+| Reader test | Shipped tree to green battery and `[sk-code-acme, sk-code-skilled]` in three runs of one prompt |
 | `/deep:review :auto`, 5 iterations | PASS with advisories; 0 P0, 0 P1, 4 P2, three fixed and one rejected |
 | Goal criteria 1 to 7 | Rerun from the final state, see `goal.md` |
 <!-- /ANCHOR:verification -->

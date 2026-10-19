@@ -65,7 +65,7 @@ Use the phase 005 semantic source-to-target map to rename the shared reference a
 
 - **Semantic rename closure**: map the shared files individually; never substitute underscores mechanically.
 - **Hub reference layer**: update SKILL.md, README.md, shared/README.md, and path-valued registry entries only where a filename changes.
-- **Symlink layer**: preserve link type, relative target intent, and executable/mode metadata for the workflow links consumed by code-opencode and code-webflow.
+- **Symlink layer**: preserve link type, relative target intent, and executable/mode metadata for the workflow links consumed by code-skilled and code-webflow.
 - **Content boundary**: leave identifiers, JSON keys, frontmatter fields, and tool-mandated filenames untouched.
 <!-- /ANCHOR:architecture -->
 

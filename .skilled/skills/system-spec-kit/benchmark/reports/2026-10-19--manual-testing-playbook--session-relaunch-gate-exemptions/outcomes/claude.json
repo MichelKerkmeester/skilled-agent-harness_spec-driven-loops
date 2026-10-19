@@ -1,0 +1,59 @@
+{
+  "scenarioId": "session-relaunch-claude",
+  "runtime": "claude",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Run 10 is the only round in this folder: one live run in a clean tmux environment, driven by skilled-loop on the phase 007 code with SESSION_RELAUNCH_THRESHOLD=0.05, SESSION_RELAUNCH_WINDOW_TOKENS=100 and SESSION_RELAUNCH_MAX_HOPS=1. The prompt carried no Gate 3 answer. The launch passed no model flag. The run prepared a note, took SIGTERM and relaunched with the claim seed. The handoff note reads status done with an empty spec_folder, the wrapper printed WRAPPER_EXIT=0 beside a decline with reason no-file, and no operator question appears in the pane. The receiver capture sr-claude10-receiver-pane.txt, taken before the wrapper exit, shows the answer 248 lines and # Session Relaunch.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "not recorded",
+  "runs": [
+    {
+      "run": "10",
+      "loopId": 75693,
+      "verdict": "PASS",
+      "reason": "Prepare at 11:34:56.858Z, SIGTERM at 11:35:04.649Z (7.8 s later) and relaunch reason=ready at 11:35:05.362Z. The note 20261019T113443Z-6f63a2a7.md reads status done, claimed at 11:35:17.030Z and completed at 11:35:21.804Z. The wrapper printed WRAPPER_EXIT=0, and a further hop was declined at 11:40:02.412Z with reason=no-file. The receiver answer, 248 lines, is in sr-claude10-receiver-pane.txt.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+          "bytes": 891,
+          "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-claude10-pane.txt",
+          "bytes": 1012,
+          "sha256": "a5ce1c31d13ad0012aff8c12094559a7656f261f04291e7857f4c5fdab5238ba"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+          "bytes": 766,
+          "sha256": "102c3d8dbee787d1841824a596ec3fa22cc06a11bae43dceb3b79eea578ffc94"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+      "bytes": 891,
+      "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-claude10-pane.txt",
+      "bytes": 1012,
+      "sha256": "a5ce1c31d13ad0012aff8c12094559a7656f261f04291e7857f4c5fdab5238ba"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+      "bytes": 766,
+      "sha256": "102c3d8dbee787d1841824a596ec3fa22cc06a11bae43dceb3b79eea578ffc94"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "markdown agent, by hand under the playbook result-persistence contract"
+}

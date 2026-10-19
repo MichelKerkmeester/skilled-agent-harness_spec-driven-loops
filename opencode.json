@@ -1,5 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "llmgateway/deepseek-v4.1-flash",
+  "agent": {
+    "build": {
+      "model": "llmgateway/deepseek-v4.1-flash",
+      "variant": "max"
+    },
+    "plan": {
+      "model": "llmgateway/deepseek-v4.1-flash",
+      "variant": "max"
+    }
+  },
   "permission": {
     "edit": "allow",
     "bash": "allow",

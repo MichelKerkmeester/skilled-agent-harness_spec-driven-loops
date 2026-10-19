@@ -48,7 +48,7 @@ Build the consumer before widening the file: a pure core-schema library first, w
 | Contract tests | `node .../tests/skill-root-metadata-contract.test.cjs` | pass |
 | Doctor fixture suite | `node .opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs` | pass |
 | Freshness | `node .../ci-leaf-manifest-freshness.cjs` | 11/11 fresh |
-| sk-code surface | `bash .opencode/skills/sk-code/code-opencode/scripts/run-all-drift-guards.sh` | 3/3 |
+| sk-code surface | `bash .opencode/skills/sk-code/code-skilled/scripts/run-all-drift-guards.sh` | 3/3 |
 | Mutation probe | seeded unknown-owner-mode + missing-resource | gate FAILs, restore, gate passes |
 <!-- /ANCHOR:quality-gates -->
 

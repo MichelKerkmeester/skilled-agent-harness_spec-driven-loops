@@ -63,7 +63,7 @@ exec
     "reason": "Matched: !code(multi), !intent:implementation, code(name), files, specification~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
 SKILL ROUTING: `system-spec-kit` (recommended at 0.95 confidence). User specified: “Verify: (1) the 'Current Reality' description matches the actual code, (2) all listed file paths exist, (3) no important source files are missing.” Now I’m extracting the `Current Reality` and `Source Files` sections from files `11` through `17`.

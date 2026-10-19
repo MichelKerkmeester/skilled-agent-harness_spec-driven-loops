@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Rename the sk-code-opencode snake_case scripts to kebab-case without breaking any caller.
+**Objective:** Rename the sk-code-skilled snake_case scripts to kebab-case without breaking any caller.
 
 ### Decisions
 
@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `package_skill.py --check --strict` prints Result: PASS for sk-code-opencode
+- [x] `package_skill.py --check --strict` prints Result: PASS for sk-code-skilled
 - [x] Both tests pass, all four drift guards pass and the sk-code parent skill check prints OK
 - [x] A grep of `.skilled` and `.hermes` outside changelogs finds none of the three old names
 - [x] `validate.sh --strict` on this phase prints RESULT: PASSED

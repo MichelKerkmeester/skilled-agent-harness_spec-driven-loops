@@ -17,7 +17,7 @@ const L = (n) => skLines[n - 1];
 const R = (n) => rdLines[n - 1];
 const rename = (s) => s
   .replace(/(^|[^-])code-webflow/g, '$1sk-code-webflow')
-  .replace(/(^|[^-])code-opencode/g, '$1sk-code-opencode')
+  .replace(/(^|[^-])code-skilled/g, '$1sk-code-skilled')
   .replace(/(^|[^-])code-review/g, '$1sk-code-review');
 const esc = (s) => s.replace(/'/g, "'\\''");
 
@@ -100,7 +100,7 @@ edit(RD, R(11), 'version: 1.1.1.0', `sed -n 11p ${RD}`, 'version: 1.1.1.0');
   edit(RD, old, nw, `grep -c '^bash \\.skilled' ${RD}`, '0');
 }
 {
-  const nw = 'OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.';
+  const nw = 'OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.';
   edit(RD, R(87), nw, fixedCheck(RD, nw), '1');
 }
 {
@@ -112,7 +112,7 @@ edit(RD, R(11), 'version: 1.1.1.0', `sed -n 11p ${RD}`, 'version: 1.1.1.0');
   edit(RD, R(116), nw, fixedCheck(RD, nw), '1');
 }
 {
-  const nw = '| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |';
+  const nw = '| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |';
   edit(RD, R(129), nw, fixedCheck(RD, '| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |'), '1');
 }
 

@@ -1,0 +1,11 @@
+ROLE: TypeScript maintainer of the sk-vision runtime.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts`, `AttachmentInjector.handle(input, output)` filters image parts, gathers analysis per image, builds the evidence strings (the analysis blocks, the `<SK-VISION Atlas>` path note, the `<SK-VISION Notice>` warnings) and pushes one text part onto `output.parts`. A second host needs the same evidence string but cannot receive a pushed part.
+
+ACTION: Make one change. Extract the evidence assembly into a new public method on `AttachmentInjector`:
+
+  async evidenceText(images: readonly FilePart[], guaranteed: boolean): Promise<string | null>
+
+It runs the existing per-image loop (cache lookup, `readiness`, the grace race when `guaranteed` is false, the cache bound, `materialize`) and returns `extra.join("\n")`, or `null` when `extra` is empty. `handle` keeps its behaviour exactly: it filters with `isImageFilePart`, returns early when there are none, computes `guaranteed` with `isTextOnlyModel` as now, calls `evidenceText`, and when the result is non-null pushes the same fully formed part it pushes today, with the same id, sessionID and messageID logic. Keep the existing comments that explain why; give the new method a one-line doc comment saying it returns the evidence text a host appends to a prompt. No other file changes.
+
+FORMAT: Edit the file in place. Then run, from `.skilled/skills/sk-vision/vision-runtime`: `bun test` and `bunx tsc --noEmit`. Report each command's exit code and the pass and fail counts, and the line range of the new method. Under 120 words.

@@ -12,7 +12,7 @@ Detached lineage `deepseek-flash-cline` (`fanout-deepseek-flash-cline-1791552201
 
 ## 2. Topic
 
-Mine Ponytail 5.1.0 (vendored at `specs/sk-code/011-sk-code-poinytail-based-refinement/context/`) for teachings, logic, mechanisms and new ideas that improve the `sk-code` parent hub (`.skilled/skills/sk-code/`: `SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `shared/`), every nested mode and surface (`sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) and related tooling (hooks, benchmarks, rule-copy checks, skill advisor). Propose original ideas Ponytail inspires but does not contain; name ideas to reject with the reason. End with proposed implementation phases.
+Mine Ponytail 5.1.0 (vendored at `specs/sk-code/011-sk-code-poinytail-based-refinement/context/`) for teachings, logic, mechanisms and new ideas that improve the `sk-code` parent hub (`.skilled/skills/sk-code/`: `SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `shared/`), every nested mode and surface (`sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) and related tooling (hooks, benchmarks, rule-copy checks, skill advisor). Propose original ideas Ponytail inspires but does not contain; name ideas to reject with the reason. End with proposed implementation phases.
 
 ## 3. Known Context
 

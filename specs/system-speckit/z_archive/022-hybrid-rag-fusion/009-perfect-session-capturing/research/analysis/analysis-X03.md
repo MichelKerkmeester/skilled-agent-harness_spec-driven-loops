@@ -120,7 +120,7 @@ exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -139,7 +139,7 @@ Universal `sk-code` review baseline for any codebase, implemented by `sk-code-re
 Use this skill when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
 codex
-I’ve confirmed this is a findings-first review task and I’m treating `.opencode` as OpenCode system code, so I’m pairing the review baseline with the `sk-code-opencode` overlay. Next I’m enumerating the exact 37 target files, then I’ll read them batch-by-batch and build a matrix for the 10 edge cases plus every `try/catch` site.
+I’ve confirmed this is a findings-first review task and I’m treating `.opencode` as OpenCode system code, so I’m pairing the review baseline with the `sk-code-skilled` overlay. Next I’m enumerating the exact 37 target files, then I’ll read them batch-by-batch and build a matrix for the 10 edge cases plus every `try/catch` site.
 Plan update
 Findings-first audit of the Spec Kit Memory session-capturing pipeline, focused on error handling and edge cases across the specified TypeScript files.
   ✓ Load review guidance and enumerate the exact 37 target TypeScript files in scope
@@ -147,10 +147,10 @@ Findings-first audit of the Spec Kit Memory session-capturing pipeline, focused 
   • Analyze the 10 requested edge cases against each relevant code path and identify concrete findings with severity
   • Assemble final findings report with file:line evidence and summary counts
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "printf 'extractors\\n'; rg --files .opencode/skills/system-spec-kit/scripts/extractors -g '*.ts'; printf '\\ncore\\n'; rg --files .opencode/skills/system-spec-kit/scripts/core -g '*.ts'; printf '\\nloaders\\n'; rg --files .opencode/skills/system-spec-kit/scripts/loaders -g '*.ts'; printf '\\nrenderers\\n'; rg --files .opencode/skills/system-spec-kit/scripts/renderers -g '*.ts'; printf '\\nutils\\n'; rg --files .opencode/skills/system-spec-kit/scripts/utils -g '*.ts'; printf '\\nmemory\\n'; printf '.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts\\n'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 51ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.1.0.0

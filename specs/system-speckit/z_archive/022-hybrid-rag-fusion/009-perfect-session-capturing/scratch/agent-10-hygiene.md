@@ -340,7 +340,7 @@ Security scan result: no `.DS_Store`/`Thumbs.db` artifacts and no obvious secret
   - `research/audits/audit-C13.md` — 28 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts`
   - `research/audits/audit-C17.md` — 26 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/core/file-writer.ts`
   - `research/audits/audit-C15.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/quality-scorer.ts#L89`
-  - `research/qa/qa-13-alignment-drift.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py`
+  - `research/qa/qa-13-alignment-drift.md` — 24 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py`
   - `research/audits/audit-C07.md` — 23 broken links; example: `?:\`
   - `research/audits/audit-C02.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/collect-session-data.ts:23`
   - `research/audits/audit-C09.md` — 22 broken links; example: `/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/extractors/session-extractor.ts`

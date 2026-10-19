@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Surface tie order warning"
-description: "Add doctor check 5l, scoped to the sk-code hub, that reports a user-added surface placed after sk-code-opencode in tieBreak, with three tests and one README sentence."
+description: "Add doctor check 5l, scoped to the sk-code hub, that reports a user-added surface placed after sk-code-skilled in tieBreak, with three tests and one README sentence."
 trigger_phrases:
   - "surface tie order warning plan"
 importance_tier: "normal"
@@ -54,7 +54,7 @@ One function joins the hub-router checks after 5i. It reads two constants that n
 One more ordering invariant beside 5e and 5i, scoped by hub name like the existing hub-scoped constants
 
 ### Key Components
-- **`checkNativeSurfaceLast`** in `parent-skill-check.cjs`: on sk-code, lists the surface modes after `sk-code-opencode` in `tieBreak` that are not examples
+- **`checkNativeSurfaceLast`** in `parent-skill-check.cjs`: on sk-code, lists the surface modes after `sk-code-skilled` in `tieBreak` that are not examples
 - **`checkHubRouter`**: calls it after `checkTieBreakOrder`
 
 ### Data Flow

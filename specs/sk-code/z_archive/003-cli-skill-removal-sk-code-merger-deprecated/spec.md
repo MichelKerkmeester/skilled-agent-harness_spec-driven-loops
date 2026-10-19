@@ -55,7 +55,7 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 - Neutralize sk-code's 10 `_placeholder.md` pointers (5 references/<stack>/ + 5 assets/<stack>/)
 - Strip mcp-clickup-pattern entries from `skill_advisor.py`, `skill-graph.json`, advisor `graph-metadata.json`, eval fixtures, routing-accuracy labels, and `.smart-router-telemetry/compliance.jsonl`
 - Update the four sibling READMEs/install guides + root README + AGENTS.md + CLAUDE.md
-- Update sk-code-review (overlay routing target swap), sk-code-opencode README, mcp-chrome-devtools, four cli-* orchestrator SKILL.md files, sk-doc, sk-git, sk-improve-prompt, system-spec-kit reference docs that list the deprecated names
+- Update sk-code-review (overlay routing target swap), sk-code-skilled README, mcp-chrome-devtools, four cli-* orchestrator SKILL.md files, sk-doc, sk-git, sk-improve-prompt, system-spec-kit reference docs that list the deprecated names
 - Update four runtime agent-definition files (deep-review across `.claude/`, `.codex/`, `.gemini/`, `.opencode/agents/`)
 - Prune SQLite databases (skill-graph, code-graph, voyage context-index)
 - Validate the new spec folder with `validate.sh --strict`
@@ -81,7 +81,7 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 | `system-spec-kit/.../skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl` | Modify | Retarget skill_top_1 labels |
 | `.opencode/skills/.smart-router-telemetry/compliance.jsonl` | Modify | Drop 3+ rows |
 | `.opencode/skills/sk-code-review/{SKILL.md, README.md, graph-metadata.json}` and `references/*.md` | Modify | Overlay-target swap (~7 files) |
-| `.opencode/skills/sk-code-opencode/{SKILL.md, README.md}` | Modify | Cosmetic |
+| `.opencode/skills/sk-code-skilled/{SKILL.md, README.md}` | Modify | Cosmetic |
 | `.opencode/skills/mcp-chrome-devtools/{SKILL.md, README.md, examples/README.md}` | Modify | Cross-skill paths |
 | `.opencode/skills/cli-{claude-code,codex,gemini}/SKILL.md` and `cli-opencode/assets/prompt_templates.md` | Modify | Narrative cross-refs |
 | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md` | Modify | Template example |
@@ -115,8 +115,8 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-005 | Doc surfaces updated | Root README, .opencode/skills/README, install guides, AGENTS.md, CLAUDE.md zero hits |
-| REQ-006 | Cross-skill refs retargeted | sk-code-review, sk-code-opencode, mcp-chrome-devtools, cli-* orchestrators, sk-doc, sk-git, sk-improve-prompt, system-spec-kit zero hits |
-| REQ-007 | Agent definitions synced | All four runtime deep-review.md/toml files retarget overlay list to `sk-code-opencode / sk-code` |
+| REQ-006 | Cross-skill refs retargeted | sk-code-review, sk-code-skilled, mcp-chrome-devtools, cli-* orchestrators, sk-doc, sk-git, sk-improve-prompt, system-spec-kit zero hits |
+| REQ-007 | Agent definitions synced | All four runtime deep-review.md/toml files retarget overlay list to `sk-code-skilled / sk-code` |
 | REQ-008 | SQLite DBs pruned | `skill-graph.sqlite` count 22 → 20; `code-graph.sqlite` zero rows under deprecated paths; voyage `memory_index` rows for deprecated content purged |
 | REQ-009 | Spec validates strict | `validate.sh --strict` exits 0, errors 0, warnings 0 |
 <!-- /ANCHOR:requirements -->
@@ -134,7 +134,7 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 - **AS-001**: **Given** sk-code-full-stack and sk-code-web folders exist, **when** removal completes, **then** both `ls` commands return "No such file or directory".
 - **AS-002**: **Given** sk-code's placeholder pointers name sk-code-full-stack, **when** removal completes, **then** all 10 `_placeholder.md` files contain neutralized stubs with `canonical_source: null` and a "content retired" message.
 - **AS-003**: **Given** `skill-graph.json` declares `skill_count: 22` with both deprecated skills in `families.sk-code`, **when** removal completes, **then** `skill_count` is 20 and the deprecated names are absent from families/adjacency/signals.
-- **AS-004**: **Given** four runtime agent-definitions list "sk-code-opencode / sk-code-web / sk-code-full-stack" as overlay options, **when** removal completes, **then** all four list "sk-code-opencode / sk-code".
+- **AS-004**: **Given** four runtime agent-definitions list "sk-code-skilled / sk-code-web / sk-code-full-stack" as overlay options, **when** removal completes, **then** all four list "sk-code-skilled / sk-code".
 - **AS-005**: **Given** `skill-graph.sqlite` contains nodes for both deprecated skills, **when** the SQL DELETE completes, **then** `SELECT COUNT(*) FROM skill_nodes` returns 20 (was 22).
 <!-- /ANCHOR:success-criteria -->
 
@@ -176,7 +176,7 @@ Delete both skill folders, prune every cross-reference, and neutralize sk-code's
 ## L2: EDGE CASES
 
 ### Data Boundaries
-- **`families.sk-code` shrinks 5 → 3**: after deleting `sk-code-web` and `sk-code-full-stack`, the family contains only `sk-code`, `sk-code-opencode`, `sk-code-review`. Verify family is non-empty.
+- **`families.sk-code` shrinks 5 → 3**: after deleting `sk-code-web` and `sk-code-full-stack`, the family contains only `sk-code`, `sk-code-skilled`, `sk-code-review`. Verify family is non-empty.
 - **Vec virtual-table orphans in voyage DB**: same as 053 precedent — tolerable; embedding chunks become unreachable but harmless.
 
 ### Error Scenarios

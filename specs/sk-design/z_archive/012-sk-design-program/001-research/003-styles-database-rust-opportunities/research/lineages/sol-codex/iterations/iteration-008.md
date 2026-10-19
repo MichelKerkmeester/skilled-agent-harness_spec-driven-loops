@@ -15,7 +15,7 @@ Separate useful storage/cache evolution from proposals that merely port already 
 3. Vector representation is a more concrete improvement than a Rust ranking port. Current vectors are stored as JSON, transferred from SQLite, parsed in JavaScript, normalized during every cosine comparison, and sorted across the eligible set. Typed binary blobs, pre-normalized vectors, or extension-owned vector columns can reduce parsing/copying and redundant norm work; existing SQLite extensions or Node buffers can implement this without custom Rust. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:218-249] [SOURCE: .opencode/skills/sk-design/styles/_db/vectors.mjs:14-23]
 4. Scalar/product quantization and memory-mapped ANN snapshots are growth optimizations, not present-day needs. They trade accuracy, migration complexity, platform compatibility, and rebuild logic for smaller/faster indexes. At 1,290 vectors the existing full scan is too small to justify them absent measured latency or memory pressure; multimodal region vectors or 10x–100x corpus growth can reopen the gate. [INFERENCE: current 1,290-vector residency decomposition]
 5. Deterministic ranking is already explicit: FTS5 ends on `style_id`, vector scores end on `id`, and weighted RRF ends on `id`. Moving cosine or RRF to Rust adds a boundary around tiny arithmetic and creates floating-point and serialization parity work. It fails current materiality and scale gates. [SOURCE: .opencode/skills/sk-design/styles/_db/retrieval.mjs:200-215,218-283]
-6. The repository standard makes that parity cost strict: every migrated behavior must be byte-for-byte identical to the pinned TypeScript oracle, numeric operations must be preserved independently, and every observable sort needs a complete unique tie-break. An approximate ANN result cannot claim byte parity with an exact oracle for arbitrary queries; it needs a separately versioned feature contract, recall/ordering fixtures, exact re-score, and a flag-controlled exact fallback. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/quality-standards/determinism-and-parity.md:27-118]
+6. The repository standard makes that parity cost strict: every migrated behavior must be byte-for-byte identical to the pinned TypeScript oracle, numeric operations must be preserved independently, and every observable sort needs a complete unique tie-break. An approximate ANN result cannot claim byte parity with an exact oracle for arbitrary queries; it needs a separately versioned feature contract, recall/ordering fixtures, exact re-score, and a flag-controlled exact fallback. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/quality-standards/determinism-and-parity.md:27-118]
 7. Gate verdict: keep hashing, RRF, tie-breaks, and exact cosine in TypeScript today. Prioritize binary/in-database vector representation only as part of an extension spike, and build a shared content-addressed artifact cache only when local inference creates large immutable artifacts worth sharing. Rust is optional for both and should not be the acceptance criterion. [INFERENCE: value/necessity comparison]
 
 ## Ruled Out
@@ -42,8 +42,8 @@ Separate useful storage/cache evolution from proposals that merely port already 
 - `.opencode/skills/sk-design/styles/_db/indexer.mjs`
 - `.opencode/skills/sk-design/styles/_db/vectors.mjs`
 - `.opencode/skills/sk-design/styles/_db/retrieval.mjs`
-- `.opencode/skills/sk-code/code-opencode/references/rust/quality-standards/determinism-and-parity.md`
-- `.opencode/skills/sk-code/code-opencode/references/rust/quick-reference/overview-and-boundary-template.md`
+- `.opencode/skills/sk-code/code-skilled/references/rust/quality-standards/determinism-and-parity.md`
+- `.opencode/skills/sk-code/code-skilled/references/rust/quick-reference/overview-and-boundary-template.md`
 
 ## Assessment
 

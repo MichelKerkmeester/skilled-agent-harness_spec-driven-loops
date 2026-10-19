@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-skilled",
+  "spec_folder": "sk-code/002-rust-standards-for-code-skilled",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/002-rust-standards-for-code-skilled/001-research",
+    "sk-code/002-rust-standards-for-code-skilled/002-standard-docs",
+    "sk-code/002-rust-standards-for-code-skilled/003-surface-routing",
+    "sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard",
+    "sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang",
+    "sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
+    "sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references",
+    "sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
+    "sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references",
+    "sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references",
+    "sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged",
+    "sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
+    "sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 rust standards code-skilled",
+      "sk-code rust language support",
+      "code-skilled rust standards",
+      "sk-code reference file hygiene",
+      "split oversized sk-code references"
+    ],
+    "key_topics": [
+      "rust",
+      "standards",
+      "code-skilled",
+      "sk-code",
+      "language",
+      "support",
+      "reference",
+      "file",
+      "hygiene",
+      "split",
+      "oversized",
+      "references"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "007-code-skilled-rust-references/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Standards",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Hygiene",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "WS1: `sk-code`'s `code-skilled` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio plus an `assets/checklists/<lang>checklist.md` and a `manualtestingplaybook/language-standards/` entry, wired into a machine-readable SMART ROUTING block whose `RESOURCEMAP` the parent hub mirrors under a drift guard",
+    "created_at": "2026-07-11T07:13:21.076Z",
+    "last_save_at": "2026-10-18T19:17:03.293Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f44de0ece59c8f50897a2cd0015d1283e45c085ffdbc30eaa682a5a967ce15be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e40f270312864a183cda8b0e79e4786ede6f080995bdca3ae25699410d9ef226"
+    },
+    "last_active_child_id": "sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates",
+    "last_active_at": "2026-07-12T09:00:00Z"
+  }
+}

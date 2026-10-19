@@ -30,8 +30,8 @@
     "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
     "sk-code/001-sk-code-parent/025-code-quality-and-shared-research",
     "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
-    "sk-code/001-sk-code-parent/027-code-opencode-refinement-research",
-    "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation"
+    "sk-code/001-sk-code-parent/027-code-skilled-refinement-research",
+    "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -147,7 +147,7 @@
     "source_doc_hashes": {
       "spec.md": "478eba8920dad1943bde28c434cbf6b7582cbbc558bc7ebe67bb01cdb8489888"
     },
-    "last_active_child_id": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
+    "last_active_child_id": "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
     "last_active_at": "2026-07-07T00:00:00.000Z"
   }
 }

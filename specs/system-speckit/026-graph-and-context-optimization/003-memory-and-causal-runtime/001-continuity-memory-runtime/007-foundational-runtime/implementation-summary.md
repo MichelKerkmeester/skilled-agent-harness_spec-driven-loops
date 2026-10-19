@@ -218,7 +218,7 @@ These commits landed during Phase 017 but were not tied to one child-wave task r
 
 ### Post-push follow-ups
 
-- `48fc7db91` — sk-code-opencode standards alignment pass across the shipped Phase 017 files.
+- `48fc7db91` — sk-code-skilled standards alignment pass across the shipped Phase 017 files.
 - `a3200d1bd` — post-push normalizer-lint false-positive fix excluding `dist/` and `node_modules/`.
 
 ---

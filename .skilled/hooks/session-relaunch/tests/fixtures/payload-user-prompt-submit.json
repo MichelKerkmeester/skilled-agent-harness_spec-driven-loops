@@ -1,0 +1,9 @@
+{
+  "session_id": "session-fixture-00000001",
+  "transcript_path": "/tmp/session-relaunch/transcript.jsonl",
+  "cwd": "/tmp/session-relaunch",
+  "prompt_id": "prompt-fixture-00000001",
+  "permission_mode": "bypassPermissions",
+  "hook_event_name": "UserPromptSubmit",
+  "prompt": "Continue the work from the previous turn."
+}

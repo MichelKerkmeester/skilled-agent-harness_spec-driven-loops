@@ -115,7 +115,7 @@ The original decomposition matched `029-cli-devin-revival`'s 7-phase shape becau
 | 9.2 | `002-cursor-hooks-live-wiring/` | Create and commit the project `.cursor/hooks.json` registration (ADR-001). | Complete |
 | 9.3 | `003-cursor-hooks-claude-parity/` | Expand toward Claude parity: `postToolUse` chain, `Task`-matcher guard, repo-guard scripts. | Complete |
 | 9.4 | `004-hooks-manual-testing-results/` | Re-execute the hooks-category playbook scenarios independently. | Complete |
-| 9.5 | `005-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-opencode` P0 standards. | Complete |
+| 9.5 | `005-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-skilled` P0 standards. | Complete |
 | 9.6 | `006-cursor-hooks-discovery-mirror/` | `.cursor/hooks/` discovery mirror. | Complete |
 
 ### Phase Transition Rules

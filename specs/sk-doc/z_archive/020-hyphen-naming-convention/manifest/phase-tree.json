@@ -230,8 +230,8 @@
       "note": "SKILL.md, mode-registry.json path VALUES, shared/"
     },
     {
-      "id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
-      "slug": "002-code-opencode",
+      "id": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled",
+      "slug": "002-code-skilled",
       "parent": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code",
       "kind": "leaf",
       "level": 2,

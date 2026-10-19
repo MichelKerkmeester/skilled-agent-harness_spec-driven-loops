@@ -38,8 +38,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 - [x] T003 code-quality assets (pilot) — 3 files conformed + renamed [Test: `validate_document.py 3/3 VALID`]
-- [x] T004 code-opencode references — config/python/js/shell/typescript/rust/shared (recursive) [Test: `validate_document.py 65/65 VALID`]
-- [x] T005 code-opencode assets — checklists/scripts [Test: `validate_document.py assets VALID`]
+- [x] T004 code-skilled references — config/python/js/shell/typescript/rust/shared (recursive) [Test: `validate_document.py 65/65 VALID`]
+- [x] T005 code-skilled assets — checklists/scripts [Test: `validate_document.py assets VALID`]
 - [x] T006 code-webflow references — animation/css/html/debugging/deployment/performance/verification/js/shared/implementation (recursive) [Test: `validate_document.py 95/95 VALID`]
 - [x] T007 code-webflow assets [Test: `validate_document.py assets VALID`]
 - [x] T008 Cross-surface reference-link repair (whole-hub staging fix after per-surface staging dropped cross-refs) [Commit: `983a4d6ef7 whole-hub stage`]
@@ -66,5 +66,5 @@ _memory:
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 - `./spec.md`, `./plan.md`, `./checklist.md`, `./implementation-summary.md`
-- `.opencode/skills/sk-code/{code-opencode,code-webflow,code-quality}/` (deliverable)
+- `.opencode/skills/sk-code/{code-skilled,code-webflow,code-quality}/` (deliverable)
 <!-- /ANCHOR:cross-refs -->

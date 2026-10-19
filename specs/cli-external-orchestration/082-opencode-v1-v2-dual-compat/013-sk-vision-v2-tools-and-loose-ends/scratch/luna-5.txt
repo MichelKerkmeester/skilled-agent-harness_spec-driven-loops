@@ -1,0 +1,10 @@
+VERDICT: FAIL
+
+- **P2 — `client.ts:144`.** If `close()` runs while `mkdirAsync(venv)` is pending, the directory can be created after shutdown. The continuation then enters `hasUv()` without a closed check. Later provisioning is blocked and `ready` settles without an error toast, but shutdown does not prevent this side effect. The new test closes during an interpreter probe, so it does not cover this race.
+- **P2 — `plugin.ts:439`.** If `registration.dispose()` rejects, `auto?.dispose()` is skipped and the cleanup error replaces the original hook error. The test covers only successful disposal.
+
+The mutation logs show real failures: the pre-fix probe test times out, removing the closed guards leaves the venv, the pre-fix hook test detects the leaked command registration, and breaking the auto-inspection gate registers 13 tools.
+
+The README is accurate: `dist/plugin.js` is ignored by `.gitignore:60`; `hooks/opencode/sk-vision.js` is not ignored. `.opencode/plugins/sk-vision.js` targets `../skills/sk-vision/vision-runtime/dist/plugin.js`; the mirrored hook `.ts` symlink targets `../../../skills/sk-vision/hooks/opencode/sk-vision.ts`. The comment scan found no spec paths, phase numbers or IDs. Five tracked files are in the scoped diff; generated JS and spec scratch files are untracked.
+
+`git diff --check` exited 0. I did not run tests or typecheck in this read-only review. No files were changed by me. The two P2s need review before treating the patch as clear.

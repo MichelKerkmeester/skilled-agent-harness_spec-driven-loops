@@ -38,4 +38,4 @@ None.
 - stuck_counter: 0
 
 ## Next iteration focus
-Advance D4 by checking whether the late-cycle advisor and observability modules still miss sk-code-opencode maintainability contracts around exported API documentation and dead/internal paths.
+Advance D4 by checking whether the late-cycle advisor and observability modules still miss sk-code-skilled maintainability contracts around exported API documentation and dead/internal paths.

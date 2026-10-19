@@ -1,0 +1,50 @@
+Permission allow rule (../../.claude/settings.local.json): Bash(gtimeout * devin *) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves
+ them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+
+Resume this session with:
+claude --resume 6f63a2a7-82ac-4cf2-83e7-d6d35e62d936
+Permission allow rule (../../.claude/settings.local.json): Bash(gtimeout * devin *) has a wildcard before the rest of the command, so it also matches any options inserted at that position and approves
+ them without a prompt. Replace that * with the exact value you mean, or only use * after the subcommand.
+
+Resume this session with:
+claude --resume d35dab6e-0009-49fa-850f-97d3b8bc4154
+WRAPPER_EXIT=0
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+bash-3.2$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

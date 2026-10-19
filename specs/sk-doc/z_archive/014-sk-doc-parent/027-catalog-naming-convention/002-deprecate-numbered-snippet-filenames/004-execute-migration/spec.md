@@ -62,7 +62,7 @@ this migration touches does not end the program in a half-consistent state.
 in-scope files across the 9 packets: `cli-external/cli-claude-code` (10), `cli-external/cli-opencode` (10),
 `cli-external` hub-routing (5), `mcp-tooling` hub-routing (6), `mcp-tooling/mcp-chrome-devtools` (8),
 `mcp-tooling/mcp-click-up` (7), `mcp-tooling/mcp-figma` (9), `sk-code/code-review` (7),
-`sk-code/code-opencode` (9), `sk-code/code-webflow` (13), `sk-code/code-quality` (1),
+`sk-code/code-skilled` (9), `sk-code/code-webflow` (13), `sk-code/code-quality` (1),
 `sk-prompt` hub-routing (4), `system-deep-loop/deep-improvement` (10), `system-deep-loop/deep-research` (8),
 `system-deep-loop/deep-review` (4). Per-family `stage: routing|holdout|negative` frontmatter injection for the
 63/111 files that encode routing/holdout/negative grouping in their current filename token (default `stage:

@@ -51,7 +51,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a sk-code tieBreak with a user surface after `sk-code-opencode`, When the doctor runs, Then it prints `FAIL: 5l:` naming that surface and both fixes, and exits 1 | Ledger row T1; `goal.md` criterion 2 | Met | - |
+| AC-001 | REQ-001 | Given a sk-code tieBreak with a user surface after `sk-code-skilled`, When the doctor runs, Then it prints `FAIL: 5l:` naming that surface and both fixes, and exits 1 | Ledger row T1; `goal.md` criterion 2 | Met | - |
 | AC-002 | REQ-002 | Given the shipped order quality, review, opencode, obsidian, webflow, When the doctor runs, Then 5l prints PASS | Ledger row T2; `goal.md` criterion 1 | Met | - |
 | AC-003 | REQ-003 | Given a tree without the two examples and a user surface ahead of opencode, When the doctor runs, Then 5l prints PASS | Ledger row T3; `goal.md` criterion 2 | Met | - |
 | AC-004 | REQ-004 | Given the seven parent hubs, When the doctor runs on each, Then each exits 0 | `goal.md` criterion 3 | Met | - |

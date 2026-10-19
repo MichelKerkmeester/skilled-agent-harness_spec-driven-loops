@@ -1,0 +1,13 @@
+VERDICT: FAIL
+
+- **P2 — Synchronous disposal can still mask the hook error** — [`plugin.ts:439`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:439). If `registration.dispose()` throws synchronously, array construction stops before `Promise.allSettled` runs and before `auto?.dispose()` is called. The hook error is replaced and the inspection client may remain open. The new test covers an asynchronous rejection only.
+
+- **(a) Confirmed:** [`client.ts:144`](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:144) checks for shutdown immediately after `mkdirAsync`, before `hasUv` or provisioning. An in-flight mkdir can still leave the directory, as documented.
+
+- No other defect found in the five-file tracked diff. The added code comments contain no spec paths, phase numbers or IDs.
+
+- `git diff --check` passed. Focused Bun tests reported 28 passed and 6 `EPERM` failures creating temp directories in the read-only sandbox; these are not counted as findings. No files were edited.
+
+Not checked: the new probe-cancellation test, which requires creating a temp directory.
+
+Review status: REQUESTED_CHANGES

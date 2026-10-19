@@ -588,10 +588,10 @@ All 44 invocations exited 0 (both CLIs). Full per-prompt command records follow.
       "targets": [
         {
           "backendKind": "evidence-base",
-          "packetId": "sk-code-opencode",
+          "packetId": "sk-code-skilled",
           "packetKind": "surface",
           "skillId": "sk-code",
-          "workflowMode": "sk-code-opencode"
+          "workflowMode": "sk-code-skilled"
         }
       ],
       "action": "route"
@@ -682,10 +682,10 @@ All 44 invocations exited 0 (both CLIs). Full per-prompt command records follow.
       "targets": [
         {
           "backendKind": "evidence-base",
-          "packetId": "sk-code-opencode",
+          "packetId": "sk-code-skilled",
           "packetKind": "surface",
           "skillId": "sk-code",
-          "workflowMode": "sk-code-opencode"
+          "workflowMode": "sk-code-skilled"
         }
       ],
       "action": "route"

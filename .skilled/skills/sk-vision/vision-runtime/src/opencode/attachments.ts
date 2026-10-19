@@ -62,6 +62,26 @@ export class AttachmentInjector {
     // the model reads the message. Every other model keeps the cheap bounded grace so a
     // multimodal (or unknown) model never blocks submission on the GPU.
     const guaranteed = isTextOnlyModel(input.model as ActiveModel | undefined);
+    const text = await this.evidenceText(images, guaranteed);
+
+    if (text !== null) {
+      // IMPORTANT: opencode's chat.message hook only persists mutations to the
+      // passed-in parts array (it recomputes `parts` from the same array after
+      // the hook resolves). Reassigning `output.parts` is silently dropped, so
+      // we must push in place. The part must also be fully-formed (id prefixed
+      // "prt", matching sessionID + messageID) or opencode rejects the message.
+      output.parts.push({
+        id: "prt_" + createHash("sha1").update(`${output.message.id}:${Date.now()}:${text.length}`).digest("hex").slice(0, 26),
+        sessionID: output.message.sessionID ?? input.sessionID,
+        messageID: output.message.id,
+        type: "text",
+        text,
+      } as Part);
+    }
+  }
+
+  /** Returns the evidence text a host appends to a prompt, or null when there is none. */
+  async evidenceText(images: readonly FilePart[], guaranteed: boolean): Promise<string | null> {
     const blocks: string[] = [];
     const notes: string[] = [];
     const warnings: string[] = [];
@@ -108,20 +128,7 @@ export class AttachmentInjector {
       extra.push("\n<SK-VISION Notice>\n" + warnings.join("\n") + "\n</SK-VISION>\n");
     }
 
-    if (extra.length > 0) {
-      // IMPORTANT: opencode's chat.message hook only persists mutations to the
-      // passed-in parts array (it recomputes `parts` from the same array after
-      // the hook resolves). Reassigning `output.parts` is silently dropped, so
-      // we must push in place. The part must also be fully-formed (id prefixed
-      // "prt", matching sessionID + messageID) or opencode rejects the message.
-      output.parts.push({
-        id: "prt_" + createHash("sha1").update(`${output.message.id}:${Date.now()}:${extra.length}`).digest("hex").slice(0, 26),
-        sessionID: output.message.sessionID ?? input.sessionID,
-        messageID: output.message.id,
-        type: "text",
-        text: extra.join("\n"),
-      } as Part);
-    }
+    return extra.length > 0 ? extra.join("\n") : null;
   }
 
   /**

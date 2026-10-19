@@ -1,7 +1,7 @@
 ---
 title: "SA-001: Skill Advisor Probe Battery"
 description: "Run a labeled probe set (>=15 positives + >=5 negatives) through the skill advisor and verify sk-code routing accuracy meets threshold."
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # SA-001: Skill Advisor Probe Battery
@@ -24,21 +24,21 @@ Prompt: this scenario runs the full P1-P17 / N1-N5 probe battery listed below th
 
 | ID | Surface | Sub-language | Prompt |
 |---|---|---|---|
-| P1 | OPENCODE | TypeScript | `Refactor the parseExecutorConfig function in .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
-| P2 | OPENCODE | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
-| P3 | OPENCODE | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
-| P4 | OPENCODE | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |
-| P5 | OPENCODE | Config | `Configure .vscode/mcp.json to mirror the current codeGraph server inputs.` (golden set rr-iter2-009) |
-| P6 | OPENCODE | Python | `Use the OpenCode standards route to clean up this CommonJS helper.` (golden set rr-iter2-059) |
-| P7 | OPENCODE | TypeScript | `Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.` (golden set rr-iter3-061) |
-| P8 | OPENCODE | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |
-| P9 | OPENCODE | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
-| P10 | OPENCODE | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
-| P11 | OPENCODE | Shell | `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
+| P1 | SKILLED | TypeScript | `Refactor the parseExecutorConfig function in .skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.` |
+| P2 | SKILLED | TypeScript | `Implement a negative-trigger whitelist in gate-3-classifier.ts and run the targeted tests.` (golden set rr-iter2-001) |
+| P3 | SKILLED | Python | `Refactor skill_advisor.py to surface raw ambiguity counts in debug output.` (golden set rr-iter2-004) |
+| P4 | SKILLED | TypeScript | `Write a Vitest covering classifyPrompt() for the resume deep review phrase.` (golden set rr-iter2-006) |
+| P5 | SKILLED | Config | `Configure .vscode/mcp.json to mirror the current codeGraph server inputs.` (golden set rr-iter2-009) |
+| P6 | SKILLED | Python | `Use the OpenCode standards route to clean up this CommonJS helper.` (golden set rr-iter2-059) |
+| P7 | SKILLED | TypeScript | `Add a packet-local helper that formats Gate 3 confusion-matrix rows for the research summary.` (golden set rr-iter3-061) |
+| P8 | SKILLED | Config | `Generate a replacement gate3-baseline.json fixture for the first 100 prompts.` (golden set rr-iter3-064) |
+| P9 | SKILLED | TypeScript | `Refactor the corpus scoring helper so it emits stable JSONL keys in sorted order.` (golden set rr-iter3-065) |
+| P10 | SKILLED | Shell | `Build a tiny script that counts how many prompts mention /speckit:resume.` (golden set rr-iter3-070) |
+| P11 | SKILLED | Shell | `Add set -euo pipefail and a trap to .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh to clean up the temp dir on exit.` |
 | P12 | WEBFLOW | n/a | `Add a Lenis smooth-scroll initializer to src/2_javascript/scroll.js and gate it behind an IntersectionObserver.` |
 | P13 | WEBFLOW | n/a | `Wire up a GSAP timeline that animates the hero section on page load with motion.dev fallback.` |
 | P14 | WEBFLOW | n/a | `Initialize an HLS.js video player on .video-hero with adaptive bitrate fallback.` |
-| P15 | OPENCODE | Python | `Add a --threshold flag to verify_alignment_drift.py that adjusts the failure threshold for missing module headers.` |
+| P15 | SKILLED | Python | `Add a --threshold flag to verify_alignment_drift.py that adjusts the failure threshold for missing module headers.` |
 | P16 | OBSIDIAN | TypeScript | `Rename the table cell classes in src/views/DatabaseView.ts of the Note Database Obsidian plugin to the .db-* naming convention.` |
 | P17 | OBSIDIAN | TypeScript | `Add a status column to the Obsidian plugin data layer and register the view with the plugin's onload in src/main.ts.` |
 

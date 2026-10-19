@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The template and playbook tell an agent to resend the full text of goal.md, which includes frontmatter",
     "created_at": "2026-09-11T07:11:48Z",
-    "last_save_at": "2026-10-07T15:57:28.158Z",
+    "last_save_at": "2026-10-18T20:45:34.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7a7ceb68b67726a94ccf39bf3fc3e16cee6d1507ba0583b1ad356b73fec3e7c",
+    "source_fingerprint": "sha256:a71b7409f9835a9fc7384460e181485c48f42fa8533f6d1ffc32436184c640d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3e418027e219335e7d44a1a35ad99bbb4e8ad0abccb8642659c5d6fb95978736",
       "plan.md": "0a2db842bc02f89d3cf8c1f8f06ab9f1e990c7d2c81e96ac67f64ce87d6394cb",
-      "tasks.md": "38ab392c186df19b5f26c6741d8926ae377afee05bdfb9b9d57807dcdd4a7884",
+      "tasks.md": "fc8ba710cdca0ec8502908dff59d85e507fbdb5d1d92cea1ac44bf6e15b22133",
       "implementation-summary.md": "045ccdea9c0f5a42b8fd71c25c8dab65b69911596ed16e6e055a557754af520d"
     },
     "last_active_at": null

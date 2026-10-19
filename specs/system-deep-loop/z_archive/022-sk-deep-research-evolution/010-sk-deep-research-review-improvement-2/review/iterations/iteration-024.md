@@ -58,7 +58,7 @@ exec
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -108,7 +108,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 
@@ -265,7 +265,7 @@ def detect_overlay_skill(task, workspace_files=None, changed_files=None) -> str:
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if "opencode" in text or ".opencode/" in files or "jsonc" in text or "mcp" in text:
-        return "sk-code-opencode"
+        return "sk-code-skilled"
     if any(term in text for term in ["frontend", "web", "css", "dom", "browser", "webflow"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
@@ -389,7 +389,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
+- Implementation tasks (use `sk-code-skilled` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 
@@ -2962,7 +2962,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-YyMmR1P1' (errno=Opera
     "reason": "Matched: !database, !folder, !spec, architecture, documentation"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.86,
     "uncertainty": 0.28,
@@ -3324,7 +3324,7 @@ exec
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -3374,7 +3374,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 
@@ -3445,7 +3445,7 @@ exec
   └ 8 lines...
 
 ● Run alignment verifier on scripts scope (shell)
-  │ python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root
+  │ python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root
   │ .opencode/skills/system-spec-kit/scripts
   └ 11 lines...
 
@@ -3481,7 +3481,7 @@ Tokens    ↑ 8.6m • ↓ 47.3k • 8.2m (cached) • 18.1k (reasoning)
 --- Batch 3-wave-and-libs done | Sun Apr 12 14:05:27 CEST 2026 ---
 
 --- Batch 4-workflows-and-docs | Sun Apr 12 14:05:27 CEST 2026 ---
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● memory_match_triggers (MCP: spec_kit_memory) · prompt: "Fix workflow YAML issues, agent definitio…
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
@@ -3944,7 +3944,7 @@ exec
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -3994,7 +3994,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 
@@ -8680,7 +8680,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-IKzw201K' (errno=Opera
     "reason": "Matched: !deep review(phrase), deep(name), opencode~, review(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.2,
@@ -8704,7 +8704,7 @@ exec
  succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -8754,7 +8754,7 @@ Review behavior follows a baseline+overlay model:
 
 - Baseline (always): `sk-code` (implemented by this skill: `sk-code-review`)
 - Overlay (exactly one `sk-code-*`):
-  - OpenCode system context -> `sk-code-opencode`
+  - OpenCode system context -> `sk-code-skilled`
   - Frontend/web context -> `sk-code-web`
   - Default/other stacks -> `sk-code-full-stack`
 

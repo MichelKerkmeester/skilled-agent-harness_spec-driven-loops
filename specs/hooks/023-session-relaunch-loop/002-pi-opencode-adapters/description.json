@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "hooks/023-session-relaunch-loop/002-pi-opencode-adapters",
+  "description": "Phase 2: pi-opencode-adapters",
+  "keywords": [
+    "phase",
+    "pi-opencode-adapters"
+  ],
+  "lastUpdated": "2026-10-18T11:56:55.840Z",
+  "specId": "002",
+  "folderSlug": "pi-opencode-adapters",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "17-10-26_15-03__this-session-is-running-a-live-session-relaunch.md",
+    "17-10-26_17-32__live-session-relaunch-test-no-adapter.md",
+    "18-10-26_12-56__phase-002-reconciled-at-packet-closure-the.md"
+  ]
+}

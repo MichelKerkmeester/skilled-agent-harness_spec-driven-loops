@@ -731,7 +731,7 @@
             "scenarios": 0
           },
           {
-            "workflowMode": "sk-code-opencode",
+            "workflowMode": "sk-code-skilled",
             "scenarios": 0
           },
           {
@@ -749,7 +749,7 @@
         ],
         "uncovered": [
           "sk-code-obsidian",
-          "sk-code-opencode",
+          "sk-code-skilled",
           "sk-code-quality",
           "sk-code-review"
         ],

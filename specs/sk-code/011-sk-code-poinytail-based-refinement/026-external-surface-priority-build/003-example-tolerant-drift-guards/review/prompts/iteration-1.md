@@ -27,14 +27,14 @@ Review Iteration: 1 of 5
 Mode: review
 Dimension: correctness
 Review Target: commit b6eef4ebbb (worktrees/126-drift-guard-tolerance): example-tolerant sk-code drift guards
-Review Scope Files: .hermes/skills/sk-code-opencode/SKILL.md
-.skilled/skills/sk-code/sk-code-opencode/SKILL.md
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
-.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.4.0.md
-.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs
-.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+Review Scope Files: .hermes/skills/sk-code-skilled/SKILL.md
+.skilled/skills/sk-code/sk-code-skilled/SKILL.md
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs
+.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.4.0.md
+.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs
+.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/acceptance-criteria.md
 specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/goal.md
 specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards/plan.md

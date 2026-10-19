@@ -90,7 +90,7 @@ The planner measured each 3 second entry on the unedited worktree with `scratch/
 - **D9. Version 2.7.2.0, a patch**, per `sk-create-changelog` section 4: a bug fix on 2.7.1.0. The entry uses the compact shape of `assets/changelog-template.md`, with an `&nbsp;` line before each H2. `changelog/v2.7.1.0.md` is not touched.
 
 ### Contracts that bind the edits
-- `sk-code` routes this TypeScript and JavaScript to the `sk-code-opencode` surface: box-drawn `MODULE:` headers stay, comments state the durable reason only and name no spec path, phase or task id.
+- `sk-code` routes this TypeScript and JavaScript to the `sk-code-skilled` surface: box-drawn `MODULE:` headers stay, comments state the durable reason only and name no spec path, phase or task id.
 - `sk-doc` covers the three README edits: current-state wording, no em dash, no semicolon in new prose, numbered headings untouched, and `validate_document.py` must still print `VALID`.
 - `sk-create-changelog` covers the entry: global component folder `.skilled/skills/system-spec-kit/changelog/` (reached through the `.skilled/changelog/system-spec-kit` symlink), the next four-part version, the compact template shape. The planner ran `hvr_scan.py` on it: 0 hard blockers.
 

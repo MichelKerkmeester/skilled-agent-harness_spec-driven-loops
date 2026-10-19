@@ -100,8 +100,8 @@ Sweep groups (one `subagent_explore` per group):
 
 ## Second question to answer
 
-`sk-code-opencode` alignment: inspect the files commit `8c63174469` touched (run
-`git show --stat 8c63174469`) and flag any that violate sk-code-opencode surfaces:
+`sk-code-skilled` alignment: inspect the files commit `8c63174469` touched (run
+`git show --stat 8c63174469`) and flag any that violate sk-code-skilled surfaces:
 - `.mjs`/`.js` files missing the box header or `'use strict'` (`.mjs` is exempt from strict),
 - `.ts` files missing the module header block,
 - Python files with wrong naming or missing module docstring,
@@ -127,7 +127,7 @@ Report only concrete violations with `path:line`; say "none found" when clean.
    STALE rows first, sorted by confidence. A STALE verdict without a quoted line is invalid.
 3. `## Already-current surfaces checked` — the list proving coverage (path patterns, not a
    re-litigation).
-4. `## sk-code-opencode alignment` — findings or "none found".
+4. `## sk-code-skilled alignment` — findings or "none found".
 5. `## Uncertainty` — what you could not verify, and the exact next command a verifier should run.
 
 Keep the report under ~4000 words. Precision over volume: a wrong STALE costs more than a

@@ -1,6 +1,6 @@
 # Deep Review Report: Surface tie order warning
 
-Review of commit `a682c06d3d` on branch `worktrees/131-tieorder-warning` (diff `c62d7d1399..a682c06d3d`): doctor check 5l in `parent-skill-check.cjs` reports, on the sk-code hub only and as a soft failure, a surface mode listed after `sk-code-opencode` in `routerPolicy.tieBreak` other than the two shipped examples; three invariant tests and the `addNamedSurfaces` helper pin it; the section heading names the 5a-5l range; the root README's sk-code guide gains one sentence for a hand edit of `tieBreak`.
+Review of commit `a682c06d3d` on branch `worktrees/131-tieorder-warning` (diff `c62d7d1399..a682c06d3d`): doctor check 5l in `parent-skill-check.cjs` reports, on the sk-code hub only and as a soft failure, a surface mode listed after `sk-code-skilled` in `routerPolicy.tieBreak` other than the two shipped examples; three invariant tests and the `addNamedSurfaces` helper pin it; the section heading names the 5a-5l range; the root README's sk-code guide gains one sentence for a hand edit of `tieBreak`.
 
 ## 1. Executive Summary
 
@@ -34,10 +34,10 @@ Review of commit `a682c06d3d` on branch `worktrees/131-tieorder-warning` (diff `
 
 | ID | Sev | Title | Dimension | Evidence | Disposition |
 |----|-----|-------|-----------|----------|-------------|
-| R1-P2-001 | P2 | No test pins 5l's silence on non-sk-code hubs | correctness | `parent-skill-check-invariants.test.cjs:315` | Fixed through R3-P2-001: a mutation that drops the basename gate changes nothing on a hub without `sk-code-opencode`, because the `nativeAt < 0` return still fires; the opencode-absent test pins that return. An absence assertion on the clean fixture was tried and removed, since that mutation leaves it green |
-| R1-P2-002 | P2 | The 5l FAIL message's two named fixes are not pinned | correctness | `parent-skill-check-invariants.test.cjs:482` | Fixed: the failure assertion now matches the surface, `move them ahead of "sk-code-opencode"` and `/create:skill-parent update --surfaces`; a mutation that trims the message fails it |
+| R1-P2-001 | P2 | No test pins 5l's silence on non-sk-code hubs | correctness | `parent-skill-check-invariants.test.cjs:315` | Fixed through R3-P2-001: a mutation that drops the basename gate changes nothing on a hub without `sk-code-skilled`, because the `nativeAt < 0` return still fires; the opencode-absent test pins that return. An absence assertion on the clean fixture was tried and removed, since that mutation leaves it green |
+| R1-P2-002 | P2 | The 5l FAIL message's two named fixes are not pinned | correctness | `parent-skill-check-invariants.test.cjs:482` | Fixed: the failure assertion now matches the surface, `move them ahead of "sk-code-skilled"` and `/create:skill-parent update --surfaces`; a mutation that trims the message fails it |
 | R2-P2-001 | P2 | 5l interpolates raw `tieBreak` entries into the report | security | `parent-skill-check.cjs:1173` | Rejected: `hub-router.json` is repository config at the checker's own trust level, the exit code is unaffected, and 5b, 5c, 5d, 5e, 5f and 5i interpolate the same way, so a sanitiser belongs in the shared emit helpers as its own change |
-| R3-P2-001 | P2 | The spec's edge-case silence statements are unpinned | traceability | `spec.md:156-158` | Fixed: a test asserts no 5l line on an sk-code tree whose `tieBreak` has no `sk-code-opencode`; a mutation that drops the early return fails it |
+| R3-P2-001 | P2 | The spec's edge-case silence statements are unpinned | traceability | `spec.md:156-158` | Fixed: a test asserts no 5l line on an sk-code tree whose `tieBreak` has no `sk-code-skilled`; a mutation that drops the early return fails it |
 | R4-P2-001 | P2 | 5l re-derives the mode-to-packetKind map 5i builds | maintainability | `parent-skill-check.cjs:1145`, `:1169` | Rejected: two copies of a one-line expression are not a pattern; each check stays self-contained, as the file's other checks are |
 | R5-P2-001 | P2 | `addNamedSurfaces` leaves the 5l fixtures non-canon-clean | correctness | `parent-skill-check-invariants.test.cjs:243-258` | Rejected: every 5l assertion is scoped to the 5l line, and an sk-code fixture stays red from 5k-canary whatever the helper writes, so canon-cleaning it adds writes no assertion reads |
 
@@ -88,7 +88,7 @@ No divergent pivots ran (convergence mode `default`). Iteration 5 was a second c
 
 - **Convergence:** five iterations, new-findings ratios 1, 0.33, 0.25, 0.2, 0.17; all four dimensions covered by iteration 4. `convergence.cjs` ran before each iteration and returned `STOP_BLOCKED` until coverage reached four dimensions; its ledger rows were refused by the append gateway for a payload-shape mismatch and are not in the state log. Stop: `maxIterationsReached`.
 - **Coverage:** correctness (1, 5), security (2), traceability (3), maintainability (4).
-- **Ruled out:** an off-by-one in the slice after `sk-code-opencode`, duplicate `tieBreak` entries, a transport or workflow mode misread as a surface, path traversal, secret exposure, a bypass of 5e or 5i, and a README claim that contradicts the checker.
+- **Ruled out:** an off-by-one in the slice after `sk-code-skilled`, duplicate `tieBreak` entries, a transport or workflow mode misread as a surface, path traversal, secret exposure, a bypass of 5e or 5i, and a README claim that contradicts the checker.
 - **Sources reviewed:** the three changed files, the phase spec docs, `hub-router.json` and `mode-registry.json` of sk-code, and the 5e, 5i and 5k code paths.
 
 ### Core Protocols

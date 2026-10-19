@@ -139,7 +139,7 @@ Every runtime that owns a Gate-3 delivery path — Hermes included — delivers 
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | Code writes route through `sk-code` with the `sk-code-opencode` surface checklists applied, no code comment carries an ephemeral id or spec path, and the sk-code-opencode drift guards are re-run with zero findings naming a touched file. |
+| REQ-006 | Code writes route through `sk-code` with the `sk-code-skilled` surface checklists applied, no code comment carries an ephemeral id or spec path, and the sk-code-skilled drift guards are re-run with zero findings naming a touched file. |
 | REQ-007 | The packet closes green: tasks.md checklist items tagged P0/P1/P2 with evidence markers, acceptance-criteria rows carrying `file:line` citations, the parent registers phase 049, derived metadata is regenerated after the last document edit, and both strict validations plus the completion gate pass. |
 | REQ-008 | Existing boundaries are unchanged: disabled sessions, child sessions, malformed payloads, unresolvable roots and fail-open paths keep today's decisions; the shared `AGENTS.md` prose is untouched; the commit stays local and is never pushed. |
 

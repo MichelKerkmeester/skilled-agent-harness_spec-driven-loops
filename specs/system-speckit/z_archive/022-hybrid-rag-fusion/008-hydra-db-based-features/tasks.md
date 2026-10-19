@@ -81,7 +81,7 @@ SPECKIT_TEMPLATE_SOURCE: "tasks-core | v2.2"
 - [x] T031 [W:VERIFY] Re-run targeted shared-space and retention regressions plus Hydra/doc suites in `mcp_server`
 - [x] T032 [W:VERIFY] Re-run `npx tsc --noEmit`, `npm run build`, `npm run test:hydra:phase1`, and full `npm test` in `mcp_server`
 - [x] T033 [W:VERIFY] Re-run scripts-side `npm run check`, `npm run build`, and targeted multi-CLI capture suites in `.opencode/skills/system-spec-kit/scripts`
-- [x] T034 [W:VERIFY] Re-run `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` in `.opencode/skills/system-spec-kit`
+- [x] T034 [W:VERIFY] Re-run `python3 ../sk-code-skilled/scripts/verify_alignment_drift.py --root .` in `.opencode/skills/system-spec-kit`
 - [x] T035 [W:VERIFY] Record the final closure outcome and remaining non-technical governance limits in `implementation-summary.md`
 <!-- /ANCHOR:phase-3 -->
 

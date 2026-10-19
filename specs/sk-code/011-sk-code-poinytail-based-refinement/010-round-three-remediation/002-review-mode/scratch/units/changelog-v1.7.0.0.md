@@ -26,4 +26,4 @@ The `sk-code-review` mode now detects the code surface through the shared sk-cod
 
 ## Upgrade
 
-Automation that matched the old `sk-code:code-webflow`, `sk-code:code-opencode` or `sk-code:unknown` surface tokens should match `WEBFLOW`, `OPENCODE`, `OBSIDIAN` or `UNKNOWN`. An existing cache under `.skilled/.code-review-cache/` is no longer read, so delete it.
+Automation that matched the old `sk-code:code-webflow`, `sk-code:code-skilled` or `sk-code:unknown` surface tokens should match `WEBFLOW`, `OPENCODE`, `OBSIDIAN` or `UNKNOWN`. An existing cache under `.skilled/.code-review-cache/` is no longer read, so delete it.

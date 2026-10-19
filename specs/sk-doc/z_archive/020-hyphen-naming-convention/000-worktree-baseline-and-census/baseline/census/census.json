@@ -3251,462 +3251,462 @@
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/agent_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/agent_authoring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/command_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/command_authoring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/config_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/config_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/javascript_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/mcp_server_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/mcp_server_authoring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/python_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/overview_and_p0_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/overview_and_p0_parity.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p1_required.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p1_required.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/shell_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/shell_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/skill_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/skill_authoring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/typescript_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/universal_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/universal_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/live_mode_b",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/router_mode_a",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/code_quality_gate.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/code_quality_gate.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/implementation_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/implementation_authoring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/verification_alignment.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/verification_alignment.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/config_schema.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/config_schema.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/hooks_wiring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/hooks_wiring.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/python_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/python_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/rust_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/rust_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/shell_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/shell_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/typescript_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/typescript_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/manual_testing_playbook.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/quality_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/quality_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/quick_reference.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/style_guide.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/overview_modules_and_docs.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/overview_modules_and_docs.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/security_testing_and_exemptions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/security_testing_and_exemptions.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quick_reference.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/style_guide.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/quality_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/quality_standards.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/quick_reference.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/style_guide.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/build_and_organization.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/build_and_organization.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/determinism_and_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/determinism_and_parity.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/docs_errors_and_async.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/docs_errors_and_async.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/modeling_collections_and_api.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/modeling_collections_and_api.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/overview_and_data_ownership.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/overview_and_data_ownership.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/collections_imports_and_errors.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/collections_imports_and_errors.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/determinism_parity_and_related.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/determinism_parity_and_related.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/naming_ordering_and_signatures.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/naming_ordering_and_signatures.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/overview_and_boundary_template.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/overview_and_boundary_template.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/rustdoc_and_cargo.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/rustdoc_and_cargo.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/commenting_and_rustdoc.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/formatting_and_imports.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/formatting_and_imports.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_model.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_model.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/naming_conventions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/naming_conventions.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/overview_and_file_header.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/overview_and_file_header.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/toolchain_and_project_structure.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/toolchain_and_project_structure.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/alignment_verification_automation.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/alignment_verification_automation.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/directory_and_test_conventions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/directory_and_test_conventions.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/imports_and_exports.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/imports_and_exports.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/overview_and_module_organization.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/naming_and_commenting.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/overview_and_priority_blockers.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/functions_strings_and_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/functions_strings_and_checklist.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/template_variables_and_loops.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/template_variables_and_loops.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/overview_structure_and_naming.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/overview_structure_and_naming.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/variables_functions_and_output.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/variables_functions_and_output.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/overview_and_type_system.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/overview_and_type_system.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsconfig_and_modules.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsconfig_and_modules.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsdoc_errors_and_async.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsdoc_errors_and_async.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/template_naming_and_types.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/template_naming_and_types.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide",
       "kind": "dir",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/formatting_imports_and_coexistence.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/formatting_imports_and_coexistence.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/overview_strict_and_naming.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/overview_strict_and_naming.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_implement.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_implement.md",
       "kind": "file",
       "exemption-class": "rename"
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_verify.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_verify.md",
       "kind": "file",
       "exemption-class": "rename"
     },

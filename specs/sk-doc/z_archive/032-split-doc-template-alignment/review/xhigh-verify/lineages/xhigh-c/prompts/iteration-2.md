@@ -29,7 +29,7 @@ Review Iteration: 2 of 4
 Mode: review
 Dimension: security
 Review Target: .opencode/specs/sk-doc/032-split-doc-template-alignment
-Review Scope Files: [".opencode/skills/sk-code/code-opencode/references/**/*.md",".opencode/skills/sk-code/code-opencode/assets/**/*.md",".opencode/skills/sk-code/code-webflow/references/**/*.md",".opencode/skills/sk-code/code-webflow/assets/**/*.md",".opencode/skills/sk-code/code-quality/assets/**/*.md"]
+Review Scope Files: [".opencode/skills/sk-code/code-skilled/references/**/*.md",".opencode/skills/sk-code/code-skilled/assets/**/*.md",".opencode/skills/sk-code/code-webflow/references/**/*.md",".opencode/skills/sk-code/code-webflow/assets/**/*.md",".opencode/skills/sk-code/code-quality/assets/**/*.md"]
 Prior Findings: P0=0 P1=1 P2=1
 
 ## PIVOT LINEAGE

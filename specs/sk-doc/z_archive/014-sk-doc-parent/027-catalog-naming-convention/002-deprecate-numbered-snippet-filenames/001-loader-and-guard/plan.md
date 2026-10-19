@@ -1,6 +1,6 @@
 ---
 title: "Plan: make the Lane C playbook loader number-agnostic + add a no-new-numbered-snippet guard"
-description: "Re-base the sk-doc-shape scenario gate in load-playbook-scenarios.cjs from the `^\\d{3}-.*\\.md$` filename test to a structural-plus-frontmatter content gate, teach the loader an optional `stage:` field, re-base the code-opencode-playbook-ids.vitest.ts oracle onto the same gate, and add a guard that rejects new numbered snippet files."
+description: "Re-base the sk-doc-shape scenario gate in load-playbook-scenarios.cjs from the `^\\d{3}-.*\\.md$` filename test to a structural-plus-frontmatter content gate, teach the loader an optional `stage:` field, re-base the code-skilled-playbook-ids.vitest.ts oracle onto the same gate, and add a guard that rejects new numbered snippet files."
 importance_tier: "important"
 contextType: "implementation"
 parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
@@ -55,7 +55,7 @@ already downstream, promoted to the actual membership test). `stage:` is extract
 regex style already used for `id:` / `expected_intent:`, defaulting to `routing` when absent or unrecognized,
 and attached to the scenario object alongside the existing fields. sk-code-shape playbooks
 (`parseRootIndex()`) are architecturally untouched — they never depended on the filename pattern.
-`code-opencode-playbook-ids.vitest.ts`'s `countFeatureFiles()` is a separate, hand-rolled walk that
+`code-skilled-playbook-ids.vitest.ts`'s `countFeatureFiles()` is a separate, hand-rolled walk that
 re-implements the old gate as an integrity oracle; it is re-based onto the identical content-gate condition so
 the two never drift apart again. The no-new-numbered-snippet guard is a new, standalone script mirroring the
 existing `check_no_numbered_categories.py` folder-level guard's shape (`CATEGORY_ROOTS` walk over
@@ -67,13 +67,13 @@ folder name itself.
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 ### Phase 1: Read `load-playbook-scenarios.cjs` in full (both `parseRootIndex()` and `loadYamlFrontmatterScenarios()`)
-   and `code-opencode-playbook-ids.vitest.ts` to confirm the two `^\d{3}-.*\.md$` sites and every caller of
+   and `code-skilled-playbook-ids.vitest.ts` to confirm the two `^\d{3}-.*\.md$` sites and every caller of
    `loadYamlFrontmatterScenarios()` / `loadPlaybookScenarios()`.
 ### Phase 2: Replace the basename gate at `load-playbook-scenarios.cjs:302` with the structural-plus-frontmatter content
    gate; keep the walk's directory-push logic unchanged so recursion behavior is preserved.
 ### Phase 3: Add `stage:` frontmatter parsing next to the existing `id:` / `expected_intent:` / `expected_resources:`
    extraction; default to `routing`; attach to the returned scenario object.
-### Phase 4: Re-base `countFeatureFiles()` in `code-opencode-playbook-ids.vitest.ts` onto the same content-gate
+### Phase 4: Re-base `countFeatureFiles()` in `code-skilled-playbook-ids.vitest.ts` onto the same content-gate
    condition as the loader.
 ### Phase 5: Author the no-new-numbered-snippet guard script, mirroring `check_no_numbered_categories.py`'s
    `CATEGORY_ROOTS` / exit-code / `--json` shape, scoped to per-scenario filenames.
@@ -88,7 +88,7 @@ Unit-level fixtures exercising `loadYamlFrontmatterScenarios()`: a de-numbered s
 numbered scenario file → still loaded; the root index file → NOT loaded; a non-scenario `.md` file with no
 parseable frontmatter sitting in a category subfolder → NOT loaded (negative case); a scenario with
 `stage: holdout` → surfaces `holdout`; a scenario with no `stage:` field → surfaces `routing`. Oracle test:
-re-run `code-opencode-playbook-ids.vitest.ts` against the live `code-opencode` playbook tree and confirm
+re-run `code-skilled-playbook-ids.vitest.ts` against the live `code-skilled` playbook tree and confirm
 `countFeatureFiles()` agrees with the loader's parsed count. Guard tests: a freshly created numbered snippet
 file → FAIL; a de-numbered one → PASS. Re-run the full existing skill-benchmark test suite for no regression.
 `validate.sh --strict` on this phase folder.
@@ -103,7 +103,7 @@ snippet file (ADR-002 sequencing invariant).
 
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
-`git checkout` `load-playbook-scenarios.cjs`, `code-opencode-playbook-ids.vitest.ts`, and the new guard script
+`git checkout` `load-playbook-scenarios.cjs`, `code-skilled-playbook-ids.vitest.ts`, and the new guard script
 + its fixtures. The loader change is additive-tolerant (it widens what loads, it does not narrow — every file
 that loaded under the old gate still loads under the new one), so reverting restores the prior
 number-anchored behavior with no corpus impact beyond re-losing the 10+ playbooks the old gate already drops.

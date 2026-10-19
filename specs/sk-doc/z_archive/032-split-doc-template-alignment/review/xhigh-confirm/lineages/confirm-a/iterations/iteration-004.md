@@ -16,7 +16,7 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Packet ownership and verification guidance: `spec.md:45-83`, `plan.md:23-72`, `tasks.md:23-61`, `checklist.md:23-97`, and `implementation-summary.md:37-93`.
-- Stabilization searches were requested only against the explicit `code-opencode`, `code-webflow`, and `code-quality` reference/asset roots for validator, ownership, source-of-truth, generated-content, deprecation, and maintenance-debt markers.
+- Stabilization searches were requested only against the explicit `code-skilled`, `code-webflow`, and `code-quality` reference/asset roots for validator, ownership, source-of-truth, generated-content, deprecation, and maintenance-debt markers.
 - Active-finding adjudication rereads:
   - `.opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md:21-38,287-325`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:20-65`

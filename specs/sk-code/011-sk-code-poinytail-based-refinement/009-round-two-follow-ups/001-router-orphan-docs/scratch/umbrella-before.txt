@@ -179,8 +179,8 @@ Actionable findings:
 - specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement/scratch/nc2.py:1 [PY-DOCSTRING] [WARN] Missing top-level module docstring near file top. Fix: Add a short module docstring describing purpose and usage.
 - specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement/scratch/nc3.py:1 [PY-SHEBANG] [WARN] Missing canonical Python shebang. Fix: Set first line to `#!/usr/bin/env python3`.
 - specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement/scratch/nc3.py:1 [PY-DOCSTRING] [WARN] Missing top-level module docstring near file top. Fix: Add a short module docstring describing purpose and usage.
-- specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/investigation/census.py:1 [PY-SHEBANG] [WARN] Missing canonical Python shebang. Fix: Set first line to `#!/usr/bin/env python3`.
-- specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/investigation/census.py:1 [PY-DOCSTRING] [WARN] Missing top-level module docstring near file top. Fix: Add a short module docstring describing purpose and usage.
+- specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/investigation/census.py:1 [PY-SHEBANG] [WARN] Missing canonical Python shebang. Fix: Set first line to `#!/usr/bin/env python3`.
+- specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled/scratch/investigation/census.py:1 [PY-DOCSTRING] [WARN] Missing top-level module docstring near file top. Fix: Add a short module docstring describing purpose and usage.
 - specs/system-deep-loop/036-deep-loop-innovation/scratch/gen-010-worklist.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
 - specs/system-deep-loop/036-deep-loop-innovation/scratch/regen-changed-metadata.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
 - specs/system-deep-loop/036-deep-loop-innovation/scratch/regen-metadata.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
@@ -269,7 +269,7 @@ PASS: stack-folders    (verify_stack_folders.py)
 ── router-sync      (verify_router_sync.cjs --checks 1a,2,3,4)
 PASS check 1a: machine-router paths exist and the prose maps are routed
 PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
-PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
 PASS check 4: playbook expected_resource is emitted by the router
 router-sync: 4/4 checks passed
 PASS: router-sync      (verify_router_sync.cjs --checks 1a,2,3,4)

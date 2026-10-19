@@ -1,6 +1,6 @@
 The phase goal is set. Both arms now stop on an interrupt at the first choice call: the stub exits 130, the arm prints the stop line with `partial_rows=0`, one call is recorded, and `main` still returns 0.
 
-SKILL ROUTING: compiled route → sk-code-opencode (TypeScript test under `.skilled/`). ARTIFACT: sk-code → sk-code-opencode.  
+SKILL ROUTING: compiled route → sk-code-skilled (TypeScript test under `.skilled/`). ARTIFACT: sk-code → sk-code-skilled.  
 REPO RULES: prevent-overengineering.md
 
 The scoring script is unchanged. This test file is edited and uncommitted. Nothing was committed or pushed. The orchestrator runs the vitest file next.

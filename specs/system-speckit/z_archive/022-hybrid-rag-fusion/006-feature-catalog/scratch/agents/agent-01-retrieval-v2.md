@@ -24,7 +24,7 @@ I’m scanning the retrieval catalog and cross-checking it against the actual MC
 
 I’ve got the file list and confirmed the task routes to review plus OpenCode/system-spec context. Next I’m loading the OpenCode standards and then I’ll do the per-file implementation cross-check.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● skill(system-spec-kit)
 

@@ -156,7 +156,7 @@
         "Consolidates raw findings P2-003-01, P2-004-01, P2-018-01, P2-025-01, and P2-032-01 from iterations 003, 004, 018, 025, 032, and 039.",
         ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:60-84 stores unbounded prompt-cache entries and only evicts expired entries on get.",
         ".opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/normalize-adapter-output.ts:62-118 exposes normalizeRuntimeOutput plus normalizeAdapterOutput for the same contract while in-repo consumers use the canonical name.",
-        "Exported helper surfaces in source-cache.ts, prompt-cache.ts, generation.ts, prompt-policy.ts, subprocess.ts, skill-advisor-brief.ts, and metrics.ts lack the JSDoc/TSDoc coverage expected by the local sk-code-opencode checklist."
+        "Exported helper surfaces in source-cache.ts, prompt-cache.ts, generation.ts, prompt-policy.ts, subprocess.ts, skill-advisor-brief.ts, and metrics.ts lack the JSDoc/TSDoc coverage expected by the local sk-code-skilled checklist."
       ],
       "impact": "Runtime behavior is not blocked, but maintainers inherit a broader and less documented public surface than necessary, with cache hygiene that is harder to reason about in long-lived hosts.",
       "remediation": "Add prompt-cache insertion sweeps and a size cap, remove or document the normalizer alias, and add concise doc comments or internal markings for exported advisor helper APIs.",

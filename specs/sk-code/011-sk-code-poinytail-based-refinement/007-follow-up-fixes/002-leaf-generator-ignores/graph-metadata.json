@@ -205,7 +205,7 @@
     ],
     "causal_summary": "`walkLeafFiles` in `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (lines 96 to 130) lists every regular file under a packet's `references/` and `assets/` roots, including files git ignores",
     "created_at": "2026-10-10T05:26:26Z",
-    "last_save_at": "2026-10-10T05:58:40.472Z",
+    "last_save_at": "2026-10-18T20:45:11.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c32577ad775ce9ea59a837a4e238879c246078ec0116fa62c462627036affe80",
+    "source_fingerprint": "sha256:5efc02bf1462e76e28e409ff1fd7b2b6b8811a4c98b7806128fd44943c39cab6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d88afac2a0e19a6f1a26f638fad9b57a3e2e04aaa4a043bd11491280af7d5899",
+      "spec.md": "f58c77f3d0984a10610eed4269411bee7db3463f8040f04481a1cf8c49e61dc3",
       "plan.md": "a18f27e5e0e215a3c50110ae88553fe19925ab8a63ad205cf058430161ea5150",
-      "tasks.md": "f4bc4a3445847f017f56d8d280a32d9c783ce4f4ebb295a670abce6e58ab5739",
+      "tasks.md": "28f7c90583b1476893e9579ed5a5233cccac01019f68a4b8daf918be42da93e5",
       "implementation-summary.md": "38c856db9b922790886c9bf0e95d2faa564fec517f9269883065ccb731bb5ff8"
     },
     "last_active_at": null

@@ -404,7 +404,7 @@ PHRASE_INTENT_BOOSTERS = {
 
 - **Verification:** `rg -n '"browser verification checklist"|"webflow deployment guidance"|"external tool integration via code mode"' .opencode/skills/skill-advisor/scripts/skill_advisor.py`
 
-### 11. Add the new sk-code-opencode and sk-code-full-stack PHRASE entries
+### 11. Add the new sk-code-skilled and sk-code-full-stack PHRASE entries
 
 - **Action:** `add-to-PHRASE`
 - **Target location:** `skill_advisor.py`, overlay PHRASE cluster around `899-900`
@@ -412,7 +412,7 @@ PHRASE_INTENT_BOOSTERS = {
 
 ```python
 "figma css": [("mcp-figma", 0.8), ("sk-code-web", 0.4)],
-"full stack typescript": [("sk-code-opencode", 0.8)],
+"full stack typescript": [("sk-code-skilled", 0.8)],
 "sk-code-review": [("sk-code-review", 2.8)],
 ```
 
@@ -420,13 +420,13 @@ PHRASE_INTENT_BOOSTERS = {
 
 ```python
 "figma css": [("mcp-figma", 0.8), ("sk-code-web", 0.4)],
-"mcp server code": [("sk-code-opencode", 1.8)],
-"system code style guidance": [("sk-code-opencode", 1.7)],
-"python shell json standards": [("sk-code-opencode", 1.9)],
+"mcp server code": [("sk-code-skilled", 1.8)],
+"system code style guidance": [("sk-code-skilled", 1.7)],
+"python shell json standards": [("sk-code-skilled", 1.9)],
 "full stack development workflow": [("sk-code-full-stack", 2.1)],
 "implementation testing verification flow": [("sk-code-full-stack", 1.8)],
 "detect project stack automatically": [("sk-code-full-stack", 1.6)],
-"full stack typescript": [("sk-code-opencode", 0.8)],
+"full stack typescript": [("sk-code-skilled", 0.8)],
 "sk-code-review": [("sk-code-review", 2.8)],
 ```
 
@@ -464,7 +464,7 @@ Iteration 5: regression coverage + risk analysis + new fixture cases.
 Recommended concrete scope:
 
 1. Add literal regression fixtures for `code audit`, `proposal only`, `5d scoring`, `integration scan`, `dynamic profile`, `vector search`, and `concept search`.
-2. Add regression fixtures for the 15 new PHRASE candidates, prioritizing `system-spec-kit`, `sk-code-opencode`, `sk-code-full-stack`, `sk-code-web`, and `mcp-code-mode`.
+2. Add regression fixtures for the 15 new PHRASE candidates, prioritizing `system-spec-kit`, `sk-code-skilled`, `sk-code-full-stack`, `sk-code-web`, and `mcp-code-mode`.
 3. Re-run the 44-case baseline plus the new phrase fixtures and report top-1 accuracy / confidence deltas.
 4. Call out any phrase-overlap risk cases explicitly, but keep the Phase 2 migration itself weight-stable unless a new fixture proves a regression.
 

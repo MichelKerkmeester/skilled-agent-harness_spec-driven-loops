@@ -15,7 +15,7 @@
     "system-speckit/035-retire-memory-era-tests",
     "system-speckit/040-goal-parent-single-limit",
     "system-speckit/041-write-recipe-fixes",
-    "system-speckit/046-align-runtime-code-with-sk-code-opencode",
+    "system-speckit/046-align-runtime-code-with-sk-code-skilled",
     "system-speckit/047-plugin-scanner-readiness",
     "system-speckit/048-doctor-command-audit",
     "system-speckit/049-doctor-audit-followups",

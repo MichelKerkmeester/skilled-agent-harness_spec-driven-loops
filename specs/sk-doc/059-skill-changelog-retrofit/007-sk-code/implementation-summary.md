@@ -50,7 +50,7 @@ All 29 changelogs in `../scratch/lists/sk-code.txt` now read in the sk-create-ch
 
 ### Phase 7: sk-code changelogs
 
-The wave covers the hub's 15 entries and its five packets: sk-code-obsidian (1), sk-code-opencode (2), sk-code-quality (2), sk-code-review (7) and sk-code-webflow (2).
+The wave covers the hub's 15 entries and its five packets: sk-code-obsidian (1), sk-code-skilled (2), sk-code-quality (2), sk-code-review (7) and sk-code-webflow (2).
 
 ### Files Changed
 

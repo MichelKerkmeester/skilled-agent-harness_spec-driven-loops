@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Conformance Rulings and Gate Repair"
-description: "The three mechanisms that were supposed to enforce the sk-code code-opencode standard all failed at once: the live post-edit hook stopped parsing, the mandated completion gate scans only one skill tree, and header shape is documented as a permanently manual gate. This phase repairs the enforcement mechanism, closes the comment checker's vocabulary holes with paired fixtures, amends the one documented rule that describes a repository that does not exist, and records six binding scope rulings so no later child re-litigates them. No code sweep runs in this phase."
+description: "The three mechanisms that were supposed to enforce the sk-code code-skilled standard all failed at once: the live post-edit hook stopped parsing, the mandated completion gate scans only one skill tree, and header shape is documented as a permanently manual gate. This phase repairs the enforcement mechanism, closes the comment checker's vocabulary holes with paired fixtures, amends the one documented rule that describes a repository that does not exist, and records six binding scope rulings so no later child re-litigates them. No code sweep runs in this phase."
 trigger_phrases:
   - "repair comment hygiene gate"
   - "three guard drift verifier scope"
@@ -47,7 +47,7 @@ FAILURE MODES:
 
 ## EXECUTIVE SUMMARY
 
-Every gate that was supposed to keep this repository conformant to the sk-code `code-opencode` standard was blind at the same time, and the drift population is the consequence rather than the cause. This phase makes the gate real before any batch touches code: it reconciles the duplicated hook pairs down to one installed path each and corrects the standard's pointers to name it, decides and records whether the three-guard completion wrapper should look beyond one skill tree, closes three vocabulary holes in the comment checker behind paired positive/negative fixtures, amends the documented test-filename vocabulary to the convention the repository and its own verifier already use, and records six binding scope rulings.
+Every gate that was supposed to keep this repository conformant to the sk-code `code-skilled` standard was blind at the same time, and the drift population is the consequence rather than the cause. This phase makes the gate real before any batch touches code: it reconciles the duplicated hook pairs down to one installed path each and corrects the standard's pointers to name it, decides and records whether the three-guard completion wrapper should look beyond one skill tree, closes three vocabulary holes in the comment checker behind paired positive/negative fixtures, amends the documented test-filename vocabulary to the convention the repository and its own verifier already use, and records six binding scope rulings.
 
 **Key Decisions**: header shape becomes an opt-in automated check rather than a permanently manual gate (Q4); the three-guard wrapper widens its scan root with warnings non-blocking until the sweep lands (Q5).
 
@@ -74,7 +74,7 @@ Every gate that was supposed to keep this repository conformant to the sk-code `
 
 ### Problem Statement
 
-Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed. **First**, the Claude post-edit quality adapter at `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` carried unresolved merge-conflict markers leaked in by a consolidation merge; `node --check` failed with `SyntaxError: Unexpected token '<<'`, and `.claude/settings.json:175` invokes exactly that path on every `Write|Edit`. The comment-hygiene hard gate was dead on the Claude runtime. *That specific breakage was hotfixed and landed as commit `5aeb2340b6`; `node --check` on the file is now green. What remains is that nothing would have caught it.* **Second**, `run-all-drift-guards.sh:47` invokes the alignment verifier as `--root "${SK_CODE_DIR}"`, and `SK_CODE_DIR` resolves at line 23 to `.opencode/skills/sk-code`, so the rule that every system-code completion claim must run the three-guard entry point has verified sk-code's own tree and nothing else. **Third**, exact header shape, naming, comment quality, and module/package-boundary choice are documented as permanently manual gates, so a mechanical `PASS` never meant conformance — running the verifier against `.opencode/commands/doctor/scripts` returns `PASS` on twelve files while two header-less `.cjs` diagnostics in that same set go unreported.
+Three enforcement mechanisms for the `code-skilled` standard failed independently and simultaneously, and nothing noticed. **First**, the Claude post-edit quality adapter at `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` carried unresolved merge-conflict markers leaked in by a consolidation merge; `node --check` failed with `SyntaxError: Unexpected token '<<'`, and `.claude/settings.json:175` invokes exactly that path on every `Write|Edit`. The comment-hygiene hard gate was dead on the Claude runtime. *That specific breakage was hotfixed and landed as commit `5aeb2340b6`; `node --check` on the file is now green. What remains is that nothing would have caught it.* **Second**, `run-all-drift-guards.sh:47` invokes the alignment verifier as `--root "${SK_CODE_DIR}"`, and `SK_CODE_DIR` resolves at line 23 to `.opencode/skills/sk-code`, so the rule that every system-code completion claim must run the three-guard entry point has verified sk-code's own tree and nothing else. **Third**, exact header shape, naming, comment quality, and module/package-boundary choice are documented as permanently manual gates, so a mechanical `PASS` never meant conformance — running the verifier against `.opencode/commands/doctor/scripts` returns `PASS` on twelve files while two header-less `.cjs` diagnostics in that same set go unreported.
 
 Two further defects compound this. The standard's own enforcement pointers are wrong: `naming-and-commenting.md:243-244` cites `.opencode/hooks/git/pre-commit` and `sk-code-quality/scripts/hooks/claude-posttooluse.sh`, while the installed hook is `.git/hooks/pre-commit → .opencode/scripts/git-hooks/pre-commit` — a different, larger file — and the wired post-edit adapter is the `.cjs`. Two pre-commit files and two post-edit adapters coexist. And the comment checker's vocabulary has holes: it carries no rule for `Feature catalog:` comments (four are live in the MCP save handler), and it matches three-digit `phase[\s-]\d{3}` and `specs/…` paths while missing generic `Phase 0` and `spec 019` forms.
 
@@ -100,7 +100,7 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 - Amend `directory-and-test-conventions.md` to adopt the real test-filename vocabulary, define one canonical discovery contract across `run-node-tests.mjs` and the Vitest configs including `.opencode/hooks`, and add a discovery canary.
 - Record the six binding scope rulings and the two-lane worklist doctrine as decision-record entries.
 - Capture the program baseline: the drift verifier's output per lane root, recorded as the number every later child reports its delta against.
-- Apply the border amendment to `020-sk-code-opencode-alignment` **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]**.
+- Apply the border amendment to `020-sk-code-skilled-alignment` **[OPERATOR-DECISION: Q2 — the non-runtime deep-loop border]**.
 
 ### Out of Scope
 
@@ -119,12 +119,12 @@ Make the gate real and settle the rulings, so that every subsequent child's conf
 | `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` | Modify/Delete | Same reconciliation for the post-edit adapter pair |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | Modify | Add the feature-catalog rule, the numeric-hyphen phase-path shape, and the bounded generic-label rule |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test.sh` | Modify | Paired positive/negative fixtures for each new rule |
-| `.opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md` | Modify | Correct the enforcement pointers at lines 243-244 |
-| `.opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md` | Modify | Amend the test-filename table and add the discovery contract |
-| `.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Scan-root change per Q5 |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | Opt-in exact-header flag per Q4 |
+| `.opencode/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` | Modify | Correct the enforcement pointers at lines 243-244 |
+| `.opencode/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` | Modify | Amend the test-filename table and add the discovery contract |
+| `.opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Scan-root change per Q5 |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Opt-in exact-header flag per Q4 |
 | `.opencode/scripts/run-node-tests.mjs` | Modify | Canonical discovery contract; include `.opencode/hooks`; recognise `.test.cjs` |
-| `.opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/spec.md` | Modify | Border amendment per `020-amendment.md` |
+| `.opencode/specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | Border amendment per `020-amendment.md` |
 | `decision-record.md` | Create | Six rulings, the two-lane doctrine, the Q4/Q5 decisions, the generic-label semantic boundary |
 
 ### Findings Covered (14)

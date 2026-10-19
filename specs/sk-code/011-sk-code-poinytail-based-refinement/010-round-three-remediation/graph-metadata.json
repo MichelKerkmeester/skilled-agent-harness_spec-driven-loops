@@ -151,17 +151,17 @@
     ],
     "causal_summary": "The third research round (`../001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/research.md`) recorded 50 new findings, 8 at P1 and the rest at P2, and seven recommended ideas",
     "created_at": "2026-10-10T10:07:15Z",
-    "last_save_at": "2026-10-11T05:17:04.101Z",
+    "last_save_at": "2026-10-18T20:45:14.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6c0438e0006d15e15fbd2180f3d4afb2470509c6de6eef6fc562b2e18e9d1222",
+    "source_fingerprint": "sha256:d1924b308896b166277693f7d8cef192266a8eb3c0dee2ae555a62678fc44aaa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "257f441d395c75f0eb160cb367a19554ba857eb2354c4babc19e27298d7b6099"
+      "spec.md": "5c7f4c317b8b9f177b4b9d16200bee342ea406a006ecfde5b326830a03bea8a1"
     },
     "last_active_at": null
   }

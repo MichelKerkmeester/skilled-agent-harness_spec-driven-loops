@@ -30,7 +30,7 @@ contextType: "implementation"
 
 The file names below were proposed at planning time and now exist, committed in `ee3a1b057c`. `H` is `.skilled/skills/cli-classifier`.
 
-A fresh Opus 5.5 xhigh build orchestrator sends each code task as a single-change brief to a CLI executor by Bash only, and the orchestrator session verifies, gets a cross-family review and commits (D5 of the parent goal). Code tasks follow `sk-code-opencode`, and doc tasks go through sk-doc (D6 of the parent goal).
+A fresh Opus 5.5 xhigh build orchestrator sends each code task as a single-change brief to a CLI executor by Bash only, and the orchestrator session verifies, gets a cross-family review and commits (D5 of the parent goal). Code tasks follow `sk-code-skilled`, and doc tasks go through sk-doc (D6 of the parent goal).
 
 Evidence comes from two records. The build record is `scratch/build/build-evidence.md`, with its briefs, proof and replay files beside it. The orchestrator session's record holds the host verification, both review rounds and the commits, and it wins where the two differ because it reran the gates from the final state.
 <!-- /ANCHOR:notation -->

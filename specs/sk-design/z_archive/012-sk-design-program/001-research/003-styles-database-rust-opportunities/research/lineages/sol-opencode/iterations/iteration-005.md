@@ -45,7 +45,7 @@ A shared search API would either leak both storage schemas and policy matrices i
 
 ### F5. The coordination gate is two proven consumers of one transport-neutral kernel, not three named systems
 
-Repository Rust standards require TypeScript to retain MCP schemas, daemon/CLI wiring, feature flags, fallback selection, public routing, and compatibility orchestration; Rust receives only measured kernels behind narrow adapters. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md:33-52]
+Repository Rust standards require TypeScript to retain MCP schemas, daemon/CLI wiring, feature flags, fallback selection, public routing, and compatibility orchestration; Rust receives only measured kernels behind narrow adapters. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md:33-52]
 
 Accordingly, no shared Rust search core clears today's residency or materiality gates. A phased path is: (1) let styles call the existing provider-neutral batch contract through an adapter or sidecar and collect comparable traces; (2) add a Rust inference backend only if it beats the current resident `hf-local` path or enables a required model/runtime unavailable there; (3) keep independent caches, indexes, generations, and ranking; and (4) extract a neutral versioned native artifact only after two production consumers pass identical golden vectors and justify coordinated ABI/artifact releases. `system-code-graph` remains outside unless a separately approved semantic-code-search product changes its scope.
 

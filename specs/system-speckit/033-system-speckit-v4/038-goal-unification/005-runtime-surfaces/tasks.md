@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Read ADR-5 and the injection contract and hook-system map
-- [x] T002 Load sk-create-command and the sk-code-opencode command checklist
+- [x] T002 Load sk-create-command and the sk-code-skilled command checklist
 <!-- /ANCHOR:phase-1 -->
 
 ---

@@ -1,6 +1,6 @@
 The packet goal is set. `runJevArm` runs after a passing Jev gate when the census has headroom, and the stub tests cover a full column, a rejected key, and a usage error. The two files are edited, not committed, and not pushed.
 
-SKILL ROUTING: sk-code compiled route → sk-code-opencode. ARTIFACT: sk-code → JavaScript implementation for the choice arm.
+SKILL ROUTING: sk-code compiled route → sk-code-skilled. ARTIFACT: sk-code → JavaScript implementation for the choice arm.
 
 HANDBACK
 STATUS: DONE

@@ -1,0 +1,31 @@
+ROLE: You make literal edits to one TypeScript file.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts`, `RuntimeClient.close()` returns at once when no child process exists yet. If it runs while `spawn()` is still awaiting `ensurePython()`, that startup carries on afterwards and spawns a Python runtime nobody will close.
+
+ACTION: Re-read the file. Make exactly these edits and nothing else.
+
+1. Replace the line `  private broken = false;` with these lines:
+
+  private broken = false;
+  // Set by close(); a startup still provisioning when it is set must not spawn.
+  private closed = false;
+
+2. In `private async spawn()`, directly after the closing `}` of the `try { pythonPath = await this.ensurePython(); } catch (err) { ... return; }` block, and before the line that starts `    const runtimeScript = resolvePath(`, insert:
+
+    if (this.closed) {
+      log("closed before the runtime started; not spawning");
+      return;
+    }
+
+3. In `async close()`, replace these lines:
+
+  async close(): Promise<void> {
+    const child = this.child;
+
+with:
+
+  async close(): Promise<void> {
+    this.closed = true;
+    const child = this.child;
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?` and print the output verbatim, nothing else.

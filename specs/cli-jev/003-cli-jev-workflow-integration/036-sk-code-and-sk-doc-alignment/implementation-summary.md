@@ -51,7 +51,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 28 files the 2026-09-30 audit named now meet sk-code-opencode and sk-doc, proved by their own validators, with no behavior change and no skill version bump. DeepSeek V4.1 Flash wrote each batch, MiMo v2.6 Pro reviewed the diff with `VERDICT: PASS`, and the session ran the five proof commands from the final state. The build is committed as `46d3795333` on `worktrees/071-cli-jev-sk-alignment`.
+The 28 files the 2026-09-30 audit named now meet sk-code-skilled and sk-doc, proved by their own validators, with no behavior change and no skill version bump. DeepSeek V4.1 Flash wrote each batch, MiMo v2.6 Pro reviewed the diff with `VERDICT: PASS`, and the session ran the five proof commands from the final state. The build is committed as `46d3795333` on `worktrees/071-cli-jev-sk-alignment`.
 
 ### Phase 36: sk-code-and-sk-doc-alignment
 

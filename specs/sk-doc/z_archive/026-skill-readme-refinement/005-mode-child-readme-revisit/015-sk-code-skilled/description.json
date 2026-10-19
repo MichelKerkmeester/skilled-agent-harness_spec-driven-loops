@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled",
+  "description": "The sk-code-skilled mode README at `.opencode/skills/sk-code/sk-code-skilled/README.md` still carries the older tabular reference-card style",
+  "keywords": [
+    "sk-code-skilled",
+    "mode",
+    "readme",
+    "opencode",
+    "skills",
+    "sk-code",
+    "still",
+    "carries",
+    "older",
+    "tabular",
+    "reference-card",
+    "style"
+  ],
+  "lastUpdated": "2026-08-30T07:16:20.507Z",
+  "specId": "015",
+  "folderSlug": "sk-code-skilled",
+  "parentChain": [
+    "sk-doc",
+    "026-skill-readme-refinement",
+    "005-mode-child-readme-revisit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

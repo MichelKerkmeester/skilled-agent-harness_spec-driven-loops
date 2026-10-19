@@ -105,7 +105,7 @@ Plan-time output of this loop on 2026-10-09, before any edit:
 | W1 | sk-code 0.8617 | route single `sk-code-webflow` |
 | W2 | sk-code 0.95 | route surfaceBundle `sk-code-review`, `sk-code-webflow` |
 | C1 | system-spec-kit 0.8801 | route single `sk-code-quality` |
-| C2 | sk-code 0.95 | route single `sk-code-opencode` |
+| C2 | sk-code 0.95 | route single `sk-code-skilled` |
 | B1 | sk-code 0.9448 | route single `sk-code-obsidian` |
 | B2 | sk-code 0.95 | route surfaceBundle `sk-code-review`, `sk-code-obsidian` |
 
@@ -139,7 +139,7 @@ Plan-time result: `cases 9 failures 0`, exit 0. Evaluating the proposed new case
 
 **Hub-routing rule.** `.skilled/repo-rules/skill-hub-routing.md` §3 requires the per-hub checker to run with the hub path, plus a replay of both stages: `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code`. The plan-time result was an `OK: parent-skill-check` line reporting all hard invariants passed and 0 warnings, exit 0.
 
-**Known red baseline.** `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 1 before any edit, because its `alignment-drift` guard scans the whole repository and fails on files outside sk-code, while `stack-folders` passes. Only the stack-folders verdict and the exit-code delta count here.
+**Known red baseline.** `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 1 before any edit, because its `alignment-drift` guard scans the whole repository and fails on files outside sk-code, while `stack-folders` passes. Only the stack-folders verdict and the exit-code delta count here.
 <!-- /ANCHOR:testing -->
 
 ---

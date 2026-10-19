@@ -27,7 +27,7 @@ contextType: "implementation"
 | **Framework** | `node:test` for the test file, matching `check-goal.test.cjs`. `goal-slice.cjs` for the durable-slice helpers |
 | **Storage** | `goal-criteria-labels.jsonl` beside the scripts, with ids and hashes only. Lint JSON goes to a path the operator names |
 | **Testing** | `node --test` on `scripts/tests/`, runs with stub `jev` and `cli-deem` (proposed) binaries for zero calls, `git diff --quiet` and a before-and-after `check-goal.cjs --all` for the unchanged checker |
-| **Code standard** | sk-code's OpenCode route (`sk-code/sk-code-opencode`) for the scripts and tests. sk-doc for every skill doc the phase changes (parent D6) |
+| **Code standard** | sk-code's OpenCode route (`sk-code/sk-code-skilled`) for the scripts and tests. sk-doc for every skill doc the phase changes (parent D6) |
 | **Build route** | A fresh Opus 5.5 xhigh build orchestrator writes single-change briefs and runs CLI executors by Bash only. The operator's roster of 2026-09-28 at about 20:30 set them: Devin `deepseek-v4-1-flash-max` and Pi on `llmgateway/mimo-v2.6-pro`, with Cursor retired. Pi on Cline and Cursor, first named here, did not run. The orchestrator session verifies, gets a cross-family review of the code and commits (parent D5) |
 
 ### Overview

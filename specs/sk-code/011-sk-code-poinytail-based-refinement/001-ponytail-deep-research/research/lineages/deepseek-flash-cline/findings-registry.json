@@ -384,7 +384,7 @@
       "label": "run-all-drift-guards.sh records its retired router-sync check (surface router vs compiled routing snapshot) as missing and does not point at the newer compiled-routing lane, whose activation records name hub-router.json, ROUTER.md and leaf-manifest.json as inputs; the note no longer describes current coverage. Recorded, not resolved. Classification: NEW (small, documentation staleness).",
       "iteration": 4,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:10-16,47-52",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:10-16,47-52",
         ".skilled/bin/compiled-route-sync.cjs:8-30",
         "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/activation-record.json"
       ]
@@ -395,7 +395,7 @@
       "iteration": 4,
       "sources": [
         "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45-49",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20-45"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20-45"
       ]
     },
     {
@@ -565,7 +565,7 @@
         ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/",
         ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:138",
         ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:53",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py"
       ]
     },
     {
@@ -738,7 +738,7 @@
       "label": "ORIGINAL: a retirement-note contract requiring a retired guard's umbrella to name the successor guard or record the coverage gap with a named owner; the hub's drift-guard note records the retired router-sync check as missing with neither, and the gap is acknowledged in two places. Classification: NEW/ORIGINAL.",
       "iteration": 9,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:47-52",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:43"
       ]
     },
@@ -802,7 +802,7 @@
       "label": "Phase 4 is documentation-only: give the retired router-sync check a successor or a named owner, state the external-anchor requirement for agreement guards, and add support-tier plus verified-version rows for runtime surfaces, gated on the drift guards and the commit-time mirror gate still running green. Classification: NEW.",
       "iteration": 10,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:47-52",
         "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-004.md"
       ]
     },
@@ -940,11 +940,11 @@
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11,21-29,51-60": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:11-43": 1,
     ".skilled/skills/sk-code/manual-testing-playbook/": 1,
-    ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:10-16,47-52": 1,
+    ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:10-16,47-52": 1,
     ".skilled/bin/compiled-route-sync.cjs:8-30": 1,
     "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/activation-record.json": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45-49": 1,
-    ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20-45": 1,
+    ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20-45": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/build-openclaw-skills.js:1-11,30-45": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:43": 2,
     ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:15-17": 1,
@@ -978,7 +978,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/": 1,
     ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:138": 1,
     ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:53": 1,
-    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py": 1,
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py": 1,
     ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:123": 1,
     "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:47": 1,
     "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:61": 2,
@@ -1006,7 +1006,7 @@
     ".skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:302": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/behavior.test.js:2-6": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-005.md": 3,
-    ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52": 2,
+    ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:47-52": 2,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11": 1,
     "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-002.md": 1,
     ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:44-60": 1,
@@ -1095,11 +1095,11 @@
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11,21-29,51-60": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:11-43": 1,
       ".skilled/skills/sk-code/manual-testing-playbook/": 1,
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:10-16,47-52": 1,
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:10-16,47-52": 1,
       ".skilled/bin/compiled-route-sync.cjs:8-30": 1,
       "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/activation-record.json": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/docs/agent-portability.md:45-49": 1,
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:20-45": 1,
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:20-45": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/build-openclaw-skills.js:1-11,30-45": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-rule-copies.js:43": 2,
       ".skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:15-17": 1,
@@ -1133,7 +1133,7 @@
       ".skilled/skills/sk-code/manual-testing-playbook/design-restraint/": 1,
       ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:138": 1,
       ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:53": 1,
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py": 1,
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py": 1,
       ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:123": 1,
       "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:47": 1,
       "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/research/research.md:61": 2,
@@ -1161,7 +1161,7 @@
       ".skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:302": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/tests/behavior.test.js:2-6": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-005.md": 3,
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:47-52": 2,
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:47-52": 2,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/context/scripts/check-versions.js:1-11": 1,
       "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/deepseek-flash-cline/iterations/iteration-002.md": 1,
       ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:44-60": 1,

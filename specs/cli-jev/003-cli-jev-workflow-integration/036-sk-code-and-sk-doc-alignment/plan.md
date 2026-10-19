@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 36: sk-code-and-sk-doc-alignment"
-description: "Bring the 28 files the 2026-09-30 audit names into line with sk-code-opencode and sk-doc, in five batches: header markers, bracketed stderr tags, doc prose fixes, cross-family review, and the proof run. DeepSeek V4.1 Flash writes, MiMo v2.6 Pro reviews. No behavior change and no version bump."
+description: "Bring the 28 files the 2026-09-30 audit names into line with sk-code-skilled and sk-doc, in five batches: header markers, bracketed stderr tags, doc prose fixes, cross-family review, and the proof run. DeepSeek V4.1 Flash writes, MiMo v2.6 Pro reviews. No behavior change and no version bump."
 trigger_phrases:
   - "sk code and sk doc alignment plan"
   - "header conformance batches"
@@ -40,7 +40,7 @@ The 2026-09-30 audit at `scratch/audit/findings.md` read the 130 files the cli-j
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator's ask is recorded: 2026-09-30, "Make sure all skills and things we created aligns with sk code opencode and sk doc", "Think feature catalogs, playbooks, readme's", "Use external orchestration"
+- [ ] The operator's ask is recorded: 2026-09-30, "Make sure all skills and things we created aligns with sk code skilled and sk doc", "Think feature catalogs, playbooks, readme's", "Use external orchestration"
 - [ ] The audit is present and read: `scratch/audit/findings.md`, with the fix lists C1, C2, D1 to D4, the "Recorded, not fixed" list and the baseline results
 - [ ] The 28 files and their line numbers are on disk at the audit's revision `089693d899`
 - [ ] The validators are present: `verify_alignment_drift.py`, `validate_document.py`, `hvr_scan.py`, `validate-playbook-package.cjs`, `validate_catalog_package.py`, `check-comment-hygiene.sh`
@@ -148,7 +148,7 @@ Each phase's observable check:
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | The 2026-09-30 audit at `scratch/audit/findings.md` | Internal | Read | No fix list exists |
-| sk-code-opencode and sk-doc validators | Internal | Present in the three skill trees | No proof can run |
+| sk-code-skilled and sk-doc validators | Internal | Present in the three skill trees | No proof can run |
 | Phase 035 Complete at its label gate | Internal | Complete, build `3d0641004b` | The injection-screen README row waits |
 | DeepSeek V4.1 Flash and MiMo v2.6 Pro | External, dispatched by Bash | Under the parent D5 roster | A batch waits or the phase reports the blocker |
 | The three runtime trees owned by other sessions | Internal, other sessions | In progress elsewhere | No impact. Their files are out of scope, and the staged 34-file copy fixes this phase's scan set |

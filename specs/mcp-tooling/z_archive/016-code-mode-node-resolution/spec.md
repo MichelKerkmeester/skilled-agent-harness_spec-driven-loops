@@ -107,7 +107,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | 004, 005 | Register the launcher instead of the entrypoint, gate on the declared range, and verify the launcher exists (a symlink covers the install-guides copy) |
 | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | 004 | State the real Node requirement and the refusal behavior (a symlink covers the install-guides copy) |
 | `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | 004, 005 | Diagnose a host with no satisfying interpreter, and a missing launcher |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | 004 | Record the constraint instead of restating one path |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Modify | 004 | Record the constraint instead of restating one path |
 | `.opencode/scripts/session-cleanup.sh` | Modify | 005 | Classify the launcher alongside its two sibling launchers |
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Modify | 005 | Classify the launcher alongside its two sibling launchers |
 <!-- /ANCHOR:scope -->

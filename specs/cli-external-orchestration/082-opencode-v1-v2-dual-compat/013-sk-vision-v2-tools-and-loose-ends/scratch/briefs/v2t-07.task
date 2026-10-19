@@ -1,0 +1,79 @@
+ROLE: You make literal edits to two TypeScript files. Re-read each first. Make exactly these edits and nothing else.
+
+CONTEXT: An OpenCode 1 tool resolves to a string or to `{ title?, output, metadata?, attachments? }`, where each attachment is `{ type: "file", mime, url, filename? }`. OpenCode 2's tool result is `{ content?, metadata? }`, where `content` is a string or an array of `{ type: "text", text }` and `{ type: "file", uri, mime, name? }` items.
+
+ACTION:
+
+1. In `.skilled/skills/sk-vision/vision-runtime/src/opencode/tools.ts`, replace this block:
+
+/** A tool in the shape OpenCode 2's tool editor accepts. */
+export interface V2ToolDefinition {
+  readonly name: string;
+  readonly description: string;
+  readonly input: unknown;
+  readonly execute: (input: unknown) => Promise<{ readonly content: string }>;
+}
+
+with:
+
+/** One item of an OpenCode 2 tool result's content. */
+export type V2ToolContent =
+  | { readonly type: "text"; readonly text: string }
+  | { readonly type: "file"; readonly uri: string; readonly mime: string; readonly name?: string };
+
+/** A tool in the shape OpenCode 2's tool editor accepts. */
+export interface V2ToolDefinition {
+  readonly name: string;
+  readonly description: string;
+  readonly input: unknown;
+  readonly execute: (input: unknown) => Promise<{
+    readonly content: string | readonly V2ToolContent[];
+    readonly metadata?: Readonly<Record<string, unknown>>;
+  }>;
+}
+
+2. In the same file, replace these two lines inside `toV2Tools`:
+
+      const result = await definition.execute(input as never, undefined as never);
+      return { content: typeof result === "string" ? result : result.output };
+
+with:
+
+      const result = await definition.execute(input as never, undefined as never);
+      if (typeof result === "string") return { content: result };
+      const files: V2ToolContent[] = (result.attachments ?? []).map((attachment) => ({
+        type: "file",
+        uri: attachment.url,
+        mime: attachment.mime,
+        ...(attachment.filename ? { name: attachment.filename } : {}),
+      }));
+      return {
+        content: files.length > 0 ? [{ type: "text", text: result.output }, ...files] : result.output,
+        ...(result.metadata ? { metadata: result.metadata } : {}),
+      };
+
+3. In `.skilled/skills/sk-vision/vision-runtime/src/opencode/tools.test.ts`, directly before the final line `});` of the file (the line that closes `describe("toV2Tools", () => {`), insert this test:
+
+  it("carries an object result's metadata and attachments into the OpenCode 2 result", async () => {
+    const v1 = {
+      sk_vision_status: {
+        description: "status",
+        args: {},
+        execute: async () => ({
+          output: "ok",
+          metadata: { device: "cpu" },
+          attachments: [{ type: "file" as const, mime: "image/png", url: "file:///tmp/a.png", filename: "a.png" }],
+        }),
+      },
+    } as unknown as Parameters<typeof toV2Tools>[0];
+    const [status] = toV2Tools(v1);
+    expect(await status?.execute({})).toEqual({
+      content: [
+        { type: "text", text: "ok" },
+        { type: "file", uri: "file:///tmp/a.png", mime: "image/png", name: "a.png" },
+      ],
+      metadata: { device: "cpu" },
+    });
+  });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/opencode/tools.test.ts 2>&1 | tail -4` and print the output verbatim, nothing else.

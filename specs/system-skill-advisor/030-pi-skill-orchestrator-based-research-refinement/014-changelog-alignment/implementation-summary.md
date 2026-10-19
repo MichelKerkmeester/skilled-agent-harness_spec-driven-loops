@@ -60,7 +60,7 @@ The skill advisor's changelog now follows the sk-create-changelog contract, and 
 
 **Two new advisor entries.** v0.11.2.0 records what shipped between v0.11.1.0 and packet 030, across Skilled v4.0.0.0 and v4.0.0.1. That covers the move to `.skilled`, the skill brief every hook runtime lost in v4.0.0.0 and got back in v4.0.0.1, the OpenCode status tool, the plugin cache below the checkout root, two-character executor names and compiled routes for two more hubs. v0.12.0.0 records the packet 030 hook work in the expanded format.
 
-**Seven component entries.** system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-opencode v1.0.1.0 each record packet 030's change to that component. Each `SKILL.md` took its new version, the cli-external-orchestration hub restated it in its four root artifacts, its route manifest was re-minted and the seven Hermes copies were rebuilt.
+**Seven component entries.** system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-skilled v1.0.1.0 each record packet 030's change to that component. Each `SKILL.md` took its new version, the cli-external-orchestration hub restated it in its four root artifacts, its route manifest was re-minted and the seven Hermes copies were rebuilt.
 
 **The release notes.** v4.0.0.2 gains a skill advisor sentence in its opening, a Why paragraph, a glance bullet, sections for the skill advisor, the deep loops and editing in Pi, and four upgrade notes.
 

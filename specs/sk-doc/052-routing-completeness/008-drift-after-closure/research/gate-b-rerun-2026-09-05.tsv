@@ -3,7 +3,7 @@ sk-doc	sk-create-skill	I keep pasting the same five-step checklist into every ag
 sk-doc	sk-create-skill	How do I scaffold a brand-new package with its own instructions file, templates and a router, starting from nothing?			0		0	no
 sk-doc	sk-create-skill	We need a fresh reusable capability for logging coffee orders that any agent session can call up automatically when someone mentions ordering coffee.			0		0	no
 sk-doc	sk-create-skill	What goes into building a standalone capability package from scratch, versus just writing a one-off script?			0		0	no
-sk-doc	sk-create-skill	Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed?	sk-code	sk-code-opencode	1	route	3	no
+sk-doc	sk-create-skill	Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed?	sk-code	sk-code-skilled	1	route	3	no
 sk-doc	sk-create-skill-parent	We have four related skills that keep stepping on each other. Can you merge them under one router with a shared registry?	sk-git		0		1	no
 sk-doc	sk-create-skill-parent	What's involved in setting up one hub that dispatches to several nested workflows depending on intent?			0		0	no
 sk-doc	sk-create-skill-parent	I want one identity that gets scored once by the advisor, then internally forwards to five different sub-workflows.			0		0	no
@@ -80,10 +80,10 @@ sk-code	sk-code-webflow	I just deployed a script through the CDN and the interac
 sk-code	sk-code-webflow	Does this front-end component follow our implementation and performance standards before I publish it live?			0		0	no
 sk-code	sk-code-webflow	The custom code embed on our landing page is throwing console errors after the last CMS update.	sk-code		0	defer	2	no
 sk-code	sk-code-webflow	The button on our live site doesn't match what's in the design file. Can you tell me what's different and fix the site to match?	mcp-tooling	mcp-figma	1	route	3	no
-sk-code	sk-code-opencode	This shell hook keeps failing silently. Can you figure out why the check isn't catching it?	sk-code	sk-code-opencode	1	route	1	yes
-sk-code	sk-code-opencode	Does this TypeScript module follow our internal tooling standards before I ship it?	sk-code	sk-code-opencode	1	route	1	yes
-sk-code	sk-code-opencode	I'm writing a new setup script in Python for our internal tooling. Does this follow our conventions?	sk-code	sk-code-opencode	1	route	1	yes
-sk-code	sk-code-opencode	Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why.			0		0	no
+sk-code	sk-code-skilled	This shell hook keeps failing silently. Can you figure out why the check isn't catching it?	sk-code	sk-code-skilled	1	route	1	yes
+sk-code	sk-code-skilled	Does this TypeScript module follow our internal tooling standards before I ship it?	sk-code	sk-code-skilled	1	route	1	yes
+sk-code	sk-code-skilled	I'm writing a new setup script in Python for our internal tooling. Does this follow our conventions?	sk-code	sk-code-skilled	1	route	1	yes
+sk-code	sk-code-skilled	Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why.			0		0	no
 sk-code	sk-code-mobile-cli	This screen in the mobile remote app doesn't match our ink-on-parchment palette. Can you check the components?	sk-code	sk-code-mobile-cli	1	route	1	yes
 sk-code	sk-code-mobile-cli	Does this component change respect our mobile design-system grammar before I merge it?	sk-git		0		3	no
 sk-code	sk-code-mobile-cli	Figure out why the design tokens aren't applying correctly on the handheld remote client.	sk-design		0		2	no
@@ -133,7 +133,7 @@ mcp-tooling	mcp-magicpath	I don't want to duplicate a card component that might 
 cli-external-orchestration	cli-opencode	Can you kick off this refactor as a parallel OpenCode session while I keep working here?	cli-external-orchestration	cli-opencode	1	route	3	yes
 cli-external-orchestration	cli-opencode	I want to hand this task to a separate OpenCode run and get the results back with full context.	cli-external-orchestration	cli-opencode	1	route	3	yes
 cli-external-orchestration	cli-opencode	Delegate this to a detached OpenCode session so I'm not blocked waiting on it.	cli-external-orchestration	cli-opencode	1	route	2	yes
-cli-external-orchestration	cli-opencode	I need three variations of this explored at once in OpenCode, each isolated, then reported back together.	sk-code	sk-code-opencode	1	route	1	no
+cli-external-orchestration	cli-opencode	I need three variations of this explored at once in OpenCode, each isolated, then reported back together.	sk-code	sk-code-skilled	1	route	1	no
 cli-external-orchestration	cli-claude-code	Get a second opinion from Claude Code on whether this refactor is sound.	cli-external-orchestration	cli-claude-code	1	route	3	yes
 cli-external-orchestration	cli-claude-code	Can you hand this off to Claude Code and bring the structured findings back here?	cli-external-orchestration	cli-claude-code	1	route	2	yes
 cli-external-orchestration	cli-claude-code	Dispatch this edit to Claude Code so it applies the change directly.	cli-external-orchestration	cli-claude-code	1	route	3	yes

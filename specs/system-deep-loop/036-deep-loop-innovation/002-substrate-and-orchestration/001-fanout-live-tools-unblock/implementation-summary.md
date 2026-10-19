@@ -138,7 +138,7 @@ cd .opencode/skills/system-deep-loop/runtime
 Result: exit 0.
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime
+python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime
 ```
 
 Result: exit 0; 138 files scanned; 0 errors and 0 warnings.

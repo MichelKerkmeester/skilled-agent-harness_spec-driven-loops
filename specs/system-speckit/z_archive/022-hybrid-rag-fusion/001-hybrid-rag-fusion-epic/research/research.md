@@ -1,6 +1,6 @@
 ---
 title: "Deep Research: Hybrid RAG Fusion [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/research]"
-description: "20-iteration multi-agent deep research campaign analyzing the hybrid-rag-fusion retrieval pipeline: architecture, scoring, automation, bugs, dead code, and alignment with sk-code-opencode and sk-doc standards. 25 prioritized recommendations across 7 categories."
+description: "20-iteration multi-agent deep research campaign analyzing the hybrid-rag-fusion retrieval pipeline: architecture, scoring, automation, bugs, dead code, and alignment with sk-code-skilled and sk-doc standards. 25 prioritized recommendations across 7 categories."
 trigger_phrases:
   - "hybrid"
   - "rag"
@@ -59,7 +59,7 @@ _memory:
 
 ### Request Summary
 
-Investigate the hybrid-rag-fusion system -- a 4-stage retrieval pipeline with 5 search channels, 12 scoring steps, and 32 MCP tools -- to find improvements in logic, structure, architecture, automation, UX, bugs, and misalignments with sk-code-opencode and sk-doc standards. The epic is 78.9% complete (S0-S3 done, S4-S9 pending) with 80K+ lines of spec documentation.
+Investigate the hybrid-rag-fusion system -- a 4-stage retrieval pipeline with 5 search channels, 12 scoring steps, and 32 MCP tools -- to find improvements in logic, structure, architecture, automation, UX, bugs, and misalignments with sk-code-skilled and sk-doc standards. The epic is 78.9% complete (S0-S3 done, S4-S9 pending) with 80K+ lines of spec documentation.
 
 ### Key Findings (Top 10)
 

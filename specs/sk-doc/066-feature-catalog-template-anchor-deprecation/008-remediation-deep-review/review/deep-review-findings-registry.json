@@ -549,7 +549,7 @@
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-code/leaf-manifest.json"
       ],
       "bugClass": "broken_reference",
@@ -620,20 +620,20 @@
       "id": "SL-001",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs"
       ],
       "bugClass": "command_injection",
       "disposition": "ruled_out",
       "rationale": "no shell interpretation surface exists in the shipped assets or runner",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:68",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:53",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:68",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:53",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30"
       ],
       "reason": "list-argv spawn and fully quoted shell"
     },
@@ -642,17 +642,17 @@
       "id": "SL-002",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
       "rationale": "no attacker-controlled path reaches a read of content outside the hub; guard is report-only",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:74",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:114",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:194"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:74",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:114",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:194"
       ],
       "reason": "hub-gated resolution plus read-only behavior"
     },
@@ -879,16 +879,16 @@
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-        ".skilled/skills/sk-code/sk-code-opencode/changelog",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/changelog",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md"
       ],
       "bugClass": "stale_cross_reference",
       "disposition": "ruled_out",
       "rationale": "all live consumers use kebab-case; remaining hits are historical prose",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md:21",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+        ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md:21",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30"
       ],
       "reason": "no live consumer broken"
     },
@@ -970,7 +970,7 @@
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         ".skilled/skills/sk-code/leaf-manifest.json"
       ],
       "bugClass": "broken_reference",
@@ -1041,20 +1041,20 @@
       "id": "SL-001",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs"
       ],
       "bugClass": "command_injection",
       "disposition": "ruled_out",
       "rationale": "no shell interpretation surface exists in the shipped assets or runner",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:68",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:53",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:68",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:53",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30"
       ],
       "proof": "list-argv spawn and fully quoted shell"
     },
@@ -1063,17 +1063,17 @@
       "id": "SL-002",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
       "rationale": "no attacker-controlled path reaches a read of content outside the hub; guard is report-only",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:74",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:114",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:194"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:74",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:114",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:194"
       ],
       "proof": "hub-gated resolution plus read-only behavior"
     },
@@ -1300,16 +1300,16 @@
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-        ".skilled/skills/sk-code/sk-code-opencode/changelog",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        ".skilled/skills/sk-code/sk-code-skilled/changelog",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md"
       ],
       "bugClass": "stale_cross_reference",
       "disposition": "ruled_out",
       "rationale": "all live consumers use kebab-case; remaining hits are historical prose",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md:21",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30"
+        ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md:21",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30"
       ],
       "proof": "no live consumer broken"
     },

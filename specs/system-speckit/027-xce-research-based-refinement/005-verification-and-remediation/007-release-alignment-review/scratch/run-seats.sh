@@ -7,7 +7,7 @@ set -uo pipefail
 ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 P007="$ROOT/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review"
 A="$P007/001-readmes-vs-027/review/seats"
-B="$P007/002-code-vs-sk-code-opencode/review/seats"
+B="$P007/002-code-vs-sk-code-skilled/review/seats"
 LOG="$P007/scratch/progress.log"
 
 POOL=10

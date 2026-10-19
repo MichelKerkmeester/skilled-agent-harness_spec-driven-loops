@@ -8,7 +8,7 @@ description: "Discovery-only symlinks for the repository's Codex hook scripts; r
 
 ## 1. OVERVIEW
 
-`.codex/hooks/` contains 19 symlinks to hook scripts owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, and `post-edit-quality.cjs` target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)); the rest target their owning skill under `.skilled/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
+`.codex/hooks/` contains 22 symlinks to hook scripts owned under `.skilled/`. `mcp-route-guard.cjs`, `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `post-edit-quality.cjs`, and the three session-relaunch adapters (`context-nudge.mjs`, `prompt-seed.mjs`, `stop-arm.mjs`) target `.skilled/hooks/` (the fully-portable guard cores, see [`hooks/README.md`](../../.skilled/hooks/README.md)). The rest target their owning skill under `.skilled/skills/`. Codex executes the real paths declared in `.codex/hooks.json`. The user-global Codex hook file is managed separately by the repository installer and should not be repointed to this mirror.
 
 Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
@@ -20,7 +20,7 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 |--------|----------------|-------------------|
 | `session-start.js` | No output | Valid `SessionStart` envelope |
 | `user-prompt-submit.js` | No output | Valid `UserPromptSubmit` envelope |
-| Other 17 scripts | Matches real-path behavior | Authoritative runtime behavior |
+| Other 20 scripts | Matches real-path behavior | Authoritative runtime behavior |
 
 ---
 
@@ -32,7 +32,10 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 | Spec and completion gates | `spec-gate-classify.mjs`, `spec-gate-enforce.mjs`, `completion-evidence-stop.cjs` |
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs` |
 | Edit quality | `post-edit-quality.cjs` |
+| Session relaunch | `context-nudge.mjs`, `prompt-seed.mjs`, `stop-arm.mjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh`, `git-live-follow.sh`, `git-preflight-advisory.mjs`, `git-primary-reconcile.sh`, `git-message-gate.mjs` |
+
+The session-relaunch row backs the `skilled-loop` wrapper's automatic hop. `skilled-loop codex` always starts Codex with `--no-daemon` because Codex's shared app-server daemon keeps the environment of the session that started it, so a later loop's hooks would see a stale `SKILLED_LOOP_ID`. In a git worktree, Codex loads the main checkout's `.codex/hooks.json` rather than the worktree's, so the automatic hop needs the session-relaunch rows in the main checkout.
 
 ---
 
