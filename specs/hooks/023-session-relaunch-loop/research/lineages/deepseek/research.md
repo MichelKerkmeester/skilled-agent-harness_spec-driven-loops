@@ -87,7 +87,7 @@ The Claude adapter checks `background_tasks` only when `record.status === 'pendi
 ### Theme C: The spec-folder boundary
 
 **C1. `handoffText` interpolates the spec-folder value into note frontmatter without validation.**
-The value is copied into `spec_folder: ${specValue}` [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:93] from `SYSTEM_SPEC_FOLDER` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:338] [SOURCE: .opencode/plugins/session-relaunch.js:159] or the hook payload [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:123] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106]. A newline injects extra frontmatter keys.
+The value is copied into `spec_folder: ${specValue}` [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:93] from `SYSTEM_SPEC_FOLDER` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:338] [SOURCE: .opencode/plugins/session-relaunch.js:159] or the hook payload [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:108] [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106]. A newline injects extra frontmatter keys.
 **Fix:** normalize at the boundary: accept `none` or `validSpecFolder`, otherwise `undefined`, and log the drop.
 
 **C2. The "exact shape" example invites copying an invalid placeholder.**
@@ -95,7 +95,7 @@ The block introduced as the exact note shape prints a long placeholder in the va
 **Fix:** print an empty `spec_folder:` in the example and keep the three allowed forms in the guidance line.
 
 **C3. The environment reference claims a payload producer that does not exist.**
-It says Claude and Codex take `spec_folder` from the hook payload [SOURCE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:113], and the adapters read `payload.spec_folder` [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106] [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:123], but only tests set it [SOURCE: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:156]. The value that actually reaches the seed is the one the model writes into the note, which `consume` reads [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:509].
+It says Claude and Codex take `spec_folder` from the hook payload [SOURCE: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md:113], and the adapters read `payload.spec_folder` [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:106] [SOURCE: .skilled/hooks/session-relaunch/claude/context-nudge.mjs:108], but only tests set it [SOURCE: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:156]. The value that actually reaches the seed is the one the model writes into the note, which `consume` reads [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:509].
 **Fix:** document the note as the carrier and describe the payload field as an optional override, or remove the claim and the dead reads.
 
 ### Theme D: Core record validation
