@@ -618,11 +618,13 @@ function createCorruptionError(stateLogPath, corruptionWarnings) {
  * Returns null if the record is malformed or missing required fields.
  *
  * Delta record shape (live schema):
- *   { type:"finding", iteration, id, severity, status, title, file, findingClass,
+ *   { type:"finding", iteration, id|findingId, severity, status, title, file, findingClass,
  *     claim|recommendation|evidence, evidenceRefs, finalSeverity? }
  */
 function deltaRecordToFinding(record) {
-  if (!record || record.type !== 'finding' || !record.id) {
+  // The producer keys the row `id` or `findingId`; either names the same finding.
+  const id = record ? record.id || record.findingId : null;
+  if (!record || record.type !== 'finding' || !id) {
     return null;
   }
   const file = typeof record.file === 'string' ? record.file : null;
@@ -648,7 +650,7 @@ function deltaRecordToFinding(record) {
     record.claim || record.recommendation || record.alternativeExplanation || '',
   );
   return {
-    findingId: record.id,
+    findingId: id,
     severity,
     title: normalizeText(record.title || ''),
     file: fileBase,
@@ -786,6 +788,51 @@ function countFindingsSeenInRun(findingById, run) {
       continue;
     }
     if (finding.firstSeen <= run && finding.lastSeen >= run) {
+      counts[finding.severity] += 1;
+    }
+  }
+  return counts;
+}
+
+// A summary whose severity counts add up to the record's findingsCount is the
+// running total of active findings rather than the run's own count, so what it
+// represents is every finding still open when the run closed. A per-run sum that
+// matches findingsCount by chance is read as cumulative, which errs toward fewer padded rows.
+function summaryIsCumulative(record) {
+  const summary = normalizeSummaryCounts(record);
+  if (!summary || !isFiniteNumber(record.findingsCount)) {
+    return false;
+  }
+  const total = SEVERITY_KEYS.reduce((sum, severity) => sum + summary[severity], 0);
+  return total === record.findingsCount;
+}
+
+// resolvedFindings names the ids the state closed at a run; a finding resolved
+// at-or-before the summarized run is not part of that run's active total.
+function resolvedIdsSeenByRun(records, run) {
+  const resolvedIds = new Set();
+  for (const record of Array.isArray(records) ? records : []) {
+    if (record?.type !== 'iteration') {
+      continue;
+    }
+    const resolvedRun = getIterationRun(record);
+    if (!isFiniteNumber(resolvedRun) || resolvedRun > run) {
+      continue;
+    }
+    for (const id of Array.isArray(record.resolvedFindings) ? record.resolvedFindings : []) {
+      resolvedIds.add(id);
+    }
+  }
+  return resolvedIds;
+}
+
+function countFindingsActiveByRun(findingById, run, resolvedIds) {
+  const counts = zeroSeverityMap();
+  for (const finding of findingById.values()) {
+    if (!SEVERITY_KEYS.includes(finding.severity)) {
+      continue;
+    }
+    if (finding.firstSeen <= run && !resolvedIds.has(finding.findingId)) {
       counts[finding.severity] += 1;
     }
   }
@@ -990,7 +1037,8 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   for (const [run, findings] of deltaFindingsByRun) {
     for (const finding of findings) noteStructuredId(run, finding.findingId);
   }
-  for (const record of [...iterationRecords, ...deltaRecords]) {
+  const mergedRecords = [...iterationRecords, ...deltaRecords];
+  for (const record of mergedRecords) {
     const run = getIterationRun(record);
     if (record?.type === 'iteration' && isFiniteNumber(run)
       && Array.isArray(record.findingDetails) && record.findingDetails.length > 0) {
@@ -1027,7 +1075,9 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
         ? record.dimensions.map((value) => normalizeText(value).toLowerCase()).filter(Boolean)
         : [],
     };
-    const representedCounts = countFindingsSeenInRun(findingById, run);
+    const representedCounts = summaryIsCumulative(record)
+      ? countFindingsActiveByRun(findingById, run, resolvedIdsSeenByRun(mergedRecords, run))
+      : countFindingsSeenInRun(findingById, run);
     const fallbackFindings = fallbackFindingsFromIterationRecord(record, run, representedCounts);
     for (const finding of fallbackFindings) {
       upsertFinding(
@@ -1041,7 +1091,7 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   }
 
   const resolvedIdSet = new Set();
-  for (const record of iterationRecords) {
+  for (const record of mergedRecords) {
     if (Array.isArray(record.resolvedFindings)) {
       for (const id of record.resolvedFindings) {
         resolvedIdSet.add(id);
