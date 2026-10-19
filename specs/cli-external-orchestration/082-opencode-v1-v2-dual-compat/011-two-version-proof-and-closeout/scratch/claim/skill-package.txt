@@ -1,0 +1,3 @@
+Skill: .skilled/skills/cli-external-orchestration/cli-opencode
+Detected kind: standalone
+- package_skill.py --check: PASS (exit 0)

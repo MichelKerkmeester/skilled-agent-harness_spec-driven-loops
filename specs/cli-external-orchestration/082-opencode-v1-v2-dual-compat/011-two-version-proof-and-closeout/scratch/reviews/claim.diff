@@ -1,0 +1,130 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+index 9ac4762ef3..3d49157dd3 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -50,6 +50,8 @@ It does not write application code or manage spec folders. `sk-code` owns code s
+ | **Provider and model surface** | reaches every configured provider catalog through `references/providers-and-models.md`, which is the roster |
+ | **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
++
+ ---
+ 
+ ## 3. QUICK START
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+index 4f4e338666..10d4e8ad33 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+@@ -131,6 +131,8 @@ The `route_opencode_resources(task)` body lives in [`shared-smart-router.md`](..
+ 
+ ### Prerequisites
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
++
+ ```bash
+ # Binary pick and version check: references/install-and-versions.md §4-5.
+ OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for b in opencode2 opencode; do [ -f "$d/$b" ] && [ -x "$d/$b" ] && OC="$d/$b" && break 2; done; done; unset IFS; fi
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+index 68b183c684..58e1e6c8bb 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+@@ -40,6 +40,8 @@ The calling AI decides WHAT to delegate. The agent's frontmatter shapes HOW the
+ 
+ This separation of concerns is load-bearing for the cli-opencode skill: the calling AI owns the task graph and the integration step, while the dispatched OpenCode session owns the per-task execution under the agent's tool permissions and system prompt.
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. ORCHESTRATION MODEL
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+index 6b91e92466..bca77287c5 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+@@ -47,6 +47,8 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
+ | **Version baseline** | OpenCode 2: 2.0.32 |
+ | **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. INSTALLATION
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+index 31e7461d2d..d265712ad3 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+@@ -31,6 +31,8 @@ Consult this reference when composing a bounded cli-opencode prompt and you need
+ 
+ Keep prompts within the selected model window. Apply the truncation marker and eviction discipline below so callers compose bounded prompts without a drift-prone ruleset.
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. WHY CLI-OPENCODE RECORDS BUDGET SEMANTICS
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+index 2034f9f251..3c41f5c868 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+@@ -32,6 +32,8 @@ Read this before any non-interactive `opencode run` deep-loop dispatch that uses
+ 
+ An instruction-only scope guard layered on `--dangerously-skip-permissions` is the root cause. Neither layer alone is sufficient, so prevention must add an enforced capability boundary, not more prose.
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. INCIDENT (2026-05-04)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
+index daa42ab0a0..56265c8cdf 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
+@@ -56,6 +56,8 @@ Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin
+ | `../scripts/opencode-setup.sh` | The helper that builds any of the three layouts |
+ | `./cli-reference.md` | Subcommands, `run` flags and the version-drift section |
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in this reference.
++
+ ---
+ 
+ ## 2. PREREQUISITES
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+index 2978151c04..0e2ac35963 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+@@ -33,6 +33,8 @@ cli-opencode resolves this by documenting THREE orthogonal use cases. The smart
+ 
+ The cycle ADR-001 protects against is the operator inside OpenCode asking cli-opencode to "delegate this exact prompt to OpenCode". That case is REFUSED at the routing layer.
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. USE CASE 1: EXTERNAL RUNTIME TO OPENCODE
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+index 94703a7a46..e3f20f181e 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+@@ -32,6 +32,8 @@ The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or
+ 
+ The cli-opencode skill exists because no sibling provides this. It is the bridge between an external AI and the full plugin / skill / MCP runtime this repo defines.
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. FULL PLUGIN, SKILL, AND MCP RUNTIME
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+index c2c3f3ffbb..dd5ca52d92 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+@@ -36,6 +36,8 @@ This file enumerates the provider/model/effort facts and the dispatch envelope.
+ - Dispatch envelope + failure-mode matrix → [integration-patterns.md](./integration-patterns.md)
+ - Live model ids on a given install → `opencode models <provider>`
+ 
++**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
++
+ ---
+ 
+ ## 2. PROVIDERS & MODELS

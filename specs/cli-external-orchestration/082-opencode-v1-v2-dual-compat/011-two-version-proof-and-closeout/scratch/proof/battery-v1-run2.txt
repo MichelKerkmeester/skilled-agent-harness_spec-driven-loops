@@ -1,0 +1,36 @@
+PASS v1 family-present: a v1 binary is installed
+  /Users/michelkerkmeester/.local/bin/opencode
+PASS v1 plugin-discovered: all 16 plugin files discovered
+  classifier-injection-screen.js
+  cli-dispatch-audit.js
+  codex-hooks-watchdog.js
+  mcp-route-guard.js
+  opencode-goal.js
+  session-cleanup.js
+  sk-code-post-edit-quality.js
+  sk-git-message-gate.js
+  sk-git-preflight-advisory.js
+  sk-vision.js
+  system-completion-sentinel.js
+  system-deep-loop-guard.js
+  system-dist-freshness-guard.js
+  system-skill-advisor.js
+  system-spec-gate.js
+  system-speckit-completion.js
+PASS v1 plugin-load: all 16 plugin files loaded
+  classifier-injection-screen.js
+  cli-dispatch-audit.js
+  codex-hooks-watchdog.js
+  mcp-route-guard.js
+  opencode-goal.js
+  session-cleanup.js
+  sk-code-post-edit-quality.js
+  sk-git-message-gate.js
+  sk-git-preflight-advisory.js
+  sk-vision.js
+  system-completion-sentinel.js
+  system-deep-loop-guard.js
+  system-dist-freshness-guard.js
+  system-skill-advisor.js
+  system-spec-gate.js
+  system-speckit-completion.js

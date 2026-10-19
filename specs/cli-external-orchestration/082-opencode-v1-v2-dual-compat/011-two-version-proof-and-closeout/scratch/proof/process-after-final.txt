@@ -1,0 +1,4 @@
+1463 Mon Oct 19 05:36:35 2026  /Users/michelkerkmeester/.local/bin/opencode --version
+46220 Sun Oct 18 12:18:22 2026  /Users/michelkerkmeester/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe serve --service
+pid 46220 child-var names: SYSTEM_SPEC_GATE_ENFORCE= 
+pid 46220 OPENCODE_DB basename: opencode-v2.db

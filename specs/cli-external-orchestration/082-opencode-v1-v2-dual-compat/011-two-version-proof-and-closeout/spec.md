@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Branch** | `scaffold/011-two-version-proof-and-closeout` |
 | **Parent Spec** | ../spec.md |
@@ -219,6 +219,6 @@ The whole tree loads and runs on OpenCode 1.19.3 and 2.0.32, with every suite at
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- The brief names the orchestrator as the only executor for this phase. D6 routes doc writes to DeepSeek and review to Luna. This spec follows D6 for the claim text, and the orchestrator runs every other step. The orchestrator decides the route before the claim is written.
-- D8 needs a verification date. This plan uses the date of the battery run that passes on both versions. A run that fails on either version sets no date.
+- Answered: the claim text went to DeepSeek and its review to Luna, as D6 requires, and the orchestrator ran every other step (`scratch/decisions.txt` 0).
+- Answered: the verification date is 2026-10-19, the day all six battery runs passed on both versions (`scratch/proof/battery-exits.txt`).
 <!-- /ANCHOR:questions -->

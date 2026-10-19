@@ -131,6 +131,8 @@ The `route_opencode_resources(task)` body lives in [`shared-smart-router.md`](..
 
 ### Prerequisites
 
+**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
+
 ```bash
 # Binary pick and version check: references/install-and-versions.md §4-5.
 OC=${OPENCODE_BIN:-}; if [ -z "$OC" ]; then IFS=:; for d in $PATH; do for b in opencode2 opencode; do [ -f "$d/$b" ] && [ -x "$d/$b" ] && OC="$d/$b" && break 2; done; done; unset IFS; fi

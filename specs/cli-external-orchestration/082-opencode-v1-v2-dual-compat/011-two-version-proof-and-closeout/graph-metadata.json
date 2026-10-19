@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,8 +42,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".hermes/skills/cli-opencode/SKILL.md",
+      "scratch/proof/battery-exits.txt",
+      "scratch/validate-recursive.txt",
+      ".github/workflows/opencode-dual-version.yml",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md"
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      "scratch/decisions.txt"
     ],
     "entities": [
       {
@@ -85,13 +91,43 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "path": ".hermes/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "battery-exits.txt",
+        "kind": "file",
+        "path": "scratch/proof/battery-exits.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-recursive.txt",
+        "kind": "file",
+        "path": "scratch/validate-recursive.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "decisions.txt",
+        "kind": "file",
+        "path": "scratch/decisions.txt",
         "source": "derived"
       },
       {
@@ -159,41 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The build spans eleven phase children",
     "created_at": "2026-10-18T12:45:10Z",
-    "last_save_at": "2026-10-18T13:08:49.597Z",
+    "last_save_at": "2026-10-19T04:09:31.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a486011cf91b0c484d1bb7dfdc2736f583687a62670919a87aabb406228e30f",
+    "source_fingerprint": "sha256:c1ce1f2b06dbd9c373b57b48e2adb2a32a1be2dca84af64fe66b5022c8ee66a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d72477f33242514e851cca273337c5b4fa8b9bcc0b616e845484962daea4c3e2",
+      "spec.md": "d36915a8f8cb8139f80c20c1bdced6ec1bd953a189d5fc2f38aff403930368c5",
       "plan.md": "3b3520898f8b1402419fdb16bcd26894f3cf05cd21bd4c88d14bc4b2512f3976",
-      "tasks.md": "7c08f2387a444fd27e8e190889f1c44276569107dd2192c96188c57a73828901",
-      "implementation-summary.md": "c57eee31444fa8e38ec4115d8edb8bac4eaf00b102f9978c06be50e9b1124d4b"
+      "tasks.md": "80d95516fa66817a37607674e39ec2b05b48288aaaaf5fba2b3d29a99681e04c",
+      "implementation-summary.md": "921a273daf550bd7ee7626df572d638f337635e832566078ba33be75e113d39e"
     },
     "last_active_at": null
   }

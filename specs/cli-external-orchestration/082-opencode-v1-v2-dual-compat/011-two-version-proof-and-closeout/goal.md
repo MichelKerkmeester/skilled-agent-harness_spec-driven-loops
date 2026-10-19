@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-011-two-version-proof-and-closeout"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] Every suite in `001-unknowns-and-baseline/baseline.json` passes at or above its recorded pass count
-- [ ] The doctor battery exits 0 on OpenCode 1.19.3 and on OpenCode 2.0.32
-- [ ] `validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` prints `RESULT: PASSED`
-- [ ] No acceptance row in phases 001 to 011 is Unmet, and every Met row carries evidence
-- [ ] `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` contains the scoped claim with OpenCode 1.19.3, OpenCode 2.0.32 and the verification date
+- [x] Every suite in `001-unknowns-and-baseline/baseline.json` passes at or above its recorded pass count
+- [x] The doctor battery exits 0 on OpenCode 1.19.3 and on OpenCode 2.0.32
+- [x] `validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` prints `RESULT: PASSED`
+- [x] No acceptance row in phases 001 to 011 is Unmet, and every Met row carries evidence
+- [x] `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` contains the scoped claim with OpenCode 1.19.3, OpenCode 2.0.32 and the verification date
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,13 +77,17 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning documents filled | Done | The six documents in this folder, written from the phase 011 brief and research sections 1, 8 and 11 |
-| Whole-tree proof | Pending | None yet |
-| Scoped claim | Pending | None yet |
-| Reconciliation and recursive validation | Pending | None yet |
+| Whole-tree proof | Done | Ten suites at or above baseline from the final tree, battery exit 0 three times per version, dispatch audit as expected, one live dispatch per version exit 0, drift guards exit 0 (`proof.md`) |
+| Scoped claim | Done | D8 verbatim, dated 2026-10-19, in SKILL.md, the README and eight references; Luna PASS; package checks exit 0; manifest re-minted (`proof.md` Scoped claim) |
+| Reconciliation and recursive validation | Done | Parent rows 1 to 11 Complete; no Unmet row in any child; recursive strict RESULT: PASSED (`scratch/validate-recursive.txt`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Claim executor | The brief names the orchestrator as the only executor for this phase. D6 routes doc writes to DeepSeek and review to Luna. The plan follows D6 for the claim text, and the open question in spec.md stays open until the orchestrator decides. |
+| Event correction | The live smoke runs showed both versions emit `step_start`, `tool_use`, `text` and `step_finish` with `sessionID`, which the docs did not say. The fix went back to phase 010 as an amendment before the claim (`scratch/decisions.txt` 1) |
+| Claim placement | One claim paragraph per doc that names a version, not one per mention (`scratch/decisions.txt` 2) |
+| Writer route | DeepSeek ran through cli-pi on llmgateway, since the devin quota was spent; same model (`scratch/decisions.txt` 0) |
+| Local commit | Spec.md lists committing as out of scope; the operator's standing approval covers a local commit per phase. No push (`scratch/decisions.txt` 9) |
 <!-- /ANCHOR:log -->

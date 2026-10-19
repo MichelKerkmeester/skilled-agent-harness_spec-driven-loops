@@ -127,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -152,6 +146,12 @@
       },
       {
         "name": "Phase Transition Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -219,7 +219,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-19T03:29:05.914Z",
+    "last_save_at": "2026-10-19T04:08:12.563Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -227,10 +227,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:0011f63656fea54adf65285f3f4814ade7c72e265a9ae88a91bc3f591cd5fb98",
+    "source_fingerprint": "sha256:1a36e9968db8371683967f5410929b86666c171697a50ad3326b41265de37409",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ef5eec6204c41b9eddac60d63537a3d925b23c5e4ea8c1758b40da92d313aa62",
+      "spec.md": "c445e86840320d7199bb47c633bfbe38181a1bca5ff6f7349c7baffdee573809",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

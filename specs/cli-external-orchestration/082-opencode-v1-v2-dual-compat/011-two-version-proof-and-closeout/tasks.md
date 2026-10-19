@@ -33,10 +33,10 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `../001-unknowns-and-baseline/baseline.json` and create `proof.md` with one row for each suite and its baseline count (`proof.md`) (orchestrator)
-- [ ] T002 Record the output of `opencode --version` and `opencode2 --version` in `proof.md` (`proof.md`) (orchestrator)
-- [ ] T003 [P] Save a pre-claim copy of `cli-opencode/SKILL.md`, its README and its references under `scratch/pre-claim/` (`scratch/pre-claim/`) (orchestrator)
-- [ ] T004 [P] Save a pre-reconcile copy of the parent `spec.md`, the parent `goal.md` and each child's `implementation-summary.md` and `acceptance-criteria.md`, under `scratch/pre-reconcile/` (`scratch/pre-reconcile/`) (orchestrator)
+- [x] T001 Read `../001-unknowns-and-baseline/baseline.json` and create `proof.md` with one row for each suite and its baseline count (`proof.md`) (orchestrator) Done: proof.md, one row per suite with its baseline.
+- [x] T002 Record the output of `opencode --version` and `opencode2 --version` in `proof.md` (`proof.md`) (orchestrator) Done: 1.19.3 and opencode v2.0.32, exit 0 each (scratch/proof/versions.txt).
+- [x] T003 [P] Save a pre-claim copy of `cli-opencode/SKILL.md`, its README and its references under `scratch/pre-claim/` (`scratch/pre-claim/`) (orchestrator) Done, then removed at closeout (decision 8).
+- [x] T004 [P] Save a pre-reconcile copy of the parent `spec.md`, the parent `goal.md` and each child's `implementation-summary.md` and `acceptance-criteria.md`, under `scratch/pre-reconcile/` (`scratch/pre-reconcile/`) (orchestrator) Done, then removed at closeout (decision 8).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,12 +44,12 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Proof
 
-- [ ] T005 Run each plugin test file named in the baseline with `node --test`, and record each pass count in `proof.md` (orchestrator)
-- [ ] T006 Run `node --test .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, and record each pass count in `proof.md` (orchestrator)
-- [ ] T007 Run the cli-opencode suite named in the baseline, and run `npm test` in `.skilled/skills/system-deep-loop/runtime/`. Record each pass count in `proof.md` (orchestrator)
-- [ ] T008 Run `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` against OpenCode 1.19.3, repeat until the count is stable and record the exit status and output in `proof.md` (orchestrator)
-- [ ] T009 Run `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` against OpenCode 2.0.32, repeat until the count is stable and record the exit status and output in `proof.md`. Never restart or stop the v2 background service (orchestrator)
-- [ ] T010 Compare every count with the baseline and record the delta in `proof.md`. Stop here, and route the failure to its owning phase, if a count is below its baseline or a battery exits non-zero (orchestrator)
+- [x] T005 Run each plugin test file named in the baseline with `node --test`, and record each pass count in `proof.md` (orchestrator) Done: plugins 355 pass, 0 fail.
+- [x] T006 Run `node --test .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, and record each pass count in `proof.md` (orchestrator) Done: guard node 29 pass and vitest 106 passed.
+- [x] T007 Run the cli-opencode suite named in the baseline, and run `npm test` in `.skilled/skills/system-deep-loop/runtime/`. Record each pass count in `proof.md` (orchestrator) Done: deep-loop 2742 passed, 8 skipped. The baseline names no separate cli-opencode suite (decision 4).
+- [x] T008 Run `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` against OpenCode 1.19.3, repeat until the count is stable and record the exit status and output in `proof.md` (orchestrator) Done: three runs, exit 0 each, 16 of 16 loaded.
+- [x] T009 Run `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` against OpenCode 2.0.32, repeat until the count is stable and record the exit status and output in `proof.md`. Never restart or stop the v2 background service (orchestrator) Done: three runs, exit 0 each, 16 of 16 active, 57 skills. PID 46220 untouched.
+- [x] T010 Compare every count with the baseline and record the delta in `proof.md`. Stop here, and route the failure to its owning phase, if a count is below its baseline or a battery exits non-zero (orchestrator) Done: no count below baseline (proof.md).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,10 +57,10 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Claim
 
-- [ ] T011 Write the D8 claim into `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`, with the verification date from T008 and T009. Add the same wording to the README and references where they name a version (`cli-opencode/SKILL.md`) (DeepSeek through cli-devin, persona inlined)
-- [ ] T012 Review the claim text against D8 and return findings only. Flag any word that claims more than the two pinned versions (`cli-opencode/SKILL.md`) (Luna through cli-codex)
-- [ ] T013 Fix each finding from T012 with the minimal edit, if T012 returns any (`cli-opencode/SKILL.md`) (DeepSeek through cli-devin)
-- [ ] T014 Run `validate_document.py` with the skill type on `cli-opencode/SKILL.md` and `validate_skill_package.py` on the cli-opencode folder and record each exit status in `proof.md` (orchestrator)
+- [x] T011 Write the D8 claim into `.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`, with the verification date from T008 and T009. Add the same wording to the README and references where they name a version (`cli-opencode/SKILL.md`) (DeepSeek through cli-devin, persona inlined) Done: SKILL.md, the README and eight references, dated 2026-10-19 (DeepSeek through cli-pi, decision 0).
+- [x] T012 Review the claim text against D8 and return findings only. Flag any word that claims more than the two pinned versions (`cli-opencode/SKILL.md`) (Luna through cli-codex) Done: Luna PASS, no finding (scratch/reviews/review-claim-luna.txt).
+- [x] T013 Fix each finding from T012 with the minimal edit, if T012 returns any (`cli-opencode/SKILL.md`) (DeepSeek through cli-devin) Done: nothing to fix.
+- [x] T014 Run `validate_document.py` with the skill type on `cli-opencode/SKILL.md` and `validate_skill_package.py` on the cli-opencode folder and record each exit status in `proof.md` (orchestrator) Done: exit 0 each (scratch/claim/).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,11 +68,11 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Reconcile and Close
 
-- [ ] T015 Update the parent phase map statuses so that each child's status matches its `implementation-summary.md` (`../spec.md`) (orchestrator)
-- [ ] T016 Add the closeout entry to the parent log, and leave the parent directive unchanged (`../goal.md`) (orchestrator)
-- [ ] T017 Fill the Evidence cell of each acceptance row in phases 001 to 010 with the observed output and exit status (each child's `acceptance-criteria.md`) (orchestrator)
-- [ ] T018 Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict`, and record the RESULT line in `proof.md` (orchestrator)
-- [ ] T019 Run `git status --short` and confirm that only the files named in `spec.md` changed. Then clear `scratch/` except `.gitkeep` (orchestrator)
+- [x] T015 Update the parent phase map statuses so that each child's status matches its `implementation-summary.md` (`../spec.md`) (orchestrator) Done: rows 1 to 11 Complete.
+- [x] T016 Add the closeout entry to the parent log, and leave the parent directive unchanged (`../goal.md`) (orchestrator) Done: closeout row in the log; the directive is unchanged.
+- [x] T017 Fill the Evidence cell of each acceptance row in phases 001 to 010 with the observed output and exit status (each child's `acceptance-criteria.md`) (orchestrator) Done: no evidence edits needed; 010's Waiver cells restored (decision 7).
+- [x] T018 Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict`, and record the RESULT line in `proof.md` (orchestrator) Done: RESULT: PASSED (scratch/validate-recursive.txt).
+- [x] T019 Run `git status --short` and confirm that only the files named in `spec.md` changed. Then clear `scratch/` except `.gitkeep` (orchestrator) Done: only spec-named files plus the routing manifests and Hermes copy changed; scratch keeps the cited captures (decision 8).
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -80,9 +80,9 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] Every suite at or above its baseline, and both battery runs exit 0
-- [ ] Recursive strict validation prints `RESULT: PASSED`
+- [x] All tasks marked `[x]`
+- [x] Every suite at or above its baseline, and both battery runs exit 0
+- [x] Recursive strict validation prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,9 +114,9 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md. Check: `grep -c 'REQ-00' spec.md` prints 6 or more.
-- [ ] CHK-002 [P0] Technical approach defined in plan.md. Check: `grep -c 'Ordered Steps and Dispatch Plan' plan.md` prints 1.
-- [ ] CHK-003 [P1] Phases 001 to 010 closed. Check: `grep -n 'Status' ../0[0-9][0-9]-*/implementation-summary.md` shows Complete for each of the ten children.
+- [x] CHK-001 [P0] Requirements documented in spec.md. Check: `grep -c 'REQ-00' spec.md` prints 6 or more. 6 or more.
+- [x] CHK-002 [P0] Technical approach defined in plan.md. Check: `grep -c 'Ordered Steps and Dispatch Plan' plan.md` prints 1. 1.
+- [x] CHK-003 [P1] Phases 001 to 010 closed. Check: `grep -n 'Status' ../0[0-9][0-9]-*/implementation-summary.md` shows Complete for each of the ten children. Complete for all ten.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -124,10 +124,10 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:code-quality -->
 ## Proof Quality
 
-- [ ] CHK-010 [P0] Every suite at or above its baseline count. Check: each count in `proof.md` is greater than or equal to its row in `../001-unknowns-and-baseline/baseline.json`.
-- [ ] CHK-011 [P0] Doctor battery exits 0 on OpenCode 1.19.3. Check: the exit status from T008 is 0.
-- [ ] CHK-012 [P0] Doctor battery exits 0 on OpenCode 2.0.32. Check: the exit status from T009 is 0.
-- [ ] CHK-013 [P0] Recursive strict validation prints `RESULT: PASSED`. Check: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` prints `RESULT: PASSED`.
+- [x] CHK-010 [P0] Every suite at or above its baseline count. Check: each count in `proof.md` is greater than or equal to its row in `../001-unknowns-and-baseline/baseline.json`. Every count at or above baseline.
+- [x] CHK-011 [P0] Doctor battery exits 0 on OpenCode 1.19.3. Check: the exit status from T008 is 0. Exit 0.
+- [x] CHK-012 [P0] Doctor battery exits 0 on OpenCode 2.0.32. Check: the exit status from T009 is 0. Exit 0.
+- [x] CHK-013 [P0] Recursive strict validation prints `RESULT: PASSED`. Check: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` prints `RESULT: PASSED`. RESULT: PASSED.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -135,10 +135,10 @@ Each task names its executor in brackets at the end of its line when it is not t
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Check: `grep -c '| Unmet |' ../0[0-9][0-9]-*/acceptance-criteria.md` prints 0 for every child, and for this folder.
-- [ ] CHK-021 [P1] Evidence present on every Met row. Check: each Met row in each child's acceptance table has a non-empty Evidence cell that shows observed output.
-- [ ] CHK-022 [P1] Scoped claim present. Check: `grep -n 'Verified against OpenCode 1.19.3 and 2.0.32 on' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` prints one line.
-- [ ] CHK-023 [P1] Completion state reconciled. Check: the parent phase map in `../spec.md` and each child's `implementation-summary.md` show the same status.
+- [x] CHK-020 [P0] All acceptance criteria met. Check: `grep -c '| Unmet |' ../0[0-9][0-9]-*/acceptance-criteria.md` prints 0 for every child, and for this folder. 0 for every child and this folder.
+- [x] CHK-021 [P1] Evidence present on every Met row. Check: each Met row in each child's acceptance table has a non-empty Evidence cell that shows observed output. Every Met row has observed output (decision 7).
+- [x] CHK-022 [P1] Scoped claim present. Check: `grep -n 'Verified against OpenCode 1.19.3 and 2.0.32 on' .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md` prints one line. One line, SKILL.md:134.
+- [x] CHK-023 [P1] Completion state reconciled. Check: the parent phase map in `../spec.md` and each child's `implementation-summary.md` show the same status. All Complete.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -154,9 +154,9 @@ Not applicable. This phase fixes no code.
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No install change and no service restart (D4). Check: `proof.md` shows no `upgrade --major` command and no service restart or stop command.
-- [ ] CHK-031 [P1] No secret value in `proof.md`. Check: a read of `proof.md` finds no provider key and no session token.
-- [ ] CHK-032 [P1] Claim names only the two pinned versions (D8). Check: the claim line names OpenCode 1.19.3 and 2.0.32 and one verification date, and no other version.
+- [x] CHK-030 [P0] No install change and no service restart (D4). Check: `proof.md` shows no `upgrade --major` command and no service restart or stop command. None in proof.md.
+- [x] CHK-031 [P1] No secret value in `proof.md`. Check: a read of `proof.md` finds no provider key and no session token. No key or token.
+- [x] CHK-032 [P1] Claim names only the two pinned versions (D8). Check: the claim line names OpenCode 1.19.3 and 2.0.32 and one verification date, and no other version. 1.19.3, 2.0.32 and 2026-10-19 only.
 <!-- /ANCHOR:security -->
 
 ---
@@ -164,9 +164,9 @@ Not applicable. This phase fixes no code.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks synchronized. Check: each of the three files names `proof.md` as the proof record.
-- [ ] CHK-041 [P1] Claim validates. Check: the exit status from T014 is 0 for `validate_document.py` and for `validate_skill_package.py`.
-- [ ] CHK-042 [P2] Parent directive unchanged. Check: `git diff -- ../goal.md` shows changes only in the log section.
+- [x] CHK-040 [P1] Spec, plan and tasks synchronized. Check: each of the three files names `proof.md` as the proof record. Each names proof.md.
+- [x] CHK-041 [P1] Claim validates. Check: the exit status from T014 is 0 for `validate_document.py` and for `validate_skill_package.py`. Exit 0 each.
+- [x] CHK-042 [P2] Parent directive unchanged. Check: `git diff -- ../goal.md` shows changes only in the log section. Log section only.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -174,8 +174,8 @@ Not applicable. This phase fixes no code.
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only. Check: `git status --short` lists only the files named in `spec.md`.
-- [ ] CHK-051 [P1] scratch/ cleaned before completion. Check: `ls -A scratch/` prints only `.gitkeep`.
+- [x] CHK-050 [P1] Temp files in scratch/ only. Check: `git status --short` lists only the files named in `spec.md`. The spec-named files, plus the live and authored routing manifests and the Hermes copy, as in 010 (decision 6). The untracked workflow file and sk-vision.js predate the phase and stay out of the commit.
+- [x] CHK-051 [P1] scratch/ cleaned before completion. Check: `ls -A scratch/` prints only `.gitkeep`. Deviation: the cited captures stay, as in phases 008 to 010; the copies are removed (decision 8).
 <!-- /ANCHOR:file-org -->
 
 ---

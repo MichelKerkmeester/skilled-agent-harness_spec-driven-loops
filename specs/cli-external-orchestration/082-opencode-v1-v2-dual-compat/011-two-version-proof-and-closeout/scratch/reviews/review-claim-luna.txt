@@ -1,0 +1,5 @@
+Validated: all ten paragraphs contain the three D8 sentences exactly once, dated 2026-10-19; there are no other added version claims. Placement and surrounding prose match the requested locations, and all links resolve. The capability delta is in [install-and-versions.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:227), §4 “Run Flags Differ Between Versions” and “Providers Are Per Version.” The proof records four successful battery exits and both version captures on 2026-10-19. `hvr_scan.py` found zero hard blockers across all ten files.
+
+No OpenCode binary or network call was used. This review made no edits; the worktree remains dirty on `worktrees/143-opencode-dual-compat-build`.
+
+PASS (no open P0 or P1)

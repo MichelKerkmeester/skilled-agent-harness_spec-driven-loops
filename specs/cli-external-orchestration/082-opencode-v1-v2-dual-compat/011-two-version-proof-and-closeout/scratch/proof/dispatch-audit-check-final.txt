@@ -1,0 +1,6 @@
+rules loaded: 6
+{"label":"v2 clean","kind":"direct","executor":"cli-opencode","violated":[]}
+{"label":"v2 no model, no stdin","kind":"direct","executor":"cli-opencode","violated":["stdin-redirect-required","explicit-model-required"]}
+{"label":"v2 slash prompt","kind":"direct","executor":"cli-opencode","violated":["v2-slash-prompt-route"]}
+{"label":"v1 bare agent general","kind":"direct","executor":"cli-opencode","violated":["no-bare-agent-general"]}
+exit 0

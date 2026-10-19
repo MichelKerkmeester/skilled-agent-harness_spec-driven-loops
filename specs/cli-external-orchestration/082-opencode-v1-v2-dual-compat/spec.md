@@ -8,17 +8,17 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat"
-    last_updated_at: "2026-10-18T09:21:48Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-19T06:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed all eleven phases with the two-version proof"
+    next_safe_action: "Packet complete. Pushing the branch waits for the operator"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-082-opencode-v1-v2-dual-compat"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ FAILURE MODES:
 |-------|-------|
 | **Level** | research |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-18 |
 | **Findings** | `research/research.md` |
 <!-- /ANCHOR:metadata -->
@@ -121,7 +121,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 8 | 008-doctor-and-ci/ | `/doctor:opencode` battery and a two-prefix CI workflow | Complete |
 | 9 | 009-sk-code-opencode-alignment/ | Align every new and changed code file with the sk-code OPENCODE surface | Complete |
 | 10 | 010-documentation-sweep/ | Bring every touched doc up to its sk-doc mode | Complete |
-| 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Pending |
+| 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Complete |
 
 ### Phase Transition Rules
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -46,6 +46,8 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
 | **Version baseline** | OpenCode 1: 1.19.3 |
 | **Version baseline** | OpenCode 2: 2.0.32 |
 | **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |
+
+**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 

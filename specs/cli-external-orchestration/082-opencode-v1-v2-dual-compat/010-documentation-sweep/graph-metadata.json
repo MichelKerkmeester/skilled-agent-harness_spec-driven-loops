@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The build changes the cli-opencode dispatch shape, the install steps, the plugin layout and the agent and command trees",
     "created_at": "2026-10-18T12:45:09Z",
-    "last_save_at": "2026-10-19T03:27:06.921Z",
+    "last_save_at": "2026-10-19T04:08:15.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:136359db90a862edc3b7daccc6882a10ea9df29e3a32eba2f1af5984cacc88ec",
+    "source_fingerprint": "sha256:87544925e7bb1b51fcfe20f745f2520e09ace3dad080b5308b89697a6ab5a563",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7a62af819ce7bf7f2198b16ca28abce973f4f45eaccbb8c4c07c8d50e89fc18",

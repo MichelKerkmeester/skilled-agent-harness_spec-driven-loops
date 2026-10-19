@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-opencode
@@ -49,6 +49,8 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
 | **Provider and model surface** | reaches every configured provider catalog through `references/providers-and-models.md`, which is the roster |
 | **Agent delegation** | routes to project-local agents under `.skilled/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
+
+**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`references/install-and-versions.md`](./references/install-and-versions.md).
 
 ---
 

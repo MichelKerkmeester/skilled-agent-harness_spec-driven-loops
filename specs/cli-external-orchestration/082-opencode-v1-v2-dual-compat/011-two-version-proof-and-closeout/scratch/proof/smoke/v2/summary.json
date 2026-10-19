@@ -1,0 +1,11 @@
+{
+  "label": "v2",
+  "command": "opencode2",
+  "exit": 0,
+  "signal": null,
+  "error": null,
+  "tokenInReply": true,
+  "lineageFile": "SMOKE-OK-v2",
+  "lineageFileMatches": true,
+  "costUsd": 0.001197
+}

@@ -1,0 +1,3 @@
+dispatch this task to opencode with deepseek	["cli-opencode"]
+use the codex cli to run gpt for a second opinion on this code	["cli-codex"]
+run opencode2 run --standalone against the repo	["cli-opencode"]

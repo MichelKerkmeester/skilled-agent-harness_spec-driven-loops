@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -39,6 +39,8 @@ Project-local agents resolve from `.skilled/agents/<slug>.md`. User-level agents
 The calling AI decides WHAT to delegate. The agent's frontmatter shapes HOW the dispatched session processes the task. The calling AI always validates and integrates the output.
 
 This separation of concerns is load-bearing for the cli-opencode skill: the calling AI owns the task graph and the integration step, while the dispatched OpenCode session owns the per-task execution under the agent's tool permissions and system prompt.
+
+**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 

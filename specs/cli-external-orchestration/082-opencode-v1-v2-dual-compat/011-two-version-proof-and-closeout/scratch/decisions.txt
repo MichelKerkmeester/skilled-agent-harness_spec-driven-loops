@@ -1,0 +1,21 @@
+Phase 011 decisions (orchestrator). Each names the evidence it rests on.
+
+0. Executors. The orchestrator ran every suite, battery, probe, validator and the reconcile. DeepSeek V4.1 Flash max wrote the claim text with the markdown persona inlined, and Luna (GPT-6 Luna max fast, cli-codex, read-only sandbox) reviewed it, as D6 requires and the open question in spec.md settles. DeepSeek ran through cli-pi on llmgateway (`deepseek-v4.1-flash`, `--thinking max`, `-ne`) instead of cli-devin, because the devin daily quota was spent (010 decision 18). The model is the same, so no model reviewed its own output.
+
+1. The live smoke run contradicted the docs. Both versions emit `step_start`, `tool_use`, `text` and `step_finish`, each with `sessionID` (scratch/proof/smoke/v1 and v2 stdout.jsonl). The docs named events neither version emits. A doc fault belongs to the phase that owns the docs, so the fix went back to phase 010 as an amendment (010 decision 18, commit 26631488c4) before the claim was written. Spec.md says a failure goes back to the phase that owns it.
+
+2. Claim placement. Spec.md asks for the claim "wherever the README names a version" and "wherever a reference names a version". Read literally, that is one sentence beside each of some hundred version mentions. The phase reads it as one claim paragraph per doc that names a version: SKILL.md under Prerequisites, the README at the end of its overview, and each of the eight references that name 1.19.3 or 2.0.32 at the end of its overview. The assets are not in the files-to-change list, so they keep their version notes without the claim.
+
+3. The D8 wording is kept verbatim. A fourth sentence names where the delta lives (install-and-versions.md, which Luna located in its section 4). The date is 2026-10-19, the day all six battery runs passed (scratch/proof/battery-exits.txt).
+
+4. Suites ran twice, before the event correction and from the final tree, with the same counts (all exit 0). Only the final run is kept in scratch/suites/. The baseline names no separate cli-opencode suite. The dual-dispatch tests live in the deep-loop runtime suite, and `npm test` there is `vitest run --no-coverage`, the command the runner used.
+
+5. Battery. Three runs per version, all exit 0 with the same legs, so the count is stable. The final run's first after-snapshot caught PID 1463, a short-lived `~/.local/bin/opencode --version` that was gone nine seconds later, from the battery's own version probe or the suite run going on at the same time; its parent was not captured. The second snapshot matches the before list (scratch/proof/process-final-note.txt).
+
+6. Routing. The SKILL.md claim changed its bytes, so the hub manifest was re-minted (fresh, generation 5) and copied to its authored path, as in 010 decision 14. A first sample prompt, "ask codex to review this diff", routed nowhere. A plainer codex prompt routed to cli-codex. The claim sits outside the INTENT_SIGNALS block, so the routing vocabulary is unchanged. That the first prompt simply scored too low is inferred: it was not run against the pre-claim manifest.
+
+7. T017 needed no evidence edits. Every Met row in 001 to 010 carries observed output: 001 to 008 hold it in the Verification cell, as their older table has no Evidence column, and 009 and 010 in the Evidence cell. The layout-aware check found one defect: 010's five rows had lost their Waiver cell at its closeout (each ended `| Met`), so the reconcile restored ` | - |`.
+
+8. Scratch. T019 says to clear scratch/ except .gitkeep. As in phases 008 to 010, scratch/ keeps the captures proof.md cites (proof/, suites/, claim/, reviews/, these decisions). The pre-claim and pre-reconcile copies are removed: the claim and reconcile diffs are in the commit, and HEAD holds the before state.
+
+9. Commit. Spec.md lists "Committing or pushing any branch" as out of scope. The operator's standing approval covers a local commit per phase, which phases 002 to 010 used, so this phase commits locally too. Nothing is pushed: every push still needs its own go-ahead.

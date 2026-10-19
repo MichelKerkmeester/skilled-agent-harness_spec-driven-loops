@@ -1,0 +1,2 @@
+FATAL WARN: lineage smoke-v1 runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+{"label":"v1","command":"opencode","exit":0,"signal":null,"error":null,"tokenInReply":true,"lineageFile":"SMOKE-OK-v1","lineageFileMatches":true,"costUsd":0.002343}

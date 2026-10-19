@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode truncation marker"
 importance_tier: normal
 contextType: general
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-opencode Context Budget Mirror
@@ -30,6 +30,8 @@ Consult this reference when composing a bounded cli-opencode prompt and you need
 ### Core Principle
 
 Keep prompts within the selected model window. Apply the truncation marker and eviction discipline below so callers compose bounded prompts without a drift-prone ruleset.
+
+**Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
 ---
 
