@@ -121,7 +121,7 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 3. **Two v2 agent questions stay open.** Live runs settled top-level `--agent` routing on 2.0.32 (decision 10). No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward. The docs say both.
 4. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
 5. **sk-vision skips automatic image inspection on OpenCode 2.** Its `chat.message` hook has no bridge mapping, so it does not run there, while its tools still register. Porting it to OpenCode 2's prompt hook is not done (decision 12).
-6. **The CI workflow is untracked.** `.github/workflows/opencode-dual-version.yml` waits for the operator, as phase 008 left it, so no CI run backs this proof.
+6. **The CI workflow has not run yet.** The operator approved committing `.github/workflows/opencode-dual-version.yml` after the closeout. Its triggers cover pushes to `main` and `skilled/**` and pull requests into them, so a push of this branch alone does not run it, and no CI run backs this proof.
 <!-- /ANCHOR:limitations -->
 
 ---

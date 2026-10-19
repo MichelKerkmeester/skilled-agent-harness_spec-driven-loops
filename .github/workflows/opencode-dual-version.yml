@@ -1,0 +1,220 @@
+name: OpenCode Dual-Version Battery
+
+# OpenCode 1.19.3 and 2.0.32 are separate npm packages that both claim the name
+# `opencode`, and the repo's plugins register differently on each major. Neither
+# family ran anywhere, so a plugin that loads on one major and not the other
+# reached a commit unseen. Each pinned package is installed into its own prefix,
+# the battery reports one JSON summary per family, and a `both` job proves the
+# two dispatch names still resolve to two different binaries.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/plugins/**'
+      - '.skilled/plugins/**'
+      - '.skilled/skills/sk-vision/**'
+      - '.skilled/agents/**'
+      - '.skilled/hooks/dispatch/**'
+      - '.skilled/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/package.json'
+      - '.opencode/package-lock.json'
+      - 'opencode.json'
+      - '.skilled/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.github/workflows/opencode-dual-version.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.opencode/plugins/**'
+      - '.skilled/plugins/**'
+      - '.skilled/skills/sk-vision/**'
+      - '.skilled/agents/**'
+      - '.skilled/hooks/dispatch/**'
+      - '.skilled/bin/tests/opencode-config-shape.test.cjs'
+      - '.opencode/package.json'
+      - '.opencode/package-lock.json'
+      - 'opencode.json'
+      - '.skilled/commands/doctor/scripts/opencode-version-battery.cjs'
+      - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.github/workflows/opencode-dual-version.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  battery:
+    name: Battery on OpenCode ${{ matrix.family }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # One family per prefix, and each entry reports on its own; a failure in one
+    # must not cancel the other.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - family: v1
+            package: opencode-ai@1.19.3
+            name: opencode
+          - family: v2
+            package: '@opencode/cli@2.0.32'
+            name: opencode
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      # The plugins resolve their packages through this workspace, so it is
+      # installed before anything imports a plugin.
+      - name: Install the plugin workspace
+        run: npm --prefix .opencode ci
+
+      # The plugin folder symlinks sk-vision's bundle, which is a build artifact
+      # and is not committed, so a pinned bun builds it before the battery
+      # imports the plugins.
+      - name: Build the sk-vision bundle the plugin symlink points at
+        run: |
+          set -euo pipefail
+          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          (
+            cd .skilled/skills/sk-vision/vision-runtime
+            "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile
+            "$RUNNER_TEMP/bun/node_modules/.bin/bun" run build
+          )
+
+      # Both packages claim the `opencode` name, so each family owns its prefix
+      # and the battery reaches the binary by its full path.
+      - name: Install OpenCode ${{ matrix.family }}
+        run: |
+          set -euo pipefail
+          prefix="$RUNNER_TEMP/opencode-${{ matrix.family }}"
+          npm install -g --prefix "$prefix" "${{ matrix.package }}"
+          bin="$prefix/bin/${{ matrix.name }}"
+          if [ ! -e "$bin" ] && [ -e "$prefix/bin/opencode2" ]; then
+            bin="$prefix/bin/opencode2"
+          fi
+          if [ ! -e "$bin" ]; then
+            echo "::error::${{ matrix.package }} installed no ${{ matrix.name }} under $prefix/bin"
+            exit 1
+          fi
+          "$bin" --version
+          echo "OPENCODE_BIN=$bin" >>"$GITHUB_ENV"
+
+      # The battery probes $OPENCODE_BIN first, so it reads the family this
+      # prefix holds. Any non-zero exit, a degraded or skipped leg included,
+      # fails the job.
+      - name: Run the version battery for ${{ matrix.family }}
+        run: |
+          set -euo pipefail
+          node .skilled/commands/doctor/scripts/opencode-version-battery.cjs \
+            --family=${{ matrix.family }} \
+            --json \
+            --out "$RUNNER_TEMP/battery-${{ matrix.family }}.json"
+
+      - name: Upload the ${{ matrix.family }} battery summary
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: battery-${{ matrix.family }}
+          path: ${{ runner.temp }}/battery-${{ matrix.family }}.json
+          if-no-files-found: warn
+
+  both:
+    name: Both versions installed at once
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      - name: Install the plugin workspace
+        run: npm --prefix .opencode ci
+
+      - name: Build the sk-vision bundle the plugin symlink points at
+        run: |
+          set -euo pipefail
+          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          (
+            cd .skilled/skills/sk-vision/vision-runtime
+            "$RUNNER_TEMP/bun/node_modules/.bin/bun" install --frozen-lockfile
+            "$RUNNER_TEMP/bun/node_modules/.bin/bun" run build
+          )
+
+      - name: Install both versions into their own prefixes
+        run: |
+          set -euo pipefail
+          npm install -g --prefix "$RUNNER_TEMP/opencode-v1" opencode-ai@1.19.3
+          npm install -g --prefix "$RUNNER_TEMP/opencode-v2" @opencode/cli@2.0.32
+
+      # v2 opens the same database as v1 by default and migrates it in place, so
+      # the `opencode2` entry is a launcher that moves it to its own file first.
+      # Only this launcher carries the name; the v2 prefix bin stays off PATH so
+      # its own `opencode` cannot shadow v1's.
+      - name: Write the opencode2 launcher
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bin"
+          printf '%s\n' \
+            '#!/bin/sh' \
+            '# v2 would otherwise open the same opencode.db as v1 and migrate it in place.' \
+            '# A relative OPENCODE_DB resolves under the shared data directory.' \
+            ": \"\${OPENCODE_DB:=opencode-v2.db}\"" \
+            'export OPENCODE_DB' \
+            "exec \"$RUNNER_TEMP/opencode-v2/bin/opencode2\" \"\$@\"" \
+            >"$RUNNER_TEMP/bin/opencode2"
+          chmod +x "$RUNNER_TEMP/bin/opencode2"
+          printf '%s\n' "$RUNNER_TEMP/bin" "$RUNNER_TEMP/opencode-v1/bin" >>"$GITHUB_PATH"
+
+      - name: Assert the two entries stay distinct
+        run: |
+          set -euo pipefail
+          v1="$(command -v opencode || true)"
+          v2="$(command -v opencode2 || true)"
+          printf 'opencode -> %s\n' "$v1"
+          printf 'opencode2 -> %s\n' "$v2"
+          if [ -z "$v1" ] || [ -z "$v2" ]; then
+            echo "::error::Both names must resolve; opencode='$v1' opencode2='$v2'"
+            exit 1
+          fi
+          if [ "$v1" = "$v2" ]; then
+            echo "::error::opencode and opencode2 resolve to the same path: $v1"
+            exit 1
+          fi
+          case "$v1" in /*) ;; *) echo "::error::opencode is not an absolute path: $v1"; exit 1 ;; esac
+          case "$v2" in /*) ;; *) echo "::error::opencode2 is not an absolute path: $v2"; exit 1 ;; esac
+          v1_out="$(opencode --version | tr -d '\r')"
+          v2_out="$(opencode2 --version | tr -d '\r')"
+          printf 'opencode --version -> %s\n' "$v1_out"
+          printf 'opencode2 --version -> %s\n' "$v2_out"
+          if [ "$v1_out" != "1.19.3" ]; then
+            echo "::error::opencode reports '$v1_out', expected 1.19.3"
+            exit 1
+          fi
+          if [ "$v2_out" != "opencode v2.0.32" ]; then
+            echo "::error::opencode2 reports '$v2_out', expected opencode v2.0.32"
+            exit 1
+          fi
+
+      # With no OPENCODE_BIN set, the battery reads v1 through `opencode` and v2
+      # through `opencode2`, the layout the skill documents.
+      - name: Run the version battery against both installs
+        run: |
+          set -euo pipefail
+          node .skilled/commands/doctor/scripts/opencode-version-battery.cjs \
+            --family=both \
+            --json \
+            --out "$RUNNER_TEMP/battery-both.json"
+
+      - name: Upload the both-family battery summary
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: battery-both
+          path: ${{ runner.temp }}/battery-both.json
+          if-no-files-found: warn
