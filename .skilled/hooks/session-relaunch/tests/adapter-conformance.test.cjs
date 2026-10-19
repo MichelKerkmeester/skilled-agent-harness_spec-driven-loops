@@ -125,7 +125,8 @@ async function withProcessEnv(env, callback) {
 
 async function loadOpenCodePlugin(directory) {
   const url = `${pathToFileURL(OPENCODE_PLUGIN).href}?conformance=${Date.now()}-${Math.random()}`;
-  return (await import(url)).default({ directory });
+  // The default export is the dual OpenCode plugin; `server` is the v1 factory the host calls.
+  return (await import(url)).default.server({ directory });
 }
 
 async function openCodeSystem(hooks) {
