@@ -11,12 +11,48 @@ import {
 } from "../src/config";
 import { HANDOFF_ENV, PACKAGE_NAME, STATUS_KEY } from "../src/types";
 
+type FakeBus = {
+  emit: (channel: string, data: unknown) => void;
+  on: (channel: string, handler: Function) => () => void;
+  clear: () => void;
+};
+
 type FakePi = {
   registerFlag: ReturnType<typeof vi.fn>;
   registerCommand: ReturnType<typeof vi.fn>;
   getFlag: ReturnType<typeof vi.fn>;
   on: ReturnType<typeof vi.fn>;
+  events: FakeBus;
 };
+
+// Pi runs listeners synchronously inside emit and returns an unsubscribe
+// function from on. The fake mirrors both so one copy's claim is visible to a
+// later copy in the same load.
+function createFakeBus(): FakeBus {
+  const listeners = new Map<string, Function[]>();
+
+  return {
+    emit: (channel, data) => {
+      for (const handler of listeners.get(channel) ?? []) {
+        handler(data);
+      }
+    },
+    on: (channel, handler) => {
+      const list = listeners.get(channel) ?? [];
+      list.push(handler);
+      listeners.set(channel, list);
+      return () => {
+        listeners.set(
+          channel,
+          (listeners.get(channel) ?? []).filter((entry) => entry !== handler),
+        );
+      };
+    },
+    clear: () => {
+      listeners.clear();
+    },
+  };
+}
 
 type RegisteredCommand = {
   description?: string;
@@ -45,7 +81,10 @@ beforeEach(() => {
   delete process.env[HANDOFF_ENV];
 });
 
-function createFakePi(fastFlag = false): {
+function createFakePi(
+  fastFlag = false,
+  bus = createFakeBus(),
+): {
   pi: FakePi;
   handlers: Map<string, Function[]>;
   commands: Map<string, RegisteredCommand>;
@@ -54,6 +93,7 @@ function createFakePi(fastFlag = false): {
   const commands = new Map<string, RegisteredCommand>();
 
   const pi: FakePi = {
+    events: bus,
     registerFlag: vi.fn(),
     registerCommand: vi.fn((name: string, options: RegisteredCommand) => {
       commands.set(name, options);
@@ -144,6 +184,82 @@ describe("piFastModeExtension registration", () => {
       "session_shutdown",
       "session_start",
     ]);
+  });
+});
+
+describe("piFastModeExtension with a second copy", () => {
+  const worktreeExtensionDir =
+    "/worktree/.pi/extensions/pi-fast-mode-w-subagent-support/src";
+  const mainExtensionDir =
+    "/main/.pi/extensions/pi-fast-mode-w-subagent-support/src";
+
+  it("stands down when another copy already claimed the package", () => {
+    const bus = createFakeBus();
+    const first = createFakePi(false, bus);
+    const second = createFakePi(false, bus);
+
+    createPiFastModeExtension({
+      extensionDir: worktreeExtensionDir,
+      agentDir: "/agent",
+    })(first.pi as any);
+    createPiFastModeExtension({
+      extensionDir: mainExtensionDir,
+      agentDir: "/agent",
+    })(second.pi as any);
+
+    expect(first.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
+    expect(second.pi.registerFlag).not.toHaveBeenCalled();
+    expect(second.pi.registerCommand).not.toHaveBeenCalled();
+    expect(second.pi.on).not.toHaveBeenCalled();
+  });
+
+  it("lets both copies register when each load has its own bus", () => {
+    const first = createFakePi();
+    const second = createFakePi();
+
+    createPiFastModeExtension({
+      extensionDir: worktreeExtensionDir,
+      agentDir: "/agent",
+    })(first.pi as any);
+    createPiFastModeExtension({
+      extensionDir: mainExtensionDir,
+      agentDir: "/agent",
+    })(second.pi as any);
+
+    expect(first.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
+    expect(second.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
+  });
+
+  it("claims the package again after the stale load's listeners are cleared", () => {
+    const bus = createFakeBus();
+    const first = createFakePi(false, bus);
+    const second = createFakePi(false, bus);
+
+    createPiFastModeExtension({
+      extensionDir: worktreeExtensionDir,
+      agentDir: "/agent",
+    })(first.pi as any);
+
+    bus.clear();
+
+    createPiFastModeExtension({
+      extensionDir: mainExtensionDir,
+      agentDir: "/agent",
+    })(second.pi as any);
+
+    expect(second.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
   });
 });
 

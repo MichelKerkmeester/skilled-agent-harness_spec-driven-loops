@@ -24,7 +24,7 @@ import {
 import { readHandoff, writeHandoff } from "./handoff";
 import { findMatchingTarget, getFastModePayload, toModelRef } from "./payload";
 import { clearFastStatus, updateFastStatus } from "./status";
-import type { FastModeConfig, ModelRef } from "./types";
+import { PACKAGE_NAME, type FastModeConfig, type ModelRef } from "./types";
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -43,6 +43,9 @@ export type FastModeExtensionOptions = {
 // ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_EXTENSION_DIR = dirname(fileURLToPath(import.meta.url));
+
+/** Event-bus channel the copies of this package use to find one another in one load. */
+const COPY_CLAIM_CHANNEL = `${PACKAGE_NAME}:copy-claim`;
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -80,6 +83,25 @@ function notifyFastState(
   );
 }
 
+// Pi drops a duplicate extension only when both paths share a real path and
+// fails the whole load when two copies register one flag, so a worktree's own
+// copy and a user-level link to another checkout cannot both register. One load
+// shares one event bus and Pi clears a stale load's listeners first, so the
+// first copy to load holds the package and a later one stays silent, the
+// load-order precedence Pi applies to conflicts.
+function claimPackage(pi: ExtensionAPI): boolean {
+  const probe = { claimed: false };
+  pi.events.emit(COPY_CLAIM_CHANNEL, probe);
+  if (probe.claimed) return false;
+
+  pi.events.on(COPY_CLAIM_CHANNEL, (data: unknown) => {
+    if (typeof data === "object" && data !== null) {
+      (data as { claimed?: boolean }).claimed = true;
+    }
+  });
+  return true;
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ───────────────────────────────────────────────────────────────────
@@ -99,6 +121,8 @@ export function createPiFastModeExtension(
   const agentDir = options.agentDir;
 
   return function piFastModeExtension(pi: ExtensionAPI): void {
+    if (!claimPackage(pi)) return;
+
     let config: FastModeConfig = cloneConfig();
     let configPath: string | undefined;
     let loadedCwd: string | undefined;
