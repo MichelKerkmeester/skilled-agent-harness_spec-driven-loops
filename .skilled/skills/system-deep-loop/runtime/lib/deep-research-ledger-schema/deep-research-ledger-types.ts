@@ -111,7 +111,7 @@ export interface RunCompletionCounts extends JsonObject {
 // 3. EVENT PAYLOAD DATA
 // ───────────────────────────────────────────────────────────────────
 
-export interface RunInitializedData extends JsonObject {
+interface RunInitializedCoreData extends JsonObject {
   readonly generation: Uint32;
   readonly charterDigest: Digest;
   readonly configDigest: Digest;
@@ -120,6 +120,15 @@ export interface RunInitializedData extends JsonObject {
   readonly maxIterations: Uint32;
   readonly convergencePolicyVersion: Version;
 }
+
+/**
+ * The research question rides along so the projected config row can show it.
+ * Ledgers written before it existed omit it, and an optional property cannot
+ * sit beside the JSON index signature, so the two shapes are a union.
+ */
+export type RunInitializedData =
+  | RunInitializedCoreData
+  | (RunInitializedCoreData & { readonly topic: string });
 
 export interface RunResumedData extends JsonObject {
   readonly priorTailDigest: Digest;
@@ -431,6 +440,91 @@ export interface SpecSynthesisDeferredData extends JsonObject {
   readonly generatedFence: string;
 }
 
+// The research reducer writes these two rows itself: an idea that crossed the
+// promotion threshold, and a question whose inbox text disagrees with the
+// registry. They predate their stems, so each field keeps the legacy row's name
+// and the legacy row's nulls. A promotion written before the reducer stamped
+// its session carries no session or generation, and stays without them.
+export type IdeaPromotedData = JsonObject & {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly ideaId: string;
+  readonly idea: string;
+  readonly category: string;
+  readonly observationCount: Uint32;
+  readonly minIdeaObservations: Uint32 | null;
+  readonly firstObservedRun: Uint32 | null;
+  readonly lastObservedRun: Uint32 | null;
+  readonly sessionId?: string | null;
+  readonly generation?: Uint32 | null;
+  readonly eventAlias?: 'ideaPromoted';
+};
+
+export interface QuestionConflictData extends JsonObject {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly conflictId: string;
+  readonly questionId: string;
+  readonly inboxId: string | null;
+  readonly operatorDecision: 'accepted' | 'needs_decision' | 'rejected' | 'superseded' | null;
+  readonly inboxValue: string;
+  readonly registryValue: string;
+  readonly source: string;
+  readonly origin: string;
+  readonly injectedAtIteration: Uint32;
+  readonly sessionId: string | null;
+  readonly generation: Uint32 | null;
+}
+
+// The idea rows the research agent and the operator record, which the reducer
+// reads back to build the backlog and the rejected-pattern cache. Most fields
+// are optional because the rows are hand-written: a field the row left out
+// stays absent rather than turning into a null, and `eventAlias` keeps the
+// camelCase event name an older row was written under.
+export type IdeaObservedData = JsonObject & {
+  readonly idea: string;
+  readonly mode?: string;
+  readonly run?: Uint32 | null;
+  readonly ideaId?: string;
+  readonly category?: string;
+  readonly source?: string;
+  readonly sessionId?: string | null;
+  readonly generation?: Uint32 | null;
+  readonly eventAlias?: 'ideaObserved';
+};
+
+interface IdeaRejectionFields {
+  readonly mode?: string;
+  readonly run?: Uint32 | null;
+  readonly rejectedId?: string;
+  readonly ideaId?: string;
+  readonly idea?: string;
+  readonly pattern?: string;
+  readonly category?: string;
+  readonly reason?: string;
+  readonly sessionId?: string | null;
+  readonly generation?: Uint32 | null;
+}
+
+// A rejection names the text it suppresses; a removal names the entry by id or
+// by text. The schema refuses either one that names nothing.
+export type IdeaRejectedData = JsonObject & IdeaRejectionFields & {
+  readonly eventAlias?: 'ideaRejected';
+};
+
+export type IdeaRejectedRemovedData = JsonObject & IdeaRejectionFields & {
+  readonly eventAlias?: 'ideaRejectedRemoved';
+};
+
+export type IdeaRejectedResetData = JsonObject & {
+  readonly mode?: string;
+  readonly run?: Uint32 | null;
+  readonly reason?: string;
+  readonly sessionId?: string | null;
+  readonly generation?: Uint32 | null;
+  readonly eventAlias?: 'ideaRejectedReset';
+};
+
 // ───────────────────────────────────────────────────────────────────
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
@@ -472,6 +566,12 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.spec_mutation',
   'deep_research.spec_mutation_conflict',
   'deep_research.spec_synthesis_deferred',
+  'deep_research.idea_promoted',
+  'deep_research.question_conflict',
+  'deep_research.idea_observed',
+  'deep_research.idea_rejected',
+  'deep_research.idea_rejected_removed',
+  'deep_research.idea_rejected_reset',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -522,6 +622,12 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.spec_mutation': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
   'deep_research.spec_mutation_conflict': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
   'deep_research.spec_synthesis_deferred': { status: 'reserved', reason: 'No workflow stages it: the research workflows write the legacy spec-protocol row, which the append gateway upcasts to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.idea_promoted': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs'] },
+  'deep_research.question_conflict': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs'] },
+  'deep_research.idea_observed': { status: 'reserved', reason: 'No in-tree writer stages it: the research agent records the legacy idea_observed row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
+  'deep_research.idea_rejected': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy idea_rejected row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
+  'deep_research.idea_rejected_removed': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy removal row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
+  'deep_research.idea_rejected_reset': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy reset row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({
@@ -561,6 +667,12 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.spec_mutation': 'deep-research.ledger.spec-mutation',
   'deep_research.spec_mutation_conflict': 'deep-research.ledger.spec-mutation-conflict',
   'deep_research.spec_synthesis_deferred': 'deep-research.ledger.spec-synthesis-deferred',
+  'deep_research.idea_promoted': 'deep-research.ledger.idea-promoted',
+  'deep_research.question_conflict': 'deep-research.ledger.question-conflict',
+  'deep_research.idea_observed': 'deep-research.ledger.idea-observed',
+  'deep_research.idea_rejected': 'deep-research.ledger.idea-rejected',
+  'deep_research.idea_rejected_removed': 'deep-research.ledger.idea-rejected-removed',
+  'deep_research.idea_rejected_reset': 'deep-research.ledger.idea-rejected-reset',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -603,6 +715,12 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.spec_mutation': SpecMutationData;
   readonly 'deep_research.spec_mutation_conflict': SpecMutationConflictData;
   readonly 'deep_research.spec_synthesis_deferred': SpecSynthesisDeferredData;
+  readonly 'deep_research.idea_promoted': IdeaPromotedData;
+  readonly 'deep_research.question_conflict': QuestionConflictData;
+  readonly 'deep_research.idea_observed': IdeaObservedData;
+  readonly 'deep_research.idea_rejected': IdeaRejectedData;
+  readonly 'deep_research.idea_rejected_removed': IdeaRejectedRemovedData;
+  readonly 'deep_research.idea_rejected_reset': IdeaRejectedResetData;
 }
 
 export interface DeepResearchScopeMap {
@@ -642,6 +760,12 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.spec_mutation': DeepResearchBaseScope;
   readonly 'deep_research.spec_mutation_conflict': DeepResearchBaseScope;
   readonly 'deep_research.spec_synthesis_deferred': DeepResearchBaseScope;
+  readonly 'deep_research.idea_promoted': DeepResearchBaseScope;
+  readonly 'deep_research.question_conflict': DeepResearchBaseScope;
+  readonly 'deep_research.idea_observed': DeepResearchBaseScope;
+  readonly 'deep_research.idea_rejected': DeepResearchBaseScope;
+  readonly 'deep_research.idea_rejected_removed': DeepResearchBaseScope;
+  readonly 'deep_research.idea_rejected_reset': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<
@@ -704,6 +828,9 @@ export interface LegacyUpcastCandidate {
   readonly prevEventHash: Digest;
   readonly replay: DeepResearchReplayMetadata;
   readonly data: JsonObject;
+  // The row's own timestamp, for a row the projection writes back with it.
+  // Absent when the row's time is not part of what the projection reproduces.
+  readonly occurredAt?: string;
 }
 
 export type LegacyUpcastResult =

@@ -3,7 +3,8 @@
 # COMPONENT: SKILLED LOOP
 # ───────────────────────────────────────────────────────────────
 # Relaunch a supported runtime with a fresh handoff seed when state is armed.
-# Exit codes preserve the runtime result, except invalid relaunch state returns 1.
+# Exit codes preserve the runtime result, except invalid relaunch state returns 1, and
+# so does a clean exit whose manual command cannot repeat the launch options.
 set -euo pipefail
 
 resolve_script_path() {
@@ -28,41 +29,43 @@ resolve_script_path() {
 script_path=$(resolve_script_path)
 script_directory=$(dirname "$script_path")
 relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
+relaunch_core="$script_directory/../hooks/session-relaunch/lib/relaunch-core.cjs"
+manual_handoff_token='@@HANDOFF@@'
+manual_template_conflict=''
 consumed_record_json=''
 
+# Prints the manual claim command on stdout, as the CLI does: it is the result an
+# operator copies, and stderr stays for diagnostics. The core fills the template, so the
+# escape set and each runtime's seed form have one owner and cannot drift from the
+# command a session prints in-band. Returns 1 when no faithful command can be printed.
 print_manual_command() {
   local handoff_path="$1"
   local spec_folder="${2:-}"
-  local escaped_handoff_path="$handoff_path"
-  local suffix
-  local handoff_seed
-  local template_prefix
-  local template_suffix
-  local seed_option
-  escaped_handoff_path=${escaped_handoff_path//\\/\\\\}
-  escaped_handoff_path=${escaped_handoff_path//\"/\\\"}
-  escaped_handoff_path=${escaped_handoff_path//\$/\\\$}
-  escaped_handoff_path=${escaped_handoff_path//\`/\\\`}
-  escaped_handoff_path=${escaped_handoff_path//!/$'\x22\x27!\x27\x22'}
-  suffix=$(spec_folder_suffix "$spec_folder")
-  handoff_seed="${escaped_handoff_path}${suffix}"
-  case "$SKILLED_LOOP_MANUAL_TEMPLATE" in
-    *@@HANDOFF@@*@@HANDOFF@@*) ;;
-    *@@HANDOFF@@*)
-      template_prefix=${SKILLED_LOOP_MANUAL_TEMPLATE%%@@HANDOFF@@*}
-      template_suffix=${SKILLED_LOOP_MANUAL_TEMPLATE#*@@HANDOFF@@}
-      printf '%s%s%s\n' "$template_prefix" "$handoff_seed" "$template_suffix" >&2
-      return 0
-      ;;
-  esac
-  seed_option=''
-  case "$runtime" in
-    opencode) seed_option=' --prompt' ;;
-    hermes) seed_option=' chat -q' ;;
-    devin) seed_option=' --' ;;
-  esac
-  printf 'skilled-loop %s%s "[session-relaunch] claim and continue handoff %s"\n' \
-    "$runtime" "$seed_option" "$handoff_seed" >&2
+  local command_form=template
+  local manual_command
+
+  if [[ -n "$manual_template_conflict" ]]; then
+    printf '%s %s %s\n' \
+      "error: the carried option value $manual_template_conflict contains the" \
+      "$manual_handoff_token placeholder, so the manual command cannot repeat your" \
+      'launch options; the plain command follows and they must be added back by hand' \
+      >&2
+    command_form=plain
+  fi
+  if ! manual_command=$(
+    node -e '
+      const [corePath, runtime, handoffPath, specFolder, commandForm] =
+        process.argv.slice(1);
+      if (commandForm === "plain") delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
+      const { manualClaimCommand } = require(corePath);
+      process.stdout.write(manualClaimCommand(runtime, handoffPath, specFolder));
+    ' -- "$relaunch_core" "$runtime" "$handoff_path" "$spec_folder" "$command_form"
+  ); then
+    printf '%s\n' 'error: could not build the manual claim command' >&2
+    return 1
+  fi
+  printf '%s\n' "$manual_command"
+  [[ "$command_form" == 'template' ]]
 }
 
 consume_record() {
@@ -236,7 +239,7 @@ build_relaunch_arguments() {
 }
 
 build_manual_command_template() {
-  local manual_seed='[session-relaunch] claim and continue handoff @@HANDOFF@@'
+  local manual_seed="[session-relaunch] claim and continue handoff $manual_handoff_token"
   local template="skilled-loop $runtime"
   local index
   local argument
@@ -254,6 +257,21 @@ build_manual_command_template() {
     fi
   done
   printf '%s' "$template"
+}
+
+# Prints the first carried option value holding the placeholder. The core fills only a
+# template with exactly one placeholder, so such a value makes the template unusable.
+find_manual_template_conflict() {
+  local index
+
+  build_relaunch_arguments "$manual_handoff_token"
+  for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
+    if ((index != relaunch_seed_index)) \
+      && [[ "${launch_arguments[$index]}" == *"$manual_handoff_token"* ]]; then
+      printf '%s' "${launch_arguments[$index]}"
+      return 0
+    fi
+  done
 }
 
 if [[ ! -f "$relaunch_cli" ]]; then
@@ -392,6 +410,7 @@ fi
 
 SKILLED_LOOP_MANUAL_TEMPLATE=$(build_manual_command_template)
 export SKILLED_LOOP_MANUAL_TEMPLATE
+manual_template_conflict=$(find_manual_template_conflict)
 export SKILLED_LOOP_ID="$$"
 export SKILLED_LOOP_RUNTIME="$runtime"
 SKILLED_LOOP_HOPS=${SKILLED_LOOP_HOPS:-0}
@@ -451,20 +470,20 @@ while true; do
         || has_line_break "$handoff_path"; then
         consume_record
         spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder"
+        print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
       fi
       if ! cd -- "$relaunch_cwd"; then
         consume_record
         spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder"
+        print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
       fi
 
       if ((runtime_exit == 130)); then
         consume_record
         spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder"
+        print_manual_command "$handoff_path" "$spec_folder" || true
         exit 130
       fi
       consume_record
@@ -479,7 +498,7 @@ while true; do
           printf 'warning: the handoff note is %s; not relaunching\n' "$note_state" >&2
         fi
         spec_folder=$(consumed_spec_folder)
-        print_manual_command "$handoff_path" "$spec_folder"
+        print_manual_command "$handoff_path" "$spec_folder" || true
         exit 1
       fi
       SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
@@ -519,7 +538,12 @@ while true; do
         case "$decision_reason" in
           not-armed|stale|hop-cap|incomplete-record)
             spec_folder=$(consumed_spec_folder)
-            print_manual_command "$handoff_path" "$spec_folder"
+            # A clean exit must not read as success when the printed command is not the
+            # one the operator launched with.
+            if ! print_manual_command "$handoff_path" "$spec_folder" \
+              && ((runtime_exit == 0)); then
+              runtime_exit=1
+            fi
             ;;
         esac
       fi

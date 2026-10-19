@@ -10,6 +10,7 @@
 // validation, transition authorization, fenced append, and legacy projection.
 // It does not reimplement any of these concerns.
 
+import { readFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 
 import {
@@ -19,6 +20,7 @@ import {
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
   TypedReducerRegistry,
+  durableReceipt,
 } from '../authorized-ledger/index.js';
 import {
   LocksAndFencingError,
@@ -60,6 +62,7 @@ import type {
   DurableAppendReceipt,
   GatewayAllowProof,
   LedgerHead,
+  VerifiedLedgerEvent,
 } from '../authorized-ledger/index.js';
 import type { EventReadResult, EventTypeRegistry, EventWritePreflight, JsonObject } from '../event-envelope/index.js';
 import type {
@@ -132,11 +135,20 @@ export interface AppendModeEventResult {
   readonly receipt: ModeAppendReceipt;
   readonly projectionRefreshed: boolean;
   readonly projectionError: string | null;
+  /**
+   * Present and true when the ledger already held this idempotency key: the
+   * receipt is the original append's and nothing new was stored.
+   */
+  readonly idempotentReplay?: true;
 }
 
 export interface AppendModeEventError {
   readonly ok: false;
-  readonly phase: 'binding' | 'authority' | 'envelope' | 'authorization' | 'append' | 'projection';
+  /**
+   * 'provenance' is a refusal decided before the append: the event never
+   * reached the ledger, so a retry cannot leave a second copy behind.
+   */
+  readonly phase: 'binding' | 'authority' | 'envelope' | 'provenance' | 'authorization' | 'append' | 'projection';
   readonly reason: string;
   readonly code: string;
   /**
@@ -147,6 +159,8 @@ export interface AppendModeEventError {
   readonly receipt?: ModeAppendReceipt;
   /** Present only when `phase` is 'projection'; mirrors the refresh failure reason. */
   readonly projectionError?: string | null;
+  /** Present and true when a projection retry replayed an already-stored event. */
+  readonly idempotentReplay?: true;
 }
 
 export type AppendModeEventOutcome = AppendModeEventResult | AppendModeEventError;
@@ -162,10 +176,14 @@ export const ModeAppendGatewayErrorCodes = Object.freeze({
   AUTHORITY_DENIED: 'AUTHORITY_DENIED',
   /** Event record does not match the mode's ledger schema. */
   ENVELOPE_INVALID: 'ENVELOPE_INVALID',
+  /** The state log opens with a config row no ledger event produced. */
+  STATE_LOG_UNATTRIBUTED: 'STATE_LOG_UNATTRIBUTED',
   /** Transition authorization denied the request. */
   AUTHORIZATION_DENIED: 'AUTHORIZATION_DENIED',
   /** Fenced append failed (head conflict, fence error, or storage error). */
   APPEND_FAILED: 'APPEND_FAILED',
+  /** The idempotency key is already bound to an event of a different type. */
+  IDEMPOTENCY_CONFLICT: 'IDEMPOTENCY_CONFLICT',
   /** Projection refresh failed after the append was durable. */
   PROJECTION_FAILED: 'PROJECTION_FAILED',
 } as const);
@@ -270,6 +288,115 @@ function resolveModeEventRegistry(
   return null;
 }
 
+// The only ledger event each mode's projection folds into the state log's
+// opening config row.
+const RUN_OPEN_STEM_BY_MODE: Readonly<Record<string, string>> = Object.freeze({
+  'deep-research': 'deep_research.run_initialized',
+  'deep-review': 'deep_review.run_initialized',
+});
+
+function readFirstJsonlRow(path: string): Record<string, unknown> | null {
+  let text: string;
+  try {
+    text = readFileSync(path, 'utf8');
+  } catch {
+    return null;
+  }
+  const firstLine = text.split('\n', 1)[0];
+  if (firstLine === undefined || firstLine.trim() === '') return null;
+  try {
+    const parsed: unknown = JSON.parse(firstLine);
+    return parsed !== null && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? parsed as Record<string, unknown>
+      : null;
+  } catch {
+    // A torn first line is not a config row; the projection's replace path
+    // stays available to repair it.
+    return null;
+  }
+}
+
+/**
+ * Name a state log that holds rows the ledger never produced, before the
+ * event is appended.
+ *
+ * The projection builds the opening config row from the run-open event and
+ * nothing else, so a config row in a state log whose ledger holds no run-open
+ * event was written outside the gateway. The projection can never rebuild
+ * that row: the attribution guard refuses the replace, and it does so only
+ * after the event is durable, so each retry leaves another copy in the
+ * ledger. Refusing here, while the ledger is untouched, leaves the guard as
+ * the last line and keeps a refused append from growing the ledger.
+ */
+function findUnattributedStateLog(
+  options: AppendModeEventOptions,
+  priorEvents: readonly VerifiedLedgerEvent[] | null,
+): string | null {
+  const runOpenStem = RUN_OPEN_STEM_BY_MODE[options.mode];
+  if (!runOpenStem) return null;
+  const contract = options.projectionContract
+    ?? resolveDefaultProjectionContract(options.mode, options.ledger.ledgerId, options.runDirectory);
+  if (!contract || contract.format !== 'jsonl') return null;
+
+  const firstRow = readFirstJsonlRow(resolve(options.runDirectory, contract.relativePath));
+  if (firstRow === null || firstRow.type !== 'config') return null;
+  // An unreadable ledger is the append phase's failure to report.
+  if (priorEvents === null) return null;
+
+  const ledgerOpenedRun = priorEvents.some((verified) => {
+    const payload = verified.event.effective.envelope.payload as Record<string, unknown> | undefined;
+    return payload?.stem === runOpenStem;
+  });
+  if (ledgerOpenedRun) return null;
+
+  return `State log ${contract.relativePath} opens with a config row the ledger never produced: `
+    + `the ledger holds no ${runOpenStem}, so the row was written outside the append gateway. `
+    + 'The event was refused before it reached the ledger.';
+}
+
+function eventKind(envelope: { readonly event_type: string; readonly payload?: unknown }): string {
+  const payload = envelope.payload as Record<string, unknown> | undefined;
+  return typeof payload?.stem === 'string' ? payload.stem : envelope.event_type;
+}
+
+type IdempotencyLookup =
+  | { readonly kind: 'new' }
+  | { readonly kind: 'replay'; readonly receipt: DurableAppendReceipt }
+  | { readonly kind: 'conflict'; readonly reason: string };
+
+/**
+ * Find an event the ledger already stored under this idempotency key.
+ *
+ * A retry after a failed projection reaches the gateway with a fresh event id
+ * and, for upcast rows, data that can depend on the moved head, so neither the
+ * event id nor the payload digest identifies it. The idempotency key does: the
+ * caller supplies it, or the append CLI derives it from the event exactly as
+ * the caller handed it over. The same key with the same event kind is the same
+ * event, so the original receipt stands in for a second copy. The same key
+ * with a different kind is a caller reusing a key, refused before any append.
+ */
+function findIdempotentReplay(
+  event: EventWritePreflight,
+  priorEvents: readonly VerifiedLedgerEvent[] | null,
+): IdempotencyLookup {
+  const key = event?.identity?.idempotencyKey;
+  if (!key || priorEvents === null) return { kind: 'new' };
+  const existing = priorEvents.find(
+    (verified) => verified.event.effective.envelope.idempotency_key === key,
+  );
+  if (!existing) return { kind: 'new' };
+  const existingKind = eventKind(existing.event.effective.envelope);
+  const incomingKind = eventKind(event.envelope);
+  if (existingKind !== incomingKind) {
+    return {
+      kind: 'conflict',
+      reason: `Idempotency key ${key} already names a ${existingKind} event at ledger sequence `
+        + `${existing.frame.sequence}; refusing to bind it to a ${incomingKind} event.`,
+    };
+  }
+  return { kind: 'replay', receipt: durableReceipt(existing.frame) };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 4. IMPLEMENTATION
 // ───────────────────────────────────────────────────────────────────
@@ -282,6 +409,10 @@ function resolveModeEventRegistry(
  * 1. Bind: resolve actor, capability, and commit from the environment
  * 2. Authority: admit canonical write via durable authority root
  * 3. Envelope: validate event preflight structure
+ * 3b. Provenance: refuse when the state log holds a config row the ledger
+ *     never produced, before anything is appended
+ * 3c. Idempotency: an event whose idempotency key the ledger already holds
+ *     reuses the original receipt and skips straight to the projection
  * 4. Authorize: transition gateway evaluates policy and issues allow proof
  * 5. Append: fenced writer commits event to append-only ledger
  * 6. Project: refresh legacy projection at declared boundary
@@ -373,9 +504,38 @@ export async function appendModeEvent(
     // If not found in registry, retain caller-provided policy reference to fail closed
   }
 
+  // Both pre-append checks read the ledger once.
+  let priorEvents: readonly VerifiedLedgerEvent[] | null;
+  try {
+    priorEvents = await options.ledger.readVerifiedEvents();
+  } catch {
+    priorEvents = null;
+  }
+
+  const unattributedStateLog = findUnattributedStateLog(options, priorEvents);
+  if (unattributedStateLog !== null) {
+    return {
+      ok: false,
+      phase: 'provenance',
+      reason: unattributedStateLog,
+      code: ModeAppendGatewayErrorCodes.STATE_LOG_UNATTRIBUTED,
+    };
+  }
+
+  const idempotency = findIdempotentReplay(event, priorEvents);
+  if (idempotency.kind === 'conflict') {
+    return {
+      ok: false,
+      phase: 'append',
+      reason: idempotency.reason,
+      code: ModeAppendGatewayErrorCodes.IDEMPOTENCY_CONFLICT,
+    };
+  }
+  const idempotentReplay = idempotency.kind === 'replay';
+
   // Phase 4 & 5: Authorize and Append with bounded retry for concurrent writers
-  const maxRetries = 10;
-  let receipt: DurableAppendReceipt | null = null;
+  const maxRetries = idempotentReplay ? 0 : 10;
+  let receipt: DurableAppendReceipt | null = idempotency.kind === 'replay' ? idempotency.receipt : null;
 
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     const priorHead = await options.ledger.getVerifiedHead();
@@ -591,6 +751,7 @@ export async function appendModeEvent(
       code: ModeAppendGatewayErrorCodes.PROJECTION_FAILED,
       receipt: modeReceipt,
       projectionError,
+      ...(idempotentReplay ? { idempotentReplay: true as const } : {}),
     };
   }
 
@@ -599,5 +760,6 @@ export async function appendModeEvent(
     receipt: modeReceipt,
     projectionRefreshed,
     projectionError,
+    ...(idempotentReplay ? { idempotentReplay: true as const } : {}),
   };
 }

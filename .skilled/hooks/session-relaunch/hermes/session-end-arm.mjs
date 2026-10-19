@@ -11,8 +11,10 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import {
   arm,
   appendLog,
+  armableRecord,
   findLoopChildPid,
-  liveKillerPid,
+  isEntrypoint,
+  payloadEventName,
   readRelaunchFile,
 } from '../lib/relaunch-core.cjs';
 
@@ -23,11 +25,6 @@ const KILLER_PATH = path.join(
 
 function done(armed = false) {
   process.stdout.write(`${JSON.stringify({ armed })}\n`, () => process.exit(0));
-}
-
-function isMain() {
-  return process.argv[1]
-    && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 }
 
 function logEvent(event, fields, env) {
@@ -56,25 +53,13 @@ function armPendingRecord(payload, dependencies = {}) {
     const loopId = env.SKILLED_LOOP_ID;
     const sessionId = payload?.session_id;
     if (!loopId || typeof sessionId !== 'string' || !sessionId) return null;
-    // The plugin bridge may omit the event name, so only a present, different one refuses.
-    if (
-      payload.hook_event_name !== undefined
-      && payload.hook_event_name !== 'on_session_end'
-    ) return null;
+    if (payloadEventName(payload, { runtime: 'hermes', expected: 'on_session_end' }) === null) {
+      return null;
+    }
     if (env.SKILLED_LOOP_RUNTIME && env.SKILLED_LOOP_RUNTIME !== 'hermes') return null;
 
     const record = readRelaunchFile(loopId, env);
-    if (
-      record === null
-      || record.sessionId !== sessionId
-      || record.runtime !== 'hermes'
-    ) return null;
-    // Pending arms here; an armed record belongs to a killer, so it respawns
-    // only when no live killer owns the lock.
-    if (
-      record.status !== 'pending'
-      && (record.status !== 'armed' || liveKillerPid(loopId, env) !== null)
-    ) return null;
+    if (!armableRecord(record, { loopId, sessionId, runtime: 'hermes', env }).armable) return null;
 
     const targetPid = positivePid(dependencies.targetPid)
       ?? findLoopChildPid(loopId, {
@@ -135,6 +120,6 @@ async function main() {
   return done(armPendingRecord(payload) !== null);
 }
 
-if (isMain()) main().catch(() => done());
+if (isEntrypoint(import.meta.url)) main().catch(() => done());
 
-export { armPendingRecord, findLoopChildPid as findHermesPid };
+export { armPendingRecord };

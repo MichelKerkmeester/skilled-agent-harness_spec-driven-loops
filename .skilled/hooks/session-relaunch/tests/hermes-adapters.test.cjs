@@ -286,11 +286,55 @@ test('session end respawns one killer for an armed record whose killer is gone',
   assert.equal(calls.length, 2);
 });
 
-test('Hermes target lookup selects the ancestor directly below the loop process', async () => {
+test('session end signals the loop child it finds above a transient shell, and arms nothing without one', async (t) => {
+  const sandboxed = sandbox(t);
+  const loopId = '100';
+  sandboxed.env.SKILLED_LOOP_ID = loopId;
+  makePending(sandboxed.env, loopId, 'session-a');
   const module = await import(pathToFileURL(armAdapter).href);
-  const table = '41 50\n50 60\n60 100\n100 1\n';
-  assert.equal(module.findHermesPid('100', { pid: 41, processTable: table }), 60);
-  assert.equal(module.findHermesPid('999', { pid: 41, processTable: table }), null);
+  const spawns = [];
+  const dependencies = {
+    env: sandboxed.env,
+    pid: 41,
+    spawn(command, args) {
+      spawns.push(args);
+      return { unref() {} };
+    },
+  };
+
+  // Hook pid 41 sits below a transient shell 50, hermes 60, then the loop 100.
+  const armed = await module.armPendingRecord(
+    { session_id: 'session-a' },
+    { ...dependencies, processTable: '41 50\n50 60\n60 100\n100 1\n' },
+  );
+  assert.equal(armed.status, 'armed');
+  assert.deepEqual(spawns[0].slice(1), ['--loop-id', loopId, '--target-pid', '60']);
+
+  makePending(sandboxed.env, loopId, 'session-a');
+  assert.equal(
+    await module.armPendingRecord(
+      { session_id: 'session-a' },
+      { ...dependencies, processTable: '41 50\n50 1\n' },
+    ),
+    null,
+  );
+  assert.equal(core.readRelaunchFile(loopId, sandboxed.env).status, 'pending');
+  assert.equal(spawns.length, 1);
+});
+
+// A hook started through a linked directory reports a path that differs from the module's
+// real one, and the entrypoint check must still recognize it or the hook silently does nothing.
+test('session end still runs when the hook is started through a linked directory', async (t) => {
+  const sandboxed = sandbox(t);
+  const linkedDirectory = path.join(sandboxed.root, 'linked-hermes');
+  fs.symlinkSync(path.dirname(armAdapter), linkedDirectory);
+  const result = await runAdapter(
+    path.join(linkedDirectory, 'session-end-arm.mjs'),
+    sandboxed.env,
+    { session_id: 'session-a' },
+  );
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '{"armed":false}\n');
 });
 
 test('session end arms only on a matching or absent event name', async (t) => {

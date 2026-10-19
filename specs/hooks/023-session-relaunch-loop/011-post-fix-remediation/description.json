@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/011-post-fix-remediation",
+  "description": "Phase 11: post-fix-remediation",
+  "keywords": [
+    "phase",
+    "post-fix-remediation"
+  ],
+  "lastUpdated": "2026-10-19T19:56:37.332Z",
+  "specId": "011",
+  "folderSlug": "post-fix-remediation",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

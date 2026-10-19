@@ -8,7 +8,7 @@
 
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
-import { appendLog } from '../lib/relaunch-core.cjs';
+import { appendLog, isEntrypoint, payloadEventName } from '../lib/relaunch-core.cjs';
 import { readClaudeFill, resolveWindow, fillRatio } from '../lib/context-usage.cjs';
 import nudge from '../lib/nudge.cjs';
 
@@ -39,13 +39,6 @@ function logEvent(event, fields) {
   } catch {}
 }
 
-function eventNameOf(payload) {
-  if (typeof payload?.hook_event_name === 'string' && payload.hook_event_name) {
-    return payload.hook_event_name;
-  }
-  return typeof payload?.prompt === 'string' ? 'UserPromptSubmit' : 'PostToolUse';
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -63,7 +56,8 @@ async function main() {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
 
-  const eventName = eventNameOf(payload);
+  // One registration serves both events, so any named event is answered under its own name.
+  const eventName = payloadEventName(payload, { runtime: 'claude' });
   const sessionId = payload.session_id;
   if (!nudge.validSessionId(sessionId)) return done();
 
@@ -117,4 +111,4 @@ async function main() {
 // 5. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-main().catch(done);
+if (isEntrypoint(import.meta.url)) main().catch(done);

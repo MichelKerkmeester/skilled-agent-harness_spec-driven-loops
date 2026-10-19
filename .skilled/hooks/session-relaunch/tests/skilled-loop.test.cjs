@@ -12,6 +12,7 @@ const path = require('node:path');
 const { manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
 
 const WRAPPER_PATH = path.resolve(__dirname, '../../../bin/skilled-loop');
+const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SEED = '[session-relaunch] claim and continue handoff';
 const SPEC_FOLDER = 'specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters';
 const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
@@ -144,6 +145,7 @@ const invocation = existing.length + 1;
 const record = {
   args: process.argv.slice(1),
   runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
+  command: process.env.SESSION_RELAUNCH_TEST_COMMAND || "",
   cwd: process.cwd(),
   env: {
     SKILLED_LOOP_ID: process.env.SKILLED_LOOP_ID || "",
@@ -225,6 +227,7 @@ function installRuntimeStub(sandbox, { markers = '', exitCodes = '0', ...overrid
   const shellProgram = `#!/usr/bin/env bash
 set -euo pipefail
 export SESSION_RELAUNCH_TEST_RUNTIME="$SKILLED_LOOP_RUNTIME"
+export SESSION_RELAUNCH_TEST_COMMAND="\${0##*/}"
 node -e '${RUNTIME_SOURCE}' -- "$@"
 `;
   for (const runtime of [
@@ -518,7 +521,7 @@ test('wrapper stops the hop and prints the manual command when consumed JSON can
   assert.equal(result.status, 1, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
   assert.match(result.stderr, /warning: could not read the consumed relaunch record; not relaunching/);
-  assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
 });
 
 test('name scanning stops at -- and relaunch omits the name option', (t) => {
@@ -831,7 +834,7 @@ test('wrapper declines a stale armed record and logs the decline', (t) => {
   assert.equal(result.status, 7, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
   assert.equal(
-    result.stderr.split('\n').find((line) => line.startsWith('skilled-loop ')),
+    result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
     expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
   );
   assert.equal(
@@ -859,7 +862,7 @@ for (const { label, specFolder } of [
     assert.equal(result.status, 7, result.stderr);
     assert.equal(readRecords(recordPath).length, 1);
     assert.equal(
-      result.stderr.split('\n').find((line) => line.startsWith('skilled-loop ')),
+      result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
       expectedClaudeManualCommand(handoffPath, specFolder),
     );
     assert.equal(
@@ -889,7 +892,7 @@ test('wrapper prints a manual command when the hop cap declines a record', (t) =
   assert.equal(result.status, 7, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
   assert.equal(
-    result.stderr.split('\n').find((line) => line.startsWith('skilled-loop ')),
+    result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
     expectedClaudeManualCommand(handoffPath, SPEC_FOLDER),
   );
   assert.equal(
@@ -918,7 +921,7 @@ test('declined relaunch warns when the handoff path contains a line break', (t) 
     /warning: the handoff path contains a line break; no manual command printed/,
   );
   assert.equal(
-    result.stderr.split('\n').some((line) => line.startsWith('skilled-loop ')),
+    (result.stdout + result.stderr).split('\n').some((line) => line.startsWith('skilled-loop ')),
     false,
   );
 });
@@ -1057,7 +1060,7 @@ test('wrapper prints the manual command after runtime exit 130', (t) => {
   );
   assert.equal(result.status, 130, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
-  assert.ok(result.stderr.includes(
+  assert.ok(result.stdout.includes(
     `skilled-loop claude "[session-relaunch] claim and continue handoff ${handoffPath}"`,
   ));
   assert.equal(fs.existsSync(recordPathOnDisk), false);
@@ -1077,7 +1080,7 @@ test('wrapper names pi in the manual command after runtime exit 130', (t) => {
 
   assert.equal(result.status, 130, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
-  assert.ok(result.stderr.includes(manualCommand), result.stderr);
+  assert.ok(result.stdout.includes(manualCommand), result.stderr);
 });
 
 for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin']) {
@@ -1094,7 +1097,7 @@ for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 
     const template = readRecords(recordPath)[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
     assert.equal(result.status, 130, result.stderr);
     assert.equal(
-      result.stderr.split('\n').find((line) => line.startsWith('skilled-loop ')),
+      result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
       withManualTemplate(template, () => manualClaimCommand(runtime, handoffPath)),
     );
   });
@@ -1117,7 +1120,7 @@ for (const marker of ['$&', "$'", '$$', '$' + String.fromCharCode(96), '$1']) {
 
     assert.equal(result.status, 7, result.stderr);
     assert.equal(
-      result.stderr.split('\n').find((line) => line.startsWith('skilled-loop ')),
+      result.stdout.split('\n').find((line) => line.startsWith('skilled-loop ')),
       withManualTemplate(template, () => manualClaimCommand('claude', handoffPath)),
     );
   });
@@ -1133,7 +1136,7 @@ test('wrapper printed argument preserves a bang path in interactive bash', (t) =
     HANDOFF_PATH: handoffPath,
   });
   const result = runWrapper(sandbox, ['claude', 'initial prompt']);
-  const manualCommand = result.stderr
+  const manualCommand = result.stdout
     .split('\n')
     .find((line) => line.startsWith('skilled-loop '));
   const commandArgument = manualCommand.slice('skilled-loop claude '.length);
@@ -1326,7 +1329,7 @@ test('wrapper escapes shell characters in the manual handoff path', (t) => {
   const manualCommand = 'skilled-loop claude "[session-relaunch] claim and continue handoff '
     + escapedHandoffPath + '"';
   assert.equal(result.status, 130, result.stderr);
-  assert.ok(result.stderr.includes(manualCommand));
+  assert.ok(result.stdout.includes(manualCommand));
   assert.equal(readRecords(recordPath).length, 1);
 });
 
@@ -1346,7 +1349,7 @@ test('wrapper prints the manual command and declines a CR/LF handoff path', (t) 
   );
   const expectedPrefix = 'skilled-loop claude "[session-relaunch] claim and continue handoff ';
   assert.equal(result.status, 1, result.stderr);
-  assert.ok(result.stderr.startsWith(expectedPrefix + handoffPath + '"\n'));
+  assert.ok(result.stdout.startsWith(expectedPrefix + handoffPath + '"\n'));
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
@@ -1367,7 +1370,7 @@ test('wrapper preserves exit 130 and prints the manual command when consume fail
   const manualCommand = 'skilled-loop claude "[session-relaunch] claim and continue handoff '
     + handoffPath + '"';
   assert.equal(result.status, 130, result.stderr);
-  assert.ok(result.stderr.split('\n').includes(manualCommand), result.stderr);
+  assert.ok(result.stdout.split('\n').includes(manualCommand), result.stderr);
   assert.match(result.stderr, /warning: could not consume the relaunch record/);
   assert.equal(fs.existsSync(relaunchPath), true);
 });
@@ -1388,7 +1391,7 @@ test('wrapper consumes an armed record and prints the manual command when cwd is
   );
   assert.equal(result.status, 1);
   assert.equal(readRecords(recordPath).length, 1);
-  assert.ok(result.stderr.includes(
+  assert.ok(result.stdout.includes(
     `skilled-loop claude "[session-relaunch] claim and continue handoff ${handoffPath}"`,
   ));
   assert.equal(fs.existsSync(recordPathOnDisk), false);
@@ -1632,7 +1635,7 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
       HANDOFF_PATH: handoffPath,
     });
     const pendingResult = runWrapper(manualSandbox, [runtime, ...runtimeArguments]);
-    const manualCommand = pendingResult.stderr
+    const manualCommand = pendingResult.stdout
       .split('\n')
       .find((line) => line.startsWith('skilled-loop '));
     assert.equal(pendingResult.status, 7, pendingResult.stderr);
@@ -1662,7 +1665,7 @@ test('wrapper template and core command escape a special handoff path identicall
   const result = runWrapper(sandbox, [
     'claude', '--model', 'claude-model', '--name', 'claude session', 'initial prompt',
   ]);
-  const manualCommand = result.stderr
+  const manualCommand = result.stdout
     .split('\n')
     .find((line) => line.startsWith('skilled-loop '));
   const template = readRecords(recordPath)[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
@@ -1674,56 +1677,252 @@ test('wrapper template and core command escape a special handoff path identicall
   });
 });
 
-for (const [label, template] of [
-  ['a missing token', 'skilled-loop claude without a handoff token'],
-  [
-    'two tokens',
-    'skilled-loop claude @@HANDOFF@@ and @@HANDOFF@@ again',
-  ],
+// The core fills a template only when it holds exactly one placeholder, so a carried
+// value holding the token must surface as an error instead of a quietly plainer command.
+for (const { label, runtime, runtimeArguments, value, exitCodes, status } of [
+  {
+    label: 'a Claude model',
+    runtime: 'claude',
+    runtimeArguments: ['--model', 'model-@@HANDOFF@@'],
+    value: 'model-@@HANDOFF@@',
+    exitCodes: '0',
+    status: 1,
+  },
+  {
+    label: 'a Claude name',
+    runtime: 'claude',
+    runtimeArguments: ['--name', 'name @@HANDOFF@@'],
+    value: 'name @@HANDOFF@@',
+    exitCodes: '7',
+    status: 7,
+  },
+  {
+    label: 'a Pi provider',
+    runtime: 'pi',
+    runtimeArguments: ['--provider', 'provider-@@HANDOFF@@'],
+    value: 'provider-@@HANDOFF@@',
+    exitCodes: '0',
+    status: 1,
+  },
 ]) {
-  test(`print_manual_command falls back to the runtime form with ${label}`, (t) => {
+  test(`wrapper reports an unusable manual template when ${label} holds the placeholder`, (t) => {
     const sandbox = createSandbox(t);
-    const handoffPath = path.join(sandbox.root, 'handoff-!.md');
-    fs.writeFileSync(handoffPath, OPEN_NOTE);
-    const source = fs.readFileSync(WRAPPER_PATH, 'utf8');
-    const specFolderSuffix = source.match(/spec_folder_suffix\(\) \{[\s\S]*?\n\}/);
-    const match = source.match(/print_manual_command\(\) \{[\s\S]*?\n\}/);
-    assert.ok(specFolderSuffix, 'spec_folder_suffix not found in the wrapper');
-    assert.ok(match, 'print_manual_command not found in the wrapper');
-    const harnessPath = path.join(sandbox.binDir, 'print-manual-command');
-    fs.writeFileSync(
-      harnessPath,
-      [
-        '#!/usr/bin/env bash',
-        'set -euo pipefail',
-        'runtime="$TEST_RUNTIME"',
-        'SKILLED_LOOP_MANUAL_TEMPLATE="$TEST_TEMPLATE"',
-        specFolderSuffix[0],
-        match[0],
-        'print_manual_command "$TEST_HANDOFF_PATH"',
-        '',
-      ].join('\n'),
-      { mode: 0o755 },
-    );
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      PENDING_ON_INVOCATION: '1',
+      STUB_EXIT_CODES: exitCodes,
+    });
 
-    for (const runtime of ['claude', 'opencode', 'hermes', 'devin']) {
-      const result = spawnSync('/bin/bash', [harnessPath], {
-        env: {
-          ...sandbox.env,
-          TEST_RUNTIME: runtime,
-          TEST_TEMPLATE: template,
-          TEST_HANDOFF_PATH: handoffPath,
-        },
-        encoding: 'utf8',
-        timeout: 5000,
-      });
-      const expected = withManualTemplate(
-        template,
-        () => manualClaimCommand(runtime, handoffPath),
-      );
-      assert.equal(result.status, 0, result.stderr);
-      assert.equal(result.stderr, `${expected}\n`, `${runtime} ${label}`);
+    const result = runWrapper(sandbox, [runtime, ...runtimeArguments]);
+    const plainCommand = withManualTemplate('', () => manualClaimCommand(runtime, handoffPath));
+
+    assert.equal(result.status, status, result.stderr);
+    assert.equal(readRecords(recordPath).length, 1);
+    assert.deepEqual(
+      result.stdout.split('\n').filter((line) => line.startsWith('skilled-loop ')),
+      [plainCommand],
+    );
+    const errorLine = result.stderr.split('\n').find((line) => line.startsWith('error: '));
+    assert.ok(errorLine, result.stderr);
+    assert.ok(errorLine.includes(value), errorLine);
+  });
+}
+
+// The manual command is the result an operator copies, so the wrapper and the CLI print
+// it on stdout and keep stderr for diagnostics.
+test('wrapper and CLI both print the manual command on stdout', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    STUB_EXIT_CODES: '7',
+  });
+
+  const result = runWrapper(sandbox, ['claude', '--model', 'claude-model', 'initial prompt']);
+  const template = readRecords(recordPath)[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
+
+  assert.equal(result.status, 7, result.stderr);
+  assert.deepEqual(
+    result.stdout.split('\n').filter((line) => line.startsWith('skilled-loop ')),
+    [withManualTemplate(template, () => manualClaimCommand('claude', handoffPath))],
+  );
+  assert.equal(result.stderr.split('\n').some((line) => line.startsWith('skilled-loop ')), false);
+
+  const handoffDirectory = path.join(
+    sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
+  );
+  fs.mkdirSync(handoffDirectory, { recursive: true });
+  const notePath = path.join(handoffDirectory, 'stream-note.md');
+  fs.writeFileSync(notePath, [
+    '---',
+    'status: open',
+    'session_id: session-stream-0001',
+    '---',
+    '## Goal',
+    'Keep the manual command on one stream.',
+    '## Done',
+    'The wrapper prints it.',
+    '## Remaining work',
+    'Nothing.',
+    '## In-flight state',
+    'No child process is running.',
+    '',
+  ].join('\n'));
+  const cliResult = spawnSync(process.execPath, [
+    CLI_PATH, 'prepare', '--handoff', notePath,
+    '--session', 'session-stream-0001', '--runtime', 'claude',
+  ], { cwd: sandbox.repoRoot, env: sandbox.env, encoding: 'utf8', timeout: 12000 });
+
+  assert.equal(cliResult.status, 3, cliResult.stderr);
+  const cliLines = cliResult.stdout.split('\n').filter((line) => line.startsWith('skilled-loop '));
+  assert.equal(cliLines.length, 1, cliResult.stdout);
+  assert.ok(cliLines[0].startsWith(`skilled-loop claude "${SEED} `), cliLines[0]);
+  assert.equal(
+    cliResult.stderr.split('\n').some((line) => line.startsWith('skilled-loop ')),
+    false,
+  );
+});
+
+// Cursor and Devin are command-only runtimes: no hook arms them, so the wrapper's seed
+// form is the only thing that brings the fresh session to the handoff.
+const COMMAND_ONLY_RUNTIMES = [
+  {
+    runtime: 'cursor',
+    command: 'cursor-agent',
+    relaunchArguments: (seed) => [seed],
+    manualCommand: (handoffPath) => `skilled-loop cursor "${SEED} ${handoffPath}"`,
+    resumeArguments: ['--resume', '--continue', 'resume', 'ls', '--model', '-m'],
+  },
+  {
+    runtime: 'devin',
+    command: 'devin',
+    relaunchArguments: (seed) => ['--', seed],
+    manualCommand: (handoffPath) => `skilled-loop devin '--' "${SEED} ${handoffPath}"`,
+    resumeArguments: ['-c', '--continue', '-r', '--resume', '--model'],
+  },
+];
+
+for (const runtimeCase of COMMAND_ONLY_RUNTIMES) {
+  const { runtime, command, relaunchArguments, manualCommand, resumeArguments } = runtimeCase;
+
+  test(`${runtime} command-only launch relaunches the bare seed from the recorded cwd`, (t) => {
+    for (const firstArguments of [[], ['initial prompt']]) {
+      for (const specFolder of ['', COMMAND_RUNTIME_SPEC_FOLDER]) {
+        const sandbox = createSandbox(t);
+        const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+        if (specFolder) writeSpecFolderNote(handoffPath, specFolder);
+
+        const result = runWrapper(sandbox, [runtime, ...firstArguments]);
+
+        assert.equal(result.status, 0, result.stderr);
+        const records = readRecords(recordPath);
+        assert.equal(records.length, 2);
+        assert.deepEqual(records.map((record) => record.command), [command, command]);
+        assert.deepEqual(records[0].args, firstArguments);
+        const specSuffix = specFolder ? ` | Spec folder: ${specFolder}${SPEC_FOLDER_SUFFIX}` : '';
+        assert.deepEqual(
+          records[1].args,
+          relaunchArguments(`${SEED} ${handoffPath}${specSuffix}`),
+        );
+        assert.equal(records[0].cwd, fs.realpathSync(sandbox.repoRoot));
+        assert.equal(records[1].cwd, fs.realpathSync(sandbox.recordedCwd));
+        assert.deepEqual(
+          records.map((record) => record.env.SKILLED_LOOP_RUNTIME),
+          [runtime, runtime],
+        );
+        assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['0', '1']);
+        assert.equal(records[0].env.SKILLED_LOOP_ID, records[1].env.SKILLED_LOOP_ID);
+        assert.equal(
+          records[1].args.some((arg) => resumeArguments.includes(arg)),
+          false,
+          `${runtime} ${records[1].args.join(' ')}`,
+        );
+      }
     }
+  });
+
+  test(`${runtime} command-only declines print the manual command and never relaunch`, (t) => {
+    for (const scenario of [
+      {
+        label: 'pending record',
+        overrides: { PENDING_ON_INVOCATION: '1', STUB_EXIT_CODES: '7' },
+        status: 7,
+        log: /not-armed/,
+      },
+      {
+        label: 'stale record',
+        overrides: { STALE_ON_INVOCATION: '1', STUB_EXIT_CODES: '7' },
+        status: 7,
+        log: /stale/,
+      },
+      {
+        label: 'hop cap',
+        overrides: { SESSION_RELAUNCH_MAX_HOPS: '0', STUB_EXIT_CODES: '7' },
+        status: 7,
+        log: /hop-cap/,
+      },
+      { label: 'runtime exit 130', overrides: { STUB_EXIT_CODES: '130' }, status: 130 },
+      {
+        label: 'claimed note',
+        overrides: {},
+        note: '---\nstatus: claimed\n---\n',
+        status: 1,
+        warning: /warning: the handoff note is claimed; not relaunching/,
+      },
+    ]) {
+      const sandbox = createSandbox(t);
+      const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+        markers: '1',
+        ...scenario.overrides,
+      });
+      if (scenario.note) fs.writeFileSync(handoffPath, scenario.note);
+
+      const result = runWrapper(sandbox, [runtime]);
+      const records = readRecords(recordPath);
+      const template = records[0].env.SKILLED_LOOP_MANUAL_TEMPLATE;
+      const message = `${runtime} ${scenario.label}: ${result.stderr}`;
+
+      assert.equal(result.status, scenario.status, message);
+      assert.equal(records.length, 1, message);
+      assert.deepEqual(
+        result.stdout.split('\n').filter((line) => line.startsWith('skilled-loop ')),
+        [manualCommand(handoffPath)],
+        message,
+      );
+      assert.equal(
+        withManualTemplate(template, () => manualClaimCommand(runtime, handoffPath)),
+        manualCommand(handoffPath),
+      );
+      assert.equal(fs.existsSync(path.join(
+        sandbox.xdgRuntimeDir,
+        'skilled-relaunch',
+        `relaunch-${records[0].env.SKILLED_LOOP_ID}.json`,
+      )), false, message);
+      if (scenario.log) assert.match(readLog(sandbox), scenario.log, message);
+      if (scenario.warning) assert.match(result.stderr, scenario.warning, message);
+    }
+  });
+
+  test(`${runtime} manual command reruns the runtime with the relaunch seed form`, (t) => {
+    const sandbox = createSandbox(t);
+    const { recordPath, markerPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      PENDING_ON_INVOCATION: '1',
+      STUB_EXIT_CODES: '7',
+    });
+    const pendingResult = runWrapper(sandbox, [runtime]);
+    assert.equal(pendingResult.status, 7, pendingResult.stderr);
+
+    fs.writeFileSync(markerPath, '');
+    sandbox.env.STUB_EXIT_CODES = '0';
+    installSkilledLoopCommand(sandbox);
+    const manualResult = runManualCommand(sandbox, manualCommand(handoffPath));
+    const records = readRecords(recordPath);
+
+    assert.equal(manualResult.status, 0, manualResult.stderr);
+    assert.equal(records.length, 2);
+    assert.equal(records[1].command, command);
+    assert.deepEqual(records[1].args, relaunchArguments(`${SEED} ${handoffPath}`));
   });
 }
 
@@ -1743,7 +1942,7 @@ test('wrapper consumes a pending decline record and preserves the runtime exit c
   );
 
   assert.equal(result.status, 7, result.stderr);
-  assert.ok(result.stderr.includes(`skilled-loop claude "${SEED} ${handoffPath}"`));
+  assert.ok(result.stdout.includes(`skilled-loop claude "${SEED} ${handoffPath}"`));
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
@@ -1762,7 +1961,7 @@ for (const [label, writeNote, state] of [
     assert.equal(result.status, 1, result.stderr);
     assert.equal(readRecords(recordPath).length, 1);
     assert.match(result.stderr, new RegExp(`warning: the handoff note is ${state}; not relaunching`));
-    assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+    assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
   });
 }
 
@@ -1778,6 +1977,6 @@ test('wrapper declines a record without a cwd and keeps the runtime exit code', 
 
   assert.equal(result.status, 5, result.stderr);
   assert.equal(readRecords(recordPath).length, 1);
-  assert.ok(result.stderr.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
+  assert.ok(result.stdout.includes(expectedClaudeManualCommand(handoffPath)), result.stderr);
   assert.match(readLog(sandbox), /reason=incomplete-record/);
 });

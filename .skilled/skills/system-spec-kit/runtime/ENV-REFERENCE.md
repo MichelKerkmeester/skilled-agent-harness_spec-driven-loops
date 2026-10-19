@@ -111,8 +111,19 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | number (minutes) | Minutes an armed relaunch file stays valid. | `.skilled/hooks/session-relaunch/` |
 | `SESSION_RELAUNCH_REPO_ROOT` | (unset) | string (absolute path) | Repository root that planned handoff note paths resolve under. Unset falls back to the install root that holds the concern, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. | `.skilled/hooks/session-relaunch/` |
 | `SYSTEM_SPEC_FOLDER` | (unset) | string (repo-relative packet path) | Spec packet the session is bound to. The Cursor spec-gate prebind satisfies Gate 3 from it at session start. Every session-relaunch nudge writes it into a planned handoff note's `spec_folder` so the relaunched session resumes that packet; a hook payload `spec_folder`, which only the Hermes plugin bridge sends, takes precedence. A value that is not a valid packet path is dropped and the field prints empty. | `.skilled/skills/system-spec-kit/runtime/hooks/cursor/`, `.skilled/hooks/session-relaunch/lib/nudge.cjs` |
-| `CLAUDE_PID` | (set by Claude Code) | number (process id) | Claude's own process id. Session relaunch `prepare` uses it for the live-shell-child check, and the Claude Stop hook keeps it as the killer target while it descends from the `skilled-loop` process; otherwise the hook walks to the loop's direct child. A value that is not a positive integer makes `prepare` exit 2. | `.skilled/hooks/session-relaunch/` |
+| `CLAUDE_PID` | (set by Claude Code) | number (process id) | Claude's own process id. Session relaunch `prepare` uses it for the live-shell-child check and the Claude Stop hook as the killer target, both only while it descends from the `skilled-loop` process; otherwise each walks to the loop's direct child. A value that is not a positive integer makes `prepare` exit 2. | `.skilled/hooks/session-relaunch/` |
 | `HERMES_SPEC_FOLDER` | (unset) | string (repo-relative packet path) | The Hermes form of `SYSTEM_SPEC_FOLDER`. The repo-guards plugin reads the bound packet's goal from it and passes it to the relaunch nudge as the payload's `spec_folder`. | `.hermes/plugins/repo-guards/` |
+
+`.skilled/bin/skilled-loop` exports the variables below to the runtime it starts. They describe the running loop, so an operator never sets them; the hooks and the CLI read them:
+
+| Variable | Set to | Read by |
+|----------|--------|---------|
+| `SKILLED_LOOP_ID` | The wrapper's process id. Its presence marks a session as inside the loop | Every adapter, the CLI and the killer, which signals only descendants of this process |
+| `SKILLED_LOOP_RUNTIME` | The runtime the wrapper started | The CLI, which records it in the relaunch record, and the Hermes arm path |
+| `SKILLED_LOOP_HOPS` | Relaunches so far in this loop, starting at `0` | The CLI, the nudge and the killer, against `SESSION_RELAUNCH_MAX_HOPS` |
+| `SKILLED_LOOP_MODEL`, `SKILLED_LOOP_PROVIDER` | The first launch's model and provider flags | The wrapper itself, which carries them into the relaunch and the manual command |
+| `SKILLED_LOOP_NAME` | The first launch's session name flag | The wrapper and the CLI |
+| `SKILLED_LOOP_MANUAL_TEMPLATE` | The manual claim command for this runtime, with a placeholder for the note path | The core's manual claim command and the killer's timeout notice |
 
 ### Hook-level lifecycle flags
 

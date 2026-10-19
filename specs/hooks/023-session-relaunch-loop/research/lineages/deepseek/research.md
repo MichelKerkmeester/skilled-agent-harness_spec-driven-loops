@@ -139,7 +139,7 @@ The variable is used [SOURCE: .skilled/hooks/session-relaunch/README.md:81] but 
 **Fix:** add the row with its source, or remove the dependency.
 
 **G4. The record-status table calls every arm event a Stop event.**
-README [SOURCE: .skilled/hooks/session-relaunch/README.md:127] against Pi `agent_end` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:375], OpenCode `session.idle` [SOURCE: .opencode/plugins/session-relaunch.js:294] and Hermes `on_session_end` [SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:126].
+README [SOURCE: .skilled/hooks/session-relaunch/README.md:127] against Pi `agent_end` [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:375], OpenCode `session.idle` [SOURCE: .opencode/plugins/session-relaunch.js:294] and Hermes `on_session_end` [SOURCE: .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:111].
 **Fix:** "the runtime's arm event" plus the five-event list.
 
 **G5. The command and the nudge disagree about save versus note order.**

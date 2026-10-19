@@ -185,15 +185,11 @@ async function waitForIdle(options, deadline, signalTracker) {
 }
 
 function isLoopAncestor(targetPid, loopId) {
-  const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid='], {
-    encoding: 'utf8',
-    timeout: 2000,
-  });
-  if (result.error) throw result.error;
-  if (result.status !== 0) throw new Error('ps exited with status ' + result.status);
+  // A failed read throws, so the killer refuses to signal rather than guess at ancestry.
+  const table = core.readProcessTable({ throwOnFailure: true });
 
   const parents = new Map();
-  for (const line of result.stdout.split(/\r?\n/)) {
+  for (const line of table.split(/\r?\n/)) {
     const match = line.trim().match(/^(\d+)\s+(\d+)$/);
     if (match) parents.set(Number(match[1]), Number(match[2]));
   }
@@ -508,12 +504,15 @@ function recordTimeout(options, environment, record) {
   }
   log('killer-timeout', environment, { targetPid: options.targetPid });
   if (!options.noNotify && handoffPath) {
-    notifyManualClaim(handoffPath, runtime, specFolderFromHandoff(handoffPath));
+    notifyManualClaim(handoffPath, runtime, specFolderFromHandoff(handoffPath), environment);
   }
 }
 
-function notifyManualClaim(filePath, runtime, specFolder) {
-  const command = core.manualClaimCommand(runtime, filePath, specFolder);
+function notifyManualClaim(filePath, runtime, specFolder, environment) {
+  // A notice has no stderr, so an unusable template is logged before the plain command goes out.
+  const templateProblem = core.manualTemplateProblem(environment);
+  if (templateProblem) log('killer-manual-template', environment, { problem: templateProblem });
+  const command = core.manualClaimCommand(runtime, filePath, specFolder, environment);
   const escapedCommand = JSON.stringify(command);
   try {
     spawnSync('osascript', [
@@ -577,6 +576,26 @@ async function supervise(options, environment, signalTracker) {
         targetPid: options.targetPid,
         hops: record.hops,
       });
+      return;
+    }
+
+    // The wrapper also declines a record past its age limit, and it reads the record only
+    // once the target has exited, which can take the whole grace period after the signal.
+    // Freshness is therefore judged at the end of that period, with the wrapper's own rule,
+    // so a session is never ended for a relaunch the wrapper will refuse as stale. The note
+    // stays open for a fresh prepare or the operator's own claim.
+    if (!nudge.armedRecordStillCurrent(record, environment, Date.now() + SIGNAL_WAIT_MS)) {
+      const handoffPath = typeof record.handoff === 'string' ? record.handoff : '';
+      if (handoffPath) {
+        core.unarm({
+          loopId: options.loopId,
+          reason: 'stale',
+          expectedStatus: 'armed',
+          expectedHandoff: handoffPath,
+          env: environment,
+        });
+      }
+      log('killer-stale', environment, { targetPid: options.targetPid, armedAt: record.armedAt });
       return;
     }
 

@@ -143,6 +143,8 @@ const DATA_FIELD_RULES = Object.freeze({
     convergencePolicyVersion: 'version',
     reviewModeContractDigest: 'digest',
     initialReleaseReadinessState: enumRule('blocked', 'not-assessed', 'ready'),
+    // The review question, so the projected config row can show it.
+    topic: optionalFieldRule('prose'),
   },
   'deep_review.run_resumed': {
     priorTailDigest: 'digest',

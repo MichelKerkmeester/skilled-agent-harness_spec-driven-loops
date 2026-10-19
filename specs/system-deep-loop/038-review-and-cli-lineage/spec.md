@@ -120,6 +120,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 8 | 008-lineage-proof-enforcement/ | Refuse a CLI lineage without route proof, reducer output, one state row per iteration or in-bounds citations | Planned |
 | 9 | 009-findings-summary-integrity/ | Read `findingId` delta rows and stop cumulative summaries padding phantom findings | Complete |
 | 10 | 010-config-row-projection-refusal/ | Send every CLI lineage state record through the append gateway | Complete |
+| 11 | 011-gateway-enforcement-and-projection-hygiene/ | Enforce the gateway rule in code, store a retry once, and keep topics, reducer rows and idea rows through the projection | Complete |
 
 ### Phase Transition Rules
 
@@ -141,6 +142,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 007-lineage-reducer-compliance | 008-lineage-proof-enforcement | 007 complete, its stamp check in place | `validate.sh --strict` on 007 |
 | 008-lineage-proof-enforcement | 009-findings-summary-integrity | None: 009 touches only the review reducer and does not wait on 008 | `validate.sh --strict` on 009 |
 | `009-findings-summary-integrity` | `010-config-row-projection-refusal` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `010-config-row-projection-refusal` | `011-gateway-enforcement-and-projection-hygiene` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 <!-- /ANCHOR:phase-map -->
 
 ---

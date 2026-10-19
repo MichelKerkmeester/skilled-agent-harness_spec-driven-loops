@@ -92,11 +92,11 @@ Run the suite from the repository root:
 node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs
 ```
 
-Expected result: the run exits with status `0`. The summary ends with the counts below, which include the 39 tests of the OpenCode plugin suite. Node prints each summary line with an info marker, so the lines read `ℹ pass 510` and `ℹ fail 0`. The run takes about one minute.
+Expected result: the run exits with status `0`, and its summary, which includes the OpenCode plugin suite, shows `pass` equal to `tests` with every other count at zero. The total grows as tests are added, so the invariant is the zeros, not a number. Node prints each summary line with an info marker. The run takes about one minute.
 
 ```text
-ℹ tests 510
-ℹ pass 510
+ℹ tests <N>
+ℹ pass <N>
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0

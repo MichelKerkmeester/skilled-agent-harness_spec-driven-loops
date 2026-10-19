@@ -9,12 +9,11 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
-const { spawnSync } = require('node:child_process');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
-const LOOP_RUNTIMES = ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes', 'devin'];
+const LOOP_RUNTIMES = core.RUNTIMES;
 // Non-shell children run no job the killer could interrupt, so they are not detected.
 const LIVE_SHELL_NAMES = new Set([
   'sh', 'bash', 'zsh', 'fish', 'dash', 'ksh', 'mksh', 'tcsh', 'csh', 'nu', 'pwsh',
@@ -125,11 +124,10 @@ function numericSwitch(name, fallback, switches, { integer = false } = {}) {
   return parsed;
 }
 
-const HANDOFF_SEGMENTS = ['.skilled', 'skills', '.state', 'session-relaunch', 'handoffs'];
-
 function handoffPathWithinRepo(filePath) {
   const repository = nudge.resolveRepoRoot(process.env);
-  const handoffDirectory = path.resolve(repository, ...HANDOFF_SEGMENTS);
+  // The nudge plans notes in this directory, so taking it from there keeps the two in step.
+  const handoffDirectory = path.resolve(nudge.handoffDir(repository));
   const candidate = path.resolve(filePath);
   const relative = path.relative(handoffDirectory, candidate);
   if (
@@ -154,7 +152,7 @@ function handoffPathWithinRepo(filePath) {
   // would pass a note stored anywhere. The directory must be the repository's own,
   // reached without a link below the repository root.
   const realRepository = fs.realpathSync(repository);
-  if (path.relative(realRepository, realDirectory) !== path.join(...HANDOFF_SEGMENTS)) {
+  if (path.relative(realRepository, realDirectory) !== path.relative(repository, handoffDirectory)) {
     throw new Error(
       'session-relaunch handoffs directory must be a real directory inside the repository',
     );
@@ -207,25 +205,17 @@ function parseProcessTable(stdout) {
   return processes;
 }
 
-// Reads `comm` too for live-shell detection and fails closed; the core reader returns only `pid ppid`.
-// Bounded like the core reader, so a hung `ps` reaches the caller's error path instead of stalling it.
+// Reads `comm` too for live-shell detection and fails closed: prepare refuses rather than
+// arm a session whose running work it could not inspect.
 function readProcessTableWithCommands(runtime) {
   const name = runtime.charAt(0).toUpperCase() + runtime.slice(1);
-  const result = spawnSync('ps', ['-A', '-o', 'pid=,ppid=,comm='], {
-    encoding: 'utf8',
-    timeout: 2000,
-  });
-  if (result.error) {
-    throw new Error(
-      `could not inspect ${name} child processes: ${result.error.message}`,
-    );
+  let table;
+  try {
+    table = core.readProcessTable({ withCommand: true, throwOnFailure: true });
+  } catch (error) {
+    throw new Error(`could not inspect ${name} child processes: ${error.message}`);
   }
-  if (result.status !== 0) {
-    const reason = String(result.stderr || '').trim() || `ps exited ${result.status}`;
-    throw new Error(`could not inspect ${name} child processes: ${reason}`);
-  }
-
-  return parseProcessTable(result.stdout);
+  return parseProcessTable(table);
 }
 
 function cliAncestorsOf(processes) {
@@ -238,12 +228,13 @@ function cliAncestorsOf(processes) {
   return cliAncestors;
 }
 
-// The ancestor walk lives in the core module so this CLI and the runtime adapters share one implementation.
-function runtimePidFromLoop(loopId, processes) {
+// The runtime is found the way the killer target is: a preferred pid is kept only while it
+// descends from the loop, and otherwise the walk from this process finds the loop's child.
+function runtimePidFromLoop(loopId, processes, preferredPid) {
   const processTable = [...processes.values()]
     .map((processInfo) => `${processInfo.pid} ${processInfo.ppid}`)
     .join('\n');
-  return core.findLoopChildPid(loopId, { pid: process.pid, processTable });
+  return core.resolveKillerTarget(loopId, { preferredPid, pid: process.pid, processTable });
 }
 
 function shellChildOfRuntime(runtimePid, runtime, processes = readProcessTableWithCommands(runtime)) {
@@ -259,25 +250,21 @@ function shellChildOfRuntime(runtimePid, runtime, processes = readProcessTableWi
 
 function refuseForShellChild(loopId, runtime) {
   const rawClaudePid = runtime === 'claude' ? process.env.CLAUDE_PID : undefined;
-  let runtimePid;
-  let processes;
   if (rawClaudePid !== undefined && rawClaudePid !== '') {
-    runtimePid = Number(rawClaudePid);
-    if (!Number.isInteger(runtimePid) || runtimePid <= 0) {
+    const claudePid = Number(rawClaudePid);
+    if (!Number.isInteger(claudePid) || claudePid <= 0) {
       throw new Error('CLAUDE_PID must be a positive process id');
     }
-  } else {
-    processes = readProcessTableWithCommands(runtime);
-    const loopPid = Number(loopId);
-    runtimePid = Number.isInteger(loopPid) && loopPid > 0
-      ? runtimePidFromLoop(loopPid, processes)
-      : null;
-    if (runtimePid === null) {
-      try {
-        core.appendLog('running-work-check-skipped', { loopId });
-      } catch {}
-      return;
-    }
+  }
+  // An inherited or nested CLAUDE_PID names another session's runtime, whose shell
+  // children say nothing about this loop, so it counts only from inside the loop.
+  const processes = readProcessTableWithCommands(runtime);
+  const runtimePid = runtimePidFromLoop(loopId, processes, rawClaudePid);
+  if (runtimePid === null) {
+    try {
+      core.appendLog('running-work-check-skipped', { loopId });
+    } catch {}
+    return;
   }
   const child = shellChildOfRuntime(runtimePid, runtime, processes);
   if (child) {
@@ -288,8 +275,17 @@ function refuseForShellChild(loopId, runtime) {
   }
 }
 
+// The command still prints when the wrapper's template is unusable, in its plain form, so
+// stderr says why the launch options it would have repeated are missing.
 function printManualClaim(handoffPath, runtime, specFolder) {
-  process.stdout.write(`${core.manualClaimCommand(runtime, handoffPath, specFolder)}\n`);
+  const templateProblem = core.manualTemplateProblem(process.env);
+  if (templateProblem !== null) {
+    process.stderr.write(
+      `[session-relaunch] warning: ${templateProblem}; printing the plain command,`
+        + ' so add any launch options back by hand\n',
+    );
+  }
+  process.stdout.write(`${core.manualClaimCommand(runtime, handoffPath, specFolder, process.env)}\n`);
 }
 
 function supersedeClaimedNotes(handoffPath, { loopId, sessionId }) {
@@ -602,7 +598,7 @@ function main(args = process.argv.slice(2)) {
       case 'complete': return complete(commandArgs);
       case 'consume': return consume(commandArgs);
       default: throw invocationError(
-        'command must be prepare, should-relaunch, claim, complete, or consume',
+        `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,
       );
     }
   } catch (error) {

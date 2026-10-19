@@ -832,6 +832,197 @@ describe('mode append gateway', () => {
     );
   });
 
+  // A lineage that writes its own opening config row leaves a state log whose
+  // first row no ledger event produced. The projection cannot rebuild that row,
+  // and refusing only after the append left one more ledger copy per retry.
+  it.each([
+    { mode: 'deep-research' as const, legacyFileName: 'deep-research-state.jsonl', modeDirName: 'research' },
+    { mode: 'deep-review' as const, legacyFileName: 'deep-review-state.jsonl', modeDirName: 'review' },
+  ])(
+    'provenance: $mode refuses a hand-written config row before the append, and a retry adds nothing',
+    async ({ mode, legacyFileName, modeDirName }) => {
+      const root = temporaryRoot(`provenance-${mode}`);
+      const authorityRoot = temporaryRoot(`provenance-${mode}-auth`);
+      const runDirectory = join(root, modeDirName, 'lineages', 'hand-written');
+      mkdirSync(runDirectory, { recursive: true });
+      const statePath = join(runDirectory, legacyFileName);
+      const handWritten = `${JSON.stringify({
+        type: 'config',
+        mode: modeDirName,
+        topic: 'hand-written topic',
+        maxIterations: 5,
+        convergenceThreshold: 0.1,
+        sessionId: 'hand-written-session',
+        timestamp: '2026-10-19T17:14:56Z',
+      })}\n`;
+      writeFileSync(statePath, handWritten);
+
+      const { registry, ledger, policies, gateway, policyId } = createModeHarness(mode, runDirectory);
+      const append = () => appendModeEvent({
+        mode,
+        runDirectory,
+        eventRecord: buildRunInitializedRecord(mode, registry),
+        authorityRoot,
+        policy: { policyId, policyVersion: 1, policyDigest: policies.resolve(policyId, 1).digest },
+        policyRegistry: policies,
+        authorizationGateway: gateway,
+        ledger,
+        eventRegistry: registry,
+        binding: createTestBinding(),
+      });
+
+      for (let attempt = 1; attempt <= 2; attempt += 1) {
+        const result = await append();
+        expect(result.ok).toBe(false);
+        if (result.ok) return;
+        expect(result.phase).toBe('provenance');
+        expect(result.code).toBe(ModeAppendGatewayErrorCodes.STATE_LOG_UNATTRIBUTED);
+        expect(result.reason).toContain('config row the ledger never produced');
+        expect(result.receipt).toBeUndefined();
+        expect(await ledger.readVerifiedEvents(), `attempt ${attempt} leaves the ledger empty`).toHaveLength(0);
+      }
+      expect(readFileSync(statePath, 'utf8')).toBe(handWritten);
+    },
+  );
+
+  // A retry reaches the gateway with a fresh event id, so the idempotency key is
+  // what names it as the same event. A projection that failed after a clean
+  // append must not turn every retry into another stored copy.
+  describe('idempotency key', () => {
+    function researchEvent(
+      registry: EventTypeRegistry,
+      stem: 'deep_research.run_initialized' | 'deep_research.synthesis_complete',
+      eventId: string,
+      idempotencyKey: string,
+    ): EventWritePreflight {
+      const base = {
+        prevEventHash: '0'.repeat(64),
+        replay: { fingerprint_version: 1, final_digest: '0'.repeat(64), replay_input_digests: {} },
+        eventId,
+        streamId: 'deep-research-ledger',
+        streamSequence: 1,
+        occurredAt: '2026-08-19T00:00:00.000Z',
+        recordedAt: '2026-08-19T00:00:00.000Z',
+        producer: { name: 'test', version: '1' },
+        authorityEpoch: 1,
+        correlationId: `correlation-${eventId}`,
+        causationId: null,
+        idempotencyKey,
+      };
+      if (stem === 'deep_research.synthesis_complete') {
+        return prepareDeepResearchEvent({
+          ...base,
+          stem,
+          scope: { runId: 'test-run-idem', lineageId: 'test-lineage-idem' },
+          data: { totalIterations: 1, answeredCount: 0, totalQuestions: 0, stopReason: 'converged' },
+        }, registry);
+      }
+      return prepareDeepResearchEvent({
+        ...base,
+        stem,
+        scope: { runId: 'test-run-idem', lineageId: 'test-lineage-idem' },
+        data: {
+          generation: 1,
+          charterDigest: '0'.repeat(64),
+          configDigest: '0'.repeat(64),
+          executorFingerprint: '0'.repeat(64),
+          replayFingerprint: '0'.repeat(64),
+          maxIterations: 5,
+          convergencePolicyVersion: '1.0.0',
+        },
+      }, registry);
+    }
+
+    async function appendWith(
+      runDirectory: string,
+      authorityRoot: string,
+      harness: ReturnType<typeof createModeHarness>,
+      eventRecord: EventWritePreflight,
+      projectionEngine?: LegacyProjectionEngine,
+    ) {
+      return appendModeEvent({
+        mode: 'deep-research',
+        runDirectory,
+        eventRecord,
+        authorityRoot,
+        policy: {
+          policyId: harness.policyId,
+          policyVersion: 1,
+          policyDigest: harness.policies.resolve(harness.policyId, 1).digest,
+        },
+        policyRegistry: harness.policies,
+        authorizationGateway: harness.gateway,
+        ledger: harness.ledger,
+        eventRegistry: harness.registry,
+        binding: createTestBinding(),
+        ...(projectionEngine ? { projectionEngine } : {}),
+      });
+    }
+
+    it('a retry after a failed projection replays the stored event instead of appending it again', async () => {
+      const runDirectory = join(temporaryRoot('idempotent-replay'), 'research');
+      mkdirSync(runDirectory, { recursive: true });
+      const authorityRoot = temporaryRoot('idempotent-replay-auth');
+      const harness = createModeHarness('deep-research', runDirectory);
+      const failingProjectionEngine = {
+        project: async () => Object.freeze({ ok: false, error: { message: 'synthetic projection failure' } }),
+      } as unknown as LegacyProjectionEngine;
+
+      const first = await appendWith(
+        runDirectory,
+        authorityRoot,
+        harness,
+        researchEvent(harness.registry, 'deep_research.run_initialized', 'event-first', 'run-open-key'),
+        failingProjectionEngine,
+      );
+      expect(first.ok).toBe(false);
+      if (!first.ok) expect(first.phase).toBe('projection');
+
+      const retry = await appendWith(
+        runDirectory,
+        authorityRoot,
+        harness,
+        researchEvent(harness.registry, 'deep_research.run_initialized', 'event-retry', 'run-open-key'),
+      );
+      expect(retry.ok).toBe(true);
+      if (!retry.ok) return;
+      expect(retry.idempotentReplay).toBe(true);
+      expect(retry.receipt.sequence).toBe(1);
+      expect(retry.receipt.eventId).toBe('event-first');
+      expect(retry.projectionRefreshed).toBe(true);
+      expect(await harness.ledger.readVerifiedEvents()).toHaveLength(1);
+      const rows = readFileSync(join(runDirectory, 'deep-research-state.jsonl'), 'utf8').trim().split('\n');
+      expect(rows).toHaveLength(1);
+    });
+
+    it('refuses a reused key on a different event kind before the append', async () => {
+      const runDirectory = join(temporaryRoot('idempotent-conflict'), 'research');
+      mkdirSync(runDirectory, { recursive: true });
+      const authorityRoot = temporaryRoot('idempotent-conflict-auth');
+      const harness = createModeHarness('deep-research', runDirectory);
+
+      const first = await appendWith(
+        runDirectory,
+        authorityRoot,
+        harness,
+        researchEvent(harness.registry, 'deep_research.run_initialized', 'event-open', 'shared-key'),
+      );
+      expect(first.ok).toBe(true);
+      const reused = await appendWith(
+        runDirectory,
+        authorityRoot,
+        harness,
+        researchEvent(harness.registry, 'deep_research.synthesis_complete', 'event-synthesis', 'shared-key'),
+      );
+      expect(reused.ok).toBe(false);
+      if (!reused.ok) {
+        expect(reused.phase).toBe('append');
+        expect(reused.code).toBe(ModeAppendGatewayErrorCodes.IDEMPOTENCY_CONFLICT);
+      }
+      expect(await harness.ledger.readVerifiedEvents()).toHaveLength(1);
+    });
+  });
+
   it('binding failure: returns named phase and reason', async () => {
     const rootDirectory = temporaryRoot('binding-failure');
     const authorityRoot = temporaryRoot('binding-failure-auth');

@@ -12,7 +12,7 @@ import {
   isHookEnabled,
   loadConfigFile,
 } from '../../shared/hook-flags.mjs';
-import { appendLog } from '../lib/relaunch-core.cjs';
+import { appendLog, payloadEventName } from '../lib/relaunch-core.cjs';
 import {
   fillRatio,
   readCodexUsage,
@@ -65,8 +65,8 @@ async function main(expectedEvent) {
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
 
-  const eventName = payload.hook_event_name;
-  if (eventName !== expectedEvent) return done();
+  const eventName = payloadEventName(payload, { runtime: 'codex', expected: expectedEvent });
+  if (eventName === null) return done();
 
   const sessionId = payload.session_id;
   if (!nudge.validSessionId(sessionId)) return done();

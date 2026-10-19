@@ -717,6 +717,19 @@ describe('deep-review typed ledger schema', () => {
     expect(second.envelope.payload.replay).toEqual(first.envelope.payload.replay);
   });
 
+  // The run-open event carries the review topic for the projected config row,
+  // and ledgers written before the field existed must still pass.
+  it('accepts run initialization with or without a prose topic and refuses a blank one', () => {
+    const registry = createDeepReviewEventRegistry();
+    const input = eventInput('deep_review.run_initialized', 1, '0'.repeat(64));
+    const withTopic = (topic: unknown) => ({ ...input, data: { ...input.data, topic } }) as typeof input;
+    expect(() => prepareDeepReviewEvent(input, registry)).not.toThrow();
+    expect(() => prepareDeepReviewEvent(withTopic('Review: the hook upgrade'), registry)).not.toThrow();
+    for (const topic of ['   ', 'x'.repeat(4_097), 7]) {
+      expect(() => prepareDeepReviewEvent(withTopic(topic), registry)).toThrow();
+    }
+  });
+
   it('rejects missing base and event-specific scope identities', () => {
     const registry = createDeepReviewEventRegistry();
     const candidate = eventInput(

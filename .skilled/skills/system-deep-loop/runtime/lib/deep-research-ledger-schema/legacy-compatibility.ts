@@ -40,6 +40,17 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   spec_mutation: 'deep_research.spec_mutation',
   spec_mutation_conflict: 'deep_research.spec_mutation_conflict',
   spec_synthesis_deferred: 'deep_research.spec_synthesis_deferred',
+  idea_observed: 'deep_research.idea_observed',
+  ideaObserved: 'deep_research.idea_observed',
+  idea_promoted: 'deep_research.idea_promoted',
+  ideaPromoted: 'deep_research.idea_promoted',
+  idea_rejected: 'deep_research.idea_rejected',
+  ideaRejected: 'deep_research.idea_rejected',
+  idea_rejected_removed: 'deep_research.idea_rejected_removed',
+  ideaRejectedRemoved: 'deep_research.idea_rejected_removed',
+  idea_rejected_reset: 'deep_research.idea_rejected_reset',
+  ideaRejectedReset: 'deep_research.idea_rejected_reset',
+  question_conflict: 'deep_research.question_conflict',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_TYPES = new Set([
@@ -58,22 +69,11 @@ const PINNED_LEGACY_EVENTS = new Set([
   'synthesis_incomplete',
   'synthesis_complete',
   'lock_released',
-  'idea_observed',
-  'idea_promoted',
-  'idea_rejected',
-  // Reducer aliases and operational records have no lossless research-event
-  // target. Pinning preserves their legacy address without inventing ledger
-  // semantics for cache maintenance, conflicts, pivots, or advisories.
-  'ideaObserved',
-  'ideaPromoted',
-  'ideaRejected',
-  'idea_rejected_removed',
-  'idea_rejected_reset',
-  'ideaRejectedRemoved',
-  'ideaRejectedReset',
+  // Operational records have no lossless research-event target. Pinning
+  // preserves their legacy address without inventing ledger semantics for
+  // pivots or advisories.
   'stuckRecovery',
   'userPaused',
-  'question_conflict',
   'novelty_signal_inert',
   'trend_flatline',
   'pivot_started',
@@ -101,6 +101,81 @@ const CONTEXT_SCOPE_STEMS = new Set<DeepResearchEventStem>([
   'deep_research.spec_mutation_conflict',
   'deep_research.spec_synthesis_deferred',
 ]);
+
+// The rows the research reducer reads back: its own promotions and conflicts,
+// and the idea rows the research agent and the operator record. Each travels
+// under its stem field for field, so the projection can write the same row
+// back: the payload keeps the row's own names, a field the row left out stays
+// out, and the row's timestamp becomes the event's occurrence time. A row with
+// a field outside its shape is refused rather than carried without it.
+interface ReducerReadRowShape {
+  readonly event: string;
+  readonly required: readonly string[];
+  // At least one of these must be present; empty when the row needs none.
+  readonly anyOf: readonly string[];
+  readonly optional: readonly string[];
+}
+
+const IDEA_REJECTION_FIELDS = Object.freeze([
+  'mode', 'run', 'rejectedId', 'ideaId', 'idea', 'pattern', 'category', 'reason',
+  'sessionId', 'generation',
+]);
+
+const REDUCER_READ_ROW_SHAPES: Readonly<
+  Partial<Record<DeepResearchEventStem, ReducerReadRowShape>>
+> = Object.freeze({
+  'deep_research.idea_observed': Object.freeze({
+    event: 'idea_observed',
+    required: ['idea'],
+    anyOf: [],
+    optional: ['mode', 'run', 'ideaId', 'category', 'source', 'sessionId', 'generation'],
+  }),
+  'deep_research.idea_promoted': Object.freeze({
+    event: 'idea_promoted',
+    required: [
+      'mode', 'run', 'ideaId', 'idea', 'category', 'observationCount', 'minIdeaObservations',
+      'firstObservedRun', 'lastObservedRun',
+    ],
+    anyOf: [],
+    optional: ['sessionId', 'generation'],
+  }),
+  'deep_research.idea_rejected': Object.freeze({
+    event: 'idea_rejected',
+    required: [],
+    anyOf: ['idea', 'pattern'],
+    optional: IDEA_REJECTION_FIELDS,
+  }),
+  'deep_research.idea_rejected_removed': Object.freeze({
+    event: 'idea_rejected_removed',
+    required: [],
+    anyOf: ['rejectedId', 'ideaId', 'idea', 'pattern'],
+    optional: IDEA_REJECTION_FIELDS,
+  }),
+  'deep_research.idea_rejected_reset': Object.freeze({
+    event: 'idea_rejected_reset',
+    required: [],
+    anyOf: [],
+    optional: ['mode', 'run', 'reason', 'sessionId', 'generation'],
+  }),
+  'deep_research.question_conflict': Object.freeze({
+    event: 'question_conflict',
+    required: [
+      'mode', 'run', 'conflictId', 'questionId', 'inboxId', 'operatorDecision', 'inboxValue',
+      'registryValue', 'source', 'origin', 'injectedAtIteration', 'sessionId', 'generation',
+    ],
+    anyOf: [],
+    optional: [],
+  }),
+});
+
+// The row's envelope bookkeeping: the record and event names select the stem,
+// the version fields are checked by the compatibility decision and carried by
+// the event's own version, and the timestamp becomes its occurrence time.
+const LEGACY_ROW_ENVELOPE_FIELDS = new Set([
+  'type', 'event', 'timestamp', 'schemaVersion', 'eventVersion',
+]);
+
+const UTC_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
 
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -217,13 +292,37 @@ function stableTargetIdentity(
     return hasQuestionRegistrationData(record);
   }
   // The spec-protocol rows carry no run or session identity: the append context
-  // supplies their scope and the upcaster validates their payload fields.
+  // supplies their scope and the upcaster validates their payload fields. The
+  // rows the reducer reads back are scoped the same way.
   if (CONTEXT_SCOPE_STEMS.has(targetStem)) return true;
+  if (REDUCER_READ_ROW_SHAPES[targetStem]) return true;
   return hasStableIdentity(record);
+}
+
+// The envelope accepts only a UTC instant, and the projection writes the
+// occurrence time back as the row's timestamp, so anything else cannot travel.
+function isUtcTimestamp(value: unknown): value is string {
+  if (typeof value !== 'string' || !UTC_TIMESTAMP_PATTERN.test(value)) return false;
+  const parsed = new Date(value);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 19) === value.slice(0, 19);
+}
+
+function reducerReadRowReason(stem: DeepResearchEventStem, problem: string): string {
+  return `${stem.replace(/^deep_research\./, '').replace(/_/g, '-')}-fields-${problem}`;
 }
 
 function digestRecord(record: Record<string, unknown>): string {
   return sha256Bytes(canonicalBytes(record as JsonObject));
+}
+
+// The longest topic the run-open event's prose rule accepts; a longer one is
+// left out so the row still upcasts and the projection falls back to the run id.
+const MAX_TOPIC_LENGTH = 4_096;
+
+function legacyTopic(value: unknown): { readonly topic: string } | Record<string, never> {
+  return isNonEmptyString(value) && value.length <= MAX_TOPIC_LENGTH
+    ? { topic: value }
+    : {};
 }
 
 function stringValue(value: unknown, fallback: string): string {
@@ -311,6 +410,7 @@ export function upcastLegacyDeepResearchRecord(
   const warnings: string[] = [];
   let data: JsonObject;
   let scope: DeepResearchScope = context.scope;
+  let occurredAt: string | undefined;
 
   switch (compatibility.targetStem) {
     case 'deep_research.question_registered': {
@@ -350,6 +450,7 @@ export function upcastLegacyDeepResearchRecord(
         replayFingerprint: context.replay.final_digest,
         maxIterations: positiveInteger(input.maxIterations, 0),
         convergencePolicyVersion: 'legacy-jsonl@1',
+        ...legacyTopic(input.topic),
       };
       warnings.push('Legacy config has one digest for both charter and configuration evidence.');
       break;
@@ -522,6 +623,37 @@ export function upcastLegacyDeepResearchRecord(
       data = { reason, generatedFence };
       break;
     }
+    case 'deep_research.idea_observed':
+    case 'deep_research.idea_promoted':
+    case 'deep_research.idea_rejected':
+    case 'deep_research.idea_rejected_removed':
+    case 'deep_research.idea_rejected_reset':
+    case 'deep_research.question_conflict': {
+      const targetStem = compatibility.targetStem;
+      const shape = REDUCER_READ_ROW_SHAPES[targetStem] as ReducerReadRowShape;
+      const fields = Object.keys(input).filter((field) => !LEGACY_ROW_ENVELOPE_FIELDS.has(field));
+      const known = new Set([...shape.required, ...shape.anyOf, ...shape.optional]);
+      // The projection writes these rows back as event rows, so any other record
+      // type would come back changed.
+      if (input.type !== 'event' || fields.some((field) => !known.has(field))) {
+        return refusedUpcast(compatibility, reducerReadRowReason(targetStem, 'unrecognized'));
+      }
+      if (shape.required.some((field) => !fields.includes(field))
+        || (shape.anyOf.length > 0 && !shape.anyOf.some((field) => fields.includes(field)))) {
+        return refusedUpcast(compatibility, reducerReadRowReason(targetStem, 'missing'));
+      }
+      if (!isUtcTimestamp(input.timestamp)) {
+        return refusedUpcast(compatibility, 'legacy-row-timestamp-invalid');
+      }
+      data = Object.fromEntries(fields.map((field) => [field, input[field]])) as JsonObject;
+      if (input.event !== shape.event) data.eventAlias = input.event as string;
+      if ('schemaVersion' in input || 'eventVersion' in input) {
+        warnings.push('The row version is carried by the event version and left out of the projected row.');
+      }
+      scope = { runId: context.scope.runId, lineageId: context.scope.lineageId };
+      occurredAt = input.timestamp;
+      break;
+    }
     default:
       return Object.freeze({
         status: 'refused',
@@ -545,5 +677,6 @@ export function upcastLegacyDeepResearchRecord(
     prevEventHash: context.prevEventHash,
     replay: context.replay,
     data,
+    ...(occurredAt === undefined ? {} : { occurredAt }),
   });
 }

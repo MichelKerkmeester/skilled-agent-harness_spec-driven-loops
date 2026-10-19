@@ -18,7 +18,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ## 2. CONTRACT
 
-**Inputs:** nothing through `$ARGUMENTS`. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and, while it descends from the loop, the killer's target. Other runtimes must pass the session id. If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session. `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
+**Inputs:** nothing through `$ARGUMENTS`. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit it and use `$CLAUDE_CODE_SESSION_ID`. On Claude, `CLAUDE_PID` supplies the runtime process id for the shell-child check and the killer's target, both only while it descends from the loop. Other runtimes must pass the session id. If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that id for the session. `spec_folder` records the Gate 3 answer: the repo-relative packet path, `none` after D) Skip or empty when Gate 3 was never answered.
 
 **Outputs:**
 

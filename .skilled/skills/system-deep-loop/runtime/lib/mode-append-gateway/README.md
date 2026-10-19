@@ -47,6 +47,10 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
   2 authority      admitCanonicalWrite at the durable authority root  -> AUTHORITY_DENIED
                    AUTHORITY_FLIP_MODE_ORDER membership checked first
   3 envelope       registered policy digest resolved from the registry
+  3b provenance    state log opens with a config row, ledger holds    -> STATE_LOG_UNATTRIBUTED
+                   no run-open event (checked before any append)
+  3c idempotency   ledger already holds this idempotency key          -> original receipt, no new
+                   (same event kind), or holds it for another kind       append; IDEMPOTENCY_CONFLICT
   4 authorization  TransitionAuthorizationGateway.authorize           -> AUTHORIZATION_DENIED
   5 append         appendAuthorizedThroughFence                       -> APPEND_FAILED
   6 projection     LegacyProjectionEngine refresh at the boundary     -> PROJECTION_FAILED
@@ -58,9 +62,15 @@ options: mode, runDirectory, eventRecord, policy, ledger, ...
 | `BINDING_FAILED` | Cutover binding could not resolve actor, capability or commit |
 | `AUTHORITY_DENIED` | The mode is outside `AUTHORITY_FLIP_MODE_ORDER`, admission is denied, or admission is closed |
 | `ENVELOPE_INVALID` | Part of the vocabulary only, declared for an event record that does not match the mode ledger schema. No stage returns it today |
+| `STATE_LOG_UNATTRIBUTED` | Phase `provenance`: the research or review state log opens with a config row while the ledger holds no `run_initialized` event, so the row was written outside the gateway. Nothing is appended |
 | `AUTHORIZATION_DENIED` | The transition gateway declined the request |
 | `APPEND_FAILED` | Fenced append raised a head conflict, fence error or storage error, or the retry budget ran out |
+| `IDEMPOTENCY_CONFLICT` | Phase `append`: the event's idempotency key already names a ledger event of a different kind. Nothing is appended |
 | `PROJECTION_FAILED` | The projection refresh ran and did not succeed after the append was durable |
+
+The provenance check runs before authorization because the projection builds the opening config row from the run-open event alone. A config row with no such event can never be rebuilt, and the projection's attribution guard would refuse only after the append, leaving one more ledger copy of the event on every retry.
+
+An event whose idempotency key the ledger already holds is the same event again, most often a retry after a projection failure. The gateway skips stages 4 and 5, reuses the original receipt, reruns the projection and reports `idempotentReplay: true`. The append CLI derives the key from the event exactly as the caller handed it over (`<mode>:input:<sha256>`), unless the caller names one, because the event id, timestamps and chain position it mints change on every call.
 
 Stages 4 and 5 share one bounded retry budget of ten attempts. A `STALE_HEAD` denial or a `HEAD_CONFLICT` error re-reads the verified head and tries again.
 

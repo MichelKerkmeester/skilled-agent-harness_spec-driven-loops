@@ -12,6 +12,7 @@ import {
   DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
   checkLineageTimestampWindow,
 } from '../../lib/deep-loop/lineage-timestamp-window.js';
+import { gatewayAppendNodeSource } from '../helpers/gateway-backed-lineage';
 import { createHermeticEnv, runtimeRoot, spawnCjs, type HermeticEnv } from '../helpers/spawn-cjs';
 
 const tempDirs: string[] = [];
@@ -66,7 +67,9 @@ function writeTimestampStubBinary(binDir: string, records: Array<Record<string, 
       'fs.mkdirSync(lineageDir, { recursive: true });',
       `const configuredRecords = ${encodedRecords};`,
       `const records = ${recordsExpression};`,
-      'fs.writeFileSync(path.join(lineageDir, "deep-review-state.jsonl"), `${records.map((record) => JSON.stringify(record)).join("\\n")}\\n`, "utf8");',
+      // A real lineage records each state row through the append gateway.
+      gatewayAppendNodeSource(),
+      'for (const record of records) appendThroughGateway("review", lineageDir, record);',
       'const iterationsDir = path.join(lineageDir, "iterations");',
       'fs.mkdirSync(iterationsDir, { recursive: true });',
       'for (const record of records) {',

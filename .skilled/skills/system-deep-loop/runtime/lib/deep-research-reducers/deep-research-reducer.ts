@@ -146,6 +146,16 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.spec_mutation': Object.freeze([]),
   'deep_research.spec_mutation_conflict': Object.freeze([]),
   'deep_research.spec_synthesis_deferred': Object.freeze([]),
+  // The research reducer's own bookkeeping rows: they record what the reducer
+  // derived from files, so replaying them must not move a research plane.
+  'deep_research.idea_promoted': Object.freeze([]),
+  'deep_research.question_conflict': Object.freeze([]),
+  // The idea rows the agent and the operator record feed the reducer's backlog
+  // and rejected-pattern cache, which it rebuilds from the state log, not here.
+  'deep_research.idea_observed': Object.freeze([]),
+  'deep_research.idea_rejected': Object.freeze([]),
+  'deep_research.idea_rejected_removed': Object.freeze([]),
+  'deep_research.idea_rejected_reset': Object.freeze([]),
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepResearchEventStem[] {
@@ -1331,6 +1341,12 @@ function artifactFromEvent(
     case 'deep_research.spec_mutation':
     case 'deep_research.spec_mutation_conflict':
     case 'deep_research.spec_synthesis_deferred':
+    case 'deep_research.idea_promoted':
+    case 'deep_research.question_conflict':
+    case 'deep_research.idea_observed':
+    case 'deep_research.idea_rejected':
+    case 'deep_research.idea_rejected_removed':
+    case 'deep_research.idea_rejected_reset':
       return null;
   }
   return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);
@@ -1445,6 +1461,12 @@ function statusTransitionForEvent(
     case 'deep_research.spec_mutation':
     case 'deep_research.spec_mutation_conflict':
     case 'deep_research.spec_synthesis_deferred':
+    case 'deep_research.idea_promoted':
+    case 'deep_research.question_conflict':
+    case 'deep_research.idea_observed':
+    case 'deep_research.idea_rejected':
+    case 'deep_research.idea_rejected_removed':
+    case 'deep_research.idea_rejected_reset':
       return null;
     case 'deep_research.memory_save_failed': {
       const payload = payloadFor(event, 'deep_research.memory_save_failed');
@@ -1840,6 +1862,12 @@ function applyEvent(
     case 'deep_research.spec_mutation':
     case 'deep_research.spec_mutation_conflict':
     case 'deep_research.spec_synthesis_deferred':
+    case 'deep_research.idea_promoted':
+    case 'deep_research.question_conflict':
+    case 'deep_research.idea_observed':
+    case 'deep_research.idea_rejected':
+    case 'deep_research.idea_rejected_removed':
+    case 'deep_research.idea_rejected_reset':
       break;
     default:
       return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);

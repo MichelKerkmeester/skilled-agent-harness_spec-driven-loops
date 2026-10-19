@@ -103,11 +103,10 @@ function runSynthesisInvariant(
   const registryPath = join(artifactDir, 'findings-registry.json');
   const researchPath = join(artifactDir, 'research.md');
   const dashboardPath = join(artifactDir, 'deep-research-dashboard.md');
-  // The state log is refreshed as a projection of the ledger, so the seeded
-  // config row must carry only keys a refresh reproduces. `mode` is not a
-  // research config key and a replace that dropped it would be refused as an
-  // attribution collapse before the synthesis event could land.
-  writeFileSync(stateLogPath, `${JSON.stringify({ type: 'config' })}\n`, 'utf8');
+  // A fan-out parent skips phase_init, so its state log does not exist until
+  // the synthesis event is projected into it. Seeding a config row here would
+  // present a row no ledger event produced, which the gateway refuses before
+  // the append.
   writeFileSync(
     registryPath,
     `${JSON.stringify({ keyFindings: registryFindings.map((title, index) => ({ id: `F${index + 1}`, title })) })}\n`,

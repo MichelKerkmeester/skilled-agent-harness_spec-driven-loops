@@ -15,8 +15,10 @@ import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import {
   arm,
   appendLog,
+  armableRecord,
   findLoopChildPid,
-  liveKillerPid,
+  isEntrypoint,
+  payloadEventName,
   readRelaunchFile,
 } from '../lib/relaunch-core.cjs';
 
@@ -37,23 +39,18 @@ function done() {
   process.exit(0);
 }
 
-function isMain() {
-  return process.argv[1]
-    && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-}
-
-function logEvent(event, fields) {
+function logEvent(event, fields, env) {
   try {
-    appendLog(event, fields, process.env);
+    appendLog(event, fields, env);
   } catch {}
 }
 
-async function spawnKiller(loopId, targetPid, transcriptPath) {
+async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess) {
   try {
-    const child = spawn(
+    const child = spawnProcess(
       process.execPath,
       [KILLER_PATH, '--loop-id', loopId, '--target-pid', targetPid, '--transcript', transcriptPath],
-      { detached: true, stdio: 'ignore' },
+      { detached: true, stdio: 'ignore', env },
     );
     if (typeof child?.once !== 'function') {
       child.unref();
@@ -61,20 +58,82 @@ async function spawnKiller(loopId, targetPid, transcriptPath) {
     }
     const started = await new Promise((resolve) => {
       child.once('error', (error) => {
-        logEvent('stop-arm-error', { stage: 'spawn', loopId, message: error.message });
+        logEvent('stop-arm-error', { stage: 'spawn', loopId, message: error.message }, env);
         resolve(false);
       });
       child.once('spawn', () => resolve(true));
     });
     if (started) child.unref();
   } catch (error) {
-    logEvent('stop-arm-error', { stage: 'spawn', loopId, message: error.message });
+    logEvent('stop-arm-error', { stage: 'spawn', loopId, message: error.message }, env);
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Arm this session's relaunch record at Stop and start the killer that ends the session.
+ *
+ * @param {Object} payload - Parsed Codex Stop payload.
+ * @param {Object} [dependencies] - Seams for tests.
+ * @param {NodeJS.ProcessEnv} [dependencies.env=process.env] - Runtime environment.
+ * @param {number} [dependencies.pid=process.pid] - Pid the loop-child walk climbs from.
+ * @param {string} [dependencies.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @param {Function} [dependencies.spawn] - Spawns the killer; child_process.spawn when omitted.
+ * @returns {Promise<Object|null>} The armed record, or null when nothing was armed.
+ */
+async function armPendingRecord(payload, dependencies = {}) {
+  const env = dependencies.env || process.env;
+  if (payloadEventName(payload, { runtime: 'codex', expected: 'Stop' }) === null) return null;
+
+  const loopId = env.SKILLED_LOOP_ID;
+  if (!loopId) return null;
+
+  let record;
+  try {
+    record = readRelaunchFile(loopId, env);
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'read', loopId, message: error.message }, env);
+    return null;
+  }
+  const sessionId = payload.session_id;
+  if (!armableRecord(record, { loopId, sessionId, runtime: 'codex', env }).armable) return null;
+
+  if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
+    logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
+    return null;
+  }
+
+  // Resolve before arming so a missing ancestor leaves the record pending.
+  const targetPid = findLoopChildPid(loopId, {
+    pid: dependencies.pid ?? process.pid,
+    processTable: dependencies.processTable,
+  });
+  if (targetPid === null) {
+    logEvent('stop-arm-error', { stage: 'target-pid', loopId }, env);
+    return null;
+  }
+
+  let armed;
+  try {
+    armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env });
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
+    return null;
+  }
+  if (armed === null || armed.status !== 'armed') return null;
+
+  await spawnKiller(
+    loopId,
+    String(targetPid),
+    payload.transcript_path,
+    env,
+    dependencies.spawn || spawn,
+  );
+  return armed;
+}
 
 async function main() {
   let enabled = false;
@@ -85,52 +144,8 @@ async function main() {
 
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null || typeof payload !== 'object') return done();
-  if (payload.hook_event_name !== 'Stop') return done();
 
-  const loopId = process.env.SKILLED_LOOP_ID;
-  if (!loopId) return done();
-
-  let record;
-  try {
-    record = readRelaunchFile(loopId, process.env);
-  } catch (error) {
-    logEvent('stop-arm-error', { stage: 'read', loopId, message: error.message });
-    return done();
-  }
-  if (
-    record === null
-    || record.loopId !== loopId
-    || record.sessionId !== payload.session_id
-  ) return done();
-  // Pending arms here; an armed record belongs to a killer, so it respawns
-  // only when no live killer owns the lock.
-  if (
-    record.status !== 'pending'
-    && (record.status !== 'armed' || liveKillerPid(loopId, process.env) !== null)
-  ) return done();
-
-  if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
-    logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId });
-    return done();
-  }
-
-  // Resolve before arming so a missing ancestor leaves the record pending.
-  const targetPid = findLoopChildPid(loopId);
-  if (targetPid === null) {
-    logEvent('stop-arm-error', { stage: 'target-pid', loopId });
-    return done();
-  }
-
-  let armed;
-  try {
-    armed = arm({ loopId, cwd: payload.cwd || process.cwd(), env: process.env });
-  } catch (error) {
-    logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message });
-    return done();
-  }
-  if (armed === null || armed.status !== 'armed') return done();
-
-  await spawnKiller(loopId, String(targetPid), payload.transcript_path);
+  await armPendingRecord(payload);
   return done();
 }
 
@@ -138,6 +153,6 @@ async function main() {
 // 5. ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-if (isMain()) main().catch(done);
+if (isEntrypoint(import.meta.url)) main().catch(done);
 
-export { findLoopChildPid as findCodexPid };
+export { armPendingRecord };

@@ -27,7 +27,6 @@ const DEFAULT_THRESHOLD = 0.8;
 // The wrapper's own ceiling on completed hops, used when no cap is configured.
 const DEFAULT_MAX_HOPS = 10;
 const SESSION_ID_PATTERN = /^[A-Za-z0-9_-]{1,128}$/;
-const HANDOFF_SECTIONS = ['Goal', 'Done', 'Remaining work', 'In-flight state'];
 const FINISH_INSTEAD_INSTRUCTION = ' If the remaining work fits in a few more steps, finish it instead'
   + ' and skip these steps.'
   + ' Otherwise do these steps now, before any other work,'
@@ -104,7 +103,8 @@ function handoffText({
   const opening = context === null
     ? `${SEED_PREFIX} Write a handoff note before auto-compaction.`
     : context + FINISH_INSTEAD_INSTRUCTION;
-  const sectionList = HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
+  // The sections asked for are the ones validateHandoff enforces, so prepare accepts the note.
+  const sectionList = core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
   const lines = [
     opening,
     `1. Write the handoff note at ${shellQuote(pathValue)} in exactly this shape:`,
@@ -240,6 +240,7 @@ function resolveRepoRoot(env = process.env) {
   );
 }
 
+/** Return the directory every reader keeps handoff notes in, under a repository root. */
 function handoffDir(repoRoot) {
   return path.join(
     repoRoot,
@@ -362,10 +363,11 @@ function hopLimitReached(env = process.env) {
 // An armed record only stands for a finished handoff while the wrapper would still
 // accept it: past the age limit it is declined as stale and can never relaunch, so
 // counting it as done leaves a session that still owes its note with no prompt to
-// write one. Freshness stays shouldRelaunch's own verdict so both readers share one
+// write one. Freshness stays shouldRelaunch's own verdict so every reader shares one
 // rule; its other declines still name a handoff that was prepared.
-function armedRecordStillCurrent(record, env) {
-  return core.shouldRelaunch(record, { maxAgeMin: maxAgeMinutes(env) }).reason !== 'stale';
+/** Report whether the wrapper, reading the record at `now`, would still find it fresh. */
+function armedRecordStillCurrent(record, env, now = Date.now()) {
+  return core.shouldRelaunch(record, { now, maxAgeMin: maxAgeMinutes(env) }).reason !== 'stale';
 }
 
 // A nudge exists to get the handoff note written and a relaunch prepared. Once this
@@ -377,11 +379,12 @@ function handoffPending({ sessionId, env = process.env } = {}) {
   if (typeof loopId !== 'string' || !loopId.trim()) return false;
   try {
     const record = core.readRelaunchFile(loopId, env);
-    // A record that cannot be read proves nothing about this session, so the
-    // caller keeps nudging rather than assuming a handoff it never saw.
-    if (record === null || record.sessionId !== sessionId) return false;
-    if (record.status === 'pending') return true;
-    if (record.status !== 'armed') return false;
+    // A record that cannot be read, or that the arm paths would not take as this
+    // session's, proves nothing about this session, so the caller keeps nudging.
+    // An armed one counts whether or not its killer still runs, while it is fresh.
+    const { reason } = core.armableRecord(record, { loopId, sessionId, env });
+    if (reason === 'pending') return true;
+    if (reason !== 'killer-gone' && reason !== 'killer-live') return false;
     return armedRecordStillCurrent(record, env);
   } catch {
     return false;
@@ -498,8 +501,10 @@ module.exports = {
   specFolderFromSeed,
   notePathFromSeed,
   resolveRepoRoot,
+  handoffDir,
   plannedNotePath,
   handoffPending,
+  armedRecordStillCurrent,
   hopLimitReached,
   relaunchThreshold,
   nextLevel,

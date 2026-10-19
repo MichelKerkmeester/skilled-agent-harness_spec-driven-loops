@@ -83,6 +83,18 @@ function requireString(args, ...keys) {
   throw new Error(`${keys[0]} is required`);
 }
 
+// Key order carries no meaning in an event the caller hands over, so the
+// digest sorts keys before hashing.
+function stableJson(value) {
+  if (Array.isArray(value)) return `[${value.map(stableJson).join(',')}]`;
+  if (value !== null && typeof value === 'object') {
+    return `{${Object.keys(value).sort()
+      .map((key) => `${JSON.stringify(key)}:${stableJson(value[key])}`)
+      .join(',')}}`;
+  }
+  return JSON.stringify(value);
+}
+
 function jsonOut(payload) {
   process.stdout.write(`${JSON.stringify(payload)}\n`);
 }
@@ -288,6 +300,15 @@ async function main() {
 
   const currentHead = await ledger.getVerifiedHead();
   const nowIso = new Date().toISOString();
+  // A retry hands over the same event again, but everything this CLI mints for
+  // it (event id, timestamps, chain position) changes between calls. The event
+  // as the caller handed it over is what stays fixed, so a caller that names no
+  // idempotency key gets one derived from it, and the gateway stores a retried
+  // event once.
+  const defaultIdempotencyKey = `${normalizedMode}:input:${crypto
+    .createHash('sha256')
+    .update(stableJson(rawEvent))
+    .digest('hex')}`;
 
   // Shared builder for the envelope-metadata + payload-core input that
   // adapter.prepareEvent consumes. Both the explicit-stem path and the legacy
@@ -310,7 +331,7 @@ async function main() {
       causationId: meta.causationId !== undefined
         ? meta.causationId
         : (meta.causation_id !== undefined ? meta.causation_id : null),
-      idempotencyKey: meta.idempotencyKey || meta.idempotency_key || crypto.randomUUID(),
+      idempotencyKey: meta.idempotencyKey || meta.idempotency_key || defaultIdempotencyKey,
     };
   }
 
@@ -356,7 +377,7 @@ async function main() {
       causation_id: rawEvent.causation_id !== undefined
         ? rawEvent.causation_id
         : (rawEvent.causationId !== undefined ? rawEvent.causationId : null),
-      idempotency_key: rawEvent.idempotency_key || rawEvent.idempotencyKey || crypto.randomUUID(),
+      idempotency_key: rawEvent.idempotency_key || rawEvent.idempotencyKey || defaultIdempotencyKey,
       payload: rawEvent.payload || {},
     };
     eventRecord = prepareEventWrite(envelope, registry);
@@ -397,13 +418,15 @@ async function main() {
         `Legacy deep-research record refused: ${upcast.decision.reasonCode}`,
       );
     }
+    // A row the projection writes back with its own timestamp hands that time
+    // over as the event's occurrence time, so the row keeps it.
     const preparedInput = buildPreparedInput({
       stem: upcast.targetStem,
       scope: upcast.scope,
       data: upcast.data,
       prevEventHash: upcast.prevEventHash,
       replay: upcast.replay,
-    }, rawEvent);
+    }, upcast.occurredAt ? { occurredAt: upcast.occurredAt, ...rawEvent } : rawEvent);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
     legacyWarnings = upcast.warnings;
   } else if (
@@ -448,7 +471,9 @@ async function main() {
     binding,
   });
 
-  if (outcome && outcome.ok === false && outcome.phase === 'projection') {
+  // Both phases leave the state log out of step with the ledger, so the runner
+  // reads either one back to name why a lineage recorded nothing.
+  if (outcome && outcome.ok === false && (outcome.phase === 'projection' || outcome.phase === 'provenance')) {
     const eventStem = eventRecord?.envelope?.payload?.stem;
     const refusalRecord = {
       at: new Date().toISOString(),
@@ -493,6 +518,7 @@ if (require.main === module && isTsxLoaded) {
 }
 
 module.exports = {
+  stableJson,
   parseArgs,
   normalizeMode,
   resolveModeAdapter,

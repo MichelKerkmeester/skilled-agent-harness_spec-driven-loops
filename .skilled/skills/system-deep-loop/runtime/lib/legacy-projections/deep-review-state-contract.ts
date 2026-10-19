@@ -123,9 +123,14 @@ export function createDeepReviewStateProjectionContract(
         : {};
 
       if (stem === 'deep_review.run_initialized') {
+        // Ledgers written before the event carried the topic still project the
+        // run id in its place, so their state logs keep the bytes they had.
+        const topic = typeof data.topic === 'string' && data.topic.trim() !== ''
+          ? data.topic
+          : typeof scope.runId === 'string' ? scope.runId : 'deep-review';
         row = {
           type: 'config',
-          topic: typeof scope.runId === 'string' ? scope.runId : 'deep-review',
+          topic,
           maxIterations: typeof data.maxIterations === 'number' ? data.maxIterations : 0,
           generation: typeof scope.generation === 'number' ? scope.generation : 1,
           timestamp: occurredAt,
