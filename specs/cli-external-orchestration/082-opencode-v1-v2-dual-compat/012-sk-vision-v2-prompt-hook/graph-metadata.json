@@ -205,7 +205,7 @@
     ],
     "causal_summary": "On OpenCode 1, sk-vision's `server` entry registers a `chat.message` hook when `SKVISIONAUTOINSPECT=1`",
     "created_at": "2026-10-19T11:29:12Z",
-    "last_save_at": "2026-10-19T11:45:43.035Z",
+    "last_save_at": "2026-10-19T15:28:33.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:47aa2c0615ccb0d08c06ae800c6a15bfc4cc920dfa6b5a400fbdd573fa38af11",
+    "source_fingerprint": "sha256:0f031663be7a773068dac4f699dc74c33dab1164d53d8b1615c9da45cada0ab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1afeded833e7610dffd4e39001e9bc11382bab6a897dca11820cb21ae42b26c3",
       "plan.md": "9fb32a75a05c297e101404ad7b89ba0e689ea796b7a025b68c345a5cd682a045",
       "tasks.md": "58822c87d30ffa256f4aeefbf0934b697532ed24cdec39a39b447a46cbcbd121",
-      "implementation-summary.md": "ce2f00811bb574df3ca310bb3a6ec64a73bd36ad5bedddeaf204f768309e6174"
+      "implementation-summary.md": "982e09191bbf6f08adc32c07c4920d35f52bb4bf3f50297007bad0d86c381aed"
     },
     "last_active_at": null
   }

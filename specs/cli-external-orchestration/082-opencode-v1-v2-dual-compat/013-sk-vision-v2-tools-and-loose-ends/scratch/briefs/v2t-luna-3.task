@@ -1,0 +1,25 @@
+ROLE: Read-only reviewer. Do not edit any file.
+
+CONTEXT: The uncommitted diff (`git diff`, plus the untracked `src/opencode/tools.test.ts`, `src/runtime/client.test.ts` and `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/scratch/`) under `.skilled/skills/sk-vision/` does four things:
+1. It registers sk-vision's 13 `sk_vision_*` tools on OpenCode 2. `toV2Tools` in `vision-runtime/src/opencode/tools.ts` re-shapes the v1 tool map. `createSetup` in `vision-runtime/src/plugin.ts` adds the tools through `ctx.tool.transform` when automatic inspection is on (the same `SK_VISION_AUTOINSPECT=1` gate v1's `server` uses for its tools), and disposes them on cleanup.
+2. It adds tests for the 2-second grace on the v2 path.
+3. It corrects two comments: `hooks/opencode/sk-vision.ts` lines 7-8 and `vision-runtime/scripts/build.ts`.
+4. It makes `RuntimeClient.close()` in `vision-runtime/src/runtime/client.ts` stop a startup that is still provisioning from spawning the Python runtime.
+
+Evidence is in that scratch folder:
+- `suites-before/`: the baselines.
+- `mutation/old-code.txt`: the new tests run against the HEAD sources.
+- `mutation/grace-mutation.txt`: the grace tests against a forced-guaranteed mutation.
+- `proof/api-probe/`: a probe plugin that registered JSON-Schema and zod tools, then one model run that called both.
+- `proof/live-off/` and `proof/live-on/`: the real bundle in a private v2 server, recording which `sk_vision_*` tools the host holds with inspection off and on, plus one model run that called `sk_vision_status`.
+
+ACTION: Check:
+1. That `toV2Tools` and the registration are correct against the published `@opencode/plugin` 2.0.32 types: `.skilled/node_modules/@opencode/plugin/dist/promise/tool.d.ts`, `registration.d.ts`, `plugin.d.ts`, and `.skilled/node_modules/@opencode/schema/dist/tool.d.ts`. Cover the `input` schema choice (the zod copy that `tool.schema` exposes), result mapping for both `ToolResult` forms, disposal order, and what happens when `ctx.tool` is absent or `transform` rejects. Confirm v1's `server` path is unchanged.
+2. Whether the `close()` fix leaves any window where a closed client still spawns or leaks, and whether `ready` still settles.
+3. Whether each new test fails for a real reason, as `mutation/` records. For tests that cover unchanged behaviour, judge whether the mutation evidence is enough.
+4. Whether the two corrected comments are now true. Check what links to `vision-runtime/dist/plugin.js` and `hooks/opencode/sk-vision.js`.
+5. Comment hygiene: no spec paths, phase numbers or ids in code comments.
+
+FORMAT: First line `VERDICT: PASS` or `VERDICT: FAIL`. Then findings, each with P0/P1/P2, file:line and evidence. Under 300 words. Your sandbox is read-only, so do not count failures to write temp files.
+
+This is round 3. Round 2 raised one P2: a hanging provisioning subprocess outlived close() and ready never settled. The orchestrator tested uv 0.8.3 and found that `uv venv` on an existing venv replaces it (exit 0, with a warning), so a killed install recovers on the next start. close() now SIGTERMs the in-flight provisioning child, runProvision refuses to start once closed, and a startup that close() cancelled settles quietly with no error notification. The new test in client.test.ts uses a fake uv that hangs; scratch/mutation/round2-revert.txt shows it failing ("ready did not settle") against the round-1 client. Confirm, and check that nothing new was introduced (races between close() and the exit handler, the pip fallback path, Windows kill semantics if relevant).

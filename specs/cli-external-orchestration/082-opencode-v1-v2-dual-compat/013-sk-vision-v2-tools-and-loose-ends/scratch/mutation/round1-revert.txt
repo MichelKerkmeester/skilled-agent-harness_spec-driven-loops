@@ -1,0 +1,5 @@
+# Round-1 fixes reverted: plugin.ts without the fail-open tool registration, tools.ts without metadata and attachment mapping.
+(fail) v2 tool registration > keeps the prompt hook and disposes cleanly when tool registration fails [1.26ms]
+(fail) toV2Tools > carries an object result's metadata and attachments into the OpenCode 2 result [1.09ms]
+ 30 pass
+ 2 fail

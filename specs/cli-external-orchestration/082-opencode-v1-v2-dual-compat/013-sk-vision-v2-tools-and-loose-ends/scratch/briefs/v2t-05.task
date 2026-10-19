@@ -1,0 +1,236 @@
+ROLE: You add tests to a bun:test suite. Re-read each file you edit first. Write exactly the text given and nothing else.
+
+ACTION:
+
+1. Create `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts` with exactly this content:
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Runtime Client Tests
+// ───────────────────────────────────────────────────────────────────
+
+import { describe, expect, it, spyOn } from "bun:test";
+import { chmodSync, existsSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { RuntimeClient } from "./client.js";
+
+describe("RuntimeClient close", () => {
+  it("does not start the runtime when closed while still provisioning", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const marker = join(dir, "spawned");
+    const fakePython = join(dir, "python");
+    writeFileSync(fakePython, `#!/bin/sh\necho spawned > "${marker}"\n`);
+    chmodSync(fakePython, 0o755);
+
+    let finishProvisioning!: (python: string) => void;
+    const provisioning = new Promise<string>((resolve) => {
+      finishProvisioning = resolve;
+    });
+    const spy = spyOn(
+      RuntimeClient.prototype as unknown as { ensurePython(): Promise<string> },
+      "ensurePython",
+    ).mockImplementation(() => provisioning);
+
+    try {
+      const client = new RuntimeClient({ pythonPath: fakePython, timeoutMs: 1_000 });
+      await client.close();
+      finishProvisioning(fakePython);
+      await client.ready;
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      expect(existsSync(marker)).toBe(false);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+});
+
+2. Create `.skilled/skills/sk-vision/vision-runtime/src/opencode/tools.test.ts` with exactly this content:
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Vision Tools Tests
+// ───────────────────────────────────────────────────────────────────
+
+import { describe, expect, it } from "bun:test";
+import type { PhotonProvider } from "../providers/photon.js";
+import { skVisionTools, toV2Tools } from "./tools.js";
+
+type ZodLike = { safeParse(value: unknown): { success: boolean } };
+
+const healthyProvider = {
+  health: async () => ({ status: "ok", device: "cpu", loaded: false }),
+} as unknown as PhotonProvider;
+
+describe("toV2Tools", () => {
+  it("re-shapes every OpenCode 1 tool under the same name and description", () => {
+    const v1 = skVisionTools(() => healthyProvider);
+    const v2 = toV2Tools(v1);
+    expect(v2.map((definition) => definition.name)).toEqual(Object.keys(v1));
+    expect(v2).toHaveLength(13);
+    for (const definition of v2) {
+      expect(definition.description).toBe(v1[definition.name as keyof typeof v1].description);
+    }
+  });
+
+  it("parses arguments with the OpenCode 1 schema", () => {
+    const ocr = toV2Tools(skVisionTools(() => healthyProvider)).find(
+      (definition) => definition.name === "sk_vision_ocr",
+    );
+    const input = ocr?.input as ZodLike;
+    expect(input.safeParse({ path: "shot.png" }).success).toBe(true);
+    expect(input.safeParse({ path: 5 }).success).toBe(false);
+  });
+
+  it("returns the OpenCode 1 tool's text as the OpenCode 2 content", async () => {
+    const v1 = skVisionTools(() => healthyProvider);
+    const status = toV2Tools(v1).find((definition) => definition.name === "sk_vision_status");
+    const expected = await v1.sk_vision_status.execute({}, undefined as never);
+    expect(await status?.execute({})).toEqual({ content: expected as string });
+  });
+});
+
+3. In `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`, append exactly this text at the very end of the file, after one blank line:
+
+describe("v2 tool registration", () => {
+  type AutoInspectFactory = NonNullable<Parameters<typeof createSetup>[0]["createAutoInspect"]>;
+  type ToolTransform = NonNullable<SetupContext["tool"]>["transform"];
+  type ToolEditor = Parameters<Parameters<ToolTransform>[0]>[0];
+  type ToolDefinition = Parameters<ToolEditor["add"]>[0];
+
+  function withToolEditor(ctx: SetupContext): { ctx: SetupContext; added: string[]; disposed: string[] } {
+    const added: string[] = [];
+    const disposed: string[] = [];
+    return {
+      ctx: {
+        ...ctx,
+        tool: {
+          transform: async (callback) => {
+            callback({
+              add: (definition: ToolDefinition) => {
+                added.push(definition.name);
+              },
+            });
+            return {
+              dispose: async () => {
+                disposed.push("tool");
+              },
+            };
+          },
+        },
+      },
+      added,
+      disposed,
+    };
+  }
+
+  const fakeTool = (name: string): ToolDefinition => ({
+    name,
+    description: `${name} tool`,
+    input: {},
+    execute: async () => ({ content: name }),
+  });
+
+  it("adds every inspection tool through the v2 tool editor and removes them on dispose", async () => {
+    const fake = withToolEditor(makeContext().ctx);
+    const create: AutoInspectFactory = () => ({
+      evidence: async () => null,
+      tools: [fakeTool("sk_vision_status"), fakeTool("sk_vision_ocr")],
+      dispose: async () => {},
+    });
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: create,
+    })(fake.ctx);
+
+    expect(fake.added).toEqual(["sk_vision_status", "sk_vision_ocr"]);
+    await dispose();
+    expect(fake.disposed).toEqual(["tool"]);
+  });
+
+  it("adds no tools when automatic inspection is off", async () => {
+    const fake = withToolEditor(makeContext().ctx);
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => null,
+    })(fake.ctx);
+
+    expect(fake.added).toEqual([]);
+    await dispose();
+    expect(fake.disposed).toEqual([]);
+  });
+});
+
+describe("v2 grace for models off the text-only list", () => {
+  type AutoInspectFactory = NonNullable<Parameters<typeof createSetup>[0]["createAutoInspect"]>;
+
+  async function guaranteedFor(
+    get: NonNullable<SetupContext["session"]["get"]>,
+  ): Promise<boolean | undefined> {
+    const fake = makeContext([], get);
+    const calls: boolean[] = [];
+    const create: AutoInspectFactory = () => ({
+      evidence: async (_images, guaranteed) => {
+        calls.push(guaranteed);
+        return null;
+      },
+      dispose: async () => {},
+    });
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: create,
+    })(fake.ctx);
+    await fake.hook()?.({
+      sessionID: "ses_1",
+      messageID: "msg_1",
+      prompt: {
+        text: "what is in this screenshot?",
+        files: [{ uri: "data:image/png;base64,AAAA", name: "shot.png" }],
+      },
+      delivery: "queue",
+    });
+    await dispose();
+    return calls[0];
+  }
+
+  it("asks for the grace, not the full wait, for a model off the text-only list", async () => {
+    const guaranteed = await guaranteedFor(async () => ({
+      model: { id: "claude-opus-4-8", providerID: "anthropic" },
+    }));
+    expect(guaranteed).toBe(false);
+  });
+
+  it("asks for the grace when the host cannot report the session model", async () => {
+    const guaranteed = await guaranteedFor(async () => {
+      throw new Error("no session");
+    });
+    expect(guaranteed).toBe(false);
+  });
+});
+
+4. In `.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.test.ts`, append exactly this text at the very end of the file, after one blank line:
+
+describe("AttachmentInjector evidenceText grace", () => {
+  const SENTINEL = "SENTINEL_OCR_TEXT";
+  const image = {
+    type: "file",
+    mime: "image/png",
+    url: "data:image/png;base64,AAAA",
+  } as unknown as Parameters<AttachmentInjector["evidenceText"]>[0][number];
+
+  it("returns without an analysis that is still running when the grace runs out", async () => {
+    const injector = new AttachmentInjector(() => slowProvider(400, SENTINEL), 20);
+    const started = Date.now();
+    const text = await injector.evidenceText([image], false);
+    expect(Date.now() - started).toBeLessThan(400);
+    expect(text ?? "").not.toContain(SENTINEL);
+  });
+
+  it("includes an analysis that finishes inside the grace", async () => {
+    const injector = new AttachmentInjector(() => slowProvider(5, SENTINEL), 300);
+    expect(await injector.evidenceText([image], false)).toContain(SENTINEL);
+  });
+});
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test 2>&1 | tail -6` and print the output verbatim, nothing else.

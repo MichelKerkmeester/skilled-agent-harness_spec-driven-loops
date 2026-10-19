@@ -1,0 +1,67 @@
+{
+  "port": "private",
+  "record": {
+    "registered": true,
+    "ids": [
+      "patch",
+      "edit",
+      "glob",
+      "grep",
+      "opencode_session_rename",
+      "opencode_session_move",
+      "opencode_worktree_create",
+      "opencode_worktree_list",
+      "opencode_worktree_remove",
+      "opencode_models",
+      "opencode_list_mcp_resources",
+      "opencode_read_mcp_resource",
+      "question",
+      "read",
+      "shell",
+      "skill",
+      "subagent",
+      "webfetch",
+      "websearch",
+      "write",
+      "probe_json",
+      "probe_zod"
+    ],
+    "probe": [
+      {
+        "id": "probe_json",
+        "name": "probe_json",
+        "input": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "text": {
+              "description": "Text to echo back.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ],
+          "additionalProperties": false
+        }
+      },
+      {
+        "id": "probe_zod",
+        "name": "probe_zod",
+        "input": "standard:zod"
+      }
+    ]
+  },
+  "run": {
+    "exit": 0,
+    "tools": [
+      {
+        "tool": "execute",
+        "status": "completed",
+        "output": "[\n  \"JSON:alpha\",\n  \"ZOD:beta\"\n]"
+      }
+    ],
+    "text": "JSON:alpha\nZOD:beta",
+    "cost": 0.000945216
+  }
+}

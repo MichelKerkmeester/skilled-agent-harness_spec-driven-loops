@@ -108,10 +108,10 @@ The orchestrator read the hook and session shapes from the published 2.0.32 pack
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The `sk_vision_*` tools do not register on OpenCode 2.** The `setup` entry never registered them, so the Atlas note's pointer to them has no tool behind it there. Registering them through `ctx.tool.transform` is a separate change.
+1. **Resolved by phase 013: the `sk_vision_*` tools on OpenCode 2.** At closeout the `setup` entry did not register them. Phase 013 adds them through `ctx.tool.transform` under the same gate (`../013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md`).
 2. **OpenCode 2 has no paste-time preload.** OpenCode 1 starts the analysis when the image is attached. OpenCode 2 starts it when the prompt is submitted, so a fast submit on a model not on the text-only list more often gets only the path note.
-3. **Disposal during startup.** `RuntimeClient.close()` does not cancel a Python start still in progress, on either version.
-4. **The proof ran on one machine with one model.** The live run used `llmgateway/deepseek-v4.1-flash`, a listed text-only model, and the unit tests assert only the text-only case. The 2-second grace path for other models is the existing OpenCode 1 code, unexercised on OpenCode 2.
+3. **Resolved by phase 013: disposal during startup.** `RuntimeClient.close()` now stops a provisioning step still running, on both versions.
+4. **The proof ran on one machine with one model.** The live run used `llmgateway/deepseek-v4.1-flash`, a listed text-only model. Phase 013 added unit tests for the 2-second grace on OpenCode 2, but no live run of that path exists yet.
 <!-- /ANCHOR:limitations -->
 
 ---

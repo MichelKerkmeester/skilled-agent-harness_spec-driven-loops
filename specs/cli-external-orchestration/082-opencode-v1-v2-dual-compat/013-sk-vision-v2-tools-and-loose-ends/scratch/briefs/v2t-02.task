@@ -1,0 +1,90 @@
+ROLE: You make literal edits to one TypeScript file.
+
+FILE: `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`. Re-read it first. Make exactly these edits and nothing else.
+
+ACTION:
+
+1. Replace the line
+`import { skVisionTools } from './opencode/tools.js';`
+with
+`import { skVisionTools, toV2Tools } from './opencode/tools.js';`
+and directly after the line `import type { SkVisionMessage } from './runtime/client.js';` insert the line
+`import type { V2ToolDefinition } from './opencode/tools.js';`
+
+2. Replace this block:
+
+interface V2AutoInspect {
+  evidence(images: readonly FilePart[], guaranteed: boolean): Promise<string | null>;
+  dispose(): Promise<void>;
+}
+
+with this block:
+
+interface V2ToolEditor {
+  add(definition: V2ToolDefinition): void;
+}
+
+interface V2AutoInspect {
+  evidence(images: readonly FilePart[], guaranteed: boolean): Promise<string | null>;
+  readonly tools?: readonly V2ToolDefinition[];
+  dispose(): Promise<void>;
+}
+
+3. In `interface V2PluginContext`, directly after the closing `};` of its `command` member (the member that holds `transform(... V2CommandEditor ...)`), insert:
+
+  readonly tool?: {
+    transform(callback: (editor: V2ToolEditor) => void): Promise<V2Registration>;
+  };
+
+4. In `createSetup`, replace these two lines:
+
+    const auto = createAutoInspect?.(ctx.location.directory) ?? null;
+    if (template === null && auto === null) return () => registration.dispose();
+
+with these lines:
+
+    const auto = createAutoInspect?.(ctx.location.directory) ?? null;
+    // OpenCode 1 registers the tools from `server`, but OpenCode 2 only calls
+    // `setup`, so the same definitions go through its tool editor here.
+    const tools = auto?.tools ?? [];
+    const toolRegistration =
+      tools.length > 0 && ctx.tool
+        ? await ctx.tool.transform((editor) => {
+            for (const definition of tools) editor.add(definition);
+          })
+        : null;
+    if (template === null && auto === null) return () => registration.dispose();
+
+5. In `createSetup`, replace these lines:
+
+    return async () => {
+      await promptRegistration.dispose();
+      await registration.dispose();
+      await auto?.dispose();
+    };
+
+with:
+
+    return async () => {
+      await promptRegistration.dispose();
+      await toolRegistration?.dispose();
+      await registration.dispose();
+      await auto?.dispose();
+    };
+
+6. In `createDefaultAutoInspect`, replace:
+
+  return {
+    evidence: (images, guaranteed) => injector.evidenceText(images, guaranteed),
+    dispose: () => client.close(),
+  };
+
+with:
+
+  return {
+    evidence: (images, guaranteed) => injector.evidenceText(images, guaranteed),
+    tools: toV2Tools(skVisionTools(() => provider)),
+    dispose: () => client.close(),
+  };
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test 2>&1 | tail -4` and print the output verbatim, nothing else.

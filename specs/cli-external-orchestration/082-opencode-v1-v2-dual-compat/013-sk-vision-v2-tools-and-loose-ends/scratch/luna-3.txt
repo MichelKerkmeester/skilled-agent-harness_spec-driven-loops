@@ -1,0 +1,11 @@
+VERDICT: FAIL
+
+- **P2 — [plugin.ts:405](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:405):** If `ctx.session.hook()` rejects after tool registration succeeds, setup exits before returning its cleanup callback. The acquired tool registration is never disposed.
+- **P2 — [client.ts:451](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:451):** `close()` signals the provisioning child, then returns immediately when there is no runtime child. It neither waits for provisioning to exit nor escalates to `SIGKILL`. If a POSIX child ignores `SIGTERM`, it can outlive `close()` and keep `ready` pending. Node documents this signal behavior; Windows terminates the direct child forcefully ([Node.js docs](https://nodejs.org/api/child_process.html#subprocesskillsignal)).
+- **P2 — [README.md:177](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.opencode/plugins/README.md:177):** The README says the 13 tools register on OpenCode 1 only. The recorded v2 live-on run shows all 13 registered, while live-off shows none.
+
+The v2 schema and result mapping match the 2.0.32 declarations. The live probe exercised JSON Schema and Zod tools. Successful cleanup disposes registrations in reverse order. Missing `ctx.tool` skips tool registration, and a rejected transform fails open. The v1 `server` path is unchanged. Both corrected comments match the symlink and build paths. No spec IDs or phase labels appear in code comments.
+
+Mutation evidence supports the new tests. `bun test src/opencode/tools.test.ts` and direct TypeScript checking through Bun passed. Full `bun test` had 46 passes and 8 sandbox temp-directory `EPERM` failures. `bun run typecheck` aborted because the installed Node binary could not load `libsimdutf.36.dylib`. I made no edits; the worktree remains dirty as supplied.
+
+Operator action: resolve these findings before merging.

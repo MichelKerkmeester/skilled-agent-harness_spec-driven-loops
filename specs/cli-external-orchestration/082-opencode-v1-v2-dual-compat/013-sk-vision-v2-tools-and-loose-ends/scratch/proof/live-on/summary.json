@@ -1,0 +1,33 @@
+{
+  "port": "private",
+  "record": {
+    "skVision": [
+      "sk_vision_annotate",
+      "sk_vision_colors",
+      "sk_vision_crop",
+      "sk_vision_detect",
+      "sk_vision_diff",
+      "sk_vision_inspect",
+      "sk_vision_metadata",
+      "sk_vision_ocr",
+      "sk_vision_point",
+      "sk_vision_reverse",
+      "sk_vision_segment",
+      "sk_vision_status",
+      "sk_vision_zoom"
+    ],
+    "total": 78
+  },
+  "run": {
+    "exit": 0,
+    "tools": [
+      {
+        "tool": "execute",
+        "status": "completed",
+        "output": "provider: photon\nmodel: not loaded\ndevice: mps\nloaded: false\nvram: 0.00 / 0.00 GB\nrequests: 0"
+      }
+    ],
+    "text": "provider: photon",
+    "cost": 0.0011373318000000002
+  }
+}

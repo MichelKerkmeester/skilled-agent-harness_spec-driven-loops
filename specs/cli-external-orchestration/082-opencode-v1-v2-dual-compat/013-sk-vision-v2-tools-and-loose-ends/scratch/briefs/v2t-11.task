@@ -1,0 +1,5 @@
+ROLE: You correct one sentence in a README.
+
+ACTION: In `.opencode/plugins/README.md`, re-read the file, then replace the sentence `The 13 \`sk_vision_*\` tools register on OpenCode 1 only.` with `The 13 \`sk_vision_*\` tools register on both versions under the same gate: OpenCode 1 takes them from the \`server\` entry, and on OpenCode 2 the \`setup\` entry adds them through \`ctx.tool.transform\`, where the model reaches them through OpenCode 2's code-mode \`execute\` tool.` Change nothing else.
+
+FORMAT: Then run `grep -n "sk_vision_\*" .opencode/plugins/README.md` and print its output verbatim, nothing else.
