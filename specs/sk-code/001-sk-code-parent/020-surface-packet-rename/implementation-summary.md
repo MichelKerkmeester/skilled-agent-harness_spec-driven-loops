@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/sk-code/code-review/"
       - ".opencode/skills/sk-code/code-webflow/"
-      - ".opencode/skills/sk-code/code-opencode/"
+      - ".opencode/skills/sk-code/code-skilled/"
       - ".opencode/skills/sk-code/code-animation/"
       - ".opencode/skills/sk-code/mode-registry.json"
       - ".opencode/skills/sk-code/hub-router.json"
@@ -65,7 +65,7 @@ Phase 020 completed the sk-code surface-packet rename. The four formerly bare su
 
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
-| `.opencode/skills/sk-code/{review,webflow,opencode,animation}/` | Renamed | Preserve history while moving four bare surface packets to `code-review`, `code-webflow`, `code-opencode`, and `code-animation` | this phase evidence |
+| `.opencode/skills/sk-code/{review,webflow,opencode,animation}/` | Renamed | Preserve history while moving four bare surface packets to `code-review`, `code-webflow`, `code-skilled`, and `code-animation` | this phase evidence |
 | `.opencode/skills/sk-code/mode-registry.json` | Updated | Prefix `workflowMode`, `packet`, `packetSkillName`, and `surfaces` for the four renamed packets | this phase evidence |
 | `.opencode/skills/sk-code/hub-router.json` | Updated | Prefix `tieBreak`, `routerSignals` keys, `resources`, and the ten `<mode>-*` vocabulary classes | this phase evidence |
 | `.opencode/skills/sk-code/code-*/SKILL.md` | Updated | Match packet `name:` fields to folders and repair broken cross-packet links | this phase evidence |

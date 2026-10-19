@@ -13,7 +13,7 @@ trigger_phrases: []
 - State lineage: session `rvw-2026-08-10-deprecate-open-design`, generation 1, lineageMode `new`
 
 ## Files Reviewed
-- Sibling focus files named by dispatch: `.opencode/skills/mcp-code-mode/{references/tool-catalog.md,manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md}`; all seven named `mcp-tooling/mcp-figma` files; all six named `cli-external-orchestration` files; `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md`; all three named `sk-prompt/sk-prompt-improve` files.
+- Sibling focus files named by dispatch: `.opencode/skills/mcp-code-mode/{references/tool-catalog.md,manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md}`; all seven named `mcp-tooling/mcp-figma` files; all six named `cli-external-orchestration` files; `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md`; all three named `sk-prompt/sk-prompt-improve` files.
 - Plan boundary/evidence: `specs/sk-design/015-deprecate-open-design/{spec.md,plan.md,tasks.md}`.
 - Severity doctrine: `.opencode/skills/sk-code/sk-code-review/references/review-core.md`.
 

@@ -11,7 +11,10 @@
     "sk-git/033-git-setup-customization/005-setup-check-hardening",
     "sk-git/033-git-setup-customization/006-release-conformance-review",
     "sk-git/033-git-setup-customization/007-review-remediation",
-    "sk-git/033-git-setup-customization/008-out-of-scope-cleanup"
+    "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
+    "sk-git/033-git-setup-customization/009-second-review-remediation",
+    "sk-git/033-git-setup-customization/010-open-ends-cleanup",
+    "sk-git/033-git-setup-customization/011-remaining-limits"
   ],
   "manual": {
     "depends_on": [],
@@ -29,19 +32,21 @@
       "phase",
       "parent",
       "spec",
-      "one-paragraph",
-      "problem",
-      "statement",
-      "needs",
-      "solving",
-      "feature"
+      "sk-git",
+      "dozen",
+      "surfaces",
+      "repository",
+      "change",
+      "several"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "004-final-deep-review/review/review-report.md",
-      "007-review-remediation/implementation-summary.md"
+      "007-review-remediation/implementation-summary.md",
+      "010-open-ends-cleanup/plan.md",
+      "010-open-ends-cleanup/implementation-summary.md"
     ],
     "entities": [
       {
@@ -87,26 +92,26 @@
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Purpose Give",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
+    "causal_summary": "sk-git has a dozen surfaces a repository can change, and several of them fail open: a missing contract, a rule naming an unknown check or an unregistered advisory hook gives no error",
     "created_at": "2026-10-15T05:35:17Z",
-    "last_save_at": "2026-10-16T08:56:36.094Z",
+    "last_save_at": "2026-10-17T13:01:57.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:2b4dbeab223598399c04fdd3927995508b692b29c37e14e386733fc2d62bf53b",
+    "source_fingerprint": "sha256:7996fe599d80b8b0ae7cfe0e675ce73a9b79dc6b0518d7232cc5ff6f4191c8d3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "066b27a149072aa1e9be4a78343a97187578028ec67753a03b25a50aa4b37ddc"
+      "spec.md": "b03abeed3c309f634c9f85819a638eef1bd537b9f9d82ec24b1561d8bbd8d48d"
     },
-    "last_active_child_id": "sk-git/033-git-setup-customization/008-out-of-scope-cleanup",
-    "last_active_at": "2026-10-16T08:56:34.201Z"
+    "last_active_child_id": "sk-git/033-git-setup-customization/010-open-ends-cleanup",
+    "last_active_at": "2026-10-17T09:03:17.336Z"
   }
 }

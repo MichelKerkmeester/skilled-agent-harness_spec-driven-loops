@@ -16,7 +16,7 @@ I chose **assets-scoring seam** because it is the highest-value unresolved measu
 - Read current router report: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json:18-35`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md:12-23`.
 - Read live reports: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json:18-39`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/skill-benchmark-report.json:317-389`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:18-39`, `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/skill-benchmark-report.json:306-370`.
 - Read D4 artifact: `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/d4-ablation.json:1-28`.
-- Read asset-bearing gold examples: `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md:29-51`, `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/webflow-plus-motion-dev.md:34-58`, `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md:27-38`.
+- Read asset-bearing gold examples: `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md:29-51`, `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/webflow-plus-motion-dev.md:34-58`, `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md:27-38`.
 
 ## Findings
 

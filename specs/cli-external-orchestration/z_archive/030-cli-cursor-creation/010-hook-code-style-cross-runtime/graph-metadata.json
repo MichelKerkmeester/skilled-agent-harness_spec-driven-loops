@@ -188,7 +188,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`)",
+    "causal_summary": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-skilled`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use strict'` in `.mjs`)",
     "created_at": "2026-07-24T18:00:37.292Z",
     "last_save_at": "2026-10-08T19:29:18.859Z",
     "save_lineage": "graph_only",

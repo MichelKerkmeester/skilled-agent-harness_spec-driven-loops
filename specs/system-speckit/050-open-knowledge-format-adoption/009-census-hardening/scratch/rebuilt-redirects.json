@@ -243,8 +243,8 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/skills/sk-code/code-opencode/",
-      "to": ".opencode/skills/sk-code/sk-code-opencode/",
+      "from": ".opencode/skills/sk-code/code-skilled/",
+      "to": ".opencode/skills/sk-code/sk-code-skilled/",
       "records": 98,
       "agreement": 1
     },
@@ -262,7 +262,7 @@
     },
     {
       "from": ".opencode/skills/sk-code/opencode/",
-      "to": ".opencode/skills/sk-code/code-opencode/",
+      "to": ".opencode/skills/sk-code/code-skilled/",
       "records": 64,
       "agreement": 1
     },
@@ -3945,8 +3945,8 @@
       "agreement": 1
     },
     {
-      "from": "specs/sk-code/018-rust-standards-for-code-opencode/",
-      "to": "specs/sk-code/002-rust-standards-for-code-opencode/",
+      "from": "specs/sk-code/018-rust-standards-for-code-skilled/",
+      "to": "specs/sk-code/002-rust-standards-for-code-skilled/",
       "records": 125,
       "agreement": 1
     },

@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/009-second-review-remediation",
+  "description": "Phase 9: second-review-remediation",
+  "keywords": [
+    "phase",
+    "second-review-remediation"
+  ],
+  "lastUpdated": "2026-10-16T21:05:20.034Z",
+  "specId": "009",
+  "folderSlug": "second-review-remediation",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "16-10-26_22-05__fixed-all-19-findings-of-the-second-v4-0-0-11.md"
+  ]
+}

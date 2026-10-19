@@ -8,7 +8,7 @@ trigger_phrases:
   - "script execution configuration"
 importance_tier: normal
 contextType: general
-version: 2.7.0.81
+version: 2.7.1.0
 ---
 
 # Environment Variables Reference
@@ -122,11 +122,11 @@ SPECKIT_QUIET=true bash runtime/cli/spec/validate.sh specs/001-feature/
 SPECKIT_RULES=GENERATED_METADATA_INTEGRITY bash runtime/cli/spec/validate.sh specs/001-feature/ --strict
 
 # Force local embeddings for the shared stack (no API key required)
-EMBEDDINGS_PROVIDER=hf-local node .skilled/bin/skill-advisor.cjs advisor_status --format json
+EMBEDDINGS_PROVIDER=hf-local node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 
 # Force a cloud provider ahead of the local-first cascade
 EMBEDDINGS_PROVIDER=voyage VOYAGE_API_KEY=your-key-here \
-  node .skilled/bin/skill-advisor.cjs advisor_status --format json
+  node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json
 ```
 
 ---

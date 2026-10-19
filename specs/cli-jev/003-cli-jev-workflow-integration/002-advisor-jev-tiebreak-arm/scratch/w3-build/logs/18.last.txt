@@ -1,6 +1,6 @@
 The fake-server `--deem` test is in the parity file. The packet goal is unchanged. Grep found the new describe title once. The orchestrator runs vitest.
 
-SKILL ROUTING: sk-code → sk-code-opencode
+SKILL ROUTING: sk-code → sk-code-skilled
 REPO RULES: prevent-overengineering.md
 
 HANDBACK

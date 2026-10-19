@@ -7,7 +7,7 @@ I’m reading the standards first, then I’ll audit `system-spec-kit` against e
   │ '/Users/michelkerkmeester/.copilot/session-state/b276e5f1-ef98-4131-8538-799f2ddf9cba/plan.md'
   │ <<'EOF'
   │ # Plan
-  │ 1. Read standards in sk-code-opencode and sk-doc.…
+  │ 1. Read standards in sk-code-skilled and sk-doc.…
   └ 6 lines...
 
 ● Explore Audit system-spec-kit
@@ -51,7 +51,7 @@ I’ve got a strong first pass from the audit, and I’m now spot-checking the k
   └ L280:380 (101 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ L330:470 (141 lines read)
 
 ● Search (grep)
@@ -364,7 +364,7 @@ One last documentation check: I want exact citations for the `sk-doc` expectatio
   └ L57:80 (24 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ L418:454 (37 lines read)
 
 ✗ Memory stored build commands
@@ -374,11 +374,11 @@ One last documentation check: I want exact citations for the `sk-doc` expectatio
 
 | Dimension | Grade | Evidence |
 |---|---|---|
-| 1. JSDoc coverage on exported functions | **B-** | The overlay standard treats public-function docs as **P1** (`.opencode/skills/sk-code-opencode/SKILL.md:419-423,445-449`). There are solid examples, like `resolveProvider` and `validateApiKey` (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:71-75,300-307`) and `normalizeSpecTitleForMemory` / related exports (`.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:16-36`). But exported wrappers/helpers still ship without JSDoc, e.g. `extractTriggerPhrases*` (`.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts:15-23`) and exported path helpers (`.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:23-25,98-108`). |
+| 1. JSDoc coverage on exported functions | **B-** | The overlay standard treats public-function docs as **P1** (`.opencode/skills/sk-code-skilled/SKILL.md:419-423,445-449`). There are solid examples, like `resolveProvider` and `validateApiKey` (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:71-75,300-307`) and `normalizeSpecTitleForMemory` / related exports (`.opencode/skills/system-spec-kit/scripts/utils/task-enrichment.ts:16-36`). But exported wrappers/helpers still ship without JSDoc, e.g. `extractTriggerPhrases*` (`.opencode/skills/system-spec-kit/scripts/lib/trigger-extractor.ts:15-23`) and exported path helpers (`.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:23-25,98-108`). |
 | 2. Error class usage consistency | **C+** | `mcp_server` has a clear custom-error pattern with `MemoryError`, `PreflightError`, and `ToolSchemaValidationError` (`.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:90-109`, `.opencode/skills/system-spec-kit/mcp_server/lib/validation/preflight.ts:209-238`, `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:444-500`). But `shared` and `scripts` still rely heavily on generic `Error` throws (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:129-188`, `.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:23-25,31-33,83-89`). So error handling is competent, but not workspace-wide consistent. |
 | 3. Logger usage (`console.log` vs proper logger) | **C+** | There is a proper structured logger abstraction in scripts (`.opencode/skills/system-spec-kit/scripts/utils/logger.ts:26-50`), and it is used in places like `message-utils` and `path-utils` (`.opencode/skills/system-spec-kit/scripts/utils/message-utils.ts:82-126`, `.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:30-33,83-89`). However, direct `console.*` calls remain common in other areas: provider factory (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:87-99,125-177,227-257`), file writing (`.opencode/skills/system-spec-kit/scripts/core/file-writer.ts:111-129`), MCP error reporting (`.opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts:169-172`), and CLI output (`.opencode/skills/system-spec-kit/mcp_server/cli.ts:43-75`). |
-| 4. Import organization | **A-** | The codebase generally follows clean grouping by stdlib/external/internal, e.g. `folder-detector.ts` (`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:10-33`) and `data-loader.ts` (`.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:13-35`). The OpenCode standard treats import-order work as **P2** optimization (`.opencode/skills/sk-code-opencode/SKILL.md:451-453`). I didn’t see major disorder, just normal variation in simpler files like `factory.ts` (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:5-14`). |
-| 5. File naming conventions | **A** | Source files are consistently kebab-case and aligned with the naming rule set (`.opencode/skills/sk-code-opencode/SKILL.md:348-353`), with representative examples like `folder-detector.ts` (`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1-3`), `path-utils.ts` (`.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:1-3`), and `spec-doc-health.ts` (`.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts:1-3`). |
+| 4. Import organization | **A-** | The codebase generally follows clean grouping by stdlib/external/internal, e.g. `folder-detector.ts` (`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:10-33`) and `data-loader.ts` (`.opencode/skills/system-spec-kit/scripts/loaders/data-loader.ts:13-35`). The OpenCode standard treats import-order work as **P2** optimization (`.opencode/skills/sk-code-skilled/SKILL.md:451-453`). I didn’t see major disorder, just normal variation in simpler files like `factory.ts` (`.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:5-14`). |
+| 5. File naming conventions | **A** | Source files are consistently kebab-case and aligned with the naming rule set (`.opencode/skills/sk-code-skilled/SKILL.md:348-353`), with representative examples like `folder-detector.ts` (`.opencode/skills/system-spec-kit/scripts/spec-folder/folder-detector.ts:1-3`), `path-utils.ts` (`.opencode/skills/system-spec-kit/scripts/utils/path-utils.ts:1-3`), and `spec-doc-health.ts` (`.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts:1-3`). |
 | 6. Module structure (barrel exports) | **A** | Barrel/module organization is a strength. `shared/index.ts` is sectioned and centralized (`.opencode/skills/system-spec-kit/shared/index.ts:72-124,126-220`), `scripts/utils/index.ts` and `scripts/core/index.ts` are clean re-export surfaces (`.opencode/skills/system-spec-kit/scripts/utils/index.ts:8-45`, `.opencode/skills/system-spec-kit/scripts/core/index.ts:8-37`), and `mcp_server` does the same for errors and pipeline APIs (`.opencode/skills/system-spec-kit/mcp_server/lib/errors/index.ts:4-40`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/index.ts:4-36`). |
 | 7. Test file naming conventions | **B** | Modern TS tests follow the expected patterns: `*.test.ts` and `*.vitest.ts` (`.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.test.ts:1-10`, `.opencode/skills/system-spec-kit/scripts/tests/historical-memory-remediation.vitest.ts:1-15`). But there is also a legacy JS suite named `test-*.js` rather than suffix-based test names (`.opencode/skills/system-spec-kit/scripts/tests/test-phase-command-workflows.js:1-7`, `.opencode/skills/system-spec-kit/scripts/tests/test-bug-fixes.js:1-4`). So conventions are good in newer TS code, mixed across the whole workspace. |
 | 8. TypeScript strict mode compliance | **A** | Root TS config has `strict: true` and project references for `shared`, `mcp_server`, and `scripts` (`.opencode/skills/system-spec-kit/tsconfig.json:2-22`). The workspace `typecheck` script covers all three (`.opencode/skills/system-spec-kit/package.json:14-24`). I also ran `npm run -s typecheck` successfully. |

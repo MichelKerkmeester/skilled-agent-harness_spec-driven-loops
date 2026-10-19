@@ -132,9 +132,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode references.",
+    "causal_summary": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-skilled references.",
     "created_at": "2026-05-18T08:15:53.147Z",
-    "last_save_at": "2026-10-07T19:39:50.462Z",
+    "last_save_at": "2026-10-18T20:45:30.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -143,13 +143,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53602d926cd091c110c0f1567790cbb13235d9d6d067b3e50a622098ef94891c",
+    "source_fingerprint": "sha256:eb828877b93d2e254be462e0a884c6627d7ce699de81ece05b75e8aecc0fe11b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee2018d247c9488e65ef1bb80e7edf3c99dbca18e0575e58a54b26034fbfd578",
-      "plan.md": "eb7afbcee01213f5a871a64d8da3a497e5776812d69cedca942dca7e524ccf20",
-      "tasks.md": "13c4d06970a9aaeb0216fb7deaaa7d92714b402bd2937b00285f367fc44f0f56",
-      "implementation-summary.md": "0096af2dd23215fc1128529792f4cb1a35681ab404622db08da6782366338bfd"
+      "spec.md": "3bedd977447fd80c02b1bbc37e501088c949e2c8d22da19a1ba5f085bed3be18",
+      "plan.md": "6c3cf6e61ac2af36dd5c51683aef1a8ee4fa40d4175695bbfad70d52abccf528",
+      "tasks.md": "538f88f85c37df06151c25b297c71cd79e278d0f7380e4cb8a02916674796499",
+      "implementation-summary.md": "124a1062a21496d7e2ff38bcea5e29984feaee1171bc7e00becb4e5fedd7f217"
     },
     "last_active_child_id": null,
     "last_active_at": null

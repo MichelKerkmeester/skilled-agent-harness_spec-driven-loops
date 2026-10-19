@@ -177,7 +177,7 @@
    "dateSource": "git"
   },
   {
-   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "root": ".opencode/skills/sk-code/code-skilled/benchmark",
    "oldRel": "live-mode-b",
    "newRel": "2026-07-10--live-mode-b--live",
    "carveOut": null,
@@ -185,7 +185,7 @@
    "dateSource": "git"
   },
   {
-   "root": ".opencode/skills/sk-code/code-opencode/benchmark",
+   "root": ".opencode/skills/sk-code/code-skilled/benchmark",
    "oldRel": "router-mode-a",
    "newRel": "2026-07-10--router-mode-a--router",
    "carveOut": null,

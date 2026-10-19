@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-18"
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -31,7 +31,7 @@ The memory MCP server was removed: its 41 tools, daemon, launcher, plugin, hooks
 | `memory_search`, `memory_quick_search`, `memory_context` | The ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](../references/retrieval/retrieval-conventions.md) §2, ranked caller-side per §5 |
 | `memory_save` continuity writes | The packet-local continuity writer and `runtime/cli/continuity/generate-context.ts` |
 | Session resume and context assembly | `/speckit:resume` over the handover document -> `_memory.continuity` -> spec-doc ladder |
-| Daemon health checks | `node .skilled/bin/skill-advisor.cjs advisor_status --format json` for the one daemon that remains |
+| Daemon health checks | `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json` for the one daemon that remains |
 
 Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are a declared loss, not a relocated capability. `references/retrieval/retrieval-conventions.md` §1 carries the full boundary table.
 
@@ -817,7 +817,7 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The doctor routers split by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`) and the subsystem routes they dispatch to.
+The seven doctor routers split checks by owner (`/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`, `/doctor:sk-code`, `/doctor:git` and `/doctor:setup`) and dispatch to their subsystem routes.
 
 #### Current Reality
 
@@ -835,7 +835,7 @@ See [`doctor-commands/category-overview.md`](doctor-commands/category-overview.m
 
 #### Description
 
-Four doctor routers that dispatch to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest, where each route names its owning command.
+Seven doctor routers dispatch 14 route-specific YAML workflows through the canonical `_routes.yaml` manifest. Each route names its owning command.
 
 #### Current Reality
 

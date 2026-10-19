@@ -79,6 +79,6 @@ Main had moved 13 commits ahead with another session's runtime-alignment work. `
 
 From the merged tree: guard, sync, admission, `parent-skill-check` (0 warnings), the three freshness checks and every README test command pass. Two findings:
 1. Main moved `runtime/lib/hooks/completion-evidence-sentinel.cjs` to `runtime/hooks/lib/`, but `score-completion-claims.mjs:41` and its catalog row kept the old path, so `completion-claim-audit.vitest.ts` failed on main itself (`Cannot find module`). A DeepSeek brief repointed both, and the suite passes 23 of 23. A static check of every relative import in the packet's 186 named files then found none unresolved.
-2. `sync-skills-hermes.cjs --check` reports 8 drifted copies (sk-code, sk-code-obsidian, sk-code-opencode, sk-doc, sk-create-readme, system-deep-loop, system-skill-advisor, system-spec-kit). Main's checkout at `d7c90f663c` reports the same 8 with no change from this branch, so the drift comes from main's runtime-alignment work and is left to its owner.
+2. `sync-skills-hermes.cjs --check` reports 8 drifted copies (sk-code, sk-code-obsidian, sk-code-skilled, sk-doc, sk-create-readme, system-deep-loop, system-skill-advisor, system-spec-kit). Main's checkout at `d7c90f663c` reports the same 8 with no change from this branch, so the drift comes from main's runtime-alignment work and is left to its owner.
 
 In this worktree `npm test` in the system-spec-kit runtime cannot find `runtime/node_modules/.bin/vitest`. `npx vitest run` passes the same three suites (24, 23, 31).

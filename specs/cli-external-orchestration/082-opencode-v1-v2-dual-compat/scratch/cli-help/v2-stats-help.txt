@@ -1,0 +1,27 @@
+DESCRIPTION
+  Show shareable usage statistics
+
+USAGE
+  opencode stats [flags]
+
+FLAGS
+  --standalone        Run with a private server instead of the background service
+  --server string     Connect to a server URL instead of the background service
+  --days integer      Show the last N days; 0 means today
+  --year integer      Show a calendar year
+  --all               Show lifetime statistics
+  --project string    Filter by project ID, or use "." for the current project
+  --models            Show model usage
+  --tools             Show tool reliability
+  --cost              Show cost and token details
+  --full              Show every detailed section
+  --limit integer     Number of rows in detailed sections
+  --json              Output statistics as JSON
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)

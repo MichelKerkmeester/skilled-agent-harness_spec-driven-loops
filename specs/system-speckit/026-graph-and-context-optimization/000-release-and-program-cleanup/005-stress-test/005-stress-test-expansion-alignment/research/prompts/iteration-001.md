@@ -2,7 +2,7 @@
 title: "Strict validator MUST exit 0"
 trigger_phrases: []
 ---
-## Packet 052: stress-test-expansion-and-alignment — sk-code-opencode alignment + coverage gap fill
+## Packet 052: stress-test-expansion-and-alignment — sk-code-skilled alignment + coverage gap fill
 
 You are cli-codex (gpt-5.5 high fast) implementing **005-stress-test-expansion-alignment**.
 
@@ -14,12 +14,12 @@ The packet folder is: `.opencode/specs/system-spec-kit/026-graph-and-context-opt
 
 Two-track work across `.opencode/skills/system-spec-kit/mcp_server/stress_test/`:
 
-1. **sk-code-opencode alignment**: every `.ts` file under `stress_test/` MUST follow sk-code-opencode TypeScript standards (strict imports, named exports where appropriate, no unused vars, vitest convention compliance, telemetry naming, test descriptors, no console.log without `process.env.DEBUG_*` gates).
+1. **sk-code-skilled alignment**: every `.ts` file under `stress_test/` MUST follow sk-code-skilled TypeScript standards (strict imports, named exports where appropriate, no unused vars, vitest convention compliance, telemetry naming, test descriptors, no console.log without `process.env.DEBUG_*` gates).
 2. **Coverage gap fill**: cross-reference the 3 mcp_server-attached feature catalogs against `stress_test/`. For features NOT covered by an existing vitest, author new tests OR document an explicit deferral with rationale.
 
 ### Source of truth
 
-- sk-code-opencode standards: `.opencode/skills/sk-code-opencode/SKILL.md` + `.opencode/skills/sk-code-opencode/references/`
+- sk-code-skilled standards: `.opencode/skills/sk-code-skilled/SKILL.md` + `.opencode/skills/sk-code-skilled/references/`
 - Feature catalogs to audit:
   - `.opencode/skills/system-spec-kit/feature_catalog/` (302 features — focus on stress-test-relevant categories: analysis, 11--scoring, query-intelligence, 13--memory-quality, stress-testing, 15--retrieval, context-preservation)
   - `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/` (17 features)
@@ -34,7 +34,7 @@ Walk `stress_test/` and produce:
 - Subsystem totals
 - Save to `audit-findings.md` Section 1
 
-### Phase 2: sk-code-opencode alignment audit
+### Phase 2: sk-code-skilled alignment audit
 
 For each `.ts` file under `stress_test/`, check:
 
@@ -121,7 +121,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 cd .opencode/skills/system-spec-kit/mcp_server && npm run build
 cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run stress_test/ 2>&1 | tail -20
 
-# sk-code-opencode lint sweep on stress_test
+# sk-code-skilled lint sweep on stress_test
 cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -20
 ```
 
@@ -140,8 +140,8 @@ cd .opencode/skills/system-spec-kit/mcp_server && npx tsc --noEmit 2>&1 | tail -
 
 **Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/004-stress-test-folder-completion","system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/019-feature-catalog-shape-realignment"]`.
 
-**Trigger phrases**: `["005-stress-test-expansion-alignment","stress test alignment","stress test coverage","sk-code-opencode stress test"]`.
+**Trigger phrases**: `["005-stress-test-expansion-alignment","stress test alignment","stress test coverage","sk-code-skilled stress test"]`.
 
-**Causal summary**: `"Aligns all .ts files under .opencode/skills/system-spec-kit/mcp_server/stress_test/ with sk-code-opencode standards (~29 files audited, P0/P1 fixes applied). Cross-references 3 mcp_server feature catalogs (system-spec-kit + code_graph + skill_advisor) against existing stress_test coverage and authors new tests for high-value uncovered features. Build + vitest + strict validator all pass."`.
+**Causal summary**: `"Aligns all .ts files under .opencode/skills/system-spec-kit/mcp_server/stress_test/ with sk-code-skilled standards (~29 files audited, P0/P1 fixes applied). Cross-references 3 mcp_server feature catalogs (system-spec-kit + code_graph + skill_advisor) against existing stress_test coverage and authors new tests for high-value uncovered features. Build + vitest + strict validator all pass."`.
 
 When done, last action: all four checks green (strict validator, build, vitest, tsc) + complete coverage matrix in `coverage-matrix.md`. No narration; just write files and exit.

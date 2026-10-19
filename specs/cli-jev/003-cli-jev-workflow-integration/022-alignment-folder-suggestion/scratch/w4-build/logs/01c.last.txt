@@ -6,9 +6,9 @@ S and T are read. The brief's two header lines live at S:64–65 (the brief anno
 
 REPO RULES.md exists — Gate 5 requires loading it before the first write. I'll also run sk-code's compiled router (its stated default path) to resolve the mode for this file type.
 
-The router resolves this task to the sk-code-opencode surface packet. Loading it plus the rule files whose triggers fire for what I'm about to do (a scoped code edit, a reported result with quoted numbers, a turn-end handback).
+The router resolves this task to the sk-code-skilled surface packet. Loading it plus the rule files whose triggers fire for what I'm about to do (a scoped code edit, a reported result with quoted numbers, a turn-end handback).
 
-Router resolved to the sk-code-opencode surface (TypeScript standards under `.skilled/`), and the rule files are loaded. Note for later: the brief annotates the two S lines as 63–64, but they sit at 64–65 in the file — the old strings match verbatim and uniquely, so the content anchor is unambiguous; I'll capture the evidence and flag the annotation as a doc defect rather than halt on it.
+Router resolved to the sk-code-skilled surface (TypeScript standards under `.skilled/`), and the rule files are loaded. Note for later: the brief annotates the two S lines as 63–64, but they sit at 64–65 in the file — the old strings match verbatim and uniquely, so the content anchor is unambiguous; I'll capture the evidence and flag the annotation as a doc defect rather than halt on it.
 
 Before editing, capturing the baseline (the negative control for the two greps):
 

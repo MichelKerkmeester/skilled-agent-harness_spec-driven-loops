@@ -50,7 +50,7 @@ parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Build a release-evidence matrix covering hub/shared, code-opencode, code-quality, code-review, code-webflow,
+- [ ] T004 Build a release-evidence matrix covering hub/shared, code-skilled, code-quality, code-review, code-webflow,
   playbook, and benchmark handoffs.
 - [ ] T005 Compare the candidate version with BASE `4.1.0.0`, `SKILL.md`, `README.md`, frontmatter, and active metadata.
 - [ ] T006 Compare historical changelog files with BASE and record any mutation, missing entry, or overclaim.

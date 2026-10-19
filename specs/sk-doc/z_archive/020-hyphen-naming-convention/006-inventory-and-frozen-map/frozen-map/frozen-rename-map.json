@@ -9959,9 +9959,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/agent_authoring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/agent_authoring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/agent-authoring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/agent-authoring.md",
       "target_exists": false
     },
     {
@@ -9972,9 +9972,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/command_authoring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/command_authoring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/command-authoring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/command-authoring.md",
       "target_exists": false
     },
     {
@@ -9988,9 +9988,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/config_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/config_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/config-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/config-checklist.md",
       "target_exists": false
     },
     {
@@ -10005,9 +10005,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/javascript_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/javascript-checklist.md",
       "target_exists": false
     },
     {
@@ -10018,9 +10018,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/mcp_server_authoring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/mcp_server_authoring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/mcp-server-authoring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/mcp-server-authoring.md",
       "target_exists": false
     },
     {
@@ -10035,9 +10035,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/python_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/python-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/python-checklist.md",
       "target_exists": false
     },
     {
@@ -10048,9 +10048,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust-checklist",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust-checklist",
       "target_exists": false
     },
     {
@@ -10063,9 +10063,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/overview_and_p0_parity.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/overview_and_p0_parity.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
       "target_exists": false
     },
     {
@@ -10076,9 +10076,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
       "target_exists": false
     },
     {
@@ -10089,9 +10089,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p1_required.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p1_required.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust-checklist/p1-required.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust-checklist/p1-required.md",
       "target_exists": false
     },
     {
@@ -10107,9 +10107,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
       "target_exists": false
     },
     {
@@ -10124,9 +10124,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/shell_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/shell_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/shell-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/shell-checklist.md",
       "target_exists": false
     },
     {
@@ -10137,9 +10137,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/skill_authoring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/skill_authoring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/skill-authoring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/skill-authoring.md",
       "target_exists": false
     },
     {
@@ -10154,9 +10154,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/typescript_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/typescript-checklist.md",
       "target_exists": false
     },
     {
@@ -10178,9 +10178,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/checklists/universal_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/assets/checklists/universal_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/assets/checklists/universal-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/assets/checklists/universal-checklist.md",
       "target_exists": false
     },
     {
@@ -10190,7 +10190,7 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "Python filenames retain snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/scripts/test_verify_alignment_drift.py"
+      "source": ".opencode/skills/sk-code/code-skilled/assets/scripts/test_verify_alignment_drift.py"
     },
     {
       "classification": "exempt",
@@ -10199,7 +10199,7 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "Python filenames retain snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py"
+      "source": ".opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py"
     },
     {
       "classification": "exempt",
@@ -10208,7 +10208,7 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "Python filenames retain snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py"
+      "source": ".opencode/skills/sk-code/code-skilled/assets/scripts/verify_stack_folders.py"
     },
     {
       "classification": "rename",
@@ -10218,9 +10218,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b",
+      "source": ".opencode/skills/sk-code/code-skilled/benchmark/live_mode_b",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--live-mode-b--live",
+      "target": ".opencode/skills/sk-code/code-skilled/benchmark/reports/2026-07-10--live-mode-b--live",
       "target_exists": false
     },
     {
@@ -10231,9 +10231,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a",
+      "source": ".opencode/skills/sk-code/code-skilled/benchmark/router_mode_a",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/benchmark/reports/2026-07-10--router-mode-a--router",
+      "target": ".opencode/skills/sk-code/code-skilled/benchmark/reports/2026-07-10--router-mode-a--router",
       "target_exists": false
     },
     {
@@ -10244,9 +10244,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook",
       "target_exists": false
     },
     {
@@ -10257,9 +10257,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/authoring-verification",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/authoring-verification",
       "target_exists": false
     },
     {
@@ -10270,9 +10270,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/code_quality_gate.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/code_quality_gate.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
       "target_exists": false
     },
     {
@@ -10283,9 +10283,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/implementation_authoring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/implementation_authoring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
       "target_exists": false
     },
     {
@@ -10296,9 +10296,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/verification_alignment.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/verification_alignment.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
       "target_exists": false
     },
     {
@@ -10309,9 +10309,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/config-hooks",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/config-hooks",
       "target_exists": false
     },
     {
@@ -10322,9 +10322,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/config_schema.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/config_schema.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/config-hooks/config-schema.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/config-hooks/config-schema.md",
       "target_exists": false
     },
     {
@@ -10335,9 +10335,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/hooks_wiring.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/hooks_wiring.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/config-hooks/hooks-wiring.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/config-hooks/hooks-wiring.md",
       "target_exists": false
     },
     {
@@ -10348,9 +10348,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/language-standards",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/language-standards",
       "target_exists": false
     },
     {
@@ -10361,9 +10361,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/python_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/python_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/language-standards/python-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/language-standards/python-standards.md",
       "target_exists": false
     },
     {
@@ -10374,9 +10374,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/rust_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/rust_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/language-standards/rust-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/language-standards/rust-standards.md",
       "target_exists": false
     },
     {
@@ -10387,9 +10387,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/shell_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/shell_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/language-standards/shell-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/language-standards/shell-standards.md",
       "target_exists": false
     },
     {
@@ -10400,9 +10400,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/typescript_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/typescript_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/language-standards/typescript-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/language-standards/typescript-standards.md",
       "target_exists": false
     },
     {
@@ -10413,9 +10413,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      "source": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/manual_testing_playbook.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/manual-testing-playbook/manual-testing-playbook.md",
+      "target": ".opencode/skills/sk-code/code-skilled/manual-testing-playbook/manual-testing-playbook.md",
       "target_exists": false
     },
     {
@@ -10431,9 +10431,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/config/quality_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/config/quality_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/config/quality-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/config/quality-standards.md",
       "target_exists": false
     },
     {
@@ -10447,9 +10447,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/config/quick_reference.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/config/quick_reference.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/config/quick-reference.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/config/quick-reference.md",
       "target_exists": false
     },
     {
@@ -10462,9 +10462,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/config/style_guide.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/config/style_guide.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/config/style-guide.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/config/style-guide.md",
       "target_exists": false
     },
     {
@@ -10475,9 +10475,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards",
+      "source": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/javascript/quality-standards",
+      "target": ".opencode/skills/sk-code/code-skilled/references/javascript/quality-standards",
       "target_exists": false
     },
     {
@@ -10488,9 +10488,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/overview_modules_and_docs.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/overview_modules_and_docs.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md",
       "target_exists": false
     },
     {
@@ -10504,9 +10504,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/security_testing_and_exemptions.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/security_testing_and_exemptions.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md",
       "target_exists": false
     },
     {
@@ -10520,9 +10520,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/javascript/quick_reference.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/javascript/quick_reference.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/javascript/quick-reference.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/javascript/quick-reference.md",
       "target_exists": false
     },
     {
@@ -10538,9 +10538,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/javascript/style_guide.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/javascript/style_guide.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/javascript/style-guide.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/javascript/style-guide.md",
       "target_exists": false
     },
     {
@@ -10554,9 +10554,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/python/quality_standards.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/python/quality_standards.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/python/quality-standards.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/python/quality-standards.md",
       "target_exists": false
     },
     {
@@ -10570,9 +10570,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/python/quick_reference.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/python/quick_reference.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/python/quick-reference.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/python/quick-reference.md",
       "target_exists": false
     },
     {
@@ -10586,9 +10586,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/python/style_guide.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/python/style_guide.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/python/style-guide.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/python/style-guide.md",
       "target_exists": false
     },
     {
@@ -10599,9 +10599,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards",
       "target_exists": false
     },
     {
@@ -10612,9 +10612,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/build_and_organization.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/build_and_organization.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards/build-and-organization.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards/build-and-organization.md",
       "target_exists": false
     },
     {
@@ -10628,9 +10628,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/determinism_and_parity.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/determinism_and_parity.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards/determinism-and-parity.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards/determinism-and-parity.md",
       "target_exists": false
     },
     {
@@ -10641,9 +10641,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/docs_errors_and_async.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/docs_errors_and_async.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards/docs-errors-and-async.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
       "target_exists": false
     },
     {
@@ -10654,9 +10654,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/modeling_collections_and_api.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/modeling_collections_and_api.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards/modeling-collections-and-api.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
       "target_exists": false
     },
     {
@@ -10667,9 +10667,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/overview_and_data_ownership.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/overview_and_data_ownership.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quality-standards/overview-and-data-ownership.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
       "target_exists": false
     },
     {
@@ -10680,9 +10680,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference",
       "target_exists": false
     },
     {
@@ -10693,9 +10693,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/collections_imports_and_errors.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/collections_imports_and_errors.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference/collections-imports-and-errors.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference/collections-imports-and-errors.md",
       "target_exists": false
     },
     {
@@ -10709,9 +10709,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/determinism_parity_and_related.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/determinism_parity_and_related.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference/determinism-parity-and-related.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference/determinism-parity-and-related.md",
       "target_exists": false
     },
     {
@@ -10722,9 +10722,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/naming_ordering_and_signatures.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/naming_ordering_and_signatures.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference/naming-ordering-and-signatures.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
       "target_exists": false
     },
     {
@@ -10738,9 +10738,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/overview_and_boundary_template.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/overview_and_boundary_template.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference/overview-and-boundary-template.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
       "target_exists": false
     },
     {
@@ -10751,9 +10751,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/rustdoc_and_cargo.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/rustdoc_and_cargo.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/quick-reference/rustdoc-and-cargo.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
       "target_exists": false
     },
     {
@@ -10764,9 +10764,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide",
       "target_exists": false
     },
     {
@@ -10777,9 +10777,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/commenting_and_rustdoc.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/commenting-and-rustdoc.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/commenting-and-rustdoc.md",
       "target_exists": false
     },
     {
@@ -10790,9 +10790,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/formatting_and_imports.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/formatting_and_imports.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/formatting-and-imports.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/formatting-and-imports.md",
       "target_exists": false
     },
     {
@@ -10806,9 +10806,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-errors-and-parity.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-errors-and-parity.md",
       "target_exists": false
     },
     {
@@ -10819,9 +10819,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_model.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_model.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-model.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-model.md",
       "target_exists": false
     },
     {
@@ -10832,9 +10832,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/naming_conventions.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/naming_conventions.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/naming-conventions.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/naming-conventions.md",
       "target_exists": false
     },
     {
@@ -10845,9 +10845,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/overview_and_file_header.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/overview_and_file_header.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/overview-and-file-header.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/overview-and-file-header.md",
       "target_exists": false
     },
     {
@@ -10858,9 +10858,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/toolchain_and_project_structure.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/toolchain_and_project_structure.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/rust/style-guide/toolchain-and-project-structure.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
       "target_exists": false
     },
     {
@@ -10874,9 +10874,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/alignment_verification_automation.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/alignment_verification_automation.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/alignment-verification-automation.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/alignment-verification-automation.md",
       "target_exists": false
     },
     {
@@ -10887,9 +10887,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/code-organization",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/code-organization",
       "target_exists": false
     },
     {
@@ -10900,9 +10900,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/directory_and_test_conventions.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/directory_and_test_conventions.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
       "target_exists": false
     },
     {
@@ -10913,9 +10913,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/imports_and_exports.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/imports_and_exports.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/code-organization/imports-and-exports.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/code-organization/imports-and-exports.md",
       "target_exists": false
     },
     {
@@ -10926,9 +10926,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/overview_and_module_organization.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/code-organization/overview-and-module-organization.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/code-organization/overview-and-module-organization.md",
       "target_exists": false
     },
     {
@@ -10939,9 +10939,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/universal-patterns",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/universal-patterns",
       "target_exists": false
     },
     {
@@ -10954,9 +10954,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/naming_and_commenting.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
       "target_exists": false
     },
     {
@@ -10967,9 +10967,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shared/universal-patterns/organization-security-and-examples.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
       "target_exists": false
     },
     {
@@ -10980,9 +10980,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quality-standards",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quality-standards",
       "target_exists": false
     },
     {
@@ -10993,9 +10993,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/overview_and_priority_blockers.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md",
       "target_exists": false
     },
     {
@@ -11009,9 +11009,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md",
       "target_exists": false
     },
     {
@@ -11022,9 +11022,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quick-reference",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quick-reference",
       "target_exists": false
     },
     {
@@ -11038,9 +11038,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/functions_strings_and_checklist.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/functions_strings_and_checklist.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md",
       "target_exists": false
     },
     {
@@ -11054,9 +11054,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/template_variables_and_loops.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/template_variables_and_loops.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/quick-reference/template-variables-and-loops.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/quick-reference/template-variables-and-loops.md",
       "target_exists": false
     },
     {
@@ -11067,9 +11067,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/style-guide",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/style-guide",
       "target_exists": false
     },
     {
@@ -11080,9 +11080,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/overview_structure_and_naming.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/overview_structure_and_naming.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/style-guide/overview-structure-and-naming.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/style-guide/overview-structure-and-naming.md",
       "target_exists": false
     },
     {
@@ -11096,9 +11096,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/variables_functions_and_output.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/variables_functions_and_output.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/shell/style-guide/variables-functions-and-output.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/shell/style-guide/variables-functions-and-output.md",
       "target_exists": false
     },
     {
@@ -11109,9 +11109,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quality-standards",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quality-standards",
       "target_exists": false
     },
     {
@@ -11122,9 +11122,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/overview_and_type_system.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/overview_and_type_system.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quality-standards/overview-and-type-system.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
       "target_exists": false
     },
     {
@@ -11138,9 +11138,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsconfig_and_modules.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsconfig_and_modules.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md",
       "target_exists": false
     },
     {
@@ -11151,9 +11151,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsdoc_errors_and_async.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsdoc_errors_and_async.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
       "target_exists": false
     },
     {
@@ -11164,9 +11164,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quick-reference",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quick-reference",
       "target_exists": false
     },
     {
@@ -11180,9 +11180,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
       "target_exists": false
     },
     {
@@ -11196,9 +11196,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/template_naming_and_types.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/template_naming_and_types.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/quick-reference/template-naming-and-types.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/quick-reference/template-naming-and-types.md",
       "target_exists": false
     },
     {
@@ -11209,9 +11209,9 @@
       "kind": "directory",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/style-guide",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/style-guide",
       "target_exists": false
     },
     {
@@ -11226,9 +11226,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/formatting_imports_and_coexistence.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/formatting_imports_and_coexistence.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
       "target_exists": false
     },
     {
@@ -11239,9 +11239,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/overview_strict_and_naming.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/overview_strict_and_naming.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/typescript/style-guide/overview-strict-and-naming.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
       "target_exists": false
     },
     {
@@ -11254,9 +11254,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/workflow-debug.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/workflow-debug.md",
       "target_exists": false
     },
     {
@@ -11269,9 +11269,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/workflow_implement.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/workflow_implement.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/workflow-implement.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/workflow-implement.md",
       "target_exists": false
     },
     {
@@ -11284,9 +11284,9 @@
       "kind": "file",
       "observed_at_sha": "2bccd03be9f1f0813ece6089761470cfcdc3b84a",
       "reason": "authored filesystem name uses snake_case",
-      "source": ".opencode/skills/sk-code/code-opencode/references/workflow_verify.md",
+      "source": ".opencode/skills/sk-code/code-skilled/references/workflow_verify.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/code-opencode/references/workflow-verify.md",
+      "target": ".opencode/skills/sk-code/code-skilled/references/workflow-verify.md",
       "target_exists": false
     },
     {
@@ -14430,7 +14430,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/cross_stack_routing/opencode_plus_motion_dev.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/cross-stack-routing/opencode-plus-motion-dev.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/cross-stack-routing/skilled-plus-motion-dev.md",
       "target_exists": false
     },
     {
@@ -14560,7 +14560,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_config.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-config.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-config.md",
       "target_exists": false
     },
     {
@@ -14573,7 +14573,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_python.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-python.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-python.md",
       "target_exists": false
     },
     {
@@ -14586,7 +14586,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_shell.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-shell.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-shell.md",
       "target_exists": false
     },
     {
@@ -14599,7 +14599,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/language_sub_detection/opencode_typescript.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
       "target_exists": false
     },
     {
@@ -14796,7 +14796,7 @@
       "reason": "authored filesystem name uses snake_case",
       "source": ".opencode/skills/sk-code/manual_testing_playbook/surface_detection/opencode_detection.md",
       "source_exists": true,
-      "target": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+      "target": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
       "target_exists": false
     },
     {

@@ -16,9 +16,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.\nOLD>>> with <<<NEW\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`code-webflow` / `code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `code-review`.\nOLD>>> with <<<NEW\n`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.\nNEW>>>",
     "check": "sed -n 15p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.",
+    "expect": "`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.",
     "_pos": 15
   },
   {
@@ -27,9 +27,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-opencode`) and its implementation workflow.\nOLD>>> with <<<NEW\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`code-webflow` / `code-skilled`) and its implementation workflow.\nOLD>>> with <<<NEW\n- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) and its implementation workflow.\nNEW>>>",
     "check": "sed -n 36p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.",
+    "expect": "- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) and its implementation workflow.",
     "_pos": 36
   },
   {
@@ -49,9 +49,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The surface skill (`code-webflow` / `code-opencode`) immediately before this gate, because implementation writes the files this mode checks.\nOLD>>> with <<<NEW\n- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- The surface skill (`code-webflow` / `code-skilled`) immediately before this gate, because implementation writes the files this mode checks.\nOLD>>> with <<<NEW\n- The surface skill (`sk-code-webflow` / `sk-code-skilled`) immediately before this gate, because implementation writes the files this mode checks.\nNEW>>>",
     "check": "sed -n 47p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.",
+    "expect": "- The surface skill (`sk-code-webflow` / `sk-code-skilled`) immediately before this gate, because implementation writes the files this mode checks.",
     "_pos": 47
   },
   {
@@ -159,9 +159,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-opencode`) unless the user explicitly asked for a standalone quality audit.\nOLD>>> with <<<NEW\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`code-webflow` / `code-skilled`) unless the user explicitly asked for a standalone quality audit.\nOLD>>> with <<<NEW\n1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.\nNEW>>>",
     "check": "sed -n 182p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.",
+    "expect": "1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.",
     "_pos": 182
   },
   {
@@ -170,9 +170,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-opencode`).\nOLD>>> with <<<NEW\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`code-webflow` / `code-skilled`).\nOLD>>> with <<<NEW\n7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled`).\nNEW>>>",
     "check": "sed -n 188p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).",
+    "expect": "7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled`).",
     "_pos": 188
   },
   {
@@ -203,9 +203,9 @@
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `code-webflow` / `code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nOLD>>> with <<<NEW\n- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/SKILL.md, replace the exact text <<<OLD\n- `code-webflow` / `code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nOLD>>> with <<<NEW\n- `sk-code-webflow` / `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.\nNEW>>>",
     "check": "sed -n 280p .skilled/skills/sk-code/sk-code-quality/SKILL.md",
-    "expect": "- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.",
+    "expect": "- `sk-code-webflow` / `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.",
     "_pos": 280
   },
   {
@@ -279,9 +279,9 @@
       ".skilled/skills/sk-code/sk-code-quality/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nOpenCode authoring targets route to specific checklists: skills, agents, commands, spec folders, MCP servers, language files and config each have their own checklist. Webflow frontend work uses the code quality checklist and the shared universal standards.\nOLD>>> with <<<NEW\nOpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\nOpenCode authoring targets route to specific checklists: skills, agents, commands, spec folders, MCP servers, language files and config each have their own checklist. Webflow frontend work uses the code quality checklist and the shared universal standards.\nOLD>>> with <<<NEW\nOpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.\nNEW>>>",
     "check": "sed -n 88p .skilled/skills/sk-code/sk-code-quality/README.md",
-    "expect": "OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.",
+    "expect": "OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.",
     "_pos": 88
   },
   {
@@ -312,7 +312,7 @@
       ".skilled/skills/sk-code/sk-code-quality/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists |\nOLD>>> with <<<NEW\n| [`assets/checklists/`](../sk-code-opencode/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/sk-code-quality/README.md, replace the exact text <<<OLD\n| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists |\nOLD>>> with <<<NEW\n| [`assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |\n| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |\nNEW>>>",
     "check": "sed -n 131p .skilled/skills/sk-code/sk-code-quality/README.md",
     "expect": "| [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |",
     "_pos": 131

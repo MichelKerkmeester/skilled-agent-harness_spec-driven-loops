@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/067-root-readme-section-spacing",
+  "description": "Root README uses forced blank lines instead of dividers, exempt from divider checks and auto-fix",
+  "keywords": [
+    "root",
+    "readme",
+    "forced",
+    "blank",
+    "lines",
+    "instead",
+    "dividers",
+    "exempt",
+    "divider",
+    "checks",
+    "auto-fix"
+  ],
+  "lastUpdated": "2026-10-17T16:43:56.446Z",
+  "specId": "067",
+  "folderSlug": "root-readme-section-spacing",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

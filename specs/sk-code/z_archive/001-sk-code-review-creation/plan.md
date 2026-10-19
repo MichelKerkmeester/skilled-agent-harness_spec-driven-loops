@@ -71,7 +71,7 @@ Review baseline + stack overlay contract.
 
 ### Key Components
 - **Baseline skill**: `.opencode/skills/sk-code-review/`
-- **Overlay skills**: `sk-code-opencode`, `sk-code-web`, `sk-code-full-stack`
+- **Overlay skills**: `sk-code-skilled`, `sk-code-web`, `sk-code-full-stack`
 - **Review runtimes**: `.opencode/agents/review.md`, .opencode/agents/chatgpt/review.md, `.gemini/agents/review.md`, `.claude/agents/review.md`
 - **Orchestration docs**: `.opencode/agents/orchestrate.md`, .opencode/agents/chatgpt/orchestrate.md, `.gemini/agents/orchestrate.md`, `.claude/agents/orchestrate.md`
 - **Codex wrappers**: `.codex/agents/review.toml`, `.codex/agents/orchestrate.toml`

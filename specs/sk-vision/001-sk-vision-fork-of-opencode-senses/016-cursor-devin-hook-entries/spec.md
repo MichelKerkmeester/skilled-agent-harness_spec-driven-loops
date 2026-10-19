@@ -52,7 +52,7 @@ FAILURE MODES:
 | **Created** | 2026-08-17 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `specs/sk-vision/001-sk-vision-fork-of-opencode-senses` |
-| **Predecessor** | `015-sk-code-opencode-alignment` |
+| **Predecessor** | `015-sk-code-skilled-alignment` |
 | **Successor** | N/A |
 | **Handoff Criteria** | Cursor and Devin have `hooks/` entries; the Devin symlink resolves; the MCP server still lists 13 tools; skill package validates; changes committed. |
 <!-- /ANCHOR:metadata -->

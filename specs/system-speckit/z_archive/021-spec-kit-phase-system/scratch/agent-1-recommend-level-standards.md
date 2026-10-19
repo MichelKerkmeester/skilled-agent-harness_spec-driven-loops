@@ -1,7 +1,7 @@
 # Agent 1: Shell Standards Verification — recommend-level.sh
 
 **File under review:** `.opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh` (776 lines)
-**Standards reference:** `sk-code-opencode` SKILL.md + `references/shell/style_guide.md` + `references/shell/quality_standards.md`
+**Standards reference:** `sk-code-skilled` SKILL.md + `references/shell/style_guide.md` + `references/shell/quality_standards.md`
 **Focus area:** `determine_phasing()` function (lines 349-445) and phase-related scoring code
 
 ---

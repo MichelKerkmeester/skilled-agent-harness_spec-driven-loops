@@ -78,7 +78,7 @@ Rename every in-scope code-webflow filesystem name to kebab-case, repair all pat
 
 - Webflow/runtime implementation, Motion.dev API semantics, CSS/HTML/JavaScript identifiers, selector/data attributes, JSON/YAML/TOML keys, and frontmatter fields.
 - SKILL.md, README.md, package manifests, Python .py files and package directories, generated/lockfile output, tool-mandated names, and frozen changelog/history as physical names.
-- Hub/shared source names, code-opencode, code-quality, code-review, hub-level playbook, and root benchmark physical renames owned by sibling children.
+- Hub/shared source names, code-skilled, code-quality, code-review, hub-level playbook, and root benchmark physical renames owned by sibling children.
 - Mechanical rewriting of prose or code identifiers that happen to contain underscores; only filesystem names and path-derived values change.
 
 ### Files to Change

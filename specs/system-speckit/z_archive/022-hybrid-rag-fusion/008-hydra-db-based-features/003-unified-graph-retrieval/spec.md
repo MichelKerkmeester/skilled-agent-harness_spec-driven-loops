@@ -277,7 +277,7 @@ Build a single deterministic graph-aware retrieval contract that uses causal, en
 - [x] Explainability traces reviewed for safe defaults
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment verified during implementation
+- [x] `sk-code-skilled` alignment verified during implementation
 - [x] Benchmark and regression plan approved
 - [x] Manual graph validation steps added to the playbook
 

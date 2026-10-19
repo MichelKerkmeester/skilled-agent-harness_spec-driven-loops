@@ -1,7 +1,7 @@
 ---
 title: "139 -- Session capturing pipeline quality"
 description: "This scenario validates Session capturing pipeline quality for `139`. It focuses on Canonical coverage sourced from M-007 session-capturing closure verification."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-session-capturing-pipeline-quality-coverage
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -149,7 +149,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   ```
 - Alignment drift verifier path points to the existing script location:
   ```text
-  $ python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/scripts
+  $ python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/scripts
   [alignment-drift] PASS
   Scanned files: 473
   Findings: 0

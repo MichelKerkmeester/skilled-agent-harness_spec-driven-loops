@@ -5,13 +5,13 @@ Determine which shared and OpenCode leaves remain useful when a user removes the
 
 ## Actions Taken
 - Trigger lookup: `lookup-trigger-index.mjs --json --scoring-only -- "F10 ROUTER.md stack-agnostic intents shared and opencode leaves after deleting Webflow; smallest R6"` — exit 1, no result rows (clean no-hit).
-- Read the complete 618-line `.skilled/skills/sk-code/ROUTER.md`, lineage config/state/strategy, and all files under `shared/`, `sk-code-opencode/references/`, and `sk-code-opencode/assets/`. The inventory below gives each file's one-line purpose.
+- Read the complete 618-line `.skilled/skills/sk-code/ROUTER.md`, lineage config/state/strategy, and all files under `shared/`, `sk-code-skilled/references/`, and `sk-code-skilled/assets/`. The inventory below gives each file's one-line purpose.
 - Read the router's explicit intent tables and checked their listed leaves against the prepared copy after deleting both example directories. Ran the hub router drift guard in that copy.
 
 Throwaway copy: `/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/r2-luna-max-fast-r2-i1.ANVx` (prepared base copied with `cp -cR`; COPY_EXIT=0).
 
 - `cd /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/r2-luna-max-fast-r2-i1.ANVx` then `rm -rf .skilled/skills/sk-code/sk-code-webflow .skilled/skills/sk-code/sk-code-obsidian` — exit 0.
-- `cd /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/r2-luna-max-fast-r2-i1.ANVx` then `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` — exit 1. Decisive output:
+- `cd /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/r2-luna-max-fast-r2-i1.ANVx` then `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` — exit 1. Decisive output:
 ```text
 FAIL check 1a: machine-router paths exist and the prose maps are routed (99 problem(s))
   - dead route: sk-code-webflow/SKILL.md
@@ -32,8 +32,8 @@ FAIL check 1a: machine-router paths exist and the prose maps are routed (99 prob
 ```text
 37. Routing is a two-stage decision: **surface-first, intent-second**. Surface narrows the resource family (OpenCode vs Obsidian vs Webflow vs UNKNOWN); intent narrows the specific files within that family. Motion.dev resources are a **peer category** loaded after the surface decision, not a surface. The detected surface also goes to the compiled front door as `--surface-hint`, so when a prompt ties between surfaces the session's surface leads the bundle (`SKILL.md` §2).
 111. | ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
-112. | SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-opencode/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
-114. | LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-opencode/references/<lang>/` resources |
+112. | SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-skilled/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
+114. | LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
 125. | IMPLEMENTATION | MUST load the implementation trio: `sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`, `sk-code-webflow/references/implementation/implementation-workflows/condition-based-waiting.md`, `sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`; then add per-language style guides (`sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md`, `sk-code-webflow/references/css/style-guide.md`) and focused guides such as forms/vendor refs as needed |
 126. | CODE_QUALITY | `sk-code-review/assets/code-quality-checklist.md`, `sk-code-webflow/references/javascript/quality-standards/init-dom-error-and-async.md`, `sk-code-webflow/references/css/quality-standards/patterns-and-naming-enforcement.md`, `sk-code-webflow/references/shared/enforcement.md` |
 127. | DEBUGGING | `sk-code-webflow/references/debugging/*`, `sk-code-webflow/references/shared/dev-workflow/overview-nav-and-logging.md`, universal debugging checklist |
@@ -53,13 +53,13 @@ FAIL check 1a: machine-router paths exist and the prose maps are routed (99 prob
 190. - `sk-code-webflow/references/performance/resource-loading.md`
 204. ### Implementation shared tier
 206. IMPLEMENTATION loads the shared organization and naming baseline:
-208. - `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
-209. - `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+208. - `sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`
+209. - `sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md`
 213. | Intent | Resources |
-215. | CODE_QUALITY | `sk-code-opencode/assets/checklists/universal-checklist.md` plus the language-matching checklist |
-216. | VERIFICATION | `sk-code-opencode/references/shared/alignment-verification-automation.md`, `sk-code-opencode/assets/scripts/verify_alignment_drift.py` |
-217. | HOOKS | `sk-code-opencode/references/shared/hooks.md` |
-218. | CONFIG | `sk-code-opencode/references/config/*` |
+215. | CODE_QUALITY | `sk-code-skilled/assets/checklists/universal-checklist.md` plus the language-matching checklist |
+216. | VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `sk-code-skilled/assets/scripts/verify_alignment_drift.py` |
+217. | HOOKS | `sk-code-skilled/references/shared/hooks.md` |
+218. | CONFIG | `sk-code-skilled/references/config/*` |
 219. | LANGUAGE_STANDARDS | Detected language folder's `quick-reference.md`, `style-guide.md`, `quality-standards.md` |
 ```
 
@@ -69,9 +69,9 @@ The row below groups each explicit leaf by its owning surface. `shared` includes
 | Intent | Owner and leaves listed by ROUTER.md (expanded against base) | Leaves surviving in copy after deletion |
 | --- | --- | --- |
 | IMPLEMENTATION | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/multi-agent-research.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/multi-agent-research.md` |
-| CODE_QUALITY | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/code-style-guide.md`; opencode: `sk-code-opencode/assets/checklists/universal-checklist.md`; review: `sk-code-review/assets/code-quality-checklist.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/code-style-guide.md`, `sk-code-opencode/assets/checklists/universal-checklist.md`, `sk-code-review/assets/code-quality-checklist.md` |
+| CODE_QUALITY | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/code-style-guide.md`; opencode: `sk-code-skilled/assets/checklists/universal-checklist.md`; review: `sk-code-review/assets/code-quality-checklist.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/code-style-guide.md`, `sk-code-skilled/assets/checklists/universal-checklist.md`, `sk-code-review/assets/code-quality-checklist.md` |
 | DEBUGGING | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/error-recovery.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `shared/references/universal/error-recovery.md` |
-| VERIFICATION | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-opencode/assets/scripts/verify_alignment_drift.py`, `sk-code-opencode/references/shared/alignment-verification-automation.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-opencode/assets/scripts/verify_alignment_drift.py`, `sk-code-opencode/references/shared/alignment-verification-automation.md` |
+| VERIFICATION | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-skilled/assets/scripts/verify_alignment_drift.py`, `sk-code-skilled/references/shared/alignment-verification-automation.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-skilled/assets/scripts/verify_alignment_drift.py`, `sk-code-skilled/references/shared/alignment-verification-automation.md` |
 | TESTING | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 | DEPLOYMENT | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 | PERFORMANCE | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
@@ -79,8 +79,8 @@ The row below groups each explicit leaf by its owning surface. `shared` includes
 | MOTION_DEV | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 | FORMS | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 | VIDEO | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
-| HOOKS | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-opencode/references/shared/hooks.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-opencode/references/shared/hooks.md` |
-| CONFIG | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-opencode/assets/checklists/config-checklist.md`, `sk-code-opencode/references/config/quality-standards.md`, `sk-code-opencode/references/config/quick-reference.md`, `sk-code-opencode/references/config/style-guide.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-opencode/assets/checklists/config-checklist.md`, `sk-code-opencode/references/config/quality-standards.md`, `sk-code-opencode/references/config/quick-reference.md`, `sk-code-opencode/references/config/style-guide.md` |
+| HOOKS | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-skilled/references/shared/hooks.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-skilled/references/shared/hooks.md` |
+| CONFIG | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`; opencode: `sk-code-skilled/assets/checklists/config-checklist.md`, `sk-code-skilled/references/config/quality-standards.md`, `sk-code-skilled/references/config/quick-reference.md`, `sk-code-skilled/references/config/style-guide.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md`, `sk-code-skilled/assets/checklists/config-checklist.md`, `sk-code-skilled/references/config/quality-standards.md`, `sk-code-skilled/references/config/quick-reference.md`, `sk-code-skilled/references/config/style-guide.md` |
 | LANGUAGE_STANDARDS | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 | ACCESSIBILITY | shared: `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` | `shared/references/phase-detection.md`, `shared/references/stack-detection.md`, `shared/references/universal/code-quality-standards.md` |
 
@@ -98,79 +98,79 @@ The row below groups each explicit leaf by its owning surface. `shared` includes
 - `.skilled/skills/sk-code/shared/references/workflow-debug.md` — Workflow Reference - Debugging — contextType: general
 - `.skilled/skills/sk-code/shared/references/workflow-implement.md` — Workflow Reference - Implementation — contextType: general
 - `.skilled/skills/sk-code/shared/references/workflow-verify.md` — Workflow Reference - Verification — contextType: general
-- `.skilled/skills/sk-code/sk-code-opencode/references/config/quality-standards.md` — Config Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/config/quick-reference.md` — Config Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/config/style-guide.md` — Config Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md` — JavaScript Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md` — Security, Testing, Async & Exemption Tiers — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/quick-reference.md` — JavaScript Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md` — JavaScript Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/python/quality-standards.md` — Python Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/python/quick-reference.md` — Python Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/python/style-guide.md` — Python Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quality-standards/build-and-organization.md` — Cargo/Build Baseline & Module Organization — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quality-standards/determinism-and-parity.md` — Byte-for-Byte Determinism & Parity — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quality-standards/docs-errors-and-async.md` — Rustdoc, Error/Panic Translation & Async Patterns — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quality-standards/modeling-collections-and-api.md` — Domain Modeling, Collections & Public API/ABI Contracts — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quality-standards/overview-and-data-ownership.md` — Rust Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quick-reference/collections-imports-and-errors.md` — Collections, Imports/Exports & Error Mapping — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quick-reference/determinism-parity-and-related.md` — Determinism, Parity & Common Recipes — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quick-reference/naming-ordering-and-signatures.md` — Naming, Section Ordering & Signature Patterns — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quick-reference/overview-and-boundary-template.md` — Rust Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/quick-reference/rustdoc-and-cargo.md` — Rustdoc Template & Cargo/Build Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/commenting-and-rustdoc.md` — Commenting & Rustdoc Rules — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/formatting-and-imports.md` — Formatting Rules & Import/Module Ordering — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/interop-errors-and-parity.md` — Rust/TypeScript Interop — Errors, Parity & Related Resources — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/interop-model.md` — Rust/TypeScript Interop — Model & Boundary Types — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/naming-conventions.md` — Naming Conventions — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/overview-and-file-header.md` — Rust Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/rust/style-guide/toolchain-and-project-structure.md` — Toolchain, Compilation Baseline & Project Structure — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` — Alignment Verification Automation — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md` — Directory & Test File Conventions — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/imports-and-exports.md` — Import Ordering & Export Patterns — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md` — Code Organization - File Structure and Module Principles — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md` — Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md` — Universal Patterns - Cross-Language Code Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md` — File Organization, Security & Copy-Paste Alignment Examples — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` — OpenCode Workflow Guardrails — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md` — Shell Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` — Validation, Errors, Output, Security, Review & ShellCheck — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md` — Functions, Args, Strings, Common Patterns & Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md` — Shell Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md` — Shell Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/shell/style-guide/variables-functions-and-output.md` — Variables, Conditionals, Args, Functions, Errors & Output — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md` — TypeScript Quality Standards — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md` — tsconfig Baseline & Module Organization — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md` — TSDoc, Typed Error Classes & Async Patterns — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md` — Imports/Exports, Errors, TSDoc, tsconfig & One-Liners — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md` — TypeScript Quick Reference — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md` — Formatting, Imports, Commenting & JS/TS Coexistence — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` — TypeScript Style Guide — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/references/workflow-debug.md` — Workflow Reference - Debugging — contextType: general
-- `.skilled/skills/sk-code/sk-code-opencode/references/workflow-implement.md` — Workflow Reference - Implementation — contextType: general
-- `.skilled/skills/sk-code/sk-code-opencode/references/workflow-verify.md` — Workflow Reference - Verification — contextType: general
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md` — Agent Authoring Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md` — Command Authoring Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/config-checklist.md` — Config File Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md` — JavaScript Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` — MCP Server Authoring Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/python-checklist.md` — Python Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md` — Rust Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md` — P0 — Safety & Boundary Discipline — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p1-required.md` — P1 — Required — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` — P2, Review Evidence, Validation Commands & Resources — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/shell-checklist.md` — Shell Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/skill-authoring.md` — Skill Authoring Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md` — TypeScript Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md` — Universal Code Quality Checklist — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` — sk code assets scripts: Code README — contextType: implementation
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs` — router-replay-lib.cjs — 'use strict';
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` — !/usr/bin/env python3 — """Unit-style coverage for verify_alignment_drift.py behavior."""
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_stack_folders.py` — !/usr/bin/env python3 — """Unit-style coverage for verify_stack_folders.py behavior."""
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` — !/usr/bin/env node — // ───────────────────────────────────────────────────────────────────
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` — !/usr/bin/env node — // Drift guard for the sk-code router. It restores the four checks of the retired
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` — !/usr/bin/env python3 — """Lightweight recurring alignment checks for OpenCode codebases.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — !/usr/bin/env python3 — """Verify the code-opencode language reference folders.
+- `.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md` — Config Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md` — Config Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md` — Config Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md` — JavaScript Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md` — Security, Testing, Async & Exemption Tiers — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md` — JavaScript Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` — JavaScript Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md` — Python Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md` — Python Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md` — Python Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md` — Cargo/Build Baseline & Module Organization — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md` — Byte-for-Byte Determinism & Parity — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md` — Rustdoc, Error/Panic Translation & Async Patterns — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md` — Domain Modeling, Collections & Public API/ABI Contracts — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md` — Rust Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md` — Collections, Imports/Exports & Error Mapping — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md` — Determinism, Parity & Common Recipes — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md` — Naming, Section Ordering & Signature Patterns — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` — Rust Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md` — Rustdoc Template & Cargo/Build Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md` — Commenting & Rustdoc Rules — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md` — Formatting Rules & Import/Module Ordering — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md` — Rust/TypeScript Interop — Errors, Parity & Related Resources — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md` — Rust/TypeScript Interop — Model & Boundary Types — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md` — Naming Conventions — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md` — Rust Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md` — Toolchain, Compilation Baseline & Project Structure — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` — Alignment Verification Automation — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` — Directory & Test File Conventions — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md` — Import Ordering & Export Patterns — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md` — Code Organization - File Structure and Module Principles — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md` — Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` — Universal Patterns - Cross-Language Code Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md` — File Organization, Security & Copy-Paste Alignment Examples — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` — OpenCode Workflow Guardrails — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md` — Shell Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` — Validation, Errors, Output, Security, Review & ShellCheck — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md` — Functions, Args, Strings, Common Patterns & Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md` — Shell Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md` — Shell Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md` — Variables, Conditionals, Args, Functions, Errors & Output — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md` — TypeScript Quality Standards — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md` — tsconfig Baseline & Module Organization — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md` — TSDoc, Typed Error Classes & Async Patterns — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md` — Imports/Exports, Errors, TSDoc, tsconfig & One-Liners — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md` — TypeScript Quick Reference — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md` — Formatting, Imports, Commenting & JS/TS Coexistence — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` — TypeScript Style Guide — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md` — Workflow Reference - Debugging — contextType: general
+- `.skilled/skills/sk-code/sk-code-skilled/references/workflow-implement.md` — Workflow Reference - Implementation — contextType: general
+- `.skilled/skills/sk-code/sk-code-skilled/references/workflow-verify.md` — Workflow Reference - Verification — contextType: general
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md` — Agent Authoring Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md` — Command Authoring Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md` — Config File Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md` — JavaScript Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` — MCP Server Authoring Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md` — Python Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md` — Rust Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md` — P0 — Safety & Boundary Discipline — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md` — P1 — Required — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` — P2, Review Evidence, Validation Commands & Resources — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md` — Shell Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md` — Skill Authoring Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md` — TypeScript Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md` — Universal Code Quality Checklist — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` — sk code assets scripts: Code README — contextType: implementation
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs` — router-replay-lib.cjs — 'use strict';
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` — !/usr/bin/env python3 — """Unit-style coverage for verify_alignment_drift.py behavior."""
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_stack_folders.py` — !/usr/bin/env python3 — """Unit-style coverage for verify_stack_folders.py behavior."""
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` — !/usr/bin/env node — // ───────────────────────────────────────────────────────────────────
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` — !/usr/bin/env node — // Drift guard for the sk-code router. It restores the four checks of the retired
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` — !/usr/bin/env python3 — """Lightweight recurring alignment checks for OpenCode codebases.
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_stack_folders.py` — !/usr/bin/env python3 — """Verify the code-skilled language reference folders.
 
 ## Findings
 | Class | Claim | Evidence | Priority |
@@ -183,10 +183,10 @@ The row below groups each explicit leaf by its owning surface. `shared` includes
 ## Options and Recommendation
 | Option | What it changes, path:line | Cost | Risk | Cheaper move and why it fails |
 | --- | --- | --- | --- | --- |
-| R6 candidate | In `.skilled/skills/sk-code/ROUTER.md` §6, add `sk-code-opencode/references/workflow-debug.md` to the OpenCode DEBUGGING intent row; add `sk-code-opencode/references/workflow-implement.md` to the OpenCode IMPLEMENTATION intent row. Keep the shared `error-recovery.md` and `multi-agent-research.md` mappings. Do not map Webflow leaves into OpenCode for PERFORMANCE, DEPLOYMENT, or ACCESSIBILITY; the post-delete availability projection has no suitable surviving routed leaf there. | Small: edit existing route rows only; no new leaf files. | Those three intents still depend on a user-owned surface for domain guidance. | Cheaper move: label Webflow optional but keep the same route rows; that fails because the rows still identify paths owned by the deleted surface and do not select an OpenCode leaf. |
+| R6 candidate | In `.skilled/skills/sk-code/ROUTER.md` §6, add `sk-code-skilled/references/workflow-debug.md` to the OpenCode DEBUGGING intent row; add `sk-code-skilled/references/workflow-implement.md` to the OpenCode IMPLEMENTATION intent row. Keep the shared `error-recovery.md` and `multi-agent-research.md` mappings. Do not map Webflow leaves into OpenCode for PERFORMANCE, DEPLOYMENT, or ACCESSIBILITY; the post-delete availability projection has no suitable surviving routed leaf there. | Small: edit existing route rows only; no new leaf files. | Those three intents still depend on a user-owned surface for domain guidance. | Cheaper move: label Webflow optional but keep the same route rows; that fails because the rows still identify paths owned by the deleted surface and do not select an OpenCode leaf. |
 
 ## Questions Answered
-- Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?
+- Q7: F10, which shared/ or sk-code-skilled leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?
 
 ## Questions Remaining
 - Q8–Q12 remain for later iterations: re-mint dependency; surface-add workflow; R1–R4 stress test; other example assumptions and end-to-end flow; rejected ideas.

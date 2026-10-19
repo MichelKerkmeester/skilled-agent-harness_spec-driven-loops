@@ -51,7 +51,7 @@ Audit all SKILL.md files (9 total) and system-spec-kit reference files to ensure
 | File | Key Audit Points |
 |------|-----------------|
 | `.opencode/skills/sk-doc/SKILL.md` | Version number, cross-references |
-| `.opencode/skills/sk-code-opencode/SKILL.md` | Version number, cross-references |
+| `.opencode/skills/sk-code-skilled/SKILL.md` | Version number, cross-references |
 | `.opencode/skills/workflows-code--web-dev/SKILL.md` | Version number, cross-references |
 | `.opencode/skills/sk-code-full-stack/SKILL.md` | Version number, cross-references |
 | `.opencode/skills/sk-git/SKILL.md` | Version number, cross-references |

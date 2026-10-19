@@ -189,14 +189,14 @@
     ],
     "causal_summary": "The second Ponytail research round ranked 29 recommendations (`../001-ponytail-deep-research/research/lineages/r2-dsflash-llmgw/research.md` section 7)",
     "created_at": "2026-10-10T06:56:22Z",
-    "last_save_at": "2026-10-11T05:17:04.031Z",
+    "last_save_at": "2026-10-18T20:45:10.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:715694e1803609192317637506a96c021c7193d463c7c3eadc0bf911b6840882",
+    "source_fingerprint": "sha256:8ce24c14b8b070aa99b7e91f24a3cc30f80424ecef0bcbb20dc0b1a843a9d1bd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b270976d5e312f8429154a4364ed3f8adc6ee779329f6280a81ae3f5ff383a2"

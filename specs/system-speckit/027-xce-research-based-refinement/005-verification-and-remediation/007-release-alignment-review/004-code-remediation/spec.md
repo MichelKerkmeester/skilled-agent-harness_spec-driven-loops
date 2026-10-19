@@ -53,7 +53,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface. The raw P0 count is inflated roughly 3x by false positives: `// Feature catalog:` comments that are gate-allowed, TSDoc `@example` illustrative values, and `dist/` build output. Fixing the raw set blindly would strip valid comments and produce wasted churn.
+The Track B review (`../002-code-vs-sk-code-skilled/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface. The raw P0 count is inflated roughly 3x by false positives: `// Feature catalog:` comments that are gate-allowed, TSDoc `@example` illustrative values, and `dist/` build output. Fixing the raw set blindly would strip valid comments and produce wasted churn.
 
 ### Purpose
 Remediate only the confirmed sk-code OpenCode-surface misalignments so the code aligns with sk-code standards (comment hygiene, shell strict-mode, no `any[]` in public types), behavior-neutral, via gpt-5.5-fast general + `sk-code` fixer seats.
@@ -131,7 +131,7 @@ Remediate only the confirmed sk-code OpenCode-surface misalignments so the code 
 |------|------|--------|------------|
 | Risk | False-positive over-fixing | Strips valid comments / churn | Binding DO-NOT-FIX list; confirm-then-fix per finding |
 | Risk | Behavior drift from edits | Regression | Comment/type/strict-mode only; baseline-and-delta verify |
-| Dependency | Review findings JSON | Cannot scope fixers | `../002-code-vs-sk-code-opencode/review/findings-all.json` |
+| Dependency | Review findings JSON | Cannot scope fixers | `../002-code-vs-sk-code-skilled/review/findings-all.json` |
 | Dependency | Fixer-seat isolation | Cross-file corruption | File-disjoint worktree seats; diff-reviewed before merge |
 
 

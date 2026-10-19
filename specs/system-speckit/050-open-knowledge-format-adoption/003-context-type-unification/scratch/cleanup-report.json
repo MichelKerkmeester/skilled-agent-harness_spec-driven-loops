@@ -21,7 +21,7 @@
       "repair": "repaired specs/hooks/009-goal-isolation/005-verification-and-validation",
       "after": "RESULT: PASSED"
     },
-    "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation": {
+    "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation": {
       "before": "RESULT: PASSED",
       "repair": "inspected=1 repaired=0 failed=0",
       "after": "RESULT: PASSED"

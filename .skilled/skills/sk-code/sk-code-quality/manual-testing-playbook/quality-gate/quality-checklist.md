@@ -8,7 +8,7 @@ expected_resources:
   - assets/code-quality-checklist/overview-header-and-comments.md
   - assets/code-quality-checklist/naming-init-formatting-and-css.md
   - assets/code-quality-checklist/verification-quick-reference-and-related.md
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CQ-001: Quality Gate Routes To The Checklist
@@ -24,7 +24,7 @@ Type-1 prompt-intent router: its real routing precision is target-path-keyed (th
 `SKILL.md` §2) and covered by a dedicated unit test, and its parent-to-child discoverability is the hub's
 `quality` signal. This scenario exercises the one prompt-intent route the deterministic router-replay can
 score — confirming that a comment-hygiene / P0-P1-P2 quality-gate prompt classifies as `QUALITY` and
-loads code-quality's own checklist rather than a surface-owned checklist under `sk-code-opencode` or a
+loads code-quality's own checklist rather than a surface-owned checklist under `sk-code-skilled` or a
 Webflow-only standard.
 
 ### Why This Matters
@@ -55,7 +55,7 @@ Run the comment hygiene quality gate and check P0/P1/P2 standards before marking
 - Expected signals: every path in `expected_resources` exists under `sk-code-quality/`, and each one
   documents the JavaScript/CSS quality checklist per `SKILL.md` §2.
 - Desired user-visible outcome: the bundled workflow loads code-quality's own checklist set, not
-  `sk-code-opencode`'s target-path checklists or a Webflow-only standard, before any completion claim.
+  `sk-code-skilled`'s target-path checklists or a Webflow-only standard, before any completion claim.
 - Pass/fail: PASS if every listed path exists and the frontmatter `expected_intent` is `QUALITY`; FAIL if
   any listed path is missing or the frontmatter disagrees.
 

@@ -1,4 +1,4 @@
-HVR SCAN: .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md
+HVR SCAN: .skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md
   x4    first@30    hard   punctuation            ;
   x2    first@28    soft1  soft-deduction         do
   x6    first@29    review oxford-comma-candidate , and

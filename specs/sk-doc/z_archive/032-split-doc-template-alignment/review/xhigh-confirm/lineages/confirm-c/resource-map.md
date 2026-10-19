@@ -26,7 +26,7 @@ trigger_phrases: []
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/sk-code/code-opencode/references/workflow_debug.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=2 |
+| .opencode/skills/sk-code/code-skilled/references/workflow_debug.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=2 |
 | .opencode/skills/sk-code/code-webflow/references/shared/enforcement.md | Analyzed | OK | Findings P0=0 P1=1 P2=0; Iterations=2 |
 
 ---

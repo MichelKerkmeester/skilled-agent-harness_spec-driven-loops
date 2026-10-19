@@ -10,7 +10,7 @@ I’m gathering the handler and hook surfaces first, plus the review standards c
   │ .agents/skills/sk-code-review/references/security_checklist.md
   └ 206 lines read
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Create session plan file (shell)
   │ mkdir -p

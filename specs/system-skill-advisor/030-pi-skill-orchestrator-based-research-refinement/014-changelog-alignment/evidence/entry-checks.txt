@@ -167,9 +167,9 @@ One topic phrase carries a number: "v4.0.0.2 goal changes", written before this 
   validate     ok    exit=0 issues=0
   hvr          ok    hard=0 deductions=-0 comma-flags=1
 
-## .skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.1.0.md
-  title        ok    sk-code-opencode v1.0.1.0
-  identity     ok    ['sk-code-opencode v1.0.1.0', 'sk-code-opencode 1.0.1.0']
+## .skilled/skills/sk-code/sk-code-skilled/changelog/v1.0.1.0.md
+  title        ok    sk-code-skilled v1.0.1.0
+  identity     ok    ['sk-code-skilled v1.0.1.0', 'sk-code-skilled 1.0.1.0']
   topics       1  ['two live drift guards']
   description  ok    115 chars
   validate     ok    exit=0 issues=0

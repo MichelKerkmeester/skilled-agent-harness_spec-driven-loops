@@ -15,7 +15,7 @@
       "findingId": "R1-P2-001",
       "severity": "P2",
       "title": "Malformed mode-registry.json crashes the surfaces check before it can report",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       "line": 324,
       "description": "",
       "findingClass": null,
@@ -44,7 +44,7 @@
       "findingId": "R1-P2-002",
       "severity": "P2",
       "title": "Count check cannot flag stale one-surface wording",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       "line": 45,
       "description": "",
       "findingClass": null,
@@ -73,7 +73,7 @@
       "findingId": "R2-P2-001",
       "severity": "P2",
       "title": "Symlinked docs and packet directories escape the walk-based guard checks while existence checks follow them",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       "line": 122,
       "description": "",
       "findingClass": null,
@@ -131,7 +131,7 @@
       "findingId": "R3-P2-002",
       "severity": "P2",
       "title": "Two live docs still describe the surfaces rule as a fixed three-surface check",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
       "line": 175,
       "description": "",
       "findingClass": null,
@@ -189,7 +189,7 @@
       "findingId": "R4-P2-001",
       "severity": "P2",
       "title": "New surfaces allowlist row has no regression test",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       "line": 66,
       "description": "",
       "findingClass": null,
@@ -218,7 +218,7 @@
       "findingId": "R4-P2-002",
       "severity": "P2",
       "title": "Count vocabulary is encoded twice and the both-case fallback is positional",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
       "line": 45,
       "description": "",
       "findingClass": null,
@@ -247,7 +247,7 @@
       "findingId": "R5-P2-001",
       "severity": "P2",
       "title": "First-map prose anchor can silently skip a half-removed map section",
-      "file": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
       "line": 129,
       "description": "",
       "findingClass": null,
@@ -656,14 +656,14 @@
       "id": "SL-011",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "uncaught_error_on_malformed_input",
       "disposition": "deferred",
       "rationale": "availability of the gate report only",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324"
       ],
       "reason": "already tracked as open P2 R1-P2-001; the security lens adds no new remediation, re-check at synthesis"
     },
@@ -672,15 +672,15 @@
       "id": "SL-025",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:175",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md:13",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md:77"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:175",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md:13",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md:77"
       ],
       "bugClass": "stale_doc_upkeep",
       "disposition": "deferred",
       "rationale": "same two sites, same fix; carrying avoids a duplicate registry entry",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:175"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:175"
       ],
       "reason": "already tracked as open P2 R3-P2-002; the maintainability lens adds no new remediation"
     },
@@ -689,14 +689,14 @@
       "id": "SL-027",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:357-361"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:357-361"
       ],
       "bugClass": "error_handling_inconsistency",
       "disposition": "deferred",
       "rationale": "same fix location and remedy; carrying avoids a duplicate registry entry",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:357"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:357"
       ],
       "reason": "already tracked as open P2 R1-P2-001; the maintainability lens adds no new remediation"
     },
@@ -705,15 +705,15 @@
       "id": "SL-030",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:175"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:175"
       ],
       "bugClass": "count_wording_spelling_gap",
       "disposition": "deferred",
       "rationale": "severity unchanged; no live false pass on the current tree where the registry declares three surface modes",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:46",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:175"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:46",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:175"
       ],
       "reason": "already tracked as open P2 R1-P2-002; the correctness lens broadens the spelling evidence with the same remedy"
     },
@@ -722,15 +722,15 @@
       "id": "SL-031",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:357"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:357"
       ],
       "bugClass": "registry_shape_robustness",
       "disposition": "deferred",
       "rationale": "crash exits non-zero, so the direction is fail-closed but unreadable",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:324",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:357"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:324",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:357"
       ],
       "reason": "already tracked as open P2 R1-P2-001; adds the non-array modes variant with the same remedy"
     }
@@ -741,13 +741,13 @@
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:126-140"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:126-140"
       ],
       "bugClass": "regex_anchor_regression",
       "disposition": "ruled_out",
       "rationale": "parity proven by heading-list arithmetic",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:129"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:129"
       ],
       "reason": "pristine start offset unchanged; no-map hubs fail closed via start<0; T3 covers the Webflow-map removal"
     },
@@ -756,14 +756,14 @@
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:189-230"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:189-230"
       ],
       "bugClass": "set_filter_false_pass",
       "disposition": "ruled_out",
       "rationale": "owner branch and ownedLeaf fallback read correctly",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:224"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:224"
       ],
       "reason": "removal path fails closed; absence case covered by the new leg 2 test at :134-144"
     },
@@ -772,7 +772,7 @@
       "id": "SL-005",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:247-259"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:247-259"
       ],
       "bugClass": "overbroad_skip",
       "disposition": "ruled_out",
@@ -787,15 +787,15 @@
       "id": "SL-007",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs"
       ],
       "bugClass": "command_injection",
       "disposition": "ruled_out",
       "rationale": "no injection sink exists",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:167",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:9"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:167",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:9"
       ],
       "reason": "array-form spawnSync, fixed -C root and stdin-only paths; no shell or eval anywhere in either guard"
     },
@@ -804,13 +804,13 @@
       "id": "SL-009",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:156-172"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:156-172"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
       "rationale": "no attacker-controlled traversal path is reachable",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:167"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:167"
       ],
       "reason": "lexical containment holds for .. traversal and --root is operator-controlled and validated; the residual symlink read-through is tracked inside R2-P2-001"
     },
@@ -819,14 +819,14 @@
       "id": "SL-010",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "destructive_side_effects",
       "disposition": "ruled_out",
       "rationale": "no destructive surface",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:167"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:167"
       ],
       "reason": "both guards are read-only apart from a read-only git check-ignore subprocess"
     },
@@ -835,14 +835,14 @@
       "id": "SL-012",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:48",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:31"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:48",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:31"
       ],
       "bugClass": "temp_path_tampering",
       "disposition": "ruled_out",
       "rationale": "no shared predictable file that is written or trusted",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:122"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:122"
       ],
       "reason": "unique per-run temp dirs; the fixed path carries no content and is only asserted missing"
     },
@@ -851,14 +851,14 @@
       "id": "SL-017",
       "dimension": "traceability",
       "targetRefs": [
-        ".hermes/skills/sk-code-opencode/SKILL.md",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+        ".hermes/skills/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md"
       ],
       "bugClass": "cross_runtime_divergence",
       "disposition": "ruled_out",
       "rationale": "the mirror is a faithful generated copy; the stale sentence it shares is tracked inside R3-P2-002",
       "evidenceRefs": [
-        ".hermes/skills/sk-code-opencode/SKILL.md:12"
+        ".hermes/skills/sk-code-skilled/SKILL.md:12"
       ],
       "reason": "diff shows the banner as the sole divergence"
     },
@@ -867,14 +867,14 @@
       "id": "SL-019",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md:144"
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:144"
       ],
       "bugClass": "playbook_drift",
       "disposition": "ruled_out",
       "rationale": "playbook claims remain accurate",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md:144"
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:144"
       ],
       "reason": "resources resolve and capability text matches"
     },
@@ -889,7 +889,7 @@
       "disposition": "ruled_out",
       "rationale": "no live reference to the old version",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.3.0.md:2"
+        ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.3.0.md:2"
       ],
       "reason": "hits confined to the old changelog"
     },
@@ -913,16 +913,16 @@
       "id": "SL-024",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs"
       ],
       "bugClass": "comment_hygiene_violation",
       "disposition": "ruled_out",
       "rationale": "comment hygiene holds for all four changed files",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:42"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:42"
       ],
       "reason": "sweep returned nothing; each changed comment explains its why"
     },
@@ -931,7 +931,7 @@
       "id": "SL-026",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
         ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:457"
       ],
       "bugClass": "magic_string_coupling",
@@ -939,7 +939,7 @@
       "rationale": "no change warranted",
       "evidenceRefs": [
         ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:457",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:146"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:146"
       ],
       "reason": "test-exercised and fail-closed; a rename fails the suite before it can regress the removal behavior"
     },
@@ -948,13 +948,13 @@
       "id": "SL-028",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34"
       ],
       "bugClass": "module_load_filter_readability",
       "disposition": "ruled_out",
       "rationale": "stylistic only",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "reason": "readable enough with its comment and exercised in both directions; no change warranted"
     },
@@ -963,15 +963,15 @@
       "id": "SL-032",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "bugClass": "example_surface_removal_edge",
       "disposition": "ruled_out",
       "rationale": "no new remediation",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "reason": "behavior is fail-closed on every partial-removal shape read; the removal fixture covers the intended state"
     },
@@ -980,15 +980,15 @@
       "id": "SL-033",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:153"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:153"
       ],
       "bugClass": "orphan_skip_breadth",
       "disposition": "ruled_out",
       "rationale": "carried from SL-005 and SL-026, no new case",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:153"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:153"
       ],
       "reason": "declared-mode drift still reports and a contract-code rename fails loudly; the tolerance is spec-accepted"
     }
@@ -999,13 +999,13 @@
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:126-140"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:126-140"
       ],
       "bugClass": "regex_anchor_regression",
       "disposition": "ruled_out",
       "rationale": "parity proven by heading-list arithmetic",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:129"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:129"
       ],
       "proof": "pristine start offset unchanged; no-map hubs fail closed via start<0; T3 covers the Webflow-map removal"
     },
@@ -1014,14 +1014,14 @@
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:189-230"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:189-230"
       ],
       "bugClass": "set_filter_false_pass",
       "disposition": "ruled_out",
       "rationale": "owner branch and ownedLeaf fallback read correctly",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:224"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:224"
       ],
       "proof": "removal path fails closed; absence case covered by the new leg 2 test at :134-144"
     },
@@ -1030,7 +1030,7 @@
       "id": "SL-005",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:247-259"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:247-259"
       ],
       "bugClass": "overbroad_skip",
       "disposition": "ruled_out",
@@ -1045,15 +1045,15 @@
       "id": "SL-007",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs"
       ],
       "bugClass": "command_injection",
       "disposition": "ruled_out",
       "rationale": "no injection sink exists",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:167",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:9"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:167",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:9"
       ],
       "proof": "array-form spawnSync, fixed -C root and stdin-only paths; no shell or eval anywhere in either guard"
     },
@@ -1062,13 +1062,13 @@
       "id": "SL-009",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:156-172"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:156-172"
       ],
       "bugClass": "path_traversal",
       "disposition": "ruled_out",
       "rationale": "no attacker-controlled traversal path is reachable",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:167"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:167"
       ],
       "proof": "lexical containment holds for .. traversal and --root is operator-controlled and validated; the residual symlink read-through is tracked inside R2-P2-001"
     },
@@ -1077,14 +1077,14 @@
       "id": "SL-010",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "destructive_side_effects",
       "disposition": "ruled_out",
       "rationale": "no destructive surface",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:167"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:167"
       ],
       "proof": "both guards are read-only apart from a read-only git check-ignore subprocess"
     },
@@ -1093,14 +1093,14 @@
       "id": "SL-012",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:48",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:31"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:48",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:31"
       ],
       "bugClass": "temp_path_tampering",
       "disposition": "ruled_out",
       "rationale": "no shared predictable file that is written or trusted",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:122"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs:122"
       ],
       "proof": "unique per-run temp dirs; the fixed path carries no content and is only asserted missing"
     },
@@ -1109,14 +1109,14 @@
       "id": "SL-013",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       ],
       "bugClass": "secrets_handling",
       "disposition": "not_applicable",
       "rationale": "no secrets surface",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:122"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:122"
       ],
       "proof": "neither guard handles secrets or credentials"
     },
@@ -1125,14 +1125,14 @@
       "id": "SL-017",
       "dimension": "traceability",
       "targetRefs": [
-        ".hermes/skills/sk-code-opencode/SKILL.md",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+        ".hermes/skills/sk-code-skilled/SKILL.md",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md"
       ],
       "bugClass": "cross_runtime_divergence",
       "disposition": "ruled_out",
       "rationale": "the mirror is a faithful generated copy; the stale sentence it shares is tracked inside R3-P2-002",
       "evidenceRefs": [
-        ".hermes/skills/sk-code-opencode/SKILL.md:12"
+        ".hermes/skills/sk-code-skilled/SKILL.md:12"
       ],
       "proof": "diff shows the banner as the sole divergence"
     },
@@ -1141,13 +1141,13 @@
       "id": "SL-018",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode"
+        ".skilled/skills/sk-code/sk-code-skilled"
       ],
       "bugClass": "catalog_mismatch",
       "disposition": "not_applicable",
       "rationale": "nothing to reconcile",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md"
       ],
       "proof": "no feature catalog artifact exists for this surface"
     },
@@ -1156,14 +1156,14 @@
       "id": "SL-019",
       "dimension": "traceability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md:144"
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:144"
       ],
       "bugClass": "playbook_drift",
       "disposition": "ruled_out",
       "rationale": "playbook claims remain accurate",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md:144"
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:144"
       ],
       "proof": "resources resolve and capability text matches"
     },
@@ -1178,7 +1178,7 @@
       "disposition": "ruled_out",
       "rationale": "no live reference to the old version",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.3.0.md:2"
+        ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.3.0.md:2"
       ],
       "proof": "hits confined to the old changelog"
     },
@@ -1202,16 +1202,16 @@
       "id": "SL-024",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs"
       ],
       "bugClass": "comment_hygiene_violation",
       "disposition": "ruled_out",
       "rationale": "comment hygiene holds for all four changed files",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:42"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:42"
       ],
       "proof": "sweep returned nothing; each changed comment explains its why"
     },
@@ -1220,7 +1220,7 @@
       "id": "SL-026",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
         ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:457"
       ],
       "bugClass": "magic_string_coupling",
@@ -1228,7 +1228,7 @@
       "rationale": "no change warranted",
       "evidenceRefs": [
         ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs:457",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:146"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:146"
       ],
       "proof": "test-exercised and fail-closed; a rename fails the suite before it can regress the removal behavior"
     },
@@ -1237,13 +1237,13 @@
       "id": "SL-028",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34"
       ],
       "bugClass": "module_load_filter_readability",
       "disposition": "ruled_out",
       "rationale": "stylistic only",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "proof": "readable enough with its comment and exercised in both directions; no change warranted"
     },
@@ -1252,15 +1252,15 @@
       "id": "SL-032",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-34",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-34",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "bugClass": "example_surface_removal_edge",
       "disposition": "ruled_out",
       "rationale": "no new remediation",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:134"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:134"
       ],
       "proof": "behavior is fail-closed on every partial-removal shape read; the removal fixture covers the intended state"
     },
@@ -1269,15 +1269,15 @@
       "id": "SL-033",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:153"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:153"
       ],
       "bugClass": "orphan_skip_breadth",
       "disposition": "ruled_out",
       "rationale": "carried from SL-005 and SL-026, no new case",
       "evidenceRefs": [
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:258",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:153"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:258",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:153"
       ],
       "proof": "declared-mode drift still reports and a contract-code rename fails loudly; the tolerance is spec-accepted"
     }

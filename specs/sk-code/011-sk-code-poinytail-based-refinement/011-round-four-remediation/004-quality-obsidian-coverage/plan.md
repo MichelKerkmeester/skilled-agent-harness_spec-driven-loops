@@ -57,13 +57,13 @@ In-place documentation edit of one skill package: 24 single-text replacements, o
 - **What counts as an Obsidian target.** `.skilled/skills/sk-code/shared/references/stack-detection.md` section 2 resolves the OBSIDIAN surface from repo-root markers: `manifest.json` carrying `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports and `.db-*` classes in `styles.css`, at precedence OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN. The new rows key on paths inside that plugin tree (`src/`, `tools/`, `styles.css`, `tools/screenshots/scenarios/`), and the new resource-domain line cites section 2 for the surface test.
 - **Which checklists exist.** `ls .skilled/skills/sk-code/sk-code-obsidian/assets/` lists seven: `comment-banner-checklist.md`, `db-class-rename-checklist.md`, `fixture-authoring-checklist.md`, `folder-docs-checklist.md`, `modal-coverage-checklist.md`, `screenshot-coverage-checklist.md` and `verification-checklist.md`. The packet's own router (`sk-code-obsidian/SKILL.md` section 2b) files four under `CODE_QUALITY` (comment-banner, folder-docs, db-class-rename, fixture-authoring), two under `IMPLEMENTATION` (screenshot-coverage, modal-coverage) and one under `VERIFICATION` (verification-checklist).
 - **How the hub reaches this mode for Obsidian work.** `hub-router.json` bundles a surface packet behind the chosen workflow mode (`surfaceBundle`), and `sk-code-obsidian/SKILL.md` section 1 names `[sk-code-quality, sk-code-obsidian]` as a typical resolution. So the routing already lands here. What was missing is the checklist this mode loads once it is here.
-- **Surface packets are alike.** `mode-registry.json` gives `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` the same `packetKind: surface`, `backendKind: evidence-base` and read-only tool set. A list that names the first two as the surface skill can name the third in the same words.
+- **Surface packets are alike.** `mode-registry.json` gives `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` the same `packetKind: surface`, `backendKind: evidence-base` and read-only tool set. A list that names the first two as the surface skill can name the third in the same words.
 - **Guards that read these files.** `verify_doc_claims.cjs` checks that backticked and linked paths in hub docs resolve, and skips `changelog/` folders. `verify_router_sync.cjs` parses the Python router block in `SKILL.md` lines 144 to 162, which no edit touches. The compiled manifest hashes only the hub-root `SKILL.md`, `hub-router.json` and `mode-registry.json` (`.skilled/bin/lib/compiled-route-manifest.cjs:436-438`, `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs:54-58`), and the leaf manifest lists only `assets/` and `references/` leaves, so neither should move.
 
 ### Decisions
 - **D1, minor bump to 1.2.0.0.** `.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md` section 3 gives minor for "New features, new bundled resources", and `sk-create-changelog/SKILL.md` section 4 gives minor for a "significant new feature". Obsidian target routing is a new capability of the mode. The packet's own 1.1.0.0 was minor for listing one script. The README `version:` moves with it. The changelog uses the compact shape, because the release has three reader-visible changes and is neither major nor breaking.
 - **D2, four map rows, one per `CODE_QUALITY` checklist.** The brief asks for "an Obsidian row". The four checklists gate different targets (any source file, a folder crossing the paired-docs threshold, a `.db-*` rename, a screenshot fixture), so one row per target keeps the map path-keyed like its OpenCode rows. `screenshot-coverage-checklist.md` and `modal-coverage-checklist.md` stay out because the Obsidian packet files them under implementation, and `verification-checklist.md` stays out because it belongs to the verification hand-off this mode makes. The resource-domain line says so.
-- **D3, the eight lists name `sk-code-obsidian` with the same wording.** Six `SKILL.md` lists use `` `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` `` and the README's Quick Start uses `` `sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian` ``. Round three left them out (its plan.md decision D2 and Known Limitation 3) because "the quality target-path map has no Obsidian row, and adding it would claim coverage the mode does not define". This plan answers that reason directly: tasks T010 to T019 add the coverage, and only then do T020 to T025 and T033 to T034 name the surface. The units run in that order.
+- **D3, the eight lists name `sk-code-obsidian` with the same wording.** Six `SKILL.md` lists use `` `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` `` and the README's Quick Start uses `` `sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian` ``. Round three left them out (its plan.md decision D2 and Known Limitation 3) because "the quality target-path map has no Obsidian row, and adding it would claim coverage the mode does not define". This plan answers that reason directly: tasks T010 to T019 add the coverage, and only then do T020 to T025 and T033 to T034 name the surface. The units run in that order.
 - **D4, the envelope accepts `obsidian`.** `resolved_surface: <webflow | opencode | unknown>` gains `obsidian`. A run on an Obsidian target could not report its own surface otherwise. `schema_version: code-quality/v1` stays, because the change only widens the allowed values and `rg -n resolved_surface` outside `specs/` finds no consumer besides `SKILL.md` line 217.
 - **D5, no hub edit.** The target-path map is prose inside this packet, not data in a hub file, and the hub's surface bundle already pairs this mode with `sk-code-obsidian`. So there is no handoff to child 003.
 
@@ -106,26 +106,26 @@ Replace with:
 **E3 (T012), `SKILL.md` after line 68, Obsidian branch in the detection tree.** Find:
 
 ````text
-    +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md
+    +- OPENCODE target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
 ````
 
 Replace with:
 
 ````text
-    +- OPENCODE target    -> ../sk-code-opencode/assets/checklists/<target-checklist>.md
+    +- OPENCODE target    -> ../sk-code-skilled/assets/checklists/<target-checklist>.md
     +- OBSIDIAN target    -> ../sk-code-obsidian/assets/<target-checklist>.md
 ````
 
 **E4 (T013), `SKILL.md` after line 90, Obsidian resource domain.** Find:
 
 ````text
-- `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
+- `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 ````
 
 Replace with:
 
 ````text
-- `../sk-code-opencode/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
+- `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `../sk-code-obsidian/assets/` holds the Obsidian plugin checklists this gate loads when `../shared/references/stack-detection.md` section 2 resolves the surface to OBSIDIAN: comment banners, folder docs, `.db-*` class renames and screenshot fixtures. Its verification checklist belongs to the verification hand-off, not to this gate.
 ````
 
@@ -161,13 +161,13 @@ Replace with:
 **E7 (T016), `SKILL.md` line 184, workflow step 3 loads the Obsidian checklist.** Find:
 
 ````text
-3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned.
+3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned.
 ````
 
 Replace with:
 
 ````text
-3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-opencode/assets/checklists/` when the target is OpenCode-owned, or from `../sk-code-obsidian/assets/` when the surface is OBSIDIAN.
+3. Load `assets/code-quality-checklist/overview-header-and-comments.md` before any completion claim, then load the target-path checklist from `../sk-code-skilled/assets/checklists/` when the target is OpenCode-owned, or from `../sk-code-obsidian/assets/` when the surface is OBSIDIAN.
 ````
 
 **E8 (T017), `SKILL.md` line 217, envelope surface values.** Find:
@@ -185,26 +185,26 @@ resolved_surface: <webflow | opencode | obsidian | unknown>
 **E9 (T018), `SKILL.md` after line 269, Obsidian success criterion.** Find:
 
 ````text
-- The correct `../sk-code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
+- The correct `../sk-code-skilled/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
 ````
 
 Replace with:
 
 ````text
-- The correct `../sk-code-opencode/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
+- The correct `../sk-code-skilled/assets/checklists/*` authoring checklist was loaded for OpenCode targets.
 - The matching `../sk-code-obsidian/assets/*` checklist was loaded for Obsidian plugin targets.
 ````
 
 **E10 (T019), `SKILL.md` after line 313, Obsidian checklist links.** Find:
 
 ````text
-- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+- [`assets/checklists/config-checklist.md`](../sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
 ````
 
 Replace with:
 
 ````text
-- [`assets/checklists/config-checklist.md`](../sk-code-opencode/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+- [`assets/checklists/config-checklist.md`](../sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
 - [`comment-banner-checklist.md`](../sk-code-obsidian/assets/comment-banner-checklist.md) - Obsidian plugin MODULE banner and section-comment checklist.
 - [`folder-docs-checklist.md`](../sk-code-obsidian/assets/folder-docs-checklist.md) - Obsidian plugin folder-docs pairing checklist.
 - [`db-class-rename-checklist.md`](../sk-code-obsidian/assets/db-class-rename-checklist.md) - Obsidian plugin `.db-*` class-rename checklist.
@@ -214,73 +214,73 @@ Replace with:
 **E11 (T020), `SKILL.md` line 15, surface list.** Find:
 
 ````text
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 ````
 
 Replace with:
 
 ````text
-`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
+`quality` is the author-side quality gate MODE child of the `sk-code` family. It runs after the surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) implements changes and before the surface's verification workflow or done-claim. It consumes the shared surface router, loads the right checklist for the detected surface and target path, fixes quality-gate failures in place, and leaves findings-only output to `sk-code-review`.
 ````
 
 **E12 (T021), `SKILL.md` line 36, surface list.** Find:
 
 ````text
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) and its implementation workflow.
 ````
 
 Replace with:
 
 ````text
-- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) and its implementation workflow.
+- The user needs code written, files scaffolded, or behavior implemented. Use the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) and its implementation workflow.
 ````
 
 **E13 (T022), `SKILL.md` line 47, surface list.** Find:
 
 ````text
-- The surface skill (`sk-code-webflow` / `sk-code-opencode`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`sk-code-webflow` / `sk-code-skilled`) immediately before this gate, because implementation writes the files this mode checks.
 ````
 
 Replace with:
 
 ````text
-- The surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) immediately before this gate, because implementation writes the files this mode checks.
+- The surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) immediately before this gate, because implementation writes the files this mode checks.
 ````
 
 **E14 (T023), `SKILL.md` line 182, surface list.** Find:
 
 ````text
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled`) unless the user explicitly asked for a standalone quality audit.
 ````
 
 Replace with:
 
 ````text
-1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`) unless the user explicitly asked for a standalone quality audit.
+1. Resolve the surface and lifecycle state through the shared router. If no implementation changed files yet, route to the appropriate surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`) unless the user explicitly asked for a standalone quality audit.
 ````
 
 **E15 (T024), `SKILL.md` line 188, surface list.** Find:
 
 ````text
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled`).
 ````
 
 Replace with:
 
 ````text
-7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`).
+7. If a gate failure requires new files, broader implementation, or behavior design, hand back to the surface skill (`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`).
 ````
 
 **E16 (T025), `SKILL.md` line 280, surface list.** Find:
 
 ````text
-- `sk-code-webflow` / `sk-code-opencode` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `sk-code-webflow` / `sk-code-skilled` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 ````
 
 Replace with:
 
 ````text
-- `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
+- `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` implements or changes files before this gate runs, owns root-cause debugging, and gathers verification evidence via the implement → debug → verify workflow doctrine.
 ````
 
 **E17 (T027), `README.md` line 11, minor version bump.** Find:
@@ -323,25 +323,25 @@ Replace with:
 **E20 (T030), `README.md` line 60, Obsidian checklist in Quick Start.** Find:
 
 ````text
-**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
 ````
 
 Replace with:
 
 ````text
-**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-opencode/assets/checklists/`](../sk-code-opencode/assets/checklists/). For Obsidian plugin targets it loads the matching checklist under [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/).
+**Step 2: Load the right checklist.** The mode always loads [`assets/code-quality-checklist/overview-header-and-comments.md`](./assets/code-quality-checklist/overview-header-and-comments.md). For `.skilled/` targets it also loads the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/). For Obsidian plugin targets it loads the matching checklist under [`../sk-code-obsidian/assets/`](../sk-code-obsidian/assets/).
 ````
 
 **E21 (T031), `README.md` line 88, Target-Path Routing prose.** Find:
 
 ````text
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards.
 ````
 
 Replace with:
 
 ````text
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-opencode`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards. Obsidian plugin targets route to the four quality checklists under `sk-code-obsidian`, for comment banners, folder docs, `.db-*` class renames and screenshot fixtures.
+OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. Webflow frontend work uses the code quality checklist and the shared universal standards. Obsidian plugin targets route to the four quality checklists under `sk-code-obsidian`, for comment banners, folder docs, `.db-*` class renames and screenshot fixtures.
 ````
 
 **E22 (T032), `README.md` after line 131, Obsidian checklists in Related Documents.** Find:
@@ -360,25 +360,25 @@ Replace with:
 **E23 (T033), `README.md` line 58, surface list.** Find:
 
 ````text
-**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow` or `sk-code-opencode`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
+**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow` or `sk-code-skilled`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 ````
 
 Replace with:
 
 ````text
-**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
+**Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 ````
 
 **E24 (T034), `README.md` line 107, surface list.** Find:
 
 ````text
-| `sk-code-webflow` / `sk-code-opencode` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
+| `sk-code-webflow` / `sk-code-skilled` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
 ````
 
 Replace with:
 
 ````text
-| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
+| `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` | Surface skills that implement and change files, own root-cause debugging and gather verification evidence through the implement → debug → verify workflow doctrine |
 ````
 
 **E-CL (T026), new file `changelog/v1.2.0.0.md`.** Compact format, `version:` on line 11 after the five contract keys, as in `v1.1.1.0.md`. The exact bytes are saved at `scratch/units/v1.2.0.0.md.txt`:
@@ -408,7 +408,7 @@ The hub detects three code surfaces, but the quality mode only mapped checklists
 ## What's New at a Glance
 
 - **Obsidian targets have checklists.** The target-path map sends plugin source to the comment-banner checklist, a folder that crosses the source-file threshold to the folder-docs checklist, a `.db-*` class rename to the class-rename checklist and a screenshot fixture to the fixture-authoring checklist.
-- **The surface lists name all three surfaces.** `SKILL.md` and the README now list `sk-code-obsidian` beside `sk-code-webflow` and `sk-code-opencode`.
+- **The surface lists name all three surfaces.** `SKILL.md` and the README now list `sk-code-obsidian` beside `sk-code-webflow` and `sk-code-skilled`.
 - **The evidence envelope can report Obsidian.** Its `resolved_surface` field now accepts `obsidian`.
 
 &nbsp;

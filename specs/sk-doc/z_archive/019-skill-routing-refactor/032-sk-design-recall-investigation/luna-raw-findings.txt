@@ -1,7 +1,7 @@
 - The packet router fires only `DESIGN_PRINCIPLES` via the bare `design` token; `MECHANICAL_PREFLIGHT` has no matching probe term; see `sk-design-interface/SKILL.md:112-120`.
 - Its preflight card is conditional, not default; see `sk-design-interface/SKILL.md:70-84`.
 - This is an ownership/proof prompt, not a request to execute the mechanical gate. The gold over-specifies the detailed card, matching the cited sk-code precedent.
-- sk-code surface filtering does not apply: filtering activates only for maps containing both `sk-code-webflow` and `sk-code-opencode` resources; see `router-replay.cjs:603-620`.
+- sk-code surface filtering does not apply: filtering activates only for maps containing both `sk-code-webflow` and `sk-code-skilled` resources; see `router-replay.cjs:603-620`.
 **Classification: A — GOLD OVER-SPECIFIED**
 **Minimal fix:** Remove `sk-design-interface/assets/interface-preflight-card.md` from SR-004’s expected mode-resource list. Do not add routing keywords.
 **Over-routing risk:** Adding a broad `pre-delivery` or `quality` signal would load detailed preflight guidance for narrow ownership questions.

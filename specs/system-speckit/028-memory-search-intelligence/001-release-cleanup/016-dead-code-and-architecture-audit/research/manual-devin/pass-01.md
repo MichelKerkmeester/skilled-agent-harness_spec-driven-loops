@@ -43,15 +43,15 @@ Read-only audit. No files were modified, moved, renamed, or deleted. Findings me
 ### F5 — CAT-5: Changelog v4.1.0.0 contradicts mode-registry.json on surface count
 
 **Path:** `.opencode/skills/sk-code/changelog/v4.1.0.0.md:12-13` vs `.opencode/skills/sk-code/mode-registry.json:19`
-**Evidence:** Changelog lists 3 surfaces (`webflow`, `opencode`, `animation`); registry and SKILL.md:34-35 list only 2 (`code-webflow`, `code-opencode`). The "animation" surface was either planned-but-unimplemented or folded into code-webflow.
+**Evidence:** Changelog lists 3 surfaces (`webflow`, `opencode`, `animation`); registry and SKILL.md:34-35 list only 2 (`code-webflow`, `code-skilled`). The "animation" surface was either planned-but-unimplemented or folded into code-webflow.
 **Verify:** `rg -nA2 "Surface axis" .opencode/skills/sk-code/changelog/v4.1.0.0.md && rg -nA2 "surfaces" .opencode/skills/sk-code/mode-registry.json`
 **Blast radius:** Medium — documentation contradiction; correct the changelog to match the registry.
 
-### F6 — CAT-5: Duplicated benchmark responsibility between hub and code-opencode packet
+### F6 — CAT-5: Duplicated benchmark responsibility between hub and code-skilled packet
 
-**Path:** `.opencode/skills/sk-code/benchmark/` and `.opencode/skills/sk-code/code-opencode/benchmark/`
-**Evidence:** Both hold benchmark reports — hub has `router-final/`, `live-final/`, etc.; `code-opencode/benchmark/` has `live-mode-b/`, `router-mode-a/` (sidecar variants of the hub runs). No documented ownership split.
-**Verify:** `ls .opencode/skills/sk-code/benchmark/ && ls .opencode/skills/sk-code/code-opencode/benchmark/`
+**Path:** `.opencode/skills/sk-code/benchmark/` and `.opencode/skills/sk-code/code-skilled/benchmark/`
+**Evidence:** Both hold benchmark reports — hub has `router-final/`, `live-final/`, etc.; `code-skilled/benchmark/` has `live-mode-b/`, `router-mode-a/` (sidecar variants of the hub runs). No documented ownership split.
+**Verify:** `ls .opencode/skills/sk-code/benchmark/ && ls .opencode/skills/sk-code/code-skilled/benchmark/`
 **Blast radius:** Medium — unclear ownership. Consolidate under `sk-code/benchmark/` with surface-tagged subfolders.
 
 ### F7 — CAT-6: Over-engineered benchmark folder structure with 12+ dated sidecar runs

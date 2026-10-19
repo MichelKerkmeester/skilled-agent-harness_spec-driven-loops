@@ -6,9 +6,9 @@ I have S and T. Before editing, let me check how S consumes these rules, load th
 
 Gate 1 lookup returned a clean no-hit. Now loading the repo rule files that fire for this action (adding tests + reporting results), the repo framework doc, and resolving the sk-code route per the persona.
 
-The router resolved `sk-code-opencode` (surface evidence packet). Loading it as the Gate 2 artifact route requires, plus the rest of AGENTS.md, and capturing a baseline diff for S and T before editing.
+The router resolved `sk-code-skilled` (surface evidence packet). Loading it as the Gate 2 artifact route requires, plus the rest of AGENTS.md, and capturing a baseline diff for S and T before editing.
 
-The compiled router resolved `sk-code-opencode` (loaded). S and T are untracked new files, so the diff numbers will come from edit accounting.
+The compiled router resolved `sk-code-skilled` (loaded). S and T are untracked new files, so the diff numbers will come from edit accounting.
 
 Before editing, I want the exact bytes of the brief's regex and grep pattern. Let me check whether the dispatch brief exists on disk in the scratch tree.
 
@@ -36,7 +36,7 @@ All checks pass. One last byte-exactness check: diff S's edited region directly 
 
 Both files are verified: S's edited region is byte-identical to the brief's source lines (diff exit 0), T's insertion is byte-correct, and all four prescribed checks pass. Task complete.
 
-SKILL ROUTING: sk-code (artifact trigger) → compiled router resolved sk-code-opencode, packet loaded
+SKILL ROUTING: sk-code (artifact trigger) → compiled router resolved sk-code-skilled, packet loaded
 REPO RULES: prevent-overengineering.md, evidence-and-proof.md
 
 STATUS: DONE

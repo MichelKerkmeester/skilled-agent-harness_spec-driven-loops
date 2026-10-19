@@ -14,8 +14,8 @@
 .skilled/skills/sk-code/sk-code-obsidian/README.md	67	23	4f36fa1840260448	compat-link: literal match fails on the consumer repo's .opencode link
 .skilled/skills/sk-code/sk-code-obsidian/README.md	98	33	983618585ea8e278	compat-link: target through the .opencode link still wins OPENCODE
 .skilled/skills/sk-code/sk-code-obsidian/SKILL.md	281	56	8038e6ceadf32cd1	compat-link: consumer plugin repo symlinks this name to the hub
-.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	opencode-view: states the runtime plugin loader's requirement for its plugins folder
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	62	14	2f07a3662f70d9d4	opencode-view: names the runtime's plugin registration source folder
-.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md	260	31	4de9d53659fe164d	opencode-view: names the runtime's plugin folder as a wiring source
+.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md	45	3	a169ef12cbc38bba	opencode-view: states the runtime plugin loader's requirement for its plugins folder
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	62	14	2f07a3662f70d9d4	opencode-view: names the runtime's plugin registration source folder
+.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md	260	31	4de9d53659fe164d	opencode-view: names the runtime's plugin folder as a wiring source
 .skilled/skills/sk-code/sk-code-review/SKILL.md	224	8	0350e76a431f9431	dual-root-needed: surface detector matches only .opencode/ paths; add .skilled twin
 .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md	78	3	d4a3d28cd9a5f234	compat-link: gitignore convention of the .opencode dir in OpenCode projects

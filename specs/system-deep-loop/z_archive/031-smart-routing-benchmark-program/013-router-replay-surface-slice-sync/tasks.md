@@ -43,7 +43,7 @@ _memory:
 - [x] T001 Confirm packet-037 scope and branch [small] — spec.md fixes the existing `system-deep-loop/031-smart-routing-benchmark-program/013-router-replay-surface-slice-sync` packet on branch `system-speckit/028-memory-search-intelligence`
 - [x] T002 Diagnose Lane-C router-replay surface-slicing drift [medium] — `router-replay.cjs` still keyed slicing on bare `webflow/`, `opencode/`, and `animation/` prefixes after sk-code moved to `code-*` packet folders
 - [x] T003 Confirm root cause across the rename boundary [medium] — the sk-code folder rename updated packet folders and `smart_routing.md` `RESOURCE_MAP`, but not the deep-improvement harness string-literal slicing constants in a different tree
-- [x] T004 Capture pre-fix leak diagnostic [small] — before the fix, 13 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-opencode/` at once
+- [x] T004 Capture pre-fix leak diagnostic [small] — before the fix, 13 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-skilled/` at once
 - [x] T005 Capture baseline harness Vitest state [small] — baseline was 1 failed / 100 passed across 101 tests in 6 files, with the known `res.intents` expectation failure
 
 <!-- /ANCHOR:phase-1 -->
@@ -53,16 +53,16 @@ _memory:
 ## Phase 2: Implementation
 
 ### sk-code Baseline
-- [x] T006 Update `SURFACE_PREFIXES` in `router-replay.cjs` [small] — WEBFLOW, OPENCODE, and MOTION now reference `code-webflow/`, `code-opencode/`, and `code-animation/`
-- [x] T007 Update `hasSurfaceLayout` detection [small] — detection now requires the current `code-webflow/references/` and `code-opencode/references/` prefixes that exist in the sk-code map
+- [x] T006 Update `SURFACE_PREFIXES` in `router-replay.cjs` [small] — WEBFLOW, OPENCODE, and MOTION now reference `code-webflow/`, `code-skilled/`, and `code-animation/`
+- [x] T007 Update `hasSurfaceLayout` detection [small] — detection now requires the current `code-webflow/references/` and `code-skilled/references/` prefixes that exist in the sk-code map
 
 ### sk-design Baseline
-- [x] T008 Update OpenCode language sub-slice regex [small] — regex now matches `code-opencode/references/([^/]+)/` so language narrowing follows the renamed packet folder
+- [x] T008 Update OpenCode language sub-slice regex [small] — regex now matches `code-skilled/references/([^/]+)/` so language narrowing follows the renamed packet folder
 - [x] T009 Leave prompt-token detectors unchanged [small] — `detectSurface` and `detectOpencodeLanguage` key on task text, not resource-folder names, so changing them would be scope drift
 
 ### deep-loop Baseline
 - [x] T010 Add surface-slice regression guard file [medium] — `tests/surface-slice-sync.vitest.ts` adds four tests for single-surface slicing and corpus-wide no-over-routing
-- [x] T011 Lock WEBFLOW and OPENCODE single-surface behavior [small] — guard asserts WEBFLOW keeps `code-webflow` and drops `code-opencode`; OPENCODE keeps `code-opencode` and drops `code-webflow`
+- [x] T011 Lock WEBFLOW and OPENCODE single-surface behavior [small] — guard asserts WEBFLOW keeps `code-webflow` and drops `code-skilled`; OPENCODE keeps `code-skilled` and drops `code-webflow`
 
 ### Comparison
 - [x] T012 Lock UNKNOWN Motion overlay behavior and corpus invariant [medium] — guard asserts UNKNOWN Motion keeps `code-animation` while dropping both surfaces, and no scenario over-routes both surfaces corpus-wide
@@ -74,8 +74,8 @@ _memory:
 ## Phase 3: Verification
 
 ### Pre-Promotion Gate
-- [x] T013 Re-run post-fix leak diagnostic [small] — after the fix, 0 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-opencode/`
-- [x] T014 Confirm named spot checks [small] — SD-001 routes `code-webflow` and no `code-opencode`; CS-004 keeps `code-animation` and drops both surfaces; LS-001 routes `code-opencode` only
+- [x] T013 Re-run post-fix leak diagnostic [small] — after the fix, 0 of 21 scored non-browser scenarios routed both `code-webflow/` and `code-skilled/`
+- [x] T014 Confirm named spot checks [small] — SD-001 routes `code-webflow` and no `code-skilled`; CS-004 keeps `code-animation` and drops both surfaces; LS-001 routes `code-skilled` only
 - [x] T015 Run new regression guard tests [small] — the four added `surface-slice-sync.vitest.ts` tests pass
 
 ### Severity Promotion

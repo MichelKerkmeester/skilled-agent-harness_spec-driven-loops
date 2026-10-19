@@ -28,7 +28,7 @@ const ASSETS_DIR = resolve(
 
 const WORKFLOW_FILES = ['deep-research-auto.yaml', 'deep-research-confirm.yaml'] as const;
 
-type DirectiveKey = 'append_to_jsonl' | 'append_jsonl' | 'bookkeeping_log';
+type DirectiveKey = 'append_to_jsonl' | 'append_jsonl' | 'log_event' | 'bookkeeping_log';
 
 type Directive = {
   line: number;
@@ -108,7 +108,7 @@ function extractDirectives(filePath: string): Directive[] {
 
   for (let index = 0; index < lines.length; index += 1) {
     const match = lines[index].match(
-      /^(\s*)(?:-\s+)?(append_to_jsonl|append_jsonl|bookkeeping_log)\s*:\s*(.*)$/,
+      /^(\s*)(?:-\s+)?(append_to_jsonl|append_jsonl|log_event|bookkeeping_log)\s*:\s*(.*)$/,
     );
     if (!match) continue;
     const line = index + 1;
@@ -225,7 +225,9 @@ describe('deep-research bookkeeping emission', () => {
         );
         if (result.exitCode === 1 && directive.event) refusedEvents.add(directive.event);
 
-        if (directive.key === 'append_to_jsonl' || directive.key === 'append_jsonl') {
+        // A log_event row is appended through the gateway like the append
+        // directives, so a refused row there halts the step just the same.
+        if (directive.key !== 'bookkeeping_log') {
           expect(
             result.exitCode,
             `${file}:${directive.line} ${directive.key} event=${directive.event ?? '-'} `

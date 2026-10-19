@@ -104,7 +104,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent goal D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step below and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` (probe passed 2026-09-28) and Cursor `grok-4.7-xhigh-fast`. It never uses the Agent tool. The parent orchestrator session verifies each step against its check, gets a cross-family review of the code from a model family other than the one that wrote it and commits with path-scoped commits. Code follows sk-code's OpenCode route (`sk-code-opencode`), and the skill docs go through sk-doc (parent goal D6).
+**Who builds (parent goal D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step below and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max`, Pi on Cline `cline-pass/cline-pass/deepseek-v4.1-flash` at `xhigh` (probe passed 2026-09-28) and Cursor `grok-4.7-xhigh-fast`. It never uses the Agent tool. The parent orchestrator session verifies each step against its check, gets a cross-family review of the code from a model family other than the one that wrote it and commits with path-scoped commits. Code follows sk-code's OpenCode route (`sk-code-skilled`), and the skill docs go through sk-doc (parent goal D6).
 
 Each step's observable check:
 

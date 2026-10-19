@@ -9,14 +9,6 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 Thin router for the deep-ai-council session loop. This command verifies the orchestrating agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. ROUTER CONTRACT
-
-Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
-
-Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
-
-This command is **general-agent based**. The Unified Setup Phase (the BLOCKED input gate) is a HARD BLOCK; it may not be skipped.
-
 ### MANDATORY INPUT GATE
 
 - **DO NOT** dispatch any agent from this document.
@@ -34,6 +26,14 @@ This command is **general-agent based**. The Unified Setup Phase (the BLOCKED in
 - **PLANNING BOUNDARY**: deep council writes packet-local `ai-council/**` artifacts only. Implementation remains with the caller or follow-on implementation agents.
 - **GRAPH BOUNDARY**: derived council graph replay uses `runtime/` CLI scripts with `--loop-type council`; `ai-council/**` artifacts remain authoritative.
 - **ONE CLI PER ROUND**: all seats in a round use one executor boundary. Different CLIs are separate rounds, not mixed seats.
+
+## 1. ROUTER CONTRACT
+
+Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
+
+Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
+
+This command is **general-agent based**. The Unified Setup Phase (the BLOCKED input gate) is a HARD BLOCK; it may not be skipped.
 
 > **Canonical mode syntax:** use attached command suffixes (`/deep:ai-council:auto`, `/deep:ai-council:confirm`).
 

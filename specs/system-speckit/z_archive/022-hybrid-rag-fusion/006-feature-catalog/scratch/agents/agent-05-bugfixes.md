@@ -20,7 +20,7 @@ I’m mapping each catalog entry to the actual `mcp_server` and `scripts` implem
   │ .opencode/skills/system-spec-kit/scripts source code" --threshold 0.8
   └ 59 lines...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the 11 catalog files. Next I’m doing a bulk pass to extract each document’s claims and trace them to concrete code locations in both source trees so the final report is evidence-based, not just title-matched.
 

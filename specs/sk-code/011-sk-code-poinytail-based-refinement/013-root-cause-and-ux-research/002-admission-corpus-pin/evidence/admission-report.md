@@ -5,7 +5,7 @@
 | `cli-classifier` | admitted | pass | 4 | 0 | 0 | 0 | 3/3 | 0/0 | none |
 | `cli-external-orchestration` | admitted | pass | 7 | 0 | 0 | 3 | 5/5 | 2/2 | `cli-codex`, `cli-cursor`, `cli-devin`, `cli-hermes`, `cli-pi` |
 | `mcp-tooling` | admitted | pass | 16 | 0 | 0 | 0 | 9/9 | 7/7 | `mcp-notion` |
-| `sk-code` | admitted | pass | 1 | 0 | 0 | 0 | 1/1 | 0/0 | `sk-code-obsidian`, `sk-code-opencode`, `sk-code-quality`, `sk-code-review` |
+| `sk-code` | admitted | pass | 1 | 0 | 0 | 0 | 1/1 | 0/0 | `sk-code-obsidian`, `sk-code-skilled`, `sk-code-quality`, `sk-code-review` |
 | `sk-design` | admitted | pass | 4 | 0 | 0 | 0 | 2/2 | 2/2 | `sk-design-chart`, `sk-design-fundamentals`, `sk-design-md-generator` |
 | `sk-doc` | admitted | pass | 24 | 0 | 0 | 2 | 13/13 | 9/9 | `sk-create-benchmark`, `sk-create-diff`, `sk-create-frontmatter`, `sk-create-goal`, `sk-create-repo-rule`, `sk-create-skill-parent` |
 | `system-deep-loop` | admitted | drift | 23 | 1 | 0 | 1 | 21/22 | 0/0 | none |

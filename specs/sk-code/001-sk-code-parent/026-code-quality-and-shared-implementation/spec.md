@@ -162,7 +162,7 @@ Execute the un-gated scope of all five ranked proposals so that `sk-code`'s shar
 ## 8. EDGE CASES
 
 ### Data Boundaries
-- The checklist-label fix touches display text only; the `../code-opencode/assets/checklists/` hrefs and the system-spec-kit checklist handoff for `.opencode/specs/` targets must remain exactly as they were.
+- The checklist-label fix touches display text only; the `../code-skilled/assets/checklists/` hrefs and the system-spec-kit checklist handoff for `.opencode/specs/` targets must remain exactly as they were.
 
 ### Error Scenarios
 - If a vocab addition would desync the router ↔ advisor projection, the vocab-sync or router-sync guard fails; the additive phrases must keep both surfaces consistent rather than introducing a `code-quality`-local advisor target.

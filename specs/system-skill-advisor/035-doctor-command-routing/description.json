@@ -13,17 +13,20 @@
     "target",
     "lines"
   ],
-  "lastUpdated": "2026-10-16T06:40:56.750Z",
+  "lastUpdated": "2026-10-16T21:02:01.559Z",
   "specId": "035",
   "folderSlug": "doctor-command-routing",
   "parentChain": [
     "system-skill-advisor"
   ],
-  "memorySequence": 4,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "15-10-26_16-49__measured-baseline-labeled-corpus-155-of-195.md",
     "15-10-26_17-11__t001-baseline-at-828cb749da-labeled-155-195.md",
     "15-10-26_19-06__built-doctor-command-routing-routes-yaml-routes.md",
-    "16-10-26_07-40__all-nine-review-findings-reproduced-against-the.md"
+    "16-10-26_07-40__all-nine-review-findings-reproduced-against-the.md",
+    "16-10-26_21-28__doctor-bridges-no-longer-change-skill-scoring-59.md",
+    "16-10-26_21-53__eleven-of-twelve-short-prompts-now-top-on-their.md",
+    "16-10-26_22-02__whole-word-evidence-tokens-do-not-change-scoring.md"
   ]
 }

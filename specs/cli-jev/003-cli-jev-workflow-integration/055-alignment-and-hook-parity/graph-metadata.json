@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`ENV-REFERENCE.md` named the files that read each Jev switch before phase 54 moved them, and several READMEs described retired or moved code",
     "created_at": "2026-10-05T09:05:04Z",
-    "last_save_at": "2026-10-08T19:29:27.765Z",
+    "last_save_at": "2026-10-18T20:45:03.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3aadc4d8cd6e6ce2972dcee8ec9daad5be46a7f9ca43435781c78dfa1dbb3d3b",
+    "source_fingerprint": "sha256:04da81385e80b0de29b05148e4309b788fc7f6eb4be7faee2b90cd388e078f68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "15c4c535560bb4039de803c172475043fd1394920b32754d76aed94e3fe2c452",
+      "spec.md": "651a30ee812898bef331792b9261d47d187bbc1317ab9efce1fc1ed35a749b73",
       "plan.md": "932ca3f589b264e99c88b5a4a974a2890c92316641e1e90f605ffdbc75a3d481",
-      "tasks.md": "4cba821726f5d8acae01c0ae5ceebeccbdc130133060f7411b64915b958c2404",
-      "implementation-summary.md": "cd8f3cb315fd026d6d42f4cd0b296a0a744bddfec106dff4796c5f5c19956732"
+      "tasks.md": "524f750cdc4261e7278178531d5bdce64cb222ca0205cb8b6a7ff9a4e369641b",
+      "implementation-summary.md": "43f1ddc3e2e3e45cc0b246d77b2f1c6f6295ff97490395e1cdc4f9b818bb7654"
     },
     "last_active_at": null
   }

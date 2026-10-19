@@ -2219,9 +2219,9 @@
       {
         "applicable": true,
         "evidenceRefs": [
-          ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
-          ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-          ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs"
+          ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
+          ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+          ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs"
         ],
         "gateClass": "soft",
         "note": "All four individual sk-code drift guards pass. Alignment drift has zero errors and 278 non-blocking warnings across 23,361 scanned files; stack folders pass for six language folders, router sync passes 5/5, and doc claims passes 4/4.",

@@ -8,12 +8,12 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # Router Reference - Phase Lifecycle
 
-All three surfaces in the hub `SKILL.md` surface list (WEBFLOW, OPENCODE and OBSIDIAN) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
+All three surfaces in the hub `SKILL.md` surface list (WEBFLOW, SKILLED and OBSIDIAN) follow the same lifecycle. Surface detection changes which resources and verification evidence apply.
 
 ---
 
@@ -25,7 +25,7 @@ Define the shared execution lifecycle for supported code surfaces so research, i
 
 ### When to Use
 
-- When planning work on the WEBFLOW, OPENCODE or OBSIDIAN surface.
+- When planning work on the WEBFLOW, SKILLED or OBSIDIAN surface.
 - When deciding which phase-specific references and checklists to load.
 - When a failed quality or verification gate requires a controlled transition back to debugging or implementation.
 - When checking whether completion evidence is sufficient.
@@ -36,7 +36,7 @@ Phase lifecycle defines the gated progression from research through verification
 
 ### Key Sources
 
-- [stack-detection.md](./stack-detection.md) — surface detection and OPENCODE language sub-detection
+- [stack-detection.md](./stack-detection.md) — surface detection and SKILLED language sub-detection
 - [ROUTER.md](../../ROUTER.md) — intent classification and resource maps
 
 ---
@@ -66,17 +66,17 @@ Phase 0 Research (optional for simple work, required for complex/risky work)
 
 ---
 
-## 4. OPENCODE PHASES
+## 4. SKILLED PHASES
 
 | Phase | Resources / Evidence |
 | --- | --- |
 | Research | Shared OpenCode patterns, affected skill/agent/command context, prior spec memory |
-| Implementation | `.skilled/skills/sk-code/sk-code-opencode/references/shared/` plus detected language references |
+| Implementation | `.skilled/skills/sk-code/sk-code-skilled/references/shared/` plus detected language references |
 | Code Quality | Universal OpenCode checklist plus language checklist |
 | Debugging | Root-cause analysis, failing command output, language-specific patterns |
-| Verification | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |
+| Verification | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |
 
-OPENCODE previously had standards-only behavior. In the merged `sk-code`, it receives the full lifecycle.
+SKILLED previously had standards-only behavior. In the merged `sk-code`, it receives the full lifecycle.
 
 ### Cross-Stack Motion.dev Resources
 
@@ -120,5 +120,5 @@ The Obsidian surface is read-only evidence. The bundled workflow mode runs these
 
 ## 8. RELATED RESOURCES
 
-- [stack-detection.md](./stack-detection.md) — surface detection and OPENCODE language sub-detection
+- [stack-detection.md](./stack-detection.md) — surface detection and SKILLED language sub-detection
 - [ROUTER.md](../../ROUTER.md) — intent classification, resource maps, and load tiers

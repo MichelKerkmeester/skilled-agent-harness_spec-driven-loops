@@ -151,3 +151,47 @@ describe('replaceAnchorSection — MACHINE-OWNED template dialect fallback', () 
     expect(caught?.code).toBe('MISSING_ANCHOR');
   });
 });
+
+// String.replace reads `$\``, `$&` and `$'` in a string replacement as
+// match-relative text, so a section body quoting one of them must still be
+// written verbatim instead of splicing a copy of the surrounding file.
+describe('strategy section writers keep replacement patterns literal', () => {
+  const LITERAL_BODY = "- [ ] Does `PluginInput.$` survive, and do $& and $' stay literal?";
+
+  it('replaceAnchorSection writes the body verbatim over an ANCHOR section', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      '<!-- ANCHOR:review-dimensions -->',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '- [ ] D1 Correctness',
+      '<!-- /ANCHOR:review-dimensions -->',
+      '',
+    ].join('\n');
+    const out = replaceAnchorSection(content, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', LITERAL_BODY);
+    expect(out).toContain(LITERAL_BODY);
+    expect(out.match(/# Deep Review Strategy/g)?.length).toBe(1);
+  });
+
+  it('replaceAnchorSection writes the body verbatim through the heading fallback', () => {
+    const content = [
+      '# Deep Review Strategy',
+      '',
+      '## 3. REVIEW DIMENSIONS (remaining)',
+      '<!-- MACHINE-OWNED: START -->',
+      '- [ ] D1 Correctness',
+      '<!-- MACHINE-OWNED: END -->',
+      '',
+    ].join('\n');
+    const out = replaceAnchorSection(content, 'review-dimensions', '3. REVIEW DIMENSIONS (remaining)', LITERAL_BODY);
+    expect(out).toContain(LITERAL_BODY);
+    expect(out.match(/# Deep Review Strategy/g)?.length).toBe(1);
+  });
+
+  it('upsertHeadingSectionBefore writes the body verbatim over an existing heading', () => {
+    const content = `# Deep Review Strategy\n\n## ${HEADING}\n- old\n\n## ${BEFORE}\n[none]\n`;
+    const out = upsertHeadingSectionBefore(content, HEADING, LITERAL_BODY, BEFORE);
+    expect(out).toContain(LITERAL_BODY);
+    expect(out.match(/# Deep Review Strategy/g)?.length).toBe(1);
+  });
+});

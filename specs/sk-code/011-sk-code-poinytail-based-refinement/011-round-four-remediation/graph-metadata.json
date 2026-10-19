@@ -153,17 +153,17 @@
     ],
     "causal_summary": "Round three (`../010-round-three-remediation/`) closed with eleven items still open, each recorded in a child's Known Limitations or plan",
     "created_at": "2026-10-10T14:44:30Z",
-    "last_save_at": "2026-10-11T05:17:08.350Z",
+    "last_save_at": "2026-10-18T20:45:14.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:15db676376ab1e58a32399f37ad236206b4f5e3e8aec835ad9ff584b3f9eae5b",
+    "source_fingerprint": "sha256:c0297824df43b78884d7143756ffae46aaa754b2d5fb99e9be57d3935f5dbea9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "13fca561e800ef6e49aab29328755bf940e70bb018fe33f11cc0bf5393a1d17c"
+      "spec.md": "5ceb22d6f3e6a44b64cc1e322284e3596815e1073b86c33cb76a1873c2a028cc"
     },
     "last_active_at": null
   }

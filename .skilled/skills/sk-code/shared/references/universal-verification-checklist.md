@@ -8,18 +8,18 @@ trigger_phrases:
   - "done works complete claims"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.7
+version: 1.5.1.0
 ---
 
 # Universal Verification Checklist - The Pre-Claim Gate
 
-Surface-agnostic verification gate. Walk this checklist BEFORE making any "done", "works", "complete", or "passing" claim across WEBFLOW or OPENCODE.
+Surface-agnostic verification gate. Walk this checklist BEFORE making any "done", "works", "complete", or "passing" claim across WEBFLOW or SKILLED.
 
 ## 1. OVERVIEW
 
 ### Purpose
 
-Codifies the universal protocol that gates every completion claim in sk-code. Surface-specific commands (the Webflow minification scripts plus a browser matrix for WEBFLOW, and alignment/test commands for OPENCODE) are listed in Section 3 below and detailed in each surface's verification docs.
+Codifies the universal protocol that gates every completion claim in sk-code. Surface-specific commands (the Webflow minification scripts plus a browser matrix for WEBFLOW, and alignment/test commands for SKILLED) are listed in Section 3 below and detailed in each surface's verification docs.
 
 ### Usage
 
@@ -33,7 +33,7 @@ Walk these in order before claiming any status:
 
 1. [ ] **IDENTIFY** — what command/action proves this claim?
 2. [ ] **RUN** — execute the surface's verification commands (`SURFACE_VERIFICATION_COMMANDS`).
-3. [ ] **TEST** — for WEBFLOW: open browser; for OPENCODE: run targeted unit/integration checks where available.
+3. [ ] **TEST** — for WEBFLOW: open browser; for SKILLED: run targeted unit/integration checks where available.
 4. [ ] **VERIFY** — does output match expected? Exit code 0? Test count green?
 5. [ ] **VERIFY (WEBFLOW)** — multi-viewport (mobile + desktop) + DevTools console clean.
 6. [ ] **VERIFY (CRITICAL CHANGE)** — cross-browser / cross-platform check where applicable.
@@ -49,7 +49,7 @@ Run all of these from the project root. ALL must exit 0 before claiming done.
 | Surface | Test | Lint | Build |
 |---|---|---|---|
 | WEBFLOW | (see browser matrix in Section 4) | n/a (style enforced via checklist) | `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs && node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs && node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` |
-| OPENCODE | Targeted tests for touched package or script | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <changed-path>` | Package-specific build/typecheck where available |
+| SKILLED | Targeted tests for touched package or script | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-path>` | Package-specific build/typecheck where available |
 | UNKNOWN | sk-code does not own this surface — surface a disambiguation prompt instead | n/a | n/a |
 
 ---
@@ -118,4 +118,4 @@ Without evidence, "done" is a guess.
 - [`./phase-detection.md`](./phase-detection.md) — Phase 3 Verification position in the sk-code lifecycle.
 - [`./universal-debugging-checklist.md`](./universal-debugging-checklist.md) — runs before this checklist when bugs surface.
 - `.skilled/skills/sk-code/sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md` — WEBFLOW deep-dive (browser matrix, Lighthouse, multi-viewport).
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` — OPENCODE alignment verification.
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` — SKILLED alignment verification.

@@ -134,7 +134,7 @@ node .skilled/plugins/tests/opencode-goal-capabilities.test.cjs
 node .skilled/plugins/tests/opencode-goal-lifecycle.test.cjs
 node .skilled/plugins/tests/opencode-goal-supervisor.test.cjs
 node .skilled/plugins/tests/opencode-goal-continuation.test.cjs
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/plugins
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/plugins
 python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/plugins/opencode-goal.js
 ```
 

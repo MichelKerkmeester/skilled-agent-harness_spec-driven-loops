@@ -25,7 +25,7 @@ I’m pulling the catalog files plus the review guidance up front, then I’ll c
   │ aligned/misaligned/partial per file.' --threshold 0.8
   └ 27 lines...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the file list and routing context. Next I’m reading all ten catalog entries together so I can cross-check each one consistently against the actual handlers and tool definitions.
 

@@ -51,7 +51,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given sk-code-opencode, When the strict package check runs, Then it passes | `package_skill.py --check --strict` prints Result: PASS, down from 4 unmet requirements | Met | - |
+| AC-001 | REQ-001 | Given sk-code-skilled, When the strict package check runs, Then it passes | `package_skill.py --check --strict` prints Result: PASS, down from 4 unmet requirements | Met | - |
 | AC-002 | REQ-002 | Given the rename, When the tests and guards run, Then they pass as before | Tests 12 and 5 pass, 0 fail; drift guards 4 of 4; parent skill check OK, 0 warnings | Met | - |
 | AC-003 | REQ-003 | Given the live tree, When it is searched for the old names, Then none remain | Grep over `.skilled` and `.hermes` excluding changelogs returns 0 | Met | - |
 

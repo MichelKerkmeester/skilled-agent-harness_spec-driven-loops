@@ -181,7 +181,7 @@
     ],
     "causal_summary": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings), so future code work…",
     "created_at": "2026-08-17T05:11:33.348Z",
-    "last_save_at": "2026-10-03T15:11:56.686Z",
+    "last_save_at": "2026-10-18T20:45:10.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -189,11 +189,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:eccfec3d871318c8eb221fc61566135ccc3a04919c0a7315f806ca1e4f97d066",
+    "source_fingerprint": "sha256:6dc8ee1d28853554194d6e48e97994c8c6d53ba2adf83f239315ccff5a90a9a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39c4124cc9e93072843d76fd798280d0982ea4b96cc72854a2d0d4384d81741b",
-      "plan.md": "dcf46edfc294d93a06bee7549b5072020a98e1ec76c3031a387e37bd0996f498",
+      "spec.md": "b022386aff297b3a5e9b8bd4a9fd26cf81d908b4dc17a9ee4674f0c81f27fa65",
+      "plan.md": "d8603d3181300fa532b9f1a09d58d8f032a2a8bc323873f3a128667bcafe34de",
       "tasks.md": "cc374e38aa07a9e94118b1a08eeaabf895351e113c7f02a6e1f5a3949063ea04"
     },
     "last_active_child_id": null,

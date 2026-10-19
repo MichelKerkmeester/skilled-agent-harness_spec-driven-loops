@@ -5,13 +5,13 @@ sk-code	webflow	RESOLVED	sk-code	0.618762	sk-code-webflow	ROUTE	sk-code-webflow	
 sk-code	frontend	RESOLVED	sk-code	0.663804	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	cdn	RESOLVED	sk-code	0.644611	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	browser test	RESOLVED	sk-code	0.749001	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
-sk-code	opencode	RESOLVED	sk-code	0.741378	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	system code	RESOLVED	sk-code	0.796545	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	mcp	RESOLVED	sk-code	0.565661	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	typescript	RESOLVED	sk-code	0.665277	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	python	RESOLVED	sk-code	0.646893	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	shell	RESOLVED	sk-code	0.538589	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	jsonc	RESOLVED	sk-code	0.549852	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
+sk-code	opencode	RESOLVED	sk-code	0.741378	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	system code	RESOLVED	sk-code	0.796545	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	mcp	RESOLVED	sk-code	0.565661	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	typescript	RESOLVED	sk-code	0.665277	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	python	RESOLVED	sk-code	0.646893	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	shell	RESOLVED	sk-code	0.538589	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	jsonc	RESOLVED	sk-code	0.549852	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
 sk-code	alignment verifier	RESOLVED	sk-code	0.61716	sk-code-quality	ROUTE	sk-code-quality	compiled	0
 sk-code	motion.dev integration	RESOLVED	sk-code	0.79833	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	motion-dev integration	RESOLVED	sk-code	0.799142	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
@@ -21,16 +21,16 @@ sk-code	motion api	RESOLVED	sk-code	0.678012	sk-code-webflow	ROUTE	sk-code-webfl
 sk-code	motion snippets	RESOLVED	sk-code	0.663793	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	motion decision matrix	RESOLVED	sk-code	0.85784	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	add set -euo pipefail	RESOLVED	sk-code	0.732522	sk-code-quality	ROUTE	sk-code-quality	compiled	0
-sk-code	console.error fallback	RESOLVED	sk-code	0.734997	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	argparse block	RESOLVED	sk-code	0.580711	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	vitest covering	RESOLVED	sk-code	0.723346	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	stable jsonl keys	MULTI	sk-code	0.757669	sk-code-quality,sk-code-opencode	MULTI	sk-code-quality,sk-code-opencode	compiled	0
+sk-code	console.error fallback	RESOLVED	sk-code	0.734997	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	argparse block	RESOLVED	sk-code	0.580711	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	vitest covering	RESOLVED	sk-code	0.723346	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	stable jsonl keys	MULTI	sk-code	0.757669	sk-code-quality,sk-code-skilled	MULTI	sk-code-quality,sk-code-skilled	compiled	0
 sk-code	lenis smooth-scroll	RESOLVED	sk-code	0.740965	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	gsap timeline	RESOLVED	sk-code	0.58736	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	hls.js video	RESOLVED	sk-code	0.632641	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	intersectionobserver gate	RESOLVED	sk-code	0.625783	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
-sk-code	build a tiny script	RESOLVED	sk-code	0.75468	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
-sk-code	tiny script that counts	RESOLVED	sk-code	0.735367	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
+sk-code	build a tiny script	RESOLVED	sk-code	0.75468	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
+sk-code	tiny script that counts	RESOLVED	sk-code	0.735367	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
 sk-code	code review	RESOLVED	sk-code	0.87875	sk-code-review	ROUTE	sk-code-review	compiled	0
 sk-code	pr review	RESOLVED	sk-code	0.80222	sk-code-review	ROUTE	sk-code-review	compiled	0
 sk-code	security review	RESOLVED	sk-code	0.788406	sk-code-review	ROUTE	sk-code-review	compiled	0
@@ -55,13 +55,13 @@ sk-code	mobile cli source conventions	RESOLVED	sk-code	0.89724	sk-code-mobile-cl
 sk-code	sk-code	DEFERRED	sk-code	0.677119		DEFER		compiled	0
 sk-code	surface-aware code implementation	DEFERRED	sk-code	0.840434		DEFER		compiled	0
 sk-code	frontend implementation standards	RESOLVED	sk-code	0.806106	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
-sk-code	opencode typescript verification	RESOLVED	sk-code	0.861868	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
+sk-code	opencode typescript verification	RESOLVED	sk-code	0.861868	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
 sk-code	motion animation integration	RESOLVED	sk-code	0.876289	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
 sk-code	stack-specific code quality gate	RESOLVED	sk-code	0.821764	sk-code-quality	ROUTE	sk-code-quality	compiled	0
 sk-code	language-specific verification commands	DEFERRED	sk-code	0.509757		DEFER		compiled	0
 sk-code	surface detection routing	DEFERRED	sk-code	0.394848		DEFER		compiled	0
 sk-code	webflow frontend workflow	RESOLVED	sk-code	0.878239	sk-code-webflow	ROUTE	sk-code-webflow	compiled	0
-sk-code	opencode system code workflow	RESOLVED	sk-code	0.948268	sk-code-opencode	ROUTE	sk-code-opencode	compiled	0
+sk-code	opencode system code workflow	RESOLVED	sk-code	0.948268	sk-code-skilled	ROUTE	sk-code-skilled	compiled	0
 sk-code	alignment verifier workflow	RESOLVED	sk-code	0.813732	sk-code-quality	ROUTE	sk-code-quality	compiled	0
 sk-code	code quality gate	RESOLVED	sk-code	0.894027	sk-code-quality	ROUTE	sk-code-quality	compiled	0
 sk-code	verification commands	DEFERRED	sk-code	0.531715		DEFER		compiled	0
@@ -158,9 +158,9 @@ sk-doc	new benchmark	RESOLVED	sk-doc	0.599003	sk-create-benchmark	ROUTE	sk-creat
 sk-doc	benchmark package	RESOLVED	sk-doc	0.602358	sk-create-benchmark	ROUTE	sk-create-benchmark	compiled	0
 sk-doc	before and after document	RESOLVED	sk-doc	0.759275	sk-create-diff	ROUTE	sk-create-diff	compiled	0
 sk-doc	document diff	RESOLVED	sk-doc	0.797972	sk-create-diff	ROUTE	sk-create-diff	compiled	0
-sk-doc	opencode skill	WRONG_HUB	sk-code	0.869708	sk-code-opencode	ROUTE	sk-create-skill	compiled	0
-sk-doc	opencode agent	WRONG_HUB	sk-code	0.739245	sk-code-opencode	ROUTE	sk-create-agent	compiled	0
-sk-doc	opencode command	WRONG_HUB	sk-code	0.754145	sk-code-opencode	ROUTE	sk-create-command	compiled	0
+sk-doc	opencode skill	WRONG_HUB	sk-code	0.869708	sk-code-skilled	ROUTE	sk-create-skill	compiled	0
+sk-doc	opencode agent	WRONG_HUB	sk-code	0.739245	sk-code-skilled	ROUTE	sk-create-agent	compiled	0
+sk-doc	opencode command	WRONG_HUB	sk-code	0.754145	sk-code-skilled	ROUTE	sk-create-command	compiled	0
 sk-doc	scaffold a new skill	RESOLVED	sk-doc	0.698547	sk-create-skill	ROUTE	sk-create-skill	compiled	0
 sk-doc	create a new skill	RESOLVED	sk-doc	0.734134	sk-create-skill	ROUTE	sk-create-skill	compiled	0
 sk-doc	sk-doc	DEFERRED	sk-doc	0.656228		DEFER		compiled	0

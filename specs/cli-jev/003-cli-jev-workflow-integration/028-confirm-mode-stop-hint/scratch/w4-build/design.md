@@ -2,7 +2,7 @@
 
 Read: parent `goal.md` D1–D7; this phase's `spec.md` §3–§4, `plan.md` §3–§5, `tasks.md`, `goal.md` §1–§3;
 sibling `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` (`buildReport` :1508, `gate.label`, `columns`/`stopped`/`skipped`/`requalify`)
-and `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts`; `sk-code` → `sk-code-opencode` (JavaScript references, `sk-code-quality` comment hygiene);
+and `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts`; `sk-code` → `sk-code-skilled` (JavaScript references, `sk-code-quality` comment hygiene);
 `sk-doc` modes `sk-create-skill`, `sk-create-readme`, `sk-create-changelog`, `sk-create-feature-catalog`, `sk-create-manual-testing-playbook`.
 
 ## 1. Premises
@@ -136,7 +136,7 @@ The `W+L = 0` clause in the sign test is unreachable through the gates on a gate
 
 ## 4. Build steps
 
-Order: `c1 → c2 → c3 → c4 → c5 → d1 → d2 → d3 → d4 → d5 → d6 → d7`. No step calls a function a later step adds. Code steps follow sk-code's OpenCode surface (`sk-code-opencode` JavaScript references, `sk-code-quality` comment hygiene; no spec path, phase number or id in a comment). Doc steps follow sk-doc modes. `d1`–`d6` touch files phases 027, 029 and 030 also touch, so the orchestrator runs their doc steps one after another (parent D3), 027's first.
+Order: `c1 → c2 → c3 → c4 → c5 → d1 → d2 → d3 → d4 → d5 → d6 → d7`. No step calls a function a later step adds. Code steps follow sk-code's OpenCode surface (`sk-code-skilled` JavaScript references, `sk-code-quality` comment hygiene; no spec path, phase number or id in a comment). Doc steps follow sk-doc modes. `d1`–`d6` touch files phases 027, 029 and 030 also touch, so the orchestrator runs their doc steps one after another (parent D3), 027's first.
 
 `c1` — Report reader. Executor: DeepSeek (D5 chain). File `S` (create). Constant block; `sha256`; `readRaterReport`; `gateStopLine`; `main` with `parseArgs`, the two refusals and the gate stop; stub `USAGE`. `V` (create) tests 1–5. Check: `npx vitest run tests/unit/score-stop-hint.vitest.ts` → 5 passed.
 `c2` — Hint counter. File `S`. `hintFor`, `countColumn`, `columnLine`; `main` prints the two default column lines after a passed gate. `V` tests 6–11. Check: 11 passed.

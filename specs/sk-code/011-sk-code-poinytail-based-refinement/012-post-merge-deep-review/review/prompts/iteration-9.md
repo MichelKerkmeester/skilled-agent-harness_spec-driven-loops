@@ -20,7 +20,7 @@ Traceability: core=pending overlay=pending
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 Coverage Age: 8
 Last 2 ratios: 0.091 -> 0.154
-Last 3 summaries: run 6: sk-code-review checkers and rule canary: 637eeaeb2e, da9ded3b36, 26df6c4a8a, 4dab32444c, 3cf65c519e, eda0cb91e4. Ran check-rule-copies.js and its test and the hub canaries read-only; the jev-transport-single defer is confirmed on main (0.2, {'P0': 0, 'P1': 0, 'P2': 2}) | run 7: maintainability: sk-code-opencode drift guards and doc-claim checks (refuted the 26/16 leaf-manifest claim) (0.091, {'P0': 0, 'P1': 0, 'P2': 1}) | run 8: traceability: phases 010/011 spec vs code, Known Limitations, parent goal criteria after the merge (0.154, {'P0': 0, 'P1': 0, 'P2': 2})
+Last 3 summaries: run 6: sk-code-review checkers and rule canary: 637eeaeb2e, da9ded3b36, 26df6c4a8a, 4dab32444c, 3cf65c519e, eda0cb91e4. Ran check-rule-copies.js and its test and the hub canaries read-only; the jev-transport-single defer is confirmed on main (0.2, {'P0': 0, 'P1': 0, 'P2': 2}) | run 7: maintainability: sk-code-skilled drift guards and doc-claim checks (refuted the 26/16 leaf-manifest claim) (0.091, {'P0': 0, 'P1': 0, 'P2': 1}) | run 8: traceability: phases 010/011 spec vs code, Known Limitations, parent goal criteria after the merge (0.154, {'P0': 0, 'P1': 0, 'P2': 2})
 Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
 Stop policy: max-iterations (convergence is telemetry only; broaden the angle, never synthesize early)

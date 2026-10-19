@@ -50,7 +50,7 @@ exec
     "reason": "Matched: !spec, !system-spec-kit(explicit), document~, folder, kit(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.93,
     "uncertainty": 0.31,

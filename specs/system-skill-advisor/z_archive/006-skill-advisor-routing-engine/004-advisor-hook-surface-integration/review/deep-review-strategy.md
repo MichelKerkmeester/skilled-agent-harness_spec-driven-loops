@@ -20,7 +20,7 @@ Same D1-D7 framework as r01/r02:
 | **D1** | Security + Privacy | Prompt stdin plumbing (025 fix), HMAC opacity, label sanitization at envelope (025 fix), disable flag |
 | **D2** | Correctness | Envelope contract, 4-runtime parity, tokenCap from metrics (025 fix), cache maxTokens key (025 fix), provenance restamping (025 fix), UNKNOWN-fallback |
 | **D3** | Performance + Observability | Cache hit rate, p95, static vs live telemetry separation (025 fix), finalizePrompt API (025 fix), promptId aggregation (025 fix), baseline SKILL.md handling |
-| **D4** | Maintainability + sk-code-opencode alignment | JSDoc coverage (025 fix), cache bounds (025 fix), normalizer alias (025 fix), TS strictness, dead code |
+| **D4** | Maintainability + sk-code-skilled alignment | JSDoc coverage (025 fix), cache bounds (025 fix), normalizer alias (025 fix), TS strictness, dead code |
 | **D5** | Integration + Cross-runtime | Plugin disable flag (025 fix), SIGKILL escalation (025 fix), source-signature cache (025 fix), 5-runtime parity harness (025 fix), corpus 200/200, Codex adapter |
 | **D6** | Test coverage + quality | Plugin negative-paths (025 fix), subprocess error-codes (025 fix), telemetry path-precedence (025 fix), end-to-end parity (025 fix), fixture staleness |
 | **D7** | Documentation accuracy | Workspace build command (025 fix), Codex status (025 fix), playbook denominator (025 fix), artifact names (025 fix), Copilot callback model (025 fix) |

@@ -946,6 +946,15 @@ CONTENT_THRESHOLDS = {
 }
 
 
+def is_repo_root_readme(path: Path) -> bool:
+    """Whether the file is the README at a repository root, the directory that holds
+    `.git` (a folder in a checkout, a file in a linked worktree). That README separates
+    its sections with `&nbsp;` lines instead of `---` rules, so it keeps the full
+    divider score."""
+    resolved = path.resolve()
+    return resolved.name.lower() == 'readme.md' and (resolved.parent / '.git').exists()
+
+
 def calculate_dqi(
     doc_type: str,
     checklist_pass_rate: float,
@@ -953,7 +962,8 @@ def calculate_dqi(
     headings: List[Dict[str, Any]],
     content: str,
     style_issues: List[Dict[str, Any]],
-    content_issues: List[Dict[str, Any]]
+    content_issues: List[Dict[str, Any]],
+    dividers_exempt: bool = False
 ) -> Dict[str, Any]:
     """Calculate Document Quality Index (DQI) - a 100% deterministic score.
 
@@ -967,6 +977,8 @@ def calculate_dqi(
         content: Raw markdown file content.
         style_issues: List of style issue dicts.
         content_issues: List of content issue dicts.
+        dividers_exempt: True for a document that separates sections with `&nbsp;`
+            lines instead of `---` rules, which keeps the full divider score.
 
     Returns:
         Dict with total, band, band_description, components, breakdown.
@@ -1104,7 +1116,7 @@ def calculate_dqi(
     breakdown['divider_count'] = divider_count
     breakdown['expected_dividers'] = expected_dividers
     
-    if expected_dividers == 0 or divider_count >= expected_dividers:
+    if dividers_exempt or expected_dividers == 0 or divider_count >= expected_dividers:
         divider_score = 6
     else:
         divider_score = round(divider_count / expected_dividers * 6) if expected_dividers > 0 else 6
@@ -1220,7 +1232,8 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
         headings=headings,
         content=content,
         style_issues=style_issues,
-        content_issues=content_issues
+        content_issues=content_issues,
+        dividers_exempt=is_repo_root_readme(path)
     )
 
     return {

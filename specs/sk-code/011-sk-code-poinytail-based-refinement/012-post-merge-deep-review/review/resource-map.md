@@ -43,8 +43,8 @@ description: "Auto-generated review resource map from convergence evidence."
 |------|--------|--------|------|
 | .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .skilled/skills/sk-code/shared/references/stack-detection.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=2 |
-| .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh | Validated | OK | Findings P0=0 P1=0 P2=0; Iterations=2 |
+| .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |
 | .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md | Analyzed | OK | Findings P0=0 P1=0 P2=1; Iterations=1 |

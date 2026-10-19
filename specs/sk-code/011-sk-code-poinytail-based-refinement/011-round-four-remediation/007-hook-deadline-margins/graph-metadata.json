@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`runtime/hooks/claude/user-prompt-submit.ts` reads stdin with a `readSync(0, ...)` loop, so a host that keeps stdin open holds it until the host kills it",
     "created_at": "2026-10-10T14:44:47Z",
-    "last_save_at": "2026-10-11T05:17:08.819Z",
+    "last_save_at": "2026-10-18T20:45:15.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c206cf7e88ac8d5d8b0260c9f0077e8f1bc30a5f84dcf28a371af4710d11bcad",
+    "source_fingerprint": "sha256:e8a88b84955fbec3af9f37f95354c58643e4c31079f793aec42357dfe600ac40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "52c69001816398bd07651e91ee85c315cd0728e73fcbcb6d79a96887745605eb",
-      "plan.md": "4def4693654771b41fe692368122edfc9c3ae3188ab86b8be6b9ac70bb61192d",
-      "tasks.md": "2ea0f241e367a1e0a4bd43b5613af7011147a44c466b8f02742eda6cd262654c",
-      "implementation-summary.md": "9865de2928a05ba785e3a2754adc28f56f225474e6ed1751cc0f9ee5dfce7862"
+      "plan.md": "a6b5235ad01d5b2dccbbb9bfeca26848fa680a09a7b7db7f6eb79d548c50d8e4",
+      "tasks.md": "05433127b62c0073ffc838189599d85979b4fbe198ad2cd3c3d8a3b4f4a31350",
+      "implementation-summary.md": "4589b802d10bf1013f2ea58e72606807c7b0000641b56a053c96d9f83c051893"
     },
     "last_active_at": null
   }

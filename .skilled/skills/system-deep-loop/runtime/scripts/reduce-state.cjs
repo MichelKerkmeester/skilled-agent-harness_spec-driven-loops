@@ -1843,8 +1843,9 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
     `<!-- /ANCHOR:${anchorId} -->`,
   ].join('\n');
 
+  // Function replacements keep `$`-sequences in section text literal.
   if (pattern.test(content)) {
-    return content.replace(pattern, replacement);
+    return content.replace(pattern, () => replacement);
   }
 
   // The strategy template wraps machine-managed sections in a different
@@ -1855,7 +1856,7 @@ function replaceAnchorSection(content, anchorId, heading, body, options = {}) {
   const numberedPrefix = '(?:\\d+[A-Za-z]?\\.\\s+)?';
   const headingPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
   if (headingPattern.test(content)) {
-    return content.replace(headingPattern, `\n${replacement}`);
+    return content.replace(headingPattern, () => `\n${replacement}`);
   }
 
   if (options.createMissing) {
@@ -1883,7 +1884,7 @@ function upsertHeadingSectionBefore(content, heading, body, beforeHeading, optio
   const sectionPattern = new RegExp(`(?:^|\\n)##\\s+${numberedPrefix}${headingCore(heading)}\\s*\\n[\\s\\S]*?(?=\\n##\\s|$)`, 'i');
   const replacement = `\n## ${heading}\n${body.trim() || '[None yet]'}\n`;
   if (sectionPattern.test(content)) {
-    return content.replace(sectionPattern, replacement);
+    return content.replace(sectionPattern, () => replacement);
   }
   const beforePattern = new RegExp(`\\n##\\s+${numberedPrefix}${headingCore(beforeHeading)}\\s*\\n`, 'i');
   if (!beforePattern.test(content)) {

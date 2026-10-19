@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-git/033-git-setup-customization/010-open-ends-cleanup",
+  "description": "Phase 10: open-ends-cleanup",
+  "keywords": [
+    "phase",
+    "open-ends-cleanup"
+  ],
+  "lastUpdated": "2026-10-17T09:03:17.318Z",
+  "specId": "010",
+  "folderSlug": "open-ends-cleanup",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "17-10-26_07-13__planned-phase-10-four-open-ends-verified-against.md",
+    "17-10-26_09-54__phase-10-complete-adapter-binding-check-scoped-to.md",
+    "17-10-26_09-55__phase-10-complete-four-open-ends-closed-all-gates.md",
+    "17-10-26_10-03__phase-10-complete-and-verified-from-the-final.md"
+  ]
+}

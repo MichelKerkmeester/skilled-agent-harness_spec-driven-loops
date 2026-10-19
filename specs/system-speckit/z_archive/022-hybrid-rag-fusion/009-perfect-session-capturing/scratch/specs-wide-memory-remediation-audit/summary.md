@@ -163,7 +163,7 @@ Root: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/sp
 | 03--commands-and-skills/z_archive/006-code-js-codebase-analysis/002-remediation | 1 | 0 | 0 | 1 |
 | 03--commands-and-skills/z_archive/007-code-performance-patterns-update | 2 | 0 | 0 | 2 |
 | 03--commands-and-skills/z_archive/011-code-initial-set-up | 1 | 0 | 0 | 1 |
-| 03--commands-and-skills/z_archive/012-code-opencode-codebase-alignment | 2 | 0 | 0 | 2 |
+| 03--commands-and-skills/z_archive/012-code-skilled-codebase-alignment | 2 | 0 | 0 | 2 |
 | 03--commands-and-skills/z_archive/001-doc-specialist-refactor | 5 | 0 | 0 | 5 |
 | 03--commands-and-skills/z_archive/002-doc-skill-rename | 1 | 0 | 0 | 1 |
 | 03--commands-and-skills/z_archive/003-doc-h2-emoji-enforcement | 1 | 1 | 0 | 0 |
@@ -471,9 +471,9 @@ Root: /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode/sp
 - 03--commands-and-skills/z_archive/006-code-js-codebase-analysis/memory/25-01-26_10-13__js-codebase-analysis.md :: quarantine :: malformed_frontmatter
 - 03--commands-and-skills/z_archive/007-code-performance-patterns-update/memory/26-01-26_10-48__anobel.com.md :: quarantine :: malformed_frontmatter
 - 03--commands-and-skills/z_archive/007-code-performance-patterns-update/memory/26-01-26_13-22__performance-patterns-update.md :: quarantine :: malformed_frontmatter, low_signal_content
-- 03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-opencode.md :: quarantine :: malformed_frontmatter
-- 03--commands-and-skills/z_archive/012-code-opencode-codebase-alignment/memory/16-02-26_22-35__opencode-codebase-alignment.md :: quarantine :: malformed_frontmatter
-- 03--commands-and-skills/z_archive/012-code-opencode-codebase-alignment/memory/17-02-26_08-31__opencode-codebase-alignment.md :: quarantine :: malformed_frontmatter
+- 03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-skilled.md :: quarantine :: malformed_frontmatter
+- 03--commands-and-skills/z_archive/012-code-skilled-codebase-alignment/memory/16-02-26_22-35__opencode-codebase-alignment.md :: quarantine :: malformed_frontmatter
+- 03--commands-and-skills/z_archive/012-code-skilled-codebase-alignment/memory/17-02-26_08-31__opencode-codebase-alignment.md :: quarantine :: malformed_frontmatter
 - 03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_00-00__header-standardization.md :: quarantine :: corrupted_title, low_signal_content
 - 03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_00-00__honesty-pass.md :: quarantine :: corrupted_title, low_signal_content
 - 03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_00-00__implementation-complete.md :: quarantine :: corrupted_title, low_signal_content

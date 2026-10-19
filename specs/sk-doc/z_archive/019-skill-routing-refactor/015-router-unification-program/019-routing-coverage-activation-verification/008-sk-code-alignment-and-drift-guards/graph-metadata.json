@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "sk-code alignment drift guards",
-      "code-opencode resource map equality gate",
+      "code-skilled resource map equality gate",
       "qualifiedidtoleaf bijection test",
       "sk-code alignment plan",
       "drift guards orchestrator plan",
@@ -27,7 +27,7 @@
       "alignment",
       "drift",
       "guards",
-      "code-opencode",
+      "code-skilled",
       "resource",
       "map",
       "equality",
@@ -191,7 +191,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
+    "causal_summary": "The documented enforcement mechanism for code-skilled's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
     "last_save_at": "2026-10-07T18:13:13.918Z",
     "save_lineage": "graph_only",

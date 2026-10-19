@@ -29,7 +29,7 @@ _memory:
   FORBIDDEN content (do NOT author at phase-parent level):
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
     - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md: these belong in child phase folders only
   REQUIRED content (MUST author at phase-parent level):
     - Root purpose: what problem does this entire phased decomposition solve?
     - Sub-phase list: which child phase folders exist and what each one does
@@ -61,10 +61,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[One-paragraph problem statement — what needs solving and why]
+sk-git has a dozen surfaces a repository can change, and several of them fail open: a missing contract, a rule naming an unknown check or an unregistered advisory hook gives no error. A user adapting sk-git to their own repository had no single check that shows which rules are live, which are absent and which are broken.
 
 ### Purpose
-[One-paragraph purpose — what this phased decomposition achieves]
+Give users a doctor-style setup check, `/doctor:git setup`, that reports one row per surface with its source, its result and the exact repair, and harden it through research, review and remediation phases.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -81,7 +81,7 @@ _memory:
 [Bullet list of what is explicitly excluded]
 
 ### Files to Change
-[Summary table of files touched across all phases — for audit trail only; per-phase detail lives in each child's plan.md]
+[Summary table of files touched across all phases: for audit trail only, per-phase detail lives in each child's plan.md]
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
@@ -105,6 +105,9 @@ _memory:
 | 6 | 006-release-conformance-review/ | [Phase 6 scope] | Pending |
 | 7 | 007-review-remediation/ | [Phase 7 scope] | Pending |
 | 8 | 008-out-of-scope-cleanup/ | Fix the four issues phase 7 found outside its scope: drift guard evidence skip, phrase-reach test, Hermes header semicolons, sk-create-command gate position | Complete |
+| 9 | 009-second-review-remediation/ | [Phase 9 scope] | Pending |
+| 10 | 010-open-ends-cleanup/ | Close four open ends from the doctor releases: the adapter binding check, the hub check on sk-prompt, the synthesis count check and the Human Voice blockers | Complete |
+| 11 | 011-remaining-limits/ | Close four limits left after phase 10: the identifier default export in the adapter check, the drift warnings from spec scratch, the advisor playbook warnings and the lease stress budget | Complete |
 
 ### Phase Transition Rules
 
@@ -124,6 +127,9 @@ _memory:
 | 005-setup-check-hardening | 006-release-conformance-review | [Criteria TBD] | [Verification TBD] |
 | 006-release-conformance-review | 007-review-remediation | [Criteria TBD] | [Verification TBD] |
 | 007-review-remediation | 008-out-of-scope-cleanup | Phase 7 records the four issues it left out of scope | `007-review-remediation/implementation-summary.md` known limitations |
+| 008-out-of-scope-cleanup | 009-second-review-remediation | [Criteria TBD] | [Verification TBD] |
+| 009-second-review-remediation | 010-open-ends-cleanup | Phase 9 records the four open ends it left | `010-open-ends-cleanup/plan.md` section 3 |
+| 010-open-ends-cleanup | 011-remaining-limits | Phase 10 records the adapter export limit it left | `010-open-ends-cleanup/implementation-summary.md` known limitations |
 <!-- /ANCHOR:phase-map -->
 
 ---

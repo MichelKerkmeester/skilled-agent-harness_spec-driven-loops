@@ -327,6 +327,17 @@ test('missing hub directory exits 2', () => {
   assert.match(output, /ERROR: parent skill directory not found/);
 });
 
+test('standalone skill root exits 2 without hub metadata', () => {
+  const skillRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-standalone-'));
+  tempRoots.push(skillRoot);
+  fs.writeFileSync(path.join(skillRoot, 'SKILL.md'), '---\nname: standalone-skill\n---\n# standalone-skill\n');
+  writeJson(path.join(skillRoot, 'graph-metadata.json'), { skill_id: 'standalone-skill', family: 'sk-util' });
+
+  const { status, output } = runChecker(skillRoot);
+  assert.equal(status, 2, output);
+  assert.match(output, /not a parent hub/);
+});
+
 test('STRICT=0 downgrades advisory findings to WARN and exits 0', () => {
   const hub = buildHub();
   fs.rmSync(path.join(hub, 'benchmark'), { recursive: true });
@@ -475,32 +486,32 @@ test('5k warns, and does not fail, on alias drift that another hub already carri
   assert.doesNotMatch(output, /^FAIL: 5k-alias:/m);
 });
 
-test('5l fails when a hand-added sk-code surface sorts after sk-code-opencode', () => {
+test('5l fails when a hand-added sk-code surface sorts after sk-code-skilled', () => {
   const hub = buildHub('sk-code');
-  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
+  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
   const { status, output } = runChecker(hub);
-  assertLine(output, 'FAIL', '5l', 'sk-code-acme.*move them ahead of "sk-code-opencode".*/create:skill-parent update --surfaces');
+  assertLine(output, 'FAIL', '5l', 'sk-code-acme.*move them ahead of "sk-code-skilled".*/create:skill-parent update --surfaces');
   assert.doesNotMatch(output, /^FAIL: 5l:.*sk-code-(obsidian|webflow)/m);
   assert.equal(status, 1, output);
 });
 
-test('5l passes on the shipped sk-code order, with both examples after sk-code-opencode', () => {
+test('5l passes on the shipped sk-code order, with both examples after sk-code-skilled', () => {
   const hub = buildHub('sk-code');
-  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow']);
+  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow']);
   const { output } = runChecker(hub);
   assertLine(output, 'PASS', '5l');
   assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
 });
 
-test('5l passes when the examples are removed and an added surface sorts ahead of sk-code-opencode', () => {
+test('5l passes when the examples are removed and an added surface sorts ahead of sk-code-skilled', () => {
   const hub = buildHub('sk-code');
-  addNamedSurfaces(hub, ['sk-code-acme', 'sk-code-opencode']);
+  addNamedSurfaces(hub, ['sk-code-acme', 'sk-code-skilled']);
   const { output } = runChecker(hub);
   assertLine(output, 'PASS', '5l');
   assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
 });
 
-test('5l prints nothing on an sk-code tree whose tieBreak has no sk-code-opencode', () => {
+test('5l prints nothing on an sk-code tree whose tieBreak has no sk-code-skilled', () => {
   const hub = buildHub('sk-code');
   addNamedSurfaces(hub, ['sk-code-acme']);
   const { output } = runChecker(hub);

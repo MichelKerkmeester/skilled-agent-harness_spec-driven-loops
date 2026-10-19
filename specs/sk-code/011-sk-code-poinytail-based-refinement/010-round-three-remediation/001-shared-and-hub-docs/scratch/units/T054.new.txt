@@ -1,1 +1,1 @@
-| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` |
+| OPENCODE | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` |

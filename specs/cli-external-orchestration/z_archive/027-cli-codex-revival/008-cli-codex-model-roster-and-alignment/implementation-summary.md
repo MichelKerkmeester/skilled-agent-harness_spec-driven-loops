@@ -40,7 +40,7 @@ Delivered:
 - **Extended effort scale** — `max` and `ultra` added above `xhigh` in the effort-value tables and the `assets/prompt_templates.md` model-override note.
 - **CX-002 reframe** — the `gpt_5_5_model_lock.md` scenario now verifies "default pin + roster verification"; filename and id kept, index + global precondition #6 updated (ADR-002).
 - **Changelog** — new `changelog/v1.6.0.0.md`.
-- **Alignment fix** — the stale "`.codex/` is not present" claim in `sk-code/code-opencode/assets/checklists/agent_authoring.md` corrected to reflect the live `.codex/` mirror.
+- **Alignment fix** — the stale "`.codex/` is not present" claim in `sk-code/code-skilled/assets/checklists/agent_authoring.md` corrected to reflect the live `.codex/` mirror.
 
 ### Live matrix (model / effort cells)
 
@@ -55,7 +55,7 @@ Delivered:
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Work runs in an isolated git worktree (`.worktrees/0038-codex-hook-parity`, branch `wt/0038-codex-hook-parity`); node validators run from the main tree against worktree paths because the worktree lacks the gitignored `dist/`. Verification came first: the twenty-cell matrix was dispatched read-only and every cell recorded before a single roster line was written, so no documented model ID is a phantom. The per-model ceiling contract was then expressed once and mirrored into each consuming doc. The stale codex-surface claim was corrected independently in the `code-opencode` checklist. No runtime code, codex hook adapter, or installer was touched — those belong to the sibling `007-codex-hook-parity`.
+Work runs in an isolated git worktree (`.worktrees/0038-codex-hook-parity`, branch `wt/0038-codex-hook-parity`); node validators run from the main tree against worktree paths because the worktree lacks the gitignored `dist/`. Verification came first: the twenty-cell matrix was dispatched read-only and every cell recorded before a single roster line was written, so no documented model ID is a phantom. The per-model ceiling contract was then expressed once and mirrored into each consuming doc. The stale codex-surface claim was corrected independently in the `code-skilled` checklist. No runtime code, codex hook adapter, or installer was touched — those belong to the sibling `007-codex-hook-parity`.
 <!-- /ANCHOR:how-delivered -->
 <!-- ANCHOR:decisions -->
 ## Key Decisions

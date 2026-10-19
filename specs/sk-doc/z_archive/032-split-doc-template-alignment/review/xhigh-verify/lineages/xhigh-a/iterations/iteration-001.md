@@ -20,7 +20,7 @@ Correctness: mechanical and structural conformance of the declared 163-file corp
 - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`
 - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175`
 - All 163 tracked target Markdown files via the generic validator and a semantic structure matrix
-- `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21`
+- `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21`
 
 ## Findings - New
 
@@ -30,14 +30,14 @@ None.
 
 ### P1 Findings
 
-1. **F001: Rust reference never enters the required numbered OVERVIEW** -- `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21` -- After its H1 and intro, the file opens directly at `### Error Style`; it has no `## 1. OVERVIEW`, `### Purpose`, or `### When to Use`. This contradicts R3 [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`] and the canonical reference structure [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`].
+1. **F001: Rust reference never enters the required numbered OVERVIEW** -- `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21` -- After its H1 and intro, the file opens directly at `### Error Style`; it has no `## 1. OVERVIEW`, `### Purpose`, or `### When to Use`. This contradicts R3 [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`] and the canonical reference structure [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`].
    - Finding class: instance-only
    - Scope proof: the complete 163-file matrix found exactly one file with a heading between H1 and OVERVIEW/no OVERVIEW; `validate_document.py` still returned 163/163 because an all-H3 body escapes its numbered-H2 checks.
-   - Affected surface hints: `code-opencode Rust references`, `create-skill reference contract`, `document validator`
+   - Affected surface hints: `code-skilled Rust references`, `create-skill reference contract`, `document validator`
    - Recommendation: add a distinct intro-safe OVERVIEW with Purpose and When to Use, then renumber the inherited content without changing substantive guidance.
 
 ```json
-{"findingId":"F001","claim":"One declared target reference lacks the required numbered OVERVIEW and opens directly at an H3.","evidenceRefs":[".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71",".opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87",".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"],"counterevidenceSought":"Ran validate_document.py on all 163 targets, checked every target for H1 and numbered OVERVIEW, and inspected the full Git history for the file.","alternativeExplanation":"The inherited Error Style section could be treated as the file overview, but the approved requirement and canonical template explicitly require a numbered OVERVIEW with Purpose and When to Use.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade only if the governing R3/template contract is amended or the missing OVERVIEW structure is added.","transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Confirmed current template-structure mismatch"}]}
+{"findingId":"F001","claim":"One declared target reference lacks the required numbered OVERVIEW and opens directly at an H3.","evidenceRefs":[".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71",".opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87",".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21"],"counterevidenceSought":"Ran validate_document.py on all 163 targets, checked every target for H1 and numbered OVERVIEW, and inspected the full Git history for the file.","alternativeExplanation":"The inherited Error Style section could be treated as the file overview, but the approved requirement and canonical template explicitly require a numbered OVERVIEW with Purpose and When to Use.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade only if the governing R3/template contract is amended or the missing OVERVIEW structure is added.","transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Confirmed current template-structure mismatch"}]}
 ```
 
 ### P2 Findings

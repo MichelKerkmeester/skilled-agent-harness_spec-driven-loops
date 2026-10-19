@@ -82,6 +82,7 @@ const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
 const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
 const ADVISOR_SELF_RECOMMENDATION_SKILL_IDS = new Set(['system-skill-advisor', 'skill-advisor']);
 const DOCTOR_BRIDGE_PREFIX = 'command-doctor-';
+const DOCTOR_COMMAND_PREFIX = '/doctor:';
 
 // ───────────────────────────────────────────────────────────────────
 // 3. TYPE DEFINITIONS
@@ -667,29 +668,124 @@ export function requireDoctorPhraseAnchor(
   });
 }
 
-// A doctor command answers a setup or health question about the tooling, not the
-// work itself. When a skill also passes, the skill keeps first place and every
-// doctor bridge that ranked above it moves to just after the last passing skill,
-// keeping their relative order. A prompt that starts with a doctor slash command
-// asked for the command, so it keeps the scored order. A doctor command quoted
-// inside a longer request did not, so there the skill still keeps first place.
+function findTypedDoctorCommandText(promptLower: string): string | null {
+  const prompt = promptLower.trim();
+  if (prompt.startsWith(DOCTOR_COMMAND_PREFIX)) {
+    return prompt.slice(DOCTOR_COMMAND_PREFIX.length);
+  }
+
+  const invocationPattern = /\b(?:run|execute|start|launch|use|kick\s+off)\s+\/doctor:/g;
+  let quote: "'" | '"' | '`' | null = null;
+  let quoteScanPosition = 0;
+  let invocation: RegExpExecArray | null;
+
+  while ((invocation = invocationPattern.exec(prompt)) !== null) {
+    const commandPosition = (
+      invocation.index + invocation[0].length - DOCTOR_COMMAND_PREFIX.length
+    );
+    while (quoteScanPosition < commandPosition) {
+      const character = prompt.charAt(quoteScanPosition);
+      const isWordApostrophe = character === "'"
+        && /[a-z0-9]/.test(prompt.charAt(quoteScanPosition - 1))
+        && /[a-z0-9]/.test(prompt.charAt(quoteScanPosition + 1));
+      if (!isWordApostrophe) {
+        if (quote === null) {
+          if (character === "'" || character === '"' || character === '`') {
+            quote = character;
+          }
+        } else if (character === quote) {
+          quote = null;
+        }
+      }
+      quoteScanPosition += 1;
+    }
+    if (quote === null) return prompt.slice(commandPosition + DOCTOR_COMMAND_PREFIX.length);
+  }
+  return null;
+}
+
+export function isDoctorCommandTyped(promptLower: string): boolean {
+  return findTypedDoctorCommandText(promptLower) !== null;
+}
+
+// A typed command or matching doctor lead phrase moves its passing bridge first; otherwise passing
+// bridges follow the second passing skill or the only passing skill, and other recommendations keep order.
 export function keepPassingSkillsAboveDoctorBridges(
   ranked: readonly AdvisorScoredRecommendation[],
   promptLower: string,
+  leadPhrasesById: ReadonlyMap<string, readonly string[]> = new Map(),
 ): AdvisorScoredRecommendation[] {
-  if (promptLower.trimStart().startsWith('/doctor:')) return [...ranked];
-  let lastPassingSkill = -1;
-  ranked.forEach((recommendation, index) => {
-    if (recommendation.kind === 'skill' && recommendation.passes_threshold) lastPassingSkill = index;
-  });
-  if (lastPassingSkill < 0) return [...ranked];
   const isDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
     recommendation.kind === 'command' && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
   );
-  const above = ranked.slice(0, lastPassingSkill + 1);
-  const moved = above.filter(isDoctorBridge);
-  if (moved.length === 0) return [...ranked];
-  return [...above.filter((recommendation) => !isDoctorBridge(recommendation)), ...moved, ...ranked.slice(lastPassingSkill + 1)];
+  const isPassingDoctorBridge = (recommendation: AdvisorScoredRecommendation): boolean => (
+    isDoctorBridge(recommendation) && recommendation.passes_threshold
+  );
+  const typedCommandText = findTypedDoctorCommandText(promptLower);
+  if (typedCommandText !== null) {
+    const normalizedCommand = typedCommandText.toLowerCase().trim().replace(/\s+/g, '-');
+    let matchedBridgeIndex = -1;
+    let matchedBridgeLength = -1;
+    ranked.forEach((recommendation, index) => {
+      if (!isPassingDoctorBridge(recommendation)) return;
+      const bridgeName = recommendation.skill.slice(DOCTOR_BRIDGE_PREFIX.length);
+      if (bridgeName.length === 0 || !normalizedCommand.startsWith(bridgeName)) return;
+      const nextCharacter = normalizedCommand.charAt(bridgeName.length);
+      const endsAtWordBoundary = (
+        nextCharacter === '' || !/[a-z0-9_]/.test(nextCharacter)
+      );
+      if (!endsAtWordBoundary || bridgeName.length <= matchedBridgeLength) return;
+      matchedBridgeIndex = index;
+      matchedBridgeLength = bridgeName.length;
+    });
+    const matchedBridge = ranked[matchedBridgeIndex];
+    if (!matchedBridge) return [...ranked];
+    return [
+      matchedBridge,
+      ...ranked.slice(0, matchedBridgeIndex),
+      ...ranked.slice(matchedBridgeIndex + 1),
+    ];
+  }
+
+  const leadPhraseBridgeIndex = ranked.findIndex((recommendation) => {
+    if (!isPassingDoctorBridge(recommendation)) return false;
+    return leadPhrasesById.get(recommendation.skill)?.some((phrase) => (
+      matchesPhraseBoundary(promptLower, phrase.toLowerCase())
+    )) ?? false;
+  });
+  const leadPhraseBridge = ranked[leadPhraseBridgeIndex];
+  if (leadPhraseBridge) {
+    return [
+      leadPhraseBridge,
+      ...ranked.slice(0, leadPhraseBridgeIndex),
+      ...ranked.slice(leadPhraseBridgeIndex + 1),
+    ];
+  }
+
+  const passingSkillCount = ranked.filter((recommendation) => (
+    recommendation.kind === 'skill' && recommendation.passes_threshold
+  )).length;
+  if (passingSkillCount === 0) return [...ranked];
+
+  const passingDoctorBridges = ranked.filter(isPassingDoctorBridge);
+  if (passingDoctorBridges.length === 0) return [...ranked];
+  const remaining = ranked.filter((recommendation) => !isPassingDoctorBridge(recommendation));
+  const targetPassingSkillCount = Math.min(2, passingSkillCount);
+  let seenPassingSkills = 0;
+  let insertionIndex = remaining.length;
+  for (const [index, recommendation] of remaining.entries()) {
+    if (recommendation.kind !== 'skill' || !recommendation.passes_threshold) continue;
+    seenPassingSkills += 1;
+    if (seenPassingSkills === targetPassingSkillCount) {
+      insertionIndex = index + 1;
+      break;
+    }
+  }
+  return [
+    ...remaining.slice(0, insertionIndex),
+    ...passingDoctorBridges,
+    ...remaining.slice(insertionIndex),
+  ];
 }
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
@@ -848,100 +944,155 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
       || left.skill.localeCompare(right.skill);
   });
 
-  ranked = ranked.map((recommendation, index) => {
-    const next = ranked[index + 1];
-    const ambiguityPressure = next && Math.abs(recommendation.confidence - next.confidence) <= 0.05 ? 0.04 : 0;
-    const uncertainty = uncertaintyFor(recommendation.laneContributions, recommendation.confidence, ambiguityPressure);
-    return {
-      ...recommendation,
-      uncertainty,
-      passes_threshold: recommendation.confidence >= (options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD)
-        && uncertainty <= (options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD),
-    };
-  });
-  ranked = applyAmbiguity(ranked);
+  // Doctor bridges must not shape skill ambiguity or abstention.
+  // Skill slots take their values from the pass with those bridges removed.
+  const finishRanked = (
+    sorted: readonly AdvisorScoredRecommendation[],
+  ): AdvisorScoredRecommendation[] => {
+    let finished = sorted.map((recommendation, index) => {
+      const next = sorted[index + 1];
+      const ambiguityPressure = next
+        && Math.abs(recommendation.confidence - next.confidence) <= 0.05
+        ? 0.04
+        : 0;
+      const uncertainty = uncertaintyFor(
+        recommendation.laneContributions,
+        recommendation.confidence,
+        ambiguityPressure,
+      );
+      return {
+        ...recommendation,
+        uncertainty,
+        passes_threshold: recommendation.confidence
+          >= (options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD)
+          && uncertainty <= (options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD),
+      };
+    });
+    finished = applyAmbiguity(finished);
 
-  // Low-information ambiguity abstention: a short, intent-less prompt that lands
-  // in a multi-candidate ambiguity cluster is genuinely under-specified. Floor
-  // every cluster member's uncertainty above the strict threshold so strict
-  // callers abstain, while confidence-only callers still surface the best guess
-  // (the disambiguated top-ranked candidate).
-  const meaningfulTokenCount = promptLower.split(/\s+/).filter((token) => token.length > 1).length;
-  const lowInfoPrompt = meaningfulTokenCount <= 3 && !hasTaskIntent && !promptLower.includes('/');
-  if (lowInfoPrompt) {
-    const clusterMembers = ranked.filter((recommendation) => (recommendation.ambiguousWith?.length ?? 0) > 0);
-    // Only abstain when the cluster's lead is built from diffuse, shared
-    // single-word keyword matches rather than a distinctive multi-word phrase
-    // anchor (an explicit-author/derived phrase match such as "code audit").
-    // A multi-word anchor means the prompt does pin a specific skill, so it
-    // should route instead of abstaining.
-    const clusterHasPhraseAnchor = clusterMembers.some((recommendation) => (
-      recommendation.laneContributions.some((contribution) => (
-        (contribution.lane === 'explicit_author' || contribution.lane === 'derived_generated')
-        && contribution.evidence.some((entry) => entry.includes(' '))
-      ))
-    ));
-    if (clusterMembers.length >= 2 && !clusterHasPhraseAnchor) {
-      const confThreshold = options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD;
-      const uncThreshold = options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD;
-      const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
-      ranked = ranked.map((recommendation) => {
-        if ((recommendation.ambiguousWith?.length ?? 0) === 0) return recommendation;
-        const uncertainty = Math.max(recommendation.uncertainty, floor);
-        return {
-          ...recommendation,
-          uncertainty,
-          passes_threshold: recommendation.confidence >= confThreshold && uncertainty <= uncThreshold,
-        };
-      });
-    }
-  }
-
-  // Class C: breadth / multi-concern abstention. A broad greenfield build
-  // ("build full stack typescript service") or a multi-concern optimization
-  // ("optimize X execution speed and recommendation quality") is under-specified
-  // for single-skill routing. When the top code-like candidate carries that
-  // shape, floor every passing candidate's uncertainty so strict callers abstain.
-  // Narrow anchors (a file, failing test, named component/route, benchmark, or
-  // review intent) bypass the broad-build branch; the multi-concern branch
-  // requires two distinct concern classes, so a file + single concern still routes.
-  if (!promptLower.includes('/')) {
-    const concernClasses = (CONCERN_PERF.test(promptLower) ? 1 : 0) + (CONCERN_QUALITY.test(promptLower) ? 1 : 0);
-    const broadBuild = BREADTH_BUILD_VERB.test(promptLower) && BREADTH_NOUN.test(promptLower) && !BREADTH_NARROW_ANCHOR.test(promptLower);
-    const multiConcern = MULTI_CONCERN_VERB.test(promptLower) && concernClasses >= 2;
-    if (broadBuild || multiConcern) {
-      const topRec = ranked.find((recommendation) => recommendation.passes_threshold) ?? null;
-      if (topRec && (topRec.skill === 'sk-code' || topRec.skill === 'system-skill-advisor')) {
-        const confThreshold = options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD;
-        const uncThreshold = options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+    // Low-information ambiguity abstention: a short, intent-less prompt that lands
+    // in a multi-candidate ambiguity cluster is genuinely under-specified. Floor
+    // every cluster member's uncertainty above the strict threshold so strict
+    // callers abstain, while confidence-only callers still surface the best guess
+    // (the disambiguated top-ranked candidate).
+    const meaningfulTokenCount = promptLower.split(/\s+/)
+      .filter((token) => token.length > 1).length;
+    const lowInfoPrompt = meaningfulTokenCount <= 3
+      && !hasTaskIntent
+      && !promptLower.includes('/');
+    if (lowInfoPrompt) {
+      const clusterMembers = finished.filter((recommendation) => (
+        (recommendation.ambiguousWith?.length ?? 0) > 0
+      ));
+      // Only abstain when the cluster's lead is built from diffuse, shared
+      // single-word keyword matches rather than a distinctive multi-word phrase
+      // anchor (an explicit-author/derived phrase match such as "code audit").
+      // A multi-word anchor means the prompt does pin a specific skill, so it
+      // should route instead of abstaining.
+      const clusterHasPhraseAnchor = clusterMembers.some((recommendation) => (
+        recommendation.laneContributions.some((contribution) => (
+          (contribution.lane === 'explicit_author'
+            || contribution.lane === 'derived_generated')
+          && contribution.evidence.some((entry) => entry.includes(' '))
+        ))
+      ));
+      if (clusterMembers.length >= 2 && !clusterHasPhraseAnchor) {
+        const confThreshold = options.confidenceThreshold
+          ?? DEFAULT_CONFIDENCE_THRESHOLD;
+        const uncThreshold = options.uncertaintyThreshold
+          ?? DEFAULT_UNCERTAINTY_THRESHOLD;
         const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
-        ranked = ranked.map((recommendation) => {
-          if (!recommendation.passes_threshold) return recommendation;
+        finished = finished.map((recommendation) => {
+          if ((recommendation.ambiguousWith?.length ?? 0) === 0) return recommendation;
           const uncertainty = Math.max(recommendation.uncertainty, floor);
           return {
             ...recommendation,
             uncertainty,
-            passes_threshold: recommendation.confidence >= confThreshold && uncertainty <= uncThreshold,
+            passes_threshold: recommendation.confidence >= confThreshold
+              && uncertainty <= uncThreshold,
           };
         });
       }
     }
-  }
 
-  // Post-fusion so a resolved executor delegation can carry negative evidence
-  // the pre-clamp explicit lane cannot express, and so it runs after every
-  // abstention gate. The alias table is metadata-derived, so new executors or
-  // small models need no change here. It is a no-op on non-delegation prompts.
-  ranked = applyExecutorDelegationOverride(ranked, {
-    promptLower,
-    projection,
-    workspaceRoot: options.workspaceRoot,
-    confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
-    uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+    // Class C: breadth / multi-concern abstention. A broad greenfield build
+    // ("build full stack typescript service") or a multi-concern optimization
+    // ("optimize X execution speed and recommendation quality") is under-specified
+    // for single-skill routing. When the top code-like candidate carries that
+    // shape, floor every passing candidate's uncertainty so strict callers abstain.
+    // Narrow anchors (a file, failing test, named component/route, benchmark, or
+    // review intent) bypass the broad-build branch; the multi-concern branch
+    // requires two distinct concern classes, so a file + single concern still routes.
+    if (!promptLower.includes('/')) {
+      const concernClasses = (CONCERN_PERF.test(promptLower) ? 1 : 0)
+        + (CONCERN_QUALITY.test(promptLower) ? 1 : 0);
+      const broadBuild = BREADTH_BUILD_VERB.test(promptLower)
+        && BREADTH_NOUN.test(promptLower)
+        && !BREADTH_NARROW_ANCHOR.test(promptLower);
+      const multiConcern = MULTI_CONCERN_VERB.test(promptLower)
+        && concernClasses >= 2;
+      if (broadBuild || multiConcern) {
+        const topRec = finished.find((recommendation) => recommendation.passes_threshold)
+          ?? null;
+        if (topRec && (
+          topRec.skill === 'sk-code'
+          || topRec.skill === 'system-skill-advisor'
+        )) {
+          const confThreshold = options.confidenceThreshold
+            ?? DEFAULT_CONFIDENCE_THRESHOLD;
+          const uncThreshold = options.uncertaintyThreshold
+            ?? DEFAULT_UNCERTAINTY_THRESHOLD;
+          const floor = SCORING_CALIBRATION.uncertainty.lowInfoAmbiguityFloor;
+          finished = finished.map((recommendation) => {
+            if (!recommendation.passes_threshold) return recommendation;
+            const uncertainty = Math.max(recommendation.uncertainty, floor);
+            return {
+              ...recommendation,
+              uncertainty,
+              passes_threshold: recommendation.confidence >= confThreshold
+                && uncertainty <= uncThreshold,
+            };
+          });
+        }
+      }
+    }
+
+    // Post-fusion so a resolved executor delegation can carry negative evidence
+    // the pre-clamp explicit lane cannot express, and so it runs after every
+    // abstention gate. The alias table is metadata-derived, so new executors or
+    // small models need no change here. It is a no-op on non-delegation prompts.
+    return applyExecutorDelegationOverride(finished, {
+      promptLower,
+      projection,
+      workspaceRoot: options.workspaceRoot,
+      confidenceThreshold: options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
+      uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
+    });
+  };
+
+  const fullRun = finishRanked(ranked);
+  const doctorFreeRun = finishRanked(ranked.filter((recommendation) => (
+    recommendation.kind !== 'command'
+    || !recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+  )));
+  let doctorFreeIndex = 0;
+  ranked = fullRun.map((recommendation) => {
+    if (
+      recommendation.kind === 'command'
+      && recommendation.skill.startsWith(DOCTOR_BRIDGE_PREFIX)
+    ) {
+      return recommendation;
+    }
+    return doctorFreeRun[doctorFreeIndex++]!;
   });
 
   ranked = requireDoctorPhraseAnchor(ranked);
-  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower);
+  const leadPhrasesById = new Map<string, readonly string[]>();
+  for (const skill of projection.skills) {
+    if (!skill.id.startsWith(DOCTOR_BRIDGE_PREFIX) || !skill.leadPhrases?.length) continue;
+    leadPhrasesById.set(skill.id, skill.leadPhrases);
+  }
+  ranked = keepPassingSkillsAboveDoctorBridges(ranked, promptLower, leadPhrasesById);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

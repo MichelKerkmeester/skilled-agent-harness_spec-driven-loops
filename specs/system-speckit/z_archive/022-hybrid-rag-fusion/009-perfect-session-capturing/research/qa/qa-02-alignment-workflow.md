@@ -1,4 +1,4 @@
-● Todo added: Review workflow.ts against sk-code-opencode rules
+● Todo added: Review workflow.ts against sk-code-skilled rules
 
 ● Read .opencode/skills/system-spec-kit/scripts/core/workflow.ts lines 1-300
   └ 299 lines read
@@ -17,7 +17,7 @@
 - **Category:** ALIGNMENT
 - **Current Behavior:** File uses block-style section banners (`/* ... */`) instead of `// 1. ...` numbered ALL-CAPS line headers.
 - **Expected Behavior:** Use explicit numbered line headers like `// 1. IMPORTS`, `// 2. TYPES`, `// 3. IMPLEMENTATION`, `// 4. EXPORTS`.
-- **Root Cause:** Header format diverged from sk-code-opencode P0 convention.
+- **Root Cause:** Header format diverged from sk-code-skilled P0 convention.
 - **Suggested Fix:** Replace section banners with single-line numbered ALL-CAPS `//` headers and add a `// 1. IMPORTS` section near the import block.
 - **Effort:** SMALL (<30 min)
 

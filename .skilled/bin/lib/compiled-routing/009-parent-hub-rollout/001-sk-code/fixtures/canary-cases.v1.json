@@ -119,9 +119,9 @@
       "riskSlice": "actor:mutating:composite",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-opencode", "sk-code-webflow"],
+      "expectedModes": ["sk-code-skilled", "sk-code-webflow"],
       "gold": {
-        "expectedIntents": ["sk-code-opencode", "sk-code-webflow"],
+        "expectedIntents": ["sk-code-skilled", "sk-code-webflow"],
         "expectedResources": []
       }
     },
@@ -132,9 +132,9 @@
       "riskSlice": "actor:mutating:composite",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-webflow", "sk-code-opencode"],
+      "expectedModes": ["sk-code-webflow", "sk-code-skilled"],
       "gold": {
-        "expectedIntents": ["sk-code-webflow", "sk-code-opencode"],
+        "expectedIntents": ["sk-code-webflow", "sk-code-skilled"],
         "expectedResources": []
       }
     },
@@ -144,9 +144,9 @@
       "riskSlice": "actor:mutating:composite",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-opencode", "sk-code-webflow"],
+      "expectedModes": ["sk-code-skilled", "sk-code-webflow"],
       "gold": {
-        "expectedIntents": ["sk-code-opencode", "sk-code-webflow"],
+        "expectedIntents": ["sk-code-skilled", "sk-code-webflow"],
         "expectedResources": []
       }
     },
@@ -157,9 +157,9 @@
       "riskSlice": "actor:mutating:composite",
       "expectedAction": "route",
       "expectedSelectionKind": "orderedBundle",
-      "expectedModes": ["sk-code-webflow", "sk-code-opencode"],
+      "expectedModes": ["sk-code-webflow", "sk-code-skilled"],
       "gold": {
-        "expectedIntents": ["sk-code-webflow", "sk-code-opencode"],
+        "expectedIntents": ["sk-code-webflow", "sk-code-skilled"],
         "expectedResources": []
       }
     },
@@ -247,11 +247,11 @@
       "expectedAction": "route",
       "expectedSelectionKind": "single",
       "expectedModes": [
-        "sk-code-opencode"
+        "sk-code-skilled"
       ],
       "gold": {
         "expectedIntents": [
-          "sk-code-opencode"
+          "sk-code-skilled"
         ],
         "expectedResources": []
       }

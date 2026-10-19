@@ -42,7 +42,7 @@ _memory:
 
 ### REQ-1 — stale rename references in the router-sync test (fixed)
 
-`sk-code-router-sync.vitest.ts` wouldn't load: it imported the removed `sk-doc/create-skill/...` path and hardcoded pre-rename sk-code mode names. Repointed six references to the canonical names — the `sk-create-skill` contract import, `code-opencode`→`sk-code-opencode` (three sites), `code-webflow`→`sk-code-webflow`, and the parent-tier path `code-review/assets/...`→`sk-code-review/assets/...`. The suite now loads and passes **10/10** (it was 0 tests / failed-to-load).
+`sk-code-router-sync.vitest.ts` wouldn't load: it imported the removed `sk-doc/create-skill/...` path and hardcoded pre-rename sk-code mode names. Repointed six references to the canonical names — the `sk-create-skill` contract import, `code-skilled`→`sk-code-skilled` (three sites), `code-webflow`→`sk-code-webflow`, and the parent-tier path `code-review/assets/...`→`sk-code-review/assets/...`. The suite now loads and passes **10/10** (it was 0 tests / failed-to-load).
 
 ### REQ-2 — compiled-routing drift (operator-gated, no live bug)
 

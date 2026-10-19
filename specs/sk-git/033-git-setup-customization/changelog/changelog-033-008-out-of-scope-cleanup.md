@@ -54,8 +54,8 @@ The sk-code drift guards pass again, every doctor script has a test, no Hermes m
 
 | File | Action | What changed |
 |---|---|---|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
 | `.skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs` | Created | Passing run and stale-build exit 2 |
 | `.skilled/commands/doctor/scripts/README.md, tests/README.md` | Modified | Coverage claim and suite row |
 | `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Modified | Header without semicolons |

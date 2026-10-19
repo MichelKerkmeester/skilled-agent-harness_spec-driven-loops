@@ -1,6 +1,6 @@
-# Iteration 003 — sk-code-opencode compliance and bugs in the scripts and tests
+# Iteration 003 — sk-code-skilled compliance and bugs in the scripts and tests
 
-- **Focus:** Axes 2 + 6. Syntax-check every hub script; validate headers/constants/comments against the sk-code-opencode JavaScript style guide and checklist; run all four test suites containment-safe; read `scorer-report.mjs` and the benchmark scorers' entry points for latent bugs.
+- **Focus:** Axes 2 + 6. Syntax-check every hub script; validate headers/constants/comments against the sk-code-skilled JavaScript style guide and checklist; run all four test suites containment-safe; read `scorer-report.mjs` and the benchmark scorers' entry points for latent bugs.
 - **Read first:** no `steer.md` exists in this lineage (checked at iteration start, absent).
 - **Method:** `node --check` on all 9 scripts; checklist + style-guide comparison; `node --test` on all four suites with `TMPDIR` redirected inside the lineage and a `git status` containment check; targeted reads of entry points and error paths.
 
@@ -29,7 +29,7 @@ Run with `TMPDIR` pointed inside this lineage; a `git status --porcelain` before
 ### Syntax and header compliance
 
 - All 9 scripts pass `node --check` (exit 0): the two shared modules, their two test suites, the two benchmark scorers, `replay-helpers.mjs` and both benchmark test suites.
-- Headers: all five hub scripts carry the style guide's canonical header — `// ───` divider (measured 67 box-drawing characters, the required width) + `// MODULE: [Module Name]` + divider (`sk-code-opencode/references/javascript/style-guide.md:36-63`). The three `.cjs` callers use the older `╔═╗` box; the same style guide accepts the older box "where it already exists" (`:62-63`), so the callers are grandfathered, not in violation.
+- Headers: all five hub scripts carry the style guide's canonical header — `// ───` divider (measured 67 box-drawing characters, the required width) + `// MODULE: [Module Name]` + divider (`sk-code-skilled/references/javascript/style-guide.md:36-63`). The three `.cjs` callers use the older `╔═╗` box; the same style guide accepts the older box "where it already exists" (`:62-63`), so the callers are grandfathered, not in violation.
 - No commented-out code found in the shared modules or benchmark scorers; module constants are UPPER_SNAKE_CASE (`PI_CLASSIFIERS`, `BOOTSTRAP_REPLICATES`, `DEFAULT_TIMEOUT_MS`); public functions carry JSDoc; functions use guard clauses and early returns; no `console.*` calls anywhere in the hub scripts (output goes through explicit report sinks), so the bracketed-logging rule has no surface to apply to.
 - Numbered ALL-CAPS section dividers are present and consistent (`// 1. IMPORTS` … `// 8. REPORT LINES`).
 

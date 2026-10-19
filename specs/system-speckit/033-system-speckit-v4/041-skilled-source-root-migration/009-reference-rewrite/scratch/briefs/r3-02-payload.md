@@ -16,7 +16,7 @@ Columns: path, line, column, hash, class and detail from the rule, text of the l
 .skilled/skills/sk-code/mode-registry.json	50	85	740d95dcbbc299d6	R3:entry:.code-review-cache	"writeScopeNote": "Write is scoped to the ephemeral, untracked review cache (.opencode/.code-review-cache/<repo-ref>.jsonl); code-review never writes tracked project files (Edit is forbidden), so the tracked workspace is not mutated."
 .skilled/skills/sk-code/sk-code-mobile-cli/scripts/run-source-gates.sh	26	42	4ae93f062e4ec422	R3:bare	# SKILL.md reached through the app repo's .opencode symlink; pass $1 to override.
 .skilled/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh	27	36	371a6e48aee43367	R3:bare	# reached through the plugin repo's .opencode symlink; pass $1 to override.
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py	110	6	010750e3636e670d	R3:root-fragment	"/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/"
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py	110	6	010750e3636e670d	R3:root-fragment	"/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/"
 .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh	74	54	cb5a4fa95a810a1f	R3:bare	# scripts -> code-quality -> sk-code -> skills -> .opencode -> repo root
 .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.test.sh	8	44	2e8b4464cff2a6f0	R3:bare	# scripts -> review -> sk-code -> skills -> .opencode -> repo root
 .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json	830	5	5f91a2a33afc5b23	R3:segment-entry:.claude	".opencode",

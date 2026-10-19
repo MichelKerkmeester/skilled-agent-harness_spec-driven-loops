@@ -74,4 +74,4 @@ Auto-generated from JSONL state log and strategy file. Regenerated after batch 1
 - Full test suite execution
 - 32 unreferenced files traceability check
 - Pipeline end-to-end connection verification
-- sk-code-opencode compliance check
+- sk-code-skilled compliance check

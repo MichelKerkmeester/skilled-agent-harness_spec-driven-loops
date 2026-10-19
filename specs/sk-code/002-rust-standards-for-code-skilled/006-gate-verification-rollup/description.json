@@ -1,0 +1,23 @@
+{
+  "level": 1,
+  "specFolder": "sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
+  "description": "The Rust upgrade is not \"done\" until every gate is green",
+  "keywords": [
+    "rust",
+    "upgrade",
+    "done",
+    "until",
+    "every",
+    "gate",
+    "green"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.382Z",
+  "specId": "006",
+  "folderSlug": "gate-verification-rollup",
+  "parentChain": [
+    "sk-code",
+    "002-rust-standards-for-code-skilled"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

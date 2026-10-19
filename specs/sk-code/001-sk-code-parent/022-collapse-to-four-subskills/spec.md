@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Collapse sk-code from 8 sub-skills to 4"
-description: "sk-code is a two-axis parent hub with 3 surface skills (code-opencode, code-webflow, code-animation) and 5 workflow-mode skills (code-implement, code-debug, code-verify, code-quality, code-review). This packet collapses it to a surface-primary model with 4 sub-skills: the workflow-mode skills implement/debug/verify dissolve into the two surfaces, code-animation folds into code-webflow as non-skill references/assets, and code-review + code-quality stay standalone. Routing, external references, and the Lane-C benchmark are reconciled to the 4-skill model."
+description: "sk-code is a two-axis parent hub with 3 surface skills (code-skilled, code-webflow, code-animation) and 5 workflow-mode skills (code-implement, code-debug, code-verify, code-quality, code-review). This packet collapses it to a surface-primary model with 4 sub-skills: the workflow-mode skills implement/debug/verify dissolve into the two surfaces, code-animation folds into code-webflow as non-skill references/assets, and code-review + code-quality stay standalone. Routing, external references, and the Lane-C benchmark are reconciled to the 4-skill model."
 trigger_phrases:
   - "sk-code collapse to four sub-skills"
   - "dissolve code-implement code-debug code-verify"
@@ -41,10 +41,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`). Three of the mode skills are near-empty routing shells: `code-implement` is two files of surface-agnostic doctrine, `code-debug` is a checklist plus doctrine, and `code-verify` is doctrine plus a few generic scripts. Their content already delegates to the shared surface router, so they add hub-routing surface area and vocabulary-class weight without owning surface-specific behaviour. `code-animation` is a full surface skill even though Motion.dev is only ever an overlay on Webflow work.
+The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-skilled`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`). Three of the mode skills are near-empty routing shells: `code-implement` is two files of surface-agnostic doctrine, `code-debug` is a checklist plus doctrine, and `code-verify` is doctrine plus a few generic scripts. Their content already delegates to the shared surface router, so they add hub-routing surface area and vocabulary-class weight without owning surface-specific behaviour. `code-animation` is a full surface skill even though Motion.dev is only ever an overlay on Webflow work.
 
 ### Purpose
-Collapse the hub to a surface-primary model with four sub-skills — `code-opencode`, `code-webflow`, `code-review`, `code-quality`. Dissolve `code-implement`/`code-debug`/`code-verify` by consolidating their generic doctrine into `shared/` and symlinking it into both surface skills (preserving their real scripts and checklists), fold `code-animation` into `code-webflow` as non-skill references/assets, and reconcile routing, external references, and the Lane-C benchmark to the new shape.
+Collapse the hub to a surface-primary model with four sub-skills — `code-skilled`, `code-webflow`, `code-review`, `code-quality`. Dissolve `code-implement`/`code-debug`/`code-verify` by consolidating their generic doctrine into `shared/` and symlinking it into both surface skills (preserving their real scripts and checklists), fold `code-animation` into `code-webflow` as non-skill references/assets, and reconcile routing, external references, and the Lane-C benchmark to the new shape.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -53,7 +53,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 ## 3. SCOPE
 
 ### In Scope
-- Dissolve `code-implement`, `code-debug`, `code-verify`: move their generic workflow doctrine to `shared/references/` and symlink it into `code-opencode` and `code-webflow`; relocate their real assets (debug + verification checklists, `verify_*.py` scripts) so nothing is lost; delete the three SKILL.md folders.
+- Dissolve `code-implement`, `code-debug`, `code-verify`: move their generic workflow doctrine to `shared/references/` and symlink it into `code-skilled` and `code-webflow`; relocate their real assets (debug + verification checklists, `verify_*.py` scripts) so nothing is lost; delete the three SKILL.md folders.
 - Fold `code-animation` into `code-webflow`: move `references/` + `assets/` under `code-webflow`, delete its SKILL.md, remove it from routing.
 - Keep `code-review` and `code-quality` standalone (unchanged roles; `code-quality` retains its gate + hook scripts).
 - Symlink any `shared/` reference a surviving sub-skill consumes into that sub-skill so each is self-contained; `shared/` stays the source of truth.
@@ -90,7 +90,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 
 | ID | Requirement | Acceptance Criteria | Trace |
 |----|-------------|---------------------|-------|
-| REQ-001 | Hub has exactly 4 sub-skills | Only `code-opencode`, `code-webflow`, `code-review`, `code-quality` retain a SKILL.md; the other four folders are gone or asset-only | purpose |
+| REQ-001 | Hub has exactly 4 sub-skills | Only `code-skilled`, `code-webflow`, `code-review`, `code-quality` retain a SKILL.md; the other four folders are gone or asset-only | purpose |
 | REQ-002 | No content or capability lost | Dissolved-mode doctrine reachable from both surfaces; debug/verify checklists + `verify_*.py` scripts + animation refs/assets preserved on disk | scope |
 | REQ-003 | Routing reconciled + consistent | `hub-router.json` + `mode-registry.json` + `smart_routing.md` reference only surviving skills; vocab-sync exits 0; drift-guard green | scope |
 
@@ -114,7 +114,7 @@ Collapse the hub to a surface-primary model with four sub-skills — `code-openc
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: sk-code exposes exactly four routable sub-skills. [EVIDENCE: SKILL.md present only under code-opencode/webflow/review/quality; hub-router + mode-registry list only those]
+- **SC-001**: sk-code exposes exactly four routable sub-skills. [EVIDENCE: SKILL.md present only under code-skilled/webflow/review/quality; hub-router + mode-registry list only those]
 - **SC-002**: Zero lost content. [EVIDENCE: dissolved-mode doctrine present under shared/ + symlinked into both surfaces; verify_*.py + all checklists + animation refs/assets exist on disk]
 - **SC-003**: Gates green. [EVIDENCE: parent-skill-check STRICT 0 fails; vocab-sync exit 0; check-markdown-links clean; drift-guard green; router-final ≥ CONDITIONAL 71; validate.sh --strict exit 0]
 

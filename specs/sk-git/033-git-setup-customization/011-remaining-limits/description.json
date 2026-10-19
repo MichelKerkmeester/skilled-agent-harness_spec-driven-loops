@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-git/033-git-setup-customization/011-remaining-limits",
+  "description": "Phase 11: remaining-limits",
+  "keywords": [
+    "phase",
+    "remaining-limits"
+  ],
+  "lastUpdated": "2026-10-17T11:59:10.592Z",
+  "specId": "011",
+  "folderSlug": "remaining-limits",
+  "parentChain": [
+    "sk-git",
+    "033-git-setup-customization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

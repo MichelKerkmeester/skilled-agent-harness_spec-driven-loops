@@ -8,7 +8,7 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 2.2.0.39
+version: 2.2.1.0
 ---
 
 # Core Standards - Structure and Validation Rules
@@ -228,6 +228,8 @@ Content...
 **Key principle**: Horizontal rules create visual hierarchy between MAJOR sections (H2), not subsections (H3). Use blank lines to separate H3 subsections within the same H2 parent.
 
 **Enforcement**: `validate_document.py` enforces this divider rule (plus no Table of Contents and no `<!-- ANCHOR -->` navigation comments) for README and skill-doc types by default. To opt out for a run, set `SKDOC_ENFORCE_STRUCTURE=0` in the environment. See [validation-and-enforcement.md § Structural enforcement flag](../../sk-create-quality-control/references/validation-and-enforcement.md). To switch every sk-doc validator off, not just these rules, set `SKDOC_SKIP_VALIDATION=1` as the same reference's validation off switch section describes.
+
+**Root README exception**: the `README.md` at a repository root separates its H2 sections with an `&nbsp;` line instead of `---`. `validate_document.py` skips the divider rule for that one file and `extract_structure.py` keeps its full divider score, so neither reports or restores the missing rules. Every other README keeps the rule.
 
 ---
 

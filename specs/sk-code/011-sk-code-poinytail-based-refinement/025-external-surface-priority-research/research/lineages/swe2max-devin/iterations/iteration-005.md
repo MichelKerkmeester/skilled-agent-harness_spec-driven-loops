@@ -26,7 +26,7 @@ only, rerun the suite, and judge whether R2 as written is complete.
 
 | class | claim | evidence | sev |
 |---|---|---|---|
-| ORDER | verify-router-sync.cjs is the only guard script that hardcodes the examples: `SURFACES=['sk-code-webflow','sk-code-opencode']`, `SURFACE_PACKETS=+sk-code-obsidian`; verify_alignment_drift.py and verify_stack_folders.py contain zero obsidian/webflow/surface-name hits. | .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:31-32; `rg -n -i 'obsidian\|webflow\|surface'` over the four scripts (exit 0; no hits in the two .py files) | P1 |
+| ORDER | verify-router-sync.cjs is the only guard script that hardcodes the examples: `SURFACES=['sk-code-webflow','sk-code-skilled']`, `SURFACE_PACKETS=+sk-code-obsidian`; verify_alignment_drift.py and verify_stack_folders.py contain zero obsidian/webflow/surface-name hits. | .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:31-32; `rg -n -i 'obsidian\|webflow\|surface'` over the four scripts (exit 0; no hits in the two .py files) | P1 |
 | BREAK | Baseline (examples deleted, no fix): suite exits 1 — router-sync check 1a 99 dead routes (hub-router/surface router still list deleted resources), check 2 `threw: ENOENT ... sk-code-webflow/SKILL.md`; doc-claims check `paths` 260 unresolved refs (ROUTER.md, shared/, sk-code-quality, hub SKILL.md:203). 1b, 3, 4 PASS; alignment-drift, stack-folders PASS. | `bash run-all-drift-guards.sh` in copy, exit 1: `FAIL check 1a ... (99 problem(s))`, `threw: ENOENT`, `doc-claims: 3/4`, `2 guard(s) FAILED` | P0 |
 | BREAK | Naive R2 patch (derive both sets from mode-registry.json `packetKind==="surface"`, existence-filtered, SURFACES=those with non-empty parseRouter resourceMap) repairs check 2 post-deletion (PASS) but does NOT green the suite: 1a still 99 dead routes, doc-claims still 260 — so even a perfect tooling fix cannot pass without re-mint + doc scrub (R3 territory). | patched copy rerun: `PASS check 2`, `FAIL check 1a (99)`, `FAIL check paths (260)`, `2 guard(s) FAILED` | P0 |
 | PRESENCE | The naive patch is NOT behavior-preserving: on the pristine control tree the same patch makes check 2 FAIL with 35 `parent map <INTENT> is missing child path sk-code-obsidian/...` — obsidian's SKILL.md RESOURCE_MAP is non-empty (SKILL.md:92), so a non-empty-map filter wrongly promotes it to union child. | control run: `FAIL check 2 ... (35 problem(s))` vs baseline `router-sync: 4/5 checks passed`; .skilled/skills/sk-code/sk-code-obsidian/SKILL.md:92 | P0 |
@@ -83,9 +83,9 @@ const SURFACE_PACKETS = new Set(SURFACE_MODES.map((m) => m.packet));
 
 ## Sources Consulted
 
-- .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh (whole file)
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:1-367
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:38,42-44,79-330
+- .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh (whole file)
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:1-367
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:38,42-44,79-330
 - .skilled/skills/sk-code/mode-registry.json, leaf-manifest.json, hub-router.json (routerPolicy.tieBreak)
 - .skilled/skills/sk-code/ROUTER.md section anchors; sk-code-webflow/SKILL.md:55-100; sk-code-obsidian/SKILL.md:70-100
 - .skilled/bin/tests/compiled-route-surface-hint.test.cjs; .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json; scripts/tests/verify-router-sync.test.cjs; scripts/tests/verify-doc-claims.test.cjs

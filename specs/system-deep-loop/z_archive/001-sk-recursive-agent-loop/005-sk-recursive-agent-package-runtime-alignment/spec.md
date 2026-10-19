@@ -48,7 +48,7 @@ _memory:
 After phase `004`, the agent-improver workflow was functionally strong, but the package still had a stricter alignment gap against the `sk-doc` templates. The source package docs were valid but not template-faithful enough, the mutator agent still used the old `agent-improvement-loop` name across runtimes, the command body and wrappers still reflected an older command shape, and the `.agents/skills/sk-improve-agent` mirror had not been resynchronized to the corrected source package.
 
 ### Purpose
-Create a package-and-runtime alignment phase that brings the agent-improver skill docs, markdown assets, runtime agent surfaces, command surfaces, and mirrored `.agents/skills` package into explicit parity with the `sk-doc` and `sk-code-opencode` expectations.
+Create a package-and-runtime alignment phase that brings the agent-improver skill docs, markdown assets, runtime agent surfaces, command surfaces, and mirrored `.agents/skills` package into explicit parity with the `sk-doc` and `sk-code-skilled` expectations.
 <!-- /ANCHOR:problem -->
 
 ---

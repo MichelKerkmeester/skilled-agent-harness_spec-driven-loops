@@ -3,11 +3,37 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
-import { keepPassingSkillsAboveDoctorBridges, requireDoctorPhraseAnchor } from '../../lib/scorer/fusion.js';
+import {
+  isDoctorCommandTyped,
+  keepPassingSkillsAboveDoctorBridges,
+  requireDoctorPhraseAnchor,
+} from '../../lib/scorer/fusion.js';
 import type { AdvisorScoredRecommendation } from '../../lib/scorer/types.js';
 
-// A passing skill keeps first place over a doctor bridge unless the prompt types a doctor slash command.
+describe('isDoctorCommandTyped', () => {
+  it('accepts a leading doctor command after whitespace', () => {
+    expect(isDoctorCommandTyped('  /doctor:x')).toBe(true);
+  });
+
+  it.each([
+    ['run /doctor:x', true],
+    ['kick off /doctor:x', true],
+    ['rerun /doctor:x', false],
+    ["don't run /doctor:x", true],
+    ['run `/doctor:x`', false],
+    ['the hook that /doctor:git setup lists', false],
+    ['say "run /doctor:x"', false],
+  ] as const)('detects typed invocation boundaries in %s', (prompt, expected) => {
+    expect(isDoctorCommandTyped(prompt)).toBe(expected);
+  });
+});
+
+// A typed doctor command moves its matching passing bridge ahead of passing skills.
 describe('doctor bridge ordering', () => {
+  const leadPhrasesById = new Map<string, readonly string[]>([
+    ['command-doctor-env', ['check my environment variables']],
+  ]);
+
   it('moves a doctor bridge below the passing skill', () => {
     const ranked = [
       rec('command-doctor-git-setup', 'command', true),
@@ -22,12 +48,13 @@ describe('doctor bridge ordering', () => {
     ]);
   });
 
-  it('moves every doctor bridge below the last passing skill and keeps their order', () => {
+  it('moves passing doctor bridges after the second passing skill in order', () => {
     const ranked = [
       rec('command-doctor-a', 'command', true),
       rec('sk-code', 'skill', true),
       rec('command-doctor-b', 'command', true),
       rec('sk-git', 'skill', true),
+      rec('sk-ops', 'skill', true),
       rec('sk-doc', 'skill', false),
     ];
 
@@ -38,35 +65,193 @@ describe('doctor bridge ordering', () => {
       'sk-git',
       'command-doctor-a',
       'command-doctor-b',
+      'sk-ops',
       'sk-doc',
+    ]);
+  });
+
+  it('puts a passing doctor bridge at index two when three skills pass', () => {
+    const ranked = [
+      rec('sk-code', 'skill', true),
+      rec('sk-git', 'skill', true),
+      rec('sk-doc', 'skill', true),
+      rec('command-doctor-setup', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'check my tooling');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-code',
+      'sk-git',
+      'command-doctor-setup',
+      'sk-doc',
+    ]);
+  });
+
+  it('moves a matching lead-phrase bridge ahead of a passing skill', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'check my environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'command-doctor-env',
+      'sk-env',
+    ]);
+  });
+
+  it('keeps the skill-first order when no lead-phrase map is passed', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'check my environment variables');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
+    ]);
+  });
+
+  it('does not match a partial lead phrase', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
+    ]);
+  });
+
+  it('does not promote a non-passing lead-phrase bridge', () => {
+    const ranked = [
+      rec('sk-env', 'skill', true),
+      rec('command-doctor-env', 'command', false),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'check my environment variables',
+      leadPhrasesById,
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-env',
+      'command-doctor-env',
+    ]);
+  });
+
+  it('moves the invoked passing doctor bridge first', () => {
+    const ranked = [
+      rec('sk-code', 'skill', true),
+      rec('command-doctor-setup', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'please run /doctor:setup for me',
+    );
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'command-doctor-setup',
+      'sk-code',
     ]);
   });
 
   it('keeps a doctor bridge first when the prompt types a doctor slash command', () => {
     const ranked = [
+      rec('command-doctor-git', 'command', true),
       rec('command-doctor-git-setup', 'command', true),
       rec('sk-git', 'skill', true),
     ];
 
-    const result = keepPassingSkillsAboveDoctorBridges(ranked, '/doctor:git setup');
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      '/doctor:git setup lists',
+    );
 
     expect(result.map((recommendation) => recommendation.skill)).toEqual([
       'command-doctor-git-setup',
+      'command-doctor-git',
       'sk-git',
     ]);
   });
 
-  it('moves a doctor bridge below the passing skill when the prompt only quotes the command', () => {
+  it('moves a doctor bridge below the passing skill when the prompt quotes the command', () => {
     const ranked = [
       rec('command-doctor-git-setup', 'command', true),
       rec('sk-git', 'skill', true),
     ];
 
-    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'fix the git hook that /doctor:git setup lists');
+    const result = keepPassingSkillsAboveDoctorBridges(
+      ranked,
+      'see the output of `/doctor:git setup`',
+    );
 
     expect(result.map((recommendation) => recommendation.skill)).toEqual([
       'sk-git',
       'command-doctor-git-setup',
+    ]);
+  });
+
+  it('puts the matching skill bridge first when its id appears in the slash command', () => {
+    const ranked = [
+      rec('sk-code', 'skill', true),
+      rec('command-doctor-sk-code', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, '/doctor:sk-code');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'command-doctor-sk-code',
+      'sk-code',
+    ]);
+  });
+
+  it('keeps scored order when a typed command has no matching passing bridge', () => {
+    const ranked = [
+      rec('sk-code', 'skill', true),
+      rec('command-doctor-setup', 'command', true),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, '/doctor:sk-code');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-code',
+      'command-doctor-setup',
+    ]);
+  });
+
+  it('keeps a nonpassing doctor bridge in place while moving passing bridges', () => {
+    const ranked = [
+      rec('command-doctor-setup', 'command', true),
+      rec('sk-code', 'skill', true),
+      rec('sk-git', 'skill', true),
+      rec('command-doctor-stale', 'command', false),
+    ];
+
+    const result = keepPassingSkillsAboveDoctorBridges(ranked, 'check my tools');
+
+    expect(result.map((recommendation) => recommendation.skill)).toEqual([
+      'sk-code',
+      'sk-git',
+      'command-doctor-setup',
+      'command-doctor-stale',
     ]);
   });
 

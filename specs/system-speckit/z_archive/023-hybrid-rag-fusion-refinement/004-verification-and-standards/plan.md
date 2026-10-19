@@ -66,7 +66,7 @@ Verification-first approach: prove runtime truth before updating documentation.
 ### Key Components
 - **Verification matrix**: Root gates, workspace builds, Vitest suites, runtime smokes, interop tests
 - **Highest-risk surfaces**: memory-save, memory-index, shared-memory, vector-index-store, session-manager, generate-context, workflow
-- **Standards docs**: `sk-code-opencode` and related standards surfaces outside 023
+- **Standards docs**: `sk-code-skilled` and related standards surfaces outside 023
 
 ### Data Flow
 Run highest-risk retests -> run full verification matrix -> pass/fail gate -> only then update standards docs -> close parent packet
@@ -103,7 +103,7 @@ Run highest-risk retests -> run full verification matrix -> pass/fail gate -> on
 - [x] `node scripts/tests/test-export-contracts.js`
 
 ### Step 3: Standards-Doc Sync
-- [x] Update `sk-code-opencode` standards docs with verified ESM state
+- [x] Update `sk-code-skilled` standards docs with verified ESM state
 - [x] Update any other standards surfaces affected by the ESM migration
 - [x] Verify standards docs describe the runtime truth, not planning intent
 

@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `.skilled/skills/system-skill-advisor/changelog/` holds no three-part `v*.md` name, and `validate_document.py` reports each of its entries valid
-- [ ] Advisor v0.11.2.0 and v0.12.0.0, system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-opencode v1.0.1.0 exist, and each passes `validate_document.py` and `hvr_scan.py` with zero hard findings
+- [ ] Advisor v0.11.2.0 and v0.12.0.0, system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-skilled v1.0.1.0 exist, and each passes `validate_document.py` and `hvr_scan.py` with zero hard findings
 - [ ] Each bumped `SKILL.md` version equals its newest entry, `compiled-route-guard.cjs` prints `All hubs fresh or excused` and the Hermes check reports every copy in sync
 - [ ] `.skilled/changelog/skilled/v4.0.0.2.md` has a skill advisor section and passes `validate_document.py` and `hvr_scan.py`
 - [ ] `validate.sh` on packet 030 with `--strict --recursive` prints `RESULT: PASSED` for every folder

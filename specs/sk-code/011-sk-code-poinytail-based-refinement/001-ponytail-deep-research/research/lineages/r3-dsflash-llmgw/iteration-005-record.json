@@ -30,9 +30,9 @@
   "sourcesQueried": [
     ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md",
     ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
     ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
     ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
   ],

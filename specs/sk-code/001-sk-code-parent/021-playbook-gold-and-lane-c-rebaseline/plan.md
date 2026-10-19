@@ -46,7 +46,7 @@ This phase completes the third and final piece of the sk-code benchmark recovery
 ### Definition of Ready
 - [x] Phase 021 spec defines the gold-refresh scope, out-of-scope boundaries, REQ-001 through REQ-005, SC-001 through SC-003, risks, and edge cases.
 - [x] Harness dependency packets 037 and 038 landed first, making router-replay surface slicing and scenario-loader `code-<surface>/` parsing measurable.
-- [x] The path translation is deterministic: `references/motion_dev/` and `assets/motion_dev/` map to `code-animation/`, `references/webflow/` and `assets/webflow/` map to `code-webflow/`, and `references/opencode/` and `assets/opencode/` map to `code-opencode/`.
+- [x] The path translation is deterministic: `references/motion_dev/` and `assets/motion_dev/` map to `code-animation/`, `references/webflow/` and `assets/webflow/` map to `code-webflow/`, and `references/opencode/` and `assets/opencode/` map to `code-skilled/`.
 - [x] The frozen `benchmark/baseline/` snapshot is identified as intentionally read-only input.
 
 ### Definition of Done
@@ -67,7 +67,7 @@ Deterministic path translation with evidence-preserving re-baseline: map only st
 
 ### Key Components
 - **Playbook scenario gold**: Curated expected resource paths in `.opencode/skills/sk-code/manual_testing_playbook/**/*.md`.
-- **Path translation map**: Pre-013 `references/{motion_dev,webflow,opencode}/` and `assets/{motion_dev,webflow,opencode}/` prefixes translated to `code-animation/`, `code-webflow/`, and `code-opencode/` packet locations.
+- **Path translation map**: Pre-013 `references/{motion_dev,webflow,opencode}/` and `assets/{motion_dev,webflow,opencode}/` prefixes translated to `code-animation/`, `code-webflow/`, and `code-skilled/` packet locations.
 - **Router-final baseline**: Deterministic offline router trace report under `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/`.
 - **Benchmark README statistic**: Human-facing latest-router-verdict line aligned to the regenerated report.
 
@@ -95,7 +95,7 @@ The harness dependency fixes make playbook scenarios parse and slice `code-<surf
 - [x] Verify the post-translation stale-path grep returns 0 files.
 - [x] Verify all 71 translated gold paths exist after applying the translation.
 - [x] Regenerate `benchmark/2026-06-01--router-final--router/skill-benchmark-report.{json,md}` in deterministic router trace mode.
-- [x] Verify verdict CONDITIONAL, aggregate 71/100, D5 connectivity 100/100, and 0 scored scenarios routing both code-webflow/ and code-opencode/.
+- [x] Verify verdict CONDITIONAL, aggregate 71/100, D5 connectivity 100/100, and 0 scored scenarios routing both code-webflow/ and code-skilled/.
 - [x] Record honest gold-vs-router recall as 65/99 = 66%.
 
 ### Phase 4: Parent Rollup and Optional Catalogs

@@ -19,4 +19,4 @@ run trigger-index-check node .skilled/skills/system-spec-kit/runtime/cli/retriev
 run readme-manifest python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py
 run readme-verdict-parity python3 .skilled/skills/sk-doc/scripts/tests/test_readme_verdict_parity.py
 run skill-graph-validate python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_graph_compiler.py --validate-only
-run drift-guards bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+run drift-guards bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "goal-core.cjs keys state by sha256 of workspace, runtime and session and never reads specs/",
     "created_at": "2026-09-11T07:11:49Z",
-    "last_save_at": "2026-10-07T15:57:28.240Z",
+    "last_save_at": "2026-10-18T20:45:34.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89ce2d2d428ad675bbcbada9d4591b15a7b0afd1b7ff369596157a9a9e37d810",
+    "source_fingerprint": "sha256:5d661f0646ccc10d13bcc0952372465275c87794da92b481a96a9bb7e9ba980a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b02b58222c79cdcef018479b43b9475b86f8d7be1c5e6893cec3a7b7394f4454",
       "plan.md": "ab40f9f9b7c2d7c674a769bc8a65c862f4b5365f6dd7f5147e0e8bd38ea8debd",
-      "tasks.md": "76f1355e6bf459c810904c4b4ef1151d45e2574cedd8d0d7202f71b38df14435",
+      "tasks.md": "ca6a1f3e74bc257dc0745567390bef4bc8729ed096813f01550489d713fad2d8",
       "implementation-summary.md": "0b248add06530e007d223def8adc95849c303c3ab70a02ff9a947dc256348c65"
     },
     "last_active_at": null

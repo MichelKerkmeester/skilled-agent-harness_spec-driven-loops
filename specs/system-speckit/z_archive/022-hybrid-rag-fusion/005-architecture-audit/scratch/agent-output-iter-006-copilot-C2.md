@@ -1,4 +1,4 @@
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m pulling the standards context and the target MCP surface together first, then I’ll synthesize the audit into the requested findings report.
 
@@ -26,7 +26,7 @@ I’ve got an initial agent pass; now I’m spot-checking the actual files and l
 
 ● Count audit file lines (shell)
   │ cd '/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public' && wc -l
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   │ .opencode/skills/system-spec-kit/mcp_server/api/eval.ts
   │ .opencode/skills/system-spec-kit/mcp_server/api/index.ts
   │ .opencode/skills/system-spec-kit/mcp_server/api/indexing.ts …
@@ -93,7 +93,7 @@ I’ve got an initial agent pass; now I’m spot-checking the actual files and l
   └ L221:325 (105 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ L250:420 (171 lines read)
 
 ● Read types.ts
@@ -144,7 +144,7 @@ I’ve found a couple of real nuances beyond the obvious strengths: there’s so
 ✗ Memory stored tool patterns
   └ Tool dispatch modules use TOOL_NAMES plus handleTool(name,args) and validate inp…
 
-Overall: **no critical standards violations**. The MCP surface is mostly well-structured and aligned with `sk-code-opencode`, with a few low/medium-severity cleanup opportunities.
+Overall: **no critical standards violations**. The MCP surface is mostly well-structured and aligned with `sk-code-skilled`, with a few low/medium-severity cleanup opportunities.
 
 ## Findings
 
@@ -152,9 +152,9 @@ Overall: **no critical standards violations**. The MCP surface is mostly well-st
 
 - **Tool schema pattern is consistent, but not fully DRY.** Dispatchers uniformly do `validateToolArgs(...)` then `parseArgs<T>(...)`, which is good. But `tools/types.ts` already defines `parseValidatedArgs()` and none of these dispatchers use it; `shared_memory_enable` also falls back to `Record<string, unknown>` instead of a named args type. `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:17-34`, `.opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:42-55`, `.opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts:48-64`
 
-- **Type exports are mostly centralized, but one contract is duplicated.** `tools/types.ts` centralizes tool arg interfaces, yet `api/indexing.ts` re-declares `MemoryIndexScanArgs` instead of reusing `ScanArgs`, which weakens the “single source of truth” standard. `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:179-186`, `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:17-24`, `.opencode/skills/sk-code-opencode/SKILL.md:308-310`, `.opencode/skills/sk-code-opencode/SKILL.md:372-375`
+- **Type exports are mostly centralized, but one contract is duplicated.** `tools/types.ts` centralizes tool arg interfaces, yet `api/indexing.ts` re-declares `MemoryIndexScanArgs` instead of reusing `ScanArgs`, which weakens the “single source of truth” standard. `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts:179-186`, `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:17-24`, `.opencode/skills/sk-code-skilled/SKILL.md:308-310`, `.opencode/skills/sk-code-skilled/SKILL.md:372-375`
 
-- **Error propagation is mostly correct, with two deliberate swallow/fallback paths.** `initializeIndexingRuntime()` and `checkDatabaseUpdated()` fail loudly on hard errors, but `getLastScanTime()` and `setLastScanTime()` only log and return fallback behavior, which can mask config-table persistence problems. `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:37-40`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:117-142`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:228-263`, `.opencode/skills/sk-code-opencode/SKILL.md:367-370`
+- **Error propagation is mostly correct, with two deliberate swallow/fallback paths.** `initializeIndexingRuntime()` and `checkDatabaseUpdated()` fail loudly on hard errors, but `getLastScanTime()` and `setLastScanTime()` only log and return fallback behavior, which can mask config-table persistence problems. `.opencode/skills/system-spec-kit/mcp_server/api/indexing.ts:37-40`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:117-142`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:228-263`, `.opencode/skills/sk-code-skilled/SKILL.md:367-370`
 
 - **Configuration is centralized, but not perfectly.** `core/config.ts` is clearly the main config source, but `core/db-state.ts` still reads `process.env.SPECKIT_GRAPH_UNIFIED` directly, so env access is slightly scattered. `.opencode/skills/system-spec-kit/mcp_server/core/config.ts:42-56`, `.opencode/skills/system-spec-kit/mcp_server/core/config.ts:63-149`, `.opencode/skills/system-spec-kit/mcp_server/core/db-state.ts:182-186`
 

@@ -51,7 +51,7 @@ The full verification matrix passed: root gates (typecheck, test:cli), workspace
 
 ### Standards-Doc Sync
 
-Updated `sk-code-opencode` and related standards surfaces to describe the verified ESM runtime state. README surfaces aligned. The 30-iteration deep review findings were absorbed, and MCP tool schema compatibility was fixed by removing `superRefine` from affected schemas.
+Updated `sk-code-skilled` and related standards surfaces to describe the verified ESM runtime state. README surfaces aligned. The 30-iteration deep review findings were absorbed, and MCP tool schema compatibility was fixed by removing `superRefine` from affected schemas.
 
 ### Packet Closure
 

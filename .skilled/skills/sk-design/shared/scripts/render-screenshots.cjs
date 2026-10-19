@@ -31,6 +31,9 @@
  * not ask for it keep the fixed window, and the sibling corpus shipping images from that
  * window depends on those bytes not moving.
  */
+
+'use strict';
+
 const fs = require('fs');
 const os = require('os');
 const path = require('path');

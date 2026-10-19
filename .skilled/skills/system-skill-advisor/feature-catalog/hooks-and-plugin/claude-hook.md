@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude user-prompt-submit"
   - "hookSpecificOutput claude"
   - "claude advisor hook"
-version: 0.11.2.0
+version: 0.11.3.0
 ---
 
 # Claude Code user-prompt-submit Hook
@@ -27,7 +27,7 @@ Before any CLI spawn the hook runs the casual-prompt gate. `/help`, short acknow
 
 ### Fallback And Repeats
 
-When no brief is available the hook emits a fallback that opens with one status line and then the directives block. The status line takes one of three forms. For an outage the line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` and the label is `absent`, `degraded` or `fail_open`. When no skill matched the line is `Advisor: no skill matched.` When the prompt gate skips the prompt the line is `Advisor: prompt skipped.` A prompt with setup, install or configure wording, or with check wording followed by an environment, hook or tooling word, also gets a `/doctor:setup` hint: the no-match line ends with ` For setup or health checks, run /doctor:setup.` and the outage line carries `for setup or health checks, run /doctor:setup;` before `route by hand`, so the command stays last.
+When no brief is available the hook emits a fallback that opens with one status line and then the directives block. The status line takes one of three forms. For an outage the line is `Advisor: outage (<label>); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json` and the label is `absent`, `degraded` or `fail_open`. When no skill matched the line is `Advisor: no skill matched.` When the prompt gate skips the prompt the line is `Advisor: prompt skipped.` The `/doctor:setup` hint appears on no-match and outage lines when prompts use set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The no-match line ends with ` For setup or health checks, run /doctor:setup.` The outage line places `for setup or health checks, run /doctor:setup;` before `route by hand`, so the command stays last.
 
 Directive-lifecycle dedup treats that fallback like a brief. In a known, confirmed session the first no-route turn gets the whole text and later turns get the status line alone. Unknown sessions, the dedup kill switch and thrown errors still get the whole text.
 

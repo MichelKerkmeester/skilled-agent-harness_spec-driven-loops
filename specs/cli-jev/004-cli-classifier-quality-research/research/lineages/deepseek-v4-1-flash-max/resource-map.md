@@ -12,7 +12,7 @@ trigger_phrases: []
 
 - Scope: the shipped cli-classifier hub, its cli-jev packet, shared transport and scorer-report scripts, benchmark assets, feature catalog, manual testing playbook, changelogs and READMEs, plus every live caller of the shared transport — audited on seven axes, read only.
 - Generated from: five mechanically verified iteration deltas (`deltas/iter-001.jsonl` … `iter-005.jsonl`).
-- Primary local authorities: the hub source tree, the sk-doc validator and reference template, the sk-code-opencode JavaScript style guide and checklist, the system-skill-advisor skill graph and parity fixtures, the dispatch hook engine, and the cli-jev packet records that hold the live measurement results.
+- Primary local authorities: the hub source tree, the sk-doc validator and reference template, the sk-code-skilled JavaScript style guide and checklist, the system-skill-advisor skill graph and parity fixtures, the dispatch hook engine, and the cli-jev packet records that hold the live measurement results.
 - Resource status is an evidence snapshot dated 2026-10-04; the hub's compiled-routing policy and advisor graph are live surfaces that can move.
 
 ## Local Integration Sources
@@ -39,7 +39,7 @@ trigger_phrases: []
 | `.skilled/skills/cli-classifier/changelog/` | Read | OK | Release history; F-008 gap |
 | `.skilled/skills/sk-doc/shared/scripts/validate_document.py` | Executed | OK | All 79 hub markdown docs validated |
 | `.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` | Read | OK | Overview requirement behind F-003 |
-| `.skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md` | Read | OK | Header/strict-mode rules applied |
+| `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` | Read | OK | Header/strict-mode rules applied |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Read | OK | Hub identity, signals, adjacency |
 | `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Read | OK | F-006 entry |
 | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` + tests | Executed | OK | Hard-rule implementations; 20 tests pass |

@@ -1,4 +1,4 @@
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m reading the affinity implementation, tests, and a bit of surrounding context so I can evaluate failure modes and propose concrete ranking upgrades rather than hand-wavy ideas.
 

@@ -66,7 +66,7 @@ The skill advisor's multi-word phrase routing now actually works as designed. 24
 
 ### Additional coverage
 
-15 new `PHRASE_INTENT_BOOSTERS` entries close under-covered Public identifiers across six skills: `system-spec-kit`, `sk-code-opencode`, `sk-code-full-stack`, `sk-code-web`, `mcp-code-mode`, `sk-code-review`. 2 hyphenated-token entries (`"5-dimension"`, `"5-dimension agent scoring"`) fix the late-iteration blind spot where hyphens split the same way whitespace does. An inline comment block near the PHRASE_INTENT_BOOSTERS definition warns future contributors never to add whitespace- or hyphen-containing keys to INTENT_BOOSTERS.
+15 new `PHRASE_INTENT_BOOSTERS` entries close under-covered Public identifiers across six skills: `system-spec-kit`, `sk-code-skilled`, `sk-code-full-stack`, `sk-code-web`, `mcp-code-mode`, `sk-code-review`. 2 hyphenated-token entries (`"5-dimension"`, `"5-dimension agent scoring"`) fix the late-iteration blind spot where hyphens split the same way whitespace does. An inline comment block near the PHRASE_INTENT_BOOSTERS definition warns future contributors never to add whitespace- or hyphen-containing keys to INTENT_BOOSTERS.
 
 ### Regression coverage
 

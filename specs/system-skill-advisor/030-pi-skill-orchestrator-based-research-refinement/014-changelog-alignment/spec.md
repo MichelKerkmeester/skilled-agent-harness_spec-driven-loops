@@ -47,7 +47,7 @@ This is **Phase 14** of packet 030. Phases 2 to 13 changed the skill advisor and
 
 **Deliverables**:
 - The advisor changelog aligned with the contract, plus entries v0.11.2.0 and v0.12.0.0.
-- One entry each for system-spec-kit, the deep-loop runtime, deep-review, deep-research, cli-codex, the cli-external-orchestration hub and sk-code-opencode.
+- One entry each for system-spec-kit, the deep-loop runtime, deep-review, deep-research, cli-codex, the cli-external-orchestration hub and sk-code-skilled.
 - A skill advisor section in `.skilled/changelog/skilled/v4.0.0.2.md`.
 
 **Changelog**:
@@ -60,7 +60,7 @@ This is **Phase 14** of packet 030. Phases 2 to 13 changed the skill advisor and
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts. Two entries carry the wrong title shape and list a topic phrase before an identity phrase, and one carries the wrong H1 shape with a topic phrase of eight words. Nothing after v0.11.1.0 of 2026-09-12 is recorded, although the source-root move, packets 028 and 029 and all of packet 030 changed the advisor, and packet 030 also changed system-spec-kit, the deep-loop runtime and commands, cli-codex, the cli-external-orchestration hub playbook and sk-code-opencode without an entry for any of them.
+The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts. Two entries carry the wrong title shape and list a topic phrase before an identity phrase, and one carries the wrong H1 shape with a topic phrase of eight words. Nothing after v0.11.1.0 of 2026-09-12 is recorded, although the source-root move, packets 028 and 029 and all of packet 030 changed the advisor, and packet 030 also changed system-spec-kit, the deep-loop runtime and commands, cli-codex, the cli-external-orchestration hub playbook and sk-code-skilled without an entry for any of them.
 
 ### Purpose
 Every change the skill advisor work shipped is findable in the changelog of the component it changed and in the v4.0.0.2 release notes, in the form the contract defines.
@@ -75,7 +75,7 @@ Every change the skill advisor work shipped is findable in the changelog of the 
 - Rename the 10 three-part advisor entries to four parts with `git mv`, update each title and identity phrase to the new version and name versions in four parts where the text names an advisor version.
 - Give v0.11.0.0 and v0.11.1.0 the contract title and put their identity phrases first. Give v0.5.0.0 the `# v<version>, <title>` H1 and cut its topic phrase to six words or fewer.
 - Write advisor v0.11.2.0 for the source-root move and the other advisor changes that shipped with Skilled v4.0.0.0 and v4.0.0.1, and v0.12.0.0 for the packet 030 hook work.
-- Write system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-opencode v1.0.1.0.
+- Write system-spec-kit v4.1.4.0, deep-loop runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0, cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0 and sk-code-skilled v1.0.1.0.
 - Set each bumped `SKILL.md` to its new anchor, with the four other cli-external-orchestration hub root artifacts that state the hub version, re-mint each hub route manifest the route guard reports stale and rebuild the affected Hermes copies.
 - Add the skill advisor work to `.skilled/changelog/skilled/v4.0.0.2.md`.
 - Bind this phase in the parent goal, shortening decision prose per cut-order step 5 so the parent stays inside 4,000 characters.

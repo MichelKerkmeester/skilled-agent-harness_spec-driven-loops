@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/031-align-runtime-code-with-sk-code-skilled",
+  "spec_folder": "system-skill-advisor/031-align-runtime-code-with-sk-code-skilled",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill advisor runtime alignment",
+      "sk-code-skilled section dividers advisor",
+      "advisor runtime folder depth",
+      "advisor code readme gaps",
+      "advisor folder merges",
+      "advisor alignment loop",
+      "align runtime code with sk code skilled tasks",
+      "align runtime code with sk code skilled acceptance criteria",
+      "align runtime code with sk code skilled implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "advisor",
+      "runtime",
+      "alignment",
+      "sk-code-skilled",
+      "section",
+      "dividers",
+      "folder",
+      "depth",
+      "code",
+      "readme",
+      "gaps"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/investigation/devin-swe2max-merge-factcheck.md",
+      ".skilled/skills/system-skill-advisor/runtime/types/README.md",
+      ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      "lib/README.md",
+      "runtime/README.md",
+      "tests/fixtures/README.md",
+      "tests/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-swe2max-merge-factcheck.md",
+        "kind": "doc",
+        "path": "scratch/investigation/devin-swe2max-merge-factcheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/types/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-skilled comment and structure rules in `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
+    "created_at": "2026-09-30T05:43:45Z",
+    "last_save_at": "2026-10-18T19:17:05.466Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5806164edc07ce96d97d196d79b6de6bccf80c2214ce7f68ce4becb0043cbf2a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c1645779f771a8d54587a4585b607c3a28d9f3e717858e998e40ef1de0e85477",
+      "plan.md": "dc2fb319c9c0d9889b3a7dc52a8b9e5aa91fd84d6eebcbebdb8682b23b2baf95",
+      "tasks.md": "a75bc7ba5c465b5032f8ebc131ff08f8e324ee9489484ff4d731e44efa1a5171",
+      "implementation-summary.md": "2cd25bed510deddb46efa0e882f493c457327bbd257229be66ed9ce518b9cdeb"
+    },
+    "last_active_at": null
+  }
+}

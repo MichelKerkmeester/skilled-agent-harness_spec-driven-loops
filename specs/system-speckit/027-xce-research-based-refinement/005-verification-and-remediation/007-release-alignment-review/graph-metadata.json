@@ -5,7 +5,7 @@
   "parent_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
   "children_ids": [
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027",
-    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode",
+    "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled",
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
     "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation"
   ],
@@ -96,16 +96,16 @@
     ],
     "causal_summary": "Phase-parent for the 027 release-alignment program: a 36-seat gpt-5.5-fast review of every README vs current reality and all OpenCode-surface code vs sk-code standards, followed by a fixer-fleet remediation of the confirmed findings.",
     "created_at": "2026-06-18T12:37:50.443Z",
-    "last_save_at": "2026-09-06T04:28:35.482Z",
+    "last_save_at": "2026-10-18T20:45:32.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bdf40274b5fa224539d34882cbe0b1178b46f971625895b371df05edf82ac5cd",
+    "source_fingerprint": "sha256:8f65687020b9fb85f422248d7c237c44523590322a6eb2926d01baf74508f2ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ede62df0f005986c13e1b2cbc06bd6fb7b506011f7d84d9292ecfd478bf9007"
+      "spec.md": "deda069ba9f93968b51531c9ae64efac845444be9a4813c43449b483d4c5a039"
     },
     "last_active_child_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation",
     "last_active_at": null

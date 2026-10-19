@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] From the repository root, `node specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing/scratch/canary-assert.cjs` prints a `cases N failures 0` line with N of 11 or more and exits 0.
 - [ ] From the repository root, `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code` prints `ℹ fail 0`, then a `PASS: 5k-alias` line, a `PASS: 5k-packet` line and a `PASS: 5k-canary` line, then `OK: parent-skill-check`, and exits 0.
 - [ ] From the repository root, `for h in cli-classifier cli-external-orchestration mcp-tooling sk-code sk-design sk-doc system-deep-loop; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h >/dev/null 2>&1; echo "$h exit=$?"; done` prints seven lines, each reading `exit=0`.
-- [ ] From the repository root, `node .skilled/bin/compiled-route-guard.cjs && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints a sk-code line reading `fresh`, then a line starting `run-all-drift-guards: all 4 guards PASSED`, and exits 0.
+- [ ] From the repository root, `node .skilled/bin/compiled-route-guard.cjs && bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` prints a sk-code line reading `fresh`, then a line starting `run-all-drift-guards: all 4 guards PASSED`, and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 

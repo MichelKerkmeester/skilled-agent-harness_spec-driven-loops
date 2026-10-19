@@ -98,7 +98,7 @@ exec
     "reason": "Matched: !/system-spec-kit(explicit), !intent:memory, !session, !session(multi), !spec"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,

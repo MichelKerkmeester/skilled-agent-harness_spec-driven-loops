@@ -119,7 +119,7 @@ User invokes /create:changelog <spec-folder> [:auto|:confirm]
 | Agent orchestration, dispatch logic | `03--agent-orchestration` |
 | `.opencode/commands/**` | `04--commands` |
 | `skill_advisor.py` | `05--skill-advisor` |
-| `.opencode/skills/sk-code-opencode/**` | `06--sk-code-opencode` |
+| `.opencode/skills/sk-code-skilled/**` | `06--sk-code-skilled` |
 | `.opencode/skills/sk-code-web/**` | `07--sk-code-web` |
 | `.opencode/skills/sk-code-full-stack/**` | `08--sk-code-full-stack` |
 | `.opencode/skills/sk-code-review/**` | `09--sk-code-review` |

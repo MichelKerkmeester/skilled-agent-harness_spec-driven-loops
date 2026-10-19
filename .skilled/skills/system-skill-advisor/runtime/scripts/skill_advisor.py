@@ -809,15 +809,20 @@ def _legacy_recommendations_from_native(output: Dict[str, Any]) -> List[Dict[str
         skill_id = _sanitize_native_label(recommendation.get("skillId"))
         if not skill_id:
             continue
+        native_kind = recommendation.get("kind")
+        if native_kind not in ("skill", "command"):
+            native_kind = _legacy_kind(skill_id)
         item: Dict[str, Any] = {
             "skill": skill_id,
-            "kind": _legacy_kind(skill_id),
+            "kind": native_kind,
             "confidence": recommendation.get("confidence", 0),
             "uncertainty": recommendation.get("uncertainty", 0.0),
             "passes_threshold": True,
             "reason": "Matched by native advisor_recommend",
             "source": "native",
         }
+        if "passes" in recommendation:
+            item["passes"] = bool(recommendation["passes"])
         if "score" in recommendation:
             item["score"] = recommendation["score"]
         if "dominantLane" in recommendation:
@@ -856,6 +861,147 @@ def _advisor_prompt_head(prompt: str) -> str:
     return prompt
 
 
+def _find_typed_doctor_command_text(prompt_lower: str) -> Optional[str]:
+    """Return the typed doctor command suffix, ignoring quoted invocations."""
+    prompt = prompt_lower.strip()
+    command_prefix = "/doctor:"
+    if prompt.startswith(command_prefix):
+        return prompt[len(command_prefix):]
+
+    invocation_pattern = re.compile(
+        r"(?<![a-z0-9_])(?:run|execute|start|launch|use|kick\s+off)\s+/doctor:"
+    )
+    quote: Optional[str] = None
+    quote_scan_position = 0
+    for invocation in invocation_pattern.finditer(prompt):
+        command_position = invocation.end() - len(command_prefix)
+        while quote_scan_position < command_position:
+            character = prompt[quote_scan_position]
+            previous = prompt[quote_scan_position - 1] if quote_scan_position else ""
+            following = prompt[quote_scan_position + 1:quote_scan_position + 2]
+            is_word_apostrophe = (
+                character == "'"
+                and previous in "abcdefghijklmnopqrstuvwxyz0123456789"
+                and following in "abcdefghijklmnopqrstuvwxyz0123456789"
+            )
+            if not is_word_apostrophe:
+                if quote is None and character in ("'", '"', "`"):
+                    quote = character
+                elif character == quote:
+                    quote = None
+            quote_scan_position += 1
+        if quote is None:
+            return prompt[command_position + len(command_prefix):]
+    return None
+
+
+def _keep_passing_skills_above_doctor_bridges(
+    recommendations: List[Dict[str, Any]],
+    prompt_lower: str,
+) -> List[Dict[str, Any]]:
+    """Place typed or lead-phrase doctor bridges first, or passing bridges after passing skills."""
+    bridge_prefix = "command-doctor-"
+
+    def recommendation_id(recommendation: Dict[str, Any]) -> str:
+        return str(recommendation.get("skill") or recommendation.get("skillId") or "")
+
+    def recommendation_kind(recommendation: Dict[str, Any]) -> str:
+        if "kind" in recommendation:
+            return str(recommendation["kind"])
+        return "command" if recommendation_id(recommendation).startswith("command-") else "skill"
+
+    def is_passing(recommendation: Dict[str, Any]) -> bool:
+        if "passes" in recommendation:
+            return bool(recommendation["passes"])
+        return bool(recommendation.get("passes_threshold", True))
+
+    def is_passing_doctor_bridge(recommendation: Dict[str, Any]) -> bool:
+        return (
+            recommendation_kind(recommendation) == "command"
+            and recommendation_id(recommendation).startswith(bridge_prefix)
+            and is_passing(recommendation)
+        )
+
+    ranked = list(recommendations)
+    typed_command_text = _find_typed_doctor_command_text(prompt_lower)
+    if typed_command_text is not None:
+        normalized_command = re.sub(r"\s+", "-", typed_command_text.lower().strip())
+        matched_bridge_index = -1
+        matched_bridge_length = -1
+        for index, recommendation in enumerate(ranked):
+            if not is_passing_doctor_bridge(recommendation):
+                continue
+            bridge_name = recommendation_id(recommendation)[len(bridge_prefix):]
+            if not bridge_name or not normalized_command.startswith(bridge_name):
+                continue
+            next_character = normalized_command[len(bridge_name):len(bridge_name) + 1]
+            if next_character and re.fullmatch(r"[a-z0-9_]", next_character):
+                continue
+            if len(bridge_name) <= matched_bridge_length:
+                continue
+            matched_bridge_index = index
+            matched_bridge_length = len(bridge_name)
+        if matched_bridge_index < 0:
+            return ranked
+        return [
+            ranked[matched_bridge_index],
+            *ranked[:matched_bridge_index],
+            *ranked[matched_bridge_index + 1:],
+        ]
+
+    # Lead phrases preserve explicit bridge intent when no slash command is typed.
+    for index, recommendation in enumerate(ranked):
+        if not is_passing_doctor_bridge(recommendation):
+            continue
+        bridge = GENERATED_COMMAND_BRIDGES.get(recommendation_id(recommendation), {})
+        if any(
+            re.search(
+                rf"(?<![a-z0-9_]){re.escape(phrase.lower())}(?![a-z0-9_])",
+                prompt_lower,
+            )
+            for phrase in bridge.get("lead_phrases", [])
+        ):
+            return [
+                recommendation,
+                *ranked[:index],
+                *ranked[index + 1:],
+            ]
+
+    passing_skill_count = sum(
+        1
+        for recommendation in ranked
+        if recommendation_kind(recommendation) == "skill" and is_passing(recommendation)
+    )
+    if passing_skill_count == 0:
+        return ranked
+
+    passing_doctor_bridges = [
+        recommendation for recommendation in ranked if is_passing_doctor_bridge(recommendation)
+    ]
+    if not passing_doctor_bridges:
+        return ranked
+    remaining = [
+        recommendation
+        for recommendation in ranked
+        if not is_passing_doctor_bridge(recommendation)
+    ]
+    target_skill_count = min(2, passing_skill_count)
+    seen_passing_skills = 0
+    insertion_index = len(remaining)
+    for index, recommendation in enumerate(remaining):
+        if recommendation_kind(recommendation) != "skill" or not is_passing(recommendation):
+            continue
+        seen_passing_skills += 1
+        if seen_passing_skills == target_skill_count:
+            insertion_index = index + 1
+            break
+    return [
+        *remaining[:insertion_index],
+        *passing_doctor_bridges,
+        *remaining[insertion_index:],
+    ]
+
+
 def recommend_with_native_advisor(
     prompt: str,
     confidence_threshold: float = 0.8,
@@ -881,13 +1027,8 @@ def recommend_with_native_advisor(
         prompt_lower = prompt.lower()
         _apply_deep_research_disambiguation(recommendations, prompt_lower)
         _apply_deep_skill_routing_layer(recommendations, prompt)
-        # A doctor command answers a setup or health question about the tooling, so
-        # it never sorts above a skill unless the prompt starts with a doctor slash
-        # command. A doctor command quoted inside a longer request does not count.
-        doctor_typed = prompt_lower.lstrip().startswith("/doctor:")
         recommendations.sort(
             key=lambda x: (
-                1 if (not doctor_typed and str(x.get("skill", "")).startswith("command-doctor-")) else 0,
                 -float(x.get("confidence", 0.0)),
                 -float(x.get("score", 0.0) if isinstance(x.get("score"), (int, float)) else 0.0),
                 str(x.get("skill", "")),
@@ -899,6 +1040,10 @@ def recommend_with_native_advisor(
             uncertainty_threshold=uncertainty_threshold,
             confidence_only=confidence_only,
             show_rejections=False,
+        )
+        recommendations = _keep_passing_skills_above_doctor_bridges(
+            recommendations,
+            prompt_lower,
         )
     return recommendations
 
@@ -2394,6 +2539,7 @@ GENERATED_COMMAND_BRIDGES = {
     "command-doctor-env": {
         "description": "",
         "slash_markers": ["/doctor:env list"],
+        "lead_phrases": ["check my environment variables"],
         "inventory_id": "command-doctor-env",
         "command": "/doctor:env",
         "skill_id": "system-spec-kit",
@@ -2517,6 +2663,33 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-spec-kit",
         "routing_enabled": True,
     },
+    "command-doctor-deep-loop": {
+        "description": "",
+        "slash_markers": ["/doctor:deep-loop"],
+        "inventory_id": "command-doctor-deep-loop",
+        "command": "/doctor:deep-loop",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "system-deep-loop",
+        "routing_enabled": True,
+    },
+    "command-doctor-mcp-debug": {
+        "description": "",
+        "slash_markers": ["/doctor:mcp debug"],
+        "inventory_id": "command-doctor-mcp-debug",
+        "command": "/doctor:mcp",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
+    "command-doctor-mcp-install": {
+        "description": "",
+        "slash_markers": ["/doctor:mcp install"],
+        "inventory_id": "command-doctor-mcp-install",
+        "command": "/doctor:mcp",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
     "command-create-benchmark": {
         "description": "",
         "slash_markers": ["/create:benchmark"],
@@ -2614,15 +2787,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/design:extract",
         "skill_id": "sk-design",
         "owner_mode": "sk-design-md-generator",
-        "routing_enabled": False,
-    },
-    "command-doctor-deep-loop": {
-        "description": "",
-        "slash_markers": ["/doctor:deep-loop"],
-        "inventory_id": "command-doctor-deep-loop",
-        "command": "/doctor:deep-loop",
-        "skill_id": "system-deep-loop",
-        "owner_mode": "system-deep-loop",
         "routing_enabled": False,
     },
     "memory:save": {
@@ -2909,8 +3073,11 @@ def expand_query(prompt_tokens: List[str]) -> List[str]:
 
 def detect_explicit_command_intent(prompt_lower: str) -> Optional[str]:
     """Return targeted command bridge when explicit slash markers are present."""
+    doctor_command_typed = _find_typed_doctor_command_text(prompt_lower) is not None
     for command_name, command_config in COMMAND_BRIDGES.items():
         if command_config.get("routing_enabled") is False:
+            continue
+        if command_name.startswith("command-doctor-") and not doctor_command_typed:
             continue
         for marker in command_config.get("slash_markers", []):
             if marker and marker in prompt_lower:

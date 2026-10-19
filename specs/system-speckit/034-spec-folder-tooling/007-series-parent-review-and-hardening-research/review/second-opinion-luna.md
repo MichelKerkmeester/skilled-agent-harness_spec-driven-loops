@@ -2,7 +2,7 @@
 
 ## Verdict
 
-**AGREE-WITH-CHANGE overall.** The reports identify the decision-point problem, but Recommendation 1 misses active menu copies, and Recommendation 6 overlooks a mismatch between the phase-parent template placeholders and the renderer’s substitutions. Review basis: `sk-code/sk-code-review` with `sk-code-opencode` surface evidence. SKILL ROUTING: User directed → sk-code.
+**AGREE-WITH-CHANGE overall.** The reports identify the decision-point problem, but Recommendation 1 misses active menu copies, and Recommendation 6 overlooks a mismatch between the phase-parent template placeholders and the renderer’s substitutions. Review basis: `sk-code/sk-code-review` with `sk-code-skilled` surface evidence. SKILL ROUTING: User directed → sk-code.
 
 ## Recommendation-by-Recommendation
 

@@ -89,7 +89,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-jPtVMZjA' (errno=Opera
     "reason": "Matched: !/sk-deep-review(explicit), !deep review(phrase), !sk-deep-review(explicit), audit~, deep(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.93,
     "uncertainty": 0.2,
@@ -99,7 +99,7 @@ python3: error: couldn't create cache file '/tmp/xcrun_db-jPtVMZjA' (errno=Opera
 ]
 
 codex
-Skill routing points to `sk-deep-review` and `sk-code-opencode`, which matches this audit well: I’ll use the deep-review workflow for findings discipline and the OpenCode standards overlay for the script/runtime details. I found a prior memory trail around the reducer and the `002-sk-deep-review-improvements` hardening work, so I’m pulling just that narrow context before I inspect the code.
+Skill routing points to `sk-deep-review` and `sk-code-skilled`, which matches this audit well: I’ll use the deep-review workflow for findings discipline and the OpenCode standards overlay for the script/runtime details. I found a prior memory trail around the reducer and the `002-sk-deep-review-improvements` hardening work, so I’m pulling just that narrow context before I inspect the code.
 exec
 /bin/zsh -lc "sed -n '908,922p' /Users/michelkerkmeester/.codex/memories/MEMORY.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -122,10 +122,10 @@ exec
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -385,7 +385,7 @@ Use this skill when:
 
 - Simple single-pass code review (use `sk-code-review` instead)
 - Known issues that just need fixing (go directly to implementation)
-- Implementation tasks (use `sk-code-opencode` or `/speckit:implement`)
+- Implementation tasks (use `sk-code-skilled` or `/speckit:implement`)
 - Quick one-file checks (use direct Grep/Read)
 - Fewer than 2 review dimensions needed (single-pass suffices)
 

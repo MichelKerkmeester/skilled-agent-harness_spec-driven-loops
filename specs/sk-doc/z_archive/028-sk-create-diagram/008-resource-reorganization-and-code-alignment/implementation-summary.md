@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-create-diagram resource reorganization and code alignment"
-description: "Final state of phase 008 — references/ and assets/ split into domain subfolders, both Python scripts closed against sk-code-opencode, scripts/README.md added."
+description: "Final state of phase 008 — references/ and assets/ split into domain subfolders, both Python scripts closed against sk-code-skilled, scripts/README.md added."
 trigger_phrases:
   - "diagram reorg summary"
 importance_tier: "important"

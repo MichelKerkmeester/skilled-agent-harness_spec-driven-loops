@@ -15,7 +15,7 @@ trigger_phrases:
 
 `command-bridges/` is the source boundary for command metadata that is not yet represented uniformly by every scoring surface. The deriver combines live skill metadata with the authored compatibility inputs and writes the generated JSON projection.
 
-The doctor commands are a third source: the deriver reads `.skilled/commands/doctor/_routes.yaml` and writes one bridge per doctor route and per standalone doctor command.
+The doctor commands are a third source: the deriver reads `.skilled/commands/doctor/_routes.yaml` and writes one bridge per doctor route and per standalone doctor command and per MCP sub-route.
 
 ---
 
@@ -55,13 +55,13 @@ Ids are `command-doctor-<command>-<target>` when the doctor command owns more th
 
 The runnable string is the command plus its target when the command owns more than one route. A standalone entry may set `runnable`, as `/doctor:env` does with `/doctor:env list`.
 
-An entry in `scoring-compatibility.json` activates a doctor bridge. It carries only `inventoryId`, `order`, `id` (equal to `inventoryId`) and an empty `description`.
+A new route needs a hand-written entry in both the `typescript` and `python` lists in `scoring-compatibility.json`. Each entry carries only `inventoryId`, `order`, `id` (equal to `inventoryId`) and an empty `description`.
 
 The deriver fills the TypeScript name, keywords, intent signals and domains from the manifest, and the Python slash marker from the runnable string only, so Python matches a doctor bridge only on a typed slash command.
 
-A doctor bridge surfaces only on its own wording (an explicit-author phrase match). It never ranks above a passing skill unless the prompt types a doctor slash command. The brief then shows the runnable string as a second line.
+A doctor bridge surfaces only on its own wording (an explicit-author phrase match). A `/doctor:` command counts as typed when the prompt starts with `/doctor:` or when it directly follows `run`, `execute`, `start`, `launch`, `use` or `kick off` outside quotes and backticks. A quoted command or a bare mid-sentence mention does not count. A typed command puts its own passing bridge first. A prompt that contains one of a bridge's `lead_phrases` also puts that passing bridge first, so `check my environment variables` leads with `/doctor:env`. For other prompts, a passing skill keeps first place and passing doctor bridges sit right after the second passing skill or the only passing skill. This keeps a doctor line within the CLI's three shown results. A typed command shows its matching runnable string on the top line. A skill-first brief shows `Also: /doctor:<command> <target>` on the second line. The Python fallback matches a doctor bridge only on a typed slash command.
 
-`/doctor:deep-loop` and the `/doctor:mcp` sub-actions stay inactive until a later wave. `/doctor:deep-loop` is in the inventory without a compatibility entry, and the `mcp_subroutes` are not read.
+Each `mcp_subroutes` entry becomes the bridge `command-doctor-mcp-<sub_action>`, with the runnable string `/doctor:mcp <sub_action>` and its owner from the `skill_agent` tag in `mcp.md`. `/doctor:deep-loop`, `/doctor:mcp install` and `/doctor:mcp debug` are active in both scorers.
 
 Check every admitted phrase with `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs`.
 

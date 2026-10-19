@@ -24,7 +24,7 @@ Part 3, second surface: the Webflow packet's scripts and fixtures after the chec
 
 ## Questions Remaining
 
-- `sk-code-opencode`, `sk-code-obsidian`, the hub files, `benchmark/` and the root playbook.
+- `sk-code-skilled`, `sk-code-obsidian`, the hub files, `benchmark/` and the root playbook.
 
 ## Ruled Out
 
@@ -71,4 +71,4 @@ Part 3, second surface: the Webflow packet's scripts and fixtures after the chec
 
 ## Recommended Next Focus
 
-`sk-code-opencode`: the router-sync guard's wired legs, the alignment references, and any drift between the SKILL's claims and the scripts.
+`sk-code-skilled`: the router-sync guard's wired legs, the alignment references, and any drift between the SKILL's claims and the scripts.

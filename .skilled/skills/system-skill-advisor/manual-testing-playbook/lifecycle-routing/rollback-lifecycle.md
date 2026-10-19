@@ -6,7 +6,7 @@ trigger_phrases:
   - "lifecycle rollback"
   - "atomic rollback"
   - "lifecycle revert"
-version: 0.8.0.15
+version: 0.8.2.0
 id: LC-005
 category: lifecycle_routing
 stage: routing
@@ -37,7 +37,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Capture a pre-mutation snapshot of lifecycle metadata.
 2. Apply a lifecycle mutation (example: mark a skill as superseded by another in graph-metadata or via admin path).
@@ -52,7 +52,18 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 - No residual `redirect_to` or `redirect_from` metadata from the rolled-back mutation.
 - No partial state (for example, half-applied supersession) observable in any reader.
 
-### Failure Modes
+### Evidence
+
+- Capture the output and exit status from each lifecycle mutation, rollback action and advisor_recommend command.
+- Save the pre-mutation snapshot and post-rollback metadata, including supersession, archive status, schema version and any redirect_to or redirect_from values.
+- Record the affected pair's routing response and any partial state visible to readers.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -60,58 +71,14 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 | Rollback leaves residue in derived | Graph-metadata derived block still reflects mutation | Audit derived-sync integration with lifecycle rollback. |
 | Rollback fails silently | State does not change | Confirm rollback entry point is wired to lifecycle subsystem. |
 
-### Evidence
-
-- Read scenario file in full: `.skilled/skills/system-skill-advisor/manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md` lines 1-72.
-- MCP/file glob check for built server output:
-  ```text
-  No files found
-  ```
-- Package entry point and build scripts observed in `.skilled/skills/system-skill-advisor/runtime/package.json`:
-  ```json
-  {
-    "name": "@spec-kit/system-skill-advisor",
-    "private": true,
-    "type": "module",
-    "main": "./dist/runtime/advisor-server.js",
-    "scripts": {
-      "clean": "rm -rf dist",
-      "build": "npm --prefix ../../system-spec-kit/shared run build && ../../system-spec-kit/node_modules/.bin/tsc -p tsconfig.build.json",
-      "postbuild": "mkdir -p dist/runtime/data && cp data/*.json dist/runtime/data/",
-      "typecheck": "../../system-spec-kit/node_modules/.bin/tsc --noEmit --composite false -p tsconfig.build.json",
-      "test": "vitest run"
-    },
-  ```
-- Referenced rollback source observed in `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`:
-  ```ts
-  export function rollbackGraphMetadataFile(graphMetadataPath: string): RollbackResult {
-    const parsed: unknown = JSON.parse(readFileSync(graphMetadataPath, 'utf8'));
-    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
-      throw new Error(`graph-metadata root must be an object: ${graphMetadataPath}`);
-    }
-    const result = rollbackDerivedBlock(parsed as Record<string, unknown>);
-    writeJsonAtomic(graphMetadataPath, result.metadata);
-    return result;
-  }
-  ```
-- Scenario preconditions not satisfied or not executable under this run's constraints:
-  ```text
-  - Disposable workspace copy.
-  - MCP server built.
-  - Known lifecycle checkpoint or pre-change snapshot captured before the mutation under test.
-  ```
-- The scenario steps require applying a lifecycle mutation and triggering rollback against lifecycle metadata. The rollback entry point writes to the supplied graph metadata file, which would modify a file outside the allowed write path for this execution.
-
-### Pass/Fail
-
-BLOCKED - Missing built MCP server output (`dist/**` returned `No files found`), no known lifecycle checkpoint/pre-change snapshot was provided, and the required mutation/rollback would write outside the single allowed scenario file.
 
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [LC-004](../../manual-testing-playbook/lifecycle-routing/schema-migration.md), schema migration rollback.
-- Feature [`lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
+- Feature [`feature-catalog/lifecycle-routing/rollback.md`](../../feature-catalog/lifecycle-routing/rollback.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/rollback.ts`.
 
 ---

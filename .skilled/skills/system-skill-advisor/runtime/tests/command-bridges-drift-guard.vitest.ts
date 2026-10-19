@@ -41,6 +41,7 @@ const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 const DOCTOR_DIR = join(REPO_ROOT, '.skilled', 'commands', 'doctor');
 const DOCTOR_PREFIX = 'command-doctor-';
+const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 const COMMAND_BRIDGES_DIR = join(
   SKILLS_ROOT,
   'system-skill-advisor',
@@ -84,6 +85,7 @@ function doctorProjection(): CommandBridgeEntry[] {
   const manifest = parseYaml(readFileSync(join(DOCTOR_DIR, '_routes.yaml'), 'utf8')) as {
     readonly routes: readonly { readonly command: string; readonly target: string }[];
     readonly standalone?: readonly { readonly command?: string }[];
+    readonly mcp_subroutes?: readonly { readonly sub_action: string }[];
   };
   const doctorName = (command: string): string => {
     const match = /^\/doctor:([a-z0-9-]+)$/.exec(command);
@@ -125,6 +127,18 @@ function doctorProjection(): CommandBridgeEntry[] {
     entries.push({
       id: `${DOCTOR_PREFIX}${commandName}`,
       command: item.command,
+      skillId,
+      ownerMode: skillId,
+      source,
+    });
+  }
+
+  const mcpCommandName = doctorName(DOCTOR_MCP_COMMAND);
+  for (const item of manifest.mcp_subroutes ?? []) {
+    const skillId = skillAgent(mcpCommandName);
+    entries.push({
+      id: `${DOCTOR_PREFIX}${mcpCommandName}-${item.sub_action}`,
+      command: DOCTOR_MCP_COMMAND,
       skillId,
       ownerMode: skillId,
       source,

@@ -31,7 +31,7 @@ Refine and upgrade the sk-code workflow sub-skills (`code-implement`, `code-qual
 ## 4. NON-GOALS
 
 - Do not edit the target sub-skills during this research run.
-- Do not include the surface sub-skills (`code-webflow`, `code-opencode`, `code-animation`) or `code-review` except as context for boundaries.
+- Do not include the surface sub-skills (`code-webflow`, `code-skilled`, `code-animation`) or `code-review` except as context for boundaries.
 - Do not rewrite benchmark gold or implement accepted recommendations.
 
 ---

@@ -6,7 +6,7 @@ trigger_phrases:
   - "git advisory runtime matrix"
   - "SKGIT_ADVISORY"
   - "git hook fail open"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # hooks: Git Preflight Advisory Runtime Adapters
@@ -80,8 +80,120 @@ Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `r
 | **Cursor** | `git-preflight-advisory.mjs` (registered directly, and `.cursor/hooks/git-preflight-advisory.mjs` is a browsability-only mirror symlink) | `preToolUse` in `.cursor/hooks.json`, matcher `Shell` | Cursor carries the project root in `workspace_roots[0]` instead of `cwd`. The hook falls through to `CLAUDE_PROJECT_DIR`/`CODEX_PROJECT_DIR`/`process.cwd()` when absent | Same `additionalContext` JSON |
 | **OpenCode** | `.skilled/plugins/sk-git-preflight-advisory.js` (mirrored at `opencode/` via browsability symlink) | `tool.execute.before` for `bash`. Advisory buffered and drained on the next `experimental.chat.system.transform` | Resolves repo root via `findRepoRoot` (falls back to host dir). OpenCode plugins cannot print without overlaying the TUI prompt line, so it buffers at most 20 events | Bounded findings injected once as a system block on the next transform. Never stdout/stderr. The command is never delayed or blocked |
 | **Pi** | `pi/git-preflight-advisory.ts` (real file, and `.pi/extensions/` symlinks here) | `tool_call` for `bash`. Advisory keyed by call id and delivered on the matching `tool_result` | Pi's agent core reads a `tool_call` handler's return only for `.block`: a bare `reason` is discarded before the model sees it, so the advisory is buffered and appended to the `tool_result` content instead | Appended to `tool_result` content. Warn-only, never `block: true` |
+| **Hermes** | `.hermes/plugins/repo-guards/__init__.py` | `transform_tool_result` for `terminal` | Sends the Devin `exec` payload shape with `cwd` | Appended to the tool result as guidance. Never a block |
 
 OpenCode discovers plugins solely from `.opencode/plugins/`, so `sk-git-preflight-advisory.js` must live there. `scripts/hooks/opencode/sk-git-preflight-advisory.js` is a relative symlink back into that folder for browsability: nothing loads through it. Pi loads in the other direction: the real `pi/git-preflight-advisory.ts` lives here, and `.pi/extensions/git-preflight-advisory.ts` is the symlink Pi discovers.
+
+### Registration entries
+
+The setup battery counts a registration only when the advisory file it runs exists, and these are the minimal entries it accepts.
+
+**Claude**: `.claude/settings.json`
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Claude also reads `.claude/settings.local.json` and accepts matcher `*` or no matcher.
+
+**Codex**: `.codex/hooks.json`
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "exec|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Devin**: `.devin/hooks.v1.json`
+
+```json
+{
+  "PreToolUse": [
+    {
+      "matcher": "^exec$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+          "timeout": 5
+        }
+      ]
+    }
+  ]
+}
+```
+
+Devin keeps events at the top level.
+
+**Cursor**: `.cursor/hooks.json`
+
+```json
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "matcher": "Shell",
+        "command": "node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs",
+        "timeout": 10
+      }
+    ]
+  }
+}
+```
+
+**OpenCode**: `.opencode/plugins/sk-git-preflight-advisory.js`
+
+```text
+File: .opencode/plugins/sk-git-preflight-advisory.js
+Hook: tool.execute.before
+Import: ../skills/sk-git/scripts/lib/git-rule-checks.mjs
+```
+
+**Pi**: `.pi/extensions/git-preflight-advisory.ts`
+
+```text
+File: .pi/extensions/git-preflight-advisory.ts
+Symlink target: pi/git-preflight-advisory.ts
+```
+
+**Hermes**: `.hermes/plugins/repo-guards/__init__.py`
+
+```text
+GIT_PREFLIGHT_ADVISORY = REPO_ROOT / ".skilled" / "hooks" / "git-preflight" / "shared" / "git-preflight-advisory.mjs"
+_run_core(GIT_PREFLIGHT_ADVISORY, ...)
+ctx.register_hook("transform_tool_result", ...)
+Loads only when HERMES_ENABLE_PROJECT_PLUGINS is set
+```
 
 ### Message gate delivery
 

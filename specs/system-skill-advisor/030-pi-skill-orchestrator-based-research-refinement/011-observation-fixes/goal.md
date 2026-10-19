@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] The appended-phase test in `create-root-numbering.vitest.ts` fails against the `create.sh` of `eaa02a56f5` with `Phase 1: third-step` and passes against the fixed script
 - [ ] Outside the frozen containment copies, no `description.json` under `specs/` names a phase number other than its folder's own
-- [ ] `run-all-drift-guards.sh` in sk-code-opencode exits 0 and prints `all 2 guards PASSED`
+- [ ] `run-all-drift-guards.sh` in sk-code-skilled exits 0 and prints `all 2 guards PASSED`
 - [ ] The advisor typecheck exits 0, and the advisor suite reports 971 passed and 6 skipped in 129 files
 - [ ] Every log under `$TMPDIR/speckit-skill-advisor-metrics` has mode 0600
 - [ ] Dependabot alerts 1066, 1068 and 1070 to 1073 read `dismissed` with reason `not_used`

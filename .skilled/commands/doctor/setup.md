@@ -7,7 +7,7 @@ allowed-tools: Read, Bash, Grep, Glob
 
 # /doctor:setup Router
 
-This command is a thin, read-only router. It lists every doctor command and target with what each checks, runs the existing read-only checks once, and prints the runnable repair command for each failing leg. It writes nothing.
+This command is a thin, read-only router. It lists every doctor command and target with what each checks, runs the existing read-only checks once, and prints the runnable repair command for each failing leg. It writes nothing in the repository.
 
 ## 1. ROUTER CONTRACT
 
@@ -58,4 +58,4 @@ The argument failure wording, the doctor target list, the per-leg result table, 
 
 ## 6. WORKFLOW SUMMARY
 
-The workflow prints the doctor target list, then runs five read-only legs once (the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check, and the advisor status probe with `--warm-only`) and reports each leg as passing, skipped, degraded or failing, naming the runnable doctor command that repairs a failing leg. The sk-git leg passes `--tool=<name>` for the AI tool running the command, and its exit 3 (an unknown check or a gate saved off) is degraded, not failing. It writes nothing in the repository and never starts the advisor daemon. The only write outside it is the advisor CLI creating its socket directory, `/tmp/system-skill-advisor` by default, when that directory is absent.
+The workflow prints the doctor target list, then runs five read-only legs once (the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check, and the advisor status probe with `--warm-only`) and reports each leg as passing, skipped, degraded or failing, naming the runnable doctor command that repairs a failing leg. The sk-git leg passes `--tool=<name>` for the AI tool running the command, and its exit 3 (an unknown check or a gate saved off) is degraded, not failing. It writes nothing in the repository and never starts the advisor daemon. The only write outside it is the advisor CLI creating its socket directory, `/tmp/system-skill-advisor` by default, when that directory is absent. The advisor leg reports PASS when exit 0 has `data.freshness` set to `live`, DEGRADED when exit 0 has any other freshness value and names `/doctor:skill-advisor rebuild`, FAIL when exit 75 includes `staleDistWarning` in stderr JSON and names `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, SKIP when exit 75 lacks that field because the daemon is stopped, and FAIL for any other exit with `/doctor:skill-advisor rebuild`.

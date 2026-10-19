@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: guard-retirement-notes"
-description: "Rewrites the retired router-sync note in the sk-code drift-guard umbrella script, points the three code-opencode docs that describe that suite at the same note, and adds a successor note to the retired Lane C benchmark index. Every note names what the old check covered, what partly covers it now, the gap and its owner (sk-code), as comment and prose edits only."
+description: "Rewrites the retired router-sync note in the sk-code drift-guard umbrella script, points the three code-skilled docs that describe that suite at the same note, and adds a successor note to the retired Lane C benchmark index. Every note names what the old check covered, what partly covers it now, the gap and its owner (sk-code), as comment and prose edits only."
 trigger_phrases:
   - "guard retirement notes plan"
 importance_tier: "normal"
@@ -26,14 +26,14 @@ contextType: "general"
 | **Testing** | `run-all-drift-guards.sh` before and after, `bash -n`, `shellcheck`, sk-doc `validate_document.py`, `verify_alignment_drift.py --check-router`, `compiled-route-guard.cjs`, the leaf-manifest and derived-metadata freshness gates, `rg` content checks |
 
 ### Overview
-sk-code has two retired guards. The router-sync suite is recorded as missing in `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`, with no successor, gap list or owner. The Lane C router-mode benchmark was "the CI gate" (`.skilled/skills/sk-code/benchmark/README.md:25`), and its retirement callout (`README.md:14`) names no successor. Three code-opencode docs also describe the router-sync suite without saying what covers it now: `scripts/README.md:12` and `:20`, `SKILL.md:55-59` and `:173`, and `references/shared/alignment-verification-automation.md:58-61` and `:123-126`.
+sk-code has two retired guards. The router-sync suite is recorded as missing in `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:50-53`, with no successor, gap list or owner. The Lane C router-mode benchmark was "the CI gate" (`.skilled/skills/sk-code/benchmark/README.md:25`), and its retirement callout (`README.md:14`) names no successor. Three code-skilled docs also describe the router-sync suite without saying what covers it now: `scripts/README.md:12` and `:20`, `SKILL.md:55-59` and `:173`, and `references/shared/alignment-verification-automation.md:58-61` and `:123-126`.
 
 This phase writes one retirement note for each retired guard and points every doc that describes the router-sync suite at the same facts. Each note covers what the check did, what partly covers it now, the gap, and the owner. No executable line changes.
 
 What the deleted suite checked, read from the file before it was deleted (`git show b45ea54cea3^:.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`, describe blocks at lines 86, 162, 281 and 383):
 1. Machine router against the filesystem and prose: every router path exists on disk, every routable reference or asset doc is routed, and every full path the prose maps name is routed.
 2. The parent surface RESOURCE_MAP equals the union of the surface children's maps plus the parent tier.
-3. A bijection through `qualifiedIdToLeaf`: compiled route-gold destinations, `leaf-manifest.json` and the code-opencode RESOURCE_MAP agree.
+3. A bijection through `qualifiedIdToLeaf`: compiled route-gold destinations, `leaf-manifest.json` and the code-skilled RESOURCE_MAP agree.
 4. Every playbook routing scenario's `expected_resource` is emitted by the surface router, and every scenario prompt selects an intent.
 
 The current note at `run-all-drift-guards.sh:51-52` says only that the suite "checked that this surface's router stayed in step with the compiled routing snapshot". That describes part of check 3. The other docs describe only check 2 (`SKILL.md:55-57`, `alignment-verification-automation.md:58-61`). All of them get the four-check description.
@@ -82,12 +82,12 @@ In-place documentation. The umbrella script comment is the full record for the r
 ### Key Components
 - **Umbrella script note** (`scripts/run-all-drift-guards.sh:50-53`): the full retirement note for the router-sync suite, with four checks, partial successors, the gap and the owner.
 - **Alignment reference** (`references/shared/alignment-verification-automation.md`): the "What it does not check" text (`:58-61`) points to a new subsection, "Retired router-sync suite", placed before "Severity model" (`:71`). The subsection carries the four checks and the coverage table. The Doc pointer item (`:123-126`) is reworded to match.
-- **code-opencode `SKILL.md`**: the router-block comment (`:55-59`) keeps its equality focus, states that nothing checks it, and points at the script note. The verification-gate bullet (`:173`) carries the four checks in prose.
+- **code-skilled `SKILL.md`**: the router-block comment (`:55-59`) keeps its equality focus, states that nothing checks it, and points at the script note. The verification-gate bullet (`:173`) carries the four checks in prose.
 - **Scripts README** (`scripts/README.md:12` and `:20`): the overview sentence and the contents row stop saying "no replacement yet" and "recorded as missing", and carry the four checks in prose.
 - **Lane C index callout** (`benchmark/README.md:14`): a "Successor" blockquote right after the "Retired lane" one.
 
 ### Data Flow
-None at runtime. Every edit is a comment or prose. One indirect path exists. `sk-code-opencode/SKILL.md` is a compiled-routing input for the sk-code hub: the pre-commit `gate:route-remint` watches `.skilled/skills/$ROUTE_HUB/*/SKILL.md` (`.skilled/scripts/git-hooks/pre-commit:443`). So the build checks hub freshness after that edit.
+None at runtime. Every edit is a comment or prose. One indirect path exists. `sk-code-skilled/SKILL.md` is a compiled-routing input for the sk-code hub: the pre-commit `gate:route-remint` watches `.skilled/skills/$ROUTE_HUB/*/SKILL.md` (`.skilled/scripts/git-hooks/pre-commit:443`). So the build checks hub freshness after that edit.
 <!-- /ANCHOR:architecture -->
 
 
@@ -123,7 +123,7 @@ Baselines below were taken at planning time, 2026-10-09. The build recaptures th
 
 - No dependency on phases 002 to 005. None of them lists any of this phase's five files in its Files to Change.
 - **Compiled-routing re-mint.** The `SKILL.md` edit can stale the sk-code compiled-routing manifest. A re-mint, if needed, belongs to the commit step (`gate:route-remint`) or to the orchestrator, not to this phase.
-- **Changelog.** The spec's Phase Context asks for a changelog refresh in `../changelog/` when the phase closes. That folder does not exist under the parent packet, and it is outside this phase's five files, so the orchestrator handles it at close. The same applies to any `sk-code-opencode/changelog/` entry for the doc edits.
+- **Changelog.** The spec's Phase Context asks for a changelog refresh in `../changelog/` when the phase closes. That folder does not exist under the parent packet, and it is outside this phase's five files, so the orchestrator handles it at close. The same applies to any `sk-code-skilled/changelog/` entry for the doc edits.
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -131,7 +131,7 @@ Baselines below were taken at planning time, 2026-10-09. The build recaptures th
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-Every edit is comment or prose only. To roll back, restore the five files to HEAD: `git restore .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh .skilled/skills/sk-code/benchmark/README.md .skilled/skills/sk-code/sk-code-opencode/scripts/README.md .skilled/skills/sk-code/sk-code-opencode/SKILL.md .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`. If a commit already re-minted the sk-code manifest for the `SKILL.md` edit, the next commit of the restored `SKILL.md` re-mints it back through the same gate.
+Every edit is comment or prose only. To roll back, restore the five files to HEAD: `git restore .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh .skilled/skills/sk-code/benchmark/README.md .skilled/skills/sk-code/sk-code-skilled/scripts/README.md .skilled/skills/sk-code/sk-code-skilled/SKILL.md .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`. If a commit already re-minted the sk-code manifest for the `SKILL.md` edit, the next commit of the restored `SKILL.md` re-mints it back through the same gate.
 <!-- /ANCHOR:rollback -->
 
 ---

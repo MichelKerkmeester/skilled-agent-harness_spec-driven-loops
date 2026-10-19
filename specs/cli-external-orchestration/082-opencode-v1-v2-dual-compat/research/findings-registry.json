@@ -1,0 +1,1542 @@
+{
+  "sessionId": "2026-10-18T09:23:10.373Z",
+  "parentSessionId": "2026-10-18T09:23:10.373Z",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-plugin-shape-and-api-surface-loads-and-behaves-correctly-on-both-opencode-",
+      "inboxId": null,
+      "text": "Which plugin shape and API surface loads and behaves correctly on both OpenCode v1 (1.19.x) and v2 (2.0.x), and how do the 16 repo plugins port to it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-2-can-one-set-of-agent-command-skill-and-opencode-json-files-serve-both-versions-a",
+      "inboxId": null,
+      "text": "Can one set of agent, command, skill and opencode.json files serve both versions, and where must they diverge?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 14,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-must-hooks-guards-and-plugin-dependencies-become-version-aware-so-neither-ve",
+      "inboxId": null,
+      "text": "How must hooks, guards and plugin dependencies become version-aware so neither version breaks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-cli-opencode-detect-the-installed-version-and-dispatch-to-v1-and-v2-w",
+      "inboxId": null,
+      "text": "How should cli-opencode detect the installed version and dispatch to v1 and v2, with a full flag and subcommand matrix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 13,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-install-verification-and-pinning-guidance-supports-side-by-side-and-single-",
+      "inboxId": null,
+      "text": "What install, verification and pinning guidance supports side-by-side and single-version setups, and which gaps stay irreducible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-plugin-shape-and-api-surface-loads-and-behaves-correctly-on-both-opencode-",
+      "inboxId": null,
+      "text": "Which plugin shape and API surface loads and behaves correctly on both OpenCode v1 (1.19.x) and v2 (2.0.x), and how do the 16 repo plugins port to it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-2-can-one-set-of-agent-command-skill-and-opencode-json-files-serve-both-versions-a",
+      "inboxId": null,
+      "text": "Can one set of agent, command, skill and opencode.json files serve both versions, and where must they diverge?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 14
+    },
+    {
+      "id": "question-3-how-must-hooks-guards-and-plugin-dependencies-become-version-aware-so-neither-ve",
+      "inboxId": null,
+      "text": "How must hooks, guards and plugin dependencies become version-aware so neither version breaks?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 10
+    },
+    {
+      "id": "question-4-how-should-cli-opencode-detect-the-installed-version-and-dispatch-to-v1-and-v2-w",
+      "inboxId": null,
+      "text": "How should cli-opencode detect the installed version and dispatch to v1 and v2, with a full flag and subcommand matrix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 13
+    },
+    {
+      "id": "question-5-what-install-verification-and-pinning-guidance-supports-side-by-side-and-single-",
+      "inboxId": null,
+      "text": "What install, verification and pinning guidance supports side-by-side and single-version setups, and which gaps stay irreducible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 15
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Does v1 tolerate the `plugins` (plural) config key, and does v2 tolerate `plugin` (singular)? Does v1 load `.opencode/plugins/` or only `.opencode/plugin/`?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `sk-vision.js` a symlink, and does a flat glob follow symlinks on both hosts?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the 2.0.32 `@opencode/plugin` `.d.ts` match the preview bundled in 1.18.34, and what is the real `PluginContext` domain list? (blocking, P1)",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can one module default-export satisfy both contracts (function + `{id, setup}`), or is a two-file split mandatory?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the 16 repo plugins touch `\"shell.env\"`, `\"chat.*\"`, `experimental.*`, or `PluginInput.$` — i.e. which hit irreducible gaps?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does v1 pass arguments to `server()`?** The probe recorded invocation but not arguments. Decide whether the v1 leg can share a single bootstrap function. (blocking for a uniform plugin template, P1)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does v2 actually accept an object literal with an extra `server` key at load time** — i.e. is the F5 shape validated structurally or by an `id`+`setup` shape test that tolerates extras? Iteration 1's probe says accepted; this iteration did not re-run it against `{id, setup, server}` explicitly per-key. (P0, cheap to settle)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does 2.0.32 still ship the `Reload` mixin** the preview used (`agent: AgentHooks & Reload`)? `registration.d.ts` was not re-read this iteration; the preview's `Reload` may have moved into `Registration` or vanished. (P2)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Does v1 tolerate the `plugins` (plural) config key, and v2 the singular `plugin`?** Untouched this iteration. (P1)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Is `.opencode/plugins/` discovery in v1 a union with the ancestor directories or an override?** Affects whether one nested install is visible from deeper cwds. (P1)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Which of the 16 repo plugins touch `\"shell.env\"`, `\"chat.*\"`, `experimental.*`, or `PluginInput.$`?** Untouched — now scoped more precisely by F8. (P1)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Is `sk-vision.js` a symlink, and does either host's discovery follow it?** Untouched. (P2)",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the 2.0.32 `@opencode/plugin` `.d.ts` exist and match the migrate-v1 narrative (confirm the `session.hook` / `tool.hook` / `shell.hook` names and their event payload types)? Still the carried-forward P1 from iteration 1 — `npm pack @opencode/plugin@2.0.32` was **not** performed this iteration (the doc read answered the *names*, not the *types*).",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2's loader tolerate unknown top-level keys on a plugin definition (`__test`)? (F11)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `ctx.shell.hook(\"create.before\")` exist as documented even though no repo plugin needs it? (doc-only, low priority)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`ctx.tool` / `ctx.session.hook(\"execute.after\")` event shape: does it still expose the tool result body, and under which key? Blocks F9 item 3 and 3 plugins' `after` hooks.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`ctx.session.messages(...)` signature in 2.0.32 vs the v1 tree-request args used at `.opencode/plugins/system-spec-gate.js:90` and `.opencode/plugins/system-completion-sentinel.js:80`. (blocking for those two)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where does `client.tui.showToast` live in v2 — `/build/plugins/cli` page unread; `ctx.tui` is **UNVERIFIED** and is the last blocker for `sk-vision`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is the host-derived replacement for `ORCA_OPENCODE_PLUGIN_API` (the env-gated selector) available in both hosts, or does each plugin need two entry files after all? (P1)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is v2's real `run --format json` output, and does `--standalone` change it? (P1, blocked locally by F10)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 emit any compaction event at all, and what should replace `session.compacted` for skill-advisor's context re-injection and spec-gate's re-arm? (P0)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can `session.idle` be derived reliably from `session.execution.*` for `system-completion-sentinel`, whose entire behaviour rests on that event? (P0)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which v2 event scheme is current — `session.next.*` / `permission.v2.*` or `session.execution.*` / `form.*` — and does 2.0.32 emit both? (P1)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2's CLI still load **flat** `.opencode/plugins/*.js`, or only the documented per-plugin directories? (blocking the layout decision; P0)",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v1 forward unknown frontmatter keys to the model as provider `options`? (`options` resolved to `{}` for `markdown`, which had no unknown keys — inconclusive by construction.)",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does 2.0.32 still expose `hidden`/`color`/`steps` in `/api/agent` responses when set, or only in the input schema?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v1 tolerate a v2-shaped `permissions:` list, or unknown frontmatter keys such as `steps` / `hidden` / `color` / `disabled` — strip silently, ignore, or misread?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 accept `mode: all` for `markdown`, or coerce it?",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "All prior open questions from iterations 1-4 remain open (plugin default-export shapes, `plugins` vs `plugin` config key, v2 event scheme, `session.messages` signature, `ctx.tui`, v2 flat-plugin discovery).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward unchanged: v1/v2 `plugin` vs `plugins` config keys; `.opencode/plugins/` discovery unions; flat-file loading on v2; `sk-vision.js` symlink following; `run --format json` schema; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`session.idle`: is `session.execution.*` emitted by 2.0.32 at all, and is `session.wait` usable as a completion signal for `system-completion-sentinel`? (P0, runtime-only)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`SystemPart` shape — read from `@opencode/ai`, not yet read. Blocks writing any `context` mutation. (P1)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `ctx.session.hook(\"context\")` invoked for compaction and title requests too (`SessionRequestKind`), and can appending to `system` there replace skill-advisor's re-injection on all four kinds? (P1)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the event stream carry the native event names at all, or is it RPC-frames only? Needs a live `GET /api/event` capture. (P0)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2's loader accept extra top-level keys on the definition? Settle via `plugin.check` rather than a custom probe dir. (P0)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which of the 16 plugins can reach a message cache populated from `context` early enough to matter, given that `context` fires only at request time? (P1)",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 still support `` !`cmd` `` shell injection and `@path` includes in command templates?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 `run` expand a `/name args` message end-to-end, or is `POST /api/session/{id}/command` the",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 tolerate unknown frontmatter keys (`argument-hint`, `allowed-tools`, `title`,",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 scan `.opencode/command` (singular), `.opencode/commands` (plural), or both? v1 does both;",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Why does v2 `/api/command` return no project commands while the earlier orchestrator probe saw 54?",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `disabled: false` alone (without a sibling `permission:`) clean on v2, and is it dropped or",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a v2 Ruleset's resource scoping and `deny`/`ask` survive the v1 `permission` map path, i.e. is",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 accept `mcp.<name>` (the v1 MCP shape), or does a v1-only MCP server simply disappear on",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2 honour `plugin` (singular) at all, or drop it silently like v1 drops `plugins`? The v2",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "All prior open questions from iterations 1-7 remain open (v2 event scheme, `session.messages`",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**The skill leg of key question 2.** No skill has been probed on either host. Skills are `.md` +",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q-R5 (new, P2):** Should `sk-communication` gain a `SKILL.md` or move out of `.skilled/skills` — a repo decision, not a host one, and out of scope for editing here.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward and untouched: v1/v2 `plugin` vs `plugins` config keys; `.opencode/plugins/` discovery unions; flat-file plugin loading on v2; `sk-vision.js` symlink following; `run --format json` schema; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin; `session.idle`/`session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; `plugin.check` extra-key tolerance; command-template `` !`cmd` `` injection and `POST /api/session/{id}/command`; `.opencode/command` vs `.opencode/commands` scan; why `/api/command` returned no project commands.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q-R1 (new, P1):** Which permission key gates skill invocation on each version — v2's `skill` action and the v1 equivalent — and do they accept the same values? Read `opencode.json`'s resolved `permission` block on both hosts, or the `permission` schema page on each docs tree.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q-R2 (new, P1):** The five ids in F3 that report `.claude/skills/…` on v1 only — what decides the winning root, and does it flip when `.claude/skills` is removed? Cheap test: temporarily point only one root at the tree in a scratch project (not this repo) and re-read both catalogs.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q-R3 (new, P2):** Does either version honour `disable-model-invocation: true`, and does `allowed-tools` restrict the model's tool surface or is it documentation only? The repo uses `allowed-tools` in 57 files, so a v2 change of meaning would be a behaviour break even though the catalog looks identical.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q-R4 (new, P2):** Is the `node_modules` leak (F5) suppressible by config on either version (an ignore/exclude key), or must the vendored tree move out of the skills root?",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2's loader accept `.opencode/plugins/*.js` flat, or require per-plugin directories? Now blocking (F7), not merely structural.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does **v2 reject a bare top-level `--agent general`** as v1 does? Keep `no-bare-agent-general` advisory until probed.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `opencode run` on v2 safe against a **stale background service** (`--standalone` omitted)? If not, v2 needs a sibling rule to `stdin-redirect-required` whose subject is service attachment, not stdin.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "All earlier carried questions remain open (plugin default-export shapes, `plugins` vs `plugin` key, flat plugin loading, `session.messages` signature, `ctx.tui`, v2 event scheme, `run --format json` schema).",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `~/.opencode/hooks.json` behind `[features].opencode_hooks` exist on 1.19.3 or 2.0.32? Unverified either way; if it does, it is a third hook surface the repo does not use.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does a `#` in an unquoted `provider/model#variant` survive shell comment handling in every shell the repo dispatches through (bash ok by word-position rule; zsh, fish and `sh -c` unverified)? If any shell truncates it, the argv pattern is itself unsafe and must be quoted in every documented recipe.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the v2 command-expansion route for a `/family:name args` prompt that replaces `run --command` — `POST /api/session/{id}/command` (iteration 7's carried question)?",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does **v1 1.19.3 accept `-m provider/model#variant`**, or does the `#variant` form fail there? Binds whether one model string can serve both.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A10-Q4 (new, P2):** Does either host tolerate a tool definition whose `input`/`args` is a JSON Schema on v1, or a zod raw shape on v2 — i.e. is the F7 adapter strictly necessary, or does one shape already pass both validators?",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A10-Q2 (new, P0):** Does `@opencode-ai/plugin@2.0.32` still export the `./tool` subpath, and does it keep `zod` as a hoistable dependency? Requires `npm pack @opencode-ai/plugin@2.0.32` — still never performed (carried from iteration 1).",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A10-Q3 (new, P1):** Does 2.0.32's `PluginContext` add `tool`, and does it add `session`/`shell`/`tui`? 1.18.34 has none of the four (F4), so this decides whether the earlier carried questions on `ctx.session.messages`, `ctx.tui` and `ctx.shell` are answerable against the pin we ship.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A10-Q1 (new, P0):** Does v2 install `.opencode/package.json` dependencies at all, and where? This is now the decisive input: if it does not, every bare import in a plugin is a crash on a v2-only install, and the import-free path is mandatory rather than preferred.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "All previously carried questions remain open: v1/v2 `plugin` vs `plugins` config keys; `.opencode/plugins/` discovery unions and flat-file loading on v2; `sk-vision.js` symlink following; `run --format json`; `session.idle`/`session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; event-stream native names; `Q-R1`–`Q-R5`; `-m provider/model#variant` on v1; `~/.opencode/hooks.json`.",
+      "addedAtIteration": 11,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the `context` session hook fire for `SessionRequestKind` compaction and title requests, and does appending to `context.system` there survive into the provider prompt? (carried from iteration 6, now the *primary* injection route for two plugins)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do v1 and v2 both accept `.opencode/plugins/*.js` flat files, given `plugins` is now a *config array* on v2? The v2 config key is a plugin-enablement list, which makes the flat-directory discovery question more urgent, not less — iteration 10's P0 stands.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is `shell.env` a real v2 hook? Absent from every grep; the string may be constructed at runtime.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does **v1 1.19.3** accept `-m provider/model#variant`? The v2 half is now settled (F9); the dual-model-string decision needs the v1 half.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What exactly does `plugin.check` report for a definition carrying an extra top-level key? One call would settle the whole \"uniform definition shape\" question.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Can a v2 plugin **emit** `tui.toast.show`, or is `ctx.tui` required? (blocks `sk-vision`)",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is `Config.Plugin.Entry.package` resolved against — npm, a local path, or both? `It = w([string, {package, options}])` suggests a string form exists but does not say what it names.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v1's event stream include `session.execution.*` (so one subscriber can serve both), or is that family v2-only? New, and cheap to probe.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "All earlier carried questions not listed above remain open.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P2):** whether `assets/prompt-templates.md`'s six `--variant` invocations are rendered from a single template variable or hand-written six times (affects whether the change is one edit or six).",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P1):** does `--model provider/model#variant` survive on **v1 1.19.3** (i.e. can one model string serve both)? Requires a live run.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: `plugins` (plural) vs `plugin` (singular) config tolerance on both versions; `.opencode/plugins/` discovery unions; flat-file plugin loading on v2; `sk-vision.js` symlink following; `run --format json` schema and whether `--standalone` changes it; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin; `session.idle` / `session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; `plugin.check` extra-key tolerance.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P0):** v2 `run` positional-directory behaviour — `opencode run /path \"<msg>\"` (is `[<directory>]` consumed before `message...`?), `opencode /path run \"<msg>\"`, or neither. Blocks the entire v2 invocation shape in F6. Requires a live run.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P0):** does `--dangerously-skip-permissions` exist on either `run` as a hidden flag? Help text cannot distinguish hidden from absent. Settle by `opencode run --dangerously-skip-permissions --help` exit status, or by reading the compiled argv schema in the binary — neither is available under the Pi guard.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P2):** v2 `models` has no positional provider argument in its help — how does the auth pre-flight (`opencode models opencode-go`, `cli-reference.md:175`–`:178`) behave on v2? That pre-flight is a documented exit-code contract and v2 may not honour it.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P1):** does v2 `run` expand a `/family:name args` message, or must `session.command` be used? Iteration 7's question, now sharpened by F3.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried unchanged: command-template `` !`cmd` `` injection and `.opencode/command` vs `.opencode/commands` scanning on v2; why `/api/command` returned no project commands; the `~/.opencode/hooks.json` + `[features].opencode_hooks` surface; `#`-in-model shell safety across zsh/fish/`sh -c`; skill permission key (`skill` vs v1 equivalent), skill root precedence, `disable-model-invocation`, `allowed-tools` meaning on v2, the `node_modules` leak.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P2):** does either version dedupe a plugin file referenced twice (directory discovery **plus** `plugin` array entry)? F5 shows distinct ids both loading; same-id dedupe was not tested.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried and untouched: `plugins` (plural) tolerance on v1; `sk-vision.js` symlink following; `run --format json` schema; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin; `session.idle` / `session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; `plugin.check` extra-key tolerance; `-m provider/model#variant` on v1; v2 positional directory for `run`; `--dangerously-skip-permissions`; `models` positional provider; `#`-in-model shell safety; skill permission key / root precedence / `disable-model-invocation` / `allowed-tools` / `node_modules` leak; `~/.opencode/hooks.json`; `Q-R1`–`Q-R5`.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P1):** can the client env be re-injected per request instead (an `/api` body field, `service set`, or project-local config)? If not, every `AI_SESSION_CHILD`-based rule is unusable on v2 without `--standalone`.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P1):** v1's local plugin discovery with id-tagged files — the v1 legs died on F3 before load, so \"which two of the four layouts v1 picked\" is still unknown. Cheap test: re-run in the probe dir with `OPENCODE_DB` unset.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P0):** under `run` against an already-running daemon, which env do plugins see — the daemon's or the client's? F2 answers this for `api`; `run` should match but was not probed.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**New (P0):** does `run --standalone` on v2 load the project plugin tree? `api --standalone` did not (F4), so the recommended dispatch mode rests on an untested assumption. Requires one live `run` with a trivial prompt.",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v1 honour `OPENCODE_DB`, or is the variable v2-only? If v1 honours it, the `v2`-only mode's warning about a stale `opencode.db` applies symmetrically. Not probed. (P2)",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `opencode upgrade --major` require an interactive confirmation, or does it act on `--force`/non-interactive? Determines how loud the warning must be. (P2)",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried and untouched: `plugins` vs `plugin` config keys; `.opencode/plugins/` discovery unions and flat-file loading on v2; `sk-vision.js` symlink following; `run --format json` schema; `session.idle`/`session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; `plugin.check` extra-key tolerance; `-m provider/model#variant` on v1; `~/.opencode/hooks.json`; `Q-R1`–`Q-R5`; v2 `run` positional-directory behaviour; hidden `--dangerously-skip-permissions`; `models <provider>` on v2.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do `bun add -g` / `pnpm add -g` support the two-prefix side-by-side layout that npm does (`--prefix` equivalent)? Only npm was verified. (P2)",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does v2's per-user background service survive `opencode2 uninstall`? Was not probed — `--dry-run` prints a manifest, and no uninstall was run. (P2, needs a disposable machine)",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A14-Q3 (new, P2):** Does `POST /api/session/{sessionID}/prompt` return before the turn runs (true `promptAsync` parity), or does the inbox item only mean \"queued for delivery\"? `Session.Inbox.Delivery` is the field that decides it, and `opencode-goal`'s continuation gate (`.opencode/plugins/opencode-goal.js:2697`) depends on the answer.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A14-Q4 (new, P2):** Does v2 pass the same client handle to a plugin, i.e. is `ctx.client` still the v1-shaped `createOpencodeClient` result on v1 and a `@opencode/client` promise surface on v2? If so, the v1 calls in F1 are *not portable by adapter* — they are portable by rewrite only.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A14-Q1 (new, P0):** Is `Session.Message.Info[]` in `SessionMessagesResponse` really missing `parts`, i.e. must the sentinel and sk-vision fetch `GET /api/session/{sessionID}/message/{messageID}` per entry to get text and image parts? One live `GET /api/session/{id}/message` against 2.0.32 settles it. Blocks `system-completion-sentinel` and `sk-vision`.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A14-Q2 (new, P1):** Which RPC method names does `POST /api/rpc/{rpcID}/{method}` accept, and does one of them deliver `tui.toast.show`? `Rpc.Input` is the only envelope; without the method vocabulary the toast gap stays open. Readable from `@opencode/client`'s `.d.ts` (`./dist/promise/api.d.ts`) or from a running server's plugin docs.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward unchanged: `plugins` (plural) vs `plugin` (singular) config tolerance on both versions; `.opencode/plugins/` discovery unions and flat-file loading on v2; `sk-vision.js` symlink following; `run --format json` schema and `--standalone`; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin; `session.idle` / `session.execution.*`; `SystemPart` shape; `context` hook `SessionRequestKind`; `plugin.check` extra-key tolerance; the v2 event scheme; `SystemPart`; command-template `` !`cmd` `` injection; `.opencode/command` vs `.opencode/commands` scan; `Q-R1`–`Q-R5`; `-m provider/model#variant` on v1 1.19.3; `run` positional-directory behaviour; hidden `--dangerously-skip-permissions`; `models` positional provider on v2.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A14-Q5 (new, P1):** Is the repo's `@opencode-ai/plugin` `1.18.34` pin a deliberate v1 floor or drift? `.opencode/package.json:7` and `.skilled/package.json:4` disagree with the 1.19.x v1 host being targeted, which means every v1-side plugin-contract answer gathered in iterations 1–3 was measured against the wrong pin.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A15-Q3 (new, P1):** what is the exact npm package name and version pin for each family (the CI matrix's `<package>@<version>`)? Carried from iteration 15's install findings, but never needed for a check list until now.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A15-Q2 (new, P1):** does the v1 log roll per run (timestamped files) or is `opencode.log` a single append-only file? V1-6 needs a stable window boundary; today's evidence is one 28 MB rolling file plus timestamped siblings.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried and untouched: `plugins` vs `plugin` config tolerance (narrowed to resolved-form by F6, not closed); flat-file plugin loading on v2; `sk-vision.js` symlink following; `run --format json`; `ORCA_OPENCODE_PLUGIN_API` host-derived replacement; the `Reload` mixin; `session.idle`/`session.execution.*`; `SystemPart`; `context` `SessionRequestKind`; `plugin.check` extra-key tolerance; `-m provider/model#variant` on v1; `~/.opencode/hooks.json`; `Q-R1`–`Q-R5`; v2 `run` positional directory; hidden `--dangerously-skip-permissions`; `models <provider>` on v2.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A15-Q1 (new, P0):** which v1 command actually instantiates plugins? `debug config` does not, and the repo guard denies `run` from Pi. Candidates: `opencode debug agent <name>`, or any `run` variant under the guard's escape. Blocks V1-6 outside CI.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A15-Q4 (new, P2):** does `plugin_origins` include a `disabled` or `error` field when a spec fails to resolve, which would let V1-3 detect a broken entry without a load?",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the v2 event stream actually deliver `session.idle`, `session.compacted`, `session.status` and `message.updated` to `ctx.event.subscribe`? (P0, runtime-only)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `SessionHooks.context` fire for `kind === \"compaction\"` and `\"title\"`, and does a push to `system` survive into the provider request? (P1, now the only injection route for two plugins)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is the `tui` RPC id and method set behind `POST /api/rpc/{rpcID}/{method}`? (P1, the only surviving toast channel)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What is `Tool.ValueSchema` — zod raw shape or JSON Schema? Decides whether one `args` definition serves both hosts. (P1)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does `POST /api/plugin/check` accept `Object.assign(fn, {id, setup})`, or reject a callable with extra keys? (P0 for the uniform template)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Is there any plugin-facing way to read session messages on 2.0.32 — a `SessionApi` method not in the `SessionDomain` pick, or a `ctx.rpc` method? (P0 for the sentinel and sk-vision transcript reads)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`Location.Info` field names — which one replaces `ctx.directory`? (P2)",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A16-Q1 (new, P1):** Does `@opencode/plugin@2.0.32` re-export `zod`, and at which major? If it",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A16-Q5 (new, P2):** What is the publish date of `2.0.0` relative to `2.0.32`? F2's span starts at",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A16-Q2 (new, P1):** Do `@opencode-ai/plugin` (v1 scope) and `@opencode/plugin` (v2 scope)",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried forward and untouched: `plugins` (plural) vs `plugin` (singular) config tolerance on both",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A16-Q3 (new, P2):** Does `opencode --version` print a bare `2.0.32` on the v2 binary, and does",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**A16-Q4 (new, P2):** Does v1 1.19.3's version string carry a build suffix (e.g. `1.19.3-<hash>`)?",
+      "addedAtIteration": 19,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-opencode-ai-plugin-1-18-34-installed-pinned-in-opencode-package-json-does-export",
+      "text": "`@opencode-ai/plugin@1.18.34` (installed, pinned in `.opencode/package.json`) **does** export `./v2/promise` and `./v2/effect` subpaths [SOURCE: .opencode/node_modules/@opencode-ai/plugin/package.json] — i.e. the v1 package bundles a v2 *type preview*.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-opencode-plugin-latest-2-0-32-opencode-ai-plugin-latest-1-19-3-two-distinct-pack",
+      "text": "`@opencode/plugin` latest = `2.0.32`; `@opencode-ai/plugin` latest = `1.19.3`. Two distinct packages, not two majors of one package.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-the-repo-pins-1-18-34-while-v1-head-is-1-19-3-the-research-topic-targets-1-19-x-",
+      "text": "The repo pins `1.18.34` while v1 head is `1.19.3`; the research topic targets 1.19.x, so the pinned dep is one minor behind the stated target.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-opencode-debug-config-does-load-plugins-and-needs-no-model-call",
+      "text": "`opencode debug config` **does** load plugins, and needs no model call.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-opencode-debug-startup-printed-only-a-timing-number-238-080333-and-wrote-no-mark",
+      "text": "`opencode debug startup` printed only a timing number (`238.080333`) and wrote **no** markers → it does **not** load plugins.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-server-was-observed-invoked-with-no-logged-arguments-whether-v1-passes-it-plugin",
+      "text": "`server` was observed invoked with no logged arguments; whether v1 passes it `PluginInput`, a server handle, or nothing is **UNVERIFIED** (the probe's `server` did not record its arguments).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-a-dual-plugin-object-that-is-require-d-by-a-cjs-loader-cannot-import-from-openco",
+      "text": "A dual plugin object that is `require`d by a CJS loader cannot `import` from `@opencode/plugin`; it must be CJS/plain-JS with no v2 type import at runtime, or the file must be duplicated per module system.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-load-order-is-not-alphabetical-01-02-00-so-v1-module-evaluation-is-concurrent-un",
+      "text": "Load order is not alphabetical (`01` → `02` → `00`), so v1 module evaluation is concurrent/unordered. Any plugin that relies on cross-plugin ordering via module side-effects is already unsound on v1.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-nothing-in-the-v2-loader-s-public-d-ts-declares-server-as-a-legal-key-on-plugin-",
+      "text": "Nothing in the v2 loader's public `.d.ts` declares `server` as a legal key on `Plugin` [SOURCE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/a2-v2pkg/package/dist/promise/plugin.d.ts:56]; excess-property checking will reject the literal under a strict `Plugin` annotation, so the object must be constructed without that annotation (structural typing, or an explicit `as` cast, or omitting the annotation entirely as `define()` does).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-the-plugininput-key-set-observed-at-runtime-client-project-worktree-directory-ex",
+      "text": "The `PluginInput` key set observed at runtime — `client,project,worktree,directory,experimental_workspace,serverUrl,$` — matches the installed 1.18.34 declaration exactly, confirming the probe ran against the documented v1 contract rather than a shim.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-the-server-leg-must-construct-its-own-v1-hooks-object-and-cannot-share-a-context",
+      "text": "The `server` leg must construct its own v1 `Hooks` object and cannot share a context object with the `setup` leg — the two receivers (`PluginInput` vs `Context`) share no shape beyond `options`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-v1-requires-a-callable-module-or-an-object-with-a-callable-server-confirmed-by-b",
+      "text": "v1 requires a callable module **or** an object with a callable `server` (confirmed by `B:server-invoked` and `C:called-as-function`).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-v2-requires-a-non-callable-module-with-a-callable-setup-confirmed-by-adapter-js-",
+      "text": "v2 requires a non-callable module with a callable `setup` (confirmed by `adapter.js:449` calling `plugin.setup` and by the recorded v2 probe rejecting the bare function and the hybrid function).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-version-pinning-is-exact-2-0-32-not-caret-installing-opencode-plugin-alongside-o",
+      "text": "Version pinning is exact (`2.0.32`), not caret. Installing `@opencode/plugin` alongside `@opencode-ai/plugin` (different scope, `@opencode-ai` vs `@opencode`) avoids a name collision but not a transitive `@opencode/schema`-version collision, since both v2 packages pin `2.0.32` while a v1 tree may resolve the same names differently.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-payload-type-it-pushes-raw-strings-into-output-system-source-opencode-plugins-cl",
+      "text": "**Payload type.** It pushes raw strings into `output.system` [SOURCE: .opencode/plugins/classifier-injection-screen.js:104]. On v2 `event.system` holds blocks, so the push either throws or injects malformed context; the blanket catch converts the throw into a silently discarded advisory.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-session-correlation-sessionidof-probes-input-sessionid-input-sessionid-input-ses",
+      "text": "**Session correlation.** `sessionIdOf` probes `input?.sessionID ?? input?.sessionId ?? input?.session?.id ?? input?.properties?.sessionID` [SOURCE: .opencode/plugins/classifier-injection-screen.js:40] — none of which is the v2 `execute.after` / `context` event shape. Every advisory then lands under `UNKNOWN_SESSION`, and the single-buffered-session adoption heuristic [SOURCE: .opencode/plugins/classifier-injection-screen.js:88] only fires when exactly one session holds a buffer, which a multi-location v2 host does not guarantee.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-source-of-the-text-the-screen-consumes-fetchedtext-output-output-source-opencode",
+      "text": "**Source of the text.** The screen consumes `fetchedText(output?.output)` [SOURCE: .opencode/plugins/classifier-injection-screen.js:77] from the `webfetch` tool result. Whether the v2 `execute.after` event still exposes the result body is **UNVERIFIED**; if it does not, the plugin is a no-op with nothing to scan.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-lib-opencode-message-identity-js-464-lines-its-state-machine-createtransformdedu",
+      "text": "`lib/opencode-message-identity.js` — 464 lines. Its state machine (`createTransformDedupState`, `reserveDeliveryKey`, `commitTransformDelivery`, `checkTransformDelivery`) is shape-agnostic, but its key derivation (`sessionValueFrom`, `messageValueFrom`, `ordinalValueFrom`) reads v1 `input` fields [SOURCE: .opencode/plugins/lib/opencode-message-identity.js:63]. That layer needs a v2 event adapter; the rest survives as-is.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-lib-skill-advisor-render-js-136-lines-of-pure-string-rendering-fallback-directiv",
+      "text": "`lib/skill-advisor-render.js` — 136 lines of pure string rendering (`FALLBACK_DIRECTIVE`, `SETUP_WORDING`, `renderPluginFallbackDirective`, `compiledRouteSummaryTargetDigest`). Reads no `ctx`, no `input`. **Reusable unchanged on both hosts.**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-context-attention-notify-title-message-notification-when-sound-context-ui-dialog",
+      "text": "`context.attention.notify({ title, message, notification: { when }, sound })`, `context.ui.dialog.{alert,confirm,prompt,select}`, `context.keymap.layer(...)`, `context.storage.store|memory`, `context.client.plugin.list(...)`, plus `context.renderer` / `context.theme` for OpenTUI JSX.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-context-data-on-type-cb-context-data-listen-cb-for-server-events-both-returning-",
+      "text": "`context.data.on(type, cb)` / `context.data.listen(cb)` for server events, both returning an unsubscribe.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-context-ui-toast-show-message-variant-the-canonical-plugin-loaded-example-https-",
+      "text": "`context.ui.toast.show({ message, variant })` — the canonical \"plugin loaded\" example (`https://opencode.ai/v2/docs/build/plugins/cli/`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-event-properties-becomes-input-data-so-every-field-read-in-the-fleet-needs-an-ad",
+      "text": "`event.properties` becomes `input.data`, so every field read in the fleet needs an adapter.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-normalizenextlifecycleevent-handles-permission-v2-asked-permission-v2-replied-qu",
+      "text": "`normalizeNextLifecycleEvent` handles `permission.v2.asked`, `permission.v2.replied`, `question.v2.*`, `session.next.step.started`, `session.next.tool.called`, `session.next.tool.progress`, `session.next.retried`, and rewrites them into `permission.asked` / `session.status` (`~/.config/opencode/plugins/orca-opencode-status.js:851`–`860`, :977–`979`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-server-instance-disposed-has-no-v2-equivalent-teardown-is-the-cleanup-function-s",
+      "text": "`server.instance.disposed` has no v2 equivalent: teardown is the cleanup function `setup` returns plus aborting the subscription (`~/.config/opencode/plugins/orca-opencode-status.js:1296`–`1300`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-session-compacted-has-no-v2-counterpart-anywhere-in-the-observed-vocabulary-not-",
+      "text": "`session.compacted` has **no v2 counterpart anywhere** in the observed vocabulary — not in the translator, not in the TUI event list. Its two repo consumers (skill-advisor context re-injection, spec-gate re-arm) lose their trigger outright.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-session-created-exists-in-both-but-v2-carries-sessionid-at-top-level-while-v1-ca",
+      "text": "`session.created` exists in both, but v2 carries `sessionID` at top level while v1 carries `info.id`; the adapter synthesizes the v1 shape (`~/.config/opencode/plugins/orca-opencode-status.js:1201`–`1203`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-session-idle-is-not-an-input-to-the-v2-translator-idle-reaches-the-shared-handle",
+      "text": "`session.idle` is **not** an input to the v2 translator. Idle reaches the shared handler only as a synthesized `session.status { type: \"idle\" }` derived from `session.execution.succeeded` / `session.execution.failed` / `session.execution.interrupted` (`~/.config/opencode/plugins/orca-opencode-status.js:1204`–`1208`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-session-resumed-is-not-in-the-v2-set-either-both-repo-consumers-already-guard-it",
+      "text": "`session.resumed` is not in the v2 set either; both repo consumers already guard it defensively, so it is a pre-existing soft dependency, not a new gap.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-translateopencode2event-handles-session-execution-session-text-form-and-rewrites",
+      "text": "`translateOpenCode2Event` handles `session.execution.*`, `session.text.*`, `form.*`, and rewrites `session.text.*` into `session.next.text.*` (`~/.config/opencode/plugins/orca-opencode-status.js:1198`–`1238`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-push-callbacks-become-a-stream-that-must-be-drained-inside-a-long-lived-task-and",
+      "text": "Push callbacks become a stream that must be drained inside a long-lived task and cancelled through an `AbortController` returned from the cleanup function (`~/.config/opencode/plugins/orca-opencode-status.js:1284`–`1300`). There is no per-event hook to return from.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-version-detection-can-only-be-a-feature-probe-on-the-context-because-no-version-",
+      "text": "Version detection can only be a **feature probe on the context**, because no version field is guaranteed: the reference plugin gates on `typeof ctx.session?.hook !== \"function\" || typeof ctx.event?.subscribe !== \"function\"` → no-op (`~/.config/opencode/plugins/orca-opencode-status.js:1268`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-skilled-agents-code-md-54-states-permission-task-deny-blocks-the-task-tool-at-th",
+      "text": "`.skilled/agents/code.md:54` states \"`permission.task: deny` blocks the Task tool at the OpenCode runtime layer.\" On v2 that guarantee comes from `permission.task` mapping to the `subagent` action — the record proves the mapping, but the sentence names a key and a tool that do not exist under those names on v2. An agent reading its own instructions on v2 gets a factually wrong statement about how it is constrained.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-skilled-agents-orchestrate-md-35-already-solved-this-generically-the-delegation-",
+      "text": "`.skilled/agents/orchestrate.md:35` already solved this generically — \"The delegation tool is named differently in each runtime — `task` in OpenCode, `Agent` in Claude Code, `spawn_agent` in Codex, `subagent` in Pi\". That table lists four runtimes and gets OpenCode *wrong for v2*: inside OpenCode the name is now version-dependent (`task` on 1.19.x, `subagent` on 2.0.x). The convention exists; the table needs a fifth row and the prose needs to stop treating \"the Task tool\" as a proper noun.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-f-a5-1-p1-v1-and-v2-use-different-agent-field-namespaces-and-v2-translates-from-",
+      "text": "F-A5-1 (P1) — v1 and v2 use different agent field namespaces, and v2 translates *from* v1",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-f-a5-2-p1-temperature-survives-to-v2-but-is-inert-there",
+      "text": "F-A5-2 (P1) — `temperature` survives to v2 but is inert there",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-f-a5-3-p0-for-parity-chrome-devtools-deny-protects-nothing-on-v2-add-browser-den",
+      "text": "F-A5-3 (P0 for parity) — `chrome_devtools: deny` protects nothing on v2; add `browser: deny`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-f-a5-4-p1-v1-auto-derives-a-tools-gate-that-v2-has-no-equivalent-for",
+      "text": "F-A5-4 (P1) — v1 auto-derives a `tools` gate that v2 has no equivalent for",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-f-a5-5-p1-agent-bodies-name-the-v1-task-tool-v2-s-port-is-subagent-and-the-body-",
+      "text": "F-A5-5 (P1) — agent bodies name the v1 Task tool; v2's port is `subagent`, and the body ships verbatim",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-f-a5-6-p2-v2-only-fields-are-unusable-as-a-common-denominator-without-a-toleranc",
+      "text": "F-A5-6 (P2) — v2-only fields are unusable as a common denominator without a tolerance probe",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-const-result-await-ctx-client-session-messages-path-id-sessionid-query-directory",
+      "text": "`const result = await ctx?.client?.session?.messages?.({ path: { id: sessionID }, query: { directory: projectDir, limit: 20 } })` [SOURCE: .skilled/plugins/system-spec-gate.js:90]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-if-client-client-session-typeof-client-session-messages-function-return-null-the",
+      "text": "`if (!client || !client.session || typeof client.session.messages !== 'function') return null;` then `client.session.messages({ path: { id: sessionID }, query: { limit: MESSAGE_FETCH_LIMIT } })` [SOURCE: .skilled/plugins/system-completion-sentinel.js:77] [SOURCE: .skilled/plugins/system-completion-sentinel.js:79]",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-confirmed-by-schema-post-api-session-sessionid-command-takes",
+      "text": "**Confirmed by schema:** `POST /api/session/{sessionID}/command` takes",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-11-do-not-add-a-frontmatter-flag-unproven-on-v2-and-demonstrably-absent-on-v1-f3",
+      "text": "**Do not** add a frontmatter flag: unproven on v2 and demonstrably absent on v1 (F3).",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-6-plausible-but-unverified-name-args-as-the-run-message-2-0-32-s-binary-contains-a",
+      "text": "**Plausible but UNVERIFIED:** `/name args` as the `run` message. 2.0.32's binary contains a",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-8-path-source-skilled-commands-design-extract-md-12-skilled-skills-creation-contra",
+      "text": "`@path`: [SOURCE: .skilled/commands/design/extract.md:12] — `@.skilled/skills/…/creation-contract.md`.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-tmp-cmdprobe-which-holds-both-command-foo-md-and-commands-bar-md-standalone",
+      "text": "`/tmp/cmdprobe` (which holds both `command/foo.md` and `commands/bar.md`), `--standalone` →",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-home-with-no-location-data-init-review-i-e-builtins-only",
+      "text": "`$HOME` with no location → `data:[{init…},{review…}]`, i.e. builtins only",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-9-non-command-md-files-under-a-commands-tree-must-not-end-in-md-renaming",
+      "text": "Non-command `.md` files under a commands tree must **not end in `.md`**. Renaming",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-repo-root-param-location-directory-repo-root-location-data",
+      "text": "repo root, `--param location[directory]=<repo root>` → `{\"location\":{…},\"data\":[]}`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-repo-root-standalone-location-data",
+      "text": "repo root, `--standalone` → `{\"location\":{…},\"data\":[]}`",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-7-shell-injection-source-skilled-commands-speckit-search-md-15-a-single-bash-c",
+      "text": "Shell injection: [SOURCE: .skilled/commands/speckit/search.md:15] — a single `!`bash -c …' --",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-10-the-cleaner-variant-is-relocation-compiled-contracts-and-legacy-bodies-live-unde",
+      "text": "The cleaner variant is relocation: compiled contracts and legacy bodies live under a commands",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-expose-twice-nothing-on-either-version-both-collapse-the-two-symlinked-roots-to-",
+      "text": "**Expose twice:** nothing, on either version. Both collapse the two symlinked roots to one entry per real file.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-v1-only-customize-opencode-location-built-in-i-e-compiled-into-the-binary",
+      "text": "**v1 only:** `customize-opencode` (`location: <built-in>`, i.e. compiled into the binary).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-v2-only-opencode-builtin-opencode-md-report-an-operator-global-skill-under-claud",
+      "text": "**v2 only:** `opencode` (`/builtin/opencode.md`), `report` (an operator-global skill under `~/.claude/skills/synced/…`).",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-would-expose-without-the-repo-asking-the-3-vendored-playwright-skills-on-both-ve",
+      "text": "**Would expose without the repo asking:** the 3 vendored `playwright-*` skills, on both versions.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-would-not-expose-sk-communication-and-its-cli-communication-projection-child-on-",
+      "text": "**Would not expose:** `sk-communication` — and its `cli-communication-projection` child — on **both** versions (no `SKILL.md`). Nothing else: the exposed 60 = the 60 discoverable `SKILL.md` files.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-unknown-degrades-to-the-intersection-evaluate-only-rules-valid-on-both-versions-",
+      "text": "**`unknown` degrades to the intersection.** Evaluate only rules valid on both versions. This makes an unprobeable host conservative-but-usable rather than blocked: `stdin-redirect-required` and `explicit-model-required` still fire, `command-flag-for-slash-prompt` does not.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-availability-rule-for-opencode-which-does-not-exist-today-binaryonpathcheck-cove",
+      "text": "**Availability rule for `opencode`, which does not exist today.** `binaryOnPathCheck` covers codex, cursor-agent, devin, pi, hermes, jev — not opencode. Adding one must test the *resolved* binary, which is exactly why the resolver must be by version and the binary list must contain both names.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-command-shape-evidence-as-a-second-signal-command-share-variant-attach-port-dir-",
+      "text": "**Command-shape evidence as a second signal.** `--command`, `--share`, `--variant`, `--attach`, `--port`, `--dir`, `--pure` appearing in an `opencode run` command is itself v1 evidence; `--standalone` and a `#variant` in the `-m` value are v2 evidence. Use it to override `unknown` when the probe is unavailable, and to *widen* the resolver to `'v1+v2'` when a command mixes evidence.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-name-admit-version-decline-widen-the-matcher-only-executor-basenames-gains-openc",
+      "text": "**Name-admit, version-decline.** Widen the *matcher* only: `EXECUTOR_BASENAMES` gains `'opencode2'`; the `opencode run` arm becomes `/^opencode\\d*$/`; every `\\bopencode\\s+run\\b` literal becomes `\\bopencode\\d*\\s+run\\b`. This is a pure widening — it can only add lint coverage, never remove it, so it cannot break a v1 user. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-audit.mjs:51]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-rules-carry-applicability-each-rule-object-gains-appliesto-v1-v2-v1-v2-plus-opti",
+      "text": "**Rules carry applicability.** Each rule object gains `appliesTo: [\"v1\"] | [\"v2\"] | [\"v1\",\"v2\"]`, plus optional `v2Replacement` text. `evaluate` skips a rule whose `appliesTo` excludes the resolved version. Default when the field is absent is `[\"v1\",\"v2\"]` so today's sidecars keep working unchanged.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-version-resolution-is-tri-state-and-memoised-never-inferred-from-the-name-resolv",
+      "text": "**Version resolution is tri-state and memoised, never inferred from the name.** `resolveTargetVersion(executor)` → `'v1' | 'v2' | 'unknown'`, from one `--version` probe cached per (binary, mtime) for the process lifetime, with a documented timeout. Parsing must tolerate both observed formats: bare `1.19.3` and prefixed `opencode v2.0.32` — strip an optional `opencode v`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-directexecutor-returns-null-on-any-non-member-before-it-ever-looks-at-the-subcom",
+      "text": "`directExecutor` returns `null` on any non-member before it ever looks at the subcommand. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-audit.mjs:206]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-executor-basenames-is-a-set-containing-opencode-not-a-prefix-or-pattern-test-so-",
+      "text": "`EXECUTOR_BASENAMES` is a `Set` containing `'opencode'` — not a prefix or pattern test, so `opencode2` is never a member. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-audit.mjs:51]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-even-if-it-were-admitted-the-opencode-run-arm-matches-the-literal-next-token-and",
+      "text": "Even if it were admitted, the `opencode run` arm matches the literal next token, and the evidence regex is `\\bopencode\\s+run\\b` — the word boundary fails against `opencode2 run` because `2` is a word character. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-audit.mjs:212] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-audit.mjs:248]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-its-consumers-are-es-module-imports-from-the-repo-s-plugins-e-g-opencode-plugins",
+      "text": "Its consumers are **ES-module imports from the repo's plugins**, e.g. `.opencode/plugins/cli-dispatch-audit.js` importing `'../hooks/dispatch/lib/dispatch-audit.mjs'` and `'../hooks/shared/hook-flags.cjs'`. [SOURCE: .opencode/plugins/cli-dispatch-audit.js:29] [SOURCE: .opencode/plugins/cli-dispatch-audit.js:35]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-the-one-host-native-hooks-surface-referenced-anywhere-in-the-repo-is-a-user-leve",
+      "text": "The one host-native hooks surface referenced anywhere in the repo is a **user-level** `~/.opencode/hooks.json` behind a `[features].opencode_hooks` flag — a different path, a different scope, and per that doc a Claude-Code-compatibility feature, not this directory. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md:134]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-the-stdin-rule-s-shape-list-repeats-the-same-literal-bopencode-s-run-b-and-the-p",
+      "text": "The stdin rule's shape list repeats the same literal `/\\bopencode\\s+run\\b/`, and the pipe carve-out repeats it a fourth time. [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:36] [SOURCE: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:128]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-the-tree-itself-is-a-cross-runtime-adapter-layout-not-an-opencode-one-opencode-h",
+      "text": "The tree itself is a **cross-runtime adapter layout**, not an OpenCode one: `.opencode/hooks/goal/` ships `opencode`, `pi`, `cursor`, `devin` adapter directories and deliberately no `claude`, which only makes sense for a repo-owned dispatcher. [SOURCE: .skilled/skills/cli-external-orchestration/cli-claude-code/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/skill-benchmark-report.md:51]",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-11-3-add-nothing-for-the-v2-plugin-contract-f3-means-the-existing-pin-already-carries",
+      "text": "Add nothing for the v2 plugin contract: F3 means the existing pin already carries `define`, `Plugin`, `PluginDomain` and `Reload`.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-2-declare-zod-explicitly-it-closes-f6-and-is-the-only-hard-requirement-of-the-brid",
+      "text": "Declare `zod` explicitly. It closes F6 and is the only hard requirement of the bridge in F7.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-11-1-keep-the-plugin-pin-at-the-v1-line-v1-auto-installs-opencode-package-json-so-thi",
+      "text": "Keep the plugin pin at the v1 line. v1 auto-installs `.opencode/package.json`, so this version is what v1 will actually resolve; pinning 2.0.x here would put a 2.0.x copy on the v1 side of a side-by-side install.",
+      "addedAtIteration": 11,
+      "sources": []
+    },
+    {
+      "id": "finding-13-6-ask-the-resolved-binary-for-its-version-bin-version-capture-stdout-tolerate-stde",
+      "text": "**Ask the resolved binary for its version.** `<bin> --version`, capture stdout, tolerate stderr noise.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-10-cache-the-result-on-the-same-identity-key-the-runner-already-computes-realpath-s",
+      "text": "**Cache** the result on the same identity key the runner already computes (`${realpath}:${size}:${mtimeMs}`), so an upgraded binary invalidates the cache for free.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-8-map-major-contract-1-v1-2-v2-anything-unparsable-treat-as-v2-if-the-binary-name-",
+      "text": "**Map major → contract.** `1` → v1; `>= 2` → v2; anything unparsable → treat as v2 if the binary name ends in `2`, else **refuse to dispatch** rather than guess (a wrong guess silently changes flag semantics, which is worse than a clear error).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-9-optionally-confirm-the-capability-not-just-the-number-run-help-grep-q-variant-de",
+      "text": "**Optionally confirm the capability, not just the number** — `run --help | grep -q -- '--variant'` decides the effort lever directly. The version string is the only *formatted* difference; capability is what dispatch actually needs.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-7-parse-with-s-a-za-z-w-s-vv-d-d-d-w-s-both-observed-forms-parse-1-19-3-1-19-3-ope",
+      "text": "**Parse** with `^\\s*(?:[A-Za-z][\\w.-]*\\s+)?[vV]?(\\d+)\\.(\\d+)\\.(\\d+)(?:[-+][\\w.-]+)?\\s*$`. Both observed forms parse: `1.19.3` → 1.19.3; `opencode v2.0.32` → 2.0.32.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-5-resolve-the-binary-candidates-in-order-opencode-bin-operator-override-opencode2-",
+      "text": "**Resolve the binary.** Candidates in order: `$OPENCODE_BIN` (operator override), `opencode2`, `opencode`. Probe with `command -v`. If none resolves, fail with the existing `cli-opencode executor unavailable` message naming both names.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-1-opencode-api-session-command-param-sessionid-id-d-name-speckit-search-text-args-",
+      "text": "`opencode api session.command --param sessionID=<id> -d '{\"name\":\"speckit/search\",\"text\":\"<args>\"}'` — the operation, semantics preserved.",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-2-a-run-message-beginning-speckit-search-args-behaviour-unverified-on-v2-v1-s-docu",
+      "text": "A `run` message beginning `/speckit:search <args>` — behaviour unverified on v2; v1's documented behaviour is the *negative* one (raw prose), and nothing captured for v2 shows expansion at `run` level (carried open question).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-3-v1-opencode-version-1-19-3-bare-semver-no-prefix",
+      "text": "v1: `opencode --version` → `1.19.3` (bare semver, no prefix).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-13-4-v2-opencode2-version-opencode-v2-0-32-binary-word-space-v-semver",
+      "text": "v2: `opencode2 --version` → `opencode v2.0.32` (binary word, space, `v`, semver).",
+      "addedAtIteration": 13,
+      "sources": []
+    },
+    {
+      "id": "finding-15-9-a-260-byte-bin-sh-launcher-carries-the-isolation-not-the-packages-local-bin-open",
+      "text": "**A 260-byte `/bin/sh` launcher carries the isolation, not the packages.** `~/.local/bin/opencode2`:",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-2-crossing-the-major-requires-major-whose-own-help-text-is-upgrade-to-opencode-2-a",
+      "text": "**Crossing the major requires `--major`,** whose own help text is `upgrade to OpenCode 2 and remove OpenCode 1`. The removal is in the flag's contract, not an implementation detail.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-5-never-upgrade-major-as-a-way-to-switch-a-v1-install-it-deletes-the-v1-leg-by-des",
+      "text": "**Never**: `upgrade --major` as a way to \"switch\" a v1 install — it deletes the v1 leg by design.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-6-never-deleting-config-opencode-as-post-uninstall-cleanup-it-is-shared-f6-removin",
+      "text": "**Never**: deleting `~/.config/opencode` as post-uninstall cleanup. It is shared (F6); removing it breaks whichever version remains.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-1-nothing-above-it-in-the-channel-opencode-ai-s-latest-dist-tag-is-1-19-3-the-same",
+      "text": "**Nothing above it in the channel.** `opencode-ai`'s `latest` dist-tag is `1.19.3` — the same version installed here. A v1 `upgrade` with no `target` resolves to \"the latest\" of its own package, which is 1.19.3. v1 is at the top of its channel, so `upgrade` is a no-op.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-7-v1-lives-in-the-default-npm-prefix-local-bin-opencode-is-a-symlink-lib-node-modu",
+      "text": "**v1 lives in the default npm prefix.** `~/.local/bin/opencode` is a symlink → `../lib/node_modules/opencode-ai/bin/opencode.exe`. Installed with `npm install -g --prefix ~/.local opencode-ai@1.19.3`.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-4-v1-npm-uninstall-g-prefix-local-opencode-ai-session-data-at-local-share-opencode",
+      "text": "**v1**: `npm uninstall -g --prefix ~/.local opencode-ai`. Session data at `~/.local/share/opencode/opencode.db` is untouched by the npm operation.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-8-v2-lives-in-a-second-npm-prefix-deliberately-not-on-path-local-opencode-v2-lib-n",
+      "text": "**v2 lives in a second npm prefix, deliberately not on PATH.** `~/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe`, with `~/.local/opencode-v2/bin/` holding both `opencode` and `opencode2` symlinks to that one binary. `$PATH` contains `~/.local/bin` (four duplicate entries) and `/usr/local/bin`, and **does not contain `~/.local/opencode-v2/bin`** — which is exactly why v2's own `opencode` cannot shadow v1's.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-3-v2-opencode2-uninstall-dry-run-first-cheap-non-destructive-prints-the-manifest-t",
+      "text": "**v2**: `opencode2 uninstall --dry-run` first (cheap, non-destructive, prints the manifest), then `--force`. Session data, config and state survive by contract.",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-10-v1-opencode-version-1-19-3",
+      "text": "v1: `opencode --version` → `1.19.3`",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-15-11-v2-opencode2-version-opencode-v2-0-32",
+      "text": "v2: `opencode2 --version` → `opencode v2.0.32`",
+      "addedAtIteration": 15,
+      "sources": []
+    },
+    {
+      "id": "finding-16-2-plugin-features-is-a-real-v2-contract-and-it-is-new-information-for-the-plugin-s",
+      "text": "**`Plugin.Features` is a real v2 contract, and it is new information for the plugin-shape question.** `Plugin.Features` is `{server?: true, tui?: true, rpc?: true}` with each member `enum: [true]` (not `boolean`), and `Plugin.Info` requires `source`, `features`, `state`. So a v2 plugin *declares* whether it needs the server, the TUI, or RPC. That is a structural declaration v1's plugin contract does not have, and `tui: true` is the only v2 token naming the TUI at all.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-1-the-sentinel-is-the-single-fragile-site-resolvelastassistanttext-iterates-messag",
+      "text": "**The sentinel is the single fragile site.** `resolveLastAssistantText` iterates `messages` backwards and reads `entry.info.role` (`.opencode/plugins/system-completion-sentinel.js:88`) then `textFromAssistantEntry(entry)` (`:89`). If v2's list returns `Session.Message.Info[]` without sibling `parts`, the role check still works but the *text* extraction has no `parts` to read, and the whole \"resolve last assistant text\" step — already the P0 risk from iteration 4 — fails closed to `null`. The same iteration-4 worry now has a concrete mechanism.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-3-npm-view-opencode-ai-sdk-version-1-19-3-the-v1-client-version-tracking-the-v1-ho",
+      "text": "`npm view @opencode-ai/sdk version` → **1.19.3** — the v1 client, version-tracking the v1 host.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-4-npm-view-opencode-client-version-2-0-32-the-v2-client-version-tracking-the-v2-ho",
+      "text": "`npm view @opencode/client version` → **2.0.32** — the v2 client, version-tracking the v2 host exactly. Its export map is `.` (`./dist/promise/index.*`), `./solid`, `./effect`, `./promise`, `./service`, `./effect/api`, `./promise/api`, `./effect/service`. **There is no `createOpencodeClient` factory in that map**; the v2 client is a promise/effect/service-surface library, a materially different construction API, not a rename.",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-16-5-neither-package-is-a-dependency-of-this-repo-opencode-package-json-7-and-skilled",
+      "text": "Neither package is a dependency of this repo. `.opencode/package.json:7` and `.skilled/package.json:4` both pin only `@opencode-ai/plugin: \"1.18.34\"` — i.e. **the plugin contract is already one minor behind the repo's own v1 host (1.19.x) and two minors behind v2 (2.0.32).**",
+      "addedAtIteration": 16,
+      "sources": []
+    },
+    {
+      "id": "finding-19-9-integrations-that-call-the-v1-server-api-must-migrate-to-the-v2-api",
+      "text": "\"Integrations that call the V1 server API must migrate to the V2 API.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-4-plugins-use-a-new-plugin-api",
+      "text": "\"Plugins use a new plugin API.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-10-supported-v1-functionality-outside-those-areas-is-intended-to-remain-compatible-",
+      "text": "\"Supported V1 functionality outside those areas is intended to remain compatible with V1.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-6-terminal-client-configuration-moves-from-layered-tui-json-c-files-to-one-global-",
+      "text": "\"Terminal client configuration moves from layered `tui.json(c)` files to one global `cli.json` file (auto migrated).\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-5-the-server-api-and-clients-have-new-contracts",
+      "text": "\"The server API and clients have new contracts.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-8-the-server-api-is-an-intentional-breaking-change",
+      "text": "\"the server API is an intentional breaking change.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-7-v1-plugin-implementations-do-not-run-in-v2-moving-a-file-or-renaming-its-config-",
+      "text": "\"V1 plugin implementations do not run in V2. Moving a file or renaming its config entry is not enough.\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-3-v2-has-three-intentional-breaking-changes",
+      "text": "\"V2 has three intentional breaking changes:\"",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-13-zod-currently-undeclared-in-source-opencode-package-json-7-s-manifest-while",
+      "text": "**`zod`:** currently undeclared in [SOURCE: .opencode/package.json:7]'s manifest while",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-27-behaviour-on-un-probed-surfaces-every-surface-this-run-could-not-reach-the-carri",
+      "text": "**Behaviour on un-probed surfaces.** Every surface this run could not reach — the carried-forward",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-19-certify-per-v2-minor-at-0-plus-one-pinned-patch-per-calendar-month-re-run-the-pr",
+      "text": "**Certify per v2 minor at `.0`, plus one pinned patch per calendar month.** Re-run the probe suite",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-14-do-not-try-to-unify-the-two-dependencies-f3-makes-them-different-packages-in-dif",
+      "text": "**Do not try to unify the two dependencies.** F3 makes them different packages in different",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-21-drop-v1-when-opencode-ai-latest-the-v1-line-not-latest-1-has-gone-30-days-withou",
+      "text": "**Drop v1 when `opencode-ai@latest` — the v1 line, not `latest-1` — has gone ≥ 30 days without a",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-26-forward-compatibility-v2-publishes-1-version-day-has-already-declared-three-inte",
+      "text": "**Forward compatibility.** v2 publishes ~1 version/day, has already declared three intentional",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-22-record-the-tested-set-in-one-place-so-supported-has-an-artifact-behind-it-rather",
+      "text": "**Record the tested set in one place**, so \"supported\" has an artifact behind it rather than a",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-20-retest-immediately-off-cycle-on-any-release-whose-notes-touch-the-four-surfaces-",
+      "text": "**Retest immediately, off-cycle,** on any release whose notes touch the four surfaces this repo",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-28-that-v1-is-still-there-there-is-no-v1-end-of-life-statement-f5-and-no-latest-1-s",
+      "text": "**That v1 is still there.** There is no v1 end-of-life statement (F5) and no `latest-1` signal",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-11-v1-host-dependency-move-opencode-ai-plugin-from-1-18-34-to-the-exact-1-19-3-in-b",
+      "text": "**v1 host dependency:** move `@opencode-ai/plugin` from `1.18.34` to the exact `1.19.3` in both",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-12-v2-host-dependency-add-opencode-plugin-2-0-32-as-a-devdependency-only-in-a-separ",
+      "text": "**v2 host dependency:** add `@opencode/plugin@2.0.32` as a **devDependency only**, in a separate",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-25-a-host-outside-the-tested-set-fails-loudly-with-the-floor-and-the-reason-f8",
+      "text": "A host outside the tested set fails **loudly**, with the floor and the reason (F8).",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-16-accept-major-1-minor-19",
+      "text": "accept `major === 1 && minor >= 19`;",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-17-accept-major-2-major-minor-patch-2-0-32",
+      "text": "accept `major === 2 && (major.minor.patch) >= 2.0.32`;",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-23-against-the-two-pins-in-f7-every-repo-agent-command-skill-plugin-and-config-file",
+      "text": "Against the two pins in F7, every repo agent, command, skill, plugin and config file loads and",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-15-parse-major-minor-patch-reject-any-non-numeric-core-rather-than-coercing-it",
+      "text": "parse `major.minor.patch`; reject any non-numeric core rather than coercing it;",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-18-reject-everything-else-with-a-message-naming-the-floor-for-that-major-and-why-f6",
+      "text": "reject everything else with a message naming **the floor for that major** and **why** (F6), and",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-24-the-divergence-is-explicit-a-reader-can-name-per-surface-whether-v1-and-v2-take-",
+      "text": "The divergence is explicit: a reader can name, per surface, whether v1 and v2 take the same",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-1-v1-opencode-ai-opencode-ai-plugin-scope-opencode-ai-latest-1-19-3",
+      "text": "v1: `opencode-ai` + `@opencode-ai/plugin` (scope `@opencode-ai/`), `latest` = 1.19.3.",
+      "addedAtIteration": 19,
+      "sources": []
+    },
+    {
+      "id": "finding-19-2-v2-opencode-cli-opencode-plugin-scope-opencode-latest-2-0-32",
+      "text": "v2: `@opencode/cli` + `@opencode/plugin` (scope `@opencode/`), `latest` = 2.0.32.",
+      "addedAtIteration": 19,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 118,
+    "keyFindings": 128,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.58,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -41,7 +41,7 @@ This audit examined the indexing-normalization subsystem across 8,384 lines of c
 - `normalizeFileEntryLike()` accepts non-string values through unchecked type casts (BUG-001)
 - No test coverage for `normalizeFileEntryLike()` or `memory-indexer.ts` failure paths (TCOV-001, TCOV-005)
 - Spec-affinity has 27% false positive rate from generic trigger phrases (AFFINITY-001)
-- P0 completion not consistently enforceable between spec-kit and sk-code-opencode (ALIGN-001)
+- P0 completion not consistently enforceable between spec-kit and sk-code-skilled (ALIGN-001)
 
 **High-impact architectural improvements:**
 - `runWorkflow()` has cyclomatic complexity 198 and should be decomposed into pipeline stages (ARCH-001)
@@ -299,11 +299,11 @@ Convergence achieved at iteration 3 with weighted vote 0.72 > 0.60 threshold. Qu
 ## 10. CROSS-SKILL ALIGNMENT
 
 ### ALIGN-001: P0 Enforcement Gap [BREAKING]
-**Skills:** system-spec-kit, sk-code-opencode
-**Issue:** Spec checklist P0 items are narrow. sk-code-opencode P0 gate set is broader (headers, naming, filesystem safety). Verifier only treats COMMON/JSON/JSONC as ERROR; JS/TS/PY/SH headers are WARN. Tasks can pass scripted checks while violating documented P0 rules.
+**Skills:** system-spec-kit, sk-code-skilled
+**Issue:** Spec checklist P0 items are narrow. sk-code-skilled P0 gate set is broader (headers, naming, filesystem safety). Verifier only treats COMMON/JSON/JSONC as ERROR; JS/TS/PY/SH headers are WARN. Tasks can pass scripted checks while violating documented P0 rules.
 
 ### ALIGN-002: Tier Taxonomy Partially Documented [INCONSISTENT]
-**Issue:** 6-tier system (constitutional/critical/important/normal/temporary/deprecated) only documented in system-spec-kit. sk-code-opencode and sk-doc don't mention it.
+**Issue:** 6-tier system (constitutional/critical/important/normal/temporary/deprecated) only documented in system-spec-kit. sk-code-skilled and sk-doc don't mention it.
 
 ### ALIGN-003: HVR Not Enforced on Spec Documents [INCONSISTENT]
 **Issue:** sk-doc says HVR applies to all documentation output. But template_rules.json gives spec no required sections, validate_document.py skips style pipeline for spec type.
@@ -315,7 +315,7 @@ Convergence achieved at iteration 3 with weighted vote 0.72 > 0.60 threshold. Qu
 **Issue:** validate.sh uses 0/1/2 (pass/warnings/errors). verify_alignment_drift.py uses 0/1 (warnings return 0 unless --fail-on-warn).
 
 ### ALIGN-006: Smart Router Ambiguity Delta Differs [COSMETIC]
-**Issue:** system-spec-kit and sk-doc use ambiguity_delta=1.0. sk-code-opencode uses hardcoded 0.8 threshold with different parameter name.
+**Issue:** system-spec-kit and sk-doc use ambiguity_delta=1.0. sk-code-skilled uses hardcoded 0.8 threshold with different parameter name.
 <!-- /ANCHOR:cross-skill -->
 
 ---
@@ -364,7 +364,7 @@ Only normalizes `.opencode/specs/` ↔ `specs/` text variants.
 2. **Fix AFFINITY-001**: Remove generic single-word triggers from exactPhrases
 3. **Add TCOV-001**: Focused test suite for normalizeFileEntryLike()
 4. **Add TCOV-005**: Failure path tests for memory-indexer.ts
-5. **Fix ALIGN-001**: Align P0 enforcement between spec-kit verifier and sk-code-opencode
+5. **Fix ALIGN-001**: Align P0 enforcement between spec-kit verifier and sk-code-skilled
 
 ### P1 — Next Sprint
 6. **UX-002**: Expose MCP controls (dryRun, force, asyncEmbedding) to CLI
@@ -467,6 +467,6 @@ Only normalizes `.opencode/specs/` ↔ `specs/` text variants.
 
 - **Spec folder**: `.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/002-indexing-normalization/`
 - **Implementation**: `.opencode/skills/system-spec-kit/scripts/` and `mcp_server/`
-- **Skills**: `system-spec-kit`, `sk-code-opencode`, `sk-doc`
+- **Skills**: `system-spec-kit`, `sk-code-skilled`, `sk-doc`
 - **Test suites**: `mcp_server/tests/` (181 tests passing), `scripts/tests/` (37/38 passing)
 <!-- /ANCHOR:related -->

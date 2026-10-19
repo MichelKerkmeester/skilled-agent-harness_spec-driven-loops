@@ -5,7 +5,7 @@
 1. Re-read the active loop state in `research/deep-research-strategy.md` plus `iteration-001.md` and `iteration-002.md` to carry forward the 24-key migration inventory, the 44/44 regression baseline, and the explicit Iteration 3 question about uncovered multi-word identifiers. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/deep-research-strategy.md:16-33] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/iterations/iteration-001.md:54-70] [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-search-routing-advisor/003-advisor-phrase-booster-tailoring/research/iterations/iteration-002.md:98-110]
 2. Re-read the live advisor phrase tables and routing code to anchor the current PHRASE inventory and weight bands before proposing additions. [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:788-948] [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:1660-1677]
 3. Parsed `PHRASE_INTENT_BOOSTERS` programmatically, then compared the current phrase set against every Public skill's `graph-metadata.json` `derived.trigger_phrases` list and every `SKILL.md` `<!-- Keywords: ... -->` comment to find multi-word candidates that are documented but not currently routable as PHRASE entries.
-4. Computed per-skill PHRASE coverage counts from the live advisor table, which exposed the main opportunity cluster: `sk-code-full-stack` (0), `mcp-code-mode` (0), `mcp-clickup` (0), `mcp-chrome-devtools` (1), `mcp-figma` (1), and `sk-code-opencode` (1), while `sk-code-review`, `sk-improve-agent`, and `mcp-coco-index` are already dense.
+4. Computed per-skill PHRASE coverage counts from the live advisor table, which exposed the main opportunity cluster: `sk-code-full-stack` (0), `mcp-code-mode` (0), `mcp-clickup` (0), `mcp-chrome-devtools` (1), `mcp-figma` (1), and `sk-code-skilled` (1), while `sk-code-review`, `sk-improve-agent`, and `mcp-coco-index` are already dense.
 5. Verified each proposed phrase below is currently absent from `PHRASE_INTENT_BOOSTERS`, so these are true additions rather than duplicates. Baseline counts from that verification pass: current PHRASE count `167`, post-Iteration-1-migration baseline `173` (+6 missing same-weight migrations), and `188` if all 15 additions below are accepted.
 
 ## Current PHRASE_INTENT_BOOSTERS Coverage Analysis
@@ -35,11 +35,11 @@
 - `sk-code-full-stack` (0)
 - `mcp-chrome-devtools` (1)
 - `mcp-figma` (1)
-- `sk-code-opencode` (1)
+- `sk-code-skilled` (1)
 
 `skill-advisor` also shows `0`, but it is an internal analyzer package rather than a routed skill target, so it is not an opportunity target in the same way as the user-facing skills above.
 
-The most important gap is the **overlay family**: `sk-code-full-stack` has zero PHRASE coverage, `sk-code-opencode` has only one PHRASE hit, and `sk-code-web`'s coverage is real but skewed toward CSS/implementation rather than verification/deployment. [SOURCE: .opencode/skills/sk-code-full-stack/graph-metadata.json:36-55] [SOURCE: .opencode/skills/sk-code-opencode/graph-metadata.json:38-58] [SOURCE: .opencode/skills/sk-code-web/graph-metadata.json:39-59] [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:815-822] [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:899-900]
+The most important gap is the **overlay family**: `sk-code-full-stack` has zero PHRASE coverage, `sk-code-skilled` has only one PHRASE hit, and `sk-code-web`'s coverage is real but skewed toward CSS/implementation rather than verification/deployment. [SOURCE: .opencode/skills/sk-code-full-stack/graph-metadata.json:36-55] [SOURCE: .opencode/skills/sk-code-skilled/graph-metadata.json:38-58] [SOURCE: .opencode/skills/sk-code-web/graph-metadata.json:39-59] [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:815-822] [SOURCE: .opencode/skills/skill-advisor/scripts/skill_advisor.py:899-900]
 
 ## Proposed New PHRASE Entries
 
@@ -50,9 +50,9 @@ The most important gap is the **overlay family**: `sk-code-full-stack` has zero 
 | `validate spec packet` | `system-spec-kit` | 1.6 | Exact derived trigger phrase for spec validation asks; should route to spec governance instead of generic review. | `.opencode/skills/system-spec-kit/graph-metadata.json:45-58` |
 | `save conversation context` | `system-spec-kit` | 1.0 | Natural contraction of the current save cluster (`save context`, `save this context`, `save conversation`, `save this conversation context`) and a likely user wording. | `.opencode/skills/system-spec-kit/graph-metadata.json:37-43`, `.opencode/skills/skill-advisor/scripts/skill_advisor.py:793-797` |
 | `constitutional memory` | `system-spec-kit` | 1.7 | Distinct system-spec-kit memory subsystem name that is documented as user-facing lifecycle behavior but has no PHRASE route today. | `.opencode/skills/system-spec-kit/feature_catalog/lifecycle/08-constitutional-memory-end-to-end-lifecycle.md:1-25` |
-| `mcp server code` | `sk-code-opencode` | 1.8 | Exact sk-code-opencode intent signal; routes implementation/standards work on OpenCode MCP servers away from generic MCP orchestration. | `.opencode/skills/sk-code-opencode/graph-metadata.json:38-58` |
-| `system code style guidance` | `sk-code-opencode` | 1.7 | Exact derived trigger phrase for standards-oriented asks, not just raw language tokens like `python` or `bash`. | `.opencode/skills/sk-code-opencode/graph-metadata.json:45-58` |
-| `python shell json standards` | `sk-code-opencode` | 1.9 | Exact derived trigger phrase and a strong bundled-language identifier for the OpenCode standards overlay. | `.opencode/skills/sk-code-opencode/graph-metadata.json:45-58` |
+| `mcp server code` | `sk-code-skilled` | 1.8 | Exact sk-code-skilled intent signal; routes implementation/standards work on OpenCode MCP servers away from generic MCP orchestration. | `.opencode/skills/sk-code-skilled/graph-metadata.json:38-58` |
+| `system code style guidance` | `sk-code-skilled` | 1.7 | Exact derived trigger phrase for standards-oriented asks, not just raw language tokens like `python` or `bash`. | `.opencode/skills/sk-code-skilled/graph-metadata.json:45-58` |
+| `python shell json standards` | `sk-code-skilled` | 1.9 | Exact derived trigger phrase and a strong bundled-language identifier for the OpenCode standards overlay. | `.opencode/skills/sk-code-skilled/graph-metadata.json:45-58` |
 | `full stack development workflow` | `sk-code-full-stack` | 2.1 | Exact derived trigger phrase for the overlay with the biggest current gap: zero PHRASE entries. | `.opencode/skills/sk-code-full-stack/graph-metadata.json:42-55` |
 | `implementation testing verification flow` | `sk-code-full-stack` | 1.8 | Exact derived trigger phrase that captures the skill's core three-phase contract. | `.opencode/skills/sk-code-full-stack/graph-metadata.json:42-49`, `.opencode/skills/sk-code-full-stack/SKILL.md:43-52` |
 | `detect project stack automatically` | `sk-code-full-stack` | 1.6 | Exact derived trigger phrase for stack-detection asks, a current routing blind spot for this overlay. | `.opencode/skills/sk-code-full-stack/graph-metadata.json:42-49`, `.opencode/skills/sk-code-full-stack/SKILL.md:68-79` |
@@ -81,7 +81,7 @@ Practical rule: keep **overlay discovery phrases** in the `1.6-2.1` band, keep *
 | `save conversation context` | medium | Generic words (`save`, `context`) make this broader than the current save cluster; keep weight near `1.0`. |
 | `constitutional memory` | low | Highly project-specific subsystem name. |
 | `mcp server code` | medium | Could appear in code-mode or generic MCP discussions; keep below explicit code-mode phrases. |
-| `system code style guidance` | low | Standards-oriented and clearly aligned to sk-code-opencode. |
+| `system code style guidance` | low | Standards-oriented and clearly aligned to sk-code-skilled. |
 | `python shell json standards` | low | Very specific bundled-language phrase. |
 | `full stack development workflow` | low | Distinct overlay identity phrase. |
 | `implementation testing verification flow` | low | Exact phase-contract phrasing from sk-code-full-stack. |
@@ -98,9 +98,9 @@ No proposal looks like a **high-risk** broad token trap. The main safety rule is
 ### New Findings to Propagate
 
 - The live advisor currently has **167** PHRASE entries; Iteration 1's baseline migration would raise that to **173**, and the 15 additions proposed here would raise it to **188**.
-- Phrase density is concentrated in review/search/improve families, while several user-facing skills remain weakly covered: `sk-code-full-stack` (0), `mcp-code-mode` (0), `mcp-clickup` (0), `mcp-chrome-devtools` (1), `mcp-figma` (1), and `sk-code-opencode` (1).
+- Phrase density is concentrated in review/search/improve families, while several user-facing skills remain weakly covered: `sk-code-full-stack` (0), `mcp-code-mode` (0), `mcp-clickup` (0), `mcp-chrome-devtools` (1), `mcp-figma` (1), and `sk-code-skilled` (1).
 - The overlay-skill gap is real, not hypothetical: `sk-code-full-stack` has **zero** PHRASE entries today even though its own graph metadata advertises multiple multi-word trigger phrases.
-- `sk-code-opencode` and `system-spec-kit` both expose rich multi-word identifiers in graph metadata / skill docs that are currently routed only through token fallback or not at all.
+- `sk-code-skilled` and `system-spec-kit` both expose rich multi-word identifiers in graph metadata / skill docs that are currently routed only through token fallback or not at all.
 - The most actionable candidate set is **conservative and long-form**: mostly 3+ word phrases in the `1.0-2.1` weight band, which should improve recall without introducing a new false-positive class.
 
 ### Updated Next Focus
@@ -108,7 +108,7 @@ No proposal looks like a **high-risk** broad token trap. The main safety rule is
 Iteration 4: design the migration mechanics and finalize the new-entry set. Specifically:
 
 1. Decide how to merge Iteration 1's six same-weight migrations with the 15 new candidates in one PHRASE update.
-2. Resolve adjacency questions like `full stack typescript` (currently routed to `sk-code-opencode`) versus new `sk-code-full-stack` overlay phrases.
+2. Resolve adjacency questions like `full stack typescript` (currently routed to `sk-code-skilled`) versus new `sk-code-full-stack` overlay phrases.
 3. Define the exact patch shape and candidate ordering in `PHRASE_INTENT_BOOSTERS`.
 4. Identify the minimum new P1 regression fixtures needed to guard the added phrases and the `code audit` alignment decision.
 

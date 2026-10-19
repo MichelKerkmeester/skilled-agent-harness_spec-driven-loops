@@ -105,7 +105,7 @@ The implementation first reproduced the raw matcher negative control: six prose/
 | Live Pi startup | Encoded equivalent of `command -v pi && pi --offline --approve -p "list available tools; do not modify files" </dev/null` | PASS, Pi process exit 0; returned available-tools text and reported no file modifications. The literal outer shell form is intercepted by the pre-existing raw matcher before Pi starts. |
 | Diff/comment/mirror checks | `git diff --check`; scoped forbidden-marker scan; three `readlink` checks | PASS, exit 0; no forbidden markers; all mirrors resolve. |
 | OpenCode scoped drift | `verify_alignment_drift.py --root .opencode/hooks/dispatch --root .opencode/skills/system-skill-advisor/hooks/pi` | PASS, 15 files, 0 findings, exit 0. |
-| Full sk-code drift wrapper | `bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Residual baseline failure: alignment guard reports pre-existing `.worktrees` router-dead-path backlog; stack-folders and router-sync pass. No in-scope source finding. |
+| Full sk-code drift wrapper | `bash .opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Residual baseline failure: alignment guard reports pre-existing `.worktrees` router-dead-path backlog; stack-folders and router-sync pass. No in-scope source finding. |
 | Phase strict validation | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .../006-dispatch-authorization-hardening --strict` | PASS before evidence refresh, 0 errors/0 warnings; rerun after metadata refresh is required for final packet receipt. |
 
 ### Handoff evidence inventory

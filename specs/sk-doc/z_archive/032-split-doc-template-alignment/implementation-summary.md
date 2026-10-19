@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: sk-code Split-Doc Template Alignment"
-description: "Conformed all 163 mechanically-split reference/asset files under sk-code/{code-opencode,code-webflow,code-quality} to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + 4-part version, OVERVIEW wrapper, content preserved, every in-hub reference updated. Executed by GPT-5.6-sol-fast in an isolated worktree, orchestrator-verified per batch; 0 hyphenated names, 0 broken links to renamed files; committed + pushed to v4. Post-ship 10-iteration deep review (GPT-5.6-sol-fast HIGH) drove two P1 remediations: 21 code-webflow Purpose paragraphs de-duplicated from their H1 intro, and the broken-link completion claim narrowed to its true renamed-file scope."
+description: "Conformed all 163 mechanically-split reference/asset files under sk-code/{code-skilled,code-webflow,code-quality} to the create-skill asset/reference templates: snake_case renames, 5-field frontmatter + 4-part version, OVERVIEW wrapper, content preserved, every in-hub reference updated. Executed by GPT-5.6-sol-fast in an isolated worktree, orchestrator-verified per batch; 0 hyphenated names, 0 broken links to renamed files; committed + pushed to v4. Post-ship 10-iteration deep review (GPT-5.6-sol-fast HIGH) drove two P1 remediations: 21 code-webflow Purpose paragraphs de-duplicated from their H1 intro, and the broken-link completion claim narrowed to its true renamed-file scope."
 trigger_phrases:
   - "019 summary sk-code split doc alignment"
 importance_tier: "important"
@@ -41,7 +41,7 @@ All 163 mechanically-split reference/asset `.md` files across the three sk-code 
 | Surface | Files | Result |
 |---|---|---|
 | code-quality (assets) | 3 | conformed |
-| code-opencode (refs+assets) | 65 | conformed |
+| code-skilled (refs+assets) | 65 | conformed |
 | code-webflow (refs+assets) | 95 | conformed |
 | **Total** | **163** | **163/163 at 0 issues** |
 
@@ -84,7 +84,7 @@ Commands: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folde
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-- The surface SKILL.md files (code-opencode/code-webflow) still FAIL `package_skill.py --check` for a pre-existing reason (deliberate surface-packet headers, not the create-skill required-section names) — out of scope; per-file resource-doc conformance verified via validate_document.py instead.
+- The surface SKILL.md files (code-skilled/code-webflow) still FAIL `package_skill.py --check` for a pre-existing reason (deliberate surface-packet headers, not the create-skill required-section names) — out of scope; per-file resource-doc conformance verified via validate_document.py instead.
 - `validate.sh --strict` returns exit 1 (warnings), not exit 0. `EVIDENCE_CITED` and `SPEC_DOC_SUFFICIENCY` are now cleared; the residual `COMPLEXITY_MATCH` and `SECTION_COUNTS` warnings are inherent to the standard Level-2 spec template (which renders 7 spec H2s and no user-story/Given-When scenarios) — clearing them would require padding the spec docs with template-foreign content, which is declined as anti-quality. `PRIORITY_TAGS` (CHK-* format) is likewise left as-is. Errors: 0 is the project's completion bar and is met.
 <!-- /ANCHOR:limitations -->
 

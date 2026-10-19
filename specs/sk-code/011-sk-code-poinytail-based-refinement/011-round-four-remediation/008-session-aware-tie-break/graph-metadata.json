@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The front door passes only the prompt to `resolveRoute(hub, prompt)` (`.skilled/bin/compiled-route.cjs:42`)",
     "created_at": "2026-10-10T16:18:05Z",
-    "last_save_at": "2026-10-10T17:13:40.130Z",
+    "last_save_at": "2026-10-18T20:45:15.407Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fd8ef189996961cc95bd3b677529c887e1e75549b9a4be7c7e7ff3e9a0383db",
+    "source_fingerprint": "sha256:63459a840637878f0f5ae66ed59a359cb355b57b8fd4eb84a03fc4193ce9f001",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d87179bcf4669e21150ab5e4cfa1df72db0aaf63511c3d2a42d57137c36e190",
-      "plan.md": "b11722559db904b9aa1329f5dcb982f2c573295c985cd9f227a3f7732d9dc6ff",
-      "tasks.md": "52e5a160fec769083bb278b714f844bd17e2ce811a7d4504b2e131d5ab869e15",
-      "implementation-summary.md": "4bb41ff765cb89180f14f8ca31930162f5a7229487c7223f395efdd1893b9cdf"
+      "spec.md": "493f8a0c7e9eaca5820f3b1251e245bf7727300b4356f5ed874b8b92e610e687",
+      "plan.md": "1ccd56a2f02aa9c5f28426a2f174e03028929ccaa73ff1bf72d3fba539708865",
+      "tasks.md": "0c516dd170aabba7d684e25270dfb467c08fba6abc945e725c9266faaa5582cd",
+      "implementation-summary.md": "39d457201a5875102ecc26446e7f6dcbbd42fd3265fb0bdab8bfd83d925e6ec1"
     },
     "last_active_at": null
   }

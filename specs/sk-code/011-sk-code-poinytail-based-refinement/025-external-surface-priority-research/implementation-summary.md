@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Four ten-iteration lineages over two rounds, a merged synthesis and a fresh verification pass found that a user's sk-code surface outranks sk-code-opencode with no new field: the scaffold must place it ahead of the existing surfaces in tieBreak. The real gaps are a verified removal path, honest messages and a single external-user guide; seven final recommendations in four phases."
+description: "Four ten-iteration lineages over two rounds, a merged synthesis and a fresh verification pass found that a user's sk-code surface outranks sk-code-skilled with no new field: the scaffold must place it ahead of the existing surfaces in tieBreak. The real gaps are a verified removal path, honest messages and a single external-user guide; seven final recommendations in four phases."
 trigger_phrases:
   - "external surface priority research implementation summary"
 importance_tier: "normal"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Q1 to Q12, see research/research.md sections 3 to 14"
-      - "R5: decided by the operator, sk-code-opencode keeps its generic language keywords"
+      - "R5: decided by the operator, sk-code-skilled keeps its generic language keywords"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-You now have a checked answer to how Skilled should treat the sk-code surfaces for external users. A user's own surface outranks sk-code-opencode without any new field: it goes ahead of opencode in the one `tieBreak` list the compiler already reads, and the shipped order already ranks the native surface ahead of the two examples, so the operator's repository keeps its order unchanged. The real gap is that deleting the obsidian and webflow examples is not a supported path today.
+You now have a checked answer to how Skilled should treat the sk-code surfaces for external users. A user's own surface outranks sk-code-skilled without any new field: it goes ahead of opencode in the one `tieBreak` list the compiler already reads, and the shipped order already ranks the native surface ahead of the two examples, so the operator's repository keeps its order unchanged. The real gap is that deleting the obsidian and webflow examples is not a supported path today.
 
 ### Phase 25: external-surface-priority-research
 
@@ -58,7 +58,7 @@ You now have a checked answer to how Skilled should treat the sk-code surfaces f
 
 Round two ran two more ten-iteration lineages, `swe2max-devin` and `luna-max-fast-r2`, on the gaps round one left (F10, F18, F20, R1 to R4) plus the operator's added focus on the external user's journey, automation and guides. Both lineages' iterations, deltas and registries are on disk, `fanout-merge.cjs` merged all four lineages and the fan-out resource map was regenerated from 40 delta sources. A fresh synthesizer then merged both rounds into `research/research.md`: F1 to F82, R1 to R10, X1 to X19 and P1 to P7.
 
-The orchestrator's own copy run confirmed two round-two claims. A hand-added surface fails seven parent-skill-check legs, the five round one named minus 5k-alias (which passes when the aliases are class keywords) plus 10b and 10d; the `update --surfaces` writes clear all but 5k-canary; and a surface inserted ahead of `sk-code-opencode` in `tieBreak` leads a tie with it after refresh, once both the activation manifest and the canary fixture are copied to their authored paths.
+The orchestrator's own copy run confirmed two round-two claims. A hand-added surface fails seven parent-skill-check legs, the five round one named minus 5k-alias (which passes when the aliases are class keywords) plus 10b and 10d; the `update --surfaces` writes clear all but 5k-canary; and a surface inserted ahead of `sk-code-skilled` in `tieBreak` leads a tie with it after refresh, once both the activation manifest and the canary fixture are copied to their authored paths.
 
 ### Files Changed
 
@@ -126,7 +126,7 @@ The orchestrator executed the `/deep:research` auto YAML step by step, as the 02
 
 1. **Some claims stay unconfirmed.** Eight claims were not rerun by the verification pass, among them the advisor's confidence after deletion and the orchestrator's add-surface runs; section 13.2 lists them.
 2. **Lineage D changed executor at iteration 5.** Iterations 1 to 4 ran on cli-codex at max, 5 to 10 on cli-pi at xhigh; each dispatch receipt records the executor that ran.
-3. **R5 stays as is.** The operator ruled that sk-code-opencode keeps its generic language keywords.
+3. **R5 stays as is.** The operator ruled that sk-code-skilled keeps its generic language keywords.
 4. **Two workflow steps were simplified.** The single-loop status-ledger rows were not written and the executor block was not patched into the state projection, matching the 023 precedent; no gate reads them. Lineage A's graph upsert for iteration 5 failed on a foreign key and was skipped; lineage B emitted no graph events.
 <!-- /ANCHOR:limitations -->
 

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Both release documents were written to describe a tree that has since moved",
     "created_at": "2026-09-19T18:39:04Z",
-    "last_save_at": "2026-10-07T15:57:32.801Z",
+    "last_save_at": "2026-10-18T20:45:35.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6513473d36cbc88b3aaf59f01606defddf994799da670511c58a98ef8ba7f922",
+    "source_fingerprint": "sha256:044f8f4169dfb7007ac229f3294b72eb95f7ae2f2a48527439c4fb296f0db64f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1301a2dce6873e42b27c2ad0c084c9926067f549bedd2493d4ecf92551a82d86",
       "plan.md": "cd4bacc0a448773660222cb5ec41d42d339daacdd5bf09ced915884ccdc6af24",
       "tasks.md": "d584064858ba2448d40ec0c349c55e9fd79e8c36fa2d4db625ccfccf6255e4a9",
       "implementation-summary.md": "723017ccc9a7f7a5284649b52fdb6f5373683372a88439d6fb9d095cd30b0c4a",
-      "research/research.md": "ae2c661da8924592ca1fe52540dd68a2ffc2ea6ba25bbf174517d80fb53256e6"
+      "research/research.md": "415216e164af59f25cea64e80992b1cb64e0a878346c9d1338d2060cf02e050e"
     },
     "last_active_at": null
   }

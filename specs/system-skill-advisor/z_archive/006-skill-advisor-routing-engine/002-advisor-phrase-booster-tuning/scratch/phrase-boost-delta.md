@@ -66,7 +66,7 @@ Target file: `.opencode/skills/skill-advisor/scripts/skill_advisor.py` + fixture
 
 ## New PHRASE Additions from Iteration 3 (15 entries)
 
-Distributed across 6 skills: system-spec-kit, sk-code-opencode, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review. See the Phase 2 diff in `skill_advisor.py` lines ~830-900 for the exact additions.
+Distributed across 6 skills: system-spec-kit, sk-code-skilled, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review. See the Phase 2 diff in `skill_advisor.py` lines ~830-900 for the exact additions.
 
 ---
 

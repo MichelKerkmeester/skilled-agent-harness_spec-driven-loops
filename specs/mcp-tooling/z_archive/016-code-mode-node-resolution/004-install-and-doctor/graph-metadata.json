@@ -45,7 +45,7 @@
       ".opencode/skills/mcp-code-mode/scripts/install.sh",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
-      ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+      ".opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
       ".opencode/commands/doctor/mcp.md"
     ],
     "entities": [
@@ -94,7 +94,7 @@
       {
         "name": "mcp-server-authoring.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "path": ".opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
         "source": "derived"
       },
       {

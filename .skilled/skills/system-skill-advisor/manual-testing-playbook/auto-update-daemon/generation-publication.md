@@ -6,7 +6,7 @@ trigger_phrases:
   - "generation counter"
   - "snapshot publication"
   - "reindex commit"
-version: 0.8.0.14
+version: 0.8.2.0
 id: AU-004
 category: auto_update_daemon
 stage: routing
@@ -38,7 +38,9 @@ Validate that generation counter increments are atomic, persisted through temp-f
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+Run every command from the repository root.
+
+### Commands
 
 1. Capture baseline generation:
 
@@ -61,7 +63,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 5. Call `advisor_recommend` with a prompt that maps to the touched skill and inspect `cache.generation` if present.
 
-### Expected Signals
+### Expected
 
 - Generation increments by exactly 1 between step 1 and step 4.
 - `lastScanAt` advances.
@@ -69,7 +71,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 - `advisor_recommend` response reflects the new generation where generation is surfaced.
 - No intermediate state exposes a generation without a matching snapshot (no partial-write leakage).
 
-### Failure Modes
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -79,58 +81,24 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 ### Evidence
 
-Baseline `advisor_status({"workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public","checkArtifactIntegrity":true})` output:
+- Capture each command's output and exit status.
+- Record `generation`, `lastScanAt` and `trustState.state` from both status reads.
+- Record `cache.generation` from the recommendation response when present.
+- Capture any intermediate generation and its matching snapshot.
 
-```json
-{
-  "status": "ok",
-  "data": {
-    "freshness": "unavailable",
-    "generation": 9476,
-    "trustState": {
-      "state": "stale",
-      "reason": "SIGTERM",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:11:56.562Z",
-      "lastLiveAt": null
-    },
-    "lastGenerationBump": "2026-07-02T05:27:14.803Z",
-    "lastScanAt": "2026-07-02T05:27:14.803Z",
-    "skillCount": 26,
-    "laneWeights": {
-      "explicit_author": 0.42,
-      "lexical": 0.28,
-      "graph_causal": 0.13,
-      "derived_generated": 0.12,
-      "semantic_shadow": 0.05
-    }
-  }
-}
-```
+### Pass / Fail
 
-Step 2 was not executed because the scenario command requires this write outside the allowed path:
-
-```bash
-touch .skilled/skills/sk-git/SKILL.md
-```
-
-Allowed write paths for this run only permitted:
-
-```text
-.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md
-```
-
-### Pass/Fail
-
-BLOCKED - Step 2 requires modifying `.skilled/skills/sk-git/SKILL.md`, but this run explicitly allowed writes only to `.skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/generation-publication.md`; the daemon was also not live at baseline (`freshness`: `unavailable`, `trustState.state`: `stale`, `trustState.reason`: `SIGTERM`).
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
 
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md), watcher scope.
 - Scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md), recovery when snapshot unreadable.
-- Feature [`daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
+- Feature [`feature-catalog/daemon-and-freshness/generation.md`](../../feature-catalog/daemon-and-freshness/generation.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts`.
 
 ---

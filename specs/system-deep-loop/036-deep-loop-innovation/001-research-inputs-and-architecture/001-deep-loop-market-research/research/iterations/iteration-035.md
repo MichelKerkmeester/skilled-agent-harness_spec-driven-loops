@@ -959,9 +959,9 @@ exec
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-strategy.md
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/iterations/iteration-034.md
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/research.md
-../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
-../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md
-../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-state.jsonl
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-config.json
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-state.jsonl
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/deep-research-config.json

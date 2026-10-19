@@ -2,11 +2,11 @@
   "hubs": {
     "sk-code": [
       {
-        "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+        "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
         "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback."
       },
       {
-        "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+        "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
         "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode."
       }
     ],
@@ -75,13 +75,13 @@
     {
       "hubId": "sk-code",
       "prompt_idx": 1,
-      "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md",
+      "source": ".opencode/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
       "prompt": "Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback."
     },
     {
       "hubId": "sk-code",
       "prompt_idx": 2,
-      "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/opencode-typescript.md",
+      "source": ".opencode/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
       "prompt": "Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode."
     },
     {

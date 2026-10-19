@@ -51,7 +51,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Successor** | ../003-testing-playbook-trio-alignment/spec.md |
 | **Parent Spec** | ../spec.md |
-| **Predecessor** | ../001-sk-code-opencode-standards-audit/spec.md |
+| **Predecessor** | ../001-sk-code-skilled-standards-audit/spec.md |
 | **Parent Spec** | ../spec.md |
 | **Branch** | `main` |
 | **Parent** | `003-post-program-quality-pass` |

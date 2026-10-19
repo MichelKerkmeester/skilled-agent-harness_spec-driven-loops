@@ -41,7 +41,7 @@ Run ops validation from the repository root:
 ```bash
 npx tsx .skilled/skills/system-spec-kit/runtime/cli/ops/process-sweep.ts dry-run
 node .skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs --help
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/ops
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/ops
 ```
 
 ---

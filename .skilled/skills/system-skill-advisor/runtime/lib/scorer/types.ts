@@ -52,6 +52,8 @@ export interface SkillProjection {
   readonly keywords: readonly string[];
   readonly domains: readonly string[];
   readonly intentSignals: readonly string[];
+  /** A command bridge lists the manifest phrases that rank it above a passing skill. */
+  readonly leadPhrases?: readonly string[];
   readonly derivedTriggers: readonly string[];
   readonly derivedKeywords: readonly string[];
   readonly derivedDemotion?: number;

@@ -83,7 +83,7 @@ string, not these files.
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/00[1-5]-*/implementation-summary.md | wc -l` prints 5
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/009-round-two-follow-ups/'` prints 5 or more, one per child, and `git status --short` prints nothing
-- [ ] `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` exits 0 with check 1b among its legs, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0, and `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` exits 0
+- [ ] `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` exits 0 with check 1b among its legs, `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0, and `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -115,5 +115,5 @@ and findings belong here.
 | 005 criterion 3 baseline | The 73-file copy of the old hooks left the folder before the commit; criterion 3 rebuilds the baseline from commit 00b905bda0 with the same result |
 | Follow-ups found, not built | (1) Routing the three shared workflow docs through each surface's RESOURCE_MAP, which changes what three surfaces load: an operator decision. (2) The stdin readers under system-spec-kit/runtime/hooks, some reached through symlinks from .skilled/hooks. (3) The quality README runs two Python checkers through bash. (4) The deep-review reducer reads `- **F###**:` bullets while the agent writes numbered findings. (5) The cli-pi env allowlist drops PI_BLACKHOLE_PASSIVE, which the cli-pi skill says to set. (6) The Obsidian playbook root fails validate_document.py with two existing issues |
 | Criterion 3 amended 2026-10-11 | The phase was merged, so `main..HEAD` is empty. The count now reads the `Spec:` trailers reachable from HEAD, as the 011 parent criterion 3 already does |
-| Criterion 4 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 4 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 <!-- /ANCHOR:log -->

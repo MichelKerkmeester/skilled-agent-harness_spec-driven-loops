@@ -15,9 +15,9 @@
 .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md
 .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
 .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
-.skilled/skills/sk-code/sk-code-opencode/SKILL.md
-.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
-.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+.skilled/skills/sk-code/sk-code-skilled/SKILL.md
+.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 .skilled/skills/sk-code/sk-code-quality/SKILL.md
 .skilled/skills/sk-doc/ROUTER.md
 .skilled/skills/sk-doc/SKILL.md

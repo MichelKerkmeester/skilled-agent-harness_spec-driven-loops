@@ -1,0 +1,18 @@
+DESCRIPTION
+  Print one-time links to connect a browser or app
+
+USAGE
+  opencode pair [flags]
+
+FLAGS
+  --url string    Use an external HTTP(S) server URL in pairing links
+  --remote        Pair through the OpenTunnel remote address, enabling remote access if needed (exposes the server to the internet)
+  --yes, -y       Accept exposing the server to the internet when --remote enables remote access for the first time (required without an interactive terminal)
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)

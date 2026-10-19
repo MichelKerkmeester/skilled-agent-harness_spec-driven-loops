@@ -33,7 +33,7 @@ Planning Packet:
       "severity": "P1",
       "title": "Rust reference never enters the required numbered OVERVIEW",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21",
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21",
         ".opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87"
       ]
     },
@@ -86,7 +86,7 @@ Planning Packet:
     "F004": "matrix/evidence"
   },
   "affectedSurfacesSeed": [
-    "code-opencode Rust references",
+    "code-skilled Rust references",
     "code-webflow third-party references",
     "spec completion evidence",
     "implementation-summary verification table"
@@ -100,14 +100,14 @@ Planning Packet:
 ### F001 [P1] Rust reference never enters the required numbered OVERVIEW
 
 - **Dimension:** correctness
-- **File:** `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21`
+- **File:** `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21`
 - **Evidence:** the file moves from H1/intro directly to `### Error Style`; the required `## 1. OVERVIEW`, Purpose, and When to Use are absent. R3 requires that structure [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`], and the canonical template defines it [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`].
 - **Impact:** one of the declared 163 conformed files remains structurally non-conformant, while the generic validator provides a false clean signal.
 - **Recommendation:** add the missing wrapper and renumber inherited content without changing substantive guidance.
 - **Disposition:** active
 - **Finding class:** instance-only
 - **Scope proof:** one missing wrapper in the complete 163-file matrix.
-- **Affected surface hints:** code-opencode Rust references, create-skill reference contract, document validator.
+- **Affected surface hints:** code-skilled Rust references, create-skill reference contract, document validator.
 
 ### F002 [P1] Post-review Purpose de-duplication left one containment duplicate
 
@@ -221,7 +221,7 @@ Planning Packet:
 
 | Check | Result |
 |---|---|
-| Target inventory | 163 files: code-opencode 65, code-webflow 95, code-quality 3 |
+| Target inventory | 163 files: code-skilled 65, code-webflow 95, code-quality 3 |
 | Generic document validation | 163/163 exit 0 |
 | Hyphenated target stems | 0 |
 | Semantic structure matrix | 1 missing wrapper, 1 intro/Purpose containment duplicate |

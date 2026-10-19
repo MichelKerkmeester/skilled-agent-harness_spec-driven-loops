@@ -53,7 +53,7 @@ exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -72,9 +72,9 @@ Universal `sk-code` review baseline for any codebase, implemented by `sk-code-re
 Use this skill when:
 - A user asks for code review, PR review, quality gate, or merge readiness.
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -105,7 +105,7 @@ exec
     "reason": "Matched: !/system-spec-kit(explicit), !intent:memory, !memory, !spec, !system-spec-kit(explicit)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,
@@ -116,7 +116,7 @@ exec
     "skill": "sk-code-web",
     "kind": "skill",
 codex
-SKILL ROUTING: `system-spec-kit` and `sk-code-opencode` were recommended with high confidence; I’m using the review baseline plus the OpenCode overlay, and I’m skipping spec-folder workflow because this is a read-only audit with no file changes planned.
+SKILL ROUTING: `system-spec-kit` and `sk-code-skilled` were recommended with high confidence; I’m using the review baseline plus the OpenCode overlay, and I’m skipping spec-folder workflow because this is a read-only audit with no file changes planned.
 exec
 /bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts .opencode/skills/system-spec-kit/scripts/core/memory-indexer.ts .opencode/skills/system-spec-kit/scripts/utils/spec-affinity.ts' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
     1217 .opencode/skills/system-spec-kit/scripts/utils/input-normalizer.ts

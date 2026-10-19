@@ -76,7 +76,7 @@ Keyword additions were conservative domain phrases rather than generic English. 
 - Deep-loop skills: added lineage, iteration, artifact, convergence, and release-readiness phrases that indicate full protocol context is likely useful.
 - Documentation, Git, prompt-improvement, and system-spec-kit skills: added concrete artifact names and workflow commands (`README`, manual testing playbook, feature catalog, git worktree, experiment branch, prompt package, `/memory:save`, `/spec_kit:resume`, `implementation-summary`, `tasks.md`).
 
-For `sk-code-full-stack`, `sk-code-opencode`, and `sk-improve-agent`, which previously had no explicit ON_DEMAND keyword gate, the router pseudocode now includes an `ON_DEMAND_KEYWORDS` list and a small load branch that expands to the relevant checklist/resource set when those explicit phrases appear.
+For `sk-code-full-stack`, `sk-code-skilled`, and `sk-improve-agent`, which previously had no explicit ON_DEMAND keyword gate, the router pseudocode now includes an `ON_DEMAND_KEYWORDS` list and a small load branch that expands to the relevant checklist/resource set when those explicit phrases appear.
 
 ### Area C: CLI Fallback Safety
 

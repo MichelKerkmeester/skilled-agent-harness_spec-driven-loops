@@ -1,0 +1,79 @@
+[
+  {
+    "type": "document",
+    "path": "/Users/michelkerkmeester/.config/opencode/opencode.jsonc",
+    "info": {
+      "$schema": "https://opencode.ai/config.json"
+    }
+  },
+  {
+    "type": "directory",
+    "path": "/Users/michelkerkmeester/.config/opencode"
+  },
+  {
+    "type": "document",
+    "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/opencode.json",
+    "info": {
+      "$schema": "https://opencode.ai/config.json",
+      "permissions": [
+        {
+          "action": "edit",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "webfetch",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "doom_loop",
+          "resource": "*",
+          "effect": "allow"
+        },
+        {
+          "action": "external_directory",
+          "resource": "*",
+          "effect": "allow"
+        }
+      ],
+      "mcp": {
+        "servers": {
+          "code_mode": {
+            "type": "local",
+            "command": [
+              "node",
+              ".skilled/bin/mcp-code-mode-launcher.cjs"
+            ],
+            "environment": {
+              "UTCP_CONFIG_FILE": ".utcp_config.json"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "document",
+    "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/a12-probe/opencode.json",
+    "info": {
+      "$schema": "https://opencode.ai/config.json",
+      "plugins": [
+        "./.opencode/plugins/envprobe-alt.js"
+      ]
+    }
+  },
+  {
+    "type": "directory",
+    "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode"
+  },
+  {
+    "type": "directory",
+    "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch/a12-probe/.opencode"
+  }
+]

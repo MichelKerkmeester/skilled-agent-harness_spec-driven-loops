@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.2.12.0
+version: 2.2.13.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -23,11 +23,11 @@ Authoritative routing reference for sk-code. Consolidates intent classification 
 
 ### Purpose
 
-The smart router maps a detected surface (OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
+The smart router maps a detected surface (SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN) plus a classified intent (IMPLEMENTATION / DEBUGGING / VERIFICATION / etc.) to the exact references, assets, and verification commands needed for the active task. Loads only the smallest relevant set so the active context window stays focused.
 
 ### When to Use
 
-- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines OPENCODE / OBSIDIAN / WEBFLOW / UNKNOWN
+- After surface detection (see [`stack-detection.md`](shared/references/stack-detection.md)) determines SKILLED / OBSIDIAN / WEBFLOW / UNKNOWN
 - When classifying task wording into the dominant work intent
 - When mapping intent to concrete reference paths
 - When picking verification commands for the surface
@@ -42,7 +42,7 @@ Beyond the Webflow and OpenCode prose maps in §4 and §6, the hub can bundle a 
 
 ### Key Sources
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) and OpenCode language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN) and OpenCode language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and phase-specific resource expectations
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 
@@ -75,7 +75,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 2. Boost explicit phase signals (verification, debugging, testing, code quality) by +5 when the phase is unambiguous.
 3. Select the top intent.
 4. Select a second intent when the score delta to the next intent is small (`AMBIGUITY_DELTA = 1`).
-5. For OPENCODE surface, run language sub-detection after intent selection.
+5. For SKILLED surface, run language sub-detection after intent selection.
 
 ### Doc-only edit anti-signals
 
@@ -89,17 +89,17 @@ Doc-only prose changes subtract from `sk-code` intent scoring and add to `sk-doc
 | `improve readme`, `reorganize readme`, `rewrite section` | `sk-code -2`, `sk-doc +3` |
 | `SKILL.md` or `README.md` plus prose-only verbs | `sk-code -2`, `sk-doc +3` |
 
-Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep OPENCODE surface detection and load `sk-code`.
+Do not apply this anti-signal when the same request asks to modify executable code, parser logic, tests, shell behavior, TypeScript/Python entrypoints, JSON schema behavior, or routing algorithms. In that case, keep SKILLED surface detection and load `sk-code`.
 
-Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load OPENCODE plus LANGUAGE_STANDARDS and CODE_QUALITY.
+Multi-symptom prompts like `fix Webflow animation flicker` should load both DEBUGGING and ANIMATION. Prompts like `update TypeScript advisor fixture` should load SKILLED plus LANGUAGE_STANDARDS and CODE_QUALITY.
 
-Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `sk-code-webflow/references/animation/` for cross-stack API/decision context; if the target is `.skilled/`, keep the surface as OPENCODE and load Motion only as reference material.
+Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. If the target files are Webflow files, keep the surface as WEBFLOW and add `sk-code-webflow/references/animation/` for cross-stack API/decision context; if the target is `.skilled/`, keep the surface as SKILLED and load Motion only as reference material.
 
 ### Surface-specific intent notes
 
 - **WEBFLOW** intent scoring favors browser/runtime terms, animation, forms, video, performance, deployment, and verification.
 - **MOTION_DEV** intent scoring favors Motion API, timeline, scroll/gesture, performance, import-mode, snippet, and decision_matrix terms; it supplements the detected surface rather than replacing it.
-- **OPENCODE** intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
+- **SKILLED** intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
 
 ---
@@ -109,9 +109,9 @@ Motion.dev API or decision prompts should load MOTION_DEV as a resource intent. 
 | Tier | When | Resources |
 | --- | --- | --- |
 | ALWAYS | Every invocation | The §11 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The other universal files load with their intent: `code-style-guide.md` with CODE_QUALITY, `error-recovery.md` with DEBUGGING and `multi-agent-research.md` with IMPLEMENTATION |
-| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-opencode/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
+| SURFACE | After WEBFLOW, SKILLED or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-skilled/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |
 | INTENT | After intent classification | Implementation, debugging, verification, performance, etc. matching the top-1 intent (and top-2 when ambiguous) |
-| LANGUAGE | OPENCODE only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-opencode/references/<lang>/` resources |
+| LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
 | ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-webflow/references/css/patterns/tokens-state-machine-and-triggers.md` for advanced CSS patterns) |
 
 ---
@@ -154,7 +154,7 @@ For the LANGUAGE_STANDARDS intent, load the language overlay matching the change
 
 ## 5. MOTION_DEV MAP
 
-MOTION_DEV loads from `sk-code-webflow/references/animation/` and `sk-code-webflow/assets/animation/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, OPENCODE, or future surfaces when the request needs Motion API, integration, or decision guidance.
+MOTION_DEV loads from `sk-code-webflow/references/animation/` and `sk-code-webflow/assets/animation/` as a peer resource category. It is not a separate code surface; it supplements WEBFLOW, SKILLED, or future surfaces when the request needs Motion API, integration, or decision guidance.
 
 Webflow implementation and verification resources remain owned by their corresponding WEBFLOW intents; MOTION_DEV owns only the animation peer resources below.
 
@@ -197,48 +197,48 @@ DECISION intent MUST name:
 
 ---
 
-## 6. OPENCODE MAP
+## 6. SKILLED MAP
 
-OPENCODE loads from `sk-code-opencode/references/` and `sk-code-opencode/assets/`.
+SKILLED loads from `sk-code-skilled/references/` and `sk-code-skilled/assets/`.
 
 ### Implementation shared tier
 
 IMPLEMENTATION loads the shared organization and naming baseline:
 
-- `sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`
-- `sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md`
 
 ### Intent overlay
 
 | Intent | Resources |
 | --- | --- |
-| CODE_QUALITY | `sk-code-opencode/assets/checklists/universal-checklist.md` plus the language-matching checklist |
-| VERIFICATION | `sk-code-opencode/references/shared/alignment-verification-automation.md`, `sk-code-opencode/assets/scripts/verify_alignment_drift.py` |
-| HOOKS | `sk-code-opencode/references/shared/hooks.md` |
-| CONFIG | `sk-code-opencode/references/config/*` |
+| CODE_QUALITY | `sk-code-skilled/assets/checklists/universal-checklist.md` plus the language-matching checklist |
+| VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `sk-code-skilled/assets/scripts/verify_alignment_drift.py` |
+| HOOKS | `sk-code-skilled/references/shared/hooks.md` |
+| CONFIG | `sk-code-skilled/references/config/*` |
 | LANGUAGE_STANDARDS | Detected language folder's `quick-reference.md`, `style-guide.md`, `quality-standards.md` |
 
 ### Language overlay
 
 | Language | Resources |
 | --- | --- |
-| JAVASCRIPT | `sk-code-opencode/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-opencode/assets/checklists/javascript-checklist.md` |
-| TYPESCRIPT | `sk-code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-opencode/assets/checklists/typescript-checklist.md` |
-| PYTHON | `sk-code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`, `sk-code-opencode/assets/checklists/python-checklist.md` |
-| SHELL | `sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`, `sk-code-opencode/assets/checklists/shell-checklist.md` |
-| RUST | `sk-code-opencode/references/rust/{style_guide,quality_standards,quick_reference}/` (each split into topic parts), `sk-code-opencode/assets/checklists/rust-checklist/` |
-| CONFIG | `sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`, `sk-code-opencode/assets/checklists/config-checklist.md` |
+| JAVASCRIPT | `sk-code-skilled/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/javascript-checklist.md` |
+| TYPESCRIPT | `sk-code-skilled/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/typescript-checklist.md` |
+| PYTHON | `sk-code-skilled/references/python/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/python-checklist.md` |
+| SHELL | `sk-code-skilled/references/shell/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/shell-checklist.md` |
+| RUST | `sk-code-skilled/references/rust/{style_guide,quality_standards,quick_reference}/` (each split into topic parts), `sk-code-skilled/assets/checklists/rust-checklist/` |
+| CONFIG | `sk-code-skilled/references/config/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/config-checklist.md` |
 
 ### Authoring checklist gating
 
-When OPENCODE intent is `authoring-new-X`, additionally load the matching authoring checklist:
+When SKILLED intent is `authoring-new-X`, additionally load the matching authoring checklist:
 
 | Authoring target | Checklist |
 | --- | --- |
-| New skill | `sk-code-opencode/assets/checklists/skill-authoring.md` |
-| New agent | `sk-code-opencode/assets/checklists/agent-authoring.md` |
-| New command | `sk-code-opencode/assets/checklists/command-authoring.md` |
-| New MCP server | `sk-code-opencode/assets/checklists/mcp-server-authoring.md` |
+| New skill | `sk-code-skilled/assets/checklists/skill-authoring.md` |
+| New agent | `sk-code-skilled/assets/checklists/agent-authoring.md` |
+| New command | `sk-code-skilled/assets/checklists/command-authoring.md` |
+| New MCP server | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` + `system-spec-kit/references/workflows/spec-folder-write-recipe.md` |
 
 ---
@@ -248,7 +248,7 @@ When OPENCODE intent is `authoring-new-X`, additionally load the matching author
 | Surface | Required verification evidence |
 | --- | --- |
 | WEBFLOW | `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/minify-webflow.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/verify-minification.mjs`; `node .skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs`; plus desktop/mobile browser console clean evidence when runtime behavior changes |
-| OPENCODE | `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
+| SKILLED | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -262,13 +262,13 @@ If no supported surface matches, ask:
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code only owns the WEBFLOW, OPENCODE and OBSIDIAN surfaces plus the MOTION_DEV resource category.
+Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code only owns the WEBFLOW, SKILLED and OBSIDIAN surfaces plus the MOTION_DEV resource category.
 
 ### UNKNOWN fallback checklist
 
 Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the user explicitly asks for stack-agnostic guidance:
 
-- Confirm the active runtime surface (OPENCODE, OBSIDIAN or WEBFLOW)
+- Confirm the active runtime surface (SKILLED, OBSIDIAN or WEBFLOW)
 - Confirm the task intent (implementation / debugging / verification / etc.)
 - Provide one concrete input, error, or expected output
 - Confirm the verification command set before completion
@@ -287,7 +287,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ### DON'T
 
-- Load all of `sk-code-webflow/` or all of `sk-code-opencode/` indiscriminately ("just in case")
+- Load all of `sk-code-webflow/` or all of `sk-code-skilled/` indiscriminately ("just in case")
 - Treat MOTION_DEV as a surface (it's a peer resource category)
 - Load Go/NextJS/React Native resources (those live in the Barter fork)
 - Skip the implementation trio for WEBFLOW
@@ -297,7 +297,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ## 10. RELATED RESOURCES
 
-- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (OPENCODE/OBSIDIAN/WEBFLOW/UNKNOWN) + OPENCODE language sub-detection
+- [`stack-detection.md`](shared/references/stack-detection.md) — surface detection (SKILLED/OBSIDIAN/WEBFLOW/UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
@@ -370,15 +370,15 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/shared/dev-workflow/automation-errors-and-compat.md",
         "sk-code-webflow/references/shared/dev-workflow/common-commands.md",
         "sk-code-webflow/references/shared/dev-workflow/checklists-and-decision-matrix.md",
-        "sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
-        "sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md",
-        "sk-code-opencode/references/shared/code-organization/overview-and-module-organization.md",
-        "sk-code-opencode/references/shared/code-organization/imports-and-exports.md",
-        "sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
-        "sk-code-opencode/assets/checklists/agent-authoring.md",
-        "sk-code-opencode/assets/checklists/command-authoring.md",
-        "sk-code-opencode/assets/checklists/skill-authoring.md",
-        "sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
+        "sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
+        "sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md",
+        "sk-code-skilled/references/shared/code-organization/imports-and-exports.md",
+        "sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+        "sk-code-skilled/assets/checklists/agent-authoring.md",
+        "sk-code-skilled/assets/checklists/command-authoring.md",
+        "sk-code-skilled/assets/checklists/skill-authoring.md",
+        "sk-code-skilled/assets/checklists/mcp-server-authoring.md",
         "sk-code-webflow/assets/integrations/README.md",
         "sk-code-webflow/assets/patterns/README.md",
         "sk-code-webflow/assets/templates/README.md",
@@ -389,15 +389,15 @@ RESOURCE_MAP = {
         "shared/references/universal/code-style-guide.md",
         "sk-code-webflow/references/shared/cross-language-rules.md",
         "sk-code-webflow/references/shared/enforcement.md",
-        "sk-code-opencode/assets/checklists/universal-checklist.md",
-        "sk-code-opencode/assets/checklists/javascript-checklist.md",
-        "sk-code-opencode/assets/checklists/typescript-checklist.md",
-        "sk-code-opencode/assets/checklists/python-checklist.md",
-        "sk-code-opencode/assets/checklists/shell-checklist.md",
-        "sk-code-opencode/assets/checklists/rust-checklist/overview-and-p0-parity.md",
-        "sk-code-opencode/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
-        "sk-code-opencode/assets/checklists/rust-checklist/p1-required.md",
-        "sk-code-opencode/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
+        "sk-code-skilled/assets/checklists/universal-checklist.md",
+        "sk-code-skilled/assets/checklists/javascript-checklist.md",
+        "sk-code-skilled/assets/checklists/typescript-checklist.md",
+        "sk-code-skilled/assets/checklists/python-checklist.md",
+        "sk-code-skilled/assets/checklists/shell-checklist.md",
+        "sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+        "sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+        "sk-code-skilled/assets/checklists/rust-checklist/p1-required.md",
+        "sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
         "sk-code-review/assets/code-quality-checklist.md",
 
     ],
@@ -417,10 +417,10 @@ RESOURCE_MAP = {
     "VERIFICATION": [
         "sk-code-webflow/references/verification/verification-workflows/gate-and-automated-options.md",
         "sk-code-webflow/references/verification/verification-workflows/requirements-rules-and-checklist.md",
-        "sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "sk-code-skilled/references/shared/alignment-verification-automation.md",
         "shared/references/universal-verification-checklist.md",
         "sk-code-webflow/assets/webflow-verification-checklist.md",
-        "sk-code-opencode/assets/scripts/README.md",
+        "sk-code-skilled/assets/scripts/README.md",
 
     ],
     "TESTING": [
@@ -491,13 +491,13 @@ RESOURCE_MAP = {
         "sk-code-webflow/references/implementation/third-party-integrations/best-practices-and-summary.md",
     ],
     "HOOKS": [
-        "sk-code-opencode/references/shared/hooks.md",
+        "sk-code-skilled/references/shared/hooks.md",
     ],
     "CONFIG": [
-        "sk-code-opencode/references/config/style-guide.md",
-        "sk-code-opencode/references/config/quality-standards.md",
-        "sk-code-opencode/references/config/quick-reference.md",
-        "sk-code-opencode/assets/checklists/config-checklist.md",
+        "sk-code-skilled/references/config/style-guide.md",
+        "sk-code-skilled/references/config/quality-standards.md",
+        "sk-code-skilled/references/config/quick-reference.md",
+        "sk-code-skilled/assets/checklists/config-checklist.md",
     ],
     "LANGUAGE_STANDARDS": [
         "sk-code-webflow/references/css/style-guide.md",
@@ -524,32 +524,32 @@ RESOURCE_MAP = {
 
     ],
     "JAVASCRIPT": [
-        "sk-code-opencode/references/javascript/style-guide.md",
-        "sk-code-opencode/references/javascript/quality-standards/overview-modules-and-docs.md",
-        "sk-code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md",
-        "sk-code-opencode/references/javascript/quick-reference.md",
+        "sk-code-skilled/references/javascript/style-guide.md",
+        "sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md",
+        "sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md",
+        "sk-code-skilled/references/javascript/quick-reference.md",
     ],
     "TYPESCRIPT": [
-        "sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md",
-        "sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md",
-        "sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md",
-        "sk-code-opencode/references/typescript/quality-standards/tsdoc-errors-and-async.md",
-        "sk-code-opencode/references/typescript/quality-standards/tsconfig-and-modules.md",
-        "sk-code-opencode/references/typescript/quick-reference/template-naming-and-types.md",
-        "sk-code-opencode/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
+        "sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
+        "sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+        "sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
+        "sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
+        "sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md",
+        "sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md",
+        "sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
     ],
     "PYTHON": [
-        "sk-code-opencode/references/python/style-guide.md",
-        "sk-code-opencode/references/python/quality-standards.md",
-        "sk-code-opencode/references/python/quick-reference.md",
+        "sk-code-skilled/references/python/style-guide.md",
+        "sk-code-skilled/references/python/quality-standards.md",
+        "sk-code-skilled/references/python/quick-reference.md",
     ],
     "SHELL": [
-        "sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md",
-        "sk-code-opencode/references/shell/style-guide/variables-functions-and-output.md",
-        "sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md",
-        "sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md",
-        "sk-code-opencode/references/shell/quick-reference/template-variables-and-loops.md",
-        "sk-code-opencode/references/shell/quick-reference/functions-strings-and-checklist.md",
+        "sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md",
+        "sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md",
+        "sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md",
+        "sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md",
+        "sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md",
+        "sk-code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md",
     ],
     "OBSIDIAN_PLUGIN": [
         "sk-code-obsidian/references/obsidian-plugin-api.md",
@@ -559,23 +559,23 @@ RESOURCE_MAP = {
     ],
 
     "RUST": [
-        "sk-code-opencode/references/rust/style-guide/overview-and-file-header.md",
-        "sk-code-opencode/references/rust/style-guide/toolchain-and-project-structure.md",
-        "sk-code-opencode/references/rust/style-guide/naming-conventions.md",
-        "sk-code-opencode/references/rust/style-guide/formatting-and-imports.md",
-        "sk-code-opencode/references/rust/style-guide/commenting-and-rustdoc.md",
-        "sk-code-opencode/references/rust/style-guide/interop-model.md",
-        "sk-code-opencode/references/rust/style-guide/interop-errors-and-parity.md",
-        "sk-code-opencode/references/rust/quality-standards/overview-and-data-ownership.md",
-        "sk-code-opencode/references/rust/quality-standards/modeling-collections-and-api.md",
-        "sk-code-opencode/references/rust/quality-standards/docs-errors-and-async.md",
-        "sk-code-opencode/references/rust/quality-standards/build-and-organization.md",
-        "sk-code-opencode/references/rust/quality-standards/determinism-and-parity.md",
-        "sk-code-opencode/references/rust/quick-reference/overview-and-boundary-template.md",
-        "sk-code-opencode/references/rust/quick-reference/naming-ordering-and-signatures.md",
-        "sk-code-opencode/references/rust/quick-reference/collections-imports-and-errors.md",
-        "sk-code-opencode/references/rust/quick-reference/rustdoc-and-cargo.md",
-        "sk-code-opencode/references/rust/quick-reference/determinism-parity-and-related.md",
+        "sk-code-skilled/references/rust/style-guide/overview-and-file-header.md",
+        "sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
+        "sk-code-skilled/references/rust/style-guide/naming-conventions.md",
+        "sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+        "sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md",
+        "sk-code-skilled/references/rust/style-guide/interop-model.md",
+        "sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md",
+        "sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+        "sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+        "sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+        "sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+        "sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+        "sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+        "sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+        "sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md",
+        "sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+        "sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md",
     ],
 }
 
@@ -606,7 +606,7 @@ The router does NOT load the whole matched-intent union. After surface detection
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents, plus
 - the Motion.dev overlay (`sk-code-webflow/references/animation/*`) when a `MOTION_DEV` intent fires.
 
-It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-opencode/references/typescript/*` plus the language-agnostic `sk-code-opencode/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A mixed-marker task (`.skilled/` and Webflow markers together) keeps the slice of each surface it touches; an `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within OpenCode it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. Webflow has no language sub-slice — a frontend task legitimately spans CSS, HTML, and JavaScript together. A mixed-marker task (`.skilled/` and Webflow markers together) keeps the slice of each surface it touches; an `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
 
 ---
 

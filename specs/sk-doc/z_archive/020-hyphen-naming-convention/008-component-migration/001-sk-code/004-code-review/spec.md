@@ -77,7 +77,7 @@ Rename all in-scope code-review filesystem names to kebab-case and repair the re
 
 - Findings logic, severity labels, security/correctness rules, review identifiers, code identifiers, JSON/YAML/TOML keys, and frontmatter fields.
 - SKILL.md, README.md, package manifests, Python .py files and package directories, generated/lockfile output, tool-mandated names, and frozen changelog/history as physical names.
-- Hub/shared, code-opencode, code-quality, code-webflow, hub-level playbook, and root benchmark physical renames owned by sibling children.
+- Hub/shared, code-skilled, code-quality, code-webflow, hub-level playbook, and root benchmark physical renames owned by sibling children.
 - Rewriting review content merely because it mentions an underscore; only filesystem names and path-derived values change.
 
 ### Files to Change

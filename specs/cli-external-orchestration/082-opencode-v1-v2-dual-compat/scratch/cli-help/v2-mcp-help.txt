@@ -1,0 +1,19 @@
+DESCRIPTION
+  Manage MCP (Model Context Protocol) servers
+
+USAGE
+  opencode mcp <subcommand> [flags]
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)
+
+SUBCOMMANDS
+  list      List configured MCP servers and their status
+  add       Add an MCP server to your configuration
+  auth      Authenticate with an OAuth-capable remote MCP server
+  logout    Remove stored OAuth credentials for an MCP server

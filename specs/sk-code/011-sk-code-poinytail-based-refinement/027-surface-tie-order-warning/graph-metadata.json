@@ -14,7 +14,7 @@
       "surface tie order warning",
       "native surface last in tiebreak",
       "doctor check 5l",
-      "hand-added surface after sk-code-opencode",
+      "hand-added surface after sk-code-skilled",
       "surface tie order warning plan",
       "surface tie order warning tasks",
       "surface tie order warning acceptance criteria",
@@ -33,7 +33,7 @@
       "doctor",
       "check",
       "hand-added",
-      "sk-code-opencode",
+      "sk-code-skilled",
       "plan"
     ],
     "importance_tier": "normal",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "`routerPolicy.tieBreak` decides a keyword tie: the mode listed first wins",
     "created_at": "2026-10-13T15:21:06Z",
-    "last_save_at": "2026-10-13T16:34:22.401Z",
+    "last_save_at": "2026-10-18T20:45:20.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:06122fb14e366f3b483a5a3c5b9645897243de5ade24553eee17273efbaaa6bb",
+    "source_fingerprint": "sha256:67c5543ff0b988eaf112d27366dfda27e95094994fe34dbbe3d716e396eab704",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8be1c976a4c3dd47feba43003301c68339b0764b24550cd8cf94fbf7a9ae155e",
-      "plan.md": "80694813df73d3775b099367de01b53e47e0e13066faabc32f546af6f341627c",
+      "spec.md": "615fbe106eb72738a7a5c61d75292d6536bf53d4afaad1d7722c0ed7371ab2ba",
+      "plan.md": "860b88f6726f9f22f504705bee31a866c1a3145bbcb508aa5fda003a41e7d4ca",
       "tasks.md": "b3e19427654c2e7b65597011082ee58851bd710f9f77e1ef4b3a002be9ab67aa",
-      "decision-record.md": "fbbaf8c157f2311ca09bae54128e070fd544f67cf3af6b0b0f6a91b3e3c41b4a",
-      "implementation-summary.md": "e247fd19de31063204e0cf1514d6b5dd875997f1358bb38ce7db13683da57eaf"
+      "decision-record.md": "faf9b9fe702780e8c55c83b1ed6310f835e5ab073edcb17fc8e7b0f89f227fa5",
+      "implementation-summary.md": "b33af0077b6ce17d88277b1541b072d28f43fe7c74ad4f8549216e428aae4f55"
     },
     "last_active_at": null
   }

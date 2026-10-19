@@ -11,7 +11,7 @@
 .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md	X=1
 .skilled/skills/cli-external-orchestration/cli-opencode/references/self-invocation-guard.md	X=2
 .skilled/skills/sk-code/shared/references/universal/code-style-guide.md	R2=2
-.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md	R2=1
+.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md	R2=1
 .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/re-review-and-stale-context/stale-architecture-fresh-pass.md	R2=1
 .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/output-policy.ts	R2=1
 .skilled/skills/sk-doc/scripts/tests/code-folder/negative/durability-leak/README.md	R2=1

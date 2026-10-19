@@ -94,7 +94,7 @@ DeepSeek V4.1 Flash max on cli-pi wrote the code and the sweep from short single
 | An explicit `--grader jev` obeys the switch but skips the readiness check | Tests inject a Jev answer, and a person who names the grader has chosen it |
 | Pass the full environment to `jev` children, declining that Luna finding | `jev` is the operator's own trusted CLI, and the Pi route reads its provider settings from that environment |
 | Withdraw killed packet changelog entries in place rather than delete them | Version lines stay whole, and the withdrawn text names no removed tool |
-| Use the `MODULE:` header on new files | The sk-code-opencode style guide accepts the boxed header only where it already exists |
+| Use the `MODULE:` header on new files | The sk-code-skilled style guide accepts the boxed header only where it already exists |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -107,7 +107,7 @@ DeepSeek V4.1 Flash max on cli-pi wrote the code and the sweep from short single
 | Full suite rerun from the final state | PASS. Transport and shared 114 (baseline 98), cite drift 52 (50), model benchmark 273 (260), deep-improvement 88 (82), advisory pytest 8 (7), hook 17 (new), every other suite equal |
 | Switch matrix | PASS. 4 features by 5 switch states (unset, master off, feature off, file off, environment over file) by 3 readiness states (ready, no `jev`, auth failing), covered by `jev-features.test.mjs` and the per-path tests |
 | Suites removed with their features | Goal verifier (12) and reader lens scan, deleted by the sweep |
-| sk-code-opencode verifier on created and changed code | PASS. 0 errors on `injection-screen`, `cli-classifier` and the four benchmark files |
+| sk-code-skilled verifier on created and changed code | PASS. 0 errors on `injection-screen`, `cli-classifier` and the four benchmark files |
 | Killed-tool grep outside `specs/` | PASS. No match |
 | `validate_document.py` on v4.0.0.3, 19 packet changelogs, hook README and root README | PASS. 0 issues each |
 | Live hook run against Jev | PASS. Flag at p=0.99, clean page silent, master switch silent |

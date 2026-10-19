@@ -423,7 +423,7 @@ Output: none; exit `0` for every file.
 Command:
 
 ```bash
-bash .opencode/skills/sk-code/code-opencode/scripts/run-all-drift-guards.sh
+bash .opencode/skills/sk-code/code-skilled/scripts/run-all-drift-guards.sh
 ```
 
 Output summary:

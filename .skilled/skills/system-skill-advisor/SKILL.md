@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.16.1.0
+version: 0.16.3.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -51,7 +51,7 @@ Do not use this skill as a replacement for the recommended target skill. For exa
 
 ## 2. SMART ROUTING
 
-This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through the daemon-backed CLI; this smart router controls which local documentation resources an agent should load while maintaining the advisor package.
+This package is mandatory context for non-trivial Gate 2 routing. The live advisor scores prompts through the daemon-backed CLI. This smart router controls which local documentation resources an agent should load while maintaining the advisor package.
 
 Routing model:
 
@@ -81,7 +81,7 @@ Resource domains:
 - `manual-testing-playbook/` documents deterministic operator scenarios for advisor tools, hooks, compatibility, daemon behavior and skill graph flows.
 - `runtime/` owns handlers, schemas, tools, scripts, tests, library modules and the package-local SQLite database.
 
-**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`. Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`; the plain gate must keep them byte-stable. `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths; the feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. Do not hand-edit either generated file. The `runtime/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf. It is intentionally outside every `leafRoot` and never appears in the manifest.
+**Typed leaf projection (fleet routing standard).** system-skill-advisor is a normal, standalone single-mode skill whose sole workflow mode is `system-skill-advisor` (there is no `mode-registry.json`). Every routable leaf under `references/`, `feature-catalog/` and `manual-testing-playbook/` is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json`. Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix`. The plain gate must keep them byte-stable. `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/scoring/advisor-scorer.md`) to its typed `(system-skill-advisor, leafResourceId)` identity, so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below emits those exact leaf paths. The feature-catalog and manual-testing-playbook package indexes are navigation only and are never routed as typed leaves. Do not hand-edit either generated file. The `runtime/` advisor engine (`skill-graph.json`, scorer/prompt-policy config, handlers) is the runtime, not a routable documentation leaf. It is intentionally outside every `leafRoot` and never appears in the manifest.
 
 ### Resource loading levels
 
@@ -89,11 +89,13 @@ Resource domains:
 |---|---|---|
 | FALLBACK | Request too weak to score | The two `DEFAULT_RESOURCES` runtime references, offered with the disambiguation checklist (fallback-only: never unioned into a scored route) |
 | SELECTED | An intent scores | The exact `RESOURCE_MAP[intent]` leaf(s) for the selected intent(s), emitted as typed `(WORKFLOW_MODE, leafResourceId)` pairs |
-| NAVIGATION | Broad "list the features / playbook" browse | A `PACKAGE_INDEXES` index doc — navigation only, never a typed leaf |
+| NAVIGATION | Broad "list the features / playbook" browse | A `PACKAGE_INDEXES` index doc: navigation only, never a typed leaf |
 
 ### Smart router pseudocode
 
-This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path — no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`; package indexes and fallback defaults ride their own channels and never become typed leaves. The live advisor scorer, not this router, remains authoritative for runtime skill scoring — see [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md).
+The prompt-time brief can show a runnable `/doctor:` command as the top line or as an `Also:` second line under a skill.
+
+This pseudocode is the canonical resource-routing contract. The router is a singleton-mode selector: it scores the request against `INTENT_SIGNALS`, keeps the intents within the ambiguity delta of the top score (at most two), and resolves each to its exact `RESOURCE_MAP` leaf path: no directory prefixes, filename stems, or globs. Every selected leaf projects to a typed `(WORKFLOW_MODE, leafResourceId)` pair against `leaf-manifest.json` via `leaf-aliases.json`. Package indexes and fallback defaults ride their own channels and never become typed leaves. The live advisor scorer, not this router, remains authoritative for runtime skill scoring: see [`references/scoring/advisor-scorer.md`](./references/scoring/advisor-scorer.md).
 
 ```python
 from pathlib import Path
@@ -291,8 +293,8 @@ return {
 
 - **Low confidence:** load default runtime references, emit `UNKNOWN_FALLBACK_CHECKLIST`, and ask for the missing intent/path/tool signal.
 - **Ambiguous intent scores:** load the top two intents' exact leaves and disclose the ambiguity instead of picking one silently.
-- **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent; never invent a typed pair for a path outside `leaf-manifest.json`.
-- **Advisor daemon unavailable:** run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`. The CLI starts the daemon when the socket is cold; when the daemon stays unreachable it answers from the local Python scorer and marks the result degraded, so the brief renders `Advisor: stale` instead of claiming live. A degraded answer is stale, a missing answer is a fail-open: prompt-time adapters cap the call with their own timeout and never block the prompt. Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`; direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`. The full command contract, output envelope, exit taxonomy and stale-build recovery live in [`references/runtime/cli-front-door-contract.md`](./references/runtime/cli-front-door-contract.md).
+- **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent. Never invent a typed pair for a path outside `leaf-manifest.json`.
+- **Advisor daemon unavailable:** run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`. The CLI starts the daemon when the socket is cold. When the daemon stays unreachable it answers from the local Python scorer and marks the result degraded, so the brief renders `Advisor: stale` instead of claiming live. A degraded answer is stale, a missing answer is a fail-open: prompt-time adapters cap the call with their own timeout and never block the prompt. Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`. Direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`. The full command contract, output envelope, exit taxonomy and stale-build recovery live in [`references/runtime/cli-front-door-contract.md`](./references/runtime/cli-front-door-contract.md).
 
 ### Gate 2 caller guidance
 
@@ -304,7 +306,7 @@ return {
 ### Anti-patterns
 
 - Directory prefixes, filename stems, or globs in `RESOURCE_MAP`. Every value is an exact leaf path that exists in `leaf-manifest.json`.
-- Tuning `INTENT_SIGNALS` keywords to make individual scenario prompts hit their own leaf. Keys are documentation-topic vocabulary; a low honest routing recall is expected, not a defect to be inflated.
+- Tuning `INTENT_SIGNALS` keywords to make individual scenario prompts hit their own leaf. Keys are documentation-topic vocabulary. A low honest routing recall is expected, not a defect to be inflated.
 - A hand-maintained resource inventory that drifts from `leaf-manifest.json`. Regenerate both generated class-S artifacts with `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix` instead of synchronizing either file by hand.
 - Raw `load("references/file.md")` calls without `_guard_in_skill()`, inventory checks or duplicate suppression.
 - Hardcoded tool IDs in caller code. Consult the live definitions in `runtime/tools/index.ts` and `runtime/tools/skill-graph-tools.ts`.
@@ -329,19 +331,19 @@ Commands (9):
 - `skill_graph_validate`
 - `skill_graph_propagate_enhances`
 
-`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`); report, propose and dry-run apply calls remain read-safe.
+`skill_graph_propagate_enhances` is trust-gated only for real apply writes (`mode=apply` with `dryRun` not `true`). Report, propose and dry-run apply calls remain read-safe.
 
 The stable command ids matter because live consumers already call them from hooks, the Python scorer, doctor workflows, scripts and CI. The package boundary supplies the isolation, so callers use the advisor without learning a new vocabulary.
 
-The CLI is the only front door: the same 9 commands are callable through `node .skilled/bin/skill-advisor.cjs <command>` over the daemon's unix socket, behind a shim that refuses to run a stale dist. Recovery example: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json --timeout-ms 3000`. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. When the daemon is unreachable the CLI answers from the local Python scorer and marks the result degraded instead of failing the call. `--format jsonl` renders one complete JSON payload on one stdout line; it is not streaming JSON Lines. Trust resolution fails closed: a call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so the mutation commands require the maintainer path.
+The CLI is the only front door: the same 9 commands are callable through `node .skilled/bin/skill-advisor.cjs <command>` over the daemon's unix socket, behind a shim that refuses to run a stale dist. Recovery example: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json --timeout-ms 3000`. Exit taxonomy: `0` success, `1` runtime, `64` usage/schema or trusted-mutation refusal, `69` protocol/dist mismatch or stale dist, `75` retryable daemon error. When the daemon is unreachable the CLI answers from the local Python scorer and marks the result degraded instead of failing the call. `--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines. Trust resolution fails closed: a call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied, so the mutation commands require the maintainer path.
 
-**Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json`, using `intent_signals` and `derived.trigger_phrases`, and the create-skill metadata CI check keeps that file aligned with the skill root. The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader; the local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value. Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`. Skill authors change routing vocabulary in `graph-metadata.json`.
+**Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json`, using `intent_signals` and `derived.trigger_phrases`, and the create-skill metadata CI check keeps that file aligned with the skill root. The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader. The local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value. Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`. Skill authors change routing vocabulary in `graph-metadata.json`.
 
 `advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server.
 
 The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
 
-**Skill lifecycle: how a new skill becomes routable.** The daemon's watcher watches the skills root itself (shallow, top-level directories only) in addition to each known root's identity files, so a skill created while the daemon is warm is ingested automatically — the new directory's event routes through the normal debounce into reindex, and the reindex promotes the root's `SKILL.md`/`graph-metadata.json` into durable watch targets. With no daemon running, the next daemon start ingests it through normal discovery. Manual refresh at any time: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Deleting a root retires its targets through the same path. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
+**Skill lifecycle: how a new skill becomes routable.** The daemon's watcher watches the skills root itself (shallow, top-level directories only) in addition to each known root's identity files, so a skill created while the daemon is warm is ingested automatically: the new directory's event routes through the normal debounce into reindex, and the reindex promotes the root's `SKILL.md`/`graph-metadata.json` into durable watch targets. With no daemon running, the next daemon start ingests it through normal discovery. Manual refresh at any time: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`. Deleting a root retires its targets through the same path. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
 
 ---
 
@@ -378,21 +380,21 @@ Primary contract:
 
 Package references:
 
-- `references/scoring/advisor-scorer.md` — lane attribution, fusion and confidence calibration.
-- `references/scoring/lane-weight-tuning.md` — measured lane-weight change workflow.
-- `references/scoring/validation-baselines.md` — `advisor_validate` baselines and troubleshooting.
-- `references/graph/skill-graph-query-cookbook.md` — worked `skill_graph_query` examples.
-- `references/graph/skill-graph-drift.md` — detect and reconcile SQLite drift from source files.
-- `references/graph/skill-graph-extraction-plan.md` — extraction history and completion record.
-- `references/graph/propagate-enhances.md` — internal `enhances` propagation contract.
+- `references/scoring/advisor-scorer.md`: lane attribution, fusion and confidence calibration.
+- `references/scoring/lane-weight-tuning.md`: measured lane-weight change workflow.
+- `references/scoring/validation-baselines.md`: `advisor_validate` baselines and troubleshooting.
+- `references/graph/skill-graph-query-cookbook.md`: worked `skill_graph_query` examples.
+- `references/graph/skill-graph-drift.md`: detect and reconcile SQLite drift from source files.
+- `references/graph/skill-graph-extraction-plan.md`: extraction history and completion record.
+- `references/graph/propagate-enhances.md`: internal `enhances` propagation contract.
 - `references/runtime/standalone-mcp-shape.md`: ADR-001 topology record (historical).
-- `references/runtime/tool-ids-reference.md` — stable public and internal tool ids.
+- `references/runtime/tool-ids-reference.md`: stable public and internal tool ids.
 - `references/runtime/legacy-tool-bridge.md`: historical bridge policy record.
-- `references/runtime/freshness-contract.md` — trust-state vocabulary and caller obligations.
-- `references/runtime/daemon-lease-contract.md` — single-writer daemon lease behavior.
-- `references/config/db-path-policy.md` — package-local SQLite path policy.
-- `hooks/skill-advisor-hook.md` — prompt-time hook behavior.
-- `references/decisions/deferred-decisions.md` — Tier D decision records (F6 deprecation banners).
+- `references/runtime/freshness-contract.md`: trust-state vocabulary and caller obligations.
+- `references/runtime/daemon-lease-contract.md`: single-writer daemon lease behavior.
+- `references/config/db-path-policy.md`: package-local SQLite path policy.
+- `hooks/skill-advisor-hook.md`: prompt-time hook behavior.
+- `references/decisions/deferred-decisions.md`: Tier D decision records (F6 deprecation banners).
 - `ARCHITECTURE.md`
 - `runtime/README.md`
 - `runtime/tools/README.md`
@@ -422,7 +424,7 @@ Current package state:
 
 Expected consumers:
 
-- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`; Pi and the OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
+- Prompt-time adapters for Claude, Codex, Cursor and Devin live under `.skilled/skills/system-spec-kit/runtime/hooks/`. Pi and the OpenCode plugin (`.skilled/plugins/system-skill-advisor.js`) resolve the same brief builder. The plugin invokes `node .skilled/bin/skill-advisor.cjs` directly.
 - CLI callers that run `advisor_recommend`, `advisor_status`, `advisor_rebuild`, `advisor_validate`, `skill_graph_scan`, `skill_graph_query`, `skill_graph_status`, `skill_graph_validate` or `skill_graph_propagate_enhances`.
 - Daemon-backed CLI callers (`node .skilled/bin/skill-advisor.cjs <command>`) for doctor routes, scripts and CI, untrusted by default with `--trusted` for maintainer mutations.
 - Doctor workflows that validate advisor health and rebuild state.

@@ -242,9 +242,9 @@ STATUS=FAIL ERROR="[message]"
 Render one row per check the battery ran, in the battery's order.
 
 ```text
-| Check | Result | Source | Repair |
-|-------|--------|--------|--------|
-| [check] | [PASS|FAIL|SKIP|UNKNOWN|DEGRADED] | [source line] | [the repair command the battery printed, or none] |
+| Check | Result | Source | Detail | Repair |
+|-------|--------|--------|--------|--------|
+| [check] | [PASS|FAIL|SKIP|UNKNOWN|DEGRADED] | [source line] | [row detail lines joined with ` / `, or none] | [the repair command the battery printed or none] |
 
 DOCTOR DIAGNOSTIC RESULT
 Target: setup
@@ -253,7 +253,9 @@ Changed: none
 STATUS=[OK|DEGRADED|FAIL]
 ```
 
-Close the block with the status the battery's exit code maps to. Exit 0 closes with `STATUS=OK`. Exit 3 closes with `STATUS=DEGRADED` and lists each UNKNOWN check with its detail and each DEGRADED check with the repair command its `repair:` line printed. Exit 1 closes with `STATUS=FAIL` and lists each failing check with the repair command its `repair:` line printed. Exit 2, a usage error or a crash, renders the `DOCTOR TARGET FAILED` block above with `STATUS=FAIL ERROR="[message]"`.
+A FAIL or DEGRADED row shows its detail lines in the Detail column, so you can see which hook or rule failed.
+
+Close the block with the status the battery's exit code maps to. Exit 0 closes with `STATUS=OK`. Exit 3 closes with `STATUS=DEGRADED` when no check failed and at least one check is UNKNOWN or DEGRADED. List each UNKNOWN or DEGRADED check with its detail lines and include any repair command the battery printed. Exit 1 closes with `STATUS=FAIL` and lists each failing check with the repair command its `repair:` line printed and each degraded, skipped or unknown check. Exit 2, a usage error or a crash, renders the `DOCTOR TARGET FAILED` block above with `STATUS=FAIL ERROR="[message]"`.
 
 ## 4. NEXT-STEP SUGGESTIONS
 

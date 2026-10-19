@@ -498,7 +498,7 @@ function selectIntents(scores) {
 const SURFACE_PREFIXES = {
   MOTION: ['sk-code-webflow/references/animation/', 'sk-code-webflow/assets/animation/'],
   WEBFLOW: ['sk-code-webflow/'],
-  OPENCODE: ['sk-code-opencode/'],
+  OPENCODE: ['sk-code-skilled/'],
 };
 function resourceSurface(r) {
   for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {
@@ -615,7 +615,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
 
   const mapResources = Object.values(router.resourceMap).flat();
   const hasSurfaceLayout = mapResources.some((r) => r.startsWith('sk-code-webflow/references/'))
-    && mapResources.some((r) => r.startsWith('sk-code-opencode/references/'));
+    && mapResources.some((r) => r.startsWith('sk-code-skilled/references/'));
   let surface;
   if (hasSurfaceLayout) {
     surface = detectSurface(taskLower);
@@ -632,7 +632,7 @@ function assembleResources({ skillRoot, taskLower, intents, router, extraRoots =
       if (surface === 'UNKNOWN') return false;
       if (rs !== surface) return false;
       if (ocLangs.size) {
-        const m = /^sk-code-opencode\/references\/([^/]+)\//.exec(r);
+        const m = /^sk-code-skilled\/references\/([^/]+)\//.exec(r);
         if (m && OPENCODE_LANGUAGES.includes(m[1]) && !ocLangs.has(m[1])) return false;
       }
       return true;

@@ -33,7 +33,7 @@ contextType: "implementation"
 
 - [x] T001 Create the worktree and copy this spec folder state from origin/main; confirm line anchors 462, 542 (confirm twin) and 423, 495 (auto twin) (evidence: Worktree `worktrees/125-surface-placement` from origin/main 4b9bf840b0; anchors matched at 462, 542 (confirm) and 423, 495 (auto))
 - [x] T002 Build the throwaway full-tree copy under the session scratchpad by the plan's recipe and record the control: doctor, guard and sync `--check` exit 0 (evidence: Copy under the session scratchpad; control printed doctor exit 0, guard exit 0, sync `--check` exit 0)
-- [x] T003 In the copy, add `sk-code-acme` with its `tieBreak` entry appended last, re-mint, and record the tie prompt's route `[sk-code-opencode, sk-code-acme]` as the before state (evidence: Before state recorded as P8-4's contrast: with `sk-code-acme` appended after `sk-code-webflow` and refreshed, the tie prompt routed `[sk-code-opencode, sk-code-acme]`)
+- [x] T003 In the copy, add `sk-code-acme` with its `tieBreak` entry appended last, re-mint, and record the tie prompt's route `[sk-code-skilled, sk-code-acme]` as the before state (evidence: Before state recorded as P8-4's contrast: with `sk-code-acme` appended after `sk-code-webflow` and refreshed, the tie prompt routed `[sk-code-skilled, sk-code-acme]`)
 <!-- /ANCHOR:phase-1 -->
 
 ---

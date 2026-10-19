@@ -1,1 +1,1 @@
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`

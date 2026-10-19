@@ -84,7 +84,7 @@ Run strict validator on any spec folders touched (031-036 packets) — they shou
 
 PLUS: `audit-target-list.md` and `audit-findings.md` at packet root.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-opencode-standards-audit"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-skilled-standards-audit"]`.
 
 **Trigger phrases**: `["037-004-sk-doc-template-alignment","sk-doc audit","template alignment 031-036","DQI compliance"]`.
 

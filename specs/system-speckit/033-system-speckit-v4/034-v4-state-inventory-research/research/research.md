@@ -24,7 +24,7 @@ Two independent ten-iteration lanes read branch `skilled/v4.0.0.0` on 2026-09-08
 |---|---|---|---|
 | `cli-external-orchestration` | hub | 6: cli-opencode, cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-pi | none; reached through deep-loop fan-out |
 | `mcp-tooling` | hub | 9: mcp-chrome-devtools, mcp-click-up, mcp-obsidian, mcp-aside-devtools, mcp-notion (workflow); mcp-figma, mcp-refero, mcp-mobbin, mcp-magicpath (transport) | none; `/doctor:mcp` is separate |
-| `sk-code` | hub | 6: sk-code-quality, sk-code-review (workflow); sk-code-webflow, sk-code-opencode, sk-code-mobile-cli, sk-code-obsidian (surface) | none |
+| `sk-code` | hub | 6: sk-code-quality, sk-code-review (workflow); sk-code-webflow, sk-code-skilled, sk-code-mobile-cli, sk-code-obsidian (surface) | none |
 | `sk-design` | hub | 4: sk-design-fundamentals, sk-design-md-generator, sk-design-chart, sk-design-diagram | `/design:chart`, `/design:diagram`, `/design:extract` |
 | `sk-doc` | hub | 14: sk-create-skill, -skill-parent, -readme, -agent, -command, -feature-catalog, -manual-testing-playbook, -benchmark, -changelog, -diff, -frontmatter, -quality-control, -repo-rule, -with-human-voice | 12 `/create:*` (frontmatter and quality-control have no command file) |
 | `system-deep-loop` | hub | 6: research, review, ai-council (lexical); agent-improvement (alias-fold); model-benchmark, skill-benchmark (command-bridge) | 6 `/deep:*` |

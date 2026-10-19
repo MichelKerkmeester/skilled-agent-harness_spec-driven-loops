@@ -33,10 +33,12 @@ const GENERATED_PATH = join(
   'command-bridges.generated.json',
 );
 const DOCTOR_PREFIX = 'command-doctor-';
+const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 
 interface DoctorBridgeExpectation {
   readonly runnable: string;
   readonly phrases: readonly string[];
+  readonly leadPhrases?: readonly string[];
 }
 
 interface DoctorManifest {
@@ -44,11 +46,18 @@ interface DoctorManifest {
     readonly command: string;
     readonly target: string;
     readonly trigger_phrases: readonly string[];
+    readonly lead_phrases?: readonly string[];
   }[];
   readonly standalone?: readonly {
     readonly command?: string;
     readonly runnable?: string;
     readonly trigger_phrases?: readonly string[];
+    readonly lead_phrases?: readonly string[];
+  }[];
+  readonly mcp_subroutes?: readonly {
+    readonly sub_action: string;
+    readonly trigger_phrases: readonly string[];
+    readonly lead_phrases?: readonly string[];
   }[];
 }
 
@@ -85,6 +94,7 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
     bridges.set(multiTarget ? `${DOCTOR_PREFIX}${name}-${route.target}` : `${DOCTOR_PREFIX}${name}`, {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
       phrases: route.trigger_phrases,
+      leadPhrases: route.lead_phrases?.length ? route.lead_phrases : undefined,
     });
   }
 
@@ -95,6 +105,16 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
     bridges.set(`${DOCTOR_PREFIX}${name}`, {
       runnable,
       phrases: Array.isArray(item.trigger_phrases) ? item.trigger_phrases : [],
+      leadPhrases: item.lead_phrases?.length ? item.lead_phrases : undefined,
+    });
+  }
+
+  for (const item of manifest.mcp_subroutes ?? []) {
+    const id = `${DOCTOR_PREFIX}${doctorName(DOCTOR_MCP_COMMAND)}-${item.sub_action}`;
+    bridges.set(id, {
+      runnable: `${DOCTOR_MCP_COMMAND} ${item.sub_action}`,
+      phrases: item.trigger_phrases,
+      leadPhrases: item.lead_phrases?.length ? item.lead_phrases : undefined,
     });
   }
 
@@ -168,6 +188,30 @@ describe('doctor command bridges', () => {
     }
 
     expect(failures).toEqual([]);
+  });
+
+  it('every active TypeScript doctor bridge carries its manifest lead phrases', () => {
+    const manifest = manifestDoctorBridges();
+    const failures: string[] = [];
+
+    for (const entry of GENERATED_COMMAND_BRIDGES) {
+      if (entry.routingEnabled === false || !entry.id.startsWith(DOCTOR_PREFIX)) continue;
+      const expected = manifest.get(entry.id);
+      if (!expected) {
+        failures.push(`${entry.id}: no bridge in the doctor route manifest`);
+        continue;
+      }
+
+      if (JSON.stringify(entry.leadPhrases) !== JSON.stringify(expected.leadPhrases)) {
+        failures.push(
+          `${entry.id}: leadPhrases ${JSON.stringify(entry.leadPhrases)} !== ${JSON.stringify(expected.leadPhrases)}`,
+        );
+      }
+    }
+
+    expect(failures).toEqual([]);
+    const envBridge = GENERATED_COMMAND_BRIDGES.find((entry) => entry.id === 'command-doctor-env');
+    expect(envBridge?.leadPhrases).toEqual(['check my environment variables']);
   });
 
   it('every active Python doctor bridge matches only on its runnable slash string', () => {

@@ -1069,7 +1069,7 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/skills/system-skill-advisor/mcp-server/handlers/advisor-rebuild.ts
 ./.opencode/specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/gpt55/iterations/iteration-002.md
 ./.opencode/specs/system-skill-advisor/z_archive/004-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction/research/multi-ai-council-deliberation.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/001-readmes-vs-027/review/seats/A08.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD08.out.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF12.out.json
@@ -1089,9 +1089,9 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/backlog/remediation-backlog.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/003-deep-research-remediation/verify/l5-still-real-partA.md
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research/research/risk-resolution/lineages/mimo-risk/iterations/iteration-003.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B15.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B10.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD11.out.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation/fixers/BF10.out.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/audit/AUD10.out.json
@@ -1129,8 +1129,8 @@ AssertionError: fixture missing: /Users/michelkerkmeester/MEGA/Development/Code_
 ./.opencode/specs/sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/baseline/census/symlink-mode-manifest.json
 ./.opencode/specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/gpt55/iterations/iteration-002.md
 ./.opencode/specs/system-deep-loop/z_archive/009-deep-loop-parallel-fanout/008-deep-review/review/iterations/iteration-003.md
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.json
-./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B10.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json
+./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json
 ./.opencode/specs/system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/003-readme-remediation/fixers/AF14.out.json
 ./.opencode/specs/system-speckit/026-graph-and-context-optimization/changelog/002-spec-kit-internals/changelog-002-003-embedding-cache-cosine-wiring.md
 ./.opencode/specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync/spec.md

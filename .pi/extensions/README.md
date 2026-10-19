@@ -169,5 +169,5 @@ Expected result: the session completes and lists Pi's available tools, with no e
 
 - [`../../.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md`](../../.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md): how this extension surface compares to `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json`
 - [`../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md`](../../.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md): confirmed-vs-open discovery and lifecycle-event details
-- [`../../.skilled/skills/sk-code/sk-code-opencode/SKILL.md`](../../.skilled/skills/sk-code/sk-code-opencode/SKILL.md): TypeScript standards this folder follows
+- [`../../.skilled/skills/sk-code/sk-code-skilled/SKILL.md`](../../.skilled/skills/sk-code/sk-code-skilled/SKILL.md): TypeScript standards this folder follows
 - [`../../.skilled/hooks/injection-contract.md`](../../.skilled/hooks/injection-contract.md): what each bridged hook actually injects, the visibility difference between Pi's `[MSG]` chat-transform bridges and every other runtime's `[SYS]` model-only channel, and how to inspect injected content per runtime

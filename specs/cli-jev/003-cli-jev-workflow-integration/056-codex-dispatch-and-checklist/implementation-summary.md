@@ -70,7 +70,7 @@ The JavaScript checklist demanded a `╔═╗` box that the style guide forbids
 | `hook-registry.json`, `.codex/hooks.json` | Modified and regenerated | Codex shell matchers |
 | Hook README, coverage rationale, task-dispatch README, cli-codex hook contract | Modified | Verdict, rename and hook trust |
 | `.codex/SYNC.md`, dispatch README, cli-codex CX-029 playbook | Modified | Name the widened matcher |
-| `sk-code-opencode/assets/checklists/{javascript,universal}-checklist.md` | Modified | Header rule |
+| `sk-code-skilled/assets/checklists/{javascript,universal}-checklist.md` | Modified | Header rule |
 <!-- /ANCHOR:what-built -->
 
 ---

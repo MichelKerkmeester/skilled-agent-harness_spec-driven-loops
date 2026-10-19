@@ -43,7 +43,7 @@ contextType: "general"
 - [x] T003 Builder writes and runs `scratch/rename_kebab_scripts.py`: 5 renames, 58 replacements in 15 files
 - [x] T004 Regenerate the leaf manifest with `generate-leaf-manifest.cjs --write`
 - [x] T005 Add the version key to `changelog/v1.0.1.0.md`
-- [x] T006 Bump sk-code-opencode and sk-code-obsidian with `../scratch/bump_units.py`
+- [x] T006 Bump sk-code-skilled and sk-code-obsidian with `../scratch/bump_units.py`
 <!-- /ANCHOR:phase-2 -->
 
 ---

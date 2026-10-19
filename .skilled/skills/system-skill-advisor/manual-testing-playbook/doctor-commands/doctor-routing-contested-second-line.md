@@ -1,7 +1,7 @@
 ---
 title: "DOC-387 -- Doctor routing contested prompt second line"
 description: "Manual scenario validating that a contested prompt keeps the skill as the advisor brief's first line and appends the runnable /doctor:git setup line as a second line only when the doctor bridge anchors to the wording."
-version: 1.0.0.1
+version: 1.0.1.0
 id: doctor-commands-doctor-routing-contested-second-line
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -24,8 +24,8 @@ The second line appears only when the doctor bridge anchors to the wording. A pr
 - Real user request: `check my git hooks setup`
 - Prompt: `check my git hooks setup`
 - Preconditions: The advisor runtime is built (`npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0) and the bridge projection is fresh (`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`).
-- Expected execution process: Run the hook command for the contested prompt and read the two-line brief. Run the recommend command for the same prompt and compare the two indexes. Run the hook command for the worktree prompt and confirm no doctor line.
-- Expected signals: The step 1 brief has two lines. The first line matches `^Advisor: (live|stale); use sk-git [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The second line is exactly `Also: /doctor:git setup`. In the step 3 JSON, the index of `sk-git` in `data.recommendations` is lower than the index of `command-doctor-git-setup`, even though the doctor bridge has the higher confidence. The step 5 brief has no line that starts with `Also: /doctor:`.
+- Expected execution process: Run the hook command for the contested prompt and read the brief's first two lines. Run the recommend command for the same prompt and compare the two indexes. Run the hook command for the worktree prompt and confirm no doctor line.
+- Expected signals: The step 1 brief starts with two lines. The first line matches `^Advisor: (live|stale); use sk-git [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. The second line is exactly `Also: /doctor:git setup`. In the step 3 JSON, the index of `sk-git` in `data.recommendations` is lower than the index of `command-doctor-git-setup`, even though the doctor bridge has the higher confidence. The step 5 brief has no line that starts with `Also: /doctor:`.
 - Desired user-visible outcome: The operator sees the skill first for a contested prompt and a runnable doctor command on the second line, and no doctor line when the wording does not anchor to the doctor surface.
 - Pass/fail: PASS if the first line matches the route pattern, the second line is exactly `Also: /doctor:git setup`, the `sk-git` index is lower than the `command-doctor-git-setup` index, and the step 5 brief shows no doctor line.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -70,7 +70,7 @@ printf '{"prompt":"create a git worktree for my feature","session_id":"pb-doc-38
 
 ### Expected
 
-The step 1 hook command prints the advisor brief. Its first line matches `^Advisor: (live|stale); use sk-git [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. Its second line is exactly `Also: /doctor:git setup`. The rest of the brief holds the `Directives:` line and the comment hygiene directive.
+The step 1 hook command prints the advisor brief, which starts with two lines. Its first line matches `^Advisor: (live|stale); use sk-git [0-9.]+/[0-9.]+ pass\.$`. The freshness word is `live` or `stale` and the two numbers vary. Its second line is exactly `Also: /doctor:git setup`. The rest of the brief holds the `Directives:` line and the comment hygiene directive.
 
 The step 3 recommend command prints JSON. `data.recommendations` is an ordered list. The index of `sk-git` is lower than the index of `command-doctor-git-setup`, even though the doctor bridge has the higher confidence.
 

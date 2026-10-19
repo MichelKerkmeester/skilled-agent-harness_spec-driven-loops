@@ -86,7 +86,7 @@
       ".skilled/skills/sk-code/shared/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/README.md, replace the exact text <<<OLD\nevery sk-code surface packet (`code-webflow`, `code-opencode`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads\nOLD>>> with <<<NEW\nevery sk-code surface packet (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/README.md, replace the exact text <<<OLD\nevery sk-code surface packet (`code-webflow`, `code-skilled`) and workflow mode (`code-quality`, `code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `code-quality` loads\nOLD>>> with <<<NEW\nevery sk-code surface packet (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) and workflow mode (`sk-code-quality`, `sk-code-review`). Surface detection resolves here first; the surface and workflow modes then load the specific references they need. For example, `sk-code-quality` loads\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T022",
     "expect": "LANDED T022"
   },
@@ -146,7 +146,7 @@
       ".skilled/skills/sk-code/shared/references/phase-detection.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/phase-detection.md, replace the exact text <<<OLD\n| Implementation | `references/opencode/shared/*` plus detected language references |\nOLD>>> with <<<NEW\n| Implementation | `.skilled/skills/sk-code/sk-code-opencode/references/shared/` plus detected language references |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/phase-detection.md, replace the exact text <<<OLD\n| Implementation | `references/opencode/shared/*` plus detected language references |\nOLD>>> with <<<NEW\n| Implementation | `.skilled/skills/sk-code/sk-code-skilled/references/shared/` plus detected language references |\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T028",
     "expect": "LANDED T028"
   },
@@ -156,7 +156,7 @@
       ".skilled/skills/sk-code/shared/references/phase-detection.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/phase-detection.md, replace the exact text <<<OLD\n| Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |\nOLD>>> with <<<NEW\n| Verification | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/phase-detection.md, replace the exact text <<<OLD\n| Verification | `verify_alignment_drift.py --root <changed-scope>` plus targeted tests/spec validation |\nOLD>>> with <<<NEW\n| Verification | `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, the three-guard umbrella, plus targeted tests/spec validation |\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T029",
     "expect": "LANDED T029"
   },
@@ -346,7 +346,7 @@
       ".skilled/skills/sk-code/shared/references/universal-verification-checklist.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal-verification-checklist.md, replace the exact text <<<OLD\n- `references/opencode/shared/alignment-verification-automation.md`\nOLD>>> with <<<NEW\n- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal-verification-checklist.md, replace the exact text <<<OLD\n- `references/opencode/shared/alignment-verification-automation.md`\nOLD>>> with <<<NEW\n- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T048",
     "expect": "LANDED T048"
   },
@@ -386,7 +386,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n- Surface checklists: `assets/webflow/checklists/code-quality-checklist.md` and `assets/opencode/checklists/`.\nOLD>>> with <<<NEW\n- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n- Surface checklists: `assets/webflow/checklists/code-quality-checklist.md` and `assets/opencode/checklists/`.\nOLD>>> with <<<NEW\n- Surface checklists: `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow JavaScript and CSS) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T052",
     "expect": "LANDED T052"
   },
@@ -406,7 +406,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n| OPENCODE | `assets/opencode/checklists/`                     |\nOLD>>> with <<<NEW\n| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n| OPENCODE | `assets/opencode/checklists/`                     |\nOLD>>> with <<<NEW\n| OPENCODE | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` |\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T054",
     "expect": "LANDED T054"
   },
@@ -476,7 +476,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.\nOLD>>> with <<<NEW\n- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` (OpenCode).\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md, replace the exact text <<<OLD\n- Surface quality checklists under `assets/webflow/checklists/` and `assets/opencode/checklists/`.\nOLD>>> with <<<NEW\n- Surface quality checklists under `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` (Webflow) and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` (OpenCode).\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T061",
     "expect": "LANDED T061"
   },
@@ -486,7 +486,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\nlives under `references/webflow/standards/` and `references/opencode/`.\nOLD>>> with <<<NEW\nlives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\nlives under `references/webflow/standards/` and `references/opencode/`.\nOLD>>> with <<<NEW\nlives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-skilled/references/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T062",
     "expect": "LANDED T062"
   },
@@ -496,7 +496,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- Surface style guides: `references/webflow/javascript/style-guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.\nOLD>>> with <<<NEW\n- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-opencode/references/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- Surface style guides: `references/webflow/javascript/style-guide.md` and `references/opencode/{javascript,typescript,python,shell,config}/`.\nOLD>>> with <<<NEW\n- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T063",
     "expect": "LANDED T063"
   },
@@ -506,7 +506,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n### Never comment what the code does\nOLD>>> with <<<NEW\n### Comment density\n\nThis guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.\n\n### Never comment what the code does\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n### Never comment what the code does\nOLD>>> with <<<NEW\n### Comment density\n\nThis guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.\n\n### Never comment what the code does\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T064",
     "expect": "LANDED T064"
   },
@@ -526,7 +526,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n`references/opencode/` language standards and `assets/opencode/checklists/`\nOLD>>> with <<<NEW\n`.skilled/skills/sk-code/sk-code-opencode/references/` language standards and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n`references/opencode/` language standards and `assets/opencode/checklists/`\nOLD>>> with <<<NEW\n`.skilled/skills/sk-code/sk-code-skilled/references/` language standards and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T066",
     "expect": "LANDED T066"
   },
@@ -556,7 +556,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- Surface standards under `references/webflow/standards/` and `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- Surface standards under `references/webflow/standards/` and `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-skilled/references/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T069",
     "expect": "LANDED T069"
   },
@@ -566,7 +566,7 @@
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- `assets/webflow/checklists/` and `assets/opencode/checklists/` - the surface\nOLD>>> with <<<NEW\n- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` - the surface\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/code-style-guide.md, replace the exact text <<<OLD\n- `assets/webflow/checklists/` and `assets/opencode/checklists/` - the surface\nOLD>>> with <<<NEW\n- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the surface\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T070",
     "expect": "LANDED T070"
   },
@@ -626,7 +626,7 @@
       ".skilled/skills/sk-code/shared/references/universal/error-recovery.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/error-recovery.md, replace the exact text <<<OLD\n- Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/error-recovery.md, replace the exact text <<<OLD\n- Surface-specific debugging refs under `references/webflow/` and `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-skilled/references/shared/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T076",
     "expect": "LANDED T076"
   },
@@ -646,7 +646,7 @@
       ".skilled/skills/sk-code/shared/references/universal/multi-agent-research.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/shared/references/universal/multi-agent-research.md, replace the exact text <<<OLD\n- Surface performance refs under `references/webflow/performance/` (when available); OPENCODE performance work uses targeted language/runtime evidence from `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-opencode/references/`.\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/shared/references/universal/multi-agent-research.md, replace the exact text <<<OLD\n- Surface performance refs under `references/webflow/performance/` (when available); OPENCODE performance work uses targeted language/runtime evidence from `references/opencode/`.\nOLD>>> with <<<NEW\n- Surface performance refs under `.skilled/skills/sk-code/sk-code-webflow/references/performance/`. OPENCODE performance work uses targeted language and runtime evidence from `.skilled/skills/sk-code/sk-code-skilled/references/`.\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T078",
     "expect": "LANDED T078"
   },
@@ -726,7 +726,7 @@
       ".skilled/skills/sk-code/ROUTER.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\n| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-opencode/references/shared/*`) |\nOLD>>> with <<<NEW\n| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-opencode/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/ROUTER.md, replace the exact text <<<OLD\n| SURFACE | After WEBFLOW/OPENCODE detection | Surface-specific shared resources (`sk-code-webflow/references/shared/*` or `sk-code-skilled/references/shared/*`) |\nOLD>>> with <<<NEW\n| SURFACE | After WEBFLOW, OPENCODE or OBSIDIAN detection | Surface-specific resources (`sk-code-webflow/references/shared/*`, `sk-code-skilled/references/shared/*`, or the `sk-code-obsidian/references/*` leaves its packet router maps) |\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T086",
     "expect": "LANDED T086"
   },
@@ -806,7 +806,7 @@
       ".skilled/skills/sk-code/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\n| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n\nOLD>>> with <<<NEW\n| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n\n**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-opencode`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.\n\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\n| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n\nOLD>>> with <<<NEW\n| **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |\n\n**Surface list.** The hub has exactly three surfaces, WEBFLOW (`sk-code-webflow`), OPENCODE (`sk-code-skilled`) and OBSIDIAN (`sk-code-obsidian`), and two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence.\n\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T094",
     "expect": "LANDED T094"
   },
@@ -826,7 +826,7 @@
       ".skilled/skills/sk-code/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\nsk-code/\n  SKILL.md               # this routing hub (no per-mode code logic)\n  ROUTER.md              # active stage-two surface router and shared-control declaration\n  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)\n  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice\n  description.json       # hub advisor descriptor\n  graph-metadata.json    # the ONE advisor identity for the whole skill\n  sk-code-quality/       # quality mode packet     (workflow)\n  sk-code-review/        # review mode packet      (workflow)\n  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)\n  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n  sk-code-obsidian/      # obsidian surface packet (read-only evidence)\n  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow_*.md)\n\nOLD>>> with <<<NEW\nsk-code/\n  SKILL.md               # this routing hub (no per-mode code logic)\n  README.md              # human-facing front page for the hub\n  ROUTER.md              # active stage-two surface router and shared-control declaration\n  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)\n  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice\n  description.json       # hub advisor descriptor\n  graph-metadata.json    # the ONE advisor identity for the whole skill\n  leaf-manifest.json     # typed (workflowMode, leaf) pairs the router guards validate\n  changelog/             # hub release notes, one v<version>.md per hub release\n  feature-catalog/       # current-state inventory of the hub's routing capabilities\n  manual-testing-playbook/  # routing and disambiguation scenarios for the hub\n  benchmark/             # historical routing benchmark inputs and reports\n  sk-code-quality/       # quality mode packet     (workflow)\n  sk-code-review/        # review mode packet      (workflow)\n  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)\n  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n  sk-code-obsidian/      # obsidian surface packet (read-only evidence)\n  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)\n\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/SKILL.md, replace the exact text <<<OLD\nsk-code/\n  SKILL.md               # this routing hub (no per-mode code logic)\n  ROUTER.md              # active stage-two surface router and shared-control declaration\n  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)\n  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice\n  description.json       # hub advisor descriptor\n  graph-metadata.json    # the ONE advisor identity for the whole skill\n  sk-code-quality/       # quality mode packet     (workflow)\n  sk-code-review/        # review mode packet      (workflow)\n  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)\n  sk-code-skilled/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n  sk-code-obsidian/      # obsidian surface packet (read-only evidence)\n  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow_*.md)\n\nOLD>>> with <<<NEW\nsk-code/\n  SKILL.md               # this routing hub (no per-mode code logic)\n  README.md              # human-facing front page for the hub\n  ROUTER.md              # active stage-two surface router and shared-control declaration\n  mode-registry.json     # the two-axis discriminator + advisorRouting (single source of truth)\n  hub-router.json        # lexical routing signals + surfaceBundle policy for hub-local choice\n  description.json       # hub advisor descriptor\n  graph-metadata.json    # the ONE advisor identity for the whole skill\n  leaf-manifest.json     # typed (workflowMode, leaf) pairs the router guards validate\n  changelog/             # hub release notes, one v<version>.md per hub release\n  feature-catalog/       # current-state inventory of the hub's routing capabilities\n  manual-testing-playbook/  # routing and disambiguation scenarios for the hub\n  benchmark/             # historical routing benchmark inputs and reports\n  sk-code-quality/       # quality mode packet     (workflow)\n  sk-code-review/        # review mode packet      (workflow)\n  sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)\n  sk-code-skilled/      # opencode surface packet (read-only evidence; carries the workflow doctrine)\n  sk-code-obsidian/      # obsidian surface packet (read-only evidence)\n  shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)\n\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T096",
     "expect": "LANDED T096"
   },
@@ -886,7 +886,7 @@
       ".skilled/skills/sk-code/mode-registry.json"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/mode-registry.json, replace the exact text <<<OLD\nthe SURFACE axis (sk-code-webflow/sk-code-opencode) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md\nOLD>>> with <<<NEW\nthe SURFACE axis (sk-code-webflow/sk-code-opencode/sk-code-obsidian) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/mode-registry.json, replace the exact text <<<OLD\nthe SURFACE axis (sk-code-webflow/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow_*.md\nOLD>>> with <<<NEW\nthe SURFACE axis (sk-code-webflow/sk-code-skilled/sk-code-obsidian) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T102",
     "expect": "LANDED T102"
   },
@@ -936,7 +936,7 @@
       ".skilled/skills/sk-code/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\n| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n\nOLD>>> with <<<NEW\n| `sk-code-opencode` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n| `sk-code-obsidian` | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |\n\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\n| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n\nOLD>>> with <<<NEW\n| `sk-code-skilled` | System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |\n| `sk-code-obsidian` | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |\n\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T107",
     "expect": "LANDED T107"
   },
@@ -956,7 +956,7 @@
       ".skilled/skills/sk-code/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\n| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |\nOLD>>> with <<<NEW\n| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |\n| [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/README.md, replace the exact text <<<OLD\n| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |\nOLD>>> with <<<NEW\n| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | OpenCode surface packet |\n| [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T109",
     "expect": "LANDED T109"
   },
@@ -966,7 +966,7 @@
       ".skilled/skills/sk-code/feature-catalog/feature-catalog.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/feature-catalog/feature-catalog.md, replace the exact text <<<OLD\nthe hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-opencode`) declaratively\nOLD>>> with <<<NEW\nthe hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) declaratively\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/feature-catalog/feature-catalog.md, replace the exact text <<<OLD\nthe hub resolves a WORKFLOW mode (`quality`, `code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`code-webflow`, `code-skilled`) declaratively\nOLD>>> with <<<NEW\nthe hub resolves a WORKFLOW mode (`sk-code-quality`, `sk-code-review`) and bundles zero-or-more read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) declaratively\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T110",
     "expect": "LANDED T110"
   },
@@ -976,7 +976,7 @@
       ".skilled/skills/sk-code/feature-catalog/feature-catalog.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/feature-catalog/feature-catalog.md, replace the exact text <<<OLD\n`quality` and `code-review` are WORKFLOW modes that act; `code-webflow` and `code-opencode` are advisor-invisible SURFACE packets\nOLD>>> with <<<NEW\n`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` are advisor-invisible SURFACE packets\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/feature-catalog/feature-catalog.md, replace the exact text <<<OLD\n`quality` and `code-review` are WORKFLOW modes that act; `code-webflow` and `code-skilled` are advisor-invisible SURFACE packets\nOLD>>> with <<<NEW\n`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act; `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` are advisor-invisible SURFACE packets\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T111",
     "expect": "LANDED T111"
   },
@@ -996,7 +996,7 @@
       ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md, replace the exact text <<<OLD\nThe WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `code-webflow` and `code-opencode` (both `backendKind: evidence-base`) never act\nOLD>>> with <<<NEW\nThe WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act\nNEW>>>",
+    "instruction": "In .skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md, replace the exact text <<<OLD\nThe WORKFLOW axis is process: `quality` (`backendKind: surface-router`) and `code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `code-webflow` and `code-skilled` (both `backendKind: evidence-base`) never act\nOLD>>> with <<<NEW\nThe WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` (each `backendKind: evidence-base`) never act\nNEW>>>",
     "check": "node specs/sk-code/011-sk-code-poinytail-based-refinement/010-round-three-remediation/001-shared-and-hub-docs/scratch/check-unit.cjs T113",
     "expect": "LANDED T113"
   },

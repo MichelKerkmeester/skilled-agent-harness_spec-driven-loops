@@ -104,7 +104,7 @@ compiled-serving` (fingerprint `82764d6d…`), with `refresh` reporting `fresh=t
 negative-control prompt plus three others (a screenshot-scenario request, a `.db-*` class rename, a
 code-quality review) then all resolved to `sk-code-obsidian`. Three regression prompts — one
 `app-mobile`-flavored, one Webflow-flavored, one naming `.opencode/skills` — were routed
-unchanged, confirming `sk-code-mobile-cli`, `sk-code-webflow`, and `sk-code-opencode` still resolve
+unchanged, confirming `sk-code-mobile-cli`, `sk-code-webflow`, and `sk-code-skilled` still resolve
 correctly. Finally, `ci-skill-root-metadata.cjs` was run to failure first (`STALE_GENERATED_FILE:
 leaf-manifest.json is stale`), then re-run with `--fix` to a clean `checked=14 passed=14 failed=0`,
 exit code 0.
@@ -133,7 +133,7 @@ exit code 0.
 | Negative control (`compiled-route.cjs`, pre-change) | PASS — `{"action":"defer","targets":[]}` |
 | Alias disjointness (script vs. live `mode-registry.json`) | PASS — 34 existing aliases across 5 modes, 0 clashes with the 5 proposed |
 | 4 positive-routing prompts (post-change, post-refresh) | PASS — all 4 resolve to `sk-code-obsidian` |
-| 3 regression prompts (`app-mobile`, Webflow, `.opencode/skills`) | PASS — resolve to `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode` respectively |
+| 3 regression prompts (`app-mobile`, Webflow, `.opencode/skills`) | PASS — resolve to `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled` respectively |
 | Manifest refresh (`compiled-route-manifest.cjs refresh`) | PASS — `fresh=true`; `causeCode` `stale-manifest` -> `compiled-serving`, fingerprint `82764d6d…` |
 | Fleet metadata gate (`ci-skill-root-metadata.cjs`) | PASS after `--fix` — `checked=14 passed=14 failed=0`, exit code 0 (failed first with `STALE_GENERATED_FILE`) |
 | Hub-side diff scope | PASS — exactly 5 modified files plus the new untracked packet directory |

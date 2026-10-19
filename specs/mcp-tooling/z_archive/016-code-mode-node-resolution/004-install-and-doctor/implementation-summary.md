@@ -18,7 +18,7 @@ _memory:
       - ".opencode/skills/mcp-code-mode/scripts/install.sh"
       - ".opencode/commands/doctor/scripts/mcp-doctor.sh"
       - ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md"
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
@@ -66,7 +66,7 @@ The install guide claimed "Node.js 18 or higher" in six places, which is wrong i
 | `.opencode/skills/mcp-code-mode/scripts/install.sh` | Emits the launcher registration; the summary output names what is actually registered |
 | `.opencode/commands/doctor/scripts/mcp-doctor.sh` | `diagnose_code_mode()` resolves the interpreter and fails when the host cannot satisfy the range |
 | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | States the real Node requirement and the refusal behavior |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Describes the launcher-fronted pattern and why, instead of restating one machine's path |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Describes the launcher-fronted pattern and why, instead of restating one machine's path |
 <!-- /ANCHOR:what-built -->
 
 ---

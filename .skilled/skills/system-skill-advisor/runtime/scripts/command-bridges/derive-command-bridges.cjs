@@ -43,11 +43,12 @@ const TS_GENERATED_END = '// END GENERATED COMMAND BRIDGES';
 const PY_GENERATED_START = '# BEGIN GENERATED COMMAND BRIDGES';
 const PY_GENERATED_END = '# END GENERATED COMMAND BRIDGES';
 const DOCTOR_PREFIX = 'command-doctor-';
+const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
 const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
 const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
 
-// Manifest-derived runnable strings and trigger phrases per doctor bridge id.
+// Manifest-derived runnable strings, trigger phrases and precedence phrases per doctor bridge id.
 // The inventory entries keep their five-key shape; the projection merge reads here.
 const DOCTOR_DETAILS = new Map();
 
@@ -192,9 +193,12 @@ function doctorRouteEntries() {
       ? `command-doctor-${names[index]}-${route.target}`
       : `command-doctor-${names[index]}`;
     const skillId = doctorSkillAgent(names[index]);
+    const phrases = stringArray(route.trigger_phrases, `${label}.trigger_phrases`);
+    const leadPhrases = doctorLeadPhrases(route, label, phrases);
     DOCTOR_DETAILS.set(id, {
       runnable: multiTarget ? `${route.command} ${route.target}` : route.command,
-      phrases: stringArray(route.trigger_phrases, `${label}.trigger_phrases`),
+      phrases,
+      leadPhrases,
     });
     entries.push({
       id,
@@ -210,20 +214,51 @@ function doctorRouteEntries() {
     throw new Error('[command-bridges] _routes.yaml standalone must be an array');
   }
   standalone.forEach((item, index) => {
-    if (!item || typeof item.command !== 'string') return;
-    const name = doctorCommandName(item.command, `_routes.yaml standalone[${index}]`);
+    if (!item || typeof item !== 'object') return;
+    const label = `_routes.yaml standalone[${index}]`;
+    const phrases = Object.prototype.hasOwnProperty.call(item, 'trigger_phrases')
+      ? stringArray(item.trigger_phrases, `${label}.trigger_phrases`)
+      : [];
+    const leadPhrases = doctorLeadPhrases(item, label, phrases);
+    if (typeof item.command !== 'string') return;
+    const name = doctorCommandName(item.command, label);
     const skillId = doctorSkillAgent(name);
     const runnable = typeof item.runnable === 'string' && item.runnable
       ? item.runnable
       : item.command;
-    const phrases = Array.isArray(item.trigger_phrases)
-      && item.trigger_phrases.every((phrase) => typeof phrase === 'string' && phrase)
-      ? item.trigger_phrases
-      : [];
-    DOCTOR_DETAILS.set(`command-doctor-${name}`, { runnable, phrases });
+    DOCTOR_DETAILS.set(`command-doctor-${name}`, { runnable, phrases, leadPhrases });
     entries.push({
       id: `command-doctor-${name}`,
       command: item.command,
+      skillId,
+      ownerMode: skillId,
+      source: sourcePath(DOCTOR_ROUTES_PATH),
+    });
+  });
+
+  const mcpSubroutes = manifest.mcp_subroutes === undefined ? [] : manifest.mcp_subroutes;
+  if (!Array.isArray(mcpSubroutes)) {
+    throw new Error('[command-bridges] _routes.yaml mcp_subroutes must be an array');
+  }
+  mcpSubroutes.forEach((item, index) => {
+    const label = `_routes.yaml mcp_subroutes[${index}]`;
+    if (!item || typeof item.sub_action !== 'string' || !item.sub_action) {
+      throw new Error(`[command-bridges] ${label} requires a non-empty string sub_action`);
+    }
+    const commandName = doctorCommandName(DOCTOR_MCP_COMMAND, label);
+    const skillId = doctorSkillAgent(commandName);
+    const id = `${DOCTOR_PREFIX}${commandName}-${item.sub_action}`;
+    const runnable = `${DOCTOR_MCP_COMMAND} ${item.sub_action}`;
+    const phrases = stringArray(item.trigger_phrases, `${label}.trigger_phrases`);
+    const leadPhrases = doctorLeadPhrases(item, label, phrases);
+    DOCTOR_DETAILS.set(id, {
+      runnable,
+      phrases,
+      leadPhrases,
+    });
+    entries.push({
+      id,
+      command: DOCTOR_MCP_COMMAND,
       skillId,
       ownerMode: skillId,
       source: sourcePath(DOCTOR_ROUTES_PATH),
@@ -251,6 +286,20 @@ function stringArray(value, label) {
     throw new Error(`[command-bridges] ${label} must be an array of non-empty strings`);
   }
   return value;
+}
+
+function doctorLeadPhrases(item, label, triggerPhrases) {
+  const leadPhrases = Object.prototype.hasOwnProperty.call(item, 'lead_phrases')
+    ? stringArray(item.lead_phrases, `${label}.lead_phrases`)
+    : [];
+  for (const phrase of leadPhrases) {
+    if (!triggerPhrases.includes(phrase)) {
+      throw new Error(
+        `[command-bridges] ${label}.lead_phrases entry ${JSON.stringify(phrase)} must also appear in trigger_phrases`,
+      );
+    }
+  }
+  return leadPhrases;
 }
 
 function compatibilityByInventoryId(entries, inventoryIds, platform) {
@@ -361,17 +410,22 @@ function tsArray(values) {
 }
 
 function doctorRuntime(entryId, platform, compat) {
-  const { runnable, phrases } = DOCTOR_DETAILS.get(entryId);
+  const { runnable, phrases, leadPhrases } = DOCTOR_DETAILS.get(entryId);
   if (platform === 'typescript') {
     return {
       ...compat,
       name: runnable,
       keywords: [...phrases],
       intentSignals: [runnable],
+      ...(leadPhrases.length > 0 ? { leadPhrases: [...leadPhrases] } : {}),
       domains: ['doctor', 'command'],
     };
   }
-  return { ...compat, slashMarkers: [runnable] };
+  return {
+    ...compat,
+    slashMarkers: [runnable],
+    ...(leadPhrases.length > 0 ? { leadPhrases: [...leadPhrases] } : {}),
+  };
 }
 
 function runtimeOrdered(entries, platform) {
@@ -397,7 +451,7 @@ function renderTypescriptBridge(entry) {
   const keywords = active ? runtime.keywords : [];
   const domains = active ? runtime.domains : [];
   const intentSignals = active ? runtime.intentSignals : [];
-  return [
+  const lines = [
     '  {',
     `    inventoryId: ${tsString(entry.id)},`,
     `    routingEnabled: ${active},`,
@@ -410,12 +464,18 @@ function renderTypescriptBridge(entry) {
     `    keywords: ${tsArray(keywords)},`,
     `    domains: ${tsArray(domains)},`,
     `    intentSignals: ${tsArray(intentSignals)},`,
+  ];
+  if (active && runtime.leadPhrases?.length) {
+    lines.push(`    leadPhrases: ${tsArray(runtime.leadPhrases)},`);
+  }
+  lines.push(
     '    derivedTriggers: [],',
     '    derivedKeywords: [],',
     '    sourcePath: null,',
     "    lifecycleStatus: 'active',",
     '  },',
-  ].join('\n');
+  );
+  return lines.join('\n');
 }
 
 function renderTypescriptProjection(entries) {
@@ -442,6 +502,9 @@ function renderPythonBridge(entry) {
     `        "description": ${pythonString(description)},`,
     `        "slash_markers": ${pythonList(slashMarkers)},`,
   ];
+  if (active && runtime.leadPhrases?.length) {
+    lines.push(`        "lead_phrases": ${pythonList(runtime.leadPhrases)},`);
+  }
   if (active && runtime.deprecated === true) {
     lines.push('        "deprecated": True,');
   }

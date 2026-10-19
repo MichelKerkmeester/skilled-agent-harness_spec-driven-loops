@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/012-sk-code-skilled-rename",
+  "spec_folder": "sk-code/012-sk-code-skilled-rename",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/012-sk-code-skilled-rename/001-rename-impact-research",
+    "sk-code/012-sk-code-skilled-rename/002-skill-and-routing-rename",
+    "sk-code/012-sk-code-skilled-rename/003-markdown-reference-sweep"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code skilled rename phase parent spec"
+    ],
+    "key_topics": [
+      "code",
+      "skilled",
+      "rename",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code",
+      "hub",
+      "exposes",
+      "surface",
+      "packet",
+      "named"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code hub exposes a surface packet named `sk-code-opencode`",
+    "created_at": "2026-10-18T17:32:12Z",
+    "last_save_at": "2026-10-18T20:30:05.291Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:9fb580746b800ac1948910967a424b8882f077a4074dfc691196ee72af09ef54",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ac8801d865fbd1258dd5f074e97ff3c6fb765bdce1c6c894dbf2316005404790"
+    },
+    "last_active_child_id": "sk-code/012-sk-code-skilled-rename/001-rename-impact-research",
+    "last_active_at": "2026-10-18T18:05:51.659Z"
+  }
+}

@@ -46,8 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
-      ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".hermes/skills/system-skill-advisor/SKILL.md",
@@ -56,11 +54,12 @@
       ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/README.md",
       ".skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md",
-      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md",
-      ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
-      ".skilled/skills/system-skill-advisor/leaf-manifest.json"
+      ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      "scratch/w3-build/probe-census.mjs",
+      "scratch/w3-build/runs/jev.stdout.txt",
+      "scratch/w3-build/runs/deem-review.stdout.txt"
     ],
     "entities": [
       {
@@ -91,18 +90,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-jev-tiebreak.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-jev-tiebreak.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts",
         "source": "derived"
       },
       {
@@ -148,12 +135,6 @@
         "source": "derived"
       },
       {
-        "name": "tie-break-eval.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md",
-        "source": "derived"
-      },
-      {
         "name": "manual-testing-playbook.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
@@ -163,6 +144,24 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "probe-census.mjs",
+        "kind": "file",
+        "path": "scratch/w3-build/probe-census.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev.stdout.txt",
+        "kind": "file",
+        "path": "scratch/w3-build/runs/jev.stdout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deem-review.stdout.txt",
+        "kind": "file",
+        "path": "scratch/w3-build/runs/deem-review.stdout.txt",
         "source": "derived"
       },
       {
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "Nobody has measured whether a Jev `choice` would order the skill advisor's near-tie cluster better than its own fused scores",
     "created_at": "2026-09-26T18:26:43Z",
-    "last_save_at": "2026-09-28T16:21:01.530Z",
+    "last_save_at": "2026-10-18T20:45:03.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d3708056e0812a0313fe54eef04dee1840d7525a79303c1c1c82b082f3a4c81",
+    "source_fingerprint": "sha256:77f34e42d54947926f8ac5744b1996f8327d78992979023c45fe1905dcabdc75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "54b9b80944647fadcaad8586c3b9d806749bb20e9254bf260970d42db8f4c7ae",
-      "plan.md": "dcbc9a1d5fde55a5fb10752a15255196e9bb9e14a783808e4a00d8e0c89b27dd",
-      "tasks.md": "95b1c01dee6c8a906cb51bb7e31bd89af1bb8495d6e31444f59127a57895820e",
+      "plan.md": "1a1b7ca7230a71d459900c32310806697caeb92a147f76525626d0bb4519648c",
+      "tasks.md": "a2c1c7c099538797bce38ae8984c5597ea7c74c68531beb724606d172b5cec82",
       "implementation-summary.md": "33e753f1af406c9e7a0c5777cd829ffbcd95cd64fea9cd4385ee426a8a8e2c31"
     },
     "last_active_at": null

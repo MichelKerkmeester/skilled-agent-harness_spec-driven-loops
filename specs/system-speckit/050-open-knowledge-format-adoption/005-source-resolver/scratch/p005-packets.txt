@@ -16,5 +16,5 @@ specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation
 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research
 specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research
 specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements
-specs/sk-code/002-rust-standards-for-code-opencode/001-research
+specs/sk-code/002-rust-standards-for-code-skilled/001-research
 specs/sk-communication/001-sk-communication-creation/001-research-strategy

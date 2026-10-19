@@ -72,7 +72,7 @@ The observability layer remained intentionally narrow and mostly honest: static 
 - **P1 findings**: none
 - **P2 findings**: none
 
-### D4 Maintainability + sk-code-opencode Alignment
+### D4 Maintainability + sk-code-skilled Alignment
 The producer/runtime brief-authority split remains the main maintainability defect. The later passes did not uncover a second D4 blocker, but they strengthened the original case that byte accounting and runtime-injected text are still tracking different authorities.
 - **P0 findings**: none
 - **P1 findings**: `P1-004-01`

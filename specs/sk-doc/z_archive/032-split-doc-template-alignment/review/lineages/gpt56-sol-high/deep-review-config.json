@@ -16,8 +16,8 @@
     ".opencode/specs/sk-doc/032-split-doc-template-alignment/tasks.md",
     ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md",
     ".opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md",
-    ".opencode/skills/sk-code/code-opencode/references/**/*.md",
-    ".opencode/skills/sk-code/code-opencode/assets/**/*.md",
+    ".opencode/skills/sk-code/code-skilled/references/**/*.md",
+    ".opencode/skills/sk-code/code-skilled/assets/**/*.md",
     ".opencode/skills/sk-code/code-webflow/references/**/*.md",
     ".opencode/skills/sk-code/code-webflow/assets/**/*.md",
     ".opencode/skills/sk-code/code-quality/assets/**/*.md"

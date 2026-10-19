@@ -101,7 +101,7 @@ A restraint request routes to sk-code-quality, and the four lexical surfaces of 
 | `.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs` | Modify | Clean-fixture keywords, two FAILING_CASES rows, and two tests for canary and warn-only severity |
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/001-restraint-routing/` | Create | This folder: scratch baselines, the derived metadata and implementation-summary.md |
 
-Read only, never edited: `.skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts`, `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`, and the sk-code and sk-doc SKILL.md files named in tasks.md T012.
+Read only, never edited: `.skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts`, `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`, and the sk-code and sk-doc SKILL.md files named in tasks.md T012.
 <!-- /ANCHOR:scope -->
 
 ---

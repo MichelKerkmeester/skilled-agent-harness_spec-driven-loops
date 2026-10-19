@@ -24,7 +24,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
----
+&nbsp;
 
 ## 2. 🎁 WHAT YOU GET
 
@@ -80,7 +80,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 
 Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
----
+&nbsp;
 
 ## 3. 🗺️ OVERVIEW
 
@@ -150,7 +150,7 @@ From request to documented result:
          └──────────────────────────────────────────┘
 ```
 
----
+&nbsp;
 
 ## 4. 🚀 QUICK START
 
@@ -191,6 +191,9 @@ grep -l mcp-code-mode-launcher opencode.json .mcp.json .claude/mcp.json .codex/c
 
 # Confirm the advisor CLI enumerates all nine commands
 node .skilled/bin/skill-advisor.cjs list-tools --format json
+
+# In an AI session, /doctor:setup runs read-only setup checks and names a repair command per failure
+/doctor:setup
 ```
 
 ### Git Hooks
@@ -244,7 +247,7 @@ This repo ships as a public template.
 
 See the [customization guide](#customizing-for-your-stack) for the full map and step-by-step adaptation guide.
 
----
+&nbsp;
 
 ## 5. 📋 SPEC KIT
 
@@ -552,7 +555,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
 
----
+&nbsp;
 
 ## 6. 🔄 DEEP LOOP
 
@@ -655,7 +658,7 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 
 For details, see the [Deep Loop Runtime README](.skilled/skills/system-deep-loop/runtime/README.md), or the [system-deep-loop README](.skilled/skills/system-deep-loop/README.md), which documents each mode.
 
----
+&nbsp;
 
 ## 7. 🎯 SKILL ADVISOR
 
@@ -668,7 +671,8 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 - Nine commands: four `advisor_*` for routing, freshness, rebuild and validation, plus five `skill_graph_*` for scan, query, status, graph validation and `enhances` propagation. The three writes need a trusted caller
 - No MCP registration, in `opencode.json` or any other runtime config
 - Daemon unreachable → the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live
-- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI
+- **No brief** → the prompt hooks and the OpenCode plugin still say why in one line above the directives: `Advisor: outage (...)` with the command to route by hand, `Advisor: no skill matched.` or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI. A setup, install, configure or check-the-tooling prompt with no match also gets `For setup or health checks, run /doctor:setup.`
+- **Doctor command suggestions** → the advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
 
 #### How It Works
 
@@ -770,7 +774,7 @@ What happens to that input:
 
 For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor/README.md).
 
----
+&nbsp;
 
 ## 8. 🧰 SKILL LIBRARY
 
@@ -927,7 +931,7 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 - **Checks the app before it touches anything.** It resolves the `orca` executable and confirms the runtime answers, so a broken install stops the route instead of half-running it
 - Orca work routes here, not to the mcp-tooling hub, which names `cli-orca` as the owner. The eight official Orca skills ride along as authored references, with flag detail always read from the version-matched guide the binary itself serves
 
----
+&nbsp;
 
 ## 9. 🤖 AGENT LIBRARY
 
@@ -996,7 +1000,7 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 
 - Produces `file:line` findings. The `/deep:review` command owns the loop. See [Deep Loop](#6--deep-loop)
 
----
+&nbsp;
 
 ## 10. 🧩 PLUGIN & EXTENSION LIBRARY
 
@@ -1068,7 +1072,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
----
+&nbsp;
 
 ## 11. ⌨️ COMMAND LIBRARY
 
@@ -1231,9 +1235,9 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 &nbsp;
 #### DOCTOR
 
-Ten commands cover the diagnostic surface, one per owner. The eight routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Ten commands cover the diagnostic surface, one per owner. The seven routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
-**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL or SKIP for each with one repair command per failure, and writes nothing. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
+**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL, SKIP, DEGRADED or ERROR for each with one repair command per failure, and writes nothing in the repository. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1281,7 +1285,7 @@ Ten commands cover the diagnostic surface, one per owner. The eight routed ones 
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 21 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 23 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -1307,7 +1311,7 @@ The 21 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-
 
 - On-device read of your latest image: scene, caption and exact OCR, or a direct answer, with no model switch
 
----
+&nbsp;
 
 ## 12. 🔌 CODE MODE MCP
 
@@ -1358,7 +1362,7 @@ To call a Code Mode tool: `call_tool_chain({ code: "return await figma.figma_get
 
 For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.skilled/skills/mcp-code-mode/SKILL.md`.
 
----
+&nbsp;
 
 ## 13. 🌿 GIT WORKTREE / LIVE SYNC
 
@@ -1375,7 +1379,7 @@ The repo runs a live-sync loop around the worktree-per-session model.
 - `SPECKIT_AUTOSYNC=0` for the publish leg, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower, `SYSTEM_PRIMARY_RECONCILE_DISABLED=1` for the reconcile step
 - See `sk-git/references/continuous-integration.md` for the full model
 
----
+&nbsp;
 
 ## 14. ⚙️ CONFIGURATION
 
@@ -1450,7 +1454,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships one native surface and two optional examples. OpenCode, at `.skilled/skills/sk-code/sk-code-opencode/`, is native: it holds the standards for this framework's own code, so keep it. Webflow, at `.skilled/skills/sk-code/sk-code-webflow/`, and Obsidian, at `.skilled/skills/sk-code/sk-code-obsidian/`, are optional examples. You can remove them or keep them as models, and a surface you add for your own stack ranks ahead of OpenCode. Run every command from the repository root.
+`sk-code` ships one native surface and two optional examples. OpenCode, at `.skilled/skills/sk-code/sk-code-skilled/`, is native: it holds the standards for this framework's own code, so keep it. Webflow, at `.skilled/skills/sk-code/sk-code-webflow/`, and Obsidian, at `.skilled/skills/sk-code/sk-code-obsidian/`, are optional examples. You can remove them or keep them as models, and a surface you add for your own stack ranks ahead of OpenCode. Run every command from the repository root.
 
 **Before you start**
 
@@ -1467,14 +1471,14 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
 5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md` and the surface lines in this `README.md`.
 6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which present the examples as live surfaces, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
-7. Run `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in the hub's `README.md`. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which still names the examples.
+7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in the hub's `README.md`. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which still names the examples.
 8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`, and the Hermes skill copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`, which drops the removed packet's copy.
 9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
 
 **Add your own surface**
 
-1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-opencode`, because the doctor's check 5l fails a surface placed after it.
-2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
+1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l fails a surface placed after it.
+2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
 3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`. Update the surface-count lines `verify-doc-claims.cjs` checks: the count in `.skilled/skills/sk-code/shared/references/phase-detection.md`, and the counts in the hub's `README.md` and `SKILL.md`. A packet copied from an example has the same leaf set as that example, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in `.skilled/skills/sk-code/leaf-scopes.json` (the format is the array in `.skilled/skills/sk-doc/leaf-scopes.json`), or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
@@ -1486,7 +1490,7 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-
 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
 node .skilled/bin/compiled-route-guard.cjs
 node .skilled/bin/compiled-route-sync.cjs --check
-bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
@@ -1501,11 +1505,11 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 
 - **Commit, PR and branch rules.** Run `/doctor:git standards` to copy the shipped templates into `.sk-git/` and change a rule there. `git config skgit.contractDir <dir>` points at another folder.
 - **Hook gates.** Run `/doctor:git hooks` to switch an optional pre-commit or pre-push check on or off. It saves `speckit.hooks.<key>` in local or global git config.
-- **Hook trust and install.** In a clone, run `git config --local skilled.trustRepoHooks true`, then `bash .skilled/scripts/install-git-hooks.sh`. Without trust the clone's own gates do not run.
+- **Hook trust and install.** In a clone, run `bash .skilled/scripts/install-git-hooks.sh`, which links the hooks into the clone's own tree so they run its own scripts. Set `git config --local skilled.trustRepoHooks true` only when the hooks come from another checkout, such as a global `core.hooksPath`.
 - **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
-- **Shared files.** The remote branch allowlist, the worktree provision list and `hard-rules.json` live inside `.skilled/skills/sk-git/`, so a change there applies to every repository that shares the install.
+- **Shared files.** Each repository reads its remote branch allowlist and `hard-rules.json` from its own `.skilled/skills/sk-git/` folder. The worktree provision list comes from beside the shared helper, so it applies to every repository that shares the install.
 
-**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or a gate is saved off, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
+**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi|hermes>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or DEGRADED, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
 
 &nbsp;
 ### Core Configuration Files
@@ -1554,7 +1558,7 @@ Nothing to configure.
 }
 ```
 
----
+&nbsp;
 
 ## 15. ❓ FAQ
 
@@ -1634,7 +1638,7 @@ Everything is a file in your own repository.
 - The canonical feature inventory for the `system-spec-kit` engine at `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md`
 - It groups the shipped surface by capability area and maps each section to a directory under `feature-catalog/`
 
----
+&nbsp;
 
 ## 16. 📚 RELATED DOCUMENTS
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Doc-Template and Code-README Alignment"
-description: "Dispatch GLM-5.2 High via cli-devin to rewrite both changes documents in the sk-doc general-README shape, author 9 code-folder READMEs from a pre-enumerated file list, and audit added TypeScript/JS against sk-code-opencode's standards; verify every claim before applying."
+description: "Dispatch GLM-5.2 High via cli-devin to rewrite both changes documents in the sk-doc general-README shape, author 9 code-folder READMEs from a pre-enumerated file list, and audit added TypeScript/JS against sk-code-skilled's standards; verify every claim before applying."
 trigger_phrases:
   - "doc template code readme alignment plan"
 importance_tier: "normal"
@@ -38,7 +38,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | TypeScript/JavaScript source (deep-pi, pi-cache-optimizer, shared); Markdown documentation |
-| **Framework** | `sk-doc` `sk-create-readme` templates (general-README and code-folder shapes); `sk-code-opencode` TypeScript standards |
+| **Framework** | `sk-doc` `sk-create-readme` templates (general-README and code-folder shapes); `sk-code-skilled` TypeScript standards |
 | **Storage** | None new |
 | **Testing** | Both forks' existing `npm test`/`npm run typecheck` gates re-run after any code change |
 
@@ -56,7 +56,7 @@ Three distinct pieces of work, one dispatch: reshape two existing documents onto
 
 - [x] Both current `CHANGES-FROM-UPSTREAM.md` files read in full
 - [x] All 9 target folders' real file listings gathered directly (not assumed)
-- [x] `sk-create-readme/SKILL.md` (general-README and code-folder shapes) and `sk-code-opencode/SKILL.md` (TypeScript standards) read in full
+- [x] `sk-create-readme/SKILL.md` (general-README and code-folder shapes) and `sk-code-skilled/SKILL.md` (TypeScript standards) read in full
 - [x] `cli-devin/SKILL.md` read before composing any dispatch prompt
 - [x] `devin auth status` confirmed logged in
 
@@ -85,7 +85,7 @@ Single dispatch, then verify. One `cli-devin` dispatch (`--model glm-5-2 --permi
 
 **REQ-002 — code-folder READMEs.** Feed the dispatch the real file listing per folder (already gathered in `tasks.md` Evidence Record) plus `sk-create-readme/SKILL.md`'s Section 6 (code-folder) rules, including the subdirectory-count rule for Directory Tree vs flat file table. Instruct it to read each file's actual content (imports, exports, top-level function/class names) before writing Key Files and Entrypoints, not to infer from filenames alone.
 
-**REQ-003 — TypeScript/JS standards audit.** Feed the dispatch the standards references under `sk-code/sk-code-opencode/references/typescript/` and `references/shared/universal-patterns/` plus `assets/checklists/typescript-checklist.md`. Instruct: find real, cited deviations (naming, formatting, type-system gaps, TSDoc, error/async handling) in the files this packet added or modified, fix them, then re-run `npm test`/`npm run typecheck` in the affected fork and revert any fix that breaks a test.
+**REQ-003 — TypeScript/JS standards audit.** Feed the dispatch the standards references under `sk-code/sk-code-skilled/references/typescript/` and `references/shared/universal-patterns/` plus `assets/checklists/typescript-checklist.md`. Instruct: find real, cited deviations (naming, formatting, type-system gaps, TSDoc, error/async handling) in the files this packet added or modified, fix them, then re-run `npm test`/`npm run typecheck` in the affected fork and revert any fix that breaks a test.
 
 ### Data Flow
 
@@ -101,7 +101,7 @@ Real file listings and current doc content (gathered directly, not delegated) �
 
 - [x] Read both current `CHANGES-FROM-UPSTREAM.md` files
 - [x] Enumerate all 9 target folders' real file listings directly
-- [x] Read `sk-create-readme/SKILL.md` and `sk-code-opencode/SKILL.md` in full
+- [x] Read `sk-create-readme/SKILL.md` and `sk-code-skilled/SKILL.md` in full
 - [x] Read `cli-devin/SKILL.md`; confirm `devin auth status` logged in; resolve "GLM 5.2 high" to `--model glm-5-2` via `references/providers-and-models.md`
 
 ### Phase 2: Implementation
@@ -132,7 +132,7 @@ Both forks' existing `npm test`/`npm run typecheck` gates are the authoritative 
 | Dependency | Type | Status |
 |---|---|---|
 | `devin` CLI, Devin account OAuth | External tooling | Confirmed available and authenticated before dispatch |
-| `sk-create-readme`, `sk-code-opencode` | Internal skill packets | Read in full before composing the dispatch prompt |
+| `sk-create-readme`, `sk-code-skilled` | Internal skill packets | Read in full before composing the dispatch prompt |
 | 009's already-verified fact base | Internal | Reused, not re-derived |
 <!-- /ANCHOR:dependencies -->
 

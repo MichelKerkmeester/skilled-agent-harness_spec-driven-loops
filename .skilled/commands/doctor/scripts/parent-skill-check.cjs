@@ -43,7 +43,7 @@
  * Exit codes:
  *   0  every hard invariant passed (warnings allowed)
  *   1  at least one invariant failed
- *   2  target directory missing or unreadable, or the audit could not finish
+ *   2  target directory missing or unreadable, target is not a parent hub, or the audit could not finish
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1156,11 +1156,11 @@ function checkTieBreakOrder(ctx, tieBreak) {
   if (tieBreak.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
 }
 
-// 5l: in sk-code, sk-code-opencode is the framework's native surface and takes
+// 5l: in sk-code, sk-code-skilled is the framework's native surface and takes
 // the last keyword tie. Only the two shipped example surfaces, which a user may
 // delete, may sort after it. A surface added by hand after it loses every tie
 // to the native surface; the update command never places one there.
-const SK_CODE_NATIVE_SURFACE = 'sk-code-opencode';
+const SK_CODE_NATIVE_SURFACE = 'sk-code-skilled';
 const SK_CODE_EXAMPLE_SURFACES = ['sk-code-obsidian', 'sk-code-webflow'];
 function checkNativeSurfaceLast(ctx, tieBreak) {
   if (ctx.basename !== 'sk-code') return;
@@ -1957,6 +1957,13 @@ function main() {
 
   const unusable = targetError(target);
   if (unusable !== null) return unusable;
+
+  // A hub verdict cannot certify anything when this root is not a hub.
+  if (!fs.existsSync(path.join(target, 'mode-registry.json'))
+      && !fs.existsSync(path.join(target, 'hub-router.json'))) {
+    console.error(`${red('ERROR')}: target is not a parent hub: it carries neither mode-registry.json nor hub-router.json, so the skill-root contract classes it as a standalone skill (class S); check its root with node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs`);
+    return EXIT_CHECKER_ERROR;
+  }
 
   const ctx = createContext(target);
   checkIdentity(ctx);

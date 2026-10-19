@@ -6,7 +6,7 @@ trigger_phrases:
   - "daemon absent fallback"
   - "daemon absent"
   - "daemon"
-version: 0.8.0.13
+version: 0.8.1.0
 id: CP-004
 category: compat_and_disable
 stage: routing
@@ -36,6 +36,8 @@ Validate two fallback paths: the Python shim routes to local scoring when native
 ---
 
 ## 3. TEST EXECUTION
+
+### Commands
 
 1. Python local fallback:
 
@@ -107,7 +109,7 @@ fi
 - Step 5 prints `live generation file unchanged` and `sandbox advisor exited; sandbox removed`. No `/tmp/cp004.*` folder is left behind.
 - The absence path does not throw and does not block prompt handling.
 
-### Failure Modes
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -120,10 +122,24 @@ fi
 | Step 2's variables are lost | Step 5 prints `step 2 variables are missing` | The steps ran in separate shells, so nothing was checked or removed. Rerun steps 2 to 5 in one shell. |
 | Live state changed | Step 5 prints `live generation file CHANGED` | Record it as a FAIL. The live advisor also rewrites that file when it starts, stops, scans, rebuilds or reindexes, and it reindexes about three seconds after any skill file it watches changes, with the reason `advisor-server-watcher-reindex`. So another session's edit during the run changes it too. Rerun steps 2 to 5 while no skill file is being edited, the live advisor keeps its pids and no one runs a skill-graph scan or an advisor rebuild. A `CHANGED` line on that quiet rerun points to the sandbox daemon writing live advisor state. |
 
+### Evidence
+
+- Capture each numbered step's output and exit status.
+- Record the forced-local JSON array, sandbox path and live generation checksum.
+- Record whether step 3 prints warm-only exit 75, returns status error, reports backend unavailable with ENOENT at $SANDBOX/sock/daemon-ipc.sock, returns exitCode 75 and spawns no daemon or database.
+- Record whether step 4 returns status ok and freshness live. Capture its trustState and recommendations fields too.
+- Record the step 5 output for the unchanged generation file and removed sandbox. Confirm no /tmp/cp004.* folder remains. Confirm prompt handling returns without throwing or blocking.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any signal differs.
+
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
 - `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 - `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`

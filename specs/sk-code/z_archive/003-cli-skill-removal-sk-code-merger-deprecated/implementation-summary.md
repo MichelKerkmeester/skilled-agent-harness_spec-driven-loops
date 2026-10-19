@@ -62,14 +62,14 @@ The two skills soft-deprecated by `054-sk-code-merger` are gone. The skill folde
 | `.opencode/install_guides/README.md` | Edited (9 replacements) | Skill rows removed/merged, frontend/backend role rows, count cell |
 | `.opencode/install_guides/SET-UP - AGENTS.md` | Edited (11 replacements) | Section header, table rows, routing examples, skills count |
 | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Edited (4 replacements) | Skill examples and table |
-| `.opencode/skills/sk-code-review/SKILL.md` + `README.md` + `graph-metadata.json` + `references/*.md` (10 files) | Edited (32 replacements) | Overlay-target swap to `sk-code-opencode` and `sk-code` |
-| `.opencode/skills/sk-code-opencode/{SKILL.md, README.md}` | Edited (12 replacements) | Cosmetic cross-skill mentions |
+| `.opencode/skills/sk-code-review/SKILL.md` + `README.md` + `graph-metadata.json` + `references/*.md` (10 files) | Edited (32 replacements) | Overlay-target swap to `sk-code-skilled` and `sk-code` |
+| `.opencode/skills/sk-code-skilled/{SKILL.md, README.md}` | Edited (12 replacements) | Cosmetic cross-skill mentions |
 | `.opencode/skills/mcp-chrome-devtools/{SKILL.md, README.md, examples/README.md}` | Edited (9 replacements) | Path-style cross-refs |
 | `.opencode/skills/cli-{claude-code, codex, gemini}/SKILL.md` + `cli-opencode/assets/prompt_templates.md` | Edited (7 replacements) | Narrative cross-refs |
 | `.opencode/skills/sk-doc/assets/skill/skill_md_template.md`, `sk-git/README.md`, `sk-improve-prompt/SKILL.md` | Edited (4 replacements) | Cross-refs |
 | `.opencode/skills/system-spec-kit/{assets/level_decision_matrix.md, references/**/*.md}` (5 files) | Edited (5+ replacements) | Reference doc cross-refs |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/shadow-sink.vitest.ts` + `mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts` | Edited | Test fixture skill names |
-| `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.gemini/agents/deep-review.md`, `.opencode/agents/deep-review.md` | Edited | Overlay listings retargeted to `sk-code-opencode / sk-code` |
+| `.claude/agents/deep-review.md`, `.codex/agents/deep-review.toml`, `.gemini/agents/deep-review.md`, `.opencode/agents/deep-review.md` | Edited | Overlay listings retargeted to `sk-code-skilled / sk-code` |
 | `mcp_server/database/skill-graph.sqlite` | Edited (SQL DELETE + Python UPDATE) | Removed 2 nodes + 4 cascade/orphan edges; refreshed stale `derived` JSON in sk-code and sk-code-review nodes from disk; final state: 20 nodes, 73 edges |
 | `mcp_server/database/code-graph.sqlite` | Edited (SQL DELETE) | Removed 28 `code_files` rows + 1910 `code_nodes` rows under deprecated skill paths |
 | `mcp_server/database/context-index__voyage__voyage-4__1024.sqlite` | Edited (SQL DELETE) | Purged 25 `memory_index` rows + 25 `memory_lineage` rows + 25 `memory_history` rows tied to historical content |
@@ -82,7 +82,7 @@ Total: 128 files deleted (skill + changelog) + ~50 files edited + 3 SQLite datab
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The work split into three phases mirroring the just-completed 053 (mcp-clickup) precedent. Phase A deleted both skill trees via `rm -rf` (128 files). Phase B (Implementation) used a mix of surgical Edit calls and a Python sed-style pass for mechanical replacements: 25 path retargets (`sk-code-web/scripts/` → `sk-code/scripts/`) and ~30 narrative scrubs across sk-code's references/, assets/, CHANGELOG, description.json, and graph-metadata.json. Cross-skill files (sk-code-review, sk-code-opencode, mcp-chrome-devtools, the four cli-* orchestrators, sk-doc, sk-git, sk-improve-prompt, system-spec-kit references, two vitest tests, four runtime deep-review agent definitions, three install guides, and the root README/AGENTS/CLAUDE) were swept in a single 30-file Python text-replacement pass with an ordered replacement table (longer/more-specific patterns first). Phase C (SQLite) used `sqlite3 DELETE FROM` against skill-graph (cascade-deleted 4 orphan edges and refreshed 2 stale `derived` JSON columns from the cleaned graph-metadata.json files via Python UPDATE), code-graph (DELETE rows under deprecated paths), and the voyage memory index (purged 75 rows across memory_index/memory_lineage/memory_history). After each phase, JSON parse-validity, Python AST parse-validity, and a repo-wide grep gated progress.
+The work split into three phases mirroring the just-completed 053 (mcp-clickup) precedent. Phase A deleted both skill trees via `rm -rf` (128 files). Phase B (Implementation) used a mix of surgical Edit calls and a Python sed-style pass for mechanical replacements: 25 path retargets (`sk-code-web/scripts/` → `sk-code/scripts/`) and ~30 narrative scrubs across sk-code's references/, assets/, CHANGELOG, description.json, and graph-metadata.json. Cross-skill files (sk-code-review, sk-code-skilled, mcp-chrome-devtools, the four cli-* orchestrators, sk-doc, sk-git, sk-improve-prompt, system-spec-kit references, two vitest tests, four runtime deep-review agent definitions, three install guides, and the root README/AGENTS/CLAUDE) were swept in a single 30-file Python text-replacement pass with an ordered replacement table (longer/more-specific patterns first). Phase C (SQLite) used `sqlite3 DELETE FROM` against skill-graph (cascade-deleted 4 orphan edges and refreshed 2 stale `derived` JSON columns from the cleaned graph-metadata.json files via Python UPDATE), code-graph (DELETE rows under deprecated paths), and the voyage memory index (purged 75 rows across memory_index/memory_lineage/memory_history). After each phase, JSON parse-validity, Python AST parse-validity, and a repo-wide grep gated progress.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,11 +100,11 @@ The work split into three phases mirroring the just-completed 053 (mcp-clickup) 
 
 ### Edge Cases Handled
 
-- **`families.sk-code` shrunk 5 → 3**: after deleting the two deprecated skill nodes, `families.sk-code` contains only `sk-code`, `sk-code-opencode`, `sk-code-review` — non-empty, no special-case needed.
+- **`families.sk-code` shrunk 5 → 3**: after deleting the two deprecated skill nodes, `families.sk-code` contains only `sk-code`, `sk-code-skilled`, `sk-code-review` — non-empty, no special-case needed.
 - **Orphan skill_edges with deprecated source/target**: SQLite ON DELETE CASCADE didn't fire because the connection didn't have `PRAGMA foreign_keys=ON`. Caught the orphans (4 rows: 2 inbound + 2 outbound siblings) on post-state grep and DELETEd explicitly.
 - **`memory_history` orphans**: Deleting `memory_index` rows in voyage doesn't cascade to `memory_history` (no FK). Found 25 orphan history rows referencing the deleted memory IDs; DELETEd in the same pass.
 - **`vec_memories_*` virtual table**: Same as 053 precedent — sqlite3 CLI lacks `vec0` extension, so vec rows can't be DELETEd. The voyage `vec_memories_rowids` showed 0 entries for the purged memory IDs, so no orphan vec embeddings exist.
-- **Runtime advisor banner cached**: The runtime skill registry shown in the system reminders still names the deprecated skills in `sk-code-review`'s overlay description ("with sk-code-opencode, sk-code-web, and sk-code-full-stack standards"). The on-disk file was updated to "sk-code-opencode and sk-code"; the banner refreshes on next session start.
+- **Runtime advisor banner cached**: The runtime skill registry shown in the system reminders still names the deprecated skills in `sk-code-review`'s overlay description ("with sk-code-skilled, sk-code-web, and sk-code-full-stack standards"). The on-disk file was updated to "sk-code-skilled and sk-code"; the banner refreshes on next session start.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -116,7 +116,7 @@ The work split into three phases mirroring the just-completed 053 (mcp-clickup) 
 - **JSON parse**: `python3 -m json.tool` passes on `sk-code/description.json`, `sk-code/graph-metadata.json`, `sk-code-review/graph-metadata.json`, advisor `skill-graph.json`, plus the 055 packet's own `description.json` + `graph-metadata.json`.
 - **Python AST parse**: `ast.parse()` passes on `skill_advisor.py`.
 - **Database state**: post-cleanup mention counts — `skill-graph.sqlite=0`, `code-graph.sqlite=0`, `voyage-context-index=0`, `context-index.sqlite=0`, `deep-loop-graph=0`, `memory.db=0`, `speckit-eval.db=0`. skill-graph.sqlite final shape: 20 nodes (was 22), 73 edges.
-- **Skill graph counts converge**: `skill-graph.json` declares `skill_count: 20` ↔ `skill-graph.sqlite` SELECT COUNT(*) FROM skill_nodes returns 20. ↔ `families.sk-code` lists exactly the 3 surviving siblings (sk-code, sk-code-opencode, sk-code-review).
+- **Skill graph counts converge**: `skill-graph.json` declares `skill_count: 20` ↔ `skill-graph.sqlite` SELECT COUNT(*) FROM skill_nodes returns 20. ↔ `families.sk-code` lists exactly the 3 surviving siblings (sk-code, sk-code-skilled, sk-code-review).
 - **Spec validator**: `validate.sh --strict` against this spec folder — to be run next.
 <!-- /ANCHOR:verification -->
 

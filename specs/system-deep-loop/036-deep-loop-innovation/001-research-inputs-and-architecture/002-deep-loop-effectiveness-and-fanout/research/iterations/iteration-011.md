@@ -629,7 +629,7 @@ exec
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/parent-hub-vocab-sync.vitest.ts
-.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-opencode-playbook-ids.vitest.ts
+.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-skilled-playbook-ids.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/parent-hub-vocab-sync.cjs
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/playbook-generator.cjs
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs

@@ -1,5 +1,5 @@
 {
-  "topic": "CONTEXT: Read-only, evidence-based audit of system-spec-kit code against this repo's code standards. 5-iteration deep-research loop (r2), fresh context and one focus angle per iteration, targeting the priority surfaces not covered by the two prior passes. Code: .opencode/skills/system-spec-kit/shared/** and .opencode/skills/system-spec-kit/runtime/** excluding node_modules/ and dist/. Standards (read first): sk-code-opencode SKILL.md + references/ + assets/; sk-code-quality SKILL.md + assets/; shared/references/universal/code-quality-standards.md.",
+  "topic": "CONTEXT: Read-only, evidence-based audit of system-spec-kit code against this repo's code standards. 5-iteration deep-research loop (r2), fresh context and one focus angle per iteration, targeting the priority surfaces not covered by the two prior passes. Code: .opencode/skills/system-spec-kit/shared/** and .opencode/skills/system-spec-kit/runtime/** excluding node_modules/ and dist/. Standards (read first): sk-code-skilled SKILL.md + references/ + assets/; sk-code-quality SKILL.md + assets/; shared/references/universal/code-quality-standards.md.",
   "maxIterations": 5,
   "minIterations": 2,
   "convergenceThreshold": 3,

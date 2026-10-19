@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The ANCHORSVALID check in the validator code only detects duplicate anchor opens, unopened closes, unclosed opens, and documents with zero anchors",
     "created_at": "2026-10-08T04:22:48Z",
-    "last_save_at": "2026-10-11T19:55:50.271Z",
+    "last_save_at": "2026-10-18T20:45:36.090Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad74fdd8157337a3573a2d0288b7bd47e1c1979a40836951e66296d73a11d2a4",
+    "source_fingerprint": "sha256:2d600e4fe66d4fe9c21253ae72fba7a4552a5d1c4411dbb19fdaf9fdddd70901",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f62d96ef40a67f210429de83235292d8615289b5859d3623a32183be2f3acbe0",
       "plan.md": "301ac613cd31b8f9029e46f12932b90eae4dd8868ada561e70413dbbb59a55ae",
       "tasks.md": "6b3bb1505a48da313effb3784ecacc629e639f53e4c134663c7ac760734da677",
-      "implementation-summary.md": "a823c1f2d927a80afaba4ea5893bc1a51218d9c3540b31f079f82b47881287a4"
+      "implementation-summary.md": "365b72eae195e34f214088c9d76b0590f53e5e578adaffc34d6d4b4c8a6e7980"
     },
     "last_active_at": null
   }

@@ -45,10 +45,10 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md",
       "scratch/hits-for-orchestrator.txt",
       "scratch/status-before.txt",
       "scratch/dispatch-units.json",
@@ -56,7 +56,7 @@
       "scratch/check-units.cjs",
       "scratch/plan-neg-test.txt",
       "scratch/plan-pos-test.txt",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
       ".skilled/skills/sk-code/leaf-manifest.json",
       ".skilled/skills/sk-code/SKILL.md"
@@ -95,25 +95,25 @@
       {
         "name": "workflow-guardrails.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "v1.2.1.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md",
         "source": "derived"
       },
       {
@@ -161,7 +161,7 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Round three shipped `verifydocclaims.cjs` with five recorded gaps, and all five still reproduce",
     "created_at": "2026-10-10T14:44:45Z",
-    "last_save_at": "2026-10-11T05:17:08.680Z",
+    "last_save_at": "2026-10-18T20:45:15.323Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9524db212ae5e67137b4f081f28219a4c803fc14d014153c99d05a7a37c3ff3a",
+    "source_fingerprint": "sha256:5917c0fe5e7309dd24de1873661cf178adfc9f64e94daca613d95adc6c98ab7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80087dc4a18fa3fed0e03f3b772aecea6dd8affce1a2c507477aa6b3e1a595cb",
-      "plan.md": "2f48a600e335cfa46b6538463d9dd1bac682afbfb9f532767f13c67627ef2e5b",
-      "tasks.md": "37e0bfd273d07380f8492ddd64479b002a23d28299cc41b25bcf8f8a04a8b53c",
-      "implementation-summary.md": "0844944c634f23fe698bb1545ff9b5b5191078310e1e9034f2408244c49e9ff3"
+      "spec.md": "500ccc5bb02877bcc8721a9df3b69afe369b83c58b501fb6aa36b7ad29ecd00e",
+      "plan.md": "5c0eeddded0b83b2b58f9213f1fdd222c6da9bf1bffbd36e05cbbc81ea499c7b",
+      "tasks.md": "a5ce6d2c77d75ac3dd0c350fc5599622028d2a2858a2440cb187e5d507e16d1e",
+      "implementation-summary.md": "06cca31d09381d01006899dedb0836891160904a0df11f9a0fbc607c1431fa1e"
     },
     "last_active_at": null
   }

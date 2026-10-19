@@ -1,0 +1,19 @@
+DESCRIPTION
+  List top-level sessions in the current project, newest first
+
+USAGE
+  opencode session list [flags]
+
+FLAGS
+  --standalone               Run with a private server instead of the background service
+  --server string            Connect to a server URL instead of the background service
+  --max-count, -n integer    Limit to N most recent sessions (default: 100)
+  --format choice            Output format (choices: table, json)
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)

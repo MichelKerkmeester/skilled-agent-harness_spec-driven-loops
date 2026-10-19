@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Cross-runtime hook code style alignment"
-description: "Task breakdown for aligning all 32 hook entrypoints across four runtimes to their language's code-opencode P0 header and section standards."
+description: "Task breakdown for aligning all 32 hook entrypoints across four runtimes to their language's code-skilled P0 header and section standards."
 trigger_phrases: ["cross-runtime hook style tasks"]
 importance_tier: "normal"
 contextType: "general"
@@ -72,7 +72,7 @@ _memory:
 ## Cross-References
 - Generalizes `../009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment/` from Cursor-only to all four runtimes.
 - Sequential-numbering neighbor `../009-cursor-hooks-lifecycle/006-cursor-hooks-discovery-mirror/` is unrelated; no dependency either way.
-- Standards source: `sk-code/code-opencode/assets/checklists/javascript-checklist.md`.
+- Standards source: `sk-code/code-skilled/assets/checklists/javascript-checklist.md`.
 <!-- /ANCHOR:cross-refs -->
 
 ---

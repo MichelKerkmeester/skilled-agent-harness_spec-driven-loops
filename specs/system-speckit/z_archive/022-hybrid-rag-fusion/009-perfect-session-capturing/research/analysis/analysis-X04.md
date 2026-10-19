@@ -96,7 +96,7 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
  succeeded in 51ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -862,8 +862,8 @@ exec
 .opencode/specs/03--commands-and-skills/z_archive/002-doc-skill-rename/memory/17-12-24_skill-rename-complete.md
 .opencode/specs/03--commands-and-skills/z_archive/001-cmd-analysis/memory/context-2025-12-15.md
 .opencode/specs/03--commands-and-skills/z_archive/007-cmd-remove-git-branch-logic/memory/21-01-26_08-56__remove-git-branch-logic.md
-.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-opencode.md
-.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/03-02-26_11-25__workflows-code-opencode.md
+.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-skilled.md
+.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/03-02-26_11-25__workflows-code-skilled.md
 .opencode/specs/03--commands-and-skills/z_archive/004-cmd-logic-improvement/memory/01-01-26_14-12__command-logic-improvement.md
 .opencode/specs/03--commands-and-skills/z_archive/004-cmd-logic-improvement/memory/01-01-26_14-29__command-logic-improvement.md
 .opencode/specs/03--commands-and-skills/z_archive/004-cmd-logic-improvement/memory/01-01-26_13-25__command-logic-improvement.md
@@ -886,7 +886,7 @@ exec
 .opencode/specs/00--anobel.com/z_archive/018-blog-sort-fix/memory/18-01-26_14-45__blog-sort-fix.md
 .opencode/specs/00--anobel.com/z_archive/004-table-of-content/002-tab-main-component/memory/2024-12-13__implementation.md
 .opencode/specs/00--anobel.com/z_archive/025-load-toggle/memory/01-02-25_12-00__implementation-complete.md
-.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-opencode.md
+.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/04-02-26_08-12__workflows-code-skilled.md
 .opencode/specs/03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_honesty_pass.md
 .opencode/specs/00--anobel.com/z_archive/013-font-performance/memory/03-01-26_10-39__font-performance.md
 .opencode/specs/03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_header_standardization.md
@@ -897,7 +897,7 @@ exec
 .opencode/specs/03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_implementation_complete.md
 .opencode/specs/03--commands-and-skills/z_archive/001-doc-specialist-refactor/memory/14-12-24_planning_session.md
 .opencode/specs/03--commands-and-skills/z_archive/001-cmd-analysis/memory/context-2025-12-15.md
-.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/03-02-26_11-25__workflows-code-opencode.md
+.opencode/specs/03--commands-and-skills/z_archive/011-code-initial-set-up/memory/03-02-26_11-25__workflows-code-skilled.md
 .opencode/specs/00--anobel.com/z_archive/011-form-input-upload-select/memory/04-01-26_13-51__form-input-components.md
 .opencode/specs/00--anobel.com/z_archive/011-form-input-upload-select/memory/25-01-26_11-09__form-input-upload-select.md
 exec

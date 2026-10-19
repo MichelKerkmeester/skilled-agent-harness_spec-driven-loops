@@ -2938,7 +2938,7 @@
       "targetRefs": [
         ".skilled/skills/mcp-code-mode/scripts/_utils.sh",
         ".skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/_utils.sh",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs"
       ],
       "bugClass": "silent_unknown_option",
       "disposition": "not_applicable",

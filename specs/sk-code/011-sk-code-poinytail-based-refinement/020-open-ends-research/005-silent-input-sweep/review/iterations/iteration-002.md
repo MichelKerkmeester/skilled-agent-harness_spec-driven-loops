@@ -35,11 +35,11 @@ Security rotation over the sweep's two defect classes: (1) an unknown or misspel
 - .skilled/skills/mcp-tooling/mcp-obsidian/scripts/install.sh:52
 - .skilled/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh:66
 - .skilled/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh:52
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:507
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:167
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs:70
-- .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:319
-- .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:36
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/router-replay-lib.cjs:507
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:167
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs:70
+- .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:319
+- .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:36
 - .skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh:187
 - .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:214
 - .skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh:175
@@ -116,7 +116,7 @@ None. Every failure branch in the slice's gate cluster returns nonzero (receipts
 - Scope proof: parser read at lines 155-163; exit paths at 305-323 show the canary only fails on missing invariant strings, not on malformed invocation.
 - Affected surface hints: ["rule-copy canary (AGENTS.md invariants)"]
 
-7. **Unknown flags ignored by the corpus and router gates (a misspelled scope flag silently narrows coverage)** -- .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3515 and .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:319 -- both read their options with `includes`/`indexOf` and never examine the rest of argv, so a stray flag runs the default scope and reports success. For check-corpus that default is narrower than the requested one: a misspelled `--extra` (`--extras DIR`) or `--render` is discarded, the external deliveries or render checks are not covered, and the run still prints `RESULT: PASSED` and exits 0.
+7. **Unknown flags ignored by the corpus and router gates (a misspelled scope flag silently narrows coverage)** -- .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs:3515 and .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:319 -- both read their options with `includes`/`indexOf` and never examine the rest of argv, so a stray flag runs the default scope and reports success. For check-corpus that default is narrower than the requested one: a misspelled `--extra` (`--extras DIR`) or `--render` is discarded, the external deliveries or render checks are not covered, and the run still prints `RESULT: PASSED` and exits 0.
 - Case: `node check-corpus.cjs --extras /candidate/deliveries` exits 0 with `RESULT: PASSED` while the candidate directory was never scanned; `node verify-router-sync.cjs --bogus-xyz` runs all five legs and exits 0 without mentioning the flag.
 - Finding class: class-of-bug
 - Scope proof: check-corpus CLI read at lines 3514-3526 (`--families`, `--render`, `parseExtraDirectory` for `--extra` only); verify-router-sync parser read at lines 319-330 (only `--checks` is examined; unknown check ids are rejected but unknown flags are not).

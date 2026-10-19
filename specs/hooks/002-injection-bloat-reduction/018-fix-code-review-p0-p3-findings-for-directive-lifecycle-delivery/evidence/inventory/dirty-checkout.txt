@@ -25,7 +25,7 @@
  M .opencode/skills/mcp-tooling/mcp-aside-devtools/references/discovery-fixture-2026-07-16.json
  M .opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json
  M .opencode/skills/mcp-tooling/mcp-refero/references/discovery-fixture-2026-07-16.json
- M .opencode/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md
+ M .opencode/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md
  M .opencode/skills/system-skill-advisor/README.md
  M .opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts
  M .opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts
@@ -820,10 +820,10 @@
  M specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/graph-metadata.json
  M specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/implementation-summary.md
  M specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/spec.md
- M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/description.json
- M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/graph-metadata.json
- M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/implementation-summary.md
- M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/spec.md
+ M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/description.json
+ M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/graph-metadata.json
+ M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/implementation-summary.md
+ M specs/system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md
  M specs/system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile/description.json
  M specs/system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation/description.json
  M specs/system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation/graph-metadata.json

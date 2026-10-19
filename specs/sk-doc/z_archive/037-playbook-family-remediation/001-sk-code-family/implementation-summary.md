@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/sk-code/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-review/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook"
-      - ".opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook"
+      - ".opencode/skills/sk-code/sk-code-skilled/manual-testing-playbook"
       - ".opencode/skills/sk-code/sk-code-quality/manual-testing-playbook"
     session_dedup:
       fingerprint: "sha256:5348cb1c9eedc02236e1710b96b9479fef24fe04582ed05ad86fae89b5fc2162"
@@ -63,7 +63,7 @@ Five dirty roots in the sk-code family went from 586 operator-scenario contract 
 
 3. **`sk-code-webflow`: 156 violations to zero.** Final census `scenarios=13 categories=4 operator=13 routing_gold_excluded=0 violations=0 warnings=0`.
 
-4. **`sk-code-opencode`: 108 violations to zero.** Final census `scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0`.
+4. **`sk-code-skilled`: 108 violations to zero.** Final census `scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0`.
 
 5. **`sk-code-quality`: 12 violations to zero.** Final census `scenarios=1 categories=1 operator=1 routing_gold_excluded=0 violations=0 warnings=0`.
 
@@ -106,7 +106,7 @@ Every count in this record is a re-measurement taken by the coordinator with `va
 | `sk-code` hub | PASS — `scenarios=32 categories=11 operator=31 routing_gold_excluded=1 violations=0 warnings=0` |
 | `sk-code-review` | PASS — `scenarios=31 categories=9 operator=31 routing_gold_excluded=0 violations=0` |
 | `sk-code-webflow` | PASS — `scenarios=13 categories=4 operator=13 routing_gold_excluded=0 violations=0 warnings=0` |
-| `sk-code-opencode` | PASS — `scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0` |
+| `sk-code-skilled` | PASS — `scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0` |
 | `sk-code-quality` | PASS — `scenarios=1 categories=1 operator=1 routing_gold_excluded=0 violations=0 warnings=0` |
 | Already-clean roots held | PASS — `sk-code-mobile-cli` 26 across 7 and `sk-code-obsidian` 27 across 7, both `violations=0 warnings=0` |
 | Hub routing-gold exclusion intact | PASS — `routing_gold_excluded=1`, the registered `compiled-routing/` path, unchanged by the remediation |

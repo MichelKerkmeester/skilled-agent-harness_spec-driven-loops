@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "22e34923524dc503f470e722a9bad480c1d2a98df115c647c07362447c6e7ec6",
+      "sha256": "9be19a65e137b9de755f1f00d3a38bf200a924b13be3f13ce030aa9e3dbf29fe",
       "section": "full"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "path": ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "4baced67719594331b77ff1c0b9271983bf438611fa96b7d6ed6d9ae8e4d78c2",
+      "sha256": "c7da6611cf513d7a8f48d4b88a1f7f520f5916be0996a936b6d4233c3f99e3c6",
       "section": "full"
     },
     {
@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "0642f92d490fc596793689e8b296df86aff37cefa94afc0b2937bd803a99bdb2",
+      "sha256": "24725a61a9e7b689c6a028a7d40b05037ac2a23205e32a234ed3a63e327f8fb1",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "7c36a276366b6c457ea539efe177396d4c7c49bf6466b5f3ca8245a3194c8b6f",
+      "sha256": "61bca879a433fd1ff6989939458912eb57b4cc010e6ad7cb9ce63fa2b3399bd9",
       "section": "full"
     },
     {
@@ -47,12 +47,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "9d09b744ff5ed1c2a65ecc8f082fdc9060c17673f51d1daf660581d34f4673db",
+      "sha256": "7d117600f18a411b9422ce41ac7e99fc0990d7ceb676b3ec1d21e67ad6ce0259",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "4bbe4226f4b879d06a9669b50abe5df909e80eab20999f8cc46ae430c84c8047",
+      "sha256": "952c3f55b5a630d2862342eed0aabedd97424c07cb87cc94441579a76272fdb9",
       "section": "full"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "005877cdd39a175031da7114eb6dc5719a4c5408cee98da7136f27d6f192362c",
+      "sha256": "a62933b8a9b573347519fe76206344aba7378a235e1d2c99bd12b42bd52e0cc5",
       "section": "full"
     },
     {

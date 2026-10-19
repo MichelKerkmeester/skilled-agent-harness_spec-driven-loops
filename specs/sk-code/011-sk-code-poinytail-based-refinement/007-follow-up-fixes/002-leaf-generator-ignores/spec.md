@@ -58,7 +58,7 @@ This is **Phase 2** of the Follow-up fixes for the sk-code Ponytail refinement s
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`walkLeafFiles` in `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (lines 96 to 130) lists every regular file under a packet's `references/` and `assets/` roots, including files git ignores. A Python test run inside a skill leaves `__pycache__/*.pyc` behind, the generator lists those files, and `ci-leaf-manifest-freshness.cjs` reports the skill STALE although no tracked file changed. The sk-code manifest walks `sk-code-opencode/assets/scripts/`, so a `.pyc` probe placed there reproduces the report.
+`walkLeafFiles` in `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (lines 96 to 130) lists every regular file under a packet's `references/` and `assets/` roots, including files git ignores. A Python test run inside a skill leaves `__pycache__/*.pyc` behind, the generator lists those files, and `ci-leaf-manifest-freshness.cjs` reports the skill STALE although no tracked file changed. The sk-code manifest walks `sk-code-skilled/assets/scripts/`, so a `.pyc` probe placed there reproduces the report.
 
 ### Purpose
 The freshness gate reports drift only when tracked content changed.
@@ -106,7 +106,7 @@ The freshness gate reports drift only when tracked content changed.
 | REQ-002 | When git is unavailable, or check-ignore exits with a status other than 0 or 1, the walk drops any path segment named `__pycache__`, `node_modules` or `.DS_Store`, and any file ending `.pyc`. | The fallback case exits 0 and its manifest keeps only `references/keep.md`. |
 | REQ-003 | check-ignore exit status 1 means nothing is ignored. It is not an error, and a walk with no ignored file keeps all of its files. | The ignored-leaf case also walks an `assets/` root with no ignored file and keeps `assets/logo.txt`. |
 | REQ-004 | Every committed `leaf-manifest.json` stays byte-identical. | `ci-leaf-manifest-freshness.cjs` prints `checked=14 fresh=14 failed=0` before and after, and `git status --short -- '*/leaf-manifest.json'` prints nothing. |
-| REQ-005 | The freshness gate stays green with a probe `__pycache__/probe.cpython-39.pyc` present under `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/`. | The gate prints `checked=14 fresh=14 failed=0` with the probe present. The builder removes the probe afterwards. |
+| REQ-005 | The freshness gate stays green with a probe `__pycache__/probe.cpython-39.pyc` present under `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/`. | The gate prints `checked=14 fresh=14 failed=0` with the probe present. The builder removes the probe afterwards. |
 | REQ-006 | Existing create-skill test scripts keep their results. | Each `tests/*.test.cjs` exits with the same status it had in the Phase 1 baseline. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -124,7 +124,7 @@ The freshness gate reports drift only when tracked content changed.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The freshness gate totals read `checked=14 fresh=14 failed=0` before the change, after the change, and with the probe present after the change.
-- **SC-002**: Before the change, a probe `.pyc` under `sk-code-opencode/assets/scripts/` makes the gate report `STALE sk-code` with exit 1. After the change the same probe leaves the gate green.
+- **SC-002**: Before the change, a probe `.pyc` under `sk-code-skilled/assets/scripts/` makes the gate report `STALE sk-code` with exit 1. After the change the same probe leaves the gate green.
 - **SC-003**: The new test file prints one `ok - ` line per case and its final pass line, and exits 0.
 - **SC-004**: `validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/002-leaf-generator-ignores --strict` prints `RESULT: PASSED` after the build.
 <!-- /ANCHOR:success-criteria -->

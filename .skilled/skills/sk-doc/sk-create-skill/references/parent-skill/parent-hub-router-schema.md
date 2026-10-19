@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Parent Hub Router Schema
@@ -24,7 +24,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 
 **Core Principle**: One hub identity, one registry mode set, one router file that explains how requests become workflow modes plus optional surface evidence.
 
-**Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json` — `quality` and `code-review` — plus two surface packets, `code-webflow` and `code-opencode`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry; the surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow, so a request that names only a surface defers rather than assuming a process.
+**Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json` — `quality` and `code-review` — plus two surface packets, `code-webflow` and `code-skilled`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry; the surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow, so a request that names only a surface defers rather than assuming a process.
 
 **Consumer inventory**:
 - `.skilled/bin/compiled-route.cjs --hub <hub> --prompt <text>` replays a parent-hub routing decision against the compiled router (`servingAuthority: legacy` means the hub still routes through `hub-router.json`).
@@ -66,7 +66,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["quality", "code-review", "code-webflow", "code-opencode"],
+    "tieBreak": ["quality", "code-review", "code-webflow", "code-skilled"],
     "outcomes": {
       "single": "one dominant intent routes to one mode",
       "orderedBundle": "multiple workflow intents route to an ordered mode list",
@@ -97,7 +97,7 @@ Workflow modes always sort before surface packets. For `sk-code`, the workflow o
 | 1 | `quality` | Workflow |
 | 2 | `code-review` | Workflow |
 
-The surface packets `code-webflow` and `code-opencode` sort after every workflow mode. This keeps process selection primary and surface evidence secondary.
+The surface packets `code-webflow` and `code-skilled` sort after every workflow mode. This keeps process selection primary and surface evidence secondary.
 
 ### Outcomes
 
@@ -108,7 +108,7 @@ The surface packets `code-webflow` and `code-opencode` sort after every workflow
 | `defer` | The request is unclear, contradictory, or below routing confidence. |
 | `surfaceBundle` | One workflow mode is primary, with zero-or-more surface packets attached as evidence. |
 
-`surfaceBundle` is the two-axis outcome. It prevents surface vocabulary such as `code-webflow` or `code-opencode` from stealing the route from a process word such as `code-review` or `quality`.
+`surfaceBundle` is the two-axis outcome. It prevents surface vocabulary such as `code-webflow` or `code-skilled` from stealing the route from a process word such as `code-review` or `quality`.
 
 ### Optional `bundleRules[]`
 
@@ -120,7 +120,7 @@ The surface packets `code-webflow` and `code-opencode` sort after every workflow
     {
       "name": "review-with-surface-evidence",
       "whenPrimary": "code-review",
-      "includeSurfaces": ["code-webflow", "code-opencode"],
+      "includeSurfaces": ["code-webflow", "code-skilled"],
       "outcome": "surfaceBundle"
     },
     {
@@ -239,7 +239,7 @@ The router has two axes:
 | Axis | Question | Examples |
 | --- | --- | --- |
 | Workflow | What process should run? | `quality`, `code-review` |
-| Surface | Which evidence base should inform it? | `code-webflow`, `code-opencode` |
+| Surface | Which evidence base should inform it? | `code-webflow`, `code-skilled` |
 
 A request such as `review my webflow animation code` carries one workflow signal and one surface signal — Motion.dev animation is folded into the `code-webflow` surface, not a separate mode:
 

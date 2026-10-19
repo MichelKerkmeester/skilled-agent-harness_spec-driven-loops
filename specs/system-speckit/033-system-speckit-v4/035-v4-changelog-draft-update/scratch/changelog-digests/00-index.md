@@ -358,7 +358,7 @@ Comparison against `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.
 ---
 
 
-### sk-code-opencode
+### sk-code-skilled
 Draft read: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md`, 463 lines.
 
 - MISSES the multi-language slicing change. `changelog/v1.0.0.0.md` v1.0.0.4 states that slicing moved from first-match single language to the full touched-language set, superseding the earlier one-language-per-task standard. The draft's Rust paragraph at line 321 and its summary bullet at line 33 mention only Rust as a first-class language and say nothing about a task now pulling every touched language's slice. This is user-visible routing behavior, not internal cleanup.
@@ -366,7 +366,7 @@ Draft read: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md`, 
 - MISSES the old paths the opencode evidence came from. `changelog/v1.0.0.0.md` v1.0.0.0 names `code-implement/references/opencode/`, `code-quality/assets/opencode-checklists/` and `shared/references/opencode-shared/` as the sources. The draft's Repoint what moved bullet at line 444 tells readers that sk-code files moved under new mode and surface packets but gives no old-path list for this surface, so a reader with local references to those three paths gets no concrete target.
 - MISSES the benchmark scenario id fix. `changelog/v1.0.0.0.md` v1.0.0.4 records the duplicate Rust playbook file colliding with the config-schema scenario on `OC-004`, the reassignment to `OC-009` and the resulting nine unique scenarios. The draft has no equivalent. This one is internal and arguably below release-notes altitude.
 - MISSES the v1.0.0.5 README rewrite. `changelog/v1.0.0.5.md` is documentation only and states no behavior changed, so its omission from the draft is defensible, but the draft also never mentions the README refinement program that produced it.
-- No factual contradiction found. Draft line 321's claim that routing covers both child and parent-union layouts matches `changelog/v1.0.0.0.md` v1.0.0.4, which says surface routing, the parent language union and the shared router-replay all register Rust. Draft line 307's description of `sk-code-opencode` as a read-only surface packet matches the v1.0.0.0 entry's read-only, evidence-base, advisor-invisible identity. Draft line 309's breaking-move claim matches the v1.0.0.0 consolidation.
+- No factual contradiction found. Draft line 321's claim that routing covers both child and parent-union layouts matches `changelog/v1.0.0.0.md` v1.0.0.4, which says surface routing, the parent language union and the shared router-replay all register Rust. Draft line 307's description of `sk-code-skilled` as a read-only surface packet matches the v1.0.0.0 entry's read-only, evidence-base, advisor-invisible identity. Draft line 309's breaking-move claim matches the v1.0.0.0 consolidation.
 
 ---
 
@@ -424,7 +424,7 @@ Draft read: `specs/system-speckit/033-system-speckit-v4/CHANGELOG-v4.0.0.0.md` (
 
 - **MISSING, the README rewrite.** `v4.2.0.0.md` is a purpose-first README rewrite. The draft does not mention it. Low consumer impact, listed for completeness only.
 
-- **UNVERIFIED in these entries, the Rust claim.** Draft lines 33 and 319 to 321 claim Rust became a first-class language on the opencode surface, with `.rs` and Cargo detection and a split of 33 oversized reference documents into 104 topic-cohesive parts. No entry among these 10 mentions Rust, `.rs`, Cargo, or the 33-to-104 split. The claim is not contradicted here, it is simply absent, so it must be sourced from the `sk-code-opencode` surface packet changelog rather than the hub changelog.
+- **UNVERIFIED in these entries, the Rust claim.** Draft lines 33 and 319 to 321 claim Rust became a first-class language on the opencode surface, with `.rs` and Cargo detection and a split of 33 oversized reference documents into 104 topic-cohesive parts. No entry among these 10 mentions Rust, `.rs`, Cargo, or the 33-to-104 split. The claim is not contradicted here, it is simply absent, so it must be sourced from the `sk-code-skilled` surface packet changelog rather than the hub changelog.
 
 - **UNVERIFIED in these entries, the pre-commit hygiene gate.** Draft line 309 says the relocation repointed "a pre-commit hygiene gate that had been silently skipped". `v4.1.0.0.md` names a rule-canary CI path, both deep-review agents, the prompt-pack template and `check-rule-copies.js` as the things repointed, and does not describe any of them as a silently skipped pre-commit hygiene gate. Either the draft is describing a change recorded elsewhere or it has overstated the rule-canary repoint.
 

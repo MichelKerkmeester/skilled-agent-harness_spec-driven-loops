@@ -134,15 +134,15 @@ implements it. `n` counts the signals sharing that exact mechanism, and the grou
 | D-09 | 9 | Below the strict gate on confidence. Re-probed with `confidenceThreshold: 0` and `uncertaintyThreshold: 1`, the owning hub is rank one for all nine, and the engine-direct probe routes all nine to exactly one mode. Observed confidence: 0.25 for `dom inspect` and `task list`, 0.61 to 0.65 for `magicpath`, `magicpath ai`, `magicpath canvas`, `dqi score` and `swe-1.7 dispatch`, 0.72 for `ink-on-parchment retint` and `evaluate agent`. The floor is 0.80. | **Both stages already hold the vocabulary. Only its stage-one weight is too thin.** Fix: raise each phrase's weight in its owning hub's `graph-metadata.json`. |
 | D-10 | 1 | `lighthouse` is a different mechanism from D-09 and is kept separate for that reason. mcp-tooling clears confidence at 0.82 and fails on uncertainty at 0.42, against a strict threshold of 0.35. | **Same family of fix, different gate.** Raising lexical weight alone will not clear an uncertainty gate. Fix belongs with D-09 in `.opencode/skills/mcp-tooling/graph-metadata.json`, and must be verified against uncertainty rather than confidence. |
 | D-11 | 3 | Another hub wins even with both thresholds relaxed. `mcp-magicpath` goes to sk-code at 0.562 against mcp-tooling at 0.324. `improve agent` goes to sk-prompt at 0.147 against system-deep-loop at 0.104. `score agent candidate` goes to sk-prompt at 0.147 and system-deep-loop is absent from the top three. | **Thin weight and cross-hub precedence together.** Raising the owning hub alone may not settle it, so it goes to phase 004 with D-05 rather than being fixed blind. |
-| D-12 | 1 | `stable jsonl keys` is a bucket artefact, not an unresolved signal. The compiled route returns `selectionKind: "surfaceBundle"` with one `packetKind: "workflow"` target, `sk-code-quality`, plus one `packetKind: "surface"` evidence packet, `sk-code-opencode`. sk-code's `routerPolicy` defines `surfaceBundle` as exactly that shape. | **The signal resolves. The bucket rule cannot see it.** MULTI counts `targets` length without distinguishing a workflow packet from read-only evidence. Recorded rather than re-bucketed, since redefining a bucket would move the frozen baseline. |
+| D-12 | 1 | `stable jsonl keys` is a bucket artefact, not an unresolved signal. The compiled route returns `selectionKind: "surfaceBundle"` with one `packetKind: "workflow"` target, `sk-code-quality`, plus one `packetKind: "surface"` evidence packet, `sk-code-skilled`. sk-code's `routerPolicy` defines `surfaceBundle` as exactly that shape. | **The signal resolves. The bucket rule cannot see it.** MULTI counts `targets` length without distinguishing a workflow packet from read-only evidence. Recorded rather than re-bucketed, since redefining a bucket would move the frozen baseline. |
 
 ### D-05 and D-11, per signal
 
 | Signal | Owning hub | Reaches instead | Owning hub's own router would route it to |
 |---|---|---|---|
-| `opencode skill` | sk-doc | sk-code, `sk-code-opencode` | `sk-create-skill` |
-| `opencode agent` | sk-doc | sk-code, `sk-code-opencode` | `sk-create-agent` |
-| `opencode command` | sk-doc | sk-code, `sk-code-opencode` | `sk-create-command` |
+| `opencode skill` | sk-doc | sk-code, `sk-code-skilled` | `sk-create-skill` |
+| `opencode agent` | sk-doc | sk-code, `sk-code-skilled` | `sk-create-agent` |
+| `opencode command` | sk-doc | sk-code, `sk-code-skilled` | `sk-create-command` |
 | `doc quality` | sk-doc | sk-code, `sk-code-quality` | `sk-create-quality-control` |
 | `document before after review` | sk-doc | sk-code, `sk-code-review` | `sk-create-diff` |
 | `pi remote design system` | sk-code | sk-design-md-generator | `sk-code-mobile-cli` |
@@ -155,7 +155,7 @@ implements it. `n` counts the signals sharing that exact mechanism, and the grou
 | `score agent candidate` | system-deep-loop | sk-prompt | `agent-improvement` |
 
 The three `opencode *` rows are one collision, not three. Authoring an OpenCode component is
-sk-doc's work under the artifact trigger, while `sk-code-opencode` is a read-only surface
+sk-doc's work under the artifact trigger, while `sk-code-skilled` is a read-only surface
 evidence packet for editing OpenCode code. The word `opencode` currently decides the hub on
 its own.
 

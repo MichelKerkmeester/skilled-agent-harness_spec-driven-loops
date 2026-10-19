@@ -43,13 +43,13 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
       ".skilled/skills/sk-code/benchmark/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
-      ".hermes/skills/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      ".hermes/skills/sk-code-skilled/SKILL.md",
       ".skilled/skills/sk-code/leaf-manifest.json",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/lib/leaf-resource-contract.cjs",
       "specs/sk-code/011-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard/implementation-summary.md",
@@ -93,25 +93,25 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "alignment-verification-automation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane",
     "created_at": "2026-10-10T05:26:28Z",
-    "last_save_at": "2026-10-11T05:17:04.039Z",
+    "last_save_at": "2026-10-18T20:45:11.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0546c1a17862cc546b3a906ed238520ff44eb0e4161b2a0fc5c31985b303df43",
+    "source_fingerprint": "sha256:f32b76c73a75297fcba74dfd12a8ce94e1a69dc53929540241423daa4e4af6e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e46d8374fe281e37e07390377bd6a646a65be552a4692af7e3a5d831e3b8adec",
-      "plan.md": "f180ca109965858ef56e5fc824802b2e5cbc0de64d89e68bf36581179bc02fc1",
-      "tasks.md": "9ca15897ac8fd9bd37e0dcf8c450c467ccb8655ae2752d9ccb0332962b0004a9",
-      "implementation-summary.md": "4eba0ab29efcaf5f0a5a334fa1756e7d92d2f9677c6a439307203a1e51da966e"
+      "spec.md": "d194ed2e1de7773ed5b42dd9efac4f1a64360357a0d9c723babe9eb8ab8a1880",
+      "plan.md": "52dc26f29319eeed493d563f23106d649e0e1d63154a0f2d2851ac1ea2c898d4",
+      "tasks.md": "fda09ddc988b17090041e4c2da124ca9877231448be73d5f4aba72be41863ec9",
+      "implementation-summary.md": "03faae63fb5ccae127520973ead5f7f003b1e07745f7e8b8dbd12d8704f0fc06"
     },
     "last_active_at": null
   }

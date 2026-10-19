@@ -3,7 +3,7 @@ trigger_phrases: []
 ---
 | skill | D5 score | orphan references (list) | notes |
 |---|---:|---|---|
-| code-opencode | 100 | none | D3 score=48; over-routing rows=7 (OC-007:2/7, OC-008:2/4, OC-004:2/6, OC-005:2/3, OC-001:15/18, ...); verdict=PASS |
+| code-skilled | 100 | none | D3 score=48; over-routing rows=7 (OC-007:2/7, OC-008:2/4, OC-004:2/6, OC-005:2/3, OC-001:15/18, ...); verdict=PASS |
 | code-webflow | 100 | none | D3 score=72; over-routing rows=8 (WF-013:1/10, WF-010:1/5, WF-011:1/3, WF-012:1/2, WF-002:1/3, ...); verdict=PASS |
 | code-quality | 100 | none | D3 score=100; over-routing rows=0; verdict=PASS |
 | deep-research | 88 | references/protocol/context_snapshot.md<br>references/convergence/convergence_reference_only.md<br>assets/deep_research_dashboard.md<br>assets/deep_research_strategy.md | D3 score=70; over-routing rows=8 (DR-R01:1/5, DR-R02:1/4, DR-R03:1/4, DR-R04:1/3, DR-R05:1/5, ...); verdict=PASS |

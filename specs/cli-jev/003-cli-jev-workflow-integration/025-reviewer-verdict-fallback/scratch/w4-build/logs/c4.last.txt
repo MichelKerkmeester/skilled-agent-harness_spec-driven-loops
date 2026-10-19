@@ -34,7 +34,7 @@ REPO RULES triggers fired for: adding functions/tests (overengineering), scope, 
 
 
 
-Loading the sk-code-opencode surface packet (the route for `.cjs`/`.ts` under this path) before the first code write.
+Loading the sk-code-skilled surface packet (the route for `.cjs`/`.ts` under this path) before the first code write.
 
 
 

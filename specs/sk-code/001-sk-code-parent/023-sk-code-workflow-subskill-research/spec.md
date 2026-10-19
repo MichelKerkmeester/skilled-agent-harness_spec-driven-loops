@@ -61,7 +61,7 @@ Run a bounded deep-research investigation (ten productive iterations) that studi
 
 ### Out of Scope
 - Implementing any of the proposals (a separate follow-up packet owns implementation).
-- The surface sub-skills (`code-webflow`, `code-opencode`, `code-animation`) and the `code-review` workflow — the four lifecycle sub-skills are the focus.
+- The surface sub-skills (`code-webflow`, `code-skilled`, `code-animation`) and the `code-review` workflow — the four lifecycle sub-skills are the focus.
 - Re-baselining the sk-code Lane-C benchmark or rewriting the manual-testing-playbook gold (separate handoff).
 - Editing the sub-skills themselves during this research phase.
 

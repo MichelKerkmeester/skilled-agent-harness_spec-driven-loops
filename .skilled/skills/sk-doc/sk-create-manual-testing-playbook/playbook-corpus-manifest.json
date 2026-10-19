@@ -8,8 +8,7 @@
     ".skilled/skills/mcp-tooling/manual-testing-playbook",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing",
     ".skilled/skills/sk-doc/manual-testing-playbook",
-    ".skilled/skills/system-deep-loop/manual-testing-playbook/compiled-routing",
-    ".skilled/skills/system-skill-advisor/manual-testing-playbook"
+    ".skilled/skills/system-deep-loop/manual-testing-playbook/compiled-routing"
   ],
   "warnPackages": []
 }

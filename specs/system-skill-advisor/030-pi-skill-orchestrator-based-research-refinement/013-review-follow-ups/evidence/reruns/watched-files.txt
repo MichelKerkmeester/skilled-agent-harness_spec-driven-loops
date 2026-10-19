@@ -131,9 +131,9 @@
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/shared/references/phase-detection.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/shared/references/stack-detection.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-obsidian/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-opencode/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-skilled/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-quality/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-review/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-code/sk-code-webflow/assets/animation/install-card.md

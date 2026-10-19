@@ -4,7 +4,7 @@ description: "stress_test grew from an uneven coverage baseline to 28 vitest fil
 trigger_phrases:
   - "stress test expansion alignment"
   - "stress test coverage matrix"
-  - "sk-code-opencode stress test alignment"
+  - "sk-code-skilled stress test alignment"
   - "budget allocator query surrogate scorer fusion tests"
   - "stress_test vitest coverage"
   - "release and program cleanup stress test expansion alignment changelog"
@@ -23,7 +23,7 @@ contextType: "implementation"
 
 ### Summary
 
-The stress_test suite had useful coverage but no scoped catalog map and inconsistent alignment with sk-code-opencode standards. Files mixed loose TypeScript any types, bare console.log calls inside benchmarks. MODULE headers were missing from most files. No single document showed which feature catalog entries were tested and which were not.
+The stress_test suite had useful coverage but no scoped catalog map and inconsistent alignment with sk-code-skilled standards. Files mixed loose TypeScript any types, bare console.log calls inside benchmarks. MODULE headers were missing from most files. No single document showed which feature catalog entries were tested and which were not.
 
 An audit enumerated all TypeScript files, applied P0 and P1 alignment fixes across the suite. A 166-entry coverage-matrix.md was produced mapping scoped catalog entries to statuses. Six new deterministic tests were added for budget allocation, query surrogates and skill advisor scorer fusion ambiguity. The suite finished at 28 vitest files and 69 passing tests with build, tsc and strict packet validation all passing.
 

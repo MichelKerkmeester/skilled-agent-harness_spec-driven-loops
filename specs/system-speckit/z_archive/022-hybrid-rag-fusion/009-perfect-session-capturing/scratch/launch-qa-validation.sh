@@ -18,7 +18,7 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../../.." && pwd)"
 SCRATCH_DIR="$SCRIPT_DIR"
 SCRIPTS_DIR="$PROJECT_ROOT/.opencode/skills/system-spec-kit/scripts"
 SPEC_DIR="$PROJECT_ROOT/.opencode/specs/system-spec-kit/022-hybrid-rag-fusion/009-perfect-session-capturing"
-SK_CODE_DIR="$PROJECT_ROOT/.opencode/skills/sk-code-opencode"
+SK_CODE_DIR="$PROJECT_ROOT/.opencode/skills/sk-code-skilled"
 
 DRY_RUN=false
 WAVE_FILTER=0
@@ -196,7 +196,7 @@ if [[ $WAVE_FILTER == 0 || $WAVE_FILTER == 1 ]]; then
 
   # QA-01: session-extractor.ts + opencode-capture.ts
   launch_copilot "QA-01" "gpt-5.3-codex" "$SCRATCH_DIR/qa-01-alignment-extractors-large.md" \
-    "You are checking TypeScript files against sk-code-opencode coding standards. Read EVERY LINE of these two files:
+    "You are checking TypeScript files against sk-code-skilled coding standards. Read EVERY LINE of these two files:
 1. $SCRIPTS_DIR/extractors/session-extractor.ts (478 lines)
 2. $SCRIPTS_DIR/extractors/opencode-capture.ts (539 lines)
 
@@ -213,7 +213,7 @@ $LEAF_CONSTRAINT"
 
   # QA-02: workflow.ts (954 LOC)
   launch_copilot "QA-02" "gpt-5.3-codex" "$SCRATCH_DIR/qa-02-alignment-workflow.md" \
-    "You are checking a large TypeScript file against sk-code-opencode coding standards. Read the ENTIRE file in sections:
+    "You are checking a large TypeScript file against sk-code-skilled coding standards. Read the ENTIRE file in sections:
 1. $SCRIPTS_DIR/core/workflow.ts (read lines 1-300, then 300-600, then 600-end)
 
 $ALIGNMENT_RULES
@@ -231,7 +231,7 @@ $LEAF_CONSTRAINT"
 
   # QA-03: collect-session-data.ts (838 LOC)
   launch_copilot "QA-03" "gpt-5.3-codex" "$SCRATCH_DIR/qa-03-alignment-collect.md" \
-    "You are checking a large TypeScript file against sk-code-opencode coding standards. Read the ENTIRE file:
+    "You are checking a large TypeScript file against sk-code-skilled coding standards. Read the ENTIRE file:
 $SCRIPTS_DIR/extractors/collect-session-data.ts (838 lines — read in 300-line sections)
 
 $ALIGNMENT_RULES
@@ -245,7 +245,7 @@ $LEAF_CONSTRAINT"
 
   # QA-04: config.ts + decision-extractor.ts + file-extractor.ts
   launch_copilot "QA-04" "gpt-5.3-codex" "$SCRATCH_DIR/qa-04-alignment-medium.md" \
-    "You are checking TypeScript files against sk-code-opencode coding standards. Read EVERY LINE of these three files:
+    "You are checking TypeScript files against sk-code-skilled coding standards. Read EVERY LINE of these three files:
 1. $SCRIPTS_DIR/core/config.ts (273 lines)
 2. $SCRIPTS_DIR/extractors/decision-extractor.ts (400 lines)
 3. $SCRIPTS_DIR/extractors/file-extractor.ts (338 lines)
@@ -261,7 +261,7 @@ $LEAF_CONSTRAINT"
 
   # QA-05: file-writer.ts + contamination-filter.ts
   launch_copilot "QA-05" "gpt-5.3-codex" "$SCRATCH_DIR/qa-05-alignment-small.md" \
-    "You are checking TypeScript files against sk-code-opencode coding standards. Read EVERY LINE of these two files:
+    "You are checking TypeScript files against sk-code-skilled coding standards. Read EVERY LINE of these two files:
 1. $SCRIPTS_DIR/core/file-writer.ts (97 lines)
 2. $SCRIPTS_DIR/extractors/contamination-filter.ts (61 lines)
 

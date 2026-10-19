@@ -92,7 +92,7 @@ uses the validators `sk-doc` actually exposes rather than inventing a substitute
 - Running `validate_document.py` across every non-symlinked markdown file in the packet and recording
   every `missing_required_section` finding.
 - Running the identical `validate_document.py` pass against every sibling SURFACE packet
-  (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`) to determine whether this packet's
+  (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`) to determine whether this packet's
   findings are a defect unique to it or a shared, structural divergence across the whole SURFACE
   packet class.
 - This leaf's own `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, recording the
@@ -126,7 +126,7 @@ uses the validators `sk-doc` actually exposes rather than inventing a substitute
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | The three real `sk-doc` validators are run against this packet and every result recorded verbatim | `validate_skill_package.py` (rc 0, PASS, with the `standalone`-classification finding noted), `validate-playbook-package.cjs` (rc 0, PASS, strict on, tier=FAIL_CLOSED, scenarios=7, violations=0, warnings=0), `validate_document.py` (34 PASS, 3 `missing_required_section` failures) all appear in this leaf with their exact figures. |
-| REQ-002 | The `missing_required_section` findings are checked against every sibling SURFACE packet before being called a defect unique to this one | `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-opencode` (4 missing), and the template's own playbook index all diverge the same way; this packet is joint-best of the four. |
+| REQ-002 | The `missing_required_section` findings are checked against every sibling SURFACE packet before being called a defect unique to this one | `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-skilled` (4 missing), and the template's own playbook index all diverge the same way; this packet is joint-best of the four. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -162,7 +162,7 @@ uses the validators `sk-doc` actually exposes rather than inventing a substitute
   `missing_required_section` errors (`SKILL.md`: when_to_use, smart_routing, how_it_works;
   `manual-testing-playbook.md`: overview; `references/quality/doc-quality-gate.md`: overview),
   **when** the identical validator is run against `sk-code-mobile-cli`, `sk-code-webflow`, and
-  `sk-code-opencode`, **then** every sibling shows the same class of divergence (3, 4, and 4 missing
+  `sk-code-skilled`, **then** every sibling shows the same class of divergence (3, 4, and 4 missing
   respectively) and this packet is joint-best of the four, establishing the divergence as structural
   to the SURFACE packet class rather than a defect isolated to this packet.
 - **Scenario 3**: **Given** the operator's binding requirement that this packet mirror
@@ -181,7 +181,7 @@ uses the validators `sk-doc` actually exposes rather than inventing a substitute
 | Risk | Treating a validator's classification limitation as if it were this packet's defect | Would trigger an unnecessary structural change (e.g. adding a spurious `graph-metadata.json`) that itself causes a NESTED_IDENTITY violation | Recorded explicitly as a validator-side finding, with the reason a nested identity file is wrong for a hub SURFACE packet |
 | Risk | Renaming `SKILL.md` headers in isolation to silence `missing_required_section` | Breaks the operator's binding requirement that this packet mirror `sk-code-mobile-cli` exactly, making this surface the odd one out in its own family | Not applied; recorded as a finding with an explicit reversal condition tied to family-wide adoption |
 | Dependency | `sk-doc`'s three validators (`validate_skill_package.py`, `validate-playbook-package.cjs`, `validate_document.py`) | The only tools this audit is permitted to use, since no `/doc:quality` command or `sk-create-quality-control` script exists | Confirmed absent before falling back to the real validators; not invented |
-| Dependency | Sibling SURFACE packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`) and the template's playbook index | The comparison set that turns "this packet has 3 missing sections" into "the whole class has this shape" | Each sibling's `validate_document.py` result read directly, not assumed from this packet's own result |
+| Dependency | Sibling SURFACE packets (`sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`) and the template's playbook index | The comparison set that turns "this packet has 3 missing sections" into "the whole class has this shape" | Each sibling's `validate_document.py` result read directly, not assumed from this packet's own result |
 
 <!-- /ANCHOR:risks -->
 ---

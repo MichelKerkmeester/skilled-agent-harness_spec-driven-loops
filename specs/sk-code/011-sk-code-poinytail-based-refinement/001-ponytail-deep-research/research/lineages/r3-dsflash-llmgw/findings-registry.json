@@ -70,7 +70,7 @@
     },
     {
       "id": "f-iter001-002",
-      "text": "shared/README.md still names the pre-rename packet keys (code-webflow, code-opencode, code-quality, code-review) and omits sk-code-obsidian, which now consumes the shared workflow trio through symlinks; the sentence is the index's only consumer list. Reproducing case: rg -n 'code-webflow|code-opencode|sk-code-obsidian' shared/README.md shows the stale names at line 17 and no obsidian mention. NEW P2.",
+      "text": "shared/README.md still names the pre-rename packet keys (code-webflow, code-skilled, code-quality, code-review) and omits sk-code-obsidian, which now consumes the shared workflow trio through symlinks; the sentence is the index's only consumer list. Reproducing case: rg -n 'code-webflow|code-skilled|sk-code-obsidian' shared/README.md shows the stale names at line 17 and no obsidian mention. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 1,
@@ -91,15 +91,15 @@
         ".skilled/skills/sk-code/ROUTER.md:587",
         ".skilled/skills/sk-code/ROUTER.md:321",
         ".skilled/skills/sk-code/ROUTER.md:322",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:22",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:25",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:22",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:25",
         ".skilled/skills/sk-code/SKILL.md:63",
         ".skilled/skills/sk-code/leaf-manifest.json"
       ]
     },
     {
       "id": "f-iter001-004",
-      "text": "Verified as already adopted: all nine workflow-doctrine copies under sk-code-webflow, sk-code-opencode and sk-code-obsidian are symlinks into shared/references, so the single-source doctrine claim holds, and the hub version is parity-consistent across SKILL.md, mode-registry.json, description.json and hub-router.json at 2.2.4.0. ALREADY-ADOPTED, no action; recorded so later iterations do not re-open it.",
+      "text": "Verified as already adopted: all nine workflow-doctrine copies under sk-code-webflow, sk-code-skilled and sk-code-obsidian are symlinks into shared/references, so the single-source doctrine claim holds, and the hub version is parity-consistent across SKILL.md, mode-registry.json, description.json and hub-router.json at 2.2.4.0. ALREADY-ADOPTED, no action; recorded so later iterations do not re-open it.",
       "severity": "P2",
       "classification": "ALREADY-ADOPTED",
       "iteration": 1,
@@ -143,7 +143,7 @@
         ".skilled/skills/sk-code/shared/references/phase-detection.md:69",
         ".skilled/skills/sk-code/shared/references/phase-detection.md:77",
         ".skilled/skills/sk-code/SKILL.md:38",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:173"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:173"
       ]
     },
     {
@@ -204,7 +204,7 @@
     },
     {
       "id": "f-iter003-003",
-      "text": "The shared doctrine files carry surface-conditioned subsections while the hub's purity rule says shared material must never gain them: workflow-implement.md:78-84 and workflow-verify.md:76-99 embed 'OpenCode Surface Only' contracts (generate-context.js single-writer rule, sk-git boundary, validate.sh/tsc/rebuild-native chain) inside files symlinked into all three surfaces, while SKILL.md:163 says shared backend material 'must never gain per-mode workflow contracts' and sk-code-opencode already owns a shared tier (references/shared/alignment-verification-automation.md) where they can live. Reproducing case: rg -n 'OpenCode Surface Only' on the shared references prints four hits. NEW P2.",
+      "text": "The shared doctrine files carry surface-conditioned subsections while the hub's purity rule says shared material must never gain them: workflow-implement.md:78-84 and workflow-verify.md:76-99 embed 'OpenCode Surface Only' contracts (generate-context.js single-writer rule, sk-git boundary, validate.sh/tsc/rebuild-native chain) inside files symlinked into all three surfaces, while SKILL.md:163 says shared backend material 'must never gain per-mode workflow contracts' and sk-code-skilled already owns a shared tier (references/shared/alignment-verification-automation.md) where they can live. Reproducing case: rg -n 'OpenCode Surface Only' on the shared references prints four hits. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 3,
@@ -212,7 +212,7 @@
         ".skilled/skills/sk-code/shared/references/workflow-implement.md:78",
         ".skilled/skills/sk-code/shared/references/workflow-verify.md:76",
         ".skilled/skills/sk-code/SKILL.md:163",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:43"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:43"
       ]
     },
     {
@@ -235,8 +235,8 @@
       "classification": "NEW",
       "iteration": 4,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md:113",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:170",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md:113",
         ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:109",
         ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:122"
       ]
@@ -248,14 +248,14 @@
       "classification": "NEW",
       "iteration": 4,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:283",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:235",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:239"
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:283",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:235",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:239"
       ]
     },
     {
       "id": "f-iter004-003",
-      "text": "The mode registry's own description omits the third surface it registers: mode-registry.json:5 describes the surface axis as '(sk-code-webflow/sk-code-opencode)' while extensions.surface-axis.surfaces:19 lists sk-code-obsidian and the modes array carries its full entry at 98-110. The same stale two-surface phrasing recurs in shared/README.md:17. Reproducing case: rg -n 'sk-code-webflow/sk-code-opencode' mode-registry.json prints line 5. NEW P2.",
+      "text": "The mode registry's own description omits the third surface it registers: mode-registry.json:5 describes the surface axis as '(sk-code-webflow/sk-code-skilled)' while extensions.surface-axis.surfaces:19 lists sk-code-obsidian and the modes array carries its full entry at 98-110. The same stale two-surface phrasing recurs in shared/README.md:17. Reproducing case: rg -n 'sk-code-webflow/sk-code-skilled' mode-registry.json prints line 5. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 4,
@@ -297,7 +297,7 @@
       "sources": [
         ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:47",
         ".skilled/skills/sk-code/sk-code-webflow/references/javascript/quick-reference.md:68",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:170",
         ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:109"
       ]
     },
@@ -309,7 +309,7 @@
       "iteration": 5,
       "sources": [
         ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:173",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:235",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:235",
         ".skilled/skills/sk-code/sk-code-webflow/references/shared/enforcement.md:310"
       ]
     },
@@ -321,7 +321,7 @@
       "iteration": 5,
       "sources": [
         ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md:100",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/organization-security-and-examples.md:122",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md:122",
         ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:79"
       ]
     },
@@ -333,7 +333,7 @@
       "iteration": 5,
       "sources": [
         ".skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md:31",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:170"
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:170"
       ]
     },
     {
@@ -351,7 +351,7 @@
     },
     {
       "id": "f-iter006-002",
-      "text": "The review mode has no Obsidian surface anywhere although the hub bundles Obsidian evidence into reviews: detect_surface_evidence has no OBSIDIAN branch, the output contract's surface-evidence line lists only two surfaces plus unknown, and review-core.md describes the field as code-webflow or code-opencode. A case-insensitive rg over SKILL.md, references/ and assets/ exits 1 outside the changelog. The hub's canary case surface-bundle-obsidian expects sk-code-review + sk-code-obsidian, and the shared precedence puts OBSIDIAN above WEBFLOW. Executed proof: 'code review my obsidian plugin' with changed main.ts returns sk-code:unknown. NEW P1.",
+      "text": "The review mode has no Obsidian surface anywhere although the hub bundles Obsidian evidence into reviews: detect_surface_evidence has no OBSIDIAN branch, the output contract's surface-evidence line lists only two surfaces plus unknown, and review-core.md describes the field as code-webflow or code-skilled. A case-insensitive rg over SKILL.md, references/ and assets/ exits 1 outside the changelog. The hub's canary case surface-bundle-obsidian expects sk-code-review + sk-code-obsidian, and the shared precedence puts OBSIDIAN above WEBFLOW. Executed proof: 'code review my obsidian plugin' with changed main.ts returns sk-code:unknown. NEW P1.",
       "severity": "P1",
       "classification": "NEW",
       "iteration": 6,
@@ -365,7 +365,7 @@
     },
     {
       "id": "f-iter006-003",
-      "text": "The review mode still uses pre-rename packet vocabulary in its contracts and guidance: 'use the surface skill (code-webflow / code-opencode)' and 'use code-quality', the report template's 'Baseline used: [sk-code (code-review)]', the sk-code:code-webflow/sk-code:code-opencode keys, and the integration note. The canonical keys are sk-code-webflow, sk-code-opencode, sk-code-quality and sk-code-review. Reproducing case: rg -n 'code-webflow|code-opencode|code-quality' on SKILL.md and review-core.md prints nine rows; none of those keys exists in mode-registry.json. NEW P2.",
+      "text": "The review mode still uses pre-rename packet vocabulary in its contracts and guidance: 'use the surface skill (code-webflow / code-skilled)' and 'use code-quality', the report template's 'Baseline used: [sk-code (code-review)]', the sk-code:code-webflow/sk-code:code-skilled keys, and the integration note. The canonical keys are sk-code-webflow, sk-code-skilled, sk-code-quality and sk-code-review. Reproducing case: rg -n 'code-webflow|code-skilled|code-quality' on SKILL.md and review-core.md prints nine rows; none of those keys exists in mode-registry.json. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 6,
@@ -611,13 +611,13 @@
         ".skilled/skills/sk-code/sk-code-quality/SKILL.md:131",
         ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:138",
         ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:139",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:243",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:246"
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:243",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:246"
       ]
     },
     {
       "id": "f-iter012-002",
-      "text": "The quality mode carries the pre-rename packet vocabulary at higher volume than the review mode: code-webflow/code-opencode as surface skill names and code-review as the findings mode appear in 39 rows of sk-code-quality/SKILL.md (lines 15, 36, 39, 47, 50 among others), while the canonical keys are sk-code-webflow, sk-code-opencode and sk-code-review in mode-registry.json (lines 61, 79, 42). Reproducing case: rg -c 'code-webflow|code-opencode|code-review' on the SKILL prints 39 and none of those keys exists in the registry. NEW P2; same class as f-iter006-003, now confirmed mode-wide.",
+      "text": "The quality mode carries the pre-rename packet vocabulary at higher volume than the review mode: code-webflow/code-skilled as surface skill names and code-review as the findings mode appear in 39 rows of sk-code-quality/SKILL.md (lines 15, 36, 39, 47, 50 among others), while the canonical keys are sk-code-webflow, sk-code-skilled and sk-code-review in mode-registry.json (lines 61, 79, 42). Reproducing case: rg -c 'code-webflow|code-skilled|code-review' on the SKILL prints 39 and none of those keys exists in the registry. NEW P2; same class as f-iter006-003, now confirmed mode-wide.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 12,
@@ -709,9 +709,9 @@
       "classification": "NEW",
       "iteration": 14,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:173",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md:12",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:173",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md:12",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs"
       ]
     },
     {
@@ -721,8 +721,8 @@
       "classification": "NEW",
       "iteration": 14,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:24",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:54",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:24",
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:54",
         ".skilled/skills/sk-code/mode-registry.json:42"
       ]
     },
@@ -733,9 +733,9 @@
       "classification": "ALREADY-ADOPTED",
       "iteration": 14,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-        ".skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:5",
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+        ".skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md"
       ]
     },
     {
@@ -745,8 +745,8 @@
       "classification": "IN-FLIGHT",
       "iteration": 14,
       "sources": [
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:45",
-        ".skilled/skills/sk-code/sk-code-opencode/leaf-manifest.json"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:45",
+        ".skilled/skills/sk-code/sk-code-skilled/leaf-manifest.json"
       ]
     },
     {
@@ -829,7 +829,7 @@
     },
     {
       "id": "f-iter017-001",
-      "text": "The feature catalog still describes a two-surface hub with pre-rename mode names: feature-catalog.md:15 and :35 say the hub resolves a WORKFLOW mode (quality, code-review) and bundles SURFACE packets (code-webflow, code-opencode), and the two-axis entry repeats the names and the bundle example [code-review, code-webflow] at line 28, while mode-registry.json carries five modes including sk-code-obsidian (line 98); the catalog's last_updated is 2026-07-21, before the Obsidian packet's 0.x line. Reproducing case: rg the four old names over feature-catalog/ prints three rows and the registry contains none of those spellings. NEW P2; fourth and fifth instances of the two-surface prose.",
+      "text": "The feature catalog still describes a two-surface hub with pre-rename mode names: feature-catalog.md:15 and :35 say the hub resolves a WORKFLOW mode (quality, code-review) and bundles SURFACE packets (code-webflow, code-skilled), and the two-axis entry repeats the names and the bundle example [code-review, code-webflow] at line 28, while mode-registry.json carries five modes including sk-code-obsidian (line 98); the catalog's last_updated is 2026-07-21, before the Obsidian packet's 0.x line. Reproducing case: rg the four old names over feature-catalog/ prints three rows and the registry contains none of those spellings. NEW P2; fourth and fifth instances of the two-surface prose.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 17,
@@ -866,7 +866,7 @@
     },
     {
       "id": "f-iter018-001",
-      "text": "The hub README is a sixth instance of the two-surface prose and contradicts its own packet count: 'Works on' names only WEBFLOW and OPENCODE context (line 23), the surface table lists sk-code-webflow and sk-code-opencode and stops (55-56), and When To Use repeats 'for WEBFLOW and OPENCODE work' (89), while the FAQ two sections later says 'the hub contains five packets' (105), the count that includes Obsidian; the Related Documents table lists four packet SKILLs and omits sk-code-obsidian/SKILL.md (135). Reproducing case: rg -i obsidian on the README exits 1 while rg 'five packets' matches line 105. NEW P2.",
+      "text": "The hub README is a sixth instance of the two-surface prose and contradicts its own packet count: 'Works on' names only WEBFLOW and OPENCODE context (line 23), the surface table lists sk-code-webflow and sk-code-skilled and stops (55-56), and When To Use repeats 'for WEBFLOW and OPENCODE work' (89), while the FAQ two sections later says 'the hub contains five packets' (105), the count that includes Obsidian; the Related Documents table lists four packet SKILLs and omits sk-code-obsidian/SKILL.md (135). Reproducing case: rg -i obsidian on the README exits 1 while rg 'five packets' matches line 105. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 18,
@@ -942,7 +942,7 @@
     },
     {
       "id": "f-iter019-003",
-      "text": "The review README carries 21 pre-rename name rows (code-webflow|code-opencode|code-quality|code-review), including the related-skill table and the FAQ; this is the fourth packet-level count in the rename-miss family and the largest per file after the quality SKILL's 39. Evidence for a single sweep; no separate fix. NEW P2.",
+      "text": "The review README carries 21 pre-rename name rows (code-webflow|code-skilled|code-quality|code-review), including the related-skill table and the FAQ; this is the fourth packet-level count in the rename-miss family and the largest per file after the quality SKILL's 39. Evidence for a single sweep; no separate fix. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 19,
@@ -964,7 +964,7 @@
     },
     {
       "id": "f-iter020-001",
-      "text": "The fresh quality README routes spec folders to a checklist family that does not contain one: its router row groups 'Spec folders and MCP servers' as routing to the spec-folder and MCP-server-authoring checklists (README.md:50) and section 4 repeats that spec folders have their own checklist under OpenCode authoring targets (87), while the SKILL routes .opencode/specs/ to system-spec-kit's spec-folder-authoring-checklist.md (SKILL.md:107) and sk-code-opencode/assets/checklists/ holds no spec-folder checklist. Reproducing case: the related-documents row links the opencode checklists folder as the target-path set (129) and the spec-folder checklist is not there. NEW P2.",
+      "text": "The fresh quality README routes spec folders to a checklist family that does not contain one: its router row groups 'Spec folders and MCP servers' as routing to the spec-folder and MCP-server-authoring checklists (README.md:50) and section 4 repeats that spec folders have their own checklist under OpenCode authoring targets (87), while the SKILL routes .opencode/specs/ to system-spec-kit's spec-folder-authoring-checklist.md (SKILL.md:107) and sk-code-skilled/assets/checklists/ holds no spec-folder checklist. Reproducing case: the related-documents row links the opencode checklists folder as the target-path set (129) and the spec-folder checklist is not there. NEW P2.",
       "severity": "P2",
       "classification": "NEW",
       "iteration": 20,
@@ -993,7 +993,7 @@
       "iteration": 20,
       "sources": [
         ".skilled/skills/sk-code/ROUTER.md",
-        ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+        ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs",
         ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md"
       ]
     }

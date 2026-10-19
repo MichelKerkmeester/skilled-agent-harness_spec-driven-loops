@@ -1,0 +1,19 @@
+DESCRIPTION
+  Upgrade OpenCode to the latest or a specific version
+
+USAGE
+  opencode upgrade [flags] [<target>]
+
+ARGUMENTS
+  target string    Version to upgrade to (with or without a leading v) (optional)
+
+FLAGS
+  --method, -m choice    Installation method to use (choices: curl, npm, pnpm, bun, yarn, vp, brew, winget)
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)

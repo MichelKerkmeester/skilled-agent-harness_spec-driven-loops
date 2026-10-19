@@ -13,10 +13,10 @@ with the change that implements it.
 configuration finds no `.markdownlint*` file outside `node_modules`, no MD013 setting, and no
 prose-width rule in `.opencode/skills/sk-doc/` or `repo-rules/`. The only declared 100-character
 maxima in the tree are language style guides for code, and they govern source, not markdown:
-`.opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:77`
+`.opencode/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:77`
 (`- **Maximum**: 100 characters`),
-`.opencode/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:278`, and
-`.opencode/skills/sk-code/sk-code-opencode/references/python/style-guide.md:447` (88-100 target).
+`.opencode/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:278`, and
+`.opencode/skills/sk-code/sk-code-skilled/references/python/style-guide.md:447` (88-100 target).
 The sk-doc family carries no style-guide file at all. **CLAIM:** the "style guide's 100-character
 limit" the packet strategy cites for four markdown goal files does not exist as a prose rule; the
 number was borrowed from a code-style guide that does not govern the artifact class it was applied
@@ -87,9 +87,9 @@ summed from the counts in F2, 2026-09-12]
 
 ## Sources Consulted
 
-- `.opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:77`
-- `.opencode/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:278`
-- `.opencode/skills/sk-code/sk-code-opencode/references/python/style-guide.md:447`
+- `.opencode/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:77`
+- `.opencode/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:278`
+- `.opencode/skills/sk-code/sk-code-skilled/references/python/style-guide.md:447`
 - `find . -maxdepth 3 -name '.markdownlint*'` and `rg -n "MD013"` — no hits outside `node_modules`
 - Class-wide line counts over root docs, `repo-rules/`, `.opencode/hooks/`, `.opencode/plugins/`, `.opencode/skills/`, `specs/`
 - Per-file counts for the goal engine documents, the contract-test document set, and all `goal.md` files in the 036 tree

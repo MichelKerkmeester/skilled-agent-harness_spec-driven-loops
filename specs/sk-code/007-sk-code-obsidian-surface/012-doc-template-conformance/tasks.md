@@ -63,7 +63,7 @@ _memory:
 - [x] T010 Run `validate_skill_package.py` against `sk-code-obsidian`: rc 0, PASS; record the `Detected kind: standalone` finding against the validator, not the packet
 - [x] T011 Run `validate-playbook-package.cjs --package` against `sk-code-obsidian/manual-testing-playbook/`: rc 0, PASS, strict on, tier=FAIL_CLOSED, scenarios=7, violations=0, warnings=0
 - [x] T012 Run `validate_document.py` across every non-symlinked packet markdown: 34 PASS, 3 `missing_required_section` failures
-- [x] T013 Re-run `validate_document.py` against `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-opencode` (4 missing), and the template's own playbook index to confirm the divergence is class-wide
+- [x] T013 Re-run `validate_document.py` against `sk-code-mobile-cli` (3 missing), `sk-code-webflow` (4 missing), `sk-code-skilled` (4 missing), and the template's own playbook index to confirm the divergence is class-wide
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -139,7 +139,7 @@ _memory:
 - [x] CHK-020 [P0] `validate_skill_package.py <sk-code-obsidian>` run: rc 0, PASS
 - [x] CHK-021 [P0] `validate-playbook-package.cjs --package <playbook>` run: rc 0, PASS, strict on, tier=FAIL_CLOSED, scenarios=7, violations=0, warnings=0
 - [x] CHK-022 [P0] `validate_document.py` run across every non-symlinked packet markdown: 34 PASS, 3 `missing_required_section`
-- [x] CHK-023 [P1] `validate_document.py` re-run against `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-opencode`, and the template's playbook index for comparison
+- [x] CHK-023 [P1] `validate_document.py` re-run against `sk-code-mobile-cli`, `sk-code-webflow`, `sk-code-skilled`, and the template's playbook index for comparison
 
 <!-- /ANCHOR:testing -->
 ---

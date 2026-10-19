@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "sk-doc/z_archive/016-create-diff-mode/008-fidelity-safety-a11y-hardening"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude"
-    recent_action: "Completed P1 code-opencode alignment; added scripts/README; wired 009 successor"
+    recent_action: "Completed P1 code-skilled alignment; added scripts/README; wired 009 successor"
     next_safe_action: "Commit the alignment + command work and push to v4"
     blockers: []
     key_files:
@@ -106,7 +106,7 @@ Each finding was treated as a hypothesis and re-verified against the source befo
 | Scoped scroll a11y (REQ-005) | PASS: `.sxs{min-width:60rem}` + `role="region"`/`aria-label`/`tabindex="0"`/`:focus-visible` present in the regenerated report. |
 | Byte-reproducibility + zero-JS | PASS: reports byte-identical across runs under fixed `SOURCE_DATE_EPOCH`; `scripts=0` on all four. |
 | Comment hygiene | PASS: 0 ephemeral artifact labels across all three scripts. |
-| code-opencode alignment | PASS: full P0 structural (`# COMPONENT:` header, numbered section dividers, shebang, snake_case/UPPER_SNAKE naming) plus P1 type hints on every signature and Google-style docstrings on the public functions; one dead `import` removed; verified by an adversarial code-opencode audit (8 confirmed findings fixed, 10 false positives correctly rejected); `py_compile` and the 39-test suite green after; `scripts/README.md` added. |
+| code-skilled alignment | PASS: full P0 structural (`# COMPONENT:` header, numbered section dividers, shebang, snake_case/UPPER_SNAKE naming) plus P1 type hints on every signature and Google-style docstrings on the public functions; one dead `import` removed; verified by an adversarial code-skilled audit (8 confirmed findings fixed, 10 false positives correctly rejected); `py_compile` and the 39-test suite green after; `scripts/README.md` added. |
 | Canon gates | PASS: `package_skill.py --check` PASS with 8 intentional advisories (6 × 017 hyphen-naming on reference/fixture filenames + 2 × the diff-input fixtures carry no spec-doc frontmatter by design); `parent-skill-check.cjs` all hard invariants, 0 warnings (12 modes, create-diff registered); `check-frontmatter-versions.sh` clean (2823/2842 ok, rest skip-no-frontmatter). |
 | Strict recursive validation | PASS: `validate.sh --recursive --strict` on 033 — 008, the parent, and phases 002–007 all Errors 0 / Warnings 0; the sole remaining tree warning is a pre-existing continuity-freshness lag in sibling 001-research (out of scope, untouched). |
 | Phase-chain integration | PASS: added 008 parent back-reference + predecessor (007), and 007 successor → 008, so `PHASE_LINKS` on the parent is clean. |

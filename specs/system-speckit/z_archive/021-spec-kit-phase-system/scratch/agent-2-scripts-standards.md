@@ -2,7 +2,7 @@
 
 **Reviewer:** @review (Claude Opus 4.6, read-only)
 **Date:** 2026-03-08
-**Standard Reference:** `sk-code-opencode` SKILL.md + `references/shell/style_guide.md` + `references/shell/quality_standards.md`
+**Standard Reference:** `sk-code-skilled` SKILL.md + `references/shell/style_guide.md` + `references/shell/quality_standards.md`
 **Mode:** Focused File Review (Mode 3)
 **Confidence:** HIGH — all three files fully read; all findings cite verified file:line locations
 

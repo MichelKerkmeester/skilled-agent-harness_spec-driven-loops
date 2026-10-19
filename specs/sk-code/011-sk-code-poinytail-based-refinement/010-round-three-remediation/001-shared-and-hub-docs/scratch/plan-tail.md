@@ -27,7 +27,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 6. DEPENDENCIES
 
 - Node.js and Python 3 as used by the guards. `rg` for the searches.
-- `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` (the shared-control rule behind D2) and `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs` (the load behavior the new prose describes). Neither changes.
+- `.skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs` (the shared-control rule behind D2) and `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs` (the load behavior the new prose describes). Neither changes.
 - `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` sections 1 and 14 own the `validate.sh` contract T039 points to.
 - `.claude/settings.json` wires `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` as the `Write|Edit` `PostToolUse` hook, and `.skilled/scripts/install-git-hooks.sh` installs `.skilled/scripts/git-hooks/pre-commit` through `core.hooksPath`, both read on 2026-10-10.
 - Baseline state: the spec-kit trigger index `--check` already exits 1 at plan time from unrelated stale spec docs, so T120 is a full rebuild, not a repair of this child alone.

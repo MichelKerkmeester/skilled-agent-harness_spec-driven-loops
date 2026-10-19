@@ -29,7 +29,7 @@ contextType: "general"
 | **Phase** | 5 of 7 |
 | **Predecessor** | 004-quality-obsidian-coverage |
 | **Successor** | 006-deep-loop-findings-parser |
-| **Handoff Criteria** | The four new checker tests fail on the unedited checker and all ten pass after, the checker reports nothing under `sk-code-opencode/`, and every hit in another child's file is in `scratch/hits-for-orchestrator.txt` |
+| **Handoff Criteria** | The four new checker tests fail on the unedited checker and all ten pass after, the checker reports nothing under `sk-code-skilled/`, and every hit in another child's file is in `scratch/hits-for-orchestrator.txt` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 5** of the Round four children specification.
 
-**Scope Boundary**: The claim checker, its test, the guardrails text and the OpenCode packet version, all under `.skilled/skills/sk-code/sk-code-opencode/`.
+**Scope Boundary**: The claim checker, its test, the guardrails text and the OpenCode packet version, all under `.skilled/skills/sk-code/sk-code-skilled/`.
 
 **Dependencies**:
 - Known Limitations 1 to 5 in `../../010-round-three-remediation/005-opencode-and-guards/implementation-summary.md`
@@ -84,18 +84,18 @@ The checker reports every stale label and dead anchor, stays quiet on conditiona
 ### Out of Scope
 - Hits in files other children own. They are written as exact handoff edits in `plan.md` and listed by the builder in `scratch/hits-for-orchestrator.txt`
 - Hermes regeneration and the leaf-manifest refresh. The orchestrator runs them after every build
-- Other semicolons and em dashes in `sk-code-opencode/SKILL.md`. Only its version line changes, and its voice-scan count must not rise
+- Other semicolons and em dashes in `sk-code-skilled/SKILL.md`. Only its version line changes, and its voice-scan count must not rise
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs` | Modify | Root check, label check, anchor resolution, condition rule |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Modify | Four new test cases |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` | Modify | Semicolons rewritten |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modify | Checker row names labels and anchors |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Version 1.2.0.0 to 1.2.1.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md` | Create | Changelog entry |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs` | Modify | Root check, label check, anchor resolution, condition rule |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` | Modify | Four new test cases |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` | Modify | Semicolons rewritten |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modify | Checker row names labels and anchors |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Version 1.2.0.0 to 1.2.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md` | Create | Changelog entry |
 | `specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/scratch/` | Create | Before and after outputs, the scope copies and `hits-for-orchestrator.txt` |
 <!-- /ANCHOR:scope -->
 
@@ -108,20 +108,20 @@ The checker reports every stale label and dead anchor, stays quiet on conditiona
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | A missing `--root` gets a usage error | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --root /nonexistent-dir` writes one stderr line starting `usage: verify_doc_claims` and containing `--root is not a directory`, and exits 2 |
+| REQ-001 | A missing `--root` gets a usage error | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs --root /nonexistent-dir` writes one stderr line starting `usage: verify_doc_claims` and containing `--root is not a directory`, and exits 2 |
 | REQ-002 | Path-shaped labels are checked | Over `scratch/repro-fixture`, the checker prints `doc.md:3: link label is a path that does not resolve: assets/checklists/gone.md` and nothing for `doc.md:6` |
 | REQ-003 | Anchors are resolved | Over `scratch/repro-fixture`, the checker prints `doc.md:4: link anchor does not resolve: ./target.md#9-missing-section` and `doc.md:5: anchor does not resolve: sk-code-demo/references/target.md#nope` |
 | REQ-004 | Conditional bullets are not every-route claims | Over `scratch/repro-fixture`, the checker prints `PASS check tiers` |
 | REQ-005 | Each checker change has a fixture case that fails before and passes after | The test file run before the checker edits prints `pass 6` and `fail 4`, and after them `pass 10` and `fail 0` |
-| REQ-006 | The packet itself is clean | `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs \| grep -c 'sk-code-opencode/'` prints `0` |
+| REQ-006 | The packet itself is clean | `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs \| grep -c 'sk-code-skilled/'` prints `0` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-007 | The guardrails text has no semicolon | `grep -c ';' .skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` prints `0`, and `hvr_scan.py` on it reports `hard blockers:          0` |
+| REQ-007 | The guardrails text has no semicolon | `grep -c ';' .skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` prints `0`, and `hvr_scan.py` on it reports `hard blockers:          0` |
 | REQ-008 | The packet is versioned | `SKILL.md` reads `version: 1.2.1.0`, `changelog/v1.2.1.0.md` validates with `Total issues: 0`, and doctor check `13d-packet-version` passes |
-| REQ-009 | The other drift guards stay green | `run-all-drift-guards.sh` prints `PASS:` for alignment-drift, stack-folders and router-sync, and doc-claims passes or fails only on lines outside `sk-code-opencode/` |
+| REQ-009 | The other drift guards stay green | `run-all-drift-guards.sh` prints `PASS:` for alignment-drift, stack-folders and router-sync, and doc-claims passes or fails only on lines outside `sk-code-skilled/` |
 <!-- /ANCHOR:requirements -->
 
 ---

@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Review the diff and commit it, then decide whether doctor/git.md moves its gate"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
       - ".skilled/skills/sk-doc/sk-create-command/SKILL.md"
@@ -65,8 +65,8 @@ For the gate, the proposed fix was to say "immediately after the frontmatter" ev
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Router walk skips spec evidence, marker pattern follows the new header |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Evidence-skip test, marker fixture |
 | `.skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs` | Created | Passing run and stale-build exit 2 |
 | `.skilled/commands/doctor/scripts/README.md`, `tests/README.md` | Modified | Coverage claim and suite row |
 | `.skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` | Modified | Header without semicolons |
@@ -119,7 +119,7 @@ DeepSeek V4.1 Flash at max thinking made every edit outside the spec folder thro
 ## Known Limitations
 
 1. **Pre-existing HVR blockers stay.** sk-create-command `SKILL.md` (31), `references/common-pitfalls.md` (2), `references/worked-example.md` (2) and `references/argument-hints-and-modes.md` (1) had these before this phase, on lines it did not change. Counts are unchanged.
-2. **`doctor/git.md` is the one shipped command outside the gate rule.** It puts the gate before the H1, because phase 7 moved it there to meet the old wording. Moving it back was out of scope. Four other commands (`deep/ai-council.md`, `deep/research.md`, `deep/review.md`, `prompt/improve.md`) put the gate inside section 1. That still meets the rule, though the skeletons show it before section 1.
+2. **Four commands kept the gate inside section 1.** `deep/ai-council.md`, `deep/research.md`, `deep/review.md` and `prompt/improve.md` put the gate inside section 1, while the skeletons show it after the H1 and before section 1. `doctor/git.md` already matches the skeletons, since commit `144d0bdeb6` moved its gate below the H1. Phase 9 moves the other four.
 3. **The phrase-reach happy path needs a fresh advisor build.** A stale local build makes it fail with exit 2. CI builds the runtime first.
 <!-- /ANCHOR:limitations -->
 

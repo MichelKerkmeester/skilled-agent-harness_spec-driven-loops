@@ -23,7 +23,7 @@ I’ve kicked off parallel reviews for both categories and I’m doing a quick s
   │ .agents/skills/sk-code-review/references/review_core.md
   └ L1:220 (98 lines read)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Search (glob)
   │ ".opencode/skills/system-spec-kit/feature_catalog/17--governance/*.md"

@@ -31,7 +31,7 @@
       "implementation",
       "summary",
       "review",
-      "002-code-vs-sk-code-opencode",
+      "002-code-vs-sk-code-skilled",
       "findings-all"
     ],
     "importance_tier": "important",
@@ -188,9 +188,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface",
+    "causal_summary": "The Track B review (`../002-code-vs-sk-code-skilled/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode code surface",
     "created_at": "2026-06-18T12:41:12.578Z",
-    "last_save_at": "2026-10-07T15:57:18.024Z",
+    "last_save_at": "2026-10-18T20:45:33.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae97f7fe0299cebf6aa9c365f4a91d2b5b6bd17c0f05e852712970f0bcfa8e52",
+    "source_fingerprint": "sha256:a3ce6f6863371c63c87805d245de70555830d87f911ef599ffdbe21965f07e0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83767b1f90473ad41be78024ce7709e1242d44b85f984fd62f5d844232e5829f",
-      "plan.md": "108eba938716886dc26b880585a71175f0623d6ba51eb96b1f1bed4de6b3a12c",
+      "spec.md": "be12555f29d04827a6fdb23eafb2c703f312952215374bfda3d82cccfced1268",
+      "plan.md": "ac0bc7141cff75a9e3025e1ee1e2fa17f7c08a5d70c77c25383803f523850a3c",
       "tasks.md": "66e5bed20e0a06247c1be919b7a4571587c3d4fa9b4c06ce1fc3d8479234dbc1",
-      "implementation-summary.md": "511aab1e908db717c688c3ba312cc82cad1854835db575976d28d55f5965f112"
+      "implementation-summary.md": "51640c30668076156ec834aff26610fea970f2bd98c2fdc605b3ddb3515f182c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -32,7 +32,7 @@ trigger_phrases:
 ## Phase 1: Setup
 - [ ] Read `load-playbook-scenarios.cjs` in full (`parseRootIndex()` and `loadYamlFrontmatterScenarios()`) and
   confirm every caller of `loadPlaybookScenarios()` / `loadYamlFrontmatterScenarios()`.
-- [ ] Read `code-opencode-playbook-ids.vitest.ts` and confirm the `^\d{3}-.*\.md$` test at `:28` inside
+- [ ] Read `code-skilled-playbook-ids.vitest.ts` and confirm the `^\d{3}-.*\.md$` test at `:28` inside
   `countFeatureFiles()` is the only oracle re-implementing the old gate.
 - [ ] Read `check_no_numbered_categories.py` as the architectural precedent for the new guard's shape
   (`CATEGORY_ROOTS`, exit codes, `--json` mode).
@@ -44,7 +44,7 @@ trigger_phrases:
   structural-plus-frontmatter content gate (subfolder-of-playbook-root + parseable YAML frontmatter).
 - [ ] Add optional `stage: routing|holdout|negative` frontmatter parsing, defaulting to `routing`, and attach
   it to the returned scenario object.
-- [ ] Re-base `countFeatureFiles()` in `code-opencode-playbook-ids.vitest.ts` onto the same content gate as
+- [ ] Re-base `countFeatureFiles()` in `code-skilled-playbook-ids.vitest.ts` onto the same content gate as
   the loader.
 - [ ] Author the no-new-numbered-snippet guard script (mirrors `check_no_numbered_categories.py`'s shape,
   scoped to per-scenario filenames) that FAILS on a new `feature_catalog|manual_testing_playbook/<category>/NNN-*.md`
@@ -60,7 +60,7 @@ trigger_phrases:
   NOT loaded.
 - [ ] `stage: holdout` fixture → surfaces `holdout`; no-`stage:` fixture → surfaces `routing`.
 - [ ] Oracle count (`countFeatureFiles()`) agrees with the loader's parsed scenario count on the live
-  `code-opencode` playbook tree.
+  `code-skilled` playbook tree.
 - [ ] New numbered snippet file → guard FAILS; de-numbered file → guard PASSES.
 - [ ] Existing skill-benchmark vitest suite passes (no regression).
 - [ ] `validate.sh --strict` Errors 0 on this phase folder.

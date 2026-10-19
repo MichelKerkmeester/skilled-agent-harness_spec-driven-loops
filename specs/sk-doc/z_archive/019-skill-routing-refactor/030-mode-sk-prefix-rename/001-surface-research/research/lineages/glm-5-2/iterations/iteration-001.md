@@ -21,14 +21,14 @@ The authoritative mode table. Each `modes[]` entry carries the bare `workflowMod
 
 | Field | Carries | Type | Representative path:line |
 |-------|---------|------|---------------------------|
-| `modes[].workflowMode` | workflowMode key | typed (string) | [SOURCE: .opencode/skills/sk-code/mode-registry.json:24] (`quality`), :43 (`code-review`), :63 (`code-webflow`), :82 (`code-opencode`) |
+| `modes[].workflowMode` | workflowMode key | typed (string) | [SOURCE: .opencode/skills/sk-code/mode-registry.json:24] (`quality`), :43 (`code-review`), :63 (`code-webflow`), :82 (`code-skilled`) |
 | `modes[].packet` | packet dir name | typed (string) | [SOURCE: .opencode/skills/sk-code/mode-registry.json:33] (`code-quality`) |
 | `modes[].packetSkillName` | packet dir name | typed (string) | [SOURCE: .opencode/skills/sk-code/mode-registry.json:34] |
 | `modes[].command` | slash command bound to mode | typed (string) | [SOURCE: .opencode/skills/sk-design/mode-registry.json:49] (`/interface:design`), [SOURCE: .opencode/skills/sk-doc/mode-registry.json:26] (`/create:skill`) |
 | `modes[].aliases[]` | bare-key prose aliases | typed array, prose content | [SOURCE: .opencode/skills/sk-code/mode-registry.json:36] |
 | `modes[].proceduresPath` | packet-relative path | typed (string) | [SOURCE: .opencode/skills/sk-design/mode-registry.json:46] (`design-interface/procedures`) |
 | `modes[].advisorRouting.packetSkillName` | packet dir name | typed (string) | [SOURCE: .opencode/skills/sk-code/mode-registry.json:39] |
-| `extensions.surface-axis.surfaces[]` | workflowMode keys | typed array | [SOURCE: .opencode/skills/sk-code/mode-registry.json:19] (`code-webflow`, `code-opencode`) |
+| `extensions.surface-axis.surfaces[]` | workflowMode keys | typed array | [SOURCE: .opencode/skills/sk-code/mode-registry.json:19] (`code-webflow`, `code-skilled`) |
 | `extensions.transport-axis.transports[]` | workflowMode keys | typed array | [SOURCE: .opencode/skills/sk-design/mode-registry.json:24] (`design-mcp-open-design`) |
 
 Note: `create-skill-parent` shares packet `create-skill` — its `packet`/`packetSkillName` equal `create-skill` while `workflowMode` is `create-skill-parent` [SOURCE: .opencode/skills/sk-doc/mode-registry.json:31-40]. This is the documented key≠directory exception.
@@ -38,8 +38,8 @@ The router vocabulary. Carries workflowMode keys as object keys and as `tieBreak
 
 | Field | Carries | Type | Representative path:line |
 |-------|---------|------|---------------------------|
-| `routerPolicy.tieBreak[]` | workflowMode keys (ordered) | typed array | [SOURCE: .opencode/skills/sk-code/hub-router.json:7] (`quality`,`code-review`,`code-webflow`,`code-opencode`) |
-| `routerSignals.{key}` | workflowMode key as object key | typed (object key) | [SOURCE: .opencode/skills/sk-code/hub-router.json:17] (`quality`), :22 (`code-review`), :27 (`code-webflow`), :32 (`code-opencode`) |
+| `routerPolicy.tieBreak[]` | workflowMode keys (ordered) | typed array | [SOURCE: .opencode/skills/sk-code/hub-router.json:7] (`quality`,`code-review`,`code-webflow`,`code-skilled`) |
+| `routerSignals.{key}` | workflowMode key as object key | typed (object key) | [SOURCE: .opencode/skills/sk-code/hub-router.json:17] (`quality`), :22 (`code-review`), :27 (`code-webflow`), :32 (`code-skilled`) |
 | `routerSignals.{key}.resources[]` | packet-dir-prefixed path | typed path | [SOURCE: .opencode/skills/sk-code/hub-router.json:20] (`code-quality/SKILL.md`) |
 | `vocabularyClasses.{key}.keywords[]` | bare keys + packet names in prose | typed array, prose content | [SOURCE: .opencode/skills/sk-code/hub-router.json:43] (`code-quality` literal), :49 (`code-review`) |
 
@@ -48,8 +48,8 @@ Maps each mode to its leaf resource files. Carries `workflowMode` and `packet` p
 
 | Field | Carries | Type | Representative path:line |
 |-------|---------|------|---------------------------|
-| `modes[].workflowMode` | workflowMode key | typed (string) | [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:72] (`code-opencode`), :88 (`code-review`), :210 (`code-webflow`), :219 (`quality`) |
-| `modes[].packet` | packet dir name | typed (string) | [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:71] (`code-opencode`) |
+| `modes[].workflowMode` | workflowMode key | typed (string) | [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:72] (`code-skilled`), :88 (`code-review`), :210 (`code-webflow`), :219 (`quality`) |
+| `modes[].packet` | packet dir name | typed (string) | [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:71] (`code-skilled`) |
 | `modes[].leaves[]` | packet-dir-prefixed resource paths | typed path array | [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:5-69] (paths under `assets/`,`references/` — relative to packet dir, so the dir rename changes the resolution root, not the leaf strings themselves) |
 
 ### Class D — `leaf-aliases.json` (sk-doc only; 1 file)

@@ -58,9 +58,9 @@ The Webflow checker swallowed every error thrown inside a timer, animation-frame
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/test-minified-runtime.mjs` | Modified | Callback error capture, depth cap, failure result |
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-bad/` | Created | Four fixtures that must fail |
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-good/` | Created | Two fixtures that must pass |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_stack_folders.py` | Created | Orphan-folder unit test |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_stack_folders.py` | Created | Orphan-folder unit test |
 | `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/README.md` | Modified | Fixture row, checker purpose |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modified | Test row, code-file count |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modified | Test row, code-file count |
 <!-- /ANCHOR:what-built -->
 
 ---

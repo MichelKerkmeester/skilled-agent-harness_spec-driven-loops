@@ -45,7 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
       ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
       ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
       ".opencode/skills/sk-code/benchmark/README.md"
@@ -54,7 +53,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
     "created_at": "2026-07-05T19:09:55.824Z",
-    "last_save_at": "2026-08-30T15:39:10.933Z",
+    "last_save_at": "2026-10-18T20:45:06.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8c8ab9a52a1bea3244eed5ffe236beca7daca4db96c0bbe222ae07e65078988",
+    "source_fingerprint": "sha256:f095684f951af007986af1013026b3117029b9b62f4058eb2ae060c073ea775f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "60e0c294737bf0d8e3babb235823fafc8a046497a7de2d7503b9dc0da03315dd",
-      "plan.md": "e24e3d370b1b7bd6e1003b6f6cb4bd7a51d6de078406c4866fe76989a0dc9324",
-      "tasks.md": "3a4c3ec6ed72f0cb38cf10173986f8b2bea51ca224b214aa39c22461fba6fc57",
-      "implementation-summary.md": "a225e82f7a4e1e210a82bac58d50ffedebe5faaac7648761b46e636081fb0ac7"
+      "spec.md": "e812ec8d9698a7c29408864a7be91ee1c686572a7c6fbb1cba767d4022c7fda2",
+      "plan.md": "df9d7aab16f0f9eae2ef41aa2217f6ed6df987b015d1737a66c56e515883be4e",
+      "tasks.md": "15b4edf83f6093bbad13ba79fb5e7e1a75da6f7b55eccf214cfd3798e3e21881",
+      "implementation-summary.md": "6f5482c60c6f72108f92c2d3ae854fcda0089ae9ada598e1cc1300ad868e5f53"
     },
     "last_active_child_id": null,
     "last_active_at": null

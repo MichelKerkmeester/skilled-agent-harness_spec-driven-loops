@@ -6,7 +6,7 @@ trigger_phrases:
   - "force-native flag"
   - "force-local flag"
   - "compat force toggles"
-version: 0.8.0.13
+version: 0.8.2.0
 id: PC-002
 category: python_compat
 stage: routing
@@ -37,6 +37,8 @@ Validate `--force-native` (requires native. Fails if unavailable) and `--force-l
 
 ## 3. TEST EXECUTION
 
+### Commands
+
 1. Run native-required:
 
 ```bash
@@ -62,7 +64,17 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 - Step 3: exits non-zero or emits explicit "native unavailable" error (not a silent fallback).
 - No prompt text in unexpected metadata fields.
 
-### Failure Modes
+### Evidence
+
+- Each of the three command outputs and exit statuses.
+- The `source` tags, `error`, `reason`, and `freshness` values, plus whether prompt text appears in unexpected metadata fields.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -74,9 +86,10 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [CP-002](../../manual-testing-playbook/compat-and-disable/force-local-force-native.md), original toggles scenario.
 - Scenario [PC-003](../../manual-testing-playbook/python-compat/threshold-flag.md), threshold flag.
-- Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
+- Feature [`feature-catalog/python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` and `scripts/skill_advisor_runtime.py`.
 
 ---
@@ -87,96 +100,3 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 - Playbook ID: PC-002
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: python-compat/force-native-force-local.md
-
----
-
-## 6. EVIDENCE
-
-Command 1:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory" --threshold 0.8
-```
-
-Output:
-
-```json
-{
-  "error": "Native advisor unavailable",
-  "reason": "SIGTERM",
-  "freshness": "unavailable"
-}
-```
-
-Command 2:
-
-```bash
-python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-local "save this conversation context to memory" --threshold 0.8
-```
-
-Output:
-
-```text
-Skill graph: loaded from SQLite
-[
-  {
-    "skill": "system-spec-kit",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.2,
-    "passes_threshold": true,
-    "reason": "Matched: !context, !context(multi), !memory, !save this conversation context(phrase), !save(multi) [boundary: owns memory/context preservation]",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "memory:save",
-    "kind": "skill",
-    "confidence": 0.88,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !intent:memory, !save this conversation context(phrase), context, memory(name), save(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "command-memory-save",
-    "kind": "command",
-    "confidence": 0.95,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !save this conversation context(phrase), command_penalty, context, conversation, memory(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  }
-]
-```
-
-Command 3:
-
-```bash
-SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --force-native "save this conversation context to memory"
-```
-
-Output:
-
-```json
-{
-  "error": "Native advisor unavailable",
-  "reason": "ADVISOR_DISABLED",
-  "freshness": "native-unavailable"
-}
-```
-
-Comparison to Expected Signals:
-
-- Step 1 expected entries tagged `source: "native"`; actual output was `Native advisor unavailable` with `reason: "SIGTERM"` and `freshness: "unavailable"`.
-- Step 2 expected entries tagged `source: "local"`; actual output contained three entries with `"source": "local"`.
-- Step 3 expected non-zero exit or explicit native unavailable error; actual output emitted `"error": "Native advisor unavailable"` with `"reason": "ADVISOR_DISABLED"`.
-- Prompt text appeared only in expected match/reason fields from the scorer output; no unexpected metadata field was observed in the command output.
-
----
-
-## 7. PASS/FAIL
-
-BLOCKED: The precondition `MCP server built (native available)` is missing or broken in the current repo state because the native-required command returned `"error": "Native advisor unavailable"`, `"reason": "SIGTERM"`, and `"freshness": "unavailable"` instead of native results.

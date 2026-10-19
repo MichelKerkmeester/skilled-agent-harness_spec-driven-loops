@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phases 2 to 5 changed what an operator sees from the advisor: a no-brief turn now opens with a status line, the hook skips casual prompts before spawning the CLI, `advisorrecommend` takes `includeCompiledRoute`, the CLI retries once for a stale daemon, and each runtime labels its diagnostics",
     "created_at": "2026-09-26T16:09:14Z",
-    "last_save_at": "2026-09-26T22:17:21.731Z",
+    "last_save_at": "2026-10-18T20:45:28.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:72bdb5f583914199157f11ead89748533321c2d71b70de34e2be6952016122ab",
+    "source_fingerprint": "sha256:42bb99178314a911fbeb136478ff4ca61fe309be2b3ae7c61b651b0d102f94e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "209acf74bcc1d1dee153450f670105b4db76d8aee983e2ee1fcad171f7ff8094",
       "plan.md": "103bfccb7295f0ba508811ae76e767efe1ee6c3e239ee15261c7c36b6b604051",
-      "tasks.md": "0e333b523080770a94790635db25092df6d81ad8711365b2d614936a51bfd741",
-      "implementation-summary.md": "16b6e4accef311d8a693560c84012a74980757e9abf3c82f4a3655ca2979d0f3"
+      "tasks.md": "8234dae0b4bbd90911a5a113d3753054bec7198e255dcbdb0b370eb264b07710",
+      "implementation-summary.md": "afd73be8bfa7b8ce0e6ba4dcd0c8fa49ed44be706ae09e447caea47393c3399d"
     },
     "last_active_at": null
   }

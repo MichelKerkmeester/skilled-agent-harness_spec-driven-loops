@@ -6,7 +6,7 @@ trigger_phrases:
   - "python shim stdin"
   - "skill_advisor.py stdin"
   - "compat shim stdin"
-version: 0.8.0.13
+version: 0.8.2.0
 id: PC-001
 category: python_compat
 stage: routing
@@ -37,6 +37,8 @@ Validate that `scripts/skill_advisor.py --stdin` reads exactly one prompt from s
 
 ## 3. TEST EXECUTION
 
+### Commands
+
 1. Run the shim with a prompt piped into stdin:
 
 ```bash
@@ -53,7 +55,17 @@ printf '%s' "save this conversation context to memory" | python3 .skilled/skills
 - Top entry corresponds to the expected skill slug for the prompt.
 - Empty stdin is handled deterministically (either empty array or an explicit error, not a crash).
 
-### Failure Modes
+### Evidence
+
+- The prompted and empty-stdin command outputs and exit statuses.
+- The output shape, first result's `source`, top skill slug, empty-input behavior, and whether prompt text appears in unexpected metadata fields.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -65,9 +77,10 @@ printf '%s' "save this conversation context to memory" | python3 .skilled/skills
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [CP-001](../../manual-testing-playbook/compat-and-disable/python-shim-stdin.md), original shim stdin scenario.
 - Scenario [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), force toggles.
-- Feature [`python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
+- Feature [`feature-catalog/python-compat/cli-shim.md`](../../feature-catalog/python-compat/cli-shim.md).
 - Source: `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`.
 
 ---
@@ -78,124 +91,3 @@ printf '%s' "save this conversation context to memory" | python3 .skilled/skills
 - Playbook ID: PC-001
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: python-compat/stdin-mode.md
-
----
-
-## 6. EVIDENCE
-
-Precondition checks:
-
-```bash
-python3 --version
-```
-
-```text
-Python 3.9.6
-```
-
-```bash
-printenv SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
-```
-
-```text
-
-```
-
-Skill advisor MCP availability observed before scenario execution:
-
-```text
-{
-  "status": "ok",
-  "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
-    "effectiveThresholds": {
-      "confidenceThreshold": 0.8,
-      "uncertaintyThreshold": 0.35,
-      "confidenceOnly": false
-    },
-    "recommendations": [],
-    "ambiguous": false,
-    "freshness": "unavailable",
-    "trustState": {
-      "state": "unavailable",
-      "reason": "advisor_unavailable",
-      "generation": 9476,
-      "checkedAt": "2026-07-03T02:38:31.796Z",
-      "lastLiveAt": null
-    },
-    "generatedAt": "2026-07-03T02:38:31.796Z",
-    "cache": {
-      "hit": false,
-      "sourceSignaturePresent": false
-    },
-    "warnings": [
-      "advisor_unavailable"
-    ],
-    "abstainReasons": [
-      "Skill advisor freshness is unavailable; returning fail-open empty recommendations."
-    ]
-  }
-}
-```
-
-Scenario command 1:
-
-```bash
-printf '%s' "save this conversation context to memory" | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
-```
-
-Observed output:
-
-```text
-Skill graph: loaded from SQLite
-[
-  {
-    "skill": "system-spec-kit",
-    "kind": "skill",
-    "confidence": 0.95,
-    "uncertainty": 0.2,
-    "passes_threshold": true,
-    "reason": "Matched: !context, !context(multi), !memory, !save this conversation context(phrase), !save(multi) [boundary: owns memory/context preservation]",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "memory:save",
-    "kind": "skill",
-    "confidence": 0.88,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !intent:memory, !save this conversation context(phrase), context, memory(name), save(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  },
-  {
-    "skill": "command-memory-save",
-    "kind": "command",
-    "confidence": 0.95,
-    "uncertainty": 0.15,
-    "passes_threshold": true,
-    "reason": "Matched: !save this conversation context(phrase), command_penalty, context, conversation, memory(name)",
-    "_graph_boost_count": 0,
-    "source": "local"
-  }
-]
-```
-
-Scenario command 2:
-
-```bash
-printf '' | python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py --stdin --threshold 0.8
-```
-
-Observed output:
-
-```text
-[]
-```
-
----
-
-## 7. PASS/FAIL
-
-FAIL: The prompted stdin run returned the expected top skill slug and empty stdin returned `[]`, but the first result used `"source": "local"` rather than `"source": "native"`; the advisor availability check also reported `"freshness": "unavailable"` and `"reason": "advisor_unavailable"`.

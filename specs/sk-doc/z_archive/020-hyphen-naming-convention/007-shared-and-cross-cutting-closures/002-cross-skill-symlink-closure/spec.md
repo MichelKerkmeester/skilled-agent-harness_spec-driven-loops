@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/install_guides/install_scripts/install-spec-kit-memory.sh"
       - ".opencode/skills/sk-doc/scripts/validate_document.py"
-      - ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md"
+      - ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md"
       - ".claude/skills"
     completion_pct: 0
     open_questions: []

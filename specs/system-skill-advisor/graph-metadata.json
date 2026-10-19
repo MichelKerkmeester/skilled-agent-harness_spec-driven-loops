@@ -17,10 +17,11 @@
     "system-skill-advisor/026-defect-and-hardening-fixes",
     "system-skill-advisor/028-restore-pi-advisor-brief",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
-    "system-skill-advisor/031-align-runtime-code-with-sk-code-opencode",
+    "system-skill-advisor/031-align-runtime-code-with-sk-code-skilled",
     "system-skill-advisor/033-advisor-status-truthfulness",
     "system-skill-advisor/034-doctor-command-guidance",
-    "system-skill-advisor/035-doctor-command-routing"
+    "system-skill-advisor/035-doctor-command-routing",
+    "system-skill-advisor/036-routing-and-launcher-hardening"
   ],
   "manual": {
     "depends_on": [],

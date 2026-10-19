@@ -14,7 +14,7 @@ REVIEW_FINAL_LINE="$SKILL/sk-code-review/scripts/check-review-final-line.js"
 REVIEW_FINDINGS="$SKILL/sk-code-review/scripts/check-review-findings.js"
 RULE_COPIES="$SKILL/sk-code-review/scripts/check-rule-copies.js"
 REVIEW_FIXTURE="$SKILL/sk-code-review/scripts/review-output-fixture/heading-shape-valid.md"
-ROUTER_SYNC="$SKILL/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+ROUTER_SYNC="$SKILL/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
 
 TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/typo-flags-XXXXXX")"
 

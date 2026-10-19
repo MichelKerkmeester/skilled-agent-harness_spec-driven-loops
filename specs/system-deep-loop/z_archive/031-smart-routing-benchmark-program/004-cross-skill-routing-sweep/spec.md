@@ -79,7 +79,7 @@ Every flagged skill is remediated by the CORRECT fix class — orphan-wire / exe
 |-----------|-------------|-------------|
 | `deep-improvement/scripts/skill-benchmark/**` | Modify | Non-scoring D3 diagnostic; later the optimizer |
 | `system-deep-loop/{deep-improvement,deep-research,deep-review,deep-ai-council}/SKILL.md` + gold | Modify | Per-skill remediation (orphan-wire / gold-align) |
-| `sk-code/code-opencode/SKILL.md` | Modify | Intent-gate genuine over-routing |
+| `sk-code/code-skilled/SKILL.md` | Modify | Intent-gate genuine over-routing |
 | `deep-improvement/references/skill_benchmark/routing_optimization.md` | Modify | Doctrine update for the diagnostic |
 <!-- /ANCHOR:scope -->
 

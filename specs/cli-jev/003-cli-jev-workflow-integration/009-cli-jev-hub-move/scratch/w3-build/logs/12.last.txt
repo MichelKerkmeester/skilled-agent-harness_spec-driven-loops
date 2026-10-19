@@ -6,7 +6,7 @@ REPO RULES.md exists — loading it before the first write (Gate 5).
 
 The repo rules trigger table fires on "report a result / quote a number" and "end a turn" — loading those two, plus resolving the sk-code route for this file type via the compiled router.
 
-Compiled routing returned `defer` (no dominant workflow mode) — the hub defers to a pure surface bundle. For this Node `.cjs` system-code file that's the `sk-code-opencode` surface. Loading it plus the handoff rule that fires at turn end.
+Compiled routing returned `defer` (no dominant workflow mode) — the hub defers to a pure surface bundle. For this Node `.cjs` system-code file that's the `sk-code-skilled` surface. Loading it plus the handoff rule that fires at turn end.
 
 Now I have the exact contract. Before editing, I'll verify the exact byte content of the target lines (particularly the header spacing) so the replacements match precisely.
 

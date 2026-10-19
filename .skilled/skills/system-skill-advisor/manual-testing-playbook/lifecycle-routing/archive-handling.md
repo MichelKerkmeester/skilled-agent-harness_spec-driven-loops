@@ -6,7 +6,7 @@ trigger_phrases:
   - "z_archive skills"
   - "z_future skills"
   - "indexed not routed"
-version: 0.8.0.14
+version: 0.8.1.0
 id: LC-003
 category: lifecycle_routing
 stage: routing
@@ -36,7 +36,7 @@ Validate that `lib/lifecycle/archive-handling.ts` keeps `z_archive/` and `z-futu
 
 ## 3. TEST EXECUTION
 
-> **Structure deviation note (007-deferred-final).** This scenario uses a numbered-step plus Expected Signals plus Failure Modes shape instead of the canonical Prompt/Commands/Expected/Evidence/Pass-Fail/Failure-Triage subsections. The deviation is intentional for this skill playbook category to keep scenario semantics tightly bound to runtime output checks. See `references/decisions/deferred-decisions.md` §F34 for rationale.
+### Commands
 
 1. Call `advisor_status` and capture `skillCount`:
 
@@ -55,7 +55,17 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 - IDF computed by `lib/df-idf.ts` uses the active corpus only (see AI-004).
 - Lifecycle metadata on archived entries is available via inspection tools.
 
-### Failure Modes
+### Evidence
+
+- Capture the output and exit status from the advisor_status and advisor_recommend commands.
+- Record skillCount and its documented scope, the archived and future skill slugs, their inspection visibility, the recommendation list, the IDF corpus used by lib/df-idf.ts and lifecycle metadata.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any expected signal differs.
+
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -67,6 +77,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md), active-only corpus.
 - Scenario [LC-002](./supersession.md), supersession routing.
 - Feature [`lifecycle-routing/archive-handling.md`](../../feature-catalog/lifecycle-routing/archive-handling.md).

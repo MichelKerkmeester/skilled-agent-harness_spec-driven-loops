@@ -17,18 +17,18 @@ not ok 2 - a hinted surface the prompt matched leads the bundle
     + actual - expected
     
       [
-    +   'sk-code-opencode',
+    +   'sk-code-skilled',
         'sk-code-webflow',
-    -   'sk-code-opencode'
+    -   'sk-code-skilled'
       ]
     
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected:
     0: 'sk-code-webflow'
-    1: 'sk-code-opencode'
+    1: 'sk-code-skilled'
   actual:
-    0: 'sk-code-opencode'
+    0: 'sk-code-skilled'
     1: 'sk-code-webflow'
   operator: 'deepStrictEqual'
   stack: |-
@@ -59,9 +59,9 @@ not ok 4 - a workflow mode keeps first place and only the surfaces reorder
     
       [
         'sk-code-review',
-    +   'sk-code-opencode',
+    +   'sk-code-skilled',
         'sk-code-webflow',
-    -   'sk-code-opencode'
+    -   'sk-code-skilled'
       ]
     
   code: 'ERR_ASSERTION'
@@ -69,10 +69,10 @@ not ok 4 - a workflow mode keeps first place and only the surfaces reorder
   expected:
     0: 'sk-code-review'
     1: 'sk-code-webflow'
-    2: 'sk-code-opencode'
+    2: 'sk-code-skilled'
   actual:
     0: 'sk-code-review'
-    1: 'sk-code-opencode'
+    1: 'sk-code-skilled'
     2: 'sk-code-webflow'
   operator: 'deepStrictEqual'
   stack: |-
@@ -102,18 +102,18 @@ not ok 6 - the front door passes --surface-hint through and keeps stdout to one 
     + actual - expected
     
       [
-    +   'sk-code-opencode',
+    +   'sk-code-skilled',
         'sk-code-webflow',
-    -   'sk-code-opencode'
+    -   'sk-code-skilled'
       ]
     
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected:
     0: 'sk-code-webflow'
-    1: 'sk-code-opencode'
+    1: 'sk-code-skilled'
   actual:
-    0: 'sk-code-opencode'
+    0: 'sk-code-skilled'
     1: 'sk-code-webflow'
   operator: 'deepStrictEqual'
   stack: |-

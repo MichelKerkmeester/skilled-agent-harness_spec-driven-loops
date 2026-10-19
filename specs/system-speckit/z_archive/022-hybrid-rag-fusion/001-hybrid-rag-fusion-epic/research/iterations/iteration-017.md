@@ -39,7 +39,7 @@ The spec does not document this divergence. When `withSyncedScoreAliases()` runs
 
 ---
 
-### CATEGORY B: Code-vs-Standards Misalignments (sk-code-opencode and Engineering Practices)
+### CATEGORY B: Code-vs-Standards Misalignments (sk-code-skilled and Engineering Practices)
 
 **B1. Pipeline orchestrator has zero error handling**
 The 79-line orchestrator calls all 4 stages with bare `await`. No try/catch, no timeout protection, no partial-result fallback, no circuit breaker. Any unhandled exception crashes the entire pipeline with an unstructured error. The structured error infrastructure (MemoryError, buildErrorResponse, withTimeout) exists but is never used by the pipeline.

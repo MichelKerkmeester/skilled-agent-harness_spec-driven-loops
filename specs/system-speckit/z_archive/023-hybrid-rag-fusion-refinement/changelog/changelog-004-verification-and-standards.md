@@ -94,7 +94,7 @@ No test files changed in this phase. Verification reran existing release checks 
 
 | File | Changes |
 | ---- | ------- |
-| `.opencode/skills/sk-code-opencode/README.md` | Synced standards guidance to the verified ESM state. |
+| `.opencode/skills/sk-code-skilled/README.md` | Synced standards guidance to the verified ESM state. |
 | `.opencode/skills/system-spec-kit/README.md` | Aligned top-level guidance with the verified module behavior. |
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | Updated server-facing guidance to match the verified native ESM behavior. |
 | `.opencode/skills/system-spec-kit/scripts/README.md` | Updated scripts guidance to match the verified interop behavior. |

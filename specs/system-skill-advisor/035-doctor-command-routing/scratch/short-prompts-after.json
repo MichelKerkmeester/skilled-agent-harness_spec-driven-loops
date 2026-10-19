@@ -1,0 +1,1202 @@
+{
+ "lost": 0,
+ "changed": 0,
+ "rows": [
+  {
+   "group": "sk-git",
+   "prompt": "git hooks",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git hook",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git setup",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git standards",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git hooks broken",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "commit rules",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "branch naming",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    },
+    {
+     "id": "sk-code",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    },
+    {
+     "id": "sk-code",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "worktree",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "pre-push hook",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "commit message",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "push allowlist",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "hook trust",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "rebase",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git worktree",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "create worktree",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    },
+    {
+     "id": "cli-orca",
+     "c": 0.82,
+     "u": 0.26
+    },
+    {
+     "id": "system-spec-kit",
+     "c": 0.82,
+     "u": 0.26
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    },
+    {
+     "id": "cli-orca",
+     "c": 0.82,
+     "u": 0.26
+    },
+    {
+     "id": "system-spec-kit",
+     "c": 0.82,
+     "u": 0.26
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "conventional commits",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8609,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8609,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "commit message rules",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "branch rules",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "merge conflict",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8332,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git rebase",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "pre-commit hook",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "commit hook",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git config",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "open a pr",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "pull request",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8905,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git push",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "squash commits",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git branch",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git commit",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "cherry pick",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "finish branch",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9407,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git status",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "hook gates",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "git rules",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.8224,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "sk-git",
+   "prompt": "commit standards",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.9335,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "speckit doctor",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "spec folder",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "mcp-tooling",
+     "c": 0.82,
+     "u": 0.16
+    },
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "mcp-tooling",
+     "c": 0.82,
+     "u": 0.16
+    },
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "trigger index",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.8758,
+     "u": 0.12
+    },
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.8758,
+     "u": 0.12
+    },
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "spec kit",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.2
+    },
+    {
+     "id": "mcp-tooling",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.2
+    },
+    {
+     "id": "mcp-tooling",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "validate spec",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "save context",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "memory:save",
+     "c": 0.9106,
+     "u": 0.16
+    },
+    {
+     "id": "command-memory-save",
+     "c": 0.9106,
+     "u": 0.16
+    },
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "memory:save",
+     "c": 0.9106,
+     "u": 0.16
+    },
+    {
+     "id": "command-memory-save",
+     "c": 0.9106,
+     "u": 0.16
+    },
+    {
+     "id": "system-spec-kit",
+     "c": 0.95,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-spec-kit",
+   "prompt": "resume spec",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-skill-advisor",
+   "prompt": "skill advisor",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-skill-advisor",
+   "prompt": "advisor rebuild",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.8388,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.8388,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-skill-advisor",
+   "prompt": "skill graph",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-skill-advisor",
+   "prompt": "advisor status",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.8388,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.8388,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "system-skill-advisor",
+   "prompt": "skill routing",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-skill-advisor",
+     "c": 0.82,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "env vars",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "environment variables",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "mcp tools",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "code mode",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "mcp-code-mode",
+     "c": 0.8653,
+     "u": 0.16
+    },
+    {
+     "id": "sk-code",
+     "c": 0.8338,
+     "u": 0.22
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.26
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "mcp-code-mode",
+     "c": 0.8653,
+     "u": 0.16
+    },
+    {
+     "id": "sk-code",
+     "c": 0.8338,
+     "u": 0.22
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.26
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "runtime mirrors",
+   "status": "same",
+   "withoutBridges": [],
+   "withBridges": [],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "deep loop",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-deep-loop",
+     "c": 0.8426,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-deep-loop",
+     "c": 0.8426,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "deep research",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "system-deep-loop",
+     "c": 0.939,
+     "u": 0.12
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.26
+    },
+    {
+     "id": "command-spec-kit",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "system-deep-loop",
+     "c": 0.939,
+     "u": 0.12
+    },
+    {
+     "id": "cli-external-orchestration",
+     "c": 0.82,
+     "u": 0.26
+    },
+    {
+     "id": "command-spec-kit",
+     "c": 0.82,
+     "u": 0.22
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "sk-code",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.9125,
+     "u": 0.12
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.9125,
+     "u": 0.12
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "code review",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "sk-design",
+     "c": 0.82,
+     "u": 0.2
+    },
+    {
+     "id": "system-deep-loop",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.95,
+     "u": 0.12
+    },
+    {
+     "id": "sk-design",
+     "c": 0.82,
+     "u": 0.2
+    },
+    {
+     "id": "system-deep-loop",
+     "c": 0.82,
+     "u": 0.2
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "update skilled",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.82,
+     "u": 0.3
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-git",
+     "c": 0.82,
+     "u": 0.3
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "parent skill",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-doc",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  },
+  {
+   "group": "other",
+   "prompt": "mcp setup",
+   "status": "same",
+   "withoutBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "withBridges": [
+    {
+     "id": "sk-code",
+     "c": 0.82,
+     "u": 0.16
+    }
+   ],
+   "doctorPos": -1
+  }
+ ]
+}

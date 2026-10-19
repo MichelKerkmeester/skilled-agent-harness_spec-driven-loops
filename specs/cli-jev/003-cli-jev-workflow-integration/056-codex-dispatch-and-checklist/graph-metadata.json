@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Codex task dispatch was marked `unverified` because its `spawnagent` hook payload had never been read",
     "created_at": "2026-10-05T15:41:54Z",
-    "last_save_at": "2026-10-08T19:29:27.685Z",
+    "last_save_at": "2026-10-18T20:45:03.342Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d1b36c92f3c82308151142ee89ae7b0a553ba207c9adf1fefdbfdd942fe332a",
+    "source_fingerprint": "sha256:7e1ab209996f8dbca388e95321432424c44468a8493719a7da407472cf313725",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8eeff04a93f2cd27a61cbf04200b889f1c81ddf3dd9c77e09ec87dc04b320a78",
+      "spec.md": "fa2554a882a4c8714166392403af68cbb4035cf5239cb4b7a96ed1f3cebb7740",
       "plan.md": "95a849fcf755774f0e4325a2667d258b71ec8479845cca8d8be44a8eba22a3ca",
-      "tasks.md": "255214e6fd3aff5f2df9987fba5f4b02abed40898c848c8b193b4b6c5ca59f4b",
-      "implementation-summary.md": "f63ef74c2c57ca5d0cd9c33317994abe97288c006b15c5446505b862b5819118"
+      "tasks.md": "d150b90f0aa0e902aa398aeceb1e023ed54f919dc33d77a551ee1f08115ae1c7",
+      "implementation-summary.md": "490c381759eac31e548d7705ef75fb922d721c61203bc3add77b4b79726b2ee2"
     },
     "last_active_at": null
   }

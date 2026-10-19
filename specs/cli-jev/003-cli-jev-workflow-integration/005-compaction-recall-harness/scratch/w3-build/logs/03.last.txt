@@ -18,7 +18,7 @@ Only T consumes S. Now, per the persona, let me load the sk-code routing contrac
 
 
 
-The route resolves to `sk-code-opencode` (JavaScript slice for S, TypeScript slice for T). Let me load the two most relevant JS references quickly to follow its contract.
+The route resolves to `sk-code-skilled` (JavaScript slice for S, TypeScript slice for T). Let me load the two most relevant JS references quickly to follow its contract.
 
 Now let me check for lint configs that might cover these files (an unused constant could trip a gate), then make the edits.
 

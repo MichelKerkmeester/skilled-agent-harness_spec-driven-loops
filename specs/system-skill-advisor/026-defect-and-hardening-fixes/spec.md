@@ -88,7 +88,7 @@ Close each gap with its own small packet and keep them under one parent: every s
 ### Out of Scope
 - Routing research and refinement
 - The advisor status truthfulness work
-- Runtime code alignment with sk-code-opencode
+- Runtime code alignment with sk-code-skilled
 
 ### Files to Change
 Each child keeps its own plan and file list. This table is the audit trail of the phases.

@@ -1,6 +1,6 @@
 The census summary now prints the confidence, always-second, and rerank comparators after the scorer line. Syntax check passed.
 
-SKILL ROUTING: sk-code → sk-code-opencode
+SKILL ROUTING: sk-code → sk-code-skilled
 REPO RULES: prevent-overengineering.md
 
 HANDBACK

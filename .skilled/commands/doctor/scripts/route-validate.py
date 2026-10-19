@@ -510,6 +510,42 @@ def check_trigger_phrases(routes: Sequence[Dict[str, Any]], result: Result) -> N
         result.passed("G1: every route has ≥1 trigger phrase")
 
 
+def check_lead_phrases(manifest: Dict[str, Any], result: Result) -> None:
+    """G2: lead phrases are long enough and belong to the same item's triggers."""
+    g2_failed = False
+    for section in ("routes", "standalone", "mcp_subroutes"):
+        items = manifest.get(section, [])
+        if not isinstance(items, list):
+            continue
+        for index, item in enumerate(items):
+            if not isinstance(item, dict) or "lead_phrases" not in item:
+                continue
+            label = f"{section}[{index}].lead_phrases"
+            lead_phrases = item["lead_phrases"]
+            if not isinstance(lead_phrases, list) or any(
+                not isinstance(phrase, str) for phrase in lead_phrases
+            ):
+                result.fail(f"G2: {label} must be a list of strings")
+                g2_failed = True
+                continue
+
+            trigger_phrases = item.get("trigger_phrases")
+            for phrase in lead_phrases:
+                if len(phrase.split()) < 3:
+                    result.fail(
+                        f"G2: {label} phrase {phrase!r} has fewer than three space-separated words"
+                    )
+                    g2_failed = True
+                if not isinstance(trigger_phrases, list) or phrase not in trigger_phrases:
+                    result.fail(
+                        f"G2: {label} phrase {phrase!r} is missing from trigger_phrases"
+                    )
+                    g2_failed = True
+
+    if not g2_failed:
+        result.passed("G2: lead_phrases are valid across routes, standalone and mcp_subroutes")
+
+
 def report_flag_collisions(routes: Sequence[Dict[str, Any]], result: Result) -> None:
     """H1: informational warning for a flag name shared by targets of one command.
 
@@ -693,6 +729,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     check_mutation_classes(route_maps, result)
     check_tool_declarations(route_maps, doctor_dir, result)
     check_trigger_phrases(route_maps, result)
+    check_lead_phrases(manifest, result)
     report_flag_collisions(route_maps, result)
     check_script_invocations(route_maps, repo_root, result)
     check_target_parity(route_maps, doctor_dir, assets_dir, result)

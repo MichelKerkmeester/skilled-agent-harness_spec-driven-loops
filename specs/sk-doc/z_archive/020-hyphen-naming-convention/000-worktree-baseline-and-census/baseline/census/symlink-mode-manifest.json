@@ -1765,7 +1765,7 @@
       }
     },
     {
-      "path": ".opencode/changelog/sk-code/code-opencode",
+      "path": ".opencode/changelog/sk-code/code-skilled",
       "kind": "symlink",
       "mode": "120000",
       "exec_bits": {
@@ -1773,9 +1773,9 @@
         "group": false,
         "other": false
       },
-      "link_path": ".opencode/changelog/sk-code/code-opencode",
-      "link_target": "../../skills/sk-code/code-opencode/changelog",
-      "resolved_target": ".opencode/skills/sk-code/code-opencode/changelog",
+      "link_path": ".opencode/changelog/sk-code/code-skilled",
+      "link_target": "../../skills/sk-code/code-skilled/changelog",
+      "resolved_target": ".opencode/skills/sk-code/code-skilled/changelog",
       "resolution": "inside-worktree",
       "target_kind": "dir",
       "target_mode_bits": "0755",
@@ -13387,7 +13387,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/README.md",
+      "path": ".opencode/skills/sk-code/code-skilled/README.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13397,7 +13397,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
+      "path": ".opencode/skills/sk-code/code-skilled/SKILL.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13407,7 +13407,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/agent_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/agent_authoring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13417,7 +13417,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/command_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/command_authoring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13427,7 +13427,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/config_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/config_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13437,7 +13437,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/javascript_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/javascript_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13447,7 +13447,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/mcp_server_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/mcp_server_authoring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13457,7 +13457,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/python_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13467,7 +13467,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/overview_and_p0_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/overview_and_p0_parity.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13477,7 +13477,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p0_safety_and_boundary_discipline.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13487,7 +13487,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p1_required.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p1_required.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13497,7 +13497,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/rust_checklist/p2_evidence_validation_and_resources.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13507,7 +13507,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/shell_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/shell_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13517,7 +13517,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/skill_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/skill_authoring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13527,7 +13527,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/typescript_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/typescript_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13537,7 +13537,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/universal_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/checklists/universal_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13547,7 +13547,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/README.md",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/scripts/README.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13557,7 +13557,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/scripts/test_verify_alignment_drift.py",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13567,7 +13567,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13577,7 +13577,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
+      "path": ".opencode/skills/sk-code/code-skilled/assets/scripts/verify_stack_folders.py",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13587,7 +13587,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/live_mode_b/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13597,7 +13597,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/live_mode_b/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/live_mode_b/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13607,7 +13607,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a/skill-benchmark-report.json",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/router_mode_a/skill-benchmark-report.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13617,7 +13617,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/benchmark/router_mode_a/skill-benchmark-report.md",
+      "path": ".opencode/skills/sk-code/code-skilled/benchmark/router_mode_a/skill-benchmark-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13627,7 +13627,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/changelog/v1.0.0.0.md",
+      "path": ".opencode/skills/sk-code/code-skilled/changelog/v1.0.0.0.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13637,7 +13637,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/code_quality_gate.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/code_quality_gate.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13647,7 +13647,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/implementation_authoring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/implementation_authoring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13657,7 +13657,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/authoring_verification/verification_alignment.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/authoring_verification/verification_alignment.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13667,7 +13667,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/config_schema.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/config_schema.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13677,7 +13677,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/config_hooks/hooks_wiring.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/config_hooks/hooks_wiring.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13687,7 +13687,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/python_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/python_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13697,7 +13697,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/rust_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/rust_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13707,7 +13707,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/shell_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/shell_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13717,7 +13717,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language_standards/typescript_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/language_standards/typescript_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13727,7 +13727,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/manual_testing_playbook.md",
+      "path": ".opencode/skills/sk-code/code-skilled/manual_testing_playbook/manual_testing_playbook.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13737,7 +13737,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/quality_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/quality_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13747,7 +13747,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/quick_reference.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13757,7 +13757,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/config/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/config/style_guide.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13767,7 +13767,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/overview_modules_and_docs.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/overview_modules_and_docs.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13777,7 +13777,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quality_standards/security_testing_and_exemptions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quality_standards/security_testing_and_exemptions.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13787,7 +13787,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/quick_reference.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13797,7 +13797,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/javascript/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/javascript/style_guide.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13807,7 +13807,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/quality_standards.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/quality_standards.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13817,7 +13817,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/quick_reference.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/quick_reference.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13827,7 +13827,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/python/style_guide.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/python/style_guide.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13837,7 +13837,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/build_and_organization.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/build_and_organization.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13847,7 +13847,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/determinism_and_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/determinism_and_parity.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13857,7 +13857,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/docs_errors_and_async.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/docs_errors_and_async.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13867,7 +13867,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/modeling_collections_and_api.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/modeling_collections_and_api.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13877,7 +13877,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards/overview_and_data_ownership.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quality_standards/overview_and_data_ownership.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13887,7 +13887,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/collections_imports_and_errors.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/collections_imports_and_errors.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13897,7 +13897,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/determinism_parity_and_related.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/determinism_parity_and_related.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13907,7 +13907,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/naming_ordering_and_signatures.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/naming_ordering_and_signatures.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13917,7 +13917,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/overview_and_boundary_template.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/overview_and_boundary_template.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13927,7 +13927,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference/rustdoc_and_cargo.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/quick_reference/rustdoc_and_cargo.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13937,7 +13937,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/commenting_and_rustdoc.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13947,7 +13947,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/formatting_and_imports.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/formatting_and_imports.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13957,7 +13957,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13967,7 +13967,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_model.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_model.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13977,7 +13977,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/naming_conventions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/naming_conventions.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13987,7 +13987,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/overview_and_file_header.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/overview_and_file_header.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -13997,7 +13997,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/toolchain_and_project_structure.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/toolchain_and_project_structure.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14007,7 +14007,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/alignment_verification_automation.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/alignment_verification_automation.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14017,7 +14017,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/directory_and_test_conventions.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/directory_and_test_conventions.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14027,7 +14027,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/imports_and_exports.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/imports_and_exports.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14037,7 +14037,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization/overview_and_module_organization.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/code_organization/overview_and_module_organization.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14047,7 +14047,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/hooks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14057,7 +14057,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/naming_and_commenting.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/naming_and_commenting.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14067,7 +14067,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14077,7 +14077,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/overview_and_priority_blockers.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/overview_and_priority_blockers.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14087,7 +14087,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14097,7 +14097,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/functions_strings_and_checklist.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/functions_strings_and_checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14107,7 +14107,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/quick_reference/template_variables_and_loops.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/quick_reference/template_variables_and_loops.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14117,7 +14117,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/overview_structure_and_naming.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/overview_structure_and_naming.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14127,7 +14127,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/shell/style_guide/variables_functions_and_output.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/shell/style_guide/variables_functions_and_output.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14137,7 +14137,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/overview_and_type_system.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/overview_and_type_system.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14147,7 +14147,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsconfig_and_modules.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsconfig_and_modules.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14157,7 +14157,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quality_standards/tsdoc_errors_and_async.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quality_standards/tsdoc_errors_and_async.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14167,7 +14167,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/imports_errors_and_tsconfig.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14177,7 +14177,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/quick_reference/template_naming_and_types.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/quick_reference/template_naming_and_types.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14187,7 +14187,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/formatting_imports_and_coexistence.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/formatting_imports_and_coexistence.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14197,7 +14197,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/typescript/style_guide/overview_strict_and_naming.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/typescript/style_guide/overview_strict_and_naming.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -14207,7 +14207,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "kind": "symlink",
       "mode": "120000",
       "exec_bits": {
@@ -14215,7 +14215,7 @@
         "group": false,
         "other": false
       },
-      "link_path": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "link_path": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "link_target": "../../shared/references/workflow_debug.md",
       "resolved_target": ".opencode/skills/sk-code/shared/references/workflow_debug.md",
       "resolution": "inside-worktree",
@@ -14228,7 +14228,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_implement.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_implement.md",
       "kind": "symlink",
       "mode": "120000",
       "exec_bits": {
@@ -14236,7 +14236,7 @@
         "group": false,
         "other": false
       },
-      "link_path": ".opencode/skills/sk-code/code-opencode/references/workflow_implement.md",
+      "link_path": ".opencode/skills/sk-code/code-skilled/references/workflow_implement.md",
       "link_target": "../../shared/references/workflow_implement.md",
       "resolved_target": ".opencode/skills/sk-code/shared/references/workflow_implement.md",
       "resolution": "inside-worktree",
@@ -14249,7 +14249,7 @@
       }
     },
     {
-      "path": ".opencode/skills/sk-code/code-opencode/references/workflow_verify.md",
+      "path": ".opencode/skills/sk-code/code-skilled/references/workflow_verify.md",
       "kind": "symlink",
       "mode": "120000",
       "exec_bits": {
@@ -14257,7 +14257,7 @@
         "group": false,
         "other": false
       },
-      "link_path": ".opencode/skills/sk-code/code-opencode/references/workflow_verify.md",
+      "link_path": ".opencode/skills/sk-code/code-skilled/references/workflow_verify.md",
       "link_target": "../../shared/references/workflow_verify.md",
       "resolved_target": ".opencode/skills/sk-code/shared/references/workflow_verify.md",
       "resolution": "inside-worktree",
@@ -39264,7 +39264,7 @@
       }
     },
     {
-      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-opencode-playbook-ids.vitest.ts",
+      "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-skilled-playbook-ids.vitest.ts",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104193,7 +104193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104203,7 +104203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104213,7 +104213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/final-synthesis.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104223,7 +104223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104233,7 +104233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104243,7 +104243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104253,7 +104253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104263,7 +104263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104273,7 +104273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104283,7 +104283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104293,7 +104293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104303,7 +104303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104313,7 +104313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104323,7 +104323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104333,7 +104333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104343,7 +104343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/code-bug-handoffs.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104353,7 +104353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104363,7 +104363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104373,7 +104373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104383,7 +104383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104393,7 +104393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104403,7 +104403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104443,7 +104443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104453,7 +104453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104463,7 +104463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104473,7 +104473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104483,7 +104483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-fanout-config.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-fanout-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104493,7 +104493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104503,7 +104503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104513,7 +104513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104523,7 +104523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104533,7 +104533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104543,7 +104543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104553,7 +104553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104563,7 +104563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104573,7 +104573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104583,7 +104583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104593,7 +104593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104603,7 +104603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104613,7 +104613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104623,7 +104623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104633,7 +104633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104643,7 +104643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104653,7 +104653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104663,7 +104663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104673,7 +104673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104683,7 +104683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104693,7 +104693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104703,7 +104703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104713,7 +104713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104723,7 +104723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104733,7 +104733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104743,7 +104743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104753,7 +104753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104763,7 +104763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104773,7 +104773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104783,7 +104783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104793,7 +104793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104803,7 +104803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104813,7 +104813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104823,7 +104823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104833,7 +104833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104843,7 +104843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104853,7 +104853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104863,7 +104863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104873,7 +104873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104883,7 +104883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104893,7 +104893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104903,7 +104903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104913,7 +104913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104923,7 +104923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104933,7 +104933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104943,7 +104943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104953,7 +104953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104963,7 +104963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104973,7 +104973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104983,7 +104983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104993,7 +104993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105003,7 +105003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105013,7 +105013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105023,7 +105023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105033,7 +105033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105043,7 +105043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105053,7 +105053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105063,7 +105063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105073,7 +105073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105083,7 +105083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105093,7 +105093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105103,7 +105103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105113,7 +105113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105123,7 +105123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105133,7 +105133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105143,7 +105143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105153,7 +105153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105163,7 +105163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105173,7 +105173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105183,7 +105183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105193,7 +105193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105203,7 +105203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105213,7 +105213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105223,7 +105223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105233,7 +105233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105243,7 +105243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105253,7 +105253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105263,7 +105263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105273,7 +105273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105283,7 +105283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105293,7 +105293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105303,7 +105303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105313,7 +105313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105323,7 +105323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105333,7 +105333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105343,7 +105343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105353,7 +105353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105363,7 +105363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105373,7 +105373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-config.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105383,7 +105383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105393,7 +105393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105403,7 +105403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105413,7 +105413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105423,7 +105423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105433,7 +105433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105443,7 +105443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105453,7 +105453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105463,7 +105463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-005.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-005.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105473,7 +105473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-006.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-006.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105483,7 +105483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-007.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deltas/iter-007.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105493,7 +105493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105503,7 +105503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105513,7 +105513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105523,7 +105523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105533,7 +105533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105543,7 +105543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105553,7 +105553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105563,7 +105563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105573,7 +105573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105583,7 +105583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105593,7 +105593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105603,7 +105603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105613,7 +105613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105623,7 +105623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105633,7 +105633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105643,7 +105643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105653,7 +105653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105663,7 +105663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/observability-events.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/observability-events.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105673,7 +105673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/orchestration-summary.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/review/orchestration-summary.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105683,7 +105683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-skilled/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107563,7 +107563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/checklist.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107573,7 +107573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/decision-record.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107583,7 +107583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/description.json",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107593,7 +107593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/global-quality-sweep.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/global-quality-sweep.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107603,7 +107603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107613,7 +107613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107623,7 +107623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/plan.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107633,7 +107633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/research/research.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107643,7 +107643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-1-139-code-adjusted.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-1-139-code-adjusted.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107653,7 +107653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-2-139-quality-patterns.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-2-139-quality-patterns.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107663,7 +107663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-3-global-sweep-pattern.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-3-global-sweep-pattern.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107673,7 +107673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-4-review-skill-gaps.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-4-review-skill-gaps.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107683,7 +107683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-5-opencode-skill-delta.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-5-opencode-skill-delta.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107693,7 +107693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/agent-6-language-matrix.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/agent-6-language-matrix.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107703,7 +107703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/scratch/final-quality-evidence-2026-02-22.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/scratch/final-quality-evidence-2026-02-22.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107713,7 +107713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/spec.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107723,7 +107723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-opencode-refinement/tasks.md",
+      "path": ".opencode/specs/sk-code/z_archive/002-sk-code-skilled-refinement/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107963,7 +107963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/checklist.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107973,7 +107973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/decision-record.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107983,7 +107983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/description.json",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107993,7 +107993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108003,7 +108003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108013,7 +108013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/plan.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108023,7 +108023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/resource-map.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108033,7 +108033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deep-review-config.json",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108043,7 +108043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108053,7 +108053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108063,7 +108063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108073,7 +108073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108083,7 +108083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108093,7 +108093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108103,7 +108103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108113,7 +108113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108123,7 +108123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-005.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-005.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108133,7 +108133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-006.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-006.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108143,7 +108143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/deltas/iter-007.jsonl",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/deltas/iter-007.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108153,7 +108153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108163,7 +108163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108173,7 +108173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108183,7 +108183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108193,7 +108193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108203,7 +108203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108213,7 +108213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108223,7 +108223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/iterations/iteration-008-cli-copilot-gpt55-high.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108233,7 +108233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-1.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-1.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108243,7 +108243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-2.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-2.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108253,7 +108253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-3.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-3.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108263,7 +108263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-4.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-4.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108273,7 +108273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-5.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-5.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108283,7 +108283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-6.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-6.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108293,7 +108293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/prompts/iteration-7.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/prompts/iteration-7.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108303,7 +108303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/resource-map.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108313,7 +108313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/review/review-report.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/review/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108323,7 +108323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/scratch/.gitkeep",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/scratch/.gitkeep",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108333,7 +108333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/spec.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -108343,7 +108343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-opencode-merger/tasks.md",
+      "path": ".opencode/specs/sk-code/z_archive/006-sk-code-skilled-merger/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136413,7 +136413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/checklist.md",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136423,7 +136423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/description.json",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136433,7 +136433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/graph-metadata.json",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136443,7 +136443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/plan.md",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136453,7 +136453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/spec.md",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -136463,7 +136463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/tasks.md",
+      "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -175793,7 +175793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation/scratch/sk-code-opencode-audit-prompt.md",
+      "path": ".opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation/scratch/sk-code-skilled-audit-prompt.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -175803,7 +175803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation/scratch/sk-code-opencode-audit-report.md",
+      "path": ".opencode/specs/system-code-graph/z_archive/031-code-graph-buildout/005-resilience-and-advisor/003-code-graph-backend-resilience-implementation/scratch/sk-code-skilled-audit-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192643,7 +192643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-opencode-language-split-design.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-skilled-language-split-design.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192753,7 +192753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/checklist.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192763,7 +192763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/description.json",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192773,7 +192773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/graph-metadata.json",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192783,7 +192783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/implementation-summary.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192793,7 +192793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/plan.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192803,7 +192803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/spec.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -192813,7 +192813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/tasks.md",
+      "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309303,7 +309303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/audit-findings.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/audit-findings.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309313,7 +309313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/checklist.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309323,7 +309323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/description.json",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309333,7 +309333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/graph-metadata.json",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309343,7 +309343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/implementation-summary.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309353,7 +309353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309363,7 +309363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/research/prompts/iteration-001.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/research/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309373,7 +309373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/resource-map.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309383,7 +309383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/spec.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -309393,7 +309393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/tasks.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -386283,7 +386283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-001-sk-code-opencode-standards-audit.md",
+      "path": ".opencode/specs/system-speckit/027-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-001-sk-code-skilled-standards-audit.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428003,7 +428003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/description.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428013,7 +428013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/graph-metadata.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428023,7 +428023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/deep-review-config.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428033,7 +428033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B01.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B01.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428043,7 +428043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B01.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B01.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428053,7 +428053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B01.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B01.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428063,7 +428063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B02.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B02.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428073,7 +428073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B02.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B02.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428083,7 +428083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B02.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B02.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428093,7 +428093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B03.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B03.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428103,7 +428103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B03.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B03.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428113,7 +428113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B03.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B03.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428123,7 +428123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B04.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B04.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428133,7 +428133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B04.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B04.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428143,7 +428143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B04.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B04.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428153,7 +428153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B05.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B05.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428163,7 +428163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B05.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B05.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428173,7 +428173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B05.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B05.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428183,7 +428183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B06.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B06.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428193,7 +428193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B06.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B06.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428203,7 +428203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B06.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B06.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428213,7 +428213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B07.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B07.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428223,7 +428223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B07.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B07.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428233,7 +428233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B07.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B07.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428243,7 +428243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B08.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B08.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428253,7 +428253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B08.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B08.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428263,7 +428263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B08.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B08.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428273,7 +428273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428283,7 +428283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428293,7 +428293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B09.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B09.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428303,7 +428303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B10.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428313,7 +428313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B10.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428323,7 +428323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B10.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B10.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428333,7 +428333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B11.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B11.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428343,7 +428343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B11.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B11.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428353,7 +428353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B11.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B11.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428363,7 +428363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B12.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B12.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428373,7 +428373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B12.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B12.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428383,7 +428383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B12.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B12.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428393,7 +428393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B13.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B13.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428403,7 +428403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B13.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B13.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428413,7 +428413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B14.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B14.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428423,7 +428423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B14.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B14.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428433,7 +428433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B14.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B14.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428443,7 +428443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B15.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428453,7 +428453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B15.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428463,7 +428463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B15.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B15.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428473,7 +428473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B16.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B16.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428483,7 +428483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B16.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B16.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428493,7 +428493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B16.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B16.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428503,7 +428503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B17.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B17.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428513,7 +428513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B17.json",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B17.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428523,7 +428523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B17.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B17.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428533,7 +428533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B18.err",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B18.err",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -428543,7 +428543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-opencode/review/seats/B18.prompt.txt",
+      "path": ".opencode/specs/system-speckit/028-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/002-code-vs-sk-code-skilled/review/seats/B18.prompt.txt",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {

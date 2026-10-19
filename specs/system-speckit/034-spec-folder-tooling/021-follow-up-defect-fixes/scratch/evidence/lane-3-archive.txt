@@ -101,7 +101,7 @@ Green after the production fix
 - Full file command: `npx vitest run --config ../../vitest.config.ts --project cli tests/archive-track.vitest.ts`. Result: 54 passed, exit 0, duration 78.13s.
 - `shellcheck -S warning .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh`: exit 0, no output.
 - `bash -n .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh`: exit 0, no output.
-- OpenCode alignment check: `python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`: exit 0, 552 files scanned, 0 findings, 0 errors, 0 warnings and 0 violations.
+- OpenCode alignment check: `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli`: exit 0, 552 files scanned, 0 findings, 0 errors, 0 warnings and 0 violations.
 
 Scratch-mirror mutant proof
 - Control build: `node /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/gA/mkmirror.mjs archive-p23p24-control-20261010 -`: exit 0. In that mirror's `.skilled/skills/system-spec-kit/runtime/cli`, the focused Vitest command reported 6 passed and 48 skipped out of 54, exit 0.

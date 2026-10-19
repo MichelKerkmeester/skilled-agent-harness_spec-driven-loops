@@ -63,7 +63,7 @@ The playbook directory now contains **233 scenario files / 272 exact IDs**, but 
 ### H-2: Unchecked Runtime Boundary Casts (Agent 3)
 **Files:** lineage-state.ts:248, scope-governance.ts:382, community-detection.ts:322, shared-memory.ts:242
 
-Widespread `as` assertions on SQLite row data and JSON.parse() results bypass runtime verification at the most failure-prone boundaries. sk-code-opencode explicitly prefers `unknown` + type guards over `as`.
+Widespread `as` assertions on SQLite row data and JSON.parse() results bypass runtime verification at the most failure-prone boundaries. sk-code-skilled explicitly prefers `unknown` + type guards over `as`.
 
 ### H-3: Silent Lineage Side-Effect Failures (Agent 3)
 **Files:** lineage-state.ts:176, :378
@@ -107,7 +107,7 @@ Several 90-150 line functions combine authorization, persistence, audit, and res
 ### M-7: ESM Syntax Instead of CommonJS Convention (Agent 3)
 **Files:** All reviewed MCP runtime files use `import`/`export` syntax.
 
-sk-code-opencode states CommonJS for MCP server code. Rated as standards non-compliance rather than runtime defect (compile target not inspected).
+sk-code-skilled states CommonJS for MCP server code. Rated as standards non-compliance rather than runtime defect (compile target not inspected).
 
 ### M-8: Parent Spec Docs Internally Inconsistent (Agent 2)
 **Files:** 015-manual-testing-per-playbook/spec.md, checklist.md, implementation-summary.md

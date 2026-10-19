@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/036-routing-and-launcher-hardening",
+  "spec_folder": "system-skill-advisor/036-routing-and-launcher-hardening",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing and launcher hardening",
+      "fix the advisor open ends left after",
+      "scorer substring partial credit",
+      "launcher npm ci wipes node_modules",
+      "advisor playbook validator exclusion",
+      "routing and launcher hardening plan",
+      "routing and launcher hardening tasks",
+      "routing and launcher hardening acceptance criteria",
+      "routing and launcher hardening implementation summary"
+    ],
+    "key_topics": [
+      "routing",
+      "launcher",
+      "hardening",
+      "advisor",
+      "open",
+      "ends",
+      "left",
+      "scorer",
+      "substring",
+      "partial",
+      "credit",
+      "npm"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/sk-git/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-phrase-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/doctor-phrase-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "text.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/text.ts",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fusion.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor releases left six advisor defects open",
+    "created_at": "2026-10-17T06:02:46Z",
+    "last_save_at": "2026-10-18T20:45:29.981Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f49532b48fa7ce1e9ad2f65f0434255983ac335fb0edaff1cb10c169be800868",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f6d08a4e873b9c0823905c007a6a7af9e7ebfdb86c757241bee777b876f5b914",
+      "plan.md": "e57d7eec0286dd619e6efc4177e1659f85b5ea2c676c05d13fccf2f527d2206e",
+      "tasks.md": "6dad8c5692f56c1b86afe4376d9f8d884a3ce48cf7c6c785da234f17a5c88f08",
+      "implementation-summary.md": "4a44e0f2e76428273ff5b1c45c64a17de28b7c1e7d281422a018f3548823cfc8"
+    },
+    "last_active_at": null
+  }
+}

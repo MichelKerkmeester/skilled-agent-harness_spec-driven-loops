@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.2.0
+version: 2.7.3.0
 ---
 
 # System Spec Kit
@@ -548,7 +548,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/check-api-boundary.sh
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "spec folder"
 ```
 
-Four doctor commands wrap the checks this skill owns:
+Five doctor commands wrap the checks this skill owns:
 
 | Command | What it does |
 |---|---|
@@ -556,6 +556,7 @@ Four doctor commands wrap the checks this skill owns:
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
 | `/doctor:env` | Shows the switches documented in [ENV-REFERENCE.md](./runtime/ENV-REFERENCE.md) and where each is set, and saves a preference after you approve the exact line |
 | `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback`, `record-base` and `compat`, which moves a v3 spec layout to v4 behind two approvals |
+| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks and names the repair command for each failing one |
 
 ---
 

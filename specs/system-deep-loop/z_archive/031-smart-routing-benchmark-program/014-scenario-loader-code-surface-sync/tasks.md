@@ -57,7 +57,7 @@ _memory:
 - [x] T007 Exclude router-doc finder deliberately [small] — `router-replay.cjs` line 222 locates the router doc under `references/`, not surface gold, and is not on the sk-code hub path
 
 ### sk-design Baseline
-- [x] T008 Update `extractPaths` in `load-playbook-scenarios.cjs` [small] — added the `code-[a-z]+/` alternative so `code-webflow`, `code-opencode`, and `code-animation` paths parse whole
+- [x] T008 Update `extractPaths` in `load-playbook-scenarios.cjs` [small] — added the `code-[a-z]+/` alternative so `code-webflow`, `code-skilled`, and `code-animation` paths parse whole
 - [x] T009 Update and export `extractForbiddenPrefixes` in `load-playbook-scenarios.cjs` [small] — forbidden-prefix parsing now captures `code-<surface>/` glob prefixes and is unit-testable
 
 ### deep-loop Baseline

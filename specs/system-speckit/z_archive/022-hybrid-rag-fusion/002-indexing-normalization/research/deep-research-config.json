@@ -1,5 +1,5 @@
 {
-  "researchTopic": "Indexing-normalization improvement audit: logic, architecture, automation, UX, bugs, and cross-skill alignment with system-spec-kit, sk-code-opencode, and sk-doc",
+  "researchTopic": "Indexing-normalization improvement audit: logic, architecture, automation, UX, bugs, and cross-skill alignment with system-spec-kit, sk-code-skilled, and sk-doc",
   "specFolder": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/002-indexing-normalization",
   "executionMode": "AUTONOMOUS",
   "maxIterations": 20,

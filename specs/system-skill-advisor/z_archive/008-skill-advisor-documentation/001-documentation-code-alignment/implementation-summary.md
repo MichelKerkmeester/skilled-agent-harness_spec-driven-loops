@@ -1,6 +1,6 @@
 ---
 title: "...and-context-optimization/006-skill-advisor/005-skill-advisor-docs-and-code-alignment/implementation-summary]"
-description: "Phase 022 updated skill-advisor docs for hook-first invocation and completed a sk-code-opencode audit of Phase 020 TypeScript hook files with nine minor remediations."
+description: "Phase 022 updated skill-advisor docs for hook-first invocation and completed a sk-code-skilled audit of Phase 020 TypeScript hook files with nine minor remediations."
 trigger_phrases:
   - "022 implementation summary"
   - "skill-advisor hook docs complete"
@@ -58,7 +58,7 @@ The manual testing playbook now includes a `06--hook-routing` folder and root in
 
 The setup guide now names hook invocation as the primary Gate 2 mode and keeps the one-shot CLI mode as a fallback path.
 
-### sk-code-opencode Audit
+### sk-code-skilled Audit
 
 The TypeScript audit covered all 18 scoped Phase 020 files. No major findings were found. Nine minor findings were fixed in place, and no style findings were deferred.
 
@@ -99,7 +99,7 @@ Full ledger: [`scratch/audit-findings.md`](scratch/audit-findings.md).
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The work started from the Phase 022 spec and tasks, then loaded the sk-code-opencode TypeScript standards, Phase 020 hook reference, Phase 020 validation playbook, current skill-advisor docs, and every scoped TypeScript file before editing. Documentation edits followed existing catalog and playbook formats. TypeScript fixes were limited to comments, type annotations, and error-message clarity so Phase 020 behavior stayed unchanged.
+The work started from the Phase 022 spec and tasks, then loaded the sk-code-skilled TypeScript standards, Phase 020 hook reference, Phase 020 validation playbook, current skill-advisor docs, and every scoped TypeScript file before editing. Documentation edits followed existing catalog and playbook formats. TypeScript fixes were limited to comments, type annotations, and error-message clarity so Phase 020 behavior stayed unchanged.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -111,7 +111,7 @@ The work started from the Phase 022 spec and tasks, then loaded the sk-code-open
 |----------|-----|
 | Document hooks as primary and CLI as fallback | Phase 020 made prompt-time hook injection the default operator path, but direct CLI output is still useful for diagnostics and scripted checks. |
 | Add a new hook-routing playbook folder instead of folding steps into older categories | Existing manual testing uses numbered category folders, and hook behavior spans runtime setup, smoke tests, disable flag, stale freshness, and privacy checks. |
-| Fix comment and error-message drift without behavior changes | The mission required preserving the 118-test Phase 020 surface while aligning with sk-code-opencode standards. |
+| Fix comment and error-message drift without behavior changes | The mission required preserving the 118-test Phase 020 surface while aligning with sk-code-skilled standards. |
 | Create missing Level 2 packet docs | The spec folder only had `spec.md` and `tasks.md`; strict validation needs the packet-local plan, checklist, and implementation summary evidence. |
 <!-- /ANCHOR:decisions -->
 

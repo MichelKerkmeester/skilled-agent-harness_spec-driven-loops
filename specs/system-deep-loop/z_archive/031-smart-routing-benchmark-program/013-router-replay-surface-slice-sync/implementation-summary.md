@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Packet 037 restored deterministic router-replay surface-slicing for sk-code after the surface packets moved to `code-*` folder names. The harness now slices against `code-webflow/`, `code-opencode/`, and `code-animation/` resource paths in the same layout used by the smart router `RESOURCE_MAP`. The task-text detectors were intentionally left unchanged because they classify prompt tokens, not resource folders. A new four-test Vitest guard locks WEBFLOW, OPENCODE, UNKNOWN Motion, and corpus-wide no-cross-surface-leak behavior. The fix is proven by direct leak elimination and guard tests, not by the still gold-limited sk-code aggregate.
+Packet 037 restored deterministic router-replay surface-slicing for sk-code after the surface packets moved to `code-*` folder names. The harness now slices against `code-webflow/`, `code-skilled/`, and `code-animation/` resource paths in the same layout used by the smart router `RESOURCE_MAP`. The task-text detectors were intentionally left unchanged because they classify prompt tokens, not resource folders. A new four-test Vitest guard locks WEBFLOW, OPENCODE, UNKNOWN Motion, and corpus-wide no-cross-surface-leak behavior. The fix is proven by direct leak elimination and guard tests, not by the still gold-limited sk-code aggregate.
 
 ### Files Changed
 
@@ -82,7 +82,7 @@ Packet 037 restored deterministic router-replay surface-slicing for sk-code afte
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The work started by diagnosing why single-surface sk-code scenarios were over-routing both surface resource sets. The harness's prompt detectors still identified WEBFLOW, OPENCODE, and Motion tasks, but the resource slicing logic still expected bare path prefixes from before the sk-code surface rename. Since the current map contains `code-webflow/`, `code-opencode/`, and `code-animation/`, `hasSurfaceLayout` stayed false and the slicing path never activated.
+The work started by diagnosing why single-surface sk-code scenarios were over-routing both surface resource sets. The harness's prompt detectors still identified WEBFLOW, OPENCODE, and Motion tasks, but the resource slicing logic still expected bare path prefixes from before the sk-code surface rename. Since the current map contains `code-webflow/`, `code-skilled/`, and `code-animation/`, `hasSurfaceLayout` stayed false and the slicing path never activated.
 
 The repair changed only the resource-folder-facing constants: `SURFACE_PREFIXES`, the `hasSurfaceLayout` prefix check, and the OpenCode language sub-slice regex. The prompt-token detectors were left unchanged. The regression guard then asserted the corrected behavior directly: WEBFLOW tasks keep only webflow resources, OPENCODE tasks keep only opencode resources, UNKNOWN Motion keeps the animation overlay while dropping both surfaces, and the corpus no longer routes both surfaces for a single-surface scenario.
 
@@ -116,8 +116,8 @@ None. The harness fix, regression guard, and direct leak proof are complete. Rem
 
 | Test Type | Status | Coverage | Evidence |
 |-----------|--------|----------|----------|
-| Over-routing leak diagnostic | Pass | Scored non-browser scenarios | 13 of 21 scenarios routed both `code-webflow/` and `code-opencode/` before the fix; 0 of 21 after the fix |
-| Spot-check replay | Pass | Representative WEBFLOW, UNKNOWN Motion, and OPENCODE scenarios | SD-001 routes `code-webflow` and no `code-opencode`; CS-004 keeps `code-animation` and drops both surfaces; LS-001 routes `code-opencode` only |
+| Over-routing leak diagnostic | Pass | Scored non-browser scenarios | 13 of 21 scenarios routed both `code-webflow/` and `code-skilled/` before the fix; 0 of 21 after the fix |
+| Spot-check replay | Pass | Representative WEBFLOW, UNKNOWN Motion, and OPENCODE scenarios | SD-001 routes `code-webflow` and no `code-skilled`; CS-004 keeps `code-animation` and drops both surfaces; LS-001 routes `code-skilled` only |
 | Surface-slice regression guard | Pass | Four new guard tests | `tests/surface-slice-sync.vitest.ts` adds four tests and all pass |
 | Harness Vitest suite | Pass with known pre-existing failure | skill-benchmark tests | Baseline 1 failed / 100 passed across 101 tests in 6 files; post-fix 1 failed / 104 passed across 105 tests in 7 files; the single failure is the same out-of-scope `res.intents` assertion |
 | sk-code router-mode benchmark | Baseline captured, gold-limited | Follow-up starting point | Aggregate 48, D1-intra 68, D2 52, D3 25, D5 100, hard gate pass; recorded only as honest starting baseline for the gold-alignment follow-up |

@@ -1,0 +1,6 @@
+{
+  "sk-git": ["git hooks", "git hook", "git setup", "git standards", "git hooks broken", "commit rules", "branch naming", "worktree", "pre-push hook", "commit message", "push allowlist", "hook trust", "rebase", "git worktree", "create worktree", "conventional commits", "commit message rules", "branch rules", "merge conflict", "git rebase", "pre-commit hook", "commit hook", "git config", "open a pr", "pull request", "git push", "squash commits", "git branch", "git commit", "cherry pick", "finish branch", "git status", "hook gates", "git rules", "commit standards"],
+  "system-spec-kit": ["speckit doctor", "spec folder", "trigger index", "spec kit", "validate spec", "save context", "resume spec"],
+  "system-skill-advisor": ["skill advisor", "advisor rebuild", "skill graph", "advisor status", "skill routing"],
+  "other": ["env vars", "environment variables", "mcp tools", "code mode", "runtime mirrors", "deep loop", "deep research", "sk-code", "code review", "update skilled", "parent skill", "mcp setup"]
+}

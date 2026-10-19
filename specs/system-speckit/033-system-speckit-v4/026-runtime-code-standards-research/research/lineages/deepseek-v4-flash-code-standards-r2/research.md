@@ -4,7 +4,7 @@
 
 ## 1. Overview
 
-Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding `node_modules/` and `dist/`) against this repo's code standards (sk-code-opencode, sk-code-quality, universal code-quality-standards). This is the **r2** lineage: the two prior passes already inventoried and fixed a broad deviation set (see the orchestrator's "already found and fixed" list), so this lineage scoped to the remaining priority surfaces and ran exactly 5 iterations (config.maxIterations, stopPolicy `max-iterations`). Output is a citation-complete deviation inventory feeding a remediation packet. Audit-only; no code was edited.
+Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding `node_modules/` and `dist/`) against this repo's code standards (sk-code-skilled, sk-code-quality, universal code-quality-standards). This is the **r2** lineage: the two prior passes already inventoried and fixed a broad deviation set (see the orchestrator's "already found and fixed" list), so this lineage scoped to the remaining priority surfaces and ran exactly 5 iterations (config.maxIterations, stopPolicy `max-iterations`). Output is a citation-complete deviation inventory feeding a remediation packet. Audit-only; no code was edited.
 
 ## 2. Methodology
 
@@ -88,4 +88,4 @@ One priority surface per iteration, reading the relevant standard clause before 
 
 ## 9. References
 
-Standards consulted: `sk-code-opencode/references/{typescript,shell,shared}/**`; `sk-code-quality/SKILL.md`; `shared/references/universal/code-quality-standards.md`. Iteration evidence: `iterations/iteration-001.md` … `iteration-005.md`; state: `deep-research-state.jsonl`. `resource-map.md` not present at init; coverage gate skipped.
+Standards consulted: `sk-code-skilled/references/{typescript,shell,shared}/**`; `sk-code-quality/SKILL.md`; `shared/references/universal/code-quality-standards.md`. Iteration evidence: `iterations/iteration-001.md` … `iteration-005.md`; state: `deep-research-state.jsonl`. `resource-map.md` not present at init; coverage gate skipped.

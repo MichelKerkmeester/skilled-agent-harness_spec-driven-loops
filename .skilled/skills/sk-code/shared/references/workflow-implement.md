@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface implementation standards"
 importance_tier: important
 contextType: general
-version: 2.1.0.2
+version: 2.1.1.0
 ---
 
 # Workflow Reference - Implementation
@@ -77,7 +77,7 @@ Apply the Design Restraint Ladder from the universal code quality standards befo
 
 ### OpenCode Implementation Guardrails
 
-OpenCode work: see the implementation guardrails in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#2-implementation-guardrails).
+OpenCode work: see the implementation guardrails in [OpenCode workflow guardrails](../../sk-code-skilled/references/shared/workflow-guardrails.md#2-implementation-guardrails).
 
 ---
 

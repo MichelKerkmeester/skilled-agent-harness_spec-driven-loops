@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.0.13
+version: 0.8.1.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -37,6 +37,8 @@ Validate the common disable flag across the native CLI, Python shim, runtime hoo
 ---
 
 ## 3. TEST EXECUTION
+
+### Commands
 
 1. Native CLI (isolate both the socket and the DB so a cold daemon starts and inherits the flag). The cold start leaves a sandbox launcher and daemon running, and a daemon that outlives its sandbox recreates the folder the next time it writes to it. The block sends no signal. It gives the sandbox daemon a 12-second idle timeout. It then waits until the lease file is gone, the socket folder is empty, no process holds a file open in the sandbox and at least 25 seconds have passed, which outlasts the idle timeout and its six-second check. Only then does it remove the sandbox. The open-file test covers a launcher that crashes, because a crashing launcher deletes its lease without waiting for its daemon, and the daemon keeps its database open until it exits. The block does nothing when `$SANDBOX` is empty, as it is when its lines run in separate shells. It keeps the sandbox when `lsof` cannot list the shell's own open files, since the open-file test then proves nothing. It removes with `rm -r`, so `sandbox removed` prints only when a folder was really removed:
 
@@ -89,15 +91,6 @@ echo "diagnostic lines: $BEFORE -> $AFTER"
 tail -n 1 "$DIAG"
 ```
 
-Observed on 2026-09-26:
-
-```text
-{}
-Exit: 0
-diagnostic lines: 229 -> 230
-{"timestamp":"2026-09-26T20:03:34.144Z","runtime":"claude","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false}
-```
-
 ### Expected Signals
 
 - Native `advisor_recommend` returns `recommendations: []`, `freshness: "unavailable"` and `ADVISOR_DISABLED`.
@@ -106,7 +99,7 @@ diagnostic lines: 229 -> 230
 - OpenCode plugin returns disabled/skipped output without invoking the advisor (covered by the plugin test's env opt-out case).
 - Hook adapter prints `{}` and exits `0`. The diagnostics JSONL gains one line, and that newest record has `status: "skipped"` and `freshness: "unavailable"`. If the file had passed 300 lines, the append trims it to the newest 200, so read the last line instead of the count.
 
-### Failure Modes
+### Failure Triage
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
@@ -117,10 +110,24 @@ diagnostic lines: 229 -> 230
 | `lsof` cannot run | Step 1 prints `lsof cannot list open files here` and keeps the sandbox | `lsof` is missing or the runtime's sandbox blocks it, so the block cannot tell whether the sandbox daemon still holds its database. Record the environment limit. Remove the sandbox by hand once `lsof -t +D` in a shell where it works shows nothing holds it. |
 | Step 1 ran in pieces | Step 1 prints `SANDBOX is unset` | Its lines ran in separate shells, so nothing was removed. Run step 1 again as one block. |
 
+### Evidence
+
+- Capture each numbered step's output and exit status.
+- Record whether the native response has empty recommendations, freshness unavailable and ADVISOR_DISABLED. Capture the sandbox cleanup result and check that no temporary folder remains.
+- Record whether the Python shim returns an empty list or prompt-safe disabled output. Record whether the plugin returns disabled or skipped output without invoking the advisor.
+- Capture the hook output {}, exit status 0, diagnostic line counts and newest record values status skipped and freshness unavailable.
+- If the diagnostics file exceeds 300 lines, record that the append trims it to 200 and inspect the newest record.
+
+### Pass / Fail
+
+- **Pass**: Every expected signal holds.
+- **Fail**: Any signal differs.
+
 ---
 
 ## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`
 - `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
 - `.skilled/plugins/system-skill-advisor.js`

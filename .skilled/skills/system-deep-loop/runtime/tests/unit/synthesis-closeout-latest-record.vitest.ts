@@ -138,4 +138,78 @@ describe('synthesis-closeout latest iteration records', () => {
       fs.rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('counts cumulative review snapshots once when closeout compares findings', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'synthesis-closeout-review-cumulative-'));
+    try {
+      const findingA = { id: 'R1-P2-001', title: 'Finding A' };
+      const findingB = { id: 'R2-P2-001', title: 'Finding B' };
+      const fixture = createCloseoutFixture(root, 'review', [
+        {
+          type: 'iteration',
+          iteration: 1,
+          findingsCount: 1,
+          findingDetails: [findingA],
+        },
+        {
+          type: 'iteration',
+          iteration: 2,
+          findingsCount: 2,
+          findingDetails: [findingA, findingB],
+        },
+        {
+          type: 'iteration',
+          iteration: 3,
+          findingsCount: 2,
+          findingDetails: [findingA, findingB],
+        },
+      ], {
+        openFindings: [
+          { findingId: findingA.id, title: findingA.title },
+          { findingId: findingB.id, title: findingB.title },
+        ],
+        resolvedFindings: [],
+        repeatedFindings: [
+          { findingId: findingA.id, title: findingA.title },
+          { findingId: findingB.id, title: findingB.title },
+        ],
+      });
+
+      expect(fixture.result.status, `${fixture.result.stdout}\n${fixture.result.stderr}`).toBe(0);
+      const event = readSynthesisEvent(fixture.eventDir);
+      expect(event.eventName).toBe('synthesis_complete');
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('detects a registry that collapses distinct findings with the same title', () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'synthesis-closeout-review-collapsed-'));
+    try {
+      const registryFinding = { findingId: 'R1-P1-001', title: 'Same title' };
+      const fixture = createCloseoutFixture(root, 'review', [
+        {
+          type: 'iteration',
+          iteration: 1,
+          findingsCount: 2,
+          findingDetails: [
+            { id: 'R1-P1-001', title: 'Same title' },
+            { id: 'R1-P1-002', title: 'Same title' },
+          ],
+        },
+      ], {
+        openFindings: [registryFinding],
+        resolvedFindings: [],
+        repeatedFindings: [registryFinding],
+      });
+
+      expect(fixture.result.status, `${fixture.result.stdout}\n${fixture.result.stderr}`).toBe(0);
+      const event = readSynthesisEvent(fixture.eventDir);
+      expect(event.eventName).toBe('synthesis_incomplete');
+      expect((event.data as Record<string, unknown>).invariantFailures)
+        .toContain('structured_state_findings_partially_reflected_in_registry');
+    } finally {
+      fs.rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

@@ -155,7 +155,7 @@ CLI Agent Query ("find authentication middleware")
 
 - [x] Align `../../../skill/mcp-coco-index/SKILL.md`, `../../../skill/mcp-coco-index/README.md`, `../../../skill/mcp-coco-index/INSTALL_GUIDE.md`, `../../../skill/mcp-coco-index/references/tool_reference.md`, `../../../skill/mcp-coco-index/references/search_patterns.md`, and `../../../skill/mcp-coco-index/assets/config_templates.md` with the installed CLI/MCP contract
 - [x] Add `../../../skill/mcp-coco-index/references/cross_cli_playbook.md` for safe repeated-query, troubleshooting, and cross-CLI usage guidance
-- [x] Add `scripts/common.sh`, `scripts/doctor.sh`, and `scripts/ensure_ready.sh` per `sk-code-opencode`
+- [x] Add `scripts/common.sh`, `scripts/doctor.sh`, and `scripts/ensure_ready.sh` per `sk-code-skilled`
 - [x] Update `scripts/install.sh` and `scripts/update.sh` to reuse shared helpers and support `--root`
 - [x] Update `.opencode/skills/skill-advisor/scripts/skill_advisor.py` to prefer the repo-local `ccc` binary and auto-route semantic exploration prompts
 - [x] Validate helper scripts, JSON output cleanliness, and advisor routing behavior
@@ -215,7 +215,7 @@ CLI Agent Query ("find authentication middleware")
 | cocoindex==1.0.0a33 | Transitive dep | Green - alpha, pin version | Core Rust indexing engine unavailable |
 | sqlite-vec | Transitive dep | Green | Vector search unavailable |
 | all-MiniLM-L6-v2 | Model (auto-downloaded) | Green | Embedding generation unavailable |
-| `sk-code-opencode` | Project skill | Green - available in repo | Shell/Python helper quality expectations would be undefined |
+| `sk-code-skilled` | Project skill | Green - available in repo | Shell/Python helper quality expectations would be undefined |
 | Downstream rollout checklist | Project doc | Green - added at `../../../skill/mcp-coco-index/references/downstream_adoption_checklist.md` | Sibling repos would lack a canonical adoption recipe |
 
 <!-- /ANCHOR:dependencies -->

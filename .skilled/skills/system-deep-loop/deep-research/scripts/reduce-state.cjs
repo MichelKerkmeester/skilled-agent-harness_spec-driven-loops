@@ -2609,7 +2609,8 @@ function replaceAnchorSection(content, anchorId, heading, body) {
     throw error;
   }
 
-  return content.replace(pattern, replacement);
+  // A function replacement keeps `$`-sequences in section text literal.
+  return content.replace(pattern, () => replacement);
 }
 
 function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAnchorId) {
@@ -2617,7 +2618,7 @@ function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAncho
   const replacement = buildAnchorSection(anchorId, heading, body);
 
   if (pattern.test(content)) {
-    return content.replace(pattern, replacement);
+    return content.replace(pattern, () => replacement);
   }
 
   const beforePattern = new RegExp(`\\n?<!-- ANCHOR:${beforeAnchorId} -->`, 'm');
@@ -2627,7 +2628,7 @@ function upsertAnchorSectionBefore(content, anchorId, heading, body, beforeAncho
     throw error;
   }
 
-  return content.replace(beforePattern, `\n${replacement}\n$&`);
+  return content.replace(beforePattern, (match) => `\n${replacement}\n${match}`);
 }
 
 function updateStrategyContent(strategyContent, registry, iterationFiles, iterationRecords) {

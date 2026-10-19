@@ -58,7 +58,7 @@ The installed hook paths, comment-hygiene matcher, test naming table, Node disco
 
 - `git rev-parse HEAD` returned `cf5c8d5ec1bfbfdc9cead654c7957c2910739f53`.
 - The packet-scoped `git status --short` was empty before the baseline capture.
-- The baseline command was `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <R>` for each listed root. Output receipts below preserve the verifier's verdict/count lines and SHA-256 of each captured output.
+- The baseline command was `python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <R>` for each listed root. Output receipts below preserve the verifier's verdict/count lines and SHA-256 of each captured output.
 
 | Root | Verbatim verdict/counts | Output SHA-256 |
 |---|---|---|
@@ -133,7 +133,7 @@ test_*.py      29
 Command used for the complete offline capture:
 
 ```text
-env npm_config_offline=true npm_config_fetch_retries=0 npm_config_fetch_timeout=1000 bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+env npm_config_offline=true npm_config_fetch_retries=0 npm_config_fetch_timeout=1000 bash .opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 ```
 
 Full output capture: `/private/tmp/skc021-widened-three-guards-final-offline.txt`, 497 lines, SHA-256 `2e0f83141b5f318b4e7a55a2d62822bf9cd1ac726acb8be7feec8bab0d49781e`, direct rc `1`.

@@ -4,7 +4,7 @@ Root cause: buildFrontmatterContent passed the whole markdown document to descri
 
 The fix strips each leading frontmatter block before description inference. The existing sentence extractor receives unchanged input when no frontmatter exists. A second leading block is also skipped for migrated documents that retain duplicate metadata.
 
-Routing resolved to the OpenCode TypeScript route through sk-code. The alignment verification scanned 552 files and passed with zero findings, errors, warnings, or violations. Command: python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli. Exit status 0.
+Routing resolved to the OpenCode TypeScript route through sk-code. The alignment verification scanned 552 files and passed with zero findings, errors, warnings, or violations. Command: python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli. Exit status 0.
 
 Baseline ran from .skilled/skills/system-spec-kit/runtime/cli. Command: npx vitest run --config ../../vitest.config.ts --project cli tests/frontmatter-template-literals.vitest.ts tests/memory-quality-phase2-pr3.vitest.ts tests/memory-quality-phase6-migration.vitest.ts. Exit status 0. Three test files passed and seven tests passed.
 Baseline standalone command: node tests/test-frontmatter-backfill.js. Exit status 0. Fifteen passed and zero failed.

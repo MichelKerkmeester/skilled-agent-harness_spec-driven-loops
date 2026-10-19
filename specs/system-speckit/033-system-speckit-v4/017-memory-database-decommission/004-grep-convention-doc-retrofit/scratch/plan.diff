@@ -5934,263 +5934,263 @@
 +2: title: "Research Synthesis: code-quality and shared sk-code assets"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/final-synthesis.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/final-synthesis.md
 +1: ---
-+2: title: "code-opencode Refinement — Final Review & Implementation Rec Plan"
++2: title: "code-skilled Refinement — Final Review & Implementation Rec Plan"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-001.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-001.md
 +1: ---
 +2: title: "Iteration 001 — TS/JS language-standard fidelity (Facet 1a)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-002.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-002.md
 +1: ---
 +2: title: "Iteration 002 — Python/Shell/Config language-standard fidelity (Facet 1b)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-003.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-003.md
 +1: ---
 +2: title: "Iteration 003 — verify-doctrine reality (Facet 2)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-004.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-004.md
 +1: ---
 +2: title: "Iteration 004 — hook contracts + alignment verifier (Facets 3+4)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-005.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-005.md
 +1: ---
 +2: title: "Iteration 005 — skill + agent authoring checklists (Facet 5a)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-006.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-006.md
 +1: ---
 +2: title: "Iteration 006 — command + MCP authoring checklists (Facet 5b)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-007.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-007.md
 +1: ---
 +2: title: "Iteration 007 — detection markers + command/agent hand-off (Facets 6+7)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-008.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-008.md
 +1: ---
 +2: title: "Iteration 008 — workflow pitfalls + implement/debug + shared tier (Facet 9)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md
-+++ b/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md
+--- a/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-009.md
++++ b/specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-009.md
 +1: ---
 +2: title: "Iteration 009 — structural coherence + completeness critic"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md
 +1: ---
-+2: title: "Deep-Research Strategy — Rust Standards for code-opencode (Packet 018 / Phase 001)"
++2: title: "Deep-Research Strategy — Rust Standards for code-skilled (Packet 018 / Phase 001)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-001.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-001.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-002.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-002.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-003.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-003.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-004.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-004.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-005.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-005.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-006.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-006.md
 +1: ---
 +2: title: "Rust Style Guide"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-007.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-007.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-008.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-008.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-009.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-009.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md
 +1: ---
-+2: title: "Research Synthesis — Rust Standards for `code-opencode` (Packet 018 / Phase 001)"
++2: title: "Research Synthesis — Rust Standards for `code-skilled` (Packet 018 / Phase 001)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/implementation-summary.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/implementation-summary.md
 +15: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/plan.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/plan.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/tasks.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/tasks.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/implementation-summary.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/implementation-summary.md
 +15: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/plan.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/plan.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/tasks.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/tasks.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/implementation-summary.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/implementation-summary.md
 +15: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/plan.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/plan.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/tasks.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/tasks.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/implementation-summary.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/implementation-summary.md
 +15: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/plan.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/plan.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/tasks.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/tasks.md
 +5: trigger_phrases: []
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md
 +1: ---
 +2: title: "Deep Review Dashboard"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md
 +1: ---
 +2: title: "Deep Review Strategy"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md
 +1: ---
 +2: title: "Iteration 1: Correctness"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md
 +1: ---
 +2: title: "Iteration 2: Security"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md
 +1: ---
 +2: title: "Iteration 3: Traceability and Completion Gates"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md
 +1: ---
 +2: title: "Iteration 4: Maintainability and Link Integrity"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md
 +1: ---
 +2: title: "Iteration 5: Playbook Capability Traceability"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md
 +1: ---
 +2: title: "Iteration 6: Rollup Consistency"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md
 +1: ---
 +2: title: "Iteration 7: Stabilization and Adversarial Replay"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/logs/bindings.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/logs/bindings.md
 +1: ---
 +2: title: "Workflow Bindings"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/resource-map.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/resource-map.md
 +1: ---
 +2: title: "Review Resource Map"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md
-+++ b/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md
+--- a/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/review-report.md
++++ b/specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/review-report.md
 +1: ---
 +2: title: "Deep Review Report: sk-code/018 Rust Standards and Reference Hygiene"
 +3: trigger_phrases: []
@@ -19972,10 +19972,10 @@
 +1: ---
 +2: trigger_phrases: []
 +3: ---
---- a/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-opencode-language-split-design.md
-+++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-opencode-language-split-design.md
+--- a/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-skilled-language-split-design.md
++++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-skilled-language-split-design.md
 +1: ---
-+2: title: "Turnkey Design: code-opencode / code-webflow Language-Slice Intent Split"
++2: title: "Turnkey Design: code-skilled / code-webflow Language-Slice Intent Split"
 +3: trigger_phrases: []
 +4: ---
 --- a/specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/deep-research-router-precision-finding.md
@@ -19995,11 +19995,11 @@
 +2: title: "Phase 0 — Cross-Skill Routing Triage (read-only)"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/plan.md
-+++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/plan.md
+--- a/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/plan.md
++++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/plan.md
 +15: trigger_phrases: []
---- a/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/tasks.md
-+++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/tasks.md
+--- a/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/tasks.md
++++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/tasks.md
 +15: trigger_phrases: []
 --- a/specs/system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark/plan.md
 +++ b/specs/system-deep-loop/031-smart-routing-benchmark-program/015-mcp-cli-hub-benchmark/plan.md
@@ -26494,16 +26494,16 @@
 +2: title: "Unit H P0 Findings"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/audit-findings.md
-+++ b/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/audit-findings.md
+--- a/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/audit-findings.md
++++ b/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/audit-findings.md
 +1: ---
-+2: title: "sk-code-opencode Audit Findings"
++2: title: "sk-code-skilled Audit Findings"
 +3: trigger_phrases: []
 +4: ---
---- a/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/research/prompts/iteration-001.md
-+++ b/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/research/prompts/iteration-001.md
+--- a/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/research/prompts/iteration-001.md
++++ b/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/research/prompts/iteration-001.md
 +1: ---
-+2: title: "sk-code-opencode Audit Findings"
++2: title: "sk-code-skilled Audit Findings"
 +3: trigger_phrases: []
 +4: ---
 --- a/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/002-feature-catalog-trio-alignment/research/prompts/iteration-001.md

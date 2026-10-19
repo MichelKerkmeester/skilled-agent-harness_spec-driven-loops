@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
+  "spec_folder": "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "implement code-skilled refinement backlog",
+      "code-skilled refinement implementation",
+      "fix code-skilled findings",
+      "code-skilled refinement implementation plan",
+      "code-skilled implementation phases",
+      "implement code-skilled backlog plan",
+      "code-skilled refinement implementation tasks",
+      "code-skilled implementation task ledger",
+      "implement code-skilled backlog tasks",
+      "code-skilled refinement outcome",
+      "code-skilled implementation summary",
+      "028 code-skilled refinement shipped"
+    ],
+    "key_topics": [
+      "implement",
+      "code-skilled",
+      "refinement",
+      "backlog",
+      "implementation",
+      "findings",
+      "plan",
+      "phases",
+      "tasks",
+      "task",
+      "ledger",
+      "outcome"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".claude/settings.json",
+      "spec/create.sh",
+      "config/config.jsonc"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "config.jsonc",
+        "kind": "file",
+        "path": "config/config.jsonc",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Not Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Estimated Effort",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Procedure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Reversal",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-phase",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "disk",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Execute the Fable-5-validated refinement backlog for the sk-code code-skilled surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes across ~14 files in 7 sequenced phases, plus the sk-code-owned C1 validator retirement. code-skilled is this repo's playbook for writing code in its own .opencode/ tree; the research proved it teaches patterns that fail to compile, fabricates removed hook infrastructure, and misses the verify-doctrine reality. This packet makes the docs describe reality; underlying-code bugs C2-C8 are handed off to owning surfaces, not implemented here.",
+    "created_at": "2026-07-08T14:11:39.565Z",
+    "last_save_at": "2026-10-18T19:17:03.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3225eea18d2b5bedb955628bb1ed8a079b1eae2975987729266ffcd6601b37be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7a7f60a11e8ef61aa6c40c4fee1cefe5e671d9c80e3e6a1c268c5aa20d3864ac",
+      "plan.md": "7a7cae23c4e9015e9d3b8f0605a8725c6fd8fd7860df27bcd6dca60318c0d861",
+      "tasks.md": "48da5ff471b5b2e28c430a9d91bc914fb051a33798d925fdad24abf5ec76aa47",
+      "implementation-summary.md": "15ed250788effe423cb661263a54bfa94841213976980f1164327c20972739b9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

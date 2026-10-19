@@ -26,7 +26,7 @@ contextType: "implementation"
 |--------|-------|
 | **Language/Stack** | A Node.js ES module for the census, Node.js CommonJS for the fixture builder and the scorer, the ES module goal plugin for slice 2 |
 | **Framework** | The OpenCode goal plugin, `.opencode/plugins/opencode-goal.js`, through its `MkGoalPlugin.__test` helpers (`:3364`, `:3390`), and goal-core's exported `verifyGoalHeuristic` (`goal-core.cjs:596`, export at `:1611`) |
-| **Standards** | Code follows sk-code's OpenCode route (`sk-code-opencode`). Docs go through sk-doc, and `validate_document.py` exits 0 on each doc the build changes (parent D6) |
+| **Standards** | Code follows sk-code's OpenCode route (`sk-code-skilled`). Docs go through sk-doc, and `validate_document.py` exits 0 on each doc the build changes (parent D6) |
 | **Storage** | A census report, a JSONL labeled set, a JSONL per-call record and a text report in a directory the operator names. Slice 2 writes a JSONL shadow log in the goal state directory |
 | **Testing** | `node --test` for the census and scorer tests and the plugin's `opencode-goal-*.test.cjs` suites, a stub `jev` first on `PATH` for every Jev path, a stub `cli-deem` (proposed, phase 008) and a fake Deem server for every Deem path, `validate.sh --strict` and `check-goal.cjs` |
 

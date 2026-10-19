@@ -35,7 +35,7 @@ _memory:
 | **Testing** | Folder inventory, grep sweeps, JSON parse checks, markdown link checker, parent-skill-check strict, vocab-sync |
 
 ### Overview
-This phase completes the sk-code rename follow-up handed forward from phase 019. It renames the four bare surface packets (`review`, `webflow`, `opencode`, `animation`) to `code-review`, `code-webflow`, `code-opencode`, and `code-animation`; updates the two-axis registry/router contract to the `code-*` identity; repairs internal and external live references; preserves platform/product names and detection labels; and records scoped deferrals for advisor semantic metadata, benchmark-gold re-baselining, and historical records.
+This phase completes the sk-code rename follow-up handed forward from phase 019. It renames the four bare surface packets (`review`, `webflow`, `opencode`, `animation`) to `code-review`, `code-webflow`, `code-skilled`, and `code-animation`; updates the two-axis registry/router contract to the `code-*` identity; repairs internal and external live references; preserves platform/product names and detection labels; and records scoped deferrals for advisor semantic metadata, benchmark-gold re-baselining, and historical records.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -50,7 +50,7 @@ This phase completes the sk-code rename follow-up handed forward from phase 019.
 - [x] Historical spec-tree records and archived references are identified as intentionally read-only inputs.
 
 ### Definition of Done
-- [x] Four sk-code folders are renamed with history preserved: `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-opencode`, `animation -> code-animation`; hub inventory lists exactly eight `code-*` sub-skills plus four unprefixed infrastructure folders.
+- [x] Four sk-code folders are renamed with history preserved: `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-skilled`, `animation -> code-animation`; hub inventory lists exactly eight `code-*` sub-skills plus four unprefixed infrastructure folders.
 - [x] `mode-registry.json`, `hub-router.json`, and each renamed packet `SKILL.md` agree on `workflowMode`, `packet`, `packetSkillName`, `surfaces`, router signals, resources, and vocabulary classes.
 - [x] Internal markdown cross-packet links, hub routing docs, hub `SKILL.md`, metadata path references, link-checker allowlist, and external live references are repaired.
 - [x] Verification gates are green: no `code-code-` double-prefixes, JSON parses, zero sk-code broken links, empty live stale-ref sweep, parent-skill-check strict exit 0, and vocab-sync score 100 with no drift.
@@ -66,7 +66,7 @@ This phase completes the sk-code rename follow-up handed forward from phase 019.
 Mechanical rename with oracle-verified reference repair: preserve history first, update structural contracts second, sweep live references third, verify with deterministic gates last.
 
 ### Key Components
-- **Renamed surface packets**: `code-review`, `code-webflow`, `code-opencode`, and `code-animation`, each with a matching `SKILL.md` `name:` field.
+- **Renamed surface packets**: `code-review`, `code-webflow`, `code-skilled`, and `code-animation`, each with a matching `SKILL.md` `name:` field.
 - **Two-axis contract**: `mode-registry.json` and `hub-router.json` fields that expose the public `code-*` workflowMode and packet identity.
 - **Reference graph**: Internal markdown links, hub routing prose, hub `SKILL.md`, external agent docs, command YAML assets, deep-review prompt template, and link-checker allowlist.
 - **Scoped metadata**: `graph-metadata.json` and `description.json` path references updated without refreshing advisor semantic tokens.

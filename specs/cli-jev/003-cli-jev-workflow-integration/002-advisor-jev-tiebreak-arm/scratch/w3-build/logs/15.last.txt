@@ -1,6 +1,6 @@
 The packet goal is set. When the census is underpowered and the Jev gate passes, the arm now asks one `noul` per labeled prompt over three passes and prints a calibration line. The orchestrator runs the vitest suite.
 
-SKILL ROUTING: User directed → sk-code; ARTIFACT: sk-code → sk-code-opencode
+SKILL ROUTING: User directed → sk-code; ARTIFACT: sk-code → sk-code-skilled
 REPO RULES: evidence-and-proof.md, communication-handoff.md
 
 HANDBACK

@@ -125,7 +125,7 @@ state_write_protocol:
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
   pinned_bookkeeping:
-    events: [config_warning, graph_convergence, lock_released, manualStop, migration, min_iterations_guard_pass, pivot_confirm_accepted, pivot_override_accepted, stuckRecovery]
+    events: [config_warning, graph_convergence, lock_released, manualStop, migration, min_iterations_guard_pass, pivot_confirm_accepted, pivot_override_accepted, stuckRecovery, userPaused, schema_mismatch]
     directive: "bookkeeping_log"
     handling: "These rows are workflow bookkeeping that the research ledger schema pins to the legacy path: they have no lossless research-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
@@ -665,7 +665,7 @@ workflow:
         check: "Does {state_paths.pause_sentinel} exist?"
         if_exists:
           dry_run_event_policy: "Emit the userPaused event as terminal JSONL preview only; do not append it during dry-run."
-          log_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          bookkeeping_log: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           message: "Research paused. Delete research/.deep-research-pause to resume."
           halt: true
         if_not_exists:
@@ -1313,7 +1313,8 @@ workflow:
           assert_delta_file_exists: "{state_paths.delta_pattern}"
           assert_delta_file_has_iteration_record: true
           on_failure:
-            action: "emit schema_mismatch canonical conflict event"
+            action: "record the schema_mismatch row as pinned bookkeeping; the research ledger has no stem for it, so the gateway would refuse it"
+            bookkeeping_log: '{"type":"event","event":"schema_mismatch","mode":"research","run":{current_iteration},"reason":"{failure_reason}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
             redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error and continue. Never re-dispatch a given iteration more than once."
             escalation: "After 3 consecutive failures across iterations, trigger stuck_recovery event with diagnostic context"
           failure_reasons_reference:

@@ -57,12 +57,12 @@ Four new test cases prove each behavior, the guardrails text is now free of semi
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs` | Modified | Root check, label check, anchor resolution, condition rule |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Modified | Six new test cases, 12 in total |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` | Modified | Four semicolons rewritten as sentence breaks |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modified | Checker row names link labels and anchors |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Version 1.2.0.0 to 1.2.1.0 |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md` | Created | Changelog entry |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs` | Modified | Root check, label check, anchor resolution, condition rule |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` | Modified | Six new test cases, 12 in total |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` | Modified | Four semicolons rewritten as sentence breaks |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modified | Checker row names link labels and anchors |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modified | Version 1.2.0.0 to 1.2.1.0 |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md` | Created | Changelog entry |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,13 +97,13 @@ DeepSeek V4.1 Flash built the work as 21 single-edit units from the planner's di
 | Goal 1: `node --test verify_doc_claims.test.cjs` | PASS: exit 0, `tests 12`, `pass 12`, `fail 0` after the review fixes added two cases. Before them the file had 10 tests, and the HEAD checker gave pass 6, fail 4 on those |
 | Goal 2: `verify_doc_claims.cjs --root /nonexistent-dir` | PASS: exit 2, one stderr line, `usage: verify_doc_claims [--root <hub dir>] [--checks paths,names,surfaces,tiers] (--root is not a directory: /nonexistent-dir)` |
 | Goal 3: checker over `scratch/repro-fixture` | PASS: exit 1, `doc.md:3` label, `doc.md:4` link anchor, `doc.md:5` anchor and `PASS check tiers` |
-| Goal 4: `grep -c 'sk-code-opencode/'` on checker output, `grep -c ';'` on the guardrails text | PASS: 0 and 0. The live checker prints `doc-claims: 4/4 checks passed`, exit 0, now that children 002 and 004 have landed their fixes |
+| Goal 4: `grep -c 'sk-code-skilled/'` on checker output, `grep -c ';'` on the guardrails text | PASS: 0 and 0. The live checker prints `doc-claims: 4/4 checks passed`, exit 0, now that children 002 and 004 have landed their fixes |
 | Goal 5: `validate.sh --strict` | PASS: `RESULT: PASSED` |
 | Drift umbrella | `run-all-drift-guards: all 4 guards PASSED`, exit 0 |
 | Markdown checks | `validate_document.py` Total issues 0 on all four files. Guardrails hard blockers 4 to 0, SKILL.md stays 25, changelog 0 |
 | Doctor and leaf manifest | `PASS: 13d-packet-version`, `OK: parent-skill-check`, `leaf-manifest.json OK` |
-| Hermes `--check` | DRIFT sk-code-opencode, expected until the orchestrator regenerates |
-| Scope | `git status` over sk-code-opencode shows exactly the six files in Files Changed |
+| Hermes `--check` | DRIFT sk-code-skilled, expected until the orchestrator regenerates |
+| Scope | `git status` over sk-code-skilled shows exactly the six files in Files Changed |
 
 **Review result.** Every Known Limitation 1 to 5 from round three is fixed and proven. The verifier's cosmetic unit R001 and the parallel reviewer's eight units R01 to R08 (link syntax inside a code span is no longer checked, an elided `.../` label is skipped, fences nest by character and length, `--root` with no value gets the usage error, emphasis is stripped from heading slugs, Setext and indented headings define anchors, and two new test cases) were applied as T050 to T060. Three stale OpenCode labels were also fixed (T061 to T063).
 

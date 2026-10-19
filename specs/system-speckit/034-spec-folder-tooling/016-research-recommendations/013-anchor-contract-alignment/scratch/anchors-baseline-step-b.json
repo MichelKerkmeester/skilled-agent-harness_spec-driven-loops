@@ -4529,112 +4529,112 @@
     ]
   },
   {
-    "folder": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research",
+    "folder": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 1 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
+    "folder": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled",
     "status": "pass",
     "messages": [
       "Phase parent lean document set accepted"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/001-research",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/001-research",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
     ]
   },
   {
-    "folder": "specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+    "folder": "specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
@@ -4851,7 +4851,7 @@
     ]
   },
   {
-    "folder": "specs/sk-code/z_archive/002-sk-code-opencode-refinement",
+    "folder": "specs/sk-code/z_archive/002-sk-code-skilled-refinement",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
@@ -4879,7 +4879,7 @@
     ]
   },
   {
-    "folder": "specs/sk-code/z_archive/006-sk-code-opencode-merger",
+    "folder": "specs/sk-code/z_archive/006-sk-code-skilled-merger",
     "status": "pass",
     "messages": [
       "Anchors well formed in 6 file(s)"
@@ -10365,7 +10365,7 @@
     ]
   },
   {
-    "folder": "specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
+    "folder": "specs/sk-doc/z_archive/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled",
     "status": "pass",
     "messages": [
       "Anchors well formed in 3 file(s)"
@@ -11814,7 +11814,7 @@
     ]
   },
   {
-    "folder": "specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
+    "folder": "specs/sk-doc/z_archive/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
@@ -13553,7 +13553,7 @@
     ]
   },
   {
-    "folder": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment",
+    "folder": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
@@ -14617,7 +14617,7 @@
     ]
   },
   {
-    "folder": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+    "folder": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
@@ -15499,7 +15499,7 @@
     ]
   },
   {
-    "folder": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode",
+    "folder": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
@@ -18618,7 +18618,7 @@
     ]
   },
   {
-    "folder": "specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
+    "folder": "specs/system-deep-loop/z_archive/031-smart-routing-benchmark-program/005-code-skilled-language-gate",
     "status": "pass",
     "messages": [
       "Anchors well formed in 4 file(s)"
@@ -19463,7 +19463,7 @@
     ]
   },
   {
-    "folder": "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode",
+    "folder": "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-skilled",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
@@ -20982,7 +20982,7 @@
     ]
   },
   {
-    "folder": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+    "folder": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"
@@ -29946,7 +29946,7 @@
     ]
   },
   {
-    "folder": "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode",
+    "folder": "specs/system-speckit/046-align-runtime-code-with-sk-code-skilled",
     "status": "pass",
     "messages": [
       "Anchors well formed in 5 file(s)"

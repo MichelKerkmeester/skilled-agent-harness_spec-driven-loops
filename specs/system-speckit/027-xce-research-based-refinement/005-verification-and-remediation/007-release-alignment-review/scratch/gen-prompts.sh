@@ -7,7 +7,7 @@ ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
 P007="$ROOT/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review"
 SCR="$P007/scratch"
 A="$P007/001-readmes-vs-027"
-B="$P007/002-code-vs-sk-code-opencode"
+B="$P007/002-code-vs-sk-code-skilled"
 
 mkdir -p "$A/review/seats" "$A/review/deltas" "$A/review/iterations"
 mkdir -p "$B/review/seats" "$B/review/deltas" "$B/review/iterations"

@@ -48,7 +48,7 @@ exec
     "reason": "Matched: !/system-spec-kit(explicit), !spec, !system-spec-kit(explicit), document~, file"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.23,
@@ -104,7 +104,7 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
  succeeded in 51ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---

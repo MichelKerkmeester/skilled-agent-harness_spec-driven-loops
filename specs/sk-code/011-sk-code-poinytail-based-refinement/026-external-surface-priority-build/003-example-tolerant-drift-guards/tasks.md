@@ -45,7 +45,7 @@ contextType: "implementation"
 - [x] T005 Skip archived route-gold destinations whose mode the leaf manifest no longer declares, with a test (T2) (`verify-router-sync.cjs`)
 - [x] T006 Start the leg 1a prose scan at the first `## N. <NAME> MAP` heading instead of the literal Webflow heading, with a test (T3) (`verify-router-sync.cjs`)
 - [x] T007 Derive the doc-claims surface count from the registry instead of assuming three, with a test (T4) (`verify-doc-claims.cjs`)
-- [x] T008 Release the sk-code-opencode packet once: `SKILL.md` version and one changelog entry
+- [x] T008 Release the sk-code-skilled packet once: `SKILL.md` version and one changelog entry
 <!-- /ANCHOR:phase-2 -->
 
 ---

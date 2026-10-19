@@ -62,7 +62,7 @@ This is **Phase 8** of the Round four children specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The front door passes only the prompt to `resolveRoute(hub, prompt)` (`.skilled/bin/compiled-route.cjs:42`). When the prompt's keywords tie between surfaces, the canary router sorts them by `routerPolicy.tieBreak` (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:250` and `:264`), so generic words decide the lead surface. The Webflow playbook scenarios WF-005 and WF-013 declare `WEBFLOW` but route `orderedBundle sk-code-opencode,sk-code-webflow` today.
+The front door passes only the prompt to `resolveRoute(hub, prompt)` (`.skilled/bin/compiled-route.cjs:42`). When the prompt's keywords tie between surfaces, the canary router sorts them by `routerPolicy.tieBreak` (`.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:250` and `:264`), so generic words decide the lead surface. The Webflow playbook scenarios WF-005 and WF-013 declare `WEBFLOW` but route `orderedBundle sk-code-skilled,sk-code-webflow` today.
 
 ### Purpose
 On a keyword tie between surfaces, the surface of the session's current work leads, and with no usable hint every hub routes exactly as it does now.
@@ -125,7 +125,7 @@ On a keyword tie between surfaces, the surface of the session's current work lea
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | A hinted surface the prompt matched leads the bundle | `node --test --test-reporter=tap .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `# pass 6` and `# fail 0`, and the same file printed `# fail 3` before the code change |
-| REQ-002 | Canary cases pin the hint in both fixture copies | The canary assertion prints `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-opencode` and `cases 18 failures 0`, it printed `cases 18 failures 3` before the code change, and `cmp` of the two fixture copies exits 0 |
+| REQ-002 | Canary cases pin the hint in both fixture copies | The canary assertion prints `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-skilled` and `cases 18 failures 0`, it printed `cases 18 failures 3` before the code change, and `cmp` of the two fixture copies exits 0 |
 | REQ-003 | No hint means no change | The four-prompt probe output is identical before and after, the all-hub canary run differs only in `001-sk-code cases 13` becoming `cases 18`, and the existing compiled-route tests keep their baseline pass and fail counts |
 | REQ-004 | The runtime matches its authored source | `cmp` of each of the four authored closure files with its runtime copy exits 0 |
 | REQ-005 | The hub tells the caller to pass the hint | `SKILL.md` and `ROUTER.md` each contain the `--surface-hint` step, and the compiled-routing directive block is unchanged |
@@ -146,7 +146,7 @@ On a keyword tie between surfaces, the surface of the session's current work lea
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: For the WF-005 prompt, the WF-013 prompt and `obsidian plugin webflow implementation`, a `WEBFLOW` hint puts `sk-code-webflow` first in the resolver, the front door and the canary, while the bundle kind stays `orderedBundle`
-- **SC-002**: A workflow mode keeps first place under a hint: `pr review webflow implementation opencode typescript` with `WEBFLOW` routes `surfaceBundle` `sk-code-review,sk-code-webflow,sk-code-opencode`
+- **SC-002**: A workflow mode keeps first place under a hint: `pr review webflow implementation opencode typescript` with `WEBFLOW` routes `surfaceBundle` `sk-code-review,sk-code-webflow,sk-code-skilled`
 - **SC-003**: Without a usable hint (none, `UNKNOWN`, an unknown name, or a surface the prompt did not match) every route and every hub canary matches its baseline
 <!-- /ANCHOR:success-criteria -->
 

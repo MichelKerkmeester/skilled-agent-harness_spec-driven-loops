@@ -117,7 +117,7 @@ description: "Auto-generated research resource map from convergence evidence."
 | .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json | Cited | OK | Citations=1; Iterations=1 |
-| .skilled/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md | Cited | OK | Citations=1; Iterations=1 |
+| .skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/leaf-manifest.json | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/manual-testing-playbook/token-cost-baseline/max-load.md | Cited | OK | Citations=1; Iterations=1 |
 | .skilled/skills/sk-doc/mode-registry.json | Cited | OK | Citations=1; Iterations=1 |

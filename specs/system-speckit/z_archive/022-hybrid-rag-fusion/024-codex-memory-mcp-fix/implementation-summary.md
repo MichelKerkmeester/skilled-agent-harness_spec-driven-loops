@@ -79,7 +79,7 @@ The runtime fix landed first in `.opencode/skills/system-spec-kit/mcp_server/lib
 |-------|--------|
 | `npx vitest run tests/vector-index-store-remediation.vitest.ts tests/handler-memory-list-edge.vitest.ts tests/handler-memory-health-edge.vitest.ts tests/handler-memory-search.vitest.ts` | PASS - focused suites passed and include the regression proving `initializeDb(':memory:')` stays inside the in-memory DB |
 | `npm run test:core` | PASS - 316 files total (315 passed, 1 skipped); 8714 tests total (8614 passed, 74 skipped, 26 todo); duration 101.83s |
-| `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | PASS - alignment drift check passed |
+| `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` | PASS - alignment drift check passed |
 | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/022-hybrid-rag-fusion/024-codex-memory-mcp-fix` | PASS - packet validates cleanly after truth-sync updates |
 <!-- /ANCHOR:verification -->
 

@@ -46,6 +46,6 @@ trigger_phrases: []
 
   Fix: Wrap these identifiers in code spans while uppercasing only prose: `` `context-loading-contract.md` ``, `` `figma-ds-cli` ``, and `` `sk-code` ``.
 
-Verified clean: all 11 transformed H2s in `code-opencode/SKILL.md` and `create-flowchart/SKILL.md`; no changed links, URLs, ordinary parentheticals, or `name(...)` signatures were mangled.
+Verified clean: all 11 transformed H2s in `code-skilled/SKILL.md` and `create-flowchart/SKILL.md`; no changed links, URLs, ordinary parentheticals, or `name(...)` signatures were mangled.
 
 Adjacent observations: `validate_document.py` separately reports a missing `OVERVIEW` in `vision-audit-benchmark.md`; that predates this pass’s header-transform focus.

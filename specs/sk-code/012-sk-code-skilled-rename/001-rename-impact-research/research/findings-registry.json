@@ -1,0 +1,448 @@
+{
+  "sessionId": "2026-10-18T17:35:32.240Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-where-is-the-sk-code-opencode-identity-load-bearing-folder-paths-hub-registry",
+      "inboxId": null,
+      "text": "Q1: Where is the sk-code-opencode identity load-bearing (folder paths, hub registry/router/graph-metadata/SKILL.md, advisor DB and compiled routes, integration code, scripts, tests, fixtures, runtime mirrors), with counts and path:line evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-which-spellings-belong-to-the-identity-sk-code-opencode-bare-code-opencode-ti",
+      "inboxId": null,
+      "text": "Q2: Which spellings belong to the identity (sk-code-opencode, bare code-opencode, title/snake/path forms), and which match patterns must exclude the OpenCode runtime's own names (.opencode/, cli-opencode)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-how-are-generated-artifacts-advisor-db-compiled-routes-trigger-index-graph-me",
+      "inboxId": null,
+      "text": "Q3: How are generated artifacts (advisor DB, compiled routes, trigger index, graph metadata, runtime mirrors) rebuilt after a rename, and which tests/drift guards gate it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-what-ordered-test-guarded-rename-plan-one-verification-command-per-step-moves",
+      "inboxId": null,
+      "text": "Q4: What ordered, test-guarded rename plan (one verification command per step) moves the surface to sk-code-skilled without breaking routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-5-q5-how-many-references-sit-in-history-changelogs-z-archive-research-logs-iterati",
+      "inboxId": null,
+      "text": "Q5: How many references sit in history (changelogs, z_archive, research logs, iteration files), and should they be rewritten or excluded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-where-is-the-sk-code-opencode-identity-load-bearing-folder-paths-hub-registry",
+      "inboxId": null,
+      "text": "Q1: Where is the sk-code-opencode identity load-bearing (folder paths, hub registry/router/graph-metadata/SKILL.md, advisor DB and compiled routes, integration code, scripts, tests, fixtures, runtime mirrors), with counts and path:line evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-q2-which-spellings-belong-to-the-identity-sk-code-opencode-bare-code-opencode-ti",
+      "inboxId": null,
+      "text": "Q2: Which spellings belong to the identity (sk-code-opencode, bare code-opencode, title/snake/path forms), and which match patterns must exclude the OpenCode runtime's own names (.opencode/, cli-opencode)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-q3-how-are-generated-artifacts-advisor-db-compiled-routes-trigger-index-graph-me",
+      "inboxId": null,
+      "text": "Q3: How are generated artifacts (advisor DB, compiled routes, trigger index, graph metadata, runtime mirrors) rebuilt after a rename, and which tests/drift guards gate it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-q4-what-ordered-test-guarded-rename-plan-one-verification-command-per-step-moves",
+      "inboxId": null,
+      "text": "Q4: What ordered, test-guarded rename plan (one verification command per step) moves the surface to sk-code-skilled without breaking routing?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-5-q5-how-many-references-sit-in-history-changelogs-z-archive-research-logs-iterati",
+      "inboxId": null,
+      "text": "Q5: How many references sit in history (changelogs, z_archive, research logs, iteration files), and should they be rewritten or excluded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q5: How many references sit in history (changelogs, z_archive, research logs, iteration files), and should they be rewritten or excluded?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: What ordered, test-guarded rename plan (one verification command per step) moves the surface to sk-code-skilled without breaking routing?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: How are generated artifacts (advisor DB, compiled routes, trigger index, graph metadata, runtime mirrors) rebuilt after a rename, and which tests/drift guards gate it?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Which spellings belong to the identity (sk-code-opencode, bare code-opencode, title/snake/path forms), and which match patterns must exclude the OpenCode runtime's own names (.opencode/, cli-opencode)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Residuals carried into Q4: advisor DB reindex command; trigger-index drift guard isolation.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. All five key questions are resolved and both residuals carried into Q4 are closed (F1, F2). Minor caveat: step 7 cites the compiled-route toolchain by committed path; its flag forms were not re-read this run, so that step's check is the guard script's exit status.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-sk-code-quality-scripts-typo-flags-test-sh-17-pins-skill-sk-code-opencode-assets",
+      "text": "`sk-code-quality/scripts/typo-flags.test.sh:17` pins `$SKILL/sk-code-opencode/assets/scripts/verify-router-sync.cjs`. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/typo-flags.test.sh:17]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-sk-code-quality-skill-md-maps-load-targets-sk-code-opencode-assets-checklists-ta",
+      "text": "`sk-code-quality/SKILL.md` maps load targets `../sk-code-opencode/assets/checklists/<target>.md` at lines 69, 107–112, 122–127 (34 matches in the file). [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:69]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-sk-code-review-skill-md-39-42-499-sk-code-review-references-review-core-md-68-sk",
+      "text": "`sk-code-review/SKILL.md:39,42,499`, `sk-code-review/references/review-core.md:68`, `sk-code-webflow/README.md:94`. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:39] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/review-core.md:68] [SOURCE: .skilled/skills/sk-code/sk-code-webflow/README.md:94]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-bare-form-history-dir-orchestrator-known-skilled-changelog-sk-code-code-opencode",
+      "text": "Bare-form history dir (orchestrator-known): `.skilled/changelog/sk-code/code-opencode`. [SOURCE: specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/deep-research-strategy.md:163]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-compiled-routing-itself-is-registry-driven-skilled-bin-compiled-route-cjs-contai",
+      "text": "Compiled routing itself is registry-driven: `.skilled/bin/compiled-route.cjs` contains no `sk-code-opencode` literal (absent from the complete 38-match `.cjs` sweep) — it resolves through the hub JSONs in F2.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-compiled-route-tests-skilled-bin-tests-compiled-route-surface-hint-test-cjs-65-7",
+      "text": "Compiled-route tests: `.skilled/bin/tests/compiled-route-surface-hint.test.cjs:65,72,89,112` assert mode orders containing `sk-code-opencode`. [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:65]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-doctor-checks-sk-code-setup-check-cjs-59-pins-the-drift-guard-path-literal-tests",
+      "text": "Doctor checks: `sk-code-setup-check.cjs:59` pins the drift-guard path literal (+ tests :29, :208); `parent-skill-check.cjs:1159,1163` pins `SK_CODE_NATIVE_SURFACE = 'sk-code-opencode'` for check 5l (+ invariants test 489–514). [SOURCE: .skilled/commands/doctor/scripts/sk-code-setup-check.cjs:59] [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1163] [SOURCE: .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:491]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-packet-tests-scripts-tests-verify-router-sync-test-cjs-35-102-161-scripts-tests-",
+      "text": "Packet tests: `scripts/tests/verify-router-sync.test.cjs:35,102–161`; `scripts/tests/verify-doc-claims.test.cjs:9`. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:35]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-packet-verifiers-verify-router-sync-cjs-33-261-265-cross-checks-leaf-manifest-js",
+      "text": "Packet verifiers: `verify-router-sync.cjs:33,261–265` cross-checks `leaf-manifest.json` against the on-disk packet folder; `router-replay-lib.cjs:495,611,628`; `verify-doc-claims.cjs:68`. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:263] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/router-replay-lib.cjs:495]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-runtime-mirror-confirmed-at-hermes-skills-sk-code-opencode-skill-md-source-herme",
+      "text": "Runtime mirror confirmed at `.hermes/skills/sk-code-opencode/SKILL.md`. [SOURCE: .hermes/skills/sk-code-opencode/SKILL.md:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-packet-is-skilled-skills-sk-code-sk-code-opencode-skill-md-readme-md-assets-",
+      "text": "The packet is `.skilled/skills/sk-code/sk-code-opencode/` — `SKILL.md`, `README.md`, `assets/checklists/` (14 files), `assets/scripts/` (8 files), `benchmark/reports/` (15 files), `changelog/` (13 release notes shown), plus a `scripts/` dir (drift-guard runner + tests, seen in the `.cjs` sweep). [SOURCE: .skilled/skills/sk-code/SKILL.md:165]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-k-sk-code-opencode-covers-bare-and-qualified-sk-code-code-opencode-forms-cannot-",
+      "text": "`(^|[^k_-])(?:sk-)?code-opencode` — covers bare and qualified (`sk-code:code-opencode`) forms; cannot match `.opencode` or `cli-opencode` because neither contains `code-opencode`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-sk-code-opencode-exact-zero-runtime-collisions",
+      "text": "`sk-code-opencode` exact — zero runtime collisions.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-derived-family-alternation-sk-code-opencode-code-opencode-codeopencode-sk-code-o",
+      "text": "Derived-family alternation `sk[_-]?code[_-]?opencode|code[_-]?opencode|codeopencode|sk code opencode` — every identity variant carries `code` immediately before `opencode`; no runtime name does.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-e1-opencode-runtime-alias-dir-evidenced-live-by-path-parsing-code-and-test-regex",
+      "text": "E1 `.opencode/` — runtime alias dir, evidenced live by path-parsing code and test regexes: `'/.opencode/specs/'`, `\\.(?:skilled|opencode)\\//`, and the runtime-alternation replace. [SOURCE: .skilled/skills/system-spec-kit/shared/review-research-paths.cjs:70] [SOURCE: .skilled/skills/system-spec-kit/vitest.config.ts:34] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-runtime-parity.vitest.ts:40] Symlink `.opencode/skills -> ../.skilled/skills` recorded in iteration 002 F4.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-e2-cli-opencode-live-child-skill-of-cli-external-orchestration-referenced-by-a-h",
+      "text": "E2 `cli-opencode` — live child skill of `cli-external-orchestration`: referenced by a hook policy, listed in the trigger index, and used as ai-council seat filenames. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs:53] [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:316] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/multi-ai-council-rollback.vitest.ts:50] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:924]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-e3-standalone-opencode-opencode-opencode-runtime-brand-runtime-id-cli-command-an",
+      "text": "E3 standalone `opencode` / `OpenCode` / `OPENCODE` — runtime brand, runtime id, CLI command, and surface token: `runtime: 'opencode'`, `opencode run \"permission probe\"`, the `OPENCODE` surface token in the sk-code tables, and \"OpenCode Users\" doc text. [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:1302] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/hooks/permission-request-policy.test.mjs:70] [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/validation/README.md:77] [SOURCE: .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl:73]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-s1-prefixed-kebab-is-the-primary-identity-the-packet-dir-and-hub-key-modeindex-s",
+      "text": "S1: prefixed kebab is the primary identity — the packet dir and hub key `modeIndex['sk-code-opencode']` both carry it. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:261] Seed counts (137 non-spec files prefixed, 43 bare) recorded at [SOURCE: specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/deep-research-strategy.md:158].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-s2-bare-kebab-is-a-live-id-alias-family-not-history-residue-routing-classes-code",
+      "text": "S2: bare kebab is a live id/alias family, not history residue — routing classes `code-opencode-aliases` / `code-opencode-runtime` / `code-opencode-authoring`, packet benchmark ids, and test fixtures all carry it. [SOURCE: .skilled/skills/sk-code/hub-router.json:38] [SOURCE: .skilled/skills/sk-code/hub-router.json:79] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/benchmark/reports/README.md:11] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json:8] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs:63]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-s3-spaced-lowercase-appears-only-in-generated-retrieval-artifacts-47-sk-code-ope",
+      "text": "S3: spaced lowercase appears only in generated retrieval artifacts — 47 `sk code opencode ...` keys in the trigger index (including version-qualified keys) and 13 entries in the phrase-variants fixture. [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:111848] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:23180]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-s4-the-only-live-snake-carrier-is-a-local-shell-constant-inside-the-packet-s-dri",
+      "text": "S4: the only live snake carrier is a local shell constant inside the packet's drift-guard runner. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:23] The snake prefixed form `D4_maintainability_sk_code_opencode` appears only in archived review configs. [SOURCE: specs/system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration/review/deep-review-config.json:8]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-s5-the-only-live-camel-carrier-is-a-local-const-inside-the-packet-s-router-verif",
+      "text": "S5: the only live camel carrier is a local const inside the packet's router verifier. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:261] The Pascal `CodeOpenCode` form appears only in spec logs quoting an older checkout; the complete 14-match live sweep found no live carrier. [SOURCE: specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/research/prompts/iteration-1.codexlog:1719]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-s6-the-qualified-form-sk-code-code-opencode-is-recorded-as-an-old-surface-token-",
+      "text": "S6: the qualified form `sk-code:code-opencode` is recorded as an old surface token, and the verifier still names the mapping concept. [SOURCE: .skilled/skills/sk-code/sk-code-review/changelog/v1.7.0.0.md:29] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:232]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-compiled-routes-skilled-bin-compiled-route-sync-cjs-source-skilled-bin-compiled-",
+      "text": "Compiled routes: `.skilled/bin/compiled-route-sync.cjs` [SOURCE: .skilled/bin/compiled-route-sync.cjs] over the hub registry JSONs via the `lib/compiled-routing` compilers (e.g. `registry-compiler.cjs` [SOURCE: .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs], `compiler.cjs` [SOURCE: .skilled/bin/lib/compiled-routing/004-compiler-n1-shadow/compiler/compiler.cjs]), with `compiled-route-guard.cjs` [SOURCE: .skilled/bin/compiled-route-guard.cjs], `compiled-route-manifest.cjs` [SOURCE: .skilled/bin/compiled-route-manifest.cjs], `compiled-route-status.cjs` [SOURCE: .skilled/bin/compiled-route-status.cjs] and `compiled-route-admission.cjs` [SOURCE: .skilled/bin/compiled-route-admission.cjs] as the surrounding toolchain.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-runtime-mirrors-sync-runtime-mirrors-cjs-source-skilled-skills-system-spec-kit-r",
+      "text": "Runtime mirrors: `sync-runtime-mirrors.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs] plus `sync-gate1-pointers.cjs` and `sync-hook-registrations.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs], with per-runtime syncs (`hermes/sync-skills-hermes.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs], `codex/sync-agents.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs], `pi/sync-agents-pi.cjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs]).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-trigger-index-regenerated-by-generate-trigger-index-mjs-source-skilled-skills-sy",
+      "text": "Trigger index: regenerated by `generate-trigger-index.mjs` [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs]; the phrase-migration CLI `migrate-trigger-phrase-residual.ts` handles residual trigger phrases [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/migrate-trigger-phrase-residual.ts].",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-advisor-rebuild-f1-node-skilled-bin-skill-advisor-cjs-advisor-rebuild-trusted-fo",
+      "text": "Advisor rebuild (F1): `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true` [SOURCE: .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md:26]. Verify: `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"implement a TypeScript feature\"}' --format json` returns the renamed surface; `advisor_status` reports fresh with a new generation.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-bare-form-alias-family-routing-classes-code-opencode-aliases-code-opencode-runti",
+      "text": "Bare-form alias family: routing classes `code-opencode-aliases` / `code-opencode-runtime` / `code-opencode-authoring` [SOURCE: .skilled/skills/sk-code/hub-router.json:38] [SOURCE: .skilled/skills/sk-code/hub-router.json:79] and the hub verifier's mapping constant [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:261]. Verify: `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-baseline-bash-skilled-skills-sk-code-sk-code-opencode-scripts-run-all-drift-guar",
+      "text": "Baseline: `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0; save the live-reference list (`rg -l \"sk-code-opencode|code-opencode\" --glob '!specs/**' --glob '!**/changelog/**' --glob '!**/benchmark/**'`). Guard facts: four guards in sequence; warnings never fail; any FAIL exits non-zero [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:59] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:80].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-compiled-routes-node-skilled-bin-compiled-route-sync-cjs-then-node-skilled-bin-c",
+      "text": "Compiled routes: `node .skilled/bin/compiled-route-sync.cjs`, then `node .skilled/bin/compiled-route-guard.cjs`; update `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` (:65, :72, :89, :112) [SOURCE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs:65]. Verify: guard exits 0 plus `compiled-route-status.cjs` fresh. CI: `routing-registry-drift.yml` covers checks 3/4 warn-only [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:73].",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-doctor-literal-pins-sk-code-setup-check-cjs-59-parent-skill-check-cjs-sk-code-na",
+      "text": "Doctor literal pins: `sk-code-setup-check.cjs:59`; `parent-skill-check.cjs` `SK_CODE_NATIVE_SURFACE` (:1159, :1163) plus invariants (:491) [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1163]. Verify: `node --test .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-exclusion-audit-opencode-symlink-opencode-skills-skilled-skills-source-skilled-s",
+      "text": "Exclusion audit: `.opencode/` symlink `.opencode/skills -> ../.skilled/skills` [SOURCE: .skilled/skills/system-spec-kit/shared/review-research-paths.cjs:70] and `cli-opencode` [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs:53] untouched. Verify: `git diff --stat` review plus unchanged `rg -n \"\\.opencode/|cli-opencode\"` results versus baseline.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-final-gate-bash-skilled-skills-system-spec-kit-runtime-cli-spec-validate-sh-spec",
+      "text": "Final gate: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/012-sk-code-skilled-rename --strict` requires an explicit `RESULT: PASSED`; then the full guard run, advisor probe, mirror check, compiled-route guard and trigger `--check` together.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-hub-surface-update-the-hub-registry-jsons-modeindex-key-hub-router-json-graph-me",
+      "text": "Hub surface: update the hub registry JSONs (modeIndex key), `hub-router.json`, `graph-metadata.json`, and the sk-code `SKILL.md` mode tables; refresh graph metadata via the graph refresh path (`refreshGraphMetadataForSpecFolder` / `writeGraphMetadataFile`) or the `migrate-generated-json.ts` CLI. Verify: `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 1a,1b,2,3,4`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-live-docs-sweep-to-zero-verify-rg-l-sk-code-opencode-code-opencode-glob-specs-gl",
+      "text": "Live docs sweep to zero. Verify: `rg -l \"sk-code-opencode|code-opencode\" --glob '!specs/**' --glob '!**/changelog/**' --glob '!**/benchmark/**' --glob '!.hermes/**'` returns empty.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-packet-verifiers-tests-fixtures-and-sibling-skill-references-verify-router-sync-",
+      "text": "Packet verifiers, tests, fixtures and sibling-skill references: `verify-router-sync.cjs` (:232, :261), `router-replay-lib.cjs` (:495), `verify-doc-claims.cjs`, `scripts/tests/*` (:35, :102-161); `sk-code-quality/SKILL.md:69` load targets plus `typo-flags.test.sh:17`; `sk-code-review/SKILL.md:39`; `sk-code-webflow/README.md:94`. Verify: `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` + `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-rename-the-folder-git-mv-skilled-skills-sk-code-sk-code-opencode-skilled-skills-",
+      "text": "Rename the folder: `git mv .skilled/skills/sk-code/sk-code-opencode .skilled/skills/sk-code/sk-code-skilled`. Verify: `test -f .skilled/skills/sk-code/sk-code-skilled/SKILL.md && echo ok`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-runtime-mirrors-node-skilled-skills-system-spec-kit-runtime-cli-runtime-mirrors-",
+      "text": "Runtime mirrors: `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs` (plus `sync-gate1-pointers.cjs`, `sync-hook-registrations.cjs` as needed). Verify: `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0; `.hermes` re-synced against its 53-line baseline.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-trigger-index-f2-node-skilled-skills-system-spec-kit-runtime-cli-retrieval-gener",
+      "text": "Trigger index (F2): `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`; decide old-phrase retention first (47 `sk code opencode ...` keys live in the index [SOURCE: .skilled/skills/system-spec-kit/runtime/data/trigger-index.json:111848]). Verify: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json` exits 0 [SOURCE: .skilled/commands/doctor/_routes.yaml:56]; `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- \"sk-code-skilled\"` returns rows.",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 39,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/144-sk-code-skilled-rename/specs/sk-code/012-sk-code-skilled-rename/001-rename-impact-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

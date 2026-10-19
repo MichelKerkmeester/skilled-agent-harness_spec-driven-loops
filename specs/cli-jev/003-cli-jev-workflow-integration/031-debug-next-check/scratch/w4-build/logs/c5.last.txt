@@ -6,7 +6,7 @@ S5 is implemented and the briefed checks are green. Two disclosures, then the ha
 
 **Not observed:** vitest (the brief reserves it for the orchestrator). The four new cases' greenness is INFERRED from the code shape; the two checks below and the scoped status are observed.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript `.mjs` route; style guide and quality standards read before the writes)
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript `.mjs` route; style guide and quality standards read before the writes)
 REPO RULES: prevent-overengineering.md, scope-discipline.md, evidence-and-proof.md, uncertainty-and-honesty.md
 
 ```

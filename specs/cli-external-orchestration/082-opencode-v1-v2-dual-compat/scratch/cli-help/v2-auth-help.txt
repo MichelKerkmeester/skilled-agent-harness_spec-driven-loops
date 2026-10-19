@@ -1,0 +1,21 @@
+DESCRIPTION
+  manage integrations and credentials
+
+USAGE
+  opencode auth <subcommand> [flags]
+
+GLOBAL FLAGS
+  --help, -h                                                          Show help information
+  --version, -v                                                       Show version information
+  --wizard                                                            Start wizard mode for a command
+  --completions <bash|zsh|fish|sh>                                    Print shell completion script (choices: bash, zsh, fish, sh)
+  --log-level <all|trace|debug|info|warn|warning|error|fatal|none>    Sets the minimum log level (choices: all, trace, debug, info, warn, warning, error, fatal, none)
+  --print-logs                                                        Print logs to stderr (server logs require --standalone)
+
+SUBCOMMANDS
+  list      list integrations and credentials
+  login     connect an integration
+  logout    log out of a saved account
+  export    print stored credentials, including secrets, as JSON
+  import    import credentials exported by auth export
+  switch    switch the active account for an integration

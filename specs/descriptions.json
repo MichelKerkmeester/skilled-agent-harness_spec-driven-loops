@@ -1139,7 +1139,7 @@
     },
     {
       "specFolder": "cli-external-orchestration/030-cli-cursor-creation/009-cursor-hooks-lifecycle/005-hooks-sk-code-alignment",
-      "description": "The operator asked directly: \"make sure all hook code aligns with sk-code code-opencode standards.\" `sk-code`'s `code-opencode` surface packet is the",
+      "description": "The operator asked directly: \"make sure all hook code aligns with sk-code code-skilled standards.\" `sk-code`'s `code-skilled` surface packet is the",
       "keywords": [
         "operator",
         "asked",
@@ -1149,7 +1149,7 @@
         "code",
         "aligns",
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "standards",
         "surface",
         "packet"
@@ -1178,7 +1178,7 @@
     },
     {
       "specFolder": "cli-external-orchestration/030-cli-cursor-creation/010-hook-code-style-cross-runtime",
-      "description": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-opencode`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use",
+      "description": "Phase 013 aligned the five Cursor `.mjs` hook files to `sk-code`/`code-skilled`'s JavaScript P0 standards (COMPONENT/PURPOSE box header, no `'use",
       "keywords": [
         "phase",
         "aligned",
@@ -1188,7 +1188,7 @@
         "hook",
         "files",
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "javascript",
         "standards",
         "component",
@@ -8644,7 +8644,7 @@
     },
     {
       "specFolder": "sk-code/001-sk-code-parent/022-collapse-to-four-subskills",
-      "description": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and",
+      "description": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-skilled`, `code-webflow`, `code-animation`) and",
       "keywords": [
         "sk-code",
         "parent",
@@ -8659,7 +8659,7 @@
         "three",
         "surface",
         "skills",
-        "code-opencode",
+        "code-skilled",
         "code-webflow",
         "code-animation"
       ],
@@ -8745,10 +8745,10 @@
       "lastUpdated": "2026-08-29T15:04:31.393Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/027-code-opencode-refinement-research",
-      "description": "`code-opencode` is not a generic docs packet \u2014 it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills,",
+      "specFolder": "sk-code/001-sk-code-parent/027-code-skilled-refinement-research",
+      "description": "`code-skilled` is not a generic docs packet \u2014 it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills,",
       "keywords": [
-        "code-opencode",
+        "code-skilled",
         "generic",
         "docs",
         "packet",
@@ -8765,15 +8765,15 @@
       "lastUpdated": "2026-08-30T09:31:56.124Z"
     },
     {
-      "specFolder": "sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation",
-      "description": "Execute the Fable-5-validated refinement backlog for the sk-code code-opencode surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes",
+      "specFolder": "sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation",
+      "description": "Execute the Fable-5-validated refinement backlog for the sk-code code-skilled surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes",
       "keywords": [
         "execute",
         "fable-5-validated",
         "refinement",
         "backlog",
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "surface",
         "sub-skill",
         "documentation",
@@ -8782,12 +8782,12 @@
       "lastUpdated": "2026-08-29T15:04:31.419Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode",
-      "description": "WS1: `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled",
+      "description": "WS1: `sk-code`'s `code-skilled` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
       "keywords": [
         "ws1",
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "surface",
         "encodes",
         "per-language",
@@ -8802,11 +8802,11 @@
       "lastUpdated": "2026-08-29T15:04:31.362Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/001-research",
-      "description": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/001-research",
+      "description": "Adding a language to `code-skilled` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART",
       "keywords": [
         "language",
-        "code-opencode",
+        "code-skilled",
         "free-form",
         "authoring",
         "surface",
@@ -8820,7 +8820,7 @@
       "lastUpdated": "2026-08-29T15:12:05.992Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/002-standard-docs",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/002-standard-docs",
       "description": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
       "keywords": [
         "research",
@@ -8841,10 +8841,10 @@
       "lastUpdated": "2026-08-29T15:04:31.385Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/003-surface-routing",
-      "description": "The `code-opencode/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/003-surface-routing",
+      "description": "The `code-skilled/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing",
       "keywords": [
-        "code-opencode",
+        "code-skilled",
         "skill",
         "surface",
         "router",
@@ -8862,7 +8862,7 @@
       "lastUpdated": "2026-08-29T15:04:31.368Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard",
       "description": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
       "keywords": [
         "parent",
@@ -8881,7 +8881,7 @@
       "lastUpdated": "2026-08-29T15:04:31.365Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang",
       "description": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and",
       "keywords": [
         "beyond",
@@ -8904,7 +8904,7 @@
       "lastUpdated": "2026-08-29T15:04:31.387Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup",
       "description": "The Rust upgrade is not \"done\" until every gate is green",
       "keywords": [
         "rust",
@@ -8918,11 +8918,11 @@
       "lastUpdated": "2026-08-29T15:04:31.382Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references",
-      "description": "Four `code-opencode` Rust docs exceed 500 lines \u2014 `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571),",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references",
+      "description": "Four `code-skilled` Rust docs exceed 500 lines \u2014 `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571),",
       "keywords": [
         "four",
-        "code-opencode",
+        "code-skilled",
         "rust",
         "docs",
         "exceed",
@@ -8934,11 +8934,11 @@
       "lastUpdated": "2026-08-29T15:04:31.388Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references",
-      "description": "Nine `code-opencode` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references",
+      "description": "Nine `code-skilled` docs exceed 500 lines: the typescript trio (865/714/562), the shell trio (625/538/501), javascript qualitystandards (605), and",
       "keywords": [
         "nine",
-        "code-opencode",
+        "code-skilled",
         "docs",
         "exceed",
         "lines",
@@ -8951,7 +8951,7 @@
       "lastUpdated": "2026-08-29T15:04:31.389Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references",
       "description": "Eleven `code-webflow/references/implementation/` docs exceed 500 lines (largest 1109)",
       "keywords": [
         "eleven",
@@ -8966,7 +8966,7 @@
       "lastUpdated": "2026-08-29T15:04:31.383Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references",
       "description": "Eight code-webflow non-implementation docs exceed 500 lines (largest: debuggingworkflows 1940)",
       "keywords": [
         "eight",
@@ -8981,7 +8981,7 @@
       "lastUpdated": "2026-08-29T15:04:31.369Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged",
       "description": "`code-quality/assets/codequalitychecklist.md` (542 lines) is the last oversized reference/asset in the hygiene scope",
       "keywords": [
         "code-quality",
@@ -8998,7 +8998,7 @@
       "lastUpdated": "2026-08-29T15:04:31.386Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup",
       "description": "WS2 (007-011) split 33 oversized reference/asset docs into 104 parts and rewired the router contract",
       "keywords": [
         "ws2",
@@ -9015,7 +9015,7 @@
       "lastUpdated": "2026-08-29T15:04:31.367Z"
     },
     {
-      "specFolder": "sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates",
+      "specFolder": "sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates",
       "description": "Add first-class sk-doc authoring support for the behavior_benchmark family: three fillable templates (index, scenario contract, baseline), an",
       "keywords": [
         "first-class",
@@ -9053,10 +9053,10 @@
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment",
-      "description": "The sk-code `code-opencode` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
+      "description": "The sk-code `code-skilled` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
       "keywords": [
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "surface",
         "defines",
         "file-opening",
@@ -9072,12 +9072,12 @@
     },
     {
       "specFolder": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
-      "description": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
+      "description": "Three enforcement mechanisms for the `code-skilled` standard failed independently and simultaneously, and nothing noticed",
       "keywords": [
         "three",
         "enforcement",
         "mechanisms",
-        "code-opencode",
+        "code-skilled",
         "standard",
         "failed",
         "independently",
@@ -9516,7 +9516,7 @@
       "lastUpdated": "2026-08-15T14:40:56.864Z"
     },
     {
-      "specFolder": "sk-code/z_archive/002-sk-code-opencode-refinement",
+      "specFolder": "sk-code/z_archive/002-sk-code-skilled-refinement",
       "description": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style",
       "keywords": [
         "current",
@@ -9593,7 +9593,7 @@
       "lastUpdated": "2026-08-15T14:40:57.017Z"
     },
     {
-      "specFolder": "sk-code/z_archive/006-sk-code-opencode-merger",
+      "specFolder": "sk-code/z_archive/006-sk-code-skilled-merger",
       "description": "Before this implementation, `sk-code` advertised itself as an umbrella application-code router with Webflow, Go, and React/NextJS branches, while",
       "keywords": [
         "implementation",
@@ -18675,12 +18675,12 @@
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards",
-      "description": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
+      "description": "The documented enforcement mechanism for code-skilled's RESOURCEMAP parent-child equality is inert",
       "keywords": [
         "documented",
         "enforcement",
         "mechanism",
-        "code-opencode",
+        "code-skilled",
         "resourcemap",
         "parent-child",
         "equality",
@@ -19520,13 +19520,13 @@
     },
     {
       "specFolder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/003-sk-code-rename",
-      "description": "Move code-quality, code-review, code-webflow and code-opencode to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and",
+      "description": "Move code-quality, code-review, code-webflow and code-skilled to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and",
       "keywords": [
         "move",
         "code-quality",
         "code-review",
         "code-webflow",
-        "code-opencode",
+        "code-skilled",
         "sk-code",
         "names",
         "benchmark",
@@ -20673,10 +20673,10 @@
       "lastUpdated": "2026-08-30T07:16:18.646Z"
     },
     {
-      "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode",
-      "description": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories,",
+      "specFolder": "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled",
+      "description": "The code-skilled packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories,",
       "keywords": [
-        "code-opencode",
+        "code-skilled",
         "packet",
         "large",
         "evidence",
@@ -24522,10 +24522,10 @@
       "lastUpdated": "2026-08-30T07:16:20.502Z"
     },
     {
-      "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode",
-      "description": "The sk-code-opencode mode README at `.opencode/skills/sk-code/sk-code-opencode/README.md` still carries the older tabular reference-card style",
+      "specFolder": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled",
+      "description": "The sk-code-skilled mode README at `.opencode/skills/sk-code/sk-code-skilled/README.md` still carries the older tabular reference-card style",
       "keywords": [
-        "sk-code-opencode",
+        "sk-code-skilled",
         "mode",
         "readme",
         "opencode",
@@ -25434,7 +25434,7 @@
     },
     {
       "specFolder": "sk-doc/032-split-doc-template-alignment",
-      "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the",
+      "description": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-skilled,code-webflow,code-quality} to the",
       "keywords": [
         "conform",
         "hyphenated",
@@ -25444,7 +25444,7 @@
         "asset",
         "files",
         "sk-code",
-        "code-opencode",
+        "code-skilled",
         "code-webflow",
         "code-quality"
       ],
@@ -29421,7 +29421,7 @@
       "lastUpdated": "2026-08-17T12:13:51.235Z"
     },
     {
-      "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment",
+      "specFolder": "sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment",
       "description": "The sk-vision adapter code was sparse on documentation: `vision-runtime/src/mcp/server.ts` had 2 comment lines across 82, `hooks/pi/sk-vision.ts` 11",
       "keywords": [
         "sk-vision",
@@ -30058,11 +30058,11 @@
       "lastUpdated": "2026-08-15T14:41:02.909Z"
     },
     {
-      "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate",
-      "description": "Split code-opencode's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops",
+      "specFolder": "system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate",
+      "description": "Split code-skilled's single LANGUAGE_STANDARDS intent into per-language intents (JAVASCRIPT/TYPESCRIPT/PYTHON/SHELL) so a single-language task stops",
       "keywords": [
         "split",
-        "code-opencode",
+        "code-skilled",
         "single",
         "intent",
         "per-language",
@@ -34074,7 +34074,7 @@
       "lastUpdated": "2026-08-19T19:14:44.685Z"
     },
     {
-      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+      "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment",
       "description": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
       "keywords": [
         "large",
@@ -47720,7 +47720,7 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
-      "description": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode",
+      "description": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-skilled",
       "keywords": [
         "cli",
         "orchestrator",
@@ -47734,7 +47734,7 @@
         "instead",
         "hardcoded",
         "sk-code-review",
-        "sk-code-opencode"
+        "sk-code-skilled"
       ],
       "lastUpdated": "2026-09-07T16:06:19.517Z"
     },
@@ -48006,7 +48006,7 @@
       "lastUpdated": "2026-08-15T14:41:08.780Z"
     },
     {
-      "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit",
+      "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit",
       "description": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
       "keywords": [
         "packets",
@@ -48750,13 +48750,13 @@
     },
     {
       "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
-      "description": "stresstest had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map",
+      "description": "stresstest had useful coverage but uneven sk-code-skilled alignment and no scoped catalog coverage map",
       "keywords": [
         "stresstest",
         "useful",
         "coverage",
         "uneven",
-        "sk-code-opencode",
+        "sk-code-skilled",
         "alignment",
         "scoped",
         "catalog",
@@ -60067,11 +60067,11 @@
     },
     {
       "specFolder": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/007-release-alignment-review/004-code-remediation",
-      "description": "The Track B review (`../002-code-vs-sk-code-opencode/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode",
+      "description": "The Track B review (`../002-code-vs-sk-code-skilled/review/findings-all.json`) surfaced 154 findings (66 P0 / 47 P1 / 41 P2) against the OpenCode",
       "keywords": [
         "track",
         "review",
-        "002-code-vs-sk-code-opencode",
+        "002-code-vs-sk-code-skilled",
         "findings-all",
         "json",
         "surfaced",
@@ -65158,7 +65158,7 @@
     },
     {
       "specFolder": "system-speckit/033-system-speckit-v4/026-runtime-code-standards-research",
-      "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality",
+      "description": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality",
       "keywords": [
         "system-spec-kit",
         "runtime",
@@ -65171,7 +65171,7 @@
         "directory",
         "moves",
         "while",
-        "sk-code-opencode",
+        "sk-code-skilled",
         "sk-code-quality"
       ],
       "lastUpdated": "2026-09-08T18:23:18.771Z"
@@ -67565,9 +67565,9 @@
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/090-opencode-naming-conventions",
-      "description": "The `sk-code-opencode` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
+      "description": "The `sk-code-skilled` skill enforces `snakecase` for JavaScript functions, parameters, and exports",
       "keywords": [
-        "sk-code-opencode",
+        "sk-code-skilled",
         "skill",
         "enforces",
         "snakecase",

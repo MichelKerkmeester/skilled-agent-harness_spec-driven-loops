@@ -208,6 +208,24 @@
       "order": 19,
       "id": "command-doctor-update",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-deep-loop",
+      "order": 20,
+      "id": "command-doctor-deep-loop",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-mcp-debug",
+      "order": 21,
+      "id": "command-doctor-mcp-debug",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-mcp-install",
+      "order": 22,
+      "id": "command-doctor-mcp-install",
+      "description": ""
     }
   ],
   "python": [
@@ -458,6 +476,24 @@
       "inventoryId": "command-doctor-update",
       "order": 30,
       "id": "command-doctor-update",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-deep-loop",
+      "order": 31,
+      "id": "command-doctor-deep-loop",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-mcp-debug",
+      "order": 32,
+      "id": "command-doctor-mcp-debug",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-mcp-install",
+      "order": 33,
+      "id": "command-doctor-mcp-install",
       "description": ""
     }
   ],

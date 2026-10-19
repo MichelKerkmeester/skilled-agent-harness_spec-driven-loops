@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

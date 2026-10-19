@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: sk-code Alignment & Drift Guards"
-description: "How the RESOURCE_MAP-equality doc-truth fix, the qualifiedIdToLeaf bidirectional bijection test, the run-all-drift-guards.sh orchestrator, and the additive surfaceBundle request-context land as the single code-opencode alignment-authority interface, behind the still-off SPECKIT_COMPILED_ROUTING flag."
+description: "How the RESOURCE_MAP-equality doc-truth fix, the qualifiedIdToLeaf bidirectional bijection test, the run-all-drift-guards.sh orchestrator, and the additive surfaceBundle request-context land as the single code-skilled alignment-authority interface, behind the still-off SPECKIT_COMPILED_ROUTING flag."
 trigger_phrases:
   - "sk-code alignment plan"
   - "drift guards orchestrator plan"
@@ -30,13 +30,13 @@ FAILURE MODES:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Python (`verify_alignment_drift.py`, `verify_stack_folders.py`), TypeScript/Vitest (`sk-code-router-sync.vitest.ts`), CommonJS (`leaf-resource-contract.cjs`), POSIX shell (`run-all-drift-guards.sh`) |
-| **Alignment authority (post-child)** | `code-opencode/SKILL.md` + `alignment-verification-automation.md` (doc pointer) + `sk-code-router-sync.vitest.ts` (real guard) + `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`) — the single interface CF-SC-5 requires |
+| **Alignment authority (post-child)** | `code-skilled/SKILL.md` + `alignment-verification-automation.md` (doc pointer) + `sk-code-router-sync.vitest.ts` (real guard) + `leaf-resource-contract.cjs` (`qualifiedIdToLeaf`) — the single interface CF-SC-5 requires |
 | **Frozen inputs** | Three pinned scorer digests — read-only evidence only; `run-all-drift-guards.sh` never touches them |
 | **Dependency** | `002-runtime-promotion-and-status-foundation` — REQ-006 targets the runtime request contract only after 002 promotes it to a stable path |
 
 ### Overview
 
-Four additive layers, in dependency order, none touching the frozen scorer or a routing decision. First, a doc-truth fix: rename the inert RESOURCE_MAP-equality claim in `code-opencode/SKILL.md` to name the real guard (`sk-code-router-sync.vitest.ts`) and backlink it from `alignment-verification-automation.md §5`. Second, a bidirectional proof: add `qualifiedIdToLeaf` to `leaf-resource-contract.cjs` and a Vitest suite asserting compiled `targetQualifiedIds` and the RESOURCE_MAP resolve to the same leaves in both directions. Third, unification: `run-all-drift-guards.sh` invokes all three of sk-code's disjoint drift guards behind one non-zero-on-any-failure exit code, and `SKILL.md`'s gate list is updated to name all three commands. Fourth (P1, gated on 002), an additive `surfaceBundle` composite-routing context field on the promoted runtime request contract, proven by one LUNA-high playbook case. The combined output — corrected doc pointer, bijection module, and orchestrator script — is published as the single code-opencode alignment-authority interface later 015 children consume.
+Four additive layers, in dependency order, none touching the frozen scorer or a routing decision. First, a doc-truth fix: rename the inert RESOURCE_MAP-equality claim in `code-skilled/SKILL.md` to name the real guard (`sk-code-router-sync.vitest.ts`) and backlink it from `alignment-verification-automation.md §5`. Second, a bidirectional proof: add `qualifiedIdToLeaf` to `leaf-resource-contract.cjs` and a Vitest suite asserting compiled `targetQualifiedIds` and the RESOURCE_MAP resolve to the same leaves in both directions. Third, unification: `run-all-drift-guards.sh` invokes all three of sk-code's disjoint drift guards behind one non-zero-on-any-failure exit code, and `SKILL.md`'s gate list is updated to name all three commands. Fourth (P1, gated on 002), an additive `surfaceBundle` composite-routing context field on the promoted runtime request contract, proven by one LUNA-high playbook case. The combined output — corrected doc pointer, bijection module, and orchestrator script — is published as the single code-skilled alignment-authority interface later 015 children consume.
 
 <!-- /ANCHOR:summary -->
 
@@ -51,11 +51,11 @@ Four additive layers, in dependency order, none touching the frozen scorer or a 
 - [ ] The three frozen scorer digests are confirmed unchanged immediately before work starts.
 
 ### Definition of Done
-- [ ] `code-opencode/SKILL.md` names `sk-code-router-sync.vitest.ts` explicitly; `alignment-verification-automation.md §5` backlinks to it.
+- [ ] `code-skilled/SKILL.md` names `sk-code-router-sync.vitest.ts` explicitly; `alignment-verification-automation.md §5` backlinks to it.
 - [ ] `qualifiedIdToLeaf` bidirectional bijection Vitest suite passes, zero orphans both directions.
 - [ ] `run-all-drift-guards.sh` invokes all three guards, non-zero on any failure; `SKILL.md`'s gate list names all three commands.
 - [ ] (P1) `verify_alignment_drift.py --check-router` parses RESOURCE_MAP markdown behind a default-off flag; positive + drift fixtures pass/fail correctly.
-- [ ] (P1) The promoted runtime request contract accepts the additive `surfaceBundle` context; one LUNA-high case proves `sk-code:code-opencode`.
+- [ ] (P1) The promoted runtime request contract accepts the additive `surfaceBundle` context; one LUNA-high case proves `sk-code:code-skilled`.
 - [ ] Frozen-scorer SHA-256 unchanged pre/post; `validate.sh --strict` on this child folder reports Errors: 0.
 
 <!-- /ANCHOR:quality-gates -->
@@ -70,14 +70,14 @@ Four additive layers, in dependency order, none touching the frozen scorer or a 
 Doc-truth-first, then bijection-proof, then orchestration, then contract-extension — four additive layers. Nothing in this child edits a routing decision, a manifest, or the frozen scorer; every deliverable is a corrected pointer, a new test, a new script, or a new optional field.
 
 ### Key Components
-- **`code-opencode/SKILL.md` + `alignment-verification-automation.md §5`**: the corrected doc pointer naming the real guard.
+- **`code-skilled/SKILL.md` + `alignment-verification-automation.md §5`**: the corrected doc pointer naming the real guard.
 - **`leaf-resource-contract.cjs` (`qualifiedIdToLeaf`)**: the bidirectional lookup between compiled `targetQualifiedIds` and RESOURCE_MAP leaves.
 - **`run-all-drift-guards.sh`**: the single orchestrator over `verify_alignment_drift.py`, `verify_stack_folders.py`, and `sk-code-router-sync.vitest.ts`.
 - **Promoted runtime request contract**: the additive `surfaceBundle` composite-routing context field (P1, post-002).
 
 ### Data Flow
 
-`route-gold.typed.json` (`targetQualifiedIds`) → `qualifiedIdToLeaf` → `leaf-manifest.json` leaves ↔ `code-opencode/SKILL.md` RESOURCE_MAP entries (bidirectional assertion, both directions must resolve) → `run-all-drift-guards.sh` aggregates this Vitest suite plus `verify_alignment_drift.py` plus `verify_stack_folders.py` into one exit code → `SKILL.md`'s gate list documents all three commands → (P1) the promoted request contract accepts an optional `surfaceBundle` context field consumed by one LUNA-high playbook case.
+`route-gold.typed.json` (`targetQualifiedIds`) → `qualifiedIdToLeaf` → `leaf-manifest.json` leaves ↔ `code-skilled/SKILL.md` RESOURCE_MAP entries (bidirectional assertion, both directions must resolve) → `run-all-drift-guards.sh` aggregates this Vitest suite plus `verify_alignment_drift.py` plus `verify_stack_folders.py` into one exit code → `SKILL.md`'s gate list documents all three commands → (P1) the promoted request contract accepts an optional `surfaceBundle` context field consumed by one LUNA-high playbook case.
 
 <!-- /ANCHOR:architecture -->
 
@@ -90,11 +90,11 @@ This child corrects a documentation claim and adds test/orchestration surface ov
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|---------------|
-| `code-opencode/SKILL.md` (~L45, L51, L73-156, L163) | Names an inert, markdown-blind validator as the RESOURCE_MAP-equality enforcer | Rename the claim to `sk-code-router-sync.vitest.ts`; update the gate list (~L163) to name all three guard commands | `grep -n "sk-code-router-sync.vitest.ts" SKILL.md` hits; no remaining sentence attributes RESOURCE_MAP-equality enforcement to `verify_alignment_drift.py` alone |
+| `code-skilled/SKILL.md` (~L45, L51, L73-156, L163) | Names an inert, markdown-blind validator as the RESOURCE_MAP-equality enforcer | Rename the claim to `sk-code-router-sync.vitest.ts`; update the gate list (~L163) to name all three guard commands | `grep -n "sk-code-router-sync.vitest.ts" SKILL.md` hits; no remaining sentence attributes RESOURCE_MAP-equality enforcement to `verify_alignment_drift.py` alone |
 | `alignment-verification-automation.md §5` (~L48-52) | Describes verification automation with no backlink to the real guard | Add an explicit backlink to `sk-code-router-sync.vitest.ts` | Backlink present; §5 names the file by path |
 | `verify_alignment_drift.py` (SUPPORTED_EXTENSIONS L39-51) | Markdown-blind by construction; frozen extension set for TS/JS/Py/Shell/Rust/JSON | Add `--check-router` (default off) markdown RESOURCE_MAP parser (P1) | Default invocation byte-behavior-identical; `--check-router` catches a seeded drift fixture |
 | `leaf-resource-contract.cjs` / `selectResourceContract` | No `qualifiedIdToLeaf` export | Add the bidirectional lookup | New Vitest asserts zero orphans in both directions |
-| Promoted runtime request contract (post-002; pre-promotion `014-runtime-engine/lib/compiled-route.cjs:73`) | Prompt-text-only front door | Add an additive optional composite-routing context field (P1) | One LUNA-high case returns a `surfaceBundle` containing `sk-code:code-opencode`; field absence is a no-op on every other hub |
+| Promoted runtime request contract (post-002; pre-promotion `014-runtime-engine/lib/compiled-route.cjs:73`) | Prompt-text-only front door | Add an additive optional composite-routing context field (P1) | One LUNA-high case returns a `surfaceBundle` containing `sk-code:code-skilled`; field absence is a no-op on every other hub |
 | Frozen scorer trio | Read-only digest evidence for the orchestrator's own integrity, never invoked or edited | **Unchanged — not a consumer** | Pre/post SHA-256 identical |
 
 Required inventories before implementation:
@@ -110,7 +110,7 @@ Required inventories before implementation:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Doc-truth + authority interface groundwork
-- [ ] Rename the RESOURCE_MAP-equality claim in `code-opencode/SKILL.md` to name `sk-code-router-sync.vitest.ts`.
+- [ ] Rename the RESOURCE_MAP-equality claim in `code-skilled/SKILL.md` to name `sk-code-router-sync.vitest.ts`.
 - [ ] Add the `alignment-verification-automation.md §5` backlink.
 - [ ] Draft the single alignment-authority interface note (CF-SC-5): what this child publishes, what 009/010/011 must consume instead of re-deriving.
 

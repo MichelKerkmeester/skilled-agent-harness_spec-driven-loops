@@ -34,7 +34,7 @@ contextType: "implementation"
   - mcp-figma: v1.0.2.0
   - system-spec-kit: v2.2.9.0
   - mcp-chrome-devtools: v1.0.1.0
-  - sk-code-opencode: v1.0.5.0
+  - sk-code-skilled: v1.0.5.0
   - workflows-code--web-dev: v1.0.5.0
   - sk-doc: v1.0.6.0
   - sk-git: v1.0.2.0
@@ -211,7 +211,7 @@ contextType: "implementation"
 **Priority**: P1
 **Files**:
 - `.opencode/skills/sk-doc/README.md`
-- `.opencode/skills/sk-code-opencode/README.md`
+- `.opencode/skills/sk-code-skilled/README.md`
 - `.opencode/skills/workflows-code--web-dev/README.md`
 - `.opencode/skills/sk-code-full-stack/README.md`
 - `.opencode/skills/sk-git/README.md`

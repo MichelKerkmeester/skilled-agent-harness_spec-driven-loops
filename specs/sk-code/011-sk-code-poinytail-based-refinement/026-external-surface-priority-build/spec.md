@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: External surface priority build"
-description: "Phase parent that builds the verified final recommendations of the external surface priority research, R1, R2, R3, R4, R7, R8 and R9, plus dropping ROUTER.md from doctor check 13a, so an external user can remove the example sk-code surfaces and add their own ahead of sk-code-opencode."
+description: "Phase parent that builds the verified final recommendations of the external surface priority research, R1, R2, R3, R4, R7, R8 and R9, plus dropping ROUTER.md from doctor check 13a, so an external user can remove the example sk-code surfaces and add their own ahead of sk-code-skilled."
 trigger_phrases:
   - "external surface priority build phase parent spec"
   - "external surface priority build"
@@ -53,7 +53,7 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-An external user who deletes the Webflow and Obsidian example surfaces from sk-code, or adds a surface of their own, today ends on 113 doctor failures, a guard that reports fresh while a deleted packet still routes, drift guards that throw on the missing example, and an added surface that sorts after `sk-code-opencode` and loses every keyword tie. The README tells them to replace the native OpenCode surface and to edit a ROUTER.md map without naming the steps that make the checks green. The 025 research, verified claim by claim on 2026-10-13, ends in seven final recommendations (`../025-external-surface-priority-research/research/research.md` section 14). Separately, doctor check 13a still requires a hub `ROUTER.md` to carry the `SKILL.md` version, while the operator ruled that `ROUTER.md` keeps its own version, as `frontmatter-versioning.md` already says for every doc but `SKILL.md`.
+An external user who deletes the Webflow and Obsidian example surfaces from sk-code, or adds a surface of their own, today ends on 113 doctor failures, a guard that reports fresh while a deleted packet still routes, drift guards that throw on the missing example, and an added surface that sorts after `sk-code-skilled` and loses every keyword tie. The README tells them to replace the native OpenCode surface and to edit a ROUTER.md map without naming the steps that make the checks green. The 025 research, verified claim by claim on 2026-10-13, ends in seven final recommendations (`../025-external-surface-priority-research/research/research.md` section 14). Separately, doctor check 13a still requires a hub `ROUTER.md` to carry the `SKILL.md` version, while the operator ruled that `ROUTER.md` keeps its own version, as `frontmatter-versioning.md` already says for every doc but `SKILL.md`.
 
 ### Purpose
 Build every final recommendation and the 13a change in five independently verifiable phases, so that a user who reads only the README adaptation block can remove the examples, add their own surface ahead of OpenCode and reach a green doctor, guard, sync and drift battery.
@@ -72,7 +72,7 @@ Build every final recommendation and the 13a change in five independently verifi
 - The next Skilled release note under `.skilled/changelog/skilled/`, newer than the shipped v4.0.0.4.
 
 ### Out of Scope
-- R5: decided by the operator, sk-code-opencode keeps its generic language keywords. No work.
+- R5: decided by the operator, sk-code-skilled keeps its generic language keywords. No work.
 - R6 (X21), R10 (X22), X20, X23, X24 and a removal command (X11): rejected in the verification pass, research section 14.2.
 - Moving the authored compiled-routing closure out of `specs/` (X16), a rank field or native flag (X1, X2), auto-generated canary cases (X10) and a re-mint inside the scaffold (X14).
 - Editing the shipped v4.0.0.4 release note.
@@ -83,7 +83,7 @@ Build every final recommendation and the 13a change in five independently verifi
 |-----------|-------------|-------|-------------|
 | `.skilled/commands/create/assets/create-skill-parent-confirm.yaml`, `create-skill-parent-auto.yaml`; `parent-hub-router-schema.md`, `parent-skills-nested-packets.md` | Modify | 001 | Insertion rule and completion-report follow-ups |
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs`, `.skilled/commands/doctor/assets/doctor-update-apply.yaml`, `.skilled/bin/compiled-route-guard.cjs`, `.skilled/bin/compiled-route-sync.cjs`, their tests | Modify | 002 | Repair pointers and named failures |
-| `sk-code-opencode/assets/scripts/verify-router-sync.cjs`, `verify-doc-claims.cjs`, their tests | Modify | 003 | Drift guards that tolerate a removed example |
+| `sk-code-skilled/assets/scripts/verify-router-sync.cjs`, `verify-doc-claims.cjs`, their tests | Modify | 003 | Drift guards that tolerate a removed example |
 | `parent-skill-check.cjs` check 13a and its test, `create-changelog-confirm.yaml`, `create-changelog-auto.yaml`, `frontmatter-versioning.md` | Modify | 004 | ROUTER.md keeps its own version |
 | `README.md`, `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/README.md`, the next `.skilled/changelog/skilled/` note | Modify, Create | 005 | External-user guide, example markers, release note |
 
@@ -93,14 +93,14 @@ Every final recommendation and the 13a item maps to exactly one child. The accep
 
 | Item | Child | Acceptance check |
 |------|-------|------------------|
-| R1 | 001-scaffold-surface-placement | The two YAML `tieBreak` lines are byte-identical; in a full-tree copy, the update workflow for a stand-in surface yields `[sk-code-quality, sk-code-review, <stand-in>, sk-code-opencode, sk-code-obsidian, sk-code-webflow]`, the doctor passes 5e and 5i, and after re-mint a prompt that ties the stand-in with OpenCode routes `[<stand-in>, sk-code-opencode]` |
+| R1 | 001-scaffold-surface-placement | The two YAML `tieBreak` lines are byte-identical; in a full-tree copy, the update workflow for a stand-in surface yields `[sk-code-quality, sk-code-review, <stand-in>, sk-code-skilled, sk-code-obsidian, sk-code-webflow]`, the doctor passes 5e and 5i, and after re-mint a prompt that ties the stand-in with OpenCode routes `[<stand-in>, sk-code-skilled]` |
 | R8 | 001-scaffold-surface-placement | A `--surfaces` run's completion report contains the canary line and the commit-with-hooks line; following them clears 5k-canary and leaves the guard and sync `--check` at exit 0 |
 | R3 | 002-doctor-guard-sync-messages | In a copy, a deleted packet prints a 3c line naming the README block; a reorder plus refresh prints a guard line naming the runtime activation manifest and its authored twin; applying the repair string verbatim ends with the guard and sync `--check` at exit 0; the doctor and guard test suites pass |
 | R7 | 002-doctor-guard-sync-messages | In a specs-pruned copy, sync `--check` exits 1 with one line naming `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program` and no stack, and the guard exits 1 naming the missing authored manifest; in the 019-only copy both exit 0 |
 | R2 | 003-example-tolerant-drift-guards | `run-all-drift-guards.sh` exits 0 on the live tree; in a copy after the removal recipe, router-sync checks 1a to 4 pass, and still pass with ROUTER.md's Webflow prose section removed; doc-claims `surfaces` accepts "two surfaces" when the registry has two; one new test per change passes |
 | 13a | 004-router-version-parity | A `ROUTER.md` version that differs from `SKILL.md` no longer fails 13a, a JSON routing file that differs still does, and the changelog workflow stops copying the release version into `ROUTER.md` |
 | R4 | 005-external-user-guide | `SKILL.md:40`, `README.md:800` and `:1384` and the sk-code README table mark OpenCode native and the two examples optional; `run-all-drift-guards.sh` exits 0 on the live tree; the sk-doc validators pass on the touched docs; the next release note states the rule |
-| R9 | 005-external-user-guide | In a fresh full-tree copy, an agent that reads only the README adaptation block removes both examples and adds a stand-in surface, then parent-skill-check, `ci-skill-root-metadata.cjs`, the guard, sync `--check` and `run-all-drift-guards.sh` all exit 0, and a tied prompt routes `[<stand-in>, sk-code-opencode]` |
+| R9 | 005-external-user-guide | In a fresh full-tree copy, an agent that reads only the README adaptation block removes both examples and adds a stand-in surface, then parent-skill-check, `ci-skill-root-metadata.cjs`, the guard, sync `--check` and `run-all-drift-guards.sh` all exit 0, and a tied prompt routes `[<stand-in>, sk-code-skilled]` |
 
 Nine items, nine rows, five children. No item is unmapped and none is mapped twice.
 <!-- /ANCHOR:scope -->

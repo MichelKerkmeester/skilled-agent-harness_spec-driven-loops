@@ -28,8 +28,8 @@ Priority surface 3 — `runtime/cli/rules/*.sh` and `runtime/cli/spec/*.sh` agai
 - `runtime/cli/spec/*.sh` (14 spec files)
 - `runtime/cli/spec/calculate-completeness.sh:8,82-93,546-553` (documented vs parsed flags)
 - `runtime/cli/spec/archive.sh:7,59-62,307-310`
-- `sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md`
-- `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md`
+- `sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md`
+- `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md`
 - `shared/references/universal/code-quality-standards.md`
 
 ## Assessment

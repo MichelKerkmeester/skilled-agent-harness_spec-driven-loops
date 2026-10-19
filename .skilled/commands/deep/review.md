@@ -8,6 +8,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 Thin router for the deep-review loop. This command verifies the orchestrating agent, resolves setup and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
+### MANDATORY INPUT GATE
+
+- **DO NOT** dispatch any agent from this document.
+- **ALL** agent dispatching is handled by the YAML workflow steps.
+- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
+- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
+  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
+
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
@@ -17,14 +25,6 @@ Load the presentation contract before showing startup questions, dashboards, che
 This command is **general-agent based**. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
 
 In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved review packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `review/` if needed.
-
-### MANDATORY INPUT GATE
-
-- **DO NOT** dispatch any agent from this document.
-- **ALL** agent dispatching is handled by the YAML workflow steps.
-- **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
-- **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
 
 ### AUTONOMOUS EXECUTION DIRECTIVE (:auto)
 

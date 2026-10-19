@@ -91,7 +91,7 @@ contextType: "research"
 | `.opencode/skills/cli-external-orchestration/hub-router.json` | Analyzed | OK | With `mode-registry.json`, `leaf-manifest.json`, `ROUTER.md`, `description.json`, `graph-metadata.json`: the six surfaces a seventh mode registers on; the skill advisor reads executors from `mode-registry.json` (`system-skill-advisor/runtime/lib/scorer/executor-delegation.ts` lines 120-166), so no scorer change is needed |
 | `.opencode/skills/sk-doc/sk-create-skill/` | Cited | OK | Skill packet template and existing-hub checklist for the future `cli-hermes` packet |
 | `.opencode/skills/sk-doc/sk-create-readme/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/` | Cited | OK | Create modes the later phases must use |
-| `.opencode/skills/sk-code/sk-code-opencode/` | Cited | OK | Code surface for the runtime changes |
+| `.opencode/skills/sk-code/sk-code-skilled/` | Cited | OK | Code surface for the runtime changes |
 | `~/.hermes/hermes-agent/tools/skills_tool.py` | Analyzed | OK | Lines 177-204: trusted project dirs come first in the scan; lines 490-496: a project skill that fails the scan is quarantined until inspected or the repo is untrusted; lines 505-512: a skill outside trusted dirs warns, never blocks. Siblings: `skills_guard.py` (regex static scan, trust tiers builtin/trusted/community), `skill_linter.py`, `skills_ast_audit.py` |
 <!-- /ANCHOR:skills -->
 

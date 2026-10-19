@@ -1,9 +1,9 @@
-.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md
+.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md
 Total issues: 0
   hard blockers:          0
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
 Total issues: 0
   hard blockers:          0
-.skilled/skills/sk-code/sk-code-opencode/SKILL.md
+.skilled/skills/sk-code/sk-code-skilled/SKILL.md
 Total issues: 0
   hard blockers:          25

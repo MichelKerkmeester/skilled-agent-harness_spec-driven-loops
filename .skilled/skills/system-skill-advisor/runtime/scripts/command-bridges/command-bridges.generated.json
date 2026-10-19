@@ -4,10 +4,10 @@
   "counts": {
     "commandMetadata": 19,
     "allowList": 8,
-    "doctorRoutes": 16,
-    "generated": 43,
-    "typescriptActive": 20,
-    "pythonActive": 30
+    "doctorRoutes": 18,
+    "generated": 45,
+    "typescriptActive": 23,
+    "pythonActive": 33
   },
   "entries": [
     {
@@ -417,10 +417,35 @@
       "source": ".skilled/commands/doctor/_routes.yaml",
       "runtime": {
         "typescript": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-doctor-deep-loop",
+          "order": 20,
+          "id": "command-doctor-deep-loop",
+          "description": "",
+          "name": "/doctor:deep-loop",
+          "keywords": [
+            "deep-loop coverage graph check",
+            "deep-loop graph empty or stale",
+            "deep-research convergence drift",
+            "deep-review iteration graph"
+          ],
+          "intentSignals": [
+            "/doctor:deep-loop"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
         },
         "python": {
-          "enabled": false
+          "enabled": true,
+          "inventoryId": "command-doctor-deep-loop",
+          "order": 31,
+          "id": "command-doctor-deep-loop",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:deep-loop"
+          ]
         }
       }
     },
@@ -447,6 +472,9 @@
           "intentSignals": [
             "/doctor:env list"
           ],
+          "leadPhrases": [
+            "check my environment variables"
+          ],
           "domains": [
             "doctor",
             "command"
@@ -460,6 +488,9 @@
           "description": "",
           "slashMarkers": [
             "/doctor:env list"
+          ],
+          "leadPhrases": [
+            "check my environment variables"
           ]
         }
       }
@@ -580,6 +611,85 @@
           "description": "",
           "slashMarkers": [
             "/doctor:git standards"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-mcp-debug",
+      "command": "/doctor:mcp",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-mcp-debug",
+          "order": 21,
+          "id": "command-doctor-mcp-debug",
+          "description": "",
+          "name": "/doctor:mcp debug",
+          "keywords": [
+            "Code Mode broken",
+            "debug an MCP connection",
+            "MCP connection failure",
+            "mcp-doctor.sh diagnostic script"
+          ],
+          "intentSignals": [
+            "/doctor:mcp debug"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-mcp-debug",
+          "order": 32,
+          "id": "command-doctor-mcp-debug",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:mcp debug"
+          ]
+        }
+      }
+    },
+    {
+      "id": "command-doctor-mcp-install",
+      "command": "/doctor:mcp",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-mcp-install",
+          "order": 22,
+          "id": "command-doctor-mcp-install",
+          "description": "",
+          "name": "/doctor:mcp install",
+          "keywords": [
+            "install the MCP servers",
+            "Code Mode fresh install",
+            "reinstall Code Mode MCP"
+          ],
+          "intentSignals": [
+            "/doctor:mcp install"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-mcp-install",
+          "order": 33,
+          "id": "command-doctor-mcp-install",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:mcp install"
           ]
         }
       }
@@ -765,7 +875,7 @@
           "keywords": [
             "skill advisor rebuild",
             "rebuild the skill graph database",
-            "skill_graph scan",
+            "rerun the skill_graph scan",
             "new skill not appearing in advisor results"
           ],
           "intentSignals": [
@@ -1004,9 +1114,9 @@
           "description": "",
           "name": "/doctor:update",
           "keywords": [
-            "doctor update",
+            "doctor update command",
             "update skills to latest release",
-            "release update",
+            "skilled release update",
             "update skilled to the latest release",
             "check for skilled updates",
             "is there a newer skilled release"

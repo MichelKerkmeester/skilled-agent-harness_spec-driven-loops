@@ -8,12 +8,6 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 Thin router for the sk-prompt prompt-improvement workflow. This command verifies dispatch context, binds the required inputs and execution mode, loads the presentation contract, then executes the owned workflow YAML.
 
-## 1. ROUTER CONTRACT
-
-This Markdown owns the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the DEPTH pipeline, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
-
-Load the presentation contract before showing any startup question, checkpoint, dashboard, success output, failure output, or next-step prompt.
-
 ### MANDATORY INPUT GATE
 
 **STATUS: BLOCKED** until `prompt_input`, `enhancement_mode`, `save_choice`, `execution_mode`, and `dispatch_mode` are bound.
@@ -33,6 +27,12 @@ Load the presentation contract before showing any startup question, checkpoint, 
 | `dispatch_mode` | yes | `--agent` / complexity or `INLINE` |
 
 If any blocking phase was skipped, stop, report the skipped phase through the presentation contract, return to it, and complete it before loading YAML.
+
+## 1. ROUTER CONTRACT
+
+This Markdown owns the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the DEPTH pipeline, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
+
+Load the presentation contract before showing any startup question, checkpoint, dashboard, success output, failure output, or next-step prompt.
 
 ---
 

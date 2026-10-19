@@ -37,6 +37,31 @@
     },
     {
       "leaves": [
+        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
+        "assets/code-quality-checklist/overview-header-and-comments.md",
+        "assets/code-quality-checklist/verification-quick-reference-and-related.md"
+      ],
+      "packet": "sk-code-quality",
+      "workflowMode": "sk-code-quality"
+    },
+    {
+      "leaves": [
+        "assets/code-quality-checklist.md",
+        "assets/fix-completeness-checklist.md",
+        "assets/removal-plan.md",
+        "assets/security-checklist.md",
+        "assets/solid-checklist.md",
+        "assets/test-quality-checklist.md",
+        "references/pr-state-dedup.md",
+        "references/quick-reference.md",
+        "references/review-core.md",
+        "references/review-ux-single-pass.md"
+      ],
+      "packet": "sk-code-review",
+      "workflowMode": "sk-code-review"
+    },
+    {
+      "leaves": [
         "assets/checklists/agent-authoring.md",
         "assets/checklists/command-authoring.md",
         "assets/checklists/config-checklist.md",
@@ -111,33 +136,8 @@
         "references/workflow-implement.md",
         "references/workflow-verify.md"
       ],
-      "packet": "sk-code-opencode",
-      "workflowMode": "sk-code-opencode"
-    },
-    {
-      "leaves": [
-        "assets/code-quality-checklist/naming-init-formatting-and-css.md",
-        "assets/code-quality-checklist/overview-header-and-comments.md",
-        "assets/code-quality-checklist/verification-quick-reference-and-related.md"
-      ],
-      "packet": "sk-code-quality",
-      "workflowMode": "sk-code-quality"
-    },
-    {
-      "leaves": [
-        "assets/code-quality-checklist.md",
-        "assets/fix-completeness-checklist.md",
-        "assets/removal-plan.md",
-        "assets/security-checklist.md",
-        "assets/solid-checklist.md",
-        "assets/test-quality-checklist.md",
-        "references/pr-state-dedup.md",
-        "references/quick-reference.md",
-        "references/review-core.md",
-        "references/review-ux-single-pass.md"
-      ],
-      "packet": "sk-code-review",
-      "workflowMode": "sk-code-review"
+      "packet": "sk-code-skilled",
+      "workflowMode": "sk-code-skilled"
     },
     {
       "leaves": [

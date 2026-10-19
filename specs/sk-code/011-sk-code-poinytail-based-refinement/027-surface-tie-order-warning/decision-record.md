@@ -61,7 +61,7 @@ Check 5l has to know which sk-code surface is native and which two are the opera
 
 **We chose**: two constants in `parent-skill-check.cjs`, `SK_CODE_NATIVE_SURFACE` and `SK_CODE_EXAMPLE_SURFACES`, read by check 5l, which runs only when the hub folder is named `sk-code`.
 
-**How it works**: 5l finds `sk-code-opencode` in `routerPolicy.tieBreak` and takes every mode after it whose registry `packetKind` is `surface` and whose name is not one of the two examples. Any such mode is a soft failure naming both fixes; none is a PASS line.
+**How it works**: 5l finds `sk-code-skilled` in `routerPolicy.tieBreak` and takes every mode after it whose registry `packetKind` is `surface` and whose name is not one of the two examples. Any such mode is a soft failure naming both fixes; none is a PASS line.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -84,10 +84,10 @@ Check 5l has to know which sk-code surface is native and which two are the opera
 ### Consequences
 
 **What improves**:
-- A hand-added surface after `sk-code-opencode` is reported, with no change to any file a user edits.
+- A hand-added surface after `sk-code-skilled` is reported, with no change to any file a user edits.
 
 **What it costs**:
-- Renaming `sk-code-opencode` or an example means editing the constants. Mitigation: the README calls the native surface one to keep, and a rename already touches many files.
+- Renaming `sk-code-skilled` or an example means editing the constants. Mitigation: the README calls the native surface one to keep, and a rename already touches many files.
 
 **Risks**:
 
@@ -157,7 +157,7 @@ The doctor has three verdicts that matter here. `softFail` prints FAIL and count
 
 **We chose**: `softFail`, the same verdict as 5e and 5i.
 
-**How it works**: a user surface after `sk-code-opencode` prints `FAIL: 5l: ...` and the doctor exits 1; with `PARENT_HUB_CHECK_STRICT=0` it prints `WARN: 5l: ...` and exits 0.
+**How it works**: a user surface after `sk-code-skilled` prints `FAIL: 5l: ...` and the doctor exits 1; with `PARENT_HUB_CHECK_STRICT=0` it prints `WARN: 5l: ...` and exits 0.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: cli-cursor hooks lifecycle"
-description: "Coordinate the cli-cursor hook adapter lifecycle across six phases: hooks feature-catalog and playbook coverage, live .cursor/hooks.json wiring, Claude-adapter parity expansion, independent manual-testing verification, sk-code/code-opencode style alignment, and the .cursor/hooks/ discovery mirror. All 6 phases are complete."
+description: "Coordinate the cli-cursor hook adapter lifecycle across six phases: hooks feature-catalog and playbook coverage, live .cursor/hooks.json wiring, Claude-adapter parity expansion, independent manual-testing verification, sk-code/code-skilled style alignment, and the .cursor/hooks/ discovery mirror. All 6 phases are complete."
 trigger_phrases: ["cli-cursor hooks lifecycle", "cursor hooks.json wiring", "cursor hook adapter parity", "cursor hooks manual testing"]
 importance_tier: normal
 contextType: implementation
@@ -44,10 +44,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `cli-cursor` hook adapter layer (built in `030-cli-cursor-creation`'s phase 004) spans a sequence of tightly related follow-on workstreams — cataloging the adapters, wiring them live against the real repo, extending them toward Claude-adapter parity, independently re-verifying that wiring, aligning the code to `sk-code`/`code-opencode` standards, and mirroring the hooks into Cursor's conventional discovery path. These six workstreams share one subject (the Cursor hook adapter lifecycle) and one dependency chain (each phase's `Predecessor`/`Successor` points at the next), which this phase-parent folder groups under a single governing packet per this repo's Phase Parent convention.
+The `cli-cursor` hook adapter layer (built in `030-cli-cursor-creation`'s phase 004) spans a sequence of tightly related follow-on workstreams — cataloging the adapters, wiring them live against the real repo, extending them toward Claude-adapter parity, independently re-verifying that wiring, aligning the code to `sk-code`/`code-skilled` standards, and mirroring the hooks into Cursor's conventional discovery path. These six workstreams share one subject (the Cursor hook adapter lifecycle) and one dependency chain (each phase's `Predecessor`/`Successor` points at the next), which this phase-parent folder groups under a single governing packet per this repo's Phase Parent convention.
 
 ### Purpose
-Govern the cli-cursor hooks lifecycle as one phase-parent packet with six ordered children: feature-catalog and playbook coverage (001), live `.cursor/hooks.json` wiring (002), Claude-adapter parity expansion (003), independent manual-testing verification (004), sk-code/code-opencode style alignment (005), and the `.cursor/hooks/` discovery mirror (006). Each child carries its own full spec/plan/tasks/checklist/implementation-summary; this parent holds only the lean trio (`spec.md`, `description.json`, `graph-metadata.json`) per the repo's Phase Parent Mode.
+Govern the cli-cursor hooks lifecycle as one phase-parent packet with six ordered children: feature-catalog and playbook coverage (001), live `.cursor/hooks.json` wiring (002), Claude-adapter parity expansion (003), independent manual-testing verification (004), sk-code/code-skilled style alignment (005), and the `.cursor/hooks/` discovery mirror (006). Each child carries its own full spec/plan/tasks/checklist/implementation-summary; this parent holds only the lean trio (`spec.md`, `description.json`, `graph-metadata.json`) per the repo's Phase Parent Mode.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -71,7 +71,7 @@ Govern the cli-cursor hooks lifecycle as one phase-parent packet with six ordere
 | `.cursor/hooks.json` | Created | 002 | Committed, project-level hook registration for the 4 confirmed adapters. |
 | `.cursor/hooks.json`, `system-spec-kit/mcp-server/hooks/cursor/**` | Modify/Created | 003 | Claude-adapter parity expansion (Tier 0-4 adapters). |
 | `.opencode/specs/.../004-hooks-manual-testing-results/**` | Created | 004 | Independent re-execution and evidence for the hooks-category playbook scenarios. |
-| `system-spec-kit/{runtime,mcp-server}/hooks/cursor/*.mjs`, `sk-code/code-opencode/references/shared/hooks.md` | Modify | 005 | sk-code/code-opencode style alignment for Cursor `.mjs` hook files. |
+| `system-spec-kit/{runtime,mcp-server}/hooks/cursor/*.mjs`, `sk-code/code-skilled/references/shared/hooks.md` | Modify | 005 | sk-code/code-skilled style alignment for Cursor `.mjs` hook files. |
 | `.cursor/hooks/**` | Created | 006 | Symlink discovery mirror of every file `.cursor/hooks.json` invokes. |
 <!-- /ANCHOR:scope -->
 
@@ -85,7 +85,7 @@ Govern the cli-cursor hooks lifecycle as one phase-parent packet with six ordere
 | 2 | `002-cursor-hooks-live-wiring/` | Create and commit the project `.cursor/hooks.json` registration (ADR-001). | Complete |
 | 3 | `003-cursor-hooks-claude-parity/` | Expand toward Claude parity: `postToolUse` chain, `Task`-matcher guard, repo-guard scripts. | Complete |
 | 4 | `004-hooks-manual-testing-results/` | Re-execute the hooks-category playbook scenarios independently. | Complete |
-| 5 | `005-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-opencode` P0 standards. | Complete |
+| 5 | `005-hooks-sk-code-alignment/` | Align all Cursor `.mjs` hooks to `sk-code/code-skilled` P0 standards. | Complete |
 | 6 | `006-cursor-hooks-discovery-mirror/` | `.cursor/hooks/` discovery mirror. | Complete |
 
 ### Phase Transition Rules

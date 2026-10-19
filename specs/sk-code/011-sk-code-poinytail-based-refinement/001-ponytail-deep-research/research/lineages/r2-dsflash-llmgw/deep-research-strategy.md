@@ -13,7 +13,7 @@ Mine Ponytail 5.1.0 for teachings that improve (1) the sk-code hub and its code 
 - [x] Which Ponytail teachings improve the root REPO RULES.md and AGENTS.md framework, including the trigger-table load model?
 - [x] Which Ponytail teachings improve the sk-code hub core (SKILL.md, ROUTER.md, mode-registry.json, hub-router.json) beyond what round one settled?
 - [x] Which Ponytail teachings improve the sk-code shared layer and the quality and review modes beyond round one's adopted set and defects?
-- [x] Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?
+- [x] Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?
 - [x] How do Ponytail's cross-runtime mirror and portability mechanics compare with the repo's generated mirrors and agent drift checks, and what should change?
 - [x] Which original ideas does Ponytail inspire for the agent definitions, repository rules and root docs, and which candidate transfers should be rejected with a reason?
 - [x] Which round-two findings are NEW, ALREADY-COVERED or ALREADY-ADOPTED, and what priority does each carry for the ranked findings table?
@@ -33,7 +33,7 @@ Stop at the iteration cap of 10, as dispatched (`stopPolicy: max-iterations`). C
 - Which Ponytail teachings improve the root REPO RULES.md and AGENTS.md framework, including the trigger-table load model? (iteration 5)
 - Which Ponytail teachings improve the sk-code hub core (SKILL.md, ROUTER.md, mode-registry.json, hub-router.json) beyond what round one settled? (iteration 6)
 - Which Ponytail teachings improve the sk-code shared layer and the quality and review modes beyond round one's adopted set and defects? (iteration 7)
-- Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects? (iteration 8)
+- Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian, sk-code-quality) beyond round one's cited defects? (iteration 8)
 - How do Ponytail's cross-runtime mirror and portability mechanics compare with the repo's generated mirrors and agent drift checks, and what should change? (iteration 3)
 - Which original ideas does Ponytail inspire for the agent definitions, repository rules and root docs, and which candidate transfers should be rejected with a reason? (iteration 9)
 - Which round-two findings are NEW, ALREADY-COVERED or ALREADY-ADOPTED, and what priority does each carry for the ranked findings table? (iteration 10)

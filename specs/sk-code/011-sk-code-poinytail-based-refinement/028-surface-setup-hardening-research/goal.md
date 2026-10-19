@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Recommend, with checked evidence, how to harden the rule that only sk-code-opencode and sk-code-review matter to an external user and that a new surface outranks sk-code-opencode, how to smooth that user's setup, and whether the setup belongs in a doctor command or a sk-code mode.
+**Objective:** Recommend, with checked evidence, how to harden the rule that only sk-code-skilled and sk-code-review matter to an external user and that a new surface outranks sk-code-skilled, how to smooth that user's setup, and whether the setup belongs in a doctor command or a sk-code mode.
 
 ### Decisions
 

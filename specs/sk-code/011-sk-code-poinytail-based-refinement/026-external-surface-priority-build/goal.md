@@ -84,7 +84,7 @@ string, not these files.
 - [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 6.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/026-external-surface-priority-build --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times.
 - [x] `f=$(ls .skilled/changelog/skilled/v*.md | sort -V | tail -1); [ "$f" != .skilled/changelog/skilled/v4.0.0.4.md ] && grep -qi 'optional example' "$f" && grep -q 'ROUTER.md' "$f" && echo ok` prints ok.
-- [x] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && echo ok`, run on 005's branch, prints ok.
+- [x] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs >/dev/null 2>&1 && echo ok`, run on 005's branch, prints ok.
 
 All commands run from the repository root.
 <!-- /ANCHOR:completion -->

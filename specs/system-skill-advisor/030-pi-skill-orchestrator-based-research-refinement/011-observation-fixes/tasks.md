@@ -47,7 +47,7 @@ contextType: "implementation"
 - [x] T006 Regenerate the descriptions of phases 005 and 007 to 011 from their `spec.md`
 - [x] T007 Regenerate the 13 other placeholder descriptions, and give the three whose `spec.md` was never written the numbered label the fixed `create.sh` writes. Each keeps its `specFolder`, `parentChain` and `specId`
 - [x] T008 Correct the drift-guard text in the wrapper header, `SKILL.md`, both READMEs, the playbook scenario and the alignment reference (O1)
-- [x] T009 Regenerate the sk-code-opencode Hermes mirror into scratch and copy back only that file
+- [x] T009 Regenerate the sk-code-skilled Hermes mirror into scratch and copy back only that file
 - [x] T010 Drop the unused import and the two comment em dashes, then rebuild the advisor so its CLI accepts the dist (O2, O3)
 - [x] T011 Rewrite the three advisor doc paragraphs without an em dash, semicolon or serial comma (O3)
 - [x] T012 Set the 46 older metrics logs to mode 0600, after recording each old mode (O7, `evidence/metrics-log-modes.txt`)

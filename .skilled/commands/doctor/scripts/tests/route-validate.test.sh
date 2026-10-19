@@ -126,6 +126,19 @@ run_rv ROUTES_FILE="$WORK/schema2.yaml" -- "$SCRIPT"
 check "a schema_version failure exits 1" '[[ "$RC" -eq 1 && "$OUT" == *"FAIL: A2:"* ]]'
 check "an A2 failure does not hide the B2 pass" '[[ "$OUT" == *"PASS: B2: all routes have required keys"* ]]'
 
+python3 - "$DOCTOR_DIR/_routes.yaml" "$WORK/lead-mismatch.yaml" <<'PY'
+import sys
+import yaml
+
+with open(sys.argv[1], encoding="utf-8") as handle:
+    doc = yaml.safe_load(handle)
+doc["routes"][0]["lead_phrases"] = ["phrase missing from trigger list"]
+with open(sys.argv[2], "w", encoding="utf-8") as handle:
+    yaml.safe_dump(doc, handle, sort_keys=False)
+PY
+run_rv ROUTES_FILE="$WORK/lead-mismatch.yaml" -- "$SCRIPT"
+check "a lead_phrases entry missing from trigger_phrases fails" '[[ "$RC" -eq 1 && "$OUT" == *"lead_phrases"* ]]'
+
 python3 - "$DOCTOR_DIR/_routes.yaml" "$WORK/dupe.yaml" <<'PY'
 import sys
 import yaml
