@@ -1,0 +1,21 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision",
+  "description": "sk-vision OpenCode 2 runtime research after the merge",
+  "keywords": [
+    "sk-vision",
+    "opencode",
+    "runtime",
+    "research",
+    "merge"
+  ],
+  "lastUpdated": "2026-10-19T18:30:34.971Z",
+  "specId": "015",
+  "folderSlug": "post-merge-research-sk-vision",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "research"
+}

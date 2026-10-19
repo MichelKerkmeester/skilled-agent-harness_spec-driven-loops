@@ -1,0 +1,170 @@
+{
+  "sessionId": "2026-10-19T19:09:15.446Z",
+  "parentSessionId": "2026-10-19T18:32:11.270Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-changed-code-files-miss-sk-code-skilled-and-how",
+      "inboxId": null,
+      "text": "Which changed code files miss sk-code-skilled, and how?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-changed-docs-miss-their-sk-doc-mode-and-how",
+      "inboxId": null,
+      "text": "Which changed docs miss their sk-doc mode, and how?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-which-changed-docs-miss-their-sk-doc-mode-and-how",
+      "inboxId": null,
+      "text": "Which changed docs miss their sk-doc mode, and how?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-changed-code-files-miss-sk-code-skilled-and-how",
+      "inboxId": null,
+      "text": "Which changed code files miss sk-code-skilled, and how?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Which changed **docs** miss their sk-doc mode, and how? (carried to the next focus)",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None carried. This is the final iteration of the run.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which changed docs miss their sk-doc mode, and how?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-comment-hygiene-hard-block-clean-0-violations-across-all-77-changed-code-files-a",
+      "text": "**Comment hygiene (HARD BLOCK): clean.** 0 violations across all 77 changed code files, and not a single `hygiene-ok` suppression was used — no file needed it. [SOURCE: .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-drift-guards-4-4-pass-at-head-the-10-alignment-drift-warnings-all-land-on-files-",
+      "text": "**Drift guards: 4/4 PASS at HEAD.** The 10 alignment-drift warnings all land on files **outside** the merged window (`.opencode/plugins/lib/opencode-goal-core.js`, `lib/tool-identity.js`, and seven `specs/**/research/lineages/**` scripts) — none on a file these branches changed. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-error-handling-posture-is-strong-v2-bridge-js-throws-typed-errors-naming-the-uns",
+      "text": "**Error-handling posture is strong.** `v2-bridge.js` throws typed errors naming the unsupported v2 surface (`:97`, `:142`, `:167`, `:195`) and aggregates plugin-cleanup failures in an `AggregateError` (`:275`). [SOURCE: .opencode/plugins/lib/v2-bridge.js:275] `worktree-naming.sh` scopes `set -euo pipefail` with a durable WHY (it must not leak `set -e` into sourcing callers) and validates namespace/slug arguments to stderr with `_wn_usage`. [SOURCE: .skilled/skills/sk-git/scripts/worktree-naming.sh:39] `verify-iteration.cjs` catches are annotated with durable intent, e.g. \"handled as inconclusive below\". [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:295] `pi-fast-mode` documents the second-copy stand-down with a durable comment. [SOURCE: .pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts:86]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-headers-and-dividers-exact-every-sampled-file-opens-with-the-module-header-heade",
+      "text": "**Headers and dividers: exact.** Every sampled file opens with the `MODULE:` header; header dividers measure 70 chars (`// ` + 67 box characters, exactly the guide template) and section dividers 80 chars. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:55] The two remaining `╔═╗`-box users (`.opencode/plugins/system-skill-advisor.js`, `.skilled/skills/sk-vision/hooks/opencode/sk-vision.ts`) both pre-date the window, so the \"accepted where it already exists; do not introduce in new files\" rule is satisfied. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:60]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-mirror-parity-is-enforced-and-held-all-five-runtime-mirrors-claude-hooks-codex-h",
+      "text": "**Mirror parity is enforced and held.** All five runtime mirrors (`.claude/hooks/*`, `.codex/hooks/*`, `.opencode/plugins/session-relaunch.js`) are byte-identical to their `.skilled/hooks/session-relaunch/` sources, and a parity test shipped in the same window. [SOURCE: .skilled/skills/system-spec-kit/runtime/tests/hook-adapter-path-parity.vitest.ts:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-test-pairing-is-otherwise-comprehensive-v2-bridge-v2-bridge-test-cjs-all-12-plug",
+      "text": "**Test pairing is otherwise comprehensive**: v2-bridge → `v2-bridge.test.cjs`; all 12 plugins → `v2-registration.test.cjs` (v2-hook assertions at `:69`–`:89`); session-relaunch has per-module tests (killer/nudge/relaunch-core/context-usage/cli/skilled-loop) plus claude/codex/hermes adapter tests; doctor scripts have both paired test files; `spec-gate-core.mjs`, `reduce-state.cjs`, `verify-iteration.cjs`, `sync-hook-registrations.cjs`, `post-edit-router.cjs`, `router-replay-lib.cjs`, and `worktree-naming.sh` all have direct or suite tests. [SOURCE: .opencode/plugins/tests/v2-registration.test.cjs:69]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-sk-code-skilled-rename-is-fully-propagated-no-sk-code-opencode-directory-rem",
+      "text": "**The sk-code-skilled rename is fully propagated.** No `sk-code-opencode` directory remains; doc-claims check \"names\" (no retired packet names) passes.",
+      "addedAtIteration": 1,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 1,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 2,
+    "keyFindings": 7,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/153-post-merge-research-conformance/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

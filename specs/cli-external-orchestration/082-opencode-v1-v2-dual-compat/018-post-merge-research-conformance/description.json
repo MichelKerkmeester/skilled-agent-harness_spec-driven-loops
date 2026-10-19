@@ -1,0 +1,21 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
+  "description": "sk-code-skilled and sk-doc conformance research after the merge",
+  "keywords": [
+    "sk-code-skilled",
+    "sk-doc",
+    "conformance",
+    "research",
+    "merge"
+  ],
+  "lastUpdated": "2026-10-19T18:30:36.922Z",
+  "specId": "018",
+  "folderSlug": "post-merge-research-conformance",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "research"
+}
