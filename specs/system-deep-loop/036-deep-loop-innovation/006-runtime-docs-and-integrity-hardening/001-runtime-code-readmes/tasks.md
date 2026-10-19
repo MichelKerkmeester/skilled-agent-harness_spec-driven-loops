@@ -82,5 +82,5 @@ _memory:
 - Standard: sk-doc create-readme (code-README format)
 - Upstream, hard: `sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement`
 - Coordination: WS1 child `010-docs-drift-and-p2-batch` (`runtime/README.md`)
-- Successor: `002-sk-code-opencode-alignment`
+- Successor: `002-sk-code-skilled-alignment`
 <!-- /ANCHOR:cross-refs -->

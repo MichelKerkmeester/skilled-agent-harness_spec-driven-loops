@@ -97,7 +97,7 @@ Confirm current-state conformance across the 163 tracked Markdown paths under th
 
 ### Bounded Context Snapshot
 
-- Target pointers: five canonical packet docs; description/graph metadata; 163 tracked Markdown paths under code-opencode references/assets, code-webflow references/assets, and code-quality assets.
+- Target pointers: five canonical packet docs; description/graph metadata; 163 tracked Markdown paths under code-skilled references/assets, code-webflow references/assets, and code-quality assets.
 - Behavior claims: required metadata and four-part version; snake_case basenames; H1/intro/Overview ordering; mode-specific Overview content; contiguous numbering; terminal Related Resources; renamed-file link integrity.
 - Authority: `skill_reference_template.md`, `skill_asset_template.md`, and `validate_document.py`.
 - Current-state evidence before iteration 1: generic validation is 163/163; no hyphenated basename; no missing metadata/version; no Overview-order, numbering, Related Resources, lowercase-trigger, or intro/Purpose-containment defect; one illustrative absolute `/specs/005-example.com/...` link remains documented out of scope.
@@ -122,7 +122,7 @@ Confirm current-state conformance across the 163 tracked Markdown paths under th
 |---|---|---:|---|---|
 | Packet docs and generated metadata | D1, D2, D3, D4 | 4 | 1 P1, 1 P2 | complete |
 | Create-skill templates and validator | D1, D3, D4 | 4 | 0 | complete |
-| code-opencode references/assets | D1, D2, D3, D4 | 4 | 1 P2 | complete |
+| code-skilled references/assets | D1, D2, D3, D4 | 4 | 1 P2 | complete |
 | code-webflow references/assets | D1, D2, D3, D4 | 4 | 1 P2 shared class | complete |
 | code-quality assets | D1, D2, D3, D4 | 4 | 0 | complete |
 <!-- MACHINE-OWNED: END -->

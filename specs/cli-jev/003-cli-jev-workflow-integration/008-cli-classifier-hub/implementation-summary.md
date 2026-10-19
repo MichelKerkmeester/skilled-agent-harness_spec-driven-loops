@@ -123,7 +123,7 @@ The session verified the uncommitted build against the first six goal criteria a
 | One `enhances system-spec-kit` graph edge | The graph compiler blocks a skill with zero edges, and `enhances` needs no matching edge in another skill |
 | `cli-jev` moves in 009, not here | The move touches 81 files under the hub and 48 that name it, and it waits on a pre-fixed Deem `keep` in 002 or 017 (D4 of the parent goal) |
 | CLI executors build from single-change briefs | D5 of the parent goal: a fresh Opus 5.5 xhigh build orchestrator briefs the executors by Bash, and the orchestrator session verifies, gets a cross-family review and commits |
-| Docs through sk-doc, code through `sk-code-opencode` | D6 of the parent goal. The hub gains a feature catalog in `cli-deem/`, where `cli-jev` keeps its transport's catalog |
+| Docs through sk-doc, code through `sk-code-skilled` | D6 of the parent goal. The hub gains a feature catalog in `cli-deem/`, where `cli-jev` keeps its transport's catalog |
 <!-- /ANCHOR:decisions -->
 
 ---

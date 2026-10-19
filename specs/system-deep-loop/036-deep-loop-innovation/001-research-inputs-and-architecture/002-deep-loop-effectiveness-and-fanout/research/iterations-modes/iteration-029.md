@@ -1556,9 +1556,9 @@ exec
 .opencode/specs/system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/research/deep-research-config.json
 .opencode/specs/system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/research/deep-research-dashboard.md
 .opencode/specs/system-code-graph/007-code-graph-buildout/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/research/deep-research-state.jsonl
-.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
-.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-fanout-config.json
-.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl
+.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md
+.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-fanout-config.json
+.opencode/specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-state.jsonl
 .opencode/specs/sk-design/009-sk-design-claude-parity/research/deep-research-strategy.md
 .opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md
 .opencode/specs/sk-design/009-sk-design-claude-parity/research/deep-research-config.json

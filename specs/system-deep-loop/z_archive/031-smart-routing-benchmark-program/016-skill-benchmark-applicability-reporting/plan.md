@@ -29,8 +29,8 @@ A self-contained change to the Lane C harness (`system-deep-loop/deep-improvemen
 
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
-- Full `skill-benchmark/tests/` vitest suite green (incl. `code-opencode-playbook-ids`).
-- code-opencode router + live reports: `aggregateScore` byte-identical to pre-change; `excludedDimensions:["D1inter"]`, `unscoredDimensions:["D4"]`.
+- Full `skill-benchmark/tests/` vitest suite green (incl. `code-skilled-playbook-ids`).
+- code-skilled router + live reports: `aggregateScore` byte-identical to pre-change; `excludedDimensions:["D1inter"]`, `unscoredDimensions:["D4"]`.
 - `git diff --stat` shows zero advisor/sk-code-metadata files.
 - `validate.sh --strict` on this packet at Errors 0 (packet baseline).
 <!-- /ANCHOR:quality-gates -->
@@ -44,15 +44,15 @@ A self-contained change to the Lane C harness (`system-deep-loop/deep-improvemen
 
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
-1. **Setup** — capture pre-change report invariants (code-opencode aggregate 84/86, sk-code baseline).
+1. **Setup** — capture pre-change report invariants (code-skilled aggregate 84/86, sk-code baseline).
 2. **Harness** — skillId thread-through; advisor-visibility + owner resolution helper; excluded-by-design in `aggregate()`; D4-R fail-closed; report rendering.
-3. **Verification** — tests, re-run code-opencode router+live, sk-code re-baseline, scope-guard diff, validate.
+3. **Verification** — tests, re-run code-skilled router+live, sk-code re-baseline, scope-guard diff, validate.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 - Unit: an advisor-invisible fixture asserts D1-inter excluded-by-design + `excludedDimensions`; an advisor-visible fixture asserts unchanged behavior; a D4-R fixture asserts fail-closed with no target scenarios.
-- Integration: re-run `run-skill-benchmark.cjs` for code-opencode (router + live) and diff `aggregateScore`.
+- Integration: re-run `run-skill-benchmark.cjs` for code-skilled (router + live) and diff `aggregateScore`.
 - Regression: full `skill-benchmark/tests/` suite; update the mirrors that assert the old `unscoredDimensions`.
 <!-- /ANCHOR:testing -->
 

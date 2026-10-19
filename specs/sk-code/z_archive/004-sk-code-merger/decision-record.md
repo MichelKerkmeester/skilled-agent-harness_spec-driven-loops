@@ -133,7 +133,7 @@ The two legacy skills disagree on ordering. `sk-code-web` does intent-only scori
 
 ### Context
 
-The user chose bare `sk-code` over the recommended `sk-code-stack`. Sibling skills follow the `sk-code-<role>` pattern (`sk-code-opencode`, `sk-code-review`, deprecated `sk-code-web`, `sk-code-full-stack`). A bare `sk-code` becomes the umbrella name with siblings as specializations.
+The user chose bare `sk-code` over the recommended `sk-code-stack`. Sibling skills follow the `sk-code-<role>` pattern (`sk-code-skilled`, `sk-code-review`, deprecated `sk-code-web`, `sk-code-full-stack`). A bare `sk-code` becomes the umbrella name with siblings as specializations.
 
 ### Constraints
 
@@ -146,7 +146,7 @@ The user chose bare `sk-code` over the recommended `sk-code-stack`. Sibling skil
 
 **We chose**: Bare `sk-code` (no suffix).
 
-**How it works**: The new skill lives at `.opencode/skills/sk-code/`. Sibling skills `sk-code-review`, `sk-code-opencode` keep their suffixed names. Advisor scoring uses exact-name keys, not substring matching, so "review code" continues to route to `sk-code-review`.
+**How it works**: The new skill lives at `.opencode/skills/sk-code/`. Sibling skills `sk-code-review`, `sk-code-skilled` keep their suffixed names. Advisor scoring uses exact-name keys, not substring matching, so "review code" continues to route to `sk-code-review`.
 
 ---
 

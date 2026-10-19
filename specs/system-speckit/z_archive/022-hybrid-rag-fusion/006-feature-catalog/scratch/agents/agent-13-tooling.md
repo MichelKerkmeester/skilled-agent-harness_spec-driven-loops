@@ -17,7 +17,7 @@ I’m mapping the 18 catalog files against the actual `mcp_server` and `scripts`
   │ ALIGNED/MISALIGNED/PARTIAL and P0/P1/P2 summary.' --threshold 0.8 && cat > …
   └ 53 lines...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● skill(system-spec-kit)
 
@@ -195,7 +195,7 @@ I found one concrete drift already: the raw feature-catalog annotation coverage 
 
 ● Search (grep)
   │ "AI-(WHY|TRACE|GUARD)|purposeful-comment|MODULE:|COMPONENT:|SECTION_COUNTS|validate\.sh
-  │ --strict|3 attempts|anchor-to-H2|required anchors" (.agents/skills/sk-code-opencode/SKILL.md)
+  │ --strict|3 attempts|anchor-to-H2|required anchors" (.agents/skills/sk-code-skilled/SKILL.md)
   └ 2 lines found
 
 ● Read speckit.md
@@ -394,7 +394,7 @@ I’ve got enough direct repo evidence now; I’m just filling a couple of remai
 
 ● Search (grep)
   │ "Feature catalog:|MODULE:|header"
-  │ (.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py)
+  │ (.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py)
   └ 5 lines found
 
 ● Compute current non-test TS coverage metrics (shell)
@@ -407,7 +407,7 @@ I’ve got enough direct repo evidence now; I’m just filling a couple of remai
 
 ● Search (grep)
   │ "AI-(WHY|TRACE|GUARD)|MODULE:"
-  │ (.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py)
+  │ (.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py)
   └ 3 lines found
 
 ● Search (grep)
@@ -415,7 +415,7 @@ I’ve got enough direct repo evidence now; I’m just filling a couple of remai
   └ No matches found
 
 ● Search (grep)
-  │ "AI-(WHY|TRACE|GUARD)|purposeful comments|MODULE:" (.agents/skills/sk-code-opencode/SKILL.md)
+  │ "AI-(WHY|TRACE|GUARD)|purposeful comments|MODULE:" (.agents/skills/sk-code-skilled/SKILL.md)
   └ 3 lines found
 
 Reviewed all 18 files against both `.opencode/skills/system-spec-kit/mcp_server/` and `.opencode/skills/system-spec-kit/scripts/`.
@@ -424,7 +424,7 @@ Reviewed all 18 files against both `.opencode/skills/system-spec-kit/mcp_server/
 - `02-architecture-boundary-enforcement.md | ALIGNED |` `scripts/evals/check-architecture-boundaries.ts` enforces GAP A/B; `scripts/tests/architecture-boundary-enforcement.vitest.ts` covers wrapper/neutrality cases; no separate mcp_server runtime expected.
 - `03-progressive-validation-for-spec-documents.md | ALIGNED |` `scripts/spec/progressive-validate.sh` implements the 4-level wrapper; `mcp_server/tests/progressive-validation.vitest.ts` verifies behavior.
 - `04-dead-code-removal.md | ALIGNED |` Removed runtime symbols are absent from mcp_server code; remaining `_s4shadow` is only metadata passthrough in `lib/search/hybrid-search.ts`; no scripts-side mismatch found.
-- `05-code-standards-alignment.md | PARTIAL |` `SPEC_FOLDER_LOCKS` and `MODULE:` headers are real, but **P1**: the doc’s “26 AI-intent comment conversions at HEAD” is stale. Current `mcp_server` has no `AI-WHY/AI-TRACE/AI-GUARD` matches, and current `sk-code-opencode`/`verify_alignment_drift.py` enforce purposeful comments + `MODULE:`, not AI-intent prefixes.
+- `05-code-standards-alignment.md | PARTIAL |` `SPEC_FOLDER_LOCKS` and `MODULE:` headers are real, but **P1**: the doc’s “26 AI-intent comment conversions at HEAD” is stale. Current `mcp_server` has no `AI-WHY/AI-TRACE/AI-GUARD` matches, and current `sk-code-skilled`/`verify_alignment_drift.py` enforce purposeful comments + `MODULE:`, not AI-intent prefixes.
 - `06-real-time-filesystem-watching-with-chokidar.md | ALIGNED |` `mcp_server/lib/ops/file-watcher.ts` has `chokidar`, `DEFAULT_DEBOUNCE_MS = 2000`, retry delays `[1000,2000,4000]`, and `getWatcherMetrics()`; scripts side only supplies supporting docs/tests.
 - `07-standalone-admin-cli.md | ALIGNED |` `mcp_server/cli.ts` implements `stats`, `bulk-delete`, `reindex`, and `schema-downgrade` with checkpoint safety; no scripts-side duplicate runtime expected.
 - `08-watcher-delete-rename-cleanup.md | ALIGNED |` `mcp_server/lib/ops/file-watcher.ts` handles `unlink` and rename lifecycle; scripts tree has no conflicting implementation.

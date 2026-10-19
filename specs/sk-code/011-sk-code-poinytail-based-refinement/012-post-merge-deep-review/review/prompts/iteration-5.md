@@ -35,7 +35,7 @@ Review Iteration: 5 of 10
 Mode: review
 Dimension: security
 Review Target: Commits ba56b03412..5d9c970447 on main: the 37 commits of the sk-code Ponytail refinement epic (specs/sk-code/011-sk-code-poinytail-based-refinement phases 002-011), the merge 144b1d339e and its 8 hand-resolved conflicts, then 9a74576ccc and 5d9c970447
-Review Scope Files: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs,.skilled/hooks/,.skilled/skills/sk-code/sk-code-webflow/scripts/,.skilled/skills/sk-code/sk-code-opencode/scripts/ (this iteration's focus). The full 275-file scope list is specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/scope-files.txt
+Review Scope Files: .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs,.skilled/hooks/,.skilled/skills/sk-code/sk-code-webflow/scripts/,.skilled/skills/sk-code/sk-code-skilled/scripts/ (this iteration's focus). The full 275-file scope list is specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/scope-files.txt
 Prior Findings: P0=0 P1=0 P2=5
 
 ## PIVOT LINEAGE

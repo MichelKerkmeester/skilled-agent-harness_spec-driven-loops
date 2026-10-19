@@ -1,6 +1,6 @@
 # Deep Review Report: Example-tolerant drift guards
 
-Review of commit `b6eef4ebbb` on branch `worktrees/126-drift-guard-tolerance`: the router-sync existence filter, archived-gold skip and first-map anchor, the registry-derived doc-claims surface count with its allowlist row, their tests, the scripts README row, the sk-code-opencode 1.2.4.0 release with its Hermes copy, and the phase spec docs.
+Review of commit `b6eef4ebbb` on branch `worktrees/126-drift-guard-tolerance`: the router-sync existence filter, archived-gold skip and first-map anchor, the registry-derived doc-claims surface count with its allowlist row, their tests, the scripts README row, the sk-code-skilled 1.2.4.0 release with its Hermes copy, and the phase spec docs.
 
 ## 1. Executive Summary
 
@@ -25,7 +25,7 @@ Review of commit `b6eef4ebbb` on branch `worktrees/126-drift-guard-tolerance`: t
   "specSeed": ["spec.md Files to Change lists the scripts README and the generated Hermes copy", "AC-006 cites the doctor 13d check"],
   "planSeed": ["contain the registry parse in checkSurfaces with one test", "rephrase the two stale three-surface sentences and regenerate Hermes"],
   "findingClasses": ["class-of-bug", "instance-only"],
-  "affectedSurfacesSeed": ["verify-doc-claims.cjs", "sk-code-opencode/SKILL.md", "sk-code-opencode/scripts/README.md", "phase spec.md", "phase acceptance-criteria.md"],
+  "affectedSurfacesSeed": ["verify-doc-claims.cjs", "sk-code-skilled/SKILL.md", "sk-code-skilled/scripts/README.md", "phase spec.md", "phase acceptance-criteria.md"],
   "fixCompletenessRequired": false
 }
 ```
@@ -38,7 +38,7 @@ Review of commit `b6eef4ebbb` on branch `worktrees/126-drift-guard-tolerance`: t
 | R1-P2-002 | P2 | Count check cannot flag stale one-surface wording | correctness | `verify-doc-claims.cjs:45-46` vocabulary starts at two | Reject: "one surface" is used five times in live sk-code docs in non-count senses |
 | R2-P2-001 | P2 | Symlinked docs and packet dirs escape the walk-based checks | security | dirent predicates in both guards, unchanged by this commit | Reject: pre-existing walk behavior outside the phase scope |
 | R3-P2-001 | P2 | spec.md Files to Change omits the scripts README and the Hermes copy | traceability | `spec.md:86-94` | Fix |
-| R3-P2-002 | P2 | Two live docs still describe the surfaces rule as a three-surface check | traceability | `sk-code-opencode/SKILL.md:175`, `scripts/README.md:13` | Fix |
+| R3-P2-002 | P2 | Two live docs still describe the surfaces rule as a three-surface check | traceability | `sk-code-skilled/SKILL.md:175`, `scripts/README.md:13` | Fix |
 | R3-P2-003 | P2 | AC-006 does not express REQ-006's doctor clause | traceability | `acceptance-criteria.md:59` | Fix |
 | R4-P2-001 | P2 | The new `surfaces` allowlist row has no unit test | maintainability | no fixture writes `agent-authoring.md` | Reject: the live wrapper already fails loudly if the row stops matching; a fixture copying the live line mirrors the implementation |
 | R4-P2-002 | P2 | Count vocabulary encoded twice, `both` fallback positional | maintainability | `verify-doc-claims.cjs:45-46`, `:331` | Reject: two adjacent instances, no live defect; restraint rule "two is not a pattern" |
@@ -57,7 +57,7 @@ Review of commit `b6eef4ebbb` on branch `worktrees/126-drift-guard-tolerance`: t
 ## 6. Plan Seed
 
 - Wrap the `mode-registry.json` parse in `checkSurfaces` and add one test for a registry that does not parse.
-- Rephrase "matches the three-surface hub" in `sk-code-opencode/SKILL.md` and `scripts/README.md`, then regenerate the Hermes copies.
+- Rephrase "matches the three-surface hub" in `sk-code-skilled/SKILL.md` and `scripts/README.md`, then regenerate the Hermes copies.
 
 ## 7. Traceability Status
 

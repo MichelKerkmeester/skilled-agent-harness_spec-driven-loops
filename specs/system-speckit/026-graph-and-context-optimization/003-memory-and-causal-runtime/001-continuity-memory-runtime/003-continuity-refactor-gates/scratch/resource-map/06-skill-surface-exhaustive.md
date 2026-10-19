@@ -16,7 +16,7 @@ scan_roots:
   - .opencode/skills/mcp-code-mode/
   - .opencode/skills/mcp-figma/
   - .opencode/skills/sk-code-full-stack/
-  - .opencode/skills/sk-code-opencode/
+  - .opencode/skills/sk-code-skilled/
   - .opencode/skills/sk-code-review/
   - .opencode/skills/sk-code-web/
   - .opencode/skills/sk-deep-research/
@@ -52,10 +52,10 @@ This pass scanned all 20 skill trees with the requested token set and file-type 
 | 8 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-gemini/assets/prompt_templates.md | cli-gemini | asset | 4 | generate-context | Rewrite the memory handback epilogue and save snippet that currently points straight at generate-context.js, keeping the delimiter protocol but aligning the save destination and preview language with phase 018. | rewrite | M |
 | 9 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-coco-index/SKILL.md | mcp-coco-index | SKILL-entry | 2 | session_bootstrap,session_resume | Refresh the recovery note so session_bootstrap and session_resume match the thinner phase-018 resume ladder and canonical-spec fast path. | rewrite | XS |
 | 10 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/SKILL.md | mcp-code-mode | SKILL-entry | 3 | memory_search,memory_save | Update the guidance that points users to memory_search and memory_save so it references the phase-018 search and save semantics rather than the pre-refactor contract. | rewrite | S |
-| 11 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md | sk-code-opencode | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
-| 12 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-opencode/references/shared/code_organization.md | sk-code-opencode | reference | 7 | memory-save,memory_search,memory_save,memory-context | Restructure the file-tree examples and handler naming so the shared architecture map reflects the phase-018 reader and writer surface names, especially memory-save, memory-context, and causal-edges. | restructure | M |
-| 13 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-opencode/references/shared/universal_patterns.md | sk-code-opencode | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
-| 14 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-opencode/references/typescript/style_guide.md | sk-code-opencode | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
+| 11 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-skilled/references/javascript/quality_standards.md | sk-code-skilled | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
+| 12 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-skilled/references/shared/code_organization.md | sk-code-skilled | reference | 7 | memory-save,memory_search,memory_save,memory-context | Restructure the file-tree examples and handler naming so the shared architecture map reflects the phase-018 reader and writer surface names, especially memory-save, memory-context, and causal-edges. | restructure | M |
+| 13 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-skilled/references/shared/universal_patterns.md | sk-code-skilled | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
+| 14 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code-skilled/references/typescript/style_guide.md | sk-code-skilled | reference | 1 | memory_search | Refresh the memory-search examples so they point at canonical continuity retrieval rather than older generic memory usage. | rewrite | XS |
 | 15 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/assets/deep_research_strategy.md | sk-deep-research | asset | 1 | memory_context | Update the state description only if phase 018 adds continuity metadata or changes how prior context is injected into a fresh loop iteration. | add-field | S |
 | 16 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/loop_protocol.md | sk-deep-research | reference | 6 | memory_context,generate-context | Rewrite the loop save boundary and known-context injection steps that currently anchor on memory_context plus direct generate-context.js calls, so the protocol matches phase-018 continuity and save routing. | rewrite | M |
 | 17 | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-deep-research/references/quick_reference.md | sk-deep-research | reference | 4 | memory_context,memory_search,generate-context | Refresh the quick-reference memory calls so deep research points at the canonical continuity reader and routed save contract. | rewrite | S |
@@ -124,7 +124,7 @@ This pass scanned all 20 skill trees with the requested token set and file-type 
 | cli-gemini | 2 |
 | mcp-coco-index | 1 |
 | mcp-code-mode | 1 |
-| sk-code-opencode | 4 |
+| sk-code-skilled | 4 |
 | sk-deep-research | 4 |
 | sk-deep-review | 4 |
 | sk-doc | 2 |

@@ -47,7 +47,7 @@ These 14 snippets were outside executed March 8 verification ranges and therefor
 ### Addendum Follow-up Completed Post-Addendum (2)
 
 #### AD-001: `16--tooling-and-scripts/11-feature-catalog-code-references.md` — PATH-NORMALIZE (P1)
-- **Issue:** `## SOURCE FILES` uses broad glob entries (`mcp_server/**/*.ts`, `shared/**/*.ts`, `scripts/**/*.ts`) and an external verifier alias path (`sk-code-opencode/scripts/verify_alignment_drift.py`) instead of canonical repo-resolved references.
+- **Issue:** `## SOURCE FILES` uses broad glob entries (`mcp_server/**/*.ts`, `shared/**/*.ts`, `scripts/**/*.ts`) and an external verifier alias path (`sk-code-skilled/scripts/verify_alignment_drift.py`) instead of canonical repo-resolved references.
 - **Fix:** Normalize source references to canonical, resolvable repo-relative paths and explicit verification references.
 - **Status:** Completed post-addendum.
 - **Evidence:** Broad-glob SOURCE FILES entries and verifier alias path were replaced with canonical repo-resolved references; backticked markdown-path resolution check now returns 0 unresolved references.

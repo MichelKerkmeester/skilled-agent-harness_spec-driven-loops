@@ -30,7 +30,7 @@ I’m narrowing the review to the workflow surfaces named in the focus area, the
 ● memory_match_triggers (MCP: spec_kit_memory) · prompt: "Deep review iteration 36 security validat…
   └ {"summary":"Matched 5 memories via trigger phrases","data":{"matchType":"trig...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I found the review bundle and I’m now reading the spec summary plus the exact workflow/config files named in the updated workflow notes so I can validate the final security-sensitive branches.
 

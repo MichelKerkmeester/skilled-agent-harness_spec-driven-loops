@@ -45,7 +45,7 @@ surface-detection marker, and its verification commands. No skill files are auth
 
 `sk-code` is a two-axis hub: WORKFLOW modes act (`sk-code-quality`, `sk-code-review`) and SURFACE
 packets carry read-only domain evidence bundled alongside a workflow mode (`sk-code-webflow`,
-`sk-code-opencode`). Today, code work on `apps/pi-remote-web/` detects the `WEBFLOW`/frontend
+`sk-code-skilled`). Today, code work on `apps/pi-remote-web/` detects the `WEBFLOW`/frontend
 surface generically and does not auto-load this app's token library, `@ds` inline-comment grammar,
 or editability guardrails. The goal is a plan for a Mobile-CLI-specific surface packet so the
 router recognizes this app and the acting agent applies its conventions — without building the
@@ -123,7 +123,7 @@ encode anything that weakens the app's read-only-by-default security posture. No
 - Read-only references (grounding, not changed): `.opencode/skills/sk-code/SKILL.md` (§2 Smart
   Routing), `.opencode/skills/sk-code/mode-registry.json`, `.opencode/skills/sk-code/ROUTER.md`,
   `.opencode/skills/sk-code/shared/`, and an existing surface packet (`sk-code-webflow` or
-  `sk-code-opencode`) as the structural template.
+  `sk-code-skilled`) as the structural template.
 - Inbound: this packet's Phase 1 decision and Phase 2 token library + `@ds` grammar are the
   conventions the planned mode encodes.
 - Outbound: a future, separate build packet would create `.opencode/skills/sk-code/sk-code-mobile-cli/`.

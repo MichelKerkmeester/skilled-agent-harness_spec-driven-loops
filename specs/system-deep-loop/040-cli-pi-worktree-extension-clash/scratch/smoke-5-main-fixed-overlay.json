@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+  "agentDirOverlay": true,
+  "argv": [
+    "pi",
+    "-p",
+    "--offline",
+    "--model",
+    "llmgateway/deepseek-v4.1-flash",
+    "--thinking",
+    "max",
+    "Reply with exactly PI-OK and nothing else. Do not use any tool."
+  ],
+  "exit": 1,
+  "signal": null,
+  "replyTail": "",
+  "hasPiOk": false,
+  "stderrHead": "Error: Failed to load extension \"/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/pi040/agent-overlay/extensions/pi-fast-mode-w-subagent-support/src/index.ts\": Flag \"--fast\" conflicts with /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi/extensions/pi-fast-mode-w-subagent-support/src/index"
+}

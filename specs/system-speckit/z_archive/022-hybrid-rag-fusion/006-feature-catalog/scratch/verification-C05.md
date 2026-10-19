@@ -78,7 +78,7 @@ exec
     "reason": "Matched: !code(multi), !intent:implementation, code(name), files, specification~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
 Skill routing points to `system-spec-kit`, which fits this verification task, so I’m following that workflow while keeping this read-only. I’m also checking for any deeper `AGENTS.md` files that might govern the feature catalog or `mcp_server` folders before I compare docs to code.

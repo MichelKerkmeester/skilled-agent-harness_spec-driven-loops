@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e24b214fbb1bf7c7f8b534ef26371d0f09e330996dde0f605b1375e1fb6911ae",
+  "manifestHash": "e315d8d74e2ff99ae09e2682900584ffc09fa4cd1ea2018adf85741bf2325b1a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4045,8 +4045,8 @@
     "018 phase 007 split rust references": [
       "018 phase 007 split rust references"
     ],
-    "018 phase 008 split code opencode references": [
-      "018 phase 008 split code-opencode references"
+    "018 phase 008 split code skilled references": [
+      "018 phase 008 split code-skilled references"
     ],
     "018 phase 009 split code webflow implementation": [
       "018 phase 009 split code-webflow implementation"
@@ -4108,8 +4108,8 @@
     "018 rust parent union summary": [
       "018 rust parent union summary"
     ],
-    "018 rust research code opencode": [
-      "018 rust research code-opencode"
+    "018 rust research code skilled": [
+      "018 rust research code-skilled"
     ],
     "018 rust research plan": [
       "018 rust research plan"
@@ -4123,8 +4123,8 @@
     "018 rust standard docs summary": [
       "018 rust standard docs summary"
     ],
-    "018 rust standards code opencode": [
-      "018 rust standards code-opencode"
+    "018 rust standards code skilled": [
+      "018 rust standards code-skilled"
     ],
     "018 rust surface routing summary": [
       "018 rust surface routing summary"
@@ -5926,8 +5926,8 @@
     "028 cli workstream complete": [
       "028 cli workstream complete"
     ],
-    "028 code opencode refinement shipped": [
-      "028 code-opencode refinement shipped"
+    "028 code skilled refinement shipped": [
+      "028 code-skilled refinement shipped"
     ],
     "028 commit order": [
       "028 commit order"
@@ -6698,11 +6698,11 @@
     "036 tasks": [
       "036 tasks"
     ],
-    "037 001 sk code opencode standards audit": [
-      "037-001-sk-code-opencode-standards-audit"
+    "037 001 sk code skilled standards audit": [
+      "037-001-sk-code-skilled-standards-audit"
     ],
-    "037 001 sk code opencode standards audit resource map": [
-      "037/001-sk-code-opencode-standards-audit resource map"
+    "037 001 sk code skilled standards audit resource map": [
+      "037/001-sk-code-skilled-standards-audit resource map"
     ],
     "037 002 feature catalog trio alignment": [
       "037-002-feature-catalog-trio-alignment"
@@ -10116,6 +10116,24 @@
     "agents cleanup tasks": [
       "agents cleanup tasks"
     ],
+    "agents commands config": [
+      "agents commands config"
+    ],
+    "agents commands config acceptance criteria": [
+      "agents commands config acceptance criteria"
+    ],
+    "agents commands config goal": [
+      "agents commands config goal"
+    ],
+    "agents commands config implementation summary": [
+      "agents commands config implementation summary"
+    ],
+    "agents commands config plan": [
+      "agents commands config plan"
+    ],
+    "agents commands config tasks": [
+      "agents commands config tasks"
+    ],
     "agents md": [
       "agents.md"
     ],
@@ -10362,14 +10380,14 @@
     "align rerank sidecar cjs and sidecar worker with sk changelog": [
       "align rerank sidecar cjs and sidecar worker with sk changelog"
     ],
-    "align runtime code with sk code opencode acceptance criteria": [
-      "align runtime code with sk code opencode acceptance criteria"
+    "align runtime code with sk code skilled acceptance criteria": [
+      "align runtime code with sk code skilled acceptance criteria"
     ],
-    "align runtime code with sk code opencode implementation summary": [
-      "align runtime code with sk code opencode implementation summary"
+    "align runtime code with sk code skilled implementation summary": [
+      "align runtime code with sk code skilled implementation summary"
     ],
-    "align runtime code with sk code opencode tasks": [
-      "align runtime code with sk code opencode tasks"
+    "align runtime code with sk code skilled tasks": [
+      "align runtime code with sk code skilled tasks"
     ],
     "align skill advisor graph id": [
       "align skill_advisor graph id"
@@ -12285,8 +12303,8 @@
     "author playbooks for every mode": [
       "author playbooks for every mode"
     ],
-    "author rust trio code opencode": [
-      "author rust trio code-opencode"
+    "author rust trio code skilled": [
+      "author rust trio code-skilled"
     ],
     "authored case digest guarantee": [
       "authored case digest guarantee"
@@ -12459,6 +12477,9 @@
     "auto grader plan": [
       "auto grader plan"
     ],
+    "auto handoff near the context limit": [
+      "auto-handoff near the context limit"
+    ],
     "auto heal validation": [
       "auto heal validation"
     ],
@@ -12548,6 +12569,9 @@
     ],
     "automatic spec session selection": [
       "automatic spec-session selection"
+    ],
+    "automatic triggers for pi and opencode": [
+      "automatic triggers for Pi and OpenCode"
     ],
     "automation deep research": [
       "automation deep research"
@@ -14469,8 +14493,8 @@
     "c2 a gating axis adr": [
       "c2-a gating axis adr"
     ],
-    "c2 c4 c5 c6 c7 c8 code opencode owners": [
-      "C2 C4 C5 C6 C7 C8 code-opencode owners"
+    "c2 c4 c5 c6 c7 c8 code skilled owners": [
+      "C2 C4 C5 C6 C7 C8 code-skilled owners"
     ],
     "c2 isolated correctness fixes re validation": [
       "C2 isolated correctness fixes re-validation"
@@ -18282,6 +18306,9 @@
     "claude codex copilot opencode hook parity": [
       "claude codex copilot opencode hook parity"
     ],
+    "claude context nudge": [
+      "Claude context nudge"
+    ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
     ],
@@ -18317,6 +18344,9 @@
     ],
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
+    ],
+    "claude live relaunch": [
+      "Claude live relaunch"
     ],
     "claude md agents md symlink": [
       "claude md agents md symlink"
@@ -18360,6 +18390,27 @@
     "claude prompting best practices": [
       "claude prompting best practices"
     ],
+    "claude relaunch acceptance criteria": [
+      "Claude relaunch acceptance criteria"
+    ],
+    "claude relaunch implementation plan": [
+      "Claude relaunch implementation plan"
+    ],
+    "claude relaunch loop": [
+      "Claude relaunch loop"
+    ],
+    "claude relaunch loop goal": [
+      "claude relaunch loop goal"
+    ],
+    "claude relaunch loop implementation summary": [
+      "claude relaunch loop implementation summary"
+    ],
+    "claude relaunch tasks": [
+      "Claude relaunch tasks"
+    ],
+    "claude relaunch verification checklist": [
+      "Claude relaunch verification checklist"
+    ],
     "claude session cleanup": [
       "claude session cleanup"
     ],
@@ -18368,6 +18419,9 @@
     ],
     "claude session pid not set": [
       "CLAUDE_SESSION_PID not set"
+    ],
+    "claude session relaunch": [
+      "Claude session relaunch"
     ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
@@ -20322,6 +20376,9 @@
     "cli opencode 1 4 9 0": [
       "cli-opencode 1.4.9.0"
     ],
+    "cli opencode 1 5 0 0": [
+      "cli-opencode 1.5.0.0"
+    ],
     "cli opencode authoring complete": [
       "cli-opencode authoring complete"
     ],
@@ -20348,6 +20405,24 @@
     ],
     "cli opencode deepseek deferred dispatch": [
       "cli-opencode deepseek deferred dispatch"
+    ],
+    "cli opencode dual dispatch": [
+      "cli opencode dual dispatch"
+    ],
+    "cli opencode dual dispatch acceptance criteria": [
+      "cli opencode dual dispatch acceptance criteria"
+    ],
+    "cli opencode dual dispatch goal": [
+      "cli opencode dual dispatch goal"
+    ],
+    "cli opencode dual dispatch implementation summary": [
+      "cli opencode dual dispatch implementation summary"
+    ],
+    "cli opencode dual dispatch plan": [
+      "cli opencode dual dispatch plan"
+    ],
+    "cli opencode dual dispatch tasks": [
+      "cli opencode dual dispatch tasks"
     ],
     "cli opencode frontmatter alignment": [
       "cli-opencode frontmatter alignment"
@@ -20477,6 +20552,12 @@
     ],
     "cli opencode v1 4 9 0": [
       "cli-opencode v1.4.9.0"
+    ],
+    "cli opencode v1 5 0 0": [
+      "cli-opencode v1.5.0.0"
+    ],
+    "cli opencode version detection": [
+      "cli-opencode version detection"
     ],
     "cli orca 0 1 0 0": [
       "cli-orca 0.1.0.0"
@@ -23176,24 +23257,6 @@
     "code mode workflow examples": [
       "code mode workflow examples"
     ],
-    "code opencode benchmark index": [
-      "code-opencode benchmark index"
-    ],
-    "code opencode benchmark reports": [
-      "code-opencode benchmark reports"
-    ],
-    "code opencode code bug hand offs": [
-      "code-opencode code-bug hand-offs"
-    ],
-    "code opencode implementation phases": [
-      "code-opencode implementation phases"
-    ],
-    "code opencode implementation summary": [
-      "code-opencode implementation summary"
-    ],
-    "code opencode implementation task ledger": [
-      "code-opencode implementation task ledger"
-    ],
     "code opencode other references implementation summary": [
       "code opencode other references implementation summary"
     ],
@@ -23203,42 +23266,6 @@
     "code opencode other references tasks": [
       "code opencode other references tasks"
     ],
-    "code opencode refinement deferred code bugs": [
-      "code-opencode refinement deferred code bugs"
-    ],
-    "code opencode refinement implementation": [
-      "code-opencode refinement implementation"
-    ],
-    "code opencode refinement implementation plan": [
-      "code-opencode refinement implementation plan"
-    ],
-    "code opencode refinement implementation tasks": [
-      "code-opencode refinement implementation tasks"
-    ],
-    "code opencode refinement outcome": [
-      "code-opencode refinement outcome"
-    ],
-    "code opencode refinement research": [
-      "code-opencode refinement research"
-    ],
-    "code opencode routing plan rust": [
-      "code-opencode routing plan rust"
-    ],
-    "code opencode routing tasks rust": [
-      "code-opencode routing tasks rust"
-    ],
-    "code opencode runtime alignment": [
-      "code-opencode runtime alignment"
-    ],
-    "code opencode runtime alignment complete": [
-      "code-opencode runtime alignment complete"
-    ],
-    "code opencode runtime verification": [
-      "code-opencode runtime verification"
-    ],
-    "code opencode rust reference hygiene": [
-      "code-opencode rust reference hygiene"
-    ],
     "code opencode rust references implementation summary": [
       "code opencode rust references implementation summary"
     ],
@@ -23247,24 +23274,6 @@
     ],
     "code opencode rust references tasks": [
       "code opencode rust references tasks"
-    ],
-    "code opencode rust standards": [
-      "code-opencode rust standards"
-    ],
-    "code opencode shared tier split": [
-      "code-opencode shared tier split"
-    ],
-    "code opencode skill md rust detection": [
-      "code-opencode skill.md rust detection"
-    ],
-    "code opencode skill md rust routing outcome": [
-      "code-opencode skill.md rust routing outcome"
-    ],
-    "code opencode surface alignment runtime": [
-      "code-opencode surface alignment runtime"
-    ],
-    "code opencode vs opencode reality": [
-      "code-opencode vs .opencode reality"
     ],
     "code prefix rename": [
       "code- prefix rename"
@@ -23485,6 +23494,78 @@
     ],
     "code skill family": [
       "code skill family"
+    ],
+    "code skilled benchmark index": [
+      "code-skilled benchmark index"
+    ],
+    "code skilled benchmark reports": [
+      "code-skilled benchmark reports"
+    ],
+    "code skilled code bug hand offs": [
+      "code-skilled code-bug hand-offs"
+    ],
+    "code skilled implementation phases": [
+      "code-skilled implementation phases"
+    ],
+    "code skilled implementation summary": [
+      "code-skilled implementation summary"
+    ],
+    "code skilled implementation task ledger": [
+      "code-skilled implementation task ledger"
+    ],
+    "code skilled refinement deferred code bugs": [
+      "code-skilled refinement deferred code bugs"
+    ],
+    "code skilled refinement implementation": [
+      "code-skilled refinement implementation"
+    ],
+    "code skilled refinement implementation plan": [
+      "code-skilled refinement implementation plan"
+    ],
+    "code skilled refinement implementation tasks": [
+      "code-skilled refinement implementation tasks"
+    ],
+    "code skilled refinement outcome": [
+      "code-skilled refinement outcome"
+    ],
+    "code skilled refinement research": [
+      "code-skilled refinement research"
+    ],
+    "code skilled routing plan rust": [
+      "code-skilled routing plan rust"
+    ],
+    "code skilled routing tasks rust": [
+      "code-skilled routing tasks rust"
+    ],
+    "code skilled runtime alignment": [
+      "code-skilled runtime alignment"
+    ],
+    "code skilled runtime alignment complete": [
+      "code-skilled runtime alignment complete"
+    ],
+    "code skilled runtime verification": [
+      "code-skilled runtime verification"
+    ],
+    "code skilled rust reference hygiene": [
+      "code-skilled rust reference hygiene"
+    ],
+    "code skilled rust standards": [
+      "code-skilled rust standards"
+    ],
+    "code skilled shared tier split": [
+      "code-skilled shared tier split"
+    ],
+    "code skilled skill md rust detection": [
+      "code-skilled skill.md rust detection"
+    ],
+    "code skilled skill md rust routing outcome": [
+      "code-skilled skill.md rust routing outcome"
+    ],
+    "code skilled surface alignment runtime": [
+      "code-skilled surface alignment runtime"
+    ],
+    "code skilled vs opencode reality": [
+      "code-skilled vs .opencode reality"
     ],
     "code specific embedder comparison": [
       "code-specific embedder comparison"
@@ -23893,6 +23974,9 @@
     ],
     "codex search exec fanout": [
       "codex search exec fanout"
+    ],
+    "codex session relaunch": [
+      "Codex session relaunch"
     ],
     "codex session resume fork": [
       "codex session resume fork"
@@ -24356,6 +24440,24 @@
     ],
     "command tree parity verification": [
       "command tree parity verification"
+    ],
+    "command trigger runtimes": [
+      "command trigger runtimes"
+    ],
+    "command trigger runtimes acceptance criteria": [
+      "command trigger runtimes acceptance criteria"
+    ],
+    "command trigger runtimes goal": [
+      "command trigger runtimes goal"
+    ],
+    "command trigger runtimes implementation summary": [
+      "command trigger runtimes implementation summary"
+    ],
+    "command trigger runtimes plan": [
+      "command trigger runtimes plan"
+    ],
+    "command trigger runtimes tasks": [
+      "command trigger runtimes tasks"
     ],
     "command txt rename plan": [
       "command txt rename plan"
@@ -26215,6 +26317,9 @@
     ],
     "context density": [
       "context density"
+    ],
+    "context handoff to a fresh session": [
+      "context handoff to a fresh session"
     ],
     "context index": [
       "context index"
@@ -29092,6 +29197,9 @@
     ],
     "cursor self invocation guard": [
       "cursor self-invocation guard"
+    ],
+    "cursor session relaunch": [
+      "Cursor session relaunch"
     ],
     "cursor session resume": [
       "cursor session resume"
@@ -33520,6 +33628,24 @@
     "deep review 1 9 0 0": [
       "deep-review 1.9.0.0"
     ],
+    "deep review 2 remediation": [
+      "deep review 2 remediation"
+    ],
+    "deep review 2 remediation acceptance criteria": [
+      "deep review 2 remediation acceptance criteria"
+    ],
+    "deep review 2 remediation goal": [
+      "deep review 2 remediation goal"
+    ],
+    "deep review 2 remediation plan": [
+      "deep review 2 remediation plan"
+    ],
+    "deep review 2 remediation summary": [
+      "deep review 2 remediation summary"
+    ],
+    "deep review 2 remediation tasks": [
+      "deep review 2 remediation tasks"
+    ],
     "deep review angle passes": [
       "deep review angle passes"
     ],
@@ -33901,6 +34027,9 @@
     "deep review remediation adr": [
       "deep review remediation ADR",
       "deep review remediation adr"
+    ],
+    "deep review remediation goal": [
+      "deep review remediation goal"
     ],
     "deep review remediation implementation summary": [
       "deep review remediation implementation summary"
@@ -35890,6 +36019,9 @@
     "devin self invocation guard": [
       "devin self-invocation guard"
     ],
+    "devin session relaunch": [
+      "Devin session relaunch"
+    ],
     "devin session resume continue": [
       "devin session resume continue"
     ],
@@ -36580,6 +36712,9 @@
     "dispatch shapes hermes entry": [
       "DISPATCH_SHAPES hermes entry"
     ],
+    "dispatch to opencode 1 or 2": [
+      "dispatch to opencode 1 or 2"
+    ],
     "dispatch tokenizer plan": [
       "dispatch tokenizer plan"
     ],
@@ -37161,6 +37296,24 @@
     ],
     "doctor alignment plan": [
       "doctor alignment plan"
+    ],
+    "doctor and ci": [
+      "doctor and ci"
+    ],
+    "doctor and ci acceptance criteria": [
+      "doctor and ci acceptance criteria"
+    ],
+    "doctor and ci goal": [
+      "doctor and ci goal"
+    ],
+    "doctor and ci implementation summary": [
+      "doctor and ci implementation summary"
+    ],
+    "doctor and ci plan": [
+      "doctor and ci plan"
+    ],
+    "doctor and ci tasks": [
+      "doctor and ci tasks"
     ],
     "doctor asset health checks": [
       "doctor asset health checks"
@@ -38447,6 +38600,27 @@
     ],
     "documentation quality review": [
       "documentation quality review"
+    ],
+    "documentation sweep": [
+      "documentation sweep"
+    ],
+    "documentation sweep acceptance criteria": [
+      "documentation sweep acceptance criteria"
+    ],
+    "documentation sweep doc inventory": [
+      "documentation sweep doc inventory"
+    ],
+    "documentation sweep goal": [
+      "documentation sweep goal"
+    ],
+    "documentation sweep implementation summary": [
+      "documentation sweep implementation summary"
+    ],
+    "documentation sweep plan": [
+      "documentation sweep plan"
+    ],
+    "documentation sweep tasks": [
+      "documentation sweep tasks"
     ],
     "documentation template conformance": [
       "documentation template conformance"
@@ -44317,6 +44491,21 @@
     "findings rubric template": [
       "findings-rubric template"
     ],
+    "findings summary integrity": [
+      "findings summary integrity"
+    ],
+    "findings summary integrity acceptance criteria": [
+      "findings summary integrity acceptance criteria"
+    ],
+    "findings summary integrity implementation summary": [
+      "findings summary integrity implementation summary"
+    ],
+    "findings summary integrity plan": [
+      "findings summary integrity plan"
+    ],
+    "findings summary integrity tasks": [
+      "findings summary integrity tasks"
+    ],
     "findings synthesis": [
       "findings synthesis"
     ],
@@ -44563,8 +44752,8 @@
     "fix broad staging in examples tasks": [
       "fix broad staging in examples tasks"
     ],
-    "fix code opencode findings": [
-      "fix code-opencode findings"
+    "fix code skilled findings": [
+      "fix code-skilled findings"
     ],
     "fix completeness checklist": [
       "fix completeness checklist"
@@ -49856,8 +50045,8 @@
     "hallucination grader tasks": [
       "hallucination grader tasks"
     ],
-    "hand added surface after sk code opencode": [
-      "hand-added surface after sk-code-opencode"
+    "hand added surface after sk code skilled": [
+      "hand-added surface after sk-code-skilled"
     ],
     "hand drawn diagram variant": [
       "hand drawn diagram variant"
@@ -49909,6 +50098,24 @@
     ],
     "handoff contract tasks": [
       "handoff-contract tasks"
+    ],
+    "handoff gate exemptions": [
+      "handoff gate exemptions"
+    ],
+    "handoff gate exemptions acceptance criteria": [
+      "handoff gate exemptions acceptance criteria"
+    ],
+    "handoff gate exemptions goal": [
+      "handoff gate exemptions goal"
+    ],
+    "handoff gate exemptions implementation summary": [
+      "handoff gate exemptions implementation summary"
+    ],
+    "handoff gate exemptions plan": [
+      "handoff gate exemptions plan"
+    ],
+    "handoff gate exemptions tasks": [
+      "handoff gate exemptions tasks"
     ],
     "handover": [
       "handover"
@@ -49967,6 +50174,24 @@
     ],
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
+    ],
+    "hard plugins": [
+      "hard plugins"
+    ],
+    "hard plugins acceptance criteria": [
+      "hard plugins acceptance criteria"
+    ],
+    "hard plugins goal": [
+      "hard plugins goal"
+    ],
+    "hard plugins implementation summary": [
+      "hard plugins implementation summary"
+    ],
+    "hard plugins plan": [
+      "hard plugins plan"
+    ],
+    "hard plugins tasks": [
+      "hard plugins tasks"
     ],
     "hard rule reader repoint": [
       "hard rule reader repoint"
@@ -50753,6 +50978,9 @@
     ],
     "hermes session id self presence": [
       "HERMES_SESSION_ID self presence"
+    ],
+    "hermes session relaunch": [
+      "Hermes session relaunch"
     ],
     "hermes shell hooks": [
       "hermes shell hooks"
@@ -52378,14 +52606,14 @@
     "implement 033 research recommendations": [
       "implement 033 research recommendations"
     ],
-    "implement code opencode backlog plan": [
-      "implement code-opencode backlog plan"
+    "implement code skilled backlog plan": [
+      "implement code-skilled backlog plan"
     ],
-    "implement code opencode backlog tasks": [
-      "implement code-opencode backlog tasks"
+    "implement code skilled backlog tasks": [
+      "implement code-skilled backlog tasks"
     ],
-    "implement code opencode refinement backlog": [
-      "implement code-opencode refinement backlog"
+    "implement code skilled refinement backlog": [
+      "implement code-skilled refinement backlog"
     ],
     "implement fail closed gateway phase": [
       "implement fail-closed gateway phase"
@@ -53149,6 +53377,24 @@
     "install git hooks": [
       "install git hooks"
     ],
+    "install guidance and setup helper": [
+      "install guidance and setup helper"
+    ],
+    "install guidance and setup helper acceptance criteria": [
+      "install guidance and setup helper acceptance criteria"
+    ],
+    "install guidance and setup helper goal": [
+      "install guidance and setup helper goal"
+    ],
+    "install guidance and setup helper implementation summary": [
+      "install guidance and setup helper implementation summary"
+    ],
+    "install guidance and setup helper plan": [
+      "install guidance and setup helper plan"
+    ],
+    "install guidance and setup helper tasks": [
+      "install guidance and setup helper tasks"
+    ],
     "install guide cocoindex deletion": [
       "install guide cocoindex deletion"
     ],
@@ -53193,6 +53439,9 @@
     ],
     "install official orca skill": [
       "install official orca skill"
+    ],
+    "install opencode v1 and v2": [
+      "install opencode v1 and v2"
     ],
     "install plugin into vault manually": [
       "install plugin into vault manually"
@@ -53271,6 +53520,24 @@
     ],
     "integration research remediation": [
       "integration research remediation"
+    ],
+    "integration review and docs closure": [
+      "integration review and docs closure"
+    ],
+    "integration review and docs closure acceptance criteria": [
+      "integration review and docs closure acceptance criteria"
+    ],
+    "integration review and docs closure goal": [
+      "integration review and docs closure goal"
+    ],
+    "integration review and docs closure implementation summary": [
+      "integration review and docs closure implementation summary"
+    ],
+    "integration review and docs closure plan": [
+      "integration review and docs closure plan"
+    ],
+    "integration review and docs closure tasks": [
+      "integration review and docs closure tasks"
     ],
     "integration topology diagram": [
       "integration topology diagram"
@@ -54681,6 +54948,9 @@
     ],
     "kill scoping tasks": [
       "kill scoping tasks"
+    ],
+    "killer test harness": [
+      "killer test harness"
     ],
     "kimi k2 6 24 scenario run": [
       "kimi-k2.6 24-- scenario run"
@@ -58447,6 +58717,18 @@
     ],
     "markdown prompt output mode": [
       "markdown prompt output mode"
+    ],
+    "markdown reference sweep": [
+      "markdown reference sweep"
+    ],
+    "markdown reference sweep implementation summary": [
+      "markdown reference sweep implementation summary"
+    ],
+    "markdown reference sweep plan": [
+      "markdown reference sweep plan"
+    ],
+    "markdown reference sweep tasks": [
+      "markdown reference sweep tasks"
     ],
     "marker deletion validation failure": [
       "marker deletion validation failure"
@@ -67306,6 +67588,9 @@
     "opencode": [
       "opencode"
     ],
+    "opencode 1 and opencode 2 lineage argv": [
+      "OpenCode 1 and OpenCode 2 lineage argv"
+    ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
     ],
@@ -67411,6 +67696,9 @@
     "opencode cross repo dispatch": [
       "opencode cross-repo dispatch"
     ],
+    "opencode db isolation": [
+      "opencode db isolation"
+    ],
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
     ],
@@ -67422,6 +67710,21 @@
     ],
     "opencode dispatch framework precedence": [
       "opencode dispatch framework precedence"
+    ],
+    "opencode dual compat doc findings": [
+      "opencode dual compat doc findings"
+    ],
+    "opencode dual compat findings": [
+      "opencode dual compat findings"
+    ],
+    "opencode dual compat proof": [
+      "opencode dual compat proof"
+    ],
+    "opencode dual compat review findings": [
+      "opencode dual compat review findings"
+    ],
+    "opencode dual version dispatch": [
+      "OpenCode Dual-Version Dispatch"
     ],
     "opencode examples model routes": [
       "opencode examples model routes"
@@ -67495,6 +67798,9 @@
     ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
+    ],
+    "opencode install": [
+      "opencode install"
     ],
     "opencode integration patterns": [
       "opencode integration patterns"
@@ -67724,6 +68030,9 @@
     "opencode senses fork": [
       "opencode senses fork"
     ],
+    "opencode session relaunch": [
+      "OpenCode session relaunch"
+    ],
     "opencode shell checklist": [
       "opencode shell checklist"
     ],
@@ -67735,6 +68044,12 @@
     ],
     "opencode shell style guide": [
       "opencode shell style guide"
+    ],
+    "opencode side by side": [
+      "opencode side by side"
+    ],
+    "opencode side by side install": [
+      "opencode side by side install"
     ],
     "opencode skill metadata": [
       "opencode skill metadata"
@@ -67814,11 +68129,29 @@
     "opencode universal patterns": [
       "opencode universal patterns"
     ],
+    "opencode upgrade major": [
+      "opencode upgrade major"
+    ],
+    "opencode v1 v2 dual compat research": [
+      "opencode v1 v2 dual compat research"
+    ],
+    "opencode v1 v2 dual compat research spec": [
+      "opencode v1 v2 dual compat research spec"
+    ],
+    "opencode v1 v2 open questions": [
+      "opencode v1 v2 open questions"
+    ],
+    "opencode v2 plugin migration": [
+      "opencode v2 plugin migration"
+    ],
     "opencode variant reasoning effort": [
       "opencode variant reasoning effort"
     ],
     "opencode verification reality": [
       "opencode verification reality"
+    ],
+    "opencode version detection": [
+      "opencode version detection"
     ],
     "opencode version drift": [
       "opencode version drift"
@@ -67837,6 +68170,9 @@
     ],
     "opencode worktree isolation dispatch": [
       "opencode worktree isolation dispatch"
+    ],
+    "opencode2 launcher": [
+      "opencode2 launcher"
     ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
@@ -70630,6 +70966,12 @@
     "phase 001 changelog": [
       "phase 001 changelog"
     ],
+    "phase 001 claude relaunch": [
+      "phase 001 Claude relaunch"
+    ],
+    "phase 001 closure gate": [
+      "phase 001 closure gate"
+    ],
     "phase 001 decision record": [
       "phase 001 decision record"
     ],
@@ -70657,14 +70999,26 @@
     "phase 002 changelog": [
       "phase 002 changelog"
     ],
+    "phase 002 closure gate": [
+      "phase 002 closure gate"
+    ],
     "phase 002 decision plan": [
       "phase 002 decision plan"
+    ],
+    "phase 002 implementation plan": [
+      "phase 002 implementation plan"
     ],
     "phase 002 implementation summary": [
       "phase 002 implementation summary"
     ],
     "phase 002 legacy compat converters": [
       "phase 002 legacy compat converters"
+    ],
+    "phase 002 pi opencode relaunch": [
+      "phase 002 Pi OpenCode relaunch"
+    ],
+    "phase 002 verification checklist": [
+      "phase 002 verification checklist"
     ],
     "phase 003 changelog": [
       "phase 003 changelog"
@@ -71047,6 +71401,9 @@
     "phase 1 removal research": [
       "phase 1 removal research"
     ],
+    "phase 1 rename impact research": [
+      "phase 1 rename impact research"
+    ],
     "phase 1 restraint routing": [
       "phase 1 restraint routing"
     ],
@@ -71076,6 +71433,12 @@
     ],
     "phase 1 typo proof parsers": [
       "phase 1 typo proof parsers"
+    ],
+    "phase 1 unknowns and baseline": [
+      "phase 1 unknowns and baseline"
+    ],
+    "phase 10 documentation sweep": [
+      "phase 10 documentation sweep"
     ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
@@ -71125,6 +71488,9 @@
     "phase 11 template phrase census and cleanup": [
       "phase 11 template phrase census and cleanup"
     ],
+    "phase 11 two version proof and closeout": [
+      "phase 11 two version proof and closeout"
+    ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
     ],
@@ -71146,6 +71512,9 @@
     "phase 12 review findings tasks": [
       "phase 12 review findings tasks"
     ],
+    "phase 12 sk vision v2 prompt hook": [
+      "phase 12 sk vision v2 prompt hook"
+    ],
     "phase 12 template phrase cleanup round two": [
       "phase 12 template phrase cleanup round two"
     ],
@@ -71166,6 +71535,9 @@
     ],
     "phase 13 root cause and ux research": [
       "phase 13 root cause and ux research"
+    ],
+    "phase 13 sk vision v2 tools and loose": [
+      "phase 13 sk vision v2 tools and loose"
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
@@ -71326,6 +71698,9 @@
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
     ],
+    "phase 2 pins imports dual export": [
+      "phase 2 pins imports dual export"
+    ],
     "phase 2 playbook path repair": [
       "phase 2 playbook path repair"
     ],
@@ -71346,6 +71721,9 @@
     ],
     "phase 2 review mode": [
       "phase 2 review mode"
+    ],
+    "phase 2 skill and routing rename": [
+      "phase 2 skill and routing rename"
     ],
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
@@ -71446,6 +71824,9 @@
     "phase 3 codex mirror gate": [
       "phase 3 codex mirror gate"
     ],
+    "phase 3 command trigger runtimes": [
+      "phase 3 command trigger runtimes"
+    ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
@@ -71470,11 +71851,17 @@
     "phase 3 goal exemplars": [
       "phase 3 goal exemplars"
     ],
+    "phase 3 hard plugins": [
+      "phase 3 hard plugins"
+    ],
     "phase 3 hub surface precedence": [
       "phase 3 hub surface precedence"
     ],
     "phase 3 improvement research": [
       "phase 3 improvement research"
+    ],
+    "phase 3 markdown reference sweep": [
+      "phase 3 markdown reference sweep"
     ],
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
@@ -71505,6 +71892,9 @@
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
+    ],
+    "phase 4 agents commands config": [
+      "phase 4 agents commands config"
     ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
@@ -71538,6 +71928,9 @@
     ],
     "phase 4 hub doc pointers": [
       "phase 4 hub doc pointers"
+    ],
+    "phase 4 integration review and docs closure": [
+      "phase 4 integration review and docs closure"
     ],
     "phase 4 leftover template comments": [
       "phase 4 leftover template comments"
@@ -71577,6 +71970,9 @@
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 deep review remediation": [
+      "phase 5 deep review remediation"
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
@@ -71629,11 +72025,20 @@
     "phase 5 stdin late write coverage": [
       "phase 5 stdin late write coverage"
     ],
+    "phase 5 version aware guards": [
+      "phase 5 version aware guards"
+    ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
     ],
+    "phase 6 cli opencode dual dispatch": [
+      "phase 6 cli opencode dual dispatch"
+    ],
     "phase 6 closeout deep review": [
       "phase 6 closeout deep review"
+    ],
+    "phase 6 closure evidence": [
+      "phase 6 closure evidence"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -71649,6 +72054,9 @@
     ],
     "phase 6 deep loop follow ups": [
       "phase 6 deep loop follow ups"
+    ],
+    "phase 6 deep review 2 remediation": [
+      "phase 6 deep review 2 remediation"
     ],
     "phase 6 evidence gated provenance": [
       "phase 6 evidence gated provenance"
@@ -71701,8 +72109,14 @@
     "phase 7 dispatch wrapper scan": [
       "phase 7 dispatch wrapper scan"
     ],
+    "phase 7 handoff gate exemptions": [
+      "phase 7 handoff gate exemptions"
+    ],
     "phase 7 hook deadline margins": [
       "phase 7 hook deadline margins"
+    ],
+    "phase 7 install guidance and setup helper": [
+      "phase 7 install guidance and setup helper"
     ],
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
@@ -71740,6 +72154,9 @@
     "phase 8 docs and readmes": [
       "phase 8 docs and readmes"
     ],
+    "phase 8 doctor and ci": [
+      "phase 8 doctor and ci"
+    ],
     "phase 8 legacy era report": [
       "phase 8 legacy era report"
     ],
@@ -71770,6 +72187,9 @@
     "phase 9 existing issue fixes": [
       "phase 9 existing issue fixes"
     ],
+    "phase 9 findings summary integrity": [
+      "phase 9 findings summary integrity"
+    ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
     ],
@@ -71787,6 +72207,9 @@
     ],
     "phase 9 second review remediation": [
       "phase 9 second review remediation"
+    ],
+    "phase 9 sk code opencode alignment": [
+      "phase 9 sk code opencode alignment"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -72354,6 +72777,18 @@
     "pi ambiguous denial tasks": [
       "pi ambiguous denial tasks"
     ],
+    "pi and opencode adapter acceptance criteria": [
+      "Pi and OpenCode adapter acceptance criteria"
+    ],
+    "pi and opencode adapter tasks": [
+      "Pi and OpenCode adapter tasks"
+    ],
+    "pi and opencode adapters": [
+      "Pi and OpenCode adapters"
+    ],
+    "pi and opencode adapters plan": [
+      "Pi and OpenCode adapters plan"
+    ],
     "pi api key": [
       "pi api key"
     ],
@@ -72903,6 +73338,18 @@
     "pi openai opencode go minimax llmgateway": [
       "pi openai opencode-go minimax llmgateway"
     ],
+    "pi opencode adapters goal": [
+      "pi opencode adapters goal"
+    ],
+    "pi opencode adapters implementation summary": [
+      "pi opencode adapters implementation summary"
+    ],
+    "pi opencode gate pg": [
+      "Pi OpenCode Gate PG"
+    ],
+    "pi opencode gate pg tasks": [
+      "Pi OpenCode Gate PG tasks"
+    ],
     "pi openrouter roster": [
       "pi openrouter roster"
     ],
@@ -72995,6 +73442,9 @@
     ],
     "pi session lifecycle": [
       "pi session lifecycle"
+    ],
+    "pi session relaunch": [
+      "Pi session relaunch"
     ],
     "pi session start restore": [
       "pi session start restore"
@@ -73266,6 +73716,24 @@
     ],
     "pinned sample verdicts identical": [
       "pinned sample verdicts identical"
+    ],
+    "pins imports dual export": [
+      "pins imports dual export"
+    ],
+    "pins imports dual export acceptance criteria": [
+      "pins imports dual export acceptance criteria"
+    ],
+    "pins imports dual export goal": [
+      "pins imports dual export goal"
+    ],
+    "pins imports dual export implementation summary": [
+      "pins imports dual export implementation summary"
+    ],
+    "pins imports dual export plan": [
+      "pins imports dual export plan"
+    ],
+    "pins imports dual export tasks": [
+      "pins imports dual export tasks"
     ],
     "pipe bdg output to jq": [
       "pipe bdg output to jq"
@@ -78379,8 +78847,8 @@
     "referrer sweep results": [
       "referrer sweep results"
     ],
-    "refine code opencode surface subskill": [
-      "refine code-opencode surface subskill"
+    "refine code skilled surface subskill": [
+      "refine code-skilled surface subskill"
     ],
     "refine sk code sub skills": [
       "refine sk-code sub-skills"
@@ -78863,6 +79331,12 @@
     "relative import census": [
       "relative import census"
     ],
+    "relaunch gap register": [
+      "relaunch gap register"
+    ],
+    "relaunch loop test suite": [
+      "relaunch loop test suite"
+    ],
     "release alignment proposal": [
       "release alignment proposal"
     ],
@@ -79277,8 +79751,8 @@
     "release and program cleanup search scenario execution changelog": [
       "release and program cleanup search scenario execution changelog"
     ],
-    "release and program cleanup sk code opencode standards audit changelog": [
-      "release and program cleanup sk code opencode standards audit changelog"
+    "release and program cleanup sk code skilled standards audit changelog": [
+      "release and program cleanup sk code skilled standards audit changelog"
     ],
     "release and program cleanup sk doc conformance template sweep changelog": [
       "release and program cleanup sk doc conformance template sweep changelog"
@@ -80253,6 +80727,9 @@
     "rename council agent": [
       "rename council agent"
     ],
+    "rename double check review report": [
+      "rename double-check review report"
+    ],
     "rename folder": [
       "rename folder"
     ],
@@ -80261,6 +80738,18 @@
     ],
     "rename heavy merge verification": [
       "rename-heavy merge verification"
+    ],
+    "rename impact research": [
+      "rename impact research"
+    ],
+    "rename impact research implementation summary": [
+      "rename impact research implementation summary"
+    ],
+    "rename impact research plan": [
+      "rename impact research plan"
+    ],
+    "rename impact research tasks": [
+      "rename impact research tasks"
     ],
     "rename invariants": [
       "rename invariants"
@@ -82009,6 +82498,9 @@
     ],
     "resolvemode fix fallback": [
       "resolveMode fix fallback"
+    ],
+    "resolveopencodebinary version probe": [
+      "resolveOpencodeBinary version probe"
     ],
     "resolveprovider cloud fallback": [
       "resolveProvider cloud fallback"
@@ -85447,8 +85939,8 @@
     "runtime docs and integrity hardening runtime code readmes changelog": [
       "runtime docs and integrity hardening runtime code readmes changelog"
     ],
-    "runtime docs and integrity hardening sk code opencode alignment changelog": [
-      "runtime docs and integrity hardening sk code opencode alignment changelog"
+    "runtime docs and integrity hardening sk code skilled alignment changelog": [
+      "runtime docs and integrity hardening sk code skilled alignment changelog"
     ],
     "runtime docs and integrity identity and lock ownership hardening changelog": [
       "runtime docs and integrity identity and lock ownership hardening changelog"
@@ -88492,6 +88984,40 @@
     "session recovery bdg": [
       "session recovery bdg"
     ],
+    "session relaunch at 80 percent": [
+      "session relaunch at 80 percent"
+    ],
+    "session relaunch claude": [
+      "session-relaunch-claude"
+    ],
+    "session relaunch closure checklist": [
+      "session relaunch closure checklist"
+    ],
+    "session relaunch closure plan": [
+      "session relaunch closure plan"
+    ],
+    "session relaunch command runtimes": [
+      "session-relaunch-command-runtimes"
+    ],
+    "session relaunch fixtures": [
+      "session relaunch fixtures"
+    ],
+    "session relaunch lanes": [
+      "session relaunch lanes"
+    ],
+    "session relaunch live round": [
+      "session relaunch live round"
+    ],
+    "session relaunch loop": [
+      "Session relaunch loop",
+      "session relaunch loop"
+    ],
+    "session relaunch pi opencode": [
+      "session-relaunch-pi-opencode"
+    ],
+    "session relaunch tests": [
+      "session relaunch tests"
+    ],
     "session resume": [
       "session resume"
     ],
@@ -89726,6 +90252,9 @@
     "sibling shape parity check": [
       "sibling shape parity check"
     ],
+    "side by side opencode installs": [
+      "side-by-side opencode installs"
+    ],
     "sidecar 110 findings synthesis": [
       "sidecar 110 findings synthesis"
     ],
@@ -90470,9 +90999,6 @@
     "sk code close out tasks": [
       "sk-code close-out tasks"
     ],
-    "sk code code opencode standard conformance": [
-      "sk-code code-opencode standard conformance"
-    ],
     "sk code code quality implementation plan": [
       "sk-code code-quality implementation plan"
     ],
@@ -90502,6 +91028,9 @@
     ],
     "sk code code quality upgrade implementation": [
       "sk-code code-quality upgrade implementation"
+    ],
+    "sk code code skilled standard conformance": [
+      "sk-code code-skilled standard conformance"
     ],
     "sk code collapse to four sub skills": [
       "sk-code collapse to four sub-skills"
@@ -90852,119 +91381,33 @@
     "sk code onboard implement tasks": [
       "sk-code onboard implement tasks"
     ],
-    "sk code opencode 1 0 0 0": [
-      "sk-code-opencode 1.0.0.0"
-    ],
-    "sk code opencode 1 0 0 5": [
-      "sk-code-opencode 1.0.0.5"
-    ],
-    "sk code opencode 1 0 1 0": [
-      "sk-code-opencode 1.0.1.0"
-    ],
-    "sk code opencode 1 1 0 0": [
-      "sk-code-opencode 1.1.0.0"
-    ],
-    "sk code opencode 1 1 1 0": [
-      "sk-code-opencode 1.1.1.0"
-    ],
-    "sk code opencode 1 2 0 0": [
-      "sk-code-opencode 1.2.0.0"
-    ],
-    "sk code opencode 1 2 1 0": [
-      "sk-code-opencode 1.2.1.0"
-    ],
-    "sk code opencode 1 2 2 0": [
-      "sk-code-opencode 1.2.2.0"
-    ],
-    "sk code opencode 1 2 3 0": [
-      "sk-code-opencode 1.2.3.0"
-    ],
-    "sk code opencode 1 2 4 0": [
-      "sk-code-opencode 1.2.4.0"
-    ],
-    "sk code opencode 1 2 5 0": [
-      "sk-code-opencode 1.2.5.0"
-    ],
-    "sk code opencode 1 2 6 0": [
-      "sk-code-opencode 1.2.6.0"
-    ],
-    "sk code opencode 1 2 7 0": [
-      "sk-code-opencode 1.2.7.0"
-    ],
     "sk code opencode alignment": [
+      "sk code opencode alignment",
       "sk-code opencode alignment"
     ],
-    "sk code opencode audit": [
-      "sk-code-opencode audit"
+    "sk code opencode alignment acceptance criteria": [
+      "sk code opencode alignment acceptance criteria"
     ],
-    "sk code opencode audit file ledger": [
-      "sk-code-opencode audit file ledger"
+    "sk code opencode alignment findings": [
+      "sk code opencode alignment findings"
     ],
-    "sk code opencode conformance spec kit": [
-      "sk code opencode conformance spec kit"
+    "sk code opencode alignment goal": [
+      "sk code opencode alignment goal"
     ],
-    "sk code opencode esm exemption": [
-      "sk-code-opencode esm exemption"
+    "sk code opencode alignment implementation summary": [
+      "sk code opencode alignment implementation summary"
     ],
-    "sk code opencode readme narrative": [
-      "sk-code-opencode readme narrative"
+    "sk code opencode alignment plan": [
+      "sk code opencode alignment plan"
     ],
-    "sk code opencode section dividers advisor": [
-      "sk-code-opencode section dividers advisor"
+    "sk code opencode alignment tasks": [
+      "sk code opencode alignment tasks"
     ],
-    "sk code opencode section dividers deep loop": [
-      "sk-code-opencode section dividers deep loop"
+    "sk code opencode rename impact": [
+      "sk-code-opencode rename impact"
     ],
-    "sk code opencode section dividers spec kit": [
-      "sk-code-opencode section dividers spec kit"
-    ],
-    "sk code opencode standards audit": [
-      "sk-code-opencode standards audit"
-    ],
-    "sk code opencode stress test": [
-      "sk-code-opencode stress test"
-    ],
-    "sk code opencode stress test alignment": [
-      "sk-code-opencode stress test alignment"
-    ],
-    "sk code opencode v1 0 0 0": [
-      "sk-code-opencode v1.0.0.0"
-    ],
-    "sk code opencode v1 0 0 5": [
-      "sk-code-opencode v1.0.0.5"
-    ],
-    "sk code opencode v1 0 1 0": [
-      "sk-code-opencode v1.0.1.0"
-    ],
-    "sk code opencode v1 1 0 0": [
-      "sk-code-opencode v1.1.0.0"
-    ],
-    "sk code opencode v1 1 1 0": [
-      "sk-code-opencode v1.1.1.0"
-    ],
-    "sk code opencode v1 2 0 0": [
-      "sk-code-opencode v1.2.0.0"
-    ],
-    "sk code opencode v1 2 1 0": [
-      "sk-code-opencode v1.2.1.0"
-    ],
-    "sk code opencode v1 2 2 0": [
-      "sk-code-opencode v1.2.2.0"
-    ],
-    "sk code opencode v1 2 3 0": [
-      "sk-code-opencode v1.2.3.0"
-    ],
-    "sk code opencode v1 2 4 0": [
-      "sk-code-opencode v1.2.4.0"
-    ],
-    "sk code opencode v1 2 5 0": [
-      "sk-code-opencode v1.2.5.0"
-    ],
-    "sk code opencode v1 2 6 0": [
-      "sk-code-opencode v1.2.6.0"
-    ],
-    "sk code opencode v1 2 7 0": [
-      "sk-code-opencode v1.2.7.0"
+    "sk code opencode renamed to sk code skilled": [
+      "sk-code-opencode renamed to sk-code-skilled"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -91274,6 +91717,138 @@
     ],
     "sk code shared assets references research": [
       "sk-code shared assets references research"
+    ],
+    "sk code skilled 1 0 0 0": [
+      "sk-code-skilled 1.0.0.0"
+    ],
+    "sk code skilled 1 0 0 5": [
+      "sk-code-skilled 1.0.0.5"
+    ],
+    "sk code skilled 1 0 1 0": [
+      "sk-code-skilled 1.0.1.0"
+    ],
+    "sk code skilled 1 1 0 0": [
+      "sk-code-skilled 1.1.0.0"
+    ],
+    "sk code skilled 1 1 1 0": [
+      "sk-code-skilled 1.1.1.0"
+    ],
+    "sk code skilled 1 2 0 0": [
+      "sk-code-skilled 1.2.0.0"
+    ],
+    "sk code skilled 1 2 1 0": [
+      "sk-code-skilled 1.2.1.0"
+    ],
+    "sk code skilled 1 2 2 0": [
+      "sk-code-skilled 1.2.2.0"
+    ],
+    "sk code skilled 1 2 3 0": [
+      "sk-code-skilled 1.2.3.0"
+    ],
+    "sk code skilled 1 2 4 0": [
+      "sk-code-skilled 1.2.4.0"
+    ],
+    "sk code skilled 1 2 5 0": [
+      "sk-code-skilled 1.2.5.0"
+    ],
+    "sk code skilled 1 2 6 0": [
+      "sk-code-skilled 1.2.6.0"
+    ],
+    "sk code skilled 1 2 7 0": [
+      "sk-code-skilled 1.2.7.0"
+    ],
+    "sk code skilled 2 0 0 0": [
+      "sk-code-skilled 2.0.0.0"
+    ],
+    "sk code skilled audit": [
+      "sk-code-skilled audit"
+    ],
+    "sk code skilled audit file ledger": [
+      "sk-code-skilled audit file ledger"
+    ],
+    "sk code skilled conformance spec kit": [
+      "sk code skilled conformance spec kit"
+    ],
+    "sk code skilled esm exemption": [
+      "sk-code-skilled esm exemption"
+    ],
+    "sk code skilled readme narrative": [
+      "sk-code-skilled readme narrative"
+    ],
+    "sk code skilled rename phase parent spec": [
+      "sk code skilled rename phase parent spec"
+    ],
+    "sk code skilled rename research": [
+      "sk-code-skilled rename research"
+    ],
+    "sk code skilled rename review": [
+      "sk-code-skilled rename review"
+    ],
+    "sk code skilled section dividers advisor": [
+      "sk-code-skilled section dividers advisor"
+    ],
+    "sk code skilled section dividers deep loop": [
+      "sk-code-skilled section dividers deep loop"
+    ],
+    "sk code skilled section dividers spec kit": [
+      "sk-code-skilled section dividers spec kit"
+    ],
+    "sk code skilled spec folder rename": [
+      "sk-code-skilled spec folder rename"
+    ],
+    "sk code skilled standards audit": [
+      "sk-code-skilled standards audit"
+    ],
+    "sk code skilled stress test": [
+      "sk-code-skilled stress test"
+    ],
+    "sk code skilled stress test alignment": [
+      "sk-code-skilled stress test alignment"
+    ],
+    "sk code skilled surface rename": [
+      "sk-code-skilled surface rename"
+    ],
+    "sk code skilled v1 0 0 0": [
+      "sk-code-skilled v1.0.0.0"
+    ],
+    "sk code skilled v1 0 0 5": [
+      "sk-code-skilled v1.0.0.5"
+    ],
+    "sk code skilled v1 0 1 0": [
+      "sk-code-skilled v1.0.1.0"
+    ],
+    "sk code skilled v1 1 0 0": [
+      "sk-code-skilled v1.1.0.0"
+    ],
+    "sk code skilled v1 1 1 0": [
+      "sk-code-skilled v1.1.1.0"
+    ],
+    "sk code skilled v1 2 0 0": [
+      "sk-code-skilled v1.2.0.0"
+    ],
+    "sk code skilled v1 2 1 0": [
+      "sk-code-skilled v1.2.1.0"
+    ],
+    "sk code skilled v1 2 2 0": [
+      "sk-code-skilled v1.2.2.0"
+    ],
+    "sk code skilled v1 2 3 0": [
+      "sk-code-skilled v1.2.3.0"
+    ],
+    "sk code skilled v1 2 4 0": [
+      "sk-code-skilled v1.2.4.0"
+    ],
+    "sk code skilled v1 2 5 0": [
+      "sk-code-skilled v1.2.5.0"
+    ],
+    "sk code skilled v1 2 6 0": [
+      "sk-code-skilled v1.2.6.0"
+    ],
+    "sk code skilled v1 2 7 0": [
+      "sk-code-skilled v1.2.7.0"
+    ],
+    "sk code skilled v2 0 0 0": [
+      "sk-code-skilled v2.0.0.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -94263,6 +94838,39 @@
     "sk vision v0 3 6 0": [
       "sk-vision v0.3.6.0"
     ],
+    "sk vision v2 prompt hook": [
+      "sk vision v2 prompt hook"
+    ],
+    "sk vision v2 prompt hook acceptance criteria": [
+      "sk vision v2 prompt hook acceptance criteria"
+    ],
+    "sk vision v2 prompt hook goal": [
+      "sk vision v2 prompt hook goal"
+    ],
+    "sk vision v2 prompt hook implementation summary": [
+      "sk vision v2 prompt hook implementation summary"
+    ],
+    "sk vision v2 prompt hook plan": [
+      "sk vision v2 prompt hook plan"
+    ],
+    "sk vision v2 prompt hook tasks": [
+      "sk vision v2 prompt hook tasks"
+    ],
+    "sk vision v2 tools and loose ends": [
+      "sk vision v2 tools and loose ends"
+    ],
+    "sk vision v2 tools and loose ends acceptance criteria": [
+      "sk vision v2 tools and loose ends acceptance criteria"
+    ],
+    "sk vision v2 tools and loose ends implementation summary": [
+      "sk vision v2 tools and loose ends implementation summary"
+    ],
+    "sk vision v2 tools and loose ends plan": [
+      "sk vision v2 tools and loose ends plan"
+    ],
+    "sk vision v2 tools and loose ends tasks": [
+      "sk vision v2 tools and loose ends tasks"
+    ],
     "sk vision venv cleanup": [
       "sk-vision venv cleanup"
     ],
@@ -94862,6 +95470,18 @@
     ],
     "skill and repo readmes cleanup tasks": [
       "skill-and-repo-readmes cleanup tasks"
+    ],
+    "skill and routing rename": [
+      "skill and routing rename"
+    ],
+    "skill and routing rename implementation summary": [
+      "skill and routing rename implementation summary"
+    ],
+    "skill and routing rename plan": [
+      "skill and routing rename plan"
+    ],
+    "skill and routing rename tasks": [
+      "skill and routing rename tasks"
     ],
     "skill architecture document": [
       "skill architecture document"
@@ -95950,6 +96570,24 @@
     ],
     "skilled links task list": [
       "skilled links task list"
+    ],
+    "skilled loop claude": [
+      "skilled-loop claude"
+    ],
+    "skilled loop codex": [
+      "skilled-loop codex"
+    ],
+    "skilled loop handoff": [
+      "skilled-loop handoff"
+    ],
+    "skilled loop hermes": [
+      "skilled-loop hermes"
+    ],
+    "skilled loop opencode": [
+      "skilled-loop opencode"
+    ],
+    "skilled loop pi": [
+      "skilled-loop pi"
     ],
     "skilled machine cutover": [
       "skilled machine cutover"
@@ -98732,6 +99370,9 @@
     ],
     "speckit goal contract tasks": [
       "speckit goal contract tasks"
+    ],
+    "speckit handoff session relaunch": [
+      "/speckit:handoff session relaunch"
     ],
     "speckit hermes state dir": [
       "SPECKIT_HERMES_STATE_DIR"
@@ -106112,6 +106753,27 @@
     "two variable comparison": [
       "two variable comparison"
     ],
+    "two version proof": [
+      "two version proof"
+    ],
+    "two version proof and closeout": [
+      "two version proof and closeout"
+    ],
+    "two version proof and closeout acceptance criteria": [
+      "two version proof and closeout acceptance criteria"
+    ],
+    "two version proof and closeout goal": [
+      "two version proof and closeout goal"
+    ],
+    "two version proof and closeout implementation summary": [
+      "two version proof and closeout implementation summary"
+    ],
+    "two version proof and closeout plan": [
+      "two version proof and closeout plan"
+    ],
+    "two version proof and closeout tasks": [
+      "two version proof and closeout tasks"
+    ],
     "type annotation patterns": [
       "type annotation patterns"
     ],
@@ -106589,6 +107251,24 @@
     "unknown surface fallback": [
       "unknown surface fallback"
     ],
+    "unknowns and baseline": [
+      "unknowns and baseline"
+    ],
+    "unknowns and baseline acceptance criteria": [
+      "unknowns and baseline acceptance criteria"
+    ],
+    "unknowns and baseline goal": [
+      "unknowns and baseline goal"
+    ],
+    "unknowns and baseline implementation summary": [
+      "unknowns and baseline implementation summary"
+    ],
+    "unknowns and baseline plan": [
+      "unknowns and baseline plan"
+    ],
+    "unknowns and baseline tasks": [
+      "unknowns and baseline tasks"
+    ],
     "unlink tasks": [
       "unlink tasks"
     ],
@@ -107018,8 +107698,8 @@
     "user onboarding flowchart": [
       "user onboarding flowchart"
     ],
-    "user surface outranks sk code opencode": [
-      "user surface outranks sk-code-opencode"
+    "user surface outranks sk code skilled": [
+      "user surface outranks sk-code-skilled"
     ],
     "userpaused event": [
       "userPaused event"
@@ -108626,6 +109306,24 @@
     ],
     "version authority tasks": [
       "version authority tasks"
+    ],
+    "version aware guards": [
+      "version aware guards"
+    ],
+    "version aware guards acceptance criteria": [
+      "version aware guards acceptance criteria"
+    ],
+    "version aware guards goal": [
+      "version aware guards goal"
+    ],
+    "version aware guards implementation summary": [
+      "version aware guards implementation summary"
+    ],
+    "version aware guards plan": [
+      "version aware guards plan"
+    ],
+    "version aware guards tasks": [
+      "version aware guards tasks"
     ],
     "version bump decision rules": [
       "version bump decision rules"

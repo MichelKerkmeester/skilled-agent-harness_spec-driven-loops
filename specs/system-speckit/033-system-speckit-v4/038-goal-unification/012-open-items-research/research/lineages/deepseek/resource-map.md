@@ -84,9 +84,9 @@ Derived from the iteration sources-read lists. Paths are repository-relative; hi
 
 | Path | Ring | Role |
 |---|---|---|
-| `.opencode/skills/sk-code/sk-code-opencode/references/typescript/style-guide/formatting-imports-and-coexistence.md:77` | 1 | Code 100-character maximum |
-| `.opencode/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:278` | 1 | Code 100-character maximum |
-| `.opencode/skills/sk-code/sk-code-opencode/references/python/style-guide.md:447` | 1 | Code target 88-100 |
+| `.opencode/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md:77` | 1 | Code 100-character maximum |
+| `.opencode/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:278` | 1 | Code 100-character maximum |
+| `.opencode/skills/sk-code/sk-code-skilled/references/python/style-guide.md:447` | 1 | Code target 88-100 |
 | `.opencode/plugins/*.js`, `.opencode/hooks/goal/**` | 1, 5 | Measured line-length distribution; env-name reads |
 
 ## Historical records (read as evidence; never rewritten or checked)

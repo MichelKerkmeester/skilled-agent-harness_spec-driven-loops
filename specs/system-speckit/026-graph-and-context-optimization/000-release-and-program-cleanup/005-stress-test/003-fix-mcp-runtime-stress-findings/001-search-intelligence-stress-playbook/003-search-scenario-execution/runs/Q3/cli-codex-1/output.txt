@@ -21,7 +21,7 @@ hook: UserPromptSubmit
 hook: UserPromptSubmit Completed
 hook: UserPromptSubmit Completed
 codex
-SKILL ROUTING: advisor points at `system-spec-kit` and `sk-code-opencode`; I’m using the system-spec-kit context first because the target path is inside that subsystem, with OpenCode standards as background. This is read-only, so no spec folder gate is triggered.
+SKILL ROUTING: advisor points at `system-spec-kit` and `sk-code-skilled`; I’m using the system-spec-kit context first because the target path is inside that subsystem, with OpenCode standards as background. This is read-only, so no spec folder gate is triggered.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
@@ -247,10 +247,10 @@ COMMAND_BOOSTS = {
 }
 
 exec
-/bin/zsh -lc "sed -n '1,180p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0

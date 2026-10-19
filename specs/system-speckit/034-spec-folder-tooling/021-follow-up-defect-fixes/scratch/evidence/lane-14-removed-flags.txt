@@ -36,7 +36,7 @@ Test result: exit 0; 1 test file passed; 19 tests passed.
 
 Additional verification
 -----------------------
-Command: bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+Command: bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 Result: exit 0; both guards passed. Alignment drift reported 247 warnings and 0 errors; stack-folder verification passed for all 6 language folders.
 
 Command: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/034-spec-folder-tooling/021-follow-up-defect-fixes --strict

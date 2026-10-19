@@ -25,7 +25,7 @@ Route to `/speckit:plan` for a bounded remediation. Two target documents violate
 ### F001 [P1] Rust interop reference places OVERVIEW after substantive content
 
 - Dimension: correctness
-- Evidence: `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-19`, `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:304-318`
+- Evidence: `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-19`, `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:304-318`
 - Authority: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:65-72`
 - Impact: the numbered OVERVIEW exists but appears after the inherited guidance, directly violating R3's body-order contract.
 - Finding class: instance-only
@@ -60,7 +60,7 @@ Route to `/speckit:plan` for a bounded remediation. Two target documents violate
 ### F005 [P2] Asset README trigger phrase is not lowercase
 
 - Dimension: maintainability
-- Evidence: `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10`
+- Evidence: `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10`
 - Authority: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175`
 - Impact: one trigger phrase uses uppercase `README`; all trigger counts and metadata enums otherwise pass.
 - Finding class: instance-only
@@ -100,7 +100,7 @@ Acceptance coverage remained advisory and disabled in the strict validator run. 
 ## Deferred Items
 
 - F005 is advisory and may be included in the bounded remediation batch.
-- The known code-opencode/code-webflow `package_skill.py --check` surface-header failures reproduce without resource-document warnings and remain the packet's documented out-of-scope limitation.
+- The known code-skilled/code-webflow `package_skill.py --check` surface-header failures reproduce without resource-document warnings and remain the packet's documented out-of-scope limitation.
 - Spec Memory retrieval timed out twice. Packet docs and direct file evidence were used instead.
 - Coverage-graph writes were skipped because the detached lineage was explicitly forbidden from touching paths outside its artifact root; v2 graphless fallback ledgers cover every required bug class.
 
@@ -117,12 +117,12 @@ Acceptance coverage remained advisory and disabled in the strict validator run. 
 
 ### Deterministic Evidence
 
-- Corpus audit: 163 files total, code-opencode 65, code-webflow 95, code-quality 3.
+- Corpus audit: 163 files total, code-skilled 65, code-webflow 95, code-quality 3.
 - Structural matrix: zero hyphenated basenames, missing frontmatter fields, bad version shapes, missing H1/OVERVIEW/mode sections, content-numbering defects, misplaced RELATED RESOURCES sections, or validator failures.
 - Semantic/ordering matrix: F001 and F002.
 - Metadata matrix: F005 only; all trigger counts and metadata enums pass.
 - Link audit: 328 tracked sk-code Markdown files, 583 relative Markdown links checked, two unresolved artifacts exactly matching the checklist's explicit exclusions.
-- Package checks: code-quality PASS with two skill-level warnings; code-opencode and code-webflow fail only documented required-section surface-header checks.
+- Package checks: code-quality PASS with two skill-level warnings; code-skilled and code-webflow fail only documented required-section surface-header checks.
 - Strict packet validation: 0 errors, 5 warning classes, `RESULT: FAILED`.
 - Scoped Git status: no target-surface or canonical-packet path changes from this detached review.
 

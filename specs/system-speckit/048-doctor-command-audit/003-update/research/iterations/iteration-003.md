@@ -17,7 +17,7 @@ All actions were read-only.
 
 ### F1. Composite children carry their own version lines and changelog sequences
 
-Observed. The `sk-code` hub is `2.2.4.0` while its five packets are `sk-code-obsidian` 0.1.1.0, `sk-code-opencode` 1.1.0.0, `sk-code-quality` 1.0.1.0, `sk-code-review` 1.6.0.0, `sk-code-webflow` 1.1.0.0. The `sk-doc` hub is `2.2.5.0` while its fourteen packets span 1.0.0.0 to 1.5.0.0. Every packet has its own `changelog/` with an independently advanced sequence: `sk-create-changelog` 10 entries, `sk-code-review` 7, `sk-code-obsidian` 2, `sk-create-frontmatter` 1. Versions were read from each packet's `SKILL.md`, entry counts from each packet's `changelog/`.
+Observed. The `sk-code` hub is `2.2.4.0` while its five packets are `sk-code-obsidian` 0.1.1.0, `sk-code-skilled` 1.1.0.0, `sk-code-quality` 1.0.1.0, `sk-code-review` 1.6.0.0, `sk-code-webflow` 1.1.0.0. The `sk-doc` hub is `2.2.5.0` while its fourteen packets span 1.0.0.0 to 1.5.0.0. Every packet has its own `changelog/` with an independently advanced sequence: `sk-create-changelog` 10 entries, `sk-code-review` 7, `sk-code-obsidian` 2, `sk-create-frontmatter` 1. Versions were read from each packet's `SKILL.md`, entry counts from each packet's `changelog/`.
 
 - The repository corpus is 59 `SKILL.md` files (observed count). Iteration 2 verified all 59 match their numerically newest changelog entry. With 14 top-level skills, 45 of the 59 versioned components are composite children.
 - Packet layout is uniform: a direct child directory of the hub holding `SKILL.md`, `README.md`, `changelog/` plus optional `references/`, `assets/`, `scripts/`, `benchmark/`, `manual-testing-playbook/` (observed for `sk-code-review` and `sk-create-command`).

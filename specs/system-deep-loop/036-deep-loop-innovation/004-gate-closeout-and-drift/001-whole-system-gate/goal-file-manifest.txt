@@ -646,7 +646,7 @@
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/README.md
-.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-opencode-playbook-ids.vitest.ts
+.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-skilled-playbook-ids.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-surface-path-parse.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-cutover-luna.test.cjs
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/compiled-routing-parity.vitest.ts

@@ -30,7 +30,7 @@ Now loading the rule files whose triggers fire (adding functions/tests, plan-sha
 
 
 
-Route resolved to `sk-code-opencode` (surface). Loading the JavaScript and shared standards it names for `.cjs`, since that is the artifact I'm extending.
+Route resolved to `sk-code-skilled` (surface). Loading the JavaScript and shared standards it names for `.cjs`, since that is the artifact I'm extending.
 
 All standards loaded. Now I'll write the §5 KEEP RULE section into S, following the sibling's exact shape.
 

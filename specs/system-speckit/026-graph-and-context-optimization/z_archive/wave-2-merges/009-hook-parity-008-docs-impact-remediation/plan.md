@@ -53,7 +53,7 @@ Goal: make the upstream truth documents correct before any package/README touche
 2. **`AGENTS.md`** (repo root)
    - Gate 2 rule: hook brief primary, `skill_advisor.py` fallback, cite hook reference.
    - Runtime notes: Codex supports native `SessionStart` when `codex_hooks=true` and `~/.codex/hooks.json` wired.
-   - `sk-code-opencode` language table: note OpenCode plugin ESM exemption so `.opencode/plugins/` and `.opencode/plugin-helpers/` are excluded from the blanket `require`/`module.exports` rule.
+   - `sk-code-skilled` language table: note OpenCode plugin ESM exemption so `.opencode/plugins/` and `.opencode/plugin-helpers/` are excluded from the blanket `require`/`module.exports` rule.
 
 3. **`.opencode/skills/system-spec-kit/SKILL.md`**
    - Startup/recovery section: split prompt-hook vs lifecycle-hook per runtime.

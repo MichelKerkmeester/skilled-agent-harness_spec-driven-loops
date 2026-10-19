@@ -1,0 +1,38 @@
+# Wrapper exit lines observed by the orchestrator after quitting each live session on 2026-10-19 (tool-result timestamps, UTC).
+# Each block pairs the WRAPPER_EXIT line printed in the tmux pane with the wrapper's decline line in relaunch.log.
+
+## 2026-10-19T06:07:53.323Z
+WRAPPER_EXIT=0
+2026-10-19T06:07:51.359Z decline loopId=36087 reason=no-file
+
+## 2026-10-19T09:01:23.562Z
+WRAPPER_EXIT=0
+2026-10-19T09:01:22.366Z decline loopId=62166 reason=no-file
+
+## 2026-10-19T09:23:40.722Z
+sr-claude6 WRAPPER_EXIT=0
+sr-oc6 WRAPPER_EXIT=0
+2026-10-19T09:23:08.736Z decline loopId=85782 reason=no-file
+2026-10-19T09:23:08.986Z decline loopId=85774 reason=no-file
+
+## 2026-10-19T09:23:50.352Z
+WRAPPER_EXIT=0
+2026-10-19T09:23:08.986Z decline loopId=85774 reason=no-file
+2026-10-19T09:23:49.031Z decline loopId=85800 reason=no-file
+
+## 2026-10-19T09:29:28.714Z
+WRAPPER_EXIT=0
+2026-10-19T09:29:27.581Z decline loopId=90414 reason=no-file
+
+## 2026-10-19T09:51:36.372Z
+sr-claude9 WRAPPER_EXIT=0
+sr-oc9 WRAPPER_EXIT=0
+sr-codex9 WRAPPER_EXIT=0
+2026-10-19T09:51:04.080Z decline loopId=78793 reason=no-file
+2026-10-19T09:51:04.661Z decline loopId=78816 reason=no-file
+2026-10-19T09:51:05.470Z decline loopId=78834 reason=no-file
+
+## 2026-10-19T09:51:44.621Z
+WRAPPER_EXIT=0
+2026-10-19T09:51:43.567Z decline loopId=78800 reason=no-file
+

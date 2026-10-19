@@ -4,7 +4,7 @@ Both files read. Now let me check `spawnCall` (for wallMs semantics) and the sk-
 
 Now let me see `spawnCall` and run the compiled router the skill contract names.
 
-The compiled router resolved `sk-code-opencode` (system-code surface). Let me read that packet's contract, then make the edits.
+The compiled router resolved `sk-code-skilled` (system-code surface). Let me read that packet's contract, then make the edits.
 
 The route resolves JavaScript/TypeScript evidence — I'll match the file's existing JSDoc and style conventions. Let me check the `Awaited<ReturnType<...>>` convention in this runtime before writing the JSDoc for the async helper.
 

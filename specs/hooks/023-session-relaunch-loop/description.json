@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks/023-session-relaunch-loop",
+  "description": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
+  "keywords": [
+    "session",
+    "near",
+    "context",
+    "limit",
+    "needs",
+    "write",
+    "handoff",
+    "note",
+    "end",
+    "restart",
+    "same",
+    "terminal"
+  ],
+  "lastUpdated": "2026-10-18T16:00:09.749Z",
+  "specId": "023",
+  "folderSlug": "session-relaunch-loop",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

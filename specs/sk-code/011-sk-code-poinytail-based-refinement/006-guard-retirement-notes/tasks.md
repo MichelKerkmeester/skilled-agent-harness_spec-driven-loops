@@ -34,7 +34,7 @@ contextType: "general"
 Run every command from the repository root, in one shell, after setting these variables:
 
 ```bash
-OC=.skilled/skills/sk-code/sk-code-opencode
+OC=.skilled/skills/sk-code/sk-code-skilled
 SCRIPT=$OC/scripts/run-all-drift-guards.sh
 SREADME=$OC/scripts/README.md
 SKILL=$OC/SKILL.md
@@ -79,7 +79,7 @@ Use no packet, phase or commit ids in any edit, per comment hygiene. Use no em d
 #      reference or asset doc is routed, and every full path the prose maps name is routed;
 #   2. the parent surface RESOURCE_MAP equals the union of the surface children's maps
 #      plus the parent tier;
-#   3. compiled route-gold destinations, leaf-manifest.json and the code-opencode
+#   3. compiled route-gold destinations, leaf-manifest.json and the code-skilled
 #      RESOURCE_MAP agree through qualifiedIdToLeaf;
 #   4. every playbook routing scenario's expected_resource is emitted by the router.
 # Successor, partial: the dead-path part of check 1 is the alignment-drift guard above
@@ -102,7 +102,7 @@ Use no packet, phase or commit ids in any edit, per comment hygiene. Use no em d
 - [x] T008 On line 12, replace the final sentence `A third guard, the router-sync suite, was retired with its lane and has no replacement yet.` with the text below. Keep the rest of line 12 as it is (SREADME:12) Evidence: anchor matched once
 
 ```markdown
-A third guard, the router-sync suite, was retired with its lane and has no full replacement. It checked four things: (1) every path in the machine-readable router exists on disk, every routable reference or asset doc is routed, and every full path the prose maps name is routed; (2) the parent surface RESOURCE_MAP equals the union of the surface children's maps plus the parent tier; (3) compiled route-gold destinations, `leaf-manifest.json` and the code-opencode RESOURCE_MAP agree through `qualifiedIdToLeaf`; (4) every playbook routing scenario's `expected_resource` is emitted by the router. The dead-path part of (1) is `verify_alignment_drift.py --check-router`, which this entrypoint runs. `.github/workflows/routing-registry-drift.yml` covers the compiled side of (3) and (4), in CI only: its compiled-serving admission step runs `--warn-only`, and its leaf-manifest freshness step byte-checks every `leaf-manifest.json`. No step reads RESOURCE_MAP. Orphan and prose-path coverage in (1), all of (2), the RESOURCE_MAP-to-manifest leg of (3) and the surface-router side of (4) have no guard. Owner of the gap: sk-code.
+A third guard, the router-sync suite, was retired with its lane and has no full replacement. It checked four things: (1) every path in the machine-readable router exists on disk, every routable reference or asset doc is routed, and every full path the prose maps name is routed; (2) the parent surface RESOURCE_MAP equals the union of the surface children's maps plus the parent tier; (3) compiled route-gold destinations, `leaf-manifest.json` and the code-skilled RESOURCE_MAP agree through `qualifiedIdToLeaf`; (4) every playbook routing scenario's `expected_resource` is emitted by the router. The dead-path part of (1) is `verify_alignment_drift.py --check-router`, which this entrypoint runs. `.github/workflows/routing-registry-drift.yml` covers the compiled side of (3) and (4), in CI only: its compiled-serving admission step runs `--warn-only`, and its leaf-manifest freshness step byte-checks every `leaf-manifest.json`. No step reads RESOURCE_MAP. Orphan and prose-path coverage in (1), all of (2), the RESOURCE_MAP-to-manifest leg of (3) and the surface-router side of (4) have no guard. Owner of the gap: sk-code.
 ```
 
 - [x] T009 On line 20, replace the cell text `the retired router-sync guard is recorded as missing` with `a comment after the guard calls records the retired router-sync guard's four checks, its partial successor, the gap and the owner (sk-code)`. Keep the table pipes (SREADME:20) Evidence: anchor matched once
@@ -127,7 +127,7 @@ The third guard, the `sk-code-router-sync.vitest.ts` suite, was deleted with the
 - [x] T012 Edit AVA from the bottom up, so the line numbers in T013 and T014 stay valid. First replace lines 123-126 (the Doc pointer item, through `markdown-blind \`verify_alignment_drift.py\` is not that authority.`) with the block below (AVA:123-126) Evidence: anchor matched once
 
 ```markdown
-1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
+1. **Doc pointer.** This file plus the code-skilled `SKILL.md` SMART ROUTING
    block, which record that the `sk-code-router-sync.vitest.ts` suite was
    deleted, that nothing checks RESOURCE_MAP equality now, and what partly
    covers its other checks (section 3, "Retired router-sync suite"). The
@@ -147,7 +147,7 @@ lane. It checked four things:
    is routed.
 2. The parent surface RESOURCE_MAP equals the union of the surface children's
    maps plus the parent tier.
-3. Compiled route-gold destinations, `leaf-manifest.json` and the code-opencode
+3. Compiled route-gold destinations, `leaf-manifest.json` and the code-skilled
    RESOURCE_MAP agree through `qualifiedIdToLeaf`.
 4. Every playbook routing scenario's `expected_resource` is emitted by the
    router.
@@ -182,7 +182,7 @@ checks now. These remain manual review gates:
 
 - [x] T015 REQ-001, script: `rg -n -e 'routing-registry-drift.yml' -e '^# Successor, partial:' -e '^# Gap:' -e 'Owner: sk-code' "$SCRIPT"`. Expect at least one hit for each of the four patterns, all inside the comment block after line 48 (SCRIPT) Evidence: successor, gap, owner and workflow path found
 - [x] T016 REQ-001, Lane C index: `rg -n -e '\*\*Successor:\*\*' -e 'routing-registry-drift.yml' -e 'Owner of that gap: sk-code' "$BENCH"`. Expect hits on the first non-blank line after the `**Retired lane:**` blockquote (BENCH) Evidence: successor, workflow path and owner found on line 16
-- [x] T017 REQ-001, the three code-opencode docs: `for f in "$SREADME" "$SKILL" "$AVA"; do echo "== $f"; rg -c 'routing-registry-drift.yml' "$f"; rg -c 'sk-code\)|Owner of (the|every) gap' "$f"; rg -c 'has no replacement yet|recorded as missing|nothing checks it now\.' "$f"; done`. For each file, expect the first two counts to be 1 or more. Expect the third `rg` to print nothing and exit 1, because the stale wording is gone (SREADME, SKILL, AVA) Evidence: successor/owner counts positive; stale-wording searches empty, expected exit 1
+- [x] T017 REQ-001, the three code-skilled docs: `for f in "$SREADME" "$SKILL" "$AVA"; do echo "== $f"; rg -c 'routing-registry-drift.yml' "$f"; rg -c 'sk-code\)|Owner of (the|every) gap' "$f"; rg -c 'has no replacement yet|recorded as missing|nothing checks it now\.' "$f"; done`. For each file, expect the first two counts to be 1 or more. Expect the third `rg` to print nothing and exit 1, because the stale wording is gone (SREADME, SKILL, AVA) Evidence: successor/owner counts positive; stale-wording searches empty, expected exit 1
 - [x] T018 REQ-001, four-check accuracy: `rg -n 'union of the surface children' "$SCRIPT" "$SREADME" "$SKILL" "$AVA"` and `rg -n 'qualifiedIdToLeaf' "$SCRIPT" "$SREADME" "$SKILL" "$AVA"`. Expect a hit in each of the four files for both patterns. In `SKILL.md`, both hits come from the new line 173 text (SCRIPT, SREADME, SKILL, AVA) Evidence: both phrases found in all four files
 - [x] T019 REQ-002, script still runs: `bash "$SCRIPT" > "$PHASE"/scratch/drift-after.txt 2>&1; echo "rc=$?" >> "$PHASE"/scratch/drift-after.txt`, then `diff <(grep -E '^(PASS|FAIL|rc=|run-all-drift-guards:)' "$PHASE"/scratch/drift-before.txt) <(grep -E '^(PASS|FAIL|rc=|run-all-drift-guards:)' "$PHASE"/scratch/drift-after.txt)`. Expect no output: the exit code and guard verdicts match T001 (SCRIPT) Evidence: no diff output, exit 0
 - [x] T020 REQ-002, comment-only script change: `git diff -U0 -- "$SCRIPT" | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | grep -vE '^[+-][[:space:]]*(#|$)'`. Expect no output (SCRIPT) Evidence: orchestrator rerun with fsmonitor off: comment-only diff filter prints nothing (exit 1, expected)

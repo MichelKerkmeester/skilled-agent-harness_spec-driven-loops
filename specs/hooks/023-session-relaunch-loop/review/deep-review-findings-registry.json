@@ -1,0 +1,495 @@
+{
+  "mergedFrom": [
+    "luna",
+    "swe"
+  ],
+  "lineageExecutors": {
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    },
+    "swe": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "mergedVerdict": "PASS",
+  "openFindings": [
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Ancestry check and SIGTERM are separated by a pid-reuse window",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 449,
+      "description": "isLoopAncestor runs on a ps snapshot before the record re-read and process.kill; a target that exits in the gap and has its pid recycled can deliver SIGTERM to an innocent same-uid process.",
+      "findingClass": "race-toctou",
+      "deltaStatus": null,
+      "scopeProof": "killer.cjs:449, :454 liveness-only re-check, :456 record read, :463 process.kill.",
+      "affectedSurfaceHints": [
+        "the only SIGTERM the feature delivers; all adapters spawning the killer"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "LUNA-001",
+      "severity": "P2",
+      "title": "appendLog accepts a short write as complete",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 580,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Killer liveness check crashes on EPERM where the core treats it as alive",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 106,
+      "description": "targetIsRunning rethrows every non-ESRCH error, so a kill(pid,0) EPERM propagates out of the poll loop and kills the killer through main().catch; core.isProcessAlive deliberately counts EPERM as alive.",
+      "findingClass": "io-error-handling",
+      "deltaStatus": null,
+      "scopeProof": "killer.cjs:108-112 vs relaunch-core.cjs:617-620.",
+      "affectedSurfaceHints": [
+        "killer supervise/wait loops",
+        "arm paths that respawn the killer"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "Lock-owner liveness trusts pid identity; a recycled pid pins a stale lock indefinitely",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 275,
+      "description": "The owner check treats pid-exists as killer-alive. A dead killer's pid recycled by an unrelated long-lived process makes every new killer log killer-lock-held and exit, deferring to manual claim until that process dies.",
+      "findingClass": "concurrency",
+      "deltaStatus": null,
+      "scopeProof": "killer.cjs:280, :333; relaunch-core.cjs:612-622 pid-existence semantics only.",
+      "affectedSurfaceHints": [
+        "killer supervision takeover",
+        "liveKillerPid consumers"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Parent spec prose still describes four children while five exist and are complete",
+      "file": "specs/hooks/023-session-relaunch-loop/spec.md",
+      "line": 39,
+      "description": "Metadata handoff criteria, the purpose paragraph and In Scope describe four child phases; the phase map and transition table correctly list five including 005-deep-review-remediation.",
+      "findingClass": "documentation-drift",
+      "deltaStatus": null,
+      "scopeProof": "spec.md:39, :51, :62-65 vs :94-98.",
+      "affectedSurfaceHints": [
+        "packet-level spec prose; generated metadata"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "LUNA-004",
+      "severity": "P2",
+      "title": "Phase 5 depends on a review-report path that is absent",
+      "file": "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md:40,43",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "Phase-handoff verification cell names a path that no longer exists",
+      "file": "specs/hooks/023-session-relaunch-loop/spec.md",
+      "line": 114,
+      "description": "The 004->005 criterion verifies on review/review-report.md, but the report moved to review-archive/20261018T184826Z/review-report.md; the literal pointer is dangling for any verifier that re-follows it.",
+      "findingClass": "checklist-evidence-defect",
+      "deltaStatus": null,
+      "scopeProof": "spec.md:114; review/ listing lacks review-report.md; archive copy exists with verdict PASS.",
+      "affectedSurfaceHints": [
+        "spec_code/checklist_evidence verification of the 004->005 transition"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "plannedNotePath interpolates an unvalidated session id into the note filename",
+      "file": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      "line": 191,
+      "description": "sessionId.slice(0,8) is concatenated into the handoff filename without the SESSION_ID_PATTERN validation stateFilePath applies; a session id whose first 8 chars hold / or .. escapes the handoffs directory by one level.",
+      "findingClass": "input-validation",
+      "deltaStatus": null,
+      "scopeProof": "nudge.cjs:194-195 vs :219-226; session-relaunch.cjs:71-135 containment would reject the resulting path at prepare.",
+      "affectedSurfaceHints": [
+        "every adapter calling plannedNotePath with a runtime-supplied session id"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "recordTimeout gates unarm and notify on a pre-wait record snapshot",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 441,
+      "description": "watchedRecord is read once before waitForIdle; the armed-status gate and expectedHandoff come from that stale snapshot while the SIGTERM path re-reads the record. A pending->armed flip during the idle wait strands the fresh armed record.",
+      "findingClass": "concurrency",
+      "deltaStatus": null,
+      "scopeProof": "killer.cjs:441, :408, :412, :480.",
+      "affectedSurfaceHints": [
+        "killer timeout path",
+        "core.unarm expected-field guards"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "LUNA-002",
+      "severity": "P2",
+      "title": "The fallback state directory is shared across users on systems with a shared temp directory",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 42,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The handoff containment boundary follows REPO_ROOT, not the repository",
+      "file": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      "line": 72,
+      "description": "handoffPathWithinRepo and plannedNotePath both resolve against env.REPO_ROOT; an environment exporting an unintended REPO_ROOT relocates the planned write and the prepare/claim validation to a different tree while staying self-consistent.",
+      "findingClass": "trust-boundary",
+      "deltaStatus": null,
+      "scopeProof": "session-relaunch.cjs:73, :75-82, :296/:397/:414; nudge.cjs:189.",
+      "affectedSurfaceHints": [
+        "prepare, claim, complete, printed manual command"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "LUNA-003",
+      "severity": "P2",
+      "title": "The killer can signal a reused PID after its ancestry check",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 449,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The live-shell guard fails open on any shell outside a three-name list",
+      "file": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      "line": 190,
+      "description": "refuseForShellChild detects live shell children by comm basename in [zsh,bash,sh]; fish, dash, ksh, tcsh, nu or a renamed shell is invisible, so the guard fails open and the killer SIGTERMs a session with running work.",
+      "findingClass": "protection-bypass",
+      "deltaStatus": null,
+      "scopeProof": "session-relaunch.cjs:195, :138-148, :200-228.",
+      "affectedSurfaceHints": [
+        "prepare/should-relaunch refusal path on all runtimes"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "findingId": "LUNA-005",
+      "severity": "P2",
+      "title": "The parent handoff criteria still count four children while the phase map lists five",
+      "file": "specs/hooks/023-session-relaunch-loop/spec.md:39,92-98",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Two ps process-table readers and three ancestor walks survive the helper consolidation",
+      "file": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      "line": 138,
+      "description": "bin/session-relaunch.cjs keeps its own parseProcessTable+readProcessTable (comm column, throw-on-error) beside core.readProcessTable (pid/ppid, null-on-error); ancestor walking exists three times: hasAncestor, cliAncestorsOf+runtimePidFromLoop, findLoopChildPid.",
+      "findingClass": "cross-consumer-duplication",
+      "deltaStatus": null,
+      "scopeProof": "session-relaunch.cjs:138-165 vs relaunch-core.cjs:645-686; killer.cjs:124-135.",
+      "affectedSurfaceHints": [
+        "killer ancestry gate, running-work check, CLI target resolution"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 15
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 0,
+  "activeP2": 15
+}

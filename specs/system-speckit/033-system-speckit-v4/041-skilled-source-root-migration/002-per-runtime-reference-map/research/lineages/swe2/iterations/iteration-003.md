@@ -40,7 +40,7 @@ Complete Map A: 208 internal `.opencode` links and 29 `specs/` links — the sec
 | `.opencode/changelog/mcp-tooling/parent` | `../../skills/mcp-tooling/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/changelog/sk-code/code-mobile-cli` | `../../skills/sk-code/sk-code-mobile-cli/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/changelog/sk-code/code-obsidian` | `../../skills/sk-code/sk-code-obsidian/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
-| `.opencode/changelog/sk-code/code-opencode` | `../../skills/sk-code/sk-code-opencode/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
+| `.opencode/changelog/sk-code/code-skilled` | `../../skills/sk-code/sk-code-skilled/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/changelog/sk-code/code-quality` | `../../skills/sk-code/sk-code-quality/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/changelog/sk-code/code-review` | `../../skills/sk-code/sk-code-review/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/changelog/sk-code/code-webflow` | `../../skills/sk-code/sk-code-webflow/changelog` | yes | travels intact — relative target inside the moved tree | hand-made | none |
@@ -187,9 +187,9 @@ Complete Map A: 208 internal `.opencode` links and 29 `specs/` links — the sec
 | `.opencode/skills/sk-code/sk-code-obsidian/references/workflow-debug.md` | `../../shared/references/workflow-debug.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/skills/sk-code/sk-code-obsidian/references/workflow-implement.md` | `../../shared/references/workflow-implement.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/skills/sk-code/sk-code-obsidian/references/workflow-verify.md` | `../../shared/references/workflow-verify.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
-| `.opencode/skills/sk-code/sk-code-opencode/references/workflow-debug.md` | `../../shared/references/workflow-debug.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
-| `.opencode/skills/sk-code/sk-code-opencode/references/workflow-implement.md` | `../../shared/references/workflow-implement.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
-| `.opencode/skills/sk-code/sk-code-opencode/references/workflow-verify.md` | `../../shared/references/workflow-verify.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
+| `.opencode/skills/sk-code/sk-code-skilled/references/workflow-debug.md` | `../../shared/references/workflow-debug.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
+| `.opencode/skills/sk-code/sk-code-skilled/references/workflow-implement.md` | `../../shared/references/workflow-implement.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
+| `.opencode/skills/sk-code/sk-code-skilled/references/workflow-verify.md` | `../../shared/references/workflow-verify.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/skills/sk-code/sk-code-webflow/references/workflow-debug.md` | `../../shared/references/workflow-debug.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/skills/sk-code/sk-code-webflow/references/workflow-implement.md` | `../../shared/references/workflow-implement.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |
 | `.opencode/skills/sk-code/sk-code-webflow/references/workflow-verify.md` | `../../shared/references/workflow-verify.md` | yes | travels intact — relative target inside the moved tree | hand-made | none |

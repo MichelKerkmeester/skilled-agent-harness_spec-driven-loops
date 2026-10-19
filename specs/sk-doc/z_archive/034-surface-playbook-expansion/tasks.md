@@ -67,7 +67,7 @@ _memory:
 
 - [x] T-005 Verify every `expected_resources` path added across both expansions resolves on disk. Evidence: 137 paths checked across `sk-code-mobile-cli`'s 26 scenarios, 0 missing; 92 paths checked across `sk-code-obsidian`'s 27 scenarios, 0 missing.
 - [x] T-006 Confirm neither package's expansion introduced forbidden verdict vocabulary. Evidence: both `--strict` runs report `violations=0`; `FORBIDDEN_VERDICT` in `validate-playbook-package.cjs` rejects `PARTIAL`/`READY`/`UNAUTOMATABLE`/`BLOCKED`, none of which appear in either package.
-- [x] T-007 Record the pre-existing, unrelated `sk-code-opencode` scenario gap as a known limitation. Evidence: `sk-code-opencode/SKILL.md` declares 10 intents including `JAVASCRIPT`; its playbook covers 9, with no `JAVASCRIPT`-specific scenario — out of this packet's two-package scope, not fixed here.
+- [x] T-007 Record the pre-existing, unrelated `sk-code-skilled` scenario gap as a known limitation. Evidence: `sk-code-skilled/SKILL.md` declares 10 intents including `JAVASCRIPT`; its playbook covers 9, with no `JAVASCRIPT`-specific scenario — out of this packet's two-package scope, not fixed here.
 <!-- /ANCHOR:phase-3 -->
 
 ---

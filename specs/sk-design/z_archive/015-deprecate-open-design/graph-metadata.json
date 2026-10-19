@@ -47,7 +47,7 @@
       ".claude/agents/design.md",
       ".codex/agents/design.toml",
       ".pi/agents/design.md",
-      ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+      ".opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
       "review/review-report.md",
       "review/deep-review-config.json",
       ".pi/agents/deep-review.md"
@@ -122,7 +122,7 @@
       {
         "name": "mcp-server-authoring.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "path": ".opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
         "source": "derived"
       },
       {

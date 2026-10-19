@@ -36,7 +36,7 @@ _memory:
 - [x] T005: Refactor `score-candidate.cjs` — add 5-dimension framework + --dynamic flag
 - [x] T006: Refactor `run-benchmark.cjs` — add integration consistency checks
 - [x] T007: Refactor `reduce-state.cjs` — add per-dimension tracking + dashboard
-- [x] T008: Align all 8 .cjs scripts with sk-code-opencode (box headers, section separators)
+- [x] T008: Align all 8 .cjs scripts with sk-code-skilled (box headers, section separators)
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->

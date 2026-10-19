@@ -125,7 +125,7 @@ Each unit is one DeepSeek dispatch; the diff and tests are checked before the ne
 - [x] CHK-010 [P0] `bash -n` passes on every changed hook; `node --check` on changed `.mjs` (bash 3.2.57, all parse)
 - [x] CHK-011 [P0] No new stderr output in a repository without the toolchain (pre-commit sections 43 and 46; pre-push routing case)
 - [x] CHK-012 [P1] Validator crash reported apart from a rule failure (pre-push-message-contract section 14)
-- [x] CHK-013 [P1] Code follows sk-code-opencode shell and JS standards (drift guards: 0 findings in changed files)
+- [x] CHK-013 [P1] Code follows sk-code-skilled shell and JS standards (drift guards: 0 findings in changed files)
 <!-- /ANCHOR:code-quality -->
 
 ---

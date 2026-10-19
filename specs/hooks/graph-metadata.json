@@ -29,7 +29,8 @@
     "hooks/020-spec-metadata-auto-remint",
     "hooks/021-compat-opt-in-and-image-declaration",
     "hooks/022-smart-rule-injection",
-    "hooks/023-dispatch-adapter-test-repair"
+    "hooks/023-session-relaunch-loop",
+    "hooks/024-dispatch-adapter-test-repair"
   ],
   "manual": {
     "depends_on": [],

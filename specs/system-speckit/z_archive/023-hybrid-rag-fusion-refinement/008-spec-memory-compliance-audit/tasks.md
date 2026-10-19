@@ -225,7 +225,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 - [ ] T143 [P] Fix `03--commands-and-skills/015-cmd-create-changelog`
 - [ ] T144 [P] Fix `03--commands-and-skills/016-sk-code-review-creation`
 - [ ] T145 [P] Fix `03--commands-and-skills/017-cmd-create-prompt`
-- [ ] T146 [P] Fix `03--commands-and-skills/018-sk-code-opencode-refinement`
+- [ ] T146 [P] Fix `03--commands-and-skills/018-sk-code-skilled-refinement`
 - [ ] T147 [P] Fix `03--commands-and-skills/019-cmd-create-skill-merger`
 - [ ] T148 [P] Fix `03--commands-and-skills/020-cmd-create-readme-install-merger`
 - [ ] T149 [P] Fix `03--commands-and-skills/021-sk-doc-feature-catalog-testing-playbook`

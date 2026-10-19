@@ -81,7 +81,7 @@ With stdin held open, the seven entries now exit with medians of 538 to 765 ms. 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek V4.1 Flash built the child one unit at a time from `scratch/dispatch-units.json`, each unit gated by its own check. A Sonnet verifier then reran every Phase 1 record, Phase 2 check and Phase 3 task, read the full diff of the 16 modified files and the new changelog, rebuilt nothing (`dist/` was already fresh and carried the new constant), and ran the `sk-code-opencode` drift guards. `build-units.py verify` rebuilds the 17 touched files from the saved pre-edit copies plus only the planned units and found them byte-identical to the tree. The Hermes mirror, trigger index and parent changelog are left to the orchestrator.
+DeepSeek V4.1 Flash built the child one unit at a time from `scratch/dispatch-units.json`, each unit gated by its own check. A Sonnet verifier then reran every Phase 1 record, Phase 2 check and Phase 3 task, read the full diff of the 16 modified files and the new changelog, rebuilt nothing (`dist/` was already fresh and carried the new constant), and ran the `sk-code-skilled` drift guards. `build-units.py verify` rebuilds the 17 touched files from the saved pre-edit copies plus only the planned units and found them byte-identical to the tree. The Hermes mirror, trigger index and parent changelog are left to the orchestrator.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/040-cli-pi-worktree-extension-clash",
+  "spec_folder": "system-deep-loop/040-cli-pi-worktree-extension-clash",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli pi worktree extension clash",
+      "let the pi fast mode extension stand down",
+      "flag --fast conflicts with",
+      "cli pi worktree extension clash plan",
+      "cli pi worktree extension clash tasks",
+      "cli pi worktree extension clash acceptance criteria",
+      "cli pi worktree extension clash implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "worktree",
+      "extension",
+      "clash",
+      "let",
+      "fast",
+      "mode",
+      "stand",
+      "flag",
+      "conflicts",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/tests/README.md",
+      "scratch/main-merge/fast-flag-matrix.txt",
+      "scratch/after-ext.txt",
+      "scratch/base-ext.txt",
+      "scratch/base-deeploop.txt",
+      "scratch/after-deeploop.txt",
+      "scratch/smoke-1-worktree-unfixed-global.json",
+      "scratch/smoke-2-worktree-two-fixed-copies.json",
+      "scratch/smoke-3-control-unfixed-overlay-copy.json",
+      "scratch/smoke-4-main-plain.json",
+      "scratch/smoke-5-main-fixed-overlay.json",
+      "scratch/repro-worktree.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extension.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "precedence.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/tests/precedence.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "fast-flag-matrix.txt",
+        "kind": "file",
+        "path": "scratch/main-merge/fast-flag-matrix.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-ext.txt",
+        "kind": "file",
+        "path": "scratch/after-ext.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-ext.txt",
+        "kind": "file",
+        "path": "scratch/base-ext.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-deeploop.txt",
+        "kind": "file",
+        "path": "scratch/base-deeploop.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-deeploop.txt",
+        "kind": "file",
+        "path": "scratch/after-deeploop.txt",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-1-worktree-unfixed-global.json",
+        "kind": "config",
+        "path": "scratch/smoke-1-worktree-unfixed-global.json",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-2-worktree-two-fixed-copies.json",
+        "kind": "config",
+        "path": "scratch/smoke-2-worktree-two-fixed-copies.json",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-3-control-unfixed-overlay-copy.json",
+        "kind": "config",
+        "path": "scratch/smoke-3-control-unfixed-overlay-copy.json",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-4-main-plain.json",
+        "kind": "config",
+        "path": "scratch/smoke-4-main-plain.json",
+        "source": "derived"
+      },
+      {
+        "name": "smoke-5-main-fixed-overlay.json",
+        "kind": "config",
+        "path": "scratch/smoke-5-main-fixed-overlay.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-worktree.txt",
+        "kind": "file",
+        "path": "scratch/repro-worktree.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A cli-pi dispatch started inside a git worktree of this repo exits 1 before it reaches the model: `Failed to load extension \".../.pi/agent/extensions/pi-fast-mode-w-subagent-support/src/index.ts\": Flag \"--fast\" conflicts with <worktree>/.pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts`",
+    "created_at": "2026-10-19T11:44:13Z",
+    "last_save_at": "2026-10-19T17:37:56.762Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c59cd9bff532e76a9120856d265ea4fd36ef53a362d7b95f3432b714384022b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8da1bd9908704b68adf2d70d1c819835677125cf5f825b49e050840c7a2fb40c",
+      "plan.md": "d7bb4c282d9963f3a629f9804c73020ceea32f0f3b8907693d8a7347942f4f8e",
+      "tasks.md": "165daa8b99c3bcc76592f8bf3ddca9d19e7819e86361ef603c0cfd5368abfd58",
+      "implementation-summary.md": "81ec2bcc6c0b894c01163f0a4e80ccb737a6fc5359c089db95bee2b21c375277"
+    },
+    "last_active_at": null
+  }
+}

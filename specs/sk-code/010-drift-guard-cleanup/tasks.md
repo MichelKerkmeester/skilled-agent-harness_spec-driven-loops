@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Baseline the wrapper: exit 1, 60 errors, 254 warnings, 22548 files scanned (`.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`)
+- [x] T001 Baseline the wrapper: exit 1, 60 errors, 254 warnings, 22548 files scanned (`.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`)
 - [x] T002 Baseline the verifier tests: 26 passed (`test_verify_alignment_drift.py`)
 - [x] T003 Survey tracked files a `-fixture` and a `specs/**/evidence/` rule would match, to confirm no shipped code is caught
 <!-- /ANCHOR:phase-1 -->

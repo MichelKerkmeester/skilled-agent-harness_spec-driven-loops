@@ -124,7 +124,7 @@ follow-on build packet would create.
 - Read-only references (grounding, not changed): `.opencode/skills/sk-code/SKILL.md` (§2 Smart
   Routing), `.opencode/skills/sk-code/mode-registry.json`, `.opencode/skills/sk-code/ROUTER.md`,
   `.opencode/skills/sk-code/shared/`, and an existing surface packet (`sk-code-webflow` or
-  `sk-code-opencode`) as the structural template.
+  `sk-code-skilled`) as the structural template.
 - Inbound: this packet's Phase 1 decision and Phase 2 token library + `@ds` grammar are the
   conventions the planned mode encodes.
 - Outbound: a future, separate build packet would create `.opencode/skills/sk-code/sk-code-mobile-cli/`.

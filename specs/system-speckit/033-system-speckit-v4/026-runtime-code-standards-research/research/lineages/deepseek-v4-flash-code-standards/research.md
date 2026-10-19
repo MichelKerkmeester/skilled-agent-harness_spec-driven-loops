@@ -9,7 +9,7 @@
 
 ## 1. Background
 
-This is a read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding `node_modules/` and `dist/`) against this repo's code standards. The audit covers 529 `.ts`, 42 `.cjs`, 46 `.mjs`, 78 `.sh`, 2 `.py`, and 103 `.json` files in scope. The controlling standards are the universal P0/P1/P2 model (`shared/references/universal/code-quality-standards.md`), the TypeScript and Shell standards under `sk-code-opencode/references/`, and the shared code-organization conventions.
+This is a read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding `node_modules/` and `dist/`) against this repo's code standards. The audit covers 529 `.ts`, 42 `.cjs`, 46 `.mjs`, 78 `.sh`, 2 `.py`, and 103 `.json` files in scope. The controlling standards are the universal P0/P1/P2 model (`shared/references/universal/code-quality-standards.md`), the TypeScript and Shell standards under `sk-code-skilled/references/`, and the shared code-organization conventions.
 
 ## 2. Research Topics / Angles
 
@@ -50,7 +50,7 @@ The audit also established four *conforming* baselines (not findings): TS module
 
 ### Angle 1 — Header / section-banner conformance
 
-- **F1.1 [P1]** Shell header-tag divergence: `runtime/cli/rules/*.sh` uses `# RULE:` (27/78 scripts) instead of the documented `# COMPONENT:`/`# SPECKIT:` — `runtime/cli/rules/check-files.sh:3`. Standard: `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md` §2 File Header. **Fix: judgment-required** — adopt `# COMPONENT:` uniformly or document `# RULE:` as a sanctioned rule-family tag.
+- **F1.1 [P1]** Shell header-tag divergence: `runtime/cli/rules/*.sh` uses `# RULE:` (27/78 scripts) instead of the documented `# COMPONENT:`/`# SPECKIT:` — `runtime/cli/rules/check-files.sh:3`. Standard: `sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md` §2 File Header. **Fix: judgment-required** — adopt `# COMPONENT:` uniformly or document `# RULE:` as a sanctioned rule-family tag.
 - **F1.2 [P2]** `# SPEC-KIT:` hyphen variant — `runtime/cli/spec/recommend-level.sh:3` vs documented `# SPECKIT:`. Standard: same §2. **Fix: mechanical** — normalize to `# SPECKIT:`.
 - **F9.2 [P2]** Cross-language header-tag vocabulary is not uniform (`# SCRIPT:` in `runtime/cli/retrieval/generate-trigger-index.mjs:3` etc. is not in either documented standard). **Fix: judgment-required** — document `# SCRIPT:` for `.mjs` or align.
 
@@ -124,7 +124,7 @@ These directions were investigated and excluded, not flagged:
 
 ## 14-16. References
 
-- Standards: `sk-code-opencode/references/shell/style-guide/overview-structure-and-naming.md` §2; `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` §2,§3,§5,§7; `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2,§5; `sk-code-opencode/references/shared/code-organization/imports-and-exports.md` §1,§3; `sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md` §3; `shared/references/universal/code-quality-standards.md` §3 P0#4,§4 P1#2,§7.
+- Standards: `sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md` §2; `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` §2,§3,§5,§7; `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §2,§5; `sk-code-skilled/references/shared/code-organization/imports-and-exports.md` §1,§3; `sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` §3; `shared/references/universal/code-quality-standards.md` §3 P0#4,§4 P1#2,§7.
 - Source: every finding cites its code path and line in `iterations/iteration-NNN.md`; the full trail is in `deltas/iter-NNN.jsonl` and `deep-research-state.jsonl`.
 
 ## Convergence Report

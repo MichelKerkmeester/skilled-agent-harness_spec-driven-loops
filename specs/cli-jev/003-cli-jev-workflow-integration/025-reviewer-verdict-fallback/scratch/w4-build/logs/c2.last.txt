@@ -26,7 +26,7 @@ Now let me handle the gates: check for REPO RULES.md and read the sk-code router
 
 REPO RULES.md triggers on my action (adding functions/tests, reporting a result, possible deviation). Let me load those rule files and resolve the sk-code route.
 
-GATE 2 resolved: sk-code → `sk-code-opencode` surface. Let me load that packet and run the Gate 1 trigger lookup.
+GATE 2 resolved: sk-code → `sk-code-skilled` surface. Let me load that packet and run the Gate 1 trigger lookup.
 
 The packet routes JavaScript refs for `.cjs` and TypeScript refs for `.ts`. Let me check their sizes and load the quick references.
 

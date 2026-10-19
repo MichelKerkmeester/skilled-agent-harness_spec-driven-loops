@@ -39,7 +39,7 @@ Route to `/speckit:plan` because a required hard protocol fails. The smallest re
 ### F001 [P2] Seven lexical paths exceed the intro sentence limit
 
 - Dimension: correctness
-- File: `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20`
+- File: `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20`
 - Evidence: the shared debug/implement/verify references use three-sentence intros through both surface symlink paths, and the CSS quality reference does the same [SOURCE: `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23`]. R3 and the reference template specify one or two sentences [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-71`] [SOURCE: `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:56-87`].
 - Impact: bounded template polish across seven lexical paths/four resolved documents.
 - Finding class: `class-of-bug`

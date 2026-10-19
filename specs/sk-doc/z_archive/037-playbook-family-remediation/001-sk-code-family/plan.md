@@ -44,7 +44,7 @@ _memory:
 
 ### Overview
 
-Read the manifest before touching a document, so each root's real contract is known rather than inferred from a sibling. Remediate the five dirty roots to zero violations each — the hub, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, and `sk-code-quality` — and re-measure every root with its own `--package` invocation, because a fleet run resolves a nested package to its parent identifier and would report a sub-package's state under the wrong name.
+Read the manifest before touching a document, so each root's real contract is known rather than inferred from a sibling. Remediate the five dirty roots to zero violations each — the hub, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, and `sk-code-quality` — and re-measure every root with its own `--package` invocation, because a fleet run resolves a nested package to its parent identifier and would report a sub-package's state under the wrong name.
 
 <!-- /ANCHOR:summary -->
 
@@ -56,7 +56,7 @@ Read the manifest before touching a document, so each root's real contract is kn
 ### Definition of Ready
 
 - The manifest is read and each root's tier is known: no sk-code root is in `routingGoldRoots` except the hub's `compiled-routing/` path, and no sk-code root is in `warnPackages`.
-- The starting count for each dirty root is measured, not assumed: hub 181, `sk-code-review` 129, `sk-code-webflow` 156, `sk-code-opencode` 108, `sk-code-quality` 12.
+- The starting count for each dirty root is measured, not assumed: hub 181, `sk-code-review` 129, `sk-code-webflow` 156, `sk-code-skilled` 108, `sk-code-quality` 12.
 
 ### Definition of Done
 

@@ -1,0 +1,6 @@
+# Round-3 fixes reverted: plugin.ts registering tools before the prompt hook, and client.ts close() that sends SIGTERM to provisioning without waiting or escalating.
+(fail) v2 tool registration > leaves no tools registered when the prompt hook fails to register [1.35ms]
+(fail) RuntimeClient close > forces a provisioning step that ignores SIGTERM to exit before close resolves [128.34ms]
+ 30 pass
+ 2 fail
+# The reverted-code run left its SIGTERM-ignoring fake uv (pid 5165, parent 1) alive, which is the defect; it was killed by hand afterwards.

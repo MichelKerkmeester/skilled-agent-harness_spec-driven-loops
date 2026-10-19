@@ -6,7 +6,7 @@ trigger_phrases:
   - "005-stress-test-expansion-alignment"
   - "stress test alignment"
   - "stress test coverage"
-  - "sk-code-opencode stress test"
+  - "sk-code-skilled stress test"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

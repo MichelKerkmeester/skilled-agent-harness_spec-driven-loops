@@ -21,7 +21,7 @@ trigger_phrases: []
 - **`sk-code/mode-registry.json`** — the two axes; the `sk-code-webflow` surface entry is the template.
 - **`sk-code/hub-router.json`** — verified top-level keys `skill, version, routerPolicy, routerSignals,
   vocabularyClasses`; `routerSignals` is keyed by each `workflowMode`
-  (`sk-code-quality, sk-code-review, sk-code-webflow, sk-code-opencode`); `vocabularyClasses` uses the
+  (`sk-code-quality, sk-code-review, sk-code-webflow, sk-code-skilled`); `vocabularyClasses` uses the
   `code-<surface>-*` prefix (`code-webflow-aliases`, `code-webflow-runtime`, …) — **not** `sk-code-…`.
 - **`sk-code/ROUTER.md`** — `router_state: active` (non-empty `INTENT_SIGNALS` / `RESOURCE_MAP`).
 - **`sk-code/shared/references/stack-detection.md`** — surface detection on CWD + changed/target files
@@ -57,7 +57,7 @@ Code work on `apps/pi-remote-web/` routes to **`defer`** with **no targets** tod
 
 - Folder `.opencode/skills/sk-code/sk-code-mobile-cli/` — **`folder == packetSkillName`**,
   `grandfatheredFolderMismatch: false` (never create a new mismatch), matching the hub-prefixed
-  surface convention (`sk-code-webflow`, `sk-code-opencode`).
+  surface convention (`sk-code-webflow`, `sk-code-skilled`).
 - **No packet-level advisor metadata.** Surface packets carry no `graph-metadata.json` /
   `description.json` (the real webflow/opencode packets have none; `skill-root-metadata-contract.md`
   makes a nested one a `NESTED_IDENTITY` rejection). The surface is advisor-invisible under the hub's
@@ -120,7 +120,7 @@ disjoint).
 `sk-code/ROUTER.md` is `router_state: active`, so if the surface exposes packet-local leaf resources
 that stage-two should select, the build packet adds **equal-key** `INTENT_SIGNALS` / `RESOURCE_MAP`
 entries whose paths resolve to typed `leaf-manifest.json` pairs (mirroring how `sk-code-webflow` /
-`sk-code-opencode` leaves appear, if they do). If the surface adds no stage-two leaf routing beyond the
+`sk-code-skilled` leaves appear, if they do). If the surface adds no stage-two leaf routing beyond the
 `SKILL.md` bundle, leave `ROUTER.md` unchanged — never author synthetic intents.
 
 ## 6. Surface-detection marker (`shared/references/stack-detection.md`)

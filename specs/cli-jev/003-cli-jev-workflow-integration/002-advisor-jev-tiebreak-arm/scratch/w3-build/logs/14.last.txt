@@ -23,7 +23,7 @@ Both edits are in, the syntax check is green with a validated negative control, 
 Work state: the two files are edited but uncommitted (they are untracked in this worktree, so no `git diff` numstat was available — the +/- counts are derived from the edit receipts and confirmed by the line-count delta). Per the brief I ran only the listed check; vitest, drift guards, and commits are the orchestrator's. Nothing is blocked.
 
 REPO RULES: .skilled/repo-rules/evidence-and-proof.md, .skilled/repo-rules/communication-handoff.md, .skilled/repo-rules/blast-radius.md
-SKILL ROUTING: User directed → sk-code (hub read; route resolved to sk-code-opencode surface for `.skilled/` system code)
+SKILL ROUTING: User directed → sk-code (hub read; route resolved to sk-code-skilled surface for `.skilled/` system code)
 
 STATUS: DONE
 FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+6/-4)

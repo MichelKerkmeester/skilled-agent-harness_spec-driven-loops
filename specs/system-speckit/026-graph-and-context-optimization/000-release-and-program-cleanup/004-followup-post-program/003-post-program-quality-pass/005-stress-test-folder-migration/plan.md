@@ -140,7 +140,7 @@ Candidate discovery -> classification -> file moves -> config update -> doc refe
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| 037/001 sk-code-opencode audit | Packet | Available | Follow-up ordering unclear |
+| 037/001 sk-code-skilled audit | Packet | Available | Follow-up ordering unclear |
 | Vitest config | Internal config | Available | Stress include/exclude cannot be controlled |
 | Existing stress suites | Test files | Available | No clear migration target |
 <!-- /ANCHOR:dependencies -->

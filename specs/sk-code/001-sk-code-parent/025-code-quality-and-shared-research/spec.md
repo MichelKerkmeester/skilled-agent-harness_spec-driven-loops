@@ -62,7 +62,7 @@ Run a bounded deep-research investigation (ten productive iterations, GPT-5.5 xh
 
 ### Out of Scope
 - Implementing any of the proposals (a separate follow-up packet owns implementation).
-- The other sk-code sub-skills except as integration context — the `code-implement`, `code-debug`, `code-verify` workflow skills and the `code-webflow`/`code-opencode`/`code-review` surfaces are not the target (23-... already surveyed the four workflow sub-skills broadly; this packet is the deeper code-quality + shared dive).
+- The other sk-code sub-skills except as integration context — the `code-implement`, `code-debug`, `code-verify` workflow skills and the `code-webflow`/`code-skilled`/`code-review` surfaces are not the target (23-... already surveyed the four workflow sub-skills broadly; this packet is the deeper code-quality + shared dive).
 - Re-baselining the sk-code Lane-C benchmark or rewriting the manual-testing-playbook gold.
 - Editing `code-quality`, `shared/`, or any other skill asset during this research phase.
 

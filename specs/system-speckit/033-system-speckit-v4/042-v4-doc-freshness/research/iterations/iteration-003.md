@@ -32,7 +32,7 @@ Evidence: `.skilled/agents/` holds 12 agent files including `design.md`; the REA
 Evidence: no `.vscode/` directory exists at the repo root; the probe for `.vscode/mcp.json` returns MISSING. Either restore the wrapper or drop the line.
 
 ### P2 - sk-code surface count inconsistent (README L566-567 vs L950)
-Claim: "Two ready surfaces: WEBFLOW ... and OPENCODE". Evidence: three surface packets ship - `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian` - and L950 of the same README lists all three as replaceable packets. L567 undercounts; check the skill's evidence-only doctrine for obsidian when correcting.
+Claim: "Two ready surfaces: WEBFLOW ... and OPENCODE". Evidence: three surface packets ship - `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian` - and L950 of the same README lists all three as replaceable packets. L567 undercounts; check the skill's evidence-only doctrine for obsidian when correcting.
 
 ### P2 (low materiality, intent-dependent) - "Sixteen templates" vs 18 `.tmpl` files (README L180)
 Evidence: `templates/` holds 18 `.tmpl` files - core 4 (spec, plan, tasks, implementation-summary), addons 10 (acceptance-criteria, before-after, debug-delegation, decision-record, goal, handover, research, resource-map, roadmap, timeline), packet-types 4 (phase-parent.spec, research.spec, review.spec, review-report). The trigger table enumerates 16; `packet-types/research.spec.md.tmpl` and `packet-types/review-report.md.tmpl` are unaccounted. Verify intent before "correcting".

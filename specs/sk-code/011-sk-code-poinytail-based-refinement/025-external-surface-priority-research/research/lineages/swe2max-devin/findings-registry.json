@@ -7,9 +7,9 @@
   "terminalStop": null,
   "keyQuestions": [
     {
-      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "id": "question-1-q7-f10-which-shared-or-sk-code-skilled-leaves-could-serve-the-stack-agnostic-ro",
       "inboxId": null,
-      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "text": "Q7: F10, which shared/ or sk-code-skilled leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,
@@ -82,9 +82,9 @@
   "openQuestions": [],
   "resolvedQuestions": [
     {
-      "id": "question-1-q7-f10-which-shared-or-sk-code-opencode-leaves-could-serve-the-stack-agnostic-ro",
+      "id": "question-1-q7-f10-which-shared-or-sk-code-skilled-leaves-could-serve-the-stack-agnostic-ro",
       "inboxId": null,
-      "text": "Q7: F10, which shared/ or sk-code-opencode leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
+      "text": "Q7: F10, which shared/ or sk-code-skilled leaves could serve the stack-agnostic ROUTER.md intents once webflow is deleted, and what is the smallest fix (R6)?",
       "origin": "legacy-import",
       "source": "key-questions",
       "injectedAtIteration": 0,

@@ -1,7 +1,7 @@
 # Iteration 004 — Dimension(s): D4
 
 ## Scope this iteration
-This iteration reviewed the Phase-025 D4 maintainability surfaces inside `mcp_server/lib/skill-advisor`, with emphasis on the newly-added cache bound, the deprecated normalizer alias, and the public API documentation sweep. The goal was to confirm DR-P2-001 is closed in code and tests, and to look for residual sk-code-opencode alignment gaps on the touched exports.
+This iteration reviewed the Phase-025 D4 maintainability surfaces inside `mcp_server/lib/skill-advisor`, with emphasis on the newly-added cache bound, the deprecated normalizer alias, and the public API documentation sweep. The goal was to confirm DR-P2-001 is closed in code and tests, and to look for residual sk-code-skilled alignment gaps on the touched exports.
 
 ## Evidence read
 - `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-cache.ts:8-12` -> the advisor prompt cache now exposes an explicit `MAX_CACHE_ENTRIES = 1000` bound alongside the token constants.

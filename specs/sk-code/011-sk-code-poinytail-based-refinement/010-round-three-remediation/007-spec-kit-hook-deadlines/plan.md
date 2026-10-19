@@ -94,7 +94,7 @@ A host starts the hook and writes one JSON payload. The reader collects chunks u
 Line numbers are from the unedited tree. `tasks.md` quotes the exact text each edit finds, and `scratch/dispatch-units.json` holds the same edits one per unit.
 
 ### Contracts that bind the edits
-- `sk-code` routes this TypeScript and JavaScript to the `sk-code-opencode` surface: box-drawn `MODULE:` headers stay, comments state the durable reason only and name no spec path, phase or task id.
+- `sk-code` routes this TypeScript and JavaScript to the `sk-code-skilled` surface: box-drawn `MODULE:` headers stay, comments state the durable reason only and name no spec path, phase or task id.
 - `sk-doc` covers the two README edits: current-state wording, no em dashes, numbered headings untouched, and `validate_document.py` must still print `VALID`.
 - `sk-create-changelog` covers the entry: global component folder `.skilled/skills/system-spec-kit/changelog/` (reached through the `.skilled/changelog/system-spec-kit` symlink), the next four-part version, the compact shape with `What's New at a Glance` and `Upgrade`.
 
@@ -136,7 +136,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ### Other checks
 - `node --check` on the nine edited `.mjs` and `.cjs` files and the new test. `npm run typecheck` exits 0. ESLint on the seven TypeScript files exits 0; the baseline has no finding in these files. `claude/user-prompt-submit.ts` carries four unused-import errors that predate this phase and is not linted here.
 - `node .skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs check-all` prints `All watched dist outputs are fresh.` before and after the build.
-- `python3 -I .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/hooks`: baseline `[alignment-drift] PASS` with `Findings: 0`. It reads tracked files only, so the two new files are scanned only once staged.
+- `python3 -I .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/hooks`: baseline `[alignment-drift] PASS` with `Findings: 0`. It reads tracked files only, so the two new files are scanned only once staged.
 - `validate_document.py` on both READMEs (baseline `VALID`, `Total issues: 0`) and on the new changelog (`VALID`, `Document type: changelog`, `Total issues: 0` on the planner's copy).
 
 ### Prototype evidence

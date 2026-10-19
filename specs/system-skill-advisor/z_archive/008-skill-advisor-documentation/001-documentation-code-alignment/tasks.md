@@ -1,6 +1,6 @@
 ---
 title: "...ec-kit/026-graph-and-context-optimization/006-skill-advisor/001-documentation-code-alignment/tasks]"
-description: "Task list for 022 — 3 doc updates + sk-code-opencode audit + remediations."
+description: "Task list for 022 — 3 doc updates + sk-code-skilled audit + remediations."
 trigger_phrases:
   - "022 tasks"
 importance_tier: "important"
@@ -29,7 +29,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ## Phase 1: Setup
 
 - [x] T001 [P0] Read Phase 020 implementation-summary.md for feature inventory [Evidence: 020 parent summary loaded; feature inventory used in `implementation-summary.md`]
-- [x] T002 [P0] Read sk-code-opencode SKILL.md for TS standards + checklist [Evidence: TypeScript style, quality, quick reference, and checklist loaded before audit]
+- [x] T002 [P0] Read sk-code-skilled SKILL.md for TS standards + checklist [Evidence: TypeScript style, quality, quick reference, and checklist loaded before audit]
 - [x] T003 [P0] Read existing skill-advisor docs (README, feature_catalog, manual_testing_playbook) to understand current structure [Evidence: README, root feature catalog, root playbook, setup guide, and existing category files inspected]
 - [x] T004 [P0] Read Phase 020 reference doc at ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md for cross-reference source [Evidence: hook reference and validation playbook loaded]
 <!-- /ANCHOR:phase-1 -->
@@ -66,9 +66,9 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
   - Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` → verify bypass
   - Simulate stale skill-graph → verify stale-badged brief still fires
   - [Evidence: 06--hook-routing/001-hook-routing-smoke.md HR-001 through HR-006]
-### sk-code-opencode Alignment Audit
+### sk-code-skilled Alignment Audit
 
-- [x] T010 [P0] Run sk-code-opencode audit on `mcp_server/lib/skill-advisor/*.ts` (11 files from 020/003-005) [Evidence: `scratch/audit-findings.md` per-file audit ledger]
+- [x] T010 [P0] Run sk-code-skilled audit on `mcp_server/lib/skill-advisor/*.ts` (11 files from 020/003-005) [Evidence: `scratch/audit-findings.md` per-file audit ledger]
 - [x] T011 [P0] Run audit on `mcp_server/hooks/{claude,gemini,copilot,codex}/user-prompt-submit.ts` (4 adapters) [Evidence: `scratch/audit-findings.md` per-file audit ledger]
 - [x] T012 [P0] Run audit on `mcp_server/hooks/codex/pre-tool-use.ts` + `prompt-wrapper.ts` [Evidence: `scratch/audit-findings.md` per-file audit ledger]
 - [x] T013 [P0] Run audit on `mcp_server/lib/codex-hook-policy.ts` [Evidence: `scratch/audit-findings.md` per-file audit ledger]
@@ -93,7 +93,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - All P0 tasks marked `[x]` with evidence
 - skill-advisor README, feature catalog, playbook all updated
-- Phase 020 TS code passes sk-code-opencode audit (or deferrals documented)
+- Phase 020 TS code passes sk-code-skilled audit (or deferrals documented)
 - 118/118 Phase 020 tests remain green
 <!-- /ANCHOR:completion -->
 
@@ -102,7 +102,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 
 - Spec: `spec.md`
 - Parent: `../../006-skill-advisor/004-advisor-hook-surface-integration/implementation-summary.md`
-- sk-code-opencode: `../../../../skill/sk-code-opencode/SKILL.md`
+- sk-code-skilled: `../../../../skill/sk-code-skilled/SKILL.md`
 - skill-advisor: `.opencode/skills/skill-advisor/`
 - Phase 020 reference doc: ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md
 <!-- /ANCHOR:cross-refs -->

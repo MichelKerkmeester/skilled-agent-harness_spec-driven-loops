@@ -53,7 +53,7 @@ _memory:
 ## Phase 2: Implementation
 
 ### sk-code Baseline
-- [x] T006 Rename four sk-code sub-skill folders with history preserved [large] — `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-opencode`, `animation -> code-animation`; final `ls` confirms exactly eight `code-*` sub-skills plus four unprefixed infrastructure dirs
+- [x] T006 Rename four sk-code sub-skill folders with history preserved [large] — `review -> code-review`, `webflow -> code-webflow`, `opencode -> code-skilled`, `animation -> code-animation`; final `ls` confirms exactly eight `code-*` sub-skills plus four unprefixed infrastructure dirs
 - [x] T007 Verify no double-prefix was introduced [small] — `grep -rn "code-code-" sk-code` returned 0
 
 ### sk-design Baseline
@@ -74,7 +74,7 @@ _memory:
 ## Phase 3: Verification
 
 ### Pre-Promotion Gate
-- [x] T013 Confirm final sk-code directory inventory [small] — hub lists exactly `code-animation`, `code-debug`, `code-implement`, `code-opencode`, `code-quality`, `code-review`, `code-verify`, `code-webflow`, plus `benchmark`, `changelog`, `manual_testing_playbook`, and `shared`
+- [x] T013 Confirm final sk-code directory inventory [small] — hub lists exactly `code-animation`, `code-debug`, `code-implement`, `code-skilled`, `code-quality`, `code-review`, `code-verify`, `code-webflow`, plus `benchmark`, `changelog`, `manual_testing_playbook`, and `shared`
 - [x] T014 Parse changed JSON contract and metadata files [small] — `mode-registry.json`, `hub-router.json`, `graph-metadata.json`, and `description.json` all parse
 - [x] T015 Run markdown link-checker oracle for sk-code [medium] — ZERO sk-code broken links; repo-wide exit=1 remains 40 pre-existing broken links entirely outside sk-code in system-spec-kit database README files, baseline unchanged and out of scope
 

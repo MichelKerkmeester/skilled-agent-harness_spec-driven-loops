@@ -18,7 +18,7 @@
 - `.skilled/skills/sk-doc/shared/assets/template-rules.json:650` (allowedValidationTypes)
 - `.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md:191`, `assets/feature-catalog-snippet-template.md:173`, `references/examples.md:105` (post-`e6b0297bcf` state)
 - `.skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py:63` (WARN_PACKAGE_IDS)
-- `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30`, `scripts/README.md:20`, `scripts/tests/*.test.cjs` (kebab-case rename consumers)
+- `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30`, `scripts/README.md:20`, `scripts/tests/*.test.cjs` (kebab-case rename consumers)
 - `specs/sk-doc/066-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch/sync_leaf_frontmatter.py:6`, `link_phantom_rows.py:6`, `remove_packet_history_lines.py:6`, `normalize_validation_types.py:6`
 
 ## Findings by Severity
@@ -50,7 +50,7 @@
 
 ## Ruled Out
 
-- **Broken snake_case references**: `git grep` over the repo finds `router_replay_lib.cjs` / `verify_doc_claims.cjs` / `verify_router_sync.cjs` only in historical changelogs (`sk-code-opencode/changelog/v1.1.1.0.md`, `v1.2.0.0.md`, `v1.2.1.0.md`) and archived spec packets under `specs/sk-code/011-*`. The drift-guard runner, `scripts/README.md` and both test files use the kebab-case names; no live consumer is broken.
+- **Broken snake_case references**: `git grep` over the repo finds `router_replay_lib.cjs` / `verify_doc_claims.cjs` / `verify_router_sync.cjs` only in historical changelogs (`sk-code-skilled/changelog/v1.1.1.0.md`, `v1.2.0.0.md`, `v1.2.1.0.md`) and archived spec packets under `specs/sk-code/011-*`. The drift-guard runner, `scripts/README.md` and both test files use the kebab-case names; no live consumer is broken.
 - **Version/changelog gap**: `sk-create-feature-catalog` changelog sequence is contiguous (`v1.0.1.2`, `v1.0.2.0`, `v1.0.3.0`, `v1.0.4.0`); every range-touched unit's `SKILL.md` version equals its newest changelog file (shell scan over the changed-unit set).
 - **Marker in generated surfaces**: the only remaining `skill_asset_feature_catalog` string outside `specs/` is the mode's own `changelog/v1.0.2.0.md` (intentional release note) and a trigger-index fixture phrase.
 

@@ -114,7 +114,7 @@ Every path a document names resolves, every count a document states is derived f
 | RE-002-04 | P2 | `sk-design/sk-design-interface/procedures/` | Orphan procedure cards preserve a retired subworkflow | Unverified — **confirm first**; open question below |
 | RE-002-05 | P2 | `sk-design/sk-design-interface/README.md` | Procedure cardinality disagrees across packet documents | Unverified — **confirm first**; expect the numbers to have moved |
 | RE-002-06 | P2 | `sk-code/sk-code-webflow/SKILL.md` | Human reference map lists filenames that do not exist | Confirmed by synthesis |
-| RE-002-07 | P2 | `sk-code/sk-code-opencode/SKILL.md` | Human reference map uses retired path shapes | Unverified — confirm in T001 |
+| RE-002-07 | P2 | `sk-code/sk-code-skilled/SKILL.md` | Human reference map uses retired path shapes | Unverified — confirm in T001 |
 | RE-002-08 | P2 | `sk-code/shared/references/smart-routing.md` | Shared routing prose disagrees with packet paths | Unverified — confirm in T001 |
 | RE-002-09 | P2 | `sk-code/shared/references/universal-debugging-checklist.md` | Links to retired packet locations | Unverified — confirm in T001 |
 | RE-002-10 | P2 | `sk-code/sk-code-webflow/references/animation/quick-start.md` | Broken sibling path | Unverified — confirm in T001 |
@@ -151,7 +151,7 @@ These three iteration-6 entries sit in the registry's `repeated[]` bucket, outsi
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/sk-code/sk-code-webflow/SKILL.md` | Modify | Human reference map matched to the machine map and to disk |
-| `.opencode/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Same treatment |
+| `.opencode/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Same treatment |
 | `.opencode/skills/sk-code/shared/references/{smart-routing,universal-debugging-checklist}.md` | Modify | Retired packet locations repointed |
 | `.opencode/skills/sk-code/sk-code-webflow/references/animation/**` | Modify | Sibling path, example anchors, cross-reference labels |
 | `.opencode/skills/sk-code/sk-code-webflow/assets/animation/**` | Modify | Example anchors |

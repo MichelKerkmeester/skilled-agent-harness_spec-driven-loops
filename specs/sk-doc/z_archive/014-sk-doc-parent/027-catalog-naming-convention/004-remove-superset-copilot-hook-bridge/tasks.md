@@ -61,7 +61,7 @@ _memory:
 - [x] T009 Strip `~/.superset` block (`.github/hooks/scripts/session-start.sh`)
 - [x] T010 Strip `~/.superset` block (`.github/hooks/scripts/user-prompt-submitted.sh`)
 - [x] T011 [P] Remove superset sentence (`system-spec-kit/references/config/hook_system.md`)
-- [x] T012 [P] Rewrite 3 superset sites (`sk-code/code-opencode/references/shared/hooks.md`)
+- [x] T012 [P] Rewrite 3 superset sites (`sk-code/code-skilled/references/shared/hooks.md`)
 - [x] T013 Drop Copilot/superset arm, keep Claude + OpenCode (`system-skill-advisor/.../hooks-parity-stress.vitest.ts`)
 - [x] T014 Remove dangling link to deleted test (`system-spec-kit/mcp_server/tests/advisor-fixtures/README.md`)
 

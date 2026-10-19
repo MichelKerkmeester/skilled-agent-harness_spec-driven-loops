@@ -618,6 +618,10 @@ describe('verify-iteration findings enumeration', () => {
       ['review-delta-unranked', { severity: 'high' }, false],
       ['review-delta-string-iteration', { iteration: '2' }, false],
       ['review-delta-unkeyed', { iteration: undefined }, false],
+      // The reducer keys a delta finding by id || findingId, so the verifier
+      // accepts either; a row with no usable id key still does not enumerate.
+      ['review-delta-finding-id', { id: undefined, findingId: 'R2-P1-001' }, true],
+      ['review-delta-no-id-key', { id: undefined }, false],
     ];
     for (const [name, overrides, expected] of cases) {
       const dir = path.join(findingsDir, name);

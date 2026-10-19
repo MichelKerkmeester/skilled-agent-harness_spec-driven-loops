@@ -48,7 +48,7 @@ rather than hoping it stayed unchanged throughout.
 
 **Decision.** Re-base `loadYamlFrontmatterScenarios()` from the `^\d{3}-.*\.md$` filename gate to a content
 gate: any `*.md` file carrying scenario frontmatter, excluding the root `manual_testing_playbook.md` /
-`feature_catalog.md` index files. Update the `code-opencode-playbook-ids.vitest.ts:28` oracle, which
+`feature_catalog.md` index files. Update the `code-skilled-playbook-ids.vitest.ts:28` oracle, which
 re-implements the same regex, in lockstep.
 
 **Why.** This is number-agnostic in both directions — numbered and un-numbered files load identically — and
@@ -87,7 +87,7 @@ self-enforcing instead of relying on authors remembering the convention.
 
 **Decision.** The 111 three-digit-prefixed files across the 9 named packets (`cli-external` and its
 `cli-claude-code`/`cli-opencode` modes, `mcp-tooling` and its `mcp-chrome-devtools`/`mcp-click-up`/`mcp-figma`
-modes, `sk-code` and its `code-review`/`code-opencode`/`code-webflow`/`code-quality` modes, `sk-prompt`, and
+modes, `sk-code` and its `code-review`/`code-skilled`/`code-webflow`/`code-quality` modes, `sk-prompt`, and
 `system-deep-loop`'s `deep-improvement`/`deep-research`/`deep-review` modes) are in scope. The 20
 system-spec-kit single-digit files (`feature-flag-reference/1-7`, `pipeline-architecture/4 & 7`,
 `retrieval/4-stage-pipeline-architecture`) are excluded — their leading digit is a legitimate reading-order or

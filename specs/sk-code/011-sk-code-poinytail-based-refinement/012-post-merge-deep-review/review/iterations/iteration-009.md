@@ -38,7 +38,7 @@ None.
    Repro: `sed -n '11p' .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md`; `sed -n '97p' .skilled/skills/sk-code/sk-code-quality/SKILL.md`; `sed -n '200,206p' .claude/settings.json`.
    Finding class: stale-name
    Scope proof: comment-hygiene-hook.md is touched by in-focus commit ceb8ff216c (git show --name-only ceb8ff216c -- .skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/ names it) and sits in the 012 review scope.
-   Affected surface hints: check-dist-staleness-hook.md, manual-testing-playbook.md:345, sk-code-opencode/references/shared/hooks.md:89, the sk-code-quality resource table.
+   Affected surface hints: check-dist-staleness-hook.md, manual-testing-playbook.md:345, sk-code-skilled/references/shared/hooks.md:89, the sk-code-quality resource table.
    Case: an operator executes scenario TH-002 by hand and exercises the unregistered .sh; the scenario reports green while the registered .cjs adapter and its .claude/settings.json wiring are never tested, so a live regression reaches review unnoticed.
 
 2. **stack-detection.md names a preview-server path that exists nowhere in the tree** -- .skilled/skills/sk-code/shared/references/stack-detection.md:145 -- the mixed-marker table row cites "changed `.skilled/skills/sk-doc/scripts/preview-server.js`" as the OPENCODE marker; the same path appears in routing-disambiguation/mixed-marker-ambiguity.md:35. Repro: `test -e .skilled/skills/sk-doc/scripts/preview-server.js` (false) and `git ls-files | grep -i preview-server` (empty); the directory .skilled/skills/sk-doc/scripts/ exists and has no preview server in it.
@@ -77,7 +77,7 @@ None.
 ## Confirmed-Clean Surfaces
 - 360 sk-code markdown files scanned: 0 dead anchors and 0 dead file links after the false-positive classes are removed.
 - Obsidian SKILL.md's seven named checklist assets all exist; Webflow's webflow-debugging-checklist.md, webflow-verification-checklist.md and all four assets/patterns/* files exist; quality's scripts/ceiling-report.sh and scripts/ceiling-report.test.sh exist, so 644cabc980's listed report resolves.
-- The six commits' name migrations left no residue: no workflow_*.md underscore spans remain (files are workflow-implement/debug/verify.md), and no bare code-webflow/code-opencode skill names remain (only the code-quality-checklist.md filename matches).
+- The six commits' name migrations left no residue: no workflow_*.md underscore spans remain (files are workflow-implement/debug/verify.md), and no bare code-webflow/code-skilled skill names remain (only the code-quality-checklist.md filename matches).
 - .skilled/skills/sk-code/README.md (1) and shared/README.md (3) hard-blocker counts equal their phase-010 baselines.
 
 ## Ruled Out

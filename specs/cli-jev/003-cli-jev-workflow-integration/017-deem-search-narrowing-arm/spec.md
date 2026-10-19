@@ -104,7 +104,7 @@ Produce one track-level number per backend that settles whether a Deem or Jev pi
 
 ### Files to Change
 
-Owner of every path below: `system-spec-kit`. The code lives in its `runtime/cli/retrieval/` package. The build follows that owner's contracts: the retrieval `README.md`, the `lib/` primitives it reuses rather than copies, the `cli` vitest project in `.skilled/skills/system-spec-kit/vitest.config.ts` and sk-code's OpenCode route (the `sk-code-opencode` surface packet) for the code. The skill docs go through sk-doc's modes, per parent goal D6. Code comments carry no spec path, phase number or requirement id.
+Owner of every path below: `system-spec-kit`. The code lives in its `runtime/cli/retrieval/` package. The build follows that owner's contracts: the retrieval `README.md`, the `lib/` primitives it reuses rather than copies, the `cli` vitest project in `.skilled/skills/system-spec-kit/vitest.config.ts` and sk-code's OpenCode route (the `sk-code-skilled` surface packet) for the code. The skill docs go through sk-doc's modes, per parent goal D6. Code comments carry no spec path, phase number or requirement id.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|

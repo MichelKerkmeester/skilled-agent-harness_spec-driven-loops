@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-code advisor batteries stop at 15 of 17 (native) and 14 of 17 (CLI): P4 and P15 miss on both, P7 on the CLI",
     "created_at": "2026-10-11T04:49:37Z",
-    "last_save_at": "2026-10-11T05:53:45.561Z",
+    "last_save_at": "2026-10-18T20:45:18.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f922f3dde7335ea9c2f4af13f6c10a952857cce14838025cec50ec9b62ab269",
+    "source_fingerprint": "sha256:964aeab495c0f0585f32d3142698b10c1fb39b67a1ee6dab97e6f133bd1eabd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0544d91f219bfb31573dedf3aa78d8f721c7a424a81adcc7793cf390a91fc04c",
       "plan.md": "daf665655eb3582cd4f9cfae4c55c239946baa7eeb484c1644281701251da4f2",
       "tasks.md": "8a57242ef639e64ea7b041bc95bf5ab09a3ba9e73e407a0e748f0d4f927f766d",
-      "implementation-summary.md": "ed68efaf52997770e8a70a64658e663bbb0203dea4722dcdd70bec3b12b7d79d"
+      "implementation-summary.md": "deee37f077c7a6f94642fa06f3c14c6bab5b1f5bee7b67ceaed096b3ff337a94"
     },
     "last_active_at": null
   }

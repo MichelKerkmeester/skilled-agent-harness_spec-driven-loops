@@ -2,14 +2,14 @@
 
 ## Focus
 
-Lane 1 of the packet spec: `.opencode/skills/sk-code/` (SKILL.md, mode-registry.json, hub-router.json, leaf-manifest.json, sk-code-opencode surface packet, sk-code-quality/sk-code-review packets) against what the deep-loop runtime and the command YAMLs under `.opencode/commands/deep/` actually do, and against the OpenCode surfaces in `.opencode/agents/`, `.opencode/plugins/` and `opencode.json`.
+Lane 1 of the packet spec: `.opencode/skills/sk-code/` (SKILL.md, mode-registry.json, hub-router.json, leaf-manifest.json, sk-code-skilled surface packet, sk-code-quality/sk-code-review packets) against what the deep-loop runtime and the command YAMLs under `.opencode/commands/deep/` actually do, and against the OpenCode surfaces in `.opencode/agents/`, `.opencode/plugins/` and `opencode.json`.
 
 Files reviewed:
 - `.opencode/skills/sk-code/SKILL.md`
 - `.opencode/skills/sk-code/mode-registry.json`
 - `.opencode/skills/sk-code/hub-router.json`
 - `.opencode/skills/sk-code/leaf-manifest.json`
-- `.opencode/skills/sk-code/sk-code-opencode/SKILL.md`
+- `.opencode/skills/sk-code/sk-code-skilled/SKILL.md`
 - `.opencode/skills/sk-code/sk-code-quality/SKILL.md`, `.opencode/skills/sk-code/sk-code-review/SKILL.md` (version fields)
 - `.opencode/skills/sk-code/graph-metadata.json` (existence), `.opencode/bin/compiled-route.cjs`
 - `opencode.json`
@@ -32,14 +32,14 @@ Files reviewed:
 
 - **F001**: Version drift between sk-code hub SKILL.md and its mode-registry/hub-router, `.opencode/skills/sk-code/SKILL.md:5` vs `.opencode/skills/sk-code/mode-registry.json:3` and `.opencode/skills/sk-code/hub-router.json:3`. SKILL.md declares `version: 4.2.2.0` while the registry and hub-router both declare `4.1.0.1`. The hub's own doctrine (§2) names `mode-registry.json` "the single source of truth"; a stale version field on the source of truth undermines drift detection. Dimension: maintainability.
 
-- **F002**: sk-code-opencode surface packet references review handoff modes by bare names, `.opencode/skills/sk-code/sk-code-opencode/SKILL.md:24-25`. "hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`" — the canonical `workflowMode` keys are `sk-code-review` / `sk-code-quality`; `code-review`/`code-quality` exist only as hyphen-less aliases in mode-registry.json. Cosmetic routing-name drift, but the surface packet's own routing language should use canonical keys. Dimension: maintainability.
+- **F002**: sk-code-skilled surface packet references review handoff modes by bare names, `.opencode/skills/sk-code/sk-code-skilled/SKILL.md:24-25`. "hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`" — the canonical `workflowMode` keys are `sk-code-review` / `sk-code-quality`; `code-review`/`code-quality` exist only as hyphen-less aliases in mode-registry.json. Cosmetic routing-name drift, but the surface packet's own routing language should use canonical keys. Dimension: maintainability.
 
 ## Cross-Reference Results
 
 | Protocol | Status | Gate | Evidence | Notes |
 |----------|--------|------|----------|-------|
 | spec_code | partial | hard | SKILL.md:5, mode-registry.json:3 | Lane-1 normative claims (registry-driven routing, single hub identity) verified against shipped files; version drift found, no normative contradiction |
-| skill_agent | partial | advisory | sk-code-opencode/SKILL.md:24-25 | SKILL.md routing claims match registry + compiled router; naming drift F002 |
+| skill_agent | partial | advisory | sk-code-skilled/SKILL.md:24-25 | SKILL.md routing claims match registry + compiled router; naming drift F002 |
 | feature_catalog_code | partial | advisory | feature-catalog/compiled-routing-and-legacy-fallback/feature-catalog.md | compiled-routing claim spot-checked: `.opencode/bin/compiled-route.cjs` exists with `servingAuthority` sentinel; full catalog audit deferred to iteration 4 |
 | agent_cross_runtime | notApplicable | advisory | - | Lane 3 (iteration 3) |
 | checklist_evidence | notApplicable | hard | - | No checklist.md in target packet (Level-2 scaffold) |

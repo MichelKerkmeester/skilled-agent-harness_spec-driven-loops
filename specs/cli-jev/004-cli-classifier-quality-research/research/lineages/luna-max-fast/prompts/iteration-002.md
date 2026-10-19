@@ -10,7 +10,7 @@ Previous completed iteration: 1, newInfoRatio 0.30, two P2 shared README finding
 Stop policy: max-iterations; convergence is telemetry only.
 
 ## Focus
-Audit sk-code-opencode compliance and static correctness of `shared/scripts/jev-transport.mjs`, `shared/scripts/scorer-report.mjs`, their tests, benchmark scorer scripts, and all live callers under sk-doc, system-deep-loop, and system-spec-kit. Read sources only; do not run tests or benchmarks. Cite exact file:line for each finding, assign P0-P2 and one of the seven research axes, explain confirmation, and record negative knowledge.
+Audit sk-code-skilled compliance and static correctness of `shared/scripts/jev-transport.mjs`, `shared/scripts/scorer-report.mjs`, their tests, benchmark scorer scripts, and all live callers under sk-doc, system-deep-loop, and system-spec-kit. Read sources only; do not run tests or benchmarks. Cite exact file:line for each finding, assign P0-P2 and one of the seven research axes, explain confirmation, and record negative knowledge.
 
 ## Route Proof
 mode=research

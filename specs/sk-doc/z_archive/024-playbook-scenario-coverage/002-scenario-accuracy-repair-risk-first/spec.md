@@ -187,7 +187,7 @@ native tool; and single-adapter coverage of a six-runtime advisory.
 | `.opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md` | Modify | Tier 2 — add the non-mutating `--check` path |
 | `.opencode/skills/cli-external-orchestration/manual-testing-playbook/compiled-routing/ordered-bundle-cli-transport-compiled-routing.md` | Modify | Tier 4 — current shape and packet kind |
 | `.opencode/skills/sk-doc/manual-testing-playbook/agent-dispatch/markdown-agent-cli-opencode.md` | Modify | Tier 3 — remove the rejected flag |
-| `.opencode/skills/sk-code/manual-testing-playbook/surface-detection/opencode-detection.md` | Modify | Tier 4 — target a file that exists |
+| `.opencode/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md` | Modify | Tier 4 — target a file that exists |
 | `.opencode/skills/sk-code/manual-testing-playbook/cross-stack-routing/*.md` | Modify | Tier 4 — resolve cited asset and router paths |
 | `.opencode/skills/sk-design/manual-testing-playbook/{compiled-routing,hub-manager-intake,mode-routing}/*.md` | Modify | Tier 4 — route shape, pairing, mode count |
 | `.opencode/skills/mcp-tooling/manual-testing-playbook/compiled-routing/ordered-bundle-figma-refero-compiled-routing.md` | Modify | Tier 4 — genuine ordered-bundle execution |

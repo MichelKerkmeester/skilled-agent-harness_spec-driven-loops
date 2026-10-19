@@ -26,7 +26,7 @@ Q8: what does fixing the compiled-routing re-mint dependency on `specs/sk-doc/z_
 | PRESENCE | CI dependency: `.github/workflows/routing-registry-drift.yml` path-filters both push and PR triggers on `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/**` — the authored tree is a watched drift input, not just a build input | `.github/workflows/routing-registry-drift.yml:66,112` | P1 |
 | PRESENCE | `check-no-spec-imports.cjs` forbids `require`/`import` of, or any single quoted literal containing, `specs/sk-doc/(z_archive/)?019-skill-routing-refactor`; `compiled-route-layout.cjs` encodes the path as `path.join` segments, which the literal-string regex cannot match — the segment encoding is load-bearing against this guard | `.skilled/bin/check-no-spec-imports.cjs:75-76,137`; `.skilled/bin/lib/compiled-route-layout.cjs:52-55` | P1 |
 | PRESENCE | Pre-commit wires the same triple (`ROUTE_MINT`, `ROUTE_GUARD`, `ROUTE_LAYOUT`) when a skill edit is staged — so a contributor on a specs-pruned checkout hits the sync crash at commit time, via the hook, not only when running tools by hand | `.skilled/scripts/git-hooks/pre-commit:497-499` | P1 |
-| BREAK | `sk-code-opencode/assets/scripts/verify-router-sync.cjs` reads `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json` — the **pre-archive** path, which no longer exists; the script is already broken today, independent of pruning | `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:17`; `ls specs/sk-doc/019-skill-routing-refactor` → ENOENT | P2 |
+| BREAK | `sk-code-skilled/assets/scripts/verify-router-sync.cjs` reads `specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json` — the **pre-archive** path, which no longer exists; the script is already broken today, independent of pruning | `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:17`; `ls specs/sk-doc/019-skill-routing-refactor` → ENOENT | P2 |
 | DOC | Doc/data readers that rot for a pruned user but don't break serving: `compiled-routing-architecture.md:115-116` (links into the packet as "spec history"), `skill-root-metadata-contract.md:81` (cites stale non-archive path), `cite-drift-redirects.json` (`.opencode` mirror redirects), `pre-commit.test.sh:38,62`, `baseline-readme-verdicts.json:10547+`, `semantic-probes.json:1019`, `sk-design` benchmark report :209, `system-spec-kit` changelog v0.2.23.0 | paths as listed in census | P2 |
 | OK | `parent-skill-check.cjs` (doctor leg) is green with `specs/` absent — doctor's parent-skill gate has no authored-closure dependency | copy `$X2`: exit 0, "all hard invariants passed, 0 warnings" | P2 |
 
@@ -65,7 +65,7 @@ Q8: what does fixing the compiled-routing re-mint dependency on `specs/sk-doc/z_
 
 - Contradictory evidence: F20's framing vs. observed mint behavior — preserved both; the refined claim cites the mint output and `activationRoot()` write sites.
 - Missing dependency: none — the prepared base copy provided both needed states (019-only and specs-absent).
-- Partial success: `compiled-route-manifest` other verbs (`refresh`, `freshness`) and `run-all-drift-guards.sh` (`sk-code-opencode/scripts/run-all-drift-guards.sh`) not re-run in copies; sync/guard/mint covered the dependency.
+- Partial success: `compiled-route-manifest` other verbs (`refresh`, `freshness`) and `run-all-drift-guards.sh` (`sk-code-skilled/scripts/run-all-drift-guards.sh`) not re-run in copies; sync/guard/mint covered the dependency.
 
 ## Sources Consulted
 
@@ -76,7 +76,7 @@ Q8: what does fixing the compiled-routing re-mint dependency on `specs/sk-doc/z_
 - `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json`
 - `.skilled/bin/check-no-spec-imports.cjs:75-137`; `.skilled/scripts/git-hooks/pre-commit:191,497-499`
 - `.github/workflows/routing-registry-drift.yml:55-120`
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:17`
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:17`
 - Throwaway copies: `$X2` (specs absent) and `$X1` (019-only), commands and exits as logged above
 
 ## Assessment

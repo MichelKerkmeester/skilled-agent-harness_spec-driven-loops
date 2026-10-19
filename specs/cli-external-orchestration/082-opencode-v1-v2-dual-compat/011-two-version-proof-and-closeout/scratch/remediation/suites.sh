@@ -11,5 +11,6 @@ run hook-flags node --test .skilled/hooks/shared/hook-flags.test.cjs
 run config-shape node --test .skilled/bin/tests/opencode-config-shape.test.cjs
 run doctor-battery node --test .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 run deep-loop-dual sh -c 'cd .skilled/skills/system-deep-loop/runtime && npx vitest run --no-coverage tests/unit/opencode-dual-dispatch.vitest.ts'
-run pi-preflight sh -c 'cd .skilled && npx vitest run hooks/dispatch/pi/dispatch-preflight-lint.test.ts'
-run codex-shell node --test .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs
+# Both adapter suites are vitest files that resolve their imports through the
+# hooks config, so they fail under node --test or without --config.
+run adapter-suites .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs

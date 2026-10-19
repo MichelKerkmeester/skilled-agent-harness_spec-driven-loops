@@ -1,6 +1,6 @@
 ---
 title: "...pec-kit/026-graph-and-context-optimization/006-skill-advisor/001-documentation-code-alignment/plan]"
-description: "Plan for updating skill-advisor docs to present the Phase 020 hook surface as primary and auditing Phase 020 TypeScript files against sk-code-opencode standards."
+description: "Plan for updating skill-advisor docs to present the Phase 020 hook surface as primary and auditing Phase 020 TypeScript files against sk-code-skilled standards."
 trigger_phrases:
   - "022 implementation plan"
   - "skill-advisor docs plan"
@@ -48,7 +48,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify |
 
 ### Overview
 
-Update the skill-advisor package docs so the Phase 020 hook surface is documented as the primary Gate 2 path. Audit the Phase 020 TypeScript hook and advisor modules against sk-code-opencode standards, then verify the targeted 118-test Phase 020 suite, `tsc --noEmit`, and strict spec validation.
+Update the skill-advisor package docs so the Phase 020 hook surface is documented as the primary Gate 2 path. Audit the Phase 020 TypeScript hook and advisor modules against sk-code-skilled standards, then verify the targeted 118-test Phase 020 suite, `tsc --noEmit`, and strict spec validation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -60,7 +60,7 @@ Update the skill-advisor package docs so the Phase 020 hook surface is documente
 
 - [x] Problem statement clear and scope documented in `spec.md`
 - [x] Success criteria measurable in REQ/SC tables
-- [x] Dependencies identified: Phase 020 reference docs, sk-code-opencode, target TS files
+- [x] Dependencies identified: Phase 020 reference docs, sk-code-skilled, target TS files
 
 ### Definition of Done
 
@@ -99,7 +99,7 @@ Runtime prompt-submit hooks call `buildSkillAdvisorBrief()`, render a model-visi
 ### Phase 1: Setup
 
 - [x] Read `spec.md` and `tasks.md`
-- [x] Read sk-code-opencode TypeScript standards
+- [x] Read sk-code-skilled TypeScript standards
 - [x] Read Phase 020 hook reference and validation playbook
 - [x] Read current skill-advisor docs and target TypeScript files
 
@@ -144,7 +144,7 @@ Runtime prompt-submit hooks call `buildSkillAdvisorBrief()`, render a model-visi
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 020 hook reference docs | Internal | Green | Docs would lack authoritative hook setup source |
-| sk-code-opencode standards | Internal | Green | TS audit checklist would be incomplete |
+| sk-code-skilled standards | Internal | Green | TS audit checklist would be incomplete |
 | Phase 020 vitest suites | Internal | Green | Cannot prove 118/118 preservation |
 | system-spec-kit validator | Internal | Green | Cannot claim packet-level completion |
 <!-- /ANCHOR:dependencies -->

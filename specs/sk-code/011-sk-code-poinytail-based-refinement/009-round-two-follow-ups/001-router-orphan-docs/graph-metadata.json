@@ -43,11 +43,11 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
-      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md",
       ".skilled/skills/sk-code/benchmark/README.md",
       ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md",
@@ -93,31 +93,31 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "alignment-verification-automation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
         "name": "v1.1.1.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md",
         "source": "derived"
       },
       {
@@ -205,9 +205,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPTINLEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it",
+    "causal_summary": "`node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held back by an `OPTINLEGS` set and the drift-guard umbrella runs `--checks 1a,2,3,4` without it",
     "created_at": "2026-10-10T08:16:18Z",
-    "last_save_at": "2026-10-11T05:17:04.045Z",
+    "last_save_at": "2026-10-18T20:45:13.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8a0aea9e76b6b7b45d1e9a2a157f3213d8b12afdb6333be21e3a10c2cf68bf5",
+    "source_fingerprint": "sha256:04252ac3bfe06a0884927d874781c9f6a33982e509a14cf81dc7221cd19c37e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b9799cd76f3501d156ee9455ddff4acc800d1eca82caba418cb76c9cb02e5b7",
-      "plan.md": "8e85a8ab5f6250a6a6a50fc7478315d530b4eb8f486984d56ddd9b3e5d676006",
-      "tasks.md": "8f869b3f54a625cfe498b85e7d59e26780c93d9a97621ffce7d1df0c3370fcd6",
-      "implementation-summary.md": "43835752debfa1ac98e4f1a664e56cb72d8ee3809f30589dc0abc0a235271515"
+      "spec.md": "fb90c58df19613cdd32a071c28fae8ebfd496bb16998be043b8748ddf2082bb4",
+      "plan.md": "6f809c6269f479e1a478226c2656f89f5cc8023d993a6d56a2af18c57774218c",
+      "tasks.md": "14fb60ad542cf7261486aca0d869cf6080c414901bfda915195f9258563ef441",
+      "implementation-summary.md": "bbe23e403e83269b873e51b201bcabe56387ca576dbfd6e7a037d3b3fd02402b"
     },
     "last_active_at": null
   }

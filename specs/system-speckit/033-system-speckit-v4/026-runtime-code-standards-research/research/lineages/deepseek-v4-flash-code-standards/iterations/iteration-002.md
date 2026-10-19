@@ -7,7 +7,7 @@ Angle 2 — determine whether `runtime/cli` and `runtime/lib` reimplement functi
 
 ### F2.1 [P1] Parallel frontmatter parser in `runtime/cli/lib/frontmatter-migration.ts` does not reuse the shared parser
 - **Code:** `runtime/cli/lib/frontmatter-migration.ts:386` (`detectFrontmatter`), `:473` (`parseFrontmatterSections`), `:606` (`parseSectionValue`). The module imports `@spec-kit/shared/context-types` but NOT `@spec-kit/shared/frontmatter/parse-frontmatter`.
-- **Standard:** `sk-code-opencode/references/shared/code-organization/imports-and-exports.md` §1 (reuse shared modules); `shared/references/universal/code-quality-standards.md` §7 Design-Restraint rung 5 ("Can it be one line?" / reuse existing). The canonical parser is `shared/frontmatter/parse-frontmatter.ts` and is imported by 15+ other modules (`runtime/cli/core/frontmatter-editor.ts:9`, `runtime/cli/lib/validate-memory-quality.ts:19`, `runtime/lib/parsing/content-normalizer.ts:11`, etc.).
+- **Standard:** `sk-code-skilled/references/shared/code-organization/imports-and-exports.md` §1 (reuse shared modules); `shared/references/universal/code-quality-standards.md` §7 Design-Restraint rung 5 ("Can it be one line?" / reuse existing). The canonical parser is `shared/frontmatter/parse-frontmatter.ts` and is imported by 15+ other modules (`runtime/cli/core/frontmatter-editor.ts:9`, `runtime/cli/lib/validate-memory-quality.ts:19`, `runtime/lib/parsing/content-normalizer.ts:11`, etc.).
 - **What is present:** Two frontmatter readers coexist in the same package: the canonical shared `parseFrontmatter` (a single fence split + YAML mapping) and this module's own `detectFrontmatter`/`parseFrontmatterSections`/`parseSectionValue`. `runtime/cli/retrieval/lib/frontmatter.mjs:18` documents the tension: it reuses the shared parser but notes `frontmatter-migration.ts` was not reused because "its parseSectionValue collapses several distinct failure shapes into a single `undefined`".
 - **Severity:** P1 — two hand-maintained fence/delimiter implementations that must stay synchronized; a fence semantics bug fixed in one is not inherited by the other.
 - **One-line fix:** **judgment-required** — either delegate the fence split to `@spec-kit/shared/frontmatter/parse-frontmatter` and keep only the migration-specific value classifier, or document `frontmatter-migration.ts` as a sanctioned second parser in the module map.
@@ -33,7 +33,7 @@ Angle 2 — determine whether `runtime/cli` and `runtime/lib` reimplement functi
 - `runtime/lib/graph/graph-metadata-parser.ts:920,946,988,1029`
 - `runtime/cli/spec-folder/folder-detector.ts:148`
 - `runtime/cli/retrieval/lib/frontmatter.mjs:18`
-- `sk-code-opencode/references/shared/code-organization/imports-and-exports.md`
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
 
 ## Assessment
 - **newInfoRatio:** 0.85

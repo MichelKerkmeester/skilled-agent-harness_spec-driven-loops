@@ -22,6 +22,7 @@ const PLUGIN_NAMES = [
   'codex-hooks-watchdog',
   'mcp-route-guard',
   'session-cleanup',
+  'session-relaunch',
   'sk-code-post-edit-quality',
   'sk-git-message-gate',
   'sk-git-preflight-advisory',

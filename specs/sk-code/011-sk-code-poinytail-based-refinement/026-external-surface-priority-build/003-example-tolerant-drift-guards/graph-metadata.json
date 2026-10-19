@@ -43,15 +43,15 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
       "scripts/README.md",
-      ".hermes/skills/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md"
+      ".hermes/skills/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md"
     ],
     "entities": [
       {
@@ -93,37 +93,37 @@
       {
         "name": "verify-router-sync.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
         "source": "derived"
       },
       {
         "name": "verify-doc-claims.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
         "source": "derived"
       },
       {
         "name": "verify-router-sync.test.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
         "source": "derived"
       },
       {
         "name": "verify-doc-claims.test.cjs",
         "kind": "file",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
         "source": "derived"
       },
       {
@@ -199,9 +199,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-opencode/SKILL.md:175`)",
+    "causal_summary": "`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-skilled/SKILL.md:175`)",
     "created_at": "2026-10-13T04:45:53Z",
-    "last_save_at": "2026-10-13T06:38:25.045Z",
+    "last_save_at": "2026-10-18T20:45:19.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0870dd095c01ce8fc63267acd5c5723868852f60529816c948cf8045847ee624",
+    "source_fingerprint": "sha256:f2bbfdca15fbb5ffe021114fdb977963240b1655b7f31ce65ba7e7f38ef4a748",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9cf12091e8efe2d30e4fe3bfd28d25806f8fc05fda7912235a104b3a1f82e42",
-      "plan.md": "4def39a33e2a304b756d5481008826e74568e9f04c365c2616928979df966682",
-      "tasks.md": "46c36716867090636b282c10b1cd72abf098cf152ba31b90a744d8e6e9d672ab",
-      "implementation-summary.md": "1249363b87eeb1be4a511b4a972c3c4df9eb68823f896da78d5f6dddff734230"
+      "spec.md": "dcc62d304576822ec0e37c16918e8e7ba05c5c1b9c5320b04f91b433546ab6a9",
+      "plan.md": "e8f49bf8ad293701bd64551b572474b33d75bbd9e12f5f51a6c914c5ba835e9d",
+      "tasks.md": "6dce8ba6f8b8cd821a3a182d46d16d58c1c5bece89b0d2aaa2c1e4fb10e85642",
+      "implementation-summary.md": "b918ba7984d0d1c914555cabed577ff0c0bb182b243c0cf5ec0ef814ed7e01f7"
     },
     "last_active_at": null
   }

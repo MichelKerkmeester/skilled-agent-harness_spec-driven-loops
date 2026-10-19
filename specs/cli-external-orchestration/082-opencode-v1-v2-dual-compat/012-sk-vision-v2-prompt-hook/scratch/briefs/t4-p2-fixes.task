@@ -1,0 +1,8 @@
+ROLE: TypeScript maintainer of the sk-vision runtime.
+
+ACTION: Make exactly two literal edits under `.skilled/skills/sk-vision/vision-runtime/src/`:
+1. In `plugin.ts`, the `PROMPT_FILE_MIME` map: add the entry `bmp: 'image/bmp',` after the `gif` entry, so a `.bmp` attachment is inspected as the attachment injector already supports.
+2. In `plugin.test.ts`, inside `describe("v2 automatic image inspection")`, the test "skips inspection when the prompt has no image file": add `expect(fake.hook()).toBeDefined();` immediately before `await fake.hook()?.(input);`, so the test fails if the hook is not registered when only automatic inspection is on.
+Change nothing else.
+
+FORMAT: Edit, then run from `.skilled/skills/sk-vision/vision-runtime`: `bun test` and `bunx tsc --noEmit`. Report both exit codes and counts. Under 60 words.

@@ -12,7 +12,7 @@ Enumerate the full shipped roster on `skilled/v4.0.0.0`: every skill root (hub v
 | Standalone skills (no mode-registry.json) | 7: mcp-code-mode, sk-communication, sk-git, sk-prompt, sk-vision, system-skill-advisor, system-spec-kit | same scan |
 | cli-external-orchestration modes | 6, all routingClass metadata: cli-opencode, cli-claude-code, cli-codex, cli-cursor, cli-devin, cli-pi | mode-registry.json:19-208 |
 | mcp-tooling modes | 9, all metadata: mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools, mcp-figma, mcp-refero, mcp-mobbin, mcp-obsidian, mcp-notion, mcp-magicpath | mode-registry.json:31-384 |
-| sk-code modes | 6, all metadata: sk-code-quality, sk-code-review, sk-code-webflow, sk-code-opencode, sk-code-mobile-cli, sk-code-obsidian | mode-registry.json:24-129 |
+| sk-code modes | 6, all metadata: sk-code-quality, sk-code-review, sk-code-webflow, sk-code-skilled, sk-code-mobile-cli, sk-code-obsidian | mode-registry.json:24-129 |
 | sk-design modes | 4, all metadata: sk-design-fundamentals, sk-design-md-generator, sk-design-diagram, sk-design-chart | mode-registry.json:13-203 |
 | sk-doc modes | 13, all metadata: sk-create-skill, sk-create-skill-parent, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-changelog, sk-create-diff, sk-create-frontmatter, sk-create-quality-control, sk-create-repo-rule, sk-create-with-human-voice | mode-registry.json:19-567 |
 | system-deep-loop modes | 6: research (lexical), review (lexical), ai-council (lexical), agent-improvement (alias-fold), model-benchmark (command-bridge), skill-benchmark (command-bridge) | mode-registry.json:32-172 |

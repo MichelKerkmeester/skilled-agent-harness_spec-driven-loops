@@ -165,7 +165,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 6. DEPENDENCIES
 
 - Case wording source: `.skilled/skills/sk-code/sk-code-review/SKILL.md` (`:311`, `:345`) and `references/review-core.md:97`.
-- Contracts the builder reads first: `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` (agent frontmatter schema per runtime, the validation gate) and `.skilled/skills/sk-code/SKILL.md` (the TypeScript test routes to the sk-code-opencode surface). Neither contract asks for a version bump or changelog for an agent file.
+- Contracts the builder reads first: `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` (agent frontmatter schema per runtime, the validation gate) and `.skilled/skills/sk-code/SKILL.md` (the TypeScript test routes to the sk-code-skilled surface). Neither contract asks for a version bump or changelog for an agent file.
 - No version bump and no changelog entry: agents carry no version, and no skill file is edited. The prompt pack is left alone, so the deep-review skill version (1.11.3.0) does not move.
 - Baseline gate state before any edit: all agent mirror checks exit 0, the five deep-review test files pass (132 tests), the compiled route guard reads every hub fresh.
 - The orchestrator runs `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs` once after all five children are built.

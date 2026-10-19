@@ -71,7 +71,7 @@ The purpose was to take sk-doc's category taxonomy and index completeness — th
 
 In scope: `sk-code-mobile-cli/manual-testing-playbook/` and `sk-code-obsidian/manual-testing-playbook/` — expanding each from 7 flat scenarios into 7 category directories (intent-detection, resource-loading, unknown-fallback, cross-cli-dispatch, token-cost-baseline, holdout, surface-detection), with the `agent-dispatch` category explicitly waived and documented in-file in both packages, while keeping the `PASS`/`FAIL`/`SKIP` operator-scenario verdict set both packages already used.
 
-Out of scope: adopting sk-doc's `PASS`/`PARTIAL`/`FAIL`/`SKIP` verdict scheme or its `routingGoldRoots` exemption for either surface playbook; any other sk-code package's playbook (`sk-code-opencode`, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`); fixing the pre-existing `sk-code-opencode` `JAVASCRIPT`-intent scenario gap noticed while scoping this work, which is recorded as a known limitation, not remediated here.
+Out of scope: adopting sk-doc's `PASS`/`PARTIAL`/`FAIL`/`SKIP` verdict scheme or its `routingGoldRoots` exemption for either surface playbook; any other sk-code package's playbook (`sk-code-skilled`, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`); fixing the pre-existing `sk-code-skilled` `JAVASCRIPT`-intent scenario gap noticed while scoping this work, which is recorded as a known limitation, not remediated here.
 
 <!-- /ANCHOR:scope -->
 
@@ -106,7 +106,7 @@ Out of scope: adopting sk-doc's `PASS`/`PARTIAL`/`FAIL`/`SKIP` verdict scheme or
 
 - **Importing a forbidden verdict scheme.** Mitigated by treating sk-doc's `routingGoldRoots` registration as the reason its four-way grading is even legal there, and by grounding the decision to reject it in the sibling `sk-code-review` package's own history: a real, independently measured 24/129 `FORBIDDEN_VERDICT` count from when that package had been literally aligned with sk-doc.
 - **Faked or boilerplate waivers.** Mitigated by grounding each package's `agent-dispatch` waiver in its own `routingClass: metadata` declaration and its own real execution surface living in a separate repository, rather than a single copy-pasted waiver note across both.
-- **Conflating a pre-existing, unrelated gap with this fix.** `sk-code-opencode`'s `JAVASCRIPT`-intent scenario gap surfaced while scoping this work but belongs to a package outside this packet's two named targets; recorded as a known limitation rather than folded into this packet's completion claim.
+- **Conflating a pre-existing, unrelated gap with this fix.** `sk-code-skilled`'s `JAVASCRIPT`-intent scenario gap surfaced while scoping this work but belongs to a package outside this packet's two named targets; recorded as a known limitation rather than folded into this packet's completion claim.
 - **Dependencies.** `playbook-corpus-manifest.json` (`routingGoldRoots`/`warnPackages`) and `validate-playbook-package.cjs` as the operator-scenario contract authority. No new packages or network access.
 
 <!-- /ANCHOR:risks -->

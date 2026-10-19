@@ -105,8 +105,8 @@
       ".skilled/skills/sk-code/sk-code-webflow/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nIts sibling `code-opencode` carries\nOLD>>> with <<<NEW\nIts sibling `sk-code-opencode` carries\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
-    "check": "grep -cF -- 'Its sibling `sk-code-opencode` carries' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nIts sibling `code-skilled` carries\nOLD>>> with <<<NEW\nIts sibling `sk-code-skilled` carries\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'Its sibling `sk-code-skilled` carries' .skilled/skills/sk-code/sk-code-webflow/README.md",
     "expect": "1"
   },
   {
@@ -125,8 +125,8 @@
       ".skilled/skills/sk-code/sk-code-webflow/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\n| `code-opencode` | Sibling surface\nOLD>>> with <<<NEW\n| `sk-code-opencode` | Sibling surface\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
-    "check": "grep -cF -- '| `sk-code-opencode` | Sibling surface' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\n| `code-skilled` | Sibling surface\nOLD>>> with <<<NEW\n| `sk-code-skilled` | Sibling surface\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- '| `sk-code-skilled` | Sibling surface' .skilled/skills/sk-code/sk-code-webflow/README.md",
     "expect": "1"
   },
   {
@@ -155,8 +155,8 @@
       ".skilled/skills/sk-code/sk-code-webflow/README.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nmatches `code-opencode` instead\nOLD>>> with <<<NEW\nmatches `sk-code-opencode` instead\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
-    "check": "grep -cF -- 'matches `sk-code-opencode` instead' .skilled/skills/sk-code/sk-code-webflow/README.md",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/README.md, replace the exact text <<<OLD\nmatches `code-skilled` instead\nOLD>>> with <<<NEW\nmatches `sk-code-skilled` instead\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'matches `sk-code-skilled` instead' .skilled/skills/sk-code/sk-code-webflow/README.md",
     "expect": "1"
   },
   {
@@ -195,8 +195,8 @@
       ".skilled/skills/sk-code/sk-code-webflow/SKILL.md"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nthe sibling code-opencode map plus the\nOLD>>> with <<<NEW\nthe sibling sk-code-opencode map plus the\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
-    "check": "grep -cF -- 'the sibling sk-code-opencode map plus the' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
+    "instruction": "In .skilled/skills/sk-code/sk-code-webflow/SKILL.md, replace the exact text <<<OLD\nthe sibling code-skilled map plus the\nOLD>>> with <<<NEW\nthe sibling sk-code-skilled map plus the\nNEW>>>. The old text occurs exactly once in the file. Change nothing else.",
+    "check": "grep -cF -- 'the sibling sk-code-skilled map plus the' .skilled/skills/sk-code/sk-code-webflow/SKILL.md",
     "expect": "1"
   }
 ]

@@ -14,8 +14,8 @@
 .skilled/skills/sk-code/changelog/v4.2.2.0.md
 .skilled/skills/sk-code/changelog/v4.2.3.0.md
 .skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.0.0.md
-.skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.0.md
-.skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.5.md
+.skilled/skills/sk-code/sk-code-skilled/changelog/v1.0.0.0.md
+.skilled/skills/sk-code/sk-code-skilled/changelog/v1.0.0.5.md
 .skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.0.md
 .skilled/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md
 .skilled/skills/sk-code/sk-code-review/changelog/v1.0.0.0.md

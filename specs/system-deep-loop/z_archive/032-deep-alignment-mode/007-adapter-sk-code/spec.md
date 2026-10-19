@@ -95,7 +95,7 @@ This is **Phase 7** of the `system-deep-loop/032-deep-alignment-mode` mode-packe
 
 ### In Scope
 - Plan `discover()`: resolve a lane's scope into code artifacts and, for each, detect its sk-code surface (`WEBFLOW`, `OPENCODE`, `MOTION_DEV` overlay) by reusing the shared surface router rather than reimplementing detection heuristics.
-- Plan `standardSource()`: load the detected surface's reference patterns (`code-webflow/references/` or `code-opencode/references/`) as the rule set, per the same resource-map pattern the sk-code hub itself uses.
+- Plan `standardSource()`: load the detected surface's reference patterns (`code-webflow/references/` or `code-skilled/references/`) as the rule set, per the same resource-map pattern the sk-code hub itself uses.
 - Plan `check()` as a two-layer pass: (1) run the existing deterministic pattern-drift checker for the surface where one exists, (2) apply reasoning-agent judgment for everything that checker does not cover, with every reasoning-agent finding tagged as such and cited to file:line evidence.
 - Document the accepted-deviation set (alignment contract invariant 2) and where it is authored/maintained.
 - Write an honest automatability-limits statement: name exactly what is deterministic today, what is reasoning-agent judgment, and why the boundary sits where it does.

@@ -1,0 +1,1 @@
+{"at":"2026-10-18T19:01:30.505Z","mode":"deep-review","phase":"projection","code":"PROJECTION_FAILED","reason":"Projection replace would drop keys from the existing config row","stem":"deep_review.iteration_recorded"}

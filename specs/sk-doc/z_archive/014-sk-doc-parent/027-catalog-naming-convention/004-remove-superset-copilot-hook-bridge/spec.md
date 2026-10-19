@@ -90,7 +90,7 @@ OpenCode, and all frozen historical references. The `~/.superset/` app itself is
 | `.github/hooks/scripts/session-start.sh` | Modify | Remove the trailing `if [ -x ~/.superset/... ]` block; keep the spec-kit `session-prime.js` priming |
 | `.github/hooks/scripts/user-prompt-submitted.sh` | Modify | Remove the trailing `~/.superset` block; keep the `user-prompt-submit.js` priming + fallback |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Modify | Remove the sentence citing the `superset_notify.json` wrapper |
-| `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` | Modify | Remove the three lines referencing `.github/hooks/superset-notify.json` |
+| `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md` | Modify | Remove the three lines referencing `.github/hooks/superset-notify.json` |
 | `.opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/hooks-parity-stress.vitest.ts` | Modify | Drop the Copilot/superset arm (`COPILOT_SETTINGS` + its assertion); keep the Claude + OpenCode parity checks |
 
 **Local machine (untracked):** `rm` the git-excluded root `.github/hooks/superset-notify.json` (backed up to scratchpad

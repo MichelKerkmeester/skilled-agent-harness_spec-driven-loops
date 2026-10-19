@@ -96,7 +96,7 @@ and findings belong here.
 |------|-------|----------|
 | Research, both lineages | Done | `research/research.md`, synthesis recorded as incomplete by operator decision |
 | Plan | Done | `validate.sh --strict` printed `RESULT: PASSED` with one sufficiency warning |
-| Setup: standards, test commands, before numbers | Done | sk-code routed to `sk-code-opencode`; baselines cli 1,531 and root 1,264 passed at `f2b04f4773` |
+| Setup: standards, test commands, before numbers | Done | sk-code routed to `sk-code-skilled`; baselines cli 1,531 and root 1,264 passed at `f2b04f4773` |
 | Validator hook, backfill exit code, command, tests | Done | 31 MiMo briefs across code and docs, each exit 0; command tests 16 of 16, hook tests 10 of 10; full suites cli 1,547 and root 1,274 passed, 0 failed |
 | Harness proof, docs, closeout | Done | Final-state reruns of both tags passed all five proof items on 2026-09-25; AC-001 to AC-007 Met; 26 of 26 checklist rows; gate review PASS 90 of 100 on re-run |
 | Operator decisions | done | counts follow v4's packet rule (170/995 active, 158/895 archived); release notes go in a new v4.0.0.1 file covering every change since the v4.0.0.0 tag |

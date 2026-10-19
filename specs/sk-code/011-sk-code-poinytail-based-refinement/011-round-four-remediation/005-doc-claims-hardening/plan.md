@@ -71,7 +71,7 @@ The checker walks the hub's `.md` and `.json` files and runs each selected check
 | ID | Decision | Why |
 |----|----------|-----|
 | D1 | Anchors use GitHub's heading slug: lowercase, drop every character that is not a letter, number, underscore, space or hyphen, then replace each space with a hyphen, no collapsing | No repo link validator resolves anchors. `check-markdown-links.cjs:143-150`, `check-repo-rules.cjs:179`, `validate-command-references.cjs:81` and `check_readme_references.py:89` all drop the fragment. The only repo rule about anchor shape, `validate_document.py:498` ("Double-dash anchors required for GitHub compatibility"), assumes this slug. Emoji are dropped, so `## 7. 🐛 COMMON ISSUES` gives `7--common-issues` |
-| D2 | A path-shaped label that is the tail of its existing target passes | The recorded case is a short label over a `../sk-code-opencode/...` target. A tail label names the real file in another packet, so only a label that names no real file is stale |
+| D2 | A path-shaped label that is the tail of its existing target passes | The recorded case is a short label over a `../sk-code-skilled/...` target. A tail label names the real file in another packet, so only a label that names no real file is stale |
 | D3 | The condition words are `when`, `if`, `unless`, `only` and `matched`, and they apply to both files and globs | The brief asks to extend "the conditional-bullet rule round three added for files". Round three added no file rule. Its rule (`verify_doc_claims.cjs:246-248`) exempts bare folders outside the ALWAYS row, and files and globs both still count (Known Limitation 1). The live `ROUTER.md` bullets at `:605-607` state their condition with `matched`, `only` and `when`, and the one every-route bullet at `:604` uses none of the words |
 | D4 | The tests are added before the checker edits, and a negative-control run records `fail 4` | Proves each case fails for the gap it names, as round three did for its router-sync tests |
 | D5 | Version 1.2.0.0 to 1.2.1.0 | Bug fixes and tightened checks are a patch bump (`sk-create-changelog/SKILL.md:159`). The branch is unmerged, and each round takes a new version, per the shared decision |
@@ -84,7 +84,7 @@ The checker walks the hub's `.md` and `.json` files and runs each selected check
 
 ### Handoffs
 
-The stricter checker, applied to a mirror with every unit in place (`scratch/plan-doc-claims-after.txt`), reports eight hits, none under `sk-code-opencode/`. Each is a true hit. The orchestrator moves these exact edits to their owners before builds start.
+The stricter checker, applied to a mirror with every unit in place (`scratch/plan-doc-claims-after.txt`), reports eight hits, none under `sk-code-skilled/`. Each is a true hit. The orchestrator moves these exact edits to their owners before builds start.
 
 | Owner | File:line | Find | Replace with |
 |-------|-----------|------|--------------|
@@ -102,7 +102,7 @@ The label targets exist: each new label is the tail of its own link target. `tes
 Other handoffs:
 - **002**: any path-shaped label it writes over a link must be the tail of that link's target, or a file in the doc's own packet, or the checker reports it (D2).
 - **004**: any path-shaped label it writes in the quality packet follows the same rule.
-- **Orchestrator**: regenerate Hermes after all builds (`SKILL.md` version changes the `sk-code-opencode` copy). Rerun the checker over the whole tree after 002 and 004 land and route any line in `scratch/hits-for-orchestrator.txt` that is still printed.
+- **Orchestrator**: regenerate Hermes after all builds (`SKILL.md` version changes the `sk-code-skilled` copy). Rerun the checker over the whole tree after 002 and 004 land and route any line in `scratch/hits-for-orchestrator.txt` that is still printed.
 <!-- /ANCHOR:architecture -->
 
 
@@ -122,7 +122,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **Planner dry run, 2026-10-10.** `scratch/build_units.py --apply` applied all 20 edit and create units in order to a copy of `.skilled/skills/sk-code`, and every OLD text was unique when applied. `scratch/check-units.cjs` on the live tree printed `units 21, edit units 19, problems 0`. Every unit check printed its expected text on the mirror and did not on the live tree.
 - **Negative control.** The new test file against the unedited checker: `tests 10`, `pass 6`, `fail 4`, the four failures being the four new cases (`scratch/plan-neg-test.txt`). Against the edited checker: `pass 10`, `fail 0` (`scratch/plan-pos-test.txt`).
 - **Reproduction fixture.** Unedited checker over `scratch/repro-fixture`: `PASS check paths`, `FAIL check tiers` with `ROUTER.md:13: claims shared/references/extra/gamma.md loads on every route`, `doc-claims: 3/4 checks passed`, exit 1. Edited checker: `FAIL check paths` with exactly the `doc.md:3`, `doc.md:4` and `doc.md:5` lines, `PASS check tiers`, `doc-claims: 3/4 checks passed`, exit 1.
-- **Live hub.** Edited checker over the mirror: eight hits, all in the Handoffs table, none under `sk-code-opencode/`. `--root /nonexistent-dir` printed the usage line and exited 2.
+- **Live hub.** Edited checker over the mirror: eight hits, all in the Handoffs table, none under `sk-code-skilled/`. `--root /nonexistent-dir` printed the usage line and exited 2.
 - **Markdown.** `validate_document.py` returned `VALID`, `Total issues: 0` for `workflow-guardrails.md`, `assets/scripts/README.md`, `SKILL.md` and the new changelog, before and after. `hvr_scan.py` hard blockers: guardrails 4 to 0, README 0 to 0, `SKILL.md` 25 to 25, changelog 0. Doctor `parent-skill-check.cjs` on the mirror: `PASS: 13d-packet-version` and `OK: parent-skill-check`.
 - **Interim state.** Until the 002 and 004 handoffs land, the checker and the umbrella exit 1 on doc-claims for the eight lines above. The builder records them in `scratch/hits-for-orchestrator.txt`. That is not a failure of this phase.
 <!-- /ANCHOR:testing -->
@@ -144,7 +144,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 7. ROLLBACK PLAN
 
 - Restore the five modified files with `git restore` on their paths from `spec.md` Files to Change.
-- Delete `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.1.0.md`. No other file depends on it.
+- Delete `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.1.0.md`. No other file depends on it.
 <!-- /ANCHOR:rollback -->
 
 ---

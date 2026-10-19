@@ -111,6 +111,6 @@ Two new P2 findings; no P0 or P1 raised, and no prior P0/P1 is active. Verdict: 
 
 ## Next Focus
 
-Dimension: maintainability. Focus area: sk-code-opencode drift guards and doc-claim checks (817ff5b2a7, d2701afc3b, e9ecf8bb5f, 07189a66f8, 0da902346a) per the iteration focus plan row 7. Known item to confirm or refute: manifest tests 26 pass 16 fail (cli-classifier closure, fixed-routing count 7 vs 6).
+Dimension: maintainability. Focus area: sk-code-skilled drift guards and doc-claim checks (817ff5b2a7, d2701afc3b, e9ecf8bb5f, 07189a66f8, 0da902346a) per the iteration focus plan row 7. Known item to confirm or refute: manifest tests 26 pass 16 fail (cli-classifier closure, fixed-routing count 7 vs 6).
 
 Review verdict: PASS

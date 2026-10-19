@@ -1,6 +1,6 @@
 ---
 title: Universal Code Style Guide
-description: Language-agnostic naming, file structure, commenting, and formatting principles for WEBFLOW, OPENCODE and OBSIDIAN code surfaces.
+description: Language-agnostic naming, file structure, commenting, and formatting principles for WEBFLOW, SKILLED and OBSIDIAN code surfaces.
 trigger_phrases:
   - "universal code style guide"
   - "language agnostic naming"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.2.0.13
+version: 2.2.1.0
 ---
 
 # Universal Code Style Guide
@@ -21,7 +21,7 @@ Language-agnostic style principles. Naming conventions and stack-specific enforc
 
 ### Purpose
 
-Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-opencode/references/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
+Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline, formatter use. The actual identifier convention is surface-specific and lives in each surface packet: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and `.skilled/skills/sk-code/sk-code-skilled/references/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
 
 ### Core Principle
 
@@ -36,7 +36,7 @@ Names communicate intent. Files express one concept. Comments explain WHY (never
 
 ### Key Sources
 
-- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-opencode/references/`.
+- Surface style guides: `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` and the language folders under `.skilled/skills/sk-code/sk-code-skilled/references/`.
 - Project-level enforcement (banned phrases, voice rules): the project CLAUDE.md / AGENTS.md is authoritative for this user's projects.
 
 ---
@@ -56,8 +56,8 @@ Each surface and language has a convention. Follow the surface convention; do no
 | Surface              | Identifier convention                                                                                       |
 | -------------------- | ----------------------------------------------------------------------------------------------------------- |
 | WEBFLOW (vanilla JS) | `snake_case` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants            |
-| OPENCODE JS/TS       | `camelCase` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants             |
-| OPENCODE Python/Shell | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                 |
+| SKILLED JS/TS       | `camelCase` for variables/functions; `PascalCase` for classes/types; `UPPER_SNAKE` for constants             |
+| SKILLED Python/Shell | `snake_case` for variables/functions; `PascalCase` for classes; `UPPER_SNAKE` for constants                 |
 
 The surface code quality checklist (see `code-quality-standards.md` §6) enforces the convention.
 
@@ -85,8 +85,8 @@ Most communities have a conventional order. Follow it.
 | Surface     | Top-of-file order                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------------- |
 | WEBFLOW JS  | File header (box-drawing) → constants → utilities → main IIFE → init                                     |
-| OPENCODE TS | Module header → imports (external → local) → types/interfaces → exports                                |
-| OPENCODE Python | Shebang → module docstring → imports (stdlib → third-party → local) → constants → classes/functions |
+| SKILLED TS | Module header → imports (external → local) → types/interfaces → exports                                |
+| SKILLED Python | Shebang → module docstring → imports (stdlib → third-party → local) → constants → classes/functions |
 
 ### Keep files small
 
@@ -100,7 +100,7 @@ These two rules hold on every surface.
 - **No double-underscore folder names.** A folder name never starts and ends with `__`: not `__tests__`, `__fixtures__`, `__helpers__`, `__shared__` or `__snapshots__`. Name the folder for what it holds, as `fixtures/` or `helpers/`. When a tool generates such a name by default, configure the tool rather than keep the name; for vitest snapshots that means setting `resolveSnapshotPath`.
 - **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder. Keep that folder flat while the file names stay unique, and group by area only when a group holds several files. A test file never sits beside the source file it covers.
 
-`verify_alignment_drift.py --check-folders` in sk-code-opencode flags both the name rule and code folders that lack a README.
+`verify_alignment_drift.py --check-folders` in sk-code-skilled flags both the name rule and code folders that lack a README.
 
 ---
 
@@ -117,7 +117,7 @@ Well-named identifiers and clear structure self-document. Add a comment only whe
 
 ### Comment density
 
-This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the OpenCode surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md`.
+This guide owns the comment-density rule. A comment earns its place by naming a hidden constraint, an invariant, a workaround's cause or a surprise, never by filling a quota, so no universal count applies. Each surface may set its own numeric budget as that surface's setting, and a surface budget never removes a comment this section requires. The Webflow surface sets five comments per ten lines in `.skilled/skills/sk-code/sk-code-webflow/references/shared/cross-language-rules.md`, and the Skilled surface sets three per ten lines in `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`.
 
 ### Never comment what the code does
 
@@ -136,7 +136,7 @@ Delete it. Git history preserves it. Commented code is cognitive load with no pa
 
 ### No ephemeral-artifact pointers
 
-Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical rule for both the OPENCODE and WEBFLOW surfaces — surface guides point here rather than restating it.
+Never name a specific instance of an ephemeral tracking artifact in a comment. Keep the durable WHY; drop the perishable label. This is the canonical rule for both the SKILLED and WEBFLOW surfaces — surface guides point here rather than restating it.
 
 An *ephemeral artifact* is anything that gets renamed, renumbered, archived, or deleted on its own schedule while the code lives on: a spec folder or its number (`specs/042-foo`, `Spec 031`), a packet / phase / task / checklist / requirement number (`Packet 117`, `Phase 005`, `T043`, `CHK-160`, `REQ-005`), a feature-catalog entry (`feature-catalog/scorer-fusion/...`), an ADR id (`ADR-004`), or a ticket / issue id (`#1234`, `CU-8abc`). When the artifact moves, the comment becomes a dangling pointer that sends the next reader chasing a dead reference — worse than no comment.
 
@@ -191,7 +191,7 @@ To list every marker in the tracked code and flag the ones whose trigger can nev
 
 ### Surface-specific commenting notes
 
-Some surfaces have additional commenting conventions (WEBFLOW JS uses three-line file headers with box-drawing characters; OPENCODE TypeScript uses `MODULE:` headers where required). See the surface style guide.
+Some surfaces have additional commenting conventions (WEBFLOW JS uses three-line file headers with box-drawing characters; SKILLED TypeScript uses `MODULE:` headers where required). See the surface style guide.
 
 ---
 
@@ -202,9 +202,9 @@ Some surfaces have additional commenting conventions (WEBFLOW JS uses three-line
 | Surface     | Formatter                       |
 | ----------- | ------------------------------- |
 | WEBFLOW JS  | Prettier                        |
-| OPENCODE JS/TS | Prettier or project formatter |
-| OPENCODE Python | Black or Ruff                |
-| OPENCODE Shell | `shfmt` where available       |
+| SKILLED JS/TS | Prettier or project formatter |
+| SKILLED Python | Black or Ruff                |
+| SKILLED Shell | `shfmt` where available       |
 
 Don't fight the formatter. Configure once at the project root and never overwrite manually.
 
@@ -223,7 +223,7 @@ For the rules that ARE language-specific, see:
 | Surface  | Reference                                                                                  |
 | -------- | ------------------------------------------------------------------------------------------ |
 | WEBFLOW  | `.skilled/skills/sk-code/sk-code-webflow/references/javascript/style-guide/` (snake_case JS, semantic CSS prefixes, BEM, GPU animation) |
-| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/references/` language standards and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/`               |
+| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/references/` language standards and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/`               |
 
 ---
 
@@ -231,5 +231,5 @@ For the rules that ARE language-specific, see:
 
 - [`./code-quality-standards.md`](./code-quality-standards.md) - severity tiers (P0/P1/P2) that wrap per-stack style enforcement.
 - [`./error-recovery.md`](./error-recovery.md) - what to do when a style violation can't be auto-fixed.
-- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-opencode/references/`.
-- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/` - the surface checklists that operationalize this guide.
+- Surface standards under `.skilled/skills/sk-code/sk-code-webflow/references/` and `.skilled/skills/sk-code/sk-code-skilled/references/`.
+- `.skilled/skills/sk-code/sk-code-quality/assets/code-quality-checklist/` and `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` - the surface checklists that operationalize this guide.

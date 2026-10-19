@@ -67,7 +67,7 @@ _memory:
 ### Lane A — code hub
 
 - [ ] T008 [P] Match the human reference map to the machine resource map and to disk; the machine half is correct and does not move (`sk-code/sk-code-webflow/SKILL.md`) — `RE-002-06`
-- [ ] T009 [P] Same treatment for the sibling surface document (`sk-code/sk-code-opencode/SKILL.md`) — `RE-002-07`
+- [ ] T009 [P] Same treatment for the sibling surface document (`sk-code/sk-code-skilled/SKILL.md`) — `RE-002-07`
 - [ ] T010 [P] Repoint the shared routing prose at current packet locations (`sk-code/shared/references/smart-routing.md`) — `RE-002-08`
 - [ ] T011 [P] Repoint the universal debugging checklist (`sk-code/shared/references/universal-debugging-checklist.md`) — `RE-002-09`
 - [ ] T012 [P] Repair the broken sibling path (`sk-code/sk-code-webflow/references/animation/quick-start.md`) — `RE-002-10`

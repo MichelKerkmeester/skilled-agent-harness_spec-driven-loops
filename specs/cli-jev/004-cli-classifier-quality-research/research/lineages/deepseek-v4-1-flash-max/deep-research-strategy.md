@@ -29,7 +29,7 @@ Persistent brain for this lineage: five iterations, each with one focus, auditin
 
 ## 2. TOPIC
 
-Audit the shipped cli-classifier work (the `.skilled/skills/cli-classifier` hub, its `cli-jev` packet, `shared/` transport and scorer-report scripts, `benchmark/`, feature catalog, manual testing playbook, changelogs and READMEs, plus every live caller of `shared/scripts/jev-transport.mjs` and `scorer-report.mjs` in sk-doc, system-deep-loop and system-spec-kit) on seven axes: (1) sk-doc compliance of every doc; (2) sk-code-opencode compliance of every script and test; (3) system-skill-advisor integration: routing vocabulary, leaf manifests, graph metadata and how a prompt reaches the hub; (4) UX for an external repository user who installs the skill without Jev, and for the operator who runs the benchmarks; (5) documentation accuracy against the code; (6) bugs in the scripts and tests; (7) drift between docs, metadata, mirrors and code, and whether the measured with-and-without results are visible to a reader. Read only. Cite `file:line` for every finding, give it a severity (P0 to P2) and an axis, and say how you confirmed it.
+Audit the shipped cli-classifier work (the `.skilled/skills/cli-classifier` hub, its `cli-jev` packet, `shared/` transport and scorer-report scripts, `benchmark/`, feature catalog, manual testing playbook, changelogs and READMEs, plus every live caller of `shared/scripts/jev-transport.mjs` and `scorer-report.mjs` in sk-doc, system-deep-loop and system-spec-kit) on seven axes: (1) sk-doc compliance of every doc; (2) sk-code-skilled compliance of every script and test; (3) system-skill-advisor integration: routing vocabulary, leaf manifests, graph metadata and how a prompt reaches the hub; (4) UX for an external repository user who installs the skill without Jev, and for the operator who runs the benchmarks; (5) documentation accuracy against the code; (6) bugs in the scripts and tests; (7) drift between docs, metadata, mirrors and code, and whether the measured with-and-without results are visible to a reader. Read only. Cite `file:line` for every finding, give it a severity (P0 to P2) and an axis, and say how you confirmed it.
 
 ---
 
@@ -37,7 +37,7 @@ Audit the shipped cli-classifier work (the `.skilled/skills/cli-classifier` hub,
 ## 3. KEY QUESTIONS (remaining)
 
 - [x] Q1 (axes 1+5): sk-doc compliance + documentation accuracy — answered: F-003 (P1 cluster), F-001/F-002/F-004/F-005/F-009; rest validates clean.
-- [x] Q2 (axes 2+6): sk-code-opencode compliance + bugs — answered: no functional bugs; 153 tests pass; F-005 count defect.
+- [x] Q2 (axes 2+6): sk-code-skilled compliance + bugs — answered: no functional bugs; 153 tests pass; F-005 count defect.
 - [x] Q3 (axis 3): skill-advisor integration — answered: chain verified end to end; F-006 approved divergence.
 - [x] Q4 (axis 4): external-user + operator UX — answered: operator flow complete; F-007 prerequisite gap.
 - [x] Q5 (axis 7): drift + measured-results visibility — answered: F-008 metadata lag; mirror clean; results visible.
@@ -137,7 +137,7 @@ Audit the shipped cli-classifier work (the `.skilled/skills/cli-classifier` hub,
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
 
-Iteration 3: sk-code-opencode compliance and bugs across the hub's scripts and tests (axes 2+6). Targets: `shared/scripts/jev-transport.mjs` + `scorer-report.mjs` (already read end to end), `benchmark/injection-screen/score-injection-screen.mjs`, `benchmark/pi-transport/score-pi-transport.mjs` + `replay-helpers.mjs`, the two shared test suites (1040 + 194 lines), and the six live callers' transport seams. Syntax checks, error-path reads, test-quality review.
+Iteration 3: sk-code-skilled compliance and bugs across the hub's scripts and tests (axes 2+6). Targets: `shared/scripts/jev-transport.mjs` + `scorer-report.mjs` (already read end to end), `benchmark/injection-screen/score-injection-screen.mjs`, `benchmark/pi-transport/score-pi-transport.mjs` + `replay-helpers.mjs`, the two shared test suites (1040 + 194 lines), and the six live callers' transport seams. Syntax checks, error-path reads, test-quality review.
 <!-- /ANCHOR:next-focus -->
 
 ---

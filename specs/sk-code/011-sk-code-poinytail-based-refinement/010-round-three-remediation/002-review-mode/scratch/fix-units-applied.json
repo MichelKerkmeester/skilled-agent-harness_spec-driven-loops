@@ -6,7 +6,7 @@
     ],
     "kind": "edit",
     "instruction": "In .skilled/skills/sk-code/sk-code-review/scripts/README.md, replace the exact text <<<OLD\nits pointer to `../shared/references/stack-detection.md`, that\nOLD>>> with <<<NEW\nits pointer to the shared detection contract, that\nNEW>>>",
-    "check": "node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs --checks paths 2>&1 | grep -c 'sk-code-review'",
+    "check": "node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs --checks paths 2>&1 | grep -c 'sk-code-review'",
     "expect": "0"
   },
   {

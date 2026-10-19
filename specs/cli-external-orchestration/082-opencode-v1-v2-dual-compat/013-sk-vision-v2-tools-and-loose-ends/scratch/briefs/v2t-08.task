@@ -1,0 +1,152 @@
+ROLE: You make literal edits to two TypeScript files. Re-read each first. Make exactly these edits and nothing else.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts`, `close()` does not stop a provisioning subprocess (`uv venv`, `uv pip install`, or the pip fallback) that `runProvision()` started. If that subprocess hangs, it outlives the client and `ready` never settles. Killing it is recoverable: the next start finds `moondream` missing and provisions again, and `uv venv` replaces an existing venv.
+
+ACTION:
+
+1. In `client.ts`, replace these lines:
+
+  // Set by close(); a startup still provisioning when it is set must not spawn.
+  private closed = false;
+
+with:
+
+  // Set by close(); a startup still provisioning when it is set must not spawn.
+  private closed = false;
+  // The provisioning subprocess in flight, so close() can stop it.
+  private provisioning: ChildProcess | null = null;
+
+2. In `client.ts`, inside `private async runProvision(`, replace these lines:
+
+    log(`${label}...`);
+    await new Promise<void>((resolve, reject) => {
+      const child = spawn(cmd, args, { stdio: ["ignore", "pipe", "pipe"] });
+      child.stdout.on("data", (d) => log(`  ${d}`));
+      child.stderr.on("data", (d) => log(`  ${d}`));
+      child.on("error", reject);
+      child.on("exit", (code) =>
+        code === 0 ? resolve() : reject(new Error(`${label} failed (exit ${code})`)),
+      );
+    });
+
+with:
+
+    if (this.closed) throw new SkVisionError("SHUTDOWN", "sk-vision runtime closed");
+    log(`${label}...`);
+    await new Promise<void>((resolve, reject) => {
+      const child = spawn(cmd, args, { stdio: ["ignore", "pipe", "pipe"] });
+      this.provisioning = child;
+      child.stdout.on("data", (d) => log(`  ${d}`));
+      child.stderr.on("data", (d) => log(`  ${d}`));
+      child.on("error", (err) => {
+        this.provisioning = null;
+        reject(err);
+      });
+      child.on("exit", (code) => {
+        this.provisioning = null;
+        if (code === 0) resolve();
+        else reject(new Error(`${label} failed (exit ${code})`));
+      });
+    });
+
+3. In `client.ts`, inside `private async spawn()`, replace these lines:
+
+    } catch (err) {
+      this.broken = true;
+      log(`provision failed: ${(err as Error).message}`);
+
+with:
+
+    } catch (err) {
+      this.broken = true;
+      if (this.closed) {
+        log("closed while provisioning; startup stopped");
+        this.rejectAll(new SkVisionError("SHUTDOWN", "sk-vision runtime closed"));
+        return;
+      }
+      log(`provision failed: ${(err as Error).message}`);
+
+4. In `client.ts`, inside `async close()`, replace these lines:
+
+  async close(): Promise<void> {
+    this.closed = true;
+
+with:
+
+  async close(): Promise<void> {
+    this.closed = true;
+    this.provisioning?.kill("SIGTERM");
+
+5. In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts`, directly before the final line `});` of the file (the line that closes `describe("RuntimeClient close", () => {`), insert this test:
+
+  it("stops a provisioning step that is still running and settles ready", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const pidFile = join(dir, "uv.pid");
+    const fakeUv = join(dir, "uv");
+    writeFileSync(fakeUv, `#!/bin/sh\necho $$ > "${pidFile}"\nexec sleep 30\n`);
+    chmodSync(fakeUv, 0o755);
+
+    const saved = {
+      uv: process.env.SK_VISION_UV,
+      venv: process.env.SK_VISION_VENV_DIR,
+      python: process.env.SK_VISION_PYTHON,
+    };
+    process.env.SK_VISION_UV = fakeUv;
+    process.env.SK_VISION_VENV_DIR = join(dir, "venv");
+    delete process.env.SK_VISION_PYTHON;
+    const proto = RuntimeClient.prototype as unknown as {
+      hasMoondream(python: string): Promise<boolean>;
+      hasUv(): Promise<boolean>;
+    };
+    const moondream = spyOn(proto, "hasMoondream").mockImplementation(async () => false);
+    const uv = spyOn(proto, "hasUv").mockImplementation(async () => true);
+    const notes: string[] = [];
+
+    try {
+      const client = new RuntimeClient({
+        pythonPath: join(dir, "missing-python"),
+        timeoutMs: 1_000,
+        notify: (m) => {
+          notes.push(m.variant ?? "");
+        },
+      });
+      for (let i = 0; i < 100 && !existsSync(pidFile); i++) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      expect(existsSync(pidFile)).toBe(true);
+      const pid = Number(readFileSync(pidFile, "utf8").trim());
+
+      await client.close();
+      await Promise.race([
+        client.ready,
+        new Promise((_, reject) => setTimeout(() => reject(new Error("ready did not settle")), 2_000)),
+      ]);
+
+      let alive = true;
+      try {
+        process.kill(pid, 0);
+      } catch {
+        alive = false;
+      }
+      expect(alive).toBe(false);
+      expect(notes).not.toContain("error");
+    } finally {
+      moondream.mockRestore();
+      uv.mockRestore();
+      for (const [key, value] of [
+        ["SK_VISION_UV", saved.uv],
+        ["SK_VISION_VENV_DIR", saved.venv],
+        ["SK_VISION_PYTHON", saved.python],
+      ] as const) {
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      }
+    }
+  });
+
+6. In the same test file, replace the line
+`import { chmodSync, existsSync, mkdtempSync, writeFileSync } from "node:fs";`
+with
+`import { chmodSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";`
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/runtime/client.test.ts 2>&1 | tail -5` and print the output verbatim, nothing else.

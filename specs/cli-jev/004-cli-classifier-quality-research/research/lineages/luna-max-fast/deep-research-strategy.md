@@ -18,7 +18,7 @@ Audit the shipped cli-classifier work across documentation compliance, code and 
 ## 3. Key Questions
 
 - [ ] Do the hub and cli-jev documentation, READMEs, changelogs, catalogs, benchmark reports, and playbooks meet the applicable sk-doc requirements?
-- [ ] Do the transport, scorer-report, benchmark scripts, and their tests meet the applicable sk-code-opencode requirements, and do their code paths have correctness defects?
+- [ ] Do the transport, scorer-report, benchmark scripts, and their tests meet the applicable sk-code-skilled requirements, and do their code paths have correctness defects?
 - [ ] Can a user prompt reach the cli-classifier hub and then the intended cli-jev leaves through advisor vocabulary, graph metadata, manifests, and both routing stages?
 - [ ] Can an external repository user operate the skill without Jev, and can a benchmark operator reproduce and understand the comparisons and their results?
 - [ ] Do documentation, code, catalogs, metadata, runtime mirrors, and recorded measurements agree?

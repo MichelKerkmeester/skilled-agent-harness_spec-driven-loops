@@ -107,7 +107,7 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 | Live dispatch per version (`scratch/proof/smoke/`) | Exit 0 on both, token returned, lineage file written, USD 0.002343 and 0.001197 |
 | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Exit 0, all 4 guards PASSED, 10 non-blocking warnings |
 | `validate_document.py` on the ten claim docs, `validate_skill_package.py` on cli-opencode and the hub | Exit 0 each |
-| Deep review (`../review/review-report.md`) and its remediation suites (`scratch/remediation/suites-before.txt`, `suites-after.txt`) | CONDITIONAL with 1 P1 and 12 P2, all fixed. Every touched suite is at or above its starting count. The Pi preflight and codex shell-tool suites failed before the change and still do |
+| Deep review (`../review/review-report.md`) and its remediation suites (`scratch/remediation/suites-before.txt`, `suites-after.txt`) | CONDITIONAL with 1 P1 and 12 P2, all fixed. Every touched suite is at or above its starting count. The Pi preflight and codex shell-tool rows show failures only because the runner used the wrong test command. Under the hooks vitest config both pass, 43 of 43 (`scratch/remediation/adapter-suites-owning-runner.txt`) |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` | `RESULT: PASSED` (`scratch/validate-recursive.txt`) |
 <!-- /ANCHOR:verification -->
 
@@ -120,8 +120,9 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 2. **Agent temperature has no effect on OpenCode 2.0.32 with the `openai-compatible` provider package.** That package, the only one tested, does not send it to the provider (decision 11). Agents that rely on 0.1 for steadier output get the provider's default there.
 3. **Two v2 agent questions stay open.** Live runs settled top-level `--agent` routing on 2.0.32 (decision 10). No repo agent pins a model, so whether a pinned model beats `-m` is untested, and so is how an agent routes subagents onward. The docs say both.
 4. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
-5. **sk-vision skips automatic image inspection on OpenCode 2.** Its `chat.message` hook has no bridge mapping, so it does not run there, while its tools still register. Porting it to OpenCode 2's prompt hook is not done (decision 12).
+5. **Resolved by phase 012: sk-vision's automatic image inspection on OpenCode 2.** At closeout its `chat.message` hook did not run there. Phase 012 runs the same check through OpenCode 2's prompt hook. Phase 013 registers the `sk_vision_*` tools on OpenCode 2 too (`../013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md`).
 6. **The CI workflow has not run yet.** The operator approved committing `.github/workflows/opencode-dual-version.yml` after the closeout. Its triggers cover pushes to `main` and `skilled/**` and pull requests into them, so a push of this branch alone does not run it, and no CI run backs this proof.
+7. **Main added a seventeenth plugin after the proof.** `session-relaunch.js` arrived with main as an OpenCode 1 factory only, so OpenCode 2 reported it failed when main was merged in. The merge gives it the shared dual export and a row in `tests/v2-registration.test.cjs`, which fails against main's version. After the merge the plugin suite passes 397 of 397 and both batteries exit 0, with all plugins active on OpenCode 2 (`scratch/main-merge/`). The 16-plugin counts above describe the tree the proof ran on.
 <!-- /ANCHOR:limitations -->
 
 ---

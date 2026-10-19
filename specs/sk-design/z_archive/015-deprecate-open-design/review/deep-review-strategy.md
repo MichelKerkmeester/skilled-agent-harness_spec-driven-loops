@@ -186,7 +186,7 @@ Per-file table populated during initialization (grouped; full allowlist in scrat
 | `.opencode/skills/mcp-code-mode/**` | - | - | - | pending |
 | `.opencode/skills/mcp-tooling/mcp-figma/**` | - | - | - | pending |
 | `.opencode/skills/cli-external-orchestration/**` | - | - | - | pending |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | - | - | - | pending |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` | - | - | - | pending |
 | `.opencode/skills/sk-prompt/sk-prompt-improve/**` | - | - | - | pending |
 | `.opencode/skills/sk-doc/**` (fixtures, tests, templates) | - | - | - | pending |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/**`, `mcp-server/**/ground-truth.json` | - | - | - | pending |

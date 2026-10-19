@@ -116,7 +116,7 @@ contextType: "implementation"
 - [x] CHK-010 [P0] Build and typecheck pass
 - [x] CHK-011 [P0] No new console errors or warnings in the suites
 - [x] CHK-012 [P1] Error handling kept for the install path that still runs
-- [x] CHK-013 [P1] Code follows sk-code-opencode patterns
+- [x] CHK-013 [P1] Code follows sk-code-skilled patterns
 <!-- /ANCHOR:code-quality -->
 
 ---

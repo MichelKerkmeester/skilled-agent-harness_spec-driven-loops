@@ -92,7 +92,7 @@ This child-level map gives deep-research a bounded known-context inventory. It l
 | `.opencode/skills/system-deep-loop/deep-research/references/state/state_format.md` | Analyzed | OK | Research artifact ownership and location |
 | `.opencode/skills/sk-doc/SKILL.md` | Analyzed | OK | Defers spec-folder authoring to Spec Kit |
 | `.opencode/skills/sk-code/SKILL.md` | Analyzed | OK | OpenCode surface routing boundary |
-| `.opencode/skills/sk-code/code-opencode/SKILL.md` | Analyzed | OK | Descriptor and spec authoring boundary |
+| `.opencode/skills/sk-code/code-skilled/SKILL.md` | Analyzed | OK | Descriptor and spec authoring boundary |
 <!-- /ANCHOR:skills -->
 
 ---

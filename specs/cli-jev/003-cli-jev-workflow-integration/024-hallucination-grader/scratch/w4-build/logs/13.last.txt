@@ -10,7 +10,7 @@ The compiled router deferred (no target), so I'll follow the hub's legacy routin
 
 
 
-Routing resolved: this is `.skilled/` system code (JavaScript surface) with an implement-type edit → `sk-code-opencode` surface + `sk-code-quality` gate. My edit adds no comments, so comment hygiene is trivially satisfied. Now let me pin down every occurrence of the shadowing local across the file before editing.
+Routing resolved: this is `.skilled/` system code (JavaScript surface) with an implement-type edit → `sk-code-skilled` surface + `sk-code-quality` gate. My edit adds no comments, so comment hygiene is trivially satisfied. Now let me pin down every occurrence of the shadowing local across the file before editing.
 
 All 11 uses of the local are inside `jevGate`, and the shorthand returns are only there (5 of them). Now I'll apply the rename edits and load the evidence rule that governs result reporting.
 
@@ -22,7 +22,7 @@ The function is fully renamed: 11 lines changed, no bare `path` local remains, a
 
 All checks are in. One item needs flagging: check 3 prints **5**, not the brief's stated 6 — `jevGate` contains exactly five returned objects, confirmed against the pre-edit baseline (four `passed: false, path, provider` returns at 553/569/576/587 plus one `passed: true, path, provider` at 589). All 11 uses of the local were renamed, so 5 is the complete count; a sixth `path: jevPath` would have required changing printed text or code outside `jevGate`, both forbidden.
 
-Route: sk-code → sk-code-opencode surface + sk-code-quality gate (hub and both packets read; edit adds/removes no comments, so comment hygiene is untouched).
+Route: sk-code → sk-code-skilled surface + sk-code-quality gate (hub and both packets read; edit adds/removes no comments, so comment hygiene is untouched).
 REPO RULES: `REPO RULES.md`, `evidence-and-proof.md` loaded.
 
 STATUS: DONE

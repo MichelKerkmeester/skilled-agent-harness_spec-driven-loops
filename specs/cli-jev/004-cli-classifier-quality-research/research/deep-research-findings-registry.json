@@ -28,7 +28,7 @@
     },
     {
       "id": "q2",
-      "text": "Do the scripts and tests comply with sk-code-opencode standards, and do they carry latent bugs?",
+      "text": "Do the scripts and tests comply with sk-code-skilled standards, and do they carry latent bugs?",
       "resolution": "answered: no functional bugs found; 153 tests pass; F-005 count defect",
       "iteration": 5,
       "_lineages": [

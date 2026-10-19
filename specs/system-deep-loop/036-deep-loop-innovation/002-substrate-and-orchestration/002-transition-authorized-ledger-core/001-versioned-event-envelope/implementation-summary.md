@@ -151,7 +151,7 @@ Commands:
 ```bash
 (cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts ../../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts ../../system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts)
 .opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/event-envelope --root .opencode/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts --root .opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts
+python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-deep-loop/runtime/lib/event-envelope --root .opencode/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts --root .opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope --strict
 ```
 <!-- /ANCHOR:verification -->

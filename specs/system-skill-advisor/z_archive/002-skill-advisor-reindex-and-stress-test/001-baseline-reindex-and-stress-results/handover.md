@@ -148,7 +148,7 @@ Verification already run before this handover:
 - `npx vitest run tests/handlers/skill-graph-scan-auth.vitest.ts tests/advisor-rebuild.vitest.ts skill_advisor/tests/handlers/advisor-status.vitest.ts skill_advisor/tests/scorer/native-scorer.vitest.ts` -> 28 passed.
 - `npm run typecheck` in `.opencode/skills/system-spec-kit/mcp_server` -> passed.
 - `npm run build` in `.opencode/skills/system-spec-kit/mcp_server` -> passed.
-- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> PASS with 6 warnings, 0 errors.
+- `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> PASS with 6 warnings, 0 errors.
 - `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-skill-advisor/002-skill-advisor-reindex-and-stress-test --strict` -> passed.
 
 Do not revert unrelated dirty files. `git status` before handover also showed unrelated changes outside this packet.

@@ -40,9 +40,9 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `001-runtime-code-readmes` | complete | predecessor `none`; successor `002-sk-code-opencode-alignment` |
-| 2 | `002-sk-code-opencode-alignment` | complete | predecessor `001-runtime-code-readmes`; successor `003-artifact-certificate-binding` |
-| 3 | `003-artifact-certificate-binding` | in_progress | predecessor `002-sk-code-opencode-alignment`; successor `004-alignment-coverage-integrity` |
+| 1 | `001-runtime-code-readmes` | complete | predecessor `none`; successor `002-sk-code-skilled-alignment` |
+| 2 | `002-sk-code-skilled-alignment` | complete | predecessor `001-runtime-code-readmes`; successor `003-artifact-certificate-binding` |
+| 3 | `003-artifact-certificate-binding` | in_progress | predecessor `002-sk-code-skilled-alignment`; successor `004-alignment-coverage-integrity` |
 | 4 | `004-alignment-coverage-integrity` | complete | predecessor `003-artifact-certificate-binding`; successor `005-mode-gate-and-contract-binding` |
 | 5 | `005-mode-gate-and-contract-binding` | complete | predecessor `004-alignment-coverage-integrity`; successor `006-fanout-dispatch-integrity` |
 | 6 | `006-fanout-dispatch-integrity` | in_progress | predecessor `005-mode-gate-and-contract-binding`; successor `007-improvement-promotion-authority` |

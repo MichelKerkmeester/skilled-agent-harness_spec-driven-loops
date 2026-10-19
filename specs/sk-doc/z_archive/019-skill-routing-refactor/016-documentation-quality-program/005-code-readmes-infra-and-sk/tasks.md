@@ -52,7 +52,7 @@ trigger_phrases:
 ## Phase 2: Implementation
 
 - [x] T003 [P] Author READMEs for the 8 sk-doc folders (`create-benchmark/scripts`, `create-feature-catalog/scripts`, `create-flowchart/scripts`, `create-readme/scripts`, `create-skill/scripts`, `create-skill/scripts/lib`, `create-skill/scripts/tests`, `shared/scripts`).
-- [x] T004 [P] Author READMEs for the 6 sk-code folders (`code-opencode/scripts`, `code-quality/scripts` and its `hooks`, `hooks/codex`, `lib`, `code-review/scripts`).
+- [x] T004 [P] Author READMEs for the 6 sk-code folders (`code-skilled/scripts`, `code-quality/scripts` and its `hooks`, `hooks/codex`, `lib`, `code-review/scripts`).
 - [x] T005 [P] Author READMEs for the 6 system-code-graph folders (`mcp-server/lib/graph`, `mcp-server/scripts/eval`, `runtime/hooks/claude`, `runtime/hooks/codex`, `runtime/lib/code-graph`, `scripts`).
 - [x] T006 [P] Author READMEs for the 9 `system-skill-advisor` and `mcp-code-mode` folders.
 - [x] T007 [P] Author READMEs for the 4 `mcp-tooling` and `cli-external-orchestration` folders.

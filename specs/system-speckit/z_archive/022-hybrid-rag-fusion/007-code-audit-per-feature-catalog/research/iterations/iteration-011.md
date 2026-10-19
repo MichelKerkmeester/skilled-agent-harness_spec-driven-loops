@@ -48,7 +48,7 @@ I’m gathering the audit surface first: the two child specs, the UX/flag source
 
 I found one likely contradiction already: `rollout-policy.ts` implements “default ON” semantics for undefined flags, so I’m now tracing whether the catalog/spec text still claims some of those flags are OFF by default and whether the UX handlers actually wire the documented hooks end-to-end.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the phase audit summaries. Next I’m drilling into the concrete runtime evidence: the actual hook helpers those features depend on, the handler call sites, and the flag docs that might still describe pre-graduation defaults.
 

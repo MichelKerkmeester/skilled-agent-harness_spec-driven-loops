@@ -69,7 +69,7 @@ Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re
 | File | Action | Purpose | Commit |
 |------|--------|---------|--------|
 | `.opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md` | Updated before close-out | Define scope, requirements, success criteria, risks, and out-of-scope boundaries for the gold refresh and re-baseline | no commit SHA at authoring time |
-| `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Updated | Translate stale gold paths from `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` to `code-animation/`, `code-webflow/`, and `code-opencode/` packet paths | no commit SHA at authoring time |
+| `.opencode/skills/sk-code/manual_testing_playbook/**/*.md` | Updated | Translate stale gold paths from `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` to `code-animation/`, `code-webflow/`, and `code-skilled/` packet paths | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json` | Regenerated | Record deterministic router-mode baseline data after the refreshed gold | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md` | Regenerated | Record human-readable router-final verdict and dimension evidence | no commit SHA at authoring time |
 | `.opencode/skills/sk-code/benchmark/README.md` | Updated | Refresh stale latest-router-verdict statistic to match router-final | no commit SHA at authoring time |
@@ -86,7 +86,7 @@ Phase 021 completed the sk-code playbook gold refresh and Lane-C router-final re
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The packet ran after the two harness fixes landed separately: router-replay surface slicing and scenario-loader `code-<surface>/` parsing. With those dependencies in place, the playbook gold was refreshed by deterministic prefix translation only. `references/motion_dev/` and `assets/motion_dev/` paths moved to `code-animation/`, `references/webflow/` and `assets/webflow/` paths moved to `code-webflow/`, and `references/opencode/` and `assets/opencode/` paths moved to `code-opencode/`. All 71 translated paths were checked for on-disk existence before applying.
+The packet ran after the two harness fixes landed separately: router-replay surface slicing and scenario-loader `code-<surface>/` parsing. With those dependencies in place, the playbook gold was refreshed by deterministic prefix translation only. `references/motion_dev/` and `assets/motion_dev/` paths moved to `code-animation/`, `references/webflow/` and `assets/webflow/` paths moved to `code-webflow/`, and `references/opencode/` and `assets/opencode/` paths moved to `code-skilled/`. All 71 translated paths were checked for on-disk existence before applying.
 
 The refreshed gold was then scored through the deterministic offline router-final path. The regenerated report recovered the historical pre-regression baseline to CONDITIONAL 71/100 while preserving an honest 65/99 = 66% gold-vs-router recall value. The frozen `benchmark/baseline/` snapshot was left untouched, and the benchmark README statistic was updated to match the regenerated router-final report.
 
@@ -123,7 +123,7 @@ None. The path refresh, router-final regeneration, README statistic refresh, and
 | Stale gold path sweep | Pass | Manual testing playbook | Post-translation grep for `references/{motion_dev,webflow,opencode}/` and `assets/{...}/` returns 0 files |
 | Translated path existence | Pass | 71 translated gold paths | 71/71 translated paths existence-checked on disk before applying |
 | router-final regeneration | Pass | Deterministic offline router trace mode | Verdict CONDITIONAL, aggregate 71/100; D1-intra 87, D2 discovery 79, D3 efficiency 47, D5 connectivity 100/100 hard-gate pass; D1-inter and D4 need live mode |
-| Cross-surface leak check | Pass | Scored scenarios | 0 scored scenarios route both `code-webflow/` and `code-opencode/` at once |
+| Cross-surface leak check | Pass | Scored scenarios | 0 scored scenarios route both `code-webflow/` and `code-skilled/` at once |
 | Gold-vs-router recall | Reported | 99 gold paths | Recall is 65/99 = 66%, deliberately not forced to 100% |
 | Strict spec validation | Pending close-out | Packet docs | `validate.sh --strict` run at close-out; push pending |
 
@@ -133,7 +133,7 @@ None. The path refresh, router-final regeneration, README statistic refresh, and
 |------|--------|
 | Gold path translation | 71 translated paths, 71 existence-checked, 0 stale old-prefix files remain |
 | Router-final verdict | CONDITIONAL 71/100, recovering the pre-regression historical baseline after the broken state dropped to 47 FAIL |
-| Leak protection | 0 scenarios route both `code-webflow/` and `code-opencode/` at once |
+| Leak protection | 0 scenarios route both `code-webflow/` and `code-skilled/` at once |
 | Honest residual signal | 34-path gold-curation-vs-router gap remains visible as optional follow-up |
 
 <!-- /ANCHOR:verification -->

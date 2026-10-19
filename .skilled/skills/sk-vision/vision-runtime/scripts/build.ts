@@ -51,9 +51,8 @@ await mkdir(pyDist, { recursive: true });
 await cp(runtime, resolve(pyDist, "runtime.py"));
 
 // Also bundle the skill-owned OpenCode adapter that lives beside the Pi adapter
-// under hooks/. It emits a loadable sk-vision.js next to its source so
-// .skilled/plugins/sk-vision.js can symlink into the skill's hooks/ dir,
-// symmetric with how the Pi adapter is loaded from hooks/pi.
+// under hooks/, as a loadable sk-vision.js next to its source. The OpenCode
+// plugin links point at dist/plugin.js, so nothing loads this copy today.
 const hooksOpencode = resolve(root, "..", "hooks", "opencode");
 await Bun.build({
   entrypoints: [resolve(hooksOpencode, "sk-vision.ts")],

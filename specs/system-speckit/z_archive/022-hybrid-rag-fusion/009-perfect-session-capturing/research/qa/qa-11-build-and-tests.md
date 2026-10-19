@@ -138,7 +138,7 @@ specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/012-handover-
 specs/system-spec-kit/z_archive/012-spec-doc-anchor-tags
 specs/00--anobel.com/z_archive/012-notification-time-scheduling
 specs/04--agent-orchestration/z_archive/012-context-model-comparison
-specs/03--commands-and-skills/z_archive/012-code-opencode-codebase-alignment
+specs/03--commands-and-skills/z_archive/012-code-skilled-codebase-alignment
 specs/03--commands-and-skills/013-cmd-create-codex-compatibility
  succeeded in 286ms:
 specs/system-spec-kit/022-hybrid-rag-fusion/system-spec-kit/node_modules/@spec-kit/mcp-server/dist/tests/session-lifecycle.vitest.d.ts.map

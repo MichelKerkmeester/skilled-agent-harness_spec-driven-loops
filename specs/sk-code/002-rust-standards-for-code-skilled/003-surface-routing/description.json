@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/002-rust-standards-for-code-skilled/003-surface-routing",
+  "description": "The `code-skilled/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing",
+  "keywords": [
+    "code-skilled",
+    "skill",
+    "surface",
+    "router",
+    "detect",
+    "rust",
+    "files",
+    "route",
+    "intent",
+    "even",
+    "docs",
+    "authored",
+    "phase",
+    "nothing"
+  ],
+  "lastUpdated": "2026-08-29T15:04:31.368Z",
+  "specId": "003",
+  "folderSlug": "surface-routing",
+  "parentChain": [
+    "sk-code",
+    "002-rust-standards-for-code-skilled"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

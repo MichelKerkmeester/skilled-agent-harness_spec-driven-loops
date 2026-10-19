@@ -17,7 +17,7 @@ _memory:
       - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch/evidence/post-push-ci.txt"
       - ".github/workflows/routing-registry-drift.yml"
       - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json"
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs"
       - "specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scratch/evidence/decision-ledger.txt"
     session_dedup:
       fingerprint: "sha256:0845ae579d83af8647a153be2a5911a9d1eba3d43c10ec1704a924347b9718a2"
@@ -61,13 +61,13 @@ The stale holdout pin stopped the workflow before corpus scoring. The recaptured
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs` | Modified | Apply Git ignore rules to check 1b with the existing fallback. |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs` | Modified | Prove ignored docs are skipped and non-ignored untracked docs are reported. |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modified | Apply Git ignore rules to check 1b with the existing fallback. |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` | Modified | Prove ignored docs are skipped and non-ignored untracked docs are reported. |
 | `.github/workflows/routing-registry-drift.yml` | Modified | Read the new child baseline and trigger on its path. |
 | `scripts/capture-top3.mjs` | Modified | Capture top-3 results from the advisor runtime. |
 | `baseline/` (six files) | Created | Store the recaptured pins, metrics and scorer output. |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modified | Document check 1b and its regression test. |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modified | Document ignored-path filtering and the shared-doc allowlist. |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modified | Document check 1b and its regression test. |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modified | Document ignored-path filtering and the shared-doc allowlist. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -86,7 +86,7 @@ The four implementation commits were rebased onto origin/main after main advance
 | Decision | Why |
 |----------|-----|
 | D6: Both trigger path filters follow the baseline repoint. | A baseline-only change must trigger the workflow. |
-| D7: Add the two sk-code-opencode docs to scope. | Their check 1b guidance must match the updated behavior. |
+| D7: Add the two sk-code-skilled docs to scope. | Their check 1b guidance must match the updated behavior. |
 <!-- /ANCHOR:decisions -->
 
 ---

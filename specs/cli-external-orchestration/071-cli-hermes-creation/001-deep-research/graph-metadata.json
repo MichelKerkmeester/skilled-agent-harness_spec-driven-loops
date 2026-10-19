@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nothing in this repository says what Hermes Agent can do as a dispatch target, how its repo-local configuration, skills, hooks, plugins and MCP host compare with the six runtimes already integrated, or whether its headless mode is fit for deep-loop fan-out",
     "created_at": "2026-09-14T16:04:03Z",
-    "last_save_at": "2026-10-08T19:29:08.113Z",
+    "last_save_at": "2026-10-18T20:45:03.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,7 +223,7 @@
       "research/research.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:99b717606f99d2e95f182cbf56129f7f00555481b0454c690d7c933eb81a9618",
+    "source_fingerprint": "sha256:ce4ca5cac4f3b45bc5157013c322aef62642a7de0147e94820655366f42c3cf9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7711db7463b2fdf799519f80f4de547e8b372ce9208745c079605420f387fe48",
@@ -231,7 +231,7 @@
       "tasks.md": "58e68137004718b31fd6aeaa9eb4334730efa108de4ca8abecd80307fb6a2faa",
       "implementation-summary.md": "61410a7990681119906a1438e22574fc4447de92fc15f9f70aa18c870715e926",
       "research/research.md": "a9013e6b14de46751c51fd4050a57dc3aeccef0c98b6ab888618a12d77b902e3",
-      "resource-map.md": "a4a1c9398694017d656697b97c18dd1d33333123878754ebd95e9e469f4612c2"
+      "resource-map.md": "b68183d85131a91871028310d19ca717710848f2447c41976de6192c316a4bd1"
     },
     "last_active_at": null
   }

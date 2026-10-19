@@ -1,11 +1,11 @@
 ---
 title: "Audit Findings: Phase 020 TypeScript Alignment"
-description: "Running sk-code-opencode audit checklist for Phase 020 advisor hook files."
+description: "Running sk-code-skilled audit checklist for Phase 020 advisor hook files."
 ---
 
 # Audit Findings: Phase 020 TypeScript Alignment
 
-Audit basis: `sk-code-opencode` TypeScript checklist plus the Phase 022 requirement checklist for strict TypeScript, explicit exported return types, no unqualified `any`, boundary-only error handling, comment discipline, dead-code scan, naming, no unreleased compatibility shims, and field-path error messages.
+Audit basis: `sk-code-skilled` TypeScript checklist plus the Phase 022 requirement checklist for strict TypeScript, explicit exported return types, no unqualified `any`, boundary-only error handling, comment discipline, dead-code scan, naming, no unreleased compatibility shims, and field-path error messages.
 
 ---
 

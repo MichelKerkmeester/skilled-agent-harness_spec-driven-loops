@@ -64,7 +64,7 @@ This is **Phase 7** of the Fix the P1 and P2 findings of the v4.0.0.11 conforman
 The release-conformance review of `/doctor:git setup` returned CONDITIONAL. The documented sk-git package check fails at 5,038 words against a 5,000 maximum. Six docs carry Human Voice Rules punctuation blockers, the playbook, catalog and root README state stale or conflicting facts, and three setup-check probes can report PASS for a state they never confirmed.
 
 ### Purpose
-Every finding is either fixed with a check that proves it or rejected with evidence, so the release surfaces pass their own sk-doc and sk-code-opencode gates.
+Every finding is either fixed with a check that proves it or rejected with evidence, so the release surfaces pass their own sk-doc and sk-code-skilled gates.
 <!-- /ANCHOR:problem -->
 
 ---

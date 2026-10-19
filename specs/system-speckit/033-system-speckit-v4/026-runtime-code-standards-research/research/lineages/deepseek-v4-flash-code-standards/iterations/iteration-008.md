@@ -7,7 +7,7 @@ Angle 8 — strict-mode coverage, variable quoting, `cd`/`eval`/portability hygi
 
 ### F8.1 [P2] `eval` of a command substitution in a setup script
 - **Code:** `runtime/cli/setup/check-prerequisites.sh:74` — `eval "$(get_feature_paths)"`.
-- **Standard:** `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` §5 "Security Considerations" — "Never use eval with user input"; the safe alternative is the documented case-statement pattern. ShellCheck flags `eval` as a defensive-coding risk.
+- **Standard:** `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` §5 "Security Considerations" — "Never use eval with user input"; the safe alternative is the documented case-statement pattern. ShellCheck flags `eval` as a defensive-coding risk.
 - **What is present:** `get_feature_paths` returns a shell snippet that is then `eval`'d so the function's emitted assignments land in the caller scope. The source is an internal function, not direct user input, so this is not an injection vulnerability today — but it is the exact pattern the standard steers away from, and any future drift in the function's output becomes an `eval` injection surface.
 - **Severity:** P2 (no live injection; code smell with a documented safer alternative).
 - **One-line fix:** **judgment-required** — have `get_feature_paths` `echo` a single value/array and consume it with a `read`/`mapfile` into the caller scope, or `printf` assignments into a temp and `source` it, instead of `eval`.
@@ -21,7 +21,7 @@ Angle 8 — strict-mode coverage, variable quoting, `cd`/`eval`/portability hygi
 
 ### F8.3 [Conforming] Strict mode, quoting, and no `eval`-of-user-input across the main CLI surface
 - **Code:** all in-scope non-test `runtime/cli/**/*.sh` (lib, spec, setup, kpi, ops, rules) carry `set -euo pipefail` (the strict-mode scan returned zero missing). Unquoted command-position `$var` (SC2086) and single-bracket `[ -f $var ]`-style unquoted tests returned zero hits, so quoting is clean. `validate.sh` (the authoritative gate) returns exit 0/1/2/3.
-- **Standard:** `sk-code-opencode/references/shell/quality-standards/overview-and-priority-blockers.md` §2 P0 (shebang, strict mode, double-quoted variables, file header).
+- **Standard:** `sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md` §2 P0 (shebang, strict mode, double-quoted variables, file header).
 - **What is present:** A strong conforming baseline. The non-portable-constructs P2 (bash-specific `local`, `[[ ]]`) is expected since the shebang is `#!/usr/bin/env bash`; the whole surface is Bash by design.
 - **Severity:** Baseline (no finding).
 
@@ -29,7 +29,7 @@ Angle 8 — strict-mode coverage, variable quoting, `cd`/`eval`/portability hygi
 - `runtime/cli/setup/check-prerequisites.sh:74`
 - `runtime/cli/spec/archive.sh:299`, `runtime/cli/spec/create.sh:894`, `runtime/cli/setup/rebuild-native-modules.sh:23`
 - strict-mode / unquoted-variable / single-bracket scans across `runtime/cli/lib|spec|setup|kpi|ops|rules`
-- `sk-code-opencode/references/shell/quality-standards/validation-security-and-shellcheck.md` §2,§5,§7
+- `sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md` §2,§5,§7
 
 ## Assessment
 - **newInfoRatio:** 0.55

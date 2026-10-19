@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/012-sk-code-skilled-rename/002-skill-and-routing-rename",
+  "spec_folder": "sk-code/012-sk-code-skilled-rename/002-skill-and-routing-rename",
+  "parent_id": "sk-code/012-sk-code-skilled-rename",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill and routing rename",
+      "phase 2 skill and routing rename",
+      "sk-code-skilled surface rename",
+      "skill and routing rename plan",
+      "skill and routing rename tasks",
+      "skill and routing rename implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "routing",
+      "rename",
+      "phase",
+      "sk-code-skilled",
+      "surface",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "packet",
+      "framework"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      "scratch/after/runtime-names.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-names.txt",
+        "kind": "file",
+        "path": "scratch/after/runtime-names.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "main",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The surface packet for this framework's own code is called `sk-code-opencode`, with the routing alias `code-opencode` and the surface id OPENCODE",
+    "created_at": "2026-10-18T17:32:13Z",
+    "last_save_at": "2026-10-18T20:34:21.735Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3d3b92d17059665698f9248f7744ec6110829842328b626bd9bf5cc802f81026",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "692638faab52c81b450da24ceb2e5e9354a011e98a7c62fd522d385566dca2aa",
+      "plan.md": "8d843767599f00eb133026619b8f6a43d44ae93061b35e4b2fa55f8d7a0c59da",
+      "tasks.md": "bcd75f07d3b4adcc1bbf267c8530861fadef8e1d8434eb5e6861df474dac49a1",
+      "implementation-summary.md": "f2ab0af7801285623070eb0e633eab7fd183d62d5ea623334872d7166b570a38"
+    },
+    "last_active_at": null
+  }
+}

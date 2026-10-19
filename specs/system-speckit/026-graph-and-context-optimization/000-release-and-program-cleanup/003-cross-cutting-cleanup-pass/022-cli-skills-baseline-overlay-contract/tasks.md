@@ -29,10 +29,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Direct-mention replacements
 
-- [x] T-006 cli-codex/references/hook_contract.md line 112: `sk-code-opencode` → `sk-code` in advisor-brief example
+- [x] T-006 cli-codex/references/hook_contract.md line 112: `sk-code-skilled` → `sk-code` in advisor-brief example
 - [x] T-007 cli-codex/SKILL.md Skill Integration table: collapse 2 `sk-code` rows into 1 baseline+overlay row
 - [x] T-008 cli-opencode/SKILL.md line 397: cross-reference text → baseline+overlay phrasing
-- [x] T-009 cli-opencode/SKILL.md line 514: Skill Integration `sk-code-opencode` row → baseline+overlay row
+- [x] T-009 cli-opencode/SKILL.md line 514: Skill Integration `sk-code-skilled` row → baseline+overlay row
 - [x] T-010 cli-opencode/references/opencode_tools.md line 37: skill access list updated
 - [x] T-011 cli-opencode/manual_testing_playbook/manual_testing_playbook.md line 113: notation note → `sk-code` baseline compatible
 - [x] T-012 cli-opencode/manual_testing_playbook/prompt-templates/003-template-applied-to-real-dispatch.md line 49: prompt body 2 lines updated (replace_all=true matched both contract bullet + table cell)
@@ -43,7 +43,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T-014 Sweep — `sk-code-review` / `sk-code-opencode` matches in active CLI skill files limited to NEVER-clause anti-pattern examples
+- [x] T-014 Sweep — `sk-code-review` / `sk-code-skilled` matches in active CLI skill files limited to NEVER-clause anti-pattern examples
 - [x] T-015 Canonical insert presence count: 5/5 SKILL.md contain "Code Standards Loading (codebase-agnostic baseline+overlay contract)"
 - [x] T-016 `validate_document.py` per modified file: 9/10 VALID; 1 INVALID (hook_contract.md) with pre-existing `missing_required_section: overview` quirk not introduced by this packet
 - [x] T-017 Cross-skill consistency: canonical insert text identical across all 5 SKILL.md files

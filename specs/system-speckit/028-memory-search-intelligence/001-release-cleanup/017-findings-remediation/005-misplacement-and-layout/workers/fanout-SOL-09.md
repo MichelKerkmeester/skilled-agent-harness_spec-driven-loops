@@ -8,7 +8,7 @@ trigger_phrases: []
 [91m[1mError: [0mMCP error -32001: Request timed out
 [0m→ [0mSkill "sk-code"
 [0m→ [0mRead .opencode/skills/system-spec-kit/scripts/.scan-one.sh
-[0m→ [0mRead .opencode/skills/sk-code/code-opencode/SKILL.md
+[0m→ [0mRead .opencode/skills/sk-code/code-skilled/SKILL.md
 [0m→ [0mRead .opencode/skills/sk-code/shared/references/workflow-verify.md
 [0m% [0mPatch 1 file
 [0m

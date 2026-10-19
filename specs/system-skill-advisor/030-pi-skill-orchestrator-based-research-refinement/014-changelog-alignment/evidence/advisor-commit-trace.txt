@@ -58,7 +58,7 @@ a6ef03bae7  2026-09-26  4.0.0.2  p030 v0.12.0.0: Pi reads the budget the way the
 fa4f76d881  2026-09-26  4.0.0.2  p030 left out: the leaf manifest lists the new catalog leaf, routing metadata only
 cd0df4a38e  2026-09-27  4.0.0.2  p030 v0.12.0.0: the healthy advisor stays up, a sandboxed advisor stays in its sandbox, OpenCode loads the plugin, a switched-off advisor names its flag and six advisor scenarios check what they can see. Its scenario 433 part is in system-spec-kit v4.1.4.0
 9ccb4dd416  2026-09-27  4.0.0.2  p030 v0.12.0.0: prompts stay out of the process list, long prompts get a route, advisor_validate accepts every runtime and the logs are private. Its Codex, deep-loop and Pi parts are in cli-codex v1.9.5.0, cli-external-orchestration v1.7.1.0, deep-loop-runtime v1.5.1.0, deep-review v1.11.1.0, deep-research v1.15.1.0 and the v4.0.0.2 release notes
-8036425eaa  2026-09-27  4.0.0.2  p030 left out on the advisor side: an unused import dropped and comments and doc passages reworded. Its create.sh and drift-guard parts are in system-spec-kit v4.1.4.0 and sk-code-opencode v1.0.1.0
+8036425eaa  2026-09-27  4.0.0.2  p030 left out on the advisor side: an unused import dropped and comments and doc passages reworded. Its create.sh and drift-guard parts are in system-spec-kit v4.1.4.0 and sk-code-skilled v1.0.1.0
 094cdb9f8a  2026-09-27  4.0.0.2  the advisor changelog itself, search metadata completed
 5a37ff619b  2026-09-28  4.0.0.2  p030 v0.12.0.0: the sandbox scenarios clean up without a signal. Its Devin part is in cli-devin v1.4.5.0, written with that phase
 4aafbde035  2026-09-28  4.0.0.2  v0.12.0.0: the catalog states the shim's 2,200 ms cap

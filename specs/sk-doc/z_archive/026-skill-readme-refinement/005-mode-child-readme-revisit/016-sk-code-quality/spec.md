@@ -44,7 +44,7 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` (005-mode-child-readme-revisit) |
 | **Parent Packet** | `sk-doc/026-skill-readme-refinement` |
-| **Predecessor** | `015-sk-code-opencode` |
+| **Predecessor** | `015-sk-code-skilled` |
 | **Successor** | `017-sk-code-review` |
 | **Handoff Criteria** | The sk-code-quality README is rewritten purpose-first on the refined template with a one-line pitch and a problem-first OVERVIEW. The rewrite passes the validator with zero issues, carries a bumped version field with a matching changelog entry and passes the HVR grep and the link guard. This phase folder validates with zero errors |
 <!-- /ANCHOR:metadata -->

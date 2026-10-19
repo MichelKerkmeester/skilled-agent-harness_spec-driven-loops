@@ -1,12 +1,12 @@
 ---
 title: "Implementation Plan: 052 Stress Test Expansion and Alignment"
-description: "Two-track plan for sk-code-opencode alignment and catalog coverage gap filling."
+description: "Two-track plan for sk-code-skilled alignment and catalog coverage gap filling."
 template_source: "SPECKIT_TEMPLATE_SOURCE: level_2 | v2.2"
 trigger_phrases:
   - "005-stress-test-expansion-alignment"
   - "stress test alignment"
   - "stress test coverage"
-  - "sk-code-opencode stress test"
+  - "sk-code-skilled stress test"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -52,7 +52,7 @@ Audit stress_test, apply standards fixes, map feature catalogs, and add determin
 ### Definition of Ready
 - [x] Packet folder supplied.
 - [x] Source catalogs identified.
-- [x] sk-code-opencode rules loaded.
+- [x] sk-code-skilled rules loaded.
 ### Definition of Done
 - [x] Alignment fixes complete.
 - [x] Coverage matrix complete.
@@ -101,7 +101,7 @@ Catalog entries are classified against stress_test coverage, then high-value gap
 ## 6. DEPENDENCIES
 | Dependency | Type | Status | Impact if Blocked |
 |---|---|---|---|
-| sk-code-opencode refs | Internal | Green | Alignment criteria unclear. |
+| sk-code-skilled refs | Internal | Green | Alignment criteria unclear. |
 | Feature catalogs | Internal | Green | Coverage matrix incomplete. |
 | Vitest override config | Temporary | Green | stress_test excluded by default config. |
 <!-- /ANCHOR:dependencies -->

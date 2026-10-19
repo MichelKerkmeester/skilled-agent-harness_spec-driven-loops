@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Since 31888d05bb only `SKILL.md` carries a version, so a reader of a single reference, asset, playbook or catalog doc cannot tell which edition of that doc they hold",
     "created_at": "2026-10-12T05:21:01Z",
-    "last_save_at": "2026-10-12T08:08:29.028Z",
+    "last_save_at": "2026-10-18T20:45:19.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4a6fba4eca3cf201dc0043e4a421e425bdc51c8d6ab0dd9bc44eae94dc4f7d9",
+    "source_fingerprint": "sha256:de883324e5da901dc0ebaf873151452df32889a59dedbb50705601893ab5b003",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9594842923e549232d95e96649c4f688877cfc7ec5f3ad16a2cc6731ee9411bf",
+      "spec.md": "38f9a5434cfbf13b01509c1916bc5e22267b11938837bd5dac11f7c2ac8b7395",
       "plan.md": "d3c78dc4df0555ea022ea7c4eb83a57a38f450d7fd3e3aefaf4b7c8376e469fc",
       "tasks.md": "2b505a087e74caf6ba7593576bf673831050f1da39a972f9df57a6f48081f940",
       "implementation-summary.md": "3df129371c1348f62bca33f520ce07267e4a0b167f27e3ec70814c84d92db21c"

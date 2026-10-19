@@ -33,7 +33,7 @@ _memory:
 
 # Feature Specification: Code README Coverage for the system-deep-loop Runtime
 
-> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `003-drift-census-and-plan-revalidation`; successor `002-sk-code-opencode-alignment`.
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `003-drift-census-and-plan-revalidation`; successor `002-sk-code-skilled-alignment`.
 
 ---
 

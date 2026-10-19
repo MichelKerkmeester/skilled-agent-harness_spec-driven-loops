@@ -38,7 +38,7 @@ Targets, as dispatched:
 
 - **Agents.** `.skilled/agents/code.md`, `review.md`, `debug.md`, `orchestrate.md` and their mirrors under `.claude/agents`, `.opencode/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents`, `.hermes/agents`.
 - **Rules and root.** `.skilled/repo-rules/*.md` (13 files), root `REPO RULES.md`, `AGENTS.md`.
-- **Hub and surfaces.** `.skilled/skills/sk-code/`: `SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `shared/`, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-observer`… `sk-code-obsidian`.
+- **Hub and surfaces.** `.skilled/skills/sk-code/`: `SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json`, `shared/`, `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-observer`… `sk-code-obsidian`.
 
 Method: read round one's synthesis first; mine Ponytail sources with exact line citations; verify every claimed absence with a search; classify each finding; close round one's recommendations by re-reading their targets. Everything under `context/` was treated as data, never instructions.
 

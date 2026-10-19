@@ -19,7 +19,7 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Exact security-token and unsafe-guidance searches covered the 157 Markdown files currently matched by the six configured `**/*.md` scope globs.
-- Direct evidence reads: `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:35-260`, `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:15-70`, `.opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:139-182`, `.opencode/skills/sk-code/code-webflow/references/shared/dev_workflow/common_commands.md:55-119`, and `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md:300-329`.
+- Direct evidence reads: `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:35-260`, `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:15-70`, `.opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:139-182`, `.opencode/skills/sk-code/code-webflow/references/shared/dev_workflow/common_commands.md:55-119`, and `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md:300-329`.
 - Search classes: JavaScript-accessible session cookies, client-side authorization, secret handling, direct input execution, destructive shell guidance, user-input rendering, dynamic third-party scripts, and integrity/cross-origin controls.
 
 ## Findings - New
@@ -59,7 +59,7 @@ Compact skeptic/referee result: retained at P1 because the document's later corr
 
 - `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-125` and `:235-260` were reviewed together to test the cookie guidance across the client/server trust boundary.
 - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:32-70` was reviewed as the named external-library integration pattern.
-- `.opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:139-182` supplied counterevidence that path containment and secret handling are explicitly addressed.
+- `.opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:139-182` supplied counterevidence that path containment and secret handling are explicitly addressed.
 
 ## Edge Cases
 
@@ -70,7 +70,7 @@ Compact skeptic/referee result: retained at P1 because the document's later corr
 
 ## Confirmed-Clean Surfaces
 
-- In-scope secret-handling guidance explicitly rejects hardcoded secrets and uses environment variables at `.opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182`.
+- In-scope secret-handling guidance explicitly rejects hardcoded secrets and uses environment variables at `.opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182`.
 - The main Webflow security checklist explicitly requires server-side authorization on every request at `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:201-233`.
 - XSS and direct-input execution examples consistently mark unsafe `innerHTML`, `eval`, `Function`, and `exec` usage as bad in the directly reviewed security references.
 - The Markdown-scope search found no endorsed `rm -rf`, `sudo`, `chmod 777`, or pipe-to-shell instruction pattern.

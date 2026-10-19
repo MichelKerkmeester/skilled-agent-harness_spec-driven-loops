@@ -1,7 +1,7 @@
 ---
 title: "sk-code-obsidian: Manual Testing Playbook"
 description: "Operator-facing directory for the sk-code-obsidian surface's routing-recall corpus: intent detection, resource-loading isolation, unknown-fallback handling, cross-CLI dispatch stability, token-cost baselines, holdout generalization, and surface-detection precision."
-version: 2.0.2.0
+version: 2.0.3.0
 ---
 
 # sk-code-obsidian: Manual Testing Playbook
@@ -91,7 +91,7 @@ pair fields the sibling `routing-gold` contract uses (deliberately absent here �
 note below).
 
 ### 08 — Surface Detection
-- **OB-020** — [surface-detection/obsidian-surface-resolution.md](surface-detection/obsidian-surface-resolution.md) — positive control: the three `OBSIDIAN` markers and the `OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN` precedence order.
+- **OB-020** — [surface-detection/obsidian-surface-resolution.md](surface-detection/obsidian-surface-resolution.md) — positive control: the three `OBSIDIAN` markers and the `SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN` precedence order.
 - **OB-021** — [surface-detection/negative-control-non-obsidian.md](surface-detection/negative-control-non-obsidian.md) — negative control: a target shaped like an unrelated desktop-app stack (`apps/desktop/src/`) resolves `UNKNOWN` and cites zero `sk-code-obsidian` evidence.
 
 ---

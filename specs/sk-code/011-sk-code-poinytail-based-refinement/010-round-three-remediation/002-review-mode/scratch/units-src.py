@@ -39,7 +39,7 @@ DETECTOR_OLD = '''def detect_surface_evidence(task, workspace_files=None, change
     files = " ".join((workspace_files or []) + (changed_files or [])).lower()
 
     if ".skilled/" in files or ".opencode/" in files or keyword_present("jsonc", text) or keyword_present("mcp", text):
-        return "sk-code:code-opencode"
+        return "sk-code:code-skilled"
     if any(keyword_present(term, text) for term in ["frontend", "web", "css", "dom", "browser"]) or any(
         marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
     ):
@@ -124,14 +124,14 @@ edit(None, SKILL, "version: 1.6.0.0", "version: 1.7.0.0")
 edit(None, SKILL, "# code-review Mode - Stack-Agnostic Findings-First Review", "# sk-code-review Mode - Stack-Agnostic Findings-First Review")
 edit(None, SKILL, "Use the `code-review` mode (of the sk-code family) when:", "Use the `sk-code-review` mode (of the sk-code family) when:")
 edit(None, SKILL,
-     "- Feature implementation without review intent; use the surface skill (`code-webflow` / `code-opencode`).",
-     "- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.")
+     "- Feature implementation without review intent; use the surface skill (`code-webflow` / `code-skilled`).",
+     "- Feature implementation without review intent; load the surface packet (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) that carries the implement doctrine.")
 edit(None, SKILL,
      "- Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.",
      "- Git-only workflow tasks (branching, rebasing, commit hygiene) without code quality evaluation intent.")
 edit(None, SKILL,
-     "- Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-opencode`).",
-     "- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-opencode` or `sk-code-obsidian`) that carries the implement doctrine.")
+     "- Applying review fixes after findings are accepted; use the surface skill (`code-webflow` / `code-skilled`).",
+     "- Applying review fixes after findings are accepted; load the surface packet (`sk-code-webflow`, `sk-code-skilled` or `sk-code-obsidian`) that carries the implement doctrine.")
 edit(None, SKILL, "- Author-side quality gates before review; use `code-quality`.", "- Author-side quality gates before review; use `sk-code-quality`.")
 edit(None, SKILL,
      "- Baseline (always): the `code-review` mode (of the sk-code family) findings-first doctrine.",
@@ -154,14 +154,14 @@ edit(None, SKILL,
      "**Overall assessment**: [APPROVED / REQUESTED_CHANGES / COMMENTED]")
 edit(None, SKILL, "**Baseline used**: [sk-code (`code-review`)]", "**Baseline used**: [sk-code (`sk-code-review`)]")
 edit(None, SKILL,
-     "**Surface evidence used**: [sk-code:code-webflow | sk-code:code-opencode | sk-code:unknown]",
+     "**Surface evidence used**: [sk-code:code-webflow | sk-code:code-skilled | sk-code:unknown]",
      "**Surface evidence used**: [OPENCODE | OBSIDIAN | WEBFLOW | UNKNOWN]")
 edit(None, SKILL,
      "- `code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.",
      "- `sk-code-review` mode baseline + `sk-code` surface evidence contract is explicit in report context.")
 edit(None, SKILL,
-     "- Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.",
-     "- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.")
+     "- Complements, but does not replace, sibling ownership: the surface skills (`code-webflow` / `code-skilled`) apply fixes and own the implement → debug → verify workflow doctrine, and `code-quality` owns author-side gates.",
+     "- Complements, but does not replace, sibling ownership: the surface packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings, and `sk-code-quality` owns author-side gates.")
 edit(None, SKILL,
      "Manual testing scenarios for the `code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Run scenarios via `bash .skilled/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.",
      "Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md` (both the category folder and the scenario file use bare descriptive slugs, no numeric prefix). Validate the root index with `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md`, which applies the playbook rule set. Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.")
@@ -176,7 +176,7 @@ edit(None, README, "# code-review mode", "# sk-code-review mode")
 edit(None, README, "The `code-review` mode of the sk-code family fixes this.", "The `sk-code-review` mode of the sk-code family fixes this.")
 edit(None, README, "The `code-review` mode is the single-pass review baseline", "The `sk-code-review` mode is the single-pass review baseline")
 edit(None, README, "**Baseline used**: sk-code (code-review)", "**Baseline used**: sk-code (sk-code-review)")
-edit(None, README, "**Surface evidence used**: sk-code:code-opencode", "**Surface evidence used**: OPENCODE")
+edit(None, README, "**Surface evidence used**: sk-code:code-skilled", "**Surface evidence used**: OPENCODE")
 edit(None, README, "The baseline minimums from the `code-review` mode are always enforced", "The baseline minimums from the `sk-code-review` mode are always enforced")
 edit(None, README,
      "writing a signature into `.skilled/.code-review-cache/`.",
@@ -186,8 +186,8 @@ edit(None, README,
      "or for git-only tasks that carry no code-quality evaluation.",
      "or for git-only tasks that carry no code quality evaluation.")
 edit(None, README,
-     "| `code-webflow` / `code-opencode` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine |",
-     "| `sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |")
+     "| `code-webflow` / `code-skilled` | Surface skills that apply fixes after review findings are accepted and own the implement → debug → verify workflow doctrine |",
+     "| `sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian` | Surface evidence packets that carry the implement → debug → verify workflow doctrine the acting agent applies after review findings are accepted |")
 edit(None, README, "| `code-quality` | Runs author-side quality gates before review |", "| `sk-code-quality` | Runs author-side quality gates before review |")
 edit(None, README,
      "The security and code-quality checklists are non-negotiable.",
@@ -196,8 +196,8 @@ edit(None, README,
      "A: The `code-review` mode is the single-pass baseline.",
      "A: The `sk-code-review` mode is the single-pass baseline.")
 edit(None, README,
-     "A: The surface skills (`code-webflow` / `code-opencode`) apply fixes and own the implement → debug → verify workflow doctrine. `code-quality` owns author-side gates. The `code-review` mode consumes surface evidence",
-     "A: The surface packets (`sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence")
+     "A: The surface skills (`code-webflow` / `code-skilled`) apply fixes and own the implement → debug → verify workflow doctrine. `code-quality` owns author-side gates. The `code-review` mode consumes surface evidence",
+     "A: The surface packets (`sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence")
 edit(None, README,
      "| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` |",
      "| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py --type playbook .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/manual-testing-playbook.md` reports zero issues under the playbook rule set |")
@@ -215,8 +215,8 @@ edit(None, CORE,
      "When the two disagree on a severity id or its meaning, this file wins and the YAML is corrected by its owner, `deep-review`. "
      "The YAML may be stricter for its own loop, as when it requires `file:line` evidence on `P2`, but never looser.")
 edit(None, CORE,
-     "- Detected code surface -> `sk-code:code-webflow` or `sk-code:code-opencode`; unsupported or unclear surfaces -> `sk-code:unknown`",
-     "- Detected code surface -> `OPENCODE`, `OBSIDIAN` or `WEBFLOW`, each paired with its `sk-code` evidence packet (`sk-code-opencode`, `sk-code-obsidian`, `sk-code-webflow`); unsupported or unclear surfaces -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.")
+     "- Detected code surface -> `sk-code:code-webflow` or `sk-code:code-skilled`; unsupported or unclear surfaces -> `sk-code:unknown`",
+     "- Detected code surface -> `OPENCODE`, `OBSIDIAN` or `WEBFLOW`, each paired with its `sk-code` evidence packet (`sk-code-skilled`, `sk-code-obsidian`, `sk-code-webflow`); unsupported or unclear surfaces -> `UNKNOWN`. Detection follows the shared contract, [`stack-detection.md`](../../shared/references/stack-detection.md) section 2.")
 edit(None, QUICK,
      "- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Canonical review-mode contract manifest (source of truth for deep review taxonomy)",
      "- [review-mode-contract.yaml](../../../system-deep-loop/deep-review/assets/review-mode-contract.yaml) - Deep-review contract manifest. It owns the deep-review loop and consumes the severity ids that [review-core.md](./review-core.md) owns. review-core.md wins when the two disagree on a severity id or its meaning")

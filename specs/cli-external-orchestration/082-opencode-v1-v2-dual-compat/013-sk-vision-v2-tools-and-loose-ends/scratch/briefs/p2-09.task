@@ -1,0 +1,11 @@
+ROLE: You make one literal edit to one TypeScript file. Re-read it first. Make exactly this edit and nothing else.
+
+ACTION: In `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`, replace the line
+
+      await Promise.allSettled([registration.dispose(), auto?.dispose()]);
+
+with the line
+
+      await Promise.allSettled([registration, auto].map(async (held) => held?.dispose()));
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test 2>&1 | tail -5` and print the output verbatim, nothing else.

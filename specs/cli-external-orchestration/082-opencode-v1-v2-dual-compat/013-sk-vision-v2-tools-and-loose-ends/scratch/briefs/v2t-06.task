@@ -1,0 +1,64 @@
+ROLE: You make literal edits to two TypeScript files. Re-read each first. Make exactly these edits and nothing else.
+
+ACTION:
+
+1. In `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`, inside `createSetup`, replace these lines:
+
+    const tools = auto?.tools ?? [];
+    const toolRegistration =
+      tools.length > 0 && ctx.tool
+        ? await ctx.tool.transform((editor) => {
+            for (const definition of tools) editor.add(definition);
+          })
+        : null;
+
+with these lines:
+
+    const tools = auto?.tools ?? [];
+    let toolRegistration: V2Registration | null = null;
+    if (tools.length > 0 && ctx.tool) {
+      try {
+        toolRegistration = await ctx.tool.transform((editor) => {
+          for (const definition of tools) editor.add(definition);
+        });
+      } catch (error: unknown) {
+        // Fail open: the command and image inspection still work without the tools.
+        if (process.env.SK_VISION_DEBUG === '1') {
+          const message = error instanceof Error ? error.message : String(error);
+          process.stderr.write(`[sk-vision] tool registration failed: ${message}\n`);
+        }
+      }
+    }
+
+2. In `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`, inside the `describe("v2 tool registration", () => {` block, directly after the closing `});` of the test `it("adds no tools when automatic inspection is off", async () => {`, insert this test:
+
+  it("keeps the prompt hook and disposes cleanly when tool registration fails", async () => {
+    const base = makeContext();
+    const ctx: SetupContext = {
+      ...base.ctx,
+      tool: {
+        transform: async () => {
+          throw new Error("tool editor unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => ({
+        evidence: async () => null,
+        tools: [fakeTool("sk_vision_status")],
+        dispose: async () => {
+          autoDisposed += 1;
+        },
+      }),
+    })(ctx);
+
+    expect(base.hook()).toBeDefined();
+    await dispose();
+    expect(base.disposed).toEqual(["prompt", "command"]);
+    expect(autoDisposed).toBe(1);
+  });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -4` and print the output verbatim, nothing else.

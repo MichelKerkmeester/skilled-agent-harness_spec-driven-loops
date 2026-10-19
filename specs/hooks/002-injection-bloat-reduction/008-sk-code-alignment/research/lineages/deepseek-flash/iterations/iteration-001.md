@@ -86,10 +86,10 @@ Verdict: **ALIGNED except F1/F2**.
 
 ## Sources Consulted
 
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/SKILL.md:1-185]
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md:166-284]
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/references/typescript/quality-standards/overview-and-type-system.md]
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:38-77]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/SKILL.md:1-185]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md:166-284]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:38-77]
 - [SOURCE: .opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:30-54]
 - [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts:412-429, 842-907]
 - [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/render.ts:352-384]

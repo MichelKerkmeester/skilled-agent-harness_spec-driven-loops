@@ -2026,8 +2026,8 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/001-search-scenario-design/description.json
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/001-search-scenario-design/implementation-summary.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/014-mcp-runtime-stress-remediation/001-search-intelligence-stress-playbook/001-search-scenario-design/graph-metadata.json
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-opencode-audit-report.md
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-opencode-audit-prompt.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-skilled-audit-report.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/sk-code-skilled-audit-prompt.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/remediation-runner.sh
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/codex-runner.sh
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/005-code-graph/005-code-graph-backend-resilience/scratch/readme-cleanup-prompt.md

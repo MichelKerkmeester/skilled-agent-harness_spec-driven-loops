@@ -1,0 +1,14 @@
+ROLE: You make one literal edit to one TypeScript file. Re-read it first. Make exactly this edit and nothing else.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`, `createSetup` registers the command and creates the automatic-inspection client before it registers the prompt hook. If `ctx.session.hook()` rejects, setup throws before it returns its cleanup, so neither is ever released. Release both, then rethrow.
+
+ACTION: In `createSetup`, find the line `    const promptRegistration = await ctx.session.hook('prompt', async (input) => {` and, further down, the line `    });` that closes that call (it sits directly before the blank line and the comment `    // OpenCode 1 registers the tools from \`server\`, but OpenCode 2 only calls`). Replace that closing `    });` line with these lines:
+
+    }).catch(async (error: unknown) => {
+      // Setup never returns its cleanup when it throws, so release what it holds first.
+      await registration.dispose();
+      await auto?.dispose();
+      throw error;
+    });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -6` and print the output verbatim, nothing else.

@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure",
+  "description": "Phase 4: integration-review-and-docs-closure",
+  "keywords": [
+    "phase",
+    "integration-review-and-docs-closure"
+  ],
+  "lastUpdated": "2026-10-18T13:24:03.611Z",
+  "specId": "004",
+  "folderSlug": "integration-review-and-docs-closure",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_12-55__closed-phase-004-from-the-final-state-final-gate.md",
+    "18-10-26_14-24__deep-review-of-the-session-relaunch-loop-on-cli.md"
+  ]
+}

@@ -1,7 +1,7 @@
 # Iteration 1: Audit of runtime/lib and runtime/api
 
 ## Focus
-Surfaces unopened by the prior lane: `runtime/lib` (validation, graph, description, continuity, parsing, spec, utils, config) and `runtime/api` against the TypeScript style guide (`sk-code-opencode/references/typescript/style-guide/`), universal code quality standards (`sk-code/shared/references/universal/code-quality-standards.md`), and the library module map (`runtime/lib/MODULE-MAP.md`).
+Surfaces unopened by the prior lane: `runtime/lib` (validation, graph, description, continuity, parsing, spec, utils, config) and `runtime/api` against the TypeScript style guide (`sk-code-skilled/references/typescript/style-guide/`), universal code quality standards (`sk-code/shared/references/universal/code-quality-standards.md`), and the library module map (`runtime/lib/MODULE-MAP.md`).
 Audit angles evaluated: module boundaries, helper duplication vs `@spec-kit/shared`, error handling & streams, dead/retired code, naming conventions, and test coverage floor.
 
 ---
@@ -130,7 +130,7 @@ Audit angles evaluated: module boundaries, helper duplication vs `@spec-kit/shar
 - `runtime/lib/parsing/content-normalizer.ts:164,182`
 - `runtime/lib/extraction/entity-extractor.ts:23`
 - `runtime/lib/MODULE-MAP.md §1, §3, §4`
-- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md §2, §4, §5`
+- `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md §2, §4, §5`
 - `sk-code/shared/references/universal/code-quality-standards.md §3, §4`
 
 ---

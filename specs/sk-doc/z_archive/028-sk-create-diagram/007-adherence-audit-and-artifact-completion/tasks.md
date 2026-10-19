@@ -57,7 +57,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 [B] Dispatch 1 (Deepseek v4 Flash via cli-opencode): audit SKILL.md + 37 references vs. sk-create-skill templates, 2 Python scripts + config/YAML vs. sk-code-opencode standards; fix findings in place [EVIDENCE: 47/47 files checked, 26/47 fixed (missing H2 numbering on 21 references, SKILL.md section reorder, missing docstrings on 2 scripts), 21/47 clean — `phase-007-audit-dispatch.log`.]
+- [x] T002 [B] Dispatch 1 (Deepseek v4 Flash via cli-opencode): audit SKILL.md + 37 references vs. sk-create-skill templates, 2 Python scripts + config/YAML vs. sk-code-skilled standards; fix findings in place [EVIDENCE: 47/47 files checked, 26/47 fixed (missing H2 numbering on 21 references, SKILL.md section reorder, missing docstrings on 2 scripts), 21/47 clean — `phase-007-audit-dispatch.log`.]
 - [x] T003 Independently verify dispatch 1's claimed findings and fixes against the real files [EVIDENCE: mtime diff confirmed exactly the 26 claimed files changed; spot-checked 3 files; `validate_skill_package.py --strict` = PASS.]
 - [x] T004 [B] Dispatch 2 (Deepseek v4 Flash via cli-opencode): author `manual-testing-playbook/` per the decided taxonomy [EVIDENCE: 10 files created (root + 9 scenarios across 3 categories).]
 - [x] T005 Independently verify dispatch 2's output with `validate-playbook-package.cjs` [EVIDENCE: independently re-run — `PASS scenarios=9 categories=3 violations=0 warnings=0 exit=0`.]

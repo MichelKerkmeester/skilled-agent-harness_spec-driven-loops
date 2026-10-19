@@ -34,7 +34,7 @@ Track the two parallel repairs, then review their evidence and complete the veri
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Repair Lanes
 
-- [x] T001 [P] Update router-sync check 1b to skip Git-ignored files and add regression cases for ignored and non-ignored untracked docs (`.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs`, `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs`). Evidence: [lane-01-router-sync-ignored.txt](scratch/evidence/lane-01-router-sync-ignored.txt).
+- [x] T001 [P] Update router-sync check 1b to skip Git-ignored files and add regression cases for ignored and non-ignored untracked docs (`.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs`, `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`). Evidence: [lane-01-router-sync-ignored.txt](scratch/evidence/lane-01-router-sync-ignored.txt).
 - [x] T002 [P] Recapture the full corpus baseline under this child and repoint the workflow without changing its floors (`scripts/capture-top3.mjs`, `baseline/`, `.github/workflows/routing-registry-drift.yml`). Evidence: [lane-02-baseline-recapture.txt](scratch/evidence/lane-02-baseline-recapture.txt).
 <!-- /ANCHOR:phase-1 -->
 

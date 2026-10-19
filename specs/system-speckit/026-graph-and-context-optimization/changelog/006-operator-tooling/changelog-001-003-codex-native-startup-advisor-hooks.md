@@ -55,7 +55,7 @@ This phase ported the Claude reference implementation to a new `hooks/codex/` ad
 | `npx vitest run tests/codex-session-start-hook.vitest.ts tests/codex-user-prompt-submit-hook.vitest.ts tests/claude-user-prompt-submit-hook.vitest.ts` | PASS, 3 files and 22 tests |
 | Live hooks JSON parse and config flag check | PASS |
 | Direct SessionStart smoke | PASS, emitted startup context in 42.22ms |
-| Direct UserPromptSubmit smoke | PASS, emitted `Advisor: stale; use sk-code-opencode 0.92/0.12 pass.` in 71ms |
+| Direct UserPromptSubmit smoke | PASS, emitted `Advisor: stale; use sk-code-skilled 0.92/0.12 pass.` in 71ms |
 | Real Codex feature flag (`codex features list`) | PASS, `codex_hooks` reports true |
 | Fresh real Codex smoke | PASS, returned `HOOK_SMOKE_OK` with 28,265 input tokens |
 | Strict spec validation (`validate.sh --strict`) | PASS, 0 errors and 0 warnings |

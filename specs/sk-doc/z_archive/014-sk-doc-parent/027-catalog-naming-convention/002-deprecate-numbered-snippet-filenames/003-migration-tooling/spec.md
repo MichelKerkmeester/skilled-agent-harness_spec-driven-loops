@@ -74,7 +74,7 @@ own spec-folder evidence. Phase 004 is the only place this script runs with muta
   - `mcp-tooling/mcp-click-up/manual_testing_playbook/intra-routing-recall` (7; holdout 005-006, negative 007)
   - `mcp-tooling/mcp-figma/manual_testing_playbook/intra-routing-recall` (9; holdout 007-008, negative 009)
   - `sk-code/code-review/manual_testing_playbook/intra-routing-recall` (7)
-  - `sk-code/code-opencode/manual_testing_playbook/{authoring-verification, config-hooks, language-standards}` (9)
+  - `sk-code/code-skilled/manual_testing_playbook/{authoring-verification, config-hooks, language-standards}` (9)
   - `sk-code/code-webflow/manual_testing_playbook/{implementation-quality, performance-animation, deployment-forms-video, language-standards}` (13)
   - `sk-code/code-quality/manual_testing_playbook/quality-gate` (1)
   - `sk-prompt/manual_testing_playbook/hub-routing` (4)

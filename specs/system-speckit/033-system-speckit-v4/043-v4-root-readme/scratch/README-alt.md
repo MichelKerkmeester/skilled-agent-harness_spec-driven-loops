@@ -1548,11 +1548,11 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-1. Replace the surface packets (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`
+1. Replace the surface packets (`sk-code-webflow/`, `sk-code-skilled/`, `sk-code-obsidian/`) with packets for your stack. Each one owns its own `references/` and `assets/`
 2. Register your packets in `mode-registry.json` and `hub-router.json`, and update the mode table in `SKILL.md` §1
 3. Update `shared/references/stack-detection.md` to match your stack's marker files and CWD signals
 4. Update the `RESOURCE_MAP` in `ROUTER.md` §11 so each intent key points at your renamed packet resources
-5. Bump the `sk-code` version and ship a changelog. Use `sk-code-opencode/assets/checklists/skill-authoring.md` as your guide
+5. Bump the `sk-code` version and ship a changelog. Use `sk-code-skilled/assets/checklists/skill-authoring.md` as your guide
 
 The other shipped skills keep working unchanged: `sk-doc` still validates your markdown, `sk-git` still manages your branches, `system-spec-kit` still specs your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
 

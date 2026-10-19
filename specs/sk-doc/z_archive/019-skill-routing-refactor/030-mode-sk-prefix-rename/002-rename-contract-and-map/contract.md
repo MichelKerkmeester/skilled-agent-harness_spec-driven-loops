@@ -189,7 +189,7 @@ directory.
 1. `quality` + `code-quality` → `sk-code-quality`.
 2. `code-review` + `code-review` → `sk-code-review`.
 3. `code-webflow` + `code-webflow` → `sk-code-webflow`.
-4. `code-opencode` + `code-opencode` → `sk-code-opencode`.
+4. `code-skilled` + `code-skilled` → `sk-code-skilled`.
 5. Apply the atomic identity commit to the registry, router, all four directories, and
    all four packet `SKILL.md` names.
 6. Regenerate `sk-code/leaf-manifest.json`.

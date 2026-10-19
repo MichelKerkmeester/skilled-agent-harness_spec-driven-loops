@@ -15,7 +15,7 @@
   "findingsCount": 4,
   "noveltyJustification": "Two findings are fully new (the legacy-hook naming contradiction the quality mode owns, and the mode-wide rename miss at 39 rows), one records phase 009 in-flight scope, and one verifies all resource paths resolve.",
   "keyQuestions": [
-    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` beyond rounds one and two?"
   ],
   "answeredQuestions": [],
   "ruledOut": [
@@ -28,7 +28,7 @@
     ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
     ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
     ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
     ".skilled/skills/sk-code/mode-registry.json"
   ],
   "timestamp": "2026-10-10T08:37:26Z",

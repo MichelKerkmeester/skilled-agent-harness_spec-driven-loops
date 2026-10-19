@@ -105,7 +105,7 @@ npx --no-install tsc --noEmit
 npx --no-install tsc --noEmit --ignoreDeprecations 6.0
 for schema in lib/shadow-parity/schemas/*.json; do jq empty "$schema"; done
 cd ../../../..
-.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+.opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 git diff --check
 ```
 <!-- /ANCHOR:verification -->

@@ -299,7 +299,7 @@
       "text": "Loss rows share one shape: the prompt's surface noun draws the surface mode while the label follows the requested action.",
       "sources": [
         "~/.skilled/.labels/020-rows.jsonl",
-        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5"
+        ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:5"
       ],
       "_lineages": [
         "deepseek"

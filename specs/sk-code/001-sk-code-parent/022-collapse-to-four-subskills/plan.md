@@ -36,7 +36,7 @@ _memory:
 | **Testing** | parent-skill-check STRICT, parent-hub vocab-sync, check-rule-copies canary, drift-guard vitest, full skill-benchmark vitest suite, markdown link check, router-final comparison |
 
 ### Overview
-This phase completed the structural collapse of the sk-code parent hub from eight sub-skills to exactly four. The near-empty workflow-mode skills `code-implement`, `code-debug`, and `code-verify` were dissolved into shared workflow doctrine that is symlinked into both surviving surface skills. `code-animation` was folded into `code-webflow` as non-skill references and assets. Routing metadata, external references, playbook gold, benchmark harness expectations, and `benchmark/2026-06-01--router-final--router/` were reconciled to the surface-primary model. The shipped result preserves all real capability while reducing routable sub-skill surface area to `code-opencode`, `code-webflow`, `code-review`, and `code-quality`.
+This phase completed the structural collapse of the sk-code parent hub from eight sub-skills to exactly four. The near-empty workflow-mode skills `code-implement`, `code-debug`, and `code-verify` were dissolved into shared workflow doctrine that is symlinked into both surviving surface skills. `code-animation` was folded into `code-webflow` as non-skill references and assets. Routing metadata, external references, playbook gold, benchmark harness expectations, and `benchmark/2026-06-01--router-final--router/` were reconciled to the surface-primary model. The shipped result preserves all real capability while reducing routable sub-skill surface area to `code-skilled`, `code-webflow`, `code-review`, and `code-quality`.
 
 <!-- /ANCHOR:summary -->
 ---
@@ -67,10 +67,10 @@ This phase completed the structural collapse of the sk-code parent hub from eigh
 Surface-primary parent hub collapse with shared doctrine preservation: dissolve generic workflow-mode shells into `shared/references/`, expose that doctrine through in-skill symlinks on both surviving surfaces, fold animation into the Webflow surface as an overlay, and keep quality/review as standalone workflow gates.
 
 ### Key Components
-- **Surviving sub-skills**: `code-opencode`, `code-webflow`, `code-review`, and `code-quality` remain the only sk-code folders with SKILL.md.
+- **Surviving sub-skills**: `code-skilled`, `code-webflow`, `code-review`, and `code-quality` remain the only sk-code folders with SKILL.md.
 - **Shared workflow doctrine**: `shared/references/workflow_implement.md`, `shared/references/workflow_debug.md`, and `shared/references/workflow_verify.md` preserve the dissolved mode doctrine.
-- **Surface symlinks**: `code-opencode/references/` and `code-webflow/references/` expose the shared workflow doctrine from inside each surface.
-- **Relocated assets**: Verification scripts live under `code-opencode/assets/scripts/`; animation references/assets live under `code-webflow/{references,assets}/animation/`; checklists remain under their preserved homes.
+- **Surface symlinks**: `code-skilled/references/` and `code-webflow/references/` expose the shared workflow doctrine from inside each surface.
+- **Relocated assets**: Verification scripts live under `code-skilled/assets/scripts/`; animation references/assets live under `code-webflow/{references,assets}/animation/`; checklists remain under their preserved homes.
 - **Router and benchmark surfaces**: `hub-router.json`, `mode-registry.json`, `shared/references/smart_routing.md`, manual testing playbook gold, benchmark harness tests, and `benchmark/2026-06-01--router-final--router/` all reflect the four-sub-skill model.
 
 ### Data Flow
@@ -84,12 +84,12 @@ The parent hub now routes authoring work to the relevant surviving surface first
 
 ### Phase 1: Readiness and Baseline Inventory
 - [x] Confirm phase-022 scope, requirements, success criteria, risks, and out-of-scope boundaries.
-- [x] Confirm the target hub has exactly four surviving sub-skills: `code-opencode`, `code-webflow`, `code-review`, and `code-quality`.
+- [x] Confirm the target hub has exactly four surviving sub-skills: `code-skilled`, `code-webflow`, `code-review`, and `code-quality`.
 - [x] Inventory dissolved-mode doctrine, verification scripts, debugging and verification checklists, animation references/assets, routing metadata, external references, and benchmark gold requiring reconciliation.
 
 ### Phase 2: Fresh Benchmark Packages
 - [x] Consolidate generic implement, debug, and verify doctrine into `shared/references/workflow_{implement,debug,verify}.md`.
-- [x] Symlink the shared workflow doctrine into both `code-opencode/references/` and `code-webflow/references/`.
+- [x] Symlink the shared workflow doctrine into both `code-skilled/references/` and `code-webflow/references/`.
 - [x] Relocate real dissolved-mode assets, including verify scripts and preserved checklists, without content loss.
 - [x] Fold `code-animation` references and assets into `code-webflow` as non-skill animation resources.
 
@@ -97,7 +97,7 @@ The parent hub now routes authoring work to the relevant surviving surface first
 - [x] Delete the dissolved/folded sub-skill folders so only four SKILL.md files remain under sk-code.
 - [x] Reconcile `hub-router.json`, `mode-registry.json`, and `shared/references/smart_routing.md` to the four-sub-skill model.
 - [x] Repoint external references in agents and specs/docs off the dissolved sub-skills.
-- [x] Restore the verify Iron Law in shared verify doctrine and repoint canary and external verify-script references to `code-opencode`.
+- [x] Restore the verify Iron Law in shared verify doctrine and repoint canary and external verify-script references to `code-skilled`.
 - [x] Verify parent-hub strict checks, vocabulary sync, rule-copy canary, and router drift guard pass.
 
 ### Phase 4: Parent Rollup and Optional Catalogs

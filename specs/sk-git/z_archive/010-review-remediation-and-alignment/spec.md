@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-git Review Remediation and sk-code Alignment"
-description: "Fix the confirmed correctness/safety findings from the GPT-5.6-SOL review of the owner-first worktree tooling (session/reaper/allocator/pre-push), align the shell surface with the sk-code code-opencode conventions, add adversarial regression coverage, reconcile the overclaimed 002 closeout docs, and refresh affected READMEs."
+description: "Fix the confirmed correctness/safety findings from the GPT-5.6-SOL review of the owner-first worktree tooling (session/reaper/allocator/pre-push), align the shell surface with the sk-code code-skilled conventions, add adversarial regression coverage, reconcile the overclaimed 002 closeout docs, and refresh affected READMEs."
 trigger_phrases:
   - "sk-git review remediation"
   - "worktree tooling hardening"
@@ -35,7 +35,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-A GPT-5.6-SOL (max) adversarial review of the owner-first worktree tooling shipped by `009-skill-scoped-worktree-naming` returned DO-NOT-SHIP with reproduced correctness and safety defects. Six were independently re-verified against source. This packet fixes every confirmed finding across `worktree-session.sh`, `worktree-reaper.sh`, `worktree-naming.sh`, and the `pre-push` hook; adds the adversarial regression cases the original harnesses missed; aligns the sourceable shell surface with the sk-code code-opencode conventions; reconciles the 002 closeout rows that over-claimed the now-disproven safety contracts (no data was lost — that finding was a doc-overclaim, verified); and refreshes the affected READMEs.
+A GPT-5.6-SOL (max) adversarial review of the owner-first worktree tooling shipped by `009-skill-scoped-worktree-naming` returned DO-NOT-SHIP with reproduced correctness and safety defects. Six were independently re-verified against source. This packet fixes every confirmed finding across `worktree-session.sh`, `worktree-reaper.sh`, `worktree-naming.sh`, and the `pre-push` hook; adds the adversarial regression cases the original harnesses missed; aligns the sourceable shell surface with the sk-code code-skilled conventions; reconciles the 002 closeout rows that over-claimed the now-disproven safety contracts (no data was lost — that finding was a doc-overclaim, verified); and refreshes the affected READMEs.
 
 ---
 
@@ -65,7 +65,7 @@ The owner-first worktree tooling passed its own harnesses (31/9/8) but the harne
 
 ### Purpose
 
-Restore the shipped-state claims to truth: fix each confirmed defect with a RED-first regression test, align the shell to the sk-code code-opencode surface, and reconcile the docs so no closeout row claims a contract the code does not honor.
+Restore the shipped-state claims to truth: fix each confirmed defect with a RED-first regression test, align the shell to the sk-code code-skilled surface, and reconcile the docs so no closeout row claims a contract the code does not honor.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -77,7 +77,7 @@ Restore the shipped-state claims to truth: fix each confirmed defect with a RED-
 
 - Code fixes for every confirmed finding in `worktree-session.sh`, `worktree-reaper.sh`, `worktree-naming.sh`, `pre-push`.
 - Adversarial regression tests for each reproduced defect.
-- sk-code code-opencode conformance for the sourceable shell surface (strict-mode pattern, verification gate).
+- sk-code code-skilled conformance for the sourceable shell surface (strict-mode pattern, verification gate).
 - Reconciliation of the 002 packet's over-claimed closeout rows + the Phase-5 "0-ahead each" wording + the branch-count accounting.
 - README refresh for `.opencode/bin/README.md` and `.opencode/scripts/git-hooks/README.md` where behavior changed.
 
@@ -124,7 +124,7 @@ Restore the shipped-state claims to truth: fix each confirmed defect with a RED-
 | REQ-006 | `--reap-daemons` signals only genuinely orphaned daemons. | referenced worktree/DB path is canonicalized and required absent, and PID identity re-validated, before any signal; dry-run test proves a live-worktree daemon is not targeted. |
 | REQ-007 | Owner authorization derives only from version-controlled skills. | owner list built from tracked `SKILL.md` (git ls-files / pushed tree), not untracked files; pre-push rejects an untracked-owner branch; regression test covers it. |
 | REQ-008 | The pre-push validator is fail-open on internal error. | validation is tri-state (valid / invalid-name / internal-error); an internal error (e.g. `find` exit 2) never blocks a legal push; regression test covers it. |
-| REQ-009 | The sourceable shell surface conforms to sk-code code-opencode. | sk-code OPENCODE/SHELL verification passes for the touched scripts (guarded strict-mode pattern for sourceable files); no regression to sourcing semantics. |
+| REQ-009 | The sourceable shell surface conforms to sk-code code-skilled. | sk-code OPENCODE/SHELL verification passes for the touched scripts (guarded strict-mode pattern for sourceable files); no regression to sourcing semantics. |
 | REQ-010 | 002 closeout docs match reality after fixes. | over-claimed rows reconciled or pointed at this packet; Phase-5 "0-ahead each" reworded to "0-ahead or branch preserved"; branch-count accounting corrected. |
 
 ### P2
@@ -141,7 +141,7 @@ Restore the shipped-state claims to truth: fix each confirmed defect with a RED-
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Every confirmed SOL finding has a RED-first regression test that now passes.
-- **SC-002**: All shell harnesses green; `bash -n` clean; sk-code code-opencode verification passes.
+- **SC-002**: All shell harnesses green; `bash -n` clean; sk-code code-skilled verification passes.
 - **SC-003**: No 002 closeout row claims a contract the code does not honor.
 - **SC-004**: `package_skill.py --check` on sk-git stays PASS; packet `validate.sh --strict` Errors 0.
 - **SC-005**: An adversarial re-verification pass (re-run of the reproductions) cannot reproduce the fixed defects.

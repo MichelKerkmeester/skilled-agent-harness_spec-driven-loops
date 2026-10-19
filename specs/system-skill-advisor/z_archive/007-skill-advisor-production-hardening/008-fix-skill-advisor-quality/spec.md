@@ -202,7 +202,7 @@ Dependencies:
 | Task-intent prompt with high direct score AND high liveNormalized | Strong signal, no token-stuffing | Passes directScore branch; dispersion guard never evaluated |
 | Three-way tie within ambiguity margin | A, B, C scores within 0.05 | All three carry `ambiguousWith` containing the other two |
 | Review prompt without write verb | "review the typescript module" | Routes to `sk-code-review` via existing `review` token boost; new rule does not fire |
-| Write prompt without review | "update this typescript module" | Routes to `sk-code-opencode` or `sk-code` via existing write-verb surfaces; new rule does not fire (no `review`) |
+| Write prompt without review | "update this typescript module" | Routes to `sk-code-skilled` or `sk-code` via existing write-verb surfaces; new rule does not fire (no `review`) |
 <!-- /ANCHOR:edges -->
 
 ---

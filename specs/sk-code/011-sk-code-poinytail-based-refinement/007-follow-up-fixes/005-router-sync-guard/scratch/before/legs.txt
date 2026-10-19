@@ -10,7 +10,7 @@ FAIL check 1b: every routable reference or asset doc is routed (9 problem(s))
   - orphan (routable doc no router names): sk-code-obsidian/references/skill-reference-integrity.md
   - orphan (routable doc no router names): sk-code-obsidian/references/theme-variables.md
 PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
-PASS check 3: compiled destinations, leaf-manifest and code-opencode RESOURCE_MAP agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
 PASS check 4: playbook expected_resource is emitted by the router
 router-sync: 4/5 checks passed
 exit=1

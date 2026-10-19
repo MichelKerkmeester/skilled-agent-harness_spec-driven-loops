@@ -116,7 +116,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `sk-code-opencode`, `sk-create-readme` | Internal | Green | Standards and template the agents load |
+| `sk-code-skilled`, `sk-create-readme` | Internal | Green | Standards and template the agents load |
 <!-- /ANCHOR:dependencies -->
 
 ---

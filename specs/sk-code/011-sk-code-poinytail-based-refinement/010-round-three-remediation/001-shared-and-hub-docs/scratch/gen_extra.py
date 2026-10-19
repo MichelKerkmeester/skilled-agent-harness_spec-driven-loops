@@ -19,7 +19,7 @@ FIRST_TASK = 146
 PB = ".skilled/skills/sk-code/manual-testing-playbook"
 GM = ".skilled/skills/sk-code/graph-metadata.json"
 CS1 = f"{PB}/cross-stack-routing/webflow-plus-motion-dev.md"
-CS2 = f"{PB}/cross-stack-routing/opencode-plus-motion-dev.md"
+CS2 = f"{PB}/cross-stack-routing/skilled-plus-motion-dev.md"
 CS3 = f"{PB}/cross-stack-routing/non-webflow-plus-motion-dev.md"
 SB = f"{PB}/compiled-routing/surface-bundle-compiled-routing.md"
 SF = f"{PB}/design-restraint/stack-folders-validator.md"
@@ -44,18 +44,18 @@ edit(CS3, "- `sk-code-webflow/assets/checklists/code-quality-checklist.md`", f"-
      "Repoint the Webflow code-quality checklist in the non-Webflow plus Motion.dev scenario")
 
 # Retired packet names.
-edit(SB, "(`code-webflow` / `code-opencode` / `code-review` / `quality`)",
-     "(`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`)",
+edit(SB, "(`code-webflow` / `code-skilled` / `code-review` / `quality`)",
+     "(`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`, bundled behind `sk-code-review` or `sk-code-quality`)",
      "Use the live packet keys and three surfaces in the surface-bundle focus line")
 edit(SB, "- Mode: `code-webflow` (surface-resolved bundle)", "- Mode: `sk-code-webflow` (surface-resolved bundle)",
      "Use the live packet key in the surface-bundle Mode line")
-edit(SF, "every known code-opencode language has", "every known sk-code-opencode language has",
+edit(SF, "every known code-skilled language has", "every known sk-code-skilled language has",
      "Use the live packet key in the stack-folders scenario description")
-edit(SF, "The code-opencode skill documents stack evidence", "The sk-code-opencode skill documents stack evidence",
+edit(SF, "The code-skilled skill documents stack evidence", "The sk-code-skilled skill documents stack evidence",
      "Use the live packet key in the stack-folders scenario overview")
-edit(SF, "the documented code-opencode languages", "the documented sk-code-opencode languages",
+edit(SF, "the documented code-skilled languages", "the documented sk-code-skilled languages",
      "Use the live packet key in the stack-folders realistic request")
-edit(SF, "code-opencode language reference folder validator.", "sk-code-opencode language reference folder validator.",
+edit(SF, "code-skilled language reference folder validator.", "sk-code-skilled language reference folder validator.",
      "Use the live packet key in the stack-folders source anchor")
 edit(CH, "inside `code-quality` (the `sk-code` quality workflow mode)", "inside `sk-code-quality` (the `sk-code` quality workflow mode)",
      "Use the live packet key in the comment-hygiene hand-off note")
@@ -70,8 +70,8 @@ edit(CH, "dependency from `code-quality` onto the deep-loop runtime", "dependenc
 
 # graph-metadata.json causal_summary: the regenerator preserves this authored field
 # (regenerate-skill-derived.cjs PRESERVED_FIELDS), so it is a hand edit, not a command.
-edit(GM, "two workflow modes (quality, code-review) or bundles one of three read-only surface evidence packets (code-webflow, code-opencode, code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay, and code-obsidian carries",
-     "two workflow modes (sk-code-quality, sk-code-review) or bundles one of three read-only surface evidence packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; sk-code-webflow also carries the Motion.dev animation overlay, and sk-code-obsidian carries",
+edit(GM, "two workflow modes (quality, code-review) or bundles one of three read-only surface evidence packets (code-webflow, code-skilled, code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; code-webflow also carries the Motion.dev animation overlay, and code-obsidian carries",
+     "two workflow modes (sk-code-quality, sk-code-review) or bundles one of three read-only surface evidence packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian) over a shared surface-detection router. Each surface carries the shared implement/debug/verify workflow doctrine plus its stack knowledge; sk-code-webflow also carries the Motion.dev animation overlay, and sk-code-obsidian carries",
      "Use the live packet keys in the graph-metadata.json causal_summary")
 
 UNITS_DIR.mkdir(parents=True, exist_ok=True)

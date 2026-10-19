@@ -12931,7 +12931,7 @@ index f8c2c255ab..e454ddcb5c 100644
 -      2550
 +      2579
      ],
-     "037 001 sk code opencode standards audit": [
+     "037 001 sk code skilled standards audit": [
 -      9326,
 -      9327,
 -      9329,
@@ -12941,7 +12941,7 @@ index f8c2c255ab..e454ddcb5c 100644
 +      9310,
 +      9311
      ],
-     "037 001 sk code opencode standards audit resource map": [
+     "037 001 sk code skilled standards audit resource map": [
 -      9328
 +      9309
      ],
@@ -134885,11 +134885,11 @@ index f8c2c255ab..e454ddcb5c 100644
 -      3292
 +      3326
      ],
-     "sk code opencode alignment": [
+     "sk code skilled alignment": [
 -      2666
 +      2695
      ],
-     "sk code opencode audit": [
+     "sk code skilled audit": [
 -      9326,
 -      9327,
 -      9329,
@@ -134901,35 +134901,35 @@ index f8c2c255ab..e454ddcb5c 100644
 +      9311,
 +      11964
      ],
-     "sk code opencode audit file ledger": [
+     "sk code skilled audit file ledger": [
 -      9328
 +      9309
      ],
-     "sk code opencode conformance spec kit": [
+     "sk code skilled conformance spec kit": [
 -      14236
 +      14217
      ],
-     "sk code opencode esm exemption": [
+     "sk code skilled esm exemption": [
 -      11525
 +      11506
      ],
-     "sk code opencode readme": [
+     "sk code skilled readme": [
 -      6683
 +      6717
      ],
-     "sk code opencode readme plan": [
+     "sk code skilled readme plan": [
 -      6682
 +      6716
      ],
-     "sk code opencode readme summary": [
+     "sk code skilled readme summary": [
 -      6681
 +      6715
      ],
-     "sk code opencode readme tasks": [
+     "sk code skilled readme tasks": [
 -      6684
 +      6718
      ],
-     "sk code opencode rename": [
+     "sk code skilled rename": [
 -      5797,
 -      5798,
 -      5799,
@@ -134939,11 +134939,11 @@ index f8c2c255ab..e454ddcb5c 100644
 +      5833,
 +      5834
      ],
-     "sk code opencode standards audit": [
+     "sk code skilled standards audit": [
 -      11323
 +      11304
      ],
-     "sk code opencode stress test": [
+     "sk code skilled stress test": [
 -      9515,
 -      9516,
 -      9517,
@@ -134961,7 +134961,7 @@ index f8c2c255ab..e454ddcb5c 100644
 +      9503,
 +      9504
      ],
-     "sk code opencode stress test alignment": [
+     "sk code skilled stress test alignment": [
 -      11420
 +      11401
      ],

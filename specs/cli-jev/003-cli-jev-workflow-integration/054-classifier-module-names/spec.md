@@ -111,7 +111,7 @@ Every Jev code path outside cli-classifier is found by looking for files that st
 | ID | Requirement |
 |----|-------------|
 | REQ-003 | No file outside `specs/`, changelogs and generated files names an old hook path |
-| REQ-004 | New and changed code passes the sk-code-opencode alignment verifier |
+| REQ-004 | New and changed code passes the sk-code-skilled alignment verifier |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

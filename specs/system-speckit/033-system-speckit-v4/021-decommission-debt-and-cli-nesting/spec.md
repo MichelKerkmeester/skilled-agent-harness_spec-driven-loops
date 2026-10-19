@@ -56,7 +56,7 @@ Every recorded debt item is fixed at source or deleted, the skill has one data f
 - The six debt items from the 052 goal log, fixed at source with tests where behavior changed.
 - `data/trigger-index.json` moved to `runtime/data/`, every reader, writer and document following; the retired `search-decisions.jsonl` removed.
 - The retired working-memory rollback runbook deleted with its README, alias and manifest entries.
-- Code alignment of `runtime/` and `scripts/` with `sk-code-opencode` standards, behavior-preserving, by fresh agents on disjoint folder sets.
+- Code alignment of `runtime/` and `scripts/` with `sk-code-skilled` standards, behavior-preserving, by fresh agents on disjoint folder sets.
 - A conforming code-folder README in every code folder of both packages.
 
 ### Out of Scope
@@ -118,7 +118,7 @@ Every recorded debt item is fixed at source or deleted, the skill has one data f
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | `sk-code-opencode` and `sk-create-readme` contracts | Agents align to the wrong standard | Each agent reads the router and loads what it resolves before editing |
+| Dependency | `sk-code-skilled` and `sk-create-readme` contracts | Agents align to the wrong standard | Each agent reads the router and loads what it resolves before editing |
 | Risk | Stylistic alignment slips into a behavior change | High | Behavior changes are forbidden in the brief; typecheck and suites run before and after; anything needing one is reported, not applied |
 | Risk | Five agents collide on a file | Med | Disjoint folder sets; my own edits committed before launch |
 <!-- /ANCHOR:risks -->

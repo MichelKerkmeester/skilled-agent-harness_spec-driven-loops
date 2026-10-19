@@ -58,7 +58,7 @@ None identified.
 - .skilled/skills/sk-code/graph-metadata.json:223-254,282
 - .skilled/skills/sk-code/sk-code-review/SKILL.md:3,13-15
 - .skilled/skills/sk-code/sk-code-quality/SKILL.md:15,27-29
-- .skilled/skills/sk-code/sk-code-opencode/SKILL.md:2-18
+- .skilled/skills/sk-code/sk-code-skilled/SKILL.md:2-18
 - .skilled/skills/sk-code/sk-code-obsidian/SKILL.md:2-42
 - .skilled/skills/sk-code/sk-code-webflow/SKILL.md:2-22
 

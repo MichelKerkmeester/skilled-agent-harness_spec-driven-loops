@@ -23,8 +23,8 @@ Generated/derived artifact (has `derived` block with `created_at`/`last_updated_
 | `category` | packet-family label | typed (string) — but value is a family label not the dir (`code-quality` for sk-code, `design`/`utility` for others) | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:5] (`code-quality`) |
 | `domains[]` | packet-name literals in prose array | free-prose (array of prose tokens) | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:66] (`code-quality`) |
 | `derived.key_topics[]` | packet-name + mode labels in prose | free-prose | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:172] (`code-quality`), :175 (`workflowMode` literal — the discriminator name, not a key value) |
-| `derived.source_docs[]` | packet-dir-prefixed relative paths | path-position | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:198-205] (`code-webflow/references/...`, `code-opencode/SKILL.md`) |
-| `derived.key_files[]` | absolute paths with packet dir segment | path-position | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:212-228] (`.opencode/skills/sk-code/code-quality/SKILL.md`, `.../code-webflow/...`, `.../code-opencode/...`) |
+| `derived.source_docs[]` | packet-dir-prefixed relative paths | path-position | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:198-205] (`code-webflow/references/...`, `code-skilled/SKILL.md`) |
+| `derived.key_files[]` | absolute paths with packet dir segment | path-position | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:212-228] (`.opencode/skills/sk-code/code-quality/SKILL.md`, `.../code-webflow/...`, `.../code-skilled/...`) |
 | `derived.entities[].path` | absolute paths with packet dir segment | path-position | [SOURCE: .opencode/skills/sk-code/graph-metadata.json:240,246,252] |
 | `derived.entities[].name` | packet-derived entity name | typed (string) | [SOURCE: .opencode/skills/sk-doc/graph-metadata.json:145] (`create-skill`), [SOURCE: .opencode/skills/sk-prompt/graph-metadata.json:140] (`prompt-improve`) |
 
@@ -73,7 +73,7 @@ Generated/derived artifact (has `derived` block with `created_at`/`last_updated_
 | `quality` | YES | HIGH — appears in ordinary prose ("code quality", "quality gate", "quality check") | sweep only typed fields + path positions; never regex-sweep prose for bare `quality` |
 | `interface` | YES | HIGH — appears in ordinary prose ("user interface", "interface design", "API interface") | sweep only typed fields + path positions; never regex-sweep prose for bare `interface` |
 | `md-generator` | no | low | — |
-| `code-review`/`code-webflow`/`code-opencode` | no (compound) | low | — |
+| `code-review`/`code-webflow`/`code-skilled` | no (compound) | low | — |
 | `create-*` (11 keys) | no (prefixed) | low | — |
 | `prompt-improve`/`prompt-models` | no | low | — |
 | `design-mcp-open-design` | no | low | — |

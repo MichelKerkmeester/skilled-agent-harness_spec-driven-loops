@@ -1,0 +1,150 @@
+{
+  "scenarioId": "session-relaunch-pi-opencode",
+  "runtime": "pi",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Five live runs in a clean tmux environment inside a git worktree of this repository, driven by skilled-loop on openai/gpt-6-luna. Four runs hopped: the record armed, the process took SIGTERM and the wrapper relaunched with the claim seed. Run 3 produced no hop because the model finished the task in the sending session, which the nudge wording allows. Run 1 needed a Continue. turn and a Gate 3 confirmation, and lost about 30 minutes to a version check that fired on the handoff note. Run 4 and run 5 exercised the hop cap: run 4's receiver was re-nudged at the cap, prepared and was then killed and declined, and run 5's receiver at the cap was not re-nudged.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "openai/gpt-6-luna (xhigh)",
+  "runs": [
+    {
+      "run": "1",
+      "loopId": 65141,
+      "verdict": "PASS",
+      "reason": "Prepare at 06:42:37.722Z, SIGTERM at 06:43:37.496Z, relaunch reason=ready at 06:43:37.801Z. The sending session needed a Continue. turn before the nudge reached a model turn and asked for a Gate 3 confirmation. A post-edit version check fired on the handoff note and diverted the session for about 30 minutes.",
+      "operatorInputs": "One Continue. turn, and one Gate 3 confirmation answered Confirm skip.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+          "bytes": 769,
+          "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/pi-run1-pane.txt",
+          "bytes": 45293,
+          "sha256": "6c43ee2a9af75e6a483b9d90ec1b948cfcedae70cdde8d73ae5857bdbe0429e0"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "loopId": 67853,
+      "verdict": "PASS",
+      "reason": "Prepare at 07:30:05.420Z, SIGTERM at 07:36:38.136Z, relaunch reason=ready at 07:36:38.440Z. The nudge arrived with no operator turn because the delivered follow-up starts its own turn. A post-prepare turn of 6 min 33 s delayed arming, and the receiver then reported 244 lines and # Session Relaunch.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+          "bytes": 2502,
+          "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run2-pane.txt",
+          "bytes": 51128,
+          "sha256": "a68b0a85d260c1dab16a3f0514763eea3b059686171b3f43192165fed643132a"
+        }
+      ]
+    },
+    {
+      "run": "3",
+      "loopId": null,
+      "verdict": "PASS",
+      "reason": "No hop. The model reported 244 lines and # Session Relaunch in the sending session and finished under the finish-instead sentence, which the nudge wording allows. Its complete command exited 2 because the note path it named did not exist, so the run records the task outcome and not a hop.",
+      "operatorInputs": "None recorded.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run3-pane.txt",
+          "bytes": 3420,
+          "sha256": "4e07ee5bce0a868cff613d1d1565ee9ea3c695ece741cc5fe9126e8094d60eda"
+        }
+      ]
+    },
+    {
+      "run": "4",
+      "loopId": 40564,
+      "verdict": "PASS",
+      "reason": "Prepare at 08:20:52.449Z, SIGTERM at 08:22:44.191Z, relaunch reason=ready at 08:22:44.466Z, with a prompt that told the session to hand off. The receiver claimed and completed at the cap, was nudged again, prepared at 08:27:25.234Z, took SIGTERM at 08:27:55.149Z and the wrapper declined with reason hop-cap, so that hop ended with no relaunch.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run4-run5.log",
+          "bytes": 837,
+          "sha256": "d9e6324d4115c3a05b0fab8e98c7a7987e65de2cb6ba7bfec0f3e3cec19b02dd"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run4-pane.txt",
+          "bytes": 90464,
+          "sha256": "ecb804d455e331eb1875abd8996a92538136a3b66195cf0a4be2b509e540248b"
+        }
+      ]
+    },
+    {
+      "run": "5",
+      "loopId": 62166,
+      "verdict": "PASS",
+      "reason": "Prepare at 08:59:41.556Z, SIGTERM at 09:00:17.645Z, 36 s after prepare, relaunch reason=ready at 09:00:17.866Z, and the wrapper declined a further hop at 09:01:22.366Z with reason no-file. The receiver claimed the seed, read the note, closed it with complete exiting 0, and was not re-nudged at the hop cap. Both operator inputs were framework prompts rather than hook failures.",
+      "operatorInputs": "One Gate 3 answer of D) Skip for the read-only task, and one Gate 2 artifact-trigger answer of Use exact schema for the handoff note.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run4-run5.log",
+          "bytes": 837,
+          "sha256": "d9e6324d4115c3a05b0fab8e98c7a7987e65de2cb6ba7bfec0f3e3cec19b02dd"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run5-pane.txt",
+          "bytes": 19503,
+          "sha256": "3432a256920c36744a432fdac4f0e07a8b2229bbd770fd82cd47c30171e55a6c"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+      "bytes": 769,
+      "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+      "bytes": 2502,
+      "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run4-run5.log",
+      "bytes": 837,
+      "sha256": "d9e6324d4115c3a05b0fab8e98c7a7987e65de2cb6ba7bfec0f3e3cec19b02dd"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/pi-run1-pane.txt",
+      "bytes": 45293,
+      "sha256": "6c43ee2a9af75e6a483b9d90ec1b948cfcedae70cdde8d73ae5857bdbe0429e0"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run2-pane.txt",
+      "bytes": 51128,
+      "sha256": "a68b0a85d260c1dab16a3f0514763eea3b059686171b3f43192165fed643132a"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run3-pane.txt",
+      "bytes": 3420,
+      "sha256": "4e07ee5bce0a868cff613d1d1565ee9ea3c695ece741cc5fe9126e8094d60eda"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run4-pane.txt",
+      "bytes": 90464,
+      "sha256": "ecb804d455e331eb1875abd8996a92538136a3b66195cf0a4be2b509e540248b"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-pi-run5-pane.txt",
+      "bytes": 19503,
+      "sha256": "3432a256920c36744a432fdac4f0e07a8b2229bbd770fd82cd47c30171e55a6c"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

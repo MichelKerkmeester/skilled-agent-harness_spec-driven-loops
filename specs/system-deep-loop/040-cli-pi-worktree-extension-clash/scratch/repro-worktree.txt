@@ -1,0 +1,2 @@
+Error: Failed to load extension "/Users/michelkerkmeester/.pi/agent/extensions/pi-fast-mode-w-subagent-support/src/index.ts": Flag "--fast" conflicts with /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/146-cli-pi-worktree-extension-clash/.pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts
+Hint: Start without extensions using "pi -ne".

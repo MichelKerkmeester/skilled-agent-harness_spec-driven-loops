@@ -20,7 +20,7 @@ Traceability: core=pending overlay=pending
 Resource Map Coverage: resource-map.md not present; skipping coverage gate.
 Coverage Age: 9
 Last 2 ratios: 0.154 -> 0.1875
-Last 3 summaries: run 7: maintainability: sk-code-opencode drift guards and doc-claim checks (refuted the 26/16 leaf-manifest claim) (0.091, {'P0': 0, 'P1': 0, 'P2': 1}) | run 8: traceability: phases 010/011 spec vs code, Known Limitations, parent goal criteria after the merge (0.154, {'P0': 0, 'P1': 0, 'P2': 2}) | run 9: maintainability: sk-code docs commits (stale names, dead anchors, wrong paths) (0.1875, {'P0': 0, 'P1': 0, 'P2': 3})
+Last 3 summaries: run 7: maintainability: sk-code-skilled drift guards and doc-claim checks (refuted the 26/16 leaf-manifest claim) (0.091, {'P0': 0, 'P1': 0, 'P2': 1}) | run 8: traceability: phases 010/011 spec vs code, Known Limitations, parent goal criteria after the merge (0.154, {'P0': 0, 'P1': 0, 'P2': 2}) | run 9: maintainability: sk-code docs commits (stale names, dead anchors, wrong paths) (0.1875, {'P0': 0, 'P1': 0, 'P2': 3})
 Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
 Stop policy: max-iterations (convergence is telemetry only; broaden the angle, never synthesize early)

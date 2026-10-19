@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: hook-docs-and-standards-alignment"
-description: "A read-only audit of the git hook changes found docs, code READMEs and the env reference out of step with the hooks, plus three gaps against the sk-code-opencode standards."
+description: "A read-only audit of the git hook changes found docs, code READMEs and the env reference out of step with the hooks, plus three gaps against the sk-code-skilled standards."
 trigger_phrases:
   - "hook docs alignment"
   - "env reference hook switches"

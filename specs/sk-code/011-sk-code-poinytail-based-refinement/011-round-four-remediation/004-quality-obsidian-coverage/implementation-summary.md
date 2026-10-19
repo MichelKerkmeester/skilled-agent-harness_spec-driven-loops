@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The sk-code quality mode now sends an Obsidian plugin change to a checklist instead of to nothing. Its Target-Path Checklist Map has four Obsidian rows, one each for the comment-banner, folder-docs, `.db-*` class-rename and fixture-authoring checklists that `sk-code-obsidian` ships, and every list of surfaces in `SKILL.md` and `README.md` now names `sk-code-obsidian` beside `sk-code-webflow` and `sk-code-opencode`.
+The sk-code quality mode now sends an Obsidian plugin change to a checklist instead of to nothing. Its Target-Path Checklist Map has four Obsidian rows, one each for the comment-banner, folder-docs, `.db-*` class-rename and fixture-authoring checklists that `sk-code-obsidian` ships, and every list of surfaces in `SKILL.md` and `README.md` now names `sk-code-obsidian` beside `sk-code-webflow` and `sk-code-skilled`.
 
 ### Phase 4: quality-obsidian-coverage
 

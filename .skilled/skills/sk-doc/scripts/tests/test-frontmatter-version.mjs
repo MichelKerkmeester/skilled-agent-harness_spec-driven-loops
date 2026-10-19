@@ -64,7 +64,16 @@ const FIXTURE = path.join(skill, 'scripts', 'tests', 'fixtures', 'references', '
 const RUNTIME_README = path.join(skill, 'runtime', 'lib', 'README.md');
 fs.writeFileSync(FIXTURE, '---\ntitle: Fixture\ndescription: Test input\n---\n# Fixture\n');
 fs.writeFileSync(RUNTIME_README, '---\ntitle: Runtime lib\ndescription: Runtime internals\n---\n# Lib\n');
-const outBefore = new Map([FIXTURE, RUNTIME_README].map((f) => [f, fs.readFileSync(f, 'utf8')]));
+// Runtime state beside the skills keeps exactly one tracked doc per concern, the concern
+// README, and git ignores everything else in it. The note below has the shape a handoff
+// writer emits, frontmatter with no version key.
+const STATE_README = path.join(skillsRoot, '.state', 'fixt-concern', 'README.md');
+fs.mkdirSync(path.dirname(STATE_README), { recursive: true });
+fs.writeFileSync(STATE_README, '---\ntitle: Fixt concern\ndescription: Runtime state README\n---\n# Concern\n');
+const STATE_NOTE = path.join(skillsRoot, '.state', 'session-relaunch', 'handoffs', '20261019T000000Z-abcd1234.md');
+fs.mkdirSync(path.dirname(STATE_NOTE), { recursive: true });
+fs.writeFileSync(STATE_NOTE, '---\nstatus: done\nsession_id: abcd1234\n---\n## Goal\nRound-trip one note.\n');
+const outBefore = new Map([FIXTURE, RUNTIME_README, STATE_NOTE].map((f) => [f, fs.readFileSync(f, 'utf8')]));
 
 // ─── helpers ────────────────────────────────────────────────────
 function run(mode, extra = []) {
@@ -86,8 +95,10 @@ function outOfScopeUnchanged() {
 
 // ─── 1. compute: SKILL.md and every in-scope child doc ──────────
 const rows = manifest();
-ok(rows.length === 8, `discovers the 2 SKILL.md files and 6 child docs (got ${rows.length})`);
+ok(rows.length === 9, `discovers the 2 SKILL.md files, 6 child docs and the state concern README (got ${rows.length})`);
 ok(!byName(rows, 'fixture.md') && !byName(rows, 'lib/README.md'), 'test input and runtime internals are not discovered');
+ok(byName(rows, '.state/fixt-concern/README.md') !== undefined, 'the tracked state concern README stays a versioned doc');
+ok(!rows.some((r) => r.path.includes('handoffs')), 'a deeper gitignored state file is not discovered');
 ok(byName(rows, 'entry.md') !== undefined, 'a catalog under a runtime folder stays in scope');
 ok(byName(rows, 'fixt-skill/SKILL.md').derivedVersion === '2.3.0.0', 'SKILL.md anchor = max(2.1.0, changelog 2.3.0.0) = 2.3.0.0');
 ok(byName(rows, 'fixt-skill/SKILL.md')?.anchorSource === 'max(fm,changelog)', 'anchorSource records max');
@@ -111,7 +122,7 @@ ok(versionOf(REF) === '1.0.0.0' && versionOf(ASSET) === '1.0.0.0' && versionOf(R
 ok(versionOf(SCENARIO) === '1.0.0.0', 'apply normalizes a 3-part child version to 4 parts');
 ok(versionOf(OWN) === '9.9.9.9', 'apply keeps a child doc\'s own edition');
 ok(/^version: 1\.0\.0\.0\n---$/m.test(fs.readFileSync(REF, 'utf8')), 'the seeded version is the last frontmatter key');
-ok(outOfScopeUnchanged(), 'apply leaves test input and runtime internals byte-identical');
+ok(outOfScopeUnchanged(), 'apply leaves test input, runtime internals and gitignored state byte-identical');
 
 // ─── 4. idempotency, then verify and gate pass ─────────────────
 const snapshot = () => [path.join(skill, 'SKILL.md'), REF, OWN, ASSET, SCENARIO, README].map((f) => fs.readFileSync(f, 'utf8')).join('\0');
@@ -120,7 +131,10 @@ run('apply', ['--update']);
 ok(snapshot() === once, 'second apply is a byte-level no-op');
 ok(runStatus('verify').status === 0, 'verify exits 0 once every in-scope doc carries a version');
 const gate = runStatus('gate');
-ok(gate.status === 0 && /^\[gate\] 8 files/m.test(gate.stdout), `gate checks the 8 in-scope docs (got ${gate.stdout.trim()})`);
+ok(gate.status === 0 && /^\[gate\] 9 files/m.test(gate.stdout), `gate checks the 9 in-scope docs (got ${gate.stdout.trim()})`);
+const stateGate = runStatus('gate', ['--skill', '.state']);
+ok(stateGate.status === 0 && /^\[gate\] 1 files/m.test(stateGate.stdout),
+  `--skill .state scopes the gate to the concern README alone (got ${stateGate.stdout.trim()})`);
 
 // ─── 5. explicit targets: a child doc is accepted, test input is refused ──
 const pathsFile = path.join(tmp, 'paths.txt');
@@ -130,6 +144,13 @@ fs.writeFileSync(pathsFile, `${FIXTURE}\n`);
 const explicit = runStatus('verify', ['--paths', pathsFile]);
 ok(explicit.status !== 0 && /outside the versioned document scope/.test(explicit.stderr),
   'an explicit test-input target is refused as out of scope');
+fs.writeFileSync(pathsFile, `${STATE_NOTE}\n`);
+const stateExplicit = runStatus('verify', ['--paths', pathsFile]);
+ok(stateExplicit.status !== 0 && /outside the versioned document scope/.test(stateExplicit.stderr),
+  'an explicit deeper runtime-state target is refused as out of scope');
+fs.writeFileSync(pathsFile, `${STATE_README}\n`);
+ok(runStatus('verify', ['--paths', pathsFile]).status === 0,
+  'an explicit runtime-state concern README target is verified');
 
 // ─── 5b. a leading zero reads as its tuple, an empty key is malformed ──
 const LEAD = path.join(skill, 'references', 'ref-lead.md');

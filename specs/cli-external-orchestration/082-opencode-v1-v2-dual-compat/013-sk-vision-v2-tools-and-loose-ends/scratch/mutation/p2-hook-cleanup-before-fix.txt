@@ -1,0 +1,29 @@
+# New and changed plugin tests against the pre-fix plugin.ts
+bun test v1.3.9 (cf6cdbbb)
+[sk-vision] prompt hook failed: null
+
+src/plugin.test.ts:
+684 |           },
+685 |         }),
+686 |       })(ctx),
+687 |     ).rejects.toThrow("prompt hook unavailable");
+688 |     expect(base.added.length).toBe(base.disposed.length);
+689 |     expect(made.disposed).toEqual(["command"]);
+                                ^
+error: expect(received).toEqual(expected)
+
+- [
+-   "command",
+- ]
++ []
+
+- Expected  - 3
++ Received  + 1
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:689:27)
+(fail) v2 tool registration > releases everything setup holds when the prompt hook fails to register [1.47ms]
+
+ 28 pass
+ 1 fail
+ 63 expect() calls
+Ran 29 tests across 1 file. [106.00ms]

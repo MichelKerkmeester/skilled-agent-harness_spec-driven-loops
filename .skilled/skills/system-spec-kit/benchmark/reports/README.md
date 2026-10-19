@@ -16,7 +16,7 @@ contextType: "general"
 
 ## 1. OVERVIEW
 
-Each row below is one immutable run folder. Rows are written by the benchmark harness when it writes the report. Consult [`supersession-manifest.json`](./supersession-manifest.json) before treating an older row as current; corrected runs append mappings instead of rewriting history.
+Each row below is one immutable run folder. Rows are written by the benchmark runner when it writes the report. Consult [`supersession-manifest.json`](./supersession-manifest.json) before treating an older row as current. Corrected runs append mappings instead of rewriting history.
 
 ---
 
@@ -24,6 +24,9 @@ Each row below is one immutable run folder. Rows are written by the benchmark ha
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](./2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/) | claude, pi, opencode session-relaunch with no Gate 3 answer | 3 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](./2026-10-19--manual-testing-playbook--session-relaunch-final-code/) | claude, pi, opencode, codex session-relaunch | 4 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-10-19 | [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](./2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/) | claude, pi, opencode, codex session-relaunch | 11 PASS, 2 FAIL | **PASS (after fixes)** | `manual-testing-playbook` |
 | 2026-09-27 | [`2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-09-26 | [`2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/`](./2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/) | pi, opencode, devin, cursor, codex directive-lifecycle-dedup | 5 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-11 | [`2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/`](./2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified/) | vitest pi-repeat-suppression-verified | 1 PASS | **PASS** | `manual-testing-playbook` |
@@ -63,4 +66,4 @@ Each row below is one immutable run folder. Rows are written by the benchmark ha
 
 Run folders are named `<YYYY-MM-DD>--<subject>--<variant>`, dated by execution. Keep curated summaries and machine-readable result tables here, and raw transcripts and copied artifacts in the source packet. A run whose result changes gets a new folder rather than overwriting a prior one.
 
-The grammar and the report file set are owned by `create-benchmark`; this index states them only so the folder reads on its own. Where the two differ, that skill is correct.
+The grammar and the report file set are owned by `create-benchmark`. This index states them only so the folder reads on its own. Where the two differ, that skill is correct.

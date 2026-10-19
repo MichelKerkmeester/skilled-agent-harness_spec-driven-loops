@@ -8,7 +8,7 @@ import os
 import sys
 
 FOLDER = "specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening"
-OC = ".skilled/skills/sk-code/sk-code-opencode"
+OC = ".skilled/skills/sk-code/sk-code-skilled"
 CHECKER = f"{OC}/assets/scripts/verify_doc_claims.cjs"
 TEST = f"{OC}/scripts/tests/verify_doc_claims.test.cjs"
 GUARD = f"{OC}/references/shared/workflow-guardrails.md"

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`parseFindingsBlock` in `reduce-state.cjs` (line 258 when read) keeps only trimmed lines that match `^-\\s+\\\\F\\d+\\\\`, but Step 7 of `.skilled/agents/deep-review.md` tells the agent to write `N",
     "created_at": "2026-10-10T10:07:22Z",
-    "last_save_at": "2026-10-11T05:17:08.996Z",
+    "last_save_at": "2026-10-18T20:45:14.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:214c2e4baf35c3fdfeafe5b7b4246b7ad434ceac56672860598ffbccea8bb05d",
+    "source_fingerprint": "sha256:1bb6698c7fb6e7127b6caaeefb490f95de9bbbfc5937967ef3db03ee3f81e3d6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d90c17f4628f3cdf98c460920662d88706a3bf2507a774edc8351ec3123fa266",
-      "plan.md": "4d804f6d5d153dc900ada27a2b18e1433f411ac84c0b9daff3a2527a800967e1",
-      "tasks.md": "b7bb576663fd4cc4871859025acf5608f503e145442599f91c3fbc3026dc3acc",
+      "plan.md": "7da7568804075412ea8ac8157727d07d77901800b3c10f61f07f07d512577536",
+      "tasks.md": "259f13a25169260f960da2e775feee92c127e440e2c8b1a16fc7cda1c69fc949",
       "implementation-summary.md": "3a36e007aa2b5b0902b51eabdb916e69e1616a60eeee242b490f4af5df6cba2f"
     },
     "last_active_at": null

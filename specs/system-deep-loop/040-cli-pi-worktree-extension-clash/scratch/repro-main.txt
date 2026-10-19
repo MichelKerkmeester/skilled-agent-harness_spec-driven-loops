@@ -1,0 +1,2 @@
+{"timestamp":"2026-10-19T11:27:05.702Z","runtime":"pi","status":"skipped","freshness":"live","durationMs":268,"cacheHit":false,"errorDetails":"CLI_ADVISOR_NO_MATCH","emittedBytes":244,"directivesSuppressed":false}
+PI-OK

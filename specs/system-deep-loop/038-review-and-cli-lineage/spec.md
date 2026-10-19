@@ -118,6 +118,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 6 | 006-research-lineage-reducer-path/ | Point the research reducer at the lineage folder during fan-out | Complete |
 | 7 | 007-lineage-reducer-compliance/ | Detect a CLI research lineage that skips the reducer | Complete |
 | 8 | 008-lineage-proof-enforcement/ | Refuse a CLI lineage without route proof, reducer output, one state row per iteration or in-bounds citations | Planned |
+| 9 | 009-findings-summary-integrity/ | Read `findingId` delta rows and stop cumulative summaries padding phantom findings | Complete |
 
 ### Phase Transition Rules
 
@@ -137,6 +138,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 005-cli-lineage-findings-contract | 006-research-lineage-reducer-path | 005 complete | `validate.sh --strict` on 005 |
 | 006-research-lineage-reducer-path | 007-lineage-reducer-compliance | Reducer writes into the lineage folder | Live proof run, `006/implementation-summary.md` |
 | 007-lineage-reducer-compliance | 008-lineage-proof-enforcement | 007 complete, its stamp check in place | `validate.sh --strict` on 007 |
+| 008-lineage-proof-enforcement | 009-findings-summary-integrity | None: 009 touches only the review reducer and does not wait on 008 | `validate.sh --strict` on 009 |
 <!-- /ANCHOR:phase-map -->
 
 ---

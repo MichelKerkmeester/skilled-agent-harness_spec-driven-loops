@@ -35,11 +35,11 @@ contextType: "implementation"
 
 **Focus**: Doc-truth + authority interface groundwork.
 
-- [ ] T001 Rename the RESOURCE_MAP-equality claim in `code-opencode/SKILL.md` (~L45, L51) to name `sk-code-router-sync.vitest.ts` explicitly.
+- [ ] T001 Rename the RESOURCE_MAP-equality claim in `code-skilled/SKILL.md` (~L45, L51) to name `sk-code-router-sync.vitest.ts` explicitly.
 - [ ] T002 Add a backlink to `sk-code-router-sync.vitest.ts` in `alignment-verification-automation.md §5` (~L48-52).
-- [ ] T003 Publish the single code-opencode alignment-authority interface note (CF-SC-5): what this child owns, what 009/010/011 must consume instead of re-deriving.
+- [ ] T003 Publish the single code-skilled alignment-authority interface note (CF-SC-5): what this child owns, what 009/010/011 must consume instead of re-deriving.
 
-**Evidence**: `grep -n "sk-code-router-sync.vitest.ts" code-opencode/SKILL.md alignment-verification-automation.md` returns hits in both files; no remaining sentence attributes RESOURCE_MAP-equality enforcement to `verify_alignment_drift.py` alone.
+**Evidence**: `grep -n "sk-code-router-sync.vitest.ts" code-skilled/SKILL.md alignment-verification-automation.md` returns hits in both files; no remaining sentence attributes RESOURCE_MAP-equality enforcement to `verify_alignment_drift.py` alone.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -51,9 +51,9 @@ contextType: "implementation"
 **Focus**: Bijection proof + guard unification.
 
 - [ ] T004 [B: T001-T003] Add `qualifiedIdToLeaf` to `leaf-resource-contract.cjs`, exposed via `selectResourceContract`.
-- [ ] T005 Add a bidirectional Vitest suite: every compiled `targetQualifiedIds` entry resolves to a `leaf-manifest.json` leaf; every code-opencode RESOURCE_MAP entry matches a manifest leaf after normalization.
+- [ ] T005 Add a bidirectional Vitest suite: every compiled `targetQualifiedIds` entry resolves to a `leaf-manifest.json` leaf; every code-skilled RESOURCE_MAP entry matches a manifest leaf after normalization.
 - [ ] T006 [P] Author `run-all-drift-guards.sh` invoking `verify_alignment_drift.py`, `verify_stack_folders.py`, and the `sk-code-router-sync.vitest.ts` suite in sequence; non-zero exit on any failure.
-- [ ] T007 Update `code-opencode/SKILL.md`'s gate list (~L163) to name all three guard commands.
+- [ ] T007 Update `code-skilled/SKILL.md`'s gate list (~L163) to name all three guard commands.
 
 **Evidence**: the bijection suite reports zero orphans in both directions; `run-all-drift-guards.sh` exits non-zero when any one guard is seeded to fail, and 0 when all three pass.
 
@@ -69,9 +69,9 @@ contextType: "implementation"
 - [ ] T008 [P1] Add `--check-router` (default off) to `verify_alignment_drift.py`: a markdown RESOURCE_MAP parser scoped to RESOURCE_MAP tables.
 - [ ] T009 [P1] Add a positive fixture (aligned RESOURCE_MAP) and a drift fixture (seeded mismatch) for `--check-router`.
 - [ ] T010 [P1][B: 002] Extend the promoted runtime request contract (post-002) with an additive optional composite-routing context field.
-- [ ] T011 [P1][B: T010] Add one LUNA-high compiled-routing playbook case requiring a `surfaceBundle` containing `sk-code:code-opencode`.
+- [ ] T011 [P1][B: T010] Add one LUNA-high compiled-routing playbook case requiring a `surfaceBundle` containing `sk-code:code-skilled`.
 
-**Evidence**: default (no-flag) `verify_alignment_drift.py` invocation is byte-behavior-identical to today; `--check-router` passes the positive fixture and fails the drift fixture; the LUNA-high case's recorded `surfaceBundle` includes `sk-code:code-opencode`.
+**Evidence**: default (no-flag) `verify_alignment_drift.py` invocation is byte-behavior-identical to today; `--check-router` passes the positive fixture and fails the drift fixture; the LUNA-high case's recorded `surfaceBundle` includes `sk-code:code-skilled`.
 
 <!-- /ANCHOR:phase-3 -->
 

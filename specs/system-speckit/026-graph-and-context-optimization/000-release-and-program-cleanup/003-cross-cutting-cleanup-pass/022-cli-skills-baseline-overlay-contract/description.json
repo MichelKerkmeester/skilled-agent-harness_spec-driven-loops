@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract",
-  "description": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-opencode",
+  "description": "Update 5 CLI orchestrator skills to mirror review.md's baseline+overlay code-standards contract instead of hardcoded sk-code-review / sk-code-skilled",
   "keywords": [
     "cli",
     "orchestrator",
@@ -15,7 +15,7 @@
     "instead",
     "hardcoded",
     "sk-code-review",
-    "sk-code-opencode"
+    "sk-code-skilled"
   ],
   "lastUpdated": "2026-09-07T16:06:19.517Z",
   "specId": "022",

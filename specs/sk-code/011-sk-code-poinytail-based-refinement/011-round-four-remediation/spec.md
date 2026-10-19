@@ -85,7 +85,7 @@ Fix all eleven in seven children that own disjoint files, plus an eighth that th
 | `.skilled/skills/sk-code/sk-code-webflow/**` | Modify | 002 | Link labels and the playbook root overview |
 | sk-code hub files, `shared/**`, the sk-code canary fixtures and their archive copies | Modify | 003 | Surface precedence for implementation prompts |
 | `.skilled/skills/sk-code/sk-code-quality/**` | Modify | 004 | Obsidian coverage and surface lists |
-| `.skilled/skills/sk-code/sk-code-opencode/**` | Modify | 005 | Claim checker gaps and guardrails voice |
+| `.skilled/skills/sk-code/sk-code-skilled/**` | Modify | 005 | Claim checker gaps and guardrails voice |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/iteration-findings.cjs` and its tests | Modify | 006 | Findings parser rules |
 | `.skilled/skills/system-spec-kit/runtime/hooks/**` and its tests | Modify | 007 | The sixteenth reader and deadline margins |
 | The compiled-routing front door and serving resolver, sk-code hub `SKILL.md` and `ROUTER.md`, the sk-code canary fixtures | Modify | 008 | Session-aware surface tie-break |

@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"luna","sessionId":"luna"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":0,"activeP2":5,"dimensionCoverage":0.75,"verdict":"PASS","releaseReadinessState":"advisory","stopReason":"maxIterationsReached"}}

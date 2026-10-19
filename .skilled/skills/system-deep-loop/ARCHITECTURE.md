@@ -7,7 +7,7 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Architecture: system-deep-loop
@@ -136,7 +136,7 @@ Other consumers call the runtime directly: the `/deep:*` workflow YAMLs through 
 
 **Contract drift.** `check-contract-drift.cjs` compares command and runtime contract surfaces, and `check-documentation-drift.cjs` checks the hub, mode READMEs, playbook and benchmark index against the registry.
 
-**Code style.** `sk-code-opencode/assets/scripts/verify_alignment_drift.py --root runtime --check-sections --check-folders` checks MODULE headers, numbered section dividers, folder READMEs and double-underscore folder names.
+**Code style.** `sk-code-skilled/assets/scripts/verify_alignment_drift.py --root runtime --check-sections --check-folders` checks MODULE headers, numbered section dividers, folder READMEs and double-underscore folder names.
 
 **Test surfaces.** `npm run typecheck` and `npm test` from `runtime/` run the TypeScript check and the Vitest suites under `runtime/tests/`. `node .skilled/scripts/run-node-tests.mjs` from the repository root runs the `*.test.cjs` suites, including `runtime/tests/unit/runtime-bootstrap.test.cjs`. `manual-testing-playbook/` holds the operator scenarios.
 

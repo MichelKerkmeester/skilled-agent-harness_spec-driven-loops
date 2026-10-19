@@ -45,7 +45,7 @@ All four configured dimensions were reviewed. The prior cookie, CDN-loader, Rust
       "id": "C1-P2-001",
       "severity": "P2",
       "findingClass": "class-of-bug",
-      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:16"
+      "file": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md:16"
     }
   ],
   "remediationWorkstreams": [
@@ -82,7 +82,7 @@ All four configured dimensions were reviewed. The prior cookie, CDN-loader, Rust
 ### C1-P2-001 - Eight lexical paths exceed the 1-2 sentence intro contract
 
 - **Severity / dimension:** P2 / maintainability
-- **Evidence:** `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20`, `workflow_implement.md:14-20`, and `workflow_verify.md:14-20` each use three sentences and are exposed through matching code-webflow aliases; `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23` and `code-webflow/references/shared/enforcement.md:15-28` add two more lexical/resolved cases.
+- **Evidence:** `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20`, `workflow_implement.md:14-20`, and `workflow_verify.md:14-20` each use three sentences and are exposed through matching code-webflow aliases; `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-23` and `code-webflow/references/shared/enforcement.md:15-28` add two more lexical/resolved cases.
 - **Impact:** Minor template drift across eight lexical paths representing five resolved files.
 - **Recommendation:** Compress each intro to one or two sentences without moving detail out of Overview.
 - **Disposition:** active advisory

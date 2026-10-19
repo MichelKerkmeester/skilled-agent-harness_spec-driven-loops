@@ -2,7 +2,7 @@
 
 Script: `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` (proposed name).
 Test: `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` (proposed).
-Code route: sk-code OpenCode (`sk-code-opencode`). Docs route: sk-doc (parent D6). Sibling pattern for gates, keep rule, verdict line and tests: `scripts/score-clarify-default.cjs` (1566 lines) and `scripts/tests/score-clarify-default.test.cjs` (646 lines), both shipped in the same folder.
+Code route: sk-code OpenCode (`sk-code-skilled`). Docs route: sk-doc (parent D6). Sibling pattern for gates, keep rule, verdict line and tests: `scripts/score-clarify-default.cjs` (1566 lines) and `scripts/tests/score-clarify-default.test.cjs` (646 lines), both shipped in the same folder.
 No code comment may carry a spec path, phase number or REQ id (comment hygiene).
 
 ## 1. Premises

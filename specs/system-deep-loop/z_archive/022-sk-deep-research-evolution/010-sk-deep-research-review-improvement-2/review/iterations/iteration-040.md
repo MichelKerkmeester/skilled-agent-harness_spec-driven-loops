@@ -273,7 +273,7 @@ The review agent finished; I’m pulling its result now and cross-checking it ag
   │ .opencode/commands/speckit/assets/speckit_deep-review_confirm.yaml
   └ L112:118 (7 lines read)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Read deep_start-agent-improvement-loop_auto.yaml
   │ .opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml

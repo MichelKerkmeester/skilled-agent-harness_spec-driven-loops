@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Two distinct runtime behaviors diverge across CLIs:",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-10-08T19:30:54.600Z",
+    "last_save_at": "2026-10-18T20:45:32.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c71c5fdcc1669cc2454da026627ac512c4cecd098eb5f0a817e14d8ed1697f8a",
+    "source_fingerprint": "sha256:f996da9ddc996ed0c17761128b9c2eedecb011e9fce23f89b14b20cf35319eb6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa2abcdab542490483e896b8b408d883fa9f54818915950edabcdc43f1735032",
       "plan.md": "147fb651cdd5b869aed4b7ee70314e0367002a65bf675b0892a1886f69e59cfc",
-      "tasks.md": "2134ed2a3d915ced0beab57caa6aa77b9df4da229f7419d81a4da269e2fedf5a",
+      "tasks.md": "e0854f66836ecb719493dcdbb4d51977038d22632611c86941f98ea5eafb03ec",
       "decision-record.md": "8e6551b37211108dcf9769ee1b0a38760536fb3dde3a8ac4811b545d0fb83f12",
-      "implementation-summary.md": "00134a3c337724f85a0127b5b0671a8a9e31452c101e2d061e81d6a8dcba83be"
+      "implementation-summary.md": "ae80aaad5eee3a95542bb126b55f609064dd02aefa60789f8405a730abe3d20f"
     },
     "last_active_child_id": null,
     "last_active_at": null

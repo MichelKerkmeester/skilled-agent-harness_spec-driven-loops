@@ -24,7 +24,7 @@ Scope list: 89 markdown docs, 35 code files (31 scripts and tests, 4 cli-classif
 
 ## Findings to fix
 
-### C1. Code file headers (sk-code-opencode box header rule, operator decision 2026-09-30)
+### C1. Code file headers (sk-code-skilled box header rule, operator decision 2026-09-30)
 
 The operator chose the minimal fix: "Keep the box where the neighbors use it. Only fix the 10 files the
 sk-code checker fails." The bar is `verify_alignment_drift.py --check-exact-headers`, which wants a
@@ -55,7 +55,7 @@ The 10 files the check fails, and the fix for each:
 Proof: `verify_alignment_drift.py --check-exact-headers --fail-on-warn` over a staged copy of the
 34 in-scope code files (the raw evidence script left out) moves from 9 errors to 0.
 
-### C2. Bracketed stderr diagnostics (sk-code-opencode, P1 bracketed logging rule)
+### C2. Bracketed stderr diagnostics (sk-code-skilled, P1 bracketed logging rule)
 
 Standard: `assets/checklists/javascript-checklist.md` §3 "Bracketed Logging": console and stderr
 diagnostics carry a `[component]` tag. Today most scripts write bare `error: ...` lines.

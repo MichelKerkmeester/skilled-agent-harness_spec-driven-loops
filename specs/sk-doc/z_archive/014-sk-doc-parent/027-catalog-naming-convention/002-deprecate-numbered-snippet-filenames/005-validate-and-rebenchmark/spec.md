@@ -58,7 +58,7 @@ phase (001-004), not to this one.
 **In scope:** capture a pre-migration Lane C baseline — discovered scenario count and D1-D5 scores — on the
 9 skill packets that Phase 004 touches (cli-external and its cli-claude-code/cli-opencode mode packets;
 mcp-tooling and its mcp-chrome-devtools/mcp-click-up/mcp-figma mode packets; sk-code and its
-code-review/code-opencode/code-webflow/code-quality mode packets; sk-prompt; system-deep-loop and its
+code-review/code-skilled/code-webflow/code-quality mode packets; sk-prompt; system-deep-loop and its
 deep-improvement/deep-research/deep-review mode packets), captured BEFORE Phase 004 renames anything.
 After Phase 004 lands: recursive `validate.sh --strict` across the parent packet and every touched skill
 surface; the whole-workspace markdown-link guard (covering the 3 hub-routing root-index docs rewritten in

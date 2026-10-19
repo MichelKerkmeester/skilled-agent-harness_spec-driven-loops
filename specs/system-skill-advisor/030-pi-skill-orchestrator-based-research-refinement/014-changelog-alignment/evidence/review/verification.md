@@ -31,7 +31,7 @@ Every finding below was checked against the source it cites before anything chan
 - **B12 judgment, not applied.** The installer sits in `.skilled/bin`, which no changelog component owns, and cli-codex's hook contract documents it at `references/hook-contract.md:106`. The change stays where Codex users read about hooks. The operator may move it to the release notes alone.
 - **B13 partly confirmed, fixed as a count correction.** The scenario's adapter table listed seven before and after cd0df4a38e. Only its prose said eight, and the code-graph adapter had left on 2026-07-27 (302c7535b8). The entry records the corrected count, not a change in what the scenario tests.
 - **B14 confirmed, fixed.** The six-file list was a file inventory.
-- **B15 confirmed, added.** sk-code-opencode `references/shared/alignment-verification-automation.md:58-61` and `:122-126`.
+- **B15 confirmed, added.** sk-code-skilled `references/shared/alignment-verification-automation.md:58-61` and `:122-126`.
 - **B16 confirmed, partly applied.** The phrase this phase added is gone, which leaves the four topic phrases the release entry carried before. Cutting those to two would rewrite another packet's release metadata, so that stays with the operator.
 - **B17 confirmed, fixed.** `hooks/pi/prompt-advisor.ts:10-22` gives Pi the hook's own uncapped budget, 2,500 ms by default, plus a 300 ms margin.
 - **B18 confirmed, fixed** from the e18d6073b8 body.

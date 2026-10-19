@@ -1,0 +1,10 @@
+# pi --help, --fast count per layout (project files trusted, packages setting, temporary PI_CODING_AGENT_DIR)
+pkga-main-primary fast=0
+pkga-main-worktree fast=1
+pkga-f146-primary fast=1
+f-f146-worktree fast=1
+f-base-worktree fast=2
+# real ~/.pi/agent, main checkout on main's global-only check
+real-main fast=0
+real-main-a fast=0
+real-main-na fast=1

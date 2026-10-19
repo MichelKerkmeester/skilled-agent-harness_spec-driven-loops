@@ -118,13 +118,13 @@ Implementation steps:
 | Focused Vitest: `tests/copilot-user-prompt-submit-hook.vitest.ts`, `tests/copilot-hook-wiring.vitest.ts`, `skill-advisor/tests/legacy/advisor-runtime-parity.vitest.ts`, `tests/claude-user-prompt-submit-hook.vitest.ts` | PASS, 4 files / 28 tests |
 | Focused ESLint on touched TypeScript files | PASS |
 | `bash -n .github/hooks/scripts/session-start.sh .github/hooks/scripts/superset-notify.sh .github/hooks/scripts/user-prompt-submitted.sh` | PASS |
-| Real Copilot smoke | PASS, `copilot -p` returned `Advisor: stale; use sk-code-opencode 0.92/0.00 pass.` from custom instructions |
+| Real Copilot smoke | PASS, `copilot -p` returned `Advisor: stale; use sk-code-skilled 0.92/0.00 pass.` from custom instructions |
 | `npm run check` | FAIL, package-wide lint currently reports 15 unused-variable errors in files outside this packet's write scope. No touched file is included in that failure list. |
 | Parent validation | FAIL under strict due existing PHASE_LINKS warning among sibling child specs; all other parent checks passed with `--no-recursive`. |
 | Target spec validation | FAIL, 5 errors / 5 warnings. Main blockers: existing packet template/anchor drift, spec-doc integrity warnings, and missing Level 3 structural sections. |
 | `generate-context.js` | EXIT 0 and refreshed `graph-metadata.json`; indexing reported 8/8 touched canonical spec docs failed and post-save review returned `REVIEWER_ERROR` (`EISDIR`). |
 | Operator doc sweep | PASS, hook reference/validation docs, runtime hook matrix, feature catalog, manual testing playbook, README, and architecture docs now describe Copilot's custom-instructions transport. |
-| Copilot temp-file doc smoke | PASS, temp `SPECKIT_COPILOT_INSTRUCTIONS_PATH` run returned `{}` and wrote `SPEC-KIT-COPILOT-CONTEXT` with `Advisor: stale; use sk-code-opencode 0.92/0.00 pass.` |
+| Copilot temp-file doc smoke | PASS, temp `SPECKIT_COPILOT_INSTRUCTIONS_PATH` run returned `{}` and wrote `SPEC-KIT-COPILOT-CONTEXT` with `Advisor: stale; use sk-code-skilled 0.92/0.00 pass.` |
 | Doc diff whitespace | PASS, `git diff --check` on touched docs returned no issues. |
 
 ---

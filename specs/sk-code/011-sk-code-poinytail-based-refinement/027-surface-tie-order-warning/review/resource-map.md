@@ -1,5 +1,5 @@
 ---
-title: "Resource Map — commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-opencode in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak"
+title: "Resource Map — commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-skilled in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak"
 description: "Auto-generated review resource map from convergence evidence."
 ---
 # Resource Map

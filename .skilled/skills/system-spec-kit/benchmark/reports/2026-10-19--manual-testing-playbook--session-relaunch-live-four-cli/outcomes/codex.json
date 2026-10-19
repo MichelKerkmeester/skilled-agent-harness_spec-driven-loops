@@ -1,0 +1,78 @@
+{
+  "scenarioId": "session-relaunch-command-runtimes",
+  "runtime": "codex",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Two live runs in a scratch clone, driven by skilled-loop on gpt-6-luna with SESSION_RELAUNCH_THRESHOLD=0.25, SESSION_RELAUNCH_MAX_HOPS=4 and Codex's own context window. Run 1 chained three automatic hops and finished the task with no operator input, and its re-nudge left one orphan open note. Run 3 hopped once, wrote one note and reported no hook failures, and its receiver finished the task instead of chaining. The packet holds no capture for a Codex run 2, so this record does not include one.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "gpt-6-luna (max, fast)",
+  "runs": [
+    {
+      "run": "1",
+      "loopId": 41194,
+      "verdict": "PASS",
+      "reason": "Prepare at 06:50:27.512Z, SIGTERM at 06:50:42.697Z, relaunch reason=ready at 06:50:42.742Z, then prepare at 06:54:38.260Z and relaunch at 06:54:58.456Z, then prepare at 06:58:33.539Z and relaunch at 06:58:48.658Z. Three automatic hops, and the re-nudge superseded each open note with a new path, which left one orphan open note. The receiver closed its note with complete, reported 244 lines and # Session Relaunch, then ended with one question about whether runtime-emitted prompts are actionable, and the capture ends with that question waiting for an answer.",
+      "operatorInputs": "None during the hops.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+          "bytes": 2502,
+          "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/codex-run1-pane.txt",
+          "bytes": 3061,
+          "sha256": "745a9b0b2acfcd9f931a2d8df3d0a745e37c12dc28eee2f180ec7417f23d3319"
+        }
+      ]
+    },
+    {
+      "run": "3",
+      "loopId": 83677,
+      "verdict": "PASS",
+      "reason": "Prepare at 08:02:02.747Z, SIGTERM at 08:02:27.548Z, relaunch reason=ready at 08:02:27.588Z. One hop. The receiver reported that claim and complete both exited 0, that the note records status done, and that it wrote one note with no hook failures. It reported 244 lines and # Session Relaunch.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+          "bytes": 3373,
+          "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/codex-run3-pane.txt",
+          "bytes": 2251,
+          "sha256": "41b50b78c683f60d08f4a73f5545ea61f6fffd256ac1da83b26495e0fa3429ee"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+      "bytes": 2502,
+      "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+      "bytes": 3373,
+      "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/codex-run1-pane.txt",
+      "bytes": 3061,
+      "sha256": "745a9b0b2acfcd9f931a2d8df3d0a745e37c12dc28eee2f180ec7417f23d3319"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/codex-run3-pane.txt",
+      "bytes": 2251,
+      "sha256": "41b50b78c683f60d08f4a73f5545ea61f6fffd256ac1da83b26495e0fa3429ee"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

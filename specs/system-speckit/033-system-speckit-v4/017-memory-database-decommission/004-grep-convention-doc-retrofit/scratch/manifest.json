@@ -9899,71 +9899,71 @@
       "sha256": "0b47b4da0efe6ab1e042ab7149fd7d1c8a62a2fa62d1e8d0fe5f1afd20e34bc1"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/final-synthesis.md",
       "sha256": "5b0b5bbe98b8c06e7bc1aa88ee750476aa9fe5def837c58273c43e790d7b5c9a"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-001.md",
       "sha256": "ed2af982aaf6fdb37843fcdfef8c4b1d0e6aaf0348f655c052156aa33c001b34"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-002.md",
       "sha256": "3c2a590f473676ce249064f45644ddb5aebed81ee2396b9b2a12138aa180d5ac"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-003.md",
       "sha256": "bd8a0d9ab201d8fbff3c399f3b27a6e1a11bb5dfad89a60c4f6472a4c8eac1b9"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-004.md",
       "sha256": "8ead42da65abfeb3fce937f790357e5d93613d80f4d31f6368cc88c6d921e9c1"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-005.md",
       "sha256": "fcc09409d5b8961a722981205717a401cc4975028b517193e56efd27a63e2cfe"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-006.md",
       "sha256": "b4a3d6c247f8ca2b407eb4a960c1d84f90d0dfc5c658cf226ff6ee8e4a987e9c"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-007.md",
       "sha256": "67872be0e0dcaa3c815c010a48de7e377c6bfea127aea28224ed26705497576f"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-008.md",
       "sha256": "1d8da78a836b514e2591d72e879fa7a84cb1b6273de07c79c7d6a7842208e458"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/iterations/iteration-009.md",
       "sha256": "a0c92fcc6f86556f9ffb61560d96b40f23d2fc58f9aaf657750f22ecc3089c27"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/research/research.md",
       "sha256": "3bb7e2c3d4e58761590ccd7dd7e053b50cd0a97811a774281b969df857134d4e"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/spec.md",
+      "path": "specs/sk-code/001-sk-code-parent/027-code-skilled-refinement-research/spec.md",
       "sha256": "1e9e627a87e3831448b58936f12df852acfa310c6315fc46bdb2ff50926bb27f"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md",
+      "path": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/code-bug-handoffs.md",
       "sha256": "a6a0c282e54ae00cdda165173f3379f0e57607f31c4a30bcfbbacfd49ada7973"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/implementation-summary.md",
+      "path": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/implementation-summary.md",
       "sha256": "305135b12c294533c299bf50924c89d52a8a24571059cb25bd9151941ab9dd83"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/plan.md",
+      "path": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/plan.md",
       "sha256": "4dd97778a64b084e40677570cbc246424325b2358adc341c2cab8bf52fe1be0c"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/spec.md",
+      "path": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/spec.md",
       "sha256": "5a5da4c573eecb48749d27b0b29e4b091215d49d68cd3130a6f7a9f61d7c6cbb"
     },
     {
-      "path": "specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/tasks.md",
+      "path": "specs/sk-code/001-sk-code-parent/028-code-skilled-refinement-implementation/tasks.md",
       "sha256": "01720fdcc2a1ffbb7a8bf1eeb3ad56e02f9e3709e2da7e769acd6cab7f63c9b4"
     },
     {
@@ -9971,335 +9971,335 @@
       "sha256": "478eba8920dad1943bde28c434cbf6b7582cbbc558bc7ebe67bb01cdb8489888"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/implementation-summary.md",
       "sha256": "d2e5dd04e4eeb3cf7ee0279974eedda7b909fdd4579c574771402c585bdbd807"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/plan.md",
       "sha256": "a628d9f5d673304c13bf01594ba56141d40fb5eb2fd446a8e47e2706fcd2ce7e"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/deep-research-strategy.md",
       "sha256": "0f15560e01db4c07fecb30e46034c4c291da802caf23be40d380f002a08bb113"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-001.md",
       "sha256": "a07bbee0a029e644a774f15a80411b668fac110eb8272664b03558d089034f1b"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-002.md",
       "sha256": "f8f1b68e3dbdbf87a677e0996cb91ec27ee908ab122b20ffd6ac695c7b4e25e0"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-003.md",
       "sha256": "052e9b25a7b013d2ef334c718d68a5afb322939e5688b299eae21ed7248540c9"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-004.md",
       "sha256": "5c6aaf034a853b6a8fe696b89878aea74280d84d17504ed262049ca298ec2811"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-005.md",
       "sha256": "dc0d64194fc03c19a78f904a8e33481ce45221d205583fa37944017116d4d863"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-006.md",
       "sha256": "51cf3adbe9debbb079ff36d820f3240ec7d13316f96d5b0f646fe390d90f2402"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-007.md",
       "sha256": "1613435c7c0380b4ad97584cab021164e97a6513c931c109c94dcc8f562f2acc"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-008.md",
       "sha256": "716a606162c813a5345e69570eca126f64f72f01af2fa14fb2283fd68241f1e3"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/iterations/iteration-009.md",
       "sha256": "b6c00b6659676c84946de61c158221fc634f21f4bc7fcce2a24fa0b4eec0a066"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/research/research.md",
       "sha256": "47096ef2f5d7ef0206a9709090baff72c53ba9a07f28e6a568e09c9e5ce10943"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/spec.md",
       "sha256": "964406917262c7ffbb0b5583f46e5020242e06bb1b73cb2e3beb741211b78b2f"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/001-research/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/001-research/tasks.md",
       "sha256": "ce89e53f2a0be24a973a6df0bce126d0eb03f4eccff3cd3d8927a47fa977dcc7"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/implementation-summary.md",
       "sha256": "391f1625ac206dc42f40c7a6d48ef1aca6e21d5c2f2634bb89ee4a38dfd9ab63"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/plan.md",
       "sha256": "802117e900d3d9dfbbb96ee624557e29daa6bff2b9372692a357db63e0dccd1a"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/spec.md",
       "sha256": "fd40368c7ed4a868c31ed804858f625ab332b1e64bfb69a5e8021ddde2ea7351"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/002-standard-docs/tasks.md",
       "sha256": "a03857bc1cf456abb89e5e7874ad79f5abc614a4995a8be4a376fd05929a0025"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/implementation-summary.md",
       "sha256": "895e29c510e2a494f20a9b0873f9ab6f1eb0119cfc8fdaaed56aecb9760fc2f1"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/plan.md",
       "sha256": "a101ddd18b7bca06d47df38492365272fcc719630bc93b149ccf322c29de15be"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/spec.md",
       "sha256": "8a4ee76832f7ce8d85dbbc22303e22658f4f59e1d7fcf3433dd529dd3813121d"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/003-surface-routing/tasks.md",
       "sha256": "3e8c9dee727bdcb0108c45a2430d39e937bc3af441af784d06933472787895ae"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/implementation-summary.md",
       "sha256": "734c6a18353c7d91b6989942045f820f67821308c6e6fad237f39c71d47a46b2"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/plan.md",
       "sha256": "12282493a006520964c6ca8334340fc9ab20d720699078629e91212bc8501d03"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/spec.md",
       "sha256": "975c7ff78c8848dd4a7eca9b33d9eb270dbb686d2cdbcede086b8874415baca3"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/004-parent-union-drift-guard/tasks.md",
       "sha256": "a7f340de7bad69111f612208ed4e70ee1fb5329b117a59b7a32c9472a0331bef"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/implementation-summary.md",
       "sha256": "875acca52f228be65e70f8360eb3c67948f6755a95ba5506561103b3392a8858"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/plan.md",
       "sha256": "5f40be5e44d86f4a32c2b6d329e91167a599a3d82d0e1c598ded914e88e9b0e4"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/spec.md",
       "sha256": "f1286308bc64dcf362fff672102f85a8cd59133c4521f4e0482ac00eab37fbaa"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/005-touchpoints-and-multilang/tasks.md",
       "sha256": "c9cda733882d0d3486c9d979e815f05d8dcce54f670304e7481cd4a66b10d3bf"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/implementation-summary.md",
       "sha256": "df0a9ca9761389b799f422259ed9ee5555101d7486472bcc326e20c4c7c445da"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/plan.md",
       "sha256": "52ec9cd0f689a809a2aa27cadb527dbecabe0e22607a19038b4e2c7acb5ff3ec"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/spec.md",
       "sha256": "532ae33550ff2a6a1fa89be7febe3b041a6b318379dff6010d3b97c9c5aabf80"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/006-gate-verification-rollup/tasks.md",
       "sha256": "1112769e3147d297af0e06386032f7579aa7e4f443322a7a954f065e2dfb33c2"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/implementation-summary.md",
       "sha256": "ef095263f9a9f668b5a4d65c8925f376dee198ac53614fdbd315e10ee75fa60e"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/plan.md",
       "sha256": "66122f041b588b7b64dd98daf0b773512cd6915ab3394a7b259ea80305c85b80"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/spec.md",
       "sha256": "c4ea830a9c66f892648edd5266539e0b377d46d78dbfdc4e6e74431f0e72417f"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/007-code-skilled-rust-references/tasks.md",
       "sha256": "20e9c664812c37dfb5d222378072e5f1c9cf3d1a3d74b20f02a4b50d8f993a2c"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/implementation-summary.md",
       "sha256": "6308339860685b0845c02807ce038d61a3a6f5ae76b119eeb9182fd984d126f8"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/plan.md",
       "sha256": "bea2ab6e2ab46726e44275852d0baccc45a0f2e51523aec10540cdbc4ffa2afc"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/spec.md",
       "sha256": "7df7fd241c52e1069abad7ad7be5267e3c21345bc474260b6f288c27d62511f3"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/008-code-skilled-other-references/tasks.md",
       "sha256": "2d153729d88a1d7caa9cb7203140d55cb6d9efa125e403fd5a0b0022b62f8103"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/implementation-summary.md",
       "sha256": "a5d6374e6191d4fb38a485ddc192456ea2fcc07b17a209bce3ec92fc8e5a7c7c"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/plan.md",
       "sha256": "fbdfdcec4e8aa88635d025fda86194f78b890fb6a5f60fe382ae9844e3219c08"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/spec.md",
       "sha256": "0c9248c6e8bd23e1fecab0416630f47e2ff24d6fc23caa660bad87358fd0863c"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/009-code-webflow-implementation-references/tasks.md",
       "sha256": "92415eeb3b546c0a69761c74b1ccf90ed9b093ad76ce6f19ed5f357d4e006f0b"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/implementation-summary.md",
       "sha256": "57c1f16605041b3e96d3d092d7b86ce0db3a5858a4ff51c7df7e87e8045e6879"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/plan.md",
       "sha256": "b1f3d6daca229112914789e9c3c44661a66d8149a1ca6935b13668feff8340e5"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/spec.md",
       "sha256": "2204fd231eae81b8da9f10c6ab2b0fa4e17de087abe33ecc442159ccb2ee28fc"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/010-code-webflow-other-references/tasks.md",
       "sha256": "fd12701608e8ad02396f9de639778cbdf53542c73ecc9c446002c1d8c60c8e19"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/implementation-summary.md",
       "sha256": "5f4aa2ec1076970238c8f99079aec404e64a55f797ecfd53673c2e3b80abf1c8"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/plan.md",
       "sha256": "ad404d503d0456d1487b9aa22d27b10417250e89b91764e1d3be56808515ad6d"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/spec.md",
       "sha256": "c95b03225dcf07f51463bd415f0d5f1afd1491c988b0f7931a2556306a294ae4"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/011-code-quality-and-flagged/tasks.md",
       "sha256": "79b4cc4a7e70a0426b35497b792e331916891415a65d7ba47b1cdd83d9ab4664"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/implementation-summary.md",
       "sha256": "985b75792763010c32e8b24a53fd31cfc0d402f188a6b73f0e3ace063320ab4c"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/plan.md",
       "sha256": "747ba77feda1e36cfb49bb1ae89283cb1e1d92f157cd03f80b7b1334d86b5292"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/spec.md",
       "sha256": "d224fde963b9f0627a8a9834cee49e8a25c6f37334af47b483e1afcdc0414235"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/012-gate-verification-rollup/tasks.md",
       "sha256": "08ebff6fba8497570834c67ecd05eb588b3fe4431f3f51a9c14faeda45824d49"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/implementation-summary.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/implementation-summary.md",
       "sha256": "4fe9ff32e07b67ad75121876ad18609526728f8a4dd8819e9c37802b1e361353"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/plan.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/plan.md",
       "sha256": "3aa01ddccc628b66afbb4a40e5b366f771b7bc42182d6458ec0848bac3ed9f0d"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/spec.md",
       "sha256": "fe65a452b97a97682d3b3607b62f09fdf1bce6aebec0c3c186c2c578693c75d8"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/tasks.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/013-behavior-benchmark-templates/tasks.md",
       "sha256": "c60cd13fbbbb3da35965953254d713df79ad3373d0a277c02cce738b14f0f908"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
       "sha256": "292a5850a364a522a6fedf7f8f257ec3f2528ff5f5e5b427403afb6d37a38848"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
       "sha256": "4facc3e950b1f23197dadd66437b31f01bb8048b4f37d88079547068fce3ac19"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
       "sha256": "619d5cb801a7cf92c84316a26f9c36356e0c469230318f872d0f2d07cdc64bea"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
       "sha256": "28e0fbcdef3e63a81445e5fc2826ba0c5a0eaec931379c778c6894e825dfdae0"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
       "sha256": "c4dea6819168d655780396a8d53d39bf87a9efcafe62166c348dfb13349c032f"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
       "sha256": "906410bb5273e110af4f487c37041937c45e213beaed2908b18d5cf21fa0c79d"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
       "sha256": "e39fb41f75065d5dc78240f48be00f39f7b8f3495a57976d15a7847aced4c7a9"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
       "sha256": "ca6c20df82df1ae95f7801755acef524e8b1492efb9e8789ad6099b96fae6979"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
       "sha256": "1d4778942f8571b8e4ea9ff84b4f7a1650036d2e6998d679d5f00a0b41e95d1b"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
       "sha256": "433ae1bcb5d19f59ace56cf8e6c7480374b21fb1873dd5d7905c54a521c65039"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
       "sha256": "629c70e1edc146904da4989d7a8904003cece53027de548f9962c4ce501fdd2e"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
       "sha256": "310cf39e1268ce6d0e51f075165a6f326cbaedaacc1cb12dfb96285ed57bfba3"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
       "sha256": "8317afa3275c8d1fca3934de35ba66714472fe11678990ecd4cf535108f55a5d"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
       "sha256": "c8cdb98ea72798fa187ca6a3dad384d20033fd4becf393704c507bea30d51e36"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
       "sha256": "073493535f2fbfc3abca6d32ede88eb412c8375130d1c1b9843dfdda13929a3e"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
       "sha256": "74b4efd7dbe4a9868d259261f7fd93a4d625a0f9a050e37d6c95f8bc93aa9e9c"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
       "sha256": "6882a402222fe241999aaf23741edd71ecc914a7ba55ff7e403a95204213697e"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/resource-map.md",
       "sha256": "30d7a6f8d0d8547f09e990296c345cf14e6a116fe230b07fc7dea2fb039ccf9a"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/review/lineages/gpt56-sol-fast-high/review-report.md",
       "sha256": "45de900dc21966651d03754baf200450f21c2ebc55572998ccfc2783a9823f83"
     },
     {
-      "path": "specs/sk-code/002-rust-standards-for-code-opencode/spec.md",
+      "path": "specs/sk-code/002-rust-standards-for-code-skilled/spec.md",
       "sha256": "0677c5799d0e82d604f40878eb3c1415d5115913948bb9766edae6f79cf95970"
     },
     {
@@ -25395,15 +25395,15 @@
       "sha256": "b7caec7c2cc9d8ea3e7d7640c36deb670eee1c44a0621375797c2db8babd4558"
     },
     {
-      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/plan.md",
+      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/plan.md",
       "sha256": "9561ca9287b076284f9cdcad7138c07a90d42d44ba9b336c920232fc5cd425b5"
     },
     {
-      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/spec.md",
+      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/spec.md",
       "sha256": "37ffce1df15ac174f0c33d9ab538809370185cfd27b486c30c99323c1252957f"
     },
     {
-      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/tasks.md",
+      "path": "specs/sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-skilled/tasks.md",
       "sha256": "da6f526bb9279020ce0c7e869bcafffe5f5ee439c680d4679fef360faf864979"
     },
     {
@@ -28619,19 +28619,19 @@
       "sha256": "c4d00546f989d29d478e39e44c1a8f93a4230ee298fb95e3941be4c0b0829d6c"
     },
     {
-      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/implementation-summary.md",
+      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled/implementation-summary.md",
       "sha256": "2005c78059322b42ad337ead346f4421f1cd6209fccfb6dfed2be0377db40983"
     },
     {
-      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/plan.md",
+      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled/plan.md",
       "sha256": "3a1288bd0dcdc89863bcb76e9b08bd30f9c936684203da6bb0b20d6b86f3c30c"
     },
     {
-      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/spec.md",
+      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled/spec.md",
       "sha256": "1ec4c5498a2cbc734455da509a998739b1ae3cb78085243963e367380bdd352e"
     },
     {
-      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/tasks.md",
+      "path": "specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-skilled/tasks.md",
       "sha256": "05e6a45fc6ae5efa64bda749039d78e4b406ba340dc363be3b674da5fe40f104"
     },
     {
@@ -32735,19 +32735,19 @@
       "sha256": "46d1d2e332273866302e9797327ca9a58f558e6a505d9c5e7f3b4fde79d28d29"
     },
     {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment/implementation-summary.md",
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/implementation-summary.md",
       "sha256": "23def1740006b57f0a2abc7f648e195bf6f7fe182fdfdce8cb4b269750311307"
     },
     {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment/plan.md",
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/plan.md",
       "sha256": "1735e7af768f11b18cd7d07ccd5fd473f71ba6e545f6a23a49eb71b14fef60a1"
     },
     {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment/spec.md",
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/spec.md",
       "sha256": "2701a6a7849502bb9c2d8cea77a866f72bee90c9481a54bb71acccf7a25e4983"
     },
     {
-      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-opencode-alignment/tasks.md",
+      "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/015-sk-code-skilled-alignment/tasks.md",
       "sha256": "1bce9d8bbc2a675b2c6d848eb71eb2afa83c0939622adb04e6c072e1438916a2"
     },
     {
@@ -34359,7 +34359,7 @@
       "sha256": "9300336aec8a8fca9a6c46fa0435bf6cacfab9fd8277c61d7d2084686e6d5899"
     },
     {
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-opencode-language-split-design.md",
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/004-cross-skill-routing-sweep/assets/code-skilled-language-split-design.md",
       "sha256": "449f5d7230b1d5617ec1aada5ac52a28a4f03c9d5f1ab4acdfc46a5ac29f103d"
     },
     {
@@ -34391,19 +34391,19 @@
       "sha256": "845f41cd90b325eade4f26e7b3a70b321863d19de9fcd8f2ce1ba06a3d20993c"
     },
     {
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/implementation-summary.md",
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/implementation-summary.md",
       "sha256": "a34352c2654083aada8a7cf3ace9abf20ea8689b8ed0da8dfe9608802335ef67"
     },
     {
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/plan.md",
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/plan.md",
       "sha256": "6f75357ee311efd59370054e70baeb5771b6ea541fe3d22a52577436a614d639"
     },
     {
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/spec.md",
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/spec.md",
       "sha256": "e049a98d9d1ee4d0be991777b2ea19c1afebad4d515db5a494fb55a149e5212b"
     },
     {
-      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-opencode-language-gate/tasks.md",
+      "path": "specs/system-deep-loop/031-smart-routing-benchmark-program/005-code-skilled-language-gate/tasks.md",
       "sha256": "7ce218cc4347e4883e3efce91b9cec5ef9ff70e0e5b4d9bd7af731b12ea41a57"
     },
     {
@@ -38799,19 +38799,19 @@
       "sha256": "5804597e774f9149e123ce5f2a0e60d4d3c632086d1c1669a19f30e878a5c471"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment/implementation-summary.md",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/implementation-summary.md",
       "sha256": "5b0b4b931d5dcfea1c276833e7036e62d025a2c34547e1dc11ddd27b95ab68e4"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment/plan.md",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/plan.md",
       "sha256": "cbd2f58c54617315ff9a6784f9731f06d068cd9a6c7bcfad10a6f709419bbbbb"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment/spec.md",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/spec.md",
       "sha256": "1f0befc85739dbf8ed2c1c0ee72119b678d6b259a9ed3c17ad2ce7584874ff96"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment/tasks.md",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-skilled-alignment/tasks.md",
       "sha256": "b5f5f4f5a3e452eb2cb8c5297527fa4078435e799baf0871b0f8f38a827b95db"
     },
     {
@@ -40915,7 +40915,7 @@
       "sha256": "3f148996a566bd50667efb7d29191d7b61acd613ad0d7e6b2629a83fe56cbd5b"
     },
     {
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/changelog/006-runtime-docs-and-integrity-hardening/changelog-002-sk-code-opencode-alignment.md",
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/changelog/006-runtime-docs-and-integrity-hardening/changelog-002-sk-code-skilled-alignment.md",
       "sha256": "c70ce7431ae7f4e1d52939772dd2ccd47825478a4526a4e2ea6dbc46c225ae59"
     },
     {
@@ -45167,31 +45167,31 @@
       "sha256": "cbc9dd187a46f72a4843b3e92d0cb2b22b51f686ed921981f0369fd26d39ac8a"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/audit-findings.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/audit-findings.md",
       "sha256": "83d76e49b6cc3cfb157df38038b77a19313cdf4ebb23709e14c37ceb9a57551e"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/implementation-summary.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/implementation-summary.md",
       "sha256": "5d7349733d7c15b448e7295cec353bbbc56c13533e9b0a1afe2acd28685be089"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/plan.md",
       "sha256": "3ef128931aa49d8685fc394600f801b64d4d7d244a144a00e553b4c519a9e283"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/research/prompts/iteration-001.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/research/prompts/iteration-001.md",
       "sha256": "af5b8b19bbc4760128efae915930b13112b1134d3cb47f5baa4d684442c1f399"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/resource-map.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/resource-map.md",
       "sha256": "95635d4a5c8b268a31f73c7f43d65f998a06c6f30733089be45bc31562e086a8"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/spec.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/spec.md",
       "sha256": "96d1b590499bd0e44012d10a7341fc6e47a9d2a0dfe541dd91621b0a3374117e"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/tasks.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/tasks.md",
       "sha256": "a04242a87b7e288e67905a27b7462c9c88f5e7b801dd5bd4cd55253ccb44588d"
     },
     {
@@ -63579,7 +63579,7 @@
       "sha256": "43ba22ad9496dcedd5723f83c0dd80fb8b7b3eaf6a456b81d67f27f2c4ba23b2"
     },
     {
-      "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-001-sk-code-opencode-standards-audit.md",
+      "path": "specs/system-speckit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-003-001-sk-code-skilled-standards-audit.md",
       "sha256": "bed6eb5d647320e50b865c5990ed80c94544806caf9770071ac0de8d5f0cdb3d"
     },
     {

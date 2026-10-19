@@ -13272,7 +13272,7 @@ index ab2c9d26b68..d17406e3dff 100644
 -      2577
 +      2589
      ],
-     "037 001 sk code opencode standards audit": [
+     "037 001 sk code skilled standards audit": [
 -      8740,
 -      8741,
 -      8743,
@@ -13282,7 +13282,7 @@ index ab2c9d26b68..d17406e3dff 100644
 +      8800,
 +      8801
      ],
-     "037 001 sk code opencode standards audit resource map": [
+     "037 001 sk code skilled standards audit resource map": [
 -      8742
 +      8799
      ],
@@ -131846,11 +131846,11 @@ index ab2c9d26b68..d17406e3dff 100644
 -      3229
 +      3245
      ],
-     "sk code opencode alignment": [
+     "sk code skilled alignment": [
 -      2689
 +      2705
      ],
-     "sk code opencode audit": [
+     "sk code skilled audit": [
 -      8740,
 -      8741,
 -      8743,
@@ -131862,35 +131862,35 @@ index ab2c9d26b68..d17406e3dff 100644
 +      8801,
 +      11428
      ],
-     "sk code opencode audit file ledger": [
+     "sk code skilled audit file ledger": [
 -      8742
 +      8799
      ],
-     "sk code opencode conformance spec kit": [
+     "sk code skilled conformance spec kit": [
 -      13601
 +      13658
      ],
-     "sk code opencode esm exemption": [
+     "sk code skilled esm exemption": [
 -      10913
 +      10970
      ],
-     "sk code opencode readme": [
+     "sk code skilled readme": [
 -      6236
 +      6293
      ],
-     "sk code opencode readme plan": [
+     "sk code skilled readme plan": [
 -      6235
 +      6292
      ],
-     "sk code opencode readme summary": [
+     "sk code skilled readme summary": [
 -      6234
 +      6291
      ],
-     "sk code opencode readme tasks": [
+     "sk code skilled readme tasks": [
 -      6237
 +      6294
      ],
-     "sk code opencode rename": [
+     "sk code skilled rename": [
 -      5352,
 -      5353,
 -      5354,
@@ -131900,11 +131900,11 @@ index ab2c9d26b68..d17406e3dff 100644
 +      5411,
 +      5412
      ],
-     "sk code opencode standards audit": [
+     "sk code skilled standards audit": [
 -      10711
 +      10768
      ],
-     "sk code opencode stress test": [
+     "sk code skilled stress test": [
 -      8929,
 -      8930,
 -      8931,
@@ -131922,7 +131922,7 @@ index ab2c9d26b68..d17406e3dff 100644
 +      8993,
 +      8994
      ],
-     "sk code opencode stress test alignment": [
+     "sk code skilled stress test alignment": [
 -      10808
 +      10865
      ],
@@ -159242,7 +159242,7 @@ index 48c8dba3ccd..00000000000
 -The flat skill became a parent hub, routing on two axes at once:
 -
 -- **workflow modes that act** — `sk-code-quality` and `sk-code-review`;
--- **read-only surface packets that inform** — `sk-code-webflow` and `sk-code-opencode`, each carrying the shared implement → debug → verify doctrine plus its stack knowledge (with the Motion.dev animation overlay folded into webflow rather than standing alone).
+-- **read-only surface packets that inform** — `sk-code-webflow` and `sk-code-skilled`, each carrying the shared implement → debug → verify doctrine plus its stack knowledge (with the Motion.dev animation overlay folded into webflow rather than standing alone).
 -
 -So the guidance you get is scoped to both what you're doing and the stack you're doing it to. All 128 relocated files were repointed — including a pre-commit hygiene gate that had been silently skipped — and a deterministic router benchmark rose from 44 to 71. The move is a breaking one: the routing contract and every skill path shifted under the mode and surface packets, so anything that still points at the old flat paths must be updated.
 -
@@ -159857,7 +159857,7 @@ index 7c2d82a5fb5..d7d21e2d4db 100644
 +++ b/specs/system-speckit/033-system-speckit-v4/026-runtime-code-standards-research/graph-metadata.json
 @@ -196,7 +196,7 @@
      ],
-     "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality standards kept evolving",
+     "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality standards kept evolving",
      "created_at": "2026-09-06T07:54:25Z",
 -    "last_save_at": "2026-09-06T13:20:35.062Z",
 +    "last_save_at": "2026-09-08T15:51:26.209Z",
@@ -171665,7 +171665,7 @@ index fc4be315013..00000000000
 -- .opencode/skills/system-spec-kit/manual-testing-playbook/ (the setup native-module + post-save-review + core-workflow pages) [3,6,7].
 -- .opencode/skills/system-spec-kit/changelog/v2+/v2.2.10.0.md, v3.0.0.3.md, v3.9.0.0.md, v3.5.0.0.md + deep-ai-council/changelog/v1.1.0.0.md, v1.2.0.0.md (the one-off scripts' consumption records) [6,7].
 -- .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts + coverage-graph-query.ts + better-sqlite3.d.ts + next-focus/next-focus-types.ts (the production twin) [9]; system-deep-loop/runtime/tests/unit/coverage-graph-*.vitest.ts (4-5 test importers) [9]; system-deep-loop/deep-ai-council + benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json [6]; the deep-research + deep-review resource-map-emission playbooks [8].
--- .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh (the CI+hook twin) [2]; sk-code/sk-code-opencode/references/.../directory-and-test-conventions.md (the registry-loader + rebuild-native mentions) [2,6].
+-- .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh (the CI+hook twin) [2]; sk-code/sk-code-skilled/references/.../directory-and-test-conventions.md (the registry-loader + rebuild-native mentions) [2,6].
 -- .opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json + baseline-readme-verdicts.json (the observability fixture mentions) [8].
 -- specs/system-speckit/035-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md + spec.md:76-90 (the charter, the problem statement, the handoff criteria) [1,10].
 -- The 002-packet-adjacent: specs/.../035-*/{001-ripgrep-search-system,003-shared-package-utilization,005-overengineering-simplification} (the sibling-track context, by name only) [1].

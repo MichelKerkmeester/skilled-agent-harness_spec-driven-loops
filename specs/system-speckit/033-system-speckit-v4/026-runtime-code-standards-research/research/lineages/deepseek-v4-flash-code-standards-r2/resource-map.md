@@ -21,7 +21,7 @@ Derived from converged iteration deltas. `resource-map.md` was absent at init (`
 
 ## Standards cited
 
-- sk-code-opencode/references/typescript/{style-guide/overview-strict-and-naming,quality-standards/overview-and-type-system,quality-standards/tsdoc-errors-and-async}
-- sk-code-opencode/references/shell/{quality-standards/overview-and-priority-blockers,quality-standards/validation-security-and-shellcheck}
-- sk-code-opencode/references/shared/code-organization/imports-and-exports
+- sk-code-skilled/references/typescript/{style-guide/overview-strict-and-naming,quality-standards/overview-and-type-system,quality-standards/tsdoc-errors-and-async}
+- sk-code-skilled/references/shell/{quality-standards/overview-and-priority-blockers,quality-standards/validation-security-and-shellcheck}
+- sk-code-skilled/references/shared/code-organization/imports-and-exports
 - shared/references/universal/code-quality-standards

@@ -76,7 +76,7 @@ Rename the hub-level playbook root, category directories, index, and scenario fi
 
 ### Out of Scope
 
-- Component-local manual-testing-playbook trees under code-opencode, code-quality, code-review, and code-webflow; those are owned by their component phases.
+- Component-local manual-testing-playbook trees under code-skilled, code-quality, code-review, and code-webflow; those are owned by their component phases.
 - Scenario IDs, frontmatter keys, category values, prompts, code identifiers, JSON/YAML/TOML keys, and manual-test content that is not a path.
 - SKILL.md, README.md, Python/package, generated/lockfile, tool-mandated, and frozen names as physical names.
 - Benchmark report content or benchmark storage directory renames; those are owned by 007-benchmark.

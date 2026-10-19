@@ -1,0 +1,7 @@
+# Mutation: plugin.ts forces guaranteed = true, and attachments.ts always awaits the full analysis (no grace race).
+(fail) v2 grace for models off the text-only list > asks for the grace, not the full wait, for a model off the text-only list [1.43ms]
+(fail) v2 grace for models off the text-only list > asks for the grace when the host cannot report the session model [0.19ms]
+(fail) AttachmentInjector guaranteed vision > does not block a non-text-only model past the grace (evidence absent when analysis is slower) [122.90ms]
+(fail) AttachmentInjector evidenceText grace > returns without an analysis that is still running when the grace runs out [402.00ms]
+ 27 pass
+ 4 fail

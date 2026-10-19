@@ -14,7 +14,7 @@
 
 ✖ failing tests:
 
-test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:104:1
+test at .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs:104:1
 ✖ leg 2 accepts paths the ROUTER.md list or preamble declares and a workflow mode leaf (47.142917ms)
   AssertionError [ERR_ASSERTION]: FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier (3 problem(s))
     - parent map DEMO cites shared/references/control.md, outside the parent tier
@@ -25,7 +25,7 @@ test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_syn
   
   1 !== 0
   
-      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:107:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs:107:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
@@ -40,7 +40,7 @@ test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_syn
     diff: 'simple'
   }
 
-test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:111:1
+test at .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs:111:1
 ✖ leg 2 reports a shared parent-map path ROUTER.md does not declare (40.9545ms)
   AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /control\.md/. Input:
   
@@ -50,7 +50,7 @@ test at .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_syn
     '  - parent map DEMO cites sk-code-review/assets/leaf.md, outside the parent tier\n' +
     'router-sync: 0/1 checks passed\n'
   
-      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs:116:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/092-sk-code-ponytail-refinement/.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs:116:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
       at Test.processPendingSubtests (node:internal/test_runner/test:974:18)

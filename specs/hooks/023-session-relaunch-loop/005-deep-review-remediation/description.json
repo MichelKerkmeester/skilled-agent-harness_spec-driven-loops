@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "hooks/023-session-relaunch-loop/005-deep-review-remediation",
+  "description": "Phase 5: deep-review-remediation",
+  "keywords": [
+    "phase",
+    "deep-review-remediation"
+  ],
+  "lastUpdated": "2026-10-18T18:14:17.620Z",
+  "specId": "005",
+  "folderSlug": "deep-review-remediation",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "18-10-26_17-03__fixed-the-twelve-deep-review-advisories-and-every.md",
+    "18-10-26_19-14__extended-phase-005-with-the-final-review-wave.md"
+  ]
+}

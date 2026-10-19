@@ -126,7 +126,7 @@ The operator chose the source on 2026-09-28 (parent D4): this project's 15 newes
 | `.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts`, `session-prime.ts` | Read only | The brief builder and its marker. `--replay` imports the built `buildMergedCompactResult` from `dist` |
 | `<report path passed with --out>` | Create at run time | One JSON report outside the repository. The script refuses a path inside a named transcript directory |
 
-The script and its test follow sk-code's OpenCode route (`sk-code/sk-code-opencode`), per parent D6.
+The script and its test follow sk-code's OpenCode route (`sk-code/sk-code-skilled`), per parent D6.
 <!-- /ANCHOR:scope -->
 
 ---

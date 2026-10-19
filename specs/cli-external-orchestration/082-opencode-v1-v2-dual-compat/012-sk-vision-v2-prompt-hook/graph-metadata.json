@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk vision v2 prompt hook",
+      "phase 12 sk vision v2 prompt hook",
+      "sk vision v2 prompt hook plan",
+      "sk vision v2 prompt hook tasks",
+      "sk vision v2 prompt hook acceptance criteria",
+      "sk vision v2 prompt hook goal",
+      "sk vision v2 prompt hook implementation summary"
+    ],
+    "key_topics": [
+      "vision",
+      "prompt",
+      "hook",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+      ".skilled/skills/sk-vision/vision-runtime/dist/plugin.js",
+      ".opencode/plugins/README.md",
+      ".skilled/hooks/injection-contract.md",
+      "scratch/suites-before.txt",
+      "scratch/suites-final.txt",
+      "scratch/battery-v1.txt",
+      "scratch/battery-v2.txt",
+      "scratch/luna-1.txt",
+      "scratch/luna-2.txt",
+      "scratch/validate-recursive.txt",
+      ".opencode/plugins/tests/v2-hard-plugins.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "attachments.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.js",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/dist/plugin.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "suites-before.txt",
+        "kind": "file",
+        "path": "scratch/suites-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suites-final.txt",
+        "kind": "file",
+        "path": "scratch/suites-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v1.txt",
+        "kind": "file",
+        "path": "scratch/battery-v1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-v2.txt",
+        "kind": "file",
+        "path": "scratch/battery-v2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-1.txt",
+        "kind": "file",
+        "path": "scratch/luna-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-2.txt",
+        "kind": "file",
+        "path": "scratch/luna-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-recursive.txt",
+        "kind": "file",
+        "path": "scratch/validate-recursive.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-hard-plugins.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On OpenCode 1, sk-vision's `server` entry registers a `chat.message` hook when `SKVISIONAUTOINSPECT=1`",
+    "created_at": "2026-10-19T11:29:12Z",
+    "last_save_at": "2026-10-19T15:28:33.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0f031663be7a773068dac4f699dc74c33dab1164d53d8b1615c9da45cada0ab2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1afeded833e7610dffd4e39001e9bc11382bab6a897dca11820cb21ae42b26c3",
+      "plan.md": "9fb32a75a05c297e101404ad7b89ba0e689ea796b7a025b68c345a5cd682a045",
+      "tasks.md": "58822c87d30ffa256f4aeefbf0934b697532ed24cdec39a39b447a46cbcbd121",
+      "implementation-summary.md": "982e09191bbf6f08adc32c07c4920d35f52bb4bf3f50297007bad0d86c381aed"
+    },
+    "last_active_at": null
+  }
+}

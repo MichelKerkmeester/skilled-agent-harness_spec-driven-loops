@@ -37,7 +37,7 @@ trigger_phrases: []
 | 11 | Review integration and strengthening proposals (Part 2 close) | 3 | 0.80 |
 | 12 | sk-code-quality fresh pass | 4 | 0.85 |
 | 13 | sk-code-webflow fresh pass | 4 | 0.85 |
-| 14 | sk-code-opencode fresh pass | 4 | 0.75 |
+| 14 | sk-code-skilled fresh pass | 4 | 0.75 |
 | 15 | sk-code-obsidian fresh pass | 3 | 0.70 |
 | 16 | The hub files against each other | 3 | 0.75 |
 | 17 | benchmark, feature-catalog and the root playbook | 3 | 0.75 |

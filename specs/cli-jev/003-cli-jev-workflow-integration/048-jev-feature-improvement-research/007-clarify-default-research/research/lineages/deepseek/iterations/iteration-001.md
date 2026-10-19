@@ -50,12 +50,12 @@ first-alternative baseline can and cannot show.
 
 5. The four L rows share one shape: the prompt names a surface or artifact that is itself an alternative,
    and the label follows the requested action instead. "Review this OpenCode TypeScript change and run its
-   quality checks" (label `sk-code-quality`) draws `sk-code-opencode` three times at 0.81/0.66/0.85;
+   quality checks" (label `sk-code-quality`) draws `sk-code-skilled` three times at 0.81/0.66/0.85;
    "Check the code quality of my Webflow implementation" draws `sk-code-webflow` at 0.88/0.70/0.90;
    "Create a skill and a README for this app" (label `sk-create-skill`) splits 2-1 toward
    `sk-create-readme`. The surface descriptions are concrete nouns ("OPENCODE surface", "WEBFLOW surface")
    while the labeled modes are actions ("quality gate after implementation").
-   [SOURCE: ~/.skilled/.labels/020-rows.jsonl] [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:5]
+   [SOURCE: ~/.skilled/.labels/020-rows.jsonl] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:5]
    [SOURCE: .skilled/skills/sk-code/sk-code-quality/SKILL.md:5]
 
 6. The pick probabilities carry no usable signal on this corpus. Mean modal probability is 0.678 on

@@ -13,7 +13,7 @@ version: 1.14.0.19
 
 ## 1. OVERVIEW
 
-Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-opencode, sk-code-quality, universal code-quality-standards). This is the r2 lineage: it takes the priority surfaces left by the two prior passes, one focus angle per iteration over exactly 5 iterations (config.maxIterations, stopPolicy max-iterations). Output is a citation-complete deviation inventory feeding a remediation packet. No edits.
+Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-skilled, sk-code-quality, universal code-quality-standards). This is the r2 lineage: it takes the priority surfaces left by the two prior passes, one focus angle per iteration over exactly 5 iterations (config.maxIterations, stopPolicy max-iterations). Output is a citation-complete deviation inventory feeding a remediation packet. No edits.
 
 ## 2. TOPIC
 

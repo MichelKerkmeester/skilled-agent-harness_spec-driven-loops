@@ -1,0 +1,30 @@
+ROLE: You correct two code comments. Re-read each file first. Make exactly these edits and nothing else.
+
+CONTEXT: Both OpenCode plugin links, `.opencode/plugins/sk-vision.js` and `.skilled/plugins/sk-vision.js`, point at `../skills/sk-vision/vision-runtime/dist/plugin.js`. Nothing links to the `hooks/opencode/sk-vision.js` bundle the build writes, but two comments say a plugin path links to it.
+
+ACTION:
+
+1. In `.skilled/skills/sk-vision/hooks/opencode/sk-vision.ts`, replace these two banner lines:
+
+// ║          lives in vision-runtime. OpenCode loads a bundled .js, so the    ║
+// ║          build emits the sibling sk-vision.js the plugin path links to.   ║
+
+with these two lines (keep the box width; each line ends with `║` in the same column as the line above it):
+
+// ║          lives in vision-runtime. The build still emits a sibling        ║
+// ║          sk-vision.js, but OpenCode loads vision-runtime/dist/plugin.js.  ║
+
+2. In `.skilled/skills/sk-vision/vision-runtime/scripts/build.ts`, replace these four comment lines:
+
+// Also bundle the skill-owned OpenCode adapter that lives beside the Pi adapter
+// under hooks/. It emits a loadable sk-vision.js next to its source so
+// .skilled/plugins/sk-vision.js can symlink into the skill's hooks/ dir,
+// symmetric with how the Pi adapter is loaded from hooks/pi.
+
+with these three lines:
+
+// Also bundle the skill-owned OpenCode adapter that lives beside the Pi adapter
+// under hooks/, as a loadable sk-vision.js next to its source. The OpenCode
+// plugin links point at dist/plugin.js, so nothing loads this copy today.
+
+FORMAT: Then run `sed -n 1,10p .skilled/skills/sk-vision/hooks/opencode/sk-vision.ts | awk '{ print length($0) ": " $0 }'` and print the output verbatim, nothing else.

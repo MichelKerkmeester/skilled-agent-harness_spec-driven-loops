@@ -1,0 +1,43 @@
+ROLE: You add one test to one TypeScript test file. Re-read it first. Make exactly this edit and nothing else.
+
+ACTION: In `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`, inside `describe("v2 tool registration", () => {`, directly after the closing `  });` of the test `  it("releases everything setup holds when the prompt hook fails to register", async () => {`, insert one blank line and then this test:
+
+  it("still releases the inspection client and keeps the hook error when command disposal fails", async () => {
+    const base = makeContext();
+    const ctx: SetupContext = {
+      ...base.ctx,
+      command: {
+        transform: async (callback) => {
+          callback({ add: () => {} });
+          return {
+            dispose: async () => {
+              throw new Error("command dispose failed");
+            },
+          };
+        },
+      },
+      session: {
+        ...base.ctx.session,
+        hook: async () => {
+          throw new Error("prompt hook unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+
+    await expect(
+      createSetup({
+        handle: async () => {},
+        readTemplate: () => null,
+        createAutoInspect: () => ({
+          evidence: async () => null,
+          dispose: async () => {
+            autoDisposed += 1;
+          },
+        }),
+      })(ctx),
+    ).rejects.toThrow("prompt hook unavailable");
+    expect(autoDisposed).toBe(1);
+  });
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -6` and print the output verbatim, nothing else.

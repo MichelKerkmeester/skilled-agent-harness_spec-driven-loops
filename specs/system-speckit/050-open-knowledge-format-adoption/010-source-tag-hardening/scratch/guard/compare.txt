@@ -16,5 +16,5 @@ same specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation :: SKI
 same specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research :: SKIP	created 2026-09-14, on or before the cutoff 2026-10-04
 same specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research :: SKIP	created 2026-10-02, on or before the cutoff 2026-10-04
 same specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements :: SKIP	created 2026-08-08, on or before the cutoff 2026-10-04
-same specs/sk-code/002-rust-standards-for-code-opencode/001-research :: SKIP	created 2026-07-11, on or before the cutoff 2026-10-04
+same specs/sk-code/002-rust-standards-for-code-skilled/001-research :: SKIP	created 2026-07-11, on or before the cutoff 2026-10-04
 same specs/sk-communication/001-sk-communication-creation/001-research-strategy :: SKIP	created 2026-08-11, on or before the cutoff 2026-10-04

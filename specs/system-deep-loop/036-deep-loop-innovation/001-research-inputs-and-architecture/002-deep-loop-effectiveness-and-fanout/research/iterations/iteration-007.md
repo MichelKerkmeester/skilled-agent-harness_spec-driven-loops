@@ -1092,7 +1092,7 @@ exec
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts
 .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/parent-hub-vocab-sync.vitest.ts
-.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-opencode-playbook-ids.vitest.ts
+.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/code-skilled-playbook-ids.vitest.ts
 .opencode/skills/system-deep-loop/deep-research/references/state/state_reducer_registry.md
 .opencode/skills/system-deep-loop/deep-research/references/state/state_outputs.md
 .opencode/skills/system-deep-loop/deep-research/references/state/state_format.md

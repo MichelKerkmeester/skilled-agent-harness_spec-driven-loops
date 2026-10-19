@@ -1,4 +1,4 @@
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m reviewing the four code paths together so the proposals stay grounded in actual behavior, not guesswork. I’ll map the CLI surface, rebuild/index lifecycle, and feedback loops first, then turn that into concrete UX/automation proposals.
 

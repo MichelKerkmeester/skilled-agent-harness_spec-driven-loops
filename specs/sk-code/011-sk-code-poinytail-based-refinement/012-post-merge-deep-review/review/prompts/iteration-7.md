@@ -25,7 +25,7 @@ Stuck count: 0
 Provisional Verdict: PENDING hasAdvisories=false
 Stop policy: max-iterations (convergence is telemetry only; broaden the angle, never synthesize early)
 
-ITERATION FOCUS (orchestrator-assigned): sk-code-opencode drift guards and doc-claim checks: 817ff5b2a7, d2701afc3b, e9ecf8bb5f, 07189a66f8, 0da902346a. Run run-all-drift-guards.sh read-only. Confirm or refute: the leaf manifest tests show 26 pass 16 fail (cli-classifier closure, fixed-routing count 7 vs 6)
+ITERATION FOCUS (orchestrator-assigned): sk-code-skilled drift guards and doc-claim checks: 817ff5b2a7, d2701afc3b, e9ecf8bb5f, 07189a66f8, 0da902346a. Run run-all-drift-guards.sh read-only. Confirm or refute: the leaf manifest tests show 26 pass 16 fail (cli-classifier closure, fixed-routing count 7 vs 6)
 Before starting, read .skilled/agents/deep-review.md (your agent definition) and follow its contract.
 The repository is a git checkout at main 5d9c970447; use `git show`, `git diff`, `git log` and test commands read-only to prove each finding.
 Every finding must carry a reproducing command or an exact file:line read in its evidence; a claim you could not prove goes under a 'Not proven' heading, never as a finding.
@@ -35,7 +35,7 @@ Review Iteration: 7 of 10
 Mode: review
 Dimension: maintainability
 Review Target: Commits ba56b03412..5d9c970447 on main: the 37 commits of the sk-code Ponytail refinement epic (specs/sk-code/011-sk-code-poinytail-based-refinement phases 002-011), the merge 144b1d339e and its 8 hand-resolved conflicts, then 9a74576ccc and 5d9c970447
-Review Scope Files: .skilled/skills/sk-code/sk-code-opencode/scripts/,.skilled/skills/sk-doc/sk-create-skill/scripts/ (this iteration's focus). The full 275-file scope list is specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/scope-files.txt
+Review Scope Files: .skilled/skills/sk-code/sk-code-skilled/scripts/,.skilled/skills/sk-doc/sk-create-skill/scripts/ (this iteration's focus). The full 275-file scope list is specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/review/scope-files.txt
 Prior Findings: P0=0 P1=0 P2=10
 
 ## PIVOT LINEAGE

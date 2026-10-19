@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "external surface priority research",
       "phase 25 external surface priority research",
-      "user surface outranks sk-code-opencode",
+      "user surface outranks sk-code-skilled",
       "obsidian and webflow are examples",
       "sk-code surface order for external users",
       "external surface priority research plan",
@@ -30,7 +30,7 @@
       "phase",
       "user",
       "outranks",
-      "sk-code-opencode",
+      "sk-code-skilled",
       "obsidian",
       "webflow",
       "examples",
@@ -57,7 +57,7 @@
       ".skilled/bin/compiled-route-sync.cjs",
       "shared/README.md",
       ".opencode/plugins/system-skill-advisor.js",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs"
     ],
     "entities": [
@@ -154,7 +154,7 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The v4.0.0.4 release note's \"One Surface Order Everywhere\" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`",
     "created_at": "2026-10-12T16:19:58Z",
-    "last_save_at": "2026-10-13T04:36:49.990Z",
+    "last_save_at": "2026-10-18T20:45:19.481Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b4e486b323d752d8346b33b540e12bd3b2e8413a6fb7e7126da7eb2ed696c3ac",
+    "source_fingerprint": "sha256:15ec68d7c7dfe51069b5d3f3af67d9706d9085db235f86e5e1ea95476efe0f9e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fdca7a3c271c51ab5c3c504009752a72f20ccce16b5186ad50153bec72156c77",
+      "spec.md": "3a560eb25e63a7eeebc49affea82959a7bf7887c3b77cc0984947475be2ec830",
       "plan.md": "ccf0edf531b9b85069e63f7a2981fe841a6f980aee652e08d1a4b1988f3c5e4f",
       "tasks.md": "40083cd0e6f235d8fbd2f9201967758a5266d29e5c80833ef9a6f5b0d477074e",
-      "implementation-summary.md": "2b895d8edd08ac134e924bd3b74a6b4b6e4c03df6134576489def6aa338e5c18",
-      "research/research.md": "50360f4429974128885af8822555ad484b252cdb8f886a9251323706a579246e"
+      "implementation-summary.md": "bb33177b800d71d576d5f3528be81c261b3e5124ff71fd0a799611cf129dde74",
+      "research/research.md": "81a79937ab4937c8c10c779669aa2a2a4337204834addc07e4d25283ef180c3f"
     },
     "last_active_at": null
   }

@@ -15,8 +15,8 @@ Review Target: `.opencode/specs/sk-doc/032-split-doc-template-alignment`
 
 Allowed read roots only:
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment`
-- `.opencode/skills/sk-code/code-opencode/references`
-- `.opencode/skills/sk-code/code-opencode/assets`
+- `.opencode/skills/sk-code/code-skilled/references`
+- `.opencode/skills/sk-code/code-skilled/assets`
 - `.opencode/skills/sk-code/code-webflow/references`
 - `.opencode/skills/sk-code/code-webflow/assets`
 - `.opencode/skills/sk-code/code-quality/references`

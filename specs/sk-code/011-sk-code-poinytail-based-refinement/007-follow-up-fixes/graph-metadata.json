@@ -52,8 +52,6 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
       "tests/README.md",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
       ".skilled/hooks/shared/hook-adapter-shared.cjs",
       ".skilled/hooks/shared/hook-adapter-shared.test.cjs",
       ".skilled/hooks/shared/README.md",
@@ -104,18 +102,6 @@
         "name": "generate-leaf-manifest-ignores.test.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-ignores.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-agent-mirror-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-agent-mirror-sync.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/check-agent-mirror-sync.vitest.ts",
         "source": "derived"
       },
       {
@@ -205,17 +191,17 @@
     ],
     "causal_summary": "Building phases 002 to 006 surfaced five gaps that were out of scope at the time",
     "created_at": "2026-10-10T05:26:19Z",
-    "last_save_at": "2026-10-11T05:17:04.077Z",
+    "last_save_at": "2026-10-18T20:45:10.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b0aa56ff25077be5d0f1f66822dfb343a45d621f920b5ecc7c52ded7ed37e552",
+    "source_fingerprint": "sha256:9272997072ea4bcfb25ee0632ae090bd356340326c30940bccd684341fa5f144",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae8506b9c72a874b31a617a77edf4a41f340f0f8f74fbd5eeae0d4ebeb6d5aed"
+      "spec.md": "32145716c1073f9f7edec1c79e29640bdd06e7153eed9d195745c0b0b49a8d84"
     },
     "last_active_at": null
   }

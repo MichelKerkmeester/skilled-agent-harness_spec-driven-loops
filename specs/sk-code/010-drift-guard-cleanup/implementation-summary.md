@@ -57,8 +57,8 @@ On this tree the rule skips 428 tracked files: 406 spec evidence files and 22 fi
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Adds `is_unscanned_record_path` and calls it from `iter_code_files` |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Adds `test_skips_spec_evidence_and_fixture_trees` |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Adds `is_unscanned_record_path` and calls it from `iter_code_files` |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Adds `test_skips_spec_evidence_and_fixture_trees` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -89,8 +89,8 @@ DeepSeek V4.1 Flash, dispatched through cli-pi at max thinking, wrote the predic
 
 | Check | Result |
 |-------|--------|
-| `python3 -m pytest .skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py -q` | PASS, 27 passed, exit 0 (26 before) |
-| `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | PASS, `all 2 guards PASSED`, exit 0. Scanned 22120 files, 0 errors, 247 warnings (before: exit 1, 22548 scanned, 60 errors, 254 warnings) |
+| `python3 -m pytest .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py -q` | PASS, 27 passed, exit 0 (26 before) |
+| `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | PASS, `all 2 guards PASSED`, exit 0. Scanned 22120 files, 0 errors, 247 warnings (before: exit 1, 22548 scanned, 60 errors, 254 warnings) |
 | `git status --porcelain` | Only the verifier, its test, this packet and `specs/sk-code/graph-metadata.json` |
 <!-- /ANCHOR:verification -->
 

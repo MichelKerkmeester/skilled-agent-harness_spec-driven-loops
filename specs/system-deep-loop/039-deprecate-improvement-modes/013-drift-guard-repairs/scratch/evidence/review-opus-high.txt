@@ -9,15 +9,15 @@ P1. The 013 docs cite scratch/evidence/decision-ledger.txt, which did not exist 
   Where: spec.md lines 46, 64 and 142, plan.md lines 34, 44 and 103.
   Evidence: scratch/evidence held only lane-01-router-sync-ignored.txt and lane-02-baseline-recapture.txt. Strict validation does not catch it (SPEC_DOC_INTEGRITY passes).
   Fix: write the ledger into scratch/evidence/decision-ledger.txt.
-P2. scripts/README.md lines 12 and 21 and references/shared/alignment-verification-automation.md line 96 (sk-code-opencode) still say check 1b reports any unrouted reference or asset doc, and line 21 lists the test coverage without the ignored and untracked case. Outside the declared file list.
+P2. scripts/README.md lines 12 and 21 and references/shared/alignment-verification-automation.md line 96 (sk-code-skilled) still say check 1b reports any unrouted reference or asset doc, and line 21 lists the test coverage without the ignored and untracked case. Outside the declared file list.
 P2. scripts/capture-top3.mjs lines 12 and 13 say it writes nothing outside this phase folder. Line 43 creates a temp dir with mkdtempSync under the system temp dir and never removes it, and the script writes nothing inside the phase folder (stdout only). The claim came over from the archived copy. Fix: reword to say it prints to stdout and creates one empty temp DB dir.
 P2. implementation-summary.md is still the scaffold. Its Completed field says 2026-10-11 while spec.md says In Progress. Strict validation of 013: RESULT: FAILED, Errors 2 (GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT, covered by the metadata refresh task), Warnings 1 (SPECDOC_SUFFICIENCY_002 on the what-built section).
 P2, informational, no fix needed. The new routing-baseline.json matches the archived top-level schema. discrepancyRecord has a different inner shape (holdoutRowLoss and metricDiffs instead of staleSources and freshCanonical) and captureRegime.env adds SYSTEM_SKILL_ADVISOR_DB_DIR. Nothing reads either. The CI snippet reads only baseline["corpus"].
 
 CHECKS THAT PASSED
 Router-sync fix:
-- node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs: 6 pass, 0 fail, exit 0.
-- bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh: all 4 guards PASSED, 277 non-blocking warnings, router-sync 5 of 5, exit 0.
+- node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs: 6 pass, 0 fail, exit 0.
+- bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh: all 4 guards PASSED, 277 non-blocking warnings, router-sync 5 of 5, exit 0.
 - The same test run against git show HEAD: of the guard in a scratch hub: only the new test failed (1 fail, 5 pass) and the guard listed .pytest_cache/README.md as an orphan, so the test fails for the right reason.
 check-ignore edge cases, in scratch hubs against the fixed guard:
 - A tracked file matching an ignore pattern is still reported (check-ignore never reports tracked files).

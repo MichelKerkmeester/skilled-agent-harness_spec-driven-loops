@@ -41,7 +41,7 @@
   - `scripts/core/memory-indexer.ts` — 7 named constants (STD-014) confirmed at lines 51-57
   - `scripts/tests/input-normalizer-unit.vitest.ts` — exists
   - `scripts/tests/memory-indexer-weighting.vitest.ts` — exists
-  - `sk-code-opencode/scripts/verify_alignment_drift.py` — `--fail-on-warn` flag confirmed
+  - `sk-code-skilled/scripts/verify_alignment_drift.py` — `--fail-on-warn` flag confirmed
   - `scripts/dist/memory/backfill-frontmatter.js` — frontmatter migration tool exists
   - `scripts/tests/test-frontmatter-backfill.js`, `test-template-system.js`, `test-template-comprehensive.js` — all exist
 - **Evidence**: Glob and Grep verification across all claimed paths.

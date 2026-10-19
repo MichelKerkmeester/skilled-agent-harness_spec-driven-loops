@@ -44,14 +44,14 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Each plugin default-exports one plain object `{ id, setup, server }`, never a function carrying `.id` |
+| D1 | Each plugin default-exports one plain object `{ id, setup, server }` |
 | D2 | `opencode.json` stays in the v1 shape: the singular `permission` map and `mcp.<name>` entries, with no `permissions`, `plugins` or `disabled` key |
 | D3 | Version comes from parsed `--version`, never the binary name. Every v2 child uses `run --standalone` |
-| D4 | No phase runs `opencode upgrade --major`, changes the operator's installs or restarts the v2 service. Install proofs use throwaway prefixes |
+| D4 | No `opencode upgrade --major`, no change to operator installs, no v2 service restart; install proofs use throwaway prefixes |
 | D5 | Targets are 1.19.3 and 2.0.32: `@opencode-ai/plugin` 1.19.3 exact, zod declared, `@opencode/plugin` 2.0.32 type-only |
 | D6 | Code goes to GPT-6 Luna max fast via cli-codex. Docs, probes and review go to DeepSeek V4.1 Flash max via cli-devin. Each reviews the other, and the orchestrator reruns every test |
 | D7 | Changed code follows the sk-code OPENCODE surface, and changed docs follow their sk-doc mode |
-| D8 | The public claim is scoped: verified on 1.19.3 and 2.0.32 on a stated date, with a documented capability delta, and later versions unsupported until re-verified |
+| D8 | The public claim names 1.19.3, 2.0.32, a date and the capability delta; later versions are unsupported until re-verified |
 
 <!-- /ANCHOR:directive -->
 
@@ -76,6 +76,7 @@ phase and binds as if written here.
 | 009-sk-code-opencode-alignment | `009-sk-code-opencode-alignment/goal.md` |
 | 010-documentation-sweep | `010-documentation-sweep/goal.md` |
 | 011-two-version-proof-and-closeout | `011-two-version-proof-and-closeout/goal.md` |
+| 012-sk-vision-v2-prompt-hook | `012-sk-vision-v2-prompt-hook/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -123,6 +124,8 @@ and findings belong here.
 | 009 sk-code-opencode alignment | Done | Four findings-first reviews of 75 changed code files; 5 P1 fixed (the dispatch guard read its args from the wrong argument and never refused on either version, v2 `/vision` was shadowed by `vision.md` and is now filled from the prompt hook, the manifest path, flag values, prompt-file images), 16 P2 deferred with reasons; drift guards exit 0, hygiene clean, every touched suite at or above its baseline, battery 16 of 16 on both versions (009/findings.md, 009/scratch/decisions.txt 4 to 12) |
 | 010 documentation sweep | Done | 52 docs pass their validator, DQI 77 or more and HVR 0 (41 at closeout, 11 added by the event correction); every OpenCode 1 only flag is tagged and each v2 form sits beside it; cli-opencode, hub, playbook and catalog package checks exit 0; changelog v1.5.0.0; three Luna reviews and four verifies, the last PASS, then two event-correction reviews and verifies, both verifies PASS; validate strict PASSED (010 implementation-summary.md) |
 | 011 two-version proof and closeout | Done | Ten suites at or above baseline from the final tree; the battery exits 0 three times on each version (v1 16 of 16 loaded, v2 16 of 16 active, 57 skills); `dispatch-audit.mjs` classifies and evaluates `opencode2 run`; one live dispatch per version exit 0; drift guards exit 0; the D8 claim, dated 2026-10-19, in the cli-opencode SKILL.md, README and eight references; recursive strict PASSED (011 proof.md) |
+| 012 sk-vision v2 prompt hook | Done | With `SK_VISION_AUTOINSPECT=1`, OpenCode 2.0.32 runs the automatic image check in `session.hook("prompt")`; a live private-server run stored Scene, Caption, OCR and Atlas blocks with the flag on and none with it off; sk-vision bun test 46 to 50, plugins 356, battery exit 0 on both versions; Luna PASS (012 implementation-summary.md) |
+| 013 sk-vision v2 tools and loose ends | Done | With `SK_VISION_AUTOINSPECT=1`, OpenCode 2.0.32 lists the 13 `sk_vision_*` tools and ran `sk_vision_status` live, and with it off lists none; `RuntimeClient.close()` stops a startup still provisioning; grace path unit-tested; sk-vision bun test 50 to 67, plugins 356, battery exit 0 on both versions; Luna PASS in round 7 (013 implementation-summary.md) |
 
 ### Deviations and findings
 
@@ -145,4 +148,6 @@ and findings belong here.
 | 010 v2 twins unrun | The OpenCode 2 doc twins come from saved help; none was dispatched in 010. v2 `--agent` routing was later verified live in 011 (011 decision 10) |
 | 010 event correction | 011's live runs showed both versions emit `step_start`, `tool_use`, `text` and `step_finish` with `sessionID`; the older names in 26 cli-opencode docs were wrong on OpenCode 1 too. Amended in 010 with 11 docs whose OpenCode 1 lines had no tag; DeepSeek wrote through cli-pi because the devin quota was spent (010 decision 18) |
 | 010 harness slip | A mis-quoted test harness ran the operator's `opencode2 --version` once; it failed to exec and changed nothing (010 decision 16) |
+| Phase 12 after closeout | The operator asked for the sk-vision OpenCode 2 port after the eleven phases closed. It is phase 012, outside the objective's eleven-phase count, which stays as written |
+| Phase 13 has no child goal | The durable slice is 3,984 characters, so a 13th binding row would take it past the 4,000 limit. Phase 013 is bound by the phase map and its acceptance criteria. Like phase 012, it sits outside the objective's eleven-phase count |
 <!-- /ANCHOR:log -->

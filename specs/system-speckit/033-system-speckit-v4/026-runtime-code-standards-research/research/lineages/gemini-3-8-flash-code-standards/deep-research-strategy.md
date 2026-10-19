@@ -13,7 +13,7 @@ version: 1.14.0.0
 
 ## 1. OVERVIEW
 
-Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-opencode, sk-code-quality, universal code-quality-standards). Focus is on surfaces never opened by the prior lane:
+Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-skilled, sk-code-quality, universal code-quality-standards). Focus is on surfaces never opened by the prior lane:
 - Iteration 1: `runtime/lib` (validation, graph, description, continuity, parsing) and `runtime/api` against the TypeScript style guide and universal quality standards (error handling, boundaries, dead exports, naming, coverage floor).
 - Iteration 2: `runtime/hooks` (claude, codex, cursor, devin, lib), `.cjs` and `.mjs` scripts under `runtime/cli` outside retrieval, and `shared/**` beyond frontmatter and path containment.
 

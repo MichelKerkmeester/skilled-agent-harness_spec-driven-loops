@@ -54,13 +54,13 @@ _memory:
 
 > **Status: Implemented** (landed in `c926b25506`). The build below is delivered; the frozen scorer stayed SHA-256-identical and routing byte-identical to legacy.
 
-The code-opencode alignment-authority interface now names `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality guard and backlinks it from `alignment-verification-automation.md`. The shared `qualifiedIdToLeaf` reverse lookup and the router-sync Vitest close the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection in both directions. `run-all-drift-guards.sh` provides one non-zero-on-any-failure entry point over the language, stack-folder, and router-sync guards. The P1 `--check-router` addition landed default-off with positive, drift, and default-behavior fixtures. The separate P1 `surfaceBundle` request-context did not land and remains explicitly deferred.
+The code-skilled alignment-authority interface now names `sk-code-router-sync.vitest.ts` as the RESOURCE_MAP-equality guard and backlinks it from `alignment-verification-automation.md`. The shared `qualifiedIdToLeaf` reverse lookup and the router-sync Vitest close the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection in both directions. `run-all-drift-guards.sh` provides one non-zero-on-any-failure entry point over the language, stack-folder, and router-sync guards. The P1 `--check-router` addition landed default-off with positive, drift, and default-behavior fixtures. The separate P1 `surfaceBundle` request-context did not land and remains explicitly deferred.
 
 ### Files Delivered
 
 | Area | Files | Purpose |
 |------|-------|---------|
-| Doc-truth | `code-opencode/SKILL.md`, `alignment-verification-automation.md §5` | Name and backlink the real RESOURCE_MAP-equality guard |
+| Doc-truth | `code-skilled/SKILL.md`, `alignment-verification-automation.md §5` | Name and backlink the real RESOURCE_MAP-equality guard |
 | Bijection | `leaf-resource-contract.cjs`, `leaf-resource-contract.test.cjs`, `sk-code-router-sync.vitest.ts` | `qualifiedIdToLeaf` export + bidirectional test coverage |
 | Orchestration | `run-all-drift-guards.sh` (new) | Single entry point over all three drift guards |
 | P1 delivered | `verify_alignment_drift.py`, `test_verify_alignment_drift.py` | Default-off RESOURCE_MAP dead-path check plus positive/drift/default fixtures |
@@ -102,7 +102,7 @@ Commit `c926b25506` delivered the doc-truth rename/backlink and authority note f
 |-------|--------|
 | RESOURCE_MAP authority wording | Pass — `SKILL.md` and the automation reference name/backlink `sk-code-router-sync.vitest.ts` |
 | Shared reverse lookup | Pass — `qualifiedIdToLeaf` landed in `leaf-resource-contract.cjs` with direct success and fail-closed tests |
-| Bidirectional bijection | Pass — router-sync Vitest covers manifest round trips and every code-opencode RESOURCE_MAP entry |
+| Bidirectional bijection | Pass — router-sync Vitest covers manifest round trips and every code-skilled RESOURCE_MAP entry |
 | Unified drift entry point | Pass — `run-all-drift-guards.sh` invokes all three guards and returns non-zero when any command fails |
 | `--check-router` | Pass — Python tests cover aligned, dead-path, and default-off/no-markdown behavior |
 | `surfaceBundle` request context | Deferred (P1) — no such runtime change or LUNA case appears in `c926b25506` |

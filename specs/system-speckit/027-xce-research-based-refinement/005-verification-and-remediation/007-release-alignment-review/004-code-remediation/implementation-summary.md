@@ -145,6 +145,6 @@ The confirmed findings were filtered into C1–C4 briefs and dispatched to file-
 | ~6-8 fixer seats | 19 seats (part of 39-seat fleet), 0 empty | Confirmed findings spanned more directory clusters than estimated |
 | Code-track audit corrections | None needed | The accuracy audit was doc-only; code edits are tsc/hygiene-verified |
 
-**Status**: Complete. Fixes committed on the branch; review evidence in `../002-code-vs-sk-code-opencode/review/`, disposition in `../synthesis.md`.
+**Status**: Complete. Fixes committed on the branch; review evidence in `../002-code-vs-sk-code-skilled/review/`, disposition in `../synthesis.md`.
 
 <!-- /ANCHOR:deviations -->

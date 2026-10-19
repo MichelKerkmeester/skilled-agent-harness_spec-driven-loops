@@ -1,10 +1,10 @@
 ---
 title: "Feature Specification: Phase 25: external-surface-priority-research"
-description: "Two-lineage deep research into how Skilled should treat sk-code-obsidian and sk-code-webflow as deletable examples and let a user's own sk-code surface outrank the native sk-code-opencode surface. Research only; no skill, script or README changes."
+description: "Two-lineage deep research into how Skilled should treat sk-code-obsidian and sk-code-webflow as deletable examples and let a user's own sk-code surface outrank the native sk-code-skilled surface. Research only; no skill, script or README changes."
 trigger_phrases:
   - "external surface priority research"
   - "phase 25 external surface priority research"
-  - "user surface outranks sk-code-opencode"
+  - "user surface outranks sk-code-skilled"
   - "obsidian and webflow are examples"
   - "sk-code surface order for external users"
 importance_tier: "normal"
@@ -62,16 +62,16 @@ This is **Phase 25** of the sk-code Ponytail refinement epic. It is numbered 025
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The v4.0.0.4 release note's "One Surface Order Everywhere" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`. That order fits only the operator's own repository. sk-code-obsidian and sk-code-webflow are the operator's personal surfaces and serve external users only as examples, which they are expected to delete and replace with a surface for their own project. sk-code-opencode is the one native surface, so for an external user a surface of their own should outrank it. sk-code-review and the shared layer are stack-agnostic and serve every user.
+The v4.0.0.4 release note's "One Surface Order Everywhere" entry says every sk-code file that ranks the code surfaces lists OpenCode, then Obsidian, then Webflow, and that a keyword tie can be led by the session's surface through `compiled-route.cjs --surface-hint`. That order fits only the operator's own repository. sk-code-obsidian and sk-code-webflow are the operator's personal surfaces and serve external users only as examples, which they are expected to delete and replace with a surface for their own project. sk-code-skilled is the one native surface, so for an external user a surface of their own should outrank it. sk-code-review and the shared layer are stack-agnostic and serve every user.
 
 ### Purpose
-Find every place that encodes the surface order or assumes the two example surfaces are installed, show what breaks when a user deletes them and adds their own, and recommend the smallest change that lets a user's own surface outrank sk-code-opencode while the operator's repository keeps its order.
+Find every place that encodes the surface order or assumes the two example surfaces are installed, show what breaks when a user deletes them and adds their own, and recommend the smallest change that lets a user's own surface outrank sk-code-skilled while the operator's repository keeps its order.
 
 ### Research Questions
 
 1. Where is the surface order encoded, and where are sk-code-obsidian and sk-code-webflow treated as installed (hub router tie-break, mode registry, SKILL.md, ROUTER.md, shared references, the compiled-routing manifest and runtime, canary fixtures, the skill advisor, the doctor commands, install guides, READMEs and the v4.0.0.4 note)?
 2. What breaks today when an external user deletes sk-code-obsidian and sk-code-webflow, observed in a throwaway copy (doctor, compiled-route guard, route sync, canaries, advisor, package checks), and what happens when they add their own surface packet?
-3. How should a user-added surface outrank sk-code-opencode: a priority field in the mode registry, a native or fallback flag on opencode, a tie-break derived when the manifest is built, the `--surface-hint` path, or something else? Compare cost and risk and recommend one.
+3. How should a user-added surface outrank sk-code-skilled: a priority field in the mode registry, a native or fallback flag on opencode, a tie-break derived when the manifest is built, the `--surface-hint` path, or something else? Compare cost and risk and recommend one.
 4. How does the operator's repository keep its current order while the shipped default assumes the examples are gone: what is configuration, what is data, what is example and what is shipped?
 5. Which doctor and documentation changes tell external users the two surfaces are examples to delete or replace, and how to scaffold their own surface?
 6. Which ideas should be rejected, and why?
@@ -164,12 +164,12 @@ Done means:
 ## 7. OPEN QUESTIONS
 
 - None blocking the run. The research questions are in section 2.
-- Deep-research topic: how a user's own sk-code surface should outrank sk-code-opencode once the obsidian and webflow example surfaces are deleted, while the operator's repository keeps its order.
+- Deep-research topic: how a user's own sk-code surface should outrank sk-code-skilled once the obsidian and webflow example surfaces are deleted, while the operator's repository keeps its order.
 - Research Context: deep-research is active for this topic in two lineages under research/lineages/; research/research.md is canonical.
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 Abridged from `research/research.md`, which stays canonical:
 - The surface order lives only in `hub-router.json` `tieBreak`; the compiler copies it and the doctor validates it. The shipped order already ranks the native surface ahead of the two examples.
-- A surface a user adds must go ahead of `sk-code-opencode`; nothing writes or documents that today (R1).
+- A surface a user adds must go ahead of `sk-code-skilled`; nothing writes or documents that today (R1).
 - Deleting the two examples fails the doctor with 113 failures, crashes the sk-code drift guards on a hard-coded path, and leaves the front door routing to the deleted packets (R2, R3).
 - The doctor's re-mint repair leaves the guard at `authored-drift` unless the manifest is copied to its authored path (R3).
 - A rank field, a native flag, a mint-time derivation and a starter payload are rejected (X1 to X6).

@@ -1,0 +1,33 @@
+{
+  "mode": "on",
+  "serverPid": 91339,
+  "pluginCount": 121,
+  "skVision": [
+    {
+      "id": "sk-vision",
+      "status": {
+        "status": "active"
+      }
+    },
+    {
+      "status": {
+        "status": "failed",
+        "error": "Plugin must export a default definition with an id and an effect or setup function.",
+        "ref": "err_66039567"
+      }
+    }
+  ],
+  "runMs": 23553,
+  "exit": 0,
+  "signal": null,
+  "reply": "VISION-PROBE-OK",
+  "sessionID": true,
+  "hasVisionEvidence": true,
+  "visionTags": [
+    "<SK-VISION Scene",
+    "<SK-VISION Caption",
+    "<SK-VISION OCR",
+    "<SK-VISION Atlas"
+  ],
+  "hasPrompt": true
+}

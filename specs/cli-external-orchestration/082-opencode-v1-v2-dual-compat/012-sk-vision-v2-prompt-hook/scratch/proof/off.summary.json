@@ -1,0 +1,28 @@
+{
+  "mode": "off",
+  "serverPid": 77799,
+  "pluginCount": 121,
+  "skVision": [
+    {
+      "id": "sk-vision",
+      "status": {
+        "status": "active"
+      }
+    },
+    {
+      "status": {
+        "status": "failed",
+        "error": "Plugin must export a default definition with an id and an effect or setup function.",
+        "ref": "err_2d6f1ac2"
+      }
+    }
+  ],
+  "runMs": 7673,
+  "exit": 0,
+  "signal": null,
+  "reply": "VISION-PROBE-OK",
+  "sessionID": true,
+  "hasVisionEvidence": false,
+  "visionTags": [],
+  "hasPrompt": true
+}

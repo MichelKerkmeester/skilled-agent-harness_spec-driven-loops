@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Bring every file the cli-jev packet created into line with sk-code-opencode and sk-doc, proved by their own validators, with no behavior change.
+**Objective:** Bring every file the cli-jev packet created into line with sk-code-skilled and sk-doc, proved by their own validators, with no behavior change.
 
 ### Decisions
 
@@ -80,7 +80,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Spec authoring | Done | 2026-09-30, docs only, from `scratch/audit/findings.md` and the operator's ask "Make sure all skills and things we created aligns with sk code opencode and sk doc" plus "Think feature catalogs, playbooks, readme's" and "Use external orchestration". Status Planned, Level 2, priority P1 |
+| Spec authoring | Done | 2026-09-30, docs only, from `scratch/audit/findings.md` and the operator's ask "Make sure all skills and things we created aligns with sk code skilled and sk doc" plus "Think feature catalogs, playbooks, readme's" and "Use external orchestration". Status Planned, Level 2, priority P1 |
 | Scope | Done | 28 files in five groups: C1 9, C2 11, D1 2, D2 4, D3 7, D4 2. The audit exempts `raw/mode-routing-run.sh` from every edit. The 42 code files in the three runtime trees stay with their own align packets (D1) |
 | Phase docs | Done | 2026-09-30: s1 authored the six docs from `scratch/audit/findings.md`, s2 amended them for the operator's header decision, and s3 bound the phase in the parent goal and spec. The folder's own gates pass, `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` and `hvr_scan.py` reports 0 hard blockers on each doc. This closure pass recorded the build evidence |
 | Derived metadata | Done | The s1 runtime-dist block and its fix. `repair-derived.cjs --apply` failed with `ERR_MODULE_NOT_FOUND` for `@spec-kit/runtime/dist/api/index.js` because `.skilled/skills/system-spec-kit/runtime/dist` was unbuilt in this worktree. The session ran `npm run build` under `runtime` and `runtime/cli` (both exit 0, no tracked file changed), `generate-description.js` wrote `description.json`, and `validate.sh --strict` passed. The closure pass re-ran `repair-derived.cjs --apply` with exit 0 |

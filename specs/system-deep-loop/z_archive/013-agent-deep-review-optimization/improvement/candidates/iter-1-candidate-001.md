@@ -381,7 +381,7 @@ If verification fails, fix the artifact if safe. If not safe, return `status: "e
 | Skill | Purpose |
 |-------|---------|
 | `sk-code-review` | Shared review doctrine via `references/review_core.md` |
-| `sk-code-opencode` / `sk-code` | Stack-specific overlay |
+| `sk-code-skilled` / `sk-code` | Stack-specific overlay |
 
 ---
 

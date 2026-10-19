@@ -1,7 +1,7 @@
 .hermes/skills/cli-cursor/SKILL.md
 .hermes/skills/cli-devin/SKILL.md
 .hermes/skills/cli-opencode/SKILL.md
-.hermes/skills/sk-code-opencode/SKILL.md
+.hermes/skills/sk-code-skilled/SKILL.md
 .hermes/skills/sk-code-quality/SKILL.md
 .hermes/skills/sk-create-benchmark/SKILL.md
 .hermes/skills/sk-create-manual-testing-playbook/SKILL.md

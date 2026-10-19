@@ -9,7 +9,7 @@ Migrate 24 tokenizer-broken multi-word entries from `skill_advisor.py:INTENT_BOO
 - `skill_advisor.py` (Public canonical, ~91K bytes, `INTENT_BOOSTERS` at line 496, `PHRASE_INTENT_BOOSTERS` at line 788)
 - `fixtures/skill_advisor_regression_cases.jsonl` (44 cases, P0/P1 priority)
 - `skill_advisor_regression.py` (harness with `--min-top1-accuracy 0.92` default)
-- Public skill inventory (21 skills — includes `sk-code-web`, `sk-code-opencode`, `sk-code-full-stack` overlays)
+- Public skill inventory (21 skills — includes `sk-code-web`, `sk-code-skilled`, `sk-code-full-stack` overlays)
 - spec.md §4 REQ-001 through REQ-021
 - spec.md §10 Open Questions Q-A through Q-D
 
@@ -66,14 +66,14 @@ Map the 44 fixture cases to the 24 migrating entries — identify which cases cu
 
 ## Revised Next Focus (Iteration 3)
 
-Identify multi-word identifiers in the Public repo that currently have no phrase route — candidates for new PHRASE_INTENT_BOOSTERS entries. Target the 21 Public skills and their domain-specific phrases. Propose ≥5 concrete additions with skill + weight + rationale. Prioritize `sk-code-web`/`sk-code-opencode`/`sk-code-full-stack` overlay skills (per spec Q-B lean), spec-kit phrases, and cross-cutting identifiers that likely appear in natural-language queries.
+Identify multi-word identifiers in the Public repo that currently have no phrase route — candidates for new PHRASE_INTENT_BOOSTERS entries. Target the 21 Public skills and their domain-specific phrases. Propose ≥5 concrete additions with skill + weight + rationale. Prioritize `sk-code-web`/`sk-code-skilled`/`sk-code-full-stack` overlay skills (per spec Q-B lean), spec-kit phrases, and cross-cutting identifiers that likely appear in natural-language queries.
 
 
 ## Iteration 3 Findings (under-covered identifiers)
 
 - Current PHRASE_INTENT_BOOSTERS: **167** entries
 - Post-migration (6 migrate-with-same-weight adds): **173** entries
-- **15 new phrase candidates proposed** covering system-spec-kit, sk-code-opencode, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review
+- **15 new phrase candidates proposed** covering system-spec-kit, sk-code-skilled, sk-code-full-stack, sk-code-web, mcp-code-mode, sk-code-review
 - Full adoption target: **188** entries
 - Each proposal includes: phrase, target skill, weight, rationale, false-positive risk note
 - See `research/iterations/iteration-003.md` for per-phrase table

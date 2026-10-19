@@ -12,7 +12,7 @@ Reference files read. Now checking repo rules and the sk-code router before writ
 
 
 
-Route resolved (sk-code → sk-code-opencode surface, JavaScript slice). Before writing, measuring the exact divider character count to copy the header shape faithfully.
+Route resolved (sk-code → sk-code-skilled surface, JavaScript slice). Before writing, measuring the exact divider character count to copy the header shape faithfully.
 
 All references read. Writing the two files now.
 
@@ -32,10 +32,10 @@ Before closing out, Gate 5 requires loading the rule files REPO RULES.md routes 
 
 Re-running the briefed checks from the repo root, plus a negative control to confirm `node --check` actually parses (silence-on-success is a weak signal).
 
-Both files are on disk and pass every briefed check. One recorded deviation: the sk-code persona route resolved to the sk-code-opencode surface packet (loaded, along with the hub), but I did not load its four `references/javascript/*.md` files — the brief's read list was explicit ("Read first, nothing more") and the style was pinned to `score-track-narrowing.mjs`. `node --test` was deliberately not run, per the brief.
+Both files are on disk and pass every briefed check. One recorded deviation: the sk-code persona route resolved to the sk-code-skilled surface packet (loaded, along with the hub), but I did not load its four `references/javascript/*.md` files — the brief's read list was explicit ("Read first, nothing more") and the style was pinned to `score-track-narrowing.mjs`. `node --test` was deliberately not run, per the brief.
 
 REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-handoff.md
-SKILL ROUTING: sk-code → sk-code-opencode (surface, JavaScript slice not loaded; see deviation above)
+SKILL ROUTING: sk-code → sk-code-skilled (surface, JavaScript slice not loaded; see deviation above)
 
 STATUS: DONE
 FILES CHANGED:

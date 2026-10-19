@@ -56,7 +56,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 - Update `sk-code/shared/references/smart_routing.md` with a machine-readable INTENT_SIGNALS/RESOURCE_MAP router block that adds CWV vocabulary to PERFORMANCE, adds ACCESSIBILITY vocabulary for reduced motion and a11y prompts, maps ACCESSIBILITY to existing Webflow animation and verification references, and cross-lists `animation/performance_and_pitfalls.md` into MOTION_DEV.
 - Update `deep-loop-workflows/deep-improvement/scripts/skill-benchmark/router-replay.cjs` so `lcp`, `inp`, and `cls` are treated as WORD_BOUNDARY_KEYWORDS; this prevents `inp` from substring-firing on `input`.
 - Update `deep-loop-workflows/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs` so D3 returns null/not-applicable when a scenario declares no positive-resource gold, and mode A weighted normalization excludes null D3 using the same convention as D1-inter.
-- Refresh `sk-doc/references/skill_creation/parent_hub_router_schema.md` from the stale five-mode sk-code worked example to the current surface-primary two-axis model with workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null`.
+- Refresh `sk-doc/references/skill_creation/parent_hub_router_schema.md` from the stale five-mode sk-code worked example to the current surface-primary two-axis model with workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-skilled`, and `defaultMode: null`.
 - Repair the two sk-code manual playbook scenarios `cwv-gates-animation-heavy.md` and `prefers-reduced-motion.md` by replacing three dead expected-asset paths with their real on-disk homes.
 - Regenerate `sk-code/benchmark/reports/2026-06-01--router-final--router` and write new sibling benchmark reports `sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router` and `deep-loop-workflows/benchmark/2026-07-06--after-d3-proxy--router`.
 
@@ -98,7 +98,7 @@ Ship the sk-code-local, advisor-scorer-independent Layer 1 routing increment in 
 
 | ID | Requirement | Acceptance Criteria | Trace |
 |----|-------------|---------------------|-------|
-| REQ-004 | Parent hub router schema doc matches current sk-code model | Worked example uses workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null` | scope |
+| REQ-004 | Parent hub router schema doc matches current sk-code model | Worked example uses workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-skilled`, and `defaultMode: null` | scope |
 | REQ-005 | Manual playbook expected assets resolve | The two changed cross-stack routing playbooks point to `shared/references/`, `code-review/assets/`, and `code-webflow/assets/webflow-verification_checklist.md` as appropriate | scope |
 | REQ-006 | Benchmarks record the shipped effects | sk-code `router-final` is regenerated; sk-design and deep-loop-workflows write `after-d3-proxy/` sibling reports without overwriting frozen baselines | scope |
 

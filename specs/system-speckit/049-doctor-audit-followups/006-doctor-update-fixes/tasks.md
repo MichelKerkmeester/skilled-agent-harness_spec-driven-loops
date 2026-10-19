@@ -43,7 +43,7 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
   - Run `bash .skilled/commands/doctor/scripts/tests/run-all.sh` and record its last two lines and exit status. On 2026-10-03 it reported 8 suites passed, 0 failed, exit 0, with 183 node:test tests across 9 files.
 - [x] T003 Follow these rules in every phase (all files below)
   - Never put a finding id (such as DU-01), a spec path, a packet number, a phase number or a phase letter into a code comment, a test name, an error message or a YAML comment. Keep the durable reason instead.
-  - Follow `.skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md`: keep the box header and `'use strict'`, keep the numbered ALL-CAPS sections, use camelCase function names, write comments that explain why, never commit commented-out code, and keep the `[release-update]` log prefix.
+  - Follow `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md`: keep the box header and `'use strict'`, keep the numbered ALL-CAPS sections, use camelCase function names, write comments that explain why, never commit commented-out code, and keep the `[release-update]` log prefix.
   - Run engine commands only inside throwaway fixtures made by the suite's helpers. Never run `align`, `apply`, `rollback`, `record-base` or `unlock` against this repository.
   - Every new engine test must fail against the old engine. Prove it once per phase with the fail-first recipe in `plan.md` Section 5, and never use `git stash`.
   - Keep every existing assertion except the three that REQ-001 names. Keep the message prefixes `apply lock already exists: .skilled/release/.apply.lock` and `target has staged or unstaged changes against HEAD: ` because existing tests match them.
@@ -428,7 +428,7 @@ The operator asked for every finding to be fixed, so in this packet the P2 findi
 - [x] CHK-010 [P0] `node --check .skilled/commands/doctor/scripts/release-update.cjs` and both test files pass
 - [x] CHK-011 [P0] No finding id, spec path or packet number in any changed code comment, test name or message
 - [x] CHK-012 [P1] Every new refusal exits 1 before the first target write and names its remedy
-- [x] CHK-013 [P1] New code follows the sk-code-opencode JavaScript checklist
+- [x] CHK-013 [P1] New code follows the sk-code-skilled JavaScript checklist
 <!-- /ANCHOR:code-quality -->
 
 ---

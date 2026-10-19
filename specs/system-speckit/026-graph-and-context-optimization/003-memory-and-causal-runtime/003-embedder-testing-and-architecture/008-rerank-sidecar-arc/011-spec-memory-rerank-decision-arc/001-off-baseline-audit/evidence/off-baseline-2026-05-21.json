@@ -1418,7 +1418,7 @@
       ],
       "returned_doc_ids": [
         "memory_index:718",
-        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/plan.md",
         "memory_index:3574",
         "specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure/plan.md",
         "memory_index:740",
@@ -1967,9 +1967,9 @@
         "memory_index:478",
         "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit/plan.md",
         "memory_index:718",
-        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/plan.md",
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/plan.md",
         "memory_index:716",
-        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/checklist.md"
+        "specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/checklist.md"
       ],
       "returned_memory_ids": [
         745,

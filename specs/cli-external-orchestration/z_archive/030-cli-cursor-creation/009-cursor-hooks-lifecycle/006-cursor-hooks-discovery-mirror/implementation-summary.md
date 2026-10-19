@@ -42,7 +42,7 @@ Functionally re-testing every symlink against the same synthetic payloads used i
 A control test confirmed this is specifically a symlink-invocation artifact: the identical file invoked via its real path returns the correct, full response. The remaining 9 files (plain `.sh`/`.mjs` scripts with no such guard) work identically through either path.
 
 ### What this means for `.cursor/hooks.json`
-Nothing changed there, and nothing should: `.cursor/hooks.json`'s `command` fields continue to reference the original real paths under `.opencode/`, exactly as phases 010/011 shipped them. `.cursor/hooks/` is a pure discovery/organizational mirror — it has zero functional role in what actually executes. This is now documented explicitly in two places (`.cursor/hooks/README.md` and the canonical `code-opencode/references/shared/hooks.md`) specifically so nobody mistakes the mirror for a safe repoint target in the future.
+Nothing changed there, and nothing should: `.cursor/hooks.json`'s `command` fields continue to reference the original real paths under `.opencode/`, exactly as phases 010/011 shipped them. `.cursor/hooks/` is a pure discovery/organizational mirror — it has zero functional role in what actually executes. This is now documented explicitly in two places (`.cursor/hooks/README.md` and the canonical `code-skilled/references/shared/hooks.md`) specifically so nobody mistakes the mirror for a safe repoint target in the future.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -88,4 +88,4 @@ Nothing changed there, and nothing should: `.cursor/hooks.json`'s `command` fiel
 ## RELATED DOCUMENTS
 - `spec.md`, `plan.md`, `tasks.md`, `checklist.md`
 - `.cursor/hooks/README.md`
-- `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md`
+- `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md`

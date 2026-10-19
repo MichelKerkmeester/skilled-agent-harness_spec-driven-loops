@@ -1,0 +1,2 @@
+$ bun run scripts/build.ts
+built dist/plugin.js + dist/prompt-evidence.js + dist/vision-cli.js + dist/python/runtime.py + hooks/opencode/sk-vision.js

@@ -46,40 +46,31 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/research.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/description.json",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
-      ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
       "research/iterations/iteration-001.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -91,25 +82,7 @@
       {
         "name": "iteration-001.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -201,11 +174,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Final Ranked Upgrade Proposals",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation Hooks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Note",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code parent hub exposes four WORKFLOW sub-skills — `code-implement`, `code-quality`, `code-debug`, `code-verify` — that carry the day-to-day coding lifecycle",
     "created_at": "2026-07-05T14:53:44.541Z",
-    "last_save_at": "2026-09-10T20:43:59.457Z",
+    "last_save_at": "2026-10-18T20:45:07.354Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +206,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:93b011d2d2917e8ef3dbe6c82dbdf8d35464a7ce96e89e59f2e7de406731818f",
+    "source_fingerprint": "sha256:134bfb6794d45d9462a2e1c6ccc86af3e8b1117eb41845272f4f57105175b7f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75d2b6f2e3a2477296f3560e104f3383dda874288ea886095e997de2e9a16ddc",
+      "spec.md": "c4e4d09ebd659968d9d38441b093a2cd646e1ac880a1f03b9dc547725954cf41",
       "plan.md": "5bd6a7cf60e3a564f2f9ba26c2ca20d1e1a94793427906f5f6b5818823b005b0",
       "tasks.md": "f7c152fc0a31d360faaab5e052d1e5a3c6a664765a53b406d6392c003a5edce4",
       "implementation-summary.md": "a57c6f8013b2440584f6af5b398d4eef7b3c65aca7a0f42012335a77b39c1deb",
-      "research/research.md": "748cb72ab0ab3b869b6efe0a7dc95e1dda46dc3337114608280e9309c085a0ff"
+      "research/research.md": "104cfee578e124f80a6e2b537e5577e3e2952e157a058790ac9ec17ea947fd53"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -14,7 +14,7 @@ This phase matters because it proved the move to ESM (JavaScript's modern module
 
 ### Documentation
 
-- **Standards synced to verified behavior** -- Standards and README guidance can drift during a migration and end up describing the plan rather than the truth. Updated `sk-code-opencode` and related standards surfaces only after verification passed, so they now describe the proven ESM runtime state. This matters because future work will follow rules that match the system people actually run.
+- **Standards synced to verified behavior** -- Standards and README guidance can drift during a migration and end up describing the plan rather than the truth. Updated `sk-code-skilled` and related standards surfaces only after verification passed, so they now describe the proven ESM runtime state. This matters because future work will follow rules that match the system people actually run.
 
 - **Parent packet closure** -- The migration still needed a final, evidence-backed record of what shipped and what was proven. Updated the parent implementation summary, marked all P0 and P1 checklist items with evidence, and set the parent spec status to complete. This matters because the packet now closes with a clear audit trail instead of scattered notes.
 
@@ -28,7 +28,7 @@ This phase matters because it proved the move to ESM (JavaScript's modern module
 
 | File | What changed |
 |------|-------------|
-| `.opencode/skills/sk-code-opencode/**/*.md` | Updated standards guidance to match the verified ESM runtime state |
+| `.opencode/skills/sk-code-skilled/**/*.md` | Updated standards guidance to match the verified ESM runtime state |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | Moved search-input validation out of schema `superRefine` for tool-calling compatibility |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/implementation-summary.md` | Recorded phase 4 verification results, delivery order, decisions, and limitations |
 | `.opencode/specs/system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/tasks.md` | Captured evidence for the verification matrix, standards sync, and packet closure tasks |

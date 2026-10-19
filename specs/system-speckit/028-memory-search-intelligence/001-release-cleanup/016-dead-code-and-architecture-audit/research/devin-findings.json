@@ -45,7 +45,7 @@
   "category": "CAT-5",
   "claim": "Changelog v4.1.0.0 contradicts mode-registry.json on surface count",
   "path": ".opencode/skills/sk-code/changelog/v4.1.0.0.md:12-13 vs .opencode/skills/sk-code/mode-registry.json:19",
-  "evidence": "Changelog lists 3 surfaces (`webflow`, `opencode`, `animation`); registry and SKILL.md:34-35 list only 2 (`code-webflow`, `code-opencode`). The \"animation\" surface was either planned-but-unimplemented or folded into code-webflow.",
+  "evidence": "Changelog lists 3 surfaces (`webflow`, `opencode`, `animation`); registry and SKILL.md:34-35 list only 2 (`code-webflow`, `code-skilled`). The \"animation\" surface was either planned-but-unimplemented or folded into code-webflow.",
   "verify": "`rg -nA2 \"Surface axis\" .opencode/skills/sk-code/changelog/v4.1.0.0.md && rg -nA2 \"surfaces\" .opencode/skills/sk-code/mode-registry.json`",
   "blast": "Medium \u2014 documentation contradiction; correct the changelog to match the registry."
  },
@@ -53,10 +53,10 @@
   "source": "devin-01",
   "id": "F6",
   "category": "CAT-5",
-  "claim": "Duplicated benchmark responsibility between hub and code-opencode packet",
-  "path": ".opencode/skills/sk-code/benchmark/ and .opencode/skills/sk-code/code-opencode/benchmark/",
-  "evidence": "Both hold benchmark reports \u2014 hub has `router-final/`, `live-final/`, etc.; `code-opencode/benchmark/` has `live-mode-b/`, `router-mode-a/` (sidecar variants of the hub runs). No documented ownership split.",
-  "verify": "`ls .opencode/skills/sk-code/benchmark/ && ls .opencode/skills/sk-code/code-opencode/benchmark/`",
+  "claim": "Duplicated benchmark responsibility between hub and code-skilled packet",
+  "path": ".opencode/skills/sk-code/benchmark/ and .opencode/skills/sk-code/code-skilled/benchmark/",
+  "evidence": "Both hold benchmark reports \u2014 hub has `router-final/`, `live-final/`, etc.; `code-skilled/benchmark/` has `live-mode-b/`, `router-mode-a/` (sidecar variants of the hub runs). No documented ownership split.",
+  "verify": "`ls .opencode/skills/sk-code/benchmark/ && ls .opencode/skills/sk-code/code-skilled/benchmark/`",
   "blast": "Medium \u2014 unclear ownership. Consolidate under `sk-code/benchmark/` with surface-tagged subfolders."
  },
  {

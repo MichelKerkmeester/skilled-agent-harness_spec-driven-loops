@@ -50,7 +50,7 @@ Three correct changes took code-review from CONDITIONAL 69 (live) to **PASS 100*
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-code-review Mode-A: **PASS 100** (D1intra 100, D2 100, D3 100, D5 100). code-review Mode-B: **PASS 100** (all dims 100, meanResourceRecall 1.00). Sibling regression guard: code-opencode Mode-A byte-identical after the parser fix.
+code-review Mode-A: **PASS 100** (D1intra 100, D2 100, D3 100, D5 100). code-review Mode-B: **PASS 100** (all dims 100, meanResourceRecall 1.00). Sibling regression guard: code-skilled Mode-A byte-identical after the parser fix.
 <!-- /ANCHOR:how-delivered -->
 
 <!-- ANCHOR:decisions -->

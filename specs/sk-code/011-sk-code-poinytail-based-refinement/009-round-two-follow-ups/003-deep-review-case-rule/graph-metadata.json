@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The review mode now requires a `- Case:` line for every finding (\"A finding with no case is not reported\"), but Step 7 of the deep-review agent, which each `/deep:review` iteration follows, still asks only for `N",
     "created_at": "2026-10-10T08:16:20Z",
-    "last_save_at": "2026-10-11T05:17:04.040Z",
+    "last_save_at": "2026-10-18T20:45:14.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a80396cacdd22cc25ebcab9b96951e6b140bb6b4969478f52830a00c638f91e",
+    "source_fingerprint": "sha256:e384b0001387bd86ef1439f0e581d6b989a072aa3a979ce50a8f86cd43dd65c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "077f948518655b017cf090f9c2c35078ea7ffd6c33c7f162e3e100ab83b9bf85",
-      "plan.md": "b06133775b8594a2d1d6635f8d65b3a1f89220185d57ffc56b48e1fcedf451da",
-      "tasks.md": "cb5bf9b3eb39f8b5aaff90b2c6be0fa704789c1d601875f86d96b56c9a1eddde",
+      "plan.md": "51bfc9ef5b0113bbd4e88410725c3195603e96b69c5cf66979c962815e25f361",
+      "tasks.md": "724e017223e9f648e8815c6c40e072b43a691e97a204bd47cdebd0b902827ccc",
       "implementation-summary.md": "5036039744dfea61fab41babc668c8eb7fdb16910bf5862a9ec5634e05726529"
     },
     "last_active_at": null

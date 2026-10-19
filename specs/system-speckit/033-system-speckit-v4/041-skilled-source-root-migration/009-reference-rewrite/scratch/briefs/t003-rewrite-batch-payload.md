@@ -43,7 +43,7 @@ DUAL_ROOT = re.compile(
 )
 # The OpenCode runtime's own view of its directory: a line that names the runtime keeps its paths under review.
 RUNTIME_NAME = re.compile(r'(?<![A-Za-z0-9_.-])opencode(?![A-Za-z0-9_.-])', re.IGNORECASE)
-RUNTIME_NOISE = re.compile(r'\\?\.opencode|cli-opencode|sk-code-opencode|opencode\.json|OPENCODE_[A-Z_]+|opencode-ai', re.IGNORECASE)
+RUNTIME_NOISE = re.compile(r'\\?\.opencode|cli-opencode|sk-code-skilled|opencode\.json|OPENCODE_[A-Z_]+|opencode-ai', re.IGNORECASE)
 
 
 def names_runtime(text):

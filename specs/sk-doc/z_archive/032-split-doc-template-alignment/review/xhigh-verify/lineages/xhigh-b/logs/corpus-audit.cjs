@@ -5,7 +5,7 @@ const path = require('node:path');
 const { execFileSync, spawnSync } = require('node:child_process');
 
 const roots = [
-  '.opencode/skills/sk-code/code-opencode/',
+  '.opencode/skills/sk-code/code-skilled/',
   '.opencode/skills/sk-code/code-webflow/',
   '.opencode/skills/sk-code/code-quality/',
 ];
@@ -13,8 +13,8 @@ const roots = [
 const tracked = execFileSync('git', [
   'ls-files',
   '--',
-  '.opencode/skills/sk-code/code-opencode/references',
-  '.opencode/skills/sk-code/code-opencode/assets',
+  '.opencode/skills/sk-code/code-skilled/references',
+  '.opencode/skills/sk-code/code-skilled/assets',
   '.opencode/skills/sk-code/code-webflow/references',
   '.opencode/skills/sk-code/code-webflow/assets',
   '.opencode/skills/sk-code/code-quality/references',

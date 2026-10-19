@@ -10,7 +10,7 @@ const SK = path.join(ROOT, '.skilled/skills/sk-code');
 const tie = JSON.parse(process.argv[2]);
 const extra = process.argv.slice(3);
 const src = { 'SKILL.md': fs.readFileSync(path.join(SK, 'SKILL.md')), 'hub-router.json': fs.readFileSync(path.join(SK, 'hub-router.json')), 'mode-registry.json': fs.readFileSync(path.join(SK, 'mode-registry.json')) };
-const OLD_TIE = '"tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-obsidian"]';
+const OLD_TIE = '"tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-skilled", "sk-code-obsidian"]';
 const text = src['hub-router.json'].toString('utf8');
 if (!text.includes(OLD_TIE)) throw new Error('current tieBreak line not found');
 src['hub-router.json'] = Buffer.from(text.replace(OLD_TIE, '"tieBreak": ' + JSON.stringify(tie).replace(/,/g, ', ')), 'utf8');

@@ -1,0 +1,107 @@
+{
+  "scenarioId": "session-relaunch-pi-opencode",
+  "runtime": "opencode",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "FAIL",
+  "reason": "Three live runs in a clean tmux environment inside a git worktree of this repository, driven by skilled-loop on openai/gpt-6-luna because the default MiMo model through LLM Gateway fails with Direct provider routing is not available before a hop can start. Every run hopped: prepare, arm, SIGTERM and relaunch with the claim seed. Run 1 then failed at the claim because the receiver guessed the CLI syntax and left the note open. Run 2 claimed the note with the right syntax and reported the wrong file, which is a model error rather than a hook error. Run 3 passed end to end with no operator input.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "openai/gpt-6-luna",
+  "runs": [
+    {
+      "run": "1",
+      "loopId": 65150,
+      "verdict": "FAIL",
+      "reason": "Prepare at 06:12:32.645Z, SIGTERM at 06:12:52.428Z, relaunch reason=ready at 06:12:52.587Z. The receiving session ran claim --help and was told unknown option --help, then ran claim --handoff and got NotFound, then ran complete --handoff and was told unknown option --handoff. The note stayed open.",
+      "operatorInputs": "None recorded.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+          "bytes": 769,
+          "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/oc-run1-pane.txt",
+          "bytes": 5494,
+          "sha256": "0c439c9b8fead9f42e6c4c16cd5a856e71fa41ca6ca5ccf14139acf937e7a3f4"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "loopId": 67867,
+      "verdict": "FAIL",
+      "reason": "Prepare at 07:27:11.956Z, SIGTERM at 07:27:26.756Z, relaunch reason=ready at 07:27:26.931Z. The receiver ran claim with the positional note path and --session, so the claim path worked. It then reported .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md, 141 lines, instead of the README at 244 lines. The hook path passed and the task answer was wrong.",
+      "operatorInputs": "None recorded.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+          "bytes": 2502,
+          "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc-run2-pane.txt",
+          "bytes": 5402,
+          "sha256": "d4a3524dd6b277c02e4fd77842ae649b9bb42e75f8d50efd9741c2f2e05fdfe7"
+        }
+      ]
+    },
+    {
+      "run": "3",
+      "loopId": 83659,
+      "verdict": "PASS",
+      "reason": "Prepare at 07:59:00.197Z, logged again at 07:59:19.312Z, SIGTERM at 07:59:42.621Z, relaunch reason=ready at 07:59:42.788Z. The receiver claimed the note, ran complete with no output, and reported 244 lines and # Session Relaunch.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+          "bytes": 3373,
+          "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc-run3-pane.txt",
+          "bytes": 5302,
+          "sha256": "0ea0e2ad8ce003f255005a82693b76fdd7b175ac5de09ca713f3d74d799af64a"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+      "bytes": 769,
+      "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+      "bytes": 2502,
+      "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+      "bytes": 3373,
+      "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/oc-run1-pane.txt",
+      "bytes": 5494,
+      "sha256": "0c439c9b8fead9f42e6c4c16cd5a856e71fa41ca6ca5ccf14139acf937e7a3f4"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc-run2-pane.txt",
+      "bytes": 5402,
+      "sha256": "d4a3524dd6b277c02e4fd77842ae649b9bb42e75f8d50efd9741c2f2e05fdfe7"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-oc-run3-pane.txt",
+      "bytes": 5302,
+      "sha256": "0ea0e2ad8ce003f255005a82693b76fdd7b175ac5de09ca713f3d74d799af64a"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

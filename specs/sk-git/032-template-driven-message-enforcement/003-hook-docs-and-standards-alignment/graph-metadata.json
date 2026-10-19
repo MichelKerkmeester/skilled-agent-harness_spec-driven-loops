@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The hook changes in phases 1 and 2 left their docs behind",
     "created_at": "2026-10-02T16:34:18Z",
-    "last_save_at": "2026-10-02T17:39:16.344Z",
+    "last_save_at": "2026-10-18T20:45:23.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fe88faa463deebf7a579fd0b5e75ca95c00838e8b023e990f9777b7a1cac64a",
+    "source_fingerprint": "sha256:abad71364af786d40840d8583eeb90792de52ecddb600df6d2317bd7232641fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2581cf94520800b70051e1345ab683f0394c6eeff6cdc5d5c21127311663ea2",
+      "spec.md": "f7a939abe9869121942aef282f41b4e1f02762402a036f82bb183ffcd75ea369",
       "plan.md": "1f8ab0f7b59110f79f2b73ab0a95affe6c1a348df62afc353d3da7b2146fb669",
       "tasks.md": "a54895892800602920ffc4b817af11c75fd31f3af733d8c243fa1f8300178639",
-      "implementation-summary.md": "47160b18ad1da227ac2efe72a9037449b9beab30bfb246ace4faa85bb21c5b08"
+      "implementation-summary.md": "ce9757358c24864c2dd2c35f430714f0e7aab5d5f05ab442359a1a6e66552404"
     },
     "last_active_at": null
   }

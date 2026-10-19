@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | `../spec.md` (005-mode-child-readme-revisit) |
 | **Parent Packet** | `sk-doc/026-skill-readme-refinement` |
 | **Predecessor** | `013-mcp-obsidian` |
-| **Successor** | `015-sk-code-opencode` |
+| **Successor** | `015-sk-code-skilled` |
 | **Handoff Criteria** | The mcp-refero README is purpose-first on the refined template with a one-line pitch and a problem-first OVERVIEW, HVR clean, versioned at 1.1.0.0 with a changelog entry, zero validator issues and zero phase validation errors |
 <!-- /ANCHOR:metadata -->
 

@@ -216,7 +216,7 @@ Deep-research audit: 3 iterations, 14 agent runs, 73 findings. All 5 P0 and 6 P1
 
 ### Stream D: verify_alignment_drift.py
 
-- [x] R-D001 [P1] Document exit code model gap (script 0/1 vs validate.sh 0/1/2); add `--fail-on-warn` flag (`sk-code-opencode/scripts/verify_alignment_drift.py`) [EVIDENCE: ALIGN-001 — gap documented, flag added]
+- [x] R-D001 [P1] Document exit code model gap (script 0/1 vs validate.sh 0/1/2); add `--fail-on-warn` flag (`sk-code-skilled/scripts/verify_alignment_drift.py`) [EVIDENCE: ALIGN-001 — gap documented, flag added]
 
 ### Test Coverage (Remediation)
 

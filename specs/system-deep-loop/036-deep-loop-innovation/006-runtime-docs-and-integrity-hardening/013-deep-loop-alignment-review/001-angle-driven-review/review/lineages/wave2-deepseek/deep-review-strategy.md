@@ -180,7 +180,7 @@ None — the lane is complete (5 of 5 iterations, synthesis done). Wave-two angl
 | `.opencode/skills/sk-doc/sk-create-skill/references/parent-skill/{parent-hub-router-schema,parent-skills-nested-packets}.md` | D4 | 1 | 1 P2 | partial |
 | `.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` + `lib/skill-root-metadata-contract.cjs` | D3 | 1 | ref F023 | partial |
 | `.opencode/skills/sk-doc/sk-create-skill/scripts/{generate-leaf-manifest,ci-leaf-manifest-freshness}.cjs` | D3, D4 | 2 | 1 P1 | partial |
-| `.opencode/skills/sk-code/{sk-code-webflow,sk-code-opencode,sk-code-mobile-cli,sk-code-obsidian}/references/workflow-{implement,debug,verify}.md` | D3 | 2 | 1 P1 | partial |
+| `.opencode/skills/sk-code/{sk-code-webflow,sk-code-skilled,sk-code-mobile-cli,sk-code-obsidian}/references/workflow-{implement,debug,verify}.md` | D3 | 2 | 1 P1 | partial |
 | `.opencode/skills/sk-code/{shared/references/workflow-*.md,SKILL.md,ROUTER.md,shared/README.md}` | D3 | 2 | 1 P1 | partial |
 | `.opencode/skills/{system-deep-loop,cli-external-orchestration}/leaf-manifest.json` | D3 | 2 | 0 | complete |
 | `.opencode/skills/{system-deep-loop,sk-code,cli-external-orchestration}/{hub-router.json,ROUTER.md}` | D3, D1 | 3 | 1 P1, ref F027 | partial |

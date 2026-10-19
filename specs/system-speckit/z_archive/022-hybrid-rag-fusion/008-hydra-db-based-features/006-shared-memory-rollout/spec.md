@@ -274,7 +274,7 @@ Deliver shared memory as an opt-in, policy-guarded capability that operators can
 - [x] Kill-switch and rollback drills documented
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment verified during implementation
+- [x] `sk-code-skilled` alignment verified during implementation
 - [x] Shared-memory runbooks added to the playbook
 - [x] Feature catalog updates prepared for rollout
 

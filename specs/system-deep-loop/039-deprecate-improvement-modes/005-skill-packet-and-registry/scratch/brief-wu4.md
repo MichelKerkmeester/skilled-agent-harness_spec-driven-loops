@@ -46,6 +46,6 @@ DON'T
 
 VERIFY (run these; report each exit status)
   rg -n -i "agent-improvement|model-benchmark|deep-improvement|improvement-host|loop-host" .skilled/skills/system-deep-loop/SKILL.md .skilled/skills/system-deep-loop/README.md .skilled/skills/system-deep-loop/ARCHITECTURE.md .skilled/skills/system-deep-loop/ROUTER.md .skilled/skills/system-deep-loop/deep-*/README.md .skilled/skills/system-deep-loop/shared .skilled/skills/.state/loop-guard/README.md
-  node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs 2>&1 | tail -8
+  node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs 2>&1 | tail -8
 
 HANDBACK: list every file you changed, then each VERIFY command with its exit status and output. The rg should print nothing.

@@ -177,13 +177,13 @@ node --test \
 
 node --test .opencode/plugins/tests/mk-goal-*.test.cjs
 
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py \
   --root .opencode/hooks/goal \
   --root .opencode/plugins
 
 node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs --check
 
-bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+bash .opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/hooks/009-goal-isolation --strict --recursive

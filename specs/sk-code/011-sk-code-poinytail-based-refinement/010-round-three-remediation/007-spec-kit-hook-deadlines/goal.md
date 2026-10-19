@@ -87,7 +87,7 @@ and findings belong here.
 
 ### Contracts read
 
-Verifier read the routing headers of `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`, `.skilled/skills/sk-doc/SKILL.md` and `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` for T010.
+Verifier read the routing headers of `.skilled/skills/sk-code/SKILL.md`, `.skilled/skills/sk-code/sk-code-skilled/SKILL.md`, `.skilled/skills/sk-doc/SKILL.md` and `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` for T010.
 
 ### Deviations and findings
 

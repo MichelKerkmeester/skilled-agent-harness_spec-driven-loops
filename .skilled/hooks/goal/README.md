@@ -178,7 +178,7 @@ node --test .skilled/plugins/tests/opencode-goal-render-parity.test.cjs
 Expected result: the two renderers agree on every label and the brief cache key tracks every write.
 
 ```bash
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py \
   --root .skilled/hooks/goal
 ```
 

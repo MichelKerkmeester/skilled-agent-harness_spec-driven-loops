@@ -1,0 +1,80 @@
+ROLE: You make literal edits to two TypeScript files. Re-read each first. Make exactly these edits and nothing else.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts`, `close()` sends SIGTERM to an in-flight provisioning subprocess and returns at once. A subprocess that ignores SIGTERM outlives the client. The runtime child is already handled with a wait for exit plus a SIGKILL after 2 seconds; provisioning should get the same.
+
+ACTION:
+
+1. In `client.ts`, inside `async close()`, replace these two lines:
+
+    this.closed = true;
+    this.provisioning?.kill("SIGTERM");
+
+with:
+
+    this.closed = true;
+    const provisioning = this.provisioning;
+    if (provisioning && provisioning.exitCode === null && provisioning.signalCode === null) {
+      provisioning.kill("SIGTERM");
+      const escalate = setTimeout(() => provisioning.kill("SIGKILL"), 2_000);
+      await once(provisioning, "exit").catch(() => undefined).then(() => clearTimeout(escalate));
+    }
+
+2. In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts`, directly before the final line `});` of the file (the line that closes `describe("RuntimeClient close", () => {`), insert this test:
+
+  it("forces a provisioning step that ignores SIGTERM to exit before close resolves", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const pidFile = join(dir, "uv.pid");
+    const fakeUv = join(dir, "uv");
+    writeFileSync(fakeUv, `#!/bin/sh\ntrap '' TERM\necho $$ > "${pidFile}"\nwhile :; do sleep 1; done\n`);
+    chmodSync(fakeUv, 0o755);
+
+    const saved = {
+      uv: process.env.SK_VISION_UV,
+      venv: process.env.SK_VISION_VENV_DIR,
+      python: process.env.SK_VISION_PYTHON,
+    };
+    process.env.SK_VISION_UV = fakeUv;
+    process.env.SK_VISION_VENV_DIR = join(dir, "venv");
+    delete process.env.SK_VISION_PYTHON;
+    const proto = RuntimeClient.prototype as unknown as {
+      hasMoondream(python: string): Promise<boolean>;
+      hasUv(): Promise<boolean>;
+    };
+    const moondream = spyOn(proto, "hasMoondream").mockImplementation(async () => false);
+    const uv = spyOn(proto, "hasUv").mockImplementation(async () => true);
+
+    try {
+      const client = new RuntimeClient({ pythonPath: join(dir, "missing-python"), timeoutMs: 1_000 });
+      for (let i = 0; i < 100 && !existsSync(pidFile); i++) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+      expect(existsSync(pidFile)).toBe(true);
+      const pid = Number(readFileSync(pidFile, "utf8").trim());
+
+      await client.close();
+      let alive = true;
+      try {
+        process.kill(pid, 0);
+      } catch {
+        alive = false;
+      }
+      expect(alive).toBe(false);
+      await Promise.race([
+        client.ready,
+        new Promise((_, reject) => setTimeout(() => reject(new Error("ready did not settle")), 2_000)),
+      ]);
+    } finally {
+      moondream.mockRestore();
+      uv.mockRestore();
+      for (const [key, value] of [
+        ["SK_VISION_UV", saved.uv],
+        ["SK_VISION_VENV_DIR", saved.venv],
+        ["SK_VISION_PYTHON", saved.python],
+      ] as const) {
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      }
+    }
+  }, 10_000);
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/runtime/client.test.ts 2>&1 | tail -5` and print the output verbatim, nothing else.

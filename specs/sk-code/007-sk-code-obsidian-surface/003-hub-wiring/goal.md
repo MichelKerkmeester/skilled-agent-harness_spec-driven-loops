@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `hub-router.json` carries `routerSignals["sk-code-obsidian"]`, the `code-obsidian-aliases` and `code-obsidian-runtime` vocabulary classes, and `sk-code-obsidian` as the last `routerPolicy.tieBreak` entry
 - [x] `stack-detection.md` states `OPENCODE > OBSIDIAN > PI_REMOTE > WEBFLOW > UNKNOWN`, carries the resolved-path symlink guard and reads `version: 4.2.0.0`
 - [x] `compiled-route.cjs --hub sk-code --prompt "fix the table renderer in the obsidian note database plugin src/views"` returned `{"action":"defer","targets":[]}` before the change, and it and three other plugin prompts route to `sk-code-obsidian` after it
-- [x] An `app-mobile` prompt, a Webflow prompt and an `.opencode/skills` prompt still route to `sk-code-mobile-cli`, `sk-code-webflow` and `sk-code-opencode`
+- [x] An `app-mobile` prompt, a Webflow prompt and an `.opencode/skills` prompt still route to `sk-code-mobile-cli`, `sk-code-webflow` and `sk-code-skilled`
 - [x] `compiled-route-manifest.cjs refresh` returns `fresh=true` and the manifest status reads `causeCode: compiled-serving`
 - [x] `ci-skill-root-metadata.cjs` exits 0 with `checked=14 passed=14 failed=0` after the refresh
 <!-- /ANCHOR:completion -->

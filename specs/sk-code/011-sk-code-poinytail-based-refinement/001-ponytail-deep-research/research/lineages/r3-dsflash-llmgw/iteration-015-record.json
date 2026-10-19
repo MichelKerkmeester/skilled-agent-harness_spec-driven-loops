@@ -15,7 +15,7 @@
   "findingsCount": 3,
   "noveltyJustification": "One finding is fully new (three phantom on-demand assets in the Obsidian SKILL, known to the playbook but not to the SKILL) and two are ALREADY-ADOPTED checks (exact playbook ID parity and version/checklist parity).",
   "keyQuestions": [
-    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` beyond rounds one and two?"
   ],
   "answeredQuestions": [],
   "ruledOut": [

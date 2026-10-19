@@ -40,7 +40,7 @@ trigger_phrases:
 ## Phase 2: Implementation
 - [ ] Execute the migration family-by-family across the 9 packets (fan out on disjoint families): `cli-external`
       (`cli-claude-code` 10, `cli-opencode` 10, hub-routing 5), `mcp-tooling` (hub-routing 6, `mcp-chrome-devtools`
-      8, `mcp-click-up` 7, `mcp-figma` 9), `sk-code` (`code-review` 7, `code-opencode` 9, `code-webflow` 13,
+      8, `mcp-click-up` 7, `mcp-figma` 9), `sk-code` (`code-review` 7, `code-skilled` 9, `code-webflow` 13,
       `code-quality` 1), `sk-prompt` (hub-routing 4), `system-deep-loop` (`deep-improvement` 10, `deep-research`
       8, `deep-review` 4).
 - [ ] Inject `stage: routing|holdout|negative` frontmatter on the 63 grouped files during each family's rename

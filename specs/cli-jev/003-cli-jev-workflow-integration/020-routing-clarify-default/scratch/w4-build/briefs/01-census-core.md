@@ -21,7 +21,7 @@ Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
 === END AGENT PERSONA (resolved persona: code) ===
 
 TASK: create a new CommonJS script with one pure function, `runCensus`, and a new node:test file that pins it.
-Style: follow .skilled/skills/sk-code/sk-code-opencode/references/javascript/quick-reference.md section 2 (box banner, 'use strict', numbered section dividers, JSDoc on each exported function, camelCase, module.exports). Copy the banner shape from .skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs lines 1-6.
+Style: follow .skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md section 2 (box banner, 'use strict', numbered section dividers, JSDoc on each exported function, camelCase, module.exports). Copy the banner shape from .skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs lines 1-6.
 
 FILE 1 (create): .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs
 Banner title: `score-clarify-default — clarify census and default-pick scorer`. Then a short doc comment: the script replays committed prompts through each compiled hub engine, read only, and counts clarify outcomes; it never calls a model unless a later switch asks.

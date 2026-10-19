@@ -62,7 +62,7 @@ Surgical fixes (confirmed exact edits by the orchestrator):
 
 Substantial fixes (fresh GPT-5.6 LUNA MAX per defect, orchestrator-verified):
 
-- [x] T008 [P] code-quality checklist paths -> `../code-opencode/assets/checklists/` [EVIDENCE: `6ff2546493`; all 10 paths resolve on disk; gate PASS]
+- [x] T008 [P] code-quality checklist paths -> `../code-skilled/assets/checklists/` [EVIDENCE: `6ff2546493`; all 10 paths resolve on disk; gate PASS]
 - [x] T009 [P] code-review detect_surface_evidence placeholder fixed; asset snake_cased; REFERENCES consolidated [EVIDENCE: `6ff2546493`; gate PASS 0 warnings]
 - [x] T010 [P] mcp-click-up config/auth/namespace corrected across SKILL.md + README + references [EVIDENCE: `6ff2546493`; 0 stale markers vs `.utcp_config.json`; gate PASS]
 - [x] T011 [P] system-deep-loop hub: 8th alignment mode added across SKILL.md/README/descriptor/graph [EVIDENCE: `6ff2546493`; parent-skill-check 0 warnings]

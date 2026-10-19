@@ -1,0 +1,30 @@
+ROLE: You make literal edits to one TypeScript file. Re-read it first. Make exactly these edits and nothing else.
+
+CONTEXT: In `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts`, `close()` stops a running provisioning step, but the 5-second interpreter probes (`hasMoondream`, `hasUv`) keep running after `close()` returns, and `ensurePython()` then goes on to probe again and create the venv directory. Closing must stop the probes and stop `ensurePython()`.
+
+ACTION:
+
+1. Directly after the line `  private provisioning: ChildProcess | null = null;`, insert these two lines:
+
+  // Aborted by close(), so an interpreter probe still running is killed with it.
+  private readonly probes = new AbortController();
+
+2. In `hasMoondream`, replace `        { timeout: 5_000 },` with `        { timeout: 5_000, signal: this.probes.signal },`.
+
+3. In `hasUv`, replace `      await execFileAsync(this.uv, ["--version"], { timeout: 5_000 });` with `      await execFileAsync(this.uv, ["--version"], { timeout: 5_000, signal: this.probes.signal });`.
+
+4. In `ensurePython`, directly after the line `    if (await this.hasMoondream(current)) return current;`, insert the line `    this.throwIfClosed();`.
+
+5. In `ensurePython`, directly after the line `    if (await this.hasMoondream(python)) return python;`, insert the line `    this.throwIfClosed();`.
+
+6. In `runProvision`, replace the line `    if (this.closed) throw new SkVisionError("SHUTDOWN", "sk-vision runtime closed");` with `    this.throwIfClosed();`.
+
+7. Directly before the line `  /** True if the given interpreter can import moondream. */`, insert these lines, followed by one blank line:
+
+  private throwIfClosed(): void {
+    if (this.closed) throw new SkVisionError("SHUTDOWN", "sk-vision runtime closed");
+  }
+
+8. In `close()`, directly after the line `    this.closed = true;`, insert the line `    this.probes.abort();`.
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/runtime/client.test.ts 2>&1 | tail -4` and print the output verbatim, nothing else.

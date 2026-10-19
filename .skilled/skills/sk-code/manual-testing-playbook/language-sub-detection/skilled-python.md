@@ -1,0 +1,92 @@
+---
+title: "LS-002: SKILLED Python Sub-Detection"
+description: "Verify that within SKILLED surface, Python file extensions trigger loading of python/* references (not typescript, shell, or config)."
+version: 1.5.1.0
+---
+
+# LS-002: SKILLED Python Sub-Detection
+
+## 1. OVERVIEW
+
+Verify language sub-detection for `.py` files within SKILLED surface. The Python ref set MUST load; TypeScript/Shell/Config sets MUST NOT.
+
+Sub-detection rules defined in SKILL.md lines 78-90.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+**Realistic user request**: Add a `--json-output` flag to the skill advisor CLI for machine-readable results.
+
+**Exact prompt**:
+```
+Update the skill_advisor.py argparse block at .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.
+```
+
+Prompt: `Update the skill_advisor.py argparse block at .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.`
+
+**Expected detection**:
+- Surface: `SKILLED`
+- Sub-language: `PYTHON` (target file `.py`, also Python-specific signal: `argparse`)
+
+**Expected references loaded**:
+- `sk-code-skilled/references/python/style-guide.md`
+- `sk-code-skilled/references/python/quality-standards.md`
+- `sk-code-skilled/references/python/quick-reference.md`
+
+**Expected assets loaded**:
+- `sk-code-skilled/assets/checklists/python-checklist.md`
+- `sk-code-skilled/assets/checklists/universal-checklist.md`
+
+**Expected NOT loaded**: any of `sk-code-skilled/references/{typescript,shell,config}/*`.
+
+---
+
+## 3. TEST EXECUTION
+
+### Preconditions
+
+1. Target file exists: `bash: test -f .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`
+2. Python sub-language reference set intact: 3 files under `sk-code-skilled/references/python/`.
+
+### Exact Command Sequence
+
+1. Invoke sk-code with the prompt.
+2. Capture loaded refs to `/tmp/skc-LS002-loaded-refs.txt`.
+3. Verify: 3 python/* + 2 shared/* refs loaded; 0 typescript/shell/config refs.
+
+### Expected Signals
+
+Expected signals: exactly 3 `python/*` refs plus 2 `shared/*` refs load, and 0 typescript/shell/config refs load.
+
+### Pass/Fail Criteria
+
+- **PASS** iff: 3 python/* refs + 2 shared/* refs loaded AND 0 other-sub-language refs.
+- **FAIL** iff: any typescript/shell/config ref leaks, OR fewer than 3 python/* refs loaded.
+
+Evidence: `/tmp/skc-LS002-loaded-refs.txt` (loaded-refs transcript).
+
+### Failure Triage
+
+1. If a typescript/* ref leaks: the extension detector is mis-firing on the `.py` extension.
+2. If python signals not detected: verify `argparse`, `pytest`, `def `, docstring patterns in SKILL.md sub-detection table.
+
+---
+
+## 4. SOURCE FILES
+
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
+- `.skilled/skills/sk-code/SKILL.md` (sub-detection table).
+- `.skilled/skills/sk-code/sk-code-skilled/references/python/{style_guide,quality_standards,quick_reference}.md`.
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Language Sub-Detection
+- Playbook ID: LS-002
+- **Created**: 2026-05-04
+- **Critical path**: No
+- **Destructive**: No
+- **Concurrent-safe**: Yes
+- **Last validated**: pending first manual run

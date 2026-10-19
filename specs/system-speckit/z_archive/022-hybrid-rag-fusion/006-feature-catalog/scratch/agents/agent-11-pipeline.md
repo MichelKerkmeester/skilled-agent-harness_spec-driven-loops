@@ -34,7 +34,7 @@ I’m loading the review rubric and inventorying the 22 catalog files first, the
   │ '/Users/michelkerkmeester/.copilot/session-state/14b9af08-7520-41ba-923f-f769cc6386a6/plan.md'…
   └ 52 lines...
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’ve got the inventory and review criteria loaded. Next I’m batching the catalog into a few analysis passes so I can compare every feature claim against both code trees with actual code citations, not just filenames.
 
@@ -42,11 +42,11 @@ I’ve got the inventory and review criteria loaded. Next I’m batching the cat
   └ Agent started in background with agent_id: pipeline-batch-a. You can use read...
 
 ● Read universal_patterns.md
-  │ .agents/skills/sk-code-opencode/references/shared/universal_patterns.md
+  │ .agents/skills/sk-code-skilled/references/shared/universal_patterns.md
   └ 571 lines read
 
 ● Read alignment_verification_automation.md
-  │ .agents/skills/sk-code-opencode/references/shared/alignment_verification_automation.md
+  │ .agents/skills/sk-code-skilled/references/shared/alignment_verification_automation.md
   └ 62 lines read
 
 ● Explore Review batch B

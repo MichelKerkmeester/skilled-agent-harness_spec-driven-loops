@@ -18,7 +18,7 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Full 163-path checks for generic When-to-Use boilerplate, uppercase trigger phrases, TODO/TBD/FIXME/XXX/PLACEHOLDER markers, and whether optional Related Resources is the final H2.
-- Active evidence replay: `.opencode/skills/sk-code/code-webflow/references/shared/enforcement.md:15-30,307-328`, `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-24`, `.opencode/skills/sk-code/code-opencode/references/workflow_implement.md:14-24`, `.opencode/skills/sk-code/code-opencode/references/workflow_verify.md:14-24`, `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-29`, and packet evidence at `tasks.md:31-61`, `checklist.md:30-83`, `implementation-summary.md:84-87`.
+- Active evidence replay: `.opencode/skills/sk-code/code-webflow/references/shared/enforcement.md:15-30,307-328`, `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-24`, `.opencode/skills/sk-code/code-skilled/references/workflow_implement.md:14-24`, `.opencode/skills/sk-code/code-skilled/references/workflow_verify.md:14-24`, `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-29`, and packet evidence at `tasks.md:31-61`, `checklist.md:30-83`, `implementation-summary.md:84-87`.
 
 ## Findings - New
 
@@ -49,7 +49,7 @@ None new. `C1-P2-001` remains active and bounded to eight lexical paths represen
 ## Confirmed-Clean Surfaces
 
 - No generic implementing-or-troubleshooting When-to-Use boilerplate remains.
-- No uppercase quoted trigger phrase remains in the configured code-opencode/code-webflow roots.
+- No uppercase quoted trigger phrase remains in the configured code-skilled/code-webflow roots.
 - TODO-like matches are instructional examples or named guidance, not unresolved authoring placeholders.
 - Every in-scope Related Resources H2 is the final H2 in its document.
 - The current corpus remains 163 lexical Markdown paths representing 160 resolved targets.

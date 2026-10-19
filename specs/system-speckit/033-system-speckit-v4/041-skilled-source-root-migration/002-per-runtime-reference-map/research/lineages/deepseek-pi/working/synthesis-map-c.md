@@ -878,9 +878,9 @@
 - `.opencode/skills/sk-code/mode-registry.json:50` — regenerate
 - `.opencode/skills/sk-code/sk-code-mobile-cli/scripts/run-source-gates.sh:26` — mechanical
 - `.opencode/skills/sk-code/sk-code-obsidian/scripts/run-source-gates.sh:27` — mechanical
-- `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py:106` — mechanical
-- `.opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json:9` — freeze
-- `.opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json:9` — freeze
+- `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py:106` — mechanical
+- `.opencode/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json:9` — freeze
+- `.opencode/skills/sk-code/sk-code-skilled/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json:9` — freeze
 - `.opencode/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/skill-benchmark-report.json:9` — freeze
 - `.opencode/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--router-mode-a--router/skill-benchmark-report.json:9` — freeze
 - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh:14` — mechanical
@@ -905,7 +905,7 @@
 | benchmark material | 28 | 2 | 45 | freeze | recorded measurements from past runs | `.opencode/skills/sk-code/benchmark/reports/2026-06-01--after--router/source.md`; `.opencode/skills/sk-code/benchmark/reports/2026-06-01--full--router/source.md`; `.opencode/skills/sk-code/benchmark/reports/2026-06-01--live--live/source.md` |
 | top-level skill doc | 17 | 9 | 71 | mechanical | load-bearing doc; rewrite paths | `.opencode/skills/sk-code/README.md`; `.opencode/skills/sk-code/ROUTER.md`; `.opencode/skills/sk-code/SKILL.md` |
 | historical record (changelog) | 14 | 0 | 74 | freeze | may keep historical paths | `.opencode/skills/sk-code/changelog/v3.1.0.0.md`; `.opencode/skills/sk-code/changelog/v3.2.0.0.md`; `.opencode/skills/sk-code/changelog/v3.2.1.0.md` |
-| assets | 13 | 15 | 68 | mechanical | templates and prompt assets; rewrite paths | `.opencode/skills/sk-code/shared/assets/patterns/README.md`; `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/agent-authoring.md`; `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/command-authoring.md` |
+| assets | 13 | 15 | 68 | mechanical | templates and prompt assets; rewrite paths | `.opencode/skills/sk-code/shared/assets/patterns/README.md`; `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md`; `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md` |
 | feature catalog | 3 | 0 | 15 | mechanical | prose describing current behavior; rewrite paths | `.opencode/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`; `.opencode/skills/sk-code/feature-catalog/feature-catalog.md`; `.opencode/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` |
 | templates | 1 | 2 | 3 | mechanical | emitted into packets; rewrite paths | `.opencode/skills/sk-code/sk-code-webflow/assets/templates/README.md` |
 

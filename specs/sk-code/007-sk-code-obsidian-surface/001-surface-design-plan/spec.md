@@ -64,7 +64,7 @@ structural decision in the live hub contract, because that contract has moved si
 `sk-code-mobile-cli` was written: the registry now carries five modes, not four, the router's
 `vocabularyClasses` follow a compositional (not mirrored) strategy, and the target repository
 symlinks `.opencode`, `.claude`, `.codex`, `.cursor`, and `.devin` back to the hub — a fact with no
-precedent in `sk-code-webflow`, `sk-code-opencode`, or `sk-code-mobile-cli`'s design history, since
+precedent in `sk-code-webflow`, `sk-code-skilled`, or `sk-code-mobile-cli`'s design history, since
 none of those surfaces' host repositories carry that symlink set. A design authored from memory or
 from the mobile-cli template alone would silently miss the alias-collision check, the tie-break
 append position, and the OPENCODE detection guard the symlinks require.

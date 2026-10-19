@@ -64,7 +64,7 @@ A single shared brief carried the template, the `cli-claude-code` exemplar, the 
 | `create-diff` `create-feature-catalog` `create-flowchart` | 156 / 140 / 140 | Full rewrite |
 | `create-manual-testing-playbook` `create-quality-control` `create-benchmark` | 148 / 145 / 154 | Full rewrite (benchmark restructured from 147) |
 | `create-readme` `create-skill` | 154 / 147 | Full rewrite (dogfood) |
-| `code-opencode` `code-webflow` | 47 / 47 | Terse pitch + OVERVIEW + HVR pass |
+| `code-skilled` `code-webflow` | 47 / 47 | Terse pitch + OVERVIEW + HVR pass |
 | `sk-git` | 256 | AT A GLANCE insert + renumber |
 <!-- /ANCHOR:what-built -->
 

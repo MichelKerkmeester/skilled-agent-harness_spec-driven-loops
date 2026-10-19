@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The universal standard says OPENCODE > WEBFLOW > UNKNOWN while the detection reference says OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN, and both load on every route",
     "created_at": "2026-10-09T16:00:48Z",
-    "last_save_at": "2026-10-11T05:17:04.041Z",
+    "last_save_at": "2026-10-18T20:45:10.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d9c0e32ac898287adbf11fa02c7b773b976bc814d3944f44269487bd4ac02f2",
+    "source_fingerprint": "sha256:a86ba07767512654d70f93d2194a53943cf70c7dc5977b964284d8e50edbed85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6baa32c8df510c8fdb50981764114002ab7c303182f3296ab7835fd6ef963394",
-      "plan.md": "7092b53454eba66347c317d55c36bc4d90c859821f21cc3f519a391e9bf3bda9",
-      "tasks.md": "33fe04efc25fe6bd8ef04d968e6890eb8d2279a5eb10c173b6d015d1756bfaa2",
+      "plan.md": "0edcd69d08b52d097b9166ebcf5c7d77cc39f4991074a8363d13b19335e30969",
+      "tasks.md": "98f1322c204370d670d871e05e7014be6e9425dae1bf8cbb97c338b88cb0a929",
       "implementation-summary.md": "f99f93edff0f8f068e88004c7dbbf6d6b16b3dddef1a6f22f87ff326f3064819"
     },
     "last_active_at": null

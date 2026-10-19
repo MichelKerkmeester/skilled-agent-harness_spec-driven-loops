@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Ponytail 5 asks whether a helper, component, service or pattern already exists in the codebase before reaching for the standard library",
     "created_at": "2026-10-09T16:00:48Z",
-    "last_save_at": "2026-10-11T05:17:04.033Z",
+    "last_save_at": "2026-10-18T20:45:11.158Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6544667e43caf2997aa2a9d312f549f3a9adc1a8ae1c9d4125568504c823f4a2",
+    "source_fingerprint": "sha256:da6517154bb2b2811a08db5fe3f30f3b23b6cf8bf3c978657cfd0897c2a46ae7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b9ffe22f473c463169bc2600d6ecee5d619162792690a43ba0fbe5a2e657f5e2",
-      "plan.md": "656b6af1057c20f94901853fdf909c9bafbdab56c1d076e6eb9927d064bb88e2",
-      "tasks.md": "5767c61045453aecd6144176fd142f4c56825677c242f9bfe98a4f22dd34c896",
+      "plan.md": "75a5297e40b358473e6c56a4367808363b72e15c4da297793a5443736178792d",
+      "tasks.md": "b6f669e979841b2295ddc422dec90b68367d49b0006de8b391c66b14f2f40ddd",
       "implementation-summary.md": "441c02f082e5124218ffc92b6a38345e35e9343586b7774756e9ea91de189cc7"
     },
     "last_active_at": null

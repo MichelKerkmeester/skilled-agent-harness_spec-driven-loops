@@ -82,7 +82,7 @@ For each catalog modified, verify it still passes any sk-doc validation (if a va
 
 7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/002-feature-catalog-trio-alignment/`.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-opencode-standards-audit"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-skilled-standards-audit"]`.
 
 **Trigger phrases**: `["037-002-feature-catalog-trio-alignment","feature catalog updates","catalog refresh 031-036","system-spec-kit catalog","skill_advisor catalog","code_graph catalog"]`.
 

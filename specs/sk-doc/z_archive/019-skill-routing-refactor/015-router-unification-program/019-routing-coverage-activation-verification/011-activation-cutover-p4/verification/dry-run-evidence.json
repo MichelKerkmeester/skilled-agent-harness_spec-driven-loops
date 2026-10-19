@@ -126,7 +126,7 @@
         "id": "verify-alignment-drift-gate-live",
         "proven": true,
         "reason": "verify_alignment_drift gate present and wired into the drift-guard runner",
-        "evidence": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py"
+        "evidence": ".opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py"
       },
       {
         "id": "manifest-freshness-eligibility-predicate",

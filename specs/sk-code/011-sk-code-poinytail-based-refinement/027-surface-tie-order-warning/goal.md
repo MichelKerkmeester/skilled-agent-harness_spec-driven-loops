@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Make the parent-skill doctor report a sk-code surface that sits after `sk-code-opencode` in `routerPolicy.tieBreak`, unless it is `sk-code-obsidian` or `sk-code-webflow`, and name the fix, while the shipped order stays green.
+**Objective:** Make the parent-skill doctor report a sk-code surface that sits after `sk-code-skilled` in `routerPolicy.tieBreak`, unless it is `sk-code-obsidian` or `sk-code-webflow`, and name the fix, while the shipped order stays green.
 
 ### Decisions
 
@@ -58,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code 2>&1 | grep '5l:'`, run from the repository root, prints `PASS: 5l: tieBreak places no added surface after the native surface "sk-code-opencode"`.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code 2>&1 | grep '5l:'`, run from the repository root, prints `PASS: 5l: tieBreak places no added surface after the native surface "sk-code-skilled"`.
 - [x] `node .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs 2>&1 | grep -cE '^(✔ 5l (fails|passes) |ℹ fail 0$)'`, run from the repository root, prints 4.
 - [x] `bash .skilled/commands/doctor/scripts/tests/run-all.sh >/dev/null 2>&1 && for h in cli-classifier cli-external-orchestration mcp-tooling sk-code sk-design sk-doc system-deep-loop; do node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/$h >/dev/null 2>&1 || echo "$h"; done | grep -c .`, run from the repository root, prints 0.
-- [x] `grep -c 'by hand instead, keep your surface ahead of .sk-code-opencode., because the doctor.s check 5l fails' README.md`, run from the repository root, prints 1.
+- [x] `grep -c 'by hand instead, keep your surface ahead of .sk-code-skilled., because the doctor.s check 5l fails' README.md`, run from the repository root, prints 1.
 - [x] `C=specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning; [ "$(grep -cE '^\| T[1-3] \| .+ \| before: fail \| after: pass \|$' $C/implementation-summary.md)" = 3 ] && [ "$(find $C/review/iterations -name 'iteration-*.md' | wc -l | tr -d ' ')" = 5 ] && [ "$(grep -E '^\| RV-' $C/implementation-summary.md | grep -vcE '^\| RV-[0-9]+ \| P[0-2] \| (Fixed|Rejected) \|')" = 0 ] && echo ok`, run from the repository root, prints ok.
 - [x] `G='^Spec: sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning$'; [ -n "$(git log --no-merges --grep="$G" --format=%h)" ] && [ "$(git log --no-merges --grep="$G" --format=%B | grep -cE '^(Co-Authored-By|Claude-Session):')" = 0 ] && echo ok`, run from the repository root, prints ok.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning --strict`, run from the repository root, prints `RESULT: PASSED`.
@@ -90,7 +90,7 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| A fourth 5l test | D3 names three tests; the review added `5l prints nothing on an sk-code tree whose tieBreak has no sk-code-opencode` under RV-3, recorded as an RV row, not a T row |
+| A fourth 5l test | D3 names three tests; the review added `5l prints nothing on an sk-code tree whose tieBreak has no sk-code-skilled` under RV-3, recorded as an RV row, not a T row |
 | Review driven by a scratch driver | The single-executor workflow steps were run from two scratch scripts: prompt render through `renderPromptPack`, dispatch through the workflow's cli-devin snippet (`buildLineageCommand`, `runAuditedExecutorCommand`, write containment), `verify-iteration.cjs`, claim adjudication and closeout through the append gateway, `reduce-state.cjs` and `upsert.cjs`. The pre-dispatch `writeFirstRecordExecutor` was skipped because it writes the state log directly |
 | Graph convergence rows missing | `convergence.cjs` ran before every iteration, but the gateway refused the hand-built `graph_convergence_evaluated` payload for its shape, so the state log carries no graph rows; under stop policy `max-iterations` they decide nothing |
 | Duplicate claim-adjudication row | Rerunning the post-iteration script for iteration 1 after a driver bug appended a second, identical `claim_adjudication` row (passed, 0 active); the ledger is append-only, so it stays |

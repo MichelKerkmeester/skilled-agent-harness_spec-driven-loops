@@ -1,0 +1,14 @@
+ROLE: You make two literal edits to one TypeScript file. Re-read it first. Make exactly these edits and nothing else.
+
+FILE: `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts`
+
+ACTION:
+
+1. Replace the line `    const promptRegistration = await ctx.session.hook('prompt', async (input) => {` with these two lines:
+
+    // Deferred so a host that throws synchronously still reaches the cleanup below.
+    const promptRegistration = await Promise.resolve().then(() => ctx.session.hook('prompt', async (input) => {
+
+2. Replace the line `    }).catch(async (error: unknown) => {` with `    })).catch(async (error: unknown) => {`.
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test 2>&1 | tail -5` and print the output verbatim, nothing else.

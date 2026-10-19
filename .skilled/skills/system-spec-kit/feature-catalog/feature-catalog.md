@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-10-04"
-version: 2.1.1.0
+last_updated: "2026-10-18"
+version: 2.1.2.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -898,6 +898,22 @@ It complements `implementation-summary.md` by listing paths rather than narrativ
 #### Source Files
 
 See [`context-preservation/resource-map-template.md`](context-preservation/resource-map-template.md) for full implementation and test file listings.
+
+---
+
+### Session relaunch loop
+
+#### Description
+
+Hands a session near its context limit to a fresh one through a structured handoff note and the skilled-loop wrapper.
+
+#### Current Reality
+
+Claude Code, Pi, OpenCode, Codex and Hermes prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_RELAUNCH_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command.
+
+#### Source Files
+
+See [context-preservation/session-relaunch-loop.md](context-preservation/session-relaunch-loop.md) for implementation and test file listings.
 
 ---
 

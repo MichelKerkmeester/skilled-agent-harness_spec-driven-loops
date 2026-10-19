@@ -58,7 +58,7 @@ This is **Phase 4** of the Round four children specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The `sk-code` hub detects three surfaces, WEBFLOW, OPENCODE and OBSIDIAN, but the quality mode's Target-Path Checklist Map (`.skilled/skills/sk-code/sk-code-quality/SKILL.md` lines 116 to 124) has rows for OpenCode and Webflow targets only. An Obsidian plugin change reaches the gate with no checklist to load. Six `SKILL.md` lines (15, 36, 47, 182, 188, 280) and two README lines (58, 107) list `sk-code-webflow` and `sk-code-opencode` without `sk-code-obsidian`. Round three left those lists alone because naming Obsidian there would claim coverage the map did not define.
+The `sk-code` hub detects three surfaces, WEBFLOW, OPENCODE and OBSIDIAN, but the quality mode's Target-Path Checklist Map (`.skilled/skills/sk-code/sk-code-quality/SKILL.md` lines 116 to 124) has rows for OpenCode and Webflow targets only. An Obsidian plugin change reaches the gate with no checklist to load. Six `SKILL.md` lines (15, 36, 47, 182, 188, 280) and two README lines (58, 107) list `sk-code-webflow` and `sk-code-skilled` without `sk-code-obsidian`. Round three left those lists alone because naming Obsidian there would claim coverage the map did not define.
 
 ### Purpose
 The quality mode routes every Obsidian plugin target to a checklist that exists, and then names `sk-code-obsidian` wherever it lists the surfaces it serves.

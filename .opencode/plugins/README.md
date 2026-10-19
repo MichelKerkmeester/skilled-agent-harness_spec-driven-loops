@@ -9,6 +9,8 @@ trigger_phrases:
 
 # OpenCode Plugin Entrypoints
 
+> JavaScript plugin entrypoints for context injection, lifecycle handling, policy guards, runtime tools and post-action checks.
+
 ---
 
 ## 1. OVERVIEW
@@ -31,10 +33,11 @@ Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch vi
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`), `experimental.chat.system.transform`, `tool` (goal tools) | Binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`), or holds a text goal. Largest plugin. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
+| `session-relaunch.js` | `session-relaunch` | `event` (`message.updated`/`message.part.updated`/`session.idle`), `experimental.chat.system.transform` | Tracks usage and seed text. While this session has no matching relaunch record, it pushes the active nudge on every request. Outside `skilled-loop`, it keeps nudging until the handoff note exists. It injects a matching seed once and arms the record on `session.idle`. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID, because the after hook has no file path. `tool.execute.after` runs the router core. Findings drain on the next transform and are recorded to a workspace log. |
 | `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing. Allows what the shared gate cannot read. The one plugin with no kill switch, because the commit and push rules carry no bypass on any surface. |
 | `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform. Never prints. |
-| `sk-vision.js` | `sk-vision` | `tool` (13 `sk_vision_*` tools) | Symlink → `../skills/sk-vision/vision-runtime/dist/plugin.js`. Local vision adapter: OCR, inspect, detect, pixel analysis. The compiled build default-exports the same `{ id, setup, server }` shape. Auto-inspect uses a 2s grace and never awaits full GPU. |
+| `sk-vision.js` | `sk-vision` | `tool` (13 `sk_vision_*` tools) | Symlink → `../skills/sk-vision/vision-runtime/dist/plugin.js`. Local vision adapter: OCR, inspect, detect, pixel analysis. The compiled build default-exports the same `{ id, setup, server }` shape. Auto-inspect (`SK_VISION_AUTOINSPECT=1`) uses a 2s grace, and awaits the full analysis only for a listed text-only model. |
 | `system-completion-sentinel.js` | `completion` | `event` (`session.created`/`idle`) | Checks completion evidence at session lifecycle points. On `session.idle`, resolves completion state via `ctx.client.session.messages()` (guarded, fail-open). Throttled-sweeps the shared state dir on `session.created`. |
 | `system-deep-loop-guard.js` | `task-dispatch` | `event` (`session.created`), `tool.execute.before` | Checks deep-loop Task dispatches and repeat handoffs. Sweeps stale loop-guard state on `session.created`. |
 | `system-dist-freshness-guard.js` | `dist-freshness` | `tool.execute.before`, `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Reports stale compiled outputs and invalidates diagnostics. Short-circuits the whole plugin at factory entry when disabled. |
@@ -88,6 +91,7 @@ plugins/
 +-- mcp-route-guard.js
 +-- opencode-goal.js
 +-- session-cleanup.js
++-- session-relaunch.js
 +-- sk-code-post-edit-quality.js
 +-- sk-git-message-gate.js
 +-- sk-git-preflight-advisory.js
@@ -174,7 +178,7 @@ Plugin factories register some subset of:
 
 The bridge in `lib/v2-bridge.js` maps that set onto OpenCode 2 registrations: `event` to the event stream, `tool.execute.before`/`after` to the tool execute hooks, `experimental.chat.system.transform` to the session context hook, and `tool` definitions to the tool transform. A key outside the set is reported through `cleanup.skippedKeys`.
 
-One plugin in this repo registers a key outside that set: `sk-vision.js`'s `chat.message` hook, which inspects images when a prompt is submitted. The bridge skips it on OpenCode 2, so automatic image inspection does not run there, while sk-vision's tools still register. Porting the hook to OpenCode 2's prompt hook is not done and not verified.
+One plugin in this repo registers a key outside that set: `sk-vision.js`'s `chat.message` hook, which inspects images when a prompt is submitted. sk-vision does not go through the bridge. Its own `setup` entry runs the same check on OpenCode 2 through `ctx.session.hook("prompt")` and appends the evidence to the prompt text, when `SK_VISION_AUTOINSPECT=1` as on OpenCode 1. On OpenCode 2 a model not on the text-only list gets the 2-second grace, and a listed one waits for the full analysis. The 13 `sk_vision_*` tools register on both versions under the same gate: OpenCode 1 takes them from the `server` entry, and on OpenCode 2 the `setup` entry adds them through `ctx.tool.transform`, where the model reaches them through OpenCode 2's code-mode `execute` tool.
 
 ---
 

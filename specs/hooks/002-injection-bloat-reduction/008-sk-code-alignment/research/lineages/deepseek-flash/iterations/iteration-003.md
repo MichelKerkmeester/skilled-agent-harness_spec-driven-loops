@@ -12,7 +12,7 @@ Run the sk-code opencode-surface drift verifier against the changed surface, con
 
 ### F15 — All 12 changed files pass the alignment-drift verifier (default gate)
 
-`python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root {system-skill-advisor/mcp-server} --root {system-skill-advisor/hooks} --root {system-spec-kit/mcp-server/hooks} --root {.opencode/plugins}` → `PASS`, scanned 431 files, 0 findings/errors/warnings/violations. All 12 changed files satisfy the language-integrity rules (headers, `'use strict'` for `.js/.cjs`, `.mjs` skip, indentation/quote/semicolon checks).
+`python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root {system-skill-advisor/mcp-server} --root {system-skill-advisor/hooks} --root {system-spec-kit/mcp-server/hooks} --root {.opencode/plugins}` → `PASS`, scanned 431 files, 0 findings/errors/warnings/violations. All 12 changed files satisfy the language-integrity rules (headers, `'use strict'` for `.js/.cjs`, `.mjs` skip, indentation/quote/semicolon checks).
 
 `--check-exact-headers` (opt-in) flags only pre-existing files OUTSIDE the 12-file changed set: `scripts/*.sh`, `scripts/*.mjs`, `stress-test/*.vitest.ts`, and spec-gate `*.test.mjs` co-located tests. The four `spec-gate-classify.mjs` adapters, both plugins, and all changed lib/hook `.ts` files carry `MODULE:`/`COMPONENT:` markers. No header-format gap in the changed surface.
 

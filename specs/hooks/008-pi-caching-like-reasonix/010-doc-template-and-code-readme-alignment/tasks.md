@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Doc-Template and Code-README Alignment"
-description: "Task breakdown for reshaping both changes documents, authoring 9 code-folder READMEs, and auditing added TypeScript/JS against sk-code-opencode standards."
+description: "Task breakdown for reshaping both changes documents, authoring 9 code-folder READMEs, and auditing added TypeScript/JS against sk-code-skilled standards."
 trigger_phrases:
   - "doc template code readme alignment tasks"
 importance_tier: "normal"
@@ -44,7 +44,7 @@ _memory:
 
 - [x] T001 Read both current `CHANGES-FROM-UPSTREAM.md` files in full
 - [x] T002 Enumerate all 9 target folders' real file listings directly — 9/9 folders confirmed via `find`, recorded in the Evidence Record table below
-- [x] T003 Read `sk-create-readme/SKILL.md` and `sk-code-opencode/SKILL.md` in full
+- [x] T003 Read `sk-create-readme/SKILL.md` and `sk-code-skilled/SKILL.md` in full
 - [x] T004 Read `cli-devin/SKILL.md`; confirm auth; resolve "GLM 5.2 high" to `glm-5-2` via `references/providers-and-models.md`
 <!-- /ANCHOR:phase-1 -->
 

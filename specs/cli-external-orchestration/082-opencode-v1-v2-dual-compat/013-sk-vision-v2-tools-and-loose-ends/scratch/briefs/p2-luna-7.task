@@ -1,0 +1,10 @@
+ROLE: Read-only reviewer. Do not edit any file.
+
+CONTEXT: Round 7 of the sk-vision OpenCode 2 review. The uncommitted diff (`git diff`) under `.skilled/skills/sk-vision/` fixes round 4's four P2s; round 5 and round 6 confirmed those and the mkdir guard in `vision-runtime/src/runtime/client.ts`. Round 6 raised one P2: a synchronously throwing `registration.dispose()` escaped `Promise.allSettled`. Now in `vision-runtime/src/plugin.ts`:
+(a) The cleanup is `Promise.allSettled([registration, auto].map(async (held) => held?.dispose()))`, so a synchronous throw from either dispose becomes a settled rejection and the original hook error is rethrown.
+(b) The same gap existed for `ctx.session.hook` itself, so the call is now deferred through `Promise.resolve().then(...)`, and a synchronously throwing host still reaches the cleanup.
+The test "still releases the inspection client and keeps the hook error when command disposal fails" in `vision-runtime/src/plugin.test.ts` now uses a synchronously throwing hook and a synchronously throwing command dispose. `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/scratch/mutation/p2-sync-dispose-before-fix.txt` and `p2-sync-hook-before-fix.txt` show it failing against the code before (a) and before (b).
+
+ACTION: Confirm (a) and (b), and that nothing new was introduced across the whole diff, including whether deferring the hook call changes registration order or timing in a way a caller could observe. Check comment hygiene (no spec paths, phase numbers or ids in code comments).
+
+FORMAT: First line `VERDICT: PASS` or `VERDICT: FAIL`. Then findings, each with P0/P1/P2, file:line and evidence. Under 250 words. Your sandbox is read-only, so do not count failures to write temp files or run the typecheck.

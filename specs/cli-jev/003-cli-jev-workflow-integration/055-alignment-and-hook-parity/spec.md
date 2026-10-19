@@ -37,7 +37,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 55** of the cli-jev workflow integration packet. After phase 54 the operator asked for three things: code aligned with sk-code-opencode, every README and env surface true to current reality with the switches, `.env.example` and `/doctor:env` in step, and perfect cross-runtime parity for every hook.
+This is **Phase 55** of the cli-jev workflow integration packet. After phase 54 the operator asked for three things: code aligned with sk-code-skilled, every README and env surface true to current reality with the switches, `.env.example` and `/doctor:env` in step, and perfect cross-runtime parity for every hook.
 
 **Scope Boundary**: The four kept Jev features, their docs and switches, the hook hub, its registry and the runtime adapters. No feature changes what it measures.
 
@@ -116,7 +116,7 @@ A reader of any hook doc, env file or registry entry learns what really runs on 
 |----|-------------|
 | REQ-004 | The coverage matrix, rationale and injection contract agree with the registry and the files on disk |
 | REQ-005 | Every Jev switch's Source cell, `.env.example` and `hook-flags.env.example` name the code that reads it, and `/doctor:env` still parses the reference |
-| REQ-006 | New and changed code passes the sk-code-opencode alignment verifier |
+| REQ-006 | New and changed code passes the sk-code-skilled alignment verifier |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

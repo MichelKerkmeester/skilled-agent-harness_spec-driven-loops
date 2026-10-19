@@ -21,7 +21,7 @@ _memory:
       - "spec.md"
       - "synthesis.md"
       - "001-readmes-vs-027/review/findings-all.json"
-      - "002-code-vs-sk-code-opencode/review/findings-all.json"
+      - "002-code-vs-sk-code-skilled/review/findings-all.json"
       - "003-readme-remediation/plan.md"
       - "004-code-remediation/plan.md"
     session_dedup:
@@ -51,7 +51,7 @@ The program is deliberately split review-from-remediation: review finds and disp
 | Child | Role |
 |-------|------|
 | `001-readmes-vs-027` | Read-only review: README currency vs 027 reality (18 seats). Findings in `review/findings-all.json`. |
-| `002-code-vs-sk-code-opencode` | Read-only review: code vs sk-code OpenCode standards (18 seats). Findings in `review/findings-all.json`. |
+| `002-code-vs-sk-code-skilled` | Read-only review: code vs sk-code OpenCode standards (18 seats). Findings in `review/findings-all.json`. |
 | `003-readme-remediation` | Remediation: fix confirmed README drift via markdown fixer seats. |
 | `004-code-remediation` | Remediation: fix confirmed code findings via general+sk-code fixer seats. |
 

@@ -1,0 +1,11 @@
+P2 `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:241` - BMP file attachments are skipped - v2 MIME inference omits `bmp`, though the existing injector supports `image/bmp`.
+
+P2 `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:439` - Two tests do not catch removal of the new hook - without it, the optional hook call is a no-op and both the no-image and template assertions still pass.
+
+P2 `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:439` - Early disposal can leave startup running - `RuntimeClient.spawn()` awaits Python setup before assigning its child; `close()` returns when no child exists, without cancelling startup.
+
+The v1 evidence text remains unchanged. Template precedence and fail-open handling hold; auto-inspection off returns before constructing a runtime client. No comment-hygiene issue found.
+
+Verification: focused tests passed (4/4); TypeScript passed when invoked under Bun. Full `bun test` had 6 filesystem `EPERM` failures creating temp directories. `bunx tsc --noEmit` crashed because a Homebrew `simdutf` library was missing. No files were changed; the worktree remains dirty.
+
+PASS (no P0/P1)

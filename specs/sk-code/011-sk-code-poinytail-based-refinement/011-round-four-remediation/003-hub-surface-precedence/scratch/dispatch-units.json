@@ -25,8 +25,8 @@
       ".skilled/skills/sk-code/hub-router.json"
     ],
     "kind": "edit",
-    "instruction": "In .skilled/skills/sk-code/hub-router.json, replace the exact text <<<OLD\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-webflow\", \"sk-code-opencode\", \"sk-code-obsidian\"],\nOLD>>> with <<<NEW\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-opencode\", \"sk-code-obsidian\", \"sk-code-webflow\"],\nNEW>>>",
-    "check": "grep -c -F -- '\"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-opencode\", \"sk-code-obsidian\", \"sk-code-webflow\"],' .skilled/skills/sk-code/hub-router.json",
+    "instruction": "In .skilled/skills/sk-code/hub-router.json, replace the exact text <<<OLD\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-webflow\", \"sk-code-skilled\", \"sk-code-obsidian\"],\nOLD>>> with <<<NEW\n    \"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-skilled\", \"sk-code-obsidian\", \"sk-code-webflow\"],\nNEW>>>",
+    "check": "grep -c -F -- '\"tieBreak\": [\"sk-code-quality\", \"sk-code-review\", \"sk-code-skilled\", \"sk-code-obsidian\", \"sk-code-webflow\"],' .skilled/skills/sk-code/hub-router.json",
     "expect": "1"
   },
   {

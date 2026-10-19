@@ -76,7 +76,7 @@ handed to the 009 gate as a blocking finding. This phase performs no filesystem 
 ### In Scope
 
 - Inspect `.opencode/skills/sk-code/changelog/` for the new append-only entry for the completed 001-007 rename set.
-- Compare the entry with the phase handoffs for hub/shared, code-opencode, code-quality, code-review, code-webflow,
+- Compare the entry with the phase handoffs for hub/shared, code-skilled, code-quality, code-review, code-webflow,
   playbook, and benchmark surfaces.
 - Confirm the entry describes kebab-case as canonical and preserves the `.py`, Python package-directory,
   tool-mandated, generated/lockfile, identifier/key/frontmatter, and frozen-history boundaries.

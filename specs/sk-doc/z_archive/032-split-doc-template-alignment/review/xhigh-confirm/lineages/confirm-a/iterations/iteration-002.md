@@ -15,15 +15,15 @@ trigger_phrases: []
 ## Files Reviewed
 
 - Packet security and scope claims: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md`.
-- Exact hazard/framing searches across the declared `code-opencode`, `code-webflow`, and `code-quality` reference/asset trees.
+- Exact hazard/framing searches across the declared `code-skilled`, `code-webflow`, and `code-quality` reference/asset trees.
 - Focused security-sensitive reads:
   - `.opencode/skills/sk-code/code-webflow/references/performance/resource_loading.md:21-38,287-325,344-443`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:20-66`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:20-170,237-262`
   - `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/owasp_prototype_and_safe_access.md:317-331`
   - `.opencode/skills/sk-code/code-webflow/references/shared/dev_workflow/automation_errors_and_compat.md:250-259`
-  - `.opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229`
-  - `.opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:150-182`
+  - `.opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229`
+  - `.opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:150-182`
 
 ## Findings - New
 
@@ -63,7 +63,7 @@ None.
 
 ## Confirmed-Clean Surfaces
 
-- DOM injection, command execution, `eval`, sensitive browser storage, and hardcoded-secret examples inspected in the focused set are clearly labeled unsafe and paired with safer alternatives [SOURCE: `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170,237-260`; `.opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229`; `.opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182`].
+- DOM injection, command execution, `eval`, sensitive browser storage, and hardcoded-secret examples inspected in the focused set are clearly labeled unsafe and paired with safer alternatives [SOURCE: `.opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170,237-260`; `.opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229`; `.opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182`].
 - The remediated third-party loader performs protocol/host validation and identifies SRI as the stronger integrity control [SOURCE: `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:39-60`].
 - The review scope contains documentation, not executable runtime or tooling changes [SOURCE: `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:54-60`; `.opencode/specs/sk-doc/032-split-doc-template-alignment/plan.md:23-29`].
 

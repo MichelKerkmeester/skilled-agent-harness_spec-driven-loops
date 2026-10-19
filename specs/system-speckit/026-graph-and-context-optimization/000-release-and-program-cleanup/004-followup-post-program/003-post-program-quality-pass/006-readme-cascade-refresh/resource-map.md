@@ -76,7 +76,7 @@ _memory:
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-opencode-standards-audit/spec.md` | Updated | OK | Packet-local spec artifact. |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-skilled-standards-audit/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/002-feature-catalog-trio-alignment/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/003-testing-playbook-trio-alignment/spec.md` | Updated | OK | Packet-local spec artifact. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/004-sk-doc-template-alignment/spec.md` | Updated | OK | Packet-local spec artifact. |

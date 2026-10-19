@@ -150,7 +150,7 @@ A deep-research audit (3 iterations, 14 agent runs, 73 findings) was conducted a
 | `.opencode/skills/system-spec-kit/scripts/tests/input-normalizer-unit.vitest.ts` | TCOV-001 (new file, 21 tests) |
 | `.opencode/skills/system-spec-kit/scripts/tests/memory-indexer-weighting.vitest.ts` | TCOV-005 (4 failure-path tests) |
 | `.opencode/skills/system-spec-kit/scripts/tests/runtime-memory-inputs.vitest.ts` | ACTION test update |
-| `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py` | ALIGN-001 |
+| `.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py` | ALIGN-001 |
 
 ### Testing Status
 

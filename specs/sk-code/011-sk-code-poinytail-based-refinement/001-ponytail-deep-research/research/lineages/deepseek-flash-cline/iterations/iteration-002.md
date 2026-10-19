@@ -19,7 +19,7 @@ Q2 — how Ponytail's hooks activate, persist mode, track sessions, propagate in
 - `specs/sk-code/011-sk-code-poinytail-based-refinement/context/.opencode/plugins/ponytail.mjs:1-80` — the OpenCode plugin.
 - `.skilled/hooks/post-edit-quality/README.md`, `.skilled/hooks/session-lifecycle/README.md`, `.skilled/hooks/task-dispatch/README.md` — the repo's hook concerns.
 - `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:1-160` — the single path-dispatch table.
-- `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/` and `sk-code-opencode/scripts/` — sk-code's own hook scripts.
+- `.skilled/skills/sk-code/sk-code-quality/scripts/hooks/` and `sk-code-skilled/scripts/` — sk-code's own hook scripts.
 
 ## Findings
 

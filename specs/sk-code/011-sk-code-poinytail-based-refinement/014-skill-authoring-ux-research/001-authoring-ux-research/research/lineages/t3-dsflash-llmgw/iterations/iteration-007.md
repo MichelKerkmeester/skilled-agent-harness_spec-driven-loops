@@ -14,7 +14,7 @@ E5: doctor rules 5e, 5i, 13c, 13d and the router-sync checks catch drift only af
 2. [VERIFIED] 13c is the one live advisory: README version drift warns on the four hubs in README_VERSION_WARN_ONLY and never fails the checker; 13d is hard. The earlier run showed exit 0 with 13c WARN live on sk-doc. [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1804-1821]
 3. [VERIFIED] parent-skill-check runs in exactly two places: the doctor route (interactive, read-only audit) and the routing-drift CI job's per-hub loop. Neither is the author's edit surface. [SOURCE: .skilled/commands/doctor/assets/doctor-parent-skill.yaml:5,32] [SOURCE: .github/workflows/routing-registry-drift.yml:180-186]
 4. [VERIFIED] The checker costs ~1.96s for one hub (measured), which is cheap enough for a scoped commit-time call and too slow to run fleet-wide on every commit. (ran: `time node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc`)
-5. [VERIFIED] The router-sync guard and its umbrella exist with full leg coverage and a single non-zero exit on any failure, offline and deterministic — and no workflow or hook invokes them. A repo-wide search for the umbrella finds only the skill's own docs, README and reports. [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:1-33]
+5. [VERIFIED] The router-sync guard and its umbrella exist with full leg coverage and a single non-zero exit on any failure, offline and deterministic — and no workflow or hook invokes them. A repo-wide search for the umbrella finds only the skill's own docs, README and reports. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1-33]
 6. [VERIFIED] The commit-time plane already gates sibling artifact families: the pre-commit auto-remints route manifests for staged hub inputs, byte-checks Hermes copies and spec docs, and blocks with fix instructions. The pattern E5's rules would use already exists in the hook. [SOURCE: .skilled/scripts/git-hooks/pre-commit:259-267,352-549]
 7. [VERIFIED] The orphan-doc history is the cost of an unwired leg: nine orphan docs passed every gate while leg 1b was held back, and a tenth unrouted doc passed every gate; the fix wired the leg and allowlisted only the three symlinked workflow docs with a stated reason. [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md]
 8. [INFERRED] Root cause: the E5 rule families sit on a third plane — the per-hub doctor command and the skill-local umbrella — because that is where their ownership lives; nothing in the edit loop triggers that plane. The two planes that do run per commit cover generated artifacts and mirrors, so the author's edits to router policy and router prose pass the commit gate and wait for a doctor run or CI. The author would have to know the per-hub command by name and remember to run it before every commit.
@@ -37,7 +37,7 @@ E5: doctor rules 5e, 5i, 13c, 13d and the router-sync checks catch drift only af
 - .skilled/commands/doctor/scripts/parent-skill-check.cjs
 - .skilled/commands/doctor/assets/doctor-parent-skill.yaml
 - .github/workflows/routing-registry-drift.yml
-- .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+- .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 - .skilled/scripts/git-hooks/pre-commit
 - specs/sk-code/011-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs/implementation-summary.md
 

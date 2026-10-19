@@ -169,7 +169,7 @@ Not run: the live advisor (it creates its `/tmp` socket directory), the sk-code 
 
 ## 3. Checked and sound
 
-- Versions: each SKILL.md matches its newest changelog entry (system-skill-advisor 0.16.1.0, system-spec-kit 2.8.1.0, sk-code-opencode 1.2.6.0, sk-create-command 1.0.4.0, sk-doc 2.3.10.0 and sk-git 1.9.1.0). The Hermes copies match. The sk-doc `description.json`, `hub-router.json` and `mode-registry.json` carry 2.3.10.0.
+- Versions: each SKILL.md matches its newest changelog entry (system-skill-advisor 0.16.1.0, system-spec-kit 2.8.1.0, sk-code-skilled 1.2.6.0, sk-create-command 1.0.4.0, sk-doc 2.3.10.0 and sk-git 1.9.1.0). The Hermes copies match. The sk-doc `description.json`, `hub-router.json` and `mode-registry.json` carry 2.3.10.0.
 - Code claims hold: the 17-row target list, the five legs and their repair commands, exit 3 read as DEGRADED and exit 75 as SKIP, the starts-with rule in both scorers and one setup regex shared by Claude, Pi and OpenCode. Codex, Cursor and Devin reach that regex through the Claude hook. All eight doctor `advisor_status` calls pass `--workspace-root`, the probe exits 2 on a stale build, the drift guard skips evidence copies and matches the Hermes marker, and the generated header line in all 68 Hermes copies has no semicolon.
 - Counts: the 39 command entry points (`README.md:80` and `:1074`) and the per-group counts in `.skilled/commands/README.txt` match the files. The advisor catalog's 43 features and its 7 scorer-fusion entries match the files on disk.
 - Links and mirrors: no broken relative link in the 36 docs checked, and every doctor command has a mirror in all five runtime trees.

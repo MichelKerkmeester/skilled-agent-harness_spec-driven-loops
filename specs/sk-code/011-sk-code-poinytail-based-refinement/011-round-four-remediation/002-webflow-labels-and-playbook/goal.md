@@ -60,7 +60,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] `bash specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook/scratch/check-labels.sh` prints no `BAD` line and `OK=59 BAD=0`.
 - [ ] `python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/manual-testing-playbook.md` prints `VALID` and `Total issues: 1` and exits 0, and `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook` prints `PASS package=sk-code/sk-code-webflow` with `violations=0 warnings=0` and exits 0.
 - [ ] `grep -c '^version: 1.1.2.0$' .skilled/skills/sk-code/sk-code-webflow/SKILL.md .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md` prints `.skilled/skills/sk-code/sk-code-webflow/SKILL.md:1` and `.skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md:1`, and `python3 -I .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.2.0.md` prints `VALID` and exits 0.
-- [ ] `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` prints `run-all-drift-guards: all 4 guards PASSED` and exits 0.
+- [ ] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` prints `run-all-drift-guards: all 4 guards PASSED` and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/002-webflow-labels-and-playbook --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 

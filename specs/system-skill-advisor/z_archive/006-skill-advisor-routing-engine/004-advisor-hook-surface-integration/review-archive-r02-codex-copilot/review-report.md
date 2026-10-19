@@ -86,14 +86,14 @@ P1:
 
 P2: None.
 
-### D4 Maintainability + sk-code-opencode Alignment
+### D4 Maintainability + sk-code-skilled Alignment
 
 P0: None.
 
 P1: None.
 
 P2:
-- `DR-P2-001`: API hygiene is uneven across exported skill-advisor utilities. The normalizer has an orphaned second export name, prompt cache hygiene is weaker than the source cache, and several exported advisor helpers lack the public-function documentation expected by the local standards. Representative evidence: `normalize-adapter-output.ts:62-118`, `prompt-cache.ts:60-84`, `source-cache.ts:20-36`, `generation.ts:151-181`, `prompt-policy.ts:121-126`, `subprocess.ts:208-211`, and the sk-code-opencode JSDoc/TSDoc checklist references.
+- `DR-P2-001`: API hygiene is uneven across exported skill-advisor utilities. The normalizer has an orphaned second export name, prompt cache hygiene is weaker than the source cache, and several exported advisor helpers lack the public-function documentation expected by the local standards. Representative evidence: `normalize-adapter-output.ts:62-118`, `prompt-cache.ts:60-84`, `source-cache.ts:20-36`, `generation.ts:151-181`, `prompt-policy.ts:121-126`, `subprocess.ts:208-211`, and the sk-code-skilled JSDoc/TSDoc checklist references.
 
 ### D5 Integration + Cross-runtime
 

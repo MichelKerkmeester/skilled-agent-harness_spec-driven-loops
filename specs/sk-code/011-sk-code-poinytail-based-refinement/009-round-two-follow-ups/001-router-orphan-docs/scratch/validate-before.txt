@@ -1,14 +1,14 @@
 == .skilled/skills/sk-code/sk-code-obsidian/SKILL.md
 ✅ VALID: .skilled/skills/sk-code/sk-code-obsidian/SKILL.md
 Total issues: 0
-== .skilled/skills/sk-code/sk-code-opencode/SKILL.md
-✅ VALID: .skilled/skills/sk-code/sk-code-opencode/SKILL.md
+== .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+✅ VALID: .skilled/skills/sk-code/sk-code-skilled/SKILL.md
 Total issues: 0
-== .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
-✅ VALID: .skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+== .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+✅ VALID: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
 Total issues: 0
-== .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
-✅ VALID: .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
+== .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+✅ VALID: .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
 Total issues: 0
 == .skilled/skills/sk-code/benchmark/README.md
 ✅ VALID: .skilled/skills/sk-code/benchmark/README.md

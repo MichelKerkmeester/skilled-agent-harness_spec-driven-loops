@@ -1,0 +1,6 @@
+# Round-2 fix reverted: client.ts that blocks the runtime spawn after close() but does not stop a provisioning subprocess.
+80 |         new Promise((_, reject) => setTimeout(() => reject(new Error("ready did not settle")), 2_000)),
+error: ready did not settle
+(fail) RuntimeClient close > stops a provisioning step that is still running and settles ready [2149.69ms]
+ 1 pass
+ 1 fail

@@ -1,6 +1,6 @@
-SKILL ROUTING: sk-code → compiled-route resolved `sk-code-opencode` (surface, Python slice loaded: style-guide, quality-standards, quick-reference, directory-and-test-conventions, naming-and-commenting).
+SKILL ROUTING: sk-code → compiled-route resolved `sk-code-skilled` (surface, Python slice loaded: style-guide, quality-standards, quick-reference, directory-and-test-conventions, naming-and-commenting).
 REPO RULES: none in this repository (no `REPO RULES.md` at worktree root).
-ARTIFACT: sk-code → sk-code-opencode evidence applied; comment hygiene kept (no comment added).
+ARTIFACT: sk-code → sk-code-skilled evidence applied; comment hygiene kept (no comment added).
 
 The staged-file check is in place at `test_hvr_reader_lens.py:489-502`, and both checks pass. One note for the orchestrator: both `hvr_reader_lens.py` and the test file are untracked (`??`) in this worktree, and `scripts/README.md` shows ` M` from a concurrent worker — neither is mine; my only write was the one edit to T.
 

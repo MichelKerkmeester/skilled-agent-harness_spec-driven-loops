@@ -12,7 +12,7 @@ Now let me check the repo-level protocol files and count the tests, per the pers
 
 
 
-The route resolves to the sk-code-opencode surface with the JavaScript standard for `.mjs`. Let me load that evidence, then make the edits.
+The route resolves to the sk-code-skilled surface with the JavaScript standard for `.mjs`. Let me load that evidence, then make the edits.
 
 All context loaded. Now making the three edits.
 
@@ -24,7 +24,7 @@ All three checks pass. Getting the line counts for the handback.
 
 All checks are green. Summary before the handback: STEP 1 added `runJevArm` at the end of section 8 (188 lines, JSDoc included), STEP 2 wired it into `main`'s passing-gate branch, STEP 3 appended the flip test. Both files pass `node --check`, the export count is 3, and `git status` confirms only the two named files carry my edits (other listed paths belong to concurrent workers). I did not run `node --test` — by brief instruction the orchestrator owns the suite run, so my checks are static: syntax and the export count only.
 
-SKILL ROUTING: sk-code hub (compiled router returned `defer`; legacy hub routing applies) → `.skilled/` + `.mjs` resolves the sk-code-opencode surface, JavaScript trio → loaded `references/javascript/style-guide.md` and `references/javascript/quality-standards/overview-modules-and-docs.md`; advisor directive (comment hygiene) applied.
+SKILL ROUTING: sk-code hub (compiled router returned `defer`; legacy hub routing applies) → `.skilled/` + `.mjs` resolves the sk-code-skilled surface, JavaScript trio → loaded `references/javascript/style-guide.md` and `references/javascript/quality-standards/overview-modules-and-docs.md`; advisor directive (comment hygiene) applied.
 REPO RULES: loaded `.skilled/repo-rules/prevent-overengineering.md`, `.skilled/repo-rules/evidence-and-proof.md`.
 
 STATUS: DONE

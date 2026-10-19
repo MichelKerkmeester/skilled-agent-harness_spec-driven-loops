@@ -20,7 +20,7 @@ Gate 5 load done. One gap the evidence rule flags: `node --check` exiting 0 with
 
 Done: both `resolve.cjs` twins carry the frozen literal edit and remain byte-identical. Every check passes.
 
-SKILL ROUTING: sk-code → sk-code-opencode (OpenCode surface, JavaScript slice)
+SKILL ROUTING: sk-code → sk-code-skilled (OpenCode surface, JavaScript slice)
 REPO RULES: `.skilled/repo-rules/evidence-and-proof.md`, `uncertainty-and-honesty.md`, `communication.md`, `communication-prose.md`, `communication-handoff.md`
 
 Diff accounting: git's line-based numstat reads +5/-4 per file because it counts the three rewritten comment lines as delete+add. In added/removed terms the edit is +2/-1 per file: one net-new comment line and one swapped hub id. I wrote only the two named files.

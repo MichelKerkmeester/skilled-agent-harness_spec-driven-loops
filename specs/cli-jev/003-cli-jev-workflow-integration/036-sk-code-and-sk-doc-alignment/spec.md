@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 36: sk-code-and-sk-doc-alignment"
-description: "Align every file the cli-jev 003 packet created with sk-code-opencode and sk-doc, proved by their own validators. The 2026-09-30 audit found 9 files missing the COMPONENT: or MODULE: marker in the header they already use, 11 scripts with bare stderr diagnostics, two playbook scenarios carrying dated run transcripts, four catalog entries carrying packet-history bullets, five prose semicolons and six prose uses of one banned word, and no README for the injection-screen folder. Headers, stderr tags and doc text only, with no behavior change and no skill version bump."
+description: "Align every file the cli-jev 003 packet created with sk-code-skilled and sk-doc, proved by their own validators. The 2026-09-30 audit found 9 files missing the COMPONENT: or MODULE: marker in the header they already use, 11 scripts with bare stderr diagnostics, two playbook scenarios carrying dated run transcripts, four catalog entries carrying packet-history bullets, five prose semicolons and six prose uses of one banned word, and no README for the injection-screen folder. Headers, stderr tags and doc text only, with no behavior change and no skill version bump."
 trigger_phrases:
   - "sk code and sk doc alignment"
   - "alignment audit fixes"
@@ -38,14 +38,14 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 36** of the cli-jev workflow integration specification. It is the conformance pass the operator asked for on 2026-09-30: "Make sure all skills and things we created aligns with sk code opencode and sk doc", "Think feature catalogs, playbooks, readme's", "Use external orchestration". It follows the read-only audit of the 130 files the packet created between `f9d701bd13` and `089693d899`, recorded at `scratch/audit/findings.md`.
+This is **Phase 36** of the cli-jev workflow integration specification. It is the conformance pass the operator asked for on 2026-09-30: "Make sure all skills and things we created aligns with sk code skilled and sk doc", "Think feature catalogs, playbooks, readme's", "Use external orchestration". It follows the read-only audit of the 130 files the packet created between `f9d701bd13` and `089693d899`, recorded at `scratch/audit/findings.md`.
 
 **Scope Boundary**: The 28 files the audit's fix findings name, in five groups, plus this phase folder. C1 is 9 code files whose header misses its `COMPONENT:` or `MODULE:` marker, and the fix adds only that missing marker. C2 is 11 scripts whose stderr diagnostics carry no `[<script-name>]` tag. D1 is two playbook scenarios carrying dated run transcripts. D2 is four catalog entries carrying a Feature ID bullet. D3 is seven files with prose hard blockers. D4 is one new README and one README row. No behavior change, no new feature, no version bump.
 
 **Dependencies**:
 - Phase 035 (`035-fetched-text-injection-screen`) is Complete at its label gate, build `3d0641004b`. Its `injection-screen/` folder and the reply check folder are part of the audited scope.
 - The audit at `scratch/audit/findings.md`, read 2026-09-30. It is the source of every file, rule, line number and baseline number this phase writes.
-- sk-code-opencode's `references/javascript/style-guide.md` section 2, `references/python/style-guide.md` section 2, `assets/checklists/javascript-checklist.md` section 3 and `verify_alignment_drift.py` with `--check-exact-headers --fail-on-warn` set the code standard (parent goal D6, this phase's D2).
+- sk-code-skilled's `references/javascript/style-guide.md` section 2, `references/python/style-guide.md` section 2, `assets/checklists/javascript-checklist.md` section 3 and `verify_alignment_drift.py` with `--check-exact-headers --fail-on-warn` set the code standard (parent goal D6, this phase's D2).
 - sk-doc's `validate_document.py`, `extract_structure.py`, `hvr_scan.py`, `validate-playbook-package.cjs`, `validate_catalog_package.py` and `check-comment-hygiene.sh` set the doc standard.
 - The parent goal's D5 roster: DeepSeek V4.1 Flash writes, MiMo v2.6 Pro reviews it, and the reverse for MiMo's writes. No Claude workers.
 - The 42 code files inside `.skilled/skills/system-deep-loop/runtime`, `.skilled/skills/system-skill-advisor/runtime` and `.skilled/skills/system-spec-kit/runtime` wait on other sessions' align packets (this phase's D1). They are not in scope.
@@ -75,7 +75,7 @@ The rest of the audit passed and must keep passing. Comment hygiene is clean on 
 
 ### Purpose
 
-Every file the packet created meets sk-code-opencode and sk-doc, proved by their own validators, with no behavior change and no skill version bump.
+Every file the packet created meets sk-code-skilled and sk-doc, proved by their own validators, with no behavior change and no skill version bump.
 <!-- /ANCHOR:problem -->
 
 ---

@@ -53,7 +53,7 @@
       ".skilled/commands/README.txt",
       ".skilled/release/.gitignore",
       ".skilled/changelog/skilled/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
       ".skilled/commands/doctor/update.md",
       ".skilled/commands/doctor/assets/doctor-update-check.yaml",
       ".skilled/commands/doctor/assets/doctor-update-align.yaml",
@@ -138,7 +138,7 @@
       {
         "name": "javascript-checklist.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-07T15:57:44.197Z",
+    "last_save_at": "2026-10-18T20:45:36.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:622af826ab9179f381308773c8b7863c119fe6331395942a74b196316c0780cf",
+    "source_fingerprint": "sha256:71b8f92e21c0eb093c88fbacceb46cf0bc2eaf2bb83f8e3ad98d058a416a2580",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d2b5ac87989ca88acf75e27fa20e0a0f4610ad7ab921508a29603c54beaed02",
+      "spec.md": "d1d4b534c0baea2d033b6535b70f569334e6c8b4360b4d0436e0937e7974ba6b",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "c6db83bb80ffb7039d8fb84c725dfa9ef34c11883a9dbd1668b2f04b960ffae9",
+      "tasks.md": "a5127d1a39c126a6d893587a83ea448d924b239dfb5255520de73f6e2343f394",
       "implementation-summary.md": "6a3f6f39d7a3e5ffee3cfe42827fa30d5b9e0e356b1410e2fada8ad554540507"
     },
     "last_active_at": null

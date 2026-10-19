@@ -8,7 +8,7 @@ deep-review                  SKILL.md 1.11.1.0   newest entry 1.11.1.0   ok
 deep-research                SKILL.md 1.15.1.0   newest entry 1.15.1.0   ok
 cli-codex                    SKILL.md 1.9.5.0    newest entry 1.9.5.0    ok
 cli-external-orchestration   SKILL.md 1.7.1.0    newest entry 1.7.1.0    ok
-sk-code-opencode             SKILL.md 1.0.1.0    newest entry 1.0.1.0    ok
+sk-code-skilled             SKILL.md 1.0.1.0    newest entry 1.0.1.0    ok
 deep-loop-runtime            no SKILL.md      newest entry 1.5.1.0    n/a
 
 ### Hub artifacts restate the cli-external-orchestration version

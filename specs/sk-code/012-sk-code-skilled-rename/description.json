@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/012-sk-code-skilled-rename",
+  "description": "Rename the sk-code-opencode surface to sk-code-skilled across the skill, advisor DB, routers and every markdown reference",
+  "keywords": [
+    "rename",
+    "sk-code-opencode",
+    "surface",
+    "sk-code-skilled",
+    "across",
+    "skill",
+    "advisor",
+    "routers",
+    "every",
+    "markdown",
+    "reference"
+  ],
+  "lastUpdated": "2026-10-18T20:30:05.291Z",
+  "specId": "012",
+  "folderSlug": "sk-code-skilled-rename",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "18-10-26_21-30__deep-review-3-iterations-cli-devin-deepseek-v4-1.md"
+  ]
+}

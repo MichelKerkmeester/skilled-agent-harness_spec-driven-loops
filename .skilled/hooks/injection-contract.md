@@ -96,7 +96,7 @@ DEPLOY FAILED: exit code 137
 
 - **Trigger:** a user prompt naming an image path that resolves to a file on disk. A path that does not resolve produces nothing, deliberately, so a filename mentioned in passing never spins a local GPU.
 - **Owning module:** `.skilled/skills/sk-vision/hooks/devin/sk-vision.mjs`, over the shared core at `vision-runtime/src/evidence/prompt-evidence.ts`.
-- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). OpenCode and Pi carry the same runtime in process instead of through a hook: OpenCode's `sk-vision.js` plugin appends a text part to the user message on `chat.message` and exposes the 13 tools, and Pi's `sk-vision.ts` registers the same tools and appends the `<SK-VISION>` block onto the visible prompt on `input.images`. Cursor runs the CLI from its `/vision` command. Claude Code and Codex are not wired: both run vision-capable models that read images natively (the `Read` tool and `view_image`), so the runtime built for text-only models adds nothing there.
+- **Channel per runtime:** Devin `[SYS]` (`UserPromptSubmit` -> `hookSpecificOutput.additionalContext`). OpenCode and Pi carry the same runtime in process instead of through a hook: OpenCode's `sk-vision.js` plugin appends a text part to the user message on `chat.message` and exposes the 13 tools on OpenCode 1, and on OpenCode 2 it appends the same evidence to the prompt text through `session.hook("prompt")`, without the tools, and Pi's `sk-vision.ts` registers the same tools and appends the `<SK-VISION>` block onto the visible prompt on `input.images`. Cursor runs the CLI from its `/vision` command. Claude Code and Codex are not wired: both run vision-capable models that read images natively (the `Read` tool and `view_image`), so the runtime built for text-only models adds nothing there.
 - **Why Cursor is absent:** a live probe against build `2026.09.02-c22c1a3` confirmed Cursor does not deliver `beforeSubmitPrompt`, with a `sessionStart` positive control firing on the same runs. Injection is impossible there, so Cursor's `/vision` command and always-apply rule invoke `vision-runtime/dist/vision-cli.js` instead. The same probe is why the two spec-kit hooks registered on that event are dormant.
 - **Kill-switch:** `SYSTEM_SK_VISION_DISABLED`, plus the master `SYSTEM_HOOKS_DISABLED`. Fail-open on every path, including an unbuilt runtime.
 
@@ -135,6 +135,18 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 - **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
 - **Owning modules:** the shared core `.skilled/hooks/goal/lib/goal-core.cjs`, the slice module `lib/goal-slice.cjs`, plus the per-runtime adapters under `.skilled/hooks/goal/{cursor,devin,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
 - **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Devin `[SYS]` (`SessionStart` and `UserPromptSubmit` `hookSpecificOutput.additionalContext`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 deferral instruction, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
+
+---
+
+### Session Relaunch Context Nudge
+
+| Concern | Events | Payload | Frequency |
+|---|---|---|---|
+| Session relaunch | Claude Code: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session relaunch | Codex: PostToolUse and UserPromptSubmit | hookSpecificOutput.additionalContext | Once per reached threshold level in a session |
+| Session relaunch | Hermes: `pre_llm_call` through the `repo-guards` plugin, fed by `post_api_request` usage | `context` appended to the turn's user message | Once per reached threshold level in a session |
+
+The Codex nudge reads its fill from the transcript rollout's latest `token_count` record and emits the same `[SYS]` envelope the Claude adapter uses, so it is model-context-only by default. The Hermes nudge rides the plugin's user-message channel, which is `[SYS]`-equivalent: the text reaches the model with the turn it precedes and is not rendered as a separate chat bubble. Hermes fires `on_session_end` after every message, so the arm side runs there while `on_session_finalize` and `on_session_reset` drop the session's recorded usage. Neither the arming nor the usage records inject content: both are `[NONE]` side effects. Cursor and Devin carry no adapter, so `/speckit:handoff` is the only trigger on those runtimes and this table adds no row for them.
 
 ---
 

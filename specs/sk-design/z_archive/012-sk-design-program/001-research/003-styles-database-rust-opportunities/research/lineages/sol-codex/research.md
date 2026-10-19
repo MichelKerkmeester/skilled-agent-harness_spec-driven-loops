@@ -128,13 +128,13 @@ pure Rust core (`#![forbid(unsafe_code)]`)
      optional visual primitives and later versioned index interface
 ```
 
-Use one adapter per phase. napi-rs best matches the current Node host and CPU/blocking inference. Baseline WASM does not create parallelism; a sidecar is justified only by measured process isolation, GPU/runtime conflict, or shared-model memory/startup value. Rust must not open the style database, choose flags/modes, fetch models/screenshots, or silently select itself. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/quick-reference/overview-and-boundary-template.md] [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style-guide/interop-errors-and-parity.md:194-214,273-296]
+Use one adapter per phase. napi-rs best matches the current Node host and CPU/blocking inference. Baseline WASM does not create parallelism; a sidecar is justified only by measured process isolation, GPU/runtime conflict, or shared-model memory/startup value. Rust must not open the style database, choose flags/modes, fetch models/screenshots, or silently select itself. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/quick-reference/overview-and-boundary-template.md] [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style-guide/interop-errors-and-parity.md:194-214,273-296]
 
 Rollback is a feature-flag flip to the JS fallback plus optional-package removal. Profile-versioned vectors avoid database rollback.
 
 ## 13. Determinism and Parity
 
-Every shipped native behavior must replay bytes produced by a pinned TypeScript oracle. Fixtures cover preprocessing, tokenizer output, profile/cache keys, vector bytes, palette/pHash, DTO field omission/order, errors, Unicode, numeric edge cases, final cards, and native-package load failure. Golden bytes originate from TypeScript, not Rust. [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/quality-standards/determinism-and-parity.md]
+Every shipped native behavior must replay bytes produced by a pinned TypeScript oracle. Fixtures cover preprocessing, tokenizer output, profile/cache keys, vector bytes, palette/pHash, DTO field omission/order, errors, Unicode, numeric edge cases, final cards, and native-package load failure. Golden bytes originate from TypeScript, not Rust. [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/quality-standards/determinism-and-parity.md]
 
 Model numerical drift must be eliminated with a canonical CPU/runtime path or isolated into a distinct versioned profile with an explicit serialization/quantization contract. Semantic similarity is not byte parity.
 

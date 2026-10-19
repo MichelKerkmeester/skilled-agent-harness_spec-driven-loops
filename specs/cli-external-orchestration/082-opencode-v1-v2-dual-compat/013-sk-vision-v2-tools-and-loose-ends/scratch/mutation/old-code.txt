@@ -1,0 +1,59 @@
+bun test v1.3.9 (cf6cdbbb)
+[sk-vision] prompt hook failed: null
+
+src/plugin.test.ts:
+607 |       handle: async () => {},
+608 |       readTemplate: () => null,
+609 |       createAutoInspect: create,
+610 |     })(fake.ctx);
+611 | 
+612 |     expect(fake.added).toEqual(["sk_vision_status", "sk_vision_ocr"]);
+                             ^
+error: expect(received).toEqual(expected)
+
+- [
+-   "sk_vision_status",
+-   "sk_vision_ocr",
+- ]
++ []
+
+- Expected  - 4
++ Received  + 1
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:612:24)
+(fail) v2 tool registration > adds every inspection tool through the v2 tool editor and removes them on dispose [1.62ms]
+
+src/runtime/client.test.ts:
+29 |       const client = new RuntimeClient({ pythonPath: fakePython, timeoutMs: 1_000 });
+30 |       await client.close();
+31 |       finishProvisioning(fakePython);
+32 |       await client.ready;
+33 |       await new Promise((resolve) => setTimeout(resolve, 300));
+34 |       expect(existsSync(marker)).toBe(false);
+                                      ^
+error: expect(received).toBe(expected)
+
+Expected: false
+Received: true
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts:34:34)
+(fail) RuntimeClient close > does not start the runtime when closed while still provisioning [306.62ms]
+
+src/opencode/tools.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+1 | })
+2 | {
+    ^
+SyntaxError: Export named 'toV2Tools' not found in module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/opencode/tools.ts'.
+      at loadAndEvaluateModule (2:1)
+-------------------------------
+
+
+ 30 pass
+ 3 fail
+ 1 error
+ 62 expect() calls
+Ran 33 tests across 4 files. [589.00ms]
+exit 1

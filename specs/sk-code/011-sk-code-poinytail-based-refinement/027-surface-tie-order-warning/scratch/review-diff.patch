@@ -15,11 +15,11 @@ index 5f0b09b717..38c1085d9b 100755
    if (tieBreak.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
  }
  
-+// 5l: in sk-code, sk-code-opencode is the framework's native surface and takes
++// 5l: in sk-code, sk-code-skilled is the framework's native surface and takes
 +// the last keyword tie. Only the two shipped example surfaces, which a user may
 +// delete, may sort after it. A surface added by hand after it loses every tie
 +// to the native surface; the update command never places one there.
-+const SK_CODE_NATIVE_SURFACE = 'sk-code-opencode';
++const SK_CODE_NATIVE_SURFACE = 'sk-code-skilled';
 +const SK_CODE_EXAMPLE_SURFACES = ['sk-code-obsidian', 'sk-code-webflow'];
 +function checkNativeSurfaceLast(ctx, tieBreak) {
 +  if (ctx.basename !== 'sk-code') return;
@@ -80,26 +80,26 @@ index 28dc7fca31..93d6007ba0 100644
    assert.doesNotMatch(output, /^FAIL: 5k-alias:/m);
  });
  
-+test('5l fails when a hand-added sk-code surface sorts after sk-code-opencode', () => {
++test('5l fails when a hand-added sk-code surface sorts after sk-code-skilled', () => {
 +  const hub = buildHub('sk-code');
-+  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
++  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow', 'sk-code-acme']);
 +  const { status, output } = runChecker(hub);
 +  assertLine(output, 'FAIL', '5l', 'sk-code-acme');
 +  assert.doesNotMatch(output, /^FAIL: 5l:.*sk-code-(obsidian|webflow)/m);
 +  assert.equal(status, 1, output);
 +});
 +
-+test('5l passes on the shipped sk-code order, with both examples after sk-code-opencode', () => {
++test('5l passes on the shipped sk-code order, with both examples after sk-code-skilled', () => {
 +  const hub = buildHub('sk-code');
-+  addNamedSurfaces(hub, ['sk-code-opencode', 'sk-code-obsidian', 'sk-code-webflow']);
++  addNamedSurfaces(hub, ['sk-code-skilled', 'sk-code-obsidian', 'sk-code-webflow']);
 +  const { output } = runChecker(hub);
 +  assertLine(output, 'PASS', '5l');
 +  assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
 +});
 +
-+test('5l passes when the examples are removed and an added surface sorts ahead of sk-code-opencode', () => {
++test('5l passes when the examples are removed and an added surface sorts ahead of sk-code-skilled', () => {
 +  const hub = buildHub('sk-code');
-+  addNamedSurfaces(hub, ['sk-code-acme', 'sk-code-opencode']);
++  addNamedSurfaces(hub, ['sk-code-acme', 'sk-code-skilled']);
 +  const { output } = runChecker(hub);
 +  assertLine(output, 'PASS', '5l');
 +  assert.doesNotMatch(output, /^(FAIL|WARN): 5l:/m);
@@ -117,7 +117,7 @@ index 9d68c513e5..df4600a9f3 100644
  **Add your own surface**
  
 -1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie.
-+1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-opencode`, because the doctor's check 5l fails a surface placed after it.
- 2. Link the three shared workflow docs into the new packet the way `sk-code-opencode/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
++1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l fails a surface placed after it.
+ 2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
  3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`.
  4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.

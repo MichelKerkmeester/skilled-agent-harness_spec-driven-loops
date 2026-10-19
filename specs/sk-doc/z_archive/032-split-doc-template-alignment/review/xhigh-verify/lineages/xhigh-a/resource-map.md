@@ -19,7 +19,7 @@ Converged evidence map generated from the four detached review deltas.
 
 | Finding | Primary path | Dimension | First seen |
 |---|---|---|---:|
-| F001 | `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md` | correctness | 1 |
+| F001 | `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md` | correctness | 1 |
 | F002 | `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md` | traceability | 3 |
 | F003 | `.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md` | traceability | 3 |
 | F004 | `.opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md` | traceability | 3 |

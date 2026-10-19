@@ -35,7 +35,7 @@ _memory:
 
 # Feature Specification: Reconcile Migration-Program Completion Claims Against the Current Suites
 
-> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `002-sk-code-opencode-alignment`; successor `002-shadow-parity-independent-derivation`.
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `002-sk-code-skilled-alignment`; successor `002-shadow-parity-independent-derivation`.
 
 > **Scaffold dependency.** This child is scaffolded under `036-deep-loop-innovation/` as a flat
 > sibling of phases 001-020. That nesting is conditional on child `021`'s hashed-child-manifest fix

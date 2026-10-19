@@ -87,7 +87,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Copy recipe, from research run V0: under the session scratchpad, copy `.skilled` without `node_modules` and symlink each `node_modules` read-only to the worktree's; copy `specs/sk-doc/z_archive/019-skill-routing-refactor/`; copy `README.md`, `PUBLIC-RELEASE.md`, `.github` and `.opencode` with `cp -RP`. Variants: delete `sk-code-webflow/` (P9-1); reorder `tieBreak` to `[sk-code-quality, sk-code-review, sk-code-webflow, sk-code-obsidian, sk-code-opencode]` and refresh (P9-2, P9-3); drop `specs/` entirely, and keep `specs/` with the 019 folder removed (P9-4, P9-5).
+Copy recipe, from research run V0: under the session scratchpad, copy `.skilled` without `node_modules` and symlink each `node_modules` read-only to the worktree's; copy `specs/sk-doc/z_archive/019-skill-routing-refactor/`; copy `README.md`, `PUBLIC-RELEASE.md`, `.github` and `.opencode` with `cp -RP`. Variants: delete `sk-code-webflow/` (P9-1); reorder `tieBreak` to `[sk-code-quality, sk-code-review, sk-code-webflow, sk-code-obsidian, sk-code-skilled]` and refresh (P9-2, P9-3); drop `specs/` entirely, and keep `specs/` with the 019 folder removed (P9-4, P9-5).
 <!-- /ANCHOR:phases -->
 
 ---

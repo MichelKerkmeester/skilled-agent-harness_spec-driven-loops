@@ -1,6 +1,6 @@
 The paraphrase probe reader, gold sets, and report line are in the track-narrowing script, with one vitest case. The packet goal is set.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript). ARTIFACT: sk-code → sk-code-opencode JavaScript style and quality standards.
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript). ARTIFACT: sk-code → sk-code-skilled JavaScript style and quality standards.
 REPO RULES: prevent-overengineering.md
 
 HANDBACK

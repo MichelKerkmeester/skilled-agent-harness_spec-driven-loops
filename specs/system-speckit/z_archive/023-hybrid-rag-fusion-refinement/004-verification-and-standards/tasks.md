@@ -67,7 +67,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T013 Update `sk-code-opencode` standards docs with verified ESM state [EVIDENCE: Standards updated in Phase 4 session]
+- [x] T013 Update `sk-code-skilled` standards docs with verified ESM state [EVIDENCE: Standards updated in Phase 4 session]
 - [x] T014 Update any other affected standards surfaces [EVIDENCE: README surfaces aligned in Phase 4]
 <!-- /ANCHOR:phase-3 -->
 

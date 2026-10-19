@@ -67,6 +67,12 @@ export class RuntimeClient {
   private nextId = 1;
   private readonly pending = new Map<number, PendingEntry>();
   private broken = false;
+  // Set by close(); a startup still provisioning when it is set must not spawn.
+  private closed = false;
+  // The provisioning subprocess in flight, so close() can stop it.
+  private provisioning: ChildProcess | null = null;
+  // Aborted by close(), so an interpreter probe still running is killed with it.
+  private readonly probes = new AbortController();
   private readonly uv: string = process.env.SK_VISION_UV ?? "uv";
   private readonly notify: (m: SkVisionMessage) => void;
 
@@ -110,6 +116,7 @@ export class RuntimeClient {
 
     // 2. A project .venv we shipped/found already works.
     if (await this.hasMoondream(current)) return current;
+    this.throwIfClosed();
 
     if (process.env.SK_VISION_DISABLE_AUTO_PROVISION) {
       throw new SkVisionError(
@@ -126,6 +133,7 @@ export class RuntimeClient {
     const python = venvPython(venv);
     log(`probe venv '${python}'`);
     if (await this.hasMoondream(python)) return python;
+    this.throwIfClosed();
 
     log(`provisioning moondream runtime into ${venv} (one-time)`);
     this.message({
@@ -134,6 +142,7 @@ export class RuntimeClient {
       variant: "info",
     });
     await mkdirAsync(venv, { recursive: true });
+    this.throwIfClosed();
 
     const base = process.env.PYTHON ?? "python3";
     if (await this.hasUv()) {
@@ -196,13 +205,17 @@ export class RuntimeClient {
     return python;
   }
 
+  private throwIfClosed(): void {
+    if (this.closed) throw new SkVisionError("SHUTDOWN", "sk-vision runtime closed");
+  }
+
   /** True if the given interpreter can import moondream. */
   private async hasMoondream(python: string): Promise<boolean> {
     try {
       await execFileAsync(
         python,
         ["-c", "import moondream; del moondream"],
-        { timeout: 5_000 },
+        { timeout: 5_000, signal: this.probes.signal },
       );
       return true;
     } catch {
@@ -213,7 +226,7 @@ export class RuntimeClient {
   /** Whether the uv binary is usable (overridable with SK_VISION_UV). */
   private async hasUv(): Promise<boolean> {
     try {
-      await execFileAsync(this.uv, ["--version"], { timeout: 5_000 });
+      await execFileAsync(this.uv, ["--version"], { timeout: 5_000, signal: this.probes.signal });
       return true;
     } catch {
       return false;
@@ -226,15 +239,22 @@ export class RuntimeClient {
     args: string[],
     label: string,
   ): Promise<void> {
+    this.throwIfClosed();
     log(`${label}...`);
     await new Promise<void>((resolve, reject) => {
       const child = spawn(cmd, args, { stdio: ["ignore", "pipe", "pipe"] });
+      this.provisioning = child;
       child.stdout.on("data", (d) => log(`  ${d}`));
       child.stderr.on("data", (d) => log(`  ${d}`));
-      child.on("error", reject);
-      child.on("exit", (code) =>
-        code === 0 ? resolve() : reject(new Error(`${label} failed (exit ${code})`)),
-      );
+      child.on("error", (err) => {
+        this.provisioning = null;
+        reject(err);
+      });
+      child.on("exit", (code) => {
+        this.provisioning = null;
+        if (code === 0) resolve();
+        else reject(new Error(`${label} failed (exit ${code})`));
+      });
     });
   }
 
@@ -288,6 +308,11 @@ export class RuntimeClient {
       pythonPath = await this.ensurePython();
     } catch (err) {
       this.broken = true;
+      if (this.closed) {
+        log("closed while provisioning; startup stopped");
+        this.rejectAll(new SkVisionError("SHUTDOWN", "sk-vision runtime closed"));
+        return;
+      }
       log(`provision failed: ${(err as Error).message}`);
       this.message({
         title: "sk-vision failed to start",
@@ -297,6 +322,12 @@ export class RuntimeClient {
       this.rejectAll(err instanceof Error ? err : new Error(String(err)));
       return;
     }
+
+    if (this.closed) {
+      log("closed before the runtime started; not spawning");
+      return;
+    }
+
     const runtimeScript = resolvePath(this.repoRoot(), "python", "runtime.py");
     log(`spawning '${pythonPath}' runtime.py='${runtimeScript}'`);
     const child = spawn(pythonPath, [runtimeScript], {
@@ -427,6 +458,14 @@ export class RuntimeClient {
   }
 
   async close(): Promise<void> {
+    this.closed = true;
+    this.probes.abort();
+    const provisioning = this.provisioning;
+    if (provisioning && provisioning.exitCode === null && provisioning.signalCode === null) {
+      provisioning.kill("SIGTERM");
+      const escalate = setTimeout(() => provisioning.kill("SIGKILL"), 2_000);
+      await once(provisioning, "exit").catch(() => undefined).then(() => clearTimeout(escalate));
+    }
     const child = this.child;
     this.child = null;
     this.broken = true;

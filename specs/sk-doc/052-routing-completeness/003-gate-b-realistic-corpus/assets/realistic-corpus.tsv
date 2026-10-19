@@ -3,7 +3,7 @@ sk-doc	sk-create-skill	I keep pasting the same five-step checklist into every ag
 sk-doc	sk-create-skill	How do I scaffold a brand-new package with its own instructions file, templates and a router, starting from nothing?	
 sk-doc	sk-create-skill	We need a fresh reusable capability for logging coffee orders that any agent session can call up automatically when someone mentions ordering coffee.	
 sk-doc	sk-create-skill	What goes into building a standalone capability package from scratch, versus just writing a one-off script?	
-sk-doc	sk-create-skill	Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed?	Boundary vs sk-code-opencode: 'OpenCode' plus JSON-formatting language pulls toward the system-code evidence surface, but the ask is to scaffold a new package from nothing, so sk-create-skill should win.
+sk-doc	sk-create-skill	Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed?	Boundary vs sk-code-skilled: 'OpenCode' plus JSON-formatting language pulls toward the system-code evidence surface, but the ask is to scaffold a new package from nothing, so sk-create-skill should win.
 sk-doc	sk-create-skill-parent	We have four related skills that keep stepping on each other. Can you merge them under one router with a shared registry?	
 sk-doc	sk-create-skill-parent	What's involved in setting up one hub that dispatches to several nested workflows depending on intent?	
 sk-doc	sk-create-skill-parent	I want one identity that gets scored once by the advisor, then internally forwards to five different sub-workflows.	
@@ -80,10 +80,10 @@ sk-code	sk-code-webflow	I just deployed a script through the CDN and the interac
 sk-code	sk-code-webflow	Does this front-end component follow our implementation and performance standards before I publish it live?	
 sk-code	sk-code-webflow	The custom code embed on our landing page is throwing console errors after the last CMS update.	
 sk-code	sk-code-webflow	The button on our live site doesn't match what's in the design file. Can you tell me what's different and fix the site to match?	Boundary vs mcp-figma: pulling the design file's spec overlaps Figma lookup, but 'fix the site to match' is an implementation ask, so sk-code-webflow should win with the design source as supporting evidence.
-sk-code	sk-code-opencode	This shell hook keeps failing silently. Can you figure out why the check isn't catching it?	
-sk-code	sk-code-opencode	Does this TypeScript module follow our internal tooling standards before I ship it?	
-sk-code	sk-code-opencode	I'm writing a new setup script in Python for our internal tooling. Does this follow our conventions?	
-sk-code	sk-code-opencode	Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why.	
+sk-code	sk-code-skilled	This shell hook keeps failing silently. Can you figure out why the check isn't catching it?	
+sk-code	sk-code-skilled	Does this TypeScript module follow our internal tooling standards before I ship it?	
+sk-code	sk-code-skilled	I'm writing a new setup script in Python for our internal tooling. Does this follow our conventions?	
+sk-code	sk-code-skilled	Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why.	
 sk-code	sk-code-mobile-cli	This screen in the mobile remote app doesn't match our ink-on-parchment palette. Can you check the components?	
 sk-code	sk-code-mobile-cli	Does this component change respect our mobile design-system grammar before I merge it?	
 sk-code	sk-code-mobile-cli	Figure out why the design tokens aren't applying correctly on the handheld remote client.	

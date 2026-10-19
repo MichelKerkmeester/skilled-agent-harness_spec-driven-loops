@@ -33,7 +33,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Recommend, with evidence, how a user's own sk-code surface outranks sk-code-opencode once the obsidian and webflow example surfaces are deleted, while the operator's repository keeps its order.
+**Objective:** Recommend, with evidence, how a user's own sk-code surface outranks sk-code-skilled once the obsidian and webflow example surfaces are deleted, while the operator's repository keeps its order.
 
 ### Decisions
 

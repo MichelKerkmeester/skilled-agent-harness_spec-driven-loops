@@ -1,0 +1,9 @@
+ROLE: Read-only reviewer. Do not edit any file.
+
+CONTEXT: Round 6 of the sk-vision OpenCode 2 review. The uncommitted diff (`git diff`) under `.skilled/skills/sk-vision/` fixes round 4's four P2s (probe abort and closed guards in `vision-runtime/src/runtime/client.ts`; release-and-rethrow on prompt-hook failure in `vision-runtime/src/plugin.ts`; the inspection-off test now runs the real `setup`; `hooks/README.md` §4 wording). Round 5 confirmed those and raised two P2s, now fixed:
+(a) `client.ts`: `ensurePython()` now throws SHUTDOWN directly after `mkdirAsync(venv)` once closed, so it never goes on to `hasUv()` or provisioning. A mkdir already in flight cannot be cancelled, so the directory itself may still appear; this is recorded, not tested, because the window cannot be timed reliably in a unit test.
+(b) `plugin.ts`: the hook-failure cleanup now uses `Promise.allSettled` over both disposals and rethrows the original hook error. New test "still releases the inspection client and keeps the hook error when command disposal fails"; `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/scratch/mutation/p2-dispose-failure-before-fix.txt` shows it failing against the round-5 code.
+
+ACTION: Confirm (a) and (b), and that nothing new was introduced across the whole diff. Check comment hygiene (no spec paths, phase numbers or ids in code comments).
+
+FORMAT: First line `VERDICT: PASS` or `VERDICT: FAIL`. Then findings, each with P0/P1/P2, file:line and evidence. Under 250 words. Your sandbox is read-only, so do not count failures to write temp files or run the typecheck.

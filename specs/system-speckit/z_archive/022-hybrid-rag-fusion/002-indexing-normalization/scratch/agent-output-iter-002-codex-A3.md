@@ -22,14 +22,14 @@ TASK: Deep dive into cross-skill alignment issues.
 Primary files (READ ALL):
 1. .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts (229 lines)
 2. .opencode/skills/system-spec-kit/SKILL.md (full file)
-3. .opencode/skills/sk-code-opencode/SKILL.md (full file)
+3. .opencode/skills/sk-code-skilled/SKILL.md (full file)
 4. .opencode/skills/sk-doc/SKILL.md (full file)
 5. .opencode/skills/system-spec-kit/scripts/spec/validate.sh
-6. .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+6. .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
 
 Questions:
 1. List all importance tiers in importance-tiers.ts and compare to every mention of tiers in SKILL.md files.
-2. Compare P0/P1/P2 definitions in spec-kit checklist template vs sk-code-opencode quality gates.
+2. Compare P0/P1/P2 definitions in spec-kit checklist template vs sk-code-skilled quality gates.
 3. What validation exit codes does validate.sh use? Compare to verify_alignment_drift.py exit codes.
 4. Does sk-doc's HVR (Human Voice Rules) apply to spec documents? Is there an enforcement gap?
 5. Are document-type scoring multipliers consistent across spec-kit and sk-doc?
@@ -49,11 +49,11 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m treating this as a read-only alignment audit across the spec-kit and related skills. First I’m going to load the routing guidance and the requested source files, then I’ll compare tier names, P0/P1/P2 semantics, exit codes, HVR applicability, scoring multipliers, and Smart Router settings before I write up `ALIGN-NNN` findings.
 exec
-/bin/zsh -lc 'pwd && test -f .opencode/skills/system-spec-kit/SKILL.md && test -f .opencode/skills/sk-code-opencode/SKILL.md && test -f .opencode/skills/sk-doc/SKILL.md && echo READY' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'pwd && test -f .opencode/skills/system-spec-kit/SKILL.md && test -f .opencode/skills/sk-code-skilled/SKILL.md && test -f .opencode/skills/sk-doc/SKILL.md && echo READY' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public
 READY
 exec
-/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Deep dive into cross-skill alignment issues across system-spec-kit, sk-code-opencode, and sk-doc. Compare importance tiers, P0/P1/P2 semantics, validation exit codes, HVR applicability, document-type scoring multipliers, and Smart Router ambiguity_delta." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'python3 .opencode/skills/scripts/skill_advisor.py "Deep dive into cross-skill alignment issues across system-spec-kit, sk-code-skilled, and sk-doc. Compare importance tiers, P0/P1/P2 semantics, validation exit codes, HVR applicability, document-type scoring multipliers, and Smart Router ambiguity_delta." --threshold 0.8' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 [
   {
     "skill": "system-spec-kit",
@@ -64,12 +64,12 @@ exec
     "reason": "Matched: !spec, !system-spec-kit(explicit), documentation, document~, folder"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.23,
     "passes_threshold": true,
-    "reason": "Matched: !code(multi), !opencode, !sk-code-opencode(explicit), code(name), codes~"
+    "reason": "Matched: !code(multi), !opencode, !sk-code-skilled(explicit), code(name), codes~"
   },
   {
     "skill": "sk-doc",
@@ -93,21 +93,21 @@ cocoindex_code.search({"query":"importance tiers P0 P1 P2 ambiguity_delta scorin
   "isError": false
 }
 codex
-SKILL ROUTING: `system-spec-kit`, `sk-code-opencode`, and `sk-doc` all passed the threshold, so I’m following those workflows for this audit. I’ve confirmed the target files are present; next I’m reading the full sources plus the exact tier-, checklist-, exit-code-, multiplier-, and `ambiguity_delta` mentions so the findings stay evidence-based.
+SKILL ROUTING: `system-spec-kit`, `sk-code-skilled`, and `sk-doc` all passed the threshold, so I’m following those workflows for this audit. I’ve confirmed the target files are present; next I’m reading the full sources plus the exact tier-, checklist-, exit-code-, multiplier-, and `ambiguity_delta` mentions so the findings stay evidence-based.
 Plan update
 Read-only cross-skill audit with multiple comparison points; I’m gathering exact evidence first, then I’ll synthesize ALIGN findings by severity.
   → Read the six requested source files and capture relevant tier/checklist/exit-code/scoring/router excerpts
-  • Compare semantics across system-spec-kit, sk-code-opencode, and sk-doc
+  • Compare semantics across system-spec-kit, sk-code-skilled, and sk-doc
   • Draft ALIGN-NNN findings with severity and evidence references
 exec
-/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
+/bin/zsh -lc 'wc -l .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-skilled/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,260p' .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      229 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts
      845 .opencode/skills/system-spec-kit/SKILL.md
-     703 .opencode/skills/sk-code-opencode/SKILL.md
+     703 .opencode/skills/sk-code-skilled/SKILL.md
      856 .opencode/skills/sk-doc/SKILL.md
      641 .opencode/skills/system-spec-kit/scripts/spec/validate.sh
-     497 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+     497 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
     3771 total
  succeeded in 0ms:
 // ───────────────────────────────────────────────────────────────
@@ -131,7 +131,7 @@ export interface TierConfig {
 
 export type ImportanceTier =
 exec
-/bin/zsh -lc "rg -n \"P0|P1|P2|tier|importance|ambiguity_delta|multiplier|Human Voice|HVR|exit 0|exit 1|exit 2|return 0|return 1|return 2|sys\\.exit|checklist|document type|document-type|spec\" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg -n \"P0|P1|P2|tier|importance|ambiguity_delta|multiplier|Human Voice|HVR|exit 0|exit 1|exit 2|return 0|return 1|return 2|sys\\.exit|checklist|document type|document-type|spec\" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-code-skilled/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:87:// Get tier configuration by name (returns normal tier if invalid)
 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:88:export function getTierConfig(tierName: string | null | undefined): TierConfig {
 .opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts:89:  if (!tierName || typeof tierName !== 'string') {
@@ -221,9 +221,9 @@ exec
    239	
    240	def _guard_in_skill(relative_path: str) -> str:
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/SKILL.md | sed -n '1,260p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	---
-     2	name: sk-code-opencode
+     2	name: sk-code-skilled
      3	description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
      4	allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
      5	version: 1.2.0.0
@@ -243,7 +243,7 @@ exec
     19	### Activation Triggers
     20	
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/SKILL.md | sed -n '261,520p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    261	        ├─ Fall back to keyword matching
    262	        └─ Prompt user if ambiguous
    263	        ↓
@@ -265,7 +265,7 @@ exec
    279	### Key Pattern Categories
    280	
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/SKILL.md | sed -n '521,703p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/SKILL.md | sed -n '521,703p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    521	| Shell      | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
    522	| Config     | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
    523	
@@ -421,7 +421,7 @@ exec
    439	        local elapsed_ms=$(( end_ms - start_ms ))
    440	        local timing_str=""
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py | sed -n '1,220p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
      1	#!/usr/bin/env python3
      2	# ───────────────────────────────────────────────────────────────
      3	# COMPONENT: ALIGNMENT DRIFT VERIFIER
@@ -443,7 +443,7 @@ exec
     19	
     20	from __future__ import annotations
 exec
-/bin/zsh -lc "nl -ba .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py | sed -n '221,497p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "nl -ba .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py | sed -n '221,497p'" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
    221	def is_ts_pattern_asset(path: str) -> bool:
    222	    normalized = normalize_path(path)
    223	    return "/assets/" in normalized and "/patterns/" in normalized
@@ -775,7 +775,7 @@ exec
    858	
    859	    Args:
 exec
-/bin/zsh -lc 'rg -n "importance tier|constitutional tier|critical|important|normal|temporary|deprecated|document-type scoring|multiplier|decision_record|implementation_summary|checklist|handover|memory" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/sk-code-opencode/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc 'rg -n "importance tier|constitutional tier|critical|important|normal|temporary|deprecated|document-type scoring|multiplier|decision_record|implementation_summary|checklist|handover|memory" .opencode/skills/system-spec-kit/SKILL.md .opencode/skills/sk-doc/SKILL.md .opencode/skills/sk-code-skilled/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/system-spec-kit/SKILL.md:8:<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->
 .opencode/skills/system-spec-kit/SKILL.md:24:- **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
 .opencode/skills/system-spec-kit/SKILL.md:63:- **Requires @speckit:** spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, and any other *.md in spec folders
@@ -843,19 +843,19 @@ exec
 Plan update
 I’ve finished the comparison pass and I’m packaging the evidence into severity-labeled ALIGN findings.
   ✓ Read the six requested source files and capture relevant tier/checklist/exit-code/scoring/router excerpts
-  ✓ Compare semantics across system-spec-kit, sk-code-opencode, and sk-doc
+  ✓ Compare semantics across system-spec-kit, sk-code-skilled, and sk-doc
   → Draft ALIGN-NNN findings with severity and evidence references
 codex
 **Findings**
-1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-opencode`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-opencode`’s P0 gate set. `sk-code-opencode` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
+1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-skilled`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-skilled`’s P0 gate set. `sk-code-skilled` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
 [checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L410)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L410)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py#L235)
 
-2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-opencode` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
+2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-skilled` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
 [importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L590)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L1)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L1)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L1)
 
 3. `ALIGN-003` `INCONSISTENT` — HVR is documented as applying to spec-folder docs, but `sk-doc` does not actually enforce it for spec documents. The skill says HVR applies to all documentation output, and the HVR reference explicitly names spec-folder docs, yet `template_rules.json` gives `spec` no required sections and no casing/TOC rules, `validate_document.py` only validates TOC/H2/required-sections, and `extract_structure.py` routes `spec` through the generic checklist and skips the style-issue pipeline used for stricter document types. Template paths under `system-spec-kit/templates/` are also excluded from validation.  
@@ -873,26 +873,26 @@ codex
 5. `ALIGN-005` `INCONSISTENT` — The validator exit-code contracts differ materially. `validate.sh` uses `0=pass`, `1=warnings`, `2=errors`, while `verify_alignment_drift.py` uses only `0` and `1`, with warnings still returning `0` unless `--fail-on-warn` is set. That means “warnings” are non-zero in spec validation but zero in alignment verification. `validate.sh` also has a stale footer comment that no longer matches its real exit behavior.  
 [validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L92)  
 [validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L631)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py#L456)
 
-6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-opencode` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
+6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-skilled` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L273)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L239)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L166)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L166)
 
-Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-opencode` uses a different hardcoded `0.8` threshold.
+Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-skilled` uses a different hardcoded `0.8` threshold.
 tokens used
 339,696
 **Findings**
-1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-opencode`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-opencode`’s P0 gate set. `sk-code-opencode` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
+1. `ALIGN-001` `BREAKING` — P0 completion is not consistently enforceable across spec-kit and `sk-code-skilled`. The spec checklist template defines `P0` as a hard blocker, `P1` as required or approval-gated, and `P2` as optional, but its actual code-quality items are much narrower than `sk-code-skilled`’s P0 gate set. `sk-code-skilled` marks file headers, naming, no commented-out code, header invariants, verifier clean result, filesystem safety, and spec-folder safety as `P0`, yet the verifier only treats `COMMON-*`/`JSON-*`/`JSONC-*` as `ERROR`; JS/TS/PY/SH header issues are only `WARN`, and several documented P0 checks are not implemented there at all. This means a task can pass the scripted checks while still violating documented P0 rules.  
 [checklist.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/templates/addendum/level2-verify/checklist.md#L22)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L410)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L235)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L410)  
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py#L235)
 
-2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-opencode` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
+2. `ALIGN-002` `INCONSISTENT` — The canonical importance tiers are `constitutional`, `critical`, `important`, `normal`, `temporary`, and `deprecated`, but that taxonomy is only partially surfaced in the skill docs. `system-spec-kit` mentions tiering mainly through “constitutional tier” and document-type scoring, while `sk-code-skilled` and `sk-doc` do not mention the tier model at all. There is also a numeric drift: the skill doc says constitutional has `3.0x` search boost plus `2.0x importance multiplier`, but the canonical tier module only shows `searchBoost: 3.0` and `value: 1.0` in this source of truth.  
 [importance-tiers.ts](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/mcp_server/lib/scoring/importance-tiers.ts#L20)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L590)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L1)  
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L1)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L1)
 
 3. `ALIGN-003` `INCONSISTENT` — HVR is documented as applying to spec-folder docs, but `sk-doc` does not actually enforce it for spec documents. The skill says HVR applies to all documentation output, and the HVR reference explicitly names spec-folder docs, yet `template_rules.json` gives `spec` no required sections and no casing/TOC rules, `validate_document.py` only validates TOC/H2/required-sections, and `extract_structure.py` routes `spec` through the generic checklist and skips the style-issue pipeline used for stricter document types. Template paths under `system-spec-kit/templates/` are also excluded from validation.  
@@ -910,11 +910,11 @@ tokens used
 5. `ALIGN-005` `INCONSISTENT` — The validator exit-code contracts differ materially. `validate.sh` uses `0=pass`, `1=warnings`, `2=errors`, while `verify_alignment_drift.py` uses only `0` and `1`, with warnings still returning `0` unless `--fail-on-warn` is set. That means “warnings” are non-zero in spec validation but zero in alignment verification. `validate.sh` also has a stale footer comment that no longer matches its real exit behavior.  
 [validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L92)  
 [validate.sh](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/scripts/spec/validate.sh#L631)  
-[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py#L456)
+[verify_alignment_drift.py](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py#L456)
 
-6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-opencode` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
+6. `ALIGN-006` `COSMETIC` — Smart Router ambiguity handling is not standardized. `system-spec-kit` and `sk-doc` both use `ambiguity_delta=1.0`, but `sk-code-skilled` hardcodes a separate `<= 0.8` ambiguity threshold in its language router and does not expose the same parameter name. This looks like routing drift rather than a completion blocker.  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/system-spec-kit/SKILL.md#L273)  
 [SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-doc/SKILL.md#L239)  
-[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-opencode/SKILL.md#L166)
+[SKILL.md](/Users/michelkerkmeester/MEGA/Development/Opencode%20Env/Public/.opencode/skills/sk-code-skilled/SKILL.md#L166)
 
-Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-opencode` uses a different hardcoded `0.8` threshold.
+Short version for the six questions: Q1 tiers are `constitutional/critical/important/normal/temporary/deprecated`; only `system-spec-kit` documents them at all. Q2 P0/P1/P2 labels mostly align, but actual gated items do not. Q3 exit codes are `0/1/2` for `validate.sh` versus `0/1` for `verify_alignment_drift.py`. Q4 HVR is supposed to apply to spec docs, but tooling does not enforce it. Q5 scoring models are not consistent. Q6 `ambiguity_delta` is `1.0` in two skills, while `sk-code-skilled` uses a different hardcoded `0.8` threshold.

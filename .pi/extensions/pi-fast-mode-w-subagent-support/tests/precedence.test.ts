@@ -6,12 +6,45 @@ import { createPiFastModeExtension } from "../src/index";
 import { DEFAULT_CONFIG, getUserConfigPath } from "../src/config";
 import { HANDOFF_ENV } from "../src/types";
 
+type FakeBus = {
+  emit: (channel: string, data: unknown) => void;
+  on: (channel: string, handler: Function) => () => void;
+  clear: () => void;
+};
+
 type FakePi = {
   registerFlag: ReturnType<typeof vi.fn>;
   registerCommand: ReturnType<typeof vi.fn>;
   getFlag: ReturnType<typeof vi.fn>;
   on: ReturnType<typeof vi.fn>;
+  events: FakeBus;
 };
+
+function createFakeBus(): FakeBus {
+  const listeners = new Map<string, Function[]>();
+
+  return {
+    emit: (channel, data) => {
+      for (const handler of listeners.get(channel) ?? []) {
+        handler(data);
+      }
+    },
+    on: (channel, handler) => {
+      const list = listeners.get(channel) ?? [];
+      list.push(handler);
+      listeners.set(channel, list);
+      return () => {
+        listeners.set(
+          channel,
+          (listeners.get(channel) ?? []).filter((entry) => entry !== handler),
+        );
+      };
+    },
+    clear: () => {
+      listeners.clear();
+    },
+  };
+}
 
 const tempDirs: string[] = [];
 const initialHandoff = process.env[HANDOFF_ENV];
@@ -27,12 +60,16 @@ afterEach(async () => {
   );
 });
 
-function createFakePi(fastFlag: boolean): {
+function createFakePi(
+  fastFlag: boolean,
+  bus = createFakeBus(),
+): {
   pi: FakePi;
   handlers: Map<string, Function[]>;
 } {
   const handlers = new Map<string, Function[]>();
   const pi: FakePi = {
+    events: bus,
     registerFlag: vi.fn(),
     registerCommand: vi.fn(),
     getFlag: vi.fn((name: string) => (name === "fast" ? fastFlag : undefined)),

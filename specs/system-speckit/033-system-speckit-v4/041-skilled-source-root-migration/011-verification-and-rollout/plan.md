@@ -330,7 +330,7 @@ Run from `$W` at `TIP` after the `.pytest_cache` sweep. One log per gate: `$EV/g
 
 | ID | Gate | Expected result | How it can skip silently | Proof it ran |
 |----|------|-----------------|--------------------------|--------------|
-| G01 | Drift guards | Exit 0, `PASS:` lines for alignment-drift and stack-folders, `run-all-drift-guards: all 2 guards PASSED` (`.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:45-49`, `:61`) | `REPO_ROOT` comes from the script's own location (`:21-25`), so a stale copy checks a stale tree | Both named `PASS:` lines and the script's realpath under `.skilled/`. Two guards is correct: the third was retired (`:51-54`) |
+| G01 | Drift guards | Exit 0, `PASS:` lines for alignment-drift and stack-folders, `run-all-drift-guards: all 2 guards PASSED` (`.opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:45-49`, `:61`) | `REPO_ROOT` comes from the script's own location (`:21-25`), so a stale copy checks a stale tree | Both named `PASS:` lines and the script's realpath under `.skilled/`. Two guards is correct: the third was retired (`:51-54`) |
 | G02 | Skill-root metadata | `checked=13 passed=13 failed=0 fixed=0` (`.opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:657`) on both runs, plus exit 0 and a summary line from both freshness scripts | Only real directories count as roots (`:112`), so symlinked roots give `checked=0` at exit 0. A `.pytest_cache` in a leaf root changes the manifest walk (`generate-leaf-manifest.cjs:104-108`, `:307-308`) | The count of 13 (observed on 2026-09-16) and a zero cache count before the run. Never `--fix` |
 | G03 | Naming guard | `PASS: no newly introduced since <BASE> in-scope snake_case filesystem names found.` (`.opencode/skills/sk-doc/shared/scripts/check_no_new_snake_case.py:334`) and a pytest summary with 0 failed | Untracked files are included (`:175-176`), so over-long snapshots crash it, and a crash exits 1 like a finding because only `GuardError` exits 2 (`:359-361`) | The `PASS:` line from a clean detached checkout where `git status --porcelain` is empty |
 | G04 | Trigger-index freshness | `trigger index published` (`.opencode/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:516`), exit 0 (`:507`), four silent `cmp` runs, `documents scanned` at the baseline plus named deltas | A root resolved one level off still publishes a well-formed index over a narrowed corpus (`:73-76`) | `cmp` is a valid check because two runs over one tree are byte-identical by design (`:10`). The `documents scanned` count |
@@ -346,7 +346,7 @@ Run from `$W` at `TIP` after the `.pytest_cache` sweep. One log per gate: `$EV/g
 
 ```bash
 # G01
-bash "$(realpath .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh)"
+bash "$(realpath .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh)"
 
 # G02 (routing-registry-drift.yml:147-149). The fourth line runs only if 004 kept .opencode/skills
 node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs

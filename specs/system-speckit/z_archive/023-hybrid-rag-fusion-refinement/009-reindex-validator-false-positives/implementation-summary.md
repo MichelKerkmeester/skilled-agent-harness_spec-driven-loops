@@ -90,7 +90,7 @@ Bulk reindex went from rejecting 1,106 files to accepting all of them. Two valid
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Phase 2 (core fixes) shipped first with immediate validation: force reindex dropped from 1,106 blocks to 0. Phase 3 (review remediation) addressed all 8 P1 findings from a 10-iteration deep review plus 1 P2 item. The shared `context-types.ts` module was created first, then consumers were updated, then schema migration v25 was added. All changes validated through TypeScript compilation (clean across shared/, scripts/, mcp_server/), 139 passing tests across 4 suites, dist artifacts rebuilt, and sk-code-opencode alignment verifier (PASS, 0 findings). Two P2 items (reindex summary counts, per-file skip reasons) deferred because they require MCP handler-level changes.
+Phase 2 (core fixes) shipped first with immediate validation: force reindex dropped from 1,106 blocks to 0. Phase 3 (review remediation) addressed all 8 P1 findings from a 10-iteration deep review plus 1 P2 item. The shared `context-types.ts` module was created first, then consumers were updated, then schema migration v25 was added. All changes validated through TypeScript compilation (clean across shared/, scripts/, mcp_server/), 139 passing tests across 4 suites, dist artifacts rebuilt, and sk-code-skilled alignment verifier (PASS, 0 findings). Two P2 items (reindex summary counts, per-file skip reasons) deferred because they require MCP handler-level changes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -120,7 +120,7 @@ Phase 2 (core fixes) shipped first with immediate validation: force reindex drop
 | content-hash-dedup tests | PASS: 31/31 (including T079-1 force dedup) |
 | fsrs-scheduler tests | PASS: 55/55 (shared alias import verified) |
 | Dist build | PASS: shared/dist, scripts/dist, mcp_server all compiled clean |
-| sk-code-opencode alignment | PASS: 0 findings on shared/ (35 files scanned) |
+| sk-code-skilled alignment | PASS: 0 findings on shared/ (35 files scanned) |
 | Checklist P0 items | PASS: All 5 verified with evidence |
 | Checklist P1 items | PASS: All 4 verified with evidence |
 | Checklist P2 items | 12/13 complete, 2 P2 deferred with rationale |

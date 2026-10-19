@@ -58,7 +58,7 @@ One orchestrator and no implementer lane, against D1 as the overview says. One G
 ### Key Components
 - **`create.sh` child loop**: computes each child's phase number from `PHASE_START_INDEX` and uses it in the graph summary, the description and the scaffold title.
 - **Description generator**: `generate-description.js` rebuilds a folder's `description.json` from its `spec.md`, or from an explicit `--description`.
-- **Hermes mirror sync**: `sync-skills-hermes.cjs` writes into a scratch folder, and only the sk-code-opencode file is copied back.
+- **Hermes mirror sync**: `sync-skills-hermes.cjs` writes into a scratch folder, and only the sk-code-skilled file is copied back.
 
 ### Data Flow
 Observation, then a check that shows it, then the fix, then the same check again. The folder-level validators run last, from the final state.

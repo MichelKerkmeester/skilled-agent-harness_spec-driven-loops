@@ -37,7 +37,7 @@ trigger_phrases:
 Replaced the `^\d{3}-.*\.md$` filename gate in `load-playbook-scenarios.cjs` (`loadYamlFrontmatterScenarios`)
 with a content gate: any `.md` carrying scenario frontmatter (`id` / `expected_intent` / `expected_resources`),
 excluding the two root index files. Added optional `stage:` parsing (routing|holdout|negative, default routing)
-surfaced on each returned scenario. Updated the `code-opencode-playbook-ids.vitest.ts` oracle to the same
+surfaced on each returned scenario. Updated the `code-skilled-playbook-ids.vitest.ts` oracle to the same
 content predicate so loader and oracle stay in lockstep. Added `sk-doc/shared/scripts/check_no_numbered_snippet_files.py`,
 a guard that fails when a numbered per-scenario file exists under a catalog/playbook category.
 <!-- /ANCHOR:what-built -->

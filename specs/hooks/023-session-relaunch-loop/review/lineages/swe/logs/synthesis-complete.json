@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-swe-1792349322065-8lohfl","sessionId":"fanout-swe-1792349322065-8lohfl"},"data":{"mode":"review","totalIterations":3,"activeP0":0,"activeP1":0,"activeP2":10,"dimensionCoverage":1.0,"verdict":"PASS","releaseReadinessState":"converged","stopReason":"maxIterationsReached"},"occurred_at":"2026-10-18T19:17:35.000Z"}

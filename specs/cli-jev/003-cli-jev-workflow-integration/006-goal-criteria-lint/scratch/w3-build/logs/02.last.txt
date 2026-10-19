@@ -24,8 +24,8 @@ Gate 5: the repo routes me to several rule files for my action (code edits + clo
 
 Rules loaded and applied to this close-out. One more load whose trigger fires on a substantive reply, then I'll hand back:
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript surface) + sk-code-quality (comment hygiene); compiled route returned defer, hub legacy routing applied
-ARTIFACT: sk-code → sk-code-opencode evidence + quality gate; brief-pinned edits and checks followed as specified
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript surface) + sk-code-quality (comment hygiene); compiled route returned defer, hub legacy routing applied
+ARTIFACT: sk-code → sk-code-skilled evidence + quality gate; brief-pinned edits and checks followed as specified
 REPO RULES: prevent-overengineering.md, scope-discipline.md, evidence-and-proof.md, communication-handoff.md, communication.md
 
 STATUS: DONE

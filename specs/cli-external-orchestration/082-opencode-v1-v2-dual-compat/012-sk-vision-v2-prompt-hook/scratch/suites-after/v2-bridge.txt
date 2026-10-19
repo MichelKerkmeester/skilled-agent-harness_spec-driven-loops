@@ -1,0 +1,47 @@
+✔ session.created adds v1 session info while preserving v2 event data (89.111375ms)
+✔ session events keep an existing info payload unchanged (0.222833ms)
+✔ message events do not gain session info (0.108ms)
+✔ session.messages adapts v2 context entries to the v1 data envelope (0.258834ms)
+✔ session.promptAsync queues v1 text through v2 session.prompt (0.162ms)
+✔ session create, prompt, and delete map to v2 session methods (0.388125ms)
+✔ session client methods reject when their v2 session member is missing (0.402042ms)
+✔ execution and compaction events emit their v1 aliases once (0.338375ms)
+✔ session.idle alias then native event delivers one idle event (0.412542ms)
+✔ native session.idle then alias delivers one idle event (0.266959ms)
+✔ session.idle alias state resets for each execution turn and remains session-scoped (0.261084ms)
+✔ session.compacted aliases deduplicate and reset for each compaction (0.235625ms)
+✔ session.deleted clears the session event alias state (0.206208ms)
+✔ session.text.ended maps to a v1 assistant text-part event (0.133666ms)
+✔ session.step.ended maps to a v1 message update with token usage fields (0.23425ms)
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (2.565667ms)
+✔ the v2 handler rejects when the v1 hook throws so the host denies the tool call (0.172041ms)
+✔ execute.after maps a v2 error result to v1 output (0.246875ms)
+✔ execute.after maps title, output, and metadata from a v2 result (0.116166ms)
+✔ execute.after defaults output fields when the v2 result is absent (0.621291ms)
+✔ v1 tool string results convert to v2 content results (0.415167ms)
+✔ v1 tool object results convert output and title metadata to v2 results (0.402292ms)
+✔ v1 tool execute receives adapted context fields and preserved v2 fields (0.320375ms)
+✔ system transform receives the model when the v2 context event includes one (0.100833ms)
+✔ cleanup returns the same promise when called more than once (0.052417ms)
+✔ cleanup rejects when a registered dispose rejects (0.080459ms)
+✔ setup failure cleans registered hooks and rethrows the original error (0.0965ms)
+✔ execute.before leaves the original args untouched when the v1 hook does not change them (0.226792ms)
+✔ tool identity preserves the v1 helper contract (1.423083ms)
+✔ system-completion-sentinel exports and registers v2 hooks (100.566792ms)
+✔ system-spec-gate exports and registers v2 hooks (26.572625ms)
+✔ system-skill-advisor exports and registers v2 hooks (12.223167ms)
+✔ opencode-goal exports and registers v2 hooks (22.229042ms)
+✔ sk-vision exports and registers v2 hooks (21.14925ms)
+✔ system-completion-sentinel records an advisory after a completed session event (26.396167ms)
+✔ system-spec-gate rejects a denied write through execute.before (22.630375ms)
+✔ opencode-goal queues its continuation through session.prompt (66.515834ms)
+✔ opencode-goal records v2 assistant evidence and token usage from session events (51.482667ms)
+✔ system-skill-advisor clears session transform dedup after compaction (2.399708ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 401.845125

@@ -1,0 +1,450 @@
+ ### Fixed
+
+ - Fixed syntax highlighting losing colors after the first line of multiline strings and comments in fenced code blocks (#10143 (https://github.com/earendil-works/pi/issues/10143))
+ - Fixed codemode scripts not receiving images from read: tools.read() now resolves to an image block for image files, which image() shows (#10251 (https://github.com/earendil-works/pi/issues/10251))
+ - Fixed MCP OAuth sign-in failing with invalid_redirect_uri on servers with OpenID Connect client registration, such as mcp.modem.dev: pi now registers as a native client (#10493
+   (https://github.com/earendil-works/pi/issues/10493))
+ - Fixed --tools removing MCP tools, which left pi --tools codemode without any MCP servers. --tools now keeps MCP tools unless an entry starts with mcp__
+ - Fixed MCP session shutdown returning while a server was still connecting, leaving its transport open until the server answered or timed out (#10249
+   (https://github.com/earendil-works/pi/issues/10249))
+ - Fixed system prompt rules and the skills hint naming tools hidden by prepareLoadout. Hidden tools are left out of the rules, the skills hint names no tool when the file reader is hidden, and
+   codemode shows each tool's prompt guidelines with its declaration; ToolLoadout gains getPromptGuidelines() (#10343 (https://github.com/earendil-works/pi/issues/10343))
+ - Fixed Bedrock requests that fail with The pending stream has been canceled after a stalled HTTP/2 connection not being retried automatically (#10379
+   (https://github.com/earendil-works/pi/issues/10379))
+ - Fixed codemode scripts that patch built-ins (for example Array.prototype.toJSON = ...) crashing pi and leaving the tool call unsettled. Built-ins are now frozen before the script runs, so such
+   patches have no effect (#10444 (https://github.com/earendil-works/pi/issues/10444))
+
+ [1.0.3] - 2026-10-05
+
+ ### New Features
+
+ - Azure Foundry Chat Completions — The azure provider (renamed from azure-openai-responses) now also serves Foundry Chat Completions deployments, starting with azure/deepseek-v4-pro. See Azure
+   OpenAI (https://github.com/earendil-works/pi/blob/v1.0.3/packages/coding-agent/docs/providers.md#azure-openai).
+ - Codemode images saved to files — image() also writes each image to a temp file and names the path in the result, so later turns can copy or move generated images. See Generate images
+   (https://github.com/earendil-works/pi/blob/v1.0.3/packages/coding-agent/docs/codemode.md#generate-images).
+
+ ### Breaking Changes
+
+ - Renamed the Azure provider from azure-openai-responses to azure. Rename the provider key in auth.json (or run /login again), in models.json, and in settings.json (defaultProvider, enabledModels
+   patterns, and modelThinkingLevels keys). Sessions that used the old provider fall back to another model when resumed, and their prompt cache is not reused. The AZURE_OPENAI_* environment variables
+   are unchanged (#9714 (https://github.com/earendil-works/pi/pull/9714) by @jsanter27 (https://github.com/jsanter27))
+
+ ### Added
+
+ - Added Azure Foundry Chat Completions deployments, starting with azure/deepseek-v4-pro (#9645 (https://github.com/earendil-works/pi/issues/9645), #9714
+   (https://github.com/earendil-works/pi/pull/9714) by @jsanter27 (https://github.com/jsanter27))
+
+ ### Changed
+
+ - Codemode image() now also saves each image to a temp file and names the path in the result, so later turns can copy or move generated images (#10310
+   (https://github.com/earendil-works/pi/issues/10310))
+ - Output files (full text of truncated tool output, binary MCP resources, codemode images) are now readable only by the user
+ - Home/End now always move the editor cursor to the line start/end; fullscreen transcript top/bottom moved to Ctrl+Home/Ctrl+End, which no longer move the editor cursor (#10314
+   (https://github.com/earendil-works/pi/issues/10314))
+
+ ### Fixed
+
+ - Fixed subscription logins such as Sign in with ChatGPT failing with refresh_token_invalidated after a request was cancelled during an OAuth token refresh
+ - Fixed codemode failing for the rest of a session after a pnpm global update removed the running install, and added a restart hint when errors occur after pi was updated or removed on disk (#10439
+   (https://github.com/earendil-works/pi/issues/10439))
+ - Fixed interactive sessions reporting a read EIO or setRawMode EIO crash (and asking to run /bug) when the terminal went away, e.g. after closing the window or resuming a suspended pi in a closed
+   terminal
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Update Available
+ New version 1.3.0 is available. Run pi update
+ Changelog: https://pi.dev/changelog
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+ Read .skilled/hooks/session-relaunch/README.md and summarize its first section in two sentences. This is a read-only task; no spec folder is needed.
+
+ Advisor: live; use system-spec-kit 0.94/0.12 pass.
+ Directives:
+ - Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks
+   violations.
+
+
+ Warning: MCP servers need attention:
+   code_mode: failed: MCP connection closed
+ Run /mcp to fix.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available
+ Package updates are available. Run pi update --extensions
+ Packages:
+ - pi-blackhole
+ - pi-web-access
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Checking task requirements
+
+ Checking request prerequisites
+
+
+ $ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Read .skilled/hooks/session-relaunch/README.md and summarize its first section in two
+ sentences. This is a read-only task; no spec folder is needed. Advisor: live; use system-spec-kit 0.94/0.12 pass." (timeout 120000s)
+
+ ... (121 earlier lines, ctrl+o to expand)
+   "truncated": false
+ }
+
+
+ Command exited with code 1
+
+ Took 0.1s
+
+
+ Observational memory: observer running on ~26,152-token chunk (of 25,727 accumulated)
+
+ Reviewing the requested guidance
+
+ Reading required guidance
+
+ Reading skill and target
+
+
+ read .skilled/hooks/session-relaunch/README.md:1-50
+
+
+
+ [skill] system-spec-kit:1-2000 (ctrl+o to expand)
+
+
+
+ read .skilled/repo-rules/communication.md:1-2000
+
+
+
+ read .skilled/repo-rules/communication-prose.md:1-2000
+
+
+ Identifying Overview scope
+
+ Reading communication handoff
+
+
+ read .skilled/repo-rules/communication-handoff.md:1-2000
+
+
+ Reading session-relaunch folder
+
+ Reviewing runtime adapter behavior
+
+ SKILL ROUTING: User directed → system-spec-kit
+
+ The Session Relaunch folder contains shared handoff logic, runtime adapters, a CLI and tests; adapters prompt near context limits, and skilled-loop relaunches with a claim seed when the handoff
+ record is armed, fresh and under the hop cap, otherwise printing a manual claim command for a pending record. The overview describes automatic support for Claude, Pi, OpenCode, Codex and Hermes, but
+ command-only handoffs for Cursor and Devin, with runtime-specific settings and thresholds affecting behavior; I read the README, made no changes, know of no residual risk and need nothing from you.
+
+ Locating Gate1 trigger index
+
+ Awaiting task clarification
+
+ Running Gate1 check
+
+ No further work remains.
+
+
+ $ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "[session-relaunch] Context is past the configured window. If remaining work fits in a
+ few more steps, finish it instead and skip handoff steps. Otherwise write handoff note, save continuity if packet bound, and run prepare." (timeout 120000s)
+
+ ... (117 earlier lines, ctrl+o to expand)
+   "truncated": false
+ }
+
+
+ Command exited with code 1
+
+ Took 0.1s
+
+
+ Checking handoff need
+
+ Clarifying handoff request
+
+ Awaiting clarification
+
+ Clarifying requested action
+
+ Clarifying handoff choice
+
+ Clarifying handoff requirements
+
+ Preparing the documentation question
+
+ Asking about handoff execution
+
+ Asking about documentation folder
+
+ Preparing Gate 3 question
+
+ Awaiting Gate 3 choice
+
+ Awaiting documentation route
+
+ Awaiting documentation route
+
+ Requesting Gate3 input
+
+ Clarifying the documentation route
+
+ Requesting route choice
+
+ Asking about handoff route
+
+
+ ask_user_question questions=[{"question":"The pasted block requests a handoff note and relaunch preparation. Before...
+ User has answered your questions: "The pasted block requests a handoff note and relaunch preparation. Before any file write, which documentation route should cover the handoff note?"="D) Skip". You
+ can now continue with the user's answers in mind.
+
+
+ Checking advisor routing
+
+ Checking skill routing
+
+ Capturing handoff steps
+
+ Preparing guidance check
+
+ Checking document guidance
+
+ Reviewing document guidance
+
+ Reading repo rules
+
+ Creating handoff checklist
+
+ Checking handoff note
+
+ Preparing session relaunch
+
+ Preparing task checklist
+
+ Marking task in progress
+
+ Creating a task checklist
+
+ Creating task entries
+
+ Tracking handoff task
+
+ Reviewing repository rules
+
+ Checking documentation guidance
+
+ Reading project guidance
+
+ Recording current task
+
+
+ todo + Write handoff note
+ ○ pending
+
+
+
+ todo → #1
+ ◐ in progress
+
+
+ Reading repo rules and sk-doc
+
+
+ read REPO RULES.md:1-2000
+
+
+
+ [skill] sk-doc:1-2000 (ctrl+o to expand)
+
+
+ Adding root trigger table
+
+ Reading delegation guidance
+
+ Resolving workflow routing
+
+ Reading router rules
+
+ Reading required rule files
+
+ Routing handoff note
+
+
+ read .skilled/repo-rules/prevent-overengineering.md:1-2000
+
+
+
+ read .skilled/repo-rules/scope-discipline.md:1-2000
+
+
+
+ read .skilled/repo-rules/evidence-and-proof.md:1-2000
+
+
+
+ read .skilled/repo-rules/delegation-and-orchestration.md:1-2000
+
+
+ Observational memory: observer running on ~26,152-token chunk (of 25,727 accumulated)
+
+ Stating the edit plan
+
+ Checking sk-doc routing
+
+ SKILL ROUTING: User specified “use system-spec-kit 0.94/0.12 pass”; the handoff note will follow the requested session-relaunch workflow. ARTIFACT: sk-doc → checking the router for the handoff-note
+ authoring path.
+
+ I read the target README, REPO RULES.md, and the rules for writing files, scope, evidence and handoff. I’ll resolve the sk-doc route, write and read back only the requested note, then run
+ session-relaunch.cjs prepare; I’ll verify the exact path and note shape plus the prepare output and exit status. Gate 3 was answered D) Skip, so the note will use spec_folder: none and no packet
+ continuity save applies.
+ Running compiled route
+
+
+ $ node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "Create the requested session-relaunch handoff note at .skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md
+ using the exact hook-provided format; it is an operational session-state note, not a README, skill, agent, command, repo rule, changelog, goal, or authored spec packet document." (timeout 120000s)
+
+ {"hubId":"sk-doc","action":"clarify","selectionKind":null,"targets":[],"effectivePolicyHash":"7ec649956adcdafed5c845b017aa9ae2cdfdef886000654a08e8fe85967f4467","generation":5}
+
+ Took 0.1s
+
+
+ Clarifying route targets
+
+ Clarifying session note route
+
+ Reviewing relaunch contract
+
+ Clarifying handoff mode
+
+ Awaiting handoff approval
+
+ Awaiting workflow approval
+
+ Awaiting handoff choice
+
+ Awaiting handoff choice
+
+
+ ask_user_question questions=[{"question":"The sk-doc route returned `action: clarify` with no targets for this oper...
+ User has answered your questions: "The sk-doc route returned `action: clarify` with no targets for this operational handoff note. Do you approve using the exact session-relaunch schema directly,
+ without a sk-doc authoring mode, or should I stop without creating the note?"="Use exact schema". You can now continue with the user's answers in mind.
+
+
+ Checking state file existence
+
+ Checking state file
+
+ Checking file status
+
+
+ $ target='.skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md'; if test -e "$target"; then printf 'TARGET_EXISTS\n'; else printf 'TARGET_ABSENT\n'; fi; printf
+ 'SCOPED_STATUS\n'; git status --short -- "$target" (timeout 120000s)
+
+ TARGET_ABSENT
+ SCOPED_STATUS
+
+ Took 0.1s
+
+
+ Writing exact note frontmatter
+
+ Preparing note contents
+
+ Writing handoff note
+
+
+ write .skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md
+
+ ---
+ status: open
+ session_id: 01a1535c-365d-7256-b466-57f44e25cea7
+ loop_id: 62166
+ runtime: pi
+ cwd: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/142-session-relaunch-loop
+ spec_folder: none
+ created_at: 2026-10-19T08:52:21.040Z
+ ---
+ ## Goal
+ ... (7 more lines, 17 total, ctrl+o to expand)
+
+
+ Verifying artifact content
+
+ Checking repository status
+
+ Checking repository changes
+
+ Verifying handoff note
+
+ Checking handoff note
+
+
+ read .skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md:1-50
+
+
+
+ $ target='.skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md'; test -f "$target" && printf 'TARGET_EXISTS\n'; printf 'STATUS\n'; git status --short -- "$target"; printf
+ 'ALL_STATUS\n'; git status --short (timeout 120000s)
+
+ ... (177 earlier lines, ctrl+o to expand)
+ ?? specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md
+ ?? specs/hooks/023-session-relaunch-loop/review/lineages/
+ ?? specs/hooks/023-session-relaunch-loop/review/observability-events.jsonl
+ ?? specs/hooks/023-session-relaunch-loop/review/orchestration-summary.json
+ ?? specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/
+
+ Took 0.2s
+
+
+ Reading the note
+
+
+ read ~/MEGA/Development/Code_Environment/Public/.worktrees/142-session-relaunch-loop/.skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md:1-200
+
+
+ Completing the note
+
+
+ $ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete
+ '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/142-session-relaunch-loop/.skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md' (timeout
+ 120000s)
+
+ (no output)
+
+ Took 0.0s
+
+
+ Reading handoff guidance
+
+ Reading required guidance
+
+
+ read .skilled/repo-rules/communication.md:1-2000
+
+
+
+ read .skilled/repo-rules/communication-prose.md:1-2000
+
+
+
+ read .skilled/repo-rules/communication-handoff.md:1-2000
+
+
+
+ read .skilled/skills/.state/session-relaunch/handoffs/20261019T085221Z-01a1535c.md:1-100
+
+
+ ⠼ Working
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · gpt-6-luna [openai] · xhigh ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+                                                                                                                                                                                                    fast
+worktrees/142-session-relaunch-loop | GPT-6 Luna | ctx: 92% left | used: 20.9k tok | $0.00

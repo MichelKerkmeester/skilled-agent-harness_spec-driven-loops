@@ -174,7 +174,7 @@ Required inventories:
 
 ### The machine gate, per root
 
-Baseline column: re-derived at HEAD in this session. `verify_alignment_drift.py` findings come from `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root <ROOT>`; the header census is the box-drawing-header test over the root's tracked files. **Child 001's captured baseline supersedes these numbers if it disagrees; T001 reconciles.**
+Baseline column: re-derived at HEAD in this session. `verify_alignment_drift.py` findings come from `python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <ROOT>`; the header census is the box-drawing-header test over the root's tracked files. **Child 001's captured baseline supersedes these numbers if it disagrees; T001 reconciles.**
 
 | Lane | Root | Verifier before | Verifier after (expected) | Census before (missing) | Census after (expected) |
 |------|------|-----------------|---------------------------|-------------------------|-------------------------|

@@ -427,6 +427,50 @@ export function skVisionTools(
   } as const;
 }
 
+/** One item of an OpenCode 2 tool result's content. */
+export type V2ToolContent =
+  | { readonly type: "text"; readonly text: string }
+  | { readonly type: "file"; readonly uri: string; readonly mime: string; readonly name?: string };
+
+/** A tool in the shape OpenCode 2's tool editor accepts. */
+export interface V2ToolDefinition {
+  readonly name: string;
+  readonly description: string;
+  readonly input: unknown;
+  readonly execute: (input: unknown) => Promise<{
+    readonly content: string | readonly V2ToolContent[];
+    readonly metadata?: Readonly<Record<string, unknown>>;
+  }>;
+}
+
+/**
+ * Re-shape the OpenCode 1 tool map for OpenCode 2's tool editor. The input
+ * schema comes from the same zod copy the arguments were built with, so
+ * OpenCode 2 parses a call's arguments the way OpenCode 1 does. The tools never
+ * read the call context, so none is passed.
+ */
+export function toV2Tools(tools: ReturnType<typeof skVisionTools>): V2ToolDefinition[] {
+  return Object.entries(tools).map(([name, definition]) => ({
+    name,
+    description: definition.description,
+    input: tool.schema.object(definition.args),
+    execute: async (input) => {
+      const result = await definition.execute(input as never, undefined as never);
+      if (typeof result === "string") return { content: result };
+      const files: V2ToolContent[] = (result.attachments ?? []).map((attachment) => ({
+        type: "file",
+        uri: attachment.url,
+        mime: attachment.mime,
+        ...(attachment.filename ? { name: attachment.filename } : {}),
+      }));
+      return {
+        content: files.length > 0 ? [{ type: "text", text: result.output }, ...files] : result.output,
+        ...(result.metadata ? { metadata: result.metadata } : {}),
+      };
+    },
+  }));
+}
+
 export function parseBBox(s: string): BBox {
   const parts = s.split(",").map((p) => Number(p.trim()));
   if (parts.length !== 4 || parts.some((p) => !Number.isFinite(p))) {

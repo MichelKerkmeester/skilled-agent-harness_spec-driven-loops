@@ -21,7 +21,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
-Run a live `codex exec` matrix across every candidate model×effort cell first, then expand the cli-codex Model Selection roster from a single `gpt-5.5` lock to the four fast-tier models with per-model ceilings, extend the documented effort scale with `max` and `ultra`, reframe the CX-002 playbook in place, add a `1.6.0.0` changelog, and correct the stale "`.codex/` is not present" claim in the `code-opencode` agent-authoring checklist. The default dispatch stays `gpt-5.5 medium fast`.
+Run a live `codex exec` matrix across every candidate model×effort cell first, then expand the cli-codex Model Selection roster from a single `gpt-5.5` lock to the four fast-tier models with per-model ceilings, extend the documented effort scale with `max` and `ultra`, reframe the CX-002 playbook in place, add a `1.6.0.0` changelog, and correct the stale "`.codex/` is not present" claim in the `code-skilled` agent-authoring checklist. The default dispatch stays `gpt-5.5 medium fast`.
 <!-- /ANCHOR:summary -->
 <!-- ANCHOR:quality-gates -->
 ## 2. QUALITY GATES
@@ -33,7 +33,7 @@ Run a live `codex exec` matrix across every candidate model×effort cell first, 
 <!-- /ANCHOR:quality-gates -->
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
-This is a documentation-alignment change with a live-verification front end. The roster is expressed once as a per-model ceiling contract (`gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`) and mirrored into each consuming doc: the SKILL.md flag table and override examples, the README roster, the cli_reference Supported Models + effort-value tables, and the prompt-templates model-override note. The playbook carries the empirical proof (the 20-cell matrix) so the roster claim is verifiable, not asserted. The stale codex-surface claim is corrected independently in the `code-opencode` checklist.
+This is a documentation-alignment change with a live-verification front end. The roster is expressed once as a per-model ceiling contract (`gpt-5.5` ≤ `xhigh`; `gpt-5.6-luna` / `gpt-5.6-terra` ≤ `max`; `gpt-5.6-sol` ≤ `ultra`) and mirrored into each consuming doc: the SKILL.md flag table and override examples, the README roster, the cli_reference Supported Models + effort-value tables, and the prompt-templates model-override note. The playbook carries the empirical proof (the 20-cell matrix) so the roster claim is verifiable, not asserted. The stale codex-surface claim is corrected independently in the `code-skilled` checklist.
 <!-- /ANCHOR:architecture -->
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
@@ -43,7 +43,7 @@ This is a documentation-alignment change with a live-verification front end. The
 | cli-codex SKILL.md / README.md / cli_reference.md | Roster authority | Modify | Rosters agree; ceilings consistent |
 | prompt_templates.md | Dispatch templates | Modify | Model-override note + extended efforts present |
 | CX-002 playbook + index | Manual verification | Reframe in place | Filename + id kept; index resolves |
-| code-opencode agent_authoring.md | Authoring checklist | Correct claim | Matches live `.codex/` mirror |
+| code-skilled agent_authoring.md | Authoring checklist | Correct claim | Matches live `.codex/` mirror |
 <!-- /ANCHOR:affected-surfaces -->
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
@@ -101,7 +101,7 @@ Revert the eight modified/created files to their prior revision. There is no run
 Before writing any roster doc: confirm the target model×effort cell returned correctly in the live matrix; confirm the per-model ceiling matches every other doc; confirm the default dispatch string is untouched.
 ### Task Execution Rules
 - **TASK-SEQ**: the live matrix (T002) precedes every roster doc; no model is documented before it is proven callable.
-- **TASK-SCOPE**: touch only the six cli-codex docs, the new changelog, and the one `code-opencode` checklist line. Never change the default dispatch or a codex hook adapter.
+- **TASK-SCOPE**: touch only the six cli-codex docs, the new changelog, and the one `code-skilled` checklist line. Never change the default dispatch or a codex hook adapter.
 ### Status Format
 Report each task as `T### — <result> (evidence: matrix cell / file:line / diff)`, distinguishing confirmed from inferred.
 ### Blocked Task Protocol

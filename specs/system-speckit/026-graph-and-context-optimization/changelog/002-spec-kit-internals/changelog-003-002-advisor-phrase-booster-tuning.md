@@ -26,7 +26,7 @@ The skill advisor ship quality routing engine had 36 multi-word keys in its INTE
 
 ### Added
 
-- Phrase routes for 15 under-covered multi-word identifiers across the system spec kit, sk-code-web, sk-code-full-stack, sk-code-opencode, mcp-code-mode and sk-code-review skills.
+- Phrase routes for 15 under-covered multi-word identifiers across the system spec kit, sk-code-web, sk-code-full-stack, sk-code-skilled, mcp-code-mode and sk-code-review skills.
 - Two hyphenated-token phrase entries ("5-dimension" and "5-dimension agent scoring") to fix a tokenizer blind spot where hyphens split the same way whitespace does.
 - An inline comment block near PHRASE_INTENT_BOOSTERS warning contributors never to place whitespace or hyphen keys inside INTENT_BOOSTERS.
 
