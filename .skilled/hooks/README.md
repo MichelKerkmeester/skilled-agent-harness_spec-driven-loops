@@ -200,10 +200,10 @@ node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .skilled/h
 node --test .skilled/hooks/shared/hook-adapter-shared.test.cjs .skilled/hooks/shared/hook-stdin-deadline.test.mjs
 
 # dispatch-audit is a vitest suite and cannot run under node --test
-npx vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs
+.skilled/node_modules/.bin/vitest run --root .skilled/hooks/dispatch/lib dispatch-audit.test.mjs
 
-# Pi preflight is a vitest suite whose relative imports are written for the extension symlink base
-npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+# The dispatch adapter suites are vitest files; the hooks config's alias resolves the Pi adapters' imports, written for the extension symlink base
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
 ```
 
 Expected result: all suites pass.

@@ -86,12 +86,12 @@ dispatch/
 |   +-- dispatch-rule-checks.mjs       # hard-rule engine: reads the hard-rules.json sidecar, evaluates checks
 |   +-- dispatch-rule-checks.test.mjs  # node --test
 |   +-- dispatch-audit.mjs             # dispatch-shape recognition, scrubbing, JSONL append, log rotation
-|   `-- dispatch-audit.test.mjs        # npx vitest run
+|   `-- dispatch-audit.test.mjs        # vitest, the pinned .skilled binary
 +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 +-- devin/    (same pair)
-+-- codex/    (same pair)
++-- codex/    (same pair), codex-shell-tool.test.mjs  # vitest, hooks config
 +-- cursor/   post-tool-use.mjs        # multiplexed proxy (Shell -> dispatch audit, Write -> post-edit-quality)
-+-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them)
++-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real files; `.pi/extensions/` symlinks to them), dispatch-preflight-lint.test.ts, directive-dedup.test.ts  # vitest, hooks config
 `-- opencode/ cli-dispatch-audit.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
 ```
 
@@ -132,7 +132,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 | Boundary | Rule |
 |---|---|
-| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
+| Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Pi adapters are the exception: they import `../../.skilled/hooks/shared/hook-flags.mjs`, a path written for their `.pi/extensions/` symlink, so a test loads them only under `.skilled/hooks/vitest.config.ts`, whose alias maps that path to the real tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
 | Failure | Every path fails open. A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
@@ -143,8 +143,15 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 
 ```bash
 node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
-npx vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
 ```
+
+```bash
+# The adapter suites are vitest files; run them under the hooks config, whose alias resolves the Pi adapters' link-relative imports
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts .skilled/hooks/dispatch/pi/directive-dedup.test.ts
+```
+
+`node --test` cannot run these files, because they are vitest suites: the codex file fails with `Cannot read properties of undefined (reading 'config')`. A vitest run without `--config` runs two of them, but not `dispatch-preflight-lint.test.ts`, which fails on the Pi adapter's `hook-flags.mjs` import. Each command calls the pinned `.skilled/node_modules/.bin/vitest`, because vitest is installed under `.skilled/node_modules` and not at the repository root, so `npx vitest` run from the root does not find it and fetches or reuses a different copy.
 
 Expected result: all tests pass.
 
