@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/146-cli-pi-worktree-extension-clash",
+  "agentDirOverlay": true,
+  "argv": [
+    "pi",
+    "-p",
+    "--offline",
+    "--model",
+    "llmgateway/deepseek-v4.1-flash",
+    "--thinking",
+    "max",
+    "Reply with exactly PI-OK and nothing else. Do not use any tool."
+  ],
+  "exit": 0,
+  "signal": null,
+  "replyTail": "PI-OK",
+  "hasPiOk": true,
+  "stderrHead": "{\"timestamp\":\"2026-10-19T12:04:12.285Z\",\"runtime\":\"pi\",\"status\":\"ok\",\"freshness\":\"live\",\"durationMs\":751,\"cacheHit\":false,\"skillLabel\":\"cli-external-orchestration\",\"emittedBytes\":279,\"directivesSuppressed\":false}\n"
+}

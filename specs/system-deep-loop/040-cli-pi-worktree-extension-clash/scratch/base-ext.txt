@@ -1,0 +1,7 @@
+
+ Test Files  7 passed (7)
+      Tests  77 passed (77)
+   Start at  13:31:34
+   Duration  3.46s (import 92%, tests 4%, transform 3%, worker 1%)
+
+tsc 0

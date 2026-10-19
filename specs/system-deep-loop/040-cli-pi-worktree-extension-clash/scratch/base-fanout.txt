@@ -1,0 +1,6 @@
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 166 passed (167)
+   Start at  13:31:40
+   Duration  300.33s (transform 161ms, setup 0ms, import 758ms, tests 299.37s, environment 0ms)
+

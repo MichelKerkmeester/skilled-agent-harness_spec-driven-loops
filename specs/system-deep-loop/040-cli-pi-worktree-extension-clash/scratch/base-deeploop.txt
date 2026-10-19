@@ -1,0 +1,7 @@
+ Test Files  1 failed | 166 passed (167)
+      Tests  1 failed | 2742 passed | 8 skipped (2751)
+   Start at  13:43:50
+   Duration  1415.55s (transform 3.39s, setup 0ms, import 10.46s, tests 1388.99s, environment 8ms)
+
+exit 1
+     × lets the --containment-mode flag override the fan-out config value, and rejects an unknown value 30096ms
