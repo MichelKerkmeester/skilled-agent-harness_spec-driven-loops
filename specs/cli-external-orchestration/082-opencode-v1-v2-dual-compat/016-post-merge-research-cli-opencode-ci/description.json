@@ -1,4 +1,5 @@
 {
+  "level": "research",
   "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
   "description": "cli-opencode, doctor battery and dual-version CI drift research after the merge",
   "keywords": [
@@ -10,14 +11,15 @@
     "research",
     "merge"
   ],
-  "lastUpdated": "2026-10-19T18:30:35.646Z",
+  "lastUpdated": "2026-10-19T20:00:40.983Z",
   "specId": "016",
   "folderSlug": "post-merge-research-cli-opencode-ci",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "research"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-10-26_21-00__deep-research-complete-for-angles-a24-a25.md"
+  ]
 }

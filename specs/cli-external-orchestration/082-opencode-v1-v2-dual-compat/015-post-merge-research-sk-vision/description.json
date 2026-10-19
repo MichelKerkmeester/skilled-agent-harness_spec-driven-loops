@@ -1,4 +1,5 @@
 {
+  "level": "research",
   "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision",
   "description": "sk-vision OpenCode 2 runtime research after the merge",
   "keywords": [
@@ -8,14 +9,15 @@
     "research",
     "merge"
   ],
-  "lastUpdated": "2026-10-19T18:30:34.971Z",
+  "lastUpdated": "2026-10-19T20:00:34.124Z",
   "specId": "015",
   "folderSlug": "post-merge-research-sk-vision",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "research"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-10-26_21-00__deep-research-complete-for-angles-a23-research.md"
+  ]
 }
