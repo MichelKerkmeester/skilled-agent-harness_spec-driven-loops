@@ -1,5 +1,5 @@
 {
-  "corpusHash": "41076513739ae9d1f3f79c7eff997d3a3680b881f1d94d57cbb5ec7392df7aec",
+  "corpusHash": "7bc37471e8be4a5604d34f6c564189700942559ccf04185d2305d4ee2d149453",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 24921,
+  "includedPathCount": 24994,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -108,6 +108,8 @@
     ".skilled/hooks/post-edit-quality/README.md",
     ".skilled/hooks/session-cleanup/README.md",
     ".skilled/hooks/session-lifecycle/README.md",
+    ".skilled/hooks/session-relaunch/README.md",
+    ".skilled/hooks/session-relaunch/tests/README.md",
     ".skilled/hooks/shared/README.md",
     ".skilled/hooks/task-dispatch/README.md",
     ".skilled/skills/.state/advisor/README.md",
@@ -7919,6 +7921,10 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-26--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/README.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-09-27--manual-testing-playbook--directive-lifecycle-dedup-five-cli/source.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/source.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
     ".skilled/skills/system-spec-kit/changelog/v0+/v0.0.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v0+/v0.0.0.1.md",
@@ -8020,6 +8026,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-flag-reference/filter-config-contract.md",
@@ -8109,6 +8116,9 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
@@ -9944,6 +9954,64 @@
     "specs/hooks/022-smart-rule-injection/plan.md",
     "specs/hooks/022-smart-rule-injection/spec.md",
     "specs/hooks/022-smart-rule-injection/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/goal.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/plan.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/spec.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/goal.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/plan.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/spec.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/goal.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/plan.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/goal.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/plan.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/spec.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/goal.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-001.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-002.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-003.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-004.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-006.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-007.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-1.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-2.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-3.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-4.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-5.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-6.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-7.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/resource-map.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md",
+    "specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/review/review-report.md",
+    "specs/hooks/023-session-relaunch-loop/spec.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/acceptance-criteria.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md",
     "specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/implementation-summary.md",
@@ -14598,6 +14666,11 @@
     "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/plan.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/tasks.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/timeline.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/implementation-summary.md",
@@ -24952,7 +25025,7 @@
     "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
+  "manifestHash": "5a953ffdfdc9481f7ba8a2165158eb1e8ac833b0c9055afa0c8fd5b47affe0d9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25297,6 +25370,14 @@
     {
       "path": ".skilled/hooks/session-lifecycle/pi/session-stop-context.ts",
       "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-relaunch/opencode/session-relaunch.js",
+      "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/session-relaunch/tests/fixtures",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/hooks/sk-vision/devin/sk-vision.mjs",
@@ -26616,6 +26697,38 @@
     },
     {
       "path": "specs/hooks/021-compat-opt-in-and-image-declaration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28592,6 +28705,10 @@
     },
     {
       "path": "specs/system-deep-loop/038-review-and-cli-lineage/008-lineage-proof-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/scratch",
       "reason": "excluded directory"
     },
     {

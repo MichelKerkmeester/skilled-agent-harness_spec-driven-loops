@@ -1,5 +1,5 @@
 {
-  "manifestHash": "681a7bb8c404e2ee0b05c0bee2056a577aaf5acb3cd1ed9a2811e3e2bc486670",
+  "manifestHash": "5a953ffdfdc9481f7ba8a2165158eb1e8ac833b0c9055afa0c8fd5b47affe0d9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12453,6 +12453,9 @@
     "auto grader plan": [
       "auto grader plan"
     ],
+    "auto handoff near the context limit": [
+      "auto-handoff near the context limit"
+    ],
     "auto heal validation": [
       "auto heal validation"
     ],
@@ -12542,6 +12545,9 @@
     ],
     "automatic spec session selection": [
       "automatic spec-session selection"
+    ],
+    "automatic triggers for pi and opencode": [
+      "automatic triggers for Pi and OpenCode"
     ],
     "automation deep research": [
       "automation deep research"
@@ -18276,6 +18282,9 @@
     "claude codex copilot opencode hook parity": [
       "claude codex copilot opencode hook parity"
     ],
+    "claude context nudge": [
+      "Claude context nudge"
+    ],
     "claude cursor fallback wrap": [
       "claude cursor fallback wrap"
     ],
@@ -18311,6 +18320,9 @@
     ],
     "claude hook settings schema normalization": [
       "claude hook settings schema normalization"
+    ],
+    "claude live relaunch": [
+      "Claude live relaunch"
     ],
     "claude md agents md symlink": [
       "claude md agents md symlink"
@@ -18354,6 +18366,27 @@
     "claude prompting best practices": [
       "claude prompting best practices"
     ],
+    "claude relaunch acceptance criteria": [
+      "Claude relaunch acceptance criteria"
+    ],
+    "claude relaunch implementation plan": [
+      "Claude relaunch implementation plan"
+    ],
+    "claude relaunch loop": [
+      "Claude relaunch loop"
+    ],
+    "claude relaunch loop goal": [
+      "claude relaunch loop goal"
+    ],
+    "claude relaunch loop implementation summary": [
+      "claude relaunch loop implementation summary"
+    ],
+    "claude relaunch tasks": [
+      "Claude relaunch tasks"
+    ],
+    "claude relaunch verification checklist": [
+      "Claude relaunch verification checklist"
+    ],
     "claude session cleanup": [
       "claude session cleanup"
     ],
@@ -18362,6 +18395,9 @@
     ],
     "claude session pid not set": [
       "CLAUDE_SESSION_PID not set"
+    ],
+    "claude session relaunch": [
+      "Claude session relaunch"
     ],
     "claude user prompt submit": [
       "claude user-prompt-submit"
@@ -23888,6 +23924,9 @@
     "codex search exec fanout": [
       "codex search exec fanout"
     ],
+    "codex session relaunch": [
+      "Codex session relaunch"
+    ],
     "codex session resume fork": [
       "codex session resume fork"
     ],
@@ -24350,6 +24389,24 @@
     ],
     "command tree parity verification": [
       "command tree parity verification"
+    ],
+    "command trigger runtimes": [
+      "command trigger runtimes"
+    ],
+    "command trigger runtimes acceptance criteria": [
+      "command trigger runtimes acceptance criteria"
+    ],
+    "command trigger runtimes goal": [
+      "command trigger runtimes goal"
+    ],
+    "command trigger runtimes implementation summary": [
+      "command trigger runtimes implementation summary"
+    ],
+    "command trigger runtimes plan": [
+      "command trigger runtimes plan"
+    ],
+    "command trigger runtimes tasks": [
+      "command trigger runtimes tasks"
     ],
     "command txt rename plan": [
       "command txt rename plan"
@@ -26209,6 +26266,9 @@
     ],
     "context density": [
       "context density"
+    ],
+    "context handoff to a fresh session": [
+      "context handoff to a fresh session"
     ],
     "context index": [
       "context index"
@@ -29086,6 +29146,9 @@
     ],
     "cursor self invocation guard": [
       "cursor self-invocation guard"
+    ],
+    "cursor session relaunch": [
+      "Cursor session relaunch"
     ],
     "cursor session resume": [
       "cursor session resume"
@@ -33508,6 +33571,24 @@
     "deep review 1 9 0 0": [
       "deep-review 1.9.0.0"
     ],
+    "deep review 2 remediation": [
+      "deep review 2 remediation"
+    ],
+    "deep review 2 remediation acceptance criteria": [
+      "deep review 2 remediation acceptance criteria"
+    ],
+    "deep review 2 remediation goal": [
+      "deep review 2 remediation goal"
+    ],
+    "deep review 2 remediation plan": [
+      "deep review 2 remediation plan"
+    ],
+    "deep review 2 remediation summary": [
+      "deep review 2 remediation summary"
+    ],
+    "deep review 2 remediation tasks": [
+      "deep review 2 remediation tasks"
+    ],
     "deep review angle passes": [
       "deep review angle passes"
     ],
@@ -33889,6 +33970,9 @@
     "deep review remediation adr": [
       "deep review remediation ADR",
       "deep review remediation adr"
+    ],
+    "deep review remediation goal": [
+      "deep review remediation goal"
     ],
     "deep review remediation implementation summary": [
       "deep review remediation implementation summary"
@@ -35877,6 +35961,9 @@
     ],
     "devin self invocation guard": [
       "devin self-invocation guard"
+    ],
+    "devin session relaunch": [
+      "Devin session relaunch"
     ],
     "devin session resume continue": [
       "devin session resume continue"
@@ -44299,6 +44386,21 @@
     "findings rubric template": [
       "findings-rubric template"
     ],
+    "findings summary integrity": [
+      "findings summary integrity"
+    ],
+    "findings summary integrity acceptance criteria": [
+      "findings summary integrity acceptance criteria"
+    ],
+    "findings summary integrity implementation summary": [
+      "findings summary integrity implementation summary"
+    ],
+    "findings summary integrity plan": [
+      "findings summary integrity plan"
+    ],
+    "findings summary integrity tasks": [
+      "findings summary integrity tasks"
+    ],
     "findings synthesis": [
       "findings synthesis"
     ],
@@ -50727,6 +50829,9 @@
     "hermes session id self presence": [
       "HERMES_SESSION_ID self presence"
     ],
+    "hermes session relaunch": [
+      "Hermes session relaunch"
+    ],
     "hermes shell hooks": [
       "hermes shell hooks"
     ],
@@ -53245,6 +53350,24 @@
     "integration research remediation": [
       "integration research remediation"
     ],
+    "integration review and docs closure": [
+      "integration review and docs closure"
+    ],
+    "integration review and docs closure acceptance criteria": [
+      "integration review and docs closure acceptance criteria"
+    ],
+    "integration review and docs closure goal": [
+      "integration review and docs closure goal"
+    ],
+    "integration review and docs closure implementation summary": [
+      "integration review and docs closure implementation summary"
+    ],
+    "integration review and docs closure plan": [
+      "integration review and docs closure plan"
+    ],
+    "integration review and docs closure tasks": [
+      "integration review and docs closure tasks"
+    ],
     "integration topology diagram": [
       "integration topology diagram"
     ],
@@ -54654,6 +54777,9 @@
     ],
     "kill scoping tasks": [
       "kill scoping tasks"
+    ],
+    "killer test harness": [
+      "killer test harness"
     ],
     "kimi k2 6 24 scenario run": [
       "kimi-k2.6 24-- scenario run"
@@ -67673,6 +67799,9 @@
     "opencode senses fork": [
       "opencode senses fork"
     ],
+    "opencode session relaunch": [
+      "OpenCode session relaunch"
+    ],
     "opencode shell checklist": [
       "opencode shell checklist"
     ],
@@ -70579,6 +70708,12 @@
     "phase 001 changelog": [
       "phase 001 changelog"
     ],
+    "phase 001 claude relaunch": [
+      "phase 001 Claude relaunch"
+    ],
+    "phase 001 closure gate": [
+      "phase 001 closure gate"
+    ],
     "phase 001 decision record": [
       "phase 001 decision record"
     ],
@@ -70606,14 +70741,26 @@
     "phase 002 changelog": [
       "phase 002 changelog"
     ],
+    "phase 002 closure gate": [
+      "phase 002 closure gate"
+    ],
     "phase 002 decision plan": [
       "phase 002 decision plan"
+    ],
+    "phase 002 implementation plan": [
+      "phase 002 implementation plan"
     ],
     "phase 002 implementation summary": [
       "phase 002 implementation summary"
     ],
     "phase 002 legacy compat converters": [
       "phase 002 legacy compat converters"
+    ],
+    "phase 002 pi opencode relaunch": [
+      "phase 002 Pi OpenCode relaunch"
+    ],
+    "phase 002 verification checklist": [
+      "phase 002 verification checklist"
     ],
     "phase 003 changelog": [
       "phase 003 changelog"
@@ -71389,6 +71536,9 @@
     "phase 3 codex mirror gate": [
       "phase 3 codex mirror gate"
     ],
+    "phase 3 command trigger runtimes": [
+      "phase 3 command trigger runtimes"
+    ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
     ],
@@ -71482,6 +71632,9 @@
     "phase 4 hub doc pointers": [
       "phase 4 hub doc pointers"
     ],
+    "phase 4 integration review and docs closure": [
+      "phase 4 integration review and docs closure"
+    ],
     "phase 4 leftover template comments": [
       "phase 4 leftover template comments"
     ],
@@ -71520,6 +71673,9 @@
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
+    ],
+    "phase 5 deep review remediation": [
+      "phase 5 deep review remediation"
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
@@ -71578,6 +71734,9 @@
     "phase 6 closeout deep review": [
       "phase 6 closeout deep review"
     ],
+    "phase 6 closure evidence": [
+      "phase 6 closure evidence"
+    ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
     ],
@@ -71592,6 +71751,9 @@
     ],
     "phase 6 deep loop follow ups": [
       "phase 6 deep loop follow ups"
+    ],
+    "phase 6 deep review 2 remediation": [
+      "phase 6 deep review 2 remediation"
     ],
     "phase 6 evidence gated provenance": [
       "phase 6 evidence gated provenance"
@@ -71712,6 +71874,9 @@
     ],
     "phase 9 existing issue fixes": [
       "phase 9 existing issue fixes"
+    ],
+    "phase 9 findings summary integrity": [
+      "phase 9 findings summary integrity"
     ],
     "phase 9 gate 3 menu series parent": [
       "phase 9 gate 3 menu series parent"
@@ -72294,6 +72459,18 @@
     "pi ambiguous denial tasks": [
       "pi ambiguous denial tasks"
     ],
+    "pi and opencode adapter acceptance criteria": [
+      "Pi and OpenCode adapter acceptance criteria"
+    ],
+    "pi and opencode adapter tasks": [
+      "Pi and OpenCode adapter tasks"
+    ],
+    "pi and opencode adapters": [
+      "Pi and OpenCode adapters"
+    ],
+    "pi and opencode adapters plan": [
+      "Pi and OpenCode adapters plan"
+    ],
     "pi api key": [
       "pi api key"
     ],
@@ -72843,6 +73020,18 @@
     "pi openai opencode go minimax llmgateway": [
       "pi openai opencode-go minimax llmgateway"
     ],
+    "pi opencode adapters goal": [
+      "pi opencode adapters goal"
+    ],
+    "pi opencode adapters implementation summary": [
+      "pi opencode adapters implementation summary"
+    ],
+    "pi opencode gate pg": [
+      "Pi OpenCode Gate PG"
+    ],
+    "pi opencode gate pg tasks": [
+      "Pi OpenCode Gate PG tasks"
+    ],
     "pi openrouter roster": [
       "pi openrouter roster"
     ],
@@ -72935,6 +73124,9 @@
     ],
     "pi session lifecycle": [
       "pi session lifecycle"
+    ],
+    "pi session relaunch": [
+      "Pi session relaunch"
     ],
     "pi session start restore": [
       "pi session start restore"
@@ -78799,6 +78991,12 @@
     ],
     "relative import census": [
       "relative import census"
+    ],
+    "relaunch gap register": [
+      "relaunch gap register"
+    ],
+    "relaunch loop test suite": [
+      "relaunch loop test suite"
     ],
     "release alignment proposal": [
       "release alignment proposal"
@@ -88369,6 +88567,40 @@
     "session recovery bdg": [
       "session recovery bdg"
     ],
+    "session relaunch at 80 percent": [
+      "session relaunch at 80 percent"
+    ],
+    "session relaunch claude": [
+      "session-relaunch-claude"
+    ],
+    "session relaunch closure checklist": [
+      "session relaunch closure checklist"
+    ],
+    "session relaunch closure plan": [
+      "session relaunch closure plan"
+    ],
+    "session relaunch command runtimes": [
+      "session-relaunch-command-runtimes"
+    ],
+    "session relaunch fixtures": [
+      "session relaunch fixtures"
+    ],
+    "session relaunch lanes": [
+      "session relaunch lanes"
+    ],
+    "session relaunch live round": [
+      "session relaunch live round"
+    ],
+    "session relaunch loop": [
+      "Session relaunch loop",
+      "session relaunch loop"
+    ],
+    "session relaunch pi opencode": [
+      "session-relaunch-pi-opencode"
+    ],
+    "session relaunch tests": [
+      "session relaunch tests"
+    ],
     "session resume": [
       "session resume"
     ],
@@ -95792,6 +96024,24 @@
     "skilled links task list": [
       "skilled links task list"
     ],
+    "skilled loop claude": [
+      "skilled-loop claude"
+    ],
+    "skilled loop codex": [
+      "skilled-loop codex"
+    ],
+    "skilled loop handoff": [
+      "skilled-loop handoff"
+    ],
+    "skilled loop hermes": [
+      "skilled-loop hermes"
+    ],
+    "skilled loop opencode": [
+      "skilled-loop opencode"
+    ],
+    "skilled loop pi": [
+      "skilled-loop pi"
+    ],
     "skilled machine cutover": [
       "skilled machine cutover"
     ],
@@ -98576,6 +98826,9 @@
     ],
     "speckit goal contract tasks": [
       "speckit goal contract tasks"
+    ],
+    "speckit handoff session relaunch": [
+      "/speckit:handoff session relaunch"
     ],
     "speckit hermes state dir": [
       "SPECKIT_HERMES_STATE_DIR"
