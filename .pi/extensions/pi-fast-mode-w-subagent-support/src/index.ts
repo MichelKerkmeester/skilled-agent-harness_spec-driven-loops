@@ -6,8 +6,10 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { dirname } from "node:path";
+import { existsSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { getAgentDir } from "@earendil-works/pi-coding-agent";
 import type {
   ExtensionAPI,
   ExtensionCommandContext,
@@ -24,7 +26,11 @@ import {
 import { readHandoff, writeHandoff } from "./handoff";
 import { findMatchingTarget, getFastModePayload, toModelRef } from "./payload";
 import { clearFastStatus, updateFastStatus } from "./status";
-import type { FastModeConfig, ModelRef } from "./types";
+import {
+  PACKAGE_NAME,
+  type FastModeConfig,
+  type ModelRef,
+} from "./types";
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -99,6 +105,21 @@ export function createPiFastModeExtension(
   const agentDir = options.agentDir;
 
   return function piFastModeExtension(pi: ExtensionAPI): void {
+    // Only the global extensions copy registers, so a second checkout can't clash.
+    const globalInstallDir = join(
+      agentDir ?? getAgentDir(),
+      "extensions",
+      PACKAGE_NAME,
+    );
+    const extensionRoot = dirname(extensionDir);
+    if (
+      existsSync(globalInstallDir) &&
+      existsSync(extensionRoot) &&
+      resolve(extensionRoot) !== resolve(globalInstallDir)
+    ) {
+      return;
+    }
+
     let config: FastModeConfig = cloneConfig();
     let configPath: string | undefined;
     let loadedCwd: string | undefined;
