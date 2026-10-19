@@ -1,0 +1,18 @@
+classifier-injection-screen.js | export:id,server,setup | hooks:experimental.chat.system.transform tool.execute.after | tools:0
+cli-dispatch-audit.js | export:id,server,setup | hooks:tool.execute.after tool.execute.before | tools:0
+codex-hooks-watchdog.js | export:id,server,setup | hooks:event | tools:0
+mcp-route-guard.js | export:id,server,setup | hooks:tool.execute.before | tools:0
+opencode-goal.js | export:id,server,setup | hooks:event experimental.chat.system.transform tool | tools:2
+session-cleanup.js | export:id,server,setup | hooks:dispose event experimental.chat.system.transform | tools:0
+session-relaunch.js | export:id,server,setup | hooks:event experimental.chat.system.transform | tools:0
+sk-code-post-edit-quality.js | export:id,server,setup | hooks:experimental.chat.system.transform tool.execute.after tool.execute.before | tools:0
+sk-git-message-gate.js | export:id,server,setup | hooks:tool.execute.before | tools:0
+sk-git-preflight-advisory.js | export:id,server,setup | hooks:experimental.chat.system.transform tool.execute.before | tools:0
+sk-vision.js | export:id,server,setup | hooks:command.execute.before | tools:0
+system-completion-sentinel.js | export:id,server,setup | hooks:event | tools:0
+system-deep-loop-guard.js | export:id,server,setup | hooks:event tool.execute.before | tools:0
+system-dist-freshness-guard.js | export:id,server,setup | hooks:event experimental.chat.system.transform tool.execute.before | tools:0
+system-skill-advisor.js | export:id,server,setup | hooks:event experimental.chat.system.transform tool | tools:1
+system-spec-gate.js | export:id,server,setup | hooks:event experimental.chat.system.transform tool.execute.before | tools:0
+system-speckit-completion.js | export:id,server,setup | hooks:tool | tools:1
+AUTOINSPECT=1: sk-vision.js | export:id,server,setup | hooks:chat.message command.execute.before dispose event tool | tools:13

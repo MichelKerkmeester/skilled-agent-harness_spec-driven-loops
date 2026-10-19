@@ -124,6 +124,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Complete |
 | 12 | 012-sk-vision-v2-prompt-hook/ | Run sk-vision's automatic image check through the OpenCode 2 prompt hook | Complete |
 | 13 | 013-sk-vision-v2-tools-and-loose-ends/ | Register sk-vision's tools on OpenCode 2 and close phase 012's loose ends | Complete |
+| 19 | 019-plugins-compat-docs/ | Plugins README v1 and v2 compatibility and ARCHITECTURE.md | In Progress |
 
 ### Phase Transition Rules
 
@@ -148,4 +149,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 010-documentation-sweep | 011-two-version-proof-and-closeout | Every touched doc passes its sk-doc validator | `validate_document.py` and the package checks |
 | 011-two-version-proof-and-closeout | 012-sk-vision-v2-prompt-hook | The closeout lists the OpenCode 2 image-inspection gap as limitation 5 | `011/implementation-summary.md` |
 | 012-sk-vision-v2-prompt-hook | 013-sk-vision-v2-tools-and-loose-ends | Phase 012 lists the OpenCode 2 tools gap, the untested grace path and disposal during startup as open | `012/implementation-summary.md` |
+| 013-sk-vision-v2-tools-and-loose-ends | 019-plugins-compat-docs | Phase 013 closes with the sk-vision tools on both versions, so the plugin surface the docs describe is final | `013/implementation-summary.md` and the 17-plugin battery after the main merge |
 <!-- /ANCHOR:phase-map -->

@@ -16,7 +16,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs"
   ],
   "manual": {
     "depends_on": [],
@@ -147,13 +148,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Handoff Criteria",
+        "name": "Phase Transition Rules",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -221,7 +222,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-19T17:12:40.784Z",
+    "last_save_at": "2026-10-19T21:50:32.801Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,10 +230,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:77c5e20c535428ff47fe1fc5d59cbcf5cd74cf3aacfa6afe2f119741e8a92343",
+    "source_fingerprint": "sha256:ee430b6241bf1e30b2e54423fffbe390f65af8644a126b0fa8374bf9b5b0a5c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edc54fec7925b7452ca2f51a8b563fbf45a3ce6460e27f77d7d861b7dcc88657",
+      "spec.md": "5bef9f2efa63740e2ee8dae9ff4e50f15b42a387765fddd17d7d25c92c0ea46e",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

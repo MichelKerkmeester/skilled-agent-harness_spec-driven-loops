@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugins compat docs",
+      "phase 19 plugins compat docs",
+      "plugins compat docs plan",
+      "plugins compat docs tasks",
+      "plugins compat docs implementation summary"
+    ],
+    "key_topics": [
+      "plugins",
+      "compat",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "readme",
+      "say",
+      "opencode",
+      "versions"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/ARCHITECTURE.md",
+      "scratch/list-plugin-hooks.mjs",
+      "scratch/plugin-hook-keys.txt",
+      "scratch/facts.md",
+      ".opencode/plugins/tests/README.md",
+      "scratch/ci-dual-version-runs.txt",
+      "scratch/verify/validate-README.txt",
+      "scratch/verify/validate-ARCHITECTURE.txt",
+      "scratch/verify/kebab.txt",
+      "scratch/verify/manifest.txt",
+      "scratch/verify/plugins.txt",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      "scratch/verify/validate-019.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "list-plugin-hooks.mjs",
+        "kind": "file",
+        "path": "scratch/list-plugin-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-hook-keys.txt",
+        "kind": "file",
+        "path": "scratch/plugin-hook-keys.txt",
+        "source": "derived"
+      },
+      {
+        "name": "facts.md",
+        "kind": "doc",
+        "path": "scratch/facts.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-dual-version-runs.txt",
+        "kind": "file",
+        "path": "scratch/ci-dual-version-runs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-README.txt",
+        "kind": "file",
+        "path": "scratch/verify/validate-README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-ARCHITECTURE.txt",
+        "kind": "file",
+        "path": "scratch/verify/validate-ARCHITECTURE.txt",
+        "source": "derived"
+      },
+      {
+        "name": "kebab.txt",
+        "kind": "file",
+        "path": "scratch/verify/kebab.txt",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.txt",
+        "kind": "file",
+        "path": "scratch/verify/manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugins.txt",
+        "kind": "file",
+        "path": "scratch/verify/plugins.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-019.txt",
+        "kind": "file",
+        "path": "scratch/verify/validate-019.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The plugins README did not say which OpenCode versions the plugins run on, and it had drifted from the code",
+    "created_at": "2026-10-19T18:47:08Z",
+    "last_save_at": "2026-10-19T21:53:15.226Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26ad2eb8a731a22217784ace0eba3ce3776ba0b23eba42d844ef4420fdaaff01",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "61b1b8d4bbb97d27d35b9b4ab20380a482347ff2f4b12208a22677abeb0b5149",
+      "plan.md": "a53a8f0f86fd1f8f0f55b25a850183957b264178d2ac9952a13fcb901175074a",
+      "tasks.md": "a1f5a9b589f6b08f5046dfb6de7302d5d06d2d9378bcfdcc5c5c175ae085223a",
+      "implementation-summary.md": "f123067b7f2c251686ccc824d11e3f8c61e5ae763e58875541b2b45c90611d7e"
+    },
+    "last_active_at": null
+  }
+}
