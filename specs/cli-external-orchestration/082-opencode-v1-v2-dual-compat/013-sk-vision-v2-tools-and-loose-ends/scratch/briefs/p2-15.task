@@ -1,0 +1,14 @@
+ROLE: You make literal edits to two Markdown files. Re-read each first. Make exactly these edits and nothing else.
+
+ACTION:
+
+1. In `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/spec.md`:
+   a. Replace `two source comments, one sentence in the plugin README, and this packet's records.` with `two source comments, one sentence each in the plugin and hooks READMEs, and this packet's records.`
+   b. In the Files to Change table, replace `| Three close-during-startup tests |` with `| Four close-during-startup tests |`.
+   c. In the Files to Change table, directly after the row that starts with `| \`.opencode/plugins/README.md\` | Modify |`, insert this row:
+
+| `.skilled/skills/sk-vision/hooks/README.md` | Modify | Section 4, the hook-bundle sentence |
+
+2. In `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md`, in the row that starts with `| 013 sk-vision v2 tools and loose ends | Done |`, replace `sk-vision bun test 50 to 65` with `sk-vision bun test 50 to 67` and replace `Luna PASS in round 4` with `Luna PASS in round 7`. Change nothing else in that file.
+
+FORMAT: Then run `git diff --stat` and print its output verbatim, nothing else.

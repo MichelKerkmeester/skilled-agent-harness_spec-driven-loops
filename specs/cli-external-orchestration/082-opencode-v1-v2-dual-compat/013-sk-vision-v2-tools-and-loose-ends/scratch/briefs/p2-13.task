@@ -1,0 +1,17 @@
+ROLE: You make literal edits to one Markdown file. Re-read it first. Make exactly these edits and nothing else.
+
+FILE: `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/acceptance-criteria.md`
+
+ACTION:
+
+1. In the AC-002 row, replace `| \`scratch/proof/final-off/summary.json\`: 0 of 65; ` with `| \`scratch/proof/final-off/summary.json\`: 0 of 65; \`plugin.test.ts\` "adds no tools when automatic inspection is off" runs the real \`setup\` and fails with the gate broken (\`scratch/mutation/p2-autoinspect-gate-broken.txt\`); `
+
+2. In the AC-003 row, replace `Then no runtime spawns, the step exits even if it ignores SIGTERM, and \`ready\` settles without an error toast | \`client.test.ts\`, three tests, in \`scratch/suites-after/skvision-test.txt\`; they fail on the old and reverted code (\`scratch/mutation/old-code.txt\`, \`round2-revert.txt\`, \`round3-revert.txt\`) |` with `Then no runtime spawns, the step exits even if it ignores SIGTERM, no interpreter probe outlives it, no venv is created, and \`ready\` settles without an error toast | \`client.test.ts\`, four tests, in \`scratch/p2-after/sk-vision.txt\`; they fail on the old and reverted code (\`scratch/mutation/old-code.txt\`, \`round2-revert.txt\`, \`round3-revert.txt\`, \`p2-probe-before-fix.txt\`, \`p2-probe-guards-removed.txt\`) |`
+
+3. In the AC-004 row, replace `Then the command and hook keep working, or no tool stays registered | \`plugin.test.ts\` "keeps the prompt hook and disposes cleanly when tool registration fails" and "leaves no tools registered when the prompt hook fails to register"; both fail on reverted code (\`round1-revert.txt\`, \`round3-revert.txt\`) |` with `Then the command and hook keep working, or nothing setup created stays held and the hook error is the one thrown | \`plugin.test.ts\` "keeps the prompt hook and disposes cleanly when tool registration fails", "releases everything setup holds when the prompt hook fails to register" and "still releases the inspection client and keeps the hook error when command disposal fails"; each fails on reverted or pre-fix code (\`round1-revert.txt\`, \`round3-revert.txt\`, \`p2-hook-cleanup-before-fix.txt\`, \`p2-sync-dispose-before-fix.txt\`, \`p2-sync-hook-before-fix.txt\`) |`
+
+4. In the AC-007 row, replace `| \`scratch/suites-after/\`: sk-vision 50 to 65, typecheck exit 0, plugins 356 to 356, v2 files 50 to 50, battery exit 0 on both versions |` with `| \`scratch/suites-after/\`: sk-vision 50 to 65, typecheck exit 0, plugins 356 to 356, v2 files 50 to 50, battery exit 0 on both versions; after the round-4 fixes \`scratch/p2-after/\`: sk-vision 65 to 67, plugins 356, v2 bridge 39, battery exit 0 on both |`
+
+5. In the CLOSURE STATEMENT paragraph, after the sentence `Unit tests and a mutation stand in for it, as decision 6 records.` append ` Luna's four round-4 P2s were fixed afterwards, each with a test that fails on the pre-fix code, and round 7 passed with no findings.`
+
+FORMAT: Then run `grep -c "| Met |" specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/acceptance-criteria.md` and print its output verbatim, nothing else.

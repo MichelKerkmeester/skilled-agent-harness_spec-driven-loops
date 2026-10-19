@@ -1,0 +1,5 @@
+ROLE: You make one literal text edit in one Markdown file. Re-read it first. Change nothing else.
+
+ACTION: In `.skilled/skills/sk-vision/hooks/README.md`, replace the sentence `` `vision-runtime/dist/` and `opencode/sk-vision.js` are gitignored build artifacts. `` with `` `vision-runtime/dist/` is a gitignored build artifact, and OpenCode loads its `plugin.js`. The same build writes `opencode/sk-vision.js` beside its tracked `.ts` source; it is generated, so never commit it. `` Keep the rest of that paragraph unchanged.
+
+FORMAT: Then run `grep -n "never commit it" .skilled/skills/sk-vision/hooks/README.md` and print its output verbatim, nothing else.

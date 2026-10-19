@@ -60,8 +60,13 @@ contextType: "general"
 - [x] T013 Run each new test against the old or reverted code (`scratch/mutation/`) (orchestrator) Done: old code 3 fail, grace mutation 4 fail, round 1 revert 2 fail, round 2 revert 1 fail, round 3 revert 2 fail.
 - [x] T014 Rerun every baseline suite from the final tree (`scratch/suites-after/`) (orchestrator) Done: sk-vision 65 pass, typecheck exit 0, plugins 356 pass, v2 files 50 pass, battery exit 0 on both versions.
 - [x] T015 Live run on a private OpenCode 2.0.32 server from the final bundle, inspection off then on (`scratch/proof/final-off/`, `scratch/proof/final-on/`) (orchestrator) Done: off lists 0 of 65 tools as `sk_vision_*`, on lists 13 of 78, and `sk_vision_status` returned the runtime status, exit 0.
-- [x] T016 Luna review until it passes (`scratch/luna-1.txt` to `scratch/luna-4.txt`) (Luna) Done: rounds 1 to 3 FAIL on P2s, all fixed. Round 4 PASS with four P2s, recorded.
+- [x] T016 Luna review until it passes (`scratch/luna-1.txt` to `scratch/luna-4.txt`) (Luna) Done: rounds 1 to 3 FAIL on P2s, all fixed. Round 4 PASS with four P2s, fixed in T018.
 - [x] T017 Reconcile the parent and phases 011 and 012, then run recursive strict validation (orchestrator) Done: see the implementation summary.
+- [x] T018 Fix Luna's round-4 P2s: `close()` aborts the interpreter probes and a closed client stops before it creates the venv; a rejected prompt hook releases the command registration and the client; the "inspection off" test runs the real `setup`; `hooks/README.md` section 4 no longer calls the hook bundle gitignored (`client.ts`, `plugin.ts`, tests, `hooks/README.md`) (DeepSeek, `scratch/briefs/p2-01.task` to `p2-05.task`) Done.
+- [x] T019 Fix Luna's rounds 5 and 6: stop right after the venv `mkdir` once closed, and release both resources even when a dispose or the hook throws synchronously (`client.ts`, `plugin.ts`, `plugin.test.ts`) (DeepSeek, `p2-06.task` to `p2-11.task`) Done.
+- [x] T020 Run each new or changed test against the pre-fix code (`scratch/mutation/p2-*.txt`) (orchestrator) Done: the probe test fails before the fix and with the two guards removed, the hook-failure test fails before the fix, the "inspection off" test fails with the gate broken, and the disposal test fails before each round-6 fix.
+- [x] T021 Rerun every suite from the final tree (`scratch/p2-before/`, `scratch/p2-after/`) (orchestrator) Done: sk-vision 65 to 67 pass, typecheck exit 0, plugins 356 to 356, v2 bridge 39 to 39, battery exit 0 on both versions, shared service start time unchanged.
+- [x] T022 Luna review of the round-4 fixes until it passes (`scratch/luna-5.txt` to `scratch/luna-7.txt`) (Luna) Done: rounds 5 and 6 FAIL on P2s, all fixed with a test or recorded. Round 7 PASS with no findings.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -114,8 +119,8 @@ contextType: "general"
 
 - [x] CHK-010 [P0] Code passes lint/format checks. Evidence: `tsc --noEmit` exit 0 (`scratch/suites-after/skvision-typecheck.txt`).
 - [x] CHK-011 [P0] No console errors or warnings. Evidence: a failed registration writes to stderr only under `SK_VISION_DEBUG=1`.
-- [x] CHK-012 [P1] Error handling implemented. Evidence: the fail-open and prompt-hook rejection tests.
-- [x] CHK-013 [P1] Code follows project patterns. Evidence: Luna round 4, the comment scan found no spec paths or ids.
+- [x] CHK-012 [P1] Error handling implemented. Evidence: the fail-open, prompt-hook rejection and disposal-failure tests.
+- [x] CHK-013 [P1] Code follows project patterns. Evidence: Luna round 7, the comment scan found no spec paths or ids.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -125,8 +130,8 @@ contextType: "general"
 
 - [x] CHK-020 [P0] All acceptance criteria met. Evidence: acceptance-criteria.md.
 - [x] CHK-021 [P0] Manual testing complete. Evidence: T015.
-- [x] CHK-022 [P1] Edge cases tested. Evidence: the missing `ctx.tool`, object result and SIGTERM-ignoring step tests.
-- [x] CHK-023 [P1] Error scenarios validated. Evidence: the rejected `transform`, rejected prompt hook and failed `session.get` tests.
+- [x] CHK-022 [P1] Edge cases tested. Evidence: the missing `ctx.tool`, object result, SIGTERM-ignoring step and probe-during-close tests.
+- [x] CHK-023 [P1] Error scenarios validated. Evidence: the rejected `transform`, rejected prompt hook, throwing dispose and failed `session.get` tests.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -160,7 +165,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. Evidence: this file.
 - [x] CHK-041 [P1] Code comments adequate. Evidence: the `createSetup` and `close()` comments, and the two corrected bundle comments.
-- [x] CHK-042 [P2] README updated. Evidence: `.opencode/plugins/README.md`, the tools sentence.
+- [x] CHK-042 [P2] README updated. Evidence: `.opencode/plugins/README.md`, the tools sentence, and `hooks/README.md` section 4.
 <!-- /ANCHOR:docs -->
 
 ---

@@ -721,7 +721,7 @@ Spec Folder Validation v3.0.0
 + AC_CLOSURE: AC_CLOSURE: 7/7 criteria met, waived or superseded; packet is closeable
 + TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
 + AI_PROTOCOLS: AI protocol check not applicable for Level 2
-+ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=46, stories=0, scenarios=0)
++ COMPLEXITY_MATCH: Complexity level consistent with content (Level 2; phases=3, tasks=51, stories=0, scenarios=0)
 + FOLDER_NAMING: Folder name '013-sk-vision-v2-tools-and-loose-ends' follows naming convention
 + FRONTMATTER_VALUES: Frontmatter values are in the shared list
 + SOURCE_TAGS: No [SOURCE:] path:line citations in research or review artifacts

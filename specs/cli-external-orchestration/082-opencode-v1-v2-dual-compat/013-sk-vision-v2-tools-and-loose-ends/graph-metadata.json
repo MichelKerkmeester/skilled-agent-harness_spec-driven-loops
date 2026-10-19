@@ -40,6 +40,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "hooks/README.md",
       ".skilled/skills/sk-vision/vision-runtime/src/opencode/tools.ts",
       ".skilled/skills/sk-vision/vision-runtime/src/opencode/tools.test.ts",
       ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
@@ -50,11 +51,10 @@
       ".skilled/skills/sk-vision/hooks/opencode/sk-vision.ts",
       ".skilled/skills/sk-vision/vision-runtime/dist/plugin.js",
       ".opencode/plugins/README.md",
+      ".skilled/skills/sk-vision/hooks/README.md",
       "scratch/suites-after/battery-v1.txt",
       "scratch/luna-1.txt",
-      "scratch/luna-4.txt",
-      "hooks/README.md",
-      ".opencode/plugins/tests/v2-hard-plugins.test.cjs"
+      "scratch/luna-4.txt"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/README.md",
         "source": "derived"
       },
       {
@@ -142,12 +148,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/README.md",
-        "source": "derived"
-      },
-      {
         "name": "battery-v1.txt",
         "kind": "file",
         "path": "scratch/suites-after/battery-v1.txt",
@@ -163,12 +163,6 @@
         "name": "luna-4.txt",
         "kind": "file",
         "path": "scratch/luna-4.txt",
-        "source": "derived"
-      },
-      {
-        "name": "v2-hard-plugins.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/v2-hard-plugins.test.cjs",
         "source": "derived"
       },
       {
@@ -200,11 +194,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "On OpenCode 1, sk-vision's `server` entry returns the 13 `skvision` tools when `SKVISIONAUTOINSPECT=1`",
     "created_at": "2026-10-19T14:32:56Z",
-    "last_save_at": "2026-10-19T15:28:33.940Z",
+    "last_save_at": "2026-10-19T17:12:37.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9db67f77e9af059055c88621ef04e4a8bb51eddfd64ec16c753bcbb33f172f20",
+    "source_fingerprint": "sha256:296030b2c6e36af579410ffd01f1bd988f9c020f7210af3d092093a37113b2b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f077c48d85b7ea96f712b5b1f2a1711387543ee5ec71b56fb183cae5a424b9b9",
+      "spec.md": "52e9235e5f099a39b762bfe06cd35d1edeea86414ca37a42dd090ceca8f77567",
       "plan.md": "8bf272ae0660418b4c223b3998a3f277038c368f2d40ccb98450003046560d33",
-      "tasks.md": "8122b931741154541a40673e3855c3f962ca185950e0e32f4f1da0691e75c9af",
-      "implementation-summary.md": "2f4a378a735a493a4075f3f5c18ff5f15639bae112d981b4c8aca73f8df758c8"
+      "tasks.md": "ef21f6f534c6a8b108bf5f9d5f5c4686178594c084224584de73d4be1c09394d",
+      "implementation-summary.md": "96d307242685a8e0730a222a8733d0d46e4c9e3579d374c04e1f22a1c9759f19"
     },
     "last_active_at": null
   }

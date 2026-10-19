@@ -1,0 +1,23 @@
+# Mutation: abort kept, the two ensurePython closed-guards removed
+bun test v1.3.9 (cf6cdbbb)
+
+src/runtime/client.test.ts:
+202 |         } catch {
+203 |           alive = false;
+204 |         }
+205 |       }
+206 |       expect(alive).toBe(false);
+207 |       expect(existsSync(venv)).toBe(false);
+                                     ^
+error: expect(received).toBe(expected)
+
+Expected: false
+Received: true
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts:207:32)
+(fail) RuntimeClient close > kills an interpreter probe still running and stops before creating the venv [132.75ms]
+
+ 3 pass
+ 1 fail
+ 9 expect() calls
+Ran 4 tests across 1 file. [2.79s]

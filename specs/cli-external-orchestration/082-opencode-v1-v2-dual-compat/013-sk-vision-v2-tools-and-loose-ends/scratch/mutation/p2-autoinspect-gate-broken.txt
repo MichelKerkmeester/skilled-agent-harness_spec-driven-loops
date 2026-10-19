@@ -1,0 +1,41 @@
+# Mutation: createDefaultAutoInspect gate broken (ignores SK_VISION_AUTOINSPECT)
+bun test v1.3.9 (cf6cdbbb)
+
+src/plugin.test.ts:
+618 |     const saved = process.env.SK_VISION_AUTOINSPECT;
+619 |     delete process.env.SK_VISION_AUTOINSPECT;
+620 |     const fake = withToolEditor(makeContext().ctx);
+621 |     try {
+622 |       const dispose = await plugin.setup(fake.ctx);
+623 |       expect(fake.added).toEqual([]);
+                               ^
+error: expect(received).toEqual(expected)
+
+- []
++ [
++   "sk_vision_inspect",
++   "sk_vision_detect",
++   "sk_vision_point",
++   "sk_vision_ocr",
++   "sk_vision_status",
++   "sk_vision_segment",
++   "sk_vision_metadata",
++   "sk_vision_crop",
++   "sk_vision_zoom",
++   "sk_vision_colors",
++   "sk_vision_diff",
++   "sk_vision_annotate",
++   "sk_vision_reverse",
++ ]
+
+- Expected  - 1
++ Received  + 15
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:623:26)
+(fail) v2 tool registration > adds no tools when automatic inspection is off [9.09ms]
+
+ 0 pass
+ 28 filtered out
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [34.00ms]

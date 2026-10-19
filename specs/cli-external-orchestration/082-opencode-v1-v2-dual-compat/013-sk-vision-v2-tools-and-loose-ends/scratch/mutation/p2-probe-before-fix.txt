@@ -1,0 +1,18 @@
+bun test v1.3.9 (cf6cdbbb)
+
+src/runtime/client.test.ts:
+189 |       const pid = Number(readFileSync(pidFile, "utf8").trim());
+190 | 
+191 |       await client.close();
+192 |       await Promise.race([
+193 |         client.ready,
+194 |         new Promise((_, reject) => setTimeout(() => reject(new Error("ready did not settle")), 2_000)),
+                                                                     ^
+error: ready did not settle
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts:194:64)
+(fail) RuntimeClient close > kills an interpreter probe still running and stops before creating the venv [2132.64ms]
+
+ 3 pass
+ 1 fail
+ 7 expect() calls
+Ran 4 tests across 1 file. [4.72s]

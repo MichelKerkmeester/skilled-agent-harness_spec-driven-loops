@@ -1,0 +1,35 @@
+ROLE: You make literal edits to one Markdown file. Re-read it first. Make exactly these edits and nothing else.
+
+FILE: `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md`
+
+ACTION:
+
+1. In the frontmatter, replace the line `    recent_action: "Registered the sk-vision tools on OpenCode 2 and closed phase 012's loose ends"` with `    recent_action: "Fixed Luna's four round-4 P2s; round 7 passed"`.
+
+2. Directly after the paragraph that starts with `` `RuntimeClient.close()` now stops a startup still in progress. `` (and before the blank line and `### Files Changed`), insert one blank line and then this paragraph:
+
+Luna's four round-4 P2s are fixed. `close()` also aborts the 5-second interpreter probes, and a closed client stops before it probes again, creates the venv or provisions. When the prompt hook fails to register, `setup` releases the command registration and the inspection client, even if a dispose throws, and rethrows the hook error. The "inspection off" test runs the real `setup` with `SK_VISION_AUTOINSPECT` unset, and `hooks/README.md` no longer calls the hook bundle gitignored.
+
+3. In the Files Changed table, replace `| Tool registration in \`createSetup\` |` with `| Tool registration in \`createSetup\`, and cleanup when the prompt hook fails |`, replace `| Four registration and two grace tests |` with `| Five registration and two grace tests |`, replace `| \`close()\` stops provisioning |` with `| \`close()\` stops provisioning and the interpreter probes |`, and replace `| Three close-during-startup tests |` with `| Four close-during-startup tests |`.
+
+4. In the Files Changed table, directly after the row that starts with `| \`.opencode/plugins/README.md\` |`, insert this row:
+
+| `.skilled/skills/sk-vision/hooks/README.md` | Modified | Section 4 says the build writes the hook bundle beside its source and it must not be committed |
+
+5. In the Key Decisions table, replace the whole row that starts with `| Luna's round-4 P2s are recorded, not fixed (decision 7) |` with:
+
+| Luna's round-4 P2s are fixed (decision 7) | The operator asked for the fixes. Each has a test that fails on the pre-fix code, and rounds 5 to 7 reviewed them |
+
+6. In the Verification table, directly after the row that starts with `| Luna review (\`scratch/luna-1.txt\` to \`scratch/luna-4.txt\`) |`, insert these three rows:
+
+| Suites after the round-4 fixes (`scratch/p2-before/`, `scratch/p2-after/`) | sk-vision 65 to 67 pass and 0 fail, typecheck exit 0, plugins 356 to 356, v2 bridge 39 to 39, battery exit 0 on both versions, shared service start time unchanged |
+| Round-4 fix tests against the pre-fix code (`scratch/mutation/p2-*.txt`) | Probe test: fails before the fix and with the guards removed. Hook-failure test: fails before the fix. "Inspection off": fails with the gate broken. Disposal test: fails before each round-6 fix |
+| Luna review of the round-4 fixes (`scratch/luna-5.txt` to `scratch/luna-7.txt`) | Rounds 5 and 6 FAIL on P2s, fixed. Round 7 PASS with no findings |
+
+7. In Known Limitations, replace items 2, 3, 4 and 5 (from the line that starts with `2. **Interpreter probes can outlive` through the line that starts with `5. **\`hooks/README.md\` calls`) with these three items:
+
+2. **A venv `mkdir` already in flight when `close()` runs can still create the empty directory.** The client stops right after it, so nothing installs or starts. The window cannot be timed in a unit test, so that guard has no test (Luna round 6).
+3. **The round-4 fixes have no live rerun.** The live final-off and final-on runs predate them. Unit tests and the mutation runs cover them.
+4. **`hooks/opencode/sk-vision.js` is still untracked here.** On this branch no ignore rule covers it, so stage files by name. The `.gitignore` change is commit `033dc36e97` on another branch.
+
+FORMAT: Then run `grep -n "^[0-9]\. \*\*" specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md` and print its output verbatim, nothing else.

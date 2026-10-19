@@ -1,0 +1,23 @@
+ROLE: Read-only reviewer. Do not edit any file.
+
+CONTEXT: This is round 5 of the sk-vision OpenCode 2 review. Round 4 passed with four P2s. The uncommitted diff (`git diff`) under `.skilled/skills/sk-vision/` fixes them:
+(a) `vision-runtime/src/runtime/client.ts`: `close()` now aborts an AbortController whose signal is passed to both 5-second interpreter probes (`hasMoondream`, `hasUv`), and `ensurePython()` throws SHUTDOWN after each moondream probe once closed, so a closed client neither probes again nor creates the venv directory.
+(b) `vision-runtime/src/plugin.ts`: when `ctx.session.hook('prompt', ...)` rejects, setup now disposes the command registration and the automatic-inspection client, then rethrows.
+(c) `vision-runtime/src/plugin.test.ts`: the "inspection off" test now runs the real default `setup` with `SK_VISION_AUTOINSPECT` unset, so it exercises the gate in `createDefaultAutoInspect`.
+(d) `hooks/README.md` §4 no longer calls `opencode/sk-vision.js` gitignored; it says the build writes it beside the tracked `.ts` source and it must never be committed.
+
+Evidence, in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/scratch/mutation/`:
+- `p2-probe-before-fix.txt`: the new client test against the pre-fix client.ts.
+- `p2-probe-guards-removed.txt`: the same test with the abort kept but the two guards removed.
+- `p2-hook-cleanup-before-fix.txt`: the changed hook-failure test against the pre-fix plugin.ts.
+- `p2-autoinspect-gate-broken.txt`: the inspection-off test against a plugin.ts whose gate ignores the variable.
+
+ACTION: Check:
+1. Whether a closed client can still spawn, probe, provision or create the venv, and whether `ready` still settles without an error toast.
+2. Whether the hook-failure path now releases everything and still rethrows the original error.
+3. Whether each new or changed test fails for a real reason, as the mutation files show.
+4. Whether the README sentence is true on this branch: `git check-ignore -v` on `vision-runtime/dist/plugin.js` and `hooks/opencode/sk-vision.js`, and what the plugin symlinks target.
+5. Comment hygiene: no spec paths, phase numbers or ids in code comments.
+6. That nothing new was introduced.
+
+FORMAT: First line `VERDICT: PASS` or `VERDICT: FAIL`. Then findings, each with P0/P1/P2, file:line and evidence. Under 300 words. Your sandbox is read-only, so do not count failures to write temp files or run the typecheck.

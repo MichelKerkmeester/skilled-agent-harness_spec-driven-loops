@@ -1,0 +1,27 @@
+ROLE: You make literal edits to one Markdown file. Re-read it first. Make exactly these edits and nothing else.
+
+FILE: `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/tasks.md`
+
+ACTION:
+
+1. In the T016 line, replace `Round 4 PASS with four P2s, recorded.` with `Round 4 PASS with four P2s, fixed in T018.`
+
+2. Directly after the line that starts with `- [x] T017 `, insert these five lines:
+
+- [x] T018 Fix Luna's round-4 P2s: `close()` aborts the interpreter probes and a closed client stops before it creates the venv; a rejected prompt hook releases the command registration and the client; the "inspection off" test runs the real `setup`; `hooks/README.md` section 4 no longer calls the hook bundle gitignored (`client.ts`, `plugin.ts`, tests, `hooks/README.md`) (DeepSeek, `scratch/briefs/p2-01.task` to `p2-05.task`) Done.
+- [x] T019 Fix Luna's rounds 5 and 6: stop right after the venv `mkdir` once closed, and release both resources even when a dispose or the hook throws synchronously (`client.ts`, `plugin.ts`, `plugin.test.ts`) (DeepSeek, `p2-06.task` to `p2-11.task`) Done.
+- [x] T020 Run each new or changed test against the pre-fix code (`scratch/mutation/p2-*.txt`) (orchestrator) Done: the probe test fails before the fix and with the two guards removed, the hook-failure test fails before the fix, the "inspection off" test fails with the gate broken, and the disposal test fails before each round-6 fix.
+- [x] T021 Rerun every suite from the final tree (`scratch/p2-before/`, `scratch/p2-after/`) (orchestrator) Done: sk-vision 65 to 67 pass, typecheck exit 0, plugins 356 to 356, v2 bridge 39 to 39, battery exit 0 on both versions, shared service start time unchanged.
+- [x] T022 Luna review of the round-4 fixes until it passes (`scratch/luna-5.txt` to `scratch/luna-7.txt`) (Luna) Done: rounds 5 and 6 FAIL on P2s, all fixed with a test or recorded. Round 7 PASS with no findings.
+
+3. In the CHK-012 line, replace `Evidence: the fail-open and prompt-hook rejection tests.` with `Evidence: the fail-open, prompt-hook rejection and disposal-failure tests.`
+
+4. In the CHK-013 line, replace `Evidence: Luna round 4, the comment scan found no spec paths or ids.` with `Evidence: Luna round 7, the comment scan found no spec paths or ids.`
+
+5. In the CHK-022 line, replace `the missing \`ctx.tool\`, object result and SIGTERM-ignoring step tests.` with `the missing \`ctx.tool\`, object result, SIGTERM-ignoring step and probe-during-close tests.`
+
+6. In the CHK-023 line, replace `the rejected \`transform\`, rejected prompt hook and failed \`session.get\` tests.` with `the rejected \`transform\`, rejected prompt hook, throwing dispose and failed \`session.get\` tests.`
+
+7. In the CHK-042 line, replace `Evidence: \`.opencode/plugins/README.md\`, the tools sentence.` with `Evidence: \`.opencode/plugins/README.md\`, the tools sentence, and \`hooks/README.md\` section 4.`
+
+FORMAT: Then run `grep -c "^- \[x\] T0" specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/tasks.md` and print its output verbatim, nothing else.

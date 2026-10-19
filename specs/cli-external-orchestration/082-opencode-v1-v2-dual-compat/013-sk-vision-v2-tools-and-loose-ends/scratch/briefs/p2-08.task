@@ -1,0 +1,15 @@
+ROLE: You make one literal edit to one TypeScript test file. Re-read it first. Make exactly this edit and nothing else.
+
+ACTION: In `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts`, inside the test `  it("still releases the inspection client and keeps the hook error when command disposal fails", async () => {`, replace these three lines:
+
+            dispose: async () => {
+              throw new Error("command dispose failed");
+            },
+
+with these three lines:
+
+            dispose: () => {
+              throw new Error("command dispose failed");
+            },
+
+FORMAT: Then run `cd .skilled/skills/sk-vision/vision-runtime && bunx tsc --noEmit; echo typecheck-exit=$?; bun test src/plugin.test.ts 2>&1 | tail -6` and print the output verbatim, nothing else.

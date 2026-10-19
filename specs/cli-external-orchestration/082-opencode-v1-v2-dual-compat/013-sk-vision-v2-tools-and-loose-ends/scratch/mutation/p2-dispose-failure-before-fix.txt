@@ -1,0 +1,24 @@
+# New disposal-failure test against the round-5 plugin.ts (sequential dispose, no allSettled)
+bun test v1.3.9 (cf6cdbbb)
+[sk-vision] prompt hook failed: null
+
+src/plugin.test.ts:
+722 |           dispose: async () => {
+723 |             autoDisposed += 1;
+724 |           },
+725 |         }),
+726 |       })(ctx),
+727 |     ).rejects.toThrow("prompt hook unavailable");
+                    ^
+error: expect(received).toThrow(expected)
+
+Expected substring: "prompt hook unavailable"
+Received message: "command dispose failed"
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts:727:15)
+(fail) v2 tool registration > still releases the inspection client and keeps the hook error when command disposal fails [0.24ms]
+
+ 29 pass
+ 1 fail
+ 65 expect() calls
+Ran 30 tests across 1 file. [29.00ms]

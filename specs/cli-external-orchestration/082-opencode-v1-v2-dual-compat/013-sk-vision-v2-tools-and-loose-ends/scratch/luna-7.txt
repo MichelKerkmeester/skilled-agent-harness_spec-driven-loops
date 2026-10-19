@@ -1,0 +1,10 @@
+VERDICT: PASS
+
+Findings: none.
+
+- [plugin.ts:389](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/143-opencode-dual-compat-build/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:389) defers the hook call; lines 438–442 clean up both resources and rethrow the original error. The async callbacks make synchronous `dispose()` throws settled rejections.
+- Registration order remains command → prompt hook → tools. Deferral adds one microtask, so concurrently queued work could run in that gap; callers awaiting setup still receive completion after registration.
+- The two focused cleanup tests passed (2/2). `git diff --check` exited 0. The broader test run had 28 passes and 6 `EPERM` failures creating temp directories in the read-only sandbox. Comment review found no spec paths, phase numbers, or IDs.
+- Untracked generated `hooks/opencode/sk-vision.js` is outside `git diff`; the README says not to commit it. This review made no edits.
+
+Review status: APPROVED

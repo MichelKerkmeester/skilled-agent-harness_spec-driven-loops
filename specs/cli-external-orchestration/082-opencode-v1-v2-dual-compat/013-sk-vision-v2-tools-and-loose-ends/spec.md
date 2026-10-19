@@ -37,7 +37,7 @@ contextType: "general"
 
 This is **Phase 13** of the OpenCode v1 and v2 dual compatibility packet. It closes the open items phase 012 recorded: limitations 1, 3 and 4 in its implementation summary, and the stale bundle comment.
 
-**Scope Boundary**: The sk-vision runtime source (`vision-runtime/src/plugin.ts`, `src/opencode/tools.ts` and `src/runtime/client.ts`) and their tests, two source comments, one sentence in the plugin README, and this packet's records.
+**Scope Boundary**: The sk-vision runtime source (`vision-runtime/src/plugin.ts`, `src/opencode/tools.ts` and `src/runtime/client.ts`) and their tests, two source comments, one sentence each in the plugin and hooks READMEs, and this packet's records.
 
 **Dependencies**:
 - Phase 12 gave sk-vision's OpenCode 2 `setup` entry the automatic-inspection gate this phase reuses.
@@ -95,10 +95,11 @@ OpenCode 2 gets the same tools as OpenCode 1 under the same gate. The grace path
 | `.skilled/skills/sk-vision/vision-runtime/src/plugin.test.ts` | Modify | Tool registration and grace tests |
 | `.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.test.ts` | Modify | Two `evidenceText` grace tests |
 | `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts` | Modify | `close()` stops provisioning |
-| `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts` | Create | Three close-during-startup tests |
+| `.skilled/skills/sk-vision/vision-runtime/src/runtime/client.test.ts` | Create | Four close-during-startup tests |
 | `.skilled/skills/sk-vision/hooks/opencode/sk-vision.ts`, `vision-runtime/scripts/build.ts` | Modify | The bundle comments |
 | `.skilled/skills/sk-vision/vision-runtime/dist/plugin.js` | Build output | Rebuilt by `bun run build`. The folder is gitignored |
 | `.opencode/plugins/README.md` | Modify | The tools sentence |
+| `.skilled/skills/sk-vision/hooks/README.md` | Modify | Section 4, the hook-bundle sentence |
 <!-- /ANCHOR:scope -->
 
 ---
