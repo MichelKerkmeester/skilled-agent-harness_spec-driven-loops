@@ -168,6 +168,25 @@ test('context-nudge fires at threshold once and again at threshold plus 0.05', a
   assert.match(nextOutput.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'codex'/);
 });
 
+test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  const transcriptPath = writeRollout(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...USER_PROMPT_SUBMIT,
+    hook_event_name: 'PostToolUse',
+    prompt: undefined,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    spec_folder: 'specs/hooks/001-session-relaunch',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
+});
+
 test('context-nudge emits nothing while this session already has a prepared handoff', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';

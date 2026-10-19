@@ -1,0 +1,14 @@
+$ node -e "import('./.opencode/plugins/session-relaunch.js').then(()=>console.log('ok'))"
+ok
+rc=0
+
+$ pi --offline --approve -p "list your available tools" </dev/null   (pi 1.3.0)
+{"timestamp":"2026-10-19T16:48:25.837Z","runtime":"pi","status":"skipped","freshness":"live","durationMs":1603,"cacheHit":false,"errorDetails":"CLI_ADVISOR_NO_MATCH","emittedBytes":244,"directivesSuppressed":false}
+The tools available to me here are:
+
+- **Files and terminal:** `read`, `bash`, `edit`, `edit_lines`, `write`
+- **Orchestration:** `codemode`, `multi_tool_use.parallel`
+- **Image analysis:** `sk_vision_inspect`, `sk_vision_detect`, `sk_vision_point`, `sk_vision_ocr`, `sk_vision_status`
+- **Image editing and inspection:** `sk_vision_segment`, `sk_vision_metadata`, `sk_vision_crop`, `sk_vision_zoom`, `sk_vision_colors`
+- **Image comparison and search:** `sk_vision_diff`, `sk_vision_reverse`, `sk_vision_annotate`
+rc=0

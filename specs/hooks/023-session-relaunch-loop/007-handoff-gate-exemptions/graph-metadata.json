@@ -53,9 +53,8 @@
       "runtime/hooks/lib/spec-gate/README.md",
       "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-pi10-pane.txt",
       "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
-      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113443Z-6f63a2a7.md",
-      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113650Z-01a153f1.md",
-      ".skilled/skills/.state/session-relaunch/handoffs/20261019T113449Z-ses_eac0.md"
+      "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-claude10-pane.txt",
+      "benchmark/reports/README.md"
     ],
     "entities": [
       {
@@ -137,21 +136,9 @@
         "source": "derived"
       },
       {
-        "name": "20261019T113443Z-6f63a2a7.md",
-        "kind": "doc",
-        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113443Z-6f63a2a7.md",
-        "source": "derived"
-      },
-      {
-        "name": "20261019T113650Z-01a153f1.md",
-        "kind": "doc",
-        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113650Z-01a153f1.md",
-        "source": "derived"
-      },
-      {
-        "name": "20261019T113449Z-ses_eac0.md",
-        "kind": "doc",
-        "path": ".skilled/skills/.state/session-relaunch/handoffs/20261019T113449Z-ses_eac0.md",
+        "name": "sr-claude10-pane.txt",
+        "kind": "file",
+        "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-claude10-pane.txt",
         "source": "derived"
       },
       {
@@ -201,11 +188,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A session that has no Gate 3 answer and reaches its context limit hands off by writing a note under `.skilled/skills/.state/`",
     "created_at": "2026-10-19T11:28:53Z",
-    "last_save_at": "2026-10-19T12:03:50.761Z",
+    "last_save_at": "2026-10-19T16:54:55.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2db10690b23f67d156805ed9a60ccbc3940c79c030ab16d6affb2b9d47f6537e",
+    "source_fingerprint": "sha256:ce498362bc704ef1a17bd18ba43c9fefdd3e0b6847e8781ea05fc9eeec7e4573",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6bdfbe74a9de3068f6c137a3fb76caf2c7c00bf92dde973a4dbf5c6828fa2861",
       "plan.md": "8c1a61cb50b087c807c7b9bd85712e9bb74e4543cc10f1c07e0ba8b02bb89e9c",
       "tasks.md": "3550387677ee981b16302736885173c8a53fcd2e2d388fbdcfc8f584f9cff46f",
-      "implementation-summary.md": "d269910cec7e35bbd912bc72059e75bdec5c3ffd0dd0d4a74c6d0bb40f127fce"
+      "implementation-summary.md": "7a76cc28a9eab350ab739ef40b1f4b9382682c4fda54e743e877def357c8f9e8"
     },
     "last_active_at": null
   }

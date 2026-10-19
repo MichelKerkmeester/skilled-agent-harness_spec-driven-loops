@@ -30,7 +30,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 | Invocation | Effect | Exit |
 |---|---|---|
-| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` not under `skilled-loop` |
+| `prepare --handoff <path> --session <id> [--runtime <name>]` | Validate the note and write the pending relaunch record | `0` prepared (pending until an automatic arm event, or manual on command-only runtimes), `2` refused (reason on stderr, including a runtime conflict), `3` no automatic hop: not under `skilled-loop`, or the hop limit is reached |
 | `claim <path> --session <id>` | Move the note `open -> claimed` and print its body | `0` ok, `2` refused |
 | `complete <path>` | Move the note `claimed -> done` | `0` ok, `2` refused |
 
@@ -104,7 +104,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
 - `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
-- `3`: not running under `skilled-loop`. The CLI prints the command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
+- `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
 
 | Runtime | Printed command |
 |---|---|

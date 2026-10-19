@@ -1,0 +1,132 @@
+{
+  "topic": "Review: specs/hooks/023-session-relaunch-loop",
+  "sessionId": "fanout-deepseek-1792421295628-xsy88n",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks/023-session-relaunch-loop",
+  "createdAt": "2026-10-19T15:06:29Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "autonomous",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/hooks/023-session-relaunch-loop",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+    ".skilled/hooks/session-relaunch/lib/killer.cjs",
+    ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+    ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+    ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+    ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+    ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+    ".skilled/hooks/session-relaunch/codex/shared.mjs",
+    ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+    ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+    ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+    ".skilled/hooks/session-relaunch/hermes/context-nudge.mjs",
+    ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+    ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+    ".opencode/plugins/session-relaunch.js",
+    ".skilled/bin/skilled-loop",
+    ".skilled/commands/speckit/handoff.md",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+    ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+    ".hermes/plugins/repo-guards/__init__.py",
+    ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+    ".claude/settings.json",
+    ".codex/hooks.json",
+    "opencode.json",
+    "AGENTS.md",
+    ".skilled/hooks/session-relaunch/README.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+    "specs/hooks/023-session-relaunch-loop/spec.md",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/spec.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/spec.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/spec.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/acceptance-criteria.md"
+  ],
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

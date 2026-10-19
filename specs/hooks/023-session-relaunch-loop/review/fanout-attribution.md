@@ -4,5 +4,5 @@ Loop type: **review**  |  Lineage count: **2**
 
 | Label | Kind | Model | Iterations | Convergence | Salvaged | Verdict |
 |-------|------|-------|-----------|-------------|----------|---------|
-| luna | cli-codex | gpt-6-luna | 3 | 0 | 0 | PASS |
-| swe | cli-devin | swe-2-max | 3 | 0 | 0 | PASS |
+| deepseek | cli-opencode | llmgateway/deepseek-v4.1-flash | 5 | 0.4 | 0 | CONDITIONAL |
+| luna | cli-codex | gpt-6-luna | 5 | 0.75 | 0 | CONDITIONAL |

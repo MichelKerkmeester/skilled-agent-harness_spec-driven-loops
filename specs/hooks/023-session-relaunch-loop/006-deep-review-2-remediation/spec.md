@@ -37,10 +37,10 @@ contextType: "general"
 
 This is **Phase 6** of the Session relaunch loop specification.
 
-**Scope Boundary**: The twelve confirmed P2 findings in `../review/review-report.md` and its verification table (`/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95d7f40/scratchpad/rv2/verification.md`). R1-P2-003 is disproved and out of scope. Three findings are duplicates and fold into their primaries: LUNA-005 into R3-P2-001, R2-P2-001 into LUNA-003, and R3-P2-002 into LUNA-004. No new runtime, trigger or live feature.
+**Scope Boundary**: The twelve confirmed P2 findings in `../review-archive/20261019T144809Z/review-report.md` and its verification table (`evidence/review-2-verification.md`). R1-P2-003 is disproved and out of scope. Three findings are duplicates and fold into their primaries: LUNA-005 into R3-P2-001, R2-P2-001 into LUNA-003, and R3-P2-002 into LUNA-004. No new runtime, trigger or live feature.
 
 **Dependencies**:
-- `../review/review-report.md`, the round-2 fan-out deep review of phases 001 to 005.
+- `../review-archive/20261019T144809Z/review-report.md`, the round-2 fan-out deep review of phases 001 to 005.
 - `../005-deep-review-remediation/`, the round-1 remediation, whose closed code is the baseline this phase changes.
 - The parent `../spec.md`. A parallel worker landed the six-children count, the phase 005 and 006 scope bullets and the files rows; this phase closed the phase-map row and replaced the 006 files row with the real paths.
 

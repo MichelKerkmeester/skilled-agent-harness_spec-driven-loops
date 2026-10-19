@@ -1621,7 +1621,7 @@ test('killer reclaims a takeover mutex whose live owner outlived the hold bound'
   }
 });
 
-test('killer sweeps an old leftover takeover directory but keeps a fresh one', async (t) => {
+test('killer sweeps old takeover and stale-lock leftovers but keeps a fresh one', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
   const signalPath = path.join(sandbox.root, 'target-signal');
@@ -1640,8 +1640,13 @@ test('killer sweeps an old leftover takeover directory but keeps a fresh one', a
     fs.writeFileSync(path.join(leftover, 'owner'), `${deadOwner.pid}\n`);
     fs.writeFileSync(path.join(leftover, 'stray'), 'leftover');
   }
+  // A crash inside the non-file lock removal strands a plain .stale- directory.
+  const oldLockLeftover = `${lockPath(sandbox, loopId)}.stale-333333`;
+  fs.mkdirSync(oldLockLeftover);
+  fs.writeFileSync(path.join(oldLockLeftover, 'stray'), 'leftover');
   const oldStamp = new Date(Date.now() - 60000);
   fs.utimesSync(oldLeftover, oldStamp, oldStamp);
+  fs.utimesSync(oldLockLeftover, oldStamp, oldStamp);
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
   try {
     const result = await waitForExit(killer, 2000);
@@ -1649,6 +1654,7 @@ test('killer sweeps an old leftover takeover directory but keeps a fresh one', a
     assert.equal(result.code, 0);
     assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
     assert.equal(fs.existsSync(oldLeftover), false);
+    assert.equal(fs.existsSync(oldLockLeftover), false);
     assert.equal(fs.existsSync(freshLeftover), true);
     assert.match(readKillerLog(sandbox), /killer-lock-stale/);
   } finally {

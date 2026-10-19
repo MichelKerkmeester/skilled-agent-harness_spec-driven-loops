@@ -376,13 +376,40 @@ for (const [label, sessionId] of [
   });
 }
 
+test('supersedeClaimed completes an open note this session wrote but never prepared', (t) => {
+  const sandbox = createSandbox(t);
+  const directory = path.join(sandbox.repoRoot, 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const orphanPath = path.join(directory, 'orphan.md');
+  const newPath = path.join(directory, 'new.md');
+  fs.writeFileSync(orphanPath, handoffText());
+  fs.writeFileSync(newPath, handoffText());
+
+  assert.deepEqual(
+    supersedeClaimed(newPath, { sessionId: SESSION_ID, now: NOW }),
+    [orphanPath],
+  );
+  const completed = parseHandoff(readNote(orphanPath)).frontmatter;
+  assert.equal(completed.status, 'done');
+  assert.equal(completed.superseded_by, path.basename(newPath));
+  assert.equal(parseHandoff(readNote(newPath)).frontmatter.status, 'open');
+});
+
+test('claim and complete pin a permissive note to owner-only access', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  fs.chmodSync(handoffPath, 0o644);
+  claimHandoff(handoffPath, { sessionId: SESSION_ID, now: NOW });
+  assert.equal(fs.statSync(handoffPath).mode & 0o777, 0o600);
+});
+
 test('supersedeClaimed leaves unrelated and malformed notes untouched', (t) => {
   const sandbox = createSandbox(t);
   const directory = path.join(sandbox.repoRoot, 'handoffs');
   fs.mkdirSync(directory, { recursive: true });
   const notes = [
     ['other-session.md', { status: 'claimed', claimedBy: 'session-other-00000002' }],
-    ['open.md', { status: 'open', claimedBy: SESSION_ID }],
+    ['open-other.md', { status: 'open', sessionId: 'session-other-00000002' }],
     ['done.md', { status: 'done', claimedBy: SESSION_ID }],
     ['new.md', { status: 'claimed', claimedBy: SESSION_ID }],
   ].map(([fileName, options]) => {
@@ -567,6 +594,18 @@ test('shouldRelaunch accepts an armed record at exactly ten minutes old', (t) =>
     { now: armedAt + 10 * 60 * 1000, maxHops: 10, maxAgeMin: 10 },
   );
   assert.deepEqual(result, { relaunch: true });
+});
+
+test('shouldRelaunch declines a record armed in the future as stale', (t) => {
+  createSandbox(t);
+  const armedAt = NOW.getTime();
+  assert.deepEqual(
+    shouldRelaunch(
+      { status: 'armed', armedAt, hops: 0 },
+      { now: armedAt - 1, maxHops: 10, maxAgeMin: 10 },
+    ),
+    { relaunch: false, reason: 'stale' },
+  );
 });
 
 test('shouldRelaunch declines an armed record one millisecond beyond ten minutes', (t) => {

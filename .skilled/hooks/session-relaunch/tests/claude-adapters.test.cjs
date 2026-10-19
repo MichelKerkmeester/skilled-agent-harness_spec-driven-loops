@@ -143,6 +143,23 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   assert.match(nextOutput.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'claude'/);
 });
 
+test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
+  const sandbox = createSandbox(t);
+  sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
+  sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
+  const transcriptPath = writeTranscript(sandbox, 800);
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    spec_folder: 'specs/hooks/001-session-relaunch',
+  });
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
+  assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
+});
+
 test('context-nudge emits nothing below the configured threshold', async (t) => {
   const sandbox = createSandbox(t);
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';

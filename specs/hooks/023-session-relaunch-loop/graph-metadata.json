@@ -10,7 +10,8 @@
     "hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure",
     "hooks/023-session-relaunch-loop/005-deep-review-remediation",
     "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
-    "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions"
+    "hooks/023-session-relaunch-loop/007-handoff-gate-exemptions",
+    "hooks/023-session-relaunch-loop/008-review-3-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -46,6 +47,7 @@
       "spec.md",
       "goal.md",
       "review-archive/20261018T184826Z/review-report.md",
+      "review-archive/20261019T144809Z/review-report.md",
       "review/review-report.md",
       "001-claude-relaunch-loop/goal.md",
       "002-pi-opencode-adapters/goal.md",
@@ -53,7 +55,8 @@
       "004-integration-review-and-docs-closure/goal.md",
       "005-deep-review-remediation/goal.md",
       "006-deep-review-2-remediation/goal.md",
-      "007-handoff-gate-exemptions/goal.md"
+      "007-handoff-gate-exemptions/goal.md",
+      "008-review-3-remediation/goal.md"
     ],
     "entities": [
       {
@@ -149,17 +152,17 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-19T12:05:04.917Z",
+    "last_save_at": "2026-10-19T16:56:07.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:1280694d404bef845c86058d06530ab5fa7451be2e595b6878bb768ba26510fc",
+    "source_fingerprint": "sha256:9504cb9abc62a05cd8504092ac5e6f7090fff19e56088d69449e9903abfb1d5b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c81a362a728394827bda81ee3c21b31297dc3926bef7b9878e799df68730071a"
+      "spec.md": "43b05b92be8371b890c7bc7c8beb00381725a4b59d3b48a4341c33cd18be2753"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
     "last_active_at": "2026-10-19T10:05:59.074Z"

@@ -395,8 +395,16 @@ for (const invalidSpecFolder of [
   });
 }
 
-test('plannedNotePath resolves the repo root and stamps the session id', () => {
+test('plannedNotePath resolves the repo root and stamps the session id', (t) => {
   assert.strictEqual(typeof plannedNotePath, 'function');
+  // Planning creates the handoffs directory, so the relative root lands in a temp cwd.
+  const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-cwd-'));
+  const previousCwd = process.cwd();
+  process.chdir(scratch);
+  t.after(() => {
+    process.chdir(previousCwd);
+    fs.rmSync(scratch, { recursive: true, force: true });
+  });
   const now = new Date('2026-10-18T01:02:03.456Z');
   const resolved = plannedNotePath({
     cwd: '/unrelated/cwd',
@@ -469,6 +477,32 @@ test('plannedNotePath reuses the open note of the session for every later nudge'
 
   assert.equal(first, openNote);
   assert.equal(later, openNote);
+});
+
+test('plannedNotePath reuses the newest open note when the session holds two', (t) => {
+  const suffix = `${SESSION_ID.slice(0, 8)}.md`;
+  const { directory, env } = handoffFixture(t, {
+    [`20261017T000000Z-${suffix}`]: noteText(SESSION_ID, 'open'),
+    [`20261017T090000Z-${suffix}`]: noteText(SESSION_ID, 'open'),
+  });
+
+  assert.equal(
+    plannedNotePath({ sessionId: SESSION_ID, env, now: new Date('2026-10-18T01:02:03.456Z') }),
+    path.join(directory, `20261017T090000Z-${suffix}`),
+  );
+});
+
+test('plannedNotePath creates a private handoffs directory before naming a note in it', (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const planned = plannedNotePath({
+    sessionId: SESSION_ID,
+    env: { SESSION_RELAUNCH_REPO_ROOT: root },
+    now: new Date('2026-10-18T01:02:03.456Z'),
+  });
+  const directory = path.dirname(planned);
+  assert.equal(fs.statSync(directory).isDirectory(), true);
+  assert.equal(fs.statSync(directory).mode & 0o777, 0o700);
 });
 
 const SESSION_NOTE_NAME = `20261017T000000Z-${SESSION_ID.slice(0, 8)}.md`;

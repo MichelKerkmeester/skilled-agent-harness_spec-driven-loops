@@ -213,6 +213,18 @@ function handoffDir(repoRoot) {
   );
 }
 
+// The nudge hands the model a path, so the directory must exist before the model
+// writes there, and private because a note carries the session's working state.
+// A failure here must not cost the nudge itself; the model's write then fails visibly.
+function ensureHandoffDir(repoRoot) {
+  const directory = handoffDir(repoRoot);
+  try {
+    fs.mkdirSync(directory, { recursive: true, mode: 0o700 });
+    fs.chmodSync(directory, 0o700);
+  } catch {}
+  return directory;
+}
+
 // A second nudge must name the note the session already has open. Handing it a
 // fresh stamped path lets the first note be written and then abandoned as open
 // while the seed claims the second one, so the work the first one describes is lost.
@@ -226,8 +238,9 @@ function openNotePathFor({ repoRoot, sessionId }) {
     return null;
   }
 
+  // Note names start with a UTC stamp, so a reverse sort puts the newest note first.
   const suffix = `-${sessionId.slice(0, 8)}.md`;
-  for (const filename of filenames) {
+  for (const filename of filenames.sort().reverse()) {
     if (!filename.endsWith(suffix)) continue;
     const notePath = path.join(directory, filename);
     let frontmatter;
@@ -252,6 +265,7 @@ function plannedNotePath({
   now = new Date(),
 } = {}) {
   const repoRoot = resolveRepoRoot(env);
+  ensureHandoffDir(repoRoot);
   const openNotePath = openNotePathFor({ repoRoot, sessionId });
   if (openNotePath !== null) return openNotePath;
 

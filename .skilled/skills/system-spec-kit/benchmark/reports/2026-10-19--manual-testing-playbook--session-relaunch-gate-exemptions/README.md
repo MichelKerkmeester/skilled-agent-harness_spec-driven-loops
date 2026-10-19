@@ -41,11 +41,11 @@ Codex is not in this round. Its live result stays in the phase 006 folder, [`../
 
 | Runtime | Run | Verdict | Operator inputs | Evidence | Bytes | SHA-256 |
 |---|---|---|---|---|---|---|
-| claude | 10 (`loopId=75693`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
+| claude | 10 (`loopId=75693`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
 | | | | | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-claude10-pane.txt` | 1012 | `a5ce1c31d13ad0012aff8c12094559a7656f261f04291e7857f4c5fdab5238ba` |
-| pi | 10 (`loopId=75625`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
+| pi | 10 (`loopId=75625`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
 | | | | | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-pi10-pane.txt` | 92268 | `ea6bb7df97dbeb82a51544be3feabb6834826f5266c2dfe4737f31cdc6c941ad` |
-| opencode | 10 (`loopId=75633`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
+| opencode | 10 (`loopId=75633`) | PASS | None | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.txt` | 891 | `a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02` |
 | | | | | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-oc10-pane.txt` | 1096 | `ac04844635d60e58a451004faa20d375a362a380b726dcaefd7db956f446f9ec` |
 | all three | 10 | - | - | `specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt` | 766 | `102c3d8dbee787d1841824a596ec3fa22cc06a11bae43dceb3b79eea578ffc94` |
 

@@ -126,9 +126,10 @@ function updateFrontmatter(text, updates) {
   return replacement + text.slice(match[0].length);
 }
 
+// The model writes the note with its own tool and the default mode; every update
+// the loop makes re-pins it private, like the other relaunch files.
 function writeHandoffUpdate(filePath, text) {
-  const mode = fs.statSync(filePath).mode & 0o777;
-  atomicWriteFile(filePath, text, mode);
+  atomicWriteFile(filePath, text, 0o600);
 }
 
 function validLoopId(loopId) {
@@ -407,10 +408,13 @@ function shouldRelaunch(record, { now = Date.now(), maxHops = 10, maxAgeMin = 10
   const nowMs = parseTimestamp(now);
   const armedAtMs = parseTimestamp(record.armedAt);
   const ageLimitMs = Number(maxAgeMin) * 60 * 1000;
+  // A record armed in the future means the clock stepped back since it was
+  // written, so its age is unknown; stale is the safe reading, not fresh.
   if (
     !Number.isFinite(nowMs)
     || !Number.isFinite(armedAtMs)
     || !Number.isFinite(ageLimitMs)
+    || nowMs < armedAtMs
     || nowMs - armedAtMs > ageLimitMs
   ) {
     return { relaunch: false, reason: 'stale' };
@@ -477,7 +481,9 @@ function completeHandoff(filePath, { now } = {}) {
 }
 
 /**
- * Complete this session's claimed notes when a new handoff carries the work forward.
+ * Complete this session's earlier notes when a new handoff carries the work forward:
+ * the notes it claimed, and any note it wrote but never prepared, which would
+ * otherwise stay open with no session left to claim it.
  *
  * @param {string} handoffPath - New handoff note path.
  * @param {{sessionId: string, now?: Date|number|string}} options - Session and clock metadata.
@@ -504,10 +510,11 @@ function supersedeClaimed(handoffPath, { sessionId, now } = {}) {
     } catch {
       continue;
     }
-    if (
-      parsed.frontmatter.status !== 'claimed'
-      || parsed.frontmatter.claimed_by !== sessionId
-    ) continue;
+    const claimedHere = parsed.frontmatter.status === 'claimed'
+      && parsed.frontmatter.claimed_by === sessionId;
+    const writtenHere = parsed.frontmatter.status === 'open'
+      && parsed.frontmatter.session_id === sessionId;
+    if (!claimedHere && !writtenHere) continue;
 
     try {
       const updated = updateFrontmatter(text, {

@@ -36,7 +36,7 @@ Every code task is one change per builder dispatch. The named test is written fi
 ## Phase 1: Setup
 
 - [x] T001 Scaffold the phase under the parent (`006-deep-review-2-remediation/`)
-- [x] T002 Confirm each of the twelve active findings against its file and line (`../review/review-report.md`, `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/5820adf5-6b90-452d-9421-385ec95d7f40/scratchpad/rv2/verification.md`). The report and its registry are present at that path; `spec.md` section 2 carries the twelve with their group
+- [x] T002 Confirm each of the twelve active findings against its file and line (`../review-archive/20261019T144809Z/review-report.md`, `evidence/review-2-verification.md`). The report and its registry are present at that path; `spec.md` section 2 carries the twelve with their group
 - [x] T003 Author the five docs for this folder: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`
 - [x] T004 Capture the gate baseline before the first code edit and record the counts in `implementation-summary.md` at closure (`plan.md` section 5). Baseline is the phase 005 closure: node 375, pytest 62, Pi relaunch vitest 21, registration vitest 7, tsc 0, shellcheck 0, drift guards 4/4
 - [x] T005 Confirm the builder lane and the scope for every out-of-folder file in `spec.md` section 3. Lane: cli-pi with DeepSeek V4.1 Flash max, one change per dispatch. Out-of-folder edits ran as their own lanes: the parent and 005 docs under the orchestrator's explicit scope, recorded in the run ledger before the lane started
