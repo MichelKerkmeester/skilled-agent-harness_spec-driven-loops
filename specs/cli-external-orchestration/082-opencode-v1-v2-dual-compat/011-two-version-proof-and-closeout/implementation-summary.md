@@ -107,7 +107,7 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 | Live dispatch per version (`scratch/proof/smoke/`) | Exit 0 on both, token returned, lineage file written, USD 0.002343 and 0.001197 |
 | `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Exit 0, all 4 guards PASSED, 10 non-blocking warnings |
 | `validate_document.py` on the ten claim docs, `validate_skill_package.py` on cli-opencode and the hub | Exit 0 each |
-| Deep review (`../review/review-report.md`) and its remediation suites (`scratch/remediation/suites-before.txt`, `suites-after.txt`) | CONDITIONAL with 1 P1 and 12 P2, all fixed. Every touched suite is at or above its starting count. The Pi preflight and codex shell-tool suites failed before the change and still do |
+| Deep review (`../review/review-report.md`) and its remediation suites (`scratch/remediation/suites-before.txt`, `suites-after.txt`) | CONDITIONAL with 1 P1 and 12 P2, all fixed. Every touched suite is at or above its starting count. The Pi preflight and codex shell-tool rows show failures only because the runner used the wrong test command. Under the hooks vitest config both pass, 43 of 43 (`scratch/remediation/adapter-suites-owning-runner.txt`) |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --recursive --strict` | `RESULT: PASSED` (`scratch/validate-recursive.txt`) |
 <!-- /ANCHOR:verification -->
 
