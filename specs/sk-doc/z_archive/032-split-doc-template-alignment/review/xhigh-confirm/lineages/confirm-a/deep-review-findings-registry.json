@@ -515,16 +515,16 @@
       "dimension": "security",
       "targetRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md",
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md"
       ],
       "bugClass": "secrets_and_injection_guidance",
       "disposition": "ruled_out",
       "rationale": "No inspected dangerous sink or secret literal was framed as recommended production behavior.",
       "evidenceRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
       ],
       "reason": "Bad examples carry explicit negative labels and safer alternatives."
     },
@@ -571,8 +571,8 @@
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md",
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md",
-        ".opencode/skills/sk-code/code-opencode/references",
-        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-skilled/references",
+        ".opencode/skills/sk-code/code-skilled/assets",
         ".opencode/skills/sk-code/code-webflow/references",
         ".opencode/skills/sk-code/code-webflow/assets",
         ".opencode/skills/sk-code/code-quality/assets"
@@ -625,8 +625,8 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment",
-        ".opencode/skills/sk-code/code-opencode/references",
-        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-skilled/references",
+        ".opencode/skills/sk-code/code-skilled/assets",
         ".opencode/skills/sk-code/code-webflow/references",
         ".opencode/skills/sk-code/code-webflow/assets",
         ".opencode/skills/sk-code/code-quality/assets"
@@ -684,16 +684,16 @@
       "dimension": "security",
       "targetRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md",
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md",
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md"
       ],
       "bugClass": "secrets_and_injection_guidance",
       "disposition": "ruled_out",
       "rationale": "No inspected dangerous sink or secret literal was framed as recommended production behavior.",
       "evidenceRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:37-87,129-170",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:200-229",
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
       ],
       "proof": "Bad examples carry explicit negative labels and safer alternatives."
     },
@@ -740,8 +740,8 @@
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md",
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md",
-        ".opencode/skills/sk-code/code-opencode/references",
-        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-skilled/references",
+        ".opencode/skills/sk-code/code-skilled/assets",
         ".opencode/skills/sk-code/code-webflow/references",
         ".opencode/skills/sk-code/code-webflow/assets",
         ".opencode/skills/sk-code/code-quality/assets"
@@ -794,8 +794,8 @@
       "dimension": "maintainability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment",
-        ".opencode/skills/sk-code/code-opencode/references",
-        ".opencode/skills/sk-code/code-opencode/assets",
+        ".opencode/skills/sk-code/code-skilled/references",
+        ".opencode/skills/sk-code/code-skilled/assets",
         ".opencode/skills/sk-code/code-webflow/references",
         ".opencode/skills/sk-code/code-webflow/assets",
         ".opencode/skills/sk-code/code-quality/assets"

@@ -195,7 +195,7 @@ The docs stop over-claiming; the cleanup itself needs no reversal. The distincti
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-07-14 |
-| **Deciders** | Orchestrator (per sk-code code-opencode surface) |
+| **Deciders** | Orchestrator (per sk-code code-skilled surface) |
 
 ### Context
 

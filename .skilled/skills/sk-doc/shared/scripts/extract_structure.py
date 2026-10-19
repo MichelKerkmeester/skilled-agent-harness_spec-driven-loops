@@ -688,7 +688,7 @@ README_CHECKLIST = [
     ('has_title', 'Has H1 title', lambda fm, h, c: any(heading['level'] == 1 for heading in h)),
     ('h1_no_emoji', 'H1 has no emoji', lambda fm, h, c: not any(heading['has_emoji'] for heading in h if heading['level'] == 1)),
     ('has_blockquote', 'Has blockquote description after H1', lambda fm, h, c: bool(re.search(r'^>\s+.+', c, re.MULTILINE))),
-    ('has_toc', 'Has TABLE OF CONTENTS section', lambda fm, h, c: any('TABLE OF CONTENTS' in heading['text'].upper() or heading['text'].upper() == 'TOC' for heading in h)),
+    ('no_toc', 'No table of contents', lambda fm, h, c: not any('TABLE OF CONTENTS' in heading['text'].upper() or 'TOC' == heading['text'].upper() for heading in h)),
     ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2 and 'TABLE OF CONTENTS' not in heading['text'].upper()) if any(heading['level'] == 2 for heading in h) else True),
 ]
 

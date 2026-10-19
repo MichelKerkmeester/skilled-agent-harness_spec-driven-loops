@@ -54,17 +54,17 @@ contextType: "general"
 In-place edits to an existing CLI guard, one skill router and its docs, plus one new test file.
 
 ### Key Components
-- **Allowlist in `legOrphans`**: `NON_ROUTED_ALLOWLIST` (`.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:22`) gains the three workflow paths, written as exact `shared/references/workflow-*.md` strings. A comment above the set gives the reason, which is that each surface carries a symlink to the canonical copy and the acting agent reads the doctrine from the surface, so no router names either path. Exact paths, not a folder, keep any other unrouted doc under `shared/` reported.
-- **Opt-in removal**: the `OPT_IN_LEGS` comment and constant (`.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:276-279`) go away, and `parseChecks` (`:282`) returns every leg id when no `--checks` is given. The set becomes empty, so the set and its filter are both removed, as the brief asked.
+- **Allowlist in `legOrphans`**: `NON_ROUTED_ALLOWLIST` (`.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:22`) gains the three workflow paths, written as exact `shared/references/workflow-*.md` strings. A comment above the set gives the reason, which is that each surface carries a symlink to the canonical copy and the acting agent reads the doctrine from the surface, so no router names either path. Exact paths, not a folder, keep any other unrouted doc under `shared/` reported.
+- **Opt-in removal**: the `OPT_IN_LEGS` comment and constant (`.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:276-279`) go away, and `parseChecks` (`:282`) returns every leg id when no `--checks` is given. The set becomes empty, so the set and its filter are both removed, as the brief asked.
 - **Obsidian router**: section 2b of `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md` (`INTENT_SIGNALS` at lines 84-90, `RESOURCE_MAP` at lines 92-132) gains six map entries and seven keywords. No intent key is added, because every doc fits an existing one. The four `OBSIDIAN_PLUGIN` paths that the hub `ROUTER.md` needs for leg 2 stay in the map.
-- **Umbrella**: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:51-52` passes `--checks 1a,1b,2,3,4`, and the header line (`:12`) and the note below the call (`:54-61`) stop saying a leg is skipped.
-- **Test**: `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` is new. It copies the guard, its replay library and the leaf contract library into a throwaway hub under the OS temp directory, writes a hub `SKILL.md` and a packet `SKILL.md` that each route one reference, adds a real canonical workflow doc and a symlink to it from the packet, and runs the copied guard. Each test removes the hub in `t.after`. It lives under `scripts/tests/` because the universal style guide says a test never sits beside its source, and that folder is not a leaf root, so the leaf manifest does not move.
+- **Umbrella**: `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:51-52` passes `--checks 1a,1b,2,3,4`, and the header line (`:12`) and the note below the call (`:54-61`) stop saying a leg is skipped.
+- **Test**: `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` is new. It copies the guard, its replay library and the leaf contract library into a throwaway hub under the OS temp directory, writes a hub `SKILL.md` and a packet `SKILL.md` that each route one reference, adds a real canonical workflow doc and a symlink to it from the packet, and runs the copied guard. Each test removes the hub in `t.after`. It lives under `scripts/tests/` because the universal style guide says a test never sits beside its source, and that folder is not a leaf root, so the leaf manifest does not move.
 - **Playbook**: the Obsidian playbook text that calls `accessibility.md` unmapped is rewritten in three files, and OB-H06 keeps its purpose. It stays a keyword-blind probe, and its `expected_intent` becomes `STACK_STANDARDS`, the way OB-H01 to OB-H05 name their target intent.
 - **Docs and versions**: seven docs that call leg 1b opt-in or not run are corrected. The Obsidian and OpenCode `SKILL.md` files bump to 0.1.2.0 and 1.1.1.0 with one changelog entry each, per the skill contract.
 - **Manifests**: the sk-code policy hash is computed from the hub `SKILL.md`, `hub-router.json` and `mode-registry.json` only. The guard stayed `fresh` at plan time while a sibling packet `SKILL.md` was modified, so no re-mint is expected. The tasks check first and re-mint only on a stale report.
 
 ### Data Flow
-`legOrphans` (`.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs:125-147`) walks `references/` and `assets/` under every hub packet with `walkMarkdown` (`:63-73`). That walk keeps an entry only when `Dirent.isFile()` is true, and a symlink is not a file there, so the nine reported docs include the three canonical copies and never a symlink. Each walked path is compared with the machine router paths plus every packet's `DEFAULT_RESOURCE` and `RESOURCE_MAP`, prefixed with the packet name. After this fix the three canonical copies are skipped by the allowlist and the six Obsidian docs are found in the Obsidian map as `sk-code-obsidian/references/...`, so the problem list is empty. Routing itself is keyword-substring scoring in `router_replay_lib.cjs`, so a new keyword can change which intents a prompt selects. That is why the replay compares the intents of all 27 playbook scenarios before and after.
+`legOrphans` (`.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs:125-147`) walks `references/` and `assets/` under every hub packet with `walkMarkdown` (`:63-73`). That walk keeps an entry only when `Dirent.isFile()` is true, and a symlink is not a file there, so the nine reported docs include the three canonical copies and never a symlink. Each walked path is compared with the machine router paths plus every packet's `DEFAULT_RESOURCE` and `RESOURCE_MAP`, prefixed with the packet name. After this fix the three canonical copies are skipped by the allowlist and the six Obsidian docs are found in the Obsidian map as `sk-code-obsidian/references/...`, so the problem list is empty. Routing itself is keyword-substring scoring in `router_replay_lib.cjs`, so a new keyword can change which intents a prompt selects. That is why the replay compares the intents of all 27 playbook scenarios before and after.
 
 ### Why an allowlist and not realpath matching
 The brief proposed matching a doc as routed when a routed path resolves to the same real file, on the premise that each surface routes its symlink. Reading the check and the routers shows the premise does not hold.
@@ -93,7 +93,7 @@ Added resources per route: `STACK_STANDARDS` 2, `VERIFICATION` 3 and `CODE_QUALI
 - After the Obsidian edits: a bare run passes 5 of 5, and the probe prints six `OK` lines.
 - After the umbrella and README edits: the stale-wording search prints nothing.
 
-### Proposed text A: the allowlist (replaces `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` line 22)
+### Proposed text A: the allowlist (replaces `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` line 22)
 
 ```js
 // The shared workflow doctrine has one canonical copy per phase. Each surface packet carries
@@ -110,7 +110,7 @@ const NON_ROUTED_ALLOWLIST = new Set([
 ]);
 ```
 
-### Proposed text B: the test file (`.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs`, new)
+### Proposed text B: the test file (`.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs`, new)
 
 ```js
 // ───────────────────────────────────────────────────────────────────
@@ -121,7 +121,7 @@ const NON_ROUTED_ALLOWLIST = new Set([
 // Drives leg 1b of verify_router_sync.cjs against a throwaway hub, so the orphan check can be
 // made to pass and to fail without touching the live tree.
 // Run from the repository root:
-//   node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs
+//   node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -147,7 +147,7 @@ function buildHub(t) {
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   const skills = path.join(root, 'skills');
   const hub = path.join(skills, 'sk-code');
-  const scripts = path.join(hub, 'sk-code-opencode', 'assets', 'scripts');
+  const scripts = path.join(hub, 'sk-code-skilled', 'assets', 'scripts');
   fs.mkdirSync(scripts, { recursive: true });
   for (const name of ['verify_router_sync.cjs', 'router_replay_lib.cjs']) {
     fs.copyFileSync(path.join(SCRIPTS, name), path.join(scripts, name));
@@ -196,7 +196,7 @@ test('a run without --checks includes leg 1b', (t) => {
 });
 ```
 
-### Proposed text C: the note under the router-sync call (replaces `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` lines 54 to 61)
+### Proposed text C: the note under the router-sync call (replaces `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` lines 54 to 61)
 
 ```sh
 # Router-sync guard (verify_router_sync.cjs): restores the four checks of the router-sync
@@ -219,7 +219,7 @@ It prints one line per Obsidian playbook scenario, which is its sorted intents a
 // Run from the repository root.
 const fs = require('node:fs');
 const path = require('node:path');
-const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs'));
+const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs'));
 const root = path.resolve('.skilled/skills/sk-code/sk-code-obsidian');
 const rows = [];
 (function walk(dir) {
@@ -434,15 +434,15 @@ Six references in the Obsidian packet were real files that no intent group liste
 No migration required. A prompt that already selected `STACK_STANDARDS`, `VERIFICATION` or `CODE_QUALITY` now loads up to three more references.
 ```
 
-**H2** is `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md`:
+**H2** is `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md`:
 
 ```markdown
 ---
-title: "sk-code-opencode v1.1.1.0, The Router Guard Runs Every Check"
+title: "sk-code-skilled v1.1.1.0, The Router Guard Runs Every Check"
 description: "The router-sync guard now runs its orphan-doc check by default and the drift-guard umbrella runs it, so a doc that no router names fails the gate."
 trigger_phrases:
-  - "sk-code-opencode v1.1.1.0"
-  - "sk-code-opencode 1.1.1.0"
+  - "sk-code-skilled v1.1.1.0"
+  - "sk-code-skilled 1.1.1.0"
   - "router sync orphan check"
 importance_tier: "normal"
 contextType: "general"
@@ -475,7 +475,7 @@ It replays one plain-words prompt per new route and prints `OK` or `MISS` with t
 // Replays one prompt per newly routed Obsidian reference and prints OK or MISS for the doc it
 // should reach, with the intents the router chose. Run from the repository root.
 const path = require('node:path');
-const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-opencode/assets/scripts/router_replay_lib.cjs'));
+const lib = require(path.resolve('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/router_replay_lib.cjs'));
 const root = path.resolve('.skilled/skills/sk-code/sk-code-obsidian');
 const probes = [
   ['What does the accessibility reference say about the focus ring on the table view?', 'references/accessibility.md'],
@@ -506,7 +506,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-- **New test**: `node --test .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` runs three cases against a throwaway hub. A canonical workflow doc reached through a symlink is not reported. A stray doc in the shared tier and a stray doc in a packet are both reported and the workflow doc still is not. A run without `--checks` includes leg 1b. Plan-time result on a prototype: 3 of 3 pass with the edited guard and 0 of 3 pass with the unedited one.
+- **New test**: `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` runs three cases against a throwaway hub. A canonical workflow doc reached through a symlink is not reported. A stray doc in the shared tier and a stray doc in a packet are both reported and the workflow doc still is not. A run without `--checks` includes leg 1b. Plan-time result on a prototype: 3 of 3 pass with the edited guard and 0 of 3 pass with the unedited one.
 - **Guard runs**: a bare run prints `router-sync: 5/5 checks passed` on the prototype. Before the fix it prints 4 of 4 and no 1b line, and `--checks 1b` prints 9 problems.
 - **Umbrella**: `Errors: 0` and a `Warnings:` count that other files move (252 at plan time). No finding names a file under `.skilled/skills/sk-code/`.
 - **Routing replay**: 27 Obsidian scenarios replayed before and after. The intents column is identical for all 27 and no resource count falls. Counts rise, for example OB-001 11 to 13, OB-011 15 to 21, OB-015 19 to 25 and OB-019 12 to 15.
@@ -535,8 +535,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- Restore the ten modified tracked files with `git restore .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh .skilled/skills/sk-code/sk-code-opencode/scripts/README.md .skilled/skills/sk-code/sk-code-opencode/SKILL.md .skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md .skilled/skills/sk-code/benchmark/README.md .skilled/skills/sk-code/sk-code-obsidian/SKILL.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`. The builder does not run this. It is the way back if the change is rejected.
-- Delete the three new paths `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/`, `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.1.0.md` and `.skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md`. Nothing else depends on them.
+- Restore the ten modified tracked files with `git restore .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh .skilled/skills/sk-code/sk-code-skilled/scripts/README.md .skilled/skills/sk-code/sk-code-skilled/SKILL.md .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md .skilled/skills/sk-code/benchmark/README.md .skilled/skills/sk-code/sk-code-obsidian/SKILL.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md .skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`. The builder does not run this. It is the way back if the change is rejected.
+- Delete the three new paths `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/`, `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.1.1.0.md` and `.skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.2.0.md`. Nothing else depends on them.
 - If a manifest was re-minted, restore `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` and `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json` the same way and run `node .skilled/bin/compiled-route-guard.cjs` again.
 - The Hermes copies are regenerated by the orchestrator, so they follow the restored `SKILL.md` files on the next generator run.
 <!-- /ANCHOR:rollback -->

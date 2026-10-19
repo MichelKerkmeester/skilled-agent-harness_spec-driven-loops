@@ -78,7 +78,7 @@ Populate `.cursor/mcp.json` (as a symlink, since Cursor's schema is byte-compati
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/mcp-route-guard.mjs` | Modify | Recombine split server/tool fields into the packed shape; rewrite the now-false status header. |
 | `.cursor/hooks.json` | Modify | Add the `beforeMCPExecution` entry. |
 | `.opencode/skills/cli-external-orchestration/feature-catalog/feature-catalog.md` | Modify | Correct the "unwired pending a configured MCP server" claim. |
-| `.opencode/skills/sk-code/code-opencode/references/shared/hooks.md` | Modify | Move the guard out of "Not Wired"; add the event row and the split-shape caveat. |
+| `.opencode/skills/sk-code/code-skilled/references/shared/hooks.md` | Modify | Move the guard out of "Not Wired"; add the event row and the split-shape caveat. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->

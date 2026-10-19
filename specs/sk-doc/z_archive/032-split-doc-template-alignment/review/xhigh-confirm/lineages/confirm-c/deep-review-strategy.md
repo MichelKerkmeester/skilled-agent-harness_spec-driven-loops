@@ -232,8 +232,8 @@ Confirm the current state of `.opencode/specs/sk-doc/032-split-doc-template-alig
 
 | Root | Paths | Status |
 |------|------:|--------|
-| code-opencode references | 50 | correctness reviewed with P2 class |
-| code-opencode assets | 15 | correctness reviewed clean |
+| code-skilled references | 50 | correctness reviewed with P2 class |
+| code-skilled assets | 15 | correctness reviewed clean |
 | code-webflow references | 86 | correctness reviewed with P1/P2 findings |
 | code-webflow assets | 9 | correctness reviewed clean |
 | code-quality references | 0 | notApplicable |

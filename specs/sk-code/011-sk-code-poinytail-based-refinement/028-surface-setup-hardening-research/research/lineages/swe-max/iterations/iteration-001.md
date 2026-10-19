@@ -15,7 +15,7 @@ Copy path (fresh-clone recipe):
    - `node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` → EXIT 1 (crash)
    - `node .skilled/bin/compiled-route-guard.cjs` → EXIT 0 (all hubs fresh)
    - `node .skilled/bin/compiled-route-sync.cjs --check` → EXIT 0 (all 7 hubs resolve, 55 served copies match)
-   - `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` → EXIT 0 (4 guards pass)
+   - `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` → EXIT 0 (4 guards pass)
    - `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "add a postgres migration for users"` → EXIT 0, `"action":"defer"`
 2. Located the missing module: `root-router-contract.cjs:65` requires `@spec-kit/shared/frontmatter/parse-frontmatter.js`; in the worktree that file exists only as untracked build output at `.skilled/skills/system-spec-kit/shared/dist/frontmatter/parse-frontmatter.js` and via `.skilled/node_modules` (gitignored). Clone has `shared/` TS sources but no `dist/` and no `.skilled/node_modules`.
 3. Performed the README removal recipe on both `sk-code-webflow` and `sk-code-obsidian`: deleted the packet dirs; edited `mode-registry.json` (`modes` entries + `extensions.surface-axis.surfaces`) and `hub-router.json` (`routerPolicy.tieBreak`, `routerSignals`, the four named `vocabularyClasses`); ran `generate-leaf-manifest.cjs --write .skilled/skills/sk-code` (wrote manifest, exit 0). Skipped the README's hand-edit legs (ROUTER.md §11, SKILL.md, playbook rows, canary fixture) to observe what the battery catches.

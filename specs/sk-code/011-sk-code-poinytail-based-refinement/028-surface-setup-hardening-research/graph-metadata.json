@@ -48,6 +48,7 @@
       "research/deep-research-config.json",
       ".skilled/repo-rules/prevent-overengineering.md",
       ".skilled/skills/sk-code/description.json",
+      ".skilled/commands/doctor/sk-code.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/README.txt"
     ],
@@ -104,6 +105,12 @@
         "name": "description.json",
         "kind": "config",
         "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/sk-code.md",
         "source": "derived"
       },
       {
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Skilled assumes that every sk-code surface except sk-code-opencode and sk-code-review means nothing to an external user, and that any surface the user adds outranks sk-code-opencode",
+    "causal_summary": "Skilled assumes that every sk-code surface except sk-code-skilled and sk-code-review means nothing to an external user, and that any surface the user adds outranks sk-code-skilled",
     "created_at": "2026-10-13T17:25:24Z",
-    "last_save_at": "2026-10-13T18:33:10.806Z",
+    "last_save_at": "2026-10-18T20:45:19.849Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:120a9a6a1d981dc8083f05c91ce66c9dca08cd60e7ea5c1bd899be59c1e4f8c6",
+    "source_fingerprint": "sha256:c647fa9decc849b68324d0ddb0ae28ba459b1031850e19a5441b41cc5e844dfc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3214fadc28fa56b28bdd75687ff4d5217b0af79cc74293ea72a9f17dd7475160",
+      "spec.md": "f49d50f211e60e118e5916661b1830b7a3681a966841059a276d9d65a504ee45",
       "plan.md": "52e0403d5f318ad03d395d3a6cc496ba1d71d5781b2689f1326c89ea01ba97a3",
       "tasks.md": "c870e76f86ecb8a3283c92538c8a95b43e64aba8183b6ed89712c4c56dbbc782",
-      "implementation-summary.md": "59e7b550d4342722afef7219419e98ff07f608f5ddfc549ea58f0bfbfbb0d0d1",
-      "research/research.md": "9e0390b3a125153260d44b23c6bd72395c1cc92d9a47dc1b3ee6694fa89875f7"
+      "implementation-summary.md": "91a33549f727eabd4ad8ec40662412d16e057b2d2c70b9edc4a0f16808f5b5df",
+      "research/research.md": "c3f390f43c6a2a2be3ea62cab7f93d246df0805901fcd076683d4bfb912b993c"
     },
     "last_active_at": null
   }

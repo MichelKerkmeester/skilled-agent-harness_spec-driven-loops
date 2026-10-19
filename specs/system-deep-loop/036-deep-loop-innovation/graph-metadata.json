@@ -32,7 +32,7 @@
     "system-deep-loop/036-deep-loop-innovation/026-codex-lineage-auth-isolation",
     "system-deep-loop/036-deep-loop-innovation/027-executor-availability-docs",
     "system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard",
-    "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode"
+    "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled"
   ],
   "manual": {
     "depends_on": [],
@@ -113,18 +113,18 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-09-20T08:33:47.300Z",
-    "last_save_at": "2026-09-30T22:06:48.517Z",
+    "last_save_at": "2026-10-18T20:45:25.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d4d24499fb3bb4bcca32b801ad87806f2e9a1bdd78a7c053dd4bc6313ccb008d",
+    "source_fingerprint": "sha256:0fcdce043b2bdf2492dcf06f2a615b94b9c18f4d7f409b2923f7f45c91431a18",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88d5cba6da5facab6875b48d42b2462c7b7940d2984036ce4fc3c3c01052516a"
+      "spec.md": "1155bb1a8186733054f9e8a66fee243b04353f948ede1edb17d4c3102b7fec79"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled",
     "last_active_at": "2026-09-30T22:06:48.517Z"
   }
 }

@@ -23,7 +23,7 @@ The ingest start handler rejected traversal only after calling `path.normalize()
 ### Verification
 
 - `npm exec vitest run tests/handler-memory-ingest.vitest.ts tests/handler-memory-ingest-edge.vitest.ts` (run from `.opencode/skills/system-spec-kit/mcp_server`) -> pass, 21 tests.
-- `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> pass, 0 findings.
+- `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/mcp_server` -> pass, 0 findings.
 
 ### Documentation review
 

@@ -35,7 +35,7 @@ trigger_phrases: []
 
   `.opencode/skills/sk-doc/create-quality-control/README.md:69`
 
-  Evidence: `quick_start` is recommended, not required, under the README rules. Running `extract_structure.py` on `code-opencode/README.md`, which has no Quick Start, produced DQI 79 and no Quick Start checklist failure; the README checklist only tested title, H1 emoji, blockquote, TOC and H2 numbering. Line 14 also incorrectly implies one numerical command establishes publish readiness, while the workflow separately requires validation and HVR review.
+  Evidence: `quick_start` is recommended, not required, under the README rules. Running `extract_structure.py` on `code-skilled/README.md`, which has no Quick Start, produced DQI 79 and no Quick Start checklist failure; the README checklist only tested title, H1 emoji, blockquote, TOC and H2 numbering. Line 14 also incorrectly implies one numerical command establishes publish readiness, while the workflow separately requires validation and HVR review.
 
   Fix: Describe DQI as one quality signal. Remove the Quick Start blocker example and state that readiness combines extraction, document validation and manual/HVR review.
 
@@ -51,7 +51,7 @@ trigger_phrases: []
 
   `.opencode/skills/sk-code/code-webflow/README.md:23`
 
-  `.opencode/skills/sk-code/code-opencode/README.md:24`
+  `.opencode/skills/sk-code/code-skilled/README.md:24`
 
   Evidence: The Webflow README calls implement/debug/verify a “workflow mode,” and both READMEs say a paired workflow mode owns edits, tests and commits. The parent `SKILL.md:23-37` defines only `quality` and `code-review` as workflow modes and explicitly calls implement/debug/verify phases, not modes. `mode-registry.json:18` says the acting agent applies surface doctrine, while Git commits route to `sk-git`.
 
@@ -59,7 +59,7 @@ trigger_phrases: []
 
 - **[P1] Both surface inventories omit supported evidence families**
 
-  `.opencode/skills/sk-code/code-opencode/README.md:36`
+  `.opencode/skills/sk-code/code-skilled/README.md:36`
 
   `.opencode/skills/sk-code/code-webflow/README.md:36`
 

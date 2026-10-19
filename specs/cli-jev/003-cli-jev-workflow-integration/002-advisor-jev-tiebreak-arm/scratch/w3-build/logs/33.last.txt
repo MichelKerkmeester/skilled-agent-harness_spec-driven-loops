@@ -2,7 +2,7 @@ Goal acknowledged: measure whether a jev or Deem choice beats the scorer under t
 
 An exit-4 retry now leaves a call record for both spawns. The first attempt's wall time is kept on the retry and counted in p50 and p95 for both arms.
 
-SKILL ROUTING: User directed → code; ARTIFACT: sk-code → sk-code-opencode
+SKILL ROUTING: User directed → code; ARTIFACT: sk-code → sk-code-skilled
 REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication-handoff.md
 
 HANDBACK

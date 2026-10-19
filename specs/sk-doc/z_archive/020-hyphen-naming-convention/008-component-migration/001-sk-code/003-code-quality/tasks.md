@@ -80,6 +80,6 @@ parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code
 
 - **Specification**: See spec.md
 - **Plan**: See plan.md
-- **Predecessor**: See ../002-code-opencode/spec.md
+- **Predecessor**: See ../002-code-skilled/spec.md
 - **Governing policy**: See ../../../../001-convention-policy-and-scope/spec.md
 <!-- /ANCHOR:cross-refs -->

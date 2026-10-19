@@ -58,7 +58,7 @@ The skill advisor (`skill_advisor.py`, 1728 lines) routes user requests to the c
 - 32 multi-skill boosters
 - 131 phrase intent boosters
 
-There is no structured representation of how skills relate. Relationships like "sk-code-review overlays sk-code-opencode" or "mcp-figma depends on mcp-code-mode" are embedded in scoring weights, invisible to session bootstrap, and impossible to reason about programmatically.
+There is no structured representation of how skills relate. Relationships like "sk-code-review overlays sk-code-skilled" or "mcp-figma depends on mcp-code-mode" are embedded in scoring weights, invisible to session bootstrap, and impossible to reason about programmatically.
 
 **Consequences:**
 1. Adding a new skill requires editing 3+ booster maps manually
@@ -85,7 +85,7 @@ Each skill folder gets a `graph-metadata.json` (distinct from the spec-packet `g
   "edges": {
     "depends_on": [],
     "enhances": [
-      { "target": "sk-code-opencode", "weight": 0.7, "context": "overlay" }
+      { "target": "sk-code-skilled", "weight": 0.7, "context": "overlay" }
     ],
     "siblings": [
       { "target": "sk-deep-review", "weight": 0.6, "context": "deep-review dispatches review" }
@@ -130,7 +130,7 @@ Single file at `.opencode/skills/skill-advisor/scripts/skill-graph.json`:
   "generated_at": "2026-04-13T...",
   "skill_count": 20,
   "families": { "cli": [...], "mcp": [...], ... },
-  "adjacency": { "sk-code-review": { "enhances": {"sk-code-opencode": 0.7} } },
+  "adjacency": { "sk-code-review": { "enhances": {"sk-code-skilled": 0.7} } },
   "conflicts": [],
   "hub_skills": ["system-spec-kit", "mcp-code-mode"]
 }

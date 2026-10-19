@@ -15,7 +15,7 @@
       "findingId": "I1-P1-001",
       "severity": "P1",
       "title": "A scoped Rust reference bypasses the mandatory OVERVIEW wrapper",
-      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "file": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md",
       "line": 19,
       "description": "",
       "findingClass": null,
@@ -73,7 +73,7 @@
       "findingId": "I1-P2-001",
       "severity": "P2",
       "title": "Seven references exceed the 1-2 sentence intro contract",
-      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md",
+      "file": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md",
       "line": 16,
       "description": "",
       "findingClass": null,
@@ -499,13 +499,13 @@
       "id": "SL2-003",
       "dimension": "security",
       "targetRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md"
       ],
       "bugClass": "unsafe_secret_handling",
       "disposition": "ruled_out",
       "rationale": "Matched credential examples were negative demonstrations or operational credential checks.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
       ],
       "reason": "No positively endorsed hardcoded-secret pattern was found."
     },
@@ -538,7 +538,7 @@
       "rationale": "The scoped guidance rejects direct execution and did not contain the searched destructive command forms.",
       "evidenceRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:140-168",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
       ],
       "reason": "No positively endorsed instance was found."
     },
@@ -564,14 +564,14 @@
       "dimension": "traceability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md"
       ],
       "bugClass": "spec_corpus_alignment",
       "disposition": "ruled_out",
       "rationale": "Current evidence reconfirms the prior active mismatch without creating a duplicate finding.",
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-72",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21"
       ],
       "reason": "Full R3 conformance is disproved and remains represented by active I1-P1-001."
     },
@@ -581,7 +581,7 @@
       "dimension": "traceability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md"
       ],
       "bugClass": "checklist_claim_support",
       "disposition": "ruled_out",
@@ -589,7 +589,7 @@
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:49",
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:90-95",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21"
       ],
       "reason": "The current counterexample falsifies the evidence-completeness claim."
     },
@@ -604,8 +604,8 @@
       "disposition": "ruled_out",
       "rationale": "No unresolved author marker was identified.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md:232-241",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md:77"
+        ".opencode/skills/sk-code/code-skilled/assets/checklists/python_checklist.md:232-241",
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/commenting_and_rustdoc.md:77"
       ],
       "reason": "Every match is explanatory content, not pending document work."
     },
@@ -623,11 +623,11 @@
       "disposition": "ruled_out",
       "rationale": "Current reads reconfirm rather than change the registry claims.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21",
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21",
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-98",
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:247-258",
         ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-55",
-        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20",
         ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-27"
       ],
       "reason": "No fix, downgrade trigger, or new affected class was observed; duplicate findings were suppressed."
@@ -670,13 +670,13 @@
       "id": "SL2-003",
       "dimension": "security",
       "targetRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md"
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md"
       ],
       "bugClass": "unsafe_secret_handling",
       "disposition": "ruled_out",
       "rationale": "Matched credential examples were negative demonstrations or operational credential checks.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
+        ".opencode/skills/sk-code/code-skilled/references/shared/universal_patterns/organization_security_and_examples.md:172-182"
       ],
       "proof": "No positively endorsed hardcoded-secret pattern was found."
     },
@@ -709,7 +709,7 @@
       "rationale": "The scoped guidance rejects direct execution and did not contain the searched destructive command forms.",
       "evidenceRefs": [
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:140-168",
-        ".opencode/skills/sk-code/code-opencode/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
+        ".opencode/skills/sk-code/code-skilled/references/shell/quality_standards/validation_security_and_shellcheck.md:204"
       ],
       "proof": "No positively endorsed instance was found."
     },
@@ -735,14 +735,14 @@
       "dimension": "traceability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md"
       ],
       "bugClass": "spec_corpus_alignment",
       "disposition": "ruled_out",
       "rationale": "Current evidence reconfirms the prior active mismatch without creating a duplicate finding.",
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-72",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21"
       ],
       "proof": "Full R3 conformance is disproved and remains represented by active I1-P1-001."
     },
@@ -752,7 +752,7 @@
       "dimension": "traceability",
       "targetRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md"
       ],
       "bugClass": "checklist_claim_support",
       "disposition": "ruled_out",
@@ -760,7 +760,7 @@
       "evidenceRefs": [
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:49",
         ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:90-95",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21"
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21"
       ],
       "proof": "The current counterexample falsifies the evidence-completeness claim."
     },
@@ -807,8 +807,8 @@
       "disposition": "ruled_out",
       "rationale": "No unresolved author marker was identified.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/assets/checklists/python_checklist.md:232-241",
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/commenting_and_rustdoc.md:77"
+        ".opencode/skills/sk-code/code-skilled/assets/checklists/python_checklist.md:232-241",
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/commenting_and_rustdoc.md:77"
       ],
       "proof": "Every match is explanatory content, not pending document work."
     },
@@ -826,11 +826,11 @@
       "disposition": "ruled_out",
       "rationale": "Current reads reconfirm rather than change the registry claims.",
       "evidenceRefs": [
-        ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21",
+        ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21",
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:89-98",
         ".opencode/skills/sk-code/code-webflow/references/implementation/security_patterns/overview_and_checklist.md:247-258",
         ".opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/best_practices_and_summary.md:34-55",
-        ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20",
+        ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20",
         ".opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-27"
       ],
       "proof": "No fix, downgrade trigger, or new affected class was observed; duplicate findings were suppressed."

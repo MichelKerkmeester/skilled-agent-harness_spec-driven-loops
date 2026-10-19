@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Conformance Rulings and Gate Repair"
-description: "Repair the enforcement mechanism for the sk-code code-opencode standard before any code batch runs: reconcile the duplicated hook pairs to one installed path each, correct the standard's pointers, decide the three-guard scan root and the exact-header automation status, close three comment-checker vocabulary holes behind paired fixtures, amend the test-filename vocabulary, and capture the program baseline every later child reports its delta against."
+description: "Repair the enforcement mechanism for the sk-code code-skilled standard before any code batch runs: reconcile the duplicated hook pairs to one installed path each, correct the standard's pointers, decide the three-guard scan root and the exact-header automation status, close three comment-checker vocabulary holes behind paired fixtures, amend the test-filename vocabulary, and capture the program baseline every later child reports its delta against."
 trigger_phrases:
   - "gate repair plan"
   - "comment checker vocabulary holes"
@@ -117,7 +117,7 @@ A Write/Edit fires the post-edit adapter, which calls the shared checker on one 
 | `run-all-drift-guards.sh:23,47` | Mandated completion gate, scan root `.opencode/skills/sk-code` | update per Q5 | Wrapper run with output captured as the program baseline |
 | `verify_alignment_drift.py` | Machine gate; no header-shape check | update per Q4 (opt-in flag) or unchanged | Flag run against a known header-less file reports it; against an exception-class file, skips with a reason |
 | Vitest configs (`mcp-server/vitest.config.ts:18-21`, `runtime/vitest.config.ts:17`) | Already discover `{vitest,test}.ts` | not a consumer of this change — read only, cited as evidence for the amendment | Re-read at T001 |
-| `020-sk-code-opencode-alignment/spec.md` | Sibling program's scope authority | update — border amendment | The spec states the resolved scope and cross-reference |
+| `020-sk-code-skilled-alignment/spec.md` | Sibling program's scope authority | update — border amendment | The spec states the resolved scope and cross-reference |
 
 Required inventories:
 - Same-class producers: `rg -n 'check-comment-hygiene' .opencode --glob '!node_modules'` — every caller of the rule engine.
@@ -162,7 +162,7 @@ Required inventories:
 | Unit | Each new comment-checker rule, positive and negative | `check-comment-hygiene.test.sh` |
 | Integration | Post-edit adapter parses and invokes the checker end to end | `node --check`, plus a Write-tool smoke on a violating scratch file |
 | Integration | Test discovery agrees with an independent glob | Discovery canary under `run-node-tests.mjs` |
-| Integration | Three-guard wrapper runs to completion at its new scan root | `bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` |
+| Integration | Three-guard wrapper runs to completion at its new scan root | `bash .opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` |
 | Contract | No documented test-filename pattern matches zero files | A scripted assertion over the amended table |
 | Manual | Rule-by-rule diff of the two pre-commit files before either is retired | `diff` plus a recorded rule inventory |
 <!-- /ANCHOR:testing -->

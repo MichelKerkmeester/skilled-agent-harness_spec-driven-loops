@@ -1,0 +1,23 @@
+PASS v2 family-present: a v2 binary is installed
+  /Users/michelkerkmeester/.local/bin/opencode2
+PASS v2 plugin-active: all 17 plugin files active
+  classifier-injection-screen.js
+  cli-dispatch-audit.js
+  codex-hooks-watchdog.js
+  mcp-route-guard.js
+  opencode-goal.js
+  session-cleanup.js
+  session-relaunch.js
+  sk-code-post-edit-quality.js
+  sk-git-message-gate.js
+  sk-git-preflight-advisory.js
+  sk-vision.js
+  system-completion-sentinel.js
+  system-deep-loop-guard.js
+  system-dist-freshness-guard.js
+  system-skill-advisor.js
+  system-spec-gate.js
+  system-speckit-completion.js
+PASS v2 skill-visible: 57 skill entries visible
+  entries: 74
+  visible: 57

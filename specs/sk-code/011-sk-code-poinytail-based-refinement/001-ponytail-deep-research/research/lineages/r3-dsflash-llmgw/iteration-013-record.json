@@ -15,7 +15,7 @@
   "findingsCount": 4,
   "noveltyJustification": "Three findings are fully new (template legacy path family, two broken section cross-references in the HTML guide) and one is an ALREADY-ADOPTED receipt that the D1 fixtures run to their documented verdicts with true exit codes.",
   "keyQuestions": [
-    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` beyond rounds one and two?"
   ],
   "answeredQuestions": [],
   "ruledOut": [

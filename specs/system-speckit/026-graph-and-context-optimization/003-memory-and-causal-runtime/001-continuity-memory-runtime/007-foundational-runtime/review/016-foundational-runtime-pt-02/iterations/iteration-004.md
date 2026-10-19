@@ -192,7 +192,7 @@ matrix already cited in iter2 P1-1.
 
 ## Open questions
 
-- Does the sk-code-opencode alignment pass (`48fc7db91`) inspect
+- Does the sk-code-skilled alignment pass (`48fc7db91`) inspect
   discriminated-union vs bag-of-optionals patterns? If yes, F3 should
   have been flagged there.
 - Should `readiness-contract.ts` also export its switch-based mappers

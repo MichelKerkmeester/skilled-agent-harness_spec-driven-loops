@@ -1,6 +1,6 @@
 ---
-title: "Tasks: cli-cursor hook code sk-code/code-opencode alignment"
-description: "Task breakdown for auditing and aligning Cursor hook .mjs files against sk-code's code-opencode standards."
+title: "Tasks: cli-cursor hook code sk-code/code-skilled alignment"
+description: "Task breakdown for auditing and aligning Cursor hook .mjs files against sk-code's code-skilled standards."
 trigger_phrases: ["cli-cursor hooks sk-code alignment tasks"]
 importance_tier: "normal"
 contextType: "general"
@@ -20,7 +20,7 @@ _memory:
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: cli-cursor hook code sk-code/code-opencode alignment
+# Tasks: cli-cursor hook code sk-code/code-skilled alignment
 
 <!-- ANCHOR:notation -->
 ## Task Notation
@@ -29,9 +29,9 @@ _memory:
 
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
-- [x] T001 Read `sk-code/SKILL.md` — confirmed `code-opencode` is a read-only surface evidence packet, advisor-invisible, bundled alongside a workflow mode
-- [x] T002 Read `code-opencode/SKILL.md` — confirmed the reference map includes `references/shared/hooks.md` for hook entrypoint/wiring evidence
-- [x] T003 Read `code-opencode/references/shared/hooks.md` in full — found zero Cursor CLI mentions across all sections
+- [x] T001 Read `sk-code/SKILL.md` — confirmed `code-skilled` is a read-only surface evidence packet, advisor-invisible, bundled alongside a workflow mode
+- [x] T002 Read `code-skilled/SKILL.md` — confirmed the reference map includes `references/shared/hooks.md` for hook entrypoint/wiring evidence
+- [x] T003 Read `code-skilled/references/shared/hooks.md` in full — found zero Cursor CLI mentions across all sections
 - [x] T004 Read `references/typescript/style-guide/overview-strict-and-naming.md` + `typescript-checklist.md` — confirmed all 5 Cursor `.ts` hook files already compliant
 - [x] T005 Read the JavaScript style guide + checklist — found the P0 box-header requirement and `.mjs` `'use strict'` prohibition
 - [x] T006 Grepped all 8 Cursor hook files for `\bany\b`-type usage and forbidden ephemeral-artifact ids (`ADR-`/`REQ-`/`CHK-`/`T\d{3}`) — 0 in-scope hits
@@ -64,7 +64,7 @@ _memory:
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
-- Aligns the hook adapter files phases 004/010/011 shipped against `sk-code/code-opencode`'s standards.
+- Aligns the hook adapter files phases 004/010/011 shipped against `sk-code/code-skilled`'s standards.
 <!-- /ANCHOR:cross-refs -->
 
 ---

@@ -46,7 +46,7 @@ _memory:
 - [x] T007 Confirmed the same empty-output behavior for `session-end.js`, `user-prompt-submit.js`, `precompact.js` (the other 3 `runCursorHook`-guarded files)
 - [x] T008 Ran a control test — `session-start.js` via its real path returns the full, correct session-context response — confirming the symlink is the specific cause, not a regression
 - [x] T009 Wrote `.cursor/hooks/README.md` documenting the mirror's purpose and the gotcha
-- [x] T010 Extended `code-opencode/references/shared/hooks.md`'s `CURSOR HOOKS` section with a matching "Discovery Mirror" subsection; bumped version `1.0.0.15` → `1.0.0.16`
+- [x] T010 Extended `code-skilled/references/shared/hooks.md`'s `CURSOR HOOKS` section with a matching "Discovery Mirror" subsection; bumped version `1.0.0.15` → `1.0.0.16`
 - [x] T011 Confirmed `.cursor/hooks.json` itself remains byte-identical to before this phase (`git diff` shows no change to that file)
 <!-- /ANCHOR:phase-3 -->
 

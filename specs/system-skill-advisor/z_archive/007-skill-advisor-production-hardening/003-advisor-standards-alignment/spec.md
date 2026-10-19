@@ -1,10 +1,10 @@
 ---
 title: "F [system-skill-advisor/007-skill-advisor-production-hardening/003-advisor-standards-alignment/spec]"
-description: "Two-part standards alignment from packet 008 audit: (A) add OpenCode Plugin Exemption Tier to sk-code-opencode quality_standards.md + javascript_checklist.md (recognizes ESM is required for plugins, not a violation of CommonJS rule); (B) bring spec-kit-skill-advisor.js into alignment with non-exempt standards (box header COMPONENT/PURPOSE fields, JSDoc on default export + helpers, numbered ALL-CAPS section dividers mirroring sibling compact plugin)."
+description: "Two-part standards alignment from packet 008 audit: (A) add OpenCode Plugin Exemption Tier to sk-code-skilled quality_standards.md + javascript_checklist.md (recognizes ESM is required for plugins, not a violation of CommonJS rule); (B) bring spec-kit-skill-advisor.js into alignment with non-exempt standards (box header COMPONENT/PURPOSE fields, JSDoc on default export + helpers, numbered ALL-CAPS section dividers mirroring sibling compact plugin)."
 trigger_phrases:
   - "skill advisor standards alignment"
   - "opencode plugin exemption tier"
-  - "sk-code-opencode esm exemption"
+  - "sk-code-skilled esm exemption"
   - "skill advisor jsdoc"
   - "skill advisor box header"
   - "026/009/009"
@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "OpenCode plugins MUST be ESM per @opencode-ai/plugin/dist/index.d.ts:23"
-      - "sk-code-opencode CommonJS rule conflicts with plugin loader contract"
+      - "sk-code-skilled CommonJS rule conflicts with plugin loader contract"
       - "Plugin file has 3 small alignment gaps: header fields, JSDoc, section dividers"
 template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ---
@@ -63,7 +63,7 @@ Packet 008 audit surfaced one standards gap and three plugin alignment items. Th
 
 Two findings from the packet 008 audit:
 
-1. **sk-code-opencode CommonJS rule conflicts with OpenCode plugin loader contract.** The skill's the JavaScript checklist P1 item requires `module.exports`, but `@opencode-ai/plugin/dist/index.d.ts:23` requires ESM default export. All plugins (`spec-kit-skill-advisor.js`, `spec-kit-compact-code-graph.js`) and helpers (`spec-kit-*-bridge.mjs`, `spec-kit-opencode-message-schema.mjs`) MUST use ESM or the loader rejects them. The standard already has a parallel "Test File Exemption Tier" — needs an analogous "OpenCode Plugin Exemption Tier."
+1. **sk-code-skilled CommonJS rule conflicts with OpenCode plugin loader contract.** The skill's the JavaScript checklist P1 item requires `module.exports`, but `@opencode-ai/plugin/dist/index.d.ts:23` requires ESM default export. All plugins (`spec-kit-skill-advisor.js`, `spec-kit-compact-code-graph.js`) and helpers (`spec-kit-*-bridge.mjs`, `spec-kit-opencode-message-schema.mjs`) MUST use ESM or the loader rejects them. The standard already has a parallel "Test File Exemption Tier" — needs an analogous "OpenCode Plugin Exemption Tier."
 
 2. **`spec-kit-skill-advisor.js` has 3 small gaps against non-exempt standards.** Box header at line 1-3 is missing `COMPONENT:` and `PURPOSE:` fields the standard requires. The default-export plugin factory (`SpecKitSkillAdvisorPlugin` line 291) and ~5-6 internal helpers lack JSDoc. The file has no numbered ALL-CAPS section dividers (`// 1. CONSTANTS`, `// 2. UTILITIES`, etc.) — its sibling `spec-kit-compact-code-graph.js` does follow that pattern.
 
@@ -85,8 +85,8 @@ Reconcile the standard with the OpenCode plugin contract reality, AND bring the 
 
 ### In Scope
 
-- `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` — add §10 OpenCode Plugin Exemption Tier (mirrors §9 Test File Exemption Tier structure)
-- `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md` — add a one-paragraph note next to the CommonJS P1 item pointing at the new exemption
+- `.opencode/skills/sk-code-skilled/references/javascript/quality_standards.md` — add §10 OpenCode Plugin Exemption Tier (mirrors §9 Test File Exemption Tier structure)
+- `.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md` — add a one-paragraph note next to the CommonJS P1 item pointing at the new exemption
 - `.opencode/plugins/spec-kit-skill-advisor.js` — add `COMPONENT:`/`PURPOSE:` lines to box header; add JSDoc to default export and missing helpers; add numbered ALL-CAPS section dividers mirroring compact plugin's pattern
 
 ### Out of Scope
@@ -100,8 +100,8 @@ Reconcile the standard with the OpenCode plugin contract reality, AND bring the 
 
 | Path | Change Type | Description |
 |------|-------------|-------------|
-| `.opencode/skills/sk-code-opencode/references/javascript/quality_standards.md` | Modify | Append §10 OpenCode Plugin Exemption Tier |
-| `.opencode/skills/sk-code-opencode/assets/checklists/javascript_checklist.md` | Modify | Annotate CommonJS P1 item with link to new exemption |
+| `.opencode/skills/sk-code-skilled/references/javascript/quality_standards.md` | Modify | Append §10 OpenCode Plugin Exemption Tier |
+| `.opencode/skills/sk-code-skilled/assets/checklists/javascript_checklist.md` | Modify | Annotate CommonJS P1 item with link to new exemption |
 | `.opencode/plugins/spec-kit-skill-advisor.js` | Modify | Header fields + JSDoc + section dividers (no logic change) |
 <!-- /ANCHOR:scope -->
 
@@ -149,7 +149,7 @@ Reconcile the standard with the OpenCode plugin contract reality, AND bring the 
 |------|------|------------|
 | Risk | JSDoc/section-divider edits accidentally touch logic | All edits should be additive comments or header reorganization only; vitest 30/30 is the regression guard |
 | Risk | Exemption wording is too broad and excuses real CommonJS violations elsewhere | Scope explicitly to `.opencode/plugins/` and `.opencode/plugin-helpers/`; mirror §9 Test File Exemption Tier structure for precedent |
-| Dependency | sk-code-opencode skill structure (sections, checklist format) | Already mature; just append in §9-style |
+| Dependency | sk-code-skilled skill structure (sections, checklist format) | Already mature; just append in §9-style |
 <!-- /ANCHOR:risks -->
 
 ---

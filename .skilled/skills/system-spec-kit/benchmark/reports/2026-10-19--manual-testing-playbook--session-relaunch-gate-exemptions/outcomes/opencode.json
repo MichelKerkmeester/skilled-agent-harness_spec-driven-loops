@@ -1,0 +1,59 @@
+{
+  "scenarioId": "session-relaunch-pi-opencode",
+  "runtime": "opencode",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Run 10 is the only round in this folder: one live OpenCode run in a clean tmux environment, driven by skilled-loop with no -m flag, so the repo default llmgateway/deepseek-v4.1-flash with variant max ran, on the phase 007 code with SESSION_RELAUNCH_THRESHOLD=0.05, SESSION_RELAUNCH_WINDOW_TOKENS=100 and SESSION_RELAUNCH_MAX_HOPS=1. The prompt carried no Gate 3 answer. The run prepared a note, took SIGTERM and relaunched with the claim seed. The handoff note reads status done with an empty spec_folder, the wrapper printed WRAPPER_EXIT=0 beside a decline with reason no-file, and the pane shows no operator question. The receiver capture sr-oc10-receiver-pane.txt, taken before the wrapper exit, shows the answer 248 lines and # Session Relaunch.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": "llmgateway/deepseek-v4.1-flash",
+  "dispatchModel": "llmgateway/deepseek-v4.1-flash, variant max, repo default",
+  "runs": [
+    {
+      "run": "10",
+      "loopId": 75633,
+      "verdict": "PASS",
+      "reason": "Prepare at 11:36:42.504Z, SIGTERM at 11:37:11.232Z (28.7 s later) and relaunch reason=ready at 11:37:11.456Z. The note 20261019T113449Z-ses_eac0.md reads status done, claimed at 11:37:23.891Z and completed at 11:37:46.762Z. The wrapper printed WRAPPER_EXIT=0 (pane line 17), and a further hop was declined at 11:42:21.961Z with reason=no-file.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+          "bytes": 891,
+          "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-oc10-pane.txt",
+          "bytes": 1096,
+          "sha256": "ac04844635d60e58a451004faa20d375a362a380b726dcaefd7db956f446f9ec"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+          "bytes": 766,
+          "sha256": "102c3d8dbee787d1841824a596ec3fa22cc06a11bae43dceb3b79eea578ffc94"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/relaunch-run10.log",
+      "bytes": 891,
+      "sha256": "a7c82b89d5e76202d8e06e2ba5346ccf6f83a8de043ab343f0fddc44f76a3e02"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/sr-oc10-pane.txt",
+      "bytes": 1096,
+      "sha256": "ac04844635d60e58a451004faa20d375a362a380b726dcaefd7db956f446f9ec"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/launch-commands.txt",
+      "bytes": 766,
+      "sha256": "102c3d8dbee787d1841824a596ec3fa22cc06a11bae43dceb3b79eea578ffc94"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "markdown agent, by hand under the playbook result-persistence contract"
+}

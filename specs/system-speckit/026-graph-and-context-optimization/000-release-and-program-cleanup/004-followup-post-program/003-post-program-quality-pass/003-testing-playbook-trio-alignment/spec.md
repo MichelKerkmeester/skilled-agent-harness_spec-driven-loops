@@ -43,7 +43,7 @@ _memory:
 | **Parent Spec** | ../spec.md |
 | **Branch** | `main` |
 | **Parent** | `026-graph-and-context-optimization/003-post-program-quality-pass` |
-| **Depends On** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-opencode-standards-audit` |
+| **Depends On** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-skilled-standards-audit` |
 | **Mode** | Doc-only manual testing playbook update |
 <!-- /ANCHOR:metadata -->
 

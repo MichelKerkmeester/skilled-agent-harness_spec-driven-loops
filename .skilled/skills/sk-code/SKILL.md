@@ -12,7 +12,7 @@ metadata:
 
 # Code Family Hub (sk-code)
 
-One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (sk-code-quality, sk-code-review). The **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-opencode, sk-code-obsidian). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow-*.md`, symlinked in) plus its own stack knowledge, and sk-code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
+One skill, two axes, one shared surface-detection router, and one advisor identity. The **workflow axis** is two code modes that act (sk-code-quality, sk-code-review). The **surface axis** is three read-only evidence packets the hub bundles alongside a workflow mode (sk-code-webflow, sk-code-skilled, sk-code-obsidian). Each surface carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow-*.md`, symlinked in) plus its own stack knowledge, and sk-code-webflow also carries the folded-in Motion.dev animation overlay. This hub holds NO per-mode logic: it routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
 
 **Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`. `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release. `ROUTER.md` and `README.md` keep their own document versions, as the frontmatter-versioning standard gives every doc but `SKILL.md`. The authority stops at the hub root: each `modes[]` packet carries its own version and release cadence, so a packet version is independent of this one by design and a gap between them is not drift. `sk-code-obsidian` carries a pre-release `0.x` line in its own changelog.
 
@@ -34,10 +34,10 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | Surface | Carries | Packet |
 |---------|---------|--------|
 | **sk-code-webflow** | Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug/verify, plus the Motion.dev animation overlay. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Webflow surface, and the acting agent applies it. | `sk-code/sk-code-webflow/` |
-| **sk-code-opencode** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the OpenCode surface, and the acting agent applies it. | `sk-code/sk-code-opencode/` |
+| **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 | **sk-code-obsidian** | Obsidian-plugin design-system and source-convention evidence for the Note Database plugin. Read-only. | `sk-code/sk-code-obsidian/` |
 
-**Surface list.** The hub has exactly three surfaces: OPENCODE (`sk-code-opencode`), the native surface for this framework's own code, and two optional example surfaces, WEBFLOW (`sk-code-webflow`) and OBSIDIAN (`sk-code-obsidian`), which a user may remove. It also has two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence. After adding or removing a surface, `/doctor:sk-code setup` checks the hub and names the repair for each failing check.
+**Surface list.** The hub has exactly three surfaces: SKILLED (`sk-code-skilled`), the native surface for this framework's own code, and two optional example surfaces, WEBFLOW (`sk-code-webflow`) and OBSIDIAN (`sk-code-obsidian`), which a user may remove. It also has two workflow modes, quality (`sk-code-quality`) and review (`sk-code-review`). Any other sk-code doc that counts surfaces points to this sentence. After adding or removing a surface, `/doctor:sk-code setup` checks the hub and names the repair for each failing check.
 
 The **implement → debug → verify** phases are not standalone modes. Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md`, and `workflow-verify.md`, and is symlinked into each surface so the active surface carries the full workflow. A request to implement, debug, or verify code detects its surface and loads that surface's bundled doctrine, and the acting agent applies it.
 
@@ -67,11 +67,11 @@ Routing is **registry-driven**. `mode-registry.json` is the single source of tru
 Root `ROUTER.md` owns the second-stage `INTENT_SIGNALS` / `RESOURCE_MAP`. Packet-owned resources remain typed through `leaf-manifest.json`. The hub-level shared controls are declared once, in `ROUTER.md` §11: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves. The hub router continues to own stage-one mode selection and its `shared/README.md` fallback.
 
 ### The discriminator
-- **`workflowMode`** - the public mode/packet key: `sk-code-quality`, `sk-code-review` (workflow) or `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian` (surface).
+- **`workflowMode`** - the public mode/packet key: `sk-code-quality`, `sk-code-review` (workflow) or `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian` (surface).
 - **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
-Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[sk-code-review, sk-code-webflow]`. Bundled surfaces follow the `routerPolicy.tieBreak` order, which is the detection precedence OPENCODE > OBSIDIAN > WEBFLOW, so the higher-precedence evidence packet comes first.
+Surface packets are advisor-invisible (`routingClass: metadata`, read-only `toolSurface`): the advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle` (workflow mode ordered first, surfaces after). "review my webflow animation for jank" → `[sk-code-review, sk-code-webflow]`. Bundled surfaces follow the `routerPolicy.tieBreak` order, which is the detection precedence SKILLED > OBSIDIAN > WEBFLOW, so the higher-precedence evidence packet comes first.
 
 ### Routing rule
 ```python
@@ -136,7 +136,7 @@ def route(task):
 
 When no workflow mode dominates (a bare implement/debug/verify request), the router defers to a pure surface bundle: it detects the surface, loads that surface's evidence and workflow doctrine, and the agent acts. `routerPolicy.defaultMode` is `null`, so the hub does not force a stale default. An unclear code intent asks for disambiguation.
 
-Surface detection (`OPENCODE`, `OBSIDIAN`, `WEBFLOW`, `UNKNOWN`, at precedence OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN) lives once in the hub's `shared/` layer and is consumed by every mode and surface. `MOTION_DEV` is a resource intent loaded after the surface decision, not a surface. Modes own workflow contracts, not surface identity.
+Surface detection (`SKILLED`, `OBSIDIAN`, `WEBFLOW`, `UNKNOWN`, at precedence SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN) lives once in the hub's `shared/` layer and is consumed by every mode and surface. `MOTION_DEV` is a resource intent loaded after the surface decision, not a surface. Modes own workflow contracts, not surface identity.
 
 Per-mode behavior is **not flattened**: each packet keeps its own code-work contract, standards, evidence rules, and tool-permission guards.
 
@@ -162,7 +162,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-webflow/       # webflow surface packet  (read-only evidence; carries the workflow doctrine + Motion.dev animation overlay)
-  sk-code-opencode/      # opencode surface packet (read-only evidence; carries the workflow doctrine)
+  sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
   sk-code-obsidian/      # obsidian surface packet (read-only evidence)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
 ```
@@ -170,7 +170,7 @@ sk-code/
 Each mode or surface packet is self-contained and carries no per-packet `graph-metadata.json`. Only this hub carries one, so the advisor discovers exactly one code skill identity. The implement/debug/verify workflow doctrine is a single shared source under `shared/references/`, and each surface symlinks it in rather than duplicating it.
 
 ### Backend
-The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes OPENCODE, OBSIDIAN, WEBFLOW, and UNKNOWN detection and their precedence (MOTION_DEV is a resource intent resolved after the surface, not a surface), and it carries the shared implement → debug → verify workflow doctrine that each surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-webflow/`, `sk-code-opencode/`, `sk-code-obsidian/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
+The `surface-router` backend is the shared surface-detection router under `shared/`. It centralizes SKILLED, OBSIDIAN, WEBFLOW, and UNKNOWN detection and their precedence (MOTION_DEV is a resource intent resolved after the surface, not a surface), and it carries the shared implement → debug → verify workflow doctrine that each surface consumes. The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache. The `evidence-base` backend serves the surface packets: read-only domain evidence (`sk-code-webflow/`, `sk-code-skilled/`, `sk-code-obsidian/`) the hub bundles alongside the primary mode. The packet mutates nothing and never carries process, and the acting agent applies the doctrine it bundles. Shared backend material provides surface identity, the workflow doctrine, and cross-mode helpers. It must never gain per-mode workflow contracts.
 
 ---
 
@@ -200,7 +200,7 @@ The `surface-router` backend is the shared surface-detection router under `share
 ## 5. REFERENCES
 
 - Workflow mode packets: `sk-code-quality/SKILL.md`, `sk-code-review/SKILL.md`.
-- Surface evidence packets: `sk-code-webflow/SKILL.md`, `sk-code-opencode/SKILL.md`, `sk-code-obsidian/SKILL.md`.
+- Surface evidence packets: `sk-code-webflow/SKILL.md`, `sk-code-skilled/SKILL.md`, `sk-code-obsidian/SKILL.md`.
 - Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.

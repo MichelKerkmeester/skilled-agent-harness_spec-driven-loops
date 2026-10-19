@@ -7,7 +7,7 @@ Angle 4 — detect module-boundary breaks: cli importing compiled `dist` paths, 
 
 ### F4.1 [Conforming] No dist-path, cli->lib, lib->cli, or shared->runtime import break found
 - **Code:** scanned all in-scope `runtime/lib`, `runtime/cli`, `runtime/api`, `shared` `.ts/.mjs/.cjs` source for `from '.../dist/...'`, `from '.../runtime/cli'`, and `from '.../runtime/...'` from inside `shared`.
-- **Standard:** `sk-code-opencode/references/shared/code-organization/imports-and-exports.md` §1 (import grouping) + §2 (local vs type-only), and the package's own boundary contract in `runtime/lib/MODULE-MAP.md` §1 ("legal import directions").
+- **Standard:** `sk-code-skilled/references/shared/code-organization/imports-and-exports.md` §1 (import grouping) + §2 (local vs type-only), and the package's own boundary contract in `runtime/lib/MODULE-MAP.md` §1 ("legal import directions").
 - **What is present:** Zero findings. All three scans returned empty:
   - No source file imports a compiled `dist/` path.
   - No `runtime/lib` or `runtime/api` source imports from `runtime/cli`.
@@ -31,7 +31,7 @@ Angle 4 — detect module-boundary breaks: cli importing compiled `dist` paths, 
 - `runtime/lib/MODULE-MAP.md` §1-§2
 - `runtime/cli/tests/import-policy-rules.vitest.ts`
 - `shared/package.json`, `runtime/package.json`
-- `sk-code-opencode/references/shared/code-organization/imports-and-exports.md`
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
 
 ## Assessment
 - **newInfoRatio:** 0.4

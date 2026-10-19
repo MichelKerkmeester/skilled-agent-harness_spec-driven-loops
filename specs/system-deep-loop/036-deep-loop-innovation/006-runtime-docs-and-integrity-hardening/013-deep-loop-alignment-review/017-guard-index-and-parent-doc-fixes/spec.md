@@ -84,8 +84,8 @@ Each check reports on what it exists to guard, and the parent documents say what
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | Skip generated skill copies in the dead-route check |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modify | Regression test for a generated copy |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Skip generated skill copies in the dead-route check |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modify | Regression test for a generated copy |
 | `.hermes/plugins/repo-guards/__init__.py` | Modify | House-style shebang |
 | `.opencode/skills/system-spec-kit/runtime/cli/retrieval/lib/corpus.mjs` | Modify | Prune `lineages` under `specs/` whatever the parent |
 | `.opencode/skills/system-spec-kit/runtime/cli/tests/retrieval-coverage-parity.vitest.ts` | Modify | Probes and divergence entry for the widened rule |

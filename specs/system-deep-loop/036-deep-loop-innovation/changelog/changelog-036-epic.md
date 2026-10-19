@@ -105,7 +105,7 @@ This group covers runtime code READMEs, sk-code alignment, and nine integrity-ha
 
 **Key phases:**
 - `001-runtime-code-readmes` — Code README in every source-bearing folder; fourteen recorded defects repaired (Complete).
-- `002-sk-code-opencode-alignment` — Audit and align runtime against sk-code conventions; Vitest matrix and tsc stay green (Complete).
+- `002-sk-code-skilled-alignment` — Audit and align runtime against sk-code conventions; Vitest matrix and tsc stay green (Complete).
 - `003-artifact-certificate-binding` — Bind load-bearing identities to verified typed payload by exact equality; 12/12 findings with forgery negative tests (Complete).
 - `004-alignment-coverage-integrity` — Coverage fails closed with four distinguishable corpus states; per-artifact evidence required (Complete).
 - `005-mode-gate-and-contract-binding` — One shared strict gate validator across four gate families (Complete).

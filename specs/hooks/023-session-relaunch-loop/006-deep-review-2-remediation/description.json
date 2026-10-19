@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "hooks/023-session-relaunch-loop/006-deep-review-2-remediation",
+  "description": "Phase 6: deep-review-2-remediation",
+  "keywords": [
+    "phase",
+    "deep-review-2-remediation"
+  ],
+  "lastUpdated": "2026-10-19T10:05:59.042Z",
+  "specId": "006",
+  "folderSlug": "deep-review-2-remediation",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "19-10-26_11-05__phase-006-closed-twelve-round-2-review-findings.md"
+  ]
+}

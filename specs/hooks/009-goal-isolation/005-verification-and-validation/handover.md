@@ -330,7 +330,7 @@ node --test \
 
 node --test .opencode/plugins/tests/mk-goal-*.test.cjs
 
-python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py \
   --root .opencode/hooks/goal
 
 python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh \
@@ -346,7 +346,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 Run the repository wrapper when the change touches OpenCode structure or routing:
 
 ```bash
-bash .opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh
+bash .opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 ```
 
 Read its exit status and separate global backlog from the packet-scoped delta. Do not replace the authoritative wrapper with the focused command; both receipts answer different questions.

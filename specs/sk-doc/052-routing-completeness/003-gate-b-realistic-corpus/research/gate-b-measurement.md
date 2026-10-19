@@ -93,7 +93,7 @@ whether a competing hub was a real contender or floor noise.
 | mcp-tooling / mcp-refero | 0 | 0 | 4 |
 | sk-code / sk-code-mobile-cli | 0 | 0 | 4 |
 | sk-code / sk-code-obsidian | 1 | 1 | 5 |
-| sk-code / sk-code-opencode | 3 | 3 | 4 |
+| sk-code / sk-code-skilled | 3 | 3 | 4 |
 | sk-code / sk-code-quality | 0 | 0 | 4 |
 | sk-code / sk-code-review | 1 | 1 | 4 |
 | sk-code / sk-code-webflow | 2 | 2 | 5 |
@@ -216,7 +216,7 @@ table below, grouped by hub and mode.
 | mcp-tooling / mcp-refero | We're stuck on how to lay out a comparison table. Can you pull up how other sites have solved it? | - |
 | sk-code / sk-code-mobile-cli | The settings panel on the pocket remote app looks inconsistent with the rest of the interface after my last change. | - |
 | sk-code / sk-code-obsidian | I added a new component to the plugin's source and it's breaking the naming convention. Can you look at it? | - |
-| sk-code / sk-code-opencode | Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why. | - |
+| sk-code / sk-code-skilled | Our config file validation passes locally but breaks in the automated pipeline, and I can't tell why. | - |
 | sk-code / sk-code-quality | Is this implementation actually ready, or am I missing something before I call it finished? | - |
 | sk-code / sk-code-review | What would a reviewer say is wrong with this diff before I ask a teammate to look at it? | - |
 | sk-code / sk-code-webflow | Does this front-end component follow our implementation and performance standards before I publish it live? | - |
@@ -317,7 +317,7 @@ it is code-review vocabulary, and `sk-git` sits outside the five hubs this corpu
 measures. `sk-code` absorbs prompts meant for `sk-create-skill`, `mcp-figma`,
 `mcp-aside-devtools`, `cli-opencode` and `sk-create-manual-testing-playbook` whenever the
 prompt touches implementation, a live site, "OpenCode" or a checklist, because
-`sk-code`'s surface bundling (`sk-code-webflow`, `sk-code-opencode`) claims that ground
+`sk-code`'s surface bundling (`sk-code-webflow`, `sk-code-skilled`) claims that ground
 first.
 
 | Hub / Mode | Prompt | What won instead |
@@ -325,9 +325,9 @@ first.
 | cli-external-orchestration / cli-codex | Have Codex take a pass at reviewing this PR for anything I might have missed. | sk-git score=0.491341 action=None targets=[] |
 | cli-external-orchestration / cli-codex | Can you delegate a repo-wide analysis to Codex and cross-check its findings against mine? | sk-code score=0.551794 action=defer targets=[] |
 | cli-external-orchestration / cli-devin | Can you get a cross-model validation pass on this from Devin? | system-spec-kit score=0.415065 action=None targets=[] |
-| cli-external-orchestration / cli-opencode | Can you kick off this refactor as a parallel OpenCode session while I keep working here? | sk-code score=0.660256 action=route targets=['sk-code-opencode'] |
-| cli-external-orchestration / cli-opencode | Delegate this to a detached OpenCode session so I'm not blocked waiting on it. | sk-code score=0.713533 action=route targets=['sk-code-opencode'] |
-| cli-external-orchestration / cli-opencode | I need three variations of this explored at once in OpenCode, each isolated, then reported back together. | sk-code score=0.660256 action=route targets=['sk-code-opencode'] |
+| cli-external-orchestration / cli-opencode | Can you kick off this refactor as a parallel OpenCode session while I keep working here? | sk-code score=0.660256 action=route targets=['sk-code-skilled'] |
+| cli-external-orchestration / cli-opencode | Delegate this to a detached OpenCode session so I'm not blocked waiting on it. | sk-code score=0.713533 action=route targets=['sk-code-skilled'] |
+| cli-external-orchestration / cli-opencode | I need three variations of this explored at once in OpenCode, each isolated, then reported back together. | sk-code score=0.660256 action=route targets=['sk-code-skilled'] |
 | mcp-tooling / mcp-aside-devtools | I need an automated browser to fill out this form repeatedly with different test data. | sk-code score=0.6847 action=route targets=['sk-code-webflow'] |
 | mcp-tooling / mcp-aside-devtools | Drive a browser session through our checkout flow and report where it breaks. | sk-code score=0.647432 action=route targets=['sk-code-webflow'] |
 | mcp-tooling / mcp-chrome-devtools | Can you run a performance audit on this page and tell me what's dragging the score down? | sk-code score=0.395803 action=defer targets=[] |
@@ -353,7 +353,7 @@ first.
 | sk-doc / sk-create-feature-catalog | Every time someone asks what this tool can actually do, I end up grepping the code. Can we have one page that lists it all? | sk-code score=0.424312 action=defer targets=[] |
 | sk-doc / sk-create-manual-testing-playbook | How do we plan a release-readiness pass that multiple people can run in parallel and log evidence for? | system-deep-loop score=0.471772 action=route targets=['review'] |
 | sk-doc / sk-create-manual-testing-playbook | We keep shipping regressions that automated checks miss. Can you put together a hands-on verification pass before the next release? | sk-code score=0.415068 action=defer targets=[] |
-| sk-doc / sk-create-skill | Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed? (boundary row) | sk-code score=0.91977 action=route targets=['sk-code-opencode'] |
+| sk-doc / sk-create-skill | Can you build me a brand new OpenCode skill that formats JSON test fixtures before they get committed? (boundary row) | sk-code score=0.91977 action=route targets=['sk-code-skilled'] |
 | sk-doc / sk-create-skill-parent | We have four related skills that keep stepping on each other. Can you merge them under one router with a shared registry? | sk-git score=0.534394 action=None targets=[] |
 | system-deep-loop / agent-improvement | Can you score this persona's last few runs across a few dimensions and tell me if the new prompt version is actually better? | sk-prompt score=0.477524 action=None targets=[] |
 | system-deep-loop / agent-improvement | We tweaked the debugging persona's prompt last week and I have no idea if it's actually working better or just different. | sk-prompt score=0.465606 action=None targets=[] |
@@ -431,7 +431,7 @@ other six lost outright to the competing mode or to nothing at all.
 
 | Hub / Mode | Boundary against | Resolution | What won |
 |---|---|---|---|
-| sk-doc / sk-create-skill | sk-code-opencode ("OpenCode" collision) | Lost outright | sk-code / sk-code-opencode, score 0.920 |
+| sk-doc / sk-create-skill | sk-code-skilled ("OpenCode" collision) | Lost outright | sk-code / sk-code-skilled, score 0.920 |
 | sk-doc / sk-create-benchmark | skill-benchmark (authoring vs. running) | No recommendation at all | - |
 | sk-doc / sk-create-diff | sk-code-review ("what changed" framing) | No recommendation at all | - |
 | sk-doc / sk-create-quality-control | sk-code-quality ("call it done" framing) | Recovered at a lower position | sk-code, score 0.133 (floor noise) at top |
@@ -443,7 +443,7 @@ other six lost outright to the competing mode or to nothing at all.
 The `sk-create-skill` boundary row is the clearest confirmation of a real collision, not
 a hypothetical one. The prompt asked to scaffold a new package, worded to avoid every
 literal keyword, and still lost decisively (score 0.920, `action: route`) to
-`sk-code-opencode` the moment it mentioned "OpenCode" in passing. A separate,
+`sk-code-skilled` the moment it mentioned "OpenCode" in passing. A separate,
 non-boundary `sk-create-skill` row phrased the identical intent without naming OpenCode
 and returned no recommendation at all, so the word itself is doing the damage rather
 than the underlying intent being genuinely ambiguous.
@@ -456,7 +456,7 @@ itself was unclear.
 
 None. Every one of the forty-three modes had a clear enough `SKILL.md` description to
 write concrete, grounded prompts, including the surface-evidence packets
-(`sk-code-webflow`, `sk-code-opencode`, `sk-code-mobile-cli`, `sk-code-obsidian`) that
+(`sk-code-webflow`, `sk-code-skilled`, `sk-code-mobile-cli`, `sk-code-obsidian`) that
 are read-only evidence bundled alongside a workflow mode rather than a directly-invoked
 workflow themselves. The two `command-bridge` modes, `model-benchmark` and
 `skill-benchmark`, were understood well enough to write real prompts for, but those

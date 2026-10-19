@@ -1,6 +1,6 @@
 ---
 title: "Resource Map: 000-release-cleanup"
-description: "Path catalog for 000-release-cleanup phased decomposition: refreshed for 002-sk-code-opencode-alignment planning"
+description: "Path catalog for 000-release-cleanup phased decomposition: refreshed for 002-sk-code-skilled-alignment planning"
 trigger_phrases:
   - "resource map"
   - "000-release-cleanup resource map"
@@ -29,7 +29,7 @@ _memory:
 - **Total references**: 71
 - **By category**: READMEs=0, Documents=39, Commands=0, Agents=0, Skills=0, Specs=6, Scripts=0, Tests=0, Config=26, Meta=0
 - **Missing on disk**: 0
-- **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup`; refreshed for parent root, existing `001-memory-terminology`, and new `002-sk-code-opencode-alignment` planning docs
+- **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup`; refreshed for parent root, existing `001-memory-terminology`, and new `002-sk-code-skilled-alignment` planning docs
 - **Generated**: 2026-04-28T10:35:00Z
 
 > **Action vocabulary**: `Created` · `Updated` · `Analyzed` · `Removed` · `Cited` · `Validated` · `Moved` · `Renamed`.
@@ -78,12 +78,12 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/review/review-report.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/spec.md | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/tasks.md | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/checklist.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/implementation-summary.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/plan.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/resource-map.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/spec.md | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/tasks.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/checklist.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/implementation-summary.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/plan.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/resource-map.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/spec.md | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/tasks.md | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/spec.md | Cited | OK | phase parent root |
 <!-- /ANCHOR:documents -->
 
@@ -98,8 +98,8 @@ _memory:
 |------|--------|--------|------|
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/description.json | Cited | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/001-memory-terminology/graph-metadata.json | Cited | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/description.json | Created | OK | phase child |
-| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-opencode-alignment/graph-metadata.json | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/description.json | Created | OK | phase child |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/002-sk-code-skilled-alignment/graph-metadata.json | Created | OK | phase child |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/description.json | Cited | OK | phase parent root |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/graph-metadata.json | Cited | OK | phase parent root |
 <!-- /ANCHOR:specs -->

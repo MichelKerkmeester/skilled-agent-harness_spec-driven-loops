@@ -10,7 +10,7 @@ trigger_phrases: []
 
 ## Summary
 
-- Scope: the `sk-code` shared layer and its loaders against the repository rules; `sk-code-review` and `.skilled/agents/review.md` as a codebase-agnostic contract; `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode`, `sk-code-obsidian`, the six hub files, `benchmark/`, `feature-catalog/` and the playbooks.
+- Scope: the `sk-code` shared layer and its loaders against the repository rules; `sk-code-review` and `.skilled/agents/review.md` as a codebase-agnostic contract; `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled`, `sk-code-obsidian`, the six hub files, `benchmark/`, `feature-catalog/` and the playbooks.
 - Generated from: twenty iteration deltas (73 findings) in this lineage.
 - Status is an evidence snapshot of the run at `2026-10-10`; nothing outside the lineage directory was written.
 
@@ -25,7 +25,7 @@ trigger_phrases: []
 
 - `.skilled/skills/sk-code/shared/README.md` and the thirteen files under `shared/references/` and `shared/assets/patterns/`.
 - `.skilled/skills/sk-code/SKILL.md`, `ROUTER.md`, `hub-router.json`, `mode-registry.json`, `description.json`, `graph-metadata.json`, `leaf-manifest.json`.
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` and `scripts/run-all-drift-guards.sh`.
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` and `scripts/run-all-drift-guards.sh`.
 
 ## Review sources
 

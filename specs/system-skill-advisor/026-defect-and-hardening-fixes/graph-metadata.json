@@ -90,16 +90,16 @@
     ],
     "causal_summary": "Small advisor defects and gaps surfaced one at a time",
     "created_at": "2026-09-12T00:00:00Z",
-    "last_save_at": "2026-10-06T18:48:31.632Z",
+    "last_save_at": "2026-10-18T20:45:27.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c1b54c1e7ab83d1a6707b99a3fab495df4fa223f04414839af98eb60b1644935",
+    "source_fingerprint": "sha256:033621d7b5046db29a04568f9c7319615e9f1f909df16c78eb48ec9e5e37a6e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1dc0f35b02750dc7042f5a7ac4b3834b46006b1be5b83dccf3db7494b1a2da15"
+      "spec.md": "107573f7bedd418ba17b9e43a84e7d19d774c76da0cb3b66df6339c6c7c364b1"
     },
     "last_active_child_id": "system-skill-advisor/026-defect-and-hardening-fixes/006-stress-suite-ci",
     "last_active_at": "2026-10-06T19:00:00Z"

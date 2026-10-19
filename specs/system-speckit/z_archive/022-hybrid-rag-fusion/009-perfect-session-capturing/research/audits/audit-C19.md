@@ -117,7 +117,7 @@ exec
     "reason": "Matched: !audit, !audit(multi), !intent:review, review(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.84,
     "uncertainty": 0.2,

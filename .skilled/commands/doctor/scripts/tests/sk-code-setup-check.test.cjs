@@ -26,7 +26,7 @@ const PARENT_SKILL_CHECK = '.skilled/commands/doctor/scripts/parent-skill-check.
 const ROOT_METADATA = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs';
 const ROUTE_GUARD = '.skilled/bin/compiled-route-guard.cjs';
 const ROUTE_SYNC = '.skilled/bin/compiled-route-sync.cjs';
-const DRIFT_GUARDS = '.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh';
+const DRIFT_GUARDS = '.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh';
 const DERIVED_FRESHNESS = '.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs';
 const ROUTE_PROBE = '.skilled/bin/compiled-route.cjs';
 const SHARED_FRONTMATTER = 'node_modules/@spec-kit/shared/frontmatter/parse-frontmatter.js';
@@ -205,7 +205,7 @@ test('a failing drift guard shows only its FAIL lines, never the raw output', ()
   const { status, out } = run(buildRoot({ driftGuards }));
   assert.equal(status, 1, out);
   assert.match(out, /^ {6}FAIL: 1a: router path missing$/m);
-  assert.match(out, /^ {6}repair: fix each FAIL guard above, then rerun bash \.skilled\/skills\/sk-code\/sk-code-opencode\/scripts\/run-all-drift-guards\.sh$/m);
+  assert.match(out, /^ {6}repair: fix each FAIL guard above, then rerun bash \.skilled\/skills\/sk-code\/sk-code-skilled\/scripts\/run-all-drift-guards\.sh$/m);
   assert.doesNotMatch(out, /^ {6}noise line$/m);
 });
 

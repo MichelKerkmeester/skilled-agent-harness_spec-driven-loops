@@ -136,7 +136,7 @@ index 14ed37d124..1d3d2372b0 100644
 +Expected result: the two renderers agree on every label and the brief cache key tracks every write.
 +
  ```bash
- python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+ python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py \
    --root .opencode/hooks/goal
 @@ -168,3 +188,4 @@ Expected result: no alignment drift. Use temporary `OPENCODE_GOAL_STATE_DIR` pat
  - [`../injection-contract.md`](../injection-contract.md): runtime injection visibility contract.
@@ -14779,7 +14779,7 @@ index f8c2c255ab..004bc067da 100644
 -      2550
 +      2584
      ],
-     "037 001 sk code opencode standards audit": [
+     "037 001 sk code skilled standards audit": [
 -      9326,
 -      9327,
 -      9329,
@@ -14789,7 +14789,7 @@ index f8c2c255ab..004bc067da 100644
 +      9368,
 +      9369
      ],
-     "037 001 sk code opencode standards audit resource map": [
+     "037 001 sk code skilled standards audit resource map": [
 -      9328
 +      9367
      ],
@@ -137254,11 +137254,11 @@ index f8c2c255ab..004bc067da 100644
 -      3292
 +      3331
      ],
-     "sk code opencode alignment": [
+     "sk code skilled alignment": [
 -      2666
 +      2700
      ],
-     "sk code opencode audit": [
+     "sk code skilled audit": [
 -      9326,
 -      9327,
 -      9329,
@@ -137270,35 +137270,35 @@ index f8c2c255ab..004bc067da 100644
 +      9369,
 +      12022
      ],
-     "sk code opencode audit file ledger": [
+     "sk code skilled audit file ledger": [
 -      9328
 +      9367
      ],
-     "sk code opencode conformance spec kit": [
+     "sk code skilled conformance spec kit": [
 -      14236
 +      14275
      ],
-     "sk code opencode esm exemption": [
+     "sk code skilled esm exemption": [
 -      11525
 +      11564
      ],
-     "sk code opencode readme": [
+     "sk code skilled readme": [
 -      6683
 +      6722
      ],
-     "sk code opencode readme plan": [
+     "sk code skilled readme plan": [
 -      6682
 +      6721
      ],
-     "sk code opencode readme summary": [
+     "sk code skilled readme summary": [
 -      6681
 +      6720
      ],
-     "sk code opencode readme tasks": [
+     "sk code skilled readme tasks": [
 -      6684
 +      6723
      ],
-     "sk code opencode rename": [
+     "sk code skilled rename": [
 -      5797,
 -      5798,
 -      5799,
@@ -137308,11 +137308,11 @@ index f8c2c255ab..004bc067da 100644
 +      5838,
 +      5839
      ],
-     "sk code opencode standards audit": [
+     "sk code skilled standards audit": [
 -      11323
 +      11362
      ],
-     "sk code opencode stress test": [
+     "sk code skilled stress test": [
 -      9515,
 -      9516,
 -      9517,
@@ -137330,7 +137330,7 @@ index f8c2c255ab..004bc067da 100644
 +      9561,
 +      9562
      ],
-     "sk code opencode stress test alignment": [
+     "sk code skilled stress test alignment": [
 -      11420
 +      11459
      ],

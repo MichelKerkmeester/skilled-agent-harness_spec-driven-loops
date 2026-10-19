@@ -33,7 +33,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Route through `sk-code` before the first code write, and record what its router resolves (AGENTS.md Gate 2). Evidence: `compiled-route.cjs --hub sk-code` resolved `sk-code-opencode`; its universal, JavaScript and TypeScript checklists were loaded
+- [x] T001 Route through `sk-code` before the first code write, and record what its router resolves (AGENTS.md Gate 2). Evidence: `compiled-route.cjs --hub sk-code` resolved `sk-code-skilled`; its universal, JavaScript and TypeScript checklists were loaded
 - [x] T002 Confirm the single-file Vitest commands by running one existing file in each project: `repair-derived.vitest.ts` (cli) and `generated-metadata-integrity.vitest.ts` (root) (`.skilled/skills/system-spec-kit/vitest.config.ts`). Evidence: `npx vitest run --config vitest.config.ts --project cli tests/repair-derived.vitest.ts` 13 passed, exit 0; `--project root runtime/tests/generated-metadata-integrity.vitest.ts` 19 passed, exit 0
 - [x] T003 Capture the before numbers: full `cli` and `root` Vitest pass counts, and the harness counts already measured (active 111 of 170 and 686 of 1,007, archived 0 of 186 and 0 of 911) (`scratch/harness/`). Evidence at `f2b04f4773`: cli 157 files, 1,550 tests, 1,531 passed, 0 failed, 19 skipped; root 107 files, 1,277 tests, 1,264 passed, 0 failed, 13 skipped; `tsc --noEmit` exit 0 for `runtime` and `runtime/cli`
 <!-- /ANCHOR:phase-1 -->

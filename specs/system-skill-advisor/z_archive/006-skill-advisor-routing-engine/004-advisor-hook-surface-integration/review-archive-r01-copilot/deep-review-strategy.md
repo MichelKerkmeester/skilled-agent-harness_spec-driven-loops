@@ -2,7 +2,7 @@
 
 ## Target
 
-Skill-advisor phase stack shipped on main: Phase 020 (hook surface) + Phase 021/001 (advisor-hook efficacy research) + Phase 021/002 (SKILL.md smart-router research) + Phase 022 (skill-advisor docs + sk-code-opencode TS audit) + Phase 023 (6-area remediation + OpenCode plugin) + Phase 024 (deferred items + static corpus measurement + live-session wrapper + telemetry analyzer).
+Skill-advisor phase stack shipped on main: Phase 020 (hook surface) + Phase 021/001 (advisor-hook efficacy research) + Phase 021/002 (SKILL.md smart-router research) + Phase 022 (skill-advisor docs + sk-code-skilled TS audit) + Phase 023 (6-area remediation + OpenCode plugin) + Phase 024 (deferred items + static corpus measurement + live-session wrapper + telemetry analyzer).
 
 ## Review Dimensions (7)
 
@@ -11,7 +11,7 @@ Skill-advisor phase stack shipped on main: Phase 020 (hook surface) + Phase 021/
 | **D1** | Security + Privacy | Raw prompts never persisted; HMAC cache opacity; prompt-poisoning hardening; disable flag honored across all surfaces |
 | **D2** | Correctness | Envelope contract; 4-runtime parity; fail-open behavior; freshness semantics; UNKNOWN-fallback |
 | **D3** | Performance + Observability | Cache hit rate; p95 targets; metrics namespace; JSONL schema forbidden fields |
-| **D4** | Maintainability + sk-code-opencode alignment | Audit leftovers; TS strictness; comment discipline; no dead code |
+| **D4** | Maintainability + sk-code-skilled alignment | Audit leftovers; TS strictness; comment discipline; no dead code |
 | **D5** | Integration + Cross-runtime | Hook surface parity; plugin/bridge correctness; corpus parity 200/200; Codex adapter edge cases |
 | **D6** | Test coverage + test-code quality | 134+13 tests: gaps in fixtures/mocks/coverage |
 | **D7** | Documentation accuracy | Reference doc DQI; README claims vs reality; feature catalog matches shipped code; playbook executable |
@@ -35,7 +35,7 @@ Skill-advisor phase stack shipped on main: Phase 020 (hook surface) + Phase 021/
 - 020 parent + 8 children shipped + tested (118 Phase 020 tests PASS)
 - 021/001 research converged (V1-V10 all answered)
 - 021/002 research converged (V1-V10 all answered, V9 enforcement found = NONE)
-- 022 shipped docs + 8 sk-code-opencode audit fixes
+- 022 shipped docs + 8 sk-code-skilled audit fixes
 - 023 shipped 6 areas + OpenCode plugin (134 tests total at that point)
 - 024 shipped 4 tracks; advisor accuracy measured at 56% vs corpus labels; 147 tests at that point
 - Copilot SDK unblocked via npm install (`@github/copilot-sdk@0.2.2`)

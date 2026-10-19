@@ -100,7 +100,7 @@ I’ve got the file inventory and skill routing. Next I’m loading the repo-spe
 
 The docs are loaded. Now I’m cross-checking the claimed tool names and parameter behavior against the actual repository sources, starting with the `scripts/` tree you called out and then the runtime schema/handler files where those tool contracts are actually defined.
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 ● Search (grep)
   │ "checkpoint_create|checkpoint_list|checkpoint_restore|checkpoint_delete|memory_ingest_start|memo

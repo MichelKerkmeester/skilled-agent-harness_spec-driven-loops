@@ -28,7 +28,8 @@
     "hooks/019-cache-optimizer-measurement-fixes",
     "hooks/020-spec-metadata-auto-remint",
     "hooks/021-compat-opt-in-and-image-declaration",
-    "hooks/022-smart-rule-injection"
+    "hooks/022-smart-rule-injection",
+    "hooks/023-session-relaunch-loop"
   ],
   "manual": {
     "depends_on": [],

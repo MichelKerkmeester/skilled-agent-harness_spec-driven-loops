@@ -1,0 +1,11 @@
+{
+  "session_id": "codex-session-00000001",
+  "turn_id": "codex-turn-00000001",
+  "transcript_path": "REDACTED_ROLLOUT_PATH",
+  "cwd": "REDACTED_CWD",
+  "hook_event_name": "Stop",
+  "model": "gpt-6-luna",
+  "permission_mode": "default",
+  "stop_hook_active": false,
+  "last_assistant_message": "ok"
+}

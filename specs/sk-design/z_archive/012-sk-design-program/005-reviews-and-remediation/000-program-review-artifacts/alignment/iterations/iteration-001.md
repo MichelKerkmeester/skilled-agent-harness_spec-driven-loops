@@ -45,7 +45,7 @@ None.
 #### P2-001 — Non-trivial test helpers omit required JSDoc
 
 - Lane tags: `authority=sk-code`, `artifactClass=code`, `type=pattern-conformance`, `subcheck=comment-hygiene-beyond-simple-patterns`, `layer=reasoning-agent`
-- The JavaScript test standard keeps JSDoc documentation for non-trivial functions in force. [SOURCE: .opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md:221] [SOURCE: .opencode/skills/sk-code/code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md:223]
+- The JavaScript test standard keeps JSDoc documentation for non-trivial functions in force. [SOURCE: .opencode/skills/sk-code/code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:221] [SOURCE: .opencode/skills/sk-code/code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:223]
 - `timingStyles`, `medianDuration`, and `legacyGenerationHash` are non-trivial helpers without JSDoc blocks. [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs:13] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/adapter.test.mjs:31] [SOURCE: .opencode/skills/sk-design/styles/_db/__tests__/indexer.test.mjs:24]
 - Recommendation: add concise JSDoc blocks in a separately approved remediation pass.
 

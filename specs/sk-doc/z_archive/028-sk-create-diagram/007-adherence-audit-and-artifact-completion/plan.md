@@ -39,7 +39,7 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown (SKILL.md, references, playbook/catalog), Python (2 extraction scripts), JSON/YAML (hub registry, command assets) |
-| **Framework** | `sk-create-skill` templates, `sk-code-opencode` language standards, `sk-create-manual-testing-playbook` + `sk-create-feature-catalog` package contracts |
+| **Framework** | `sk-create-skill` templates, `sk-code-skilled` language standards, `sk-create-manual-testing-playbook` + `sk-create-feature-catalog` package contracts |
 | **Storage** | `sk-create-diagram` packet files; two new packet-local subdirectories |
 | **Testing** | `validate_document.py`, `validate-playbook-package.cjs`, `validate_catalog_package.py` (where reachable), packet-wide `validate.sh --recursive --strict` |
 
@@ -56,7 +56,7 @@ Three dispatched passes to Deepseek v4 Flash via `cli-opencode` (`opencode-go/de
 ### Definition of Ready
 
 - [x] Phase 006 closed packet 028 with all prior gates clean.
-- [x] All four standards documents read in full (skill-md/reference/asset templates, sk-code-opencode SKILL.md, sk-create-manual-testing-playbook SKILL.md, sk-create-feature-catalog SKILL.md).
+- [x] All four standards documents read in full (skill-md/reference/asset templates, sk-code-skilled SKILL.md, sk-create-manual-testing-playbook SKILL.md, sk-create-feature-catalog SKILL.md).
 - [x] `decision-record.md` resolves asset-template applicability, package placement, and taxonomy ahead of dispatch.
 
 ### Definition of Done

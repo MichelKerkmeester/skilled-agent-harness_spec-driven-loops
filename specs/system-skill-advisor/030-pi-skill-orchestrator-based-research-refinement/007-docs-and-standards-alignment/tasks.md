@@ -32,7 +32,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Run comment hygiene on every code file phases 2 to 5 changed. Evidence: `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <file>` over 35 files: 31 clean, 0 violations, 4 workflow YAML files skipped by the checker; their added comment lines were scanned by hand for ids and none were found.
-- [x] T002 Run the sk-code drift guards. Evidence: `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exit 0, both guards PASS, no warning names a phase 2 to 5 file.
+- [x] T002 Run the sk-code drift guards. Evidence: `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exit 0, both guards PASS, no warning names a phase 2 to 5 file.
 - [x] T003 Checklist audit of the added lines by MiMo v2.6 Pro high, read-only, and an orchestrator check of each finding. Evidence: 1 P1 and 6 P2 reported; the P1 confirmed at `.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:262`; the P2 line-length items confirmed and deferred, reasons in `implementation-summary.md`.
 - [x] T004 Document inventory by MiMo against the facts sheet, read-only, and an orchestrator check of each "wrong" item. Evidence: four "wrong" items confirmed in code, including the transport-down playbook's `hello` prompt, which the prompt gate declines (`shouldFireAdvisor("hello")` returns `short_casual_acknowledgement`).
 - [x] T005 Record the validator baseline. Evidence: every target document `validate_document.py` exit 0; catalog packages system-skill-advisor 9 warn 0 fail and system-spec-kit 84 warn 0 fail; playbook packages 0 violations each.

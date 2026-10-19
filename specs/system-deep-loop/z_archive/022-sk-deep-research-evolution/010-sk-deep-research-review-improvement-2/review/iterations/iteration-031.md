@@ -16,7 +16,7 @@ completedAt: 2026-04-12T16:33:45Z
 
 ● skill(sk-code-review)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m narrowing the review to the reducer, its spec references, and any tests or workflow glue that exercise the updated stop/resume logic so the findings stay correctness-focused.
 
@@ -25,7 +25,7 @@ I’m narrowing the review to the reducer, its spec references, and any tests or
   └ L1:220 (98 lines read)
 
 ● Read quality_standards.md
-  │ .claude/skills/sk-code-opencode/references/javascript/quality_standards.md
+  │ .claude/skills/sk-code-skilled/references/javascript/quality_standards.md
   └ L1:220 (220 lines read)
 
 ● Search (glob)

@@ -62,7 +62,7 @@ _memory:
 ### Refinement Pass 2 (2026-03-16)
 
 - [x] **T11: Add Quick Reference skill rows** -- Web code, OpenCode system code, Git workflow rows to Universal
-- [x] **T12: Skill section overhaul (Universal)** -- Replace Barter sk-code with sk-code-opencode + system-spec-kit/memory references; replace read-only sk-git with full workflow
+- [x] **T12: Skill section overhaul (Universal)** -- Replace Barter sk-code with sk-code-skilled + system-spec-kit/memory references; replace read-only sk-git with full workflow
 - [x] **T13: Skill section overhaul (FS)** -- Replace Barter sk-code with sk-code-full-stack + stack verification table; replace read-only sk-git with full workflow
 - [x] **T14: Create changelog** -- v2.2.0.0 in .opencode/changelog/02--agents-md/
 <!-- /ANCHOR:phase-2 -->

@@ -17,7 +17,7 @@ Regression suite for `../` (deep-review's own scripts) and the shared reducer it
 
 | File | Purpose |
 |------|---------|
-| `reduce-state-summary-fallback.test.cjs` | Proves `reduceReviewState()` falls back correctly when a review iteration is missing its own summary |
+| `reduce-state-summary-fallback.test.cjs` | Proves `reduceReviewState()` falls back correctly when a review iteration is missing its own summary. It also covers delta finding rows keyed `id` or `findingId`, a running-total `findingsSummary` that pads only against findings still open by that run, and resolutions recorded only in delta files |
 | `fixtures/blocked-stop-session/` | A pre-built review spec folder (state log, findings registry, dashboard, three iterations) that manually exercises the `blocked_stop` reducer path via its own runnable command. Not read by `reduce-state-summary-fallback.test.cjs`, which builds its fixtures dynamically with `mkdtemp` |
 
 ---

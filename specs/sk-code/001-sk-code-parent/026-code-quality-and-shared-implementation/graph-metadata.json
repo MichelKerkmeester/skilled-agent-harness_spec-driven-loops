@@ -51,7 +51,6 @@
       ".opencode/skills/sk-code/mode-registry.json",
       ".opencode/skills/sk-code/hub-router.json",
       ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
       "shared/README.md"
     ],
     "entities": [
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked, owner-bounded backlog of five upgrade proposals for the `sk-code/code-quality` sub-skill and `sk-code/shared` assets",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-08-30T15:39:10.983Z",
+    "last_save_at": "2026-10-18T20:45:07.162Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94e0e125a54962afa9f6ecfd62d394b7f098fd966c9d43f095e4d0c21a9dc25f",
+    "source_fingerprint": "sha256:5e7c0b0d6d054d242fc0fc88cf908779838ffc5550e05a43fdc627cbd2e59899",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ca4b7569f90828dcadd7e43581fcb2c33c0920a511a1a82adeb087d2fb569f2",
-      "plan.md": "c43a675d11ab6452c6ce70f769e98cdaf6b2a15a2f1718d1b382612d5f1cf08d",
+      "spec.md": "c6ee304fd202502efa320df972c53308ab0edef0aeadf3c30d9a570f1e559a8d",
+      "plan.md": "41e0ca97b9019cfbec18cabcee36f90f3ea43038648a459bcc2be714638a6955",
       "tasks.md": "0b47b4da0efe6ab1e042ab7149fd7d1c8a62a2fa62d1e8d0fe5f1afd20e34bc1",
-      "implementation-summary.md": "6e740939cbc1501b065dcb4597891603dbf230da6c654e3a4592cded8493c118"
+      "implementation-summary.md": "78e210e5c4b9cd5443b202e19090d1301c89afa00ac59b3e87a306532de34140"
     },
     "last_active_child_id": null,
     "last_active_at": null

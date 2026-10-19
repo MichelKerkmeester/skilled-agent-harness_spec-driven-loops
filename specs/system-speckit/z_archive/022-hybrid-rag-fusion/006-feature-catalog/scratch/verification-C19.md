@@ -90,7 +90,7 @@ exec
     "reason": "Matched: !code(multi), !intent:implementation, code(name), specification~, spec~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
 SKILL ROUTING: `system-spec-kit` (confidence `0.95`). User specified: “Read each feature snippet file … Verify … Current Reality … source file paths … no important source files are missing.” I’m loading just the relevant parts of that skill now, then I’ll extract each snippet’s source-file list and compare it to the actual `mcp_server` implementation.

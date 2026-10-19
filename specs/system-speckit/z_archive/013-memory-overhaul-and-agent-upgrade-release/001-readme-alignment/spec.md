@@ -79,7 +79,7 @@ All 60+ system-spec-kit sub-READMEs:
 
 Workflow skill READMEs (6 files):
 - `.opencode/skills/sk-doc/README.md`
-- `.opencode/skills/sk-code-opencode/README.md`
+- `.opencode/skills/sk-code-skilled/README.md`
 - `.opencode/skills/workflows-code--web-dev/README.md`
 - `.opencode/skills/sk-code-full-stack/README.md`
 - `.opencode/skills/sk-git/README.md`

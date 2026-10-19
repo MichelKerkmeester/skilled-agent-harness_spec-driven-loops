@@ -73,9 +73,9 @@ All remaining items are testing. Base path for all checklists: `.opencode/specs/
 
 ---
 
-## Task 2: sk-code-opencode Compliance Audit
+## Task 2: sk-code-skilled Compliance Audit
 
-Run the TypeScript checklist from `.opencode/skills/sk-code-opencode/assets/checklists/typescript_checklist.md` against all code-graph and hook files.
+Run the TypeScript checklist from `.opencode/skills/sk-code-skilled/assets/checklists/typescript_checklist.md` against all code-graph and hook files.
 
 ### Known Issues Found (fix these)
 

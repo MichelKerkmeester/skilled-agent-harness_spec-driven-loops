@@ -103,7 +103,7 @@ The rewrite ran template-first. The refined skill README template was read and i
 ## Known Limitations
 
 1. **Sibling READMEs not touched** - The other mode children in `005-mode-child-readme-revisit` are owned by their own phases and were out of scope.
-2. **`code-opencode` naming** - The README keeps the contract naming from SKILL.md and the prior README; the on-disk sibling folder is `sk-code-opencode`.
+2. **`code-skilled` naming** - The README keeps the contract naming from SKILL.md and the prior README; the on-disk sibling folder is `sk-code-skilled`.
 3. **Changelog style** - The new entry avoids the em dash the v1.0.0.0 entry used, matching the HVR-clean convention the shared changelog template now requires.
 <!-- /ANCHOR:limitations -->
 

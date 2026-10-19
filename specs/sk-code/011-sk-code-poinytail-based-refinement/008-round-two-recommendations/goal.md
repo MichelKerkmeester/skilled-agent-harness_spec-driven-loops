@@ -83,7 +83,7 @@ string, not these files.
 - [ ] In the worktree, `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations --recursive --strict` prints `RESULT: PASSED` 6 times and `RESULT: FAILED` 0 times
 - [ ] In the worktree, `grep -l 'completion_pct: 100' specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/00[1-5]-*/implementation-summary.md | wc -l` prints 5
 - [ ] `git log --format='%(trailers:key=Spec,valueonly)' HEAD | grep -c '/008-round-two-recommendations/'` prints 5 or more, one per child, and `git status --short` prints nothing
-- [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` exits 0
+- [ ] In the worktree, `node .skilled/bin/compiled-route-guard.cjs` exits 0 listing sk-code `fresh`, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0, and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` exits 0
 <!-- /ANCHOR:completion -->
 
 ---

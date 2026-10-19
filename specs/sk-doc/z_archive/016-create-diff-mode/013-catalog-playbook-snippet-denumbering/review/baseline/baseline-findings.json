@@ -27598,7 +27598,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/stack_detection.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/stack_detection.md | references/stack_detection.md",
@@ -27606,7 +27606,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/smart_routing.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/smart_routing.md | references/smart_routing.md",
@@ -27614,7 +27614,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/smart_routing.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/smart_routing.md | references/smart_routing.md",
@@ -27622,7 +27622,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/universal/code_quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/universal/code_quality_standards.md | references/universal/code_quality_standards.md",
@@ -27630,7 +27630,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -27638,7 +27638,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -27646,7 +27646,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/typescript/style_guide.md | references/opencode/typescript/style_guide.md",
@@ -27654,7 +27654,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/typescript/quality_standards.md | references/opencode/typescript/quality_standards.md",
@@ -27662,7 +27662,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/typescript/quick_reference.md | references/opencode/typescript/quick_reference.md",
@@ -27670,7 +27670,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/typescript_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/assets/opencode/checklists/typescript_checklist.md | assets/opencode/checklists/typescript_checklist.md",
@@ -27678,7 +27678,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -27686,7 +27686,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": ".opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/.opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts | .opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts",
@@ -27694,7 +27694,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/typescript/style_guide.md | references/opencode/typescript/style_guide.md",
@@ -27702,7 +27702,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -27710,7 +27710,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/typescript_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/assets/opencode/checklists/typescript_checklist.md | assets/opencode/checklists/typescript_checklist.md",
@@ -27718,7 +27718,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -27726,7 +27726,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/skilled-detection.md",
       "kind": "tickpath",
       "ref": ".opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/.opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts | .opencode/skills/system-spec-kit/mcp_server/lib/scorer/lanes/explicit.ts",
@@ -27918,7 +27918,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "references/opencode/config/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/config/style_guide.md | references/opencode/config/style_guide.md",
@@ -27926,7 +27926,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "references/opencode/config/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/config/quality_standards.md | references/opencode/config/quality_standards.md",
@@ -27934,7 +27934,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "references/opencode/config/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/config/quick_reference.md | references/opencode/config/quick_reference.md",
@@ -27942,7 +27942,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -27950,7 +27950,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -27958,7 +27958,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/config_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/config_checklist.md | assets/opencode/checklists/config_checklist.md",
@@ -27966,7 +27966,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-config.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -27974,7 +27974,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "references/opencode/python/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/python/style_guide.md | references/opencode/python/style_guide.md",
@@ -27982,7 +27982,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "references/opencode/python/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/python/quality_standards.md | references/opencode/python/quality_standards.md",
@@ -27990,7 +27990,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "references/opencode/python/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/python/quick_reference.md | references/opencode/python/quick_reference.md",
@@ -27998,7 +27998,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -28006,7 +28006,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -28014,7 +28014,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/python_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/python_checklist.md | assets/opencode/checklists/python_checklist.md",
@@ -28022,7 +28022,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-python.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -28030,7 +28030,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "references/opencode/shell/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shell/style_guide.md | references/opencode/shell/style_guide.md",
@@ -28038,7 +28038,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "references/opencode/shell/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shell/quality_standards.md | references/opencode/shell/quality_standards.md",
@@ -28046,7 +28046,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "references/opencode/shell/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shell/quick_reference.md | references/opencode/shell/quick_reference.md",
@@ -28054,7 +28054,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -28062,7 +28062,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -28070,7 +28070,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/shell_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/shell_checklist.md | assets/opencode/checklists/shell_checklist.md",
@@ -28078,7 +28078,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-shell.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -28086,7 +28086,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/typescript_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/typescript_checklist.md | assets/opencode/checklists/typescript_checklist.md",
@@ -28094,7 +28094,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/typescript/style_guide.md | references/opencode/typescript/style_guide.md",
@@ -28102,7 +28102,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/typescript/quality_standards.md | references/opencode/typescript/quality_standards.md",
@@ -28110,7 +28110,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/typescript/quick_reference.md | references/opencode/typescript/quick_reference.md",
@@ -28118,7 +28118,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -28126,7 +28126,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -28134,7 +28134,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/typescript_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/typescript_checklist.md | assets/opencode/checklists/typescript_checklist.md",
@@ -28142,7 +28142,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/skilled-typescript.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -28774,7 +28774,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/stack_detection.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/stack_detection.md | references/stack_detection.md",
@@ -28782,7 +28782,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/stack_detection.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/stack_detection.md | references/stack_detection.md",
@@ -28790,7 +28790,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/smart_routing.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/smart_routing.md | references/smart_routing.md",
@@ -28798,7 +28798,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/smart_routing.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/smart_routing.md | references/smart_routing.md",
@@ -28806,7 +28806,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/universal_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/opencode/shared/universal_patterns.md | references/opencode/shared/universal_patterns.md",
@@ -28814,7 +28814,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/opencode/shared/code_organization.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/opencode/shared/code_organization.md | references/opencode/shared/code_organization.md",
@@ -28822,7 +28822,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quick_reference.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/opencode/typescript/quick_reference.md | references/opencode/typescript/quick_reference.md",
@@ -28830,7 +28830,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/style_guide.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/opencode/typescript/style_guide.md | references/opencode/typescript/style_guide.md",
@@ -28838,7 +28838,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/opencode/typescript/quality_standards.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/opencode/typescript/quality_standards.md | references/opencode/typescript/quality_standards.md",
@@ -28846,7 +28846,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/motion_dev/quick_start.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/motion_dev/quick_start.md | references/motion_dev/quick_start.md",
@@ -28854,7 +28854,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/motion_dev/integration_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/motion_dev/integration_patterns.md | references/motion_dev/integration_patterns.md",
@@ -28862,7 +28862,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/motion_dev/animate_and_timelines.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/motion_dev/animate_and_timelines.md | references/motion_dev/animate_and_timelines.md",
@@ -28870,7 +28870,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/universal_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/assets/opencode/checklists/universal_checklist.md | assets/opencode/checklists/universal_checklist.md",
@@ -28878,7 +28878,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "assets/opencode/checklists/typescript_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/assets/opencode/checklists/typescript_checklist.md | assets/opencode/checklists/typescript_checklist.md",
@@ -28886,7 +28886,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "assets/motion_dev/snippets/es_module_bootstrap.js",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/assets/motion_dev/snippets/es_module_bootstrap.js | assets/motion_dev/snippets/es_module_bootstrap.js",
@@ -28894,7 +28894,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "references/webflow/implementation/webflow_patterns.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/references/webflow/implementation/webflow_patterns.md | references/webflow/implementation/webflow_patterns.md",
@@ -28902,7 +28902,7 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/opencode-plus-motion-dev.md",
+      "file": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/skilled-plus-motion-dev.md",
       "kind": "tickpath",
       "ref": "assets/webflow/checklists/verification_checklist.md",
       "resolved": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/assets/webflow/checklists/verification_checklist.md | assets/webflow/checklists/verification_checklist.md",

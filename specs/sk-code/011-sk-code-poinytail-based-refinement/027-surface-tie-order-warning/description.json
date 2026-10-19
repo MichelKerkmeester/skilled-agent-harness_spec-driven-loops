@@ -1,13 +1,13 @@
 {
   "specFolder": "sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning",
-  "description": "Doctor reports a sk-code surface placed after sk-code-opencode in tieBreak",
+  "description": "Doctor reports a sk-code surface placed after sk-code-skilled in tieBreak",
   "keywords": [
     "doctor",
     "reports",
     "sk-code",
     "surface",
     "placed",
-    "sk-code-opencode",
+    "sk-code-skilled",
     "tiebreak"
   ],
   "lastUpdated": "2026-10-13T15:21:06.644Z",

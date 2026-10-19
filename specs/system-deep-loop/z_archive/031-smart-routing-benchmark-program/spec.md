@@ -42,7 +42,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Skill routing has two distinct qualities that were only partially measured: **(Type 1)** once a child `SKILL.md` is loaded, does it route to the correct `references/assets`; and **(Type 2)** given a request, does the parent hub route to the correct child `SKILL.md`. The Lane C skill-benchmark engine already scores both, but the sk-code children were not uniformly benchmarkable — only `code-review` self-routed; `code-webflow`/`code-opencode` relied on the parent `smart_routing.md`; `code-quality` routes by target-path; and `deep-ai-council` used an unparseable tuple `INTENT_MODEL`. This program gives each of the 8 children its own parseable router + non-fabricated gold, keeps the sk-code parent as an enforced **union projection** of its children (so the working hub run stays byte-identical), and scores every target in a deterministic router-replay **Mode A** (the CI gate) corroborated by a live `cli-opencode` **Mode B** (advisory).
+Skill routing has two distinct qualities that were only partially measured: **(Type 1)** once a child `SKILL.md` is loaded, does it route to the correct `references/assets`; and **(Type 2)** given a request, does the parent hub route to the correct child `SKILL.md`. The Lane C skill-benchmark engine already scores both, but the sk-code children were not uniformly benchmarkable — only `code-review` self-routed; `code-webflow`/`code-skilled` relied on the parent `smart_routing.md`; `code-quality` routes by target-path; and `deep-ai-council` used an unparseable tuple `INTENT_MODEL`. This program gives each of the 8 children its own parseable router + non-fabricated gold, keeps the sk-code parent as an enforced **union projection** of its children (so the working hub run stays byte-identical), and scores every target in a deterministic router-replay **Mode A** (the CI gate) corroborated by a live `cli-opencode` **Mode B** (advisory).
 
 **Key Decisions**: decentralize sk-code surface-child routing into each child with the parent as a drift-guarded union projection; Type-1 gold is per-child sk-doc-shape playbooks (not fixtures), because contamination-lint hard-fails fixtures but treats playbooks as advisory.
 
@@ -80,7 +80,7 @@ Every routing target (8 children + 2 hubs) has a reproducible Mode-A gate score 
 <!-- ANCHOR:scope -->
 
 ### In Scope
-- Decentralize sk-code surface-child routing (`code-webflow`, `code-opencode`) into inline `INTENT_SIGNALS`/`RESOURCE_MAP` blocks over child-relative paths; rewrite the parent `smart_routing.md` `RESOURCE_MAP` as the mechanical union.
+- Decentralize sk-code surface-child routing (`code-webflow`, `code-skilled`) into inline `INTENT_SIGNALS`/`RESOURCE_MAP` blocks over child-relative paths; rewrite the parent `smart_routing.md` `RESOURCE_MAP` as the mechanical union.
 - Thin honest Type-1 router for `code-quality`; tighten `code-review` gold to exact `assets/*` paths.
 - Per-child Type-1 gold as sk-doc-shape playbooks under each child's `manual_testing_playbook/intra-routing-recall/` (deep-loop children) or category folders (sk-code children).
 - Extend the drift guard (`sk-code-router-sync.vitest.ts`) to assert parent `==` union(children) + parent-owned-tier allowlist, each child self-parseable, and every child path on disk.
@@ -95,7 +95,7 @@ Every routing target (8 children + 2 hubs) has a reproducible Mode-A gate score 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-code/{code-webflow,code-opencode}/SKILL.md` | Modify | Add inline §2b `SMART ROUTING (machine-readable)` router |
+| `sk-code/{code-webflow,code-skilled}/SKILL.md` | Modify | Add inline §2b `SMART ROUTING (machine-readable)` router |
 | `sk-code/{code-quality,code-review}/SKILL.md` | Modify | Thin router / tightened gold |
 | `sk-code/shared/references/smart_routing.md` | Modify | Rewrite `RESOURCE_MAP` as the union projection |
 | `.../skill-benchmark/tests/sk-code-router-sync.vitest.ts` | Modify | Extend the drift guard |

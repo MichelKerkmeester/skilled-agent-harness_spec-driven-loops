@@ -26,7 +26,7 @@ Provisional Verdict: PENDING hasAdvisories=false
 Review Iteration: 3 of 5
 Mode: review
 Dimension: traceability
-Review Target: commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-opencode in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak
+Review Target: commit a682c06d3d on branch worktrees/131-tieorder-warning (diff c62d7d1399..a682c06d3d): doctor check 5l in parent-skill-check.cjs reports, on the sk-code hub only and as a softFail, any surface mode listed after sk-code-skilled in routerPolicy.tieBreak other than sk-code-obsidian and sk-code-webflow, naming the two fixes; three invariant tests and an addNamedSurfaces fixture helper pin it; the section heading range reads 5a-5l; the root README sk-code guide gains one sentence for a hand edit of tieBreak
 Review Scope Files: .skilled/commands/doctor/scripts/parent-skill-check.cjs, .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs, README.md, specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/spec.md, specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/decision-record.md, specs/sk-code/011-sk-code-poinytail-based-refinement/027-surface-tie-order-warning/goal.md
 Prior Findings: P0=0 P1=0 P2=3
 

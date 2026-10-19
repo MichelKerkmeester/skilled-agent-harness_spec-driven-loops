@@ -81,7 +81,7 @@ _memory:
 
 - [x] T020 Confirm the manifest status transitioned `causeCode: stale-manifest` (policy hash `eeae98f8…` vs. current `834a0e38…`) -> `causeCode: compiled-serving` (fingerprint `82764d6d…`), and `refresh` returned `fresh=true`
 - [x] T021 Route the negative-control prompt again plus 3 more plugin-flavored prompts (screenshot scenario, `.db-*` class rename, code-quality review) and confirm all 4 resolve to `sk-code-obsidian`
-- [x] T022 Route the 3 regression prompts (`app-mobile`, Webflow, `.opencode/skills`) and confirm each still resolves to `sk-code-mobile-cli`, `sk-code-webflow`, and `sk-code-opencode` respectively
+- [x] T022 Route the 3 regression prompts (`app-mobile`, Webflow, `.opencode/skills`) and confirm each still resolves to `sk-code-mobile-cli`, `sk-code-webflow`, and `sk-code-skilled` respectively
 - [x] T023 Run `ci-skill-root-metadata.cjs`, confirm the first run fails with `STALE_GENERATED_FILE: leaf-manifest.json is stale`, then re-run with `--fix` and confirm `checked=14 passed=14 failed=0`, exit code 0
 - [x] T024 Confirm the hub-side diff is exactly 5 modified files plus the new untracked packet directory — no file outside the wiring scope was touched
 - [x] T025 Replace this leaf's `spec.md`, `plan.md`, `tasks.md` scaffolds and write `implementation-summary.md`; grep for residual scaffold markers — none remain

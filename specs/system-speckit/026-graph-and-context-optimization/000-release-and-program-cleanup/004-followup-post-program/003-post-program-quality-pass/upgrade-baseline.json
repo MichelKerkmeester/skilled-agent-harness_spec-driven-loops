@@ -5,7 +5,7 @@
   "findings": [
     {
       "rule": "SPEC_DOC_INTEGRITY",
-      "detail": "spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md"
+      "detail": "spec.md references missing markdown file: 001-sk-code-skilled-standards-audit/checklist.md"
     },
     {
       "rule": "SPEC_DOC_INTEGRITY",
@@ -32,7 +32,7 @@
     {
       "mode": "link-repoint",
       "document": "spec.md",
-      "reason": "no file ends with 001-sk-code-opencode-standards-audit/checklist.md, so the target cannot be derived"
+      "reason": "no file ends with 001-sk-code-skilled-standards-audit/checklist.md, so the target cannot be derived"
     },
     {
       "mode": "link-repoint",

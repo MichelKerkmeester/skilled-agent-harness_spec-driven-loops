@@ -41,7 +41,7 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-skilled/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
       ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md"
     ],
@@ -79,7 +79,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".opencode/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
+    "causal_summary": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-skilled`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
     "last_save_at": "2026-10-07T18:14:20.306Z",
     "save_lineage": "graph_only",

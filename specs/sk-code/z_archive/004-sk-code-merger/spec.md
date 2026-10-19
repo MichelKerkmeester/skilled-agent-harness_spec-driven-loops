@@ -70,7 +70,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 - `scripts/` web-only build utilities (minify-webflow.mjs, verify-minification.mjs, test-minified-runtime.mjs) — copied verbatim, no path edits required (CWD-relative)
 - Tier 1 advisor edits: `skill_advisor.py` (PHRASE_BOOSTS, TOKEN_BOOSTS, DEPRECATED_SKILLS), `explicit.ts` (lane mappings, DEPRECATED_SKILLS), `lexical.ts`, `lane-attribution.test.ts` fixtures
 - Tier 2 graph-metadata.json updates (8 files: new skill + 7 existing)
-- Tier 3 sister SKILL.md cross-ref updates (7 files: sk-code-review, sk-code-opencode, mcp-chrome-devtools, cli-claude-code, cli-codex, cli-gemini, sk-improve-prompt)
+- Tier 3 sister SKILL.md cross-ref updates (7 files: sk-code-review, sk-code-skilled, mcp-chrome-devtools, cli-claude-code, cli-codex, cli-gemini, sk-improve-prompt)
 - Tier 4 root instruction file updates (AGENTS.md, CLAUDE.md, AGENTS_example_fs_enterprises.md, AGENTS_Barter.md)
 - Tier 5 deep-review agent definition updates (3 files across runtime profiles)
 - Tier 6 README and documentation updates (~10 files)
@@ -81,9 +81,9 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 - Migrating non-web content from `sk-code-full-stack` into the new skill body (placeholders defer; users migrate progressively as they adopt the stack)
 - Rewriting archival spec-folder references in `specs/`, `.opencode/changelog/`, `observability/` (~268 files; historical, not safe to bulk-edit)
 - Deleting or restructuring legacy `sk-code-web/` or `sk-code-full-stack/` folders (preserved per user directive)
-- Touching `sk-code-opencode` or `sk-code-review` content (only metadata + cross-ref edits)
+- Touching `sk-code-skilled` or `sk-code-review` content (only metadata + cross-ref edits)
 - Creating new stacks beyond the 5 already in sk-code-full-stack
-- Changing the SKILL.md routing format used by other code skills (sk-code-opencode, sk-code-review remain on the v1.1.0.0 contract)
+- Changing the SKILL.md routing format used by other code skills (sk-code-skilled, sk-code-review remain on the v1.1.0.0 contract)
 
 ### Files to Change
 
@@ -95,7 +95,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 | `.opencode/skills/sk-code-full-stack/SKILL.md` | Modify | 1 (frontmatter only) |
 | `.opencode/skills/sk-code-full-stack/graph-metadata.json` | Modify | 1 |
 | Skill advisor scoring | Modify | 4 (skill_advisor.py, explicit.ts, lexical.ts, lane-attribution.test.ts) |
-| Other graph-metadata.json | Modify | 6 (sk-code-review, sk-code-opencode, mcp-chrome-devtools, mcp-figma, advisor) |
+| Other graph-metadata.json | Modify | 6 (sk-code-review, sk-code-skilled, mcp-chrome-devtools, mcp-figma, advisor) |
 | Sister SKILL.md cross-refs | Modify | 7 |
 | Root instructions | Modify | 4 (AGENTS.md, CLAUDE.md, AGENTS_example_fs_enterprises.md, AGENTS_Barter.md) |
 | Agent definitions | Modify | 3 (deep-review across profiles) |
@@ -115,7 +115,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 | REQ-002 | Web content carried forward verbatim into `sk-code/references/web/` and `sk-code/assets/web/` and `sk-code/scripts/` | Diff between source and destination is empty for every migrated file |
 | REQ-003 | Smart routing in SKILL.md detects stack first (Webflow markers / go.mod / Package.swift / app.json+expo / next.config / package.json) then classifies intent | Pseudocode in SKILL.md is reviewable and 5 representative trigger-test prompts route to expected stack branch |
 | REQ-004 | Placeholder stubs exist for all 5 non-web stacks with frontmatter `status: placeholder, canonical_source, source_version: sk-code-full-stack@1.1.0, populated: false` | Each stack folder contains `_placeholder.md` + N stub files where N matches sk-code-full-stack/<stack>/ doc count |
-| REQ-005 | Advisor scoring tables (`skill_advisor.py`, `explicit.ts`) updated with `DEPRECATED_SKILLS = {"sk-code-web", "sk-code-full-stack"}` early-return guard and PHRASE/TOKEN boosts retargeted to `sk-code` | Trigger tests "Fix Webflow flicker", "React component", "Go service" all return `sk-code`; "Audit OpenCode plugin" returns `sk-code-opencode`; "Review PR" returns `sk-code-review` |
+| REQ-005 | Advisor scoring tables (`skill_advisor.py`, `explicit.ts`) updated with `DEPRECATED_SKILLS = {"sk-code-web", "sk-code-full-stack"}` early-return guard and PHRASE/TOKEN boosts retargeted to `sk-code` | Trigger tests "Fix Webflow flicker", "React component", "Go service" all return `sk-code`; "Audit OpenCode plugin" returns `sk-code-skilled`; "Review PR" returns `sk-code-review` |
 | REQ-006 | Legacy SKILL.md frontmatter (sk-code-web, sk-code-full-stack) gets additive deprecation keys (`deprecated: true`, `superseded_by: sk-code`, `advisor_weight: 0`); bodies untouched | `git diff` on legacy SKILL.md shows only frontmatter additions, no body changes |
 | REQ-007 | All Tier 4 root instruction files (AGENTS.md, CLAUDE.md, AGENTS_example_fs_enterprises.md, AGENTS_Barter.md) reference `sk-code` instead of legacy names | Regrep returns no remaining `sk-code-(web\|full-stack)` mentions in root files |
 
@@ -127,7 +127,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 | REQ-011 | `universal/` namespace scoped tightly (NO `debugging_workflows.md` or `verification_workflows.md` — those stay in `web/` per Plan-agent critique because they assume DOM/console/page-load semantics) | `universal/` contains only error_recovery.md (decision tree), code_quality_standards.md (P0/P1/P2 model), code_style_guide.md (language-agnostic parts), multi_agent_research.md |
 | REQ-012 | Lane-attribution test fixtures updated and tests pass | `cd mcp_server && npm test -- lane-attribution` exits 0 |
 | REQ-013 | Sister SKILL.md cross-refs (7 files) updated where they name the legacy skills | Regrep returns only intentional historical refs in observability/, specs/, .opencode/changelog/ |
-| REQ-014 | Deep-review agent definitions (3 files) updated to reference `sk-code` | Each file's stack-overlay table shows `sk-code` (web+full-stack collapsed) and `sk-code-opencode` (preserved) |
+| REQ-014 | Deep-review agent definitions (3 files) updated to reference `sk-code` | Each file's stack-overlay table shows `sk-code` (web+full-stack collapsed) and `sk-code-skilled` (preserved) |
 | REQ-015 | Web smoke test passes from new skill location | `node scripts/minify-webflow.mjs` produces output identical to running from sk-code-web/scripts/ in a Webflow project |
 
 ### P2 - Optional (defer with documented reason)
@@ -163,7 +163,7 @@ A single new skill `sk-code` that smart-routes by detected stack: web → live f
 | Risk | Universal/ split smuggles browser assumptions into stack-agnostic content | Wrong guidance to non-web users | TIGHTEN scope (Plan-agent critique): only error_recovery + P0/P1/P2 model + language-agnostic style; keep debugging_workflows + verification_workflows inside web/ |
 | Risk | Scripts hard-code paths relative to `sk-code-web/` | Build break | RESOLVED: audit confirmed scripts use CWD-relative paths (`'src/2_javascript'`) — no edits needed |
 | Risk | Advisor re-amplifies dead skills via keyword headers | Routing ambiguity returns | `DEPRECATED_SKILLS` frozenset in `skill_advisor.py` + `explicit.ts` with early-return guard; survives `doctor:skill-advisor :confirm` rebuilds |
-| Risk | Bare `sk-code` name causes substring-matching ambiguity with siblings (`sk-code-review`, `sk-code-opencode`) | Wrong skill triggered | Audit boost rules for substring/prefix matching vs exact-name keys; trigger-test "review code" → expect `sk-code-review`; "opencode plugin" → expect `sk-code-opencode` |
+| Risk | Bare `sk-code` name causes substring-matching ambiguity with siblings (`sk-code-review`, `sk-code-skilled`) | Wrong skill triggered | Audit boost rules for substring/prefix matching vs exact-name keys; trigger-test "review code" → expect `sk-code-review`; "opencode plugin" → expect `sk-code-skilled` |
 | Dependency | `skill_advisor.py`, `explicit.ts` | Advisor must accept the rewrite without breaking other skills | Run full lane-attribution test after edits; spot-check 10 unrelated skills route correctly |
 | Dependency | `generate-context.js` | Spec metadata refresh | Run after spec docs are stable to populate description.json + graph-metadata.json |
 <!-- /ANCHOR:risks -->

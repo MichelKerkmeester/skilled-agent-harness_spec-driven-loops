@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The current working tree contains a partial Pi guard: it denies `cli-pi`, stores an input event, strips known advisor/directive markers, and has a pure helper matrix",
     "created_at": "2026-08-04T17:57:53Z",
-    "last_save_at": "2026-08-30T15:39:09.221Z",
+    "last_save_at": "2026-10-18T20:45:03.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29c1203444d22f4c95b694da2091bd1166c67bcaf46992dd5ff2b700adfcf545",
+    "source_fingerprint": "sha256:2ae838f1f5daf44b5d948aa00c267aeca97dc385f4a6cf518d3eee640334924d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "27070ae91f502d3d40ca0f790f90d2252b037879f2ea5630c3069e14434f48f4",
       "plan.md": "3c003d2d9b14ddf18810b31a9dbecacb40955d6aabce13de75860ba19130596e",
       "tasks.md": "5af0584a302bb048a28930bce6a94e19e6d18d1baf2332809666e372999a30ba",
-      "implementation-summary.md": "5b995036b314c6861dceec04fc5c98cafc11eb9b99a6b58623e104554e9adb84"
+      "implementation-summary.md": "dd2e22740c750a238c7f78b91fe19faf65edde53c591fe5e53f722328cabd167"
     },
     "last_active_child_id": null,
     "last_active_at": null

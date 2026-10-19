@@ -1,0 +1,97 @@
+{
+  "scenarioId": "session-relaunch-claude",
+  "runtime": "claude",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Three live runs in a clean tmux environment inside a git worktree of this repository, each driven by skilled-loop with SESSION_RELAUNCH_THRESHOLD=0.05, SESSION_RELAUNCH_WINDOW_TOKENS=100 and SESSION_RELAUNCH_MAX_HOPS=1. Each run prepared a record, took SIGTERM and relaunched with the claim seed. Runs 2 and 3 then closed the note with complete exiting 0 after reporting 244 lines and the first heading of .skilled/hooks/session-relaunch/README.md, and both receiving sessions finished under the finish-instead sentence instead of preparing another hop. Run 1 left no pane capture in the packet, so its receiving answer is not recorded, and its relaunch log records only the hop and the exit decline.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "Opus 5.5 (high effort)",
+  "runs": [
+    {
+      "run": "1",
+      "loopId": 36087,
+      "verdict": "PASS",
+      "reason": "Prepare at 06:07:02.783Z, SIGTERM at 06:07:11.555Z, relaunch reason=ready at 06:07:12.003Z. The wrapper declined a further hop at 06:07:51.359Z with reason no-file, 49 s after prepare.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+          "bytes": 769,
+          "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "loopId": 67833,
+      "verdict": "PASS",
+      "reason": "Prepare at 07:26:23.532Z, SIGTERM at 07:26:39.638Z, relaunch reason=ready at 07:26:40.061Z. The receiving session claimed the seed, reported 244 lines and # Session Relaunch, closed the note with complete exiting 0, and said it finished the remaining work there instead of handing off again.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+          "bytes": 2502,
+          "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-claude-run2-pane.txt",
+          "bytes": 2882,
+          "sha256": "cfc97743005fcc5a2e25214388d8a1ef75545702dc828fdcdc4bbe3e37d80f26"
+        }
+      ]
+    },
+    {
+      "run": "3",
+      "loopId": 83618,
+      "verdict": "PASS",
+      "reason": "Prepare at 07:57:45.424Z, SIGTERM at 07:57:52.451Z, relaunch reason=ready at 07:57:52.969Z. The receiving session claimed the seed, reported 244 lines and # Session Relaunch, closed the note with complete exiting 0 with no output, and declined a second hop under the finish-instead sentence.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+          "bytes": 3373,
+          "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-claude-run3-pane.txt",
+          "bytes": 2713,
+          "sha256": "ef4bc4b144ae9fc763d4f7c29f9476fecfac3381cd1a1b530aaa85a863cb949e"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run1.log",
+      "bytes": 769,
+      "sha256": "b6adeb76d1ed7b6941316b4171aec2f3cbca15a1a15cc8be8c3bda52aff99db4"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run2.log",
+      "bytes": 2502,
+      "sha256": "039c63256f2aaacafa4da65a3734b98c5b1566bbcd02b4f467c763d25af7aa9a"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run3.log",
+      "bytes": 3373,
+      "sha256": "49820449b8bf814a5572d659432b0d9ad48e434b0d313612e20c01869905e780"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-claude-run2-pane.txt",
+      "bytes": 2882,
+      "sha256": "cfc97743005fcc5a2e25214388d8a1ef75545702dc828fdcdc4bbe3e37d80f26"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-claude-run3-pane.txt",
+      "bytes": 2713,
+      "sha256": "ef4bc4b144ae9fc763d4f7c29f9476fecfac3381cd1a1b530aaa85a863cb949e"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

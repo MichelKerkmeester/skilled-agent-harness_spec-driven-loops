@@ -1,0 +1,69 @@
+{
+  "scenarioId": "session-relaunch-command-runtimes",
+  "runtime": "codex",
+  "evidenceClass": "cross-cli-dispatch",
+  "verdict": "PASS",
+  "reason": "Round 9 is the only round in this folder: one live run in a scratch clone, driven by skilled-loop on gpt-6-luna on the frozen final code with SESSION_RELAUNCH_THRESHOLD=0.25, SESSION_RELAUNCH_MAX_HOPS=4 and Codex's own context window. The run prepared a note, took SIGTERM and relaunched with the claim seed. The receiver claimed the note, read the README and killer.cjs, gave the three bullets per file that its prompt asked for beside the line count and heading, and recorded that complete exited 0 with the note reading status done. The wrapper declined a further hop with reason no-file, no operator input was recorded, and wrapper-exits.txt records WRAPPER_EXIT=0 beside that decline.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "gpt-6-luna (max, fast)",
+  "runs": [
+    {
+      "run": "9",
+      "loopId": 78834,
+      "verdict": "PASS",
+      "reason": "Prepare at 09:45:38.299Z, SIGTERM at 09:45:54.787Z and relaunch reason=ready at 09:45:54.833Z, 16.5 s from prepare to SIGTERM, in the scratch clone. The receiver claimed the note, reported that complete exited 0 and that the note reads status done, reported 248 lines and # Session Relaunch, and returned the three bullets per file that its prompt asked for. The wrapper declined a further hop at 09:51:05.470Z with reason=no-file.",
+      "operatorInputs": "None.",
+      "evidence": [
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run9.log",
+          "bytes": 1190,
+          "sha256": "157501e2ec0a1753c68bd8b2618b321691e8925f43b7d6edb8cc2af5292b0556"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-codex9-pane.txt",
+          "bytes": 2800,
+          "sha256": "05abc49fa0db02b1b8f125a7609f29cd23911eb8829aa3cdf28a17611e8327a4"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/launch-commands-final.txt",
+          "bytes": 6803,
+          "sha256": "aaebeaa03d6ff00dc1328acaed52c5c54ad0e2b538d4578524cd39a0643c209e"
+        },
+        {
+          "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/wrapper-exits.txt",
+          "bytes": 1314,
+          "sha256": "2955f877f543130383b23752dcab6e6e62e5631789517d4db389f398acb79367"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/relaunch-run9.log",
+      "bytes": 1190,
+      "sha256": "157501e2ec0a1753c68bd8b2618b321691e8925f43b7d6edb8cc2af5292b0556"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/sr-codex9-pane.txt",
+      "bytes": 2800,
+      "sha256": "05abc49fa0db02b1b8f125a7609f29cd23911eb8829aa3cdf28a17611e8327a4"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/launch-commands-final.txt",
+      "bytes": 6803,
+      "sha256": "aaebeaa03d6ff00dc1328acaed52c5c54ad0e2b538d4578524cd39a0643c209e"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/live-runs-2026-10-19/wrapper-exits.txt",
+      "bytes": 1314,
+      "sha256": "2955f877f543130383b23752dcab6e6e62e5631789517d4db389f398acb79367"
+    }
+  ],
+  "recordedAt": "2026-10-19",
+  "recordedBy": "orchestrator, by hand under the playbook result-persistence contract"
+}

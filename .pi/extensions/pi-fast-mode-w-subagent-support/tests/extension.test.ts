@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
 import { mkdtemp } from "node:fs/promises";
@@ -120,12 +120,13 @@ async function runHandler(
 }
 
 describe("piFastModeExtension registration", () => {
-  it("registers the fast flag, fast command, and lifecycle hooks", () => {
+  it("registers the fast flag, fast command, and lifecycle hooks", async () => {
+    const root = await makeTempDir();
     const { pi, handlers, commands } = createFakePi();
 
     createPiFastModeExtension({
       extensionDir: `/global/${PACKAGE_NAME}/src`,
-      agentDir: "/agent",
+      agentDir: join(root, "agent"),
     })(pi as any);
 
     expect(pi.registerFlag).toHaveBeenCalledWith("fast", {
@@ -144,6 +145,152 @@ describe("piFastModeExtension registration", () => {
       "session_shutdown",
       "session_start",
     ]);
+  });
+});
+
+describe("piFastModeExtension duplicate installs", () => {
+  // The global install is a symlink into a checkout, so a second checkout of
+  // this repository must not register its own flag and command on top of it.
+  it("a second checkout registers nothing when the global install resolves elsewhere", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const mainCheckoutDir = join(root, "main", "extensions", PACKAGE_NAME);
+    const worktreeDir = join(root, "worktree", "extensions", PACKAGE_NAME);
+    const globalInstallDir = join(agentDir, "extensions", PACKAGE_NAME);
+    await mkdir(join(mainCheckoutDir, "src"), { recursive: true });
+    await mkdir(join(worktreeDir, "src"), { recursive: true });
+    await mkdir(dirname(globalInstallDir), { recursive: true });
+    await symlink(mainCheckoutDir, globalInstallDir, "dir");
+
+    const { pi, handlers, commands } = createFakePi();
+    createPiFastModeExtension({
+      extensionDir: join(worktreeDir, "src"),
+      agentDir,
+    })(pi as any);
+
+    expect(pi.registerFlag).not.toHaveBeenCalled();
+    expect(pi.registerCommand).not.toHaveBeenCalled();
+    expect(pi.on).not.toHaveBeenCalled();
+    expect(commands.size).toBe(0);
+    expect(handlers.size).toBe(0);
+  });
+
+  it("the checkout the global install points to registers nothing on its own path", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const mainCheckoutDir = join(root, "main", "extensions", PACKAGE_NAME);
+    const globalInstallDir = join(agentDir, "extensions", PACKAGE_NAME);
+    await mkdir(join(mainCheckoutDir, "src"), { recursive: true });
+    await mkdir(dirname(globalInstallDir), { recursive: true });
+    await symlink(mainCheckoutDir, globalInstallDir, "dir");
+
+    const { pi, handlers, commands } = createFakePi();
+    createPiFastModeExtension({
+      extensionDir: join(mainCheckoutDir, "src"),
+      agentDir,
+    })(pi as any);
+
+    expect(pi.registerFlag).not.toHaveBeenCalled();
+    expect(pi.registerCommand).not.toHaveBeenCalled();
+    expect(pi.on).not.toHaveBeenCalled();
+    expect(commands.size).toBe(0);
+    expect(handlers.size).toBe(0);
+  });
+
+  it("the copy loaded through the global install path registers normally", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const mainCheckoutDir = join(root, "main", "extensions", PACKAGE_NAME);
+    const globalInstallDir = join(agentDir, "extensions", PACKAGE_NAME);
+    await mkdir(join(mainCheckoutDir, "src"), { recursive: true });
+    await mkdir(dirname(globalInstallDir), { recursive: true });
+    await symlink(mainCheckoutDir, globalInstallDir, "dir");
+
+    const { pi, handlers, commands } = createFakePi();
+    createPiFastModeExtension({
+      extensionDir: join(globalInstallDir, "src"),
+      agentDir,
+    })(pi as any);
+
+    expect(pi.registerFlag).toHaveBeenCalledWith("fast", {
+      description: "Start with Fast Mode enabled",
+      type: "boolean",
+      default: false,
+    });
+    expect(commands.has("fast")).toBe(true);
+    expect(handlers.has("session_start")).toBe(true);
+  });
+
+  it("a copy registers normally when no global install exists", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const checkoutDir = join(root, "checkout", "extensions", PACKAGE_NAME);
+    await mkdir(join(checkoutDir, "src"), { recursive: true });
+
+    const { pi, handlers, commands } = createFakePi();
+    createPiFastModeExtension({
+      extensionDir: join(checkoutDir, "src"),
+      agentDir,
+    })(pi as any);
+
+    expect(pi.registerFlag).toHaveBeenCalledWith("fast", {
+      description: "Start with Fast Mode enabled",
+      type: "boolean",
+      default: false,
+    });
+    expect(commands.has("fast")).toBe(true);
+  });
+
+  it("a non-global copy registers nothing when the agentDir install exists", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const checkoutDir = join(root, "checkout", "extensions", PACKAGE_NAME);
+    await mkdir(join(agentDir, "extensions", PACKAGE_NAME), {
+      recursive: true,
+    });
+    await mkdir(join(checkoutDir, "src"), { recursive: true });
+
+    const { pi, handlers, commands } = createFakePi();
+    createPiFastModeExtension({
+      extensionDir: join(checkoutDir, "src"),
+      agentDir,
+    })(pi as any);
+
+    expect(pi.registerFlag).not.toHaveBeenCalled();
+    expect(pi.registerCommand).not.toHaveBeenCalled();
+    expect(pi.on).not.toHaveBeenCalled();
+    expect(commands.size).toBe(0);
+    expect(handlers.size).toBe(0);
+  });
+
+  it("a load from elsewhere yields when PI_CODING_AGENT_DIR holds the global install", async () => {
+    const root = await makeTempDir();
+    const agentDir = join(root, "agent");
+    const emptyHome = join(root, "home");
+    const checkoutDir = join(root, "checkout", "extensions", PACKAGE_NAME);
+    await mkdir(join(agentDir, "extensions", PACKAGE_NAME), {
+      recursive: true,
+    });
+    await mkdir(join(checkoutDir, "src"), { recursive: true });
+
+    // HOME is isolated so the guard can only pass by honoring the env var: a
+    // real ~/.pi that already holds the package would mask the wrong lookup.
+    vi.stubEnv("PI_CODING_AGENT_DIR", agentDir);
+    vi.stubEnv("HOME", emptyHome);
+    try {
+      const { pi, handlers, commands } = createFakePi();
+      createPiFastModeExtension({
+        extensionDir: join(checkoutDir, "src"),
+      })(pi as any);
+
+      expect(pi.registerFlag).not.toHaveBeenCalled();
+      expect(pi.registerCommand).not.toHaveBeenCalled();
+      expect(pi.on).not.toHaveBeenCalled();
+      expect(commands.size).toBe(0);
+      expect(handlers.size).toBe(0);
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 });
 
@@ -392,7 +539,10 @@ describe("piFastModeExtension runtime behavior", () => {
     await mkdir(extensionDir, { recursive: true });
 
     const { pi, handlers } = createFakePi(true);
-    createPiFastModeExtension({ extensionDir, agentDir })(pi as any);
+    createPiFastModeExtension({
+      extensionDir,
+      agentDir,
+    })(pi as any);
 
     const ctx = makeCtx(cwd, { provider: "openai-codex", id: "gpt-5.5" });
     await runHandler(

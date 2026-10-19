@@ -53,7 +53,7 @@ trigger_phrases:
 
 - [x] T003 Resolve the 10a generator and contract library from `sk-doc/create-skill/scripts/` in `parent-skill-check.cjs`.
 - [x] T004 Add `resourceContractVersion` to `sk-code/mode-registry.json` and regenerate `mcp-tooling/leaf-manifest.json`.
-- [x] T005 Flip `h2UppercaseRequired` for skill and command in `template-rules.json` and uppercase the 2 SKILL.md offenders (`code-opencode`, `create-flowchart`).
+- [x] T005 Flip `h2UppercaseRequired` for skill and command in `template-rules.json` and uppercase the 2 SKILL.md offenders (`code-skilled`, `create-flowchart`).
 
 <!-- /ANCHOR:phase-2 -->
 ---

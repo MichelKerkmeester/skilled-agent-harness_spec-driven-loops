@@ -405,7 +405,7 @@ On a scratch copy of the tree the planner applied every edit in this plan: each 
 
 ### Other checks
 - `node --check` on all sixteen JavaScript files.
-- `python3 -I .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/hooks`: planner baseline `[alignment-drift] PASS`, `Errors: 0`, `Warnings: 0`. It reads only files git tracks, so the new untracked test is not scanned until staged.
+- `python3 -I .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/hooks`: planner baseline `[alignment-drift] PASS`, `Errors: 0`, `Warnings: 0`. It reads only files git tracks, so the new untracked test is not scanned until staged.
 - `python3 -I .skilled/skills/sk-doc/scripts/validate_document.py` on both READMEs: planner baseline `VALID`, `Total issues: 0`.
 - `node .skilled/scripts/run-node-tests.mjs --list`: the new file must appear as `node:test` and not `vitest`, which proves the repo gate will run it.
 

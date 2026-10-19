@@ -1,10 +1,10 @@
 ---
 title: "...pec-kit/026-graph-and-context-optimization/006-skill-advisor/001-documentation-code-alignment/spec]"
-description: "Update skill-advisor feature catalog, manual testing playbook, and README with Phase 020 hook surface additions. Verify all Phase 020 lib + hook code aligns with sk-code-opencode standards."
+description: "Update skill-advisor feature catalog, manual testing playbook, and README with Phase 020 hook surface additions. Verify all Phase 020 lib + hook code aligns with sk-code-skilled standards."
 trigger_phrases:
   - "022 skill-advisor docs alignment"
   - "skill-advisor feature catalog update"
-  - "sk-code-opencode alignment check"
+  - "sk-code-skilled alignment check"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -56,11 +56,11 @@ Phase 020 shipped the skill-advisor hook surface across 4 runtimes (Claude/Gemin
 
 1. The skill-advisor's OWN artifacts — `README.md`, feature_catalog/feature_catalog.md, manual_testing_playbook/manual_testing_playbook.md — have not been updated to reflect the new hook-based invocation path. They still describe the explicit `skill_advisor.py` subprocess flow as primary.
 
-2. Phase 020 lib + hook code was written by cli-codex autonomously. While tests + tsc + validate all pass, the code hasn't been audited against sk-code-opencode multi-language TypeScript standards (strict mode, explicit return types, error handling patterns, comment discipline, etc.). Mismatches may exist.
+2. Phase 020 lib + hook code was written by cli-codex autonomously. While tests + tsc + validate all pass, the code hasn't been audited against sk-code-skilled multi-language TypeScript standards (strict mode, explicit return types, error handling patterns, comment discipline, etc.). Mismatches may exist.
 
 ### Purpose
 
-Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, and verify Phase 020 TypeScript code meets sk-code-opencode standards. Correct any misalignment found.
+Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, and verify Phase 020 TypeScript code meets sk-code-skilled standards. Correct any misalignment found.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -77,7 +77,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 - Optional: `../../../../skill/skill-advisor/SET-UP_GUIDE.md` — reference hook registration snippets from 020/009.
 
 **Code alignment:**
-- Audit Phase 020 files against sk-code-opencode TypeScript standards:
+- Audit Phase 020 files against sk-code-skilled TypeScript standards:
   - `lib/context/shared-payload.ts` (020/002 extensions only)
   - `lib/skill-advisor/freshness.ts`, `source-cache.ts`, `generation.ts` (020/003)
   - `lib/skill-advisor/prompt-policy.ts`, `prompt-cache.ts`, `subprocess.ts`, `skill-advisor-brief.ts` (020/004)
@@ -86,7 +86,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
   - `hooks/claude/user-prompt-submit.ts` (020/006)
   - `hooks/gemini/user-prompt-submit.ts`, `hooks/copilot/user-prompt-submit.ts` (020/007)
   - `hooks/codex/user-prompt-submit.ts`, `hooks/codex/pre-tool-use.ts`, `hooks/codex/prompt-wrapper.ts` (020/008)
-- Run sk-code-opencode checklist: strict TS, explicit return types on exported fns, no `any` without justification, error handling at boundaries only, comment discipline, no dead code.
+- Run sk-code-skilled checklist: strict TS, explicit return types on exported fns, no `any` without justification, error handling at boundaries only, comment discipline, no dead code.
 - Fix any misalignment found; preserve test green state.
 
 ### Out of Scope
@@ -103,10 +103,10 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 | `../../../../skill/skill-advisor/README.md` | Modify | Hook-based path documentation |
 | ../../../../skill/skill-advisor/feature_catalog/feature_catalog.md | Modify | Phase 020 feature additions |
 | ../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md | Modify | Hook-based routing playbook |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
-| `.opencode/skills/system-spec-kit/mcp_server/hooks/**/*.ts` | Audit + Fix if drift | sk-code-opencode alignment |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Audit + Fix if drift | sk-code-opencode alignment (002 scope only) |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Audit + Fix if drift | sk-code-opencode alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/*.ts` | Audit + Fix if drift | sk-code-skilled alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/**/*.ts` | Audit + Fix if drift | sk-code-skilled alignment |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/context/shared-payload.ts` | Audit + Fix if drift | sk-code-skilled alignment (002 scope only) |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/codex-hook-policy.ts` | Audit + Fix if drift | sk-code-skilled alignment |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,7 +121,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 | REQ-001 | README hook integration documented | README has §Hook Invocation section with setup snippet per runtime |
 | REQ-002 | Feature catalog updated with Phase 020 features | ≥ 6 new entries (hook surface, HMAC cache, freshness, parity, disable, observability, privacy) |
 | REQ-003 | Manual testing playbook has hook-based routing section | New step-by-step playbook sub-section covering all 4 runtimes |
-| REQ-004 | All Phase 020 TS files pass sk-code-opencode checklist | Documented findings + remediations; zero new errors |
+| REQ-004 | All Phase 020 TS files pass sk-code-skilled checklist | Documented findings + remediations; zero new errors |
 | REQ-005 | All Phase 020 tests remain green after alignment | 118/118 Phase 020 tests + tsc clean |
 
 ### 4.2 P1 - Required
@@ -129,7 +129,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-010 | Cross-references from skill-advisor docs to reference doc | README + feature catalog link to ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md |
-| REQ-011 | sk-code-opencode findings catalogued | `implementation-summary.md` lists every finding + whether fixed or deferred with reason |
+| REQ-011 | sk-code-skilled findings catalogued | `implementation-summary.md` lists every finding + whether fixed or deferred with reason |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -140,7 +140,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 - **SC-001**: skill-advisor README links to hook reference doc + describes hook-first invocation
 - **SC-002**: Feature catalog entries cover all 11 lib files + 4 hook adapters
 - **SC-003**: Manual testing playbook covers hook-based smoke test per runtime
-- **SC-004**: sk-code-opencode audit findings catalogued + acted on
+- **SC-004**: sk-code-skilled audit findings catalogued + acted on
 - **SC-005**: 118/118 Phase 020 tests PASS post-alignment
 - **SC-006**: tsc --noEmit clean
 - **SC-007**: validate.sh --strict clean on 022 spec folder
@@ -154,8 +154,8 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 ### Acceptance Scenario 3: Manual playbook covers hook path
 **Given** the playbook after update, **when** an operator runs the hook-based smoke test section, **then** they can verify per runtime: hook fires → brief emitted, disable flag bypasses producer, stale freshness still emits brief with stale badge.
 
-### Acceptance Scenario 4: sk-code-opencode audit complete
-**Given** the Phase 020 TypeScript files, **when** audited against sk-code-opencode standards, **then** every finding is documented in implementation-summary.md with fix or deferral-reason.
+### Acceptance Scenario 4: sk-code-skilled audit complete
+**Given** the Phase 020 TypeScript files, **when** audited against sk-code-skilled standards, **then** every finding is documented in implementation-summary.md with fix or deferral-reason.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -167,7 +167,7 @@ Bring skill-advisor's own docs into alignment with the Phase 020 hook surface, a
 |------|------|--------|------------|
 | Dependency | Phase 020 hook reference docs | Docs could drift from shipped hook behavior | Use ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md as the authoritative source |
 | Dependency | Phase 020 vitest suites | Code alignment could regress hook behavior unnoticed | Run the targeted 118-test Phase 020 suite after TS edits |
-| Risk | Over-broad code cleanup | Could change shipped Phase 020 behavior | Limit remediations to sk-code-opencode alignment issues and skip behavior-changing fixes |
+| Risk | Over-broad code cleanup | Could change shipped Phase 020 behavior | Limit remediations to sk-code-skilled alignment issues and skip behavior-changing fixes |
 | Risk | Parallel Phase 021 research artifacts | Could accidentally modify sibling work | Scope edits to 022 docs, skill-advisor docs, and Phase 020 TS audit targets |
 <!-- /ANCHOR:risks -->
 
@@ -182,7 +182,7 @@ No open questions remain for Phase 022 execution.
 
 - Parent: `../../006-skill-advisor/004-advisor-hook-surface-integration/` (shipped)
 - Sibling: `../004-smart-router-context-efficacy/` (research in progress)
-- sk-code-opencode skill: `../../../../skill/sk-code-opencode/SKILL.md`
+- sk-code-skilled skill: `../../../../skill/sk-code-skilled/SKILL.md`
 - skill-advisor: `.opencode/skills/skill-advisor/`
 - Reference doc: ../../../../skill/system-spec-kit/references/hooks/skill-advisor-hook.md (from 020/009)
 <!-- /ANCHOR:questions -->

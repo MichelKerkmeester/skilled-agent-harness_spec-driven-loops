@@ -79,7 +79,7 @@ Reconcile the AGENTS.md quick-reference governance docs to the live 4-command me
 | 4 | Add Shared memory lifecycle row (`/memory:manage shared`) | All 3 files |
 | 5 | Fix Research/exploration row (add `memory_context()`) | FS-Enterprises only |
 | 6 | Fix G-01 through G-06 consistency gaps (refinement pass) | All 3 AGENTS.md + CLAUDE.md |
-| 7 | Overhaul skill sections (sk-code-opencode, sk-code-full-stack, sk-git) | Universal + FS-Enterprises |
+| 7 | Overhaul skill sections (sk-code-skilled, sk-code-full-stack, sk-git) | Universal + FS-Enterprises |
 
 ### 2.2 Out of Scope
 

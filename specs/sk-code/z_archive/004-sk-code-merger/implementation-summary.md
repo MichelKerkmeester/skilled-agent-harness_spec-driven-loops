@@ -70,7 +70,7 @@ The router runs in three steps inside `SKILL.md`: stack detection (Webflow marke
 
 ### Cross-repo reference updates
 
-7 graph-metadata.json files updated (legacy skills marked deprecated; siblings/enhances retargeted on sk-code-review, sk-code-opencode, mcp-chrome-devtools, mcp-figma, advisor). 3 root files updated (CLAUDE.md, AGENTS.md, AGENTS_example_fs_enterprises.md routing tables retargeted; AGENTS_Barter.md already aligned to bare sk-code). Spec folder `054-sk-code-merger/` populated with full Level 3 docs.
+7 graph-metadata.json files updated (legacy skills marked deprecated; siblings/enhances retargeted on sk-code-review, sk-code-skilled, mcp-chrome-devtools, mcp-figma, advisor). 3 root files updated (CLAUDE.md, AGENTS.md, AGENTS_example_fs_enterprises.md routing tables retargeted; AGENTS_Barter.md already aligned to bare sk-code). Spec folder `054-sk-code-merger/` populated with full Level 3 docs.
 
 <!-- /ANCHOR:what-built -->
 
@@ -93,7 +93,7 @@ The Plan agent's three risk warnings (universal/ scope, scripts paths, advisor r
 | Decision | Why |
 |----------|-----|
 | Stack-detection FIRST, intent classification SECOND (ADR-001) | Intent words like "test", "performance", "build" mean different things across stacks. Web's intent-only model only worked because it implicitly assumed browser. Stack must gate intent. |
-| Bare `sk-code` name (ADR-002) | User-directed. Cleanest umbrella for the code skill family alongside sibling sk-code-opencode and sk-code-review. Boost tables use exact-name keys, so siblings remain disambiguated. |
+| Bare `sk-code` name (ADR-002) | User-directed. Cleanest umbrella for the code skill family alongside sibling sk-code-skilled and sk-code-review. Boost tables use exact-name keys, so siblings remain disambiguated. |
 | Empty templated stubs for non-web stacks (ADR-003) | User explicitly asked for "empty placeholder references, assets". Single `_placeholder.md` per stack folder honors the directive without per-file stub clutter. canonical_source + source_version frontmatter enables future drift detection. |
 | Code-level exclusion list deferred; rely on additive frontmatter + retargeted boost tables (ADR-004) | "Don't overwrite the 2 skills" forced a non-invasive deprecation. Adding 3 YAML keys preserves all body content and is reversible. The DEPRECATED_SKILLS Python/TS guard is documented as an optional follow-up if amplification recurs after `doctor:skill-advisor :confirm`. |
 | Tightly-scoped universal/ namespace (ADR-005) | Plan-agent flagged debugging_workflows.md and verification_workflows.md as browser-coupled. Promoting them to universal/ would have surfaced wrong guidance to Go/Swift users. They stay in web/. |
@@ -117,7 +117,7 @@ The Plan agent's three risk warnings (universal/ scope, scripts paths, advisor r
 | Trigger test: "fix Webflow animation flicker" | sk-code (conf=0.937) ✓ |
 | Trigger test: "Add a React component to my Next.js app" | sk-code (conf=0.905) ✓ |
 | Trigger test: "implement a Go service handler" | sk-code (conf=0.937) ✓ |
-| Trigger test: "audit OpenCode plugin loader" | sk-code-review (conf=0.937), sk-code-opencode (conf=0.899) — acceptable; "audit" strongly biases review |
+| Trigger test: "audit OpenCode plugin loader" | sk-code-review (conf=0.937), sk-code-skilled (conf=0.899) — acceptable; "audit" strongly biases review |
 | Trigger test: "review this PR" | sk-code-review (conf=0.950) ✓ |
 | Advisor lifecycle gate | PASS — sk-code-web and sk-code-full-stack filtered (lifecycle_status: deprecated) |
 | Advisor list shows `[DEPRECATED — superseded by sk-code]` prefix | PASS (verified live in advisor brief output) |

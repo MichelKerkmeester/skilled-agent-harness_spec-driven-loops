@@ -46,13 +46,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
-      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
-      ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
-      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
-      ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
-      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
-      ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
       ".skilled/hooks/goal/README.md",
       ".skilled/hooks/README.md",
       ".opencode/plugins/opencode-goal.js",
@@ -60,7 +53,11 @@
       ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
       ".skilled/hooks/goal/goal-plugin.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md"
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/goal-opencode-plugin.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs"
     ],
     "entities": [
       {
@@ -91,48 +88,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "verifier-labeled-set.jsonl",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "count-pi-goal-nudges.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "count-pi-goal-nudges.test.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-verifier-fixture.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-verifier-fixture.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-verifier-labeled-set.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-verifier-labeled-set.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
         "source": "derived"
       },
       {
@@ -178,6 +133,12 @@
         "source": "derived"
       },
       {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +167,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Slice",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
     "created_at": "2026-09-26T18:26:44Z",
-    "last_save_at": "2026-10-01T18:40:06.430Z",
+    "last_save_at": "2026-10-18T20:45:03.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +217,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a66e02a6a59714f857a303b7d33c978b28dd09eb3f728bfa2e2858c39fdec3d",
+    "source_fingerprint": "sha256:2b0cd150f29bd8946e6969456479162d9c1b9535ac16c6515999b5f96e2e72e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f715c200ded745cb2bd44372b748c9be3ab6bb0622c9cc8a6c304230cf80342",
-      "plan.md": "01000aeea9b65e2bcc4f0688f183487166e9f63cba5be8304f59c1e0b57ddb2f",
+      "plan.md": "85910bd8bf84d897710ff57e6735a434ff76fdacb6d4ed9d9ea68b1678f1f622",
       "tasks.md": "7fc166b4064bda0ebf8677759aaa89c8d2c28147f07f20cc21f7bc1ef88f22d9",
       "implementation-summary.md": "d2987feb9c5571075f718a2f16f0b1dc91cc59c8257e9def060328b314ecfe3f"
     },

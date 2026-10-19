@@ -7124,7 +7124,7 @@
     ],
     "handlerCalls": [],
     "evidence": [
-      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `python3 ../sk-code-opencode/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
+      "Command sequence is not expressible as direct handler calls: 1) `cd .opencode/skills/system-spec-kit` 2) `python3 ../sk-code-skilled/scripts/verify_alignment_drift.py --root .` 3) Grep output for `TS-MODULE-HEADER` findings 4) Verify 0 findings"
     ],
     "steps": [],
     "reason": "Scenario depends on shell commands, source inspection, or narrative-only validation."

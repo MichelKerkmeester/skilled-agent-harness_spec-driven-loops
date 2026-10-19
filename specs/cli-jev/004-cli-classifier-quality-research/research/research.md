@@ -61,7 +61,7 @@ CQ-06 and CQ-07 sit in the same file and are counted as one fix. That is why the
    - DeepSeek's validator run found everything else at 0 issues: the hub SKILL and README, ROUTER, 13 changelog entries, both feature catalogs, both playbook indexes, 22 playbook scenarios, six measurement docs and the benchmark and shared READMEs.
    - Sibling skills' references pass, so CQ-01 is local to this hub.
    - CQ-07 is a template row the validator does not check.
-2. **sk-code-opencode compliance:**
+2. **sk-code-skilled compliance:**
    - All nine hub scripts pass `node --check`.
    - Module headers follow the JavaScript style guide. The three `.cjs` callers use the older box header, which the guide grandfathers.
    - No style finding was raised.
@@ -154,4 +154,4 @@ CQ-11 goes to the advisor's owner.
   - `lineages/luna-max-fast/research.md`
 - Iterations: `lineages/*/iterations/iteration-001.md` to `iteration-005.md`, and deltas under `lineages/*/deltas/`
 - Run records: `orchestration-summary.json`, `fanout-attribution.md`, `findings-registry.json`, `resource-map.md`
-- Standards: `sk-doc/shared/scripts/validate_document.py`, `sk-create-readme/assets/readme-code-template.md`, `sk-code/sk-code-opencode/references/javascript/style-guide.md`
+- Standards: `sk-doc/shared/scripts/validate_document.py`, `sk-create-readme/assets/readme-code-template.md`, `sk-code/sk-code-skilled/references/javascript/style-guide.md`

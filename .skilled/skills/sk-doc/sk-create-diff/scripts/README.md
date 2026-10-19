@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-diff scripts"
   - "diff engine"
   - "report validator"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # create-diff scripts
@@ -120,4 +120,4 @@ OK
 |---|---|
 | [`../SKILL.md`](../SKILL.md) | Owning packet: runtime routing and workflow boundaries. |
 | [`../references/cli-reference.md`](../references/cli-reference.md) | Authoritative CLI flags, JSON summaries, and contract. |
-| [`../../../sk-code/sk-code-opencode/SKILL.md`](../../../sk-code/sk-code-opencode/SKILL.md) | OpenCode coding standard these scripts conform to. |
+| [`../../../sk-code/sk-code-skilled/SKILL.md`](../../../sk-code/sk-code-skilled/SKILL.md) | OpenCode coding standard these scripts conform to. |

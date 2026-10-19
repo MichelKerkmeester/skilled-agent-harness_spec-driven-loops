@@ -69,7 +69,7 @@ _memory:
 - [ ] T016 [P] `python3 -c "import ast; ast.parse(...)"` on skill_advisor.py
 
 ### Sub-phase 2D: Eval / telemetry / regression
-- [ ] T017 Retarget `P1-FULLSTACK-001` in `skill_advisor_regression_cases.jsonl` from `["sk-code-full-stack","sk-code-opencode"]` to `["sk-code","sk-code-opencode"]`
+- [ ] T017 Retarget `P1-FULLSTACK-001` in `skill_advisor_regression_cases.jsonl` from `["sk-code-full-stack","sk-code-skilled"]` to `["sk-code","sk-code-skilled"]`
 - [ ] T018 Retarget any `skill_top_1` rows in `labeled-prompts.jsonl` naming the deprecated pair
 - [ ] T019 Delete deprecated rows in `.smart-router-telemetry/compliance.jsonl`
 
@@ -87,7 +87,7 @@ _memory:
 - [ ] T028 Edit `sk-code-review/README.md` (6 hits)
 - [ ] T029 Edit `sk-code-review/graph-metadata.json` — causal_summary
 - [ ] T030 [P] Edit `sk-code-review/references/*.md` (~7 files)
-- [ ] T031 Edit `sk-code-opencode/{SKILL.md, README.md}`
+- [ ] T031 Edit `sk-code-skilled/{SKILL.md, README.md}`
 - [ ] T032 [P] Edit `mcp-chrome-devtools/{SKILL.md, README.md, examples/README.md}`
 - [ ] T033 [P] Edit `cli-{claude-code,codex,gemini}/SKILL.md` and `cli-opencode/assets/prompt_templates.md`
 - [ ] T034 [P] Edit `sk-doc/assets/skill/skill_md_template.md`

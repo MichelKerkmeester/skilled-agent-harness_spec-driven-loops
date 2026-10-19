@@ -1,12 +1,12 @@
 {
   "level": "3",
   "specFolder": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
-  "description": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
+  "description": "Three enforcement mechanisms for the `code-skilled` standard failed independently and simultaneously, and nothing noticed",
   "keywords": [
     "three",
     "enforcement",
     "mechanisms",
-    "code-opencode",
+    "code-skilled",
     "standard",
     "failed",
     "independently",

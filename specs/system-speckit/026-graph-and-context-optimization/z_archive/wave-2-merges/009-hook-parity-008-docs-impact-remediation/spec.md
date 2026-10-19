@@ -88,7 +88,7 @@ Update the following 13 files to align with shipped 009 behavior. Severity is th
 | 7 | `.opencode/skills/system-spec-kit/mcp_server/**/README.md` | 01, 10 | Refresh runtime hook README family under `mcp_server/hooks/`; replace Copilot registration example to show `.claude/settings.local.json` wrapper contract instead of `.github/hooks/scripts/*.sh`. |
 | 8 | `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | 02, 10 | Expand verification to include `advisor_recommend` / `advisor_status` / `advisor_validate`; revise Copilot row to describe merged `.claude/settings.local.json` wrapper execution + top-level `type`/`bash`/`timeoutSec` contract + writer wiring. |
 | 9 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | 01, 04, 05, 06, 07, 10 | Canonical runtime hook matrix refresh: Codex native SessionStart; Claude `UserPromptSubmit` in the four-event example; OpenCode plugin bridge + `experimental.chat.system.transform`; Copilot file-based parity via `.claude/settings.local.json`; cross-runtime fallback prose aligned. |
-| 10 | `AGENTS.md` | 01, 05, 09 | Gate 2 anchored on hook brief primary + `skill_advisor.py` fallback; Codex SessionStart parity note; OpenCode plugin ESM exemption under `sk-code-opencode` language table. |
+| 10 | `AGENTS.md` | 01, 05, 09 | Gate 2 anchored on hook brief primary + `skill_advisor.py` fallback; Codex SessionStart parity note; OpenCode plugin ESM exemption under `sk-code-skilled` language table. |
 
 **P1 — MED (3 files):**
 
@@ -128,7 +128,7 @@ See §3 In Scope — the 13 listed paths. Expected LOC impact: ~200–450 total 
 | REQ-007 | Update `mcp_server/hooks/copilot/README.md` (and siblings as applicable) | Registration example shows `.claude/settings.local.json` wrapper contract; remove `.github/hooks/scripts/*.sh` example |
 | REQ-008 | Update `mcp_server/INSTALL_GUIDE.md` | Add advisor native tools to verification; revise Copilot row to describe merged wrapper execution + top-level fields + writer wiring |
 | REQ-009 | Update `references/config/hook_system.md` | Canonical runtime matrix + Copilot row + Codex native + Claude four-event example + OpenCode plugin + cross-runtime fallback prose |
-| REQ-010 | Update top-level `AGENTS.md` Gate 2 + runtime notes | Hook brief primary + fallback, Codex SessionStart parity, OpenCode plugin ESM exemption in `sk-code-opencode` table |
+| REQ-010 | Update top-level `AGENTS.md` Gate 2 + runtime notes | Hook brief primary + fallback, Codex SessionStart parity, OpenCode plugin ESM exemption in `sk-code-skilled` table |
 
 ### P1 — Recommended
 

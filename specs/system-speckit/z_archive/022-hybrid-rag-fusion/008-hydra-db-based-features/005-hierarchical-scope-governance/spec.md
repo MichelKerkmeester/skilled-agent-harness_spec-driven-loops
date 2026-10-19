@@ -274,7 +274,7 @@ Make memory operations policy-aware, auditable, and safe across all relevant sco
 - [x] Retention and deletion procedure documented
 
 ### Code and Process
-- [x] `sk-code-opencode` alignment verified during implementation
+- [x] `sk-code-skilled` alignment verified during implementation
 - [x] Audit logging strategy approved
 - [x] Manual governance-validation steps added to the playbook
 

@@ -40,8 +40,6 @@
       "tasks.md",
       "implementation-summary.md",
       "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/016-cursor-devin-hook-entries/spec.md",
-      ".opencode/skills/sk-vision/hooks/devin/mcp_config.json",
-      ".opencode/skills/sk-vision/hooks/cursor/mcp.json",
       ".devin/mcp_config.json",
       ".claude/mcp.json",
       "hooks/README.md",
@@ -77,13 +75,13 @@
       {
         "name": "mcp_config.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-vision/hooks/devin/mcp_config.json",
+        "path": ".devin/mcp_config.json",
         "source": "derived"
       },
       {
         "name": "mcp.json",
         "kind": "config",
-        "path": ".opencode/skills/sk-vision/hooks/cursor/mcp.json",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The `hooks/` directory showed only `pi/` and `opencode/`",
     "created_at": "2026-08-17T13:44:41.648Z",
-    "last_save_at": "2026-08-30T15:39:19.638Z",
+    "last_save_at": "2026-10-18T20:45:23.425Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:316d78859bf830f76bcadf81d78135da752e7ec984758e273800b40db6c953a1",
+    "source_fingerprint": "sha256:139ad1d93ed0f2e60b99b7302509d22e15cc66df044237eff7b0ffe2f7cc1429",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2409a3dc9a5823126545592654d0f7fbc0d7145c6afd996e71d7ca9fd8a25dc7",
-      "plan.md": "8898211a6c7576024a5a1c3830005ed4e45a32a28e52227bd730ff5bf7808af5",
-      "tasks.md": "787228622c72071c345752034f1f087c5ba1d17a517cd0efbf7a1edd8c324c13",
-      "implementation-summary.md": "db6cb67b8900d961a774a9f5d90e4fe9f67855453d3e4e74a3da779895250c68"
+      "spec.md": "b5f25d5a5b94e35e3bb5ed615f310a326694ed17379cd7f8b9992a7d8f8d596f",
+      "plan.md": "d411913baeec7e49fee02cfd7bcd47f7c557ae0e3b5f2b1464f834efd03f4634",
+      "tasks.md": "1c13a46173c1830595ee04f4e8c1e778eb070a9d764827b5c4b6e98d9fcc6b98",
+      "implementation-summary.md": "be411236983f2c73a99d5ea6ac32682b15aa97b61c1d0b18db87e00b35f47b13"
     },
     "last_active_child_id": null,
     "last_active_at": null

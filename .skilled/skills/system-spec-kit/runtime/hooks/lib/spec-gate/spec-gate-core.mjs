@@ -68,7 +68,8 @@ import { classifyPrompt, validateSpecFolderBinding } from '../../../../shared/di
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const GATE_STATE_DIR_RELATIVE_PATH = '.skilled/skills/.state/spec-gate';
+const RUNTIME_STATE_RELATIVE_PATH = '.skilled/skills/.state';
+const GATE_STATE_DIR_RELATIVE_PATH = `${RUNTIME_STATE_RELATIVE_PATH}/spec-gate`;
 const GATE_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'spec-gate-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';
@@ -1569,6 +1570,13 @@ export function isExemptTargetPath(filePath, projectDir) {
     if (isPathWithin(overrideReal, absolute)) return true;
   }
   if (relative === '.git' || relative.startsWith('.git/')) return true;
+  // Runtime state is gitignored session data, such as a relaunch handoff note
+  // written near the context limit, so it is never documented work. Git keeps
+  // one concern README per state dir, and that README stays gated.
+  if (relative.startsWith(`${RUNTIME_STATE_RELATIVE_PATH}/`)) {
+    const stateSegments = relative.slice(RUNTIME_STATE_RELATIVE_PATH.length + 1).split('/');
+    if (!(stateSegments.length === 2 && stateSegments[1] === 'README.md')) return true;
+  }
   if (relative.includes('/node_modules/') || relative.startsWith('node_modules/')) return true;
   if (relative === 'dist' || relative.startsWith('dist/') || relative.includes('/dist/')) return true;
 

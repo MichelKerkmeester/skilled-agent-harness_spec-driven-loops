@@ -106,7 +106,7 @@ A user who reads only the README adaptation block can remove the two examples, a
 |----|-------------|
 | REQ-001 | Each R4 line marks OpenCode native and the examples optional, and no line tells the user to replace OpenCode |
 | REQ-002 | A fresh agent that reads only the adaptation block removes both examples and adds a stand-in surface in a fresh full-tree copy, after which the doctor, `ci-skill-root-metadata.cjs`, the guard, sync `--check` and `run-all-drift-guards.sh` exit 0 |
-| REQ-003 | In that copy, the tie prompt routes `[sk-code-acme, sk-code-opencode]` |
+| REQ-003 | In that copy, the tie prompt routes `[sk-code-acme, sk-code-skilled]` |
 | REQ-004 | The block names the nested path, the hooks, the keep-rule with `.opencode/skills`, the add command, `RESOURCE_MAP` and `INTENT_SIGNALS`, and the drift wrapper |
 | REQ-005 | The newest Skilled note is newer than v4.0.0.4, states the rule, names the `ROUTER.md` version change and passes `validate_document.py`; v4.0.0.4 is unchanged |
 
@@ -127,7 +127,7 @@ The builder records each row in `implementation-summary.md` as `| P11-<n> | Pass
 |----|-------|
 | P11-1 | Copy, after the agent's removal: the doctor, CI metadata check, guard, sync `--check` and drift wrapper exit 0 |
 | P11-2 | Copy, after the agent adds `sk-code-acme`: the same five exit 0 |
-| P11-3 | Copy: the tie prompt routes `[sk-code-acme, sk-code-opencode]` |
+| P11-3 | Copy: the tie prompt routes `[sk-code-acme, sk-code-skilled]` |
 | P11-4 | The agent's prompt held only the adaptation block, recorded with the dispatch command |
 | P11-5 | Worktree: each R4 line read and quoted |
 | P11-6 | Worktree: `run-all-drift-guards.sh` exits 0 and `validate_document.py` passes on every touched doc |

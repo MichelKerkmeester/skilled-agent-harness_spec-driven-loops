@@ -44,7 +44,7 @@
 - `mcp_server/lib/scoring/importance-tiers.ts` (229 lines) — Tier scoring
 
 ### Cross-Skill Standards
-- `sk-code-opencode/SKILL.md` — OpenCode coding standards
+- `sk-code-skilled/SKILL.md` — OpenCode coding standards
 - `sk-doc/SKILL.md` — Documentation standards
 - `system-spec-kit/SKILL.md` — Spec Kit standards
 

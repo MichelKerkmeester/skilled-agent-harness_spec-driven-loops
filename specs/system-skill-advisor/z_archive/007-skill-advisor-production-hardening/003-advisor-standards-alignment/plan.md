@@ -27,7 +27,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Two-part standards alignment. Part A updates sk-code-opencode to recognize OpenCode plugins must be ESM (new exemption tier). Part B brings the skill-advisor plugin file into alignment with non-exempt standards (header fields, JSDoc, section dividers). No behavior change; existing 30 vitest assertions are the regression guard.
+Two-part standards alignment. Part A updates sk-code-skilled to recognize OpenCode plugins must be ESM (new exemption tier). Part B brings the skill-advisor plugin file into alignment with non-exempt standards (header fields, JSDoc, section dividers). No behavior change; existing 30 vitest assertions are the regression guard.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -54,7 +54,7 @@ Two-part standards alignment. Part A updates sk-code-opencode to recognize OpenC
 
 ### Technical Context
 
-sk-code-opencode is a multi-language standards skill versioned at v1.2.0.0. Its JavaScript references and checklists are the contract that codify what plugin code must satisfy. The OpenCode plugin runtime (`@opencode-ai/plugin` v1.3.15 installed under OpenCode binary 1.3.17) requires ESM default-export factory functions returning a `Hooks` object — making CommonJS strictly incompatible with plugin loading. The standard already has §9 Test File Exemption Tier as precedent for exempting specific file paths from specific rules; §10 OpenCode Plugin Exemption Tier follows that pattern.
+sk-code-skilled is a multi-language standards skill versioned at v1.2.0.0. Its JavaScript references and checklists are the contract that codify what plugin code must satisfy. The OpenCode plugin runtime (`@opencode-ai/plugin` v1.3.15 installed under OpenCode binary 1.3.17) requires ESM default-export factory functions returning a `Hooks` object — making CommonJS strictly incompatible with plugin loading. The standard already has §9 Test File Exemption Tier as precedent for exempting specific file paths from specific rules; §10 OpenCode Plugin Exemption Tier follows that pattern.
 
 The skill-advisor plugin file follows ESM conventions (necessarily) but its file structure (header, JSDoc, section dividers) lags behind its sibling compact-code-graph plugin. This packet brings them into structural parity.
 <!-- /ANCHOR:architecture -->
@@ -64,7 +64,7 @@ The skill-advisor plugin file follows ESM conventions (necessarily) but its file
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-### Phase 1: Standards exemption (sk-code-opencode)
+### Phase 1: Standards exemption (sk-code-skilled)
 
 1. Append §10 to the quality standards reference after §9 Test File Exemption Tier. Use the same structure: scope, exempted standards table, what still applies, example. Scope = `.opencode/plugins/*.{js,mjs,ts}` and `.opencode/plugin-helpers/*.{js,mjs,ts}`. Exempted = CommonJS `module.exports` requirement (only). Reason = OpenCode plugin loader requires ESM per `@opencode-ai/plugin/dist/index.d.ts`.
 2. In the JavaScript checklist, add a one-line note next to the CommonJS P1 item: "**Exception**: OpenCode plugins (`.opencode/plugins/`, `.opencode/plugin-helpers/`) must use ESM — see the quality standards reference §10."
@@ -115,7 +115,7 @@ No new tests. Existing 30 skill-advisor vitest cases are the regression guard. I
 | Dependency | Status |
 |------------|--------|
 | Packet 008 baseline (30 tests passing) | Shipped |
-| sk-code-opencode v1.2.0.0 §9 Test File Exemption Tier as template | Exists |
+| sk-code-skilled v1.2.0.0 §9 Test File Exemption Tier as template | Exists |
 | Compact plugin section-divider pattern as reference | Exists at `.opencode/plugins/spec-kit-compact-code-graph.js` |
 <!-- /ANCHOR:dependencies -->
 

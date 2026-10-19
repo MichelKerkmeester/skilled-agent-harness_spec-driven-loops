@@ -36,7 +36,7 @@ All six loaded rules reviewed. One last read-only state check for the close-out 
 
 Both files edited and all three brief checks pass; the vitest suite stays with the orchestrator by design.
 
-`SKILL ROUTING: sk-code → compiled route returned defer; hub contract resolves the OpenCode surface, JavaScript slice (hub + sk-code-opencode + JS style guide/quick-reference loaded). ARTIFACT: sk-code → JavaScript slice governed both writes.`
+`SKILL ROUTING: sk-code → compiled route returned defer; hub contract resolves the OpenCode surface, JavaScript slice (hub + sk-code-skilled + JS style guide/quick-reference loaded). ARTIFACT: sk-code → JavaScript slice governed both writes.`
 `REPO RULES: prevent-overengineering.md, evidence-and-proof.md, uncertainty-and-honesty.md, answer-the-actual-request.md, communication.md, communication-handoff.md`
 
 Close-out: the error-message check is a valid before/after control — the pre-edit file (read at 129 lines) had no `parseLabels` in body or exports, so the same command would have printed a TypeError, not the label error; the printed string can only come from the new code. Work state: edited, uncommitted, both files untracked in this worktree (branch `worktrees/069-cli-jev-workflow-integration` @ `bf830c3d47`). Inferred, not observed: that the two vitest tests pass — the sandbox may block vitest and the brief assigns suite runs to the orchestrator.

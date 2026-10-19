@@ -1,10 +1,10 @@
 {
   "level": "2",
   "specFolder": "sk-code/004-code-conformance-alignment",
-  "description": "The sk-code `code-opencode` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
+  "description": "The sk-code `code-skilled` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical",
   "keywords": [
     "sk-code",
-    "code-opencode",
+    "code-skilled",
     "surface",
     "defines",
     "file-opening",

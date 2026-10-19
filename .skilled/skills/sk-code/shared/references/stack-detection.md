@@ -1,6 +1,6 @@
 ---
 title: Stack & Surface Detection
-description: Surface detection (WEBFLOW/OPENCODE/OBSIDIAN/UNKNOWN) and OPENCODE language sub-detection. Primary routing key for sk-code.
+description: Surface detection (WEBFLOW/SKILLED/OBSIDIAN/UNKNOWN) and SKILLED language sub-detection. Primary routing key for sk-code.
 trigger_phrases:
   - "sk-code surface detection"
   - "webflow opencode detection"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "language sub detection"
 importance_tier: important
 contextType: general
-version: 2.2.0.0
+version: 2.2.1.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -26,20 +26,20 @@ Detect **where the work is happening** before deciding which standards apply.
 | Surface | Owns | Does Not Own |
 | --- | --- | --- |
 | WEBFLOW | Webflow / vanilla HTML, CSS, JavaScript, animation libraries, CDN/minification, browser behavior | `.skilled/` system code |
-| OPENCODE | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
+| SKILLED | `.skilled/` skills, agents, commands, MCP/server code, scripts, tests, JSON/JSONC config | Webflow/browser behavior |
 | OBSIDIAN | The Note Database Obsidian plugin (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, the single `styles.css` carrying `.db-*` classes) and its worktrees | `.opencode/` hub code reached through the repo's symlinks; Webflow browser artifacts |
 | UNKNOWN | Fallback for unsupported or ambiguous surfaces | No standards applied until clarified |
 
-Motion.dev (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) is a peer resource category rather than a surface. Surface detection still chooses OPENCODE, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
+Motion.dev (`.skilled/skills/sk-code/sk-code-webflow/references/animation/`) is a peer resource category rather than a surface. Surface detection still chooses SKILLED, OBSIDIAN, WEBFLOW, or UNKNOWN first; Motion.dev API, performance, and decision guidance is loaded afterward when the intent requires cross-stack animation context.
 
 ---
 
 ## 2. DETECTION ORDER
 
-**Precedence**: OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN. An OPENCODE target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. WEBFLOW then wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
+**Precedence**: SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN. An SKILLED target/CWD wins, but only when its **resolved** real path lands inside the hub's own `.skilled/` directory — see the symlink guard below. OBSIDIAN follows, because an Obsidian plugin repository is structurally a generic TypeScript + `package.json` tree that would otherwise fall through to UNKNOWN. WEBFLOW then wins over UNKNOWN. Use early-return logic — later branches must not overwrite earlier matches.
 
 ```bash
-# 1. OPENCODE (highest precedence — disambiguates mixed-marker workspaces)
+# 1. SKILLED (highest precedence — disambiguates mixed-marker workspaces)
 # CWD under .skilled/ OR any changed/target file under .skilled/
 
 # 2. OBSIDIAN (the Note Database plugin repository and its worktrees)
@@ -62,16 +62,16 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 # Ask which surface and verification commands apply.
 ```
 
-**Why OPENCODE wins precedence**: `.skilled/` system tools (e.g. preview servers, mock fixtures, animation demos under `.skilled/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
+**Why SKILLED wins precedence**: `.skilled/` system tools (e.g. preview servers, mock fixtures, animation demos under `.skilled/skills/sk-doc/scripts/`) may import vanilla animation libraries internally without being WEBFLOW-shipping artifacts. A first-match-WEBFLOW order would mis-route this work to the wrong standards. The target/CWD path is the strongest unambiguous signal of which surface owns the work.
 
-**Symlink guard — required for OPENCODE detection.** The Obsidian plugin repository symlinks
+**Symlink guard — required for SKILLED detection.** The Obsidian plugin repository symlinks
 `.opencode`, `.claude`, `.codex`, `.cursor`, and `.devin` at its root back to this hub, so hub skills
 and agents are visible to tooling that expects those folders at a repo root. A literal "is there a
-`.opencode/` segment at or above CWD" test therefore reports OPENCODE for **every** task in that
-repository, including one that never touches a hub file. Resolve symlinks before testing: OPENCODE
+`.opencode/` segment at or above CWD" test therefore reports SKILLED for **every** task in that
+repository, including one that never touches a hub file. Resolve symlinks before testing: SKILLED
 holds only when the **resolved** real path of the CWD or of a changed/target file lands inside the
 hub's actual `.skilled/` directory. A plugin source file reached through the repo root's symlink
-does not; a genuine hub file reached through it does, so OPENCODE still wins for real hub work. The
+does not; a genuine hub file reached through it does, so SKILLED still wins for real hub work. The
 guard changes how the test is performed, not which surface wins.
 
 **Why OBSIDIAN sits above WEBFLOW**: the plugin ships no Webflow markers, and its repo-root markers
@@ -106,21 +106,21 @@ Expected CS-002 behavior:
 
 ---
 
-## 3. OPENCODE LANGUAGE SUB-DETECTION
+## 3. SKILLED LANGUAGE SUB-DETECTION
 
-After OPENCODE surface detection, select language resources by extension first:
+After SKILLED surface detection, select language resources by extension first:
 
 | Language | Extensions | Resource Folder |
 | --- | --- | --- |
-| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `sk-code-opencode/references/javascript/` |
-| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `sk-code-opencode/references/typescript/` |
-| PYTHON | `.py` | `sk-code-opencode/references/python/` |
-| SHELL | `.sh`, `.bash` | `sk-code-opencode/references/shell/` |
-| RUST | `.rs`; fallback markers `Cargo.toml`, `Cargo.lock`; napi-rs/wasm-bindgen vocabulary | `sk-code-opencode/references/rust/` |
-| CONFIG | `.json`, `.jsonc` | `sk-code-opencode/references/config/` |
-| CONFIG | `.yaml`, `.yml` | `sk-code-opencode/references/config/` |
+| JAVASCRIPT | `.js`, `.mjs`, `.cjs` | `sk-code-skilled/references/javascript/` |
+| TYPESCRIPT | `.ts`, `.tsx`, `.mts`, `.d.ts` | `sk-code-skilled/references/typescript/` |
+| PYTHON | `.py` | `sk-code-skilled/references/python/` |
+| SHELL | `.sh`, `.bash` | `sk-code-skilled/references/shell/` |
+| RUST | `.rs`; fallback markers `Cargo.toml`, `Cargo.lock`; napi-rs/wasm-bindgen vocabulary | `sk-code-skilled/references/rust/` |
+| CONFIG | `.json`, `.jsonc` | `sk-code-skilled/references/config/` |
+| CONFIG | `.yaml`, `.yml` | `sk-code-skilled/references/config/` |
 
-When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist. Rust is a touched-language-set case, not a first-match override: a napi-rs/WASM parity task that touches both `.rs` and `.ts` loads the Rust trio AND the TypeScript trio plus shared guidance, because the Rust module must be verified byte-for-byte against its TypeScript oracle. Cargo markers (`Cargo.toml`/`Cargo.lock`) are evaluated only after OPENCODE surface detection, never as a cross-project surface signal.
+When multiple languages are touched, load shared OpenCode guidance plus each touched language quick reference/checklist. Rust is a touched-language-set case, not a first-match override: a napi-rs/WASM parity task that touches both `.rs` and `.ts` loads the Rust trio AND the TypeScript trio plus shared guidance, because the Rust module must be verified byte-for-byte against its TypeScript oracle. Cargo markers (`Cargo.toml`/`Cargo.lock`) are evaluated only after SKILLED surface detection, never as a cross-project surface signal.
 
 YAML is a live OpenCode config-adjacent genre for command routers, command auto/confirm assets, and workflow contracts. A live-surface scan found 65 YAML/YML files under `.skilled/commands` and `.skilled/skills`, excluding `node_modules` and `dist`.
 
@@ -132,17 +132,17 @@ YAML is a live OpenCode config-adjacent genre for command routers, command auto/
 | --- | --- | --- |
 | `src/2_javascript/`, `package.json` | WEBFLOW | Webflow marker wins (no `.skilled/` target present) |
 | HTML/CSS/JS with GSAP or Lenis | WEBFLOW | Vanilla animation web signal |
-| CWD `.skilled/skills/sk-code` | OPENCODE | Skill/system code context |
-| Changed `.skilled/agents/code.md` | OPENCODE | Target file under `.skilled/` |
+| CWD `.skilled/skills/sk-code` | SKILLED | Skill/system code context |
+| Changed `.skilled/agents/code.md` | SKILLED | Target file under `.skilled/` |
 
 | CWD or target under the Obsidian plugin repo (`manifest.json` + `esbuild.config.mjs` present) | OBSIDIAN | Plugin repo-root markers resolve; the read-only `sk-code-obsidian` evidence packet is bundled |
 | CWD `Obsidian Plugin/.worktrees/001-*/src/views`, target `DatabaseView.ts` | OBSIDIAN | No **resolved** target path lands in the hub tree, despite the `.opencode` symlink at the repo root |
-| Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | OPENCODE | The symlink genuinely targets hub content; OPENCODE wins once the path is resolved |
-| Literal path string contains `.opencode/` but resolves outside the hub | not OPENCODE | The realpath gate refuses OPENCODE on a string match alone |
+| Target `Obsidian Plugin/.opencode/skills/sk-code/...`, resolving inside the hub | SKILLED | The symlink genuinely targets hub content; SKILLED wins once the path is resolved |
+| Literal path string contains `.opencode/` but resolves outside the hub | not SKILLED | The realpath gate refuses SKILLED on a string match alone |
 | Root `package.json`, no `manifest.json`, no `.skilled/` target | UNKNOWN | Generic Node is not owned; OBSIDIAN needs its positive markers, not merely the absence of other surfaces |
-| Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **OPENCODE** | `.opencode/` target wins when a task also touches a path outside the hub |
-| Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence OPENCODE > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |
-| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` | **OPENCODE** | Mixed-marker repo: OPENCODE target/CWD takes precedence over WEBFLOW library marker |
+| Changed `apps/desktop/src/styles/app.css` AND changed `.opencode/agents/code.md` | **SKILLED** | `.opencode/` target wins when a task also touches a path outside the hub |
+| Obsidian plugin repo-root markers (`manifest.json` with `minAppVersion`, `esbuild.config.mjs`) AND a Webflow library marker (`new Lenis`, `window.gsap`) in the same tree, no `.skilled/` target | **OBSIDIAN** | Precedence SKILLED > OBSIDIAN > WEBFLOW: the OBSIDIAN branch returns early, so the Webflow marker never overwrites it |
+| WEBFLOW marker (Lenis, GSAP) AND changed `.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` | **SKILLED** | Mixed-marker repo: SKILLED target/CWD takes precedence over WEBFLOW library marker |
 | Prompt says `NOT Webflow no Webflow Designer` and asks for Motion.dev guidance | **UNKNOWN/N/A** | Explicit non-Webflow guard blocks WEBFLOW promotion |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | Generic Node.js is not owned |
 | `go.mod` or `next.config.js` only | UNKNOWN | Go/NextJS placeholder routes were removed |

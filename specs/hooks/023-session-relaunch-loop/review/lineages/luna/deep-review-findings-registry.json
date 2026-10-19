@@ -1,0 +1,1020 @@
+{
+  "sessionId": "fanout-luna-1792349322065-8lohfl",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "LUNA-001",
+      "severity": "P2",
+      "title": "appendLog accepts a short write as complete",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 580,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-002",
+      "severity": "P2",
+      "title": "The fallback state directory is shared across users on systems with a shared temp directory",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 42,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-003",
+      "severity": "P2",
+      "title": "The killer can signal a reused PID after its ancestry check",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 449,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-004",
+      "severity": "P2",
+      "title": "Phase 5 depends on a review-report path that is absent",
+      "file": "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md:40,43",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-005",
+      "severity": "P2",
+      "title": "The parent handoff criteria still count four children while the phase map lists five",
+      "file": "specs/hooks/023-session-relaunch-loop/spec.md:39,92-98",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 5
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "append_short_write_handling",
+      "cross_user_state_directory_collision",
+      "phase_count_handoff_criteria",
+      "pid_reuse_before_signal",
+      "remediation_report_dependency_path",
+      "UNKNOWN"
+    ],
+    "ruledOut": [
+      "acceptance_evidence_links",
+      "append_concurrency",
+      "archived_report_registry_alignment",
+      "handoff_path_escape",
+      "partial_tail_recovery",
+      "stale_lock_takeover_race",
+      "state_directory_permissions",
+      "transcript_disappearance_signal",
+      "UNKNOWN"
+    ],
+    "deferred": [],
+    "blocked": [
+      "graph_backed_coverage"
+    ],
+    "byBugClass": {
+      "append_short_write_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "append_concurrency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "partial_tail_recovery": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_directory_permissions": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "graph_backed_coverage": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          1
+        ]
+      },
+      "cross_user_state_directory_collision": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "pid_reuse_before_signal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "handoff_path_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_lock_takeover_race": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "transcript_disappearance_signal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "UNKNOWN": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "remediation_report_dependency_path": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "phase_count_handoff_criteria": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_evidence_links": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "archived_report_registry_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-deep-loop/commands/deep/assets/deep-review-auto.yaml",
+        "specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-config.json"
+      ],
+      "bugClass": "graph_backed_coverage",
+      "disposition": "blocked",
+      "rationale": "Graph seeding was not run because it writes outside the dispatcher's authorized lineage.",
+      "evidenceRefs": [
+        ".skilled/skills/system-deep-loop/commands/deep/assets/deep-review-auto.yaml",
+        "specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-config.json"
+      ],
+      "reason": "The lineage-only write boundary prevents the packet-level graph-seed step."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:555-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:749-779"
+      ],
+      "bugClass": "append_concurrency",
+      "disposition": "ruled_out",
+      "rationale": "The inspected normal-write producer and concurrency test cover the selected concurrent-append invariant.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:567-581",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:749-779"
+      ],
+      "reason": "No race was identified in the inspected append-mode path for complete writes."
+    },
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:571-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:781-810"
+      ],
+      "bugClass": "partial_tail_recovery",
+      "disposition": "ruled_out",
+      "rationale": "The code and test source address the selected line-separation case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:571-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:781-810"
+      ],
+      "reason": "The next append is separated from the previous unterminated tail."
+    },
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1392-1415"
+      ],
+      "bugClass": "state_directory_permissions",
+      "disposition": "ruled_out",
+      "rationale": "The shared helper re-pins the directory mode and the test source checks it.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1392-1415"
+      ],
+      "reason": "No incorrect mode was identified in the inspected create/reuse path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "reason": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "reason": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "reason": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "reason": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "reason": "The content is consistent; the remaining defect is its path in the declared dependency."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "handoff_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "reason": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "stale_lock_takeover_race",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "reason": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "transcript_disappearance_signal",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "reason": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "acceptance_evidence_links",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "reason": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "archived_report_registry_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "reason": "The content is consistent; the remaining defect is its path in the declared dependency."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "handoff_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "reason": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "stale_lock_takeover_race",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "reason": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "transcript_disappearance_signal",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "reason": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "acceptance_evidence_links",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "reason": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "archived_report_registry_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "reason": "The content is consistent; the remaining defect is its path in the declared dependency."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:555-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:749-779"
+      ],
+      "bugClass": "append_concurrency",
+      "disposition": "ruled_out",
+      "rationale": "The inspected normal-write producer and concurrency test cover the selected concurrent-append invariant.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:567-581",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:749-779"
+      ],
+      "proof": "No race was identified in the inspected append-mode path for complete writes."
+    },
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:571-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:781-810"
+      ],
+      "bugClass": "partial_tail_recovery",
+      "disposition": "ruled_out",
+      "rationale": "The code and test source address the selected line-separation case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:571-585",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:781-810"
+      ],
+      "proof": "The next append is separated from the previous unterminated tail."
+    },
+    {
+      "iteration": 1,
+      "id": "LUNA-SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1392-1415"
+      ],
+      "bugClass": "state_directory_permissions",
+      "disposition": "ruled_out",
+      "rationale": "The shared helper re-pins the directory mode and the test source checks it.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:42-46",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1392-1415"
+      ],
+      "proof": "No incorrect mode was identified in the inspected create/reuse path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "proof": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "proof": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "proof": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "proof": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "UNKNOWN",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "proof": "The content is consistent; the remaining defect is its path in the declared dependency."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "handoff_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "proof": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "stale_lock_takeover_race",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "proof": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "transcript_disappearance_signal",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "proof": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "acceptance_evidence_links",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "proof": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "archived_report_registry_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "proof": "The content is consistent; the remaining defect is its path in the declared dependency."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "bugClass": "handoff_path_escape",
+      "disposition": "ruled_out",
+      "rationale": "The inspected validator resolves symlinks and rejects outside real paths.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:71-135",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1267-1274"
+      ],
+      "proof": "No static path escape was found in the checked entry path."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-009",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "bugClass": "stale_lock_takeover_race",
+      "disposition": "ruled_out",
+      "rationale": "The mutex, recheck, exclusive creation, and source test cover the selected concurrent takeover case.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:285-388",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1074-1112"
+      ],
+      "proof": "No double-takeover path was identified for the inspected scenario."
+    },
+    {
+      "iteration": 2,
+      "id": "LUNA-SL-010",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:137-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "bugClass": "transcript_disappearance_signal",
+      "disposition": "ruled_out",
+      "rationale": "Sustained absence fails the idle check; the inspected scenario is covered in test source.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:157-176",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:958-982"
+      ],
+      "proof": "The transcript-disappearance path returns before SIGTERM."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "bugClass": "acceptance_evidence_links",
+      "disposition": "ruled_out",
+      "rationale": "The selected AC-001 citation targets resolve to the ledger content inspected.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/acceptance-criteria.md:54",
+        "specs/hooks/023-session-relaunch-loop/scratch/run-ledger.md:429-456"
+      ],
+      "proof": "No broken reference was found in this AC-001 evidence chain."
+    },
+    {
+      "iteration": 3,
+      "id": "LUNA-SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "bugClass": "archived_report_registry_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The archived report content matches the count and verdict stated by Phase 5.",
+      "evidenceRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:1-15",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-findings-registry.json:1"
+      ],
+      "proof": "The content is consistent; the remaining defect is its path in the declared dependency."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "remediation_report_dependency_path",
+      "phase_count_handoff_criteria",
+      "acceptance_evidence_links",
+      "archived_report_registry_alignment"
+    ],
+    "covered": [
+      "remediation_report_dependency_path",
+      "phase_count_handoff_criteria"
+    ],
+    "ruledOut": [
+      "acceptance_evidence_links",
+      "archived_report_registry_alignment"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

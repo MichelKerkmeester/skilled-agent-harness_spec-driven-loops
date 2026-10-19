@@ -63,7 +63,7 @@ scripts) was preserved by editing out only the trailing bridge call block.
 | `.github/hooks/scripts/session-start.sh` | Modified | Removed trailing `~/.superset` block; kept `session-prime.js` priming |
 | `.github/hooks/scripts/user-prompt-submitted.sh` | Modified | Removed trailing `~/.superset` block; kept `user-prompt-submit.js` priming |
 | `system-spec-kit/references/config/hook_system.md` | Modified | Removed the superset-wrapper sentence |
-| `sk-code/code-opencode/references/shared/hooks.md` | Modified | 3 sites rewritten to "no checked-in wrapper config" |
+| `sk-code/code-skilled/references/shared/hooks.md` | Modified | 3 sites rewritten to "no checked-in wrapper config" |
 | `system-skill-advisor/.../hooks-parity-stress.vitest.ts` | Modified | Dropped the Copilot/superset arm; kept Claude + OpenCode |
 | `system-spec-kit/mcp_server/tests/advisor-fixtures/README.md` | Modified | Removed dangling link to the deleted wiring test |
 | `.github/hooks/superset-notify.json` (untracked, local) | Removed | Backed up to scratchpad; `.git/info/exclude` line dropped |

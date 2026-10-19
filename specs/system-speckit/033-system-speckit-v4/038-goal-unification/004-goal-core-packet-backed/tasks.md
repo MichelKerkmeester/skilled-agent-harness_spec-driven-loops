@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read ADR-1, ADR-2, ADR-3 and the sk-code-opencode checklist
+- [x] T001 Read ADR-1, ADR-2, ADR-3 and the sk-code-skilled checklist
 - [x] T002 Baseline: node --test on the four goal suites, record counts
 <!-- /ANCHOR:phase-1 -->
 

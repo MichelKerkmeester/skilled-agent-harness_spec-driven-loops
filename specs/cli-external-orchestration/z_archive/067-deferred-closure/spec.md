@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -114,8 +114,8 @@ narrowed to pass; and no rule, test command or document claims something that is
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | `tracked_paths()` + JSONL recognition; both walks consult the tracked set |
-| `sk-code-opencode/SKILL.md` | Modify | Replace the interim-backlog carve-out with the real contract: wrapper rc 0 |
+| `sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | `tracked_paths()` + JSONL recognition; both walks consult the tracked set |
+| `sk-code-skilled/SKILL.md` | Modify | Replace the interim-backlog carve-out with the real contract: wrapper rc 0 |
 | `hooks/dispatch/lib/dispatch-rule-checks.mjs` | Modify | Four `command-v-*` checks, widened stdin shapes |
 | `hooks/dispatch/lib/dispatch-rule-checks.test.mjs` | Modify | CI guard enumerates packets; new coverage; stale assertion fixed |
 | `hooks/README.md` | Modify | Split the vitest suite out of the `node --test` line |

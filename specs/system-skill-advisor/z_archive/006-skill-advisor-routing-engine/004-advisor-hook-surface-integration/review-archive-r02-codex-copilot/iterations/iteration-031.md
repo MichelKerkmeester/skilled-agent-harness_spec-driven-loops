@@ -34,4 +34,4 @@ None.
 - stuck_counter: 0
 
 ## Next iteration focus
-Advance D4 by checking whether the late-added observability and wrapper surfaces still match sk-code-opencode maintainability expectations around API clarity, dead paths, and test-backed contracts.
+Advance D4 by checking whether the late-added observability and wrapper surfaces still match sk-code-skilled maintainability expectations around API clarity, dead paths, and test-backed contracts.

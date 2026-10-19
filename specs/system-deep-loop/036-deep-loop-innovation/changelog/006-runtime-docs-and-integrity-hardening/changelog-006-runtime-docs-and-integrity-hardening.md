@@ -23,7 +23,7 @@ This group covers the runtime-docs and integrity-hardening spine of the 036 deep
 | Phase | Summary |
 |---|---|
 | `001-runtime-code-readmes` | Add a code README to every source-bearing folder in the system-deep-loop runtime and repair fourteen recorded defects, authored to the sk-doc create-readme standard; additive and corrective documentation only, no code changes. Complete. |
-| `002-sk-code-opencode-alignment` | Audit the runtime against the sk-code code-opencode surface conventions and align the divergences, preserving behavior; the serial per-mode/per-file Vitest matrix and whole-runtime tsc stay green. Complete. |
+| `002-sk-code-skilled-alignment` | Audit the runtime against the sk-code code-skilled surface conventions and align the divergences, preserving behavior; the serial per-mode/per-file Vitest matrix and whole-runtime tsc stay green. Complete. |
 | `003-artifact-certificate-binding` | Bind every load-bearing identity in a certificate or sealed-artifact claim to the verified typed payload by exact equality, closing twelve findings across the sealed-artifact store and four certificate emitters with a decoy or forgery negative test per finding. 12/12 landed. |
 | `004-alignment-coverage-integrity` | Make alignment coverage, seal state and lane identity provable: coverage fails closed with four distinguishable corpus states, both readers agree on identical bytes, and coverage credit requires per-artifact evidence from the dispatched slice. Completed. |
 | `005-mode-gate-and-contract-binding` | Close the readiness-gate, rollback-switch and mode-contract conformance boundaries with one shared strict gate validator adopted by all four gate families. Complete. |

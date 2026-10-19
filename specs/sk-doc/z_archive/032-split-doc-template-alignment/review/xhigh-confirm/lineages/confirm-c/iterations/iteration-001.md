@@ -20,7 +20,7 @@ trigger_phrases: []
 - Deterministic full-corpus structure scan: all 163 configured Markdown paths (160 resolved targets).
 - `validate_document.py` with explicit reference/asset type: 163/163 at zero issues.
 - Fenced-code-aware relative Markdown link scan: 403 links checked; no broken renamed-file navigation. The known illustrative absolute `/specs/005-example.com/...` path remains non-navigational and out of scope.
-- Direct reads: `.opencode/skills/sk-code/code-webflow/references/shared/enforcement.md:15-30`, `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-24`, `.opencode/skills/sk-code/code-opencode/references/workflow_implement.md:14-24`, `.opencode/skills/sk-code/code-opencode/references/workflow_verify.md:14-24`, `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-29`, and `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`.
+- Direct reads: `.opencode/skills/sk-code/code-webflow/references/shared/enforcement.md:15-30`, `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-24`, `.opencode/skills/sk-code/code-skilled/references/workflow_implement.md:14-24`, `.opencode/skills/sk-code/code-skilled/references/workflow_verify.md:14-24`, `.opencode/skills/sk-code/code-webflow/references/css/quality_standards/patterns_and_naming_enforcement.md:17-29`, and `.opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:54-87`.
 - Prior remediation replay: the Rust Overview wrapper, exact intro/Purpose duplication, lowercase trigger phrase, and narrowed link claim are all present in current state.
 
 ## Findings - New
@@ -42,7 +42,7 @@ None.
 
 ### P2 Findings
 
-1. **Eight scoped paths use three-sentence intros instead of the required 1-2 sentences** - `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:16` - the shared debug, implement, and verify references appear through both code-opencode and code-webflow paths (six lexical paths, three resolved files); `patterns_and_naming_enforcement.md:19` and `enforcement.md:17` add two more lexical/resolved cases. Their wrappers otherwise resolve correctly, so this is bounded template drift rather than a functional contradiction.
+1. **Eight scoped paths use three-sentence intros instead of the required 1-2 sentences** - `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:16` - the shared debug, implement, and verify references appear through both code-skilled and code-webflow paths (six lexical paths, three resolved files); `patterns_and_naming_enforcement.md:19` and `enforcement.md:17` add two more lexical/resolved cases. Their wrappers otherwise resolve correctly, so this is bounded template drift rather than a functional contradiction.
    - Finding class: `class-of-bug`
    - Scope proof: the same full-corpus opening scan counted sentence boundaries for all 163 paths and isolated eight lexical paths representing five resolved documents.
    - Affected surfaces: shared workflow references; code-webflow shared enforcement; code-webflow CSS quality reference.

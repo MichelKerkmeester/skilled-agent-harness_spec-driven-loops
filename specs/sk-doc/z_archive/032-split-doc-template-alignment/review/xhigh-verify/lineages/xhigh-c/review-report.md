@@ -33,8 +33,8 @@ All four configured dimensions were reviewed. Two P1 findings require remediatio
       "id": "I1-P1-001",
       "severity": "P1",
       "findingClass": "instance-only",
-      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:19",
-      "affectedSurfaceHints": ["code-opencode Rust references", "resource-document validation", "completion evidence"]
+      "file": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:19",
+      "affectedSurfaceHints": ["code-skilled Rust references", "resource-document validation", "completion evidence"]
     },
     {
       "id": "I2-P1-001",
@@ -47,7 +47,7 @@ All four configured dimensions were reviewed. Two P1 findings require remediatio
       "id": "I1-P2-001",
       "severity": "P2",
       "findingClass": "class-of-bug",
-      "file": ".opencode/skills/sk-code/code-opencode/references/workflow_debug.md:16",
+      "file": ".opencode/skills/sk-code/code-skilled/references/workflow_debug.md:16",
       "affectedSurfaceHints": ["shared workflow references", "intro contract"]
     },
     {
@@ -84,7 +84,7 @@ All four configured dimensions were reviewed. Two P1 findings require remediatio
   ],
   "findingClasses": ["instance-only", "class-of-bug"],
   "affectedSurfacesSeed": [
-    "code-opencode Rust references",
+    "code-skilled Rust references",
     "code-webflow security references",
     "shared workflow references",
     "code-webflow third-party integration references"
@@ -98,13 +98,13 @@ All four configured dimensions were reviewed. Two P1 findings require remediatio
 ### I1-P1-001 - Missing mandatory Overview wrapper
 
 - **Severity / dimension:** P1 / correctness
-- **Evidence:** `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-21` moves from H1 intro directly to `### Error Style`; R3 requires `## 1. OVERVIEW` plus Purpose and When to Use at `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-72`.
+- **Evidence:** `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-21` moves from H1 intro directly to `### Error Style`; R3 requires `## 1. OVERVIEW` plus Purpose and When to Use at `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:67-72`.
 - **Impact:** The packet's complete structural-conformance claim is false for one in-scope reference, and the validator's no-numbered-H2 path does not expose the omission.
 - **Recommendation:** Add the required Overview wrapper without changing substantive content and add a validator regression for this file shape.
 - **Disposition:** active
 - **Finding class:** instance-only
 - **Scope proof:** Iteration 1 scanned all 163 configured paths and isolated one wrapper omission; iterations 3 and 4 narrowly reconfirmed it.
-- **Affected surfaces:** code-opencode Rust references; resource-document validation; completion evidence.
+- **Affected surfaces:** code-skilled Rust references; resource-document validation; completion evidence.
 
 ### I2-P1-001 - JavaScript-accessible session cookie labelled good
 
@@ -120,7 +120,7 @@ All four configured dimensions were reviewed. Two P1 findings require remediatio
 ### I1-P2-001 - Seven intros exceed the 1-2 sentence contract
 
 - **Severity / dimension:** P2 / correctness
-- **Evidence:** `.opencode/skills/sk-code/code-opencode/references/workflow_debug.md:14-20` contains a three-sentence intro; the same pattern occurs in the shared workflow aliases and one CSS quality reference.
+- **Evidence:** `.opencode/skills/sk-code/code-skilled/references/workflow_debug.md:14-20` contains a three-sentence intro; the same pattern occurs in the shared workflow aliases and one CSS quality reference.
 - **Impact:** Minor template drift and avoidable duplication before Overview.
 - **Recommendation:** Compress the seven intros to one or two sentences while preserving meaning.
 - **Disposition:** active advisory

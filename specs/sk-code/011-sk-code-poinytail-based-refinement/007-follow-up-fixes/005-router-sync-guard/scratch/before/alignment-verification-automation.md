@@ -33,7 +33,7 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 
 ## 2. SCRIPT
 
-- Path: `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`
+- Path: `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
 
 ---
@@ -78,7 +78,7 @@ lane. It checked four things:
    is routed.
 2. The parent surface RESOURCE_MAP equals the union of the surface children's
    maps plus the parent tier.
-3. Compiled route-gold destinations, `leaf-manifest.json` and the code-opencode
+3. Compiled route-gold destinations, `leaf-manifest.json` and the code-skilled
    RESOURCE_MAP agree through `qualifiedIdToLeaf`.
 4. Every playbook routing scenario's `expected_resource` is emitted by the
    router.
@@ -107,19 +107,19 @@ Owner of every gap marked None: sk-code.
 ## 4. USAGE
 
 ```bash
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled
 ```
 
 Strict CI mode:
 
 ```bash
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled --fail-on-warn
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled --fail-on-warn
 ```
 
 Router dead-route check (default off):
 
 ```bash
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/sk-code --check-router
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/sk-code --check-router
 ```
 
 Notes:
@@ -137,17 +137,17 @@ Notes:
 - [code_organization.md](code-organization/overview-and-module-organization.md)
 - [universal_patterns.md](universal-patterns/naming-and-commenting.md)
 - [hooks.md](./hooks.md)
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — runs this verifier and `verify_stack_folders.py` together as one gate.
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` — runs this verifier and `verify_stack_folders.py` together as one gate.
 
 ---
 
-## 6. ALIGNMENT AUTHORITY INTERFACE (code-opencode)
+## 6. ALIGNMENT AUTHORITY INTERFACE (code-skilled)
 
-code-opencode has exactly one alignment source of truth: the three-part interface
+code-skilled has exactly one alignment source of truth: the three-part interface
 below. Later coverage and activation work must consume this interface rather than
 re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
-1. **Doc pointer.** This file plus the code-opencode `SKILL.md` SMART ROUTING
+1. **Doc pointer.** This file plus the code-skilled `SKILL.md` SMART ROUTING
    block, which record that the `sk-code-router-sync.vitest.ts` suite was
    deleted, that nothing checks RESOURCE_MAP equality now, and what partly
    covers its other checks (section 3, "Retired router-sync suite"). The
@@ -161,5 +161,5 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
 3. **Orchestrator.** `scripts/run-all-drift-guards.sh` is the single command that
    runs both live drift guards and exits non-zero if either fails.
 
-Any new check that needs code-opencode RESOURCE_MAP alignment extends this
+Any new check that needs code-skilled RESOURCE_MAP alignment extends this
 interface; it must not stand up a competing parser or eligibility map.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "drawio extractor"
   - "mermaid extractor"
   - "flowchart validator"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-design-diagram scripts
@@ -115,4 +115,4 @@ bash scripts/validate-flowchart.sh assets/ascii-patterns/simple-workflow.md
 | [`../SKILL.md`](../SKILL.md) | Owning packet: runtime routing and workflow boundaries. |
 | [`../references/import-export/import-drawio.md`](../references/import-export/import-drawio.md) | The draw.io redraw procedure this extractor feeds. |
 | [`../references/import-export/import-mermaid.md`](../references/import-export/import-mermaid.md) | The Mermaid redraw procedure this extractor feeds. |
-| [`../../../sk-code/sk-code-opencode/SKILL.md`](../../../sk-code/sk-code-opencode/SKILL.md) | OpenCode coding standard these scripts conform to. |
+| [`../../../sk-code/sk-code-skilled/SKILL.md`](../../../sk-code/sk-code-skilled/SKILL.md) | OpenCode coding standard these scripts conform to. |

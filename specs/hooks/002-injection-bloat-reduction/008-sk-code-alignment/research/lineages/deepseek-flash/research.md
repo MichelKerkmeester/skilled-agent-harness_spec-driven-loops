@@ -91,7 +91,7 @@ All 12 pass `verify_alignment_drift.py` (PASS, 0 findings) and the `--check-exac
 ## 7. SOURCES
 
 - Iteration files: `iterations/iteration-001.md` through `iteration-005.md` (this packet).
-- sk-code opencode-surface evidence: `.opencode/skills/sk-code/sk-code-opencode/SKILL.md`, `references/shared/universal-patterns/naming-and-commenting.md`, `references/typescript/quality-standards/overview-and-type-system.md`, `references/javascript/style-guide.md`, `assets/checklists/{universal,typescript,javascript}-checklist.md`, `assets/scripts/verify_alignment_drift.py`.
+- sk-code opencode-surface evidence: `.opencode/skills/sk-code/sk-code-skilled/SKILL.md`, `references/shared/universal-patterns/naming-and-commenting.md`, `references/typescript/quality-standards/overview-and-type-system.md`, `references/javascript/style-guide.md`, `assets/checklists/{universal,typescript,javascript}-checklist.md`, `assets/scripts/verify_alignment_drift.py`.
 - Constitutional rule: `.opencode/skills/system-spec-kit/constitutional/comment-hygiene.md`.
 - Changed code: the 12 files listed in §2 (all read in full).
 - Spec context: `.opencode/specs/hooks/002-injection-bloat-reduction/spec.md`, `007-guardrail-controls-and-activation/risk-register.md`, `005-gate3-relay-edge-triggering/implementation-summary.md`.

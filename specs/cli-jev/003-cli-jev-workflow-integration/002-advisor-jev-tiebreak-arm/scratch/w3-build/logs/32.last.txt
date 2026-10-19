@@ -1,6 +1,6 @@
 A stopped Deem arm now prints its column and verdict only after the noul calibration pass finishes. The stop-path test pins that a refused noul call leaves no verdict line.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript `.mjs` and the parity test).
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript `.mjs` and the parity test).
 REPO RULES: evidence-and-proof.md, communication-handoff.md.
 
 The orchestrator runs the vitest suite. Nothing here is committed.

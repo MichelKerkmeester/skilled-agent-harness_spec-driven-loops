@@ -1,11 +1,11 @@
 ● skill(sk-code-review)
 
-● skill(sk-code-opencode)
+● skill(sk-code-skilled)
 
 I’m mapping the audit scope and loading the TypeScript review standards first, then I’ll inspect every `shared/` file and synthesize findings by severity.
 
 ● Read quality_standards.md
-  │ .agents/skills/sk-code-opencode/references/typescript/quality_standards.md
+  │ .agents/skills/sk-code-skilled/references/typescript/quality_standards.md
   └ 1 line read
 
 ● List directory .opencode/skills/system-spec-kit/shared
@@ -20,7 +20,7 @@ I’m mapping the audit scope and loading the TypeScript review standards first,
   └ 162 lines read
 
 ● Read quick_reference.md
-  │ .agents/skills/sk-code-opencode/references/typescript/quick_reference.md
+  │ .agents/skills/sk-code-skilled/references/typescript/quick_reference.md
   └ 539 lines read
 
 ● Read security_checklist.md
@@ -73,7 +73,7 @@ I’ve got the review rubric loaded. Next I’m reading the `shared/` implementa
   └ 539 lines read
 
 ● Read quality_standards.md
-  │ .agents/skills/sk-code-opencode/references/typescript/quality_standards.md
+  │ .agents/skills/sk-code-skilled/references/typescript/quality_standards.md
   └ L1:260 (259 lines read)
 
 ● Read paths.ts

@@ -8,7 +8,7 @@
 
 ## Files Reviewed
 - Bulk scripts read in full: 002-retroactive-removal/scratch/remove_template_anchor.py; 003-feature-catalog-findings/scratch/sync_leaf_frontmatter.py, link_phantom_rows.py, remove_packet_history_lines.py, normalize_validation_types.py; 004-leftover-template-comments/scratch/remove_leftover_template_comments.py; 005-changelog-version-keys/scratch/add_changelog_version_keys.py; 007-sk-code-script-kebab-names/scratch/rename_kebab_scripts.py.
-- Renamed surface: assets/scripts/verify-router-sync.cjs (require of ./router-replay-lib.cjs at :9), verify-doc-claims.cjs and their two tests (require/citation checks), scripts/run-all-drift-guards.sh:30-66, sk-code/leaf-manifest.json:55-59, sk-code-opencode/SKILL.md:187, assets/scripts/README.md and scripts/README.md.
+- Renamed surface: assets/scripts/verify-router-sync.cjs (require of ./router-replay-lib.cjs at :9), verify-doc-claims.cjs and their two tests (require/citation checks), scripts/run-all-drift-guards.sh:30-66, sk-code/leaf-manifest.json:55-59, sk-code-skilled/SKILL.md:187, assets/scripts/README.md and scripts/README.md.
 - Population audits: per-file numstat histograms for all 548 catalog files in 45cb464be8, all .md files in 99c133fd5a, all changelog files in caafc08377, and a removed-line grep over all catalog files in ccf25fdd56.
 - Sampled diffs: 6 of 548 catalogs (45cb464be8); 4 of 129 files (99c133fd5a); 4 of 227 changelog paths (caafc08377); 7 of 485 paths (ccf25fdd56).
 - Scripted checks: all 761 tracked changelog files for version-key presence, duplicate keys and SKILL.md-vs-newest-entry parity; Hermes-vs-skilled SKILL.md version parity; 61 added .md link targets resolved on disk; repo-wide git grep for the three old snake_case names.
@@ -41,10 +41,10 @@ None.
 - skill_agent, agent_cross_runtime, playbook_capability: notApplicable this iteration; correctness focus, no agent or playbook content read beyond integration references.
 
 ## Integration Evidence
-- scripts/run-all-drift-guards.sh:30-31 and :54-66 reference verify-router-sync.cjs and verify-doc-claims.cjs at their new paths [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:30].
+- scripts/run-all-drift-guards.sh:30-31 and :54-66 reference verify-router-sync.cjs and verify-doc-claims.cjs at their new paths [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:30].
 - leaf-manifest.json:55-59 lists all three kebab-case assets [SOURCE: .skilled/skills/sk-code/leaf-manifest.json:55].
-- verify-router-sync.cjs:9 requires ./router-replay-lib.cjs, and that file exists [SOURCE: .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs:9].
-- verify-router-sync.test.cjs:37 checks for the new script names [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs:37].
+- verify-router-sync.cjs:9 requires ./router-replay-lib.cjs, and that file exists [SOURCE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs:9].
+- verify-router-sync.test.cjs:37 checks for the new script names [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs:37].
 - Repo-wide git grep for router_replay_lib, verify_doc_claims and verify_router_sync (excluding specs) finds only three historical changelog files, which phase 7 documents as intentionally untouched history.
 
 ## Edge Cases

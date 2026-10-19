@@ -55,7 +55,7 @@ Create a new umbrella skill `sk-code` that smart-routes by detected stack. Web s
 - [ ] All P0 acceptance criteria met (REQ-001 through REQ-007)
 - [ ] `bash validate.sh --strict` exits 0 for spec folder
 - [ ] `lane-attribution.test.ts` passes
-- [ ] 5 trigger-test prompts route correctly (3× sk-code, 1× sk-code-opencode, 1× sk-code-review)
+- [ ] 5 trigger-test prompts route correctly (3× sk-code, 1× sk-code-skilled, 1× sk-code-review)
 - [ ] Web smoke test (minify-webflow.mjs from new location) produces identical output
 - [ ] Regrep returns only intentional `sk-code-(web|full-stack)` mentions
 - [ ] checklist.md items marked `[x]` with evidence

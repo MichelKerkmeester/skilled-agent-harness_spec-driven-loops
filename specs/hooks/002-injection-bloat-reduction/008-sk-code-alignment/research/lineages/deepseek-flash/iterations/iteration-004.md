@@ -35,7 +35,7 @@ Scanned every `*.md` under `.opencode/skills` that names any of the 12 changed f
 1. **Accurate inventory/reference lines** in `lib/README.md` (render.ts, but missing policy-plan.ts — F10), `hooks/pi/README.md` (prompt-advisor.ts + render.ts, accurate), `hooks/skill-advisor-hook.md` (runtime matrix paths, accurate), `lib/spec-gate/README.md` (spec-gate-core.mjs, accurate), `hooks/{claude,codex,pi}/README.md` (spec-gate-core.mjs reference, accurate).
 2. **The known omission** — `lib/README.md` flat-module tree misses `policy-plan.ts` (F10).
 3. **Playbook references** (`cli-cursor/manual-testing-playbook/...`) refer to Cursor's `user-prompt-submit` adapters and the dormant `beforeSubmitPrompt` state — accurate and unchanged by this commit (only the Cursor spec-gate-classify.mjs changed, and the playbook does not claim observer behavior).
-4. **`references/shared/hooks.md`** (sk-code-opencode) restates "OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge" — accurate, not contradicted.
+4. **`references/shared/hooks.md`** (sk-code-skilled) restates "OpenCode prompt-time advice is delivered by the OpenCode plugin and bridge" — accurate, not contradicted.
 
 Conclusion: the reverse-reference scan adds no new stale README beyond the F10/F11/F12 set. The README surface touched by these files is fully inventoried.
 

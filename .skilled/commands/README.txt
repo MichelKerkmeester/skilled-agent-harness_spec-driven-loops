@@ -46,7 +46,7 @@ Commands are organized into six groups plus root-level utilities:
 | **doctor** | `commands/doctor/` | 10 | Setup overview, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
+| **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and manual session handoff (handoff) |
 | **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
 Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
@@ -210,6 +210,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 | Command | Invocation | Purpose |
 |---------|------------|---------|
 | Complete | `/speckit:complete <description>` | Full end-to-end workflow (14+ steps) |
+| Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session relaunch loop |
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
 | Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |
 | Resume | `/speckit:resume [spec-folder]` | Resume work on existing spec folder |

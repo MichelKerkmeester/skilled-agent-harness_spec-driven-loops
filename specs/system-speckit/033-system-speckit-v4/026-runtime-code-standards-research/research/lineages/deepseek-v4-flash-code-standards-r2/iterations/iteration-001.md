@@ -7,7 +7,7 @@ Priority surface 1 — `runtime/cli/core/` and `runtime/cli/extractors/` TypeScr
 
 ### F1.1 [P1] Two `quality-scorer.ts` modules export the same-named `scoreMemoryQuality` with divergent logic
 - **Code:** `runtime/cli/core/quality-scorer.ts:140` (legacy 8-parameter `scoreMemoryQuality`) and `runtime/cli/extractors/quality-scorer.ts:105` (canonical `QualityInputs`-based `scoreMemoryQuality`).
-- **Standard:** `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §5 (function + module naming; one canonical implementation) and `shared/code-organization/imports-and-exports.md` §1 (single source of truth for a helper).
+- **Standard:** `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md` §5 (function + module naming; one canonical implementation) and `shared/code-organization/imports-and-exports.md` §1 (single source of truth for a helper).
 - **What is present:** `core/quality-scorer.ts:139` docstring states "Legacy 8-parameter variant retained for backward compatibility. Prefer `scoreMemoryQuality` from `extractors/quality-scorer.ts`". Production code (`core/workflow.ts:40`) imports `scoreMemoryQuality` from `../extractors/quality-scorer.js`. The legacy `core/quality-scorer.ts` export is referenced by NO production caller — only by tests: `tests/quality-scorer-disambiguation.vitest.ts:9` (`scoreRenderQuality`) and `tests/description-enrichment.vitest.ts:3`. The disambiguation test exists precisely because two same-named functions produce different field sets (`buildRenderQualityScoreFields` vs `buildInputCompletenessScoreFields`). The two scorers also diverge in logic (legacy retains description-provenance scoring; canonical is V-rule based).
 - **Severity:** P1 — a by-name collision means `import { scoreMemoryQuality } from '../core/quality-scorer'` vs `'../extractors/quality-scorer'` silently selects a different scoring algorithm; the legacy helper is maintained only to satisfy tests.
 - **One-line fix:** **judgment-required** — rename the legacy export to `scoreMemoryQualityLegacy` (and `buildRenderQualityScoreFields` to a distinct name) so the two implementers are not confusable, or fold the legacy description-provenance behavior into the canonical scorer and delete the core module.
@@ -38,8 +38,8 @@ Priority surface 1 — `runtime/cli/core/` and `runtime/cli/extractors/` TypeScr
 - `runtime/cli/extractors/session-activity-signal.ts`
 - `runtime/cli/extractors/index.ts:14`
 - `runtime/cli/extractors/README.md:74`
-- `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md`
-- `sk-code-opencode/references/shared/code-organization/imports-and-exports.md`
+- `sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md`
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
 - `shared/references/universal/code-quality-standards.md`
 
 ## Assessment

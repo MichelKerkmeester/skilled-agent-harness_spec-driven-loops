@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.14.0
+version: 2.2.15.0
 ---
 
 # sk-code
@@ -20,7 +20,7 @@ version: 2.2.14.0
 |---|---|
 | **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
-| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native OPENCODE surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay |
+| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay |
 | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface |
 
 ---
@@ -53,7 +53,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 | Surface | Carries |
 |---|---|
 | `sk-code-webflow` | Optional example. Frontend evidence: CSS/HTML/JS standards, implementation and performance patterns, CDN deployment, browser debug and verify, plus the Motion.dev animation overlay |
-| `sk-code-opencode` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
+| `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists |
 | `sk-code-obsidian` | Optional example. Obsidian-plugin design-system and source-convention evidence for the Note Database plugin |
 
 ---
@@ -87,7 +87,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 
 ### When To Use This Skill
 
-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. The shared router keeps surface identity consistent across every mode and surface for the native OPENCODE surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay. Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
+Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. The shared router keeps surface identity consistent across every mode and surface for the native SKILLED surface and the optional example WEBFLOW and OBSIDIAN surfaces, plus the Motion.dev animation overlay. Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
 
 ### Related Skills
 
@@ -137,5 +137,5 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-webflow/SKILL.md`](./sk-code-webflow/SKILL.md) | Webflow surface packet |
-| [`sk-code-opencode/SKILL.md`](./sk-code-opencode/SKILL.md) | OpenCode surface packet |
+| [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | Skilled surface packet |
 | [`sk-code-obsidian/SKILL.md`](./sk-code-obsidian/SKILL.md) | Obsidian surface packet |

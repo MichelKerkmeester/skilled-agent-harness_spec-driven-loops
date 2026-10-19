@@ -63,7 +63,7 @@ Sort: `created_at` (graph-metadata) primary, `git_first_add` cross-check, origin
 | 18 | `drift-census-and-plan-revalidation` | 2026-07-19T12:13:37.963Z | 2026-07-20T10:35:11+02:00 | `018-drift-census-and-plan-revalidation` | in_progress | confirmed |
 | 19 | `trustworthy-state-records` | 2026-07-27T16:10:09.163Z | 2026-07-27T18:11:32+02:00 | `050-trustworthy-state-records` | complete | confirmed |
 | 20 | `runtime-code-readmes` | 2026-07-29T06:45:11.617Z | 2026-07-29T10:55:11+02:00 | `019-runtime-code-readmes` | complete | confirmed |
-| 21 | `sk-code-opencode-alignment` | 2026-07-29T06:45:18.104Z | 2026-07-29T10:55:11+02:00 | `020-sk-code-opencode-alignment` | complete | confirmed |
+| 21 | `sk-code-skilled-alignment` | 2026-07-29T06:45:18.104Z | 2026-07-29T10:55:11+02:00 | `020-sk-code-skilled-alignment` | complete | confirmed |
 | 22 | `completion-evidence-reconcile` | 2026-07-30T19:43:41.044Z | 2026-07-30T22:08:09+02:00 | `021-completion-evidence-reconcile` | in_progress | confirmed |
 | 23 | `shadow-parity-independent-derivation` | 2026-07-31T01:25:19.594Z | 2026-07-31T03:29:26+02:00 | `022-shadow-parity-independent-derivation` | in_progress | confirmed |
 | 24 | `legacy-compat-event-vocabulary` | 2026-07-31T01:25:19.803Z | 2026-07-31T03:29:26+02:00 | `023-legacy-compat-event-vocabulary` | complete | confirmed |

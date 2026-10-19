@@ -128,7 +128,7 @@ Raw logs are in `gates/tree5/`: the per-step `.rc` files, `delta.txt` (tree5 aga
 | 1 | DeepSeek V4.1 Flash, read-only, OpenCode Go route (RDSO) | P2. The registry scope sentence omitted the phase-parent exemption and the `research/research.md` skip | Applied as 013-F1. The reviewer had no shell, so its confirmations came from reading the code |
 | 2 | DeepSeek V4.1 Flash, read-only, cli-devin route (DEV) | P2. The registry description omitted the inline-code exemption | Applied as 013-F2. This reviewer also ran the anchor tests |
 | Final | Fresh Opus high, read-only | P2 for this phase. The registry omitted the `review/review-report.md` skip. Its other findings belong to phases 003, 009, 011 and 015 | Applied as 013-O6 |
-| Final 2 | Fresh Opus high, read-only, alignment and overengineering against sk-code-opencode and prevent-overengineering (2026-10-09) | P2 for this phase: the `ANCHOR_NESTING_SEVERITY` constant and its one-branch switch were left after the step B flip | Applied as OC-O4. The nesting findings join the error entry directly, with the same status and details in every case. The first run after the edit hit the dist-freshness guard, and the rebuilt run passed |
+| Final 2 | Fresh Opus high, read-only, alignment and overengineering against sk-code-skilled and prevent-overengineering (2026-10-09) | P2 for this phase: the `ANCHOR_NESTING_SEVERITY` constant and its one-branch switch were left after the step B flip | Applied as OC-O4. The nesting findings join the error entry directly, with the same status and details in every case. The first run after the edit hit the dist-freshness guard, and the rebuilt run passed |
 
 Logs: `logs/013-R1.out`, `logs/013-R2.out`, `logs/013-F1.out`, `logs/013-F2.out` and `logs/013-O6.out`.
 

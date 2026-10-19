@@ -127,7 +127,7 @@ Caller prepares /tmp/save-context-data.json
 |-----------|-------|-------|
 | Targeted regression | Explicit `dataFile` failure handling, next-step persistence, and doc-contract drift | `runtime-memory-inputs.vitest.ts`, `outsourced-agent-handback-docs.vitest.ts` |
 | Static verification | TypeScript correctness for the task scope | `npm run lint` (`tsc --noEmit`) |
-| Alignment verification | Drift between implementation and aligned standards | `python3 .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` |
+| Alignment verification | Drift between implementation and aligned standards | `python3 .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts` |
 | Spec validation | Completeness and checklist consistency inside this folder | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | Manual follow-up | Fresh JSON-mode handback write plus thin-payload rejection | `generate-context.js` with representative rich and thin payloads |
 <!-- /ANCHOR:testing -->

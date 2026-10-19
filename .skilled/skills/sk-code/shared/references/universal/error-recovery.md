@@ -1,6 +1,6 @@
 ---
 title: Universal Error Recovery Decision Tree
-description: Surface-agnostic recovery procedure for build, deploy, test, and runtime failures across WEBFLOW and OPENCODE routes.
+description: Surface-agnostic recovery procedure for build, deploy, test, and runtime failures across WEBFLOW and SKILLED routes.
 trigger_phrases:
   - "universal error recovery"
   - "recovery decision tree"
@@ -8,7 +8,7 @@ trigger_phrases:
   - "retry verbose escalate"
 importance_tier: normal
 contextType: implementation
-version: 2.1.0.7
+version: 2.1.1.0
 ---
 
 # Universal Error Recovery Decision Tree
@@ -40,7 +40,7 @@ The recovery hierarchy is universal. Specific commands and tools change per stac
 
 ### Key Sources
 
-- Surface debugging docs: `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`.
+- Surface debugging docs: `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` and `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`.
 - Universal debugging discipline: [`../universal-debugging-checklist.md`](../universal-debugging-checklist.md) (4-phase workflow).
 
 ---
@@ -87,7 +87,7 @@ Re-run the failing command with the most verbose flag the tool supports.
 | ------------------ | ----------------------------------------------------------------------------- |
 | WEBFLOW (Node tooling) | `--verbose`, `DEBUG=*`, `npm install --loglevel verbose`                  |
 | WEBFLOW (Wrangler / R2) | `wrangler r2 object put ... --verbose`                                   |
-| OPENCODE           | `npm test -- --runInBand`, `DEBUG=*`, `python3 -m pytest -vv` where available |
+| SKILLED           | `npm test -- --runInBand`, `DEBUG=*`, `python3 -m pytest -vv` where available |
 
 Read the verbose output linearly; the first new line that doesn't match a successful run is usually the cause.
 
@@ -106,7 +106,7 @@ If 3+ retries with isolation + prerequisite verification fail, STOP iterating bl
 | Surface  | Reference                                                                              |
 | -------- | -------------------------------------------------------------------------------------- |
 | WEBFLOW  | `.skilled/skills/sk-code/sk-code-webflow/references/debugging/error-recovery.md` (CDN, minification, version mismatch) |
-| OPENCODE | `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` and language refs    |
+| SKILLED | `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` and language refs    |
 
 ---
 
@@ -130,4 +130,4 @@ State: what failed (verbatim), what you tried, what you suspect, and what you pr
 - [`../universal-verification-checklist.md`](../universal-verification-checklist.md) - runs after recovery completes, before any "done" claim.
 - [`./code-quality-standards.md`](./code-quality-standards.md) - severity contract (recovery failures are typically P0).
 - [`../phase-detection.md`](../phase-detection.md) - Phase 2 Debugging position in the sk-code lifecycle.
-- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-opencode/references/shared/`.
+- Surface-specific debugging refs under `.skilled/skills/sk-code/sk-code-webflow/references/debugging/` and `.skilled/skills/sk-code/sk-code-skilled/references/shared/`.

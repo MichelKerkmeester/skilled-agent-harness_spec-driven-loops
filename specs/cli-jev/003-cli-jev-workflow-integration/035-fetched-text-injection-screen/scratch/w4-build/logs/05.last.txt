@@ -8,9 +8,9 @@ Now let me load the repo's AGENTS.md and the sk-code route (persona requirement)
 
 The 05-draw brief matches my task exactly. Now let me run the required gates: Gate 1 lookup, Gate 2 compiled route for sk-code, and check sizes of the rule files that fire for my action.
 
-Gate 1: clean no-hit (exit 1, no rows). Gate 2 compiled route resolved to `sk-code-opencode` (surface packet). Loading that packet plus the rule files my action fires under Gate 5.
+Gate 1: clean no-hit (exit 1, no rows). Gate 2 compiled route resolved to `sk-code-skilled` (surface packet). Loading that packet plus the rule files my action fires under Gate 5.
 
-The route resolved to `sk-code-opencode`; its §2 requires the JavaScript slice plus shared tier for `.mjs`. Let me size those resources before loading.
+The route resolved to `sk-code-skilled`; its §2 requires the JavaScript slice plus shared tier for `.mjs`. Let me size those resources before loading.
 
 Loading the JavaScript slice and shared tier the route requires.
 
@@ -40,8 +40,8 @@ Everything verifies from the final state. The two files are the only ones my edi
 
 **State:** edited, not committed. Other workers' in-flight changes are present elsewhere in this worktree; my edits touched only S and T (the `injection-screen/` directory is untracked as a whole, created by earlier waves).
 
-SKILL ROUTING: sk-code (compiled route: single target sk-code-opencode surface, evidence-base) → JavaScript slice + shared tier loaded
-ARTIFACT: sk-code -> sk-code-opencode
+SKILL ROUTING: sk-code (compiled route: single target sk-code-skilled surface, evidence-base) → JavaScript slice + shared tier loaded
+ARTIFACT: sk-code -> sk-code-skilled
 REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-prose.md, communication-handoff.md, uncertainty-and-honesty.md
 GATE 1: trigger-index lookup clean no-hit (exit 1, no rows)
 GATE 3: pre-resolved (AI_SESSION_CHILD=1) to specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen

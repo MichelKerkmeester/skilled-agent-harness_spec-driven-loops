@@ -13,8 +13,8 @@ trigger_phrases: []
 
 ## Files Reviewed
 
-- `.opencode/skills/sk-code/code-opencode/references/**/*.md`
-- `.opencode/skills/sk-code/code-opencode/assets/**/*.md`
+- `.opencode/skills/sk-code/code-skilled/references/**/*.md`
+- `.opencode/skills/sk-code/code-skilled/assets/**/*.md`
 - `.opencode/skills/sk-code/code-webflow/references/**/*.md`
 - `.opencode/skills/sk-code/code-webflow/assets/**/*.md`
 - `.opencode/skills/sk-code/code-quality/references/**/*.md`
@@ -30,16 +30,16 @@ None.
 
 ### P1 Findings
 
-- **F001**: Rust interop reference places OVERVIEW after substantive content - `.opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-19` - The document begins its inherited Error Style content immediately after the intro; `## 1. OVERVIEW` does not appear until lines 304-315. This contradicts R3's requirement that the body open with H1, intro, then OVERVIEW before content. [SOURCE: .opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:65-72] [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-19] [SOURCE: .opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:304-318]
+- **F001**: Rust interop reference places OVERVIEW after substantive content - `.opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-19` - The document begins its inherited Error Style content immediately after the intro; `## 1. OVERVIEW` does not appear until lines 304-315. This contradicts R3's requirement that the body open with H1, intro, then OVERVIEW before content. [SOURCE: .opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:65-72] [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-19] [SOURCE: .opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:304-318]
 
 Finding class: instance-only
 
 Scope proof: the deterministic 163-file audit found exactly one document with content between its H1 intro and eventual `## 1. OVERVIEW`; all 163 passed `validate_document.py`, showing the structural validator does not detect this ordering defect.
 
-Affected surface hints: `code-opencode Rust reference`, `create-skill reference template`, `packet R3`
+Affected surface hints: `code-skilled Rust reference`, `create-skill reference template`, `packet R3`
 
 ```json
-{"findingId":"F001","claim":"The Rust interop reference places its required OVERVIEW after substantive content instead of opening the body with it.","evidenceRefs":[".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:65-72",".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:13-19",".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md:304-318"],"counterevidenceSought":"Ran validate_document.py across all 163 target files and inspected the complete heading order; the validator passes this file, but direct reads prove the OVERVIEW is last rather than first.","alternativeExplanation":"The OVERVIEW may have been appended mechanically and still be numbered 1, but R3 governs physical body order, not numbering alone.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade only if R3 is amended to permit OVERVIEW after substantive content or the OVERVIEW is moved before Error Style.","transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Direct spec-order contradiction"}]}
+{"findingId":"F001","claim":"The Rust interop reference places its required OVERVIEW after substantive content instead of opening the body with it.","evidenceRefs":[".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:65-72",".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:13-19",".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md:304-318"],"counterevidenceSought":"Ran validate_document.py across all 163 target files and inspected the complete heading order; the validator passes this file, but direct reads prove the OVERVIEW is last rather than first.","alternativeExplanation":"The OVERVIEW may have been appended mechanically and still be numbered 1, but R3 governs physical body order, not numbering alone.","finalSeverity":"P1","confidence":0.99,"downgradeTrigger":"Downgrade only if R3 is amended to permit OVERVIEW after substantive content or the OVERVIEW is moved before Error Style.","transitions":[{"iteration":1,"from":null,"to":"P1","reason":"Direct spec-order contradiction"}]}
 ```
 
 - **F002**: Third-party integration Purpose still duplicates its intro - `.opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:14-23` - The intro says this is a reference guide for integrating external JavaScript libraries in Webflow projects, and Purpose repeats the same sentence without adding distinct detail. The governing template explicitly forbids intro/OVERVIEW duplication, so the prior F001 remediation did not cover the full class. [SOURCE: .opencode/skills/sk-doc/create-skill/assets/skill/skill_reference_template.md:58-87] [SOURCE: .opencode/skills/sk-code/code-webflow/references/implementation/third_party_integrations/overview_hls_and_lenis.md:14-23]

@@ -14,7 +14,7 @@ Correctness (second pass): executable verification of the two fix commits' behav
 - `.skilled/skills/sk-code/sk-code-webflow/assets/scripts/runtime-fixture/known-bad/src/2_javascript/z_minified/` — four throwing fixtures (run live)
 - `.skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md` — removed subsection region [SOURCE: .skilled/skills/sk-code/sk-code-webflow/references/debugging/debugging-workflows/scroll-interceptor-and-related.md:365]
 - `.skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md` — finding 1 [SOURCE: .skilled/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md:168]
-- `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` — count and summary [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:44]
+- `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` — count and summary [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:44]
 - `specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/002-webflow-runtime-and-references/spec.md` — REQ-001 / REQ-002 read-only [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/002-webflow-runtime-and-references/spec.md:100]
 
 ## Findings - New
@@ -40,7 +40,7 @@ None.
 - **Warning placement and text**: from `runtime-fixture/known-good`, `node ../../test-minified-runtime.mjs` exits 0, prints `Passed:  2/2`, and emits exactly one warning line on `late-element-poll.js` — `⚠ 1 callback(s) past depth 20 were not run, so errors inside them were not checked` — while `guarded-init.js` prints none. Matches phase 002 REQ-001 and SC-001.
 - **Known-bad verdicts unchanged**: from `runtime-fixture/known-bad` the same command exits 1 with `Failed:  4/4` and zero warning lines. Matches REQ-002 and SC-002.
 - **Pre-fix replay**: the pre-fix script (`git show e0b32e5e11^:<path>` into a fresh `mktemp -d`, run from each fixture root) gives known-good exit 0 with `Passed: 2/2` and zero warning lines, and known-bad exit 1 with `Failed: 4/4`. The warning is tied to the fix and every exit code and verdict is unchanged.
-- **Drift-guard summary**: `bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` exits 0 with four PASS lines, `PASS: alignment-drift ... (272 warnings)`, and the final line `run-all-drift-guards: all 4 guards PASSED, 272 non-blocking warning(s)`. An independent `grep -c '\[WARN\]'` over the captured stdout counts 272, per-guard attribution puts all 272 on the alignment guard, and stderr carries zero warning lines.
+- **Drift-guard summary**: `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0 with four PASS lines, `PASS: alignment-drift ... (272 warnings)`, and the final line `run-all-drift-guards: all 4 guards PASSED, 272 non-blocking warning(s)`. An independent `grep -c '\[WARN\]'` over the captured stdout counts 272, per-guard attribution puts all 272 on the alignment guard, and stderr carries zero warning lines.
 - **Failure path intact**: with a fake failing `python3` first on PATH the script runs all four guards (2 FAIL + 2 PASS lines) and still exits 1 with `run-all-drift-guards: 2 guard(s) FAILED`, so the counting change cannot mask a failing guard.
 
 ## Traceability Checks
@@ -49,7 +49,7 @@ None.
 - overlay protocols (skill_agent, agent_cross_runtime, feature_catalog_code, playbook_capability): pending; not required by the assigned correctness focus.
 
 ## Integration Evidence
-- Surfaces exercised read-only: the sk-code-webflow runtime test harness and its two committed fixture families, and the sk-code-opencode drift-guard umbrella with its four guards (alignment-drift, stack-folders, router-sync, doc-claims). No caller, command, workflow, or mirror outside those was run, and no reviewed file was modified.
+- Surfaces exercised read-only: the sk-code-webflow runtime test harness and its two committed fixture families, and the sk-code-skilled drift-guard umbrella with its four guards (alignment-drift, stack-folders, router-sync, doc-claims). No caller, command, workflow, or mirror outside those was run, and no reviewed file was modified.
 
 ## Edge Cases
 - The skip counter is not reported when a file FAILs (the FAIL branch never prints it). Observed behavior only; the failure message dominates and no spec claim covers the mixed case, so it is not recorded as a defect.

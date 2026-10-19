@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The sk-code-opencode drift-guard scripts and their tests now use kebab-case names, with every live reference and the leaf manifest updated."
+description: "The sk-code-skilled drift-guard scripts and their tests now use kebab-case names, with every live reference and the leaf manifest updated."
 trigger_phrases:
   - "sk code script kebab names implementation summary"
 importance_tier: "normal"
@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "None, the phase is closed"
     blockers: []
     key_files:
-      - ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
       - ".skilled/skills/sk-code/leaf-manifest.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -47,11 +47,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-`router-replay-lib.cjs`, `verify-doc-claims.cjs` and `verify-router-sync.cjs` replace their snake_case names, so sk-code-opencode passes the strict package check, and nothing that calls them broke.
+`router-replay-lib.cjs`, `verify-doc-claims.cjs` and `verify-router-sync.cjs` replace their snake_case names, so sk-code-skilled passes the strict package check, and nothing that calls them broke.
 
 ### Phase 7: sk-code-script-kebab-names
 
-A DeepSeek V4.1 Flash builder wrote `scratch/rename_kebab_scripts.py` and ran it once: five `git mv` renames and 58 replacements in 15 files. The two tests were renamed with the scripts they test. The leaf manifest is generated, so its sort order changed and the generator rewrote it. One older changelog entry still lacked its version key and got it here. sk-code-opencode and sk-code-obsidian moved up one patch version. The sk-code hub bump is handed off.
+A DeepSeek V4.1 Flash builder wrote `scratch/rename_kebab_scripts.py` and ran it once: five `git mv` renames and 58 replacements in 15 files. The two tests were renamed with the scripts they test. The leaf manifest is generated, so its sort order changed and the generator rewrote it. One older changelog entry still lacked its version key and got it here. sk-code-skilled and sk-code-obsidian moved up one patch version. The sk-code hub bump is handed off.
 
 ### Files Changed
 
@@ -89,7 +89,7 @@ The builder reported its own receipts. The orchestrator reran the tests, guards,
 
 | Check | Result |
 |-------|--------|
-| `package_skill.py --check --strict` sk-code-opencode | FAIL with 4 unmet before, PASS after |
+| `package_skill.py --check --strict` sk-code-skilled | FAIL with 4 unmet before, PASS after |
 | `node --test` both tests | 12 and 5 pass, 0 fail, before and after |
 | `run-all-drift-guards.sh` | 4 of 4 PASS |
 | `parent-skill-check.cjs` sk-code | OK, 0 warnings |

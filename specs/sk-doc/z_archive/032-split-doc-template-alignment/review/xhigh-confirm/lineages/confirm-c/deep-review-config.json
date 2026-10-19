@@ -20,8 +20,8 @@
   },
   "reviewScopeFileCount": 163,
   "reviewScopeFiles": [
-    ".opencode/skills/sk-code/code-opencode/references/**/*.md",
-    ".opencode/skills/sk-code/code-opencode/assets/**/*.md",
+    ".opencode/skills/sk-code/code-skilled/references/**/*.md",
+    ".opencode/skills/sk-code/code-skilled/assets/**/*.md",
     ".opencode/skills/sk-code/code-webflow/references/**/*.md",
     ".opencode/skills/sk-code/code-webflow/assets/**/*.md",
     ".opencode/skills/sk-code/code-quality/references/**/*.md",

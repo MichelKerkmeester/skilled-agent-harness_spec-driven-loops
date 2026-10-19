@@ -179,7 +179,7 @@ Final result: `Test Files 1 passed (1); Tests 30 passed (30)`.
 Final result: exit 0.
 
 ```bash
-python3 .opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py --fail-on-warn --root .opencode/skills/system-deep-loop/runtime/lib/result-envelopes --root .opencode/skills/system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts
+python3 .opencode/skills/sk-code/code-skilled/assets/scripts/verify_alignment_drift.py --fail-on-warn --root .opencode/skills/system-deep-loop/runtime/lib/result-envelopes --root .opencode/skills/system-deep-loop/runtime/tests/unit/result-envelopes.vitest.ts
 ```
 
 Result: exit 0; 8 files scanned; 0 errors, warnings, or findings.

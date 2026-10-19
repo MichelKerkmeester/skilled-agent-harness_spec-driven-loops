@@ -46,7 +46,7 @@ contextType: "implementation"
 - [x] T006 Add a check that asks the resolver whether this host satisfies the declared range (`.opencode/commands/doctor/scripts/mcp-doctor.sh`) — evidence: the diagnosis reports `[PASS] Node engine range satisfied by /Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`
 - [x] T007 [P] No second guide edit was needed — evidence: `.opencode/install-guides/MCP - Code Mode.md` is a symlink to the file changed in T008
 - [x] T008 [P] State the supported range and the refusal behavior (`.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md`) — evidence: the guide claimed "Node.js 18+" in six places and now states Node 24 with the segfault reason; zero stale mentions remain
-- [x] T009 Replace the restated path with the constraint and its consequence (`.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md`) — evidence: the entry now describes the launcher-fronted pattern and why, with no absolute interpreter path
+- [x] T009 Replace the restated path with the constraint and its consequence (`.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md`) — evidence: the entry now describes the launcher-fronted pattern and why, with no absolute interpreter path
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,7 +56,7 @@ contextType: "implementation"
 
 - [x] T010 Confirm no absolute interpreter path is written — evidence: `bash -n` passes and the emitted registration names `node` plus the launcher
 - [x] T011 Force the range unsatisfiable and confirm the diagnosis reports the gap — evidence: with the manifest range set to `>=99.0.0 <100.0.0` the diagnosis reported `[FAIL] No Node.js interpreter satisfies >=99.0.0 <100.0.0 (unsatisfied)`, and the manifest was restored byte-identical
-- [x] T012 Scan the changed installer, guide and checklist for absolute interpreter paths — evidence: a scan of `.opencode/skills/mcp-code-mode/scripts/install.sh`, `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` and `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` returns no `/Users/` interpreter path in any of the three
+- [x] T012 Scan the changed installer, guide and checklist for absolute interpreter paths — evidence: a scan of `.opencode/skills/mcp-code-mode/scripts/install.sh`, `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` and `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` returns no `/Users/` interpreter path in any of the three
 - [x] T013 Validate the changed markdown against its document type — evidence: the guide validates as `install_guide` and the checklist as `asset`, both VALID
 <!-- /ANCHOR:phase-3 -->
 

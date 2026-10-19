@@ -15,7 +15,7 @@ Artifact root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 This review covered seven requested axes:
 
 1. sk-doc compliance across the cli-classifier documentation.
-2. sk-code-opencode compliance of the shared scripts, tests, and callers.
+2. sk-code-skilled compliance of the shared scripts, tests, and callers.
 3. system-skill-advisor routing vocabulary, manifests, graph metadata, and prompt reachability.
 4. External-user and benchmark-operator experience.
 5. Documentation accuracy against implementation.
@@ -98,9 +98,9 @@ Measured values below are values already recorded in documentation; they are not
 
 One concrete structure defect was confirmed in the shared-tier README (F001). The audit inventoried 79 Markdown documents and found no broken ordinary relative Markdown links in a static scan. It did not apply every doc-type checklist to every leaf, so global compliance remains unproven. No finding is inferred solely from a missing H1 or frontmatter because README and changelog templates can use different structures.
 
-## 8. AXIS 2 — SK-CODE-OPENCODE COMPLIANCE
+## 8. AXIS 2 — SK-CODE-SKILLED COMPLIANCE
 
-Static inspection of shared module headers and reviewed ESM/CommonJS call sites found no additional style finding. F003 and F004 are behavioral boundary defects, listed under Axis 6. The full script and test set was not executed or certified against every sk-code-opencode criterion.
+Static inspection of shared module headers and reviewed ESM/CommonJS call sites found no additional style finding. F003 and F004 are behavioral boundary defects, listed under Axis 6. The full script and test set was not executed or certified against every sk-code-skilled criterion.
 
 ## 9. AXIS 3 — SYSTEM-SKILL-ADVISOR INTEGRATION
 

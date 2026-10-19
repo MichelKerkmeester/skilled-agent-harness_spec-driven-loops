@@ -226,7 +226,7 @@
     },
     {
       "id": "finding-1-3-typed-conversion-is-fail-closed-a-raw-resource-resolves-only-when-it-is-packet-q",
-      "text": "Typed conversion is fail-closed: a raw resource resolves only when it is packet-qualified by a packet declared in `mode-registry.json`, or when an authored `leaf-aliases.json` entry maps a shared disk path to a typed pair; the result must then exist in `leaf-manifest.json`. sk-code declares only `code-quality`, `code-review`, `code-webflow`, and `code-opencode`, its manifest has the same four modes, and no `leaf-aliases.json` exists. Therefore merely changing the preamble from `references/...` to `shared/references/...` would still be unresolved; clearing the error through a shared tier requires an actual declared shared workflow mode plus manifest leaves, or explicit authored aliases to existing modes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:187-275] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:217-243] [SOURCE: .opencode/skills/sk-code/mode-registry.json:21-99] [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:1-223]",
+      "text": "Typed conversion is fail-closed: a raw resource resolves only when it is packet-qualified by a packet declared in `mode-registry.json`, or when an authored `leaf-aliases.json` entry maps a shared disk path to a typed pair; the result must then exist in `leaf-manifest.json`. sk-code declares only `code-quality`, `code-review`, `code-webflow`, and `code-skilled`, its manifest has the same four modes, and no `leaf-aliases.json` exists. Therefore merely changing the preamble from `references/...` to `shared/references/...` would still be unresolved; clearing the error through a shared tier requires an actual declared shared workflow mode plus manifest leaves, or explicit authored aliases to existing modes. [SOURCE: .opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs:187-275] [SOURCE: .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs:217-243] [SOURCE: .opencode/skills/sk-code/mode-registry.json:21-99] [SOURCE: .opencode/skills/sk-code/leaf-manifest.json:1-223]",
       "addedAtIteration": 1,
       "sources": [
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:298-572`",
@@ -315,13 +315,13 @@
     },
     {
       "id": "finding-3-4-default-resource-has-three-distinct-scopes-that-should-not-be-collapsed-the-pare",
-      "text": "`DEFAULT_RESOURCE` has three distinct scopes that should not be collapsed: the parent projection seeds every deterministic parent replay with four raw preamble paths; each surface packet declares a different packet-local default set; and the hub route loads packet entrypoints (or `shared/README.md` on fallback), not those declared leaf defaults. The statement that defaults are “always loaded” is therefore confirmed for deterministic replay and declared surface contracts, but actual automatic leaf reads remain unverified without live load telemetry. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:309-343] [SOURCE: .opencode/skills/sk-code/code-webflow/SKILL.md:53-85] [SOURCE: .opencode/skills/sk-code/code-opencode/SKILL.md:43-73] [SOURCE: .opencode/skills/sk-code/SKILL.md:78-120]",
+      "text": "`DEFAULT_RESOURCE` has three distinct scopes that should not be collapsed: the parent projection seeds every deterministic parent replay with four raw preamble paths; each surface packet declares a different packet-local default set; and the hub route loads packet entrypoints (or `shared/README.md` on fallback), not those declared leaf defaults. The statement that defaults are “always loaded” is therefore confirmed for deterministic replay and declared surface contracts, but actual automatic leaf reads remain unverified without live load telemetry. [SOURCE: .opencode/skills/sk-code/shared/references/smart_routing.md:309-343] [SOURCE: .opencode/skills/sk-code/code-webflow/SKILL.md:53-85] [SOURCE: .opencode/skills/sk-code/code-skilled/SKILL.md:43-73] [SOURCE: .opencode/skills/sk-code/SKILL.md:78-120]",
       "addedAtIteration": 3,
       "sources": [
         "`.opencode/skills/sk-code/SKILL.md:40-179`",
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
-        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/code-skilled/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/findings-registry.json:1-396`"
@@ -335,7 +335,7 @@
         "`.opencode/skills/sk-code/SKILL.md:40-179`",
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
-        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/code-skilled/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/findings-registry.json:1-396`"
@@ -349,7 +349,7 @@
         "`.opencode/skills/sk-code/SKILL.md:40-179`",
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
-        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/code-skilled/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/findings-registry.json:1-396`"
@@ -363,7 +363,7 @@
         "`.opencode/skills/sk-code/SKILL.md:40-179`",
         "`.opencode/skills/sk-code/shared/references/smart_routing.md:1-180,298-572`",
         "`.opencode/skills/sk-code/code-webflow/SKILL.md:45-139`",
-        "`.opencode/skills/sk-code/code-opencode/SKILL.md:42-131`",
+        "`.opencode/skills/sk-code/code-skilled/SKILL.md:42-131`",
         "`.opencode/skills/sk-code/benchmark/fixtures/sk_code/sk-code-loadspeed-001.private.json:1-18`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/deep-research-strategy.md:24-136`",
         "`.opencode/specs/sk-doc/019-skill-routing-refactor/014-sk-code-router-alignment/research/findings-registry.json:1-396`"

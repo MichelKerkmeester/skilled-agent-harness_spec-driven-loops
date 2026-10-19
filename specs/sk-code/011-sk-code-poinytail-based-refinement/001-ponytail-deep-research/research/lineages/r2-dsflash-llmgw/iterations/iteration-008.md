@@ -19,7 +19,7 @@ Per-surface packets and the closure state of round one's defects: the Webflow ch
 6. **The retirement-note recommendation is not closed. OPEN.** Round one recommended that a retired check's umbrella script name its successor or record the gap and an owner [SOURCE: specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/research.md:215]. The successor exists — `.github/workflows/routing-registry-drift.yml` is present and titled "Routing Registry Drift Guard" — but no in-repo retirement note was located; the only references to the retired router-sync guard live in old spec records. Priority P2.
 
 ## Questions Answered
-- Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?
+- Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?
 
 The surfaces' cited defects are all closed (D1, D3, D4, precedence/Obsidian). What remains from this family is the residual D1 test input, the retirement note, and iteration 2's missing ceiling-debt report in sk-code-quality.
 

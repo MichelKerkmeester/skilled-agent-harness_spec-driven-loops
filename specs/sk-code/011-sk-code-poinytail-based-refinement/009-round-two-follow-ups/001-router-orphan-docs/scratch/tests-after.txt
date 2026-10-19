@@ -52,7 +52,7 @@ node:test  .skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-
 node:test  .skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs
 node:test  .skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs
 node:test  .skilled/skills/cli-classifier/shared/scripts/tests/scorer-report.test.mjs
-node:test  .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs
+node:test  .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs
 node:test  .skilled/skills/sk-design/sk-design-chart/scripts/tests/apply-design-md.test.cjs
 node:test  .skilled/skills/sk-design/sk-design-chart/scripts/tests/corpus-mutations.test.cjs
 node:test  .skilled/skills/sk-design/sk-design-diagram/scripts/tests/corpus-mutations.test.cjs

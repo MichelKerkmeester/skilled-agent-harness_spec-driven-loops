@@ -1,0 +1,50 @@
+
+ Warning: Observational memory: observer skipped — session model openai/gpt-6-luna in cooldown (deterministic error, will retry after window)
+
+ Waiting for handoff note
+
+ Completion awaits handoff note
+
+ Reviewing session state
+
+ Confirmed README.md details
+
+ Confirming missing handoff note
+
+ Checked the supplied path
+
+ Handoff note remains missing
+
+ .skilled/hooks/session-relaunch/README.md has 244 lines. Its first heading is # Session Relaunch.
+
+ I ran the requested complete command. It exited with status 2 because the handoff note was not found at the supplied path. No handoff note was created. Nothing else is needed from you.
+
+ Warning: Observational memory: observer skipped — session model openai/gpt-6-luna in cooldown (deterministic error, will retry after window)
+
+ No work remains
+
+ No work remains
+
+ Skipping handoff steps
+
+ Skipping handoff steps
+
+ Skipping handoff steps
+
+ Skipping handoff steps
+
+ The task is already complete, so I’m skipping the handoff steps under the short-task exception. I did not create or claim a handoff note, so there is none to pass to complete. Nothing is needed from
+ you.
+
+ Warning: Observational memory: observer skipped — session model openai/gpt-6-luna in cooldown (deterministic error, will retry after window)
+
+ Observational memory: observer skipping openai/gpt-6-luna (cooldown — details in cooldown log) (×11)
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│ {"timestamp":"2026-10-19T07:57:29.400Z","runtime":"pi","status":"ok","freshness":"live","durationMs":174,"cacheHit":false,"skillLabel":"system-spec-kit","emittedBytes":268,"directivesSuppressed":fa}
+│                                                                                                                                                                                                      │
+╰ build · gpt-6-luna [openai] · xhigh ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+                                                                                                                                                                                                    fast
+worktrees/142-session-relaunch-loop | GPT-6 Luna | ctx: 57% left | used: 117.7k tok | $0.03

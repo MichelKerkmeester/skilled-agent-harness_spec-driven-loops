@@ -27,24 +27,24 @@ SKILL_ROOT = Path(".skilled/skills/sk-code")
 
 RENAMES: tuple[tuple[str, str], ...] = (
     (
-        "sk-code-opencode/assets/scripts/router_replay_lib.cjs",
-        "sk-code-opencode/assets/scripts/router-replay-lib.cjs",
+        "sk-code-skilled/assets/scripts/router_replay_lib.cjs",
+        "sk-code-skilled/assets/scripts/router-replay-lib.cjs",
     ),
     (
-        "sk-code-opencode/assets/scripts/verify_doc_claims.cjs",
-        "sk-code-opencode/assets/scripts/verify-doc-claims.cjs",
+        "sk-code-skilled/assets/scripts/verify_doc_claims.cjs",
+        "sk-code-skilled/assets/scripts/verify-doc-claims.cjs",
     ),
     (
-        "sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-        "sk-code-opencode/assets/scripts/verify-router-sync.cjs",
+        "sk-code-skilled/assets/scripts/verify_router_sync.cjs",
+        "sk-code-skilled/assets/scripts/verify-router-sync.cjs",
     ),
     (
-        "sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs",
-        "sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs",
+        "sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs",
+        "sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs",
     ),
     (
-        "sk-code-opencode/scripts/tests/verify_router_sync.test.cjs",
-        "sk-code-opencode/scripts/tests/verify-router-sync.test.cjs",
+        "sk-code-skilled/scripts/tests/verify_router_sync.test.cjs",
+        "sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
     ),
 )
 
@@ -60,12 +60,12 @@ CITED_FILES: tuple[str, ...] = (
     "benchmark/README.md",
     "sk-code-obsidian/manual-testing-playbook/holdout/accessibility-independent.md",
     "sk-code-obsidian/manual-testing-playbook/manual-testing-playbook.md",
-    "sk-code-opencode/SKILL.md",
-    "sk-code-opencode/assets/scripts/README.md",
-    "sk-code-opencode/scripts/README.md",
-    "sk-code-opencode/scripts/run-all-drift-guards.sh",
-    "sk-code-opencode/references/shared/alignment-verification-automation.md",
-    "sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
+    "sk-code-skilled/SKILL.md",
+    "sk-code-skilled/assets/scripts/README.md",
+    "sk-code-skilled/scripts/README.md",
+    "sk-code-skilled/scripts/run-all-drift-guards.sh",
+    "sk-code-skilled/references/shared/alignment-verification-automation.md",
+    "sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
 )
 
 

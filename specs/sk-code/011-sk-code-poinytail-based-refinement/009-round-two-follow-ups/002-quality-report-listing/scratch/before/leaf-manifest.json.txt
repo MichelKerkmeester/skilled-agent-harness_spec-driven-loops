@@ -109,8 +109,8 @@
         "references/workflow-implement.md",
         "references/workflow-verify.md"
       ],
-      "packet": "sk-code-opencode",
-      "workflowMode": "sk-code-opencode"
+      "packet": "sk-code-skilled",
+      "workflowMode": "sk-code-skilled"
     },
     {
       "leaves": [

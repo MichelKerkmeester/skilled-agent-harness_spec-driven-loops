@@ -44,13 +44,13 @@
       "goal.md",
       "implementation-summary.md",
       ".github/workflows/routing-registry-drift.yml",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
       ".skilled/skills/sk-code/benchmark/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
       ".skilled/skills/sk-code/leaf-manifest.json",
-      ".hermes/skills/sk-code-opencode/SKILL.md"
+      ".hermes/skills/sk-code-skilled/SKILL.md"
     ],
     "entities": [
       {
@@ -92,7 +92,7 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
@@ -104,13 +104,13 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "alignment-verification-automation.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
         "source": "derived"
       },
       {
@@ -198,9 +198,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-opencode/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it",
+    "causal_summary": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-skilled/scripts/run-all-drift-guards.sh:50-53`), but it names no owner for the gap and does not mention that `.github/workflows/routing-registry-drift.yml` partly covers it",
     "created_at": "2026-10-09T16:00:51Z",
-    "last_save_at": "2026-10-11T05:17:04.028Z",
+    "last_save_at": "2026-10-18T20:45:11.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0774e9ffea0d1cd8b82c6e5a5efb5d03def5e631a7e47d5b4df4c0aaec5aafb7",
+    "source_fingerprint": "sha256:06e2dd60bf51cd0223a6a92f8526e1367f5327133ec40ebbb3b394b0e9aa9fa8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85af7f84edfc4931c7cf7766bd3e2b0a5ba1d55a5562998a7b366a7432d07e32",
-      "plan.md": "c0a8de685521c81ed16c92ac55da0d6b1e34a4544607b8b41bd3144cd30c90cf",
-      "tasks.md": "a84353640cc4d1d28a285c878d02c04f006806f799fcd60a9ae573c1a7ef1999",
-      "implementation-summary.md": "f9c7b0e80c6cd9649eb3e1d063ef9bd109f40f452749ec37be34a0fb998e7447"
+      "spec.md": "10e502d1feeb8036d571e96493fc0b7a61bc1d629dd5aa0ee58058ececd0eb51",
+      "plan.md": "7957ee92cb3c9a7df10c6bbbf8f2fedbc3c24b39551a9d00bc2639b5a3f739d8",
+      "tasks.md": "1f3f4a59cb00480d3ba478bd62925f4bc8b8dbf8f8c98f45c40c7ab8f41edfdc",
+      "implementation-summary.md": "312da1aee109b2f2afb2b0a7520cffad0fa750ce416c600fb9e60d45350018d7"
     },
     "last_active_at": null
   }

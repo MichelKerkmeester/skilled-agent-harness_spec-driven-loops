@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/z_archive/002-sk-code-skilled-refinement",
+  "spec_folder": "sk-code/z_archive/002-sk-code-skilled-refinement",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code-skilled refinement",
+      "inline comment policy",
+      "all-caps numbered sections",
+      "solid checks",
+      "139-hybrid-rag-fusion pattern extraction",
+      "implementation",
+      "plan",
+      "global quality sweep",
+      "tasks",
+      "decision",
+      "adr",
+      "kiss dry solid"
+    ],
+    "key_topics": [
+      "sk-code-skilled",
+      "refinement",
+      "inline",
+      "comment",
+      "policy",
+      "all-caps",
+      "numbered",
+      "sections",
+      "solid",
+      "checks",
+      "139-hybrid-rag-fusion",
+      "pattern"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/final-quality-evidence-2026-02-22.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-quality-evidence-2026-02-22.md",
+        "kind": "doc",
+        "path": "scratch/final-quality-evidence-2026-02-22.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Current",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Governance",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Policy Core Workstream",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Policy Implementation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Align Python",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Current OpenCode standards provide strong cross-language structure, but inline comment rules are still broad enough to allow verbose human-style narration that reduces signal quality for AI-assisted parsing",
+    "created_at": "2026-04-12T09:02:50.219Z",
+    "last_save_at": "2026-10-18T19:17:03.600Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:b1816e2c62339d6a77596d627784edc74cfdfb5c09d3e6cfd9a9f64cdf53dd63",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0fe11da416608e797d642b8256858133fc72709e33447949be6884fd6d43c3f7",
+      "plan.md": "7df800d431ea005331b77e9d25ebb92b236a6a89413afbe8fba89adea5c6b793",
+      "tasks.md": "9bdf712c7354e5b20c1959c80567d1c293b1b73bb60c4e47a6c624cf809c0cc9",
+      "decision-record.md": "f103a8d7825ad7bc02806e05be366d487dc2ddad085edb8b5a80d3b8280873ab",
+      "implementation-summary.md": "1a48563e5909c4e9c2f00f6a74461068f7ed7faa9cffc23b9b81fec7ec536de8",
+      "research/research.md": "d7816c823f5f75dd686423d19b56c5fbf3aea1ea880c2a3326cd73b254c8d77a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

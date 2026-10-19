@@ -53,14 +53,14 @@
       "scratch/audit/findings.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
       ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
       ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
       ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
-      ".skilled/skills/cli-classifier/benchmark/reports/README.md"
+      ".skilled/skills/cli-classifier/benchmark/reports/README.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md"
     ],
     "entities": [
       {
@@ -130,18 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "score-verdict-fallback.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-d4-agreement.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
-        "source": "derived"
-      },
-      {
         "name": "score-injection-screen.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
@@ -169,6 +157,12 @@
         "name": "fanout-pair-replay.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-jev 003 packet shipped 130 files between `f9d701bd13` and `089693d899`, and a read-only audit on 2026-09-30 found conformance gaps against the two skills that own their standards",
     "created_at": "2026-09-30T11:42:55Z",
-    "last_save_at": "2026-10-08T19:29:23.618Z",
+    "last_save_at": "2026-10-18T20:45:03.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32d131d677a9a0ddc974d243c4dc80c011c520433619d496d86df3ef802bef54",
+    "source_fingerprint": "sha256:4535187c392653239a72e592712e7b22201aae4a62fb5a5b190276b261a9eb2b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5450bf0d32a4e5ee452e8f88054de8ed5c05c437b314b48b178157500798e948",
-      "plan.md": "6b5ba1878437ab11505969214deb55a2162ddda803e2a25b06f888b31b2134fb",
+      "spec.md": "9a8225dbab39d1abee2a79e2bdf4e3b2a34f8ea148359ab9f1f41fd515dc1cf6",
+      "plan.md": "8b4af073fa0d219b0cb04bfb2bc45d0a9527e695934db12c4c3aede51d07aa04",
       "tasks.md": "1ef6d79bb7082c335ad16a10e6f7b3088fecb42e6af1b11815b801111e9c3cf3",
-      "implementation-summary.md": "01efeb63ae90c9f8082de4db0f008f1413799ec51d49f83c4507ba2a83a71770"
+      "implementation-summary.md": "89ac93c4e6638b512f112548edad32ca71b3f055a60ef553eaa800421d389443"
     },
     "last_active_at": null
   }

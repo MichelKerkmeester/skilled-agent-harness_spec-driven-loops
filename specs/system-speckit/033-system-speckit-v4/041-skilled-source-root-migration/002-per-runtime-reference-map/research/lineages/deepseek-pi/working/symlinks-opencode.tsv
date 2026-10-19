@@ -15,7 +15,7 @@
 .opencode/changelog/mcp-tooling/parent	../../skills/mcp-tooling/changelog	yes	no	.opencode/skills/mcp-tooling/changelog
 .opencode/changelog/sk-code/code-mobile-cli	../../skills/sk-code/sk-code-mobile-cli/changelog	yes	no	.opencode/skills/sk-code/sk-code-mobile-cli/changelog
 .opencode/changelog/sk-code/code-obsidian	../../skills/sk-code/sk-code-obsidian/changelog	yes	no	.opencode/skills/sk-code/sk-code-obsidian/changelog
-.opencode/changelog/sk-code/code-opencode	../../skills/sk-code/sk-code-opencode/changelog	yes	no	.opencode/skills/sk-code/sk-code-opencode/changelog
+.opencode/changelog/sk-code/code-skilled	../../skills/sk-code/sk-code-skilled/changelog	yes	no	.opencode/skills/sk-code/sk-code-skilled/changelog
 .opencode/changelog/sk-code/code-quality	../../skills/sk-code/sk-code-quality/changelog	yes	no	.opencode/skills/sk-code/sk-code-quality/changelog
 .opencode/changelog/sk-code/code-review	../../skills/sk-code/sk-code-review/changelog	yes	no	.opencode/skills/sk-code/sk-code-review/changelog
 .opencode/changelog/sk-code/code-webflow	../../skills/sk-code/sk-code-webflow/changelog	yes	no	.opencode/skills/sk-code/sk-code-webflow/changelog
@@ -162,9 +162,9 @@
 .opencode/skills/sk-code/sk-code-obsidian/references/workflow-debug.md	../../shared/references/workflow-debug.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
 .opencode/skills/sk-code/sk-code-obsidian/references/workflow-implement.md	../../shared/references/workflow-implement.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
 .opencode/skills/sk-code/sk-code-obsidian/references/workflow-verify.md	../../shared/references/workflow-verify.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
-.opencode/skills/sk-code/sk-code-opencode/references/workflow-debug.md	../../shared/references/workflow-debug.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
-.opencode/skills/sk-code/sk-code-opencode/references/workflow-implement.md	../../shared/references/workflow-implement.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
-.opencode/skills/sk-code/sk-code-opencode/references/workflow-verify.md	../../shared/references/workflow-verify.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
+.opencode/skills/sk-code/sk-code-skilled/references/workflow-debug.md	../../shared/references/workflow-debug.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
+.opencode/skills/sk-code/sk-code-skilled/references/workflow-implement.md	../../shared/references/workflow-implement.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
+.opencode/skills/sk-code/sk-code-skilled/references/workflow-verify.md	../../shared/references/workflow-verify.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-verify.md
 .opencode/skills/sk-code/sk-code-webflow/references/workflow-debug.md	../../shared/references/workflow-debug.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-debug.md
 .opencode/skills/sk-code/sk-code-webflow/references/workflow-implement.md	../../shared/references/workflow-implement.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-implement.md
 .opencode/skills/sk-code/sk-code-webflow/references/workflow-verify.md	../../shared/references/workflow-verify.md	yes	no	.opencode/skills/sk-code/shared/references/workflow-verify.md

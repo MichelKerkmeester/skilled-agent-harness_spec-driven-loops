@@ -21,7 +21,7 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Markdown docs, CommonJS (Node), plain-text command assets |
-| **Framework** | sk-doc authoring modes, sk-create-command, sk-code-opencode |
+| **Framework** | sk-doc authoring modes, sk-create-command, sk-code-skilled |
 | **Storage** | None |
 | **Testing** | `node --test` through `.skilled/commands/doctor/scripts/tests/run-all.sh`, `hvr_scan.py`, `validate_document.py`, `package_skill.py`, the playbook and catalog package validators |
 

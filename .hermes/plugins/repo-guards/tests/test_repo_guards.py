@@ -118,6 +118,9 @@ class RepoGuardsTests(unittest.TestCase):
                 "pre_verify",
                 "on_session_start",
                 "on_session_end",
+                "on_session_finalize",
+                "on_session_reset",
+                "post_api_request",
             },
         )
         self.assertEqual(

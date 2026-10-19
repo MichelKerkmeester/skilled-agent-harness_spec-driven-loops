@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-create-diagram adherence audit and artifact completion"
-description: "Audit SKILL.md, references, assets, and code against sk-create-skill and sk-code-opencode standards, fix deviations, then author the manual-testing-playbook and feature-catalog packages sk-create-diagram shipped without."
+description: "Audit SKILL.md, references, assets, and code against sk-create-skill and sk-code-skilled standards, fix deviations, then author the manual-testing-playbook and feature-catalog packages sk-create-diagram shipped without."
 trigger_phrases:
   - "sk-create-diagram adherence audit"
   - "diagram playbook and catalog"
@@ -70,7 +70,7 @@ _memory:
 
 ### Problem Statement
 
-Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards. Separately, phase 001's `decision-record.md` deferred `manual-testing-playbook/` with the justification "sk-create-flowchart ships without either," but sibling `sk-create-diff` ships both — leaving `sk-create-diagram` without the operator-facing validation scenarios and current-state feature inventory that comparable modes carry.
+Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-skilled`'s language standards. Separately, phase 001's `decision-record.md` deferred `manual-testing-playbook/` with the justification "sk-create-flowchart ships without either," but sibling `sk-create-diff` ships both — leaving `sk-create-diagram` without the operator-facing validation scenarios and current-state feature inventory that comparable modes carry.
 
 ### Purpose
 
@@ -87,8 +87,8 @@ Close both gaps: run a literal template/code-standards adherence audit and fix e
 - Audit `.opencode/skills/sk-doc/sk-create-diagram/SKILL.md` against `sk-create-skill/assets/skill/skill-md-template.md` (frontmatter, numbered ALL-CAPS H2 sections, RULES subsections, no ToC, Smart Router pseudocode shape).
 - Audit all 37 files under `.opencode/skills/sk-doc/sk-create-diagram/references/` against `skill-reference-template.md` (5-field frontmatter, 1-2 sentence intro with no duplicated OVERVIEW content, numbered H2 sections).
 - Document the asset-template applicability decision for the 39 `.html` files under `assets/` (decision-record.md; no forced markdown restructuring of deliverable HTML).
-- Audit `scripts/drawio_extract.py` and `scripts/mermaid_extract.py` against `sk-code-opencode`'s Python style-guide, quality-standards, and `python-checklist.md`.
-- Audit `mode-registry.json`/`hub-router.json`/`command-metadata.json` entries, `.opencode/commands/create/diagram.md`, and the 2 command YAML assets against `sk-code-opencode`'s config standards and `command-authoring.md`/`skill-authoring.md` checklists.
+- Audit `scripts/drawio_extract.py` and `scripts/mermaid_extract.py` against `sk-code-skilled`'s Python style-guide, quality-standards, and `python-checklist.md`.
+- Audit `mode-registry.json`/`hub-router.json`/`command-metadata.json` entries, `.opencode/commands/create/diagram.md`, and the 2 command YAML assets against `sk-code-skilled`'s config standards and `command-authoring.md`/`skill-authoring.md` checklists.
 - Fix every deviation found, in place, within these same files.
 - Author `.opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/` (root file + category folders + per-feature files) per `sk-create-manual-testing-playbook`'s package contract.
 - Author `.opencode/skills/sk-doc/sk-create-diagram/feature-catalog/` (root file + category folders + per-feature files) per `sk-create-feature-catalog`'s package contract.
@@ -96,7 +96,7 @@ Close both gaps: run a literal template/code-standards adherence audit and fix e
 
 ### Out of Scope
 
-- Changes to `sk-create-skill`, `sk-code-opencode`, `sk-create-manual-testing-playbook`, or `sk-create-feature-catalog` themselves — they are the standards being audited against, not audit targets.
+- Changes to `sk-create-skill`, `sk-code-skilled`, `sk-create-manual-testing-playbook`, or `sk-create-feature-catalog` themselves — they are the standards being audited against, not audit targets.
 - Reopening phases 001-006 scope decisions (icon-set inclusion, agent-mediated onboarding, v1 diagram-type count).
 - Adding entries to `sk-doc`'s shared master `manual-testing-playbook/`/`feature-catalog/` indexes — those aggregate across the hub and are not this phase's concern (see decision-record.md).
 
@@ -132,7 +132,7 @@ Close both gaps: run a literal template/code-standards adherence audit and fix e
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | Asset-template applicability to the 39 HTML assets is explicitly decided and documented, not silently skipped. | `decision-record.md` entry with rationale. |
-| REQ-004 | Both Python scripts conform to `sk-code-opencode`'s Python conventions (docstrings, type hints, import order, naming). | `python-checklist.md` items checked; deviations fixed. |
+| REQ-004 | Both Python scripts conform to `sk-code-skilled`'s Python conventions (docstrings, type hints, import order, naming). | `python-checklist.md` items checked; deviations fixed. |
 | REQ-007 | Every touched/new file passes its validator and packet-wide `validate.sh --recursive --strict` is clean for parent + all 7 children. | Command output recorded in `implementation-summary.md`. |
 <!-- /ANCHOR:requirements -->
 
@@ -175,5 +175,5 @@ None remaining — both resolved in `decision-record.md` (asset-template applica
 - Checklist: `checklist.md`
 - Decision record: `decision-record.md`
 - Packet root: `../spec.md`
-- Standards audited against: `.opencode/skills/sk-doc/sk-create-skill/assets/skill/{skill-md-template.md,skill-reference-template.md,skill-asset-template.md}`, `.opencode/skills/sk-code/sk-code-opencode/SKILL.md`, `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, `.opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md`
+- Standards audited against: `.opencode/skills/sk-doc/sk-create-skill/assets/skill/{skill-md-template.md,skill-reference-template.md,skill-asset-template.md}`, `.opencode/skills/sk-code/sk-code-skilled/SKILL.md`, `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md`, `.opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md`
 - Precedent: `.opencode/skills/sk-doc/sk-create-diff/{manual-testing-playbook,feature-catalog}/`

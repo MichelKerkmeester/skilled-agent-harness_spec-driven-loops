@@ -1,6 +1,6 @@
 The packet goal is set. The option set and the zero-call baseline summary are in the track-narrowing script, with the two vitest cases.
 
-SKILL ROUTING: User directed → @code. ARTIFACT: sk-code → sk-code-opencode JavaScript and TypeScript implement route.
+SKILL ROUTING: User directed → @code. ARTIFACT: sk-code → sk-code-skilled JavaScript and TypeScript implement route.
 REPO RULES: prevent-overengineering, evidence-and-proof, communication, communication-prose, communication-handoff.
 
 `node --check` on the script printed nothing and exited 0. The two named files are edited and uncommitted. The orchestrator runs the vitest file.

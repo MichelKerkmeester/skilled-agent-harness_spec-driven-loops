@@ -55,7 +55,7 @@ Mandatory for ALL file modifications: code files, documentation, configuration, 
 
 ### Cross-Skill Alignment
 
-- All code created/updated must align with `sk-code-opencode`
+- All code created/updated must align with `sk-code-skilled`
 - All documentation created/updated must align with `sk-doc`
 
 [SOURCE: README.md:57-58]
@@ -583,7 +583,7 @@ Based on the `sk-doc` README template (`readme_template.md`), the target structu
 | Rollback Runbook | `./references/workflows/rollback_runbook.md` | Feature-flag rollback and smoke-test |
 | Feature Catalog | `./feature_catalog/FEATURE_CATALOG.md` | Complete feature inventory (187+ features) |
 | ARCHITECTURE.md | `./ARCHITECTURE.md` | Boundary contract between scripts/ and mcp_server/ |
-| sk-code-opencode | `../sk-code-opencode/SKILL.md` | Mandatory code alignment standard |
+| sk-code-skilled | `../sk-code-skilled/SKILL.md` | Mandatory code alignment standard |
 | sk-doc | `../sk-doc/SKILL.md` | Mandatory documentation alignment standard |
 
 ### External References

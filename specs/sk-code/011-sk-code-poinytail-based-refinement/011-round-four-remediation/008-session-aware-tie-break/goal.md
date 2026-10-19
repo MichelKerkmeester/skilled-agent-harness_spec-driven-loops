@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `node --test --test-reporter=tap .skilled/bin/tests/compiled-route-surface-hint.test.cjs` prints `# pass 6` and `# fail 0` and exits 0.
-- [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/canary-assert.cjs` prints `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-opencode` and `cases 18 failures 0` and exits 0, and `cmp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` prints nothing and exits 0.
+- [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/canary-assert.cjs` prints `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-skilled` and `cases 18 failures 0` and exits 0, and `cmp .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` prints nothing and exits 0.
 - [ ] `node specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/008-session-aware-tie-break/scratch/all-canaries.cjs | grep FAIL | grep -v 'FAIL 004-cli-external-orchestration jev-transport-single'` prints nothing and exits 1, and the same script's output contains `001-sk-code cases 18 failures 0`.
 - [ ] `for p in 009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs 009-parent-hub-rollout/001-sk-code/harness/build-artifacts.cjs 014-runtime-engine/lib/compiled-route.cjs 014-runtime-engine/lib/resolve.cjs; do cmp specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/$p .skilled/bin/lib/compiled-routing/$p; done` prints nothing and exits 0.
 - [ ] `grep -c -F -- '--surface-hint' .skilled/skills/sk-code/SKILL.md .skilled/skills/sk-code/ROUTER.md` prints `.skilled/skills/sk-code/SKILL.md:1` and `.skilled/skills/sk-code/ROUTER.md:1` and exits 0.
@@ -78,7 +78,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Surface-hint tests pass | Pass | Verifier rerun: exit 0, `# pass 6`, `# fail 0` (`# fail 3` before the code change) |
-| Canary pins the hint in both fixture copies | Pass | `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-opencode`, `cases 18 failures 0`, `cmp` of both copies exit 0 |
+| Canary pins the hint in both fixture copies | Pass | `OK surface-hint-webflow-testing route orderedBundle sk-code-webflow,sk-code-skilled`, `cases 18 failures 0`, `cmp` of both copies exit 0 |
 | Every hub canary keeps its baseline | Pass | No FAIL line beyond the baseline `jev-transport-single`, `001-sk-code cases 18 failures 0`, diff against baseline is `cases 13` to `cases 18` only |
 | Runtime closure files match their authored copies | Pass | Four `cmp` runs print nothing, exit 0 |
 | Hub caller step present in `SKILL.md` and `ROUTER.md` | Pass | `SKILL.md:1`, `ROUTER.md:1` |

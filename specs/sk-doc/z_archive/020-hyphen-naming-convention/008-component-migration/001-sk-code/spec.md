@@ -71,7 +71,7 @@ Define one child contract per sk-code component so the migration can rename in-s
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | 001-hub-root-and-shared/ | Rename the hub's shared assets and references; preserve exact hub/tool names and shared symlink semantics. | Planned |
-| 002 | 002-code-opencode/ | Rename OpenCode evidence resources, manual-playbook resources, benchmark labels, and their references; preserve Python files and package directories. | Planned |
+| 002 | 002-code-skilled/ | Rename OpenCode evidence resources, manual-playbook resources, benchmark labels, and their references; preserve Python files and package directories. | Planned |
 | 003 | 003-code-quality/ | Rename quality-mode assets, playbook resources, and benchmark labels; update quality-mode path consumers. | Planned |
 | 004 | 004-code-review/ | Rename review-mode assets, playbook resources, benchmark labels, and reference documents; preserve review behavior. | Planned |
 | 005 | 005-code-webflow/ | Rename Webflow assets, references, playbook resources, benchmark labels, and symlink consumers; preserve browser/runtime semantics. | Planned |

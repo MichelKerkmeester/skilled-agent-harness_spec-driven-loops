@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: sk-create-diagram resource reorganization and code alignment"
-description: "Split references/ and assets/ into domain subfolders for scannability, add a scripts/README.md, and close a deeper sk-code-opencode Python alignment pass on the 2 extraction scripts."
+description: "Split references/ and assets/ into domain subfolders for scannability, add a scripts/README.md, and close a deeper sk-code-skilled Python alignment pass on the 2 extraction scripts."
 trigger_phrases:
   - "sk-create-diagram resource reorganization"
   - "diagram references subfolders"
@@ -49,7 +49,7 @@ _memory:
 | **Phase** | 8 of 9 |
 | **Predecessor** | `../007-adherence-audit-and-artifact-completion/spec.md` |
 | **Successor** | `../009-manual-playbook-execution/spec.md` |
-| **Handoff Criteria** | Every moved file resolves at its new path, every cross-reference is updated, both scripts pass a deeper sk-code-opencode alignment check, `scripts/README.md` exists, and `validate.sh --recursive --strict` stays clean |
+| **Handoff Criteria** | Every moved file resolves at its new path, every cross-reference is updated, both scripts pass a deeper sk-code-skilled alignment check, `scripts/README.md` exists, and `validate.sh --recursive --strict` stays clean |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -75,7 +75,7 @@ _memory:
 
 ### Purpose
 
-Split `references/` and `assets/` into domain subfolders (filenames unchanged), update every cross-reference this breaks, close the remaining Python type-hint gap against `sk-code-opencode`'s standards, and add `scripts/README.md` following the `sk-create-diff` precedent.
+Split `references/` and `assets/` into domain subfolders (filenames unchanged), update every cross-reference this breaks, close the remaining Python type-hint gap against `sk-code-skilled`'s standards, and add `scripts/README.md` following the `sk-create-diff` precedent.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -94,7 +94,7 @@ Split `references/` and `assets/` into domain subfolders (filenames unchanged), 
 - Leave `assets/icons.html` at the `assets/` root (the one remaining singleton).
 - Rewrite every cross-reference this breaks: `SKILL.md`'s resource-domain table and routing map, `README.md`, `changelog/v1.0.0.0.md`, both `manual-testing-playbook/` and `feature-catalog/` SOURCE FILES tables, the 3 command asset files, and every bare-relative sibling link between reference files that now cross a subfolder boundary.
 - Add both `references/types/README.md`, `references/primitives/README.md`, `references/import-export/README.md`, `references/foundations/README.md`, and `assets/examples/README.md`, `assets/templates/README.md` as short navigational indexes (matching the `sk-create-*` folder-organization convention for domain subfolders).
-- Close the mermaid_extract.py return-type-hint gap (11 functions) found by a deeper sk-code-opencode Python audit.
+- Close the mermaid_extract.py return-type-hint gap (11 functions) found by a deeper sk-code-skilled Python audit.
 - Add `.opencode/skills/sk-doc/sk-create-diagram/scripts/README.md` following the `sk-create-diff/scripts/README.md` precedent.
 
 ### Out of Scope
@@ -144,7 +144,7 @@ Split `references/` and `assets/` into domain subfolders (filenames unchanged), 
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `references/` and `assets/` are organized into the documented domain subfolders with zero orphaned old-path references anywhere in the packet or its command files.
-- **SC-002**: Both Python scripts pass a deeper `sk-code-opencode` alignment check (P0+P1 items from `python-checklist.md`), and `scripts/README.md` exists.
+- **SC-002**: Both Python scripts pass a deeper `sk-code-skilled` alignment check (P0+P1 items from `python-checklist.md`), and `scripts/README.md` exists.
 - **SC-003**: `validate.sh --recursive --strict` stays at the same clean state phase 007 left (7/8 strict, 8/8 non-strict — the parent's one pre-existing warning is unaffected by this phase's content).
 <!-- /ANCHOR:success-criteria -->
 
@@ -178,4 +178,4 @@ None — taxonomy, scope of the "add subfolders" request, and the dispatch-vs-or
 - Decision record: `decision-record.md`
 - Packet root: `../spec.md`
 - Precedent: `.opencode/skills/sk-doc/sk-create-diff/scripts/README.md`
-- Standards audited against: `.opencode/skills/sk-code/sk-code-opencode/references/python/{style-guide.md,quality-standards.md}`, `assets/checklists/python-checklist.md`
+- Standards audited against: `.opencode/skills/sk-code/sk-code-skilled/references/python/{style-guide.md,quality-standards.md}`, `assets/checklists/python-checklist.md`

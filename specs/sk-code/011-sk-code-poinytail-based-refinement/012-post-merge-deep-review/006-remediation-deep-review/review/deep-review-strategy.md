@@ -266,7 +266,7 @@ Commits 1d078f3356..d1741a28f7: the T1 remediation of the post-merge review, fiv
 - Remaining frontier: none recorded
 
 ## 11. RULED OUT DIRECTIONS
-- Shell injection in run-all-drift-guards.sh: quoted expansions, no eval/source, bash -n clean, live green run (iteration 5, evidence: .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:42-44)
+- Shell injection in run-all-drift-guards.sh: quoted expansions, no eval/source, bash -n clean, live green run (iteration 5, evidence: .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:42-44)
 - Oversized stdin as a range defect: the uncapped reader is the pre-existing corpus-wide helper the hooks adopt; process-local linear growth, deadline-bounded, fail-open (iteration 5, evidence: .skilled/hooks/shared/hook-adapter-shared.cjs:26; 32 MiB probe exit 0, RSS 196804608)
 - Late write after deadline: settle removes listeners and pauses stdin; single-settle guard (iteration 5, evidence: .skilled/hooks/shared/hook-adapter-shared.cjs:23-44)
 - Overengineering in the five fixes: no new abstraction, option, flag or fallback; helper untouched by the range (iteration 5, evidence: git diff --name-only range -- shared helper = 0)

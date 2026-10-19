@@ -39,7 +39,7 @@ contextType: "general"
 
 This is **Phase 5** of the Round-three remediation child specification.
 
-**Scope Boundary**: Everything under `.skilled/skills/sk-code/sk-code-opencode/`, the sk-code canary fixture and its authored copy, the hub version-parity check in the doctor script and its test, and the regenerated `leaf-manifest.json`. Files other children own are handed off, never edited.
+**Scope Boundary**: Everything under `.skilled/skills/sk-code/sk-code-skilled/`, the sk-code canary fixture and its authored copy, the hub version-parity check in the doctor script and its test, and the regenerated `leaf-manifest.json`. Files other children own are handed off, never edited.
 
 **Dependencies**:
 - Findings f-iter020-003, f-iter016-002, f-iter018-002, f-iter001-003, f-iter004-004, f-iter014-002, f-iter004-001, f-iter005-001, f-iter004-005, f-iter005-002, f-iter004-002 and f-iter014-001 in `../../001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/iterations/`
@@ -92,22 +92,22 @@ A fourth drift guard fails on the whole class of prose drift, and every guard re
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs` | Create | Documentation claim checker |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Create | Clean tree plus one known-bad input per check and the allowlist |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` | Modify | Check 2 reads the `ROUTER.md` block and the manifest leaves |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` | Modify | Two check 2 tests |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | Fourth guard |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modify | Names, guard count, recipe path, version 1.2.0.0, guardrails reference in `DEFAULT_RESOURCE` and the shared-tier map |
-| `.skilled/skills/sk-code/sk-code-opencode/README.md` | Modify | Names and guard count |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md` | Modify | Names, guard count, test rows |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md` | Modify | Checker row, file count, name |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md` | Modify | Names and guard count |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md` | Modify | Name |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md` | Modify | Budget label, link label, carry-over line |
-| `.skilled/skills/sk-code/sk-code-opencode/references/{javascript,python,config}/style-guide.md`, `references/shell/style-guide/overview-structure-and-naming.md`, `references/typescript/style-guide/formatting-imports-and-coexistence.md` | Modify | Budget labels, one link label |
-| `.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/` (root and nine scenarios) | Modify | Names and guard count |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` | Create | OpenCode implementation guardrails, verification reality and runtime build traps, moved from the shared workflow docs |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md` | Create | Changelog entry, including the guardrails move |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs` | Create | Documentation claim checker |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` | Create | Clean tree plus one known-bad input per check and the allowlist |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` | Modify | Check 2 reads the `ROUTER.md` block and the manifest leaves |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` | Modify | Two check 2 tests |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | Fourth guard |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modify | Names, guard count, recipe path, version 1.2.0.0, guardrails reference in `DEFAULT_RESOURCE` and the shared-tier map |
+| `.skilled/skills/sk-code/sk-code-skilled/README.md` | Modify | Names and guard count |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md` | Modify | Names, guard count, test rows |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md` | Modify | Checker row, file count, name |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md` | Modify | Names and guard count |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` | Modify | Name |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` | Modify | Budget label, link label, carry-over line |
+| `.skilled/skills/sk-code/sk-code-skilled/references/{javascript,python,config}/style-guide.md`, `references/shell/style-guide/overview-structure-and-naming.md`, `references/typescript/style-guide/formatting-imports-and-coexistence.md` | Modify | Budget labels, one link label |
+| `.skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/` (root and nine scenarios) | Modify | Names and guard count |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` | Create | OpenCode implementation guardrails, verification reality and runtime build traps, moved from the shared workflow docs |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md` | Create | Changelog entry, including the guardrails move |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` | Modify | Collision case |
 | `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` | Modify | Authored copy, byte-identical |
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | Modify | Checks 13c and 13d |
@@ -127,7 +127,7 @@ A fourth drift guard fails on the whole class of prose drift, and every guard re
 | REQ-001 | The checker has four checks and each can fail | `verify_doc_claims.test.cjs` passes 6 of 6, including one known-bad case per check that asserts the FAIL line |
 | REQ-002 | The umbrella runs the checker as a fourth guard | `run-all-drift-guards.sh` prints a `doc-claims` PASS or FAIL line and counts four guards |
 | REQ-003 | Router-sync reads the declared shared controls | The guard has no `PARENT_TIER_ALLOWLIST`, reads the `ROUTER.md` list and `DEFAULT_RESOURCE` preamble, keeps the three workflow-doc entries, passes 5/5, and its test passes 5 of 5 with two new check 2 cases |
-| REQ-004 | The OpenCode packet is clean | The checker reports no line under `sk-code-opencode/` |
+| REQ-004 | The OpenCode packet is clean | The checker reports no line under `sk-code-skilled/` |
 | REQ-005 | The checker passes over the whole tree | After children 001 to 004 land, the checker exits 0 and the umbrella prints `all 4 guards PASSED`; until then each hit is recorded against its owner |
 
 ### P1 - Required (complete OR user-approved deferral)

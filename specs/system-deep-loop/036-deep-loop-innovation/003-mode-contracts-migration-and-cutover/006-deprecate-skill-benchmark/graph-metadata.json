@@ -49,7 +49,6 @@
       ".opencode/skills/system-deep-loop/mode-registry.json",
       ".opencode/skills/system-deep-loop/hub-router.json",
       ".opencode/skills/system-deep-loop/leaf-manifest.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
     ],
     "entities": [
@@ -105,12 +104,6 @@
         "name": "leaf-manifest.json",
         "kind": "config",
         "path": ".opencode/skills/system-deep-loop/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "loop-host.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `skill-benchmark` lane is carried by the `system-deep-loop` hub as a sixth workflow mode, with a command in five runtime trees, a 56-file script tree, a large fixture corpus, three runtime ledger libraries and its own reference, catalog and playbook documentation",
     "created_at": "2026-09-20T08:33:40.065Z",
-    "last_save_at": "2026-10-08T19:30:18.977Z",
+    "last_save_at": "2026-10-18T20:45:26.601Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f9fd7a23447c907811af4cb5fd6bd6c27543a3cff88123c11b051d8927a0792",
+    "source_fingerprint": "sha256:20e894e9099ffb6ab76af70931e35240be3198e3bca08ab1ab01d063e180009e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "076ea040fbc33741fde61a26f77aba563297b3bf51f9770096dd9c3ad8fbdced",
       "plan.md": "1af7b1eed5f4cafa3c7738d6ed2b6ad6f8d5f238c75a347cecc01a58db2b4653",
       "tasks.md": "e23b8bbf8918404f3dffc83e9c808a5cdddbb4f652924eea374675c6d4f6551a",
-      "implementation-summary.md": "da873a42ed4ea2be7c9af078cf516581d31d356ff815179b5c0af58b1c794eca"
+      "implementation-summary.md": "ddf2639976243a46e7d0c6423884067459cbf99bf983f204a55cc838435407ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

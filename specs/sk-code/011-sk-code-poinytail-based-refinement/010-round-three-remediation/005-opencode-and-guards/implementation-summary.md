@@ -57,18 +57,18 @@ The OpenCode packet drops the retired `code-*` names, labels its comment budget 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_doc_claims.cjs` | Created | Documentation claim checker with four checks and an allowlist |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_doc_claims.test.cjs` | Created | Six tests: clean hub, allowlist scope, one known-bad input per check |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` | Modified | Check 2 reads `ROUTER.md` and the manifest leaves; `PARENT_TIER_ALLOWLIST` removed |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify_router_sync.test.cjs` | Modified | Two check 2 tests |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modified | Fourth guard and four-guard wording |
-| `.skilled/skills/sk-code/sk-code-opencode/SKILL.md` | Modified | Version 1.2.0.0, packet names, guard count, guardrails in `DEFAULT_RESOURCE` and the shared-tier map |
-| `.skilled/skills/sk-code/sk-code-opencode/README.md`, `scripts/README.md`, `assets/scripts/README.md` | Modified | Packet names, guard count, checker and test rows |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/` (alignment-verification-automation, code-organization, universal-patterns) | Modified | Names, guard count, budget label, link label, carry-over line |
-| `.skilled/skills/sk-code/sk-code-opencode/references/{javascript,python,config,shell,typescript}` style guides | Modified | Comment-budget label, one link label |
-| `.skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/` (root and nine scenarios) | Modified | Packet names and guard count |
-| `.skilled/skills/sk-code/sk-code-opencode/references/shared/workflow-guardrails.md` | Created | OpenCode guardrails, verification reality and runtime build traps |
-| `.skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.0.0.md` | Created | Changelog entry |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_doc_claims.cjs` | Created | Documentation claim checker with four checks and an allowlist |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_doc_claims.test.cjs` | Created | Six tests: clean hub, allowlist scope, one known-bad input per check |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` | Modified | Check 2 reads `ROUTER.md` and the manifest leaves; `PARENT_TIER_ALLOWLIST` removed |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify_router_sync.test.cjs` | Modified | Two check 2 tests |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modified | Fourth guard and four-guard wording |
+| `.skilled/skills/sk-code/sk-code-skilled/SKILL.md` | Modified | Version 1.2.0.0, packet names, guard count, guardrails in `DEFAULT_RESOURCE` and the shared-tier map |
+| `.skilled/skills/sk-code/sk-code-skilled/README.md`, `scripts/README.md`, `assets/scripts/README.md` | Modified | Packet names, guard count, checker and test rows |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/` (alignment-verification-automation, code-organization, universal-patterns) | Modified | Names, guard count, budget label, link label, carry-over line |
+| `.skilled/skills/sk-code/sk-code-skilled/references/{javascript,python,config,shell,typescript}` style guides | Modified | Comment-budget label, one link label |
+| `.skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/` (root and nine scenarios) | Modified | Packet names and guard count |
+| `.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md` | Created | OpenCode guardrails, verification reality and runtime build traps |
+| `.skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.0.0.md` | Created | Changelog entry |
 | `.skilled/skills/sk-code/leaf-manifest.json` | Modified | Regenerated for the new asset script and reference |
 | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json` and its archive copy | Modified | `surface-collision-obsidian-over-webflow` case; the two copies are byte-identical |
 | `.skilled/commands/doctor/scripts/parent-skill-check.cjs` and its invariants test | Modified | Checks 13c and 13d, three tests |
@@ -108,14 +108,14 @@ The builder skipped Phase 1, so no `before-*` files exist. Before state came fro
 |-------|--------|
 | 1. `node --test verify_doc_claims.test.cjs` | PASS: exit 0, pass 6, fail 0 |
 | 2. `verify_router_sync.cjs` and its test | PASS: exit 0, `router-sync: 5/5 checks passed`, pass 5, fail 0 |
-| 3. `verify_doc_claims.cjs \| grep -c 'sk-code-opencode/'` | PASS: prints 0, grep exit 1 |
+| 3. `verify_doc_claims.cjs \| grep -c 'sk-code-skilled/'` | PASS: prints 0, grep exit 1 |
 | 4. `parent-skill-check-invariants.test.cjs` | PASS: exit 0, pass 98, fail 0; all seven hubs end `OK: parent-skill-check` |
 | 5. `run-all-drift-guards.sh` | PASS: exit 0, four PASS lines, `run-all-drift-guards: all 4 guards PASSED`; checker `doc-claims: 4/4 checks passed` |
 | 6. `validate.sh <folder> --strict` | PASS: `RESULT: PASSED`, Errors 0 |
 | Canary and fixture copies | PASS: cases 12 failures 0, `cmp` silent |
 | Leaf manifest | PASS: `--check` OK (59ea33fd...), checked=14 fresh=14 failed=0 |
 | Compiled routing | PENDING-ORCHESTRATOR: `sk-code stale-manifest` (sibling hub edits; no re-mint here) |
-| Hermes | PENDING-ORCHESTRATOR: `--check` reports 9 drifted including sk-code-opencode |
+| Hermes | PENDING-ORCHESTRATOR: `--check` reports 9 drifted including sk-code-skilled |
 | Edited Markdown (22 files) | PASS: validate_document issues and hvr hard blockers do not rise against HEAD (0 of 22 worse) |
 | Scope | PASS: 34 paths, 30 modified and 4 new, all in Files to Change |
 
@@ -128,7 +128,7 @@ Review result: six defects found and fixed (FX1 to FX6, applied and re-verified)
 ## Known Limitations
 
 1. **The tiers check treats a bullet's file or `/*` glob as an every-route claim.** A conditional bullet that names a glob would still be reported; bare folders count only in the ALWAYS row.
-2. **Link labels that are not `./` or `../` paths are not checked.** A label such as `assets/checklists/x.md` over a `../sk-code-opencode/...` target passes even when the label no longer names a real packet-local file.
+2. **Link labels that are not `./` or `../` paths are not checked.** A label such as `assets/checklists/x.md` over a `../sk-code-skilled/...` target passes even when the label no longer names a real packet-local file.
 3. **Backticked paths with `#anchor` and link anchors are not resolved.** Only the file part of a link target is checked.
 4. **A missing `--root` directory crashes with a stack trace** instead of a usage error.
 5. **The moved guardrails text carries four semicolons** that the voice scan counts as hard blockers; they were verbatim in the shared docs and are left as a faithful move.

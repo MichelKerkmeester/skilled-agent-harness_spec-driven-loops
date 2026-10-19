@@ -11,11 +11,11 @@
   "resolved_route": "Resolved route: mode=research target_agent=deep-research",
   "newInfoRatio": 0.75,
   "status": "complete",
-  "focus": "sk-code-opencode fresh pass",
+  "focus": "sk-code-skilled fresh pass",
   "findingsCount": 4,
   "noveltyJustification": "Two findings are fully new (the SKILL crediting leg 1a with leg 1b's orphan coverage, and two more rename-miss rows), one verifies the guard and hook paths with observed output, and one records phase 009 in-flight scope.",
   "keyQuestions": [
-    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian` beyond rounds one and two?"
+    "What defects, drift and improvements exist in `sk-code-quality`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian` beyond rounds one and two?"
   ],
   "answeredQuestions": [],
   "ruledOut": [
@@ -25,12 +25,12 @@
   ],
   "toolsUsed": ["read", "rg", "bash", "node", "python3"],
   "sourcesQueried": [
-    ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-    ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-    ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md",
-    ".skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md"
+    ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+    ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md"
   ],
   "timestamp": "2026-10-10T08:40:35Z",
   "durationMs": 108000

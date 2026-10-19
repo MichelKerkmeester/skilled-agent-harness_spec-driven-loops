@@ -35,7 +35,7 @@ parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code
 
 # Feature Specification: Hub root and shared sk-code names
 
-> Phase adjacency under the sk-code component parent: predecessor 007-shared-and-cross-cutting-closures; successor 002-code-opencode.
+> Phase adjacency under the sk-code component parent: predecessor 007-shared-and-cross-cutting-closures; successor 002-code-skilled.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -75,7 +75,7 @@ Rename every in-scope snake_case filesystem name owned by the sk-code hub/shared
 
 ### Out of Scope
 
-- Physical names inside code-opencode/, code-quality/, code-review/, code-webflow/, manual_testing_playbook/, or benchmark/ except for reference/symlink edges required by the shared closure.
+- Physical names inside code-skilled/, code-quality/, code-review/, code-webflow/, manual_testing_playbook/, or benchmark/ except for reference/symlink edges required by the shared closure.
 - SKILL.md, README.md, mode-registry.json, hub-router.json, description.json, and graph-metadata.json names; these are already compliant or tool/metadata contracts.
 - Python .py filenames and Python import-package directories, generated or lockfile output, code identifiers, JSON/YAML/TOML keys, frontmatter fields, and frozen changelog/history content.
 - Rewriting routing behavior or changing the meaning of workflow, surface, or packet keys.
@@ -88,7 +88,7 @@ Rename every in-scope snake_case filesystem name owned by the sk-code hub/shared
 | .opencode/skills/sk-code/shared/assets/patterns/** | Rename and reference update | Rename validation_patterns.js and wait_patterns.js and update pattern indexes. |
 | .opencode/skills/sk-code/SKILL.md and README.md | Reference update | Replace shared path literals while preserving prose and routing contracts. |
 | .opencode/skills/sk-code/shared/README.md | Reference update | Update the shared resource index to the new filenames. |
-| code-opencode/references/workflow_* and code-webflow/references/workflow_* | Symlink/reference closure | Preserve link targets and update the link nodes or target strings according to the frozen dependency map. |
+| code-skilled/references/workflow_* and code-webflow/references/workflow_* | Symlink/reference closure | Preserve link targets and update the link nodes or target strings according to the frozen dependency map. |
 <!-- /ANCHOR:scope -->
 
 <!-- ANCHOR:requirements -->
@@ -114,7 +114,7 @@ Rename every in-scope snake_case filesystem name owned by the sk-code hub/shared
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
 
-The shared workflow files are symlinked into code-opencode and code-webflow, so changing only the source basename can leave dangling links or stale load paths. The mitigation is a rename-map row for each source, link node, and consumer plus a post-rename symlink and markdown-link scan. The phase depends on the 020 frozen map and the cross-cutting closure handoff; it does not authorize component-wide content changes.
+The shared workflow files are symlinked into code-skilled and code-webflow, so changing only the source basename can leave dangling links or stale load paths. The mitigation is a rename-map row for each source, link node, and consumer plus a post-rename symlink and markdown-link scan. The phase depends on the 020 frozen map and the cross-cutting closure handoff; it does not authorize component-wide content changes.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

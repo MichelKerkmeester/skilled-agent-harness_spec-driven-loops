@@ -500,10 +500,10 @@ JSON, plus each exit code) follows.
       "targets": [
         {
           "backendKind": "evidence-base",
-          "packetId": "sk-code-opencode",
+          "packetId": "sk-code-skilled",
           "packetKind": "surface",
           "skillId": "sk-code",
-          "workflowMode": "sk-code-opencode"
+          "workflowMode": "sk-code-skilled"
         }
       ],
       "action": "route"
@@ -591,10 +591,10 @@ JSON, plus each exit code) follows.
       "targets": [
         {
           "backendKind": "evidence-base",
-          "packetId": "sk-code-opencode",
+          "packetId": "sk-code-skilled",
           "packetKind": "surface",
           "skillId": "sk-code",
-          "workflowMode": "sk-code-opencode"
+          "workflowMode": "sk-code-skilled"
         }
       ],
       "action": "route"

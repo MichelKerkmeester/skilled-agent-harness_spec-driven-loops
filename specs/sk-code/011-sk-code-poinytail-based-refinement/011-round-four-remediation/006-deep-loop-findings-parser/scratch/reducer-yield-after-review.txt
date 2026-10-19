@@ -1,7 +1,7 @@
 specs/mcp-tooling/z_archive/007-mcp-tooling-parent/007-routing-benchmark-and-review/review/lineages/sol-review open 30 -> 15, resolved 0 -> 0
 specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max open 12 -> 8, resolved 0 -> 0
 specs/mcp-tooling/z_archive/013-mcp-obsidian/025-plugin-coverage-review/review/lineages/luna-max-cycle2-CONDITIONAL open 8 -> 4, resolved 0 -> 0
-specs/sk-code/z_archive/006-sk-code-opencode-merger/review open 9 -> 7, resolved 0 -> 0
+specs/sk-code/z_archive/006-sk-code-skilled-merger/review open 9 -> 7, resolved 0 -> 0
 specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages/sonnet5-xhigh open 18 -> 12, resolved 0 -> 0
 specs/sk-design/020-chart-and-diagram-review/001-chart-review/review/lineages/deepseek open 32 -> 22, resolved 0 -> 0
 specs/sk-design/020-chart-and-diagram-review/002-diagram-review/review/lineages/deepseek open 37 -> 30, resolved 0 -> 0

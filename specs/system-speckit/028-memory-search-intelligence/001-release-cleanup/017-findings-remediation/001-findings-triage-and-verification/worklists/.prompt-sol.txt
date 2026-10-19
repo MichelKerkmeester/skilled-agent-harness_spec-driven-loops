@@ -35,7 +35,7 @@ Re-test each claim. Record CONFIRMED, REFUTED or DEFERRED with the exact command
 | # | finding | cat | path | claim |
 |---|---|---|---|---|
 | 1 | `devin-01:F5` | CAT-5 | `.opencode/skills/sk-code/changelog/v4.1.0.0.md:12-13 vs .opencode/skills/sk-code/mode-registry.json:19` | Changelog v4.1.0.0 contradicts mode-registry.json on surface count |
-| 2 | `devin-01:F6` | CAT-5 | `.opencode/skills/sk-code/benchmark/ and .opencode/skills/sk-code/code-opencode/benchmark/` | Duplicated benchmark responsibility between hub and code-opencode packet |
+| 2 | `devin-01:F6` | CAT-5 | `.opencode/skills/sk-code/benchmark/ and .opencode/skills/sk-code/code-skilled/benchmark/` | Duplicated benchmark responsibility between hub and code-skilled packet |
 | 3 | `devin-01:F10` | CAT-1 | `.opencode/skills/sk-doc/scripts/README.md:69-78` | scripts/README.md documents 10 scripts that do not exist at that location |
 | 4 | `devin-01:F11` | CAT-1 | `.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js` | validate-doc-model-refs.js has no reachable callers |
 | 5 | `devin-01:F12` | CAT-5 | `.opencode/skills/sk-doc/SKILL.md:3 vs .opencode/skills/sk-doc/mode-registry.json:17-162` | SKILL.md says "eleven packets" but mode-registry.json lists twelve modes |

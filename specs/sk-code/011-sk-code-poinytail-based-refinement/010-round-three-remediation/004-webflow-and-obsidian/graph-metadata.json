@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The five copy-paste templates under `sk-code-webflow/assets/templates/` cite `references/webflow/...` in nine places, and that folder does not exist, so the dead pointers travel into every project that copies a template",
     "created_at": "2026-10-10T10:07:20Z",
-    "last_save_at": "2026-10-11T05:17:08.998Z",
+    "last_save_at": "2026-10-18T20:45:14.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +217,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0889a00d7dfc4f5fa9ab72c98c04f9b6116834a1e7fbca92e2a27e1d2714574",
+    "source_fingerprint": "sha256:449954a4806badc9c9e14a62c4584843ac843520c99537e0dc3864fc8a5580e7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3d5ae5a87e4d6fbff4624456d1f94d591c8f39bd6b01ce4dd726b445f30f84f2",
       "plan.md": "37dd7bab9f184cb69571743344269bc24f029e7c963665e8bc41745d16ae8027",
-      "tasks.md": "2f7689c436eee3a21fb3bc7fbc0a75985d8e8110b73977aeccdacd914c5e435e",
+      "tasks.md": "6dd787fba6a5ad8602d29a986519d5dd540a01e7edf1b8880835344fcb999850",
       "implementation-summary.md": "74cce669900d765ce72db59d3145b6be79a0e2b38b269e7e3b835f0677e5103e"
     },
     "last_active_at": null

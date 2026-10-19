@@ -5,7 +5,7 @@ trigger_phrases:
   - "webflow frontend"
   - "webflow implementation"
   - "frontend standards"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # webflow: Frontend Evidence (sk-code surface)
@@ -33,7 +33,7 @@ A task touching Webflow-published pages or CDN-delivered client scripts needs fr
 
 ### What It Carries
 
-This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `sk-code-opencode` carries `.skilled/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
+This surface holds the Webflow and browser evidence in five domains: language standards, implementation patterns, performance and Core Web Vitals remediation, CDN deployment, browser debugging and verification procedures. Detection markers are `src/2_javascript`, `webflow`, `--vw-` custom properties and CDN-delivered client scripts. Its sibling `sk-code-skilled` carries `.skilled/` system-code evidence instead. The hub picks one surface by detection. The interaction-gated loading and Core Web Vitals gates here are non-negotiable, never a report-only check.
 
 ### The Frontend Evidence Layer
 
@@ -91,7 +91,7 @@ Use this surface when the task touches Webflow-published pages or CDN-delivered 
 | Skill | Relationship |
 |---|---|
 | `sk-code` | Parent hub that detects the surface and bundles it with the active workflow mode |
-| `sk-code-opencode` | Sibling surface carrying `.skilled/` system-code evidence, picked by the same detection |
+| `sk-code-skilled` | Sibling surface carrying `.skilled/` system-code evidence, picked by the same detection |
 | `sk-code-review` | Owns formal findings-first review after the workflow phases |
 | `sk-code-quality` | Owns author-side quality gates |
 
@@ -105,7 +105,7 @@ A: It is evidence, not a worker. A surface that mutated would blur who owns the 
 
 **Q: What happens when a frontend task does not match this surface's markers?**
 
-A: The hub picks the surface by detection, so `.skilled/` system-code work matches `sk-code-opencode` instead. The workflow mode proceeds with the references the bundled surface carries.
+A: The hub picks the surface by detection, so `.skilled/` system-code work matches `sk-code-skilled` instead. The workflow mode proceeds with the references the bundled surface carries.
 
 ---
 

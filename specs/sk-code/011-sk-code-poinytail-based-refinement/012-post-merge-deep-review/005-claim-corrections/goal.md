@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [ ] `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` ends with `markers=3 no-trigger=1 no-signal=1`, and line 115 of `specs/sk-code/011-sk-code-poinytail-based-refinement/008-round-two-recommendations/004-debt-report-and-hermes-gate/implementation-summary.md` contains that same text.
-- [ ] `grep -c '^test(' .skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-doc-claims.test.cjs` prints 12, and line 61 of `specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md` contains `12 in total`.
+- [ ] `grep -c '^test(' .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs` prints 12, and line 61 of `specs/sk-code/011-sk-code-poinytail-based-refinement/011-round-four-remediation/005-doc-claims-hardening/implementation-summary.md` contains `12 in total`.
 - [ ] `rg -c 'codex/agents/<name>.toml' .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs` prints 1, and `node .skilled/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs --all` exits 0.
 - [ ] `rg -n '^version: 1\.19\.2\.0$' .skilled/skills/system-deep-loop/deep-improvement/changelog/v1.19.2.0.md` prints one line, and `python3 -I .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/system-deep-loop/deep-improvement --check --strict` prints `Result: PASS`.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/012-post-merge-deep-review/005-claim-corrections --strict` prints `RESULT: PASSED`.
@@ -84,6 +84,6 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Header wording | With three copies, the builder's "without the other" became "without the others" |
-| Criterion 2 amended 2026-10-11 | The sk-code-opencode scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/066-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 4 amended 2026-10-11 | deep-improvement moved to 1.19.5.0 in later phases, so the SKILL.md half went stale. The release entry still exists, and the strict package check proves the SKILL.md version matches the newest entry |
 <!-- /ANCHOR:log -->

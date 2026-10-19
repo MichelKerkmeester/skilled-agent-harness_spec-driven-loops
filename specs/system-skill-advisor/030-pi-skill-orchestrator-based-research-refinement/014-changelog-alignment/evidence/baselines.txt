@@ -16,7 +16,7 @@ cli-codex                    newest=1.9.4.0    SKILL.md=1.9.4.0
 cli-cursor                   newest=1.5.0.0    SKILL.md=1.5.0.0
 cli-devin                    newest=1.4.5.0    SKILL.md=1.4.5.0
 cli-external-orchestration   newest=1.7.0.0    SKILL.md=1.7.0.0
-sk-code-opencode             newest=1.0.0.5    SKILL.md=1.0.0.5
+sk-code-skilled             newest=1.0.0.5    SKILL.md=1.0.0.5
 system-spec-kit generation folders: v1+ v2+ v3+ 
 
 ## Three-part changelog names under .skilled/skills

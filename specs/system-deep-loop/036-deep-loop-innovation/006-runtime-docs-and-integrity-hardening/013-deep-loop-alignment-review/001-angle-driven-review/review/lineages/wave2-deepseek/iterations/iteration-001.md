@@ -42,7 +42,7 @@ Authority candidate — newest changelog entry under the same root:
 | sk-code | `v4.2.2.0` | 4.2.2.0 ✓ | 4.2.2.0 ✓ | **4.1.0.1** ✗ | **4.1.0.1** ✗ | **3.5.0.9** ✗ |
 | cli-external-orchestration | `v1.5.0.0` | 1.5.0.0 ✓ | 1.5.0.0 ✓ | **1.2.0.2** ✗ | **1.2.1.2** ✗ | **1.1.0.0** ✗ |
 
-Mode packets (all seventeen): `SKILL.md` ≡ newest changelog in **17 of 17** packets — `deep-research` 1.15.0.0, `deep-review` 1.11.0.36, `deep-ai-council` 2.4.1.0, `deep-improvement` 1.17.1.0, `sk-code-quality` 1.0.0.2, `sk-code-review` 1.6.0.0, `sk-code-webflow` 1.1.0.0, `sk-code-opencode` 1.0.0.5, `sk-code-mobile-cli` 0.1.11.0, `sk-code-obsidian` 0.1.0.0, `cli-opencode` 1.4.6.0, `cli-claude-code` 1.5.0.0, `cli-codex` 1.9.0.0, `cli-cursor` 1.4.1.0, `cli-devin` 1.4.2.0, `cli-pi` 1.5.3.0, `cli-hermes` 1.0.0.0. `leaf-manifest.json` carries `resourceContractVersion: 1` (contract discriminator, not an artifact version) and `graph-metadata.json` carries `schema_version: 2`.
+Mode packets (all seventeen): `SKILL.md` ≡ newest changelog in **17 of 17** packets — `deep-research` 1.15.0.0, `deep-review` 1.11.0.36, `deep-ai-council` 2.4.1.0, `deep-improvement` 1.17.1.0, `sk-code-quality` 1.0.0.2, `sk-code-review` 1.6.0.0, `sk-code-webflow` 1.1.0.0, `sk-code-skilled` 1.0.0.5, `sk-code-mobile-cli` 0.1.11.0, `sk-code-obsidian` 0.1.0.0, `cli-opencode` 1.4.6.0, `cli-claude-code` 1.5.0.0, `cli-codex` 1.9.0.0, `cli-cursor` 1.4.1.0, `cli-devin` 1.4.2.0, `cli-pi` 1.5.3.0, `cli-hermes` 1.0.0.0. `leaf-manifest.json` carries `resourceContractVersion: 1` (contract discriminator, not an artifact version) and `graph-metadata.json` carries `schema_version: 2`.
 
 ## Findings
 

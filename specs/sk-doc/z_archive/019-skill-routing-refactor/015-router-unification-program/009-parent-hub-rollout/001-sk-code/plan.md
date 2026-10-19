@@ -99,7 +99,7 @@ This phase touches shared policy and route composition, so the surface inventory
 |---------|--------------|--------|--------------|
 | `mode-registry.json` (sk-code) | Authored source of truth for modes | Read-only input to the compiler | Compiled graph round-trips every declared mode; byte-identical recompile |
 | `routerPolicy.outcomes.surfaceBundle` | Authored bundle composition rule | Compiled into surfaceBundle route shape | `[code-review, code-webflow]` example reproduces (synthesis §7; `SKILL.md:57`) |
-| surface packets (`code-webflow`, `code-opencode`) | Read-only evidence, `routingClass: metadata` | Compiled as `evidence`/`mutatesWorkspace=false` | Advisor-invisible; cannot be a sole target; cannot COMMIT |
+| surface packets (`code-webflow`, `code-skilled`) | Read-only evidence, `routingClass: metadata` | Compiled as `evidence`/`mutatesWorkspace=false` | Advisor-invisible; cannot be a sole target; cannot COMMIT |
 | `router-replay.cjs` (shared scorer) | Deterministic route-gold scorer | **Unchanged — not a consumer** | `git diff` empty; a required edit is a migration failure |
 | `AdvisorProjectionV1` consumer | Layer-0 advisor evidence | Add sk-code projection + drift guard | Stale/absent fixtures degrade gracefully |
 | route-gold fixtures / gate | Baseline parity harness | Add sk-code typed fixtures via projector | Gate green; gold never auto-updates |

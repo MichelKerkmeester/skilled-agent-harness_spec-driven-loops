@@ -1,9 +1,9 @@
 ---
 title: "Implementation Summary: Rename the sk-code mode packets to the sk- prefix"
-description: "Move code-quality, code-review, code-webflow and code-opencode to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and hold BLOCKED-BY-ROUTE-GOLD 91."
+description: "Move code-quality, code-review, code-webflow and code-skilled to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and hold BLOCKED-BY-ROUTE-GOLD 91."
 trigger_phrases:
   - "sk-code mode rename"
-  - "sk-code-opencode rename"
+  - "sk-code-skilled rename"
 importance_tier: "critical"
 contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"

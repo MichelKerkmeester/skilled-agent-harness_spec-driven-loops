@@ -92,7 +92,7 @@ Each new entry should pass sk-doc playbook validation if a validator exists.
 
 7-file structure under `specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/003-testing-playbook-trio-alignment/`.
 
-**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-opencode-standards-audit"]`.
+**Deps**: `manual.depends_on=["system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-post-program-quality-pass/001-sk-code-skilled-standards-audit"]`.
 
 **Trigger phrases**: `["037-003-testing-playbook-trio-alignment","manual testing playbook","playbook updates 031-036","system-spec-kit playbook","skill_advisor playbook","code_graph playbook"]`.
 

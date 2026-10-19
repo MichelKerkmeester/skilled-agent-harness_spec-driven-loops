@@ -36,9 +36,9 @@ No new gaps surfaced in the checklist pass — the must-fix/optional split from 
 
 ## Sources Consulted
 
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md:47,59-67,157]
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/assets/checklists/typescript-checklist.md:47,121]
-- [SOURCE: .opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md:47]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md:47,59-67,157]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md:47,121]
+- [SOURCE: .opencode/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md:47]
 - [SOURCE: .opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts:984-988]
 - [SOURCE: rg use-strict/header/console across the 12 changed files]
 

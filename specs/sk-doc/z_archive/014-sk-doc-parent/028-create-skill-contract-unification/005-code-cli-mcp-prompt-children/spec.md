@@ -68,7 +68,7 @@ Sonnet-5 xhigh** agent independently verifies it before the validator gate runs.
 
 **In scope:** the 12 files below, plus each file's own resource-doc frontmatter where the validator requires it.
 
-| `.opencode/skills/sk-code/code-opencode/SKILL.md` | Modify | Conform to contract |
+| `.opencode/skills/sk-code/code-skilled/SKILL.md` | Modify | Conform to contract |
 | `.opencode/skills/sk-code/code-quality/SKILL.md` | Modify | Conform to contract |
 | `.opencode/skills/sk-code/code-review/SKILL.md` | Modify | Conform to contract |
 | `.opencode/skills/sk-code/code-webflow/SKILL.md` | Modify | Conform to contract |
@@ -103,7 +103,7 @@ Each file must satisfy (per the target):
 
 | ID | Requirement | Priority |
 |----|-------------|----------|
-| REQ-001 | `.opencode/skills/sk-code/code-opencode/SKILL.md` conforms to the contract and passes its validator | P0 |
+| REQ-001 | `.opencode/skills/sk-code/code-skilled/SKILL.md` conforms to the contract and passes its validator | P0 |
 | REQ-002 | `.opencode/skills/sk-code/code-quality/SKILL.md` conforms to the contract and passes its validator | P0 |
 | REQ-003 | `.opencode/skills/sk-code/code-review/SKILL.md` conforms to the contract and passes its validator | P0 |
 | REQ-004 | `.opencode/skills/sk-code/code-webflow/SKILL.md` conforms to the contract and passes its validator | P0 |

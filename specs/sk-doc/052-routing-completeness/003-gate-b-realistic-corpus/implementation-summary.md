@@ -200,7 +200,7 @@ measurement in this packet. It carries finding 10, closed by decision.
 
 **Eight boundary rows all failed the strict check.** Two recovered at a lower position and
 six lost outright. The clearest case is a request to scaffold a new package, worded to avoid
-every literal keyword, which still lost at score `0.920` to `sk-code-opencode` the moment it
+every literal keyword, which still lost at score `0.920` to `sk-code-skilled` the moment it
 mentioned OpenCode in passing. A near-identical prompt without that word returned nothing at
 all, so the word was doing the damage rather than the intent being ambiguous.
 

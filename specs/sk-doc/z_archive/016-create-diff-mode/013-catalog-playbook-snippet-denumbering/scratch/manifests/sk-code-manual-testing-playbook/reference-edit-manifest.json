@@ -64,7 +64,7 @@
       },
       {
         "old": "07--cross-stack-routing/020-opencode-plus-motion-dev.md",
-        "new": "07--cross-stack-routing/opencode-plus-motion-dev.md",
+        "new": "07--cross-stack-routing/skilled-plus-motion-dev.md",
         "count": 1
       },
       {
@@ -79,7 +79,7 @@
       },
       {
         "old": "02--language-sub-detection/004-opencode-typescript.md",
-        "new": "02--language-sub-detection/opencode-typescript.md",
+        "new": "02--language-sub-detection/skilled-typescript.md",
         "count": 1
       },
       {
@@ -89,12 +89,12 @@
       },
       {
         "old": "02--language-sub-detection/005-opencode-python.md",
-        "new": "02--language-sub-detection/opencode-python.md",
+        "new": "02--language-sub-detection/skilled-python.md",
         "count": 1
       },
       {
         "old": "02--language-sub-detection/007-opencode-config.md",
-        "new": "02--language-sub-detection/opencode-config.md",
+        "new": "02--language-sub-detection/skilled-config.md",
         "count": 1
       },
       {
@@ -104,12 +104,12 @@
       },
       {
         "old": "02--language-sub-detection/006-opencode-shell.md",
-        "new": "02--language-sub-detection/opencode-shell.md",
+        "new": "02--language-sub-detection/skilled-shell.md",
         "count": 1
       },
       {
         "old": "01--surface-detection/002-opencode-detection.md",
-        "new": "01--surface-detection/opencode-detection.md",
+        "new": "01--surface-detection/skilled-detection.md",
         "count": 1
       },
       {

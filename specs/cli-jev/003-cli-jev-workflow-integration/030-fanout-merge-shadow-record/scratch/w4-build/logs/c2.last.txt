@@ -1,7 +1,7 @@
 C2 implemented. Scope: only S changed; T's C1 fixtures and three walker tests left byte-identical (section 3's walker rows were already present, so no new test was added rather than duplicating them).
 
-SKILL ROUTING: User directed → sk-code (design names sk-code-opencode; loaded JavaScript style guide, JS quality standards, shared naming-and-commenting)
-ARTIFACT: sk-code → sk-code-opencode packet → JavaScript standards
+SKILL ROUTING: User directed → sk-code (design names sk-code-skilled; loaded JavaScript style guide, JS quality standards, shared naming-and-commenting)
+ARTIFACT: sk-code → sk-code-skilled packet → JavaScript standards
 REPO RULES: scope-discipline.md, prevent-overengineering.md, evidence-and-proof.md loaded (action: add functions to a module; report results)
 
 Not run here: vitest (sandbox blocks test runners per brief; the orchestrator runs V1).

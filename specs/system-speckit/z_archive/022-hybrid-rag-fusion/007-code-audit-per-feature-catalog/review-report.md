@@ -263,7 +263,7 @@ The code audit of the Spec Kit Memory MCP server's 220+ features is **fundamenta
 - Feature catalog: `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md` (19 categories) + 21 split category folders
 - MCP server: 251 code files, 317 test files in `.opencode/skills/system-spec-kit/mcp_server/`
 - Architecture reference: `.opencode/skills/system-spec-kit/ARCHITECTURE.md`, `.opencode/skills/system-spec-kit/references/config/environment_variables.md`
-- Code standards: `sk-code-opencode`, `tsconfig.json`, `package.json`
+- Code standards: `sk-code-skilled`, `tsconfig.json`, `package.json`
 
 ### Cross-Reference Appendix
 

@@ -81,7 +81,7 @@ I’ve confirmed the document’s overall structure and recommendation ladder. I
 
 ● Search (grep)
   │ "ALIGN-001|ALIGN-003|P0|validator exit|ambiguity|tier
-  │ taxonomy|HVR|verify_alignment_drift|sk-code-opencode|sk-doc" (.opencode/specs/02--system-spec-k
+  │ taxonomy|HVR|verify_alignment_drift|sk-code-skilled|sk-doc" (.opencode/specs/02--system-spec-k
   │ it/022-hybrid-rag-fusion/002-indexing-normalization/scratch/agent-output-iter-001-codex-A3.md)
   └ 5 lines found
 
@@ -162,7 +162,7 @@ I found a real synthesis risk: one standards agent says the reviewed TS files al
 
 ● Search (grep)
   │ "HEADER|MODULE|header style invariants|box-drawing|ASCII dashed module banners"
-  │ (.opencode/skills/sk-code-opencode/references/typescript/style_guide.md)
+  │ (.opencode/skills/sk-code-skilled/references/typescript/style_guide.md)
   └ 4 lines found
 
 ● Search (grep)

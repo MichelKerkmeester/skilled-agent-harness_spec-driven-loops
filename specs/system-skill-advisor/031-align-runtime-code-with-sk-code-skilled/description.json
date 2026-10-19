@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/031-align-runtime-code-with-sk-code-skilled",
+  "description": "Align runtime code with sk-code-skilled: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-skill-advisor)",
+  "keywords": [
+    "align",
+    "runtime",
+    "code",
+    "sk-code-skilled",
+    "section",
+    "comments",
+    "folder",
+    "depth",
+    "readmes",
+    "architecture",
+    "system-skill-advisor"
+  ],
+  "lastUpdated": "2026-09-30T22:06:51.595Z",
+  "specId": "031",
+  "folderSlug": "align-runtime-code-with-sk-code-skilled",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-09-26_23-06__skill-advisor-runtime-aligned-with-sk-code.md"
+  ]
+}

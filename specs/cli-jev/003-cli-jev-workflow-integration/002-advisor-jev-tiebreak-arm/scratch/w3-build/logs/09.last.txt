@@ -1,6 +1,6 @@
 `columnLines` and `verdictLine` now format a `summarizeColumn` summary for stdout, and the keep and four-outcome cases assert those lines.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript implement). ARTIFACT: sk-code → javascript quality standards.
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript implement). ARTIFACT: sk-code → javascript quality standards.
 REPO RULES: prevent-overengineering.md
 
 HANDBACK

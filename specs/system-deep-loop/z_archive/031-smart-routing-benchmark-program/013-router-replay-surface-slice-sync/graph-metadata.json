@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "router-replay surface slice sync",
       "skill-benchmark surface slicing",
-      "code-webflow code-opencode surface prefix",
+      "code-webflow code-skilled surface prefix",
       "router replay surface slice plan",
       "surface slice sync plan",
       "code surface router replay plan",
@@ -32,7 +32,7 @@
       "skill-benchmark",
       "slicing",
       "code-webflow",
-      "code-opencode",
+      "code-skilled",
       "prefix",
       "router",
       "replay",

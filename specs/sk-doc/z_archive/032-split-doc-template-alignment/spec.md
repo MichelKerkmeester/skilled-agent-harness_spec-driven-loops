@@ -1,9 +1,9 @@
 ---
 title: "Feature Specification: sk-code Split-Doc Template Alignment"
-description: "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover."
+description: "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-skilled,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover."
 trigger_phrases:
   - "sk-code split doc template alignment"
-  - "conform code-opencode references to create-skill template"
+  - "conform code-skilled references to create-skill template"
   - "sk-code reference asset snake_case frontmatter"
 importance_tier: "important"
 contextType: "implementation"
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-Oversized sk-code reference/asset docs were split by a mechanical line-slicer into ~160 topic parts (code-opencode 65, code-webflow 95, code-quality 3). Continuation files kept only a generated header: hyphenated filenames (fail snake_case), dropped `trigger_phrases`, and open straight at an inherited section number with no OVERVIEW/intro — diverging from the canonical create-skill asset/reference templates.
+Oversized sk-code reference/asset docs were split by a mechanical line-slicer into ~160 topic parts (code-skilled 65, code-webflow 95, code-quality 3). Continuation files kept only a generated header: hyphenated filenames (fail snake_case), dropped `trigger_phrases`, and open straight at an inherited section number with no OVERVIEW/intro — diverging from the canonical create-skill asset/reference templates.
 
 **Purpose:** conform every split file to the template (frontmatter, snake_case name, OVERVIEW structure) so the sk-code surfaces pass the resource-doc contract, extending 027's underscore convention to the reference/asset files it did not rename.
 <!-- /ANCHOR:problem -->
@@ -54,7 +54,7 @@ Oversized sk-code reference/asset docs were split by a mechanical line-slicer in
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-**In scope:** the reference/asset `.md` split files under `.opencode/skills/sk-code/{code-opencode,code-webflow,code-quality}/{references,assets}/` — rename hyphen→underscore (snake_case), add the 5-field frontmatter + 4-part version, add H1+intro+`## 1. OVERVIEW`, renumber content sections, and update every in-hub reference to each renamed file.
+**In scope:** the reference/asset `.md` split files under `.opencode/skills/sk-code/{code-skilled,code-webflow,code-quality}/{references,assets}/` — rename hyphen→underscore (snake_case), add the 5-field frontmatter + 4-part version, add H1+intro+`## 1. OVERVIEW`, renumber content sections, and update every in-hub reference to each renamed file.
 
 **In scope — 2026-08-19 increment:** the 10 hand-authored reference/asset files under `.opencode/skills/sk-code/sk-code-mobile-cli/{references,assets}/` (a surface created after this packet's original run). Same OVERVIEW + frontmatter conformance, **no renames** — these files are hand-authored and correctly kebab-case (unlike the mechanically-sliced snake_case files above), so the rename leg does not apply. Cross-file `§N` references were bumped +1 to track the OVERVIEW shift. See the implementation-summary increment.
 
@@ -80,7 +80,7 @@ Oversized sk-code reference/asset docs were split by a mechanical line-slicer in
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- `package_skill.py --check` code-quality: 0 resource-doc warnings; code-opencode/code-webflow split-file warnings resolved (verified via `validate_document.py`/scoped script — the pre-existing SKILL.md header FAIL is out of scope).
+- `package_skill.py --check` code-quality: 0 resource-doc warnings; code-skilled/code-webflow split-file warnings resolved (verified via `validate_document.py`/scoped script — the pre-existing SKILL.md header FAIL is out of scope).
 - `validate_document.py` 0 issues on every conformed file.
 - Zero broken links to renamed files across sk-code.
 - Execution by GPT-5.6-sol-fast agents, Sonnet-verified per batch.

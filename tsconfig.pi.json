@@ -10,6 +10,7 @@
     "preserveSymlinks": true
   },
   "include": [
+    ".pi/extensions/session-relaunch.ts",
     ".pi/extensions/spec-gate-classify.ts",
     ".pi/extensions/spec-gate-enforce.ts",
     ".pi/types/pi-coding-agent.d.ts",

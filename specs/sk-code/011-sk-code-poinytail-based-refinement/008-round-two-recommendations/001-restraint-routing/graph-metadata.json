@@ -54,7 +54,7 @@
       ".skilled/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
       ".skilled/commands/doctor/scripts/tests/parent-skill-check-root-router.test.cjs",
       ".skilled/skills/system-skill-advisor/runtime/tests/parent-skill-check-fixtures.vitest.ts",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh"
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
     ],
     "entities": [
       {
@@ -162,7 +162,7 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "At stage two, requests that ask for restraint reach no sk-code mode",
     "created_at": "2026-10-10T06:56:28Z",
-    "last_save_at": "2026-10-11T05:17:04.035Z",
+    "last_save_at": "2026-10-18T20:45:13.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:344addd270027ea67ef4e85e98c853a002273f909263be4591a7353548678ce9",
+    "source_fingerprint": "sha256:77d4064e20a646f2501af8d0dbc677eb03b32fe84b868d2e38deb74fdb239547",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "df6a3a6e3108023a2333c7ecb9d9907bee495d0dbe390c3334f1fa89ff0d91cd",
+      "spec.md": "2a76b143dae07637223362704cc2a375bd540299f8622dfc246a3355d1c1aa1e",
       "plan.md": "6da9859003290a877746430688261939594737f68cd692878f622f27b2d602bb",
-      "tasks.md": "e96e43c83661688646682bf5439e0595412475e82d693415ce625014ac0f69ad",
+      "tasks.md": "1d700b84a03f642af01eb76705b748875067b7f51e5a315030bb6b42a89a5f51",
       "implementation-summary.md": "7f7a7392faa835fd12db1cacbebca5173b2f76c1d61aa61fdc8c2e15e2d4c600"
     },
     "last_active_at": null

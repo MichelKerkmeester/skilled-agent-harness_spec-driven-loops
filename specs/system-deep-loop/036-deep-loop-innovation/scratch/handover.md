@@ -428,7 +428,7 @@ verify-against-code discipline that caught all 5 fabrications this session. 022 
 - **014 authority cutover — BLOCKED** by the validation-gate review. The epic crux; WS1 de-risks it.
 - **Remediation WS1 — landed on `origin/skilled/v4.0.0.0`:** 018, 021, 022/001-002, 024
   (`0c5c966015`), 025/002-004. **Autonomous-loop additions:** Step-0 033-manifest (`5f35a1ea27`),
-  **019** runtime-code-readmes (`edce8eb629`, 56 READMEs + 14 repairs), **020** sk-code-opencode-alignment
+  **019** runtime-code-readmes (`edce8eb629`, 56 READMEs + 14 repairs), **020** sk-code-skilled-alignment
   (`95823480a8`, 13 comment-only MODULE headers), **023** legacy-compat-event-vocabulary
   (`8a49bc4703`, 6 upcasters + real-capture fixtures, T001 all confirmed + 1 sub-claim refuted).
   **026** alignment coverage/seal/lane (`ed8eb5d4cf`+`5e078ce498`+`2cd3eec4d8`+`46e806286e`),

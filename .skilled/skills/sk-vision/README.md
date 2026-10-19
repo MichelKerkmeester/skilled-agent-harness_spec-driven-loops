@@ -7,7 +7,7 @@ trigger_phrases:
   - "mockup"
   - "error.png"
   - "local vision"
-version: 0.3.5.0
+version: 0.3.6.0
 ---
 
 # sk-vision
@@ -142,7 +142,7 @@ Reach for `sk-vision` when a text-only model needs to read an image the user att
 
 | Skill | Relationship |
 |-------|--------------|
-| `sk-code` (`sk-code-opencode`) | Builds and verifies the `vision-runtime` package and the host adapters |
+| `sk-code` (`sk-code-skilled`) | Builds and verifies the `vision-runtime` package and the host adapters |
 | `sk-doc` / `sk-create-skill` | Own this SKILL.md and README shape and the packaging/validation gate |
 
 ---

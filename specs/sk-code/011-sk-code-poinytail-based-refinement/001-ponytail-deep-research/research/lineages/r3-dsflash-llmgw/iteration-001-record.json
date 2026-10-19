@@ -35,7 +35,7 @@
     ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/README.md",
     ".skilled/skills/sk-code/sk-code-webflow/assets/patterns/wait-patterns.js",
     ".skilled/skills/sk-code/shared/assets/patterns/wait-patterns.js",
-    ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs",
+    ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs",
     ".skilled/skills/sk-code/leaf-manifest.json",
     "specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/steer.md"
   ],

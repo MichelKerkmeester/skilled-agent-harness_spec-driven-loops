@@ -277,7 +277,7 @@ Nodes: 412 | Edges: 627 | Skills: 9
 - system-spec-kit: 160 nodes
 - mcp-chrome-devtools: 19 nodes
 - sk-code-full-stack: 62 nodes
-- sk-code-opencode: 35 nodes
+- sk-code-skilled: 35 nodes
 - workflows-code--web-dev: 44 nodes
 - sk-doc: 36 nodes
 - sk-git: 21 nodes
@@ -1425,7 +1425,7 @@ trigger_phrases:
   - "swiftui patterns"
   - "a comprehensive guide to swiftui view composition, state management, navigation patterns, custom modifiers, and modern ios 17+ swiftui features for building production-ready ios applications."
   - "a comprehensive guide to testing swift and swiftui applications including xctest fundamentals, unit testing viewmodels, ui testing with xcuitest, mocking and stubbing patterns, test doubles, and snapshot testing."
-  - "sk-code-opencode"
+  - "sk-code-skilled"
   - "opencode"
   - "multi-language code standards for opencode system code (javascript, typescript, python, shell, json/jsonc) with language detection routing, universal patterns and quality checklists"
   - "code standards - opencode system code"
@@ -1755,7 +1755,7 @@ trigger_phrases:
   - "references/memory/memory_system.md"
   - "references/validation/validation_rules.md"
   - "references/validation/five-checks.md"
-  - "../sk-code-opencode/skill.md"
+  - "../sk-code-skilled/skill.md"
   - "../sk-doc/skill.md"
   - "level_specifications.md"
   - "template_guide.md"

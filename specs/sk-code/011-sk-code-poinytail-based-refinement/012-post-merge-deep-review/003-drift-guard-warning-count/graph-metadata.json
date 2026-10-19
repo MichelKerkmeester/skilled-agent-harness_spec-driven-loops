@@ -40,11 +40,11 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
-      ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
-      ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
-      ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md",
-      ".hermes/skills/sk-code-opencode/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md",
+      ".hermes/skills/sk-code-skilled/SKILL.md",
       "scripts/README.md"
     ],
     "entities": [
@@ -81,25 +81,25 @@
       {
         "name": "run-all-drift-guards.sh",
         "kind": "script",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/scripts/README.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/SKILL.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
         "name": "v1.2.2.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.2.2.0.md",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/changelog/v1.2.2.0.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`run-all-drift-guards.sh` runs the alignment leg without `--fail-on-warn`",
     "created_at": "2026-10-10T20:17:48Z",
-    "last_save_at": "2026-10-11T05:17:08.819Z",
+    "last_save_at": "2026-10-18T20:45:17.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3beb27123e2e5a2223c62e935758aee183f7f777fe23a9f89536193f0ac76ec9",
+    "source_fingerprint": "sha256:c7a15f5d49937468b25576e8e1933c7b44f678d00b6c7db042a847d353914230",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f11de18a8928e507312502b343efe734ff617223b1ab5a72abd32c4e153ad04",
+      "spec.md": "6ba59a07386ca66bc6b862a48d4cca4b3ef950504be918e5bb0370731eafacdd",
       "plan.md": "a5dc57010bcae5aba470d0cf1da288c4549a087dd49c832ce4a2f0eb91264e19",
       "tasks.md": "b82f9a01ca543d03632926f7d3f55696e84e0414c465b55ef5c4e09470273d2c",
-      "implementation-summary.md": "3e9b759734f513a78fbabb9c92e51761a070cd06c4cf3071a2bec86ac2cfdc53"
+      "implementation-summary.md": "dd9eef4d4c9f6e9d916aedf27520274ce0949755749894bc221b279f21f521b1"
     },
     "last_active_at": null
   }

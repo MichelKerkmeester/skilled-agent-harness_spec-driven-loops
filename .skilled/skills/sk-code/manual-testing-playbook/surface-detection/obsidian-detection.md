@@ -1,7 +1,7 @@
 ---
 title: "SD-004: OBSIDIAN Surface Detection"
 description: "Verify that a Note Database plugin prompt routes to the OBSIDIAN surface and loads the expected shared and plugin references."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # SD-004: OBSIDIAN Surface Detection
@@ -32,9 +32,9 @@ Rename the table cell classes in src/views/DatabaseView.ts of the Note Database 
 - The three `DEFAULT_RESOURCE` files in `ROUTER.md:320-324`.
 - `sk-code-obsidian/references/db-class-naming.md`, from the `OBSIDIAN_PLUGIN` map in `ROUTER.md:555-559`.
 
-**Expected NOT loaded**: Any `sk-code-webflow/references/*` or `sk-code-opencode/references/*` file.
+**Expected NOT loaded**: Any `sk-code-webflow/references/*` or `sk-code-skilled/references/*` file.
 
-**Desired user-visible outcome**: The prompt resolves to the Obsidian surface and loads the shared routing references with the plugin's class-naming guidance. The route does not load Webflow or OpenCode surface references.
+**Desired user-visible outcome**: The prompt resolves to the Obsidian surface and loads the shared routing references with the plugin's class-naming guidance. The route does not load Webflow or Skilled surface references.
 
 ---
 
@@ -65,12 +65,12 @@ Rename the table cell classes in src/views/DatabaseView.ts of the Note Database 
 | 1 | Advisor output selects `sk-code` with a score of at least 0.80. |
 | 2 | Compiled output selects `sk-code-obsidian` with `route` and `single`. |
 | 2 | The expected references are the three `DEFAULT_RESOURCE` files plus `sk-code-obsidian/references/db-class-naming.md`. |
-| 2 | No `sk-code-webflow/references/*` or `sk-code-opencode/references/*` path appears. |
+| 2 | No `sk-code-webflow/references/*` or `sk-code-skilled/references/*` path appears. |
 
 ### Pass/Fail Criteria
 
-- **PASS** iff the advisor selects `sk-code` at 0.80 or higher and the compiled route selects `sk-code-obsidian` with action `route` and selection kind `single`. The expected references appear without Webflow or OpenCode surface references.
-- **FAIL** iff the advisor score is below 0.80, the compiled route selects another target, or a Webflow or OpenCode surface reference appears.
+- **PASS** iff the advisor selects `sk-code` at 0.80 or higher and the compiled route selects `sk-code-obsidian` with action `route` and selection kind `single`. The expected references appear without Webflow or Skilled surface references.
+- **FAIL** iff the advisor score is below 0.80, the compiled route selects another target, or a Webflow or Skilled surface reference appears.
 
 **Evidence**: `/tmp/skc-SD004-advisor.txt` and `/tmp/skc-SD004-route.txt`.
 

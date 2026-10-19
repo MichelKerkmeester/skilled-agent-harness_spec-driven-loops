@@ -122,6 +122,7 @@ The orchestrator ran every suite, battery, probe and validator itself. DeepSeek 
 4. **The proof ran on one machine.** OpenCode 2 here lists no `opencode-go` provider, so the live v2 dispatch used `llmgateway/deepseek-v4.1-flash`. A machine with other providers is not covered.
 5. **Resolved by phase 012: sk-vision's automatic image inspection on OpenCode 2.** At closeout its `chat.message` hook did not run there. Phase 012 runs the same check through OpenCode 2's prompt hook. Phase 013 registers the `sk_vision_*` tools on OpenCode 2 too (`../013-sk-vision-v2-tools-and-loose-ends/implementation-summary.md`).
 6. **The CI workflow has not run yet.** The operator approved committing `.github/workflows/opencode-dual-version.yml` after the closeout. Its triggers cover pushes to `main` and `skilled/**` and pull requests into them, so a push of this branch alone does not run it, and no CI run backs this proof.
+7. **Main added a seventeenth plugin after the proof.** `session-relaunch.js` arrived with main as an OpenCode 1 factory only, so OpenCode 2 reported it failed when main was merged in. The merge gives it the shared dual export and a row in `tests/v2-registration.test.cjs`, which fails against main's version. After the merge the plugin suite passes 397 of 397 and both batteries exit 0, with all plugins active on OpenCode 2 (`scratch/main-merge/`). The 16-plugin counts above describe the tree the proof ran on.
 <!-- /ANCHOR:limitations -->
 
 ---

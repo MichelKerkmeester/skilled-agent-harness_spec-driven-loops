@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Read ADR-3 and ADR-6 from ../002-decisions-and-contract-freeze/decision-record.md
-- [x] T002 Route through sk-code-opencode (TypeScript) and sk-doc for the reference edits
+- [x] T002 Route through sk-code-skilled (TypeScript) and sk-doc for the reference edits
 <!-- /ANCHOR:phase-1 -->
 
 ---

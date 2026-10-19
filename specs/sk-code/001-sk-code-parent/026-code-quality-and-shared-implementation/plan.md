@@ -67,7 +67,7 @@ Docs-describe-reality plus additive-vocabulary implementation: bring each shared
 
 ### Key Components
 - **Shared navigation index**: `sk-code/shared/README.md` now maps `shared/references/` (routing, detection, lifecycle, workflow doctrine, checklists, and `universal/` standards) instead of holding placeholder text.
-- **Checklist label**: `code-quality/SKILL.md` and `code-quality/README.md` display `assets/checklists/`, the canonical label, with unchanged `../code-opencode/assets/checklists/` hrefs.
+- **Checklist label**: `code-quality/SKILL.md` and `code-quality/README.md` display `assets/checklists/`, the canonical label, with unchanged `../code-skilled/assets/checklists/` hrefs.
 - **Hook documentation**: `.opencode/hooks/README.md` describes the pre-commit hook's two gates (comment-hygiene + staged agent-mirror-sync) including fail-open; `code-quality/SKILL.md` notes the second gate.
 - **Evidence envelope**: `code-quality/SKILL.md` Section 3 owns the advisory `CODE_QUALITY_RESULT v1` block and its guardrail.
 - **Hook coverage**: the manual-testing playbook (`§15` TH-002, `§16` gap, `§17` index, totals, `§5` figure) and the new `09--tooling-and-hooks/comment-hygiene-hook.md` file with the deep-review consumption note.

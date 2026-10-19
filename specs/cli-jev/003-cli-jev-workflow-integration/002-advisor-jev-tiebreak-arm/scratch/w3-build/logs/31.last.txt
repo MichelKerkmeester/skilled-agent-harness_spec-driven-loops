@@ -1,6 +1,6 @@
 The packet goal is set. A three-way split now counts as three flips, so the flip rate can block a keep.
 
-SKILL ROUTING: sk-code compiled route → sk-code-opencode implement. REPO RULES: prevent-overengineering.md.
+SKILL ROUTING: sk-code compiled route → sk-code-skilled implement. REPO RULES: prevent-overengineering.md.
 
 STATUS: DONE
 FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+2/-1)

@@ -11,14 +11,14 @@
       "status": "active",
       "dimension": "correctness",
       "title": "Rust reference never enters the required numbered OVERVIEW",
-      "file": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide/interop_errors_and_parity.md",
+      "file": ".opencode/skills/sk-code/code-skilled/references/rust/style_guide/interop_errors_and_parity.md",
       "line": 19,
       "firstSeen": 1,
       "lastSeen": 4,
       "content_hash": "827c2d4ba5ff65895863cabd349e8f789a544946c9355d090f94a48ada5ff1ed",
       "scopeProof": "A complete 163-file structure matrix found one missing OVERVIEW wrapper.",
       "affectedSurfaceHints": [
-        "code-opencode Rust references",
+        "code-skilled Rust references",
         "create-skill reference contract",
         "document validator"
       ]

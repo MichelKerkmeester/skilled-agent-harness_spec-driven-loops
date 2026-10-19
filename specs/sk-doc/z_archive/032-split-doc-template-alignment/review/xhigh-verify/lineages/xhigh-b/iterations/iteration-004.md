@@ -13,7 +13,7 @@ trigger_phrases: []
 
 ## Files Reviewed
 
-- `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-27`
+- `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-27`
 - `.opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175`
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md:44-83`
 - `.opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md:23-95`
@@ -32,13 +32,13 @@ None.
 
 ### P2 Findings
 
-- **F005**: Asset README trigger phrase is not lowercase - `.opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10` - The phrase `code README` contains uppercase characters even though the canonical asset template requires 3-8 lowercase multi-word trigger phrases. The other 162 target files satisfy the count/shape check, so this is a bounded routing-metadata polish issue rather than a systemic failure. [SOURCE: .opencode/skills/sk-code/code-opencode/assets/scripts/README.md:1-10] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175]
+- **F005**: Asset README trigger phrase is not lowercase - `.opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10` - The phrase `code README` contains uppercase characters even though the canonical asset template requires 3-8 lowercase multi-word trigger phrases. The other 162 target files satisfy the count/shape check, so this is a bounded routing-metadata polish issue rather than a systemic failure. [SOURCE: .opencode/skills/sk-code/code-skilled/assets/scripts/README.md:1-10] [SOURCE: .opencode/skills/sk-doc/create-skill/assets/skill/skill_asset_template.md:125-175]
 
 Finding class: instance-only
 
 Scope proof: parsed every target frontmatter block; all 163 have 3-8 trigger phrases and valid metadata enums, with exactly one uppercase phrase in one file.
 
-Affected surface hints: `code-opencode asset README`, `Skill Advisor trigger metadata`
+Affected surface hints: `code-skilled asset README`, `Skill Advisor trigger metadata`
 
 ## Traceability Checks
 
@@ -51,7 +51,7 @@ Affected surface hints: `code-opencode asset README`, `Skill Advisor trigger met
 
 ## Integration Evidence
 
-- Final corpus replay: 65 code-opencode + 95 code-webflow + 3 code-quality files; zero validator, metadata-presence, version, basename, H1, mode-section, numbering, or RELATED RESOURCES placement failures.
+- Final corpus replay: 65 code-skilled + 95 code-webflow + 3 code-quality files; zero validator, metadata-presence, version, basename, H1, mode-section, numbering, or RELATED RESOURCES placement failures.
 - Final semantic/ordering defects remain exactly F001 and F002; routing metadata adds only F005.
 - Final link replay remains 328 Markdown files, 583 checked relative Markdown links, and the same two documented hub-wide artifacts supporting F003.
 - Scoped Git status for target surfaces and canonical packet docs is empty, confirming the detached review did not mutate the target.

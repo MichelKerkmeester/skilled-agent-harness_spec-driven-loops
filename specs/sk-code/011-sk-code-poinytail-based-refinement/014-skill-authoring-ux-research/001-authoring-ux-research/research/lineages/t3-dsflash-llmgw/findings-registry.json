@@ -105,7 +105,7 @@
       "addedAtIteration": 10,
       "sources": [
         ".skilled/commands/doctor/assets/doctor-parent-skill.yaml:5",
-        ".skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:1-33"
+        ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1-33"
       ]
     },
     {

@@ -13,7 +13,7 @@ version: 1.14.0.19
 
 ## 1. OVERVIEW
 
-Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-opencode, sk-code-quality, universal code-quality-standards). Output is a citation-complete deviation inventory feeding a remediation packet. No edits. No auditing sk-code or other skills' code.
+Read-only, evidence-based audit of `.opencode/skills/system-spec-kit/shared/**` and `.opencode/skills/system-spec-kit/runtime/**` (excluding node_modules/ and dist/) against this repo's code standards (sk-code-skilled, sk-code-quality, universal code-quality-standards). Output is a citation-complete deviation inventory feeding a remediation packet. No edits. No auditing sk-code or other skills' code.
 
 ## 2. TOPIC
 

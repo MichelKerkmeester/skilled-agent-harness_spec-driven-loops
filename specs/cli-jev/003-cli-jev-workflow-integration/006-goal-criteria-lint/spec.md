@@ -89,7 +89,7 @@ Give rules 4 and 5 a measured, advisory lint whose precision and recall are know
 - A walker that skips `z_archive` and every path with a `scratch` segment, and prints the scratch count apart.
 - A scorer that joins the labels to the lint's output, prints per-rule precision, recall and F1, the labeled violation rate with a Wilson 95% interval and a stale-label count, and prints the stop line when the rate is under 0.05. Its tests prove each output on synthetic fixture labels, because the real labels come after the gate.
 - About 100 criterion lines, stratified and drawn with a recorded seed, with their label fields left empty. The phase stops at this label gate (parent D4), so the operator's labeling under the adopted rubric follows it and is not part of this phase's completion.
-- sk-create-goal's `SKILL.md`, `README.md`, `scripts/README.md`, changelog and manual testing playbook plus an sk-doc hub feature catalog entry, each updated through sk-doc so the skill's docs match the new scripts (parent D6). Code follows sk-code's OpenCode route (`sk-code/sk-code-opencode`).
+- sk-create-goal's `SKILL.md`, `README.md`, `scripts/README.md`, changelog and manual testing playbook plus an sk-doc hub feature catalog entry, each updated through sk-doc so the skill's docs match the new scripts (parent D6). Code follows sk-code's OpenCode route (`sk-code/sk-code-skilled`).
 - After the label gate only: a model arm behind `--deem` or `--jev`, when the stop rule clears and the promotion conditions below hold.
 
 ### Out of Scope

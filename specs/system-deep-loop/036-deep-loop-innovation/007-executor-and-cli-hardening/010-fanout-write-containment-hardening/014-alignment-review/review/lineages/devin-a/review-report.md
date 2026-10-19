@@ -27,7 +27,7 @@ CONDITIONAL verdict routes to `/speckit:plan` for remediation of the five P1 fin
 | F008 | P1 | traceability | Hub feature catalog claims non-existent `alignment` workflowMode and seven-mode registry (actual: five modes, two improvement lanes) | `.opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md:15,31,35` vs `mode-registry.json` | 4 / 4 |
 | F011 | P1 | correctness | deep-review-confirm.yaml native fan-out branch dispatches the LEAF deep-review agent as a full-loop executor | `.opencode/commands/deep/assets/deep-review-confirm.yaml:208-221` vs `deep-review-auto.yaml:224-227`, `.opencode/agents/deep-review.md:30,50-60`, `deep-review/SKILL.md:51` | 5 / 5 |
 | F001 | P2 | maintainability | sk-code hub SKILL.md version (4.2.2.0) vs mode-registry.json/hub-router.json (4.1.0.1) | `.opencode/skills/sk-code/SKILL.md:5`; `mode-registry.json:3`; `hub-router.json:3` | 1 / 1 |
-| F002 | P2 | maintainability | sk-code-opencode surface packet names review/quality modes by bare aliases | `.opencode/skills/sk-code/sk-code-opencode/SKILL.md:24-25` | 1 / 1 |
+| F002 | P2 | maintainability | sk-code-skilled surface packet names review/quality modes by bare aliases | `.opencode/skills/sk-code/sk-code-skilled/SKILL.md:24-25` | 1 / 1 |
 | F004 | P2 | maintainability | Duplicated banner comment block in both deep-review YAMLs | `.opencode/commands/deep/assets/deep-review-auto.yaml:1-5`, `deep-review-confirm.yaml:1-5` | 2 / 2 |
 | F007 | P2 | traceability | .pi mirrors drop webfetch/external_directory with declared unmapping comments | `.pi/agents/deep-research.md:8`; `.pi/agents/deep-improvement.md:8` | 3 / 3 |
 | F009 | P2 | maintainability | system-deep-loop SKILL.md contradicts itself on improvement-lane count (2 vs 3) | `.opencode/skills/system-deep-loop/SKILL.md:27,57-60,120,161` | 4 / 4 |
@@ -40,7 +40,7 @@ CONDITIONAL verdict routes to `/speckit:plan` for remediation of the five P1 fin
 - **WS-3 — orchestrate delegation surface (F006).** Grant the task/Agent tool in `.opencode/agents/orchestrate.md` and `.pi/agents/orchestrate.md` frontmatter (or document the runtime default), matching `.claude/agents/orchestrate.md`. Verification: frontmatter parity diff across four runtimes.
 - **WS-4 — Catalog and lane-count truth (F008, F009, F010).** Rewrite `feature-catalog.md` to the five-mode registry (drop `alignment`, two improvement lanes); unify SKILL.md lane wording on two lanes; add the cli-hermes leaf set to `cli-external-orchestration/ROUTER.md` or document the deliberate exclusion. Verification: programmatic registry read vs catalog claims; ROUTER.md mode-key grep.
 - **WS-5 — Confirm native fan-out rewire (F011).** Replace the raw LEAF dispatch in `deep-review-confirm.yaml` `step_fanout_spawn_native` with the command-surface single-lineage invocation (`config.fanout_lineage_artifact_dir`), matching the auto path. Verification: confirm-mode fan-out with a native executor produces a compliant lineage dir.
-- **WS-6 — Housekeeping advisories (F001, F002, F004, F007).** Version-field parity for sk-code hub; canonical workflowMode keys in sk-code-opencode; remove duplicated YAML banners; document pi webfetch drop in the canonical deep-research agent.
+- **WS-6 — Housekeeping advisories (F001, F002, F004, F007).** Version-field parity for sk-code hub; canonical workflowMode keys in sk-code-skilled; remove duplicated YAML banners; document pi webfetch drop in the canonical deep-research agent.
 
 ## 5. Spec Seed
 

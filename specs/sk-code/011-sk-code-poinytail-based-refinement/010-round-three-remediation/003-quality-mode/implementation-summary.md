@@ -52,7 +52,7 @@ The quality mode now tells you which comment-hygiene hooks actually run. Its gat
 
 ### Phase 3: quality-mode
 
-`SKILL.md` used to name two legacy files as the live gates, `scripts/hooks/claude-posttooluse.sh` and `.skilled/hooks/git/pre-commit`. Neither is installed. The gate table now names `.skilled/scripts/git-hooks/pre-commit` (installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`) and `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` (wired for `Write` and `Edit` in `.claude/settings.json`). The two legacy files stay listed and are marked as helpers kept for direct tests, registered in no runtime. Thirteen lines that still said `code-webflow`, `code-opencode`, `code-review` or `code-quality` now say the `sk-` names.
+`SKILL.md` used to name two legacy files as the live gates, `scripts/hooks/claude-posttooluse.sh` and `.skilled/hooks/git/pre-commit`. Neither is installed. The gate table now names `.skilled/scripts/git-hooks/pre-commit` (installed through `core.hooksPath` by `.skilled/scripts/install-git-hooks.sh`) and `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs` (wired for `Write` and `Edit` in `.claude/settings.json`). The two legacy files stay listed and are marked as helpers kept for direct tests, registered in no runtime. Thirteen lines that still said `code-webflow`, `code-skilled`, `code-review` or `code-quality` now say the `sk-` names.
 
 The README no longer sends spec folders to the OpenCode checklist folder, which holds no spec-folder checklist. It points at `system-spec-kit` in three places and links the real checklist. Its two checker commands run directly, because both are Python programs with a `.sh` name that fail under `bash`, and the staleness command now passes `--all`, since the no-argument form checked nothing. The README title and H1 read `sk-code-quality`. Both files and the new changelog read 1.1.1.0.
 
@@ -122,7 +122,7 @@ The "before" state was not captured by the builder. This pass saved the pre-edit
 
 1. **Hermes copy regeneration is deferred to the orchestrator.** `.hermes/skills/sk-code-quality/SKILL.md` still mirrors the old text until the generator runs in write mode once after every child is built.
 2. **The shared standard's hook lines belong to child 001.** `code-quality-standards.md` lines 138 and 139 still name the legacy hooks.
-3. **The two-surface lists and the Obsidian gap are reported, not changed.** `SKILL.md` lines 15, 36, 47, 182, 188 and 280 and README lines 57 and 106 list `sk-code-webflow` / `sk-code-opencode` without `sk-code-obsidian` (decision D2). A claim checker from child 005 may lint that phrasing.
+3. **The two-surface lists and the Obsidian gap are reported, not changed.** `SKILL.md` lines 15, 36, 47, 182, 188 and 280 and README lines 57 and 106 list `sk-code-webflow` / `sk-code-skilled` without `sk-code-obsidian` (decision D2). A claim checker from child 005 may lint that phrasing.
 4. **`schema_version: code-quality/v1` and the keyword comment are kept** (decision D5).
 5. **Before baselines were reconstructed.** The builder saved none, so the pre-edit files come from `git show HEAD:` and the script, validator and routing baselines are the planning-time values in `plan.md` section 5. The scripts are unchanged, so their test output cannot have moved.
 <!-- /ANCHOR:limitations -->

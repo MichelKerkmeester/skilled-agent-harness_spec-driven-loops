@@ -15,9 +15,9 @@ Two inputs: a computed `D3-ex-default` diagnostic (waste minus the skill's alway
 | deep-ai-council | 1 (lean) | 9 | 0 | gold-align |
 | code-webflow | 1 (lean) | 1 | 0 | gold-align |
 | deep-improvement | 1 (lean) | 12 | 3 | gold-align + investigate 3 genuine |
-| code-opencode | 2 (lean) | 45 | 31 | **genuine over-routing → intent-gate (router change)** |
+| code-skilled | 2 (lean) | 45 | 31 | **genuine over-routing → intent-gate (router change)** |
 
-Every flagged skill has a **lean 1–2 file DEFAULT tier**, so `gold=declared-designed-load` is honest here (not the tautology risk code-review's 5-file tier carried). The audit's pre-label of code-opencode as "over-routing only" is confirmed by computation, not guess: 31/45 waste survives DEFAULT-exclusion — a real router-precision issue, not a gold artifact.
+Every flagged skill has a **lean 1–2 file DEFAULT tier**, so `gold=declared-designed-load` is honest here (not the tautology risk code-review's 5-file tier carried). The audit's pre-label of code-skilled as "over-routing only" is confirmed by computation, not guess: 31/45 waste survives DEFAULT-exclusion — a real router-precision issue, not a gold artifact.
 
 ## Orphan classification — routable vs exempt vs prune (25 orphans)
 
@@ -36,7 +36,7 @@ Every flagged skill has a **lean 1–2 file DEFAULT tier**, so `gold=declared-de
 ## Consequence for the plan
 - **~33% of orphans are NOT wired** — they go on the allowlist. This is why the D5 CI gate must be `orphans ⊆ allowlist`, never "zero orphans."
 - The deep-* skills + code-webflow are gold-align (artifact) — low-risk, honest (lean DEFAULT tier).
-- **code-opencode is the one genuine over-router** — needs a router (intent-gate) change, handled separately from the orphan/gold work.
+- **code-skilled is the one genuine over-router** — needs a router (intent-gate) change, handled separately from the orphan/gold work.
 - Phase 1 hand-sweeps deep-improvement (the ROUTABLE-9 + EXEMPT-7 + 3-genuine mix — the hardest case) with independent sign-off before any optimizer is generalized.
 
 *Classification was a GPT first-pass over read-only file contents; final per-file judgment is applied during the Phase-1 hand-sweep with an independent reviewer.*

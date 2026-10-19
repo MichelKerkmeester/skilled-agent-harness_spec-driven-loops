@@ -48,14 +48,14 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 | ID | Category | Critical | Expected surface/mode | Compiled action / targets | Legacy surface / intents | Compiled==Legacy | Verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `SD-001` | Surface Detection | Yes | WEBFLOW | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | PASS |
-| `SD-002` | Surface Detection | Yes | OPENCODE (TYPESCRIPT) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | PASS |
+| `SD-002` | Surface Detection | Yes | SKILLED (TYPESCRIPT) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | PASS |
 | `SD-003` | Surface Detection | Yes | UNKNOWN | defer / [] | UNKNOWN / [] | MATCH | PASS |
-| `LS-001` | Language Sub-Detection | No | OPENCODE (TYPESCRIPT) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | PASS |
-| `LS-002` | Language Sub-Detection | No | OPENCODE (PYTHON) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | PASS |
-| `LS-003` | Language Sub-Detection | No | OPENCODE (SHELL) | route / [code-opencode, quality] | OPENCODE / [code-opencode, quality] | MATCH | PASS |
-| `LS-004` | Language Sub-Detection | No | OPENCODE (CONFIG) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | PASS |
-| `RD-001` | Routing Disambiguation | No | OPENCODE | route / [code-opencode, code-webflow] | OPENCODE / [code-opencode, code-webflow] | MATCH | PASS |
-| `RD-002` | Routing Disambiguation | Yes | -- | route / [code-opencode, code-review, code-webflow, quality] | OPENCODE / [code-opencode, code-review, code-webflow, quality] | MATCH | SKIP |
+| `LS-001` | Language Sub-Detection | No | SKILLED (TYPESCRIPT) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | PASS |
+| `LS-002` | Language Sub-Detection | No | SKILLED (PYTHON) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | PASS |
+| `LS-003` | Language Sub-Detection | No | SKILLED (SHELL) | route / [code-skilled, quality] | SKILLED / [code-skilled, quality] | MATCH | PASS |
+| `LS-004` | Language Sub-Detection | No | SKILLED (CONFIG) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | PASS |
+| `RD-001` | Routing Disambiguation | No | SKILLED | route / [code-skilled, code-webflow] | SKILLED / [code-skilled, code-webflow] | MATCH | PASS |
+| `RD-002` | Routing Disambiguation | Yes | -- | route / [code-skilled, code-review, code-webflow, quality] | SKILLED / [code-skilled, code-review, code-webflow, quality] | MATCH | SKIP |
 | `SA-001` | Skill Advisor Integration | Yes | -- | -- | -- | -- | SKIP |
 | `MR-001` | Motion.dev And Animation Regression | Yes | -- | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | SKIP |
 | `MR-002` | Motion.dev And Animation Regression | Yes | -- | route / [code-webflow] | UNKNOWN / [code-webflow] | MATCH | SKIP |
@@ -66,17 +66,17 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 | `CB-003` | Cross-Browser And Performance Gates | Yes | -- | defer / [] | UNKNOWN / [] | MATCH | SKIP |
 | `CS-001` | Cross-Stack Routing | Yes | WEBFLOW | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | PASS |
 | `CS-002` | Cross-Stack Routing | Yes | UNKNOWN | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | **FAIL** |
-| `CS-003` | Cross-Stack Routing | Yes | OPENCODE | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | PASS |
+| `CS-003` | Cross-Stack Routing | Yes | SKILLED | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | PASS |
 | `CS-004` | Cross-Stack Routing | No | UNKNOWN | route / [code-webflow] | UNKNOWN / [code-webflow] | MATCH | PASS |
 | `CS-005` | Cross-Stack Routing | No | UNKNOWN | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | **FAIL** |
 | `CS-006` | Cross-Stack Routing | No | WEBFLOW | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | PASS |
 | `CS-007` | Cross-Stack Routing | No | WEBFLOW | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | PASS |
-| `DR-001` | Design Restraint | No | OPENCODE (TYPESCRIPT) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | SKIP |
-| `DR-002` | Design Restraint | No | OPENCODE | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | SKIP |
-| `DR-003` | Design Restraint | No | OPENCODE (TYPESCRIPT) | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | SKIP |
+| `DR-001` | Design Restraint | No | SKILLED (TYPESCRIPT) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | SKIP |
+| `DR-002` | Design Restraint | No | SKILLED | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | SKIP |
+| `DR-003` | Design Restraint | No | SKILLED (TYPESCRIPT) | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | SKIP |
 | `DR-004` | Design Restraint | No | -- | defer / [] | UNKNOWN / [] | MATCH | SKIP |
-| `TH-001` | Tooling And Hooks | No | -- | route / [code-opencode] | OPENCODE / [code-opencode] | MATCH | SKIP |
-| `TH-002` | Tooling And Hooks | No | -- | route / [quality] | OPENCODE / [quality] | MATCH | SKIP |
+| `TH-001` | Tooling And Hooks | No | -- | route / [code-skilled] | SKILLED / [code-skilled] | MATCH | SKIP |
+| `TH-002` | Tooling And Hooks | No | -- | route / [quality] | SKILLED / [quality] | MATCH | SKIP |
 | `post-edit-quality-router` | Plugins And Hooks | No | -- | -- | -- | -- | SKIP |
 | `CB-CR-001` | Compiled Routing (not yet in root index) | -- | WEBFLOW | route / [code-webflow] | WEBFLOW / [code-webflow] | MATCH | PASS |
 
@@ -88,13 +88,13 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 
 - **Feature file**: `surface-detection/webflow-detection.md`
 - **Prompt**: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible.`
-- **Notes**: WEBFLOW confirmed; 0 code-opencode/* leak (31 resources, 26 code-webflow/*, 0 code-opencode/*); compiled==legacy.
+- **Notes**: WEBFLOW confirmed; 0 code-skilled/* leak (31 resources, 26 code-webflow/*, 0 code-skilled/*); compiled==legacy.
 
 ### `SD-002` -- Surface Detection -- verdict: **PASS**
 
-- **Feature file**: `surface-detection/opencode-detection.md`
+- **Feature file**: `surface-detection/skilled-detection.md`
 - **Prompt**: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
-- **Notes**: OPENCODE+TYPESCRIPT confirmed; 0 code-webflow/* leak (11 resources, 7 code-opencode/*, 0 code-webflow/*); compiled==legacy. Note: per-feature-file prompt text differs from the root-table §7 prompt cell (same target file/intent, reworded) -- loader uses the per-feature version; both route identically.
+- **Notes**: SKILLED+TYPESCRIPT confirmed; 0 code-webflow/* leak (11 resources, 7 code-skilled/*, 0 code-webflow/*); compiled==legacy. Note: per-feature-file prompt text differs from the root-table §7 prompt cell (same target file/intent, reworded) -- loader uses the per-feature version; both route identically.
 
 ### `SD-003` -- Surface Detection -- verdict: **PASS**
 
@@ -104,39 +104,39 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 
 ### `LS-001` -- Language Sub-Detection -- verdict: **PASS**
 
-- **Feature file**: `language-sub-detection/opencode-typescript.md`
+- **Feature file**: `language-sub-detection/skilled-typescript.md`
 - **Prompt**: `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.`
-- **Notes**: OPENCODE/TYPESCRIPT; exactly typescript/* refs loaded, 0 python/shell/config leakage; compiled==legacy.
+- **Notes**: SKILLED/TYPESCRIPT; exactly typescript/* refs loaded, 0 python/shell/config leakage; compiled==legacy.
 
 ### `LS-002` -- Language Sub-Detection -- verdict: **PASS**
 
-- **Feature file**: `language-sub-detection/opencode-python.md`
+- **Feature file**: `language-sub-detection/skilled-python.md`
 - **Prompt**: `Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.`
-- **Notes**: OPENCODE/PYTHON; exactly python/* refs loaded, 0 cross-language leakage; compiled==legacy.
+- **Notes**: SKILLED/PYTHON; exactly python/* refs loaded, 0 cross-language leakage; compiled==legacy.
 
 ### `LS-003` -- Language Sub-Detection -- verdict: **PASS**
 
-- **Feature file**: `language-sub-detection/opencode-shell.md`
+- **Feature file**: `language-sub-detection/skilled-shell.md`
 - **Prompt**: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.`
-- **Notes**: OPENCODE/SHELL; exactly shell/* refs loaded, 0 cross-language leakage; compiled==legacy.
+- **Notes**: SKILLED/SHELL; exactly shell/* refs loaded, 0 cross-language leakage; compiled==legacy.
 
 ### `LS-004` -- Language Sub-Detection -- verdict: **PASS**
 
-- **Feature file**: `language-sub-detection/opencode-config.md`
+- **Feature file**: `language-sub-detection/skilled-config.md`
 - **Prompt**: `Add a derived.last_active_child_id field to the graph-metadata.json file with value "001-spec".`
-- **Notes**: OPENCODE/CONFIG; exactly config/* refs loaded, 0 cross-language leakage; compiled==legacy.
+- **Notes**: SKILLED/CONFIG; exactly config/* refs loaded, 0 cross-language leakage; compiled==legacy.
 
 ### `RD-001` -- Routing Disambiguation -- verdict: **PASS**
 
 - **Feature file**: `routing-disambiguation/mixed-marker-ambiguity.md`
 - **Prompt**: `Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
-- **Notes**: Outcome A (remediated 2026-05-04) confirmed: hub-router intent layer correctly flags BOTH code-webflow and code-opencode as tied targets (selectionKind=orderedBundle, deferReason=ambiguous-multi-axis) -- exactly the mixed-marker ambiguity this scenario tests -- while the downstream surface-resolution layer still applies the documented OPENCODE-wins precedence: surface=OPENCODE, 0 code-webflow/* in the final assembled resource set (14 resources, all code-opencode/javascript/*). compiled==legacy on both the 2-target intent layer and the resource layer. Root playbook table (section 9) still describes the pre-remediation Outcome-B-only contract; the per-feature file is authoritative and current.
+- **Notes**: Outcome A (remediated 2026-05-04) confirmed: hub-router intent layer correctly flags BOTH code-webflow and code-skilled as tied targets (selectionKind=orderedBundle, deferReason=ambiguous-multi-axis) -- exactly the mixed-marker ambiguity this scenario tests -- while the downstream surface-resolution layer still applies the documented SKILLED-wins precedence: surface=SKILLED, 0 code-webflow/* in the final assembled resource set (14 resources, all code-skilled/javascript/*). compiled==legacy on both the 2-target intent layer and the resource layer. Root playbook table (section 9) still describes the pre-remediation Outcome-B-only contract; the per-feature file is authoritative and current.
 
 ### `RD-002` -- Routing Disambiguation -- verdict: **SKIP**
 
 - **Feature file**: `routing-disambiguation/skcode-vs-skdoc.md`
 - **Prompt**: `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.`
-- **Notes**: Tests cross-skill advisor arbitration (does sk-doc outrank sk-code overall), not sk-code's intra-hub compiled router -- resolve.cjs/router-replay.cjs only adjudicate routing WITHIN sk-code once sk-code is already selected, so they cannot verify this scenario's actual pass criterion. Informational check: compiled==legacy, both return a 4-way near-tie (quality, code-review, code-webflow, code-opencode) for this weakly-keyed doc-edit prompt -- consistent with sk-code having no dominant internal-routing signal here, corroborating (not proving) that a different, stronger-signal skill should win the cross-skill vote. This exact prompt is SA-001's N1 negative control, whose battery run history (see SA-001) already documents 'N01 false-positive RESOLVED' as of 2026-05-04.
+- **Notes**: Tests cross-skill advisor arbitration (does sk-doc outrank sk-code overall), not sk-code's intra-hub compiled router -- resolve.cjs/router-replay.cjs only adjudicate routing WITHIN sk-code once sk-code is already selected, so they cannot verify this scenario's actual pass criterion. Informational check: compiled==legacy, both return a 4-way near-tie (quality, code-review, code-webflow, code-skilled) for this weakly-keyed doc-edit prompt -- consistent with sk-code having no dominant internal-routing signal here, corroborating (not proving) that a different, stronger-signal skill should win the cross-skill vote. This exact prompt is SA-001's N1 negative control, whose battery run history (see SA-001) already documents 'N01 false-positive RESOLVED' as of 2026-05-04.
 
 ### `SA-001` -- Skill Advisor Integration -- verdict: **SKIP**
 
@@ -200,9 +200,9 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 
 ### `CS-003` -- Cross-Stack Routing -- verdict: **PASS**
 
-- **Feature file**: `cross-stack-routing/opencode-plus-motion-dev.md`
+- **Feature file**: `cross-stack-routing/skilled-plus-motion-dev.md`
 - **Prompt**: `Before editing .opencode/skills/sk-doc/scripts/preview-server.ts for a Motion demo, how should sk-code route the request?`
-- **Notes**: OPENCODE confirmed; motion_dev supplementary refs (animation/quick-start, animation/integration-patterns) load alongside TypeScript standards; compiled==legacy.
+- **Notes**: SKILLED confirmed; motion_dev supplementary refs (animation/quick-start, animation/integration-patterns) load alongside TypeScript standards; compiled==legacy.
 
 ### `CS-004` -- Cross-Stack Routing -- verdict: **PASS**
 
@@ -232,19 +232,19 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 
 - **Feature file**: `design-restraint/design-restraint-ladder.md`
 - **Prompt**: `Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.`
-- **Notes**: Scenario's actual pass criterion is a GENERATED behavior (which Design Restraint Ladder rung the AI selects for a real implementation task), which requires a live sk-code agent invocation this headless routing sweep does not perform. The named routing PRECONDITION the scenario itself calls out ('surface OPENCODE emitted BEFORE any ladder reasoning') is independently confirmed: surface=OPENCODE, compiled==legacy, correct code-opencode/typescript/* refs load.
+- **Notes**: Scenario's actual pass criterion is a GENERATED behavior (which Design Restraint Ladder rung the AI selects for a real implementation task), which requires a live sk-code agent invocation this headless routing sweep does not perform. The named routing PRECONDITION the scenario itself calls out ('surface SKILLED emitted BEFORE any ladder reasoning') is independently confirmed: surface=SKILLED, compiled==legacy, correct code-skilled/typescript/* refs load.
 
 ### `DR-002` -- Design Restraint -- verdict: **SKIP**
 
 - **Feature file**: `design-restraint/implementer-anti-stall.md`
 - **Prompt**: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.`
-- **Notes**: Same class as DR-001: the pass criterion is a generated response shape (implements the requirement AND raises a scope-amendment note in one response, no stall), not a routing decision. Routing precondition confirmed: surface=OPENCODE, compiled==legacy.
+- **Notes**: Same class as DR-001: the pass criterion is a generated response shape (implements the requirement AND raises a scope-amendment note in one response, no stall), not a routing decision. Routing precondition confirmed: surface=SKILLED, compiled==legacy.
 
 ### `DR-003` -- Design Restraint -- verdict: **SKIP**
 
 - **Feature file**: `design-restraint/ceiling-comment-convention.md`
 - **Prompt**: `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
-- **Notes**: Same class as DR-001/002: the pass criterion is a generated `ceiling:` comment that must then pass check-comment-hygiene.sh -- both steps require live generation this sweep does not perform (and the hygiene checker itself is out of this routing-only method's scope). Routing precondition confirmed: surface=OPENCODE, sub-language TYPESCRIPT, compiled==legacy.
+- **Notes**: Same class as DR-001/002: the pass criterion is a generated `ceiling:` comment that must then pass check-comment-hygiene.sh -- both steps require live generation this sweep does not perform (and the hygiene checker itself is out of this routing-only method's scope). Routing precondition confirmed: surface=SKILLED, sub-language TYPESCRIPT, compiled==legacy.
 
 ### `DR-004` -- Design Restraint -- verdict: **SKIP**
 
@@ -256,7 +256,7 @@ Every scenario id, its expected routing (from the playbook), the compiled result
 
 - **Feature file**: `tooling-and-hooks/check-dist-staleness-hook.md`
 - **Prompt**: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.`
-- **Notes**: Scenario's own header states 'Expected detection: not applicable... not a routing decision' (claude-posttooluse.sh dist-staleness banner/exit-code contract). Its own per-feature file already documents a completed, dated result: 'Last validated: 2026-07-02 -- PASS' with full hook-path evidence -- cited here, not re-run (re-running would mutate a real tracked source file's mtime/content, out of this sweep's read-only scope even though the recipe is designed to restore it byte-exact). Informational routing check: action=route, targets=[code-opencode], compiled==legacy.
+- **Notes**: Scenario's own header states 'Expected detection: not applicable... not a routing decision' (claude-posttooluse.sh dist-staleness banner/exit-code contract). Its own per-feature file already documents a completed, dated result: 'Last validated: 2026-07-02 -- PASS' with full hook-path evidence -- cited here, not re-run (re-running would mutate a real tracked source file's mtime/content, out of this sweep's read-only scope even though the recipe is designed to restore it byte-exact). Informational routing check: action=route, targets=[code-skilled], compiled==legacy.
 
 ### `TH-002` -- Tooling And Hooks -- verdict: **SKIP**
 

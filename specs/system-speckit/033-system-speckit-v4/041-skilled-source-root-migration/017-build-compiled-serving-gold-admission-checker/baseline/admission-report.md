@@ -4,7 +4,7 @@
 |-----|--------|---------|------|-------|------------|-----|--------|---------|-----------------|
 | `cli-external-orchestration` | admitted | pass | 7 | 0 | 0 | 3 | 5/5 | 2/2 | `cli-codex`, `cli-cursor`, `cli-devin`, `cli-hermes`, `cli-pi` |
 | `mcp-tooling` | admitted | pass | 16 | 0 | 0 | 0 | 9/9 | 7/7 | `mcp-notion` |
-| `sk-code` | admitted | pass | 1 | 0 | 0 | 0 | 1/1 | 0/0 | `sk-code-mobile-cli`, `sk-code-obsidian`, `sk-code-opencode`, `sk-code-quality`, `sk-code-review` |
+| `sk-code` | admitted | pass | 1 | 0 | 0 | 0 | 1/1 | 0/0 | `sk-code-mobile-cli`, `sk-code-obsidian`, `sk-code-skilled`, `sk-code-quality`, `sk-code-review` |
 | `sk-doc` | admitted | drift | 22 | 1 | 1 | 2 | 13/14 | 9/10 | `sk-create-frontmatter`, `sk-create-repo-rule` |
 | `system-deep-loop` | admitted | drift | 18 | 2 | 0 | 0 | 16/18 | 0/0 | none |
 

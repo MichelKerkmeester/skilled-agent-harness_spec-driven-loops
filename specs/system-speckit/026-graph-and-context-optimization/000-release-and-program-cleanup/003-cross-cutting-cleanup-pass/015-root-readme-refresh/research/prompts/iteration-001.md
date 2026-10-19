@@ -19,7 +19,7 @@ Update the root `README.md` to reflect the current runtime state after this sess
 - `.opencode/skills/system-spec-kit/SKILL.md` (recently updated; tool counts there reflect current state)
 - `.opencode/skills/system-spec-kit/mcp_server/README.md` (recently updated mcp_server README; cross-link target)
 - Listing of `.opencode/agents/` and `.claude/agents/` to verify agent count
-- Listing of `.opencode/skills/` to verify skill count (currently 21 visible: README, cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-clickup, mcp-coco-index, mcp-code-mode, mcp-figma, sk-code-full-stack, sk-code-opencode, sk-code-review, sk-code-web, sk-deep-research, sk-deep-review, sk-doc, sk-git, sk-improve-agent, sk-improve-prompt, system-spec-kit)
+- Listing of `.opencode/skills/` to verify skill count (currently 21 visible: README, cli-claude-code, cli-codex, cli-gemini, cli-opencode, mcp-chrome-devtools, mcp-clickup, mcp-coco-index, mcp-code-mode, mcp-figma, sk-code-full-stack, sk-code-skilled, sk-code-review, sk-code-web, sk-deep-research, sk-deep-review, sk-doc, sk-git, sk-improve-agent, sk-improve-prompt, system-spec-kit)
 - Listing of `.opencode/commands/**/*.md` to verify command count
 
 ### Issues to fix

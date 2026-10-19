@@ -59,7 +59,7 @@ A check script beside its library, run by the drift-guard umbrella, with no test
 - **Library `assets/scripts/router_replay_lib.cjs`**: lines 1 to 726 of the recovered `router-replay.cjs`, with the CLI block at lines 727 to 741 removed, the banner rewritten and the exports reduced to `parseRouter`, `loadSurfaceRouter`, `registryPacketRoots` and `routeSkillResources`. The contract path at source line 200 becomes `path.resolve(__dirname, '..', '..', '..', '..', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs')`. That is the same four-level arithmetic the recovered file used, and it resolves to `.skilled/skills/sk-doc/...` from the new folder (checked in the Path Arithmetic section below).
 - **Leg 1a walk**: the hub machine router (`SKILL.md`), the surface router (`ROUTER.md` at the sk-code root, found by `loadSurfaceRouter`) and the hub's `hub-router.json` supply the routed paths. Each must exist under the hub root or a mode packet root (`registryPacketRoots`). The prose maps between `## 4. WEBFLOW MAP` and `## 7. VERIFICATION COMMANDS` must name only routed paths. A missing section anchor is a FAIL, never an empty scan.
 - **Leg 1b walk (replaces the retired walk)**: every `.md` under `references/` and `assets/` of each top-level folder of sk-code, including `shared/`. A doc counts as routed when the hub machine router, the surface router, or its own packet `SKILL.md` names it. The retired walk read `sk-code/references` and `sk-code/assets`, which do not exist, so it found zero docs. A walk that finds zero docs is a FAIL.
-- **Leg 2 surface list**: `['sk-code-webflow', 'sk-code-opencode']`. The retired list also named `sk-code-mobile-cli`, which is not in the tree. The leg keeps the retired rules, including the allowance for `sk-code-obsidian` as a surface packet.
+- **Leg 2 surface list**: `['sk-code-webflow', 'sk-code-skilled']`. The retired list also named `sk-code-mobile-cli`, which is not in the tree. The leg keeps the retired rules, including the allowance for `sk-code-obsidian` as a surface packet.
 - **Leg 3 route-gold**: candidates in order are `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json` and the non-archived path the retired suite used. When neither exists, the leg FAILS with both paths in the message. The retired suite returned early in that case, which passed silently.
 - **Umbrella `scripts/run-all-drift-guards.sh`**: a `ROUTER_SYNC` variable, a third `run_guard` line that calls `node "${ROUTER_SYNC}" --checks 1a,2,3,4`, and a final line `all 3 guards PASSED`. Gated (see Decision below).
 
@@ -93,7 +93,7 @@ Parent 007 goal decision D3 says to stop and report before wiring the guard into
 
 ### Path Arithmetic (verified before the build relies on it)
 
-From `.skilled/skills/sk-code/sk-code-opencode/assets/scripts`, four `..` steps reach `.skilled/skills`, and three reach `.skilled/skills/sk-code`. The builder confirms this with `node -e` on the final folder before writing the constants. The prototype used an environment variable in place of `__dirname`, which is the only deliberate difference from the final file.
+From `.skilled/skills/sk-code/sk-code-skilled/assets/scripts`, four `..` steps reach `.skilled/skills`, and three reach `.skilled/skills/sk-code`. The builder confirms this with `node -e` on the final folder before writing the constants. The prototype used an environment variable in place of `__dirname`, which is the only deliberate difference from the final file.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -112,7 +112,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **Leg-level runs.** `node <guard> --checks 1a,2,3,4` must exit 0 with four PASS lines. `node <guard>` must exit 1 with `FAIL check 1b` and nine orphan lines. `node <guard> --checks 9` must exit 2.
 - **Seeded-defect controls.** `negative-controls.sh` copies the tree, the guard and the sk-doc contract library into a `mktemp -d` folder, seeds one defect per control, and requires the expected FAIL line and exit status. It never edits the repository and never deletes anything. The default `GUARD_SRC_DIR` is the repository's `assets/scripts` folder.
 - **Umbrella.** The before-image is `scratch/before/umbrella.txt` (exit 0, `Errors: 0`, `Warnings: 247`, `all 2 guards PASSED`). After wiring, the run must still show `Errors: 0`, a warning count no higher than 247, and `all 3 guards PASSED`.
-- **Generated artifacts.** `generate-leaf-manifest.cjs --check` must fail before `--write` and pass after it. The manifest diff must show only the two new leaves plus digest and count lines. `sync-skills-hermes.cjs` must change only `.hermes/skills/sk-code-opencode/SKILL.md`, and `--check` must then print `PASS: 70 Hermes skill copies in sync`.
+- **Generated artifacts.** `generate-leaf-manifest.cjs --check` must fail before `--write` and pass after it. The manifest diff must show only the two new leaves plus digest and count lines. `sync-skills-hermes.cjs` must change only `.hermes/skills/sk-code-skilled/SKILL.md`, and `--check` must then print `PASS: 70 Hermes skill copies in sync`.
 - **READMEs.** `validate_document.py` prints `✅ VALID` and `Total issues: 0` for the three READMEs. The baseline check on 2026-10-10 passed all three.
 - **Gap.** The umbrella is the only place the guard runs. CI does not run the guard in this phase. The first guard in the umbrella reads git-tracked files only, so the new files are not scanned until they are staged.
 <!-- /ANCHOR:testing -->
@@ -136,7 +136,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- Tracked files: restore the umbrella script, `sk-code-opencode/SKILL.md`, the alignment reference, the two sk-code-opencode READMEs' touched sections, the benchmark README, `.skilled/skills/sk-code/leaf-manifest.json` and `.hermes/skills/sk-code-opencode/SKILL.md` from their `scratch/before/` copies. Use `git restore` on those paths, or copy the before-images back.
+- Tracked files: restore the umbrella script, `sk-code-skilled/SKILL.md`, the alignment reference, the two sk-code-skilled READMEs' touched sections, the benchmark README, `.skilled/skills/sk-code/leaf-manifest.json` and `.hermes/skills/sk-code-skilled/SKILL.md` from their `scratch/before/` copies. Use `git restore` on those paths, or copy the before-images back.
 - New files: `assets/scripts/verify_router_sync.cjs` and `assets/scripts/router_replay_lib.cjs`. Removing them is an operator action, because they are untracked until staged.
 - If the manifest or the Hermes copy is restored, rerun both `--check` commands to confirm they pass on the restored tree.
 <!-- /ANCHOR:rollback -->

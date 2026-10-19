@@ -9,9 +9,9 @@
 set -u
 
 REPO="$(git rev-parse --show-toplevel)"
-GUARD_SRC_DIR="${GUARD_SRC_DIR:-${REPO}/.skilled/skills/sk-code/sk-code-opencode/assets/scripts}"
+GUARD_SRC_DIR="${GUARD_SRC_DIR:-${REPO}/.skilled/skills/sk-code/sk-code-skilled/assets/scripts}"
 GOLD_REL="specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/compiled/route-gold.typed.json"
-DEST_REL=".skilled/skills/sk-code/sk-code-opencode/assets/scripts"
+DEST_REL=".skilled/skills/sk-code/sk-code-skilled/assets/scripts"
 
 base="$(mktemp -d)"
 mkdir -p "${base}/.skilled/skills/sk-doc/sk-create-skill" "${base}/$(dirname "${GOLD_REL}")"
@@ -55,7 +55,7 @@ control "C2 orphan reference doc" "1b" 1 "orphan (routable doc no router names):
   sh -c 'printf "# probe\n" > .skilled/skills/sk-code/sk-code-webflow/references/zz-orphan-probe.md'
 
 control "C3 leaf dropped from the manifest" "3" 1 "is not a manifest leaf" \
-  node -e 'const fs=require("fs");const f=".skilled/skills/sk-code/leaf-manifest.json";const m=JSON.parse(fs.readFileSync(f,"utf8"));const x=m.modes.find(q=>q.workflowMode==="sk-code-opencode");x.leaves=x.leaves.slice(1);fs.writeFileSync(f,JSON.stringify(m,null,2));'
+  node -e 'const fs=require("fs");const f=".skilled/skills/sk-code/leaf-manifest.json";const m=JSON.parse(fs.readFileSync(f,"utf8"));const x=m.modes.find(q=>q.workflowMode==="sk-code-skilled");x.leaves=x.leaves.slice(1);fs.writeFileSync(f,JSON.stringify(m,null,2));'
 
 control "C4 playbook expects an unrouted doc" "4" 1 "expects references/shared/does-not-exist.md, which the router does not emit" \
   node -e 'const fs=require("fs");const f=".skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook/implementation-quality/implementation-routing.md";const s=fs.readFileSync(f,"utf8");const n=s.replace(/^(\s*-\s*)references\/\S+\.md\s*$/m,"$1references/shared/does-not-exist.md");if(n===s)throw new Error("no expected line");fs.writeFileSync(f,n);'

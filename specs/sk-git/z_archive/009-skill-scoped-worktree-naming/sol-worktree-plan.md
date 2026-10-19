@@ -200,7 +200,7 @@ The current set is:
 
 - Parents: `cli-external-orchestration`, `mcp-code-mode`, `mcp-tooling`, `sk-code`, `sk-design`, `sk-doc`, `sk-git`, `sk-prompt`, `system-code-graph`, `system-deep-loop`, `system-skill-advisor`, `system-spec-kit`.
 - CLI/MCP leaves: `cli-claude-code`, `cli-codex`, `cli-opencode`, `mcp-chrome-devtools`, `mcp-click-up`, `mcp-figma`.
-- Code leaves: `code-opencode`, `code-quality`, `code-review`, `code-webflow`.
+- Code leaves: `code-skilled`, `code-quality`, `code-review`, `code-webflow`.
 - Design leaves: `design-audit`, `design-foundations`, `design-interface`, `design-mcp-open-design`, `design-md-generator`, `design-motion`.
 - Documentation leaves: `create-agent`, `create-benchmark`, `create-changelog`, `create-command`, `create-diff`, `create-feature-catalog`, `create-flowchart`, `create-manual-testing-playbook`, `create-quality-control`, `create-readme`, `create-skill`.
 - Prompt/deep leaves: `prompt-improve`, `prompt-models`, `deep-ai-council`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`.

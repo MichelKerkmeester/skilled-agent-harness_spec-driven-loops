@@ -18,13 +18,13 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CODE_OPENCODE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-SK_CODE_DIR="$(cd "${CODE_OPENCODE_DIR}/.." && pwd)"
+CODE_SKILLED_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SK_CODE_DIR="$(cd "${CODE_SKILLED_DIR}/.." && pwd)"
 SKILLS_DIR="$(cd "${SK_CODE_DIR}/.." && pwd)"
 REPO_ROOT="$(cd "${SKILLS_DIR}/../.." && pwd)"
 
-DRIFT_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_alignment_drift.py"
-STACK_VERIFIER="${CODE_OPENCODE_DIR}/assets/scripts/verify_stack_folders.py"
+DRIFT_VERIFIER="${CODE_SKILLED_DIR}/assets/scripts/verify_alignment_drift.py"
+STACK_VERIFIER="${CODE_SKILLED_DIR}/assets/scripts/verify_stack_folders.py"
 
 failures=0
 
@@ -53,7 +53,7 @@ run_guard "stack-folders    (verify_stack_folders.py)" \
 #      reference or asset doc is routed, and every full path the prose maps name is routed;
 #   2. the parent surface RESOURCE_MAP equals the union of the surface children's maps
 #      plus the parent tier;
-#   3. compiled route-gold destinations, leaf-manifest.json and the code-opencode
+#   3. compiled route-gold destinations, leaf-manifest.json and the code-skilled
 #      RESOURCE_MAP agree through qualifiedIdToLeaf;
 #   4. every playbook routing scenario's expected_resource is emitted by the router.
 # Successor, partial: the dead-path part of check 1 is the alignment-drift guard above

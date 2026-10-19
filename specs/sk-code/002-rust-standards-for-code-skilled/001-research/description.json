@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/002-rust-standards-for-code-skilled/001-research",
+  "description": "Adding a language to `code-skilled` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART",
+  "keywords": [
+    "language",
+    "code-skilled",
+    "free-form",
+    "authoring",
+    "surface",
+    "trio",
+    "checklist",
+    "playbook",
+    "shape",
+    "machine-readable",
+    "smart"
+  ],
+  "lastUpdated": "2026-08-29T15:12:05.992Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "sk-code",
+    "002-rust-standards-for-code-skilled"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

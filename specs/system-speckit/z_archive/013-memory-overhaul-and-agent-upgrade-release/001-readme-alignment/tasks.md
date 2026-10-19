@@ -74,7 +74,7 @@ contextType: "implementation"
 
 ### Workflow skill READMEs (6 files)
 - [ ] T053 Audit `sk-doc/README.md`
-- [ ] T054 Audit `sk-code-opencode/README.md`
+- [ ] T054 Audit `sk-code-skilled/README.md`
 - [ ] T055 Audit `workflows-code--web-dev/README.md`
 - [ ] T056 Audit `sk-code-full-stack/README.md`
 - [ ] T057 Audit `sk-git/README.md`

@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/git-setup-check.cjs"
-      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py"
       - ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
       - ".skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts"
     session_dedup:
@@ -64,8 +64,8 @@ Four checks now report what is true. A git advisory adapter that exports its plu
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/git-setup-check.cjs` | Modified | Resolve an identifier default export, share the body check |
 | `.skilled/commands/doctor/scripts/tests/git-setup-check.test.cjs` | Modified | Four form tests and one negative test |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Skip `scratch` and `z_archive` below `specs/` |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modified | Spec scratch and archive skip test |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modified | Skip `scratch` and `z_archive` below `specs/` |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modified | Spec scratch and archive skip test |
 | `.skilled/skills/mcp-code-mode/mcp-server/scripts/check-node.cjs` | Modified | `'use strict';` |
 | `.skilled/skills/sk-design/shared/scripts/render-screenshots.cjs` | Modified | `'use strict';` |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs` | Modified | `'use strict';` |

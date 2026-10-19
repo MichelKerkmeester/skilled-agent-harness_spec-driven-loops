@@ -1,12 +1,12 @@
 ---
-title: "Feature Specification: Code Conformance Alignment to the sk-code / code-opencode Standard"
-description: "The enforcement mechanism for the sk-code code-opencode standard is itself broken — a dead post-edit hook, a completion gate scoped to one skill tree, and header shape left permanently manual — and that blindness let roughly 1,400 authored files drift from the file-opening, comment-hygiene, portability, and containment contracts. This phased program repairs the gate first, then sweeps the drift in blast-radius order, and amends the one place where the standard, not the code, is the nonconforming artifact."
+title: "Feature Specification: Code Conformance Alignment to the sk-code / code-skilled Standard"
+description: "The enforcement mechanism for the sk-code code-skilled standard is itself broken — a dead post-edit hook, a completion gate scoped to one skill tree, and header shape left permanently manual — and that blindness let roughly 1,400 authored files drift from the file-opening, comment-hygiene, portability, and containment contracts. This phased program repairs the gate first, then sweeps the drift in blast-radius order, and amends the one place where the standard, not the code, is the nonconforming artifact."
 trigger_phrases:
   - "code conformance alignment sk-code"
   - "boxed header drift sweep"
   - "comment hygiene durable why"
   - "alignment drift verifier scope"
-  - "sk-code code-opencode standard conformance"
+  - "sk-code code-skilled standard conformance"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
@@ -43,7 +43,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Code Conformance Alignment to the sk-code / code-opencode Standard
+# Feature Specification: Code Conformance Alignment to the sk-code / code-skilled Standard
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -69,7 +69,7 @@ _memory:
 
 ### Problem Statement
 
-The sk-code `code-opencode` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical path-containment pattern for every authored code file in this repository. A ten-iteration research loop registered 79 active nonconformance findings against that standard. The findings are real, but they are a symptom: **the enforcement mechanism for the standard is itself broken, and its blindness is what produced the population.** Three mechanisms failed independently and simultaneously — the live post-edit quality hook stopped parsing and ran dead on the Claude runtime; the mandated three-guard completion gate scopes its verifier to `.opencode/skills/sk-code` and therefore structurally cannot see drift anywhere else; and exact header shape, naming, comment quality, and boundary choice are documented as permanently manual gates, so a mechanical `PASS` never meant conformance. Drift then accumulated exactly where nothing was watching: roughly 1,400 files across the governed languages are missing their required opening header, and the standard's own enforcement pointers name files that are not the installed ones.
+The sk-code `code-skilled` surface defines a file-opening contract, a hard-block comment-hygiene gate, portability blockers, and a canonical path-containment pattern for every authored code file in this repository. A ten-iteration research loop registered 79 active nonconformance findings against that standard. The findings are real, but they are a symptom: **the enforcement mechanism for the standard is itself broken, and its blindness is what produced the population.** Three mechanisms failed independently and simultaneously — the live post-edit quality hook stopped parsing and ran dead on the Claude runtime; the mandated three-guard completion gate scopes its verifier to `.opencode/skills/sk-code` and therefore structurally cannot see drift anywhere else; and exact header shape, naming, comment quality, and boundary choice are documented as permanently manual gates, so a mechanical `PASS` never meant conformance. Drift then accumulated exactly where nothing was watching: roughly 1,400 files across the governed languages are missing their required opening header, and the standard's own enforcement pointers name files that are not the installed ones.
 
 A second, narrower problem sits inside the same register: in one place the **standard**, not the code, is the nonconforming artifact. The documented test-filename vocabulary describes 43 of the 1,228 TypeScript test files in `.opencode/skills`; `*.vitest.ts` accounts for the rest, and both the runner configs and the alignment verifier already encode that real convention.
 
@@ -94,7 +94,7 @@ Repair the enforcement mechanism, settle the scope rulings once so no later chil
 - A codemod sweep of the file-opening contract — boxed `MODULE:` headers, `COMPONENT:` headers, `'use strict'`, portable shebangs, section numbering, import grouping — across every governed language, run in three independently gated blast-radius lanes.
 - Repair of the findings where code is not merely inconsistent but is non-portable or falsely reports itself as verified.
 - Judgment-tier repairs: path containment, module and package boundaries, exported-symbol naming, and file organisation.
-- A one-task amendment to `system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment` fixing the shared border between the two programs.
+- A one-task amendment to `system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment` fixing the shared border between the two programs.
 
 ### Out of Scope
 
@@ -102,7 +102,7 @@ Repair the enforcement mechanism, settle the scope rulings once so no later chil
 - **Symlinked `.claude/` mirrors** — `.claude/{commands,skills,specs,changelog,manual-testing-playbook}` and `.claude/hooks/*` share an inode with their `.opencode/` source and are already governed there; sweeping them would double-count.
 - **Benchmark fixture subjects and seeded subject corpora** — `**/benchmarks/**/fixtures/**` violates the standard by design, because those files are the inputs a grader is scored against. Editing them silently invalidates every historical benchmark result.
 - **Test filename migration** — no `*.vitest.ts` file is renamed; the standard is amended instead.
-- **`system-deep-loop/runtime/**`** — owned by `036-deep-loop-innovation/020-sk-code-opencode-alignment`, which stays the sole authority for that tree.
+- **`system-deep-loop/runtime/**`** — owned by `036-deep-loop-innovation/020-sk-code-skilled-alignment`, which stays the sole authority for that tree.
 - **Path-containment defects in the security register** (`write-containment.ts`, `persist-artifacts.cjs`, `orchestrate-topic.cjs`, `promote-candidate.cjs`) — owned by the whole-system-gate program; referenced, never re-filed.
 - **README and documentation prose** — owned by the documentation-coverage track; no child here touches a `README.md`.
 - **Any behavior change.** Every child is behavior-preserving by construction.
@@ -116,9 +116,9 @@ Summary across all phases — per-phase detail lives in each child's `plan.md`.
 | `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` | Modify | 001 | Regression fixture for the parse-breaking failure mode (merge-marker repair already landed) |
 | `.opencode/scripts/git-hooks/pre-commit` · `.opencode/hooks/git/pre-commit` | Modify | 001 | Reconcile the two coexisting pre-commit files to one installed path |
 | `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` | Modify | 001 | Close checker vocabulary holes with paired fixtures |
-| `.opencode/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md` | Modify | 001 | Amend the test-filename vocabulary to the repository's real convention |
-| `.opencode/skills/sk-code/sk-code-opencode/references/shared/universal-patterns/naming-and-commenting.md` | Modify | 001 | Correct the enforcement pointers to name the installed hooks |
-| `.opencode/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh` | Modify | 001 | Widen or explicitly narrow the verifier scan root |
+| `.opencode/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md` | Modify | 001 | Amend the test-filename vocabulary to the repository's real convention |
+| `.opencode/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md` | Modify | 001 | Correct the enforcement pointers to name the installed hooks |
+| `.opencode/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` | Modify | 001 | Widen or explicitly narrow the verifier scan root |
 | `.opencode/scripts/run-node-tests.mjs` | Modify | 001 | One canonical discovery contract, plus a discovery canary |
 | `system-deep-loop/deep-improvement/scripts/**` · `sk-doc/**` · `sk-prompt/**` · `.opencode/hooks/goal/**` · `.opencode/plugins/tests/**` | Modify | 002 | Comment-only replacement of ephemeral-artifact pointers |
 | `.opencode/bin/**` · `.opencode/hooks/**` · `.opencode/plugins/**` · `.opencode/scripts/**` · `.opencode/commands/doctor/scripts/**` · `.github/hooks/scripts/**` · `.claude/statusline-command.sh` | Modify | 003 lane A | Header, strict-mode, shebang and import-order sweep on runtime-reachable code |
@@ -129,7 +129,7 @@ Summary across all phases — per-phase detail lives in each child's `plan.md`.
 | `skill-graph-db.ts` · `cwd-check.cjs` · `extract-files-from-markdown.cjs` · `archive-compiled-routing.cjs` | Modify | 005 | Canonical realpath containment replacing lexical prefix checks |
 | `system-spec-kit/mcp-server/**` · `system-skill-advisor/**` · md-generator backend | Modify | 005 | `node:` specifier normalisation with per-package rebuild |
 | `vector-index-store.ts` · `wait-patterns.js` · `context-server.ts` · compiled-routing authored source | Modify | 005 | Naming, organisation and authority decisions |
-| `system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment/spec.md` | Modify | 001 | Border amendment (see `020-amendment.md`) |
+| `system-deep-loop/036-deep-loop-innovation/020-sk-code-skilled-alignment/spec.md` | Modify | 001 | Border amendment (see `020-amendment.md`) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -164,7 +164,7 @@ Summary across all phases — per-phase detail lives in each child's `plan.md`.
 | 001 | 002 | Comment checker parses, runs, and recognises the closed vocabulary holes; the generic-label semantic boundary is written into the decision record with a positive/negative fixture pair | `check-comment-hygiene.test.sh` green with the new fixtures; each new fixture demonstrated failing before its rule landed |
 | 001 | 003 | The drift-verifier baseline for every lane root is captured and recorded; the exact-header gate decision (Q4) is resolved and, if adopted, implemented as an opt-in flag | Recorded per-root baseline output committed as the program baseline; `verify_alignment_drift.py --root <lane-root>` reproduces it |
 | 001 | 005 | The containment-helper ownership decision (Q3) is resolved and the helper's import path is known | Decision record entry names the helper module and its owner |
-| 001 | 020 | The border amendment is applied to 020's spec so `runtime/**` versus non-runtime ownership is unambiguous | `020-sk-code-opencode-alignment/spec.md` states the resolved scope and the cross-reference |
+| 001 | 020 | The border amendment is applied to 020's spec so `runtime/**` versus non-runtime ownership is unambiguous | `020-sk-code-skilled-alignment/spec.md` states the resolved scope and the cross-reference |
 | 003 lane A | 003 lane B | Lane A's live-surface smoke suite is green and its verifier delta is reported as "N warnings closed, zero new" | Hook smoke, `.opencode/bin` front-door invocations, compiled-route manifest test |
 | 003 lane B | 003 lane C | Lane B's owning-package suites are green; the documentation-coverage track's own code child has landed | Per-package vitest/pytest, plus a check that the other track's files are not in this lane's work list |
 | 004 | — | Every repaired test actually executes; a skip is a failure for this child | Test runner output shows executed, not skipped, for each repaired suite |

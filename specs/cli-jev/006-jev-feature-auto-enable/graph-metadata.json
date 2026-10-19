@@ -52,9 +52,6 @@
       ".skilled/changelog/skilled/v4.0.0.3.md",
       ".skilled/skills/cli-classifier/shared/scripts/tests/jev-features.test.mjs",
       ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
-      ".skilled/commands/deep/model-benchmark.md",
       ".skilled/hooks/hook-flags.env.example",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/hooks/README.md",
@@ -130,24 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "reviewer-scorer.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-model-variant.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "model-benchmark.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/model-benchmark.md",
-        "source": "derived"
-      },
-      {
         "name": "hook-flags.env.example",
         "kind": "file",
         "path": ".skilled/hooks/hook-flags.env.example",
@@ -206,11 +185,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four Jev features have a measured keep verdict: the citation drift check (032), the injection screen (035, 84 against 68 of 90), the reviewer verdict fallback (025, 24 against 8 of 24) and the hallucination grader (024, 55 against 47 of 56)",
     "created_at": "2026-10-04T20:12:18Z",
-    "last_save_at": "2026-10-08T19:29:27.810Z",
+    "last_save_at": "2026-10-18T20:45:03.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:46cae2b74e1d96aa58938a3a5b4ac26b5f311565550384abd4400704ad6b04e9",
+    "source_fingerprint": "sha256:10c5e3cb8f203d41907cd9a18bec6d3db218e5e4bd7561219437247d48e1d826",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "116b3de0ec41af0213c3e498d103a1ee797284e6f97fadb1b6d7a2ab1845062a",
+      "spec.md": "cf5269d2eff1e59bdaf9097133968f078b67a76f04f11343e4cf9a73b772c7ad",
       "plan.md": "6ac801ed45bfb2d06d4314ebdb99a992ef97a2ce3a53790306dea2c4e230aab8",
-      "tasks.md": "f328cb897a56babf943ee72cd908fe576de4a93b42c45115c40b7c602e43e2c5",
-      "implementation-summary.md": "148c46263b217010f55bd920d6084d6c1618ed0f1d7441c80fe6065d159f813e",
+      "tasks.md": "9cecbb286b644f543bb194792dc697b9b8315fd85135e425843ce9e642bb6a41",
+      "implementation-summary.md": "9fcf5eedeeed4d344691dac23cf25d4e4a35af790929fbfb21e61f66f9033680",
       "research/research.md": "4a88894274199834b989b7e6a3c140aa50faf908d1a700010e15033d58a6f495"
     },
     "last_active_at": null

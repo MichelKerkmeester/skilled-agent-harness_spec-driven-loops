@@ -2,11 +2,11 @@
 
 ## Focus
 
-Audit the shared transport and scorer-report modules, their test suites, the hub benchmark scripts, and their live callers for sk-code-opencode fit and correctness risks.
+Audit the shared transport and scorer-report modules, their test suites, the hub benchmark scripts, and their live callers for sk-code-skilled fit and correctness risks.
 
 ## Actions Taken
 
-- Read the sk-code-opencode JavaScript style, quality, testing/security, quick-reference, and checklist rules.
+- Read the sk-code-skilled JavaScript style, quality, testing/security, quick-reference, and checklist rules.
 - Inspected the transport's request parsing, Pi preflight, child-call timeout/fallback, the scorer-report arithmetic and formatting functions, and their test cases without executing them.
 - Inventoried the benchmark scorer modules and tests and searched `sk-doc`, `system-deep-loop`, and `system-spec-kit` for live imports and call sites of the shared modules.
 - Compared choice argument parsing with cli-jev's required-flags table and inspected the edge-case tests.
@@ -70,9 +70,9 @@ Audit the system-skill-advisor routing vocabulary, graph metadata, leaf manifest
 
 ## Sources
 
-- `.skilled/skills/sk-code/sk-code-opencode/SKILL.md:1-45` — OpenCode system-code surface and JavaScript routing.
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/style-guide.md:16-60` — JavaScript header, module strictness, section structure, naming.
-- `.skilled/skills/sk-code/sk-code-opencode/references/javascript/quality-standards/security-testing-and-exemptions.md:104-180` — test organization and exemptions.
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md:1-45` — OpenCode system-code surface and JavaScript routing.
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:16-60` — JavaScript header, module strictness, section structure, naming.
+- `.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:104-180` — test organization and exemptions.
 - `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:79-127` — choice request parser.
 - `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:291-304` — Pi executable search.
 - `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:507-545` — exported call contract and route/preflight.

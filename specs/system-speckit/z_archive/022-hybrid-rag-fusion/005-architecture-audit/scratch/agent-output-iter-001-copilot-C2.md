@@ -3,7 +3,7 @@
 I’m loading the review baseline and the TypeScript overlay, then I’ll inspect every extractor together so I can compare sibling patterns instead of judging files in isolation.
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ 1 line read
 
 ● Read code_quality_checklist.md
@@ -33,7 +33,7 @@ I’ve got the file list. Next I’m pulling the TypeScript standards section pl
 
 ● Search (grep)
   │ "^## .*TypeScript|TypeScript|typescript|no any|strict"
-  │ (.opencode/skills/sk-code-opencode/SKILL.md)
+  │ (.opencode/skills/sk-code-skilled/SKILL.md)
   └ 31 lines found
 
 ● Search (grep)
@@ -51,19 +51,19 @@ I’ve got the file list. Next I’m pulling the TypeScript standards section pl
 I’ve already found some obvious cross-file signals like mixed `console.*` usage and inconsistent validation. Now I’m pulling the exact standard text and the high-risk code regions so I can cite concrete line-level evidence instead of broad impressions.
 
 ● Read quality_standards.md
-  │ .opencode/skills/sk-code-opencode/references/typescript/quality_standards.md
+  │ .opencode/skills/sk-code-skilled/references/typescript/quality_standards.md
   └ 1 line read
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ L330:365 (36 lines read)
 
 ● Read SKILL.md
-  │ .opencode/skills/sk-code-opencode/SKILL.md
+  │ .opencode/skills/sk-code-skilled/SKILL.md
   └ L600:640 (41 lines read)
 
 ● Read quick_reference.md
-  │ .opencode/skills/sk-code-opencode/references/typescript/quick_reference.md
+  │ .opencode/skills/sk-code-skilled/references/typescript/quick_reference.md
   └ 539 lines read
 
 ● Search (grep)
@@ -79,7 +79,7 @@ I’ve already found some obvious cross-file signals like mixed `console.*` usag
 I’ve confirmed the overlay standards: typed catches, guard-clause validation, named exports, and consistent module structure are the main criteria. Now I’m doing a cross-file sweep for validation, logging, and error-handling hotspots before drilling into the individual implementations.
 
 ● Read quality_standards.md
-  │ .opencode/skills/sk-code-opencode/references/typescript/quality_standards.md
+  │ .opencode/skills/sk-code-skilled/references/typescript/quality_standards.md
   └ L1:260 (259 lines read)
 
 ● Search (grep)
@@ -365,7 +365,7 @@ The existing workspace checks are interesting: lint/check passed cleanly, so the
 **Files reviewed**: 18 extractor files  
 **Overall assessment**: `REQUEST_CHANGES`  
 **Baseline used**: `sk-code-review`  
-**Overlay used**: `sk-code-opencode`
+**Overlay used**: `sk-code-skilled`
 
 Strong alignment areas: no explicit `any`, no `ts-ignore`, named exports dominate, and the smaller pure transformers (`contamination-filter.ts`, `quality-scorer.ts`, `session-activity-signal.ts`) are the cleanest standards matches.
 

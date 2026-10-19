@@ -44,7 +44,7 @@ The route slices to the JavaScript trio. Let me load those references.
 
 
 
-Route loaded (sk-code → sk-code-opencode → JavaScript trio). Now let me verify my ISO-week math and expected precision strings with a quick inline node check, and look at the sibling test's import style.
+Route loaded (sk-code → sk-code-skilled → JavaScript trio). Now let me verify my ISO-week math and expected precision strings with a quick inline node check, and look at the sibling test's import style.
 
 All verifications pass. Now let me make the S edits — first the constants block.
 

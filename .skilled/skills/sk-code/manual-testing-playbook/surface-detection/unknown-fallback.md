@@ -1,14 +1,14 @@
 ---
 title: "SD-003: UNKNOWN Surface Fallback"
 description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, React Native, generic Node.js)."
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # SD-003: UNKNOWN Surface Fallback
 
 ## 1. OVERVIEW
 
-This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Per AGENTS.md "Multi-Repository Architecture" table, supported stacks are WEBFLOW (vanilla HTML/CSS/JS) and OPENCODE (`.skilled/` system code). Everything else — Go, Swift, React Native, generic React/Next.js, generic Node.js — is UNKNOWN and MUST trigger a disambiguation question.
+This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Per AGENTS.md "Multi-Repository Architecture" table, supported stacks are WEBFLOW (vanilla HTML/CSS/JS) and SKILLED (`.skilled/` system code). Everything else — Go, Swift, React Native, generic React/Next.js, generic Node.js — is UNKNOWN and MUST trigger a disambiguation question.
 
 The disambiguation question MUST ask for:
 1. The explicit runtime surface (which stack are you on?).
@@ -28,7 +28,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.`
 
 **Expected detection**:
-- Surface: `UNKNOWN` (no WEBFLOW or OPENCODE markers; `cmd/api/main.go` is not a recognized marker path; `.go` extension is not in OPENCODE sub-language tables).
+- Surface: `UNKNOWN` (no WEBFLOW or SKILLED markers; `cmd/api/main.go` is not a recognized marker path; `.go` extension is not in SKILLED sub-language tables).
 
 **Expected behavior**: sk-code recognizes the absence of supported markers and asks for explicit runtime/verification disambiguation.
 
@@ -37,7 +37,7 @@ Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and
 - `ROUTER.md`
 - `shared/references/universal/code-quality-standards.md` (universal baseline ALWAYS loads)
 
-**Expected NOT loaded**: any `sk-code-webflow/references/*`, any `sk-code-opencode/references/*`, any `sk-code-webflow/assets/*`, any `sk-code-opencode/assets/*`. Only universal-tier resources are permitted.
+**Expected NOT loaded**: any `sk-code-webflow/references/*`, any `sk-code-skilled/references/*`, any `sk-code-webflow/assets/*`, any `sk-code-skilled/assets/*`. Only universal-tier resources are permitted.
 
 **Expected agent dispatch**: NONE. sk-code MUST NOT dispatch `@code` for an unsupported stack.
 
@@ -85,7 +85,7 @@ Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation res
 
 1. If sk-code silently proceeds (worst case): re-read SKILL.md "Unsupported / Unknown" row in the Multi-Repository Architecture table. The expected behavior is documented as "Ask for explicit runtime surface and verification commands".
 2. If `sk-code-webflow/references/*` is incorrectly loaded: the router is matching some marker. Check whether `motion`, `gsap`, or `lenis` substrings exist in the prompt unintentionally (they don't here, but always verify).
-3. If `sk-code-opencode/references/*` is incorrectly loaded: the CWD probably contains `/.skilled/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
+3. If `sk-code-skilled/references/*` is incorrectly loaded: the CWD probably contains `/.skilled/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
 
 ---
 

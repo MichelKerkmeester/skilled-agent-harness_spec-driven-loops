@@ -142,7 +142,7 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 | sk-doc `validate_document.py` on 10 edited docs, comment hygiene on 9 code files | PASS |
 | Agent gate over real payloads | Claude-shape deny envelope, Cursor-shape deny with exit 2, unrelated and garbage input allowed |
 | Timing | `commit-msg` 0.23 s (target 0.3 s); 500-commit range 0.67 s, down from 21.69 s with identical verdicts (target 5 s) |
-| sk-code-opencode `verify_alignment_drift.py` (headers, sections, folders) over both script roots | 3 errors, all present on `main` (two older guard libraries without headers, `hooks/opencode` without a README); the new files add none |
+| sk-code-skilled `verify_alignment_drift.py` (headers, sections, folders) over both script roots | 3 errors, all present on `main` (two older guard libraries without headers, `hooks/opencode` without a README); the new files add none |
 | `validate-playbook-package.cjs --package sk-git` / `validate_catalog_package.py --package sk-git --strict` | PASS, 38 scenarios, 0 violations / exit 0 with 13 advisory warnings of the kind every existing entry already carries |
 | OpenCode, Pi and Hermes gate suites | PASS 5/5, 3/3 and 48/48; alignment over the new adapter files 0 errors |
 | GIT-045 and GIT-007 command sequences run in scratch repositories | Every expected signal observed, including `[subject.max-length]` after the edited `maxLength` and `[attribution.forbidden]` on a forced footer |

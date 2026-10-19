@@ -13,7 +13,7 @@
     "trigger_phrases": [
       "runtime code standards research",
       "spec kit code standards audit",
-      "sk code opencode conformance spec kit",
+      "sk code skilled conformance spec kit",
       "shared package duplicate helpers",
       "runtime cli shell script standards",
       "deepseek research lane spec kit code",
@@ -32,7 +32,7 @@
       "spec",
       "kit",
       "audit",
-      "opencode",
+      "skilled",
       "conformance",
       "shared",
       "package",
@@ -194,9 +194,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-opencode and sk-code-quality standards kept evolving",
+    "causal_summary": "The system-spec-kit runtime and shared package were built across many packets and two directory moves, while the sk-code-skilled and sk-code-quality standards kept evolving",
     "created_at": "2026-09-06T07:54:25Z",
-    "last_save_at": "2026-10-07T15:57:19.249Z",
+    "last_save_at": "2026-10-18T20:45:34.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e02cd9e3fe9bbb26d990869fa46d6ae64daec97ae2f8721f27bd55e12275c225",
+    "source_fingerprint": "sha256:7a9a283a60486bd750eeeb168232ff35b2b2c634e34016c7615cc5c19defa1da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "75f52c46e7b6cbb8e86baeb743fdbf30e67b16a08a819504583e190b4b47ccf2",
+      "spec.md": "4e567498b5a3b2ae72c5abfb60b5537bcced0dac02a8faccbe34895f1a05d424",
       "plan.md": "5425cf3aa28dd94e6246bc8998de2ceb3c2cda2122edfeccd4888573ea89e3f3",
       "tasks.md": "5e0316169744d5872287d30f28807877e359e516d043d35e1f5ea64c37c6dea2",
-      "implementation-summary.md": "ee1538d70ad7ff603cbf20dd18a5ce54fb40b10d0203af752ca7f16dd787ccc8"
+      "implementation-summary.md": "d61d19c5c7ce2adb091e220c12fee76b6ff441baa8c5bb5d46d5f9abd95af798"
     },
     "last_active_at": null
   }

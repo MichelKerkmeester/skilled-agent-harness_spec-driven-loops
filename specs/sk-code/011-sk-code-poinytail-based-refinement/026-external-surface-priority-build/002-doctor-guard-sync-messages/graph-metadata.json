@@ -201,7 +201,7 @@
     ],
     "causal_summary": "A user who deletes an example packet sees `3c: mode \"...\" packet \"...\" is not an existing sub-directory` (`parent-skill-check.cjs:496`) with no pointer to the steps that fix it",
     "created_at": "2026-10-13T04:45:52Z",
-    "last_save_at": "2026-10-13T06:48:20.296Z",
+    "last_save_at": "2026-10-18T20:45:19.641Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,11 +212,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3032a56d1e61def9a040af09cc6c6de7aee1d1bfff50333ac5305506e55b89c3",
+    "source_fingerprint": "sha256:6d21c8b18b102f24206f021066bb60bfa3536fe1169faa8624ad279a51a9ed8f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "acbc135d3eb198f4cf4b839ddf2f176f57c0fc48b6c6515e57d2d580f9416d75",
-      "plan.md": "a1296a1b70c530601538ee799420cbaaa6bf28bc1db5568f9884b53994d80b4f",
+      "plan.md": "866e51fbf81a074f5f46e742e1acfcdcde46dc749cb7cf0b4a48bee84b61a9ce",
       "tasks.md": "d6825b114dfa2d021d9ade7b5fd86b756b53ffb81a2c8cd7c7b0f264bb3f71ba",
       "implementation-summary.md": "82237c2b5d7c49a985a28e341b79352364a821e93093835b8fcd0100ebb9d75c"
     },

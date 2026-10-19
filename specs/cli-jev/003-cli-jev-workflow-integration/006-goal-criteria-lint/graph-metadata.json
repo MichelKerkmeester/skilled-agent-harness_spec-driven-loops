@@ -49,18 +49,18 @@
       "scripts/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
-      ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
       ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-goal/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
       ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
       ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
       ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
       ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
-      ".hermes/skills/sk-create-goal/SKILL.md"
+      ".hermes/skills/sk-create-goal/SKILL.md",
+      "scratch/w3-build/build-evidence.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
+      ".skilled/commands/create/assets/create-goal-auto.yaml"
     ],
     "entities": [
       {
@@ -112,24 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "score-goal-lint.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-goal-lint.test.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "goal-criteria-labels.jsonl",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
@@ -154,15 +136,33 @@
         "source": "derived"
       },
       {
-        "name": "goal-criteria-lint.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md",
-        "source": "derived"
-      },
-      {
         "name": "feature-catalog.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "create-goal-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-goal-auto.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "No machine check tests rules 4 and 5 of `sk-create-goal`",
     "created_at": "2026-09-27T04:39:32Z",
-    "last_save_at": "2026-09-29T06:11:48.057Z",
+    "last_save_at": "2026-10-18T20:45:03.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +220,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d499fc2608558bf995d501cf0114fd2344082fb18563279664cabffce1543add",
+    "source_fingerprint": "sha256:d3d746f897b1de9e1cda541a8cf11de304a9730811e0643b55fa85bbc35ce4b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b75838d0dd9964398497ec061025f0ea36143227773b6cb45a4c6354b415544",
-      "plan.md": "2c86971a7b748988415aa41b586899f79d194448f01bd1ca4af666c72a9f7c11",
+      "spec.md": "e8fcf43178ab82e5f08a251489027de260e8ed0dd5179f3cddcccff0e161b2da",
+      "plan.md": "de6ae79d4912c788a295e23a06f872f68fdf3e6d97afc301e354472a5d4c64c2",
       "tasks.md": "1e9d96055ba54b88a1ab40287e670bc89322b12acdd0636ba369527f57834971",
       "implementation-summary.md": "c40b2fafe8bf16774df59f8519cf2c670725988d002b308de419b4502e120e4b"
     },

@@ -63,7 +63,7 @@ None of the three joins the shared gate until it passes the proof standard in `r
 - A Claude Code PostToolUse hook screens WebFetch text with the measured injection question and flag line, advisory only.
 - The env template, the env reference that `/doctor:env` reads, the hook flag template, the hub docs and the root README describe the switches and the current state.
 - A sweep that removes every non-spec reference to a killed or unshipped Jev feature.
-- An sk-code-opencode alignment check over the code this program created.
+- An sk-code-skilled alignment check over the code this program created.
 - A five-iteration deep research run per executor on the features without a keep: search narrowing (017), clarify default (020) and folder suggestion (022). Luna 6 max fast runs on cli-pi with the `openai` provider and DeepSeek V4.1 Flash max runs on cli-devin.
 - Global changelog v4.0.0.3 gains the cli-classifier work, written per sk-create-changelog.
 
@@ -110,7 +110,7 @@ None of the three joins the shared gate until it passes the proof standard in `r
 |----|-------------|
 | REQ-006 | `.env.example`, `ENV-REFERENCE.md`, `hook-flags.env.example` and the hooks README name every switch, its default and its effect. |
 | REQ-007 | No file outside `specs/` names a killed or unshipped Jev feature as available. |
-| REQ-008 | The code this program created passes the sk-code-opencode alignment verifier. |
+| REQ-008 | The code this program created passes the sk-code-skilled alignment verifier. |
 | REQ-009 | The root README states the classifier hub's current features, and changelog v4.0.0.3 records the work. |
 | REQ-010 | The research run completes 5 iterations on each executor and ends in a `research.md` with a ranked next step per non-proven feature. |
 

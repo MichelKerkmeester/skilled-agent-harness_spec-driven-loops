@@ -1,14 +1,14 @@
 # Iteration 004 — Dimension(s): D4
 
 ## Scope this iteration
-Reviewed D4 Maintainability + sk-code-opencode alignment because the default rotation for iteration 4 selects D4. I focused on the `mcp_server/lib/skill-advisor/*.ts` modules for strict-type escape hatches, dead exports, comment discipline, duplicated rendering responsibilities, and alignment with the OpenCode TypeScript standards.
+Reviewed D4 Maintainability + sk-code-skilled alignment because the default rotation for iteration 4 selects D4. I focused on the `mcp_server/lib/skill-advisor/*.ts` modules for strict-type escape hatches, dead exports, comment discipline, duplicated rendering responsibilities, and alignment with the OpenCode TypeScript standards.
 
 ## Evidence read
-- .opencode/skills/sk-code-opencode/references/typescript/style_guide.md:30 → TypeScript source files should begin with a module header block.
-- .opencode/skills/sk-code-opencode/references/typescript/style_guide.md:72 → large TypeScript files should use numbered section dividers for imports, types, constants, helpers, core logic, and exports.
-- .opencode/skills/sk-code-opencode/references/typescript/quality_standards.md:34 → object shapes and data structures should use `interface`.
-- .opencode/skills/sk-code-opencode/references/typescript/quality_standards.md:64 → public API surfaces should use `unknown` over `any`.
-- .opencode/skills/sk-code-opencode/references/shared/universal_patterns.md:89 → comments should explain why, not obvious mechanics.
+- .opencode/skills/sk-code-skilled/references/typescript/style_guide.md:30 → TypeScript source files should begin with a module header block.
+- .opencode/skills/sk-code-skilled/references/typescript/style_guide.md:72 → large TypeScript files should use numbered section dividers for imports, types, constants, helpers, core logic, and exports.
+- .opencode/skills/sk-code-skilled/references/typescript/quality_standards.md:34 → object shapes and data structures should use `interface`.
+- .opencode/skills/sk-code-skilled/references/typescript/quality_standards.md:64 → public API surfaces should use `unknown` over `any`.
+- .opencode/skills/sk-code-skilled/references/shared/universal_patterns.md:89 → comments should explain why, not obvious mechanics.
 - .opencode/skills/system-spec-kit/tsconfig.json:6 → the system-spec-kit TypeScript baseline enables `strict`.
 - .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-policy.ts:7 → prompt policy exports a readonly object-shape interface.
 - .opencode/skills/system-spec-kit/mcp_server/lib/skill-advisor/prompt-policy.ts:97 → prompt normalization is centralized through `canonicalFold`.

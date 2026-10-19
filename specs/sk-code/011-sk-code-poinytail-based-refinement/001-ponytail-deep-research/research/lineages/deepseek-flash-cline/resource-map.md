@@ -48,7 +48,7 @@ trigger_phrases: []
 | `.skilled/skills/sk-code/sk-code-review/assets/{code-quality-checklist.md:120-140,removal-plan.md:20-70}` | Read | OK | Native-duplication row, needed-ness prompt, removal evidence fields |
 | `.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:1-140` | Read | OK | Exact per-file invariants, Iron Law concept pair, delivery-prefix anchors |
 | `.skilled/skills/sk-code/sk-code-quality/SKILL.md:124-260` | Read | OK | Comment-hygiene gates, gate workflow, advisory envelope, NEVER rules |
-| `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh:1-60`; `assets/scripts/verify_stack_folders.py` | Read | OK | Two live guards, retired router-sync note, stack-folder validator |
+| `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1-60`; `assets/scripts/verify_stack_folders.py` | Read | OK | Two live guards, retired router-sync note, stack-folder validator |
 | `.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:1-40`; `design-restraint/` | Read | OK | Persisted-evidence contract, no-mocks policy, restraint scenarios |
 | `.skilled/skills/sk-code/benchmark/README.md:1-50`; `benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/report.md:239-302` | Read | OK | Retired Lane C harness, frozen verdicts, two-layer verdict observation |
 | `.skilled/hooks/git/pre-commit:78-94` | Read | OK | Staged-only agent mirror-sync gate |

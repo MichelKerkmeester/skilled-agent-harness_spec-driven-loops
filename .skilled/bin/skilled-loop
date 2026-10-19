@@ -1,0 +1,507 @@
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: SKILLED LOOP
+# ───────────────────────────────────────────────────────────────
+# Relaunch a supported runtime with a fresh handoff seed when state is armed.
+# Exit codes preserve the runtime result, except invalid relaunch state returns 1.
+set -euo pipefail
+
+resolve_script_path() {
+  local source_path=${BASH_SOURCE[0]}
+  local source_dir
+  local link_target
+
+  while [[ -h "$source_path" ]]; do
+    source_dir=$(cd -P "$(dirname "$source_path")" >/dev/null 2>&1 && pwd)
+    link_target=$(readlink "$source_path")
+    if [[ "$link_target" = /* ]]; then
+      source_path=$link_target
+    else
+      source_path=$source_dir/$link_target
+    fi
+  done
+
+  source_dir=$(cd -P "$(dirname "$source_path")" >/dev/null 2>&1 && pwd)
+  printf '%s/%s\n' "$source_dir" "$(basename "$source_path")"
+}
+
+script_path=$(resolve_script_path)
+script_directory=$(dirname "$script_path")
+relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
+consumed_record_json=''
+
+print_manual_command() {
+  local handoff_path="$1"
+  local spec_folder="${2:-}"
+  local escaped_handoff_path="$handoff_path"
+  local suffix
+  local handoff_seed
+  local template_prefix
+  local template_suffix
+  local seed_option
+  escaped_handoff_path=${escaped_handoff_path//\\/\\\\}
+  escaped_handoff_path=${escaped_handoff_path//\"/\\\"}
+  escaped_handoff_path=${escaped_handoff_path//\$/\\\$}
+  escaped_handoff_path=${escaped_handoff_path//\`/\\\`}
+  escaped_handoff_path=${escaped_handoff_path//!/$'\x22\x27!\x27\x22'}
+  suffix=$(spec_folder_suffix "$spec_folder")
+  handoff_seed="${escaped_handoff_path}${suffix}"
+  case "$SKILLED_LOOP_MANUAL_TEMPLATE" in
+    *@@HANDOFF@@*@@HANDOFF@@*) ;;
+    *@@HANDOFF@@*)
+      template_prefix=${SKILLED_LOOP_MANUAL_TEMPLATE%%@@HANDOFF@@*}
+      template_suffix=${SKILLED_LOOP_MANUAL_TEMPLATE#*@@HANDOFF@@}
+      printf '%s%s%s\n' "$template_prefix" "$handoff_seed" "$template_suffix" >&2
+      return 0
+      ;;
+  esac
+  seed_option=''
+  case "$runtime" in
+    opencode) seed_option=' --prompt' ;;
+    hermes) seed_option=' chat -q' ;;
+    devin) seed_option=' --' ;;
+  esac
+  printf 'skilled-loop %s%s "[session-relaunch] claim and continue handoff %s"\n' \
+    "$runtime" "$seed_option" "$handoff_seed" >&2
+}
+
+consume_record() {
+  if consumed_record_json=$(node "$relaunch_cli" consume --loop-id "$SKILLED_LOOP_ID"); then
+    return 0
+  fi
+  printf '%s\n' 'warning: could not consume the relaunch record' >&2
+  return 0
+}
+
+consumed_spec_folder() {
+  local spec_folder=''
+  if [[ -n "$consumed_record_json" ]]; then
+    spec_folder=$(node -e '
+      const fs = require("node:fs");
+      const record = JSON.parse(fs.readFileSync(0, "utf8"));
+      process.stdout.write(
+        typeof record.spec_folder === "string" ? record.spec_folder : "",
+      );
+    ' <<< "$consumed_record_json") || spec_folder=''
+  fi
+  printf '%s' "$spec_folder"
+}
+
+has_line_break() {
+  local value="$1"
+  [[ "$value" == *$'\r'* || "$value" == *$'\n'* ]]
+}
+
+spec_folder_suffix() {
+  local spec_folder="$1"
+  if [[ "$spec_folder" == 'none' ]]; then
+    printf '%s' ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)'
+  elif [[ -n "$spec_folder" ]]; then
+    printf ' | Spec folder: %s (carried from the handoff; Gate 3 answered in the sending session)' \
+      "$spec_folder"
+  fi
+}
+
+resolve_pi_extension_path() {
+  local extension_path="$1"
+  local extension_directory
+  local extension_name
+
+  case "$extension_path" in
+    builtin:*|/*)
+      printf '%s\n' "$extension_path"
+      ;;
+    */*)
+      extension_directory="${extension_path%/*}"
+      extension_name="${extension_path##*/}"
+      if [[ -z "$extension_directory" ]]; then
+        extension_directory='.'
+      fi
+      if extension_directory=$(
+        cd -- "$start_directory/$extension_directory" 2>/dev/null && pwd -P
+      ); then
+        printf '%s/%s\n' "$extension_directory" "$extension_name"
+      else
+        printf '%s/%s\n' "$start_directory" "$extension_path"
+      fi
+      ;;
+    *)
+      printf '%s/%s\n' "$start_directory" "$extension_path"
+      ;;
+  esac
+}
+
+shell_quote_argument() {
+  local value="$1"
+  local quoted="'"
+  local index
+  local character
+
+  for ((index = 0; index < ${#value}; index++)); do
+    character=${value:index:1}
+    if [[ "$character" == "'" ]]; then
+      quoted+="'\\''"
+    else
+      quoted+="$character"
+    fi
+  done
+  quoted+="'"
+  printf '%s' "$quoted"
+}
+
+build_relaunch_arguments() {
+  local seed="$1"
+  launch_arguments=()
+  case "$runtime" in
+    claude)
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=("$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
+        launch_arguments+=(--name "$SKILLED_LOOP_NAME")
+      fi
+      ;;
+    pi)
+      if [[ -n "${SKILLED_LOOP_PROVIDER:-}" ]]; then
+        launch_arguments+=(--provider "$SKILLED_LOOP_PROVIDER")
+      fi
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
+      fi
+      if ((pi_extension_arguments_set == 1)); then
+        launch_arguments+=("${pi_extension_arguments[@]}")
+      fi
+      if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
+        launch_arguments+=(--name "$SKILLED_LOOP_NAME")
+      fi
+      launch_arguments+=("$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+    opencode)
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=(--prompt "$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+    codex)
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=("$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+    cursor)
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=("$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+    hermes)
+      launch_arguments=(chat)
+      if [[ -n "${SKILLED_LOOP_PROVIDER:-}" ]]; then
+        launch_arguments+=(--provider "$SKILLED_LOOP_PROVIDER")
+      fi
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(-m "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=(-q "$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+    devin)
+      if [[ -n "${SKILLED_LOOP_MODEL:-}" ]]; then
+        launch_arguments+=(--model "$SKILLED_LOOP_MODEL")
+      fi
+      launch_arguments+=(-- "$seed")
+      relaunch_seed_index=$((${#launch_arguments[@]} - 1))
+      ;;
+  esac
+}
+
+build_manual_command_template() {
+  local manual_seed='[session-relaunch] claim and continue handoff @@HANDOFF@@'
+  local template="skilled-loop $runtime"
+  local index
+  local argument
+  local quoted_argument
+
+  build_relaunch_arguments "$manual_seed"
+  for ((index = 0; index < ${#launch_arguments[@]}; index++)); do
+    argument=${launch_arguments[$index]}
+    template+=' '
+    if ((index == relaunch_seed_index)); then
+      template+="\"$manual_seed\""
+    else
+      quoted_argument=$(shell_quote_argument "$argument")
+      template+="$quoted_argument"
+    fi
+  done
+  printf '%s' "$template"
+}
+
+if [[ ! -f "$relaunch_cli" ]]; then
+  printf '%s\n' 'session-relaunch CLI was not found beside this wrapper' >&2
+  exit 1
+fi
+
+start_directory=$(pwd -P)
+runtime=claude
+runtime_command=claude
+if [[ $# -gt 0 ]]; then
+  case "$1" in
+    claude|pi|opencode|codex|hermes|devin)
+      runtime="$1"
+      runtime_command="$1"
+      shift
+      ;;
+    cursor)
+      runtime=cursor
+      runtime_command=cursor-agent
+      shift
+      ;;
+  esac
+fi
+
+original_arguments=("$@")
+original_argument_count=$#
+launch_arguments=()
+pi_extension_arguments=()
+pi_extension_arguments_set=0
+pi_no_extensions_seen=0
+codex_no_daemon_seen=0
+unset SKILLED_LOOP_NAME SKILLED_LOOP_MODEL SKILLED_LOOP_PROVIDER
+index=0
+option_scan_stopped=0
+skip_next_option=0
+while ((index < original_argument_count)); do
+  argument="${original_arguments[$index]}"
+  next_argument=''
+  if ((index + 1 < original_argument_count)); then
+    next_argument="${original_arguments[$((index + 1))]}"
+  fi
+  if ((option_scan_stopped == 0)); then
+    if ((skip_next_option == 1)); then
+      skip_next_option=0
+    else
+      case "$argument" in
+        --)
+          option_scan_stopped=1
+          ;;
+        -n|--name)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_NAME="$next_argument"
+            export SKILLED_LOOP_NAME
+            skip_next_option=1
+          fi
+          ;;
+        --name=*)
+          if [[ "${argument#--name=}" != -* ]]; then
+            SKILLED_LOOP_NAME="${argument#--name=}"
+            export SKILLED_LOOP_NAME
+          fi
+          ;;
+      esac
+
+      case "$runtime:$argument" in
+        claude:--model|pi:--model|opencode:--model|opencode:-m|\
+          codex:-m|codex:--model|cursor:--model|hermes:-m|hermes:--model|\
+          devin:--model)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_MODEL="$next_argument"
+            export SKILLED_LOOP_MODEL
+            skip_next_option=1
+          fi
+          ;;
+        claude:--model=*|pi:--model=*|opencode:--model=*|\
+          codex:--model=*|cursor:--model=*|hermes:--model=*|devin:--model=*)
+          if [[ "${argument#--model=}" != -* ]]; then
+            SKILLED_LOOP_MODEL="${argument#--model=}"
+            export SKILLED_LOOP_MODEL
+          fi
+          ;;
+        pi:--provider|hermes:--provider)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            SKILLED_LOOP_PROVIDER="$next_argument"
+            export SKILLED_LOOP_PROVIDER
+            skip_next_option=1
+          fi
+          ;;
+        pi:--provider=*|hermes:--provider=*)
+          if [[ "${argument#--provider=}" != -* ]]; then
+            SKILLED_LOOP_PROVIDER="${argument#--provider=}"
+            export SKILLED_LOOP_PROVIDER
+          fi
+          ;;
+        codex:--no-daemon)
+          codex_no_daemon_seen=1
+          ;;
+        pi:-ne|pi:--no-extensions)
+          if ((pi_no_extensions_seen == 0)); then
+            pi_extension_arguments+=(-ne)
+            pi_extension_arguments_set=1
+            pi_no_extensions_seen=1
+          fi
+          ;;
+        pi:-e|pi:--extension)
+          if ((index + 1 < original_argument_count)) && [[ "$next_argument" != -* ]]; then
+            extension_path=$(resolve_pi_extension_path "$next_argument")
+            pi_extension_arguments+=(-e "$extension_path")
+            pi_extension_arguments_set=1
+            skip_next_option=1
+          fi
+          ;;
+        pi:--extension=*)
+          extension_path="${argument#--extension=}"
+          if [[ -n "$extension_path" && "$extension_path" != -* ]]; then
+            extension_path=$(resolve_pi_extension_path "$extension_path")
+            pi_extension_arguments+=(-e "$extension_path")
+            pi_extension_arguments_set=1
+          fi
+          ;;
+      esac
+    fi
+  fi
+  launch_arguments+=("$argument")
+  index=$((index + 1))
+done
+
+if [[ "$runtime" == 'codex' && "$codex_no_daemon_seen" == 0 ]]; then
+  if ((original_argument_count > 0)); then
+    launch_arguments=(--no-daemon "${launch_arguments[@]}")
+  else
+    launch_arguments=(--no-daemon)
+  fi
+fi
+
+SKILLED_LOOP_MANUAL_TEMPLATE=$(build_manual_command_template)
+export SKILLED_LOOP_MANUAL_TEMPLATE
+export SKILLED_LOOP_ID="$$"
+export SKILLED_LOOP_RUNTIME="$runtime"
+SKILLED_LOOP_HOPS=${SKILLED_LOOP_HOPS:-0}
+if [[ ! "$SKILLED_LOOP_HOPS" =~ ^[0-9]+$ ]]; then
+  printf '%s\n' 'SKILLED_LOOP_HOPS must be a non-negative integer' >&2
+  exit 1
+fi
+export SKILLED_LOOP_HOPS
+
+while true; do
+  # Keep the wrapper alive so it can inspect relaunch state after the runtime exits.
+  # The guarded expansion keeps empty arguments safe under Bash 3.2 with nounset.
+  if "$runtime_command" "${launch_arguments[@]+"${launch_arguments[@]}"}"; then
+    runtime_exit=0
+  else
+    runtime_exit=$?
+  fi
+
+  if decision_json=$(node "$relaunch_cli" should-relaunch --loop-id "$SKILLED_LOOP_ID"); then
+    decision_status=0
+  else
+    decision_status=$?
+  fi
+
+  case "$decision_status" in
+    0)
+      exec 3< <(
+        node -e '
+          const fs = require("node:fs");
+          const record = JSON.parse(fs.readFileSync(0, "utf8"));
+          const cwd = typeof record.cwd === "string" ? record.cwd : "";
+          const handoff = typeof record.handoff === "string" ? record.handoff : "";
+          process.stdout.write(cwd + "\0" + handoff + "\0");
+        ' <<< "$decision_json" 2>/dev/null
+      )
+      if ! IFS= read -r -d '' relaunch_cwd <&3; then
+        exec 3<&-
+        printf '%s\n' 'warning: could not read the relaunch record' >&2
+        consume_record
+        exit 1
+      fi
+      if ! IFS= read -r -d '' handoff_path <&3; then
+        exec 3<&-
+        printf '%s\n' 'warning: could not read the relaunch record' >&2
+        consume_record
+        exit 1
+      fi
+      exec 3<&-
+
+      if [[ -z "$handoff_path" ]]; then
+        printf '%s\n' 'warning: could not read the relaunch record' >&2
+        consume_record
+        exit 1
+      fi
+      if [[ -z "$relaunch_cwd" ]] \
+        || has_line_break "$relaunch_cwd" \
+        || has_line_break "$handoff_path"; then
+        consume_record
+        spec_folder=$(consumed_spec_folder)
+        print_manual_command "$handoff_path" "$spec_folder"
+        exit 1
+      fi
+      if ! cd -- "$relaunch_cwd"; then
+        consume_record
+        spec_folder=$(consumed_spec_folder)
+        print_manual_command "$handoff_path" "$spec_folder"
+        exit 1
+      fi
+
+      if ((runtime_exit == 130)); then
+        consume_record
+        spec_folder=$(consumed_spec_folder)
+        print_manual_command "$handoff_path" "$spec_folder"
+        exit 130
+      fi
+      consume_record
+      SKILLED_LOOP_HOPS=$((10#$SKILLED_LOOP_HOPS + 1))
+      export SKILLED_LOOP_HOPS
+
+      spec_folder=$(consumed_spec_folder)
+      seed="[session-relaunch] claim and continue handoff $handoff_path"
+      seed+=$(spec_folder_suffix "$spec_folder")
+      build_relaunch_arguments "$seed"
+      if [[ "$runtime" == 'codex' ]]; then
+        launch_arguments=(--no-daemon "${launch_arguments[@]}")
+      fi
+      ;;
+    1)
+      exec 3< <(
+        node -e '
+          const fs = require("node:fs");
+          const record = JSON.parse(fs.readFileSync(0, "utf8"));
+          const reason = typeof record.reason === "string" ? record.reason : "";
+          const handoff = typeof record.handoff === "string" ? record.handoff : "";
+          process.stdout.write(reason + "\0" + handoff + "\0");
+        ' <<< "$decision_json" 2>/dev/null
+      )
+      decision_reason=''
+      handoff_path=''
+      if IFS= read -r -d '' decision_reason <&3 && IFS= read -r -d '' handoff_path <&3; then
+        :
+      else
+        printf '%s\n' 'warning: could not read the relaunch record' >&2
+      fi
+      exec 3<&-
+      consume_record
+      if has_line_break "$handoff_path"; then
+        printf '%s\n' \
+          'warning: the handoff path contains a line break; no manual command printed' >&2
+      elif [[ -n "$handoff_path" ]]; then
+        case "$decision_reason" in
+          not-armed|stale|hop-cap)
+            spec_folder=$(consumed_spec_folder)
+            print_manual_command "$handoff_path" "$spec_folder"
+            ;;
+        esac
+      fi
+      exit "$runtime_exit"
+      ;;
+    *)
+      consume_record
+      printf 'warning: should-relaunch failed with status %s; preserving runtime exit %s\n' \
+        "$decision_status" "$runtime_exit" >&2
+      exit "$runtime_exit"
+      ;;
+  esac
+done

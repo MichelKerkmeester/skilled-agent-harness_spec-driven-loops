@@ -53,10 +53,10 @@ I’m treating this as a read-only architecture audit of `workflow.ts` and the a
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-deep-research/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Publicexec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
 name: sk-code-review
-description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-opencode, sk-code-web, and sk-code-full-stack standards."
+description: "Stack-agnostic code review baseline skill with findings-first severity analysis, mandatory security/correctness minimums, and adaptive overlay compatibility with sk-code-skilled, sk-code-web, and sk-code-full-stack standards."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.2.0.0
 ---
@@ -97,7 +97,7 @@ Runtime path resolution:
 - Codex runtime: `.codex/agents/*.toml`
  succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0
@@ -136,10 +136,10 @@ exec
     "reason": "Matched: !audit, !audit(multi), !intent:review, opencode, review(name)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
-I’ve routed this through `system-spec-kit`, `sk-code-review`, and `sk-code-opencode` because this is a read-only audit of OpenCode system code with findings-first output. Next I’m reading the workflow implementation in full, extracting its function inventory, and using semantic search plus AST-based metrics so the decomposition plan is grounded in the actual control flow.
+I’ve routed this through `system-spec-kit`, `sk-code-review`, and `sk-code-skilled` because this is a read-only audit of OpenCode system code with findings-first output. Next I’m reading the workflow implementation in full, extracting its function inventory, and using semantic search plus AST-based metrics so the decomposition plan is grounded in the actual control flow.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---

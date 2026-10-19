@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries under `.skilled/skills` use four parts",
     "created_at": "2026-09-28T11:14:31Z",
-    "last_save_at": "2026-09-28T14:28:24.492Z",
+    "last_save_at": "2026-10-18T20:45:29.409Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:329cba05adeb600f8c969665a240dbeae2f50e309078d57c3ae24884ef6278d1",
+    "source_fingerprint": "sha256:088fe0d56c0cd0f6f338de57cc23f8c984662b70ac17d4aabb9bb9343d5e5f96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4e964fe105a585457a40aa67caa01cf7b2f3c35e64db4d8fa91a3370aedf4a7",
+      "spec.md": "be2dcd0a6ec2315499d6296bf092e56f95ac3c40520969c8930b155212e0dfec",
       "plan.md": "9a643770d52eeddec71b757f79885f6564a6fa55a01abdf44c7603dea16445c1",
-      "tasks.md": "426ffdc5c258c33c0a8157314a07e1ebe591c9b6bef507406e848d461ade9116",
-      "implementation-summary.md": "d4a25db591b565e05c32b27e05170415e4702ad5d17f3b8b5d8089ac699ab5d3"
+      "tasks.md": "7b6248ff984be9c9d315986043166988fa45188db62920539646b18e8645efd4",
+      "implementation-summary.md": "0c7ff7871f8af2a3e8d0fa53e42f376fd2e7938b3a80315a930cefc3d42578b4"
     },
     "last_active_at": null
   }

@@ -40,7 +40,7 @@ Run loader validation from the repository root:
 ```bash
 npm --prefix .skilled/skills/system-spec-kit/runtime/cli run build
 node -e "const loaders=require('./.skilled/skills/system-spec-kit/runtime/cli/dist/loaders'); console.log(Object.keys(loaders).sort())"
-python3 .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/loaders
+python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit/runtime/cli/loaders
 ```
 
 ---

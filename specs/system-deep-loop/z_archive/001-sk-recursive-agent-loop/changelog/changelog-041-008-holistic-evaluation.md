@@ -66,9 +66,9 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 
 **Fix:** Updated `.opencode/agents/agent-improver.md` with title rename, CRITICAL/IMPORTANT callouts, dividers, ASCII summary box, and integration-aware workflow step.
 
-### sk-code-opencode script alignment
+### sk-code-skilled script alignment
 
-**Problem:** The 8 `.cjs` scripts did not follow sk-code-opencode JavaScript standard for headers and section separators.
+**Problem:** The 8 `.cjs` scripts did not follow sk-code-skilled JavaScript standard for headers and section separators.
 
 **Fix:** Aligned all 8 scripts with box comment headers and numbered ALL-CAPS section separators.
 

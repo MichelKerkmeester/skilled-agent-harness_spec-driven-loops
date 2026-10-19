@@ -61,7 +61,7 @@ explicit `--tip <sha>`; 1,355 commits carry numeric scopes; about 5,987 touch `s
 Read before writing:
 - `.opencode/scripts/git-hooks/commit-msg` lines 40-48 and 72 for the exempt subjects and the
   subject regex
-- `.opencode/skills/sk-code/sk-code-opencode/references/python/style-guide.md` sections on
+- `.opencode/skills/sk-code/sk-code-skilled/references/python/style-guide.md` sections on
   structure and naming
 
 # ACTION

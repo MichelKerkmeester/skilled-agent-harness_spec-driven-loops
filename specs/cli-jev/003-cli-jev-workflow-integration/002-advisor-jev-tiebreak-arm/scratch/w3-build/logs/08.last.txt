@@ -1,6 +1,6 @@
 `summarizeColumn` scores one backend column and applies the keep rule. The four cases match the brief: underpowered, keep, inconclusive, and kill.
 
-SKILL ROUTING: sk-code → sk-code-opencode (JavaScript and TypeScript)
+SKILL ROUTING: sk-code → sk-code-skilled (JavaScript and TypeScript)
 REPO RULES: no extra rule file; the edit stays inside the two named files
 
 STATUS: DONE

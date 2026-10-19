@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-You now have a checked answer to how the external-user surface rule can still break and where the setup should live. The order itself holds: a surface added ahead of `sk-code-opencode` wins, check 5l catches a declared one placed after it, and the README refresh-and-copy step makes a hand-added surface route first. The gaps are on the way in and in the battery.
+You now have a checked answer to how the external-user surface rule can still break and where the setup should live. The order itself holds: a surface added ahead of `sk-code-skilled` wins, check 5l catches a declared one placed after it, and the README refresh-and-copy step makes a hand-added surface route first. The gaps are on the way in and in the battery.
 
 ### Phase 28: surface-setup-hardening-research
 

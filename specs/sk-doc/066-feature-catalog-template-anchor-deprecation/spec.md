@@ -117,7 +117,7 @@ Remove the comment at its producer so new catalogs never get it, then remove eve
 | 004-leftover-template-comments | 005-changelog-version-keys | No standalone template comment outside specs | The comment grep prints nothing |
 | 005-changelog-version-keys | 006-skill-package-doc-findings | No changelog entry lacks a version key | `package_skill.py --strict` reports 0 missing-version findings |
 | 006-skill-package-doc-findings | 007-sk-code-script-kebab-names | Six units pass the strict package check | `package_skill.py --strict` prints PASS |
-| 007-sk-code-script-kebab-names | 003-feature-catalog-findings | sk-code-opencode passes with its tests green | Package PASS, tests and drift guards pass |
+| 007-sk-code-script-kebab-names | 003-feature-catalog-findings | sk-code-skilled passes with its tests green | Package PASS, tests and drift guards pass |
 | 003-feature-catalog-findings | 008-remediation-deep-review | Phases 1 to 7 committed | `git log main..HEAD` lists their eight commits |
 | 008-remediation-deep-review | 009-review-remediation | The review report lists its findings | `review/review-report.md` names F-001 to F-005 |
 <!-- /ANCHOR:phase-map -->

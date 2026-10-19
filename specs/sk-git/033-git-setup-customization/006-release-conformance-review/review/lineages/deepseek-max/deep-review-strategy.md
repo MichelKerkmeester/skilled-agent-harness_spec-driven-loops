@@ -362,7 +362,7 @@ v4.0.0.11 release conformance review: `/doctor:git setup` and its hardening.
 - Reuse/conventions: sk-doc authoring modes (`sk-create-command`, `sk-create-skill`,
   `sk-create-readme`, `sk-create-changelog`, `sk-create-feature-catalog`,
   `sk-create-manual-testing-playbook`, `sk-create-with-human-voice`) and the
-  `sk-code-opencode` checklists define the expected shape
+  `sk-code-skilled` checklists define the expected shape
 - Review risks: validators may write caches (run them read-only or skip); graph scripts write
   outside this lineage (skipped, see charter); the parent packet's scaffold docs are
   context-only; another lineage (`luna-max-fast`) reviews the same target in parallel —

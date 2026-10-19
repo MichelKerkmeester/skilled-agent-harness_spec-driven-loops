@@ -6,7 +6,7 @@ Now let me read the top of `score-jev-tiebreak.mjs` (imports/exports) and the `c
 
 
 
-I have the full picture of the reference pattern. Per the persona standard I'll load the surface packet the hub routes `.mjs` runtime scripts to (`sk-code-opencode`), briefly.
+I have the full picture of the reference pattern. Per the persona standard I'll load the surface packet the hub routes `.mjs` runtime scripts to (`sk-code-skilled`), briefly.
 
 
 
@@ -30,7 +30,7 @@ Both listed checks pass. Let me rigorously confirm stdout is empty on the refusa
 
 Both files are in their final state, the two listed checks pass, and the stdout/stderr split is confirmed. One recorded deviation from the brief's literal wording: T also needed `import { spawnSync } from 'node:child_process';` — the brief's test 2 calls `spawnSync`, so the import was required for the specified test body (nothing else beyond the brief).
 
-SKILL ROUTING: sk-code → OPENCODE surface → `references/javascript/style-guide.md` (`.mjs` runtime script + `.vitest.ts` tests). ARTIFACT: sk-code → sk-code-opencode JS standards; verification = the two brief-listed commands (vitest left to the orchestrator per RUN CONTEXT).
+SKILL ROUTING: sk-code → OPENCODE surface → `references/javascript/style-guide.md` (`.mjs` runtime script + `.vitest.ts` tests). ARTIFACT: sk-code → sk-code-skilled JS standards; verification = the two brief-listed commands (vitest left to the orchestrator per RUN CONTEXT).
 
 STATUS: DONE
 FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+85/-1)

@@ -1,4 +1,4 @@
-# Iteration 14: sk-code-opencode fresh pass
+# Iteration 14: sk-code-skilled fresh pass
 
 ## Focus
 
@@ -14,10 +14,10 @@ Part 3, third surface: the OpenCode packet's drift-guard claims against their ob
 
 ## Findings
 
-1. **The OpenCode SKILL credits the wired leg 1a with the orphan coverage that actually belongs to the unwired leg 1b.** `SKILL.md`'s guard paragraph describes leg 1a as "(1) router paths exist on disk, **every routable doc is routed**, and every full path the prose maps name is routed" [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:173], while the guard's own 1a line says only "machine-router paths exist and the prose maps are routed" [observed guard output], and `scripts/README.md` states "Leg 1b, the orphan-doc part of (1), is not run: nine docs have no router naming them" [SOURCE: .skilled/skills/sk-code/sk-code-opencode/scripts/README.md:12]. An operator auditing whether the nine orphans are covered by the running umbrella would read the SKILL and conclude yes; the two files that own the guard say the opposite. Reproducing case: `node .skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` prints the narrower 1a description, and the README row assigns orphaning to 1b. NEW, P2 (one wording fix; the guard behaviour itself is correct).
-2. **Two pre-rename names remain in the OpenCode SKILL.** The surface hands formal findings to `code-review` and author-side gates to `code-quality` [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:24], and a comment names the sibling `code-webflow` map [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:54]. The canonical keys are `sk-code-review`, `sk-code-quality`, `sk-code-webflow`. Reproducing case: `rg -n "code-webflow|code-review|code-quality" .skilled/skills/sk-code/sk-code-opencode/SKILL.md` prints the two rows; the same sweep now has hits in all three surface/mode packets. NEW, P2 (third packet in the same rename-miss family as f-iter006-003 and f-iter012-002).
-3. **The guard, the hook paths and the version pairing all check out.** The router-sync guard passes 4/4 with exit 0 [observed]; `references/shared/hooks.md`'s named hook files all exist on disk; `scripts/README.md`'s "Code files | 6" matches the six scripts present; and the packet's SKILL version equals its newest changelog entry (1.1.0.0 across quality, review, webflow, opencode and obsidian pairs checked) [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:5]. ALREADY-ADOPTED, P2, no action.
-4. **The workflow-doctrine trio's routing is phase 009's in-flight item, recorded once.** The packet carries the three symlinked `references/workflow-*.md` leaves and its SKILL says the phases use "the split shared, language, hook, and alignment resources above" [SOURCE: .skilled/skills/sk-code/sk-code-opencode/SKILL.md:45], while no RESOURCE_MAP row emits the trio; steer ruling 2 places that routing in phase 009 child 001. IN-FLIGHT, no action.
+1. **The OpenCode SKILL credits the wired leg 1a with the orphan coverage that actually belongs to the unwired leg 1b.** `SKILL.md`'s guard paragraph describes leg 1a as "(1) router paths exist on disk, **every routable doc is routed**, and every full path the prose maps name is routed" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:173], while the guard's own 1a line says only "machine-router paths exist and the prose maps are routed" [observed guard output], and `scripts/README.md` states "Leg 1b, the orphan-doc part of (1), is not run: nine docs have no router naming them" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md:12]. An operator auditing whether the nine orphans are covered by the running umbrella would read the SKILL and conclude yes; the two files that own the guard say the opposite. Reproducing case: `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` prints the narrower 1a description, and the README row assigns orphaning to 1b. NEW, P2 (one wording fix; the guard behaviour itself is correct).
+2. **Two pre-rename names remain in the OpenCode SKILL.** The surface hands formal findings to `code-review` and author-side gates to `code-quality` [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:24], and a comment names the sibling `code-webflow` map [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:54]. The canonical keys are `sk-code-review`, `sk-code-quality`, `sk-code-webflow`. Reproducing case: `rg -n "code-webflow|code-review|code-quality" .skilled/skills/sk-code/sk-code-skilled/SKILL.md` prints the two rows; the same sweep now has hits in all three surface/mode packets. NEW, P2 (third packet in the same rename-miss family as f-iter006-003 and f-iter012-002).
+3. **The guard, the hook paths and the version pairing all check out.** The router-sync guard passes 4/4 with exit 0 [observed]; `references/shared/hooks.md`'s named hook files all exist on disk; `scripts/README.md`'s "Code files | 6" matches the six scripts present; and the packet's SKILL version equals its newest changelog entry (1.1.0.0 across quality, review, webflow, opencode and obsidian pairs checked) [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:5]. ALREADY-ADOPTED, P2, no action.
+4. **The workflow-doctrine trio's routing is phase 009's in-flight item, recorded once.** The packet carries the three symlinked `references/workflow-*.md` leaves and its SKILL says the phases use "the split shared, language, hook, and alignment resources above" [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:45], while no RESOURCE_MAP row emits the trio; steer ruling 2 places that routing in phase 009 child 001. IN-FLIGHT, no action.
 
 ## Questions Answered
 
@@ -47,13 +47,13 @@ Part 3, third surface: the OpenCode packet's drift-guard claims against their ob
 
 ## Sources Consulted
 
-- `.skilled/skills/sk-code/sk-code-opencode/SKILL.md`
-- `.skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh`
-- `.skilled/skills/sk-code/sk-code-opencode/scripts/README.md`
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_router_sync.cjs` (run)
-- `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/README.md`
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/hooks.md`
-- `.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md`
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md`
+- `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh`
+- `.skilled/skills/sk-code/sk-code-skilled/scripts/README.md`
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_router_sync.cjs` (run)
+- `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md`
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md`
+- `.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md`
 - `specs/sk-code/011-sk-code-poinytail-based-refinement/001-ponytail-deep-research/research/lineages/r3-dsflash-llmgw/steer.md`
 
 ## Assessment

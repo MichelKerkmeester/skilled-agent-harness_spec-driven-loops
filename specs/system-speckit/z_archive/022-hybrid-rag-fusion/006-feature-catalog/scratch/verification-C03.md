@@ -74,7 +74,7 @@ exec
     "reason": "Matched: !code(multi), !intent:implementation, code(name), specification~, spec~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
 codex
 Skill routing points to `system-spec-kit`, so I’m pulling just the relevant guidance and then extracting each feature’s `Current Reality` and `Source Files` sections. After that I’ll map those claims onto the actual `mcp_server` implementation and call out anything missing.

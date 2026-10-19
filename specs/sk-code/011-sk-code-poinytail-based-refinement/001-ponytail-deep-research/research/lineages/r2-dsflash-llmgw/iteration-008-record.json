@@ -15,10 +15,10 @@
   "findingsCount": 6,
   "noveltyJustification": "Four round-one defects are verified closed in the current tree (D1 deferred-callback errors, D3 scenario row and language count, D4 shared stdin deadline, precedence and Obsidian coverage), the D1 known-bad input is still missing, and the retirement note is not closed.",
   "keyQuestions": [
-    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
+    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
   ],
   "answeredQuestions": [
-    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-opencode, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
+    "Which Ponytail teachings improve the per-surface packets (sk-code-webflow, sk-code-skilled, sk-code-obsidian, sk-code-quality) beyond round one's cited defects?"
   ],
   "ruledOut": [
     {

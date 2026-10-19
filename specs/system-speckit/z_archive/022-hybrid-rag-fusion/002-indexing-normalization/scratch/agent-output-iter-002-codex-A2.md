@@ -51,9 +51,9 @@ mcp startup: ready: code_mode, cocoindex_code, sequential_thinking; failed: spec
 codex
 I’m treating this as a read-only performance audit of the embedding pipeline, so I’m going to gather the pipeline context first, route through the relevant project skills, and then map both execution paths with evidence before I answer the seven questions.
 exec
-/bin/zsh -lc "rg --files -g 'SKILL.md' .opencode/skills/sk-code-opencode .opencode/skills/sk-code-review .opencode/skills/system-spec-kit" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "rg --files -g 'SKILL.md' .opencode/skills/sk-code-skilled .opencode/skills/sk-code-review .opencode/skills/system-spec-kit" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 .opencode/skills/sk-code-review/SKILL.md
-.opencode/skills/sk-code-opencode/SKILL.md
+.opencode/skills/sk-code-skilled/SKILL.md
 .opencode/skills/system-spec-kit/SKILL.md
 exec
 /bin/zsh -lc "rg --files -g 'AGENTS.md' ." in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
@@ -71,7 +71,7 @@ exec
     "reason": "Matched: !embedding, !spec, !system-spec-kit(explicit), document~, folder"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.95,
     "uncertainty": 0.15,
@@ -82,7 +82,7 @@ exec
     "skill": "sk-code-web",
     "kind": "skill",
 codex
-SKILL ROUTING: `system-spec-kit` and `sk-code-opencode` both passed the threshold, so I’m using them in that order because this is a system-spec-kit audit inside OpenCode system code. I’m also checking for any deeper repo instructions and then reading the audit targets plus the skill guidance before mapping the pipeline.
+SKILL ROUTING: `system-spec-kit` and `sk-code-skilled` both passed the threshold, so I’m using them in that order because this is a system-spec-kit audit inside OpenCode system code. I’m also checking for any deeper repo instructions and then reading the audit targets plus the skill guidance before mapping the pipeline.
 exec
 /bin/zsh -lc "sed -n '1,220p' .opencode/skills/system-spec-kit/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
@@ -106,9 +106,9 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 exec
-/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-opencode/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-skilled/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Opencode Env/Public succeeded in 0ms:
 ---
-name: sk-code-opencode
+name: sk-code-skilled
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.0.0

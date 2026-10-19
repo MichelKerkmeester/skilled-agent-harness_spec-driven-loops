@@ -75,7 +75,7 @@ Expected output:
 
 ```text
 Test Files  7 passed (7)
-     Tests  77 passed (77)
+     Tests  83 passed (83)
 ```
 
 `check` runs `tsc --noEmit` then the vitest suite.

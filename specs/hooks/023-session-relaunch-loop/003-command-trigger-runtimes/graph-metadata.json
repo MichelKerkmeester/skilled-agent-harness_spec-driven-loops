@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/003-command-trigger-runtimes",
+  "spec_folder": "hooks/023-session-relaunch-loop/003-command-trigger-runtimes",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command trigger runtimes",
+      "phase 3 command trigger runtimes",
+      "command trigger runtimes plan",
+      "command trigger runtimes tasks",
+      "command trigger runtimes acceptance criteria",
+      "command trigger runtimes goal",
+      "command trigger runtimes implementation summary"
+    ],
+    "key_topics": [
+      "command",
+      "trigger",
+      "runtimes",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "codex"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/spike/SPIKE-codex.md",
+      ".cursor/hooks.json",
+      ".codex/hooks.json",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".hermes/prompts/speckit-handoff.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/README.md",
+      "feature-catalog/context-preservation/session-relaunch-loop.md",
+      "manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SPIKE-codex.md",
+        "kind": "doc",
+        "path": "scratch/spike/SPIKE-codex.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-handoff.md",
+        "kind": "doc",
+        "path": ".hermes/prompts/speckit-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": "feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-command-runtimes.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex, Cursor, Devin and Hermes expose no usage signal at all, so the context-threshold nudge and the Stop-event arming built for Claude, Pi and OpenCode cannot fire for them",
+    "created_at": "2026-10-16T20:16:21Z",
+    "last_save_at": "2026-10-18T16:03:42.442Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6ab12f5c2200433f864534410a9a052f94428759a35f8241775e66491b17947c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "77be6816321050908caa2b0f011adeb8c77eddaf2c57d8f6ce9f3fc9f2105715",
+      "plan.md": "1362f20cf6cbe2fc82d8653f80d29b44488b1f28b5079a9411d9f371da612e5a",
+      "tasks.md": "a7cb243b635c8d00f6e6e4f366cc7825ed7b1fbb85b7b186b7b4af6b6cc60ac4",
+      "implementation-summary.md": "52afdc715880f04a84955c49bb17fe0ccb7b61acec76309533c2c3e98c25f3f0"
+    },
+    "last_active_at": null
+  }
+}

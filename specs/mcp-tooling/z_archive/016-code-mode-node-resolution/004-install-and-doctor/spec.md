@@ -93,7 +93,7 @@ Close the loop so the portable shape survives a fresh install, an unsatisfiable 
 | `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | Write the portable registration |
 | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | Document the range and the refusal message |
 | `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | Report a host with no satisfying interpreter |
-| `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | Record the constraint rather than one machine's path |
+| `.opencode/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md` | Modify | Record the constraint rather than one machine's path |
 <!-- /ANCHOR:scope -->
 
 ---

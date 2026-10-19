@@ -51,9 +51,9 @@ Transformed the sk-improve-agent evaluation from structural keyword-checking (~1
 | `run-benchmark.cjs` | 213 | ~270 | Added `--integration-report` flag for integration consistency scoring |
 | `reduce-state.cjs` | 383 | ~467 | Added per-dimension tracking, dimensional dashboard section, dimension plateau stop rule |
 
-### sk-code-opencode Alignment
+### sk-code-skilled Alignment
 
-All 8 `.cjs` scripts aligned with sk-code-opencode JavaScript standard: box comment headers, numbered ALL-CAPS section separators.
+All 8 `.cjs` scripts aligned with sk-code-skilled JavaScript standard: box comment headers, numbered ALL-CAPS section separators.
 
 ### 5-Dimension Scoring Framework
 

@@ -88,7 +88,7 @@ _memory:
 - [ ] T017 Test happy path manually: create a `git worktree` at a temporary unrelated path, run each repaired helper from it, and diff the output against a run from the primary checkout. Repeat through a symlinked path.
 - [ ] T018 Test edge cases: run all nine failure-injection cases and confirm each matches its T002 recording — same exit code, same working-tree state. Any divergence blocks the script.
 - [ ] T019 Confirm zero skipped cases across the repaired Python test and both MCP suites; parse the runner output for skip counts rather than eyeballing it.
-- [ ] T020 Run `python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/bin` and record the delta: baseline FAIL with 3 `SH-STRICT-MODE` errors, target PASS with 0.
+- [ ] T020 Run `python3 .opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .opencode/bin` and record the delta: baseline FAIL with 3 `SH-STRICT-MODE` errors, target PASS with 0.
 - [ ] T021 Confirm `rg -n '/Users/'` over authored code returns no hardcoded checkout root inside this child's scope, and that anything outside scope is recorded rather than dropped.
 - [ ] T022 Exercise the rollback: revert one shell-lane commit, re-run its three injection cases, and confirm they match the pre-change specification. A partially-guarded script is more dangerous than an unguarded one, so the revert path must be proven.
 - [ ] T023 Update documentation: reconcile `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md` and `implementation-summary.md` so no document contradicts another's completion state.

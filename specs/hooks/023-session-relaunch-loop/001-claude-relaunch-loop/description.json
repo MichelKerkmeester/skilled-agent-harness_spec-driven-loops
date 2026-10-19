@@ -1,0 +1,21 @@
+{
+  "level": "3",
+  "specFolder": "hooks/023-session-relaunch-loop/001-claude-relaunch-loop",
+  "description": "Phase 1: claude-relaunch-loop",
+  "keywords": [
+    "phase",
+    "claude-relaunch-loop"
+  ],
+  "lastUpdated": "2026-10-18T11:56:53.393Z",
+  "specId": "001",
+  "folderSlug": "claude-relaunch-loop",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "17-10-26_05-52__posttooluse-hook-injected-the-relaunch.md",
+    "18-10-26_12-56__phase-001-reconciled-at-packet-closure-strict.md"
+  ]
+}

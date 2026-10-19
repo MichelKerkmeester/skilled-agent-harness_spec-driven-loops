@@ -48,8 +48,8 @@ units.append({"task": "T013", "files": [f"{F}/scratch/neg-canary.txt"], "kind": 
               "instruction": f"node {F}/scratch/canary-assert.cjs > {F}/scratch/neg-canary.txt 2>&1; echo \"exit=$?\"",
               "check": f"tail -1 {F}/scratch/neg-canary.txt; grep -c -F 'FAIL surface-collision-obsidian-over-webflow-implementation route orderedBundle sk-code-webflow,sk-code-obsidian' {F}/scratch/neg-canary.txt",
               "expect": "cases 13 failures 1"})
-old_t = '    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-obsidian"],'
-new_t = '    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-opencode", "sk-code-obsidian", "sk-code-webflow"],'
+old_t = '    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-skilled", "sk-code-obsidian"],'
+new_t = '    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-skilled", "sk-code-obsidian", "sk-code-webflow"],'
 units.append(edit("T014", HUB + "hub-router.json", old_t, new_t, gc(new_t.strip(), HUB + "hub-router.json"), "1"))
 units.append({"task": "T015", "files": [ARCHIVE], "kind": "command",
               "instruction": f"cp {CANARY} {ARCHIVE}",

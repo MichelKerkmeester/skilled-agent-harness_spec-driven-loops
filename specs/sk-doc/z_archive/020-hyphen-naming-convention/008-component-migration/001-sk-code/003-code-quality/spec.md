@@ -35,7 +35,7 @@ parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code
 
 # Feature Specification: code-quality filesystem names
 
-> Phase adjacency under the sk-code component parent: predecessor 002-code-opencode; successor 004-code-review.
+> Phase adjacency under the sk-code component parent: predecessor 002-code-skilled; successor 004-code-review.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -77,7 +77,7 @@ Rename the in-scope code-quality filesystem names to kebab-case and update every
 
 - Quality rules, check IDs, shell script names, code identifiers, JSON/YAML/TOML keys, frontmatter fields, and behavior changes.
 - SKILL.md, README.md, package manifests, Python .py files and package directories, generated/lockfile output, tool-mandated names, and frozen changelog/history as physical names.
-- code-opencode, code-review, code-webflow, hub-level playbook, and root benchmark physical renames owned by sibling children.
+- code-skilled, code-review, code-webflow, hub-level playbook, and root benchmark physical renames owned by sibling children.
 - Rewriting shared source files; this phase updates only the path consumers needed for the quality closure.
 
 ### Files to Change

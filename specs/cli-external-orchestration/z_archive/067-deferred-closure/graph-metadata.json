@@ -46,7 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
       ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
       "hooks/README.md",
       ".pi/SYNC.md"
@@ -85,7 +85,7 @@
       {
         "name": "verify_alignment_drift.py",
         "kind": "file",
-        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "path": ".opencode/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py",
         "source": "derived"
       },
       {

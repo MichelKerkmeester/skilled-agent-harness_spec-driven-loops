@@ -1,5 +1,5 @@
-.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify-router-sync.cjs
-.skilled/skills/sk-code/sk-code-opencode/scripts/tests/verify-router-sync.test.cjs
+.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs
+.skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs
 .github/workflows/routing-registry-drift.yml
 specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/scripts/capture-top3.mjs
 specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/capture-scorer-eval-baseline.stdout.txt
@@ -8,5 +8,5 @@ specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/b
 specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json
 specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.json
 specs/system-deep-loop/039-deprecate-improvement-modes/013-drift-guard-repairs/baseline/score-routing-corpus.stdout.txt
-.skilled/skills/sk-code/sk-code-opencode/references/shared/alignment-verification-automation.md
-.skilled/skills/sk-code/sk-code-opencode/scripts/README.md
+.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+.skilled/skills/sk-code/sk-code-skilled/scripts/README.md

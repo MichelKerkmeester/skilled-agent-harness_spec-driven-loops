@@ -29,7 +29,7 @@ which ones are target-state and not yet adopted in the shipped tree.
 - The task's CWD or changed/target files sit under the Obsidian Plugin repository tree — markers are
   `manifest.json` carrying `minAppVersion`, `esbuild.config.mjs`, `from "obsidian"` imports, and
   `.db-*` classes in `styles.css`. The hub's surface detection resolves **OBSIDIAN**, at precedence
-  `OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN`.
+  `SKILLED > OBSIDIAN > WEBFLOW > UNKNOWN`.
 - The active workflow phase needs the plugin's design-system evidence: the single-stylesheet ownership
   model, the `.db-*` class grammar and its orphan/fixture split, or the browser-based (but
   fixture-driven, not live-renderer) verification gate.
@@ -303,6 +303,6 @@ slice.
   `counter-example rejected : yes`; either failing exits 1.
 - **Source gates:** `bash scripts/run-source-gates.sh` from the plugin repo root runs the naming,
   comment-grammar, folder-doc and reference-integrity guards as one PASS/FAIL gate.
-- **Related:** `../sk-code-webflow` and `../sk-code-opencode` (sibling
+- **Related:** `../sk-code-webflow` and `../sk-code-skilled` (sibling
   surfaces), `../../shared/` (the shared implement → debug → verify doctrine), `system-spec-kit` (spec
   folders), and `sk-git` (worktrees and commits).

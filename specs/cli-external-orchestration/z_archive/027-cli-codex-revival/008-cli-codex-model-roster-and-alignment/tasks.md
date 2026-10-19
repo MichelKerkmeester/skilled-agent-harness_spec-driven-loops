@@ -58,7 +58,7 @@ Propagate one coherent roster (default unchanged: `gpt-5.5 medium fast`) across 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T010 [P] Correct the stale "`.codex/` is not present" claim in `sk-code/code-opencode/assets/checklists/agent_authoring.md` to reflect the live `.codex/` mirror (`hooks.json`, `config.toml`, `.codex/agents/*.toml` ↔ `.opencode/agents/` 13↔13).
+- [x] T010 [P] Correct the stale "`.codex/` is not present" claim in `sk-code/code-skilled/assets/checklists/agent_authoring.md` to reflect the live `.codex/` mirror (`hooks.json`, `config.toml`, `.codex/agents/*.toml` ↔ `.opencode/agents/` 13↔13).
 - [x] T011 Finalize implementation-summary.md; reconcile completion metadata; `validate.sh --strict` Errors: 0 {deps: T003-T010}.
 <!-- /ANCHOR:phase-3 -->
 <!-- ANCHOR:completion -->

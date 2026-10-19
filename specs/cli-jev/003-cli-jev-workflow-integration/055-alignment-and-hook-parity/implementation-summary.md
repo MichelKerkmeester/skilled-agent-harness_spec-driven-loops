@@ -84,7 +84,7 @@ The coverage matrix, rationale and injection contract now agree with the registr
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A read-only DeepSeek worker mapped every hook against the matrix. The orchestrator read each runtime's real payload from the installed CLIs, wrote the shared library and the registry changes, and dispatched DeepSeek workers for the Devin and Hermes adapters, the OpenCode and Pi adapters, and two docs passes. Each worker's report was checked against the code and its tests rerun. Luna reviewed the code against the sk-code-opencode checklists after its usage limit reset.
+A read-only DeepSeek worker mapped every hook against the matrix. The orchestrator read each runtime's real payload from the installed CLIs, wrote the shared library and the registry changes, and dispatched DeepSeek workers for the Devin and Hermes adapters, the OpenCode and Pi adapters, and two docs passes. Each worker's report was checked against the code and its tests rerun. Luna reviewed the code against the sk-code-skilled checklists after its usage limit reset.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -125,7 +125,7 @@ A read-only DeepSeek worker mapped every hook against the matrix. The orchestrat
 ## Known Limitations
 
 1. **Codex task dispatch has no adapter.** Its `spawn_agent` payload must be captured first.
-2. **The sk-code-opencode JavaScript checklist disagrees with its style guide** on the header format and says no shipped file uses the COMPONENT/PURPOSE header, while 32 OpenCode plugins do. The checklist needs amending.
+2. **The sk-code-skilled JavaScript checklist disagrees with its style guide** on the header format and says no shipped file uses the COMPONENT/PURPOSE header, while 32 OpenCode plugins do. The checklist needs amending.
 3. **Open sessions keep their old hook sets until restarted.** Each runtime reads its hook file at session start.
 <!-- /ANCHOR:limitations -->
 

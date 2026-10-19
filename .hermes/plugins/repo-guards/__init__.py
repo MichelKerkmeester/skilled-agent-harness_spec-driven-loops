@@ -59,6 +59,18 @@ SESSION_CLEANUP = REPO_ROOT / ".skilled" / "hooks" / "session-cleanup" / "devin"
 ADVISOR_CLI = REPO_ROOT / ".skilled" / "bin" / "skill-advisor.cjs"
 SPEC_GATE_CLASSIFY = REPO_ROOT / ".skilled" / "hooks" / "spec-gate" / "devin" / "spec-gate-classify.mjs"
 SPEC_GATE_ENFORCE = REPO_ROOT / ".skilled" / "hooks" / "spec-gate" / "devin" / "spec-gate-enforce.mjs"
+HERMES_CONTEXT_NUDGE = (
+    REPO_ROOT / ".skilled" / "hooks" / "session-relaunch" / "hermes" / "context-nudge.mjs"
+)
+HERMES_SESSION_END_ARM = (
+    REPO_ROOT / ".skilled" / "hooks" / "session-relaunch" / "hermes" / "session-end-arm.mjs"
+)
+SESSION_RELAUNCH_DISABLE_ENVS = (
+    "SYSTEM_SESSION_RELAUNCH_DISABLED",
+    "SYSTEM_HOOKS_DISABLED",
+    "MK_HOOKS_DISABLED",
+)
+HERMES_SESSION_USAGE: Dict[str, Dict[str, Any]] = {}
 
 # Prompt-time context rides Hermes's user-message injection channel rather than the system
 # prompt, so it is re-derived per turn: the advisor's brief follows every prompt, and the
@@ -568,6 +580,10 @@ def _truthy_env(name: str) -> bool:
     return os.environ.get(name, "").strip().lower() in TRUTHY_ENV_VALUES
 
 
+def _session_relaunch_enabled() -> bool:
+    return not any(_truthy_env(name) for name in SESSION_RELAUNCH_DISABLE_ENVS)
+
+
 def _orchestrated_leaf() -> bool:
     """Whether this session is a dispatched child, which keeps its advisor brief but not the spec gate."""
     return os.environ.get(ORCHESTRATED_LEAF_ENV, "").strip() == "1"
@@ -587,6 +603,98 @@ def _prompt_text(value: Any) -> str:
     if isinstance(value, list):
         return "\n".join(part for part in (_prompt_text(item) for item in value) if part)
     return ""
+
+
+def _model_context_window(model: str, details: Mapping) -> Optional[int]:
+    """The runtime's own context-window resolution for this model, or None.
+
+    The post_api_request event reports the model but never the window, so a session on a
+    smaller window would be read against the nudge's flat default. The plugin runs inside the
+    Hermes process, where the agent package resolves the real value from the same model,
+    endpoint and provider the event already carries. The import stays lazy so the plugin still
+    loads where that package is absent, and any failure leaves the record windowless, which is
+    exactly what an event without the field already means.
+    """
+    try:
+        from agent.model_metadata import get_model_context_length
+        base_url = details.get("base_url")
+        provider = details.get("provider")
+        window = get_model_context_length(
+            model,
+            base_url=base_url if isinstance(base_url, str) else "",
+            provider=provider if isinstance(provider, str) else "",
+        )
+    except Exception:
+        return None
+    return window if isinstance(window, int) and not isinstance(window, bool) and window > 0 else None
+
+
+def post_api_request(
+    session_id: Any = "", extra: Any = None, **payload: Any
+) -> None:
+    """Keep the latest completed Hermes usage available to the next prompt hook."""
+    try:
+        event = session_id if isinstance(session_id, Mapping) else None
+        if event is not None:
+            session_id = event.get("session_id", "")
+            extra = event.get("extra", extra)
+        if not _session_relaunch_enabled():
+            return
+        if (
+            not isinstance(session_id, str)
+            or not re.fullmatch(r"[A-Za-z0-9_-]{1,128}", session_id)
+        ):
+            return
+
+        details = dict(extra) if isinstance(extra, Mapping) else {}
+        if event is not None:
+            details.update(
+                {
+                    key: value
+                    for key, value in event.items()
+                    if key not in {"session_id", "extra"}
+                }
+            )
+        details.update({key: value for key, value in payload.items() if key != "extra"})
+        usage = details.get("usage")
+        if not isinstance(usage, Mapping):
+            return
+
+        record: Dict[str, Any] = {"usage": dict(usage)}
+        model = details.get("response_model") or details.get("model")
+        if isinstance(model, str) and model:
+            record["model"] = model
+        window = details.get("model_context_window")
+        if window is None and record.get("model"):
+            window = _model_context_window(record["model"], details)
+        if window is not None:
+            record["model_context_window"] = window
+        HERMES_SESSION_USAGE[session_id] = record
+    except Exception:
+        pass
+
+
+def _session_relaunch_context(
+    prompt: str, is_first_turn: bool, session_id: str
+) -> Optional[str]:
+    if not _session_relaunch_enabled() or not session_id:
+        return None
+    payload: Dict[str, Any] = {
+        "user_message": prompt,
+        "is_first_turn": bool(is_first_turn),
+        "session_id": session_id,
+        "cwd": os.getcwd(),
+        "spec_folder": os.environ.get(SPEC_FOLDER_ENV, "").strip(),
+    }
+    latest = HERMES_SESSION_USAGE.get(session_id)
+    if isinstance(latest, Mapping):
+        payload.update(latest)
+    try:
+        output = _run_core(HERMES_CONTEXT_NUDGE, payload)
+    except Exception:
+        return None
+    context = output.get("context") if isinstance(output, Mapping) else None
+    return context.strip() if isinstance(context, str) and context.strip() else None
 
 
 def _run_cli_json(script: Path, argv: List[str]) -> Optional[Any]:
@@ -733,6 +841,13 @@ def pre_llm_call(
         if not prompt:
             return None
         parts = []
+        relaunch = _session_relaunch_context(
+            prompt,
+            is_first_turn,
+            session_id if isinstance(session_id, str) else "",
+        )
+        if relaunch:
+            parts.append(relaunch)
         brief = _advisor_brief(prompt)
         if brief:
             parts.append(brief)
@@ -1000,15 +1115,56 @@ def on_session_start(session_id: str = "", **_: Any) -> None:
         pass
 
 
-def on_session_end(session_id: str = "", **_: Any) -> None:
+def on_session_end(session_id: Any = "", cwd: str = "", **_: Any) -> None:
+    if isinstance(session_id, Mapping):
+        event = session_id
+        session_id = event.get("session_id", "")
+        cwd = event.get("cwd", cwd)
+    session_key = session_id if isinstance(session_id, str) else ""
     try:
-        _run_core(SESSION_STOP, {"session_id": session_id or "hermes-session", "cwd": os.getcwd()})
+        if (
+            _session_relaunch_enabled()
+            and os.environ.get("SKILLED_LOOP_ID", "").strip()
+            and session_key
+        ):
+            _run_core(
+                HERMES_SESSION_END_ARM,
+                {"session_id": session_key, "cwd": cwd or os.getcwd()},
+            )
+    except Exception:
+        pass
+    try:
+        _run_core(
+            SESSION_STOP,
+            {"session_id": session_key or "hermes-session", "cwd": cwd or os.getcwd()},
+        )
     except Exception:
         pass
     try:
         _reap_session_helpers()
     except Exception:
         pass
+
+
+def _forget_session_usage(session_id: Any = "", **_: Any) -> None:
+    """Drop one session's recorded usage once the session itself is over.
+
+    Hermes fires on_session_end after every message, so the usage the next turn's nudge reads
+    is kept until the real session boundary: on_session_finalize, or on_session_reset for /new
+    and /reset.
+    """
+    if isinstance(session_id, Mapping):
+        session_id = session_id.get("session_id", "")
+    if isinstance(session_id, str) and session_id:
+        HERMES_SESSION_USAGE.pop(session_id, None)
+
+
+def on_session_finalize(session_id: Any = "", **kwargs: Any) -> None:
+    _forget_session_usage(session_id, **kwargs)
+
+
+def on_session_reset(session_id: Any = "", **kwargs: Any) -> None:
+    _forget_session_usage(session_id, **kwargs)
 
 
 def register(ctx: Any) -> None:
@@ -1018,6 +1174,9 @@ def register(ctx: Any) -> None:
     ctx.register_hook("pre_verify", pre_verify)
     ctx.register_hook("on_session_start", on_session_start)
     ctx.register_hook("on_session_end", on_session_end)
+    ctx.register_hook("on_session_finalize", on_session_finalize)
+    ctx.register_hook("on_session_reset", on_session_reset)
+    ctx.register_hook("post_api_request", post_api_request)
     # Hermes ignores an on_session_start callback's return value, so the session-start context
     # travels through the system-prompt section surface instead.
     register_section = getattr(ctx, "register_system_prompt_section", None)

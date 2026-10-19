@@ -79,7 +79,7 @@ string, not these files.
 - [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; [ "$(cat $P/00*/goal.md | grep -c '^- \[ \] ')" = 0 ] && [ "$(grep -l 'completion_pct: 100' $P/00*/implementation-summary.md | wc -l | tr -d ' ')" = 2 ] && echo ok` prints ok.
 - [x] `P=specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build; for c in $P $P/00*/; do node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs $c | tail -1; done | grep -c 'RESULT: PASSED'` prints 3.
 - [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/011-sk-code-poinytail-based-refinement/029-surface-setup-build --recursive --strict` prints `RESULT: PASSED` 3 times and `RESULT: FAILED` 0 times.
-- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-opencode/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && echo ok`, run on 002's branch, prints ok.
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code >/dev/null 2>&1 && node .skilled/bin/compiled-route-guard.cjs >/dev/null 2>&1 && node .skilled/bin/compiled-route-sync.cjs --check >/dev/null 2>&1 && bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh >/dev/null 2>&1 && node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs >/dev/null 2>&1 && echo ok`, run on 002's branch, prints ok.
 
 All commands run from the repository root.
 <!-- /ANCHOR:completion -->

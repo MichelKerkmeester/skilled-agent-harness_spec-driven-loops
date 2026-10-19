@@ -69,7 +69,7 @@ Find the Ponytail 5 teachings, mechanisms and ideas worth adopting across the sk
 ### In Scope
 - The Ponytail 5.1.0 source copy in `context/`, read as reference material only.
 - The sk-code hub: `SKILL.md`, `ROUTER.md`, `mode-registry.json`, `hub-router.json` and `shared/`.
-- The nested packets: `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-opencode` and `sk-code-obsidian`.
+- The nested packets: `sk-code-quality`, `sk-code-review`, `sk-code-webflow`, `sk-code-skilled` and `sk-code-obsidian`.
 - Related tooling that sk-code relies on or that Ponytail suggests, such as hooks, benchmarks and rule-copy checks.
 
 ### Out of Scope
@@ -138,10 +138,10 @@ These bind every build phase, 002 to 006.
 | 22 | 022-doc-version-and-playbook-paths/ | Give every skill doc its own automatically raised version again, and resolve every unresolved backticked playbook path | Complete |
 | 23 | 023-readme-freshness-research/ | Ten-iteration research into whether the root README and its related READMEs still hold after the v4.0.0.4 changes; research only | Complete |
 | 24 | 024-readme-freshness-fixes/ | Apply the README fixes F1 to F23 from the 023 research and retire doctor check 13c, so a hub README keeps its own version | Complete |
-| 25 | 025-external-surface-priority-research/ | Two-lineage ten-iteration research into how a user's own sk-code surface outranks sk-code-opencode once the obsidian and webflow examples are deleted; research only; round two adds two more lineages | Complete |
+| 25 | 025-external-surface-priority-research/ | Two-lineage ten-iteration research into how a user's own sk-code surface outranks sk-code-skilled once the obsidian and webflow examples are deleted; research only; round two adds two more lineages | Complete |
 | 26 | 026-external-surface-priority-build/ | Build the 025 final recommendations R1, R2, R3, R4, R7, R8 and R9 and drop `ROUTER.md` from doctor check 13a, in five children; 001 to 003 build in parallel, 004 after 002, 005 last | Complete |
-| 27 | 027-surface-tie-order-warning/ | Doctor check 5l reports a sk-code surface a user placed by hand after `sk-code-opencode` in `tieBreak`, except the two shipped examples; one README sentence | Complete |
-| 28 | 028-surface-setup-hardening-research/ | Two-lineage five-iteration research into what still breaks the rule that only sk-code-opencode and sk-code-review matter to an external user, the setup journey from clone to a green battery, and whether the setup belongs in a doctor command or a sk-code mode; research only | Complete |
+| 27 | 027-surface-tie-order-warning/ | Doctor check 5l reports a sk-code surface a user placed by hand after `sk-code-skilled` in `tieBreak`, except the two shipped examples; one README sentence | Complete |
+| 28 | 028-surface-setup-hardening-research/ | Two-lineage five-iteration research into what still breaks the rule that only sk-code-skilled and sk-code-review matter to an external user, the setup journey from clone to a green battery, and whether the setup belongs in a doctor command or a sk-code mode; research only | Complete |
 | 29 | 029-surface-setup-build/ | Build the 028 recommendations in two children: 001 fixes the clone path and the guard and contract-library messages (R1, R2, R4, R5), 002 adds a read-only `/doctor:sk-code setup` (R3) from origin/main once 001 is on it | Complete |
 | 30 | 030-epic-deep-review/ | Five-iteration cli-codex deep review of the epic's shipped work and the v4.0.0.4 changelog; review only, verdict CONDITIONAL with three P2 advisories | Complete |
 | 31 | 031-epic-review-fixes/ | Fix the three P2 advisories of the 030 review: create.sh lone dash, the setup probe line quoting and the hook trust wording | Complete |

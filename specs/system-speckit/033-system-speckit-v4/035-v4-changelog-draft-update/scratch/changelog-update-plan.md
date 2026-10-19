@@ -116,7 +116,7 @@ Voice rules bind every sentence added: no em dashes, no semicolons, no Oxford co
 
 9.4 In "Review, First Class", add: every review ends with a `Review status: APPROVED|REQUESTED_CHANGES|COMMENTED` line, and the checklists moved from `references/` to `assets/`, so anything pinned to the old path needs repointing. (sk-code-review v1.8 and v1.5.0.0 digests)
 
-9.5 Add one sentence that language slicing now covers the full set of languages a task touches rather than the first match. (sk-code-opencode v1.0.0.4)
+9.5 Add one sentence that language slicing now covers the full set of languages a task touches rather than the first match. (sk-code-skilled v1.0.0.4)
 
 ---
 

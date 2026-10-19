@@ -8,4 +8,4 @@ CHECKS: python3 -c "import sys; sys.path.insert(0, '.skilled/skills/sk-doc/sk-cr
 CHECKS: grep -n 'parents[3]|interpreter running this script|sys.executable, str(REPO_CLI_DEEM)' <S> -> no hits for any old form (exit 1, expected clean); file also imports cleanly as shown above
 BLOCKED REASON: none
 
-Notes: target `cli-deem.mjs` exists at `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs`; the old `.skilled/cli-classifier` path does not exist. Route: sk-code hub -> compiled route resolved `sk-code-opencode`; Python slice (style-guide, quality-standards, quick-reference) loaded before the edit. No other files touched; no test suites run (orchestrator's scope).
+Notes: target `cli-deem.mjs` exists at `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs`; the old `.skilled/cli-classifier` path does not exist. Route: sk-code hub -> compiled route resolved `sk-code-skilled`; Python slice (style-guide, quality-standards, quick-reference) loaded before the edit. No other files touched; no test suites run (orchestrator's scope).

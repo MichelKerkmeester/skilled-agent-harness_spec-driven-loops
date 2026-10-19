@@ -164,7 +164,7 @@ grouped detail:
     - spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
     - spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
 ### specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass / x SPEC_DOC_INTEGRITY (6)
-    - spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+    - spec.md references missing markdown file: 001-sk-code-skilled-standards-audit/checklist.md
     - spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
     - spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
     - spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
@@ -202,7 +202,7 @@ Downgrades:
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
-  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-skilled-standards-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
@@ -275,7 +275,7 @@ Downgrades:
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
-  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-skilled-standards-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md
@@ -513,7 +513,7 @@ file was changed.)
   Summary: Errors: 0  Warnings: 1
   RESULT: PASSED
   Spec Folder Validation v3.0.0
-  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-opencode-standards-audit
+  Folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/bd2aa56c-623b-43f8-a2ef-69a13c32d626/scratchpad/apply-clone/repo/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit
   Summary: Errors: 0  Warnings: 0
   RESULT: PASSED
   Spec Folder Validation v3.0.0
@@ -835,7 +835,7 @@ Downgrades:
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 007-validator-spec-document-integrity-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 008-documentation-truth-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 009-upgrade-safety-operability-audit/checklist.md
-  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-opencode-standards-audit/checklist.md
+  specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 001-sk-code-skilled-standards-audit/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 002-feature-catalog-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 003-testing-playbook-trio-alignment/checklist.md
   specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass | SPEC_DOC_INTEGRITY | error -> warning | spec.md references missing markdown file: 004-sk-doc-template-alignment/checklist.md

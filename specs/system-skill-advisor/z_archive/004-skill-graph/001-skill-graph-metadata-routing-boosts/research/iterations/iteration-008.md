@@ -4,7 +4,7 @@ This iteration validated the current `skill_advisor.py` routing behavior against
 
 The most important result is that graph boosts are now visible enough to audit, but they are still doing two different jobs:
 
-- Helpful: they preserve useful companion skills such as `sk-code-opencode` for OpenCode review requests and `sk-code-review` for deep-review requests.
+- Helpful: they preserve useful companion skills such as `sk-code-skilled` for OpenCode review requests and `sk-code-review` for deep-review requests.
 - Harmful: they also create graph-only noise, especially via family and sibling propagation, including `mcp-coco-index` and `mcp-figma` on a DevTools query and `sk-deep-research` on a deep-review query.
 
 This iteration also revalidated the structural gaps behind those behaviors:
@@ -40,10 +40,10 @@ Full output:
     "confidence": 0.95,
     "uncertainty": 0.23,
     "passes_threshold": true,
-    "reason": "Matched: !graph:enhances(sk-code-opencode,0.3), !intent:review, !review, !review(multi), opencode"
+    "reason": "Matched: !graph:enhances(sk-code-skilled,0.3), !intent:review, !review, !review(multi), opencode"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.92,
     "uncertainty": 0.15,
@@ -56,7 +56,7 @@ Full output:
     "confidence": 0.62,
     "uncertainty": 0.2,
     "passes_threshold": true,
-    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-opencode,0.4), opencode~"
+    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-skilled,0.4), opencode~"
   },
   {
     "skill": "sk-code-full-stack",
@@ -64,7 +64,7 @@ Full output:
     "confidence": 0.51,
     "uncertainty": 0.3,
     "passes_threshold": true,
-    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-opencode,0.4)"
+    "reason": "Matched: !graph:enhances(sk-code-review,0.7), !graph:sibling(sk-code-skilled,0.4)"
   }
 ]
 ```
@@ -72,7 +72,7 @@ Full output:
 Assessment:
 
 - Graph boosts do appear in the `reason` field for the top two results.
-- Routing accuracy improves slightly with graph enabled because `sk-code-opencode` stays strong as the correct companion to `sk-code-review`.
+- Routing accuracy improves slightly with graph enabled because `sk-code-skilled` stays strong as the correct companion to `sk-code-review`.
 - The same boosts also inflate `sk-code-web` and `sk-code-full-stack` from irrelevant neighbors. In the no-graph comparison, both disappear from the top routing set while the correct top two remain intact.
 - Conclusion: graph is helpful here for companion ranking, but sibling/enhance propagation is too permissive once the correct pair is already found.
 
@@ -145,7 +145,7 @@ Full output:
     "reason": "Matched: !graph:enhances(sk-code-web,0.3)"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.43,
     "uncertainty": 0.3,
@@ -165,7 +165,7 @@ Full output:
 
 Assessment:
 
-- Graph boosts appear in the reasons for `sk-code-web`, `mcp-code-mode`, `mcp-coco-index`, `mcp-figma`, `sk-code-review`, `sk-code-opencode`, and `sk-code-full-stack`.
+- Graph boosts appear in the reasons for `sk-code-web`, `mcp-code-mode`, `mcp-coco-index`, `mcp-figma`, `sk-code-review`, `sk-code-skilled`, and `sk-code-full-stack`.
 - `mcp-chrome-devtools` remains the correct primary route with or without graph.
 - The `mcp-chrome-devtools -> sk-code-web` edge is helpful because it keeps web-debug context visible for a CSS layout problem.
 - The `mcp-chrome-devtools -> mcp-code-mode` relationship is explainable and harmless, but it is not decisive here because lexical evidence already keeps `mcp-code-mode` in the top three.
@@ -233,7 +233,7 @@ Full output:
     "reason": "Matched: !graph:enhances(sk-code-review,0.7), spec~"
   },
   {
-    "skill": "sk-code-opencode",
+    "skill": "sk-code-skilled",
     "kind": "skill",
     "confidence": 0.49,
     "uncertainty": 0.3,
@@ -280,7 +280,7 @@ Assessment:
    - Recommendation: model the real workflow relationships instead of letting these skills rely on keyword coincidence or family spillover. The minimum high-signal set still looks like:
      - `sk-doc -> system-spec-kit` as `enhances`
      - `system-spec-kit -> sk-doc` and `system-spec-kit -> sk-git` as explicit workflow edges if the packet wants hub traversal symmetry
-     - `mcp-coco-index -> sk-code-opencode` and `mcp-coco-index -> sk-code-web` as semantic-search workflow edges
+     - `mcp-coco-index -> sk-code-skilled` and `mcp-coco-index -> sk-code-web` as semantic-search workflow edges
 
 3. Add the missing CLI prompt-quality integration edges.
    - Evidence: `sk-improve-prompt` still compiles only a sibling edge to `sk-improve-agent` (`.opencode/skills/sk-improve-prompt/graph-metadata.json:6-16`, `.opencode/skills/skill-advisor/scripts/skill-graph.json:136-145`), so current CLI routing cannot use that relationship even though the prompt-quality card is a shared dependency surface.

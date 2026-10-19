@@ -1,5 +1,5 @@
 {
-  "topic": "Review: 007-code-audit-per-feature-catalog — Full audit of 220+ features across 22 child folders, verifying correctness, security, traceability, and maintainability against MCP server source code, sk-code-opencode standards, and system-spec-kit architecture",
+  "topic": "Review: 007-code-audit-per-feature-catalog — Full audit of 220+ features across 22 child folders, verifying correctness, security, traceability, and maintainability against MCP server source code, sk-code-skilled standards, and system-spec-kit architecture",
   "mode": "review",
   "reviewTarget": ".opencode/specs/system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog",
   "reviewTargetType": "spec-folder",

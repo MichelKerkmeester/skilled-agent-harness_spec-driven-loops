@@ -75,7 +75,7 @@ _memory:
 ## Phase 3: Verification
 
 ### Pre-Promotion Gate
-- [x] T013 Refresh parent-hub schema worked example [medium] — sk-doc schema doc now shows sk-code workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-opencode`, and `defaultMode: null`
+- [x] T013 Refresh parent-hub schema worked example [medium] — sk-doc schema doc now shows sk-code workflow modes `quality` and `code-review`, surface packets `code-webflow` and `code-skilled`, and `defaultMode: null`
 - [x] T014 Correct surface-primary defaultMode rule [small] — schema doc allows `defaultMode: null` for a surface-primary hub
 - [x] T015 Parse schema JSON examples [small] — all six JSON examples in the refreshed schema doc parse
 

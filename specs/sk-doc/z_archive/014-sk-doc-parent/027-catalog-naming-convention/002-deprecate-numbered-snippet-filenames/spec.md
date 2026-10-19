@@ -55,7 +55,7 @@ _memory:
 111 per-scenario snippet files under `feature_catalog/<category>/` and `manual_testing_playbook/<category>/`,
 across 9 skill packets (`cli-external`, `cli-external/cli-claude-code`, `cli-external/cli-opencode`,
 `mcp-tooling`, `mcp-tooling/mcp-chrome-devtools`, `mcp-tooling/mcp-click-up`, `mcp-tooling/mcp-figma`,
-`sk-code` and its `code-review`/`code-opencode`/`code-webflow`/`code-quality` modes, `sk-prompt`, and
+`sk-code` and its `code-review`/`code-skilled`/`code-webflow`/`code-quality` modes, `sk-prompt`, and
 `system-deep-loop`'s `deep-improvement`/`deep-research`/`deep-review` modes), carry a zero-padded 3-digit
 `NNN-` ordinal prefix (e.g. `006-mcp-tool-surface.md`). This is the same anti-pattern packet 108 removed
 repo-wide (1,562 files, merged 2026-06-06) — these 111 files postdate that migration by 5+ weeks and were
@@ -91,7 +91,7 @@ of an implicit filename token.
   - `mcp-tooling/mcp-click-up/manual_testing_playbook/intra-routing-recall` (7; holdout 005-006, negative 007)
   - `mcp-tooling/mcp-figma/manual_testing_playbook/intra-routing-recall` (9; holdout 007-008, negative 009)
   - `sk-code/code-review/manual_testing_playbook/intra-routing-recall` (7)
-  - `sk-code/code-opencode/manual_testing_playbook/{authoring-verification(006-008), config-hooks(004-005), language-standards(001-003,009)}` (9)
+  - `sk-code/code-skilled/manual_testing_playbook/{authoring-verification(006-008), config-hooks(004-005), language-standards(001-003,009)}` (9)
   - `sk-code/code-webflow/manual_testing_playbook/{implementation-quality(001-005), performance-animation(006-009), deployment-forms-video(010-012), language-standards(013)}` (13)
   - `sk-code/code-quality/manual_testing_playbook/quality-gate` (1)
   - `sk-prompt/manual_testing_playbook/hub-routing` (4)
@@ -99,7 +99,7 @@ of an implicit filename token.
   - `system-deep-loop/deep-research/manual_testing_playbook/intra-routing-recall` (8)
   - `system-deep-loop/deep-review/manual_testing_playbook/intra-routing-recall` (4)
 - The **load-bearing loader dependency**: `load-playbook-scenarios.cjs:302` and its test oracle
-  `code-opencode-playbook-ids.vitest.ts:28` (both re-implement the `^\d{3}-` regex and must change in lockstep).
+  `code-skilled-playbook-ids.vitest.ts:28` (both re-implement the `^\d{3}-` regex and must change in lockstep).
 - The **one live numbered-filename generator**: `playbook-generator.cjs` (still emits `AG-NNN.md`).
 - The **3 hub-routing root-index tables** that cite these filenames (`cli-external`, `mcp-tooling`, `sk-prompt`
   hub-routing indexes).
@@ -128,7 +128,7 @@ rename).
 
 | Phase | Child | Outcome |
 |-------|-------|---------|
-| **001** | `001-loader-and-guard` | Make `load-playbook-scenarios.cjs:302` number-agnostic: select any `*.md` carrying scenario frontmatter (excluding the root `manual_testing_playbook.md`/`feature_catalog.md` index), teach the loader to read an optional `stage:` field, update the `code-opencode-playbook-ids.vitest.ts:28` oracle in lockstep, and add a no-new-numbered-snippet guard that fails on a newly created `feature_catalog|manual_testing_playbook/<category>/NNN-*.md`. Also closes the latent bug that currently zeroes 10+ live playbooks. Lands first; tolerates both numbered and un-numbered filenames during the transition. |
+| **001** | `001-loader-and-guard` | Make `load-playbook-scenarios.cjs:302` number-agnostic: select any `*.md` carrying scenario frontmatter (excluding the root `manual_testing_playbook.md`/`feature_catalog.md` index), teach the loader to read an optional `stage:` field, update the `code-skilled-playbook-ids.vitest.ts:28` oracle in lockstep, and add a no-new-numbered-snippet guard that fails on a newly created `feature_catalog|manual_testing_playbook/<category>/NNN-*.md`. Also closes the latent bug that currently zeroes 10+ live playbooks. Lands first; tolerates both numbered and un-numbered filenames during the transition. |
 | **002** | `002-generator-alignment` | Fix `playbook-generator.cjs` to emit slug filenames (plus the optional `stage:` field) instead of `AG-NNN.md`; re-verify the sk-doc convention docs and `/create:*` generators already forbid numbered filenames (no change expected). |
 | **003** | `003-migration-tooling` | A deterministic, dry-run-default rename engine (`denumber-snippet-filenames.mjs`, adapted from 108's `denumber-snippets.cjs`): enumerate the 111 in-scope files, compute the strip-`^\d{3}-` rename map, hard-abort on any collision before writing, derive and inject the `stage:` frontmatter from the holdout/negative token, sweep the 3 hub-routing root-index rows word-boundary-safe, and emit a diff plus collision/safety report. No mutation without `--apply`. |
 | **004** | `004-execute-migration` | Run the migration fanned out by skill family: rename all 111 files, inject `stage:` fields, rewrite the 3 hub-routing root-index tables in lockstep, validate each family as it lands. Folds in the 2 failing-vitest-suite fixes and the 7 dead allowlist entries (operator decision B). |
@@ -144,7 +144,7 @@ tolerant loader. 005 is the gate.
 
 1. Zero `feature_catalog|manual_testing_playbook/<category>/NNN-*.md` files remain across the 9 in-scope
    packets; the 20 out-of-scope system-spec-kit single-digit files are untouched.
-2. `load-playbook-scenarios.cjs` (and its `code-opencode-playbook-ids.vitest.ts` oracle) select scenario files
+2. `load-playbook-scenarios.cjs` (and its `code-skilled-playbook-ids.vitest.ts` oracle) select scenario files
    by content/frontmatter, not by filename number, and the previously-zeroed 10+ playbooks now load.
 3. The Lane C skill-benchmark discovered-scenario count is unchanged post-migration versus the pre-migration
    baseline, with no D1-D5 scoring regression on the affected skills.
@@ -172,7 +172,7 @@ tolerant loader. 005 is the gate.
   `999-sk-doc-parent` path; 026's deny-list must use the correct `014-sk-doc-parent` packet path (see
   `decision-record.md` ADR-008).
 - **Dependency:** the Lane C skill-benchmark harness (unchanged) for the 005 regression check; the
-  `code-opencode-playbook-ids.vitest.ts` oracle must change in lockstep with the loader (001).
+  `code-skilled-playbook-ids.vitest.ts` oracle must change in lockstep with the loader (001).
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

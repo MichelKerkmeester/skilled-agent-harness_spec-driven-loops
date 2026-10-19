@@ -76,7 +76,7 @@ defect) and the surface-aware branch in `package_skill.py`.
 | `.opencode/skills/sk-code/code-webflow/SKILL.md` | Modify | Add missing RESOURCE_MAP commas |
 | `.opencode/skills/system-skill-advisor/SKILL.md` | Modify | Dedup HOOKS keyword, add codex |
 | `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` | Modify | Drop json from markdown-guarded map |
-| `.opencode/skills/sk-code/code-quality/SKILL.md` | Modify | Repoint checklist paths to code-opencode |
+| `.opencode/skills/sk-code/code-quality/SKILL.md` | Modify | Repoint checklist paths to code-skilled |
 | `.opencode/skills/sk-code/code-review/**` | Modify | Fix pseudocode; snake_case asset; consolidate |
 | `.opencode/skills/mcp-tooling/mcp-click-up/**` | Modify | Correct config/auth/namespace to ground truth |
 | `.opencode/skills/system-deep-loop/**` | Modify | Add the 8th alignment mode to the hub |
@@ -104,7 +104,7 @@ defect) and the surface-aware branch in `package_skill.py`.
 | REQ-003 | code-webflow RESOURCE_MAP lists are comma-complete (no implicit string concat) | P0 |
 | REQ-004 | system-skill-advisor HOOKS keyword list deduped, `codex` present | P1 |
 | REQ-005 | deep-alignment markdown-guarded RESOURCE_MAP holds only markdown paths | P1 |
-| REQ-006 | code-quality checklist routing points at the real `../code-opencode/assets/checklists/` | P0 |
+| REQ-006 | code-quality checklist routing points at the real `../code-skilled/assets/checklists/` | P0 |
 | REQ-007 | code-review detect_surface_evidence returns concrete surface keys, not a placeholder | P0 |
 | REQ-008 | mcp-click-up config/auth/namespace matches `.utcp_config.json` across SKILL.md + README + references | P0 |
 | REQ-009 | system-deep-loop hub documents all 8 registered modes (alignment included) | P0 |

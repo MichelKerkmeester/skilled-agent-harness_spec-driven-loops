@@ -89,8 +89,8 @@ Each issue is verified against the code and then fixed with a check that proves 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modify | Router walk skips spec evidence, marker pattern follows the new header |
-| `.skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py` | Modify | Evidence skip test, marker fixture |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` | Modify | Router walk skips spec evidence, marker pattern follows the new header |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` | Modify | Evidence skip test, marker fixture |
 | `.skilled/commands/doctor/scripts/tests/doctor-phrase-reach.test.cjs` | Create | Passing run and stale-build exit 2 |
 | `.skilled/commands/doctor/scripts/README.md` | Modify | Coverage claim |
 | `.skilled/commands/doctor/scripts/tests/README.md` | Modify | Suite table row |

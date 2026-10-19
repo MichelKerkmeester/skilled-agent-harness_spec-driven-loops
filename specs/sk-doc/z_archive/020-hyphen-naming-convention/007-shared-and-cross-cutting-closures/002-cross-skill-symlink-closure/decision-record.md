@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/install_guides/install_scripts/"
       - ".opencode/skills/sk-doc/scripts/"
-      - ".opencode/skills/sk-code/code-opencode/references/"
+      - ".opencode/skills/sk-code/code-skilled/references/"
     completion_pct: 0
     open_questions: []
     answered_questions:

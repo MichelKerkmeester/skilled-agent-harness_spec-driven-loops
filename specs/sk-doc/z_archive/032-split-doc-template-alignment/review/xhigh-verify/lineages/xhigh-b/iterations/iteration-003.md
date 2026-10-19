@@ -75,7 +75,7 @@ None.
 
 - Corpus audit: 163 files, 136 references + 27 assets; zero validator failures and zero hyphenated basenames; two semantic/order defects (F001/F002).
 - Link audit: 328 tracked Markdown files, 583 relative Markdown links, two unresolved artifacts matching checklist line 52 exactly.
-- Package checks: code-quality PASS with two skill-level warnings; code-opencode and code-webflow FAIL only the documented surface-header required-section check, with no resource-document warnings.
+- Package checks: code-quality PASS with two skill-level warnings; code-skilled and code-webflow FAIL only the documented surface-header required-section check, with no resource-document warnings.
 - Strict packet validation: zero errors, five warning classes, `RESULT: FAILED`.
 
 ## Edge Cases

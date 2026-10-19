@@ -50,6 +50,12 @@ async function mapPool(items, limit, fn) {
 }
 
 const VERSION_RE = /^\d+\.\d+\.\d+\.\d+$/;
+// A runtime state dir sits beside the skills and holds one tracked doc per concern, the
+// concern README, with git ignoring every other path in it. So the state dir stays a walk
+// target while inScope() admits only that one depth, and a state dir nested inside a skill
+// keeps the blanket exclusion because nothing in it is tracked.
+const RUNTIME_STATE_DIR = '.state';
+const RUNTIME_STATE_README = 'README.md';
 const EXCLUDED_DIRS = new Set(['changelog', 'scratch', 'node_modules', '.git', 'dist']);
 // Doc subtrees: a doc under one is always in scope, even inside a runtime folder,
 // and the explicit-target guard refuses an unsupported root such as feature_catalog_v2 by name.
@@ -168,6 +174,13 @@ function isSkillMd(absFile) {
   return path.basename(absFile) === 'SKILL.md';
 }
 
+/** The one tracked doc in a runtime state dir: its concern README, at exactly the depth
+ *  git re-includes, so a deeper state file is out of scope and nothing above the concern
+ *  is a doc at all. */
+function isRuntimeStateReadme(dirs, basename) {
+  return dirs[0] === RUNTIME_STATE_DIR && dirs.length === 2 && basename === RUNTIME_STATE_README;
+}
+
 /** Every markdown doc under a skill carries its own edition, except changelog entries,
  *  test input, generated output and spec-doc examples. A doc with no frontmatter is
  *  skipped by every mode, so it needs no rule here. */
@@ -176,7 +189,8 @@ function inScope(absFile, skillsRoot) {
   const segments = path.relative(skillsRoot, absFile).split(path.sep);
   if (segments[0] === '..' || path.isAbsolute(segments[0])) return false;
   const dirs = segments.slice(0, -1);
-  if (dirs.some((d) => EXCLUDED_DIRS.has(d))) return false;
+  if (isRuntimeStateReadme(dirs, path.basename(absFile))) return true;
+  if (dirs.some((d) => EXCLUDED_DIRS.has(d)) || dirs.includes(RUNTIME_STATE_DIR)) return false;
   if (isSkillMd(absFile)) return true;
   if (dirs.some((d) => TEST_DIRS.has(d))) return false;
   if (dirs.some((d) => SCOPE_SUBTREES.includes(d))) return true;
@@ -209,7 +223,7 @@ function assertExplicitTargets(targets, skillsRoot) {
 function walkAllMd(dir, acc) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.isDirectory()) {
-      if (EXCLUDED_DIRS.has(entry.name)) continue;
+      if (EXCLUDED_DIRS.has(entry.name) || entry.name === RUNTIME_STATE_DIR) continue;
       walkAllMd(path.join(dir, entry.name), acc);
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
       acc.push(path.join(dir, entry.name));

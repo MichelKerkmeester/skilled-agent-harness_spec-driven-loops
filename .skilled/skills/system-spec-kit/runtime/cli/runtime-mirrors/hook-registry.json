@@ -1032,6 +1032,80 @@
       }
     },
     {
+      "id": "session-relaunch",
+      "concern": "Hand a session near its context limit to a fresh one under skilled-loop",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PostToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          },
+          {
+            "event": "UserPromptSubmit",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          },
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 2,
+            "matcher": "",
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+            "timeout": 10,
+            "fallback": "envelope",
+            "async": true
+          }
+        ],
+        "codex": [
+          {
+            "event": "UserPromptSubmit",
+            "group": 2,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/codex/prompt-seed.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          },
+          {
+            "event": "PostToolUse",
+            "group": 2,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/codex/context-nudge.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          },
+          {
+            "event": "Stop",
+            "group": 0,
+            "slot": 2,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ]
+      },
+      "pi": {
+        "extension": "session-relaunch.ts"
+      }
+    },
+    {
       "id": "session-start",
       "concern": "Prime the session with continuity and workspace context",
       "bindings": {

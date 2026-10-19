@@ -19,16 +19,16 @@ Format: `| class | claim | evidence | priority |`. Every row was opened in this 
 
 | class | claim | evidence | priority |
 | --- | --- | --- | --- |
-| ORDER | `hub-router.json:7` tieBreak is `["sk-code-quality","sk-code-review","sk-code-opencode","sk-code-obsidian","sk-code-webflow"]` — the hub's one full rank; `SKILL.md:74` defines it as the bundle order and calls it the detection precedence OPENCODE > OBSIDIAN > WEBFLOW. | read `.skilled/skills/sk-code/hub-router.json:7`; `.skilled/skills/sk-code/SKILL.md:74` | P1 |
+| ORDER | `hub-router.json:7` tieBreak is `["sk-code-quality","sk-code-review","sk-code-skilled","sk-code-obsidian","sk-code-webflow"]` — the hub's one full rank; `SKILL.md:74` defines it as the bundle order and calls it the detection precedence OPENCODE > OBSIDIAN > WEBFLOW. | read `.skilled/skills/sk-code/hub-router.json:7`; `.skilled/skills/sk-code/SKILL.md:74` | P1 |
 | ORDER | `shared/references/stack-detection.md:39` states "**Precedence**: OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN", implemented in §2 as early-return bash blocks in that order (OPENCODE first, OBSIDIAN second, WEBFLOW third). | read `.skilled/skills/sk-code/shared/references/stack-detection.md:37-63` | P1 |
 | ORDER | `SKILL.md:139` restates "at precedence OPENCODE > OBSIDIAN > WEBFLOW > UNKNOWN". | read `.skilled/skills/sk-code/SKILL.md:139` | P2 |
 | ORDER | `hub-router.json` routerSignals object literal orders keys quality `:21`, review `:26`, webflow `:31`, opencode `:36`, obsidian `:42` — Webflow precedes OpenCode in the JSON text even though tieBreak ranks OpenCode first. | read `.skilled/skills/sk-code/hub-router.json:20-47` | P2 |
-| ORDER | `mode-registry.json` is Webflow-first: `:19` `"surfaces": ["sk-code-webflow","sk-code-opencode","sk-code-obsidian"]`; `:5` description `(sk-code-webflow/sk-code-opencode/sk-code-obsidian)`; `modes[]` entries run webflow `:60`, opencode `:78`, obsidian `:96`. | read `.skilled/skills/sk-code/mode-registry.json:5,19,60-114` | P2 |
+| ORDER | `mode-registry.json` is Webflow-first: `:19` `"surfaces": ["sk-code-webflow","sk-code-skilled","sk-code-obsidian"]`; `:5` description `(sk-code-webflow/sk-code-skilled/sk-code-obsidian)`; `modes[]` entries run webflow `:60`, opencode `:78`, obsidian `:96`. | read `.skilled/skills/sk-code/mode-registry.json:5,19,60-114` | P2 |
 | ORDER | `SKILL.md` lists Webflow-first at `:15` (three read-only evidence packets), `:36-38` (surface table), `:40` ("The hub has exactly three surfaces, WEBFLOW …, OPENCODE … and OBSIDIAN …"). | read `.skilled/skills/sk-code/SKILL.md:15,32-40` | P2 |
-| ORDER | `sk-code-quality/SKILL.md:15,37,48,190,196,289` and `sk-code-quality/README.md:59,108` list "`sk-code-webflow` / `sk-code-opencode` / `sk-code-obsidian`" Webflow-first. | grep sweep hits, lines as listed | P2 |
+| ORDER | `sk-code-quality/SKILL.md:15,37,48,190,196,289` and `sk-code-quality/README.md:59,108` list "`sk-code-webflow` / `sk-code-skilled` / `sk-code-obsidian`" Webflow-first. | grep sweep hits, lines as listed | P2 |
 | ORDER | The review packet is internally mixed: `sk-code-review/references/review-core.md:68` says "`OPENCODE`, `OBSIDIAN` or `WEBFLOW`" while `sk-code-review/SKILL.md:39,42,499` list Webflow-first. | grep sweep hits | P2 |
 | ORDER | `leaf-manifest.json` `modes[]` runs obsidian `:35-36`, opencode `:114-115`, quality `:123-124`, review `:139-140`, webflow `:270-271` — a third variant (Obsidian first, Webflow last). | `cat leaf-manifest.json` (275 lines) in batch capture; line offsets derived from the captured `wc -l` framing | P2 |
-| ORDER | The advisor-facing files are Webflow-first: `graph-metadata.json:282` causal_summary says "(sk-code-webflow, sk-code-opencode, sk-code-obsidian)"; `README.md:23,55-57,90` and `description.json:2,45-49` likewise. | batch capture of `graph-metadata.json`, `README.md`, `description.json` | P2 |
+| ORDER | The advisor-facing files are Webflow-first: `graph-metadata.json:282` causal_summary says "(sk-code-webflow, sk-code-skilled, sk-code-obsidian)"; `README.md:23,55-57,90` and `description.json:2,45-49` likewise. | batch capture of `graph-metadata.json`, `README.md`, `description.json` | P2 |
 | ORDER / DOC | `v4.0.0.4.md:297` claims "Every sk-code file that ranks the code surfaces now says OpenCode, then Obsidian, then Webflow". True for the two ranking encodings (rows 1–2); the hub still carries at least five Webflow-first lists (rows 5–10), so an external reader sees a different order depending on which file they open. | read `.skilled/changelog/skilled/v4.0.0.4.md:295-297` | P1 |
 | PRESENCE | `hub-router.json:31-46` registers `sk-code-webflow` and `sk-code-obsidian` as first-class routerSignals (weight 4 each); their keyword classes `:73-94` fire on generic words ("webflow", "frontend", "html", "css", "obsidian", "manifest.json", "vault", "note database"). Deleting the packets leaves live signals that match and then find nothing. | read `.skilled/skills/sk-code/hub-router.json:20-46,73-94` | P1 |
 | PRESENCE | tieBreak `:7` and `mode-registry.json:19,60-114` enumerate both packets as installed modes; no hub file marks them optional, example, or deletable. | reads above | P1 |
@@ -83,7 +83,7 @@ None fully answered this iteration. Q1 is partially covered: the hub-side encodi
 - `.skilled/skills/sk-code/graph-metadata.json` (287 lines, batch capture)
 - `.skilled/skills/sk-code/description.json` (57 lines, batch capture)
 - `.skilled/skills/sk-code/shared/references/stack-detection.md:1-156` (full read)
-- `.skilled/skills/sk-code/sk-code-opencode/SKILL.md:1-45` (head)
+- `.skilled/skills/sk-code/sk-code-skilled/SKILL.md:1-45` (head)
 - `.skilled/skills/sk-code/sk-code-obsidian/SKILL.md:1-45` (head)
 - `.skilled/skills/sk-code/sk-code-webflow/SKILL.md:1-45` (head)
 - `.skilled/skills/sk-code/sk-code-quality/SKILL.md:15,37,48,190,192,196,225,289` (grep hits)

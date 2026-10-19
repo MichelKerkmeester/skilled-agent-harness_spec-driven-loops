@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.1.0.2
+version: 2.1.1.0
 ---
 
 # Workflow Reference - Verification
@@ -75,11 +75,11 @@ Use the universal verification checklist as the detailed gate, not as content to
 
 ### OpenCode Verification Reality
 
-OpenCode work: see the verification reality, including the `validate.sh` pointer, in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#3-verification-reality).
+OpenCode work: see the verification reality, including the `validate.sh` pointer, in [OpenCode workflow guardrails](../../sk-code-skilled/references/shared/workflow-guardrails.md#3-verification-reality).
 
 ### OpenCode Runtime Build Traps
 
-OpenCode work: see the runtime build traps in [OpenCode workflow guardrails](../../sk-code-opencode/references/shared/workflow-guardrails.md#4-runtime-build-traps).
+OpenCode work: see the runtime build traps in [OpenCode workflow guardrails](../../sk-code-skilled/references/shared/workflow-guardrails.md#4-runtime-build-traps).
 
 ### Baseline And Delta
 

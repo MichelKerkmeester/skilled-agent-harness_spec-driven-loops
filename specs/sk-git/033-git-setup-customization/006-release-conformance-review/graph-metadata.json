@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The v4.0.0.11 release shipped the `/doctor:git setup` command and its hardening across code, a command router, skill docs, playbooks, catalogs, changelogs and cross-repo indexes",
     "created_at": "2026-10-16T04:42:59Z",
-    "last_save_at": "2026-10-16T05:40:01.974Z",
+    "last_save_at": "2026-10-18T20:45:23.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5eac11e68ac2720e8ac37b98d150dcd251d03140460d52650c0ebaf971c8a20",
+    "source_fingerprint": "sha256:98e102a85c2e956fac87da0f8b7d5a67dd03058514a8a245ac04c095853ab7fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e06b4e36da83e30f94c7976a0f2e43825ac023ec6301df824602d71890902c93",
+      "spec.md": "ae6e41f6dc6c604320979dcbfdbe3f25bb0dbc6cc59452a7dfe29b160f28d6cd",
       "plan.md": "cd9fef3f482e83efb36de34d81d14f256ee9c2baad6a6dd37ac55701f7733c62",
       "tasks.md": "1e9d7a3399b2649fc8c6c3b0119ab14cb21fca86e1e7670cede2048329cdadea",
-      "implementation-summary.md": "b752f6a698719dd33fadfcb735d8a96812ad8fa489b24f4d89632530cf276f38"
+      "implementation-summary.md": "e803c84f39f1eb91b34ab39b848d52f9b1284d5d70108c68cb88e26ab5b96524"
     },
     "last_active_at": null
   }

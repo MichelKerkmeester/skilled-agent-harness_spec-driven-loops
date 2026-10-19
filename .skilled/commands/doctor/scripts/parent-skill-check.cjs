@@ -1156,11 +1156,11 @@ function checkTieBreakOrder(ctx, tieBreak) {
   if (tieBreak.length > 0) pass('5i: tieBreak orders workflow modes before surface/transport modes');
 }
 
-// 5l: in sk-code, sk-code-opencode is the framework's native surface and takes
+// 5l: in sk-code, sk-code-skilled is the framework's native surface and takes
 // the last keyword tie. Only the two shipped example surfaces, which a user may
 // delete, may sort after it. A surface added by hand after it loses every tie
 // to the native surface; the update command never places one there.
-const SK_CODE_NATIVE_SURFACE = 'sk-code-opencode';
+const SK_CODE_NATIVE_SURFACE = 'sk-code-skilled';
 const SK_CODE_EXAMPLE_SURFACES = ['sk-code-obsidian', 'sk-code-webflow'];
 function checkNativeSurfaceLast(ctx, tieBreak) {
   if (ctx.basename !== 'sk-code') return;

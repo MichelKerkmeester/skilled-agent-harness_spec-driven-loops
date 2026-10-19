@@ -1,7 +1,7 @@
 ---
 title: "Phase Parent: Follow-up Quality Pass for 031-036"
 template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-description: "Phase parent for the 6-child follow-up quality and alignment pass after packets 031-036 shipped. Children: sk-code-opencode audit, feature catalog trio, manual testing playbook trio, sk-doc template alignment, dedicated stress-test folder migration, README cascade refresh."
+description: "Phase parent for the 6-child follow-up quality and alignment pass after packets 031-036 shipped. Children: sk-code-skilled audit, feature catalog trio, manual testing playbook trio, sk-doc template alignment, dedicated stress-test folder migration, README cascade refresh."
 trigger_phrases:
   - "003-post-program-quality-pass"
   - "follow-up quality pass"
@@ -53,7 +53,7 @@ Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's
 
 Before declaring the 026-wrapper packet truly release-ready, this phase parent runs a 6-child quality and alignment pass:
 
-1. Verify all newly-created code aligns with sk-code-opencode standards; update sk-code-opencode itself if patterns are missing.
+1. Verify all newly-created code aligns with sk-code-skilled standards; update sk-code-skilled itself if patterns are missing.
 2. Update the feature catalogs in system-spec-kit, skill_advisor, and code_graph to reflect the new tools/handlers/runners.
 3. Update the manual testing playbooks in system-spec-kit, skill_advisor, and code_graph for reproducible operator testing of the new surfaces.
 4. Verify all touched documentation aligns with sk-doc templates; fix non-compliance.
@@ -70,7 +70,7 @@ Before declaring the 026-wrapper packet truly release-ready, this phase parent r
 
 | Child | Slug | Tier | Effort | Deps |
 |-------|------|------|--------|------|
-| 001 | sk-code-opencode-audit | A audit | 30-60 min cli-codex | (gates 002-006) |
+| 001 | sk-code-skilled-audit | A audit | 30-60 min cli-codex | (gates 002-006) |
 | 002 | feature-catalog-trio | B doc | 30-60 min cli-codex | 001 |
 | 003 | testing-playbook-trio | B doc | 30-60 min cli-codex | 001 |
 | 004 | sk-doc-template-alignment | B doc | 45-90 min cli-codex | 001 |
@@ -110,7 +110,7 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 | Packet 034 half-auto upgrades | Internal | Shipped (`f1167567a`) |
 | Packet 035 full-matrix execution | Internal | Shipped (`6655b67db`) |
 | Packet 036 CLI matrix adapters | Internal | In flight (parallel agent) |
-| sk-code-opencode skill | Internal | Active reference |
+| sk-code-skilled skill | Internal | Active reference |
 | sk-doc skill | Internal | Active reference |
 <!-- /ANCHOR:dependencies -->
 
@@ -120,7 +120,7 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 ## 5. SUCCESS CRITERIA
 
 - All 6 child packets ship with strict validator green
-- 037/001 produces an audit report; any sk-code-opencode violations are either fixed or documented as accepted exceptions
+- 037/001 produces an audit report; any sk-code-skilled violations are either fixed or documented as accepted exceptions
 - Feature catalogs (3) reflect all new MCP tools and runtime surfaces from 031-036
 - Manual testing playbooks (3) have new entries for memory_retention_sweep, advisor_rebuild, codex freshness-smoke-check, CLI matrix adapters
 - All 30+ touched docs pass sk-doc template alignment
@@ -129,7 +129,7 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 
 ### Acceptance Scenarios
 
-- **SCN-001**: **Given** sub-task 037/001 completes, **when** a reviewer reads the audit report, **then** every new file from 033/034/036 is checked against sk-code-opencode + at least one finding (PASS or fix-applied) is recorded.
+- **SCN-001**: **Given** sub-task 037/001 completes, **when** a reviewer reads the audit report, **then** every new file from 033/034/036 is checked against sk-code-skilled + at least one finding (PASS or fix-applied) is recorded.
 - **SCN-002**: **Given** sub-task 037/005 completes, **when** an operator runs the stress test from `mcp_server/stress_test/`, **then** the test runs successfully without any reference to `mcp_server/tests/stress*` paths.
 - **SCN-003**: **Given** sub-task 037/006 completes, **when** a reviewer reads the mcp_server README at `.opencode/skills/system-spec-kit/mcp_server/README.md`, **then** the tool count, capability matrix, and file structure references are all current as of 036's completion.
 <!-- /ANCHOR:success-criteria -->
@@ -141,7 +141,7 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 
 | Child | spec.md | plan.md | tasks.md | checklist.md | implementation-summary.md |
 |-------|---------|---------|----------|--------------|---------------------------|
-| 001-sk-code-opencode-standards-audit | [001/spec.md](001-sk-code-opencode-standards-audit/spec.md) | [plan](001-sk-code-opencode-standards-audit/plan.md) | [tasks](001-sk-code-opencode-standards-audit/tasks.md) | [checklist](001-sk-code-opencode-standards-audit/checklist.md) | [impl](001-sk-code-opencode-standards-audit/implementation-summary.md) |
+| 001-sk-code-skilled-standards-audit | [001/spec.md](001-sk-code-skilled-standards-audit/spec.md) | [plan](001-sk-code-skilled-standards-audit/plan.md) | [tasks](001-sk-code-skilled-standards-audit/tasks.md) | [checklist](001-sk-code-skilled-standards-audit/checklist.md) | [impl](001-sk-code-skilled-standards-audit/implementation-summary.md) |
 | 002-feature-catalog-trio-alignment | [002/spec.md](002-feature-catalog-trio-alignment/spec.md) | [plan](002-feature-catalog-trio-alignment/plan.md) | [tasks](002-feature-catalog-trio-alignment/tasks.md) | [checklist](002-feature-catalog-trio-alignment/checklist.md) | [impl](002-feature-catalog-trio-alignment/implementation-summary.md) |
 | 003-testing-playbook-trio-alignment | [003/spec.md](003-testing-playbook-trio-alignment/spec.md) | [plan](003-testing-playbook-trio-alignment/plan.md) | [tasks](003-testing-playbook-trio-alignment/tasks.md) | [checklist](003-testing-playbook-trio-alignment/checklist.md) | [impl](003-testing-playbook-trio-alignment/implementation-summary.md) |
 | 004-sk-doc-template-alignment | [004/spec.md](004-sk-doc-template-alignment/spec.md) | [plan](004-sk-doc-template-alignment/plan.md) | [tasks](004-sk-doc-template-alignment/tasks.md) | [checklist](004-sk-doc-template-alignment/checklist.md) | [impl](004-sk-doc-template-alignment/implementation-summary.md) |
@@ -156,7 +156,7 @@ The phase parent inherits requirements from each child packet's spec.md. Aggrega
 
 | Child | Status | Last update |
 |-------|--------|-------------|
-| 001-sk-code-opencode-standards-audit | Planned | 2026-04-29 |
+| 001-sk-code-skilled-standards-audit | Planned | 2026-04-29 |
 | 002-feature-catalog-trio-alignment | Planned | 2026-04-29 |
 | 003-testing-playbook-trio-alignment | Planned | 2026-04-29 |
 | 004-sk-doc-template-alignment | Planned | 2026-04-29 |

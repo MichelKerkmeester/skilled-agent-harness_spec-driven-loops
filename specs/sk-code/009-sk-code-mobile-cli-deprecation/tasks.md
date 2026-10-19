@@ -34,7 +34,7 @@ contextType: "general"
 - [x] T001 Capture preflight receipts: HEAD `79646e64` on `skilled/v4.0.0.0`, pre-change census (85 tracked entries / 82 regular files, 494K in git / 668K on disk, 81 matching files, 674 mentions), baseline `compiled-route` JSON for both replay prompts, baseline `parent-skill-check` for the hub at version 4.2.2.0
 - [x] T002 Create the Level 2 packet (`specs/sk-code/009-sk-code-mobile-cli-deprecation/`, created with `--skip-branch`)
 - [x] T003 Author `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` from the level templates
-- [x] T004 Refresh `specs/sk-code/description.json`: the track description named only `code-webflow`/`code-opencode` while the hub carries three surfaces, so it now lists `code-webflow`, `code-opencode`, `code-obsidian`
+- [x] T004 Refresh `specs/sk-code/description.json`: the track description named only `code-webflow`/`code-skilled` while the hub carries three surfaces, so it now lists `code-webflow`, `code-skilled`, `code-obsidian`
 - [x] T005 Run `validate.sh specs/sk-code/009-sk-code-mobile-cli-deprecation --strict` to an explicit `RESULT: PASSED` before the first tree edit
 <!-- /ANCHOR:phase-1 -->
 
@@ -162,7 +162,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] Packet docs synchronized with what shipped [EVIDENCE: `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` all carry the final state, including the two recorded deviations and the corrected 85-entry count]
 - [x] CHK-041 [P1] Predecessor note [EVIDENCE: `specs/sk-code/008-sk-code-mobile-cli-mode/spec.md:27` carries the supersession note pointing at this packet, and that packet's derived metadata was re-derived afterwards]
-- [x] CHK-042 [P2] Root README [EVIDENCE: the surface list at `README.md:950` now names only `sk-code-webflow/`, `sk-code-opencode/` and `sk-code-obsidian/`]
+- [x] CHK-042 [P2] Root README [EVIDENCE: the surface list at `README.md:950` now names only `sk-code-webflow/`, `sk-code-skilled/` and `sk-code-obsidian/`]
 <!-- /ANCHOR:docs -->
 
 ---

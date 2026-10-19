@@ -1,4 +1,4 @@
-Applied the four edits exactly as specified, in both `runDeemArm` and `runJevArm`; nothing outside S was touched. Routing: compiled `sk-code` router → `sk-code-opencode` (JavaScript slice); no comments added, no ephemeral ids.
+Applied the four edits exactly as specified, in both `runDeemArm` and `runJevArm`; nothing outside S was touched. Routing: compiled `sk-code` router → `sk-code-skilled` (JavaScript slice); no comments added, no ephemeral ids.
 
 STATUS: DONE
 FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+24/-15 edit-tool accounting, net +9 lines; file is untracked at HEAD so no git baseline exists)

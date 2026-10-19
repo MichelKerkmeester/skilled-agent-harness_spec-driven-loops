@@ -1,6 +1,6 @@
 ---
 title: "Phase 004: Skill advisor docs and code alignment"
-description: "Updated skill-advisor docs for hook-first invocation and completed sk-code-opencode audit of Phase 020 TypeScript hook files. Nine minor remediations applied. 118/118 tests green."
+description: "Updated skill-advisor docs for hook-first invocation and completed sk-code-skilled audit of Phase 020 TypeScript hook files. Nine minor remediations applied. 118/118 tests green."
 trigger_phrases:
   - "phase 004 changelog"
   - "skill advisor docs alignment"
@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-Phase 022 brought the skill-advisor package into line with the hook surface that Phase 020 shipped. Operators now see prompt-time hook invocation as the primary Gate 2 path, with the direct Python CLI documented as a fallback. A sk-code-opencode TypeScript audit of all 18 scoped Phase 020 files found no major findings and nine minor findings were fixed in place.
+Phase 022 brought the skill-advisor package into line with the hook surface that Phase 020 shipped. Operators now see prompt-time hook invocation as the primary Gate 2 path, with the direct Python CLI documented as a fallback. A sk-code-skilled TypeScript audit of all 18 scoped Phase 020 files found no major findings and nine minor findings were fixed in place.
 
 ### Added
 

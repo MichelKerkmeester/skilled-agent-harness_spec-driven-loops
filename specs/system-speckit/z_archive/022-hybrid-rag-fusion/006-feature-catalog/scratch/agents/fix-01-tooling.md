@@ -302,7 +302,7 @@ I fixed the validator-only gaps too. One more validation pass, then I’ll show 
   │ 17     ## 1. OVERVIEW
   │ 18
   │ 19    Code standards alignment brought comments, MODULE/COMPONENT headers, import ordering, and
-  │       constant naming into line with sk-code-opencode standards.
+  │       constant naming into line with sk-code-skilled standards.
   │
   └ .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/05-code-standards-alignm
     ent.md

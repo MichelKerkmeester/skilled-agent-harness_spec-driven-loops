@@ -101,8 +101,8 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 | File | What changed |
 |------|--------------|
-| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Added a CommonJS helper that resolves runtime capability records from the machine-readable matrix. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc). |
-| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Added the reducer helper that regenerates findings registry, strategy, and dashboard outputs from packet state. Aligned to sk-code-opencode standards (box header, section dividers, JSDoc, regex fix). |
+| `.opencode/skills/sk-deep-research/scripts/runtime-capabilities.cjs` | Added a CommonJS helper that resolves runtime capability records from the machine-readable matrix. Aligned to sk-code-skilled standards (box header, section dividers, JSDoc). |
+| `.opencode/skills/sk-deep-research/scripts/reduce-state.cjs` | Added the reducer helper that regenerates findings registry, strategy, and dashboard outputs from packet state. Aligned to sk-code-skilled standards (box header, section dividers, JSDoc, regex fix). |
 
 ### Workflow and Runtime Mirrors
 
@@ -143,7 +143,7 @@ This phase took the deep-research packet from a partly aligned documentation pas
 
 ---
 
-## sk-code-opencode Alignment (2)
+## sk-code-skilled Alignment (2)
 
 ### Executable helpers now follow OpenCode JavaScript style standards
 
@@ -176,7 +176,7 @@ This phase took the deep-research packet from a partly aligned documentation pas
 ---
 
 <details>
-<summary>Files Changed — sk-code-opencode and playbook alignment</summary>
+<summary>Files Changed — sk-code-skilled and playbook alignment</summary>
 
 | File | What changed |
 |------|--------------|

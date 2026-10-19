@@ -28,14 +28,14 @@ None.
 
 **R3-P2-001 — The spec's 5l edge-case silence statements are unpinned by the shipped tests**
 
-- Case: a future edit drops the sk-code basename gate or the opencode-absent early return; 5l then prints a line on the six other hubs (or on an sk-code tree without `sk-code-opencode`), deviating from spec.md:156-158, and no test fails — the clean-fixture case asserts only FAIL/WARN absence plus a fixed PASS-id list, so a stray `PASS: 5l:` line on a non-sk-code hub goes unnoticed.
+- Case: a future edit drops the sk-code basename gate or the opencode-absent early return; 5l then prints a line on the six other hubs (or on an sk-code tree without `sk-code-skilled`), deviating from spec.md:156-158, and no test fails — the clean-fixture case asserts only FAIL/WARN absence plus a fixed PASS-id list, so a stray `PASS: 5l:` line on a non-sk-code hub goes unnoticed.
 - File: `.skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:315`
 - Evidence: [SOURCE: .skilled/commands/doctor/scripts/tests/parent-skill-check-invariants.test.cjs:315] is the only negative assertion (`/^(FAIL|WARN): /m`); the id loop (316-319) never checks for absent lines; all three new tests build an sk-code fixture (478-501); the silence behavior is implemented at [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1166] and 1168.
 - User impact: silent drift on six hubs, or on an sk-code fork without the native surface, ships green; the scoping promise loses its regression guard.
 - Finding class: matrix/evidence
 - Counterevidence sought: spec.md:50 promises exactly three tests, so the edge-case lines may be informational; an E2E doctor suite outside this file could pin the silence — none is present in the change set.
 - Confidence: medium-high. Downgrade trigger: a test outside this file already asserts no 5l line on a non-sk-code hub.
-- Recommendation: add two small cases — no 5l line on a non-sk-code hub, and no 5l line on an sk-code tree whose `tieBreak` lacks `sk-code-opencode`; optionally pin that 5l ignores a workflow mode after opencode.
+- Recommendation: add two small cases — no 5l line on a non-sk-code hub, and no 5l line on an sk-code tree whose `tieBreak` lacks `sk-code-skilled`; optionally pin that 5l ignores a workflow mode after opencode.
 
 Carried context, not a new finding: the 5l test fixtures skip manifest regeneration and description keywords (their sibling helpers do both), so their exit codes stay non-discriminating — already recorded as a strategy risk; the 5l line assertions are unaffected. Dedupe: R2-P2-001 (security, control-character interpolation) is distinct from this finding; the strategy's swept/blocked directions were not re-entered.
 

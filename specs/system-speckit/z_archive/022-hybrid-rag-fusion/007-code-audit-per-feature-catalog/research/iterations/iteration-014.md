@@ -311,7 +311,7 @@ I’ve confirmed two of the disputed child docs already contain strong self-cont
   └ No matches found
 
 ● Read verify_alignment_drift.py
-  │ .opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py
+  │ .opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py
   └ L1:240 (239 lines read)
 
 ● Search (grep)
@@ -335,7 +335,7 @@ I’ve confirmed two of the disputed child docs already contain strong self-cont
   └ L1:80 (80 lines read)
 
 ● Search (grep)
-  │ "MODULE:|header" (.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py)
+  │ "MODULE:|header" (.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py)
   └ 21 lines found
 
 ● Read trigger-extractor.ts
@@ -498,7 +498,7 @@ The exploration result overreached and contradicted direct source reads, so I’
 
 ### P1-001 [P1] Section 16 overstates universal `Feature catalog:` coverage and cites a verifier that does not enforce it
 
-- **Evidence:** `feature_catalog/FEATURE_CATALOG.md:3862-3866` says “every source file” carries `// Feature catalog:` comments. The child spec downgrades this to **~74%** coverage: `feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md:18-22`. The cited verifier only checks `MODULE:` headers, not feature annotations: `.opencode/skills/sk-code-opencode/scripts/verify_alignment_drift.py:266-274`. A representative script file has a `MODULE:` header but no `Feature catalog:` tag: `scripts/utils/workspace-identity.ts:1-4`.
+- **Evidence:** `feature_catalog/FEATURE_CATALOG.md:3862-3866` says “every source file” carries `// Feature catalog:` comments. The child spec downgrades this to **~74%** coverage: `feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md:18-22`. The cited verifier only checks `MODULE:` headers, not feature annotations: `.opencode/skills/sk-code-skilled/scripts/verify_alignment_drift.py:266-274`. A representative script file has a `MODULE:` header but no `Feature catalog:` tag: `scripts/utils/workspace-identity.ts:1-4`.
 - **Impact:** operators and auditors cannot rely on grep-based feature tracing as a complete inventory; the catalog currently presents partial coverage as universal coverage.
 - **Fix recommendation:** change the main catalog wording to match the measured partial-coverage claim, or add enforcement for `// Feature catalog:` annotations if universal coverage is intended.
 
