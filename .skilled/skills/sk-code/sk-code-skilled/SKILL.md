@@ -118,7 +118,7 @@ Authoring and validation assets:
   - `references/shared/alignment-verification-automation.md`
   - `references/shared/hooks.md`
 
-Workflow: the implement -> debug -> verify phases use the split shared, language, hook, and alignment resources above; no root-level `workflow-*.md` trio is assumed.
+Workflow: `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` link to the hub's shared implement -> debug -> verify doctrine in `../../shared/references/`; the split shared, language, hook and alignment resources above apply on top of it.
 
 ---
 
