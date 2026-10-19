@@ -128,4 +128,29 @@ describe('fanout-run.cjs: buildLoopPrompt mode-specific output contracts', () =>
     }
     expect(reviewPrompt('native')).not.toContain('CLI OUTPUT CONTRACT');
   });
+
+  // A state row a lineage writes beside the ledger carries keys the projection
+  // cannot rebuild, so the gateway refuses every later projection and the lineage
+  // ends with no iteration records. The brief is the one instruction a CLI lineage
+  // reads before the workflow, so it has to send the opening row and every later
+  // state row through the gateway too.
+  it('sends every state record through the append gateway, never a direct write', () => {
+    for (const kind of ['cli-codex', 'cli-opencode'] as const) {
+      for (const [prompt, stateLog] of [
+        [researchPrompt(kind), 'deep-research-state.jsonl'],
+        [reviewPrompt(kind), 'deep-review-state.jsonl'],
+      ] as const) {
+        const directive = prompt.slice(prompt.indexOf(DIRECTIVE_HEADLINE), prompt.indexOf('CLI OUTPUT CONTRACT'));
+        expect(directive, `${kind} names the gateway`).toContain('append-mode-event.cjs');
+        expect(directive, `${kind} covers the run-opening row`).toContain('step_create_state_log');
+        expect(directive, `${kind} forbids writing ${stateLog}`).toContain(`Never create, append to, or rewrite ${stateLog} yourself`);
+        expect(prompt, `${kind} never asks for a direct state write`).not.toMatch(/state record[^.]*directly|append the state record/);
+      }
+      // The gateway drops findingsCount from the projected research row, so asking
+      // for it in the state record is a demand only a direct write can meet.
+      const countLine = researchPrompt(kind).split('\n').find((line) => line.includes('findingsCount')) ?? '';
+      expect(countLine, `${kind} asks for findingsCount where the gateway keeps it`).toContain('gateway');
+      expect(countLine).not.toContain('state record');
+    }
+  });
 });

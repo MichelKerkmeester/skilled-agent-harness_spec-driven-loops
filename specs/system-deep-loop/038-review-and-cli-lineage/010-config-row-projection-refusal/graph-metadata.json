@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal",
+  "spec_folder": "system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal",
+  "parent_id": "system-deep-loop/038-review-and-cli-lineage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "config row projection refusal",
+      "phase 10 config row projection refusal",
+      "fanout brief direct state write",
+      "config row projection refusal plan",
+      "config row projection refusal tasks",
+      "config row projection refusal acceptance criteria",
+      "config row projection refusal implementation summary"
+    ],
+    "key_topics": [
+      "config",
+      "row",
+      "projection",
+      "refusal",
+      "phase",
+      "fanout",
+      "brief",
+      "direct",
+      "state",
+      "write",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/command-support/deep/assets/compiled/deep-research.contract.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-loop-prompt-in-process.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/command-support/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Prove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Cause",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fan-out research run on 2026-10-19 rejected its cli-codex lineage with the failure class `projectionrefusal`, although all five iterations were written",
+    "created_at": "2026-10-19T18:42:58Z",
+    "last_save_at": "2026-10-19T19:25:09.706Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:610645224f592c5b23d7ff1f306a69832a79301fa7d825fee847e38de8b84898",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d793a3d66e0ef75315700d3ec2074a03e1972484241e9e3a0e21f5d52b2fd37",
+      "plan.md": "cd41b14bb502dd52bb93c384dd4b5a6a3919008117df03cee1d7912377cab5c7",
+      "tasks.md": "54975b74751dcdfd5739ab48dc0624e88a0ec5dbb27057661ee1668226ec316f",
+      "implementation-summary.md": "d649ce72b443e8f1227c1298782e4de7bb06fd6506daaf8b4a9332cb8c15325c"
+    },
+    "last_active_at": null
+  }
+}
