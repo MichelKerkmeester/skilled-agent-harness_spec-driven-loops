@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
     "created_at": "2026-10-20T20:08:29Z",
-    "last_save_at": "2026-10-20T21:22:07.191Z",
+    "last_save_at": "2026-10-20T21:31:53.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c02d14133fe627e8f253d5f4fb16621bb64f7ed5bb8b7f8a8b8233fe4a1bccf1",
+    "source_fingerprint": "sha256:516028a1465b3759a63454a3e40f7d1ac03863b3e7ee7a30b732ab29d89b9ce8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f93fed6d0dff85fe4fbfe6e9ca7f4d1f691fe278ae92c3f154e66c9d18ce6cb3",
+      "spec.md": "a3b1f32aaedbfddfcbcba3d68e661426878f27f17241d848931b9d45828fe3d8",
       "plan.md": "26a82e28d609f59e2d2c911ee4340fae01bc4f1292b0e6f277a164b3c0f32f39",
-      "tasks.md": "38809bcfec04d3b888583b6de2d3afac3b581104b369f6fdd0e319d939e84721",
-      "implementation-summary.md": "0a09cdc85504a39b672e8735ffb5b887b7c7fbfd19fbf84c07c5f017fb425dde"
+      "tasks.md": "081d4e0b2151f09cc64c93434e7bb83951a64b8c3d8f7b0fa83e7ec7c691ebf7",
+      "implementation-summary.md": "d89d511132d4941a79507432b272763882becb7ed4f5bfa2e6138ca0c5ea5267"
     },
     "last_active_at": null
   }

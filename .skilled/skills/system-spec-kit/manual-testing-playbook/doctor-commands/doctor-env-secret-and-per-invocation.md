@@ -1,7 +1,7 @@
 ---
 title: "DOC-356 -- Doctor env secret and per-invocation"
 description: "Manual scenario validating that /doctor:env never asks for or saves a secret switch value and that a per-invocation switch is shown only as a one-command prefix."
-version: 1.1.1.0
+version: 1.1.2.0
 id: doctor-commands-doctor-env-secret-and-per-invocation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -95,7 +95,7 @@ If the fixture row is not parsed, inspect the appended row's cell count against 
 - Command entrypoint: [.skilled/commands/doctor/env.md](../../../../commands/doctor/env.md)
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-env.yaml](../../../../commands/doctor/assets/doctor-env.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-env-presentation.txt](../../../../commands/doctor/assets/doctor-env-presentation.txt)
-- Inventory source of truth: [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](../../runtime/ENV-REFERENCE.md)
+- Inventory source of truth: [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](../../runtime/ENV-REFERENCE.md), supplemented by the root `.env.example`
 - Environment guide: [doctor-commands README](README.md)
 
 The `/doctor:env` route is a standalone companion with no entry in the doctor route manifest.
