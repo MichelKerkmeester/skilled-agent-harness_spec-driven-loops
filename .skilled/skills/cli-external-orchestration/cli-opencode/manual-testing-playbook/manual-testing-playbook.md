@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -35,6 +35,7 @@ Canonical package artifacts:
 - `intra-routing-recall/`
 - `git-preflight-advisory/`
 - `stress/`
+- `plugin-utilization/`
 
 ---
 
@@ -42,7 +43,7 @@ Canonical package artifacts:
 
 **Version note.** The scenario commands in this playbook are written for OpenCode 1 (1.19.3) unless a scenario says otherwise. Each scenario names its OpenCode 2 (2.0.32) twin or says v2 has none. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../references/install-and-versions.md).
 
-This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
+This playbook provides 72 deterministic scenarios across 14 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells. The `plugin-utilization/` category adds 17 live scenarios, CO-040 to CO-056, one per repository plugin, each run on OpenCode 1 and OpenCode 2.
 
 Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks `opencode2 models --standalone` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
@@ -857,6 +858,26 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 - CO-039: [Goal hook native opencode-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)
 
+### PLUGIN UTILIZATION
+
+- CO-040: [Classifier injection screen](../manual-testing-playbook/plugin-utilization/classifier-injection-screen.md)
+- CO-041: [CLI dispatch audit](../manual-testing-playbook/plugin-utilization/cli-dispatch-audit.md)
+- CO-042: [Codex hooks watchdog](../manual-testing-playbook/plugin-utilization/codex-hooks-watchdog.md)
+- CO-043: [MCP route guard](../manual-testing-playbook/plugin-utilization/mcp-route-guard.md)
+- CO-044: [OpenCode goal](../manual-testing-playbook/plugin-utilization/opencode-goal.md)
+- CO-045: [Session cleanup](../manual-testing-playbook/plugin-utilization/session-cleanup.md)
+- CO-046: [Session relaunch](../manual-testing-playbook/plugin-utilization/session-relaunch.md)
+- CO-047: [sk-code post-edit quality](../manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md)
+- CO-048: [sk-git message gate](../manual-testing-playbook/plugin-utilization/sk-git-message-gate.md)
+- CO-049: [sk-git preflight advisory](../manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md)
+- CO-050: [sk-vision](../manual-testing-playbook/plugin-utilization/sk-vision.md)
+- CO-051: [System completion sentinel](../manual-testing-playbook/plugin-utilization/system-completion-sentinel.md)
+- CO-052: [System deep-loop guard](../manual-testing-playbook/plugin-utilization/system-deep-loop-guard.md)
+- CO-053: [System dist freshness guard](../manual-testing-playbook/plugin-utilization/system-dist-freshness-guard.md)
+- CO-054: [System skill advisor](../manual-testing-playbook/plugin-utilization/system-skill-advisor.md)
+- CO-055: [System spec gate](../manual-testing-playbook/plugin-utilization/system-spec-gate.md)
+- CO-056: [System speckit completion](../manual-testing-playbook/plugin-utilization/system-speckit-completion.md)
+
 ---
 
 ## 19. INTRA ROUTING RECALL (`CO-R01..CO-R07`, `CO-H01..CO-H02`, `CO-N01`)
@@ -913,3 +934,29 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 - `cli-opencode-EC-012`: [Worktree collision](stress/worktree-collision.md)
 - `cli-opencode-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
 - `cli-opencode-EC-014`: [Self invocation](stress/self-invocation.md)
+
+---
+
+## 22. PLUGIN UTILIZATION (`CO-040..CO-056`)
+
+Each scenario makes a live session on OpenCode 1 and OpenCode 2 hit one plugin's hook and checks the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
+
+Recorded result: on 2026-10-20, all 17 plugins worked on OpenCode 1.19.3 and 10 of 17 worked on OpenCode 2.0.32. The seven that did not work were cli-dispatch-audit, codex-hooks-watchdog, session-cleanup startup guards, session-relaunch, sk-git-message-gate, sk-git-preflight-advisory and system-deep-loop-guard. The first cause is the tool naming: the v2 shell tool is named `shell` and the subagent tool `subagent`, so cli-dispatch-audit, sk-git-message-gate, sk-git-preflight-advisory and system-deep-loop-guard return early on their `bash` and `task` checks. The second cause is that `opencode2 run` delivers no `session.created` for its own session, so codex-hooks-watchdog and the session-cleanup startup guards never fire. The third cause is that the bridge's `message.updated` lacks `sessionID` and `time.completed`, so session-relaunch never records usage and never nudges.
+
+- `CO-040`: [Classifier injection screen](plugin-utilization/classifier-injection-screen.md)
+- `CO-041`: [CLI dispatch audit](plugin-utilization/cli-dispatch-audit.md)
+- `CO-042`: [Codex hooks watchdog](plugin-utilization/codex-hooks-watchdog.md)
+- `CO-043`: [MCP route guard](plugin-utilization/mcp-route-guard.md)
+- `CO-044`: [OpenCode goal](plugin-utilization/opencode-goal.md)
+- `CO-045`: [Session cleanup](plugin-utilization/session-cleanup.md)
+- `CO-046`: [Session relaunch](plugin-utilization/session-relaunch.md)
+- `CO-047`: [sk-code post-edit quality](plugin-utilization/sk-code-post-edit-quality.md)
+- `CO-048`: [sk-git message gate](plugin-utilization/sk-git-message-gate.md)
+- `CO-049`: [sk-git preflight advisory](plugin-utilization/sk-git-preflight-advisory.md)
+- `CO-050`: [sk-vision](plugin-utilization/sk-vision.md)
+- `CO-051`: [System completion sentinel](plugin-utilization/system-completion-sentinel.md)
+- `CO-052`: [System deep-loop guard](plugin-utilization/system-deep-loop-guard.md)
+- `CO-053`: [System dist freshness guard](plugin-utilization/system-dist-freshness-guard.md)
+- `CO-054`: [System skill advisor](plugin-utilization/system-skill-advisor.md)
+- `CO-055`: [System spec gate](plugin-utilization/system-spec-gate.md)
+- `CO-056`: [System speckit completion](plugin-utilization/system-speckit-completion.md)
