@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7183,
-    "ok": 14680,
+    "ok": 14684,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25411,
+  "documentsScanned": 25415,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "375f978c7db0771cb07ce62c1ce811f8de41be9ee61967c098849c55d79ec06c",
+  "manifestHash": "30f9d81f14144ed8bfb1015b3639b1ed86408c1315ed356190b9b62278b9b9dc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37091,
+      "ok": 37098,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69055,6 +69055,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/scratch",
       "reason": "excluded directory"
     },
     {

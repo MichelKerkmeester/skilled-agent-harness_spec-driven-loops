@@ -1,5 +1,5 @@
 {
-  "corpusHash": "816a1147c42d389b4cd75b9705184e7c6f2e6b819f45d63e90bd203a03d57725",
+  "corpusHash": "1168bcc346c5d12abe62c86c3667db2131b07a3dd18ce3f9ec6cabe4f58d5987",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25411,
+  "includedPathCount": 25415,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8950,6 +8950,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25442,7 +25446,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "375f978c7db0771cb07ce62c1ce811f8de41be9ee61967c098849c55d79ec06c",
+  "manifestHash": "30f9d81f14144ed8bfb1015b3639b1ed86408c1315ed356190b9b62278b9b9dc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26518,6 +26522,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/scratch",
       "reason": "excluded directory"
     },
     {
