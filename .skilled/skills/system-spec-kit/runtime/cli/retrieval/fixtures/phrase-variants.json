@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a451e3035fac08663a22dcb014f0e6a785e71698c0173c324198ec26a5f7251c",
+  "manifestHash": "6f113b7eb613a6562e23da81d91afcff341a4c36677f2a27b299c89cea8bd94d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -50291,6 +50291,9 @@
     "handover fingerprint verify": [
       "handover fingerprint verify"
     ],
+    "handover fires every time": [
+      "handover fires every time"
+    ],
     "handover freshness timestamp field": [
       "handover freshness timestamp field"
     ],
@@ -50302,6 +50305,21 @@
     ],
     "handover state routing correction": [
       "handover_state routing correction"
+    ],
+    "handover trigger review": [
+      "handover trigger review"
+    ],
+    "handover trigger review acceptance criteria": [
+      "handover trigger review acceptance criteria"
+    ],
+    "handover trigger review implementation summary": [
+      "handover trigger review implementation summary"
+    ],
+    "handover trigger review plan": [
+      "handover trigger review plan"
+    ],
+    "handover trigger review tasks": [
+      "handover trigger review tasks"
     ],
     "hanging process reporter": [
       "hanging process reporter",
@@ -53040,6 +53058,9 @@
     ],
     "in process lineage execution": [
       "in-process lineage execution"
+    ],
+    "in session handover": [
+      "in-session handover"
     ],
     "in session handover docs": [
       "in-session handover docs"
@@ -71836,8 +71857,14 @@
     "phase 15 tasks": [
       "phase 15 tasks"
     ],
+    "phase 15 v4 0 0 13 changelog": [
+      "phase 15 v4 0 0 13 changelog"
+    ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
+    ],
+    "phase 16 handover trigger review": [
+      "phase 16 handover trigger review"
     ],
     "phase 16 plan": [
       "phase 16 plan"
@@ -89648,6 +89675,9 @@
     "sessions keep their hands to themselves": [
       "Sessions Keep Their Hands to Themselves"
     ],
+    "sessions that hand themselves over": [
+      "sessions that hand themselves over"
+    ],
     "sessionstart hook wiring plan": [
       "SessionStart hook wiring plan"
     ],
@@ -97447,6 +97477,12 @@
     "skilled v4 0 0 12": [
       "skilled v4.0.0.12"
     ],
+    "skilled v4 0 0 13": [
+      "skilled v4.0.0.13"
+    ],
+    "skilled v4 0 0 13 release notes": [
+      "skilled v4.0.0.13 release notes"
+    ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
     ],
@@ -99958,6 +99994,9 @@
     ],
     "speckit goal contract tasks": [
       "speckit goal contract tasks"
+    ],
+    "speckit handoff command template": [
+      "speckit handoff command template"
     ],
     "speckit handoff session relaunch": [
       "/speckit:handoff session relaunch"
@@ -108630,6 +108669,24 @@
     ],
     "v4 0 0 12 release notes": [
       "v4.0.0.12 release notes"
+    ],
+    "v4 0 0 13 changelog": [
+      "v4 0 0 13 changelog"
+    ],
+    "v4 0 0 13 changelog acceptance criteria": [
+      "v4 0 0 13 changelog acceptance criteria"
+    ],
+    "v4 0 0 13 changelog implementation summary": [
+      "v4 0 0 13 changelog implementation summary"
+    ],
+    "v4 0 0 13 changelog plan": [
+      "v4 0 0 13 changelog plan"
+    ],
+    "v4 0 0 13 changelog tasks": [
+      "v4 0 0 13 changelog tasks"
+    ],
+    "v4 0 0 13 release notes": [
+      "v4.0.0.13 release notes"
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
