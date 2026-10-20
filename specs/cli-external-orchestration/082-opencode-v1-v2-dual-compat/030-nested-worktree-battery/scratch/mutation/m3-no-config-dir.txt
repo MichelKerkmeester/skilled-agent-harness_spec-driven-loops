@@ -53,10 +53,10 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 ✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (1.811333ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected
-  
+
   + undefined
   - '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-E1XHAV/wt/.opencode'
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:860:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -78,9 +78,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
   AssertionError [ERR_ASSERTION]: the plugin entry count never stabilised
   isolated: OpenCode 2 also loads /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-5xRWBZ/.opencode/plugins, so this read ran with OPENCODE_CONFIG_PROJECT_DISABLE=1 and OPENCODE_CONFIG_DIR=/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-5xRWBZ/wt/.opencode
   counts: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-  
+
   'DEGRADED' !== 'PASS'
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:890:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)

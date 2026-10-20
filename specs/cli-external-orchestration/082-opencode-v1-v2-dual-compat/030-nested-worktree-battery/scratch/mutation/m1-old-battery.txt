@@ -52,9 +52,9 @@
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:797:1
 ✖ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4303.569083ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-  
+
   undefined !== []
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:836:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)
@@ -95,9 +95,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 ✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (4320.938917ms)
   AssertionError [ERR_ASSERTION]: the stable read shows missing or inactive plugins
   alpha.js: status failed
-  
+
   'FAIL' !== 'PASS'
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:890:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)

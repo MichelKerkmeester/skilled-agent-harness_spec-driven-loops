@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 030-nested-worktree-battery |
-| **Completed** | 2026-10-20 |
+| **Completed** | Implementation 2026-10-20; review, validation and CI closure pending |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -59,7 +59,7 @@ The bigger consequence is for real sessions: an OpenCode 2 session started in a 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modified | `ancestorPluginDirs`, `v2ServerEnv`, the `isolated:` note, the ancestor-entry check and the isolation-aware command sources |
+| `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modified | `ancestorPluginDirs`, `v2ServerEnv`, the `isolated:` note, the ancestor-entry check and the isolation-aware command allowlist |
 | `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modified | A fake OpenCode 2 under an outer checkout and one that ignores the switches; seven nested tests; plain-root assertions with a clean environment |
 | `.opencode/plugins/ARCHITECTURE.md` | Modified | The battery paragraph and a known limit |
 | `.skilled/skills/sk-git/references/worktree-workflows.md` | Modified | A troubleshooting entry |
@@ -93,12 +93,12 @@ I reproduced the failure in worktree 169 and read the private server's plugin li
 
 | Check | Result |
 |-------|--------|
-| Battery test suite | PASS, 44 of 44 (37 at baseline), `scratch/mutation/after-r2.txt` |
-| Mutation runs m1 to m7 | Each fails at least one test, `scratch/mutation/` |
-| Live battery, worktree 169, both families | PASS, exit 0, v2 with an `isolated:` line (`scratch/rootcause/after-r2-both.json`) |
+| Battery test suite | PASS, 45 of 45 (37 at baseline), `scratch/mutation/after-r4.txt` |
+| Mutation runs m1 to m8 | Each fails at least one test, `scratch/mutation/` |
+| Live battery, worktree 169, both families | PASS, exit 0, v2 with an `isolated:` line (`scratch/rootcause/after-r4-both.json`) |
 | Live battery, plain clone, both families | PASS, exit 0, no `isolated:` line (`scratch/rootcause/after-r2-plain-both.json`) |
 | OpenCode 1 origins in worktree 169 | 17 from the worktree, 0 from the outer checkout (`scratch/rootcause/v1-origins.json`) |
-| Luna review | Rounds 1 to 3 FAIL, each finding fixed; round 4 pending |
+| Luna review | Rounds 1 to 4 FAIL, each finding fixed; round 5 pending |
 <!-- /ANCHOR:verification -->
 
 ---

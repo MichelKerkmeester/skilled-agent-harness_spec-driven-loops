@@ -55,12 +55,12 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 ✖ nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root (3.044583ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-acw3xc/.opencode/plugins'
   - ]
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:924:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

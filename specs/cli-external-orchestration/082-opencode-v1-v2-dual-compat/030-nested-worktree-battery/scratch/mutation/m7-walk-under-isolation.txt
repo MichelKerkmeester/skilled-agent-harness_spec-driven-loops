@@ -58,9 +58,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
   AssertionError [ERR_ASSERTION]: all 1 command files listed
   listed: 2
   required: 1
-  
+
   'PASS' !== 'FAIL'
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:975:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)
@@ -76,9 +76,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:979:1
 ✖ nested: allowedCommandSources allows ancestor commands only when the read is not isolated (9.505209ms)
   AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
-  
+
     assert.ok(!allowedCommandSources(root, 'v2', env, true).allowed.has('outer-only'))
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:986:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

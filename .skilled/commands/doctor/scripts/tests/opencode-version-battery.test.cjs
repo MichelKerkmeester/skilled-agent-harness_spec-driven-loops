@@ -986,3 +986,31 @@ test('nested: allowedCommandSources allows ancestor commands only when the read 
   assert.ok(!allowedCommandSources(root, 'v2', env, true).allowed.has('outer-only'));
   assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('init'));
 });
+
+// The caller's config folder is not what an isolated read loaded, so a command
+// found only there and in an ancestor must still be a stray.
+test('nested: an isolated read builds the command allowlist from the root, not the caller config folder', (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  commandFile(outer, 'leaked');
+  const root = path.join(outer, 'wt');
+  const file = fileRecord(root, 'alpha.js');
+  fs.mkdirSync(path.dirname(file.path), { recursive: true });
+  fs.writeFileSync(file.path, 'export default async () => ({});\n');
+  commandFile(root, 'battery');
+  const caller = tempRoot(t);
+  commandFile(caller, 'leaked');
+  const entries = [v2Entry(file)];
+  const v2 = {
+    started: true,
+    reads: [{ entries }, { entries }],
+    skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+    commands: { data: [{ name: 'battery' }, { name: 'leaked' }] },
+    commandsStable: true,
+    shadowing: [path.join(outer, '.opencode', 'plugins')],
+  };
+  const env = { ...emptyEnv(t), OPENCODE_CONFIG_DIR: path.join(caller, '.opencode') };
+  const listed = legsForV2([file], v2, root, env).find((result) => result.leg === 'command-listed');
+  assert.equal(listed.status, 'FAIL', resultText(listed));
+  assert.match(resultText(listed), /leaked/);
+});

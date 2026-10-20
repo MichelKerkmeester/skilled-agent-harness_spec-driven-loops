@@ -61,7 +61,7 @@ A pure helper chooses the private server's environment, and the v2 legs learn wh
 - **`allowedCommandSources(..., isolated)`**: stops allowing an ancestor's commands when the read was isolated, so an ancestor-only command fails command-listed there.
 
 ### Data Flow
-`readV2` resolves the root, asks `v2ServerEnv` for the environment, starts `opencode2 serve` with it, reads the plugin, skill and command endpoints, and returns `shadowing` beside the reads. `legsForV2` passes `shadowing` to `legPluginActive` and an isolated flag to `allowedCommandSources`. With no ancestor plugin folder, `shadowing` is empty and every leg judges exactly as before.
+`readV2` asks `v2ServerEnv` for the environment (its helper `ancestorPluginDirs` resolves the root to its real path before walking), starts `opencode2 serve` with it, reads the plugin, skill and command endpoints, and returns `shadowing` beside the reads. `legsForV2` passes `shadowing` to `legPluginActive`, and for an isolated read builds the command allowlist with the root's own `.opencode` as the config folder and the ancestor walk off. With no ancestor plugin folder, `shadowing` is empty and every leg judges exactly as before.
 <!-- /ANCHOR:architecture -->
 
 
@@ -78,7 +78,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-The fake `opencode2` script answers the way OpenCode 2 does: under an outer checkout with the walk on, the outer plugin is active and the root's copy fails with `Duplicate plugin ID`; with the walk off and the config folder set to the root's `.opencode`, only the root's plugin, skills and commands load; with the walk off and no config folder, none do. A second mode models an OpenCode 2 that ignores the switches, returning the outer plugin and an outer-only command beside the root's. Seven mutation runs each fail at least one test: m1 the old battery, m2 isolation for every root, m3 no config folder, m4 the walk left on, m5 no realpath, m6 no ancestor-entry check, m7 the ancestor command walk left on under isolation. The live checks run the real battery on both families in worktree 169 and in a plain clone under the scratchpad, and read OpenCode 1's `plugin_origins` in the worktree.
+The fake `opencode2` script answers the way OpenCode 2 does: under an outer checkout with the walk on, the outer plugin is active and the root's copy fails with `Duplicate plugin ID`; with the walk off and the config folder set to the root's `.opencode`, only the root's plugin, skills and commands load; with the walk off and no config folder, none do. A second mode models an OpenCode 2 that ignores the switches, returning the outer plugin and an outer-only command beside the root's. Seven mutation runs each fail at least one test: m1 the old battery, m2 isolation for every root, m3 no config folder, m4 the walk left on, m5 no realpath, m6 no ancestor-entry check, m7 the ancestor command walk left on under isolation, m8 the allowlist built from the caller's config folder. The live checks run the real battery on both families in worktree 169 and in a plain clone under the scratchpad, and read OpenCode 1's `plugin_origins` in the worktree.
 <!-- /ANCHOR:testing -->
 
 ---

@@ -573,8 +573,12 @@ function legsForV2(files, v2, root, env) {
       makeResult('command-listed', 'v2', 'DEGRADED', reason),
     ];
   }
+  // An isolated read ran with the root's own `.opencode` as its config folder, so
+  // the allowlist is built from that folder, not from the caller's.
+  const isolated = (v2.shadowing || []).length > 0;
+  const sourceEnv = isolated ? { ...env, OPENCODE_CONFIG_DIR: path.join(root, '.opencode') } : env;
   const commandLeg = v2.commandsStable === true
-    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env, (v2.shadowing || []).length > 0))
+    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', sourceEnv, isolated))
     : makeResult(
       'command-listed', 'v2', 'DEGRADED', 'the command listing never settled on a non-zero count',
       [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],

@@ -52,9 +52,9 @@
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:797:1
 ✖ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4310.713375ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
-  
+
   '1' !== null
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:834:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)
@@ -70,9 +70,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:852:1
 ✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (2.141291ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
-  
+
   '1' !== undefined
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:865:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

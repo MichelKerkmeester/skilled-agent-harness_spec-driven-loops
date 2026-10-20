@@ -46,6 +46,7 @@ contextType: "general"
 - [x] T006 Make the fake server behave like OpenCode 2 under an outer checkout; add three nested tests and the plain-root assertions (`.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`). Item 7.
 - [x] T006a Resolve a symlinked root to its real path and walk nothing from the filesystem root; keep the tests off the caller's switches; make the fake server's skill and command answers depend on the config selection; cover caller switches (round-1 review). Item 7.
 - [x] T006b Fail an isolated read that still carries ancestor plugin entries or ancestor-only commands, with a fake server that ignores the switches (round-2 review). Item 7.
+- [x] T006c Build an isolated read's command allowlist from the root's own `.opencode`, not the caller's config folder; record OpenCode 1's origins in the worktree (round-3 and round-4 reviews). Item 7.
 - [x] T007 [P] Add the battery sentence and the known limit (`.opencode/plugins/ARCHITECTURE.md`). Item 7.
 - [x] T008 [P] Add the troubleshooting entry (`.skilled/skills/sk-git/references/worktree-workflows.md`). Item 7.
 <!-- /ANCHOR:phase-2 -->
@@ -55,8 +56,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 The test suite passes 44 of 44 (`after-r2.txt`; 37 at baseline). The old battery fails 6 of the new tests (`m1-old-battery-r1.txt`); mutants m2 to m7 fail 2, 2, 2, 1, 1 and 2 tests (`scratch/mutation/`). Item 7.
-- [x] T010 The battery passes both families in worktree 169, v2 with an `isolated:` line, and both families in a plain clone with none (`scratch/rootcause/after-r2-both.json`, `after-r2-plain-both.json`). Item 7.
+- [x] T009 The test suite passes 45 of 45 (`after-r4.txt`; 37 at baseline). The old battery fails 6 of the new tests (`m1-old-battery-r1.txt`); mutants m2 to m8 fail 2, 2, 2, 1, 1, 2 and 1 tests (`scratch/mutation/`). Item 7.
+- [x] T010 The battery passes both families in worktree 169, v2 with an `isolated:` line, and both families in a plain clone with none (`scratch/rootcause/after-r4-both.json`, `after-r2-plain-both.json`). Item 7.
 - [ ] T011 Luna review passes. Item 7.
 - [ ] T012 Strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`. Item 7.
 - [ ] T013 The Dual-Version Battery passes on CI at the pushed main commit. Item 7.

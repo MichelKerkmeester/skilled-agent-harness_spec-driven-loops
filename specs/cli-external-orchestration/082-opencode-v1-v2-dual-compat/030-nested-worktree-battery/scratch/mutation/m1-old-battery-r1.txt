@@ -54,9 +54,9 @@
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:808:1
 ✖ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4354.354958ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
-  
+
   undefined !== []
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:847:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)
@@ -96,9 +96,9 @@ test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
 test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:882:1
 ✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (4379.36675ms)
   AssertionError [ERR_ASSERTION]: [{"leg":"family-present","family":"v2","status":"PASS","reason":"a v2 binary is installed","details":["/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-iXl96v/fake-opencode.cjs"]},{"leg":"plugin-active","family":"v2","status":"FAIL","reason":"the stable read shows missing or inactive plugins","details":["alpha.js: status failed"]},{"leg":"skill-visible","family":"v2","status":"PASS","reason":"1 skill entries visible","details":["entries: 1","visible: 1"]},{"leg":"command-listed","family":"v2","status":"PASS","reason":"all 1 command files listed","details":["listed: 1","required: 1"]}]
-  
+
   1 !== 0
-  
+
       at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:899:10)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1409:7)

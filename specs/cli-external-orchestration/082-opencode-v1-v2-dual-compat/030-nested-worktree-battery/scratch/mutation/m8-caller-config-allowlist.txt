@@ -1,0 +1,79 @@
+✔ R1: v1 every plugin file discovered and loaded passes both legs (1.34075ms)
+✔ R2: v1 a file missing from the debug config fails plugin-discovered naming it (0.271ms)
+✔ R3: v1 a harness failure fails plugin-load naming the plugin and its detail (0.09975ms)
+✔ R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered (0.0735ms)
+✔ R5: v1 a plugin with no harness line degrades plugin-load naming it (0.136625ms)
+✔ R6: v2 every plugin active on a stable read passes plugin-active (0.232375ms)
+✔ R7: v2 an entry with a failed status fails plugin-active naming plugin and status (0.087333ms)
+✔ R8: v2 counts that never stabilise degrade plugin-active with the counts (0.145417ms)
+✔ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (3.438333ms)
+✔ R10: family v2 requested with only a v1 candidate skips and exits 3 (1.804042ms)
+✔ R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass (2.843917ms)
+✔ R12: zero plugin files fails (1.036208ms)
+✔ R13: --out to an unwritable path exits 2 (1.797167ms)
+✔ R14: an unknown argument exits 2 with usage on stderr (0.3345ms)
+✔ R15: v2 a plugin file with no entry under the root fails naming the file (0.105333ms)
+✔ R16: --out <file> and --root <dir> parse the same as the = forms (0.300417ms)
+✔ R17: --out as the last argument is a usage error (0.068584ms)
+✔ R18: a spaced value that is itself a flag is a usage error, the = form is kept (0.080959ms)
+✔ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (4.579458ms)
+✔ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (4.933958ms)
+✔ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (3.630917ms)
+✔ C4: v2 fails when a project command file is missing from the listing (3.875875ms)
+✔ C5: a listing that did not parse fails command-listed on either family (3.166792ms)
+✔ C6: a command file in the global config folder is allowed on both families (3.675958ms)
+✔ C7: both command folder spellings are read, with slashed names and a followed link (1.933292ms)
+✔ C8: v2 a command listing that never settles degrades command-listed (2.372708ms)
+✔ parity: the battery parser and the deep-loop resolver agree on one shared list (0.203208ms)
+✔ parity: every shared corpus entry keeps its expected family (0.053417ms)
+✔ adversarial: path-qualified, prerelease and joined output answer the pinned families (0.037584ms)
+✔ adversarial: CRLF and joined version output read as v1, empty and garbage as unknown (0.025917ms)
+✔ adversarial: empty version output is skipped and the family reports SKIP (1.923792ms)
+✔ adversarial: a probe error skips the candidate instead of assuming it (0.107625ms)
+✔ adversarial: a root without .opencode/plugins fails naming the root (0.650875ms)
+✔ adversarial: a root with spaces and $(id) reaches the collectors as one string (2.6535ms)
+✔ probe count: three candidates sharing one path probe each distinct path once (1.9855ms)
+✔ a broken symlink in the plugin folder fails plugin-discovered naming it (1.764042ms)
+✔ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4333.193709ms)
+✔ nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root (2.563542ms)
+✔ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (2.079208ms)
+✔ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (4352.309375ms)
+✔ nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root (2.795625ms)
+✔ nested: a caller switch survives on a plain root and is overridden on a nested root (1.872708ms)
+✔ nested: an isolated read that still carries ancestor entries fails plugin-active and command-listed (4327.050334ms)
+✔ nested: allowedCommandSources allows ancestor commands only when the read is not isolated (3.560667ms)
+✖ nested: an isolated read builds the command allowlist from the root, not the caller config folder (6.934417ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 44
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15119.723167
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:992:1
+✖ nested: an isolated read builds the command allowlist from the root, not the caller config folder (6.934417ms)
+  AssertionError [ERR_ASSERTION]: all 1 command files listed
+  listed: 2
+  required: 1
+
+  'PASS' !== 'FAIL'
+
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:1014:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'PASS',
+    expected: 'FAIL',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
