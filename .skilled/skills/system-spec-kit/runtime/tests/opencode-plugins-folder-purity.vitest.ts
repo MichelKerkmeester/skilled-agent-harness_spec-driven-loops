@@ -87,6 +87,18 @@ describe('OpenCode plugins folder purity', () => {
         continue;
       }
 
+      // A dual OpenCode plugin exports { id, server, setup }; `server` is the v1 factory the host calls.
+      if (typeof pluginDefault.server === 'function') {
+        expect(typeof pluginDefault.setup, `${pluginFile} dual plugin must export a setup function`)
+          .toBe('function');
+        const hooks = await pluginDefault.server({});
+        expect(hooks, `${pluginFile} dual plugin server factory must return an object`)
+          .toEqual(expect.any(Object));
+        expect(hasHookProperty(hooks), `${pluginFile} dual plugin server factory returned no recognized OpenCode hook keys`)
+          .toBe(true);
+        continue;
+      }
+
       expect(pluginDefault, `${pluginFile} object default export must be an OpenCode hook object`)
         .toEqual(expect.any(Object));
       expect(hasHookProperty(pluginDefault), `${pluginFile} object default export has no recognized OpenCode hook keys`)

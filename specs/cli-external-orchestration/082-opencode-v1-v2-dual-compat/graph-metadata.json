@@ -22,7 +22,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export"
   ],
   "manual": {
     "depends_on": [],
@@ -153,13 +154,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Kit Check",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Handoff Criteria",
+        "name": "Phase Transition Rules",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -227,7 +228,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T04:59:17.431Z",
+    "last_save_at": "2026-10-20T06:18:57.544Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -235,13 +236,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:943d2e3924b3d9e4eb36a9efae34055e92360c75f61d17804b8acfc70686923a",
+    "source_fingerprint": "sha256:d6d458d754e57ca0c6a4c6308dd2ec9ca75d5a0d887c05f7d61e2e93b4f0eccd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5486846c81a77d237437915d259e0c72efdae4310a046251d5db8d70b0d3efca",
+      "spec.md": "907f1edcf1f1ec7076fa863274fdc41f182c086c5af5013b901d039055cb04ae",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
-    "last_active_at": "2026-10-19T21:51:10.408Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
+    "last_active_at": "2026-10-20T06:08:01.402Z"
   }
 }
