@@ -207,19 +207,70 @@ function joinContinuations(lines) {
 }
 
 // A shell comment names and explains a step without running it, so it is not part of
-// what the block does. A trailing comment is cut at the first ` #` after the line's
-// last quote, so a `#` inside a quoted argument survives.
+// what the block does. A `#` starts a comment only at the start of a line or after
+// whitespace or a separator, and never inside a quote, so a `#` in a URL or a quoted
+// argument survives.
 function activeShellLines(lines) {
   return lines
-    .filter((line) => {
-      const trimmed = line.trim();
-      return trimmed !== '' && !trimmed.startsWith('#');
-    })
     .map((line) => {
-      const lastQuote = Math.max(line.lastIndexOf('"'), line.lastIndexOf("'"));
-      const commentStart = line.indexOf(' #', lastQuote + 1);
-      return commentStart === -1 ? line : line.slice(0, commentStart);
-    });
+      let quote = null;
+
+      for (let index = 0; index < line.length; index += 1) {
+        const char = line[index];
+
+        if (quote === "'") {
+          if (char === "'") quote = null;
+          continue;
+        }
+        if (quote === '"') {
+          if (char === '\\') {
+            index += 1;
+          } else if (char === '"') {
+            quote = null;
+          }
+          continue;
+        }
+
+        if (char === '\\') {
+          index += 1;
+        } else if (char === "'" || char === '"') {
+          quote = char;
+        } else if (char === '#' && (index === 0 || /[\s;|&()]/.test(line[index - 1]))) {
+          return line.slice(0, index).trimEnd();
+        }
+      }
+
+      return line;
+    })
+    .filter((line) => line.trim() !== '');
+}
+
+// A provider check is only meaningful against the standalone listing. The matching grep
+// can pipe that listing in directly, or pipe a variable that an earlier line of the same
+// block filled from `opencode2 models --standalone`. Returns null when it does, or the
+// reason it does not, naming the variable that has to hold the listing.
+function standaloneListingProblem(lines, grepIndex) {
+  const grepLine = lines[grepIndex];
+  if (/opencode2 models --standalone\b[^|]*\|\s*grep\b/.test(grepLine)) return null;
+
+  const pipe = grepLine.match(/\|\s*grep\b/);
+  const beforePipe = pipe === null ? grepLine : grepLine.slice(0, pipe.index);
+  const variable = beforePipe.match(
+    /(?:printf|echo)\b[^|]*\$"?\{?([A-Za-z_][A-Za-z0-9_]*)\}?"?/,
+  );
+  if (variable === null) {
+    return 'the grep must filter output piped from "opencode2 models --standalone"';
+  }
+
+  const name = variable[1];
+  const assignment = `${name}=$(opencode2 models --standalone`;
+  const assignedFromStandalone = lines.slice(0, grepIndex).some((earlier) => {
+    const at = earlier.indexOf(assignment);
+    return at !== -1 && (at === 0 || /\s/.test(earlier[at - 1]));
+  });
+  return assignedFromStandalone
+    ? null
+    : `"$${name}" must come from "opencode2 models --standalone" earlier in the block`;
 }
 
 // Every document the skill tree ships, minus the historical and installed trees.
@@ -464,16 +515,92 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   // The variable gates the default model, so a check on any other provider would report
   // the default present when only that provider is configured. LLM Gateway is the only
   // MiMo route and the other provider OpenCode 2 lists, so its own variable gates MiMo.
-  assert.ok(
-    standalone.some((line) =>
-      /grep\s+(['"])\^opencode-go\/\1.*&&\s*OPENCODE_GO_OK=1\b/.test(line),
-    ),
+  const goIndex = standalone.findIndex((line) =>
+    /grep\s+(['"])\^opencode-go\/\1.*&&\s*OPENCODE_GO_OK=1\b/.test(line),
+  );
+  assert.notEqual(
+    goIndex,
+    -1,
     `the OpenCode 2 pre-flight block must set OPENCODE_GO_OK from a listing filtered for the anchored ^opencode-go/ prefix, but it does not:\n${standalone.join('\n')}`,
   );
-  assert.ok(
-    standalone.some((line) =>
-      /grep\s+(['"])\^llmgateway\/\1.*&&\s*LLMGATEWAY_OK=1\b/.test(line),
-    ),
+  const goProblem = standaloneListingProblem(standalone, goIndex);
+  assert.equal(
+    goProblem,
+    null,
+    `the OpenCode 2 pre-flight block must set OPENCODE_GO_OK from the standalone "opencode2 models --standalone" listing filtered for the anchored ^opencode-go/ prefix; ${goProblem}:\n${standalone[goIndex]}`,
+  );
+
+  const llmIndex = standalone.findIndex((line) =>
+    /grep\s+(['"])\^llmgateway\/\1.*&&\s*LLMGATEWAY_OK=1\b/.test(line),
+  );
+  assert.notEqual(
+    llmIndex,
+    -1,
     `the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from a listing filtered for the anchored ^llmgateway/ prefix, but it does not:\n${standalone.join('\n')}`,
+  );
+  const llmProblem = standaloneListingProblem(standalone, llmIndex);
+  assert.equal(
+    llmProblem,
+    null,
+    `the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from the standalone "opencode2 models --standalone" listing filtered for the anchored ^llmgateway/ prefix; ${llmProblem}:\n${standalone[llmIndex]}`,
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. THE COMMENT STRIPPER AND THE LISTING IT LEAVES ACTIVE
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('the shell comment stripper is quote-aware', () => {
+  const stripped = (line) => activeShellLines([line]);
+
+  assert.deepEqual(
+    stripped('echo "a # b"'),
+    ['echo "a # b"'],
+    'a # inside double quotes is not a comment',
+  );
+  assert.deepEqual(
+    stripped("echo 'a # b'"),
+    ["echo 'a # b'"],
+    'a # inside single quotes is not a comment',
+  );
+  assert.deepEqual(stripped('echo a # comment'), ['echo a'], 'a # after whitespace starts a comment');
+  assert.deepEqual(
+    stripped('echo "x" # it\'s fine\' && grep \'^opencode-go/\' >/dev/null && OPENCODE_GO_OK=1'),
+    ['echo "x"'],
+    'a quote inside the comment must not hide the comment start',
+  );
+  assert.deepEqual(
+    stripped('echo a\\#b # c'),
+    ['echo a\\#b'],
+    'an escaped # is not a comment start',
+  );
+  assert.deepEqual(stripped('# whole line'), [], 'a whole-line comment leaves no active line');
+  assert.deepEqual(stripped('x=1;# c'), ['x=1;'], 'a # after a separator starts a comment');
+  assert.deepEqual(
+    stripped('url=http://h/#frag'),
+    ['url=http://h/#frag'],
+    'a # inside a word is not a comment',
+  );
+});
+
+test('a prefix grep that reads another listing does not count', () => {
+  const fromStandalone = [
+    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    "printf '%s\\n' \"$V2_MODELS\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.equal(
+    standaloneListingProblem(fromStandalone, 1),
+    null,
+    'a grep over a variable filled from the standalone listing must count',
+  );
+
+  const fromProviders = [
+    'OTHER=$(opencode providers list)',
+    "printf '%s\\n' \"$OTHER\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.match(
+    standaloneListingProblem(fromProviders, 1),
+    /"\$OTHER" must come from "opencode2 models --standalone"/,
+    'a grep over another listing must name the variable that has to hold the standalone listing',
   );
 });
