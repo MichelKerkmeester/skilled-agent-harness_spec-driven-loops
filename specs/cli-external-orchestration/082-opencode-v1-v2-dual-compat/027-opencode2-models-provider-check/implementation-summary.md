@@ -8,18 +8,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check"
-    last_updated_at: "2026-10-20T13:13:33Z"
+    last_updated_at: "2026-10-20T13:26:59Z"
     last_updated_by: "generate-context"
-    recent_action: "Recorded the round-6 findings and marked tasks T004 to T012 done"
-    next_safe_action: "Run the merge of origin/main, rerun the checks, then push to main and watch CI"
+    recent_action: "Closed the phase after green CI on 734a2b780f"
+    next_safe_action: "Run the recorded follow-ups in a later phase"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:80d1b8bd3cf6c222eaa8d89aab12eb0d2fa76179ca356a259d6960dee35a3f2b"
       session_id: "scaffold-027-opencode2-models-provider-check"
       parent_session_id: null
-    completion_pct: 94
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -110,6 +110,8 @@ Luna (GPT-6 Luna, read-only) reviewed six rounds. Rounds 1 to 5 failed with P1s 
 | OpenCode 2 pre-flight block live | Extracted from `cli-reference.md` and run under `bash -o pipefail`: `default=0 minimax_token=0 minimax_direct=0 llmgateway=1`, exit 0; the old form exits 1 for the listed `llmgateway` too (`scratch/preflight-live.txt`) |
 | `sync-skills-hermes.cjs --check` | PASS: 68 copies in sync |
 | `check-gate-inputs.sh`, `actionlint` | Both exit 0 after the filter change |
+| CI at `734a2b780f` | All 16 runs passed; the dual-version battery ran `opencode2-models-form.test.cjs` on v1 and v2 (run 39429357414) |
+| Recursive strict validation of 082 | RESULT: PASSED for all 30 folders after the final merge |
 <!-- /ANCHOR:verification -->
 
 ---

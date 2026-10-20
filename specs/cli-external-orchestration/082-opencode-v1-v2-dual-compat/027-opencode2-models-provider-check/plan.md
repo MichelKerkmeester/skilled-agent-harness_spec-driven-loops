@@ -40,9 +40,9 @@ The live probes set the target: v2 `models` accepts only `--standalone` and `--s
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing, and the new test fails on main's docs
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing, and the new test fails on main's docs
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

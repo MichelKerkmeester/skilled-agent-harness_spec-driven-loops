@@ -59,7 +59,7 @@ Every task closes follow-up item 4 of the operator's open-work list: the `openco
 - [x] T010 The OpenCode 2 pre-flight block run live: `llmgateway=1`, `default=0` (`scratch/preflight-live.txt`)
 - [x] T011 cli-opencode tests, `sync-skills-hermes.cjs --check`, `check-gate-inputs.sh` and `actionlint` pass
 - [x] T012 Luna review: six rounds, the last ending on findings recorded as limits and follow-ups under the coordinator's stop rule; strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`
-- [ ] T013 Merged, pushed to main, every CI run on the main commit read
+- [x] T013 Merged, pushed to main at `734a2b780f`, all 16 CI runs on it passed, and the battery job ran the new test on v1 and v2 (run 39429357414)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +67,9 @@ Every task closes follow-up item 4 of the operator's open-work list: the `openco
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
