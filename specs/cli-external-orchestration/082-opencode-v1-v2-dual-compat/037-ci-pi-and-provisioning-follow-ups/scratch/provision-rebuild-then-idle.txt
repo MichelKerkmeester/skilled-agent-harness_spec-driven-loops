@@ -1,0 +1,10 @@
+stamps moved aside, so every listed output is unrecorded:
+  rebuilding .skilled/skills/sk-vision/vision-runtime (no record of the sources it was built from)
+  rebuilding .skilled/skills/system-spec-kit/runtime (no record of the sources it was built from)
+  rebuilding .skilled/skills/system-spec-kit/runtime/cli (no record of the sources it was built from)
+  rebuilding .skilled/skills/system-skill-advisor/runtime (no record of the sources it was built from)
+  rebuilding .skilled/skills/sk-design/sk-design-md-generator/backend (no record of the sources it was built from)
+provisioned: 0 installed, 5 built, 14 already present, 0 failed
+second run:
+provisioned: 0 installed, 0 built, 14 already present, 0 failed
+stamps identical: the pre-build fingerprint equals the post-build one for all 5 listed builds, so none edits its own tracked inputs

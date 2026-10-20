@@ -1,0 +1,10 @@
+test-cite-drift-scan.mjs repeat runs, worktree 179 at a2d3ccc7c7, macOS, node v26.8.2, 2026-10-20
+serial: 12 runs, failing: 0
+parallel x10: 30 runs, exits:  30 0
+parallel x16: 128 runs, exits:  128 0
+
+CI: sk-doc Script Tests runs created since 2026-10-20T12:40Z (all run test-cite-drift-scan.mjs):
+   8 failure
+  49 success
+every failure lists test_readme_manifest.py as its one failing test; run 39424650739 attempt 1 is the only cite-drift failure (attempt 2 passed)
+attempt 1 tail: '# tests 67 # pass 66 # fail 1 # duration_ms 6847.312386' - no subtest named, the runner printed only the tail then
