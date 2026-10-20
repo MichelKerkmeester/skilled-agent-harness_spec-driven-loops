@@ -1,5 +1,5 @@
 {
-  "manifestHash": "03791ab41b9932f27b8dc1672d99fbf1fda581a613d7597075764c161649f46e",
+  "manifestHash": "be8c9b0e275655edb6ca0947fe92bbe706230cb9ab240a9f30a9345a1cf90a98",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -57400,6 +57400,24 @@
     "live owner skip": [
       "live owner skip"
     ],
+    "live plugin playbook": [
+      "live plugin playbook"
+    ],
+    "live plugin playbook acceptance criteria": [
+      "live plugin playbook acceptance criteria"
+    ],
+    "live plugin playbook implementation summary": [
+      "live plugin playbook implementation summary"
+    ],
+    "live plugin playbook plan": [
+      "live plugin playbook plan"
+    ],
+    "live plugin playbook tasks": [
+      "live plugin playbook tasks"
+    ],
+    "live plugin utilization playbook on opencode v1": [
+      "live plugin utilization playbook on opencode v1"
+    ],
     "live provider verification": [
       "live provider verification"
     ],
@@ -74838,6 +74856,9 @@
     ],
     "plugin tui overlay fix tasks": [
       "plugin TUI overlay fix tasks"
+    ],
+    "plugin utilization matrix": [
+      "plugin utilization matrix"
     ],
     "plugin warning over chat input": [
       "plugin warning over chat input"

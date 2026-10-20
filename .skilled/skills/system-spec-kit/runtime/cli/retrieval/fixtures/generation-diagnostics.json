@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7183,
-    "ok": 14707,
+    "missing-frontmatter": 7205,
+    "ok": 14712,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25438,
+  "documentsScanned": 25465,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "03791ab41b9932f27b8dc1672d99fbf1fda581a613d7597075764c161649f46e",
+  "manifestHash": "be8c9b0e275655edb6ca0947fe92bbe706230cb9ab240a9f30a9345a1cf90a98",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37138,
+      "ok": 37145,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -6511,6 +6511,36 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/failed-runs.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/findings-and-recommendations.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/skill-benchmark-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -6717,6 +6747,108 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/classifier-injection-screen.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/cli-dispatch-audit.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/codex-hooks-watchdog.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/mcp-route-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/opencode-goal.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-cleanup.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-message-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-vision.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-completion-sentinel.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-deep-loop-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-dist-freshness-guard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-skill-advisor.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-spec-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-speckit-completion.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69071,6 +69203,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch",
       "reason": "excluded directory"
     },
     {

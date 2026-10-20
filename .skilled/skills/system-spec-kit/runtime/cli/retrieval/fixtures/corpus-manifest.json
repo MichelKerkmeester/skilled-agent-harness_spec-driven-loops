@@ -1,5 +1,5 @@
 {
-  "corpusHash": "62ae3371d015d3d8d26696e7bb373bfe5bc99a68426f4624f6a06cda65fe0e55",
+  "corpusHash": "7db2bb1be57c04ce7d009c9f12f92629aee8dcd9abe9a6f7e65a1376a8159cf4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25438,
+  "includedPathCount": 25465,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1415,6 +1415,11 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--prompt-templates/findings-and-recommendations.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--prompt-templates/skill-benchmark-report.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--prompt-templates/source.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/README.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/failed-runs.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/findings-and-recommendations.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/skill-benchmark-report.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization/source.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/README.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.1.0.0.md",
@@ -1487,6 +1492,23 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/ablation-suite.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/parallel-detached-session.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/parallel-detached/worker-farm-loop.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/classifier-injection-screen.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/cli-dispatch-audit.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/codex-hooks-watchdog.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/mcp-route-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/opencode-goal.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-cleanup.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-code-post-edit-quality.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-message-gate.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-git-preflight-advisory.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/sk-vision.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-completion-sentinel.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-deep-loop-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-dist-freshness-guard.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-skill-advisor.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-spec-gate.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/system-speckit-completion.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/clear-quality-card.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md",
@@ -8967,6 +8989,11 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/acceptance-criteria.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25469,7 +25496,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "03791ab41b9932f27b8dc1672d99fbf1fda581a613d7597075764c161649f46e",
+  "manifestHash": "be8c9b0e275655edb6ca0947fe92bbe706230cb9ab240a9f30a9345a1cf90a98",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26561,6 +26588,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch",
       "reason": "excluded directory"
     },
     {
