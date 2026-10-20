@@ -911,6 +911,25 @@ test('a prefix grep that reads another listing does not count', () => {
     'a grep piped directly from the standalone listing must count',
   );
 
+  const quotedPipe = [
+    'V2=$(opencode2 models --standalone 2>/dev/null)',
+    "printf '%s|\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.equal(
+    standaloneListingProblem(quotedPipe, 1),
+    null,
+    'a | inside a quoted printf format must not split the source segment',
+  );
+
+  const directDoubleQuotedPattern = [
+    'opencode2 models --standalone 2>/dev/null | grep "^opencode-go/" >/dev/null && OPENCODE_GO_OK=1',
+  ];
+  assert.equal(
+    standaloneListingProblem(directDoubleQuotedPattern, 0),
+    null,
+    'a grep pattern in double quotes piped from the standalone listing must count',
+  );
+
   const quotedEcho = [
     'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
     'echo "printf x | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1"',
