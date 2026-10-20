@@ -1,5 +1,5 @@
 {
-  "corpusHash": "025393046ea5b664bb5e8b7e8eddbf4dd051fcd8d052dc124b1dded19b079a8e",
+  "corpusHash": "a24a096ecce296d5b7a1debbae9b4e7412fdf64f795f40fa4a4b7fa52ad4d78f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25465,
+  "includedPathCount": 25470,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10369,6 +10369,11 @@
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/plan.md",
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md",
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/plan.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/spec.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25496,7 +25501,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "51a5dbd85963728effdb28b3be3f175b3546d94063d2b1680ddc13383eef25be",
+  "manifestHash": "d331b4e6f098e0dcb81548fbd33b9f6274608537cc59da4c30946829ada4b0c4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27376,6 +27381,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/017-hop-history/scratch",
       "reason": "excluded directory"
     },
     {

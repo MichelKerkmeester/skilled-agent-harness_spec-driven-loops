@@ -1,5 +1,5 @@
 {
-  "manifestHash": "51a5dbd85963728effdb28b3be3f175b3546d94063d2b1680ddc13383eef25be",
+  "manifestHash": "d331b4e6f098e0dcb81548fbd33b9f6274608537cc59da4c30946829ada4b0c4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -51952,6 +51952,24 @@
     "hop count constant replacement": [
       "hop count constant replacement"
     ],
+    "hop history": [
+      "hop history"
+    ],
+    "hop history acceptance criteria": [
+      "hop history acceptance criteria"
+    ],
+    "hop history implementation summary": [
+      "hop history implementation summary"
+    ],
+    "hop history plan": [
+      "hop history plan"
+    ],
+    "hop history tasks": [
+      "hop history tasks"
+    ],
+    "hop notice": [
+      "hop notice"
+    ],
     "host lifecycle epoch": [
       "host lifecycle epoch"
     ],
@@ -71929,6 +71947,9 @@
     "phase 17 gold checker": [
       "phase 17 gold checker"
     ],
+    "phase 17 hop history": [
+      "phase 17 hop history"
+    ],
     "phase 17 plan": [
       "phase 17 plan"
     ],
@@ -89616,6 +89637,9 @@
     ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
+    ],
+    "session relaunch history command": [
+      "session relaunch history command"
     ],
     "session relaunch hook": [
       "session relaunch hook"
