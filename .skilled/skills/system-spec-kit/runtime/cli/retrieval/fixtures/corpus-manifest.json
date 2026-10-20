@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e361d0edd54e24762c495f53439eaacd620fc1ec1eca2e3501e33329217e1bef",
+  "corpusHash": "aad48bafda54105976d6381d173a0a9f3475ac61002c7cb868851170e643b6c6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25343,
+  "includedPathCount": 25394,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10251,6 +10251,7 @@
     "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md",
     "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/tasks.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/evidence/review-2-verification.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/goal.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/implementation-summary.md",
     "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/plan.md",
@@ -10262,11 +10263,44 @@
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/plan.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/goal.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/plan.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/research.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/spec.md",
+    "specs/hooks/023-session-relaunch-loop/010-post-fix-research/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/goal.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/plan.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/tasks.md",
     "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/implementation-summary.md",
     "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/plan.md",
     "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/spec.md",
     "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/plan.md",
+    "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/spec.md",
+    "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
+    "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/research/research.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-001.md",
@@ -10285,6 +10319,8 @@
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/prompts/iteration-7.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/resource-map.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/review-report.md",
     "specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/review/review-report.md",
     "specs/hooks/023-session-relaunch-loop/spec.md",
@@ -15006,6 +15042,21 @@
     "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/plan.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/tasks.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/implementation-summary.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/plan.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/spec.md",
+    "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/tasks.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/spec.md",
     "specs/system-deep-loop/038-review-and-cli-lineage/timeline.md",
     "specs/system-deep-loop/039-deprecate-improvement-modes/001-removal-research/001-model-benchmark-inventory/implementation-summary.md",
@@ -25374,7 +25425,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0f8bf6213014a6df01928b6c62231e6aa19419bf16120224a610c16ffcca20c5",
+  "manifestHash": "9e75c2363e1cc84bee336d2045075b475f0263de564220a0021aa05833b5264b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27185,7 +27236,39 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/008-review-3-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/009-research-fixes-and-core-consolidation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/010-post-fix-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/011-post-fix-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/lineages",
       "reason": "excluded directory"
     },
     {
@@ -29214,6 +29297,18 @@
     },
     {
       "path": "specs/system-deep-loop/038-review-and-cli-lineage/009-findings-summary-integrity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/010-config-row-projection-refusal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/011-gateway-enforcement-and-projection-hygiene/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration/scratch",
       "reason": "excluded directory"
     },
     {

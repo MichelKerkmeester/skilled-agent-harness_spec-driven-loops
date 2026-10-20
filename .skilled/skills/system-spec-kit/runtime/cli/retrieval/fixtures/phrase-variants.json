@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0f8bf6213014a6df01928b6c62231e6aa19419bf16120224a610c16ffcca20c5",
+  "manifestHash": "9e75c2363e1cc84bee336d2045075b475f0263de564220a0021aa05833b5264b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -25748,6 +25748,21 @@
     "config quality gates": [
       "config quality gates"
     ],
+    "config row projection refusal": [
+      "config row projection refusal"
+    ],
+    "config row projection refusal acceptance criteria": [
+      "config row projection refusal acceptance criteria"
+    ],
+    "config row projection refusal implementation summary": [
+      "config row projection refusal implementation summary"
+    ],
+    "config row projection refusal plan": [
+      "config row projection refusal plan"
+    ],
+    "config row projection refusal tasks": [
+      "config row projection refusal tasks"
+    ],
     "config section organization": [
       "config section organization"
     ],
@@ -26401,6 +26416,9 @@
     ],
     "context injection": [
       "context injection"
+    ],
+    "context limit handoff": [
+      "context limit handoff"
     ],
     "context loading": [
       "context loading"
@@ -43201,6 +43219,9 @@
     "fanout allowlist task list": [
       "fanout allowlist task list"
     ],
+    "fanout brief direct state write": [
+      "fanout brief direct state write"
+    ],
     "fanout builder re map plan": [
       "fanout builder re-map plan"
     ],
@@ -47290,6 +47311,21 @@
     ],
     "gateway contract remediation tasks": [
       "gateway contract remediation tasks"
+    ],
+    "gateway enforcement acceptance criteria": [
+      "gateway enforcement acceptance criteria"
+    ],
+    "gateway enforcement and projection hygiene": [
+      "gateway enforcement and projection hygiene"
+    ],
+    "gateway enforcement implementation summary": [
+      "gateway enforcement implementation summary"
+    ],
+    "gateway enforcement plan": [
+      "gateway enforcement plan"
+    ],
+    "gateway enforcement tasks": [
+      "gateway enforcement tasks"
     ],
     "gateway identity fail closed": [
       "gateway identity fail closed"
@@ -55045,6 +55081,9 @@
     "kill scoping tasks": [
       "kill scoping tasks"
     ],
+    "killer notice subtitle": [
+      "killer notice subtitle"
+    ],
     "killer test harness": [
       "killer test harness"
     ],
@@ -56483,6 +56522,21 @@
     "legacy removal summary": [
       "legacy removal summary"
     ],
+    "legacy row migration": [
+      "legacy row migration"
+    ],
+    "legacy row migration acceptance criteria": [
+      "legacy row migration acceptance criteria"
+    ],
+    "legacy row migration implementation summary": [
+      "legacy row migration implementation summary"
+    ],
+    "legacy row migration plan": [
+      "legacy row migration plan"
+    ],
+    "legacy row migration tasks": [
+      "legacy row migration tasks"
+    ],
     "legacy skill compatibility symlink": [
       "legacy skill compatibility symlink"
     ],
@@ -57261,6 +57315,21 @@
     ],
     "live handler probe gap research": [
       "live handler probe gap research"
+    ],
+    "live hop and notice reason": [
+      "live hop and notice reason"
+    ],
+    "live hop and notice reason acceptance criteria": [
+      "live hop and notice reason acceptance criteria"
+    ],
+    "live hop and notice reason implementation summary": [
+      "live hop and notice reason implementation summary"
+    ],
+    "live hop and notice reason plan": [
+      "live hop and notice reason plan"
+    ],
+    "live hop and notice reason tasks": [
+      "live hop and notice reason tasks"
     ],
     "live mcp probe contract": [
       "live MCP probe contract"
@@ -65787,6 +65856,9 @@
     "no non ollama active embedder resolver": [
       "no non-Ollama active embedder resolver"
     ],
+    "no nudge outside skilled loop": [
+      "no nudge outside skilled-loop"
+    ],
     "no op upsert branch": [
       "no-op upsert branch"
     ],
@@ -71548,6 +71620,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 10 config row projection refusal": [
+      "phase 10 config row projection refusal"
+    ],
     "phase 10 documentation sweep": [
       "phase 10 documentation sweep"
     ],
@@ -71569,6 +71644,9 @@
     "phase 10 open ends cleanup": [
       "phase 10 open ends cleanup"
     ],
+    "phase 10 post fix research": [
+      "phase 10 post fix research"
+    ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
     ],
@@ -71584,8 +71662,14 @@
     "phase 11 anchor repair mode": [
       "phase 11 anchor repair mode"
     ],
+    "phase 11 gateway enforcement": [
+      "phase 11 gateway enforcement"
+    ],
     "phase 11 goal drift remediation": [
       "phase 11 goal drift remediation"
+    ],
+    "phase 11 post fix remediation": [
+      "phase 11 post fix remediation"
     ],
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
@@ -71604,6 +71688,9 @@
     ],
     "phase 12 advisor doc target and engines": [
       "phase 12 advisor doc target and engines"
+    ],
+    "phase 12 legacy row migration": [
+      "phase 12 legacy row migration"
     ],
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
@@ -71640,6 +71727,9 @@
     ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
+    ],
+    "phase 13 live hop and notice reason": [
+      "phase 13 live hop and notice reason"
     ],
     "phase 13 python advisor native and parity": [
       "phase 13 python advisor native and parity"
@@ -72301,6 +72391,9 @@
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
+    "phase 8 review 3 remediation": [
+      "phase 8 review 3 remediation"
+    ],
     "phase 8 series parent review fixes": [
       "phase 8 series parent review fixes"
     ],
@@ -72333,6 +72426,9 @@
     ],
     "phase 9 reducer config message": [
       "phase 9 reducer config message"
+    ],
+    "phase 9 research fixes": [
+      "phase 9 research fixes"
     ],
     "phase 9 review remediation": [
       "phase 9 review remediation"
@@ -73864,6 +73960,9 @@
     "pilot run 2": [
       "pilot run 2"
     ],
+    "pinned legacy rows": [
+      "pinned legacy rows"
+    ],
     "pinned sample regression": [
       "pinned sample regression"
     ],
@@ -74947,6 +75046,42 @@
     ],
     "post extraction system code graph import paths": [
       "post-extraction system-code-graph import paths"
+    ],
+    "post fix remediation": [
+      "post fix remediation"
+    ],
+    "post fix remediation acceptance criteria": [
+      "post fix remediation acceptance criteria"
+    ],
+    "post fix remediation goal": [
+      "post fix remediation goal"
+    ],
+    "post fix remediation implementation summary": [
+      "post fix remediation implementation summary"
+    ],
+    "post fix remediation plan": [
+      "post fix remediation plan"
+    ],
+    "post fix remediation tasks": [
+      "post fix remediation tasks"
+    ],
+    "post fix research": [
+      "post fix research"
+    ],
+    "post fix research acceptance criteria": [
+      "post fix research acceptance criteria"
+    ],
+    "post fix research goal": [
+      "post fix research goal"
+    ],
+    "post fix research implementation summary": [
+      "post fix research implementation summary"
+    ],
+    "post fix research plan": [
+      "post fix research plan"
+    ],
+    "post fix research tasks": [
+      "post fix research tasks"
     ],
     "post fix substrate validation": [
       "post-fix substrate validation"
@@ -79565,6 +79700,9 @@
     "relaunch gap register": [
       "relaunch gap register"
     ],
+    "relaunch loop after phase 009": [
+      "relaunch loop after phase 009"
+    ],
     "relaunch loop test suite": [
       "relaunch loop test suite"
     ],
@@ -82162,6 +82300,24 @@
     "research findings remediation": [
       "research findings remediation"
     ],
+    "research fixes and core consolidation": [
+      "research fixes and core consolidation"
+    ],
+    "research fixes and core consolidation acceptance criteria": [
+      "research fixes and core consolidation acceptance criteria"
+    ],
+    "research fixes and core consolidation goal": [
+      "research fixes and core consolidation goal"
+    ],
+    "research fixes and core consolidation implementation summary": [
+      "research fixes and core consolidation implementation summary"
+    ],
+    "research fixes and core consolidation plan": [
+      "research fixes and core consolidation plan"
+    ],
+    "research fixes and core consolidation tasks": [
+      "research fixes and core consolidation tasks"
+    ],
     "research folder continuity": [
       "research folder continuity"
     ],
@@ -83779,6 +83935,24 @@
     ],
     "review 008 skill graph daemon and advisor unification pt changelog": [
       "review 008 skill graph daemon and advisor unification pt changelog"
+    ],
+    "review 3 remediation": [
+      "review 3 remediation"
+    ],
+    "review 3 remediation acceptance criteria": [
+      "review 3 remediation acceptance criteria"
+    ],
+    "review 3 remediation goal": [
+      "review 3 remediation goal"
+    ],
+    "review 3 remediation implementation summary": [
+      "review 3 remediation implementation summary"
+    ],
+    "review 3 remediation plan": [
+      "review 3 remediation plan"
+    ],
+    "review 3 remediation tasks": [
+      "review 3 remediation tasks"
     ],
     "review advisories closure": [
       "review advisories closure"
@@ -89230,6 +89404,9 @@
     "session recovery bdg": [
       "session recovery bdg"
     ],
+    "session relaunch architecture": [
+      "session relaunch architecture"
+    ],
     "session relaunch at 80 percent": [
       "session relaunch at 80 percent"
     ],
@@ -89245,8 +89422,14 @@
     "session relaunch command runtimes": [
       "session-relaunch-command-runtimes"
     ],
+    "session relaunch conformance suite": [
+      "session relaunch conformance suite"
+    ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
+    ],
+    "session relaunch hook": [
+      "session relaunch hook"
     ],
     "session relaunch lanes": [
       "session relaunch lanes"
@@ -89260,6 +89443,18 @@
     ],
     "session relaunch pi opencode": [
       "session-relaunch-pi-opencode"
+    ],
+    "session relaunch post fix research": [
+      "session relaunch post-fix research"
+    ],
+    "session relaunch research": [
+      "session relaunch research"
+    ],
+    "session relaunch research after phase 009": [
+      "session relaunch research after phase 009"
+    ],
+    "session relaunch stale re arm fix": [
+      "session relaunch stale re-arm fix"
     ],
     "session relaunch tests": [
       "session relaunch tests"
@@ -96862,6 +97057,12 @@
     "skilled loop pi": [
       "skilled-loop pi"
     ],
+    "skilled loop relaunch": [
+      "skilled-loop relaunch"
+    ],
+    "skilled loop shell shim": [
+      "skilled-loop shell shim"
+    ],
     "skilled machine cutover": [
       "skilled machine cutover"
     ],
@@ -100849,6 +101050,9 @@
     "state jsonl records council complete event": [
       "state jsonl records council_complete event"
     ],
+    "state log unattributed": [
+      "state log unattributed"
+    ],
     "state machine cloudflare": [
       "state machine cloudflare"
     ],
@@ -102464,6 +102668,9 @@
     ],
     "symlinked runtime root tasks": [
       "symlinked runtime root tasks"
+    ],
+    "symlinked skilled relaunch": [
+      "symlinked .skilled relaunch"
     ],
     "symlinked specs tracks": [
       "symlinked specs tracks"
@@ -107682,6 +107889,9 @@
     ],
     "upcast fork migrate pin block executors": [
       "upcast fork migrate pin block executors"
+    ],
+    "upcast keeps row timestamp": [
+      "upcast keeps row timestamp"
     ],
     "upcast pin fork migrate block": [
       "upcast pin fork migrate block"
