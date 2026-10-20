@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci pi and provisioning follow ups",
+      "phase 37 ci pi and provisioning follow ups",
+      "pi extension discovery matrix",
+      "provision stamp fingerprint before build",
+      "cite drift flake",
+      "ci pi and provisioning follow ups plan",
+      "ci pi and provisioning follow ups tasks",
+      "ci pi and provisioning follow ups implementation summary"
+    ],
+    "key_topics": [
+      "provisioning",
+      "follow",
+      "ups",
+      "phase",
+      "extension",
+      "discovery",
+      "matrix",
+      "provision",
+      "stamp",
+      "fingerprint",
+      "cite",
+      "drift"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/pi-extension-tests.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-extension-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/pi-extension-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run 39424650739 failed `test-cite-drift-scan.mjs` on its first attempt and passed on its second at the same commit, and the runner then printed only the log tail, so the failing subtest has no name",
+    "created_at": "2026-10-20T21:36:36Z",
+    "last_save_at": "2026-10-20T21:38:31.040Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:49fc38d0bbd4f6960765266b87ae2a6e9bffd3732b6d8bf835594d75309c6a3f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5b0e7832a524e93fbe37a312ac2fdb3efe1ec08a7a6b6d3e459517802feac4e1",
+      "plan.md": "21dbb7a1f1c7edb56b3ced1a4748e0d553a6a52f58cbf820d03e6f06a239c9f1",
+      "tasks.md": "5cd28b9f8f5b375fe7b84f6ecf0bec7675e296ac2c275efa653b59d7afa5f9da",
+      "implementation-summary.md": "2261bacc94a4bf209291408e8d886c27e5ed371a33d87789a46b90aa68f4dc4c"
+    },
+    "last_active_at": null
+  }
+}
