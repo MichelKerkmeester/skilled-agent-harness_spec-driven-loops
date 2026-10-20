@@ -1,0 +1,13 @@
+VERDICT: FAIL
+
+P2 .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh:55 - The 120-line cap can omit later `not ok` headers, and `-A 20` can truncate long blocks, so tasks.md:61’s “every” claim is not guaranteed - emit every failure header with bounded per-block context, or narrow the claim.
+
+Verification: `bash -n` and `git diff --check 01c845bdc6^ 01c845bdc6` exited 0. An in-memory `set -uo pipefail` check confirmed that no match and an early `head` close continue, while a failing test yields runner status 1. The diff adds only lines 53–55, leaving the Python loop unchanged; the added code comment contains no spec or task identifiers. The mutation evidence at `scratch/mutation/skdoc-failure-names.txt:5-13` shows the forced failure’s name in the new runner output and not the old output. The flake descriptions at `implementation-summary.md:117` and `spec.md:135` match the reported single failure and rerun without claiming a cause. No files were edited; the worktree is clean at the reviewed commit.
+
+Flake candidates:
+
+- **Inferred, low confidence:** `test-cite-drift-scan.mjs:23-31` cleans selected Git environment variables for fixture setup, but the tested script’s Git calls at `cite-drift-scan.mjs:175-203` inherit the process environment. Unexpected `GIT_DIR`, `GIT_WORK_TREE`, or `GIT_INDEX_FILE` values could redirect fixture reads.
+- **Inferred, low confidence:** `test-cite-drift-scan.mjs:650-666` uses a PID-based temp path and checks it is absent at line 663. A stale file after an abrupt earlier process exit, combined with PID reuse, could cause an intermittent failure; normal cleanup runs in `finally`.
+- **Inferred, very low confidence:** Several backend tests pass a 90-second timeout, for example `test-cite-drift-scan.mjs:1481-1497`. Severe runner stalls could trigger it, though the tests use a local stub.
+
+No operator action is required.

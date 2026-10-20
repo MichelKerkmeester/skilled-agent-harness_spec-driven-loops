@@ -8,14 +8,15 @@
     "compatibility",
     "research"
   ],
-  "lastUpdated": "2026-10-18T10:43:26.567Z",
+  "lastUpdated": "2026-10-18T16:29:42.611Z",
   "specId": "082",
   "folderSlug": "opencode-v1-v2-dual-compat",
   "parentChain": [
     "cli-external-orchestration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "18-10-26_11-43__steered-20-iteration-deep-research-on-opencode-v1.md"
+    "18-10-26_11-43__steered-20-iteration-deep-research-on-opencode-v1.md",
+    "18-10-26_17-29__still-waiting-on-deepseek-s-findings-first-review.md"
   ]
 }

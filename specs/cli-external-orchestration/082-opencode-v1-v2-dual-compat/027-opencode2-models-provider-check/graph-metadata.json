@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode2 models provider check",
+      "phase 27 opencode2 models provider check",
+      "opencode2 models standalone",
+      "unexpected positional argument opencode2 models",
+      "opencode2 models provider check plan",
+      "opencode2 models provider check tasks",
+      "opencode2 models provider check implementation summary"
+    ],
+    "key_topics": [
+      "opencode2",
+      "models",
+      "provider",
+      "check",
+      "phase",
+      "standalone",
+      "unexpected",
+      "positional",
+      "argument",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".hermes/skills/cli-opencode/SKILL.md",
+      ".github/workflows/opencode-dual-version.yml",
+      "scratch/baseline-cli-opencode-tests.txt",
+      "scratch/mutation/m0-old-docs.txt",
+      "scratch/mutation/m17-round4-docs.txt",
+      "scratch/mutation/m14-round3-docs.txt",
+      "scratch/mutation/m10-round2-docs.txt",
+      "scratch/mutation/m8-unlabelled-v1-docs.txt",
+      "scratch/preflight-live.txt",
+      "scratch/v2-positional.txt",
+      "scratch/v2-models-help.txt",
+      "scratch/v1-missing.txt",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+      "scratch/baseline-sites.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-cli-opencode-tests.txt",
+        "kind": "file",
+        "path": "scratch/baseline-cli-opencode-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m0-old-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m0-old-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m17-round4-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m17-round4-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m14-round3-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m14-round3-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m10-round2-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m10-round2-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m8-unlabelled-v1-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m8-unlabelled-v1-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "preflight-live.txt",
+        "kind": "file",
+        "path": "scratch/preflight-live.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-positional.txt",
+        "kind": "file",
+        "path": "scratch/v2-positional.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-models-help.txt",
+        "kind": "file",
+        "path": "scratch/v2-models-help.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1-missing.txt",
+        "kind": "file",
+        "path": "scratch/v1-missing.txt",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode2-models-form.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-sites.txt",
+        "kind": "file",
+        "path": "scratch/baseline-sites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
+    "created_at": "2026-10-20T11:51:31Z",
+    "last_save_at": "2026-10-20T13:26:59.737Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b5b107894a89115e2093f40f2c80f2ec4230242f0c039dd5a5c3754d5f64868c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cf96594d4e8a1df5cc8650ab0e434ff1520eec10d99c7b7888aab4c5a6604b39",
+      "plan.md": "7d11ea799322c8e4d94b892295a89525561caa37d6d3f832cd2398aeff237b88",
+      "tasks.md": "2f88a63a06a42d5c6038bdbc955b703fde4d61198e0144d064b6fe4da58f8e49",
+      "implementation-summary.md": "442d7e279367c2aeacaa6bfd02348d6f8b6b45c2dc322559fb8f4282d804c627"
+    },
+    "last_active_at": null
+  }
+}

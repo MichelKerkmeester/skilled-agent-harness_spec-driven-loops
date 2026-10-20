@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -54,7 +54,8 @@
       "scratch/mutation/sk-git-naming.txt",
       "scratch/mutation/pi-extensions.txt",
       "scratch/after/sk-doc-script-tests.txt",
-      "scratch/after/workflow-lint.txt"
+      "scratch/after/workflow-lint.txt",
+      "scratch/mutation/skdoc-failure-names.txt"
     ],
     "entities": [
       {
@@ -172,13 +173,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "skdoc-failure-names.txt",
+        "kind": "file",
+        "path": "scratch/mutation/skdoc-failure-names.txt",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,8 +205,8 @@
     ],
     "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
     "created_at": "2026-10-20T11:52:31Z",
-    "last_save_at": "2026-10-20T12:32:01.909Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-20T13:06:52.415Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeb913b3f2b128c1d3a53a3c375ad2c0723e16834e37c87580848cd437b383de",
+    "source_fingerprint": "sha256:2b9c76705e74dded6462df0e7059a00175f8133d475711afd4e2cbd232520d65",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7de410f1382c406164489abc9cf07befd7ef28e5b5e5d22a6a19f860491a36ef",
-      "plan.md": "a99eb490c7357f35c8c4e88dc754859613aa3edd1cdba9096b33f91fe0df0f88",
-      "tasks.md": "1535e151b9b69d0cf4f35f6f4810a64796105d64a26c1c509e65f7c613e4107b",
-      "implementation-summary.md": "6669409094acf74c0ee07cdce8ca79c765f00f0895856343c7ca0bbf91c76975"
+      "spec.md": "9566eb0582d3319d65f2787d88ecddccf37dbffccbc4700b5d9c45d1046e1bcb",
+      "plan.md": "040142e2e5e95efb7eabf0f36f7079015cc96aad379312281b5f91f311dad8ba",
+      "tasks.md": "ab99f05cfd50747ffb3c8e708c2bd0439f3f0cab1c356b9d763f03e03efaa49e",
+      "implementation-summary.md": "38e48a7c7642c1eb22b87692625a9cd7a64f925f81b4beea6e64273298897fa9"
     },
     "last_active_at": null
   }

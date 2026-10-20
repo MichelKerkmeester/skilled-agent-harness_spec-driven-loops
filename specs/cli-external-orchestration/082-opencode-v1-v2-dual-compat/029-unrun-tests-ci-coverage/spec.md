@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/168-unrun-tests-ci-coverage` |
 | **Parent Spec** | ../spec.md |
@@ -132,6 +132,7 @@ Each of the five suites runs in a job with no `continue-on-error`, and the workf
 |------|------|--------|------------|
 | Risk | A suite that passes on macOS fails on the Linux runner | Med | Each suite was run on Node 22.23.1 first, and the git-using ones again with a system-only PATH and an empty HOME (`scratch/baseline/hermetic.txt`); the CI run on the pushed commit is the proof |
 | Risk | `test-cite-drift-scan.mjs` adds about 25 seconds to the sk-doc job | Low | Accepted; the job already walks the whole repository |
+| Risk | One cite-drift test failed once on CI and passed on the rerun of the same commit | Med | The runner now names each failing node subtest, so the next failure can be traced; recorded as a known limitation |
 | Dependency | Phases 027, 028, 030 and 031 edit the same parent phase map | Low | The merge keeps every row from both sides |
 <!-- /ANCHOR:risks -->
 

@@ -1,0 +1,18 @@
+# final test against this branch after the round-5 fixes
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.588375ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (1.143625ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.453541ms)
+✔ a command continued with a backslash is read as one command (0.159375ms)
+✔ a continuation between the binary and models is still one command (0.103459ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (60.215042ms)
+✔ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (68.518042ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.868375ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.135875
+exit 0

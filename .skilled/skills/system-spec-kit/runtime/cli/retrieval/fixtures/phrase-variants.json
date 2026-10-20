@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e8d12b1d60bc0f55d202fa29d52d2375916810a28467f1767c22f06bdad343a0",
+  "manifestHash": "661943829e4f4f5170f522fa8dd722869e2ae61ba36f262fa800c10f34bc79fe",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -68378,6 +68378,21 @@
     "opencode2 launcher": [
       "opencode2 launcher"
     ],
+    "opencode2 models provider check": [
+      "opencode2 models provider check"
+    ],
+    "opencode2 models provider check implementation summary": [
+      "opencode2 models provider check implementation summary"
+    ],
+    "opencode2 models provider check plan": [
+      "opencode2 models provider check plan"
+    ],
+    "opencode2 models provider check tasks": [
+      "opencode2 models provider check tasks"
+    ],
+    "opencode2 models standalone": [
+      "opencode2 models standalone"
+    ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
     ],
@@ -72049,8 +72064,17 @@
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 27 opencode2 models provider check": [
+      "phase 27 opencode2 models provider check"
+    ],
+    "phase 28 plugin kill switch coverage": [
+      "phase 28 plugin kill switch coverage"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
+    ],
+    "phase 29 unrun tests ci coverage": [
+      "phase 29 unrun tests ci coverage"
     ],
     "phase 3 admission gold": [
       "phase 3 admission gold"
@@ -73373,6 +73397,9 @@
     "pi extension system": [
       "pi extension system"
     ],
+    "pi extension tests workflow": [
+      "pi extension tests workflow"
+    ],
     "pi extensions": [
       "pi extensions"
     ],
@@ -74649,6 +74676,18 @@
     ],
     "plugin inventory guards tasks": [
       "plugin inventory guards tasks"
+    ],
+    "plugin kill switch coverage": [
+      "plugin kill switch coverage"
+    ],
+    "plugin kill switch coverage implementation summary": [
+      "plugin kill switch coverage implementation summary"
+    ],
+    "plugin kill switch coverage plan": [
+      "plugin kill switch coverage plan"
+    ],
+    "plugin kill switch coverage tasks": [
+      "plugin kill switch coverage tasks"
     ],
     "plugin knowledge deepening": [
       "Plugin Knowledge Deepening"
@@ -94217,6 +94256,9 @@
     "sk git script exit codes": [
       "sk-git script exit codes"
     ],
+    "sk git script tests workflow": [
+      "sk-git script tests workflow"
+    ],
     "sk git scripts folder": [
       "sk-git scripts folder"
     ],
@@ -95026,6 +95068,9 @@
     ],
     "sk vision js re export": [
       "sk-vision.js re-export"
+    ],
+    "sk vision kill switch": [
+      "sk-vision kill switch"
     ],
     "sk vision lane c": [
       "sk-vision Lane C"
@@ -99805,6 +99850,9 @@
     ],
     "speckit completion freshness": [
       "SPECKIT_COMPLETION_FRESHNESS"
+    ],
+    "speckit completion master switch": [
+      "speckit completion master switch"
     ],
     "speckit cosine topn reorder default on": [
       "SPECKIT_COSINE_TOPN_REORDER default on"
@@ -107635,6 +107683,9 @@
     "uneven hook coverage explained": [
       "uneven hook coverage explained"
     ],
+    "unexpected positional argument opencode2 models": [
+      "unexpected positional argument opencode2 models"
+    ],
     "unforget channel disjointness": [
       "unforget channel disjointness"
     ],
@@ -107868,6 +107919,18 @@
     ],
     "unresolvedcriticaldisagreements": [
       "unresolvedCriticalDisagreements"
+    ],
+    "unrun tests ci coverage": [
+      "unrun tests ci coverage"
+    ],
+    "unrun tests ci coverage implementation summary": [
+      "unrun tests ci coverage implementation summary"
+    ],
+    "unrun tests ci coverage plan": [
+      "unrun tests ci coverage plan"
+    ],
+    "unrun tests ci coverage tasks": [
+      "unrun tests ci coverage tasks"
     ],
     "unsafe type casts reduced": [
       "unsafe type casts reduced"

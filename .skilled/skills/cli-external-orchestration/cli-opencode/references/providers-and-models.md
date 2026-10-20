@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.7.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -34,7 +34,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 ### Authority pointers
 - Full CLI flags, subcommands, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
 - Dispatch envelope + failure-mode matrix → [integration-patterns.md](./integration-patterns.md)
-- Live model ids on a given install → `opencode models <provider>`
+- Live model ids on a given install → `opencode models <provider>` on OpenCode 1, or `opencode2 models --standalone` filtered for the `<provider>/` prefix on OpenCode 2
 
 **Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
@@ -44,7 +44,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 > **CLOSED ROSTER: non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** (`--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids), so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first. Never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and those extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
-OpenCode resolves models through configured providers. The model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install, but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
+OpenCode resolves models through configured providers. The model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` on OpenCode 1 (on OpenCode 2, `opencode2 models --standalone` filtered for the `<provider>/` prefix) for the live list on a given install, but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
 ### minimax
 
@@ -54,7 +54,7 @@ OpenCode resolves models through configured providers. The model string passed t
 
 ### openai
 
-GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
+GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` on OpenCode 1 listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` on OpenCode 1 (OpenCode 2 lists no `openai` provider) before dispatching any slug not in the table.
 
 | Persona | Base | Fast (low-latency) |
 |---------|------|--------------------|
@@ -63,32 +63,32 @@ GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (bas
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route, since the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
+opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route, since the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go` on OpenCode 1.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway, **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` (OpenCode 1 only) by policy, a tier this route carries. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost ($0.15 in / $0.60 out per 1M, cached reads $0.003) and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
-| `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
-| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
+| `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on OpenCode 1 on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
+| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04 (OpenCode 2 lists no `opencode-go` provider) |
 | `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. A live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 | `opencode-go/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 | `opencode-go/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Go gateway, with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. No variants are listed, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 with a `PONG` reply |
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible). Pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow), where the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4.1 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** (OpenCode 1 only). Dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. The fan-out runner accepts this route too: `pinReasoningEffortForModel` in the deep-loop runtime's `executor-config.ts` pins any `cline-pass/` DeepSeek V4.1 Flash id to `xhigh`, so a fan-out lineage here never sends the unsupported `max`. Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here. The interactive TUI picker remembers the effort per model on its own.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible). Pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow), where the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` on OpenCode 1 errors "Provider not found"). Confirm live slugs via `opencode models cline-pass` on OpenCode 1, or `opencode2 models --standalone` filtered for `cline-pass/` on OpenCode 2. The cline-pass DeepSeek V4.1 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** (OpenCode 1 only). Dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. The fan-out runner accepts this route too: `pinReasoningEffortForModel` in the deep-loop runtime's `executor-config.ts` pins any `cline-pass/` DeepSeek V4.1 Flash id to `xhigh`, so a fan-out lineage here never sends the unsupported `max`. Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here. The interactive TUI picker remembers the effort per model on its own.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4.1-flash` | no | DeepSeek V4.1 Flash via the Cline provider, a reasoning model. **Default effort `--variant xhigh`** (OpenCode 1 only, its top thinking tier, no `max` tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. **Dispatch-verified 2026-10-05:** `opencode models cline-pass` lists the id, a one-turn `opencode run` at `--variant xhigh` replied `PONG` with exit 0, and 80 headless `--auto` runs the same day all exited 0, edit tasks included. It supersedes the older `cline-pass/cline-pass/deepseek-v4-flash` id. Context and output limits have not been measured. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
+| `cline-pass/cline-pass/deepseek-v4.1-flash` | no | DeepSeek V4.1 Flash via the Cline provider, a reasoning model. **Default effort `--variant xhigh`** (OpenCode 1 only, its top thinking tier, no `max` tier). On OpenCode 2 the equivalent is `-m cline-pass/cline-pass/deepseek-v4.1-flash#xhigh`. **Dispatch-verified 2026-10-05:** `opencode models cline-pass` on OpenCode 1 lists the id, a one-turn `opencode run` at `--variant xhigh` replied `PONG` with exit 0, and 80 headless `--auto` runs the same day all exited 0, edit tasks included. It supersedes the older `cline-pass/cline-pass/deepseek-v4-flash` id. Context and output limits have not been measured. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
 | `cline-pass/cline-pass/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Cline provider, covered by the Cline Pass. Reasoning and image-capable, 1M context and 131K output. Pass the three-segment id. Cline's `xiaomi/mimo-v2.6-pro` id bills Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so it is not on the roster. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 | `cline-pass/cline-pass/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Cline provider, on the Pass like the Pro row above and with the same limits and id rule. Dispatch-verified 2026-09-30 with a `PONG` reply |
 
-> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
+> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` on OpenCode 1 lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
 ### llmgateway
 
-DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway`.
+DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
 
 > **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`). Those names are informational and are never sent.
 
@@ -133,7 +133,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt>" </dev/null
 ```
 
-The two versions do not always list the same providers, so on OpenCode 2 confirm the provider appears in `opencode2 models` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
+The two versions do not always list the same providers, so on OpenCode 2 confirm the provider appears in `opencode2 models --standalone` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
 
 If the default provider is not configured, the mode ASKS the operator before substituting. It never silently swaps a model. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §4.
 
@@ -187,7 +187,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere, do not duplicate here)
 
 - **Fan-out dispatcher** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
-- **Live model ids** → `opencode models <provider>` on the target install
+- **Live model ids** → `opencode models <provider>` on OpenCode 1, or `opencode2 models --standalone` filtered for the `<provider>/` prefix on OpenCode 2
 
 ---
 

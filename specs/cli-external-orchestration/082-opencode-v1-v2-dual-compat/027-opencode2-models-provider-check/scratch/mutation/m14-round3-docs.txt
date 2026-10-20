@@ -1,0 +1,56 @@
+# final test against the docs at a286d2c441, before every opencode models command carried an OpenCode 1 label
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.696708ms)
+✔ unversionedV1Forms flags every opencode models command without a version label (0.563584ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.651708ms)
+✔ a command continued with a backslash is read as one command (0.07375ms)
+✔ a continuation between the binary and models is still one command (0.048834ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (220.25325ms)
+✖ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (44.629666ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.535ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 307.702042
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:360:1
+✖ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (44.629666ms)
+  AssertionError [ERR_ASSERTION]: in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so every documented "opencode models" command must name its version, but these do not:
+  .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:73: opencode models opencode-go
+  .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:51: opencode models minimax
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:225: opencode models minimax
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:167: opencode models openai
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:66: opencode models opencode-go
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:71: opencode models opencode-go
+  .skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:74: opencode models opencode-go --verbose
+  + actual - expected
+
+  + '.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:73: opencode models opencode-go\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:51: opencode models minimax\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:225: opencode models minimax\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:167: opencode models openai\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:66: opencode models opencode-go\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:71: opencode models opencode-go\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:74: opencode models opencode-go --verbose'
+  - ''
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:379:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:73: opencode models opencode-go\n.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:51: opencode models minimax\n.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:225: opencode models minimax\n.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md:167: opencode models openai\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:66: opencode models opencode-go\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:71: opencode models opencode-go\n.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md:74: opencode models opencode-go --verbose',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

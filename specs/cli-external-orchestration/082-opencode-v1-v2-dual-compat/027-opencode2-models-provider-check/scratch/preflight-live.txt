@@ -1,0 +1,9 @@
+# The documented OpenCode 2 pre-flight block, extracted from cli-reference.md and run live on 2026-10-20T12:38:57Z
+# opencode2 opencode v2.0.32; private OPENCODE_DB; --standalone, so the shared service is never asked; bash with pipefail
+$ bash -o pipefail <OpenCode 2 block>
+default=0 minimax_token=0 minimax_direct=0 llmgateway=1
+exit 0
+
+# the form the docs used before, for comparison
+$ opencode2 models opencode-go  -> exit 1
+$ opencode2 models llmgateway  -> exit 1 (llmgateway is listed, so the old form misreports it)

@@ -31,6 +31,8 @@ on:
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.skilled/skills/cli-external-orchestration/**/*.md'
+      - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.hermes/skills/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
   push:
@@ -57,6 +59,8 @@ on:
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.skilled/skills/cli-external-orchestration/**/*.md'
+      - '.opencode/skills/cli-external-orchestration/**/*.md'
       - '.hermes/skills/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
 
@@ -110,7 +114,8 @@ jobs:
           node --test \
             .skilled/bin/tests/opencode-config-shape.test.cjs \
             .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs \
-            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs \
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs
 
       # The sk-vision TypeScript suite and type check need the provisioned trees, so they
       # ride the v1 leg rather than a second provisioning job. The Python handler suite

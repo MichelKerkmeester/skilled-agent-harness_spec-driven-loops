@@ -1,0 +1,72 @@
+# mutant: a version label never clears an ambiguous form
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.758417ms)
+✖ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.571958ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.21575ms)
+✔ a command continued with a backslash is read as one command (0.183792ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (41.411042ms)
+✖ a prose opencode models command OpenCode 2 would also run names its version (44.60225ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.401334ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.953833
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:217:1
+✖ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.571958ms)
+  AssertionError [ERR_ASSERTION]: a named version must clear the form
+
+  1 !== 0
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:225:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:301:1
+✖ a prose opencode models command OpenCode 2 would also run names its version (44.60225ms)
+  AssertionError [ERR_ASSERTION]: in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so a prose "opencode models" command that OpenCode 2 would also run must name its version, but these do not:
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:249: `opencode models`
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:254: `opencode models`
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:79: `opencode models cline-pass`
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:83: `opencode models cline-pass`
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`
+  + actual - expected
+
+  + '.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:249: `opencode models`\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:254: `opencode models`\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:79: `opencode models cline-pass`\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:83: `opencode models cline-pass`\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`'
+  - ''
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:316:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:249: `opencode models`\n.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:254: `opencode models`\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:79: `opencode models cline-pass`\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:83: `opencode models cline-pass`\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

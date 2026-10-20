@@ -1,0 +1,44 @@
+# mutant doc: the v1 pre-flight block and its llmgateway line lose their OpenCode 1 labels
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.686125ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.496708ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.500083ms)
+✔ a command continued with a backslash is read as one command (0.069333ms)
+✔ a continuation between the binary and models is still one command (0.081ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (63.681834ms)
+✖ a prose opencode models command OpenCode 2 would also run names its version (60.173875ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.505375ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.635791
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:353:1
+✖ a prose opencode models command OpenCode 2 would also run names its version (60.173875ms)
+  AssertionError [ERR_ASSERTION]: in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so a prose "opencode models" command that OpenCode 2 would also run must name its version, but these do not:
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:201: opencode models llmgateway
+  + actual - expected
+
+  + '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:201: opencode models llmgateway'
+  - ''
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:368:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:201: opencode models llmgateway',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

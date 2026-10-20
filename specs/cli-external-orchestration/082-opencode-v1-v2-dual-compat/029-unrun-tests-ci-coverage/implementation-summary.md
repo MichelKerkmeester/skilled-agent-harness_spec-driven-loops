@@ -8,17 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage"
-    last_updated_at: "2026-10-20T11:52:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-20T12:41:51Z"
+    last_updated_by: "generate-context"
+    recent_action: "CI green at main 97c9a1105f"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".github/workflows/pi-extension-tests.yml"
+      - ".github/workflows/sk-git-script-tests.yml"
+      - ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh"
+      - ".github/workflows/opencode-dual-version.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f82a0ba90c07e1825398f1662f56c1b58fc0d6baa3d650a4653f70400773d403"
       session_id: "scaffold-029-unrun-tests-ci-coverage"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-unrun-tests-ci-coverage |
-| **Completed** | Not yet: Luna review, strict validation and the CI proof on main are open |
+| **Completed** | 2026-10-20 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -63,6 +67,7 @@ The sixth suspect, `test-root-name-consumer-matrix.cjs`, was already covered: `t
 | `.skilled/scripts/run-node-tests.mjs` | Modified | The `.pi/extensions` comment names the workflow that runs those suites |
 | `.github/workflows/opencode-dual-version.yml` | Modified | The bun comment in both provisioning steps |
 | `.github/workflows/README.md` | Modified | Rows for the two new workflows |
+| `.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` (again) | Modified | A failing node test prints its `not ok` blocks, not only the last 40 lines |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -99,6 +104,9 @@ Each suite's placement was confirmed by grepping every workflow and the runners 
 | `.pi` mutants | Each leg's `npm test` exit 1 (`scratch/mutation/pi-extensions.txt`) |
 | sk-doc runner as CI runs it | 37 PASS, 1 SKIP, exit 0 (`scratch/after/sk-doc-script-tests.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures (`scratch/after/workflow-lint.txt`) |
+| Luna review, read-only | Round 1 FAIL, round 2 FAIL, round 3 PASS with one P2, fixed; round 4 on the runner change, one P2, the doc claim narrowed (`scratch/review/`) |
+| Strict validation | This folder and all 28 folders of 082: RESULT: PASSED |
+| CI at main `97c9a1105f` | All 17 runs passed; Pi Extension Tests 39423416909 (118 and 81), sk-git Script Tests 39423417067 (109), sk-doc Script Tests 39423416961 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -106,7 +114,8 @@ Each suite's placement was confirmed by grepping every workflow and the runners 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
+1. **An intermittent cite-drift failure.** At main `58ca46e1ec` one of the 67 `test-cite-drift-scan.mjs` tests failed once on CI (run 39424650739, attempt 1) and passed on the rerun of the same commit; it has not failed locally. The runner now prints the failing subtests' `not ok` blocks, up to 120 lines, so the next occurrence names the test. Until then a red sk-doc run may be this flake. Luna's round 4 named three inferred candidates, none confirmed: git environment variables the tested script inherits (`cite-drift-scan.mjs:175-203`), a PID-based temp path checked for absence (`test-cite-drift-scan.mjs:650-666`), and the 90-second backend timeouts (`test-cite-drift-scan.mjs:1481-1497`).
+2. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
 <!-- /ANCHOR:limitations -->
 
 ---

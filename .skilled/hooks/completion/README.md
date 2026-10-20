@@ -114,7 +114,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 |---|---|
 | `SYSTEM_COMPLETION_DISABLED=1` | Full no-op on every runtime. The shared resolver (`isHookEnabled('completion')`) short-circuits every adapter. |
 | `SYSTEM_COMPLETION_SENTINEL_DISABLED=1` | Legacy alias. Also checked inside `evaluateCompletionEvidence` itself (`KILL_SWITCH_ENV`), so it disables the core even if an adapter's resolver check is bypassed. |
-| `SYSTEM_SPECKIT_COMPLETION_DISABLED=1` | Disables the `system_speckit_completion` tool (the OpenCode plugin checks this at registration time and returns an empty plugin). |
+| `SYSTEM_SPECKIT_COMPLETION_DISABLED=1` | Disables the `system_speckit_completion` tool. The OpenCode plugin checks the `completion` concern at registration time and returns an empty plugin, so `SYSTEM_HOOKS_DISABLED=1` drops it too. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 | `SPECKIT_COMPLETION_SENTINEL_CHECK_TIMEOUT_MS` | Override the `check-completion.sh` spawn timeout (default 1200 ms). |
 | `SPECKIT_COMPLETION_SENTINEL_LOG_MAX_BYTES` | Override the advisory log size cap (default 256 KB). |

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "82020dd6172c8fbdde859700ca1f0b45faa5010194b0da6005d09df2e88a7c64",
+  "corpusHash": "9f39c92964ef0e71e04210890c364b5a88808dbf30aef34018a029ed0feda0f0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25399,
+  "includedPathCount": 25411,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8938,6 +8938,18 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25430,7 +25442,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e8d12b1d60bc0f55d202fa29d52d2375916810a28467f1767c22f06bdad343a0",
+  "manifestHash": "661943829e4f4f5170f522fa8dd722869e2ae61ba36f262fa800c10f34bc79fe",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26494,6 +26506,18 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/scratch",
       "reason": "excluded directory"
     },
     {

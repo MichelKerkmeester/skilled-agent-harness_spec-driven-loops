@@ -1,0 +1,41 @@
+# mutant: COMMAND_PATTERN back to a single literal space
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.644083ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.410125ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.614167ms)
+✔ a command continued with a backslash is read as one command (0.079042ms)
+✖ a continuation between the binary and models is still one command (0.371708ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (62.005459ms)
+✔ a prose opencode models command OpenCode 2 would also run names its version (56.332667ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.54725ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.997167
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:311:1
+✖ a continuation between the binary and models is still one command (0.371708ms)
+  AssertionError [ERR_ASSERTION]: the split binary and subcommand must read as one command
+
+  0 !== 1
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:316:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

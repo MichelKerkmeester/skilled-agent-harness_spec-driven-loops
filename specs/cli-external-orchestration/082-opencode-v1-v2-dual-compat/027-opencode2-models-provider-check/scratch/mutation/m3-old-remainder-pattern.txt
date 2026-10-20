@@ -1,0 +1,65 @@
+# mutant: the remainder pattern reverted, so a redirect's fd digit reads as a positional
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.797417ms)
+✖ commandsIn keeps a redirect's file descriptor out of the arguments (0.942125ms)
+✖ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (90.954375ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.65125ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.018667
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:130:1
+✖ commandsIn keeps a redirect's file descriptor out of the arguments (0.942125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      '--standalone',
+  +   '2'
+    ]
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:135:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '--standalone', '2' ],
+    expected: [ '--standalone' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:146:1
+✖ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (90.954375ms)
+  AssertionError [ERR_ASSERTION]: every documented "opencode2 models" command needs --standalone or --server <url> and no positional argument, but these do not:
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200: opencode2 models --standalone 2 (positional argument "2")
+  + actual - expected
+
+  + '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200: opencode2 models --standalone 2 (positional argument "2")'
+  - ''
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:169:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200: opencode2 models --standalone 2 (positional argument "2")',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1
