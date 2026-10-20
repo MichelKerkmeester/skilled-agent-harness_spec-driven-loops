@@ -56,7 +56,7 @@ contextType: "general"
 
 - [x] T010 Run the cli-opencode script tests and each guard's mutant Done: 19/19; six mutants each fail 1 test.
 - [x] T011 Run `bun test tests` and count the temp directories it adds Done: 80/80; no `sk-vision-flags-*` entry added.
-- [x] T012 Run each changed playbook snippet Done: all run from the worktree root with the expected signal (`scratch/after/`).
+- [x] T012 Run each changed playbook snippet Done: all run from the worktree root (`scratch/after/`) and print their expected signal, except the speckit-completion step 3 "Level-2 EVIDENCE_MISSING" fixture, which now reports `level: 1` and `P0_INCOMPLETE` because the fixture packet moved (Known Limitation 2).
 - [x] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests Done: validator and link integrity pass; sk-doc script tests pass after the manifest refresh.
 - [ ] T014 Luna review, read-only
 - [ ] T015 Validate 082 strict and recursive
