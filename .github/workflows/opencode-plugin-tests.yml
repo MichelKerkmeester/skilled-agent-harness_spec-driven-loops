@@ -1,0 +1,55 @@
+name: OpenCode Plugin Tests
+
+# The OpenCode plugin suites under .opencode/plugins/tests ran in no workflow, so a
+# plugin regression, or a broken inventory or registration guard, reached main
+# unseen. The suites import the plugins, the shared hook libraries, compiled
+# spec-kit and advisor runtimes and the sk-vision bundle, and read skill, command
+# and Pi files to check what the plugins cite, so the job provisions every listed
+# tree and runs on any change under the three source roots.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/**'
+      - '.opencode/**'
+      - '.pi/**'
+      - '.github/workflows/opencode-plugin-tests.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/**'
+      - '.opencode/**'
+      - '.pi/**'
+      - '.github/workflows/opencode-plugin-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  plugin-tests:
+    name: OpenCode plugin tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      # The suites import trees git ignores, so the repository's own worktree
+      # provisioning installs and builds every tree it lists, the sk-vision bundle
+      # among them.
+      - name: Provision the dependency trees the plugin tests import
+        run: |
+          set -euo pipefail
+          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
+          source .skilled/skills/sk-git/scripts/worktree-naming.sh
+          provision_worktree "$GITHUB_WORKSPACE"
+
+      # Node 22 takes a glob here, not a directory.
+      - name: Run the plugin suites
+        run: node --test '.opencode/plugins/tests/*.test.cjs'

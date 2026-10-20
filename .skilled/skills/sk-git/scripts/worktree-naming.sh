@@ -520,12 +520,26 @@ _wn_have_tool() {
   return 1
 }
 
+# _wn_output_stale <dir> <pkg> <artifact> -- succeed when a git-tracked file under the
+# package is newer than its built output. Only tracked files count: a build writes
+# untracked files of its own, such as nested dist folders and tsbuildinfo, which would
+# otherwise mark every output stale again. Outside a git work tree nothing is stale.
+_wn_output_stale() {
+  local root="$1" pkg="$2" out="$1/$2/$3" f
+  git -C "$root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+  while IFS= read -r -d '' f; do
+    [ "$root/$f" -nt "$out" ] && return 0
+  done < <(git -C "$root" ls-files -z -- "$pkg")
+  return 1
+}
+
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
-# Idempotent: existing dependencies and outputs are skipped. Exits non-zero if
+# Idempotent: existing dependencies are skipped, and a listed output is built when it
+# is missing or older than a tracked file in its package. Exits non-zero if
 # any install or build failed, so a half-provisioned tree is never reported ready.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0
-  local tool deps_root install_log
+  local tool deps_root install_log build_reason
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -588,11 +602,23 @@ provision_worktree() {
       fi
     fi
 
-    if [ -n "$artifact" ] && [ ! -e "$dir/$pkg/$artifact" ]; then
+    build_reason=""
+    if [ -n "$artifact" ]; then
+      if [ ! -e "$dir/$pkg/$artifact" ]; then
+        build_reason=missing
+      elif _wn_output_stale "$dir" "$pkg" "$artifact"; then
+        build_reason=stale
+      fi
+    fi
+    if [ -n "$build_reason" ]; then
       _wn_have_tool "$tool" "$pkg" || { failed=$((failed + 1)); continue; }
       # bun passes flags after the script name on to the script, so its flag goes first.
       if [ "$tool" = bun ]; then build_cmd=(bun run --silent build); else build_cmd=(npm run build --silent); fi
-      echo "  building $pkg" >&2
+      if [ "$build_reason" = stale ]; then
+        echo "  rebuilding $pkg (sources newer than $artifact)" >&2
+      else
+        echo "  building $pkg" >&2
+      fi
       if ! ( cd "$dir/$pkg" && "${build_cmd[@]}" >/dev/null 2>&1 ); then
         echo "  FAILED: $pkg build" >&2
         failed=$((failed + 1))

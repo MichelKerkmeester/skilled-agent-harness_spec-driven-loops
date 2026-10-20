@@ -1,0 +1,2 @@
+# grep of every workflow at origin/main for the plugin test folder
+grep exit 1

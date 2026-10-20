@@ -304,6 +304,59 @@ mkdir -p "$FAILED_TREE/needs-build"
 cp "$TREE/needs-build/package.json" "$FAILED_TREE/needs-build/package.json"
 NPM_STUB_BUILD_FAIL=1 expect_rc "failed build fails provisioning" 1 run_fixture_provision "$FAILED_TREE"
 
+# ── a stale output rebuilds; untracked newer files do not ────────
+# Fixed timestamps keep the comparison independent of the clock and of how finely
+# the shell compares modification times.
+STALE_TREE="$PROV/stale-tree"
+mkdir -p "$STALE_TREE/needs-build/src" "$STALE_TREE/needs-build/dist"
+printf '{}\n' > "$STALE_TREE/needs-build/package.json"
+printf 'export {};\n' > "$STALE_TREE/needs-build/src/index.ts"
+: > "$STALE_TREE/needs-build/dist/index.js"
+git -C "$STALE_TREE" init -q
+git -C "$STALE_TREE" add needs-build/package.json needs-build/src/index.ts
+touch -t 202001010000 "$STALE_TREE/needs-build/package.json" "$STALE_TREE/needs-build/src/index.ts"
+touch -t 202101010000 "$STALE_TREE/needs-build/dist/index.js"
+stale_build_lines() {
+  awk '$2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG"
+}
+
+STALE_BEFORE="$(stale_build_lines)"
+expect_rc "an output newer than every tracked file is not rebuilt" 0 run_fixture_provision "$STALE_TREE"
+expect_eq "an output newer than every tracked file adds no build" "$STALE_BEFORE" "$(stale_build_lines)"
+
+# Untracked files a build writes, newer than the output, must not mark it stale.
+mkdir -p "$STALE_TREE/needs-build/dist/nested"
+: > "$STALE_TREE/needs-build/dist/nested/chunk.js"
+: > "$STALE_TREE/needs-build/tsconfig.tsbuildinfo"
+touch -t 202201010000 "$STALE_TREE/needs-build/dist/nested/chunk.js" "$STALE_TREE/needs-build/tsconfig.tsbuildinfo"
+expect_rc "untracked newer files leave the output alone" 0 run_fixture_provision "$STALE_TREE"
+expect_eq "untracked newer files add no build" "$STALE_BEFORE" "$(stale_build_lines)"
+
+# A tracked source edited after the build makes the output stale.
+touch -t 202201010000 "$STALE_TREE/needs-build/src/index.ts"
+run_stale_provision() {
+  local out
+  out="$(run_fixture_provision "$STALE_TREE" 2>&1)"
+  grep -q 'rebuilding needs-build (sources newer than dist/index.js)' <<< "$out"
+}
+expect_rc "a tracked source newer than the output rebuilds it and says why" 0 run_stale_provision
+expect_eq "a stale output builds exactly once" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
+
+# Outside a git work tree only a missing output builds, as before.
+PLAIN_TREE="$PROV/plain-tree"
+mkdir -p "$PLAIN_TREE/needs-build/src" "$PLAIN_TREE/needs-build/dist"
+printf '{}\n' > "$PLAIN_TREE/needs-build/package.json"
+printf 'export {};\n' > "$PLAIN_TREE/needs-build/src/index.ts"
+: > "$PLAIN_TREE/needs-build/dist/index.js"
+touch -t 202001010000 "$PLAIN_TREE/needs-build/dist/index.js"
+touch -t 202201010000 "$PLAIN_TREE/needs-build/src/index.ts"
+PLAIN_BEFORE="$(stale_build_lines)"
+expect_rc "a tree outside git provisions" 0 run_fixture_provision "$PLAIN_TREE"
+expect_eq "a tree outside git never rebuilds an existing output" "$PLAIN_BEFORE" "$(stale_build_lines)"
+rm -f "$PLAIN_TREE/needs-build/dist/index.js"
+expect_rc "a tree outside git builds a missing output" 0 run_fixture_provision "$PLAIN_TREE"
+expect_eq "a tree outside git builds a missing output once" "$((PLAIN_BEFORE + 1))" "$(stale_build_lines)"
+
 # ── a bun package installs and builds with bun, from its own tree ─
 # A dependency hoisted into an ancestor node_modules satisfies an npm package,
 # but a bun package's lockfile pins its own versions, so it must not stand in.

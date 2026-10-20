@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
+  "description": "Phase 32: plugin-tests-ci-and-stale-bundles",
+  "keywords": [
+    "phase",
+    "plugin-tests-ci-and-stale-bundles"
+  ],
+  "lastUpdated": "2026-10-20T15:48:16.902Z",
+  "specId": "032",
+  "folderSlug": "plugin-tests-ci-and-stale-bundles",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-10-26_16-48__added-the-opencode-plugin-test-workflow-the-spec.md"
+  ]
+}

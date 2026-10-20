@@ -142,6 +142,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 29 | 029-unrun-tests-ci-coverage/ | Run the suites no blocking job ran: the two .pi extension suites, the sk-git worktree-naming suite and two sk-doc node tests; correct the dual-version bun comment | Complete |
 | 30 | 030-nested-worktree-battery/ | Make the v2 battery judge a worktree nested inside another checkout: v2 merges every ancestor `.opencode`, so the outer checkout's plugins shadow the worktree's as duplicate IDs; the private server now reads with project config off and the worktree's `.opencode` as its config dir | Complete |
 | 31 | 031-plugin-scanner-ast/ | Read plugin source with a parser so the inventory guard's four recorded blind spots close as a class, check the sk-vision symlink in the plugins purity test and build its bundle in Spec-Kit Check, and list every suite in the plugin tests README | Complete |
+| 32 | 032-plugin-tests-ci-and-stale-bundles/ | Run the OpenCode plugin suites in a blocking workflow, rerun Spec-Kit Check on a plugin-only change, and rebuild a provisioned output whose git-tracked sources are newer than it | In Progress |
 
 ### Phase Transition Rules
 
@@ -181,4 +182,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 026-ci-and-test-runners | 029-unrun-tests-ci-coverage | 026 recorded the `.pi` suites and three sk-doc tests as unrun, and the open-work list of 2026-10-20 assigns item 6 and the bun comment to this group | `029/scratch/mutation/`; the sk-git and Pi Extension jobs pass on CI at the pushed commit |
 | 025-cli-opencode-docs-and-listings | 030-nested-worktree-battery | 025 recorded that the battery fails v2 plugin-active in a nested worktree, and the open-work list of 2026-10-20 assigns item 7 to this group | `030/scratch/`: the duplicate-ID probe and the plain-clone comparison; the nested-worktree battery passes v2 |
 | 024-plugin-inventory-guards | 031-plugin-scanner-ast | 024 recorded four scanner spellings as follow-ups, and the open-work list of 2026-10-20 assigns item 8 and the last two item 9 fixes to this group | `031/scratch/mutation/`; Spec-Kit Check passes on CI at the pushed commit |
+| 031-plugin-scanner-ast | 032-plugin-tests-ci-and-stale-bundles | 031 recorded that no workflow runs `.opencode/plugins/tests` and that Spec-Kit Check ignores `.opencode/plugins/**`, 028's kill switch was missing from a stale built bundle, and the operator approved the three as one group on 2026-10-20 | `032/scratch/mutation/`; the plugin-test workflow passes on CI at the pushed commit |
 <!-- /ANCHOR:phase-map -->

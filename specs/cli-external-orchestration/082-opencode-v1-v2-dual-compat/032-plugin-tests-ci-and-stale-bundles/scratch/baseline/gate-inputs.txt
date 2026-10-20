@@ -1,0 +1,2 @@
+files=43 inputs_resolved=231 dynamic_inputs=11 twin_pairs=299 failures=0
+RESULT: PASSED

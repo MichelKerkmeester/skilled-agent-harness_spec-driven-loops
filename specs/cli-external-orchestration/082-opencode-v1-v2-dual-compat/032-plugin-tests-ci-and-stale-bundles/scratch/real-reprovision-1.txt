@@ -1,0 +1,2 @@
+  rebuilding .skilled/skills/sk-vision/vision-runtime (sources newer than dist/plugin.js)
+provisioned: 0 installed, 1 built, 14 already present, 0 failed

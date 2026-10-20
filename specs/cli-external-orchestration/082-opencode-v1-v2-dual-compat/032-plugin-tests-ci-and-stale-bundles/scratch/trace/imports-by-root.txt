@@ -1,0 +1,11 @@
+# Files the plugin suite imports, by root (node --test with a module resolve hook, 436 of 436 passing)
+ 108 .opencode/plugins
+  70 .opencode/node_modules
+  43 .skilled/bin
+  23 .skilled/hooks
+  10 .skilled/skills/system-spec-kit
+   6 .skilled/node_modules
+   5 .skilled/skills/system-skill-advisor
+   4 .skilled/skills/sk-git
+   4 .skilled/skills/cli-classifier
+   1 .skilled/skills/sk-vision
