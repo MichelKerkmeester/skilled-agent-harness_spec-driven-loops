@@ -1,0 +1,14 @@
+== old code
+primary plain exit=0 fast=0 conflict=0
+primary trusted exit=0 fast=1 conflict=0
+primary untrusted exit=0 fast=1 conflict=0
+worktree plain exit=0 fast=1 conflict=0
+worktree trusted exit=0 fast=1 conflict=0
+worktree untrusted exit=0 fast=1 conflict=0
+== new code
+primary plain exit=0 fast=1 conflict=0
+primary trusted exit=0 fast=1 conflict=0
+primary untrusted exit=0 fast=1 conflict=0
+worktree plain exit=0 fast=1 conflict=0
+worktree trusted exit=0 fast=1 conflict=0
+worktree untrusted exit=0 fast=1 conflict=0
