@@ -6,6 +6,7 @@ import {
   canonicalBytes,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { findMistypedDeepResearchField } from './deep-research-ledger-schema.js';
 import {
   DeepResearchEventStems,
 } from './deep-research-ledger-types.js';
@@ -51,6 +52,17 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   idea_rejected_reset: 'deep_research.idea_rejected_reset',
   ideaRejectedReset: 'deep_research.idea_rejected_reset',
   question_conflict: 'deep_research.question_conflict',
+  userPaused: 'deep_research.user_paused',
+  stuckRecovery: 'deep_research.stuck_recovery',
+  min_iterations_guard_pass: 'deep_research.min_iterations_guard_pass',
+  migration: 'deep_research.migration',
+  novelty_signal_inert: 'deep_research.novelty_signal_inert',
+  trend_flatline: 'deep_research.trend_flatline',
+  pivot_override_accepted: 'deep_research.pivot_override_accepted',
+  pivot_started: 'deep_research.pivot_started',
+  pivot_selected: 'deep_research.pivot_selected',
+  pivot_completed: 'deep_research.pivot_completed',
+  pivot_failed: 'deep_research.pivot_failed',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_TYPES = new Set([
@@ -69,24 +81,6 @@ const PINNED_LEGACY_EVENTS = new Set([
   'synthesis_incomplete',
   'synthesis_complete',
   'lock_released',
-  // Operational records have no lossless research-event target. Pinning
-  // preserves their legacy address without inventing ledger semantics for
-  // pivots or advisories.
-  'stuckRecovery',
-  'userPaused',
-  'novelty_signal_inert',
-  'trend_flatline',
-  'pivot_started',
-  'pivot_selected',
-  'pivot_completed',
-  'pivot_failed',
-  'pivot_override_accepted',
-  // Artifact-path migration bookkeeping and the convergence-floor guard outcome
-  // have no lossless research-event target: the canonical stems describe run
-  // lifecycle and research semantics, not those side effects. Pinning keeps the
-  // records addressable without coercing them into a stem that means something else.
-  'migration',
-  'min_iterations_guard_pass',
 ]);
 
 // The workflows write the spec-protocol rows without run or session identity, so
@@ -102,12 +96,14 @@ const CONTEXT_SCOPE_STEMS = new Set<DeepResearchEventStem>([
   'deep_research.spec_synthesis_deferred',
 ]);
 
-// The rows the research reducer reads back: its own promotions and conflicts,
-// and the idea rows the research agent and the operator record. Each travels
-// under its stem field for field, so the projection can write the same row
-// back: the payload keeps the row's own names, a field the row left out stays
-// out, and the row's timestamp becomes the event's occurrence time. A row with
-// a field outside its shape is refused rather than carried without it.
+// The rows a ledger-backed run must keep exactly as written: the reducer's own
+// promotions and conflicts, the idea rows the research agent and the operator
+// record, the workflows' lifecycle rows, the reducer's trend advisories and the
+// divergent pivot's rows. Each travels under its stem field for field, so the
+// projection can write the same row back: the payload keeps the row's own
+// names, a field the row left out stays out, and the row's timestamp becomes
+// the event's occurrence time. A row with a field outside its shape is refused
+// rather than carried without it.
 interface ReducerReadRowShape {
   readonly event: string;
   readonly required: readonly string[];
@@ -120,6 +116,24 @@ const IDEA_REJECTION_FIELDS = Object.freeze([
   'mode', 'run', 'rejectedId', 'ideaId', 'idea', 'pattern', 'category', 'reason',
   'sessionId', 'generation',
 ]);
+
+const LIFECYCLE_IDENTITY_FIELDS = Object.freeze(['sessionId', 'generation']);
+
+const TREND_ADVISORY_FIELDS = Object.freeze([
+  'mode', 'severity', 'metric', 'run', 'window', 'value', 'sparkline',
+]);
+
+const PIVOT_LIFECYCLE_FIELDS = Object.freeze([
+  'mode', 'run', 'eventId', 'lifecycle', 'ordinal', 'source', 'previousFocus', 'saturatedDirections',
+  'priorPivotCount', 'priorCouncilSeatOutputs', 'remainingIterations', 'acceptedCandidateIds',
+  'selectedCandidate', 'selectedFrontier', 'agreement', 'pivotCount', 'councilSeatOutputs',
+  'currentFocus', 'artifactRefs', 'reason', 'quorum', 'recoverableByOverride', 'occurredAtIso',
+  ...LIFECYCLE_IDENTITY_FIELDS,
+]);
+
+function pivotLifecycleShape(event: string): ReducerReadRowShape {
+  return Object.freeze({ event, required: ['pivotId'], anyOf: [], optional: PIVOT_LIFECYCLE_FIELDS });
+}
 
 const REDUCER_READ_ROW_SHAPES: Readonly<
   Partial<Record<DeepResearchEventStem, ReducerReadRowShape>>
@@ -166,6 +180,55 @@ const REDUCER_READ_ROW_SHAPES: Readonly<
     anyOf: [],
     optional: [],
   }),
+  'deep_research.user_paused': Object.freeze({
+    event: 'userPaused',
+    required: ['mode', 'run', 'stopReason', 'sentinelPath'],
+    anyOf: [],
+    optional: LIFECYCLE_IDENTITY_FIELDS,
+  }),
+  'deep_research.stuck_recovery': Object.freeze({
+    event: 'stuckRecovery',
+    required: ['mode', 'run', 'stopReason'],
+    anyOf: [],
+    optional: ['fromIteration', 'fromFocus', 'toFocus', 'strategy', 'outcome', ...LIFECYCLE_IDENTITY_FIELDS],
+  }),
+  'deep_research.min_iterations_guard_pass': Object.freeze({
+    event: 'min_iterations_guard_pass',
+    required: ['mode', 'run', 'iterationCount', 'minIterations'],
+    anyOf: [],
+    optional: LIFECYCLE_IDENTITY_FIELDS,
+  }),
+  'deep_research.migration': Object.freeze({
+    event: 'migration',
+    required: ['legacyPath', 'canonicalPath'],
+    anyOf: [],
+    optional: [],
+  }),
+  'deep_research.novelty_signal_inert': Object.freeze({
+    event: 'novelty_signal_inert',
+    required: TREND_ADVISORY_FIELDS,
+    anyOf: [],
+    optional: ['note'],
+  }),
+  'deep_research.trend_flatline': Object.freeze({
+    event: 'trend_flatline',
+    required: TREND_ADVISORY_FIELDS,
+    anyOf: [],
+    optional: ['note'],
+  }),
+  'deep_research.pivot_override_accepted': Object.freeze({
+    event: 'pivot_override_accepted',
+    required: [
+      'mode', 'run', 'pivotId', 'selectedCandidate', 'selectedFrontier', 'previousFocus',
+      'saturatedDirections', 'reason', 'agreementReason',
+    ],
+    anyOf: [],
+    optional: LIFECYCLE_IDENTITY_FIELDS,
+  }),
+  'deep_research.pivot_started': pivotLifecycleShape('pivot_started'),
+  'deep_research.pivot_selected': pivotLifecycleShape('pivot_selected'),
+  'deep_research.pivot_completed': pivotLifecycleShape('pivot_completed'),
+  'deep_research.pivot_failed': pivotLifecycleShape('pivot_failed'),
 });
 
 // The row's envelope bookkeeping: the record and event names select the stem,
@@ -333,6 +396,43 @@ function positiveInteger(value: unknown, fallback: number): number {
   return Number.isSafeInteger(value) && (value as number) >= 0 ? value as number : fallback;
 }
 
+// The config's counts feed the run's budget and lineage, so a wrongly typed
+// count is refused rather than defaulted. A digit string spells exactly one
+// count, and the workflow's config template quotes it, so it travels
+// as that number. The topic and executor keep their existing fallbacks for a
+// value of the right type.
+const LOSSLESS_COUNT_PATTERN = /^(0|[1-9][0-9]*)$/;
+
+type LegacyConfigFields =
+  | { readonly status: 'ok'; readonly generation: number; readonly maxIterations: number; readonly converted: readonly string[] }
+  | { readonly status: 'mistyped'; readonly field: string };
+
+function legacyConfigFields(input: Record<string, unknown>): LegacyConfigFields {
+  const counts: Record<'generation' | 'maxIterations', number> = { generation: 1, maxIterations: 0 };
+  const converted: string[] = [];
+  for (const field of ['generation', 'maxIterations'] as const) {
+    if (!Object.hasOwn(input, field)) continue;
+    const value = input[field];
+    if (Number.isSafeInteger(value) && (value as number) >= 0) {
+      counts[field] = value as number;
+    } else if (typeof value === 'string' && LOSSLESS_COUNT_PATTERN.test(value)
+      && Number.isSafeInteger(Number(value))) {
+      counts[field] = Number(value);
+      converted.push(field);
+    } else {
+      return { status: 'mistyped', field };
+    }
+  }
+  if (Object.hasOwn(input, 'topic') && typeof input.topic !== 'string') {
+    return { status: 'mistyped', field: 'topic' };
+  }
+  if (Object.hasOwn(input, 'executor')
+    && typeof input.executor !== 'string' && !isObject(input.executor)) {
+    return { status: 'mistyped', field: 'executor' };
+  }
+  return { status: 'ok', ...counts, converted };
+}
+
 function ratio(value: unknown): number {
   return typeof value === 'number' && Number.isFinite(value)
     ? Math.min(1, Math.max(0, value))
@@ -441,19 +541,30 @@ export function upcastLegacyDeepResearchRecord(
       };
       break;
     }
-    case 'deep_research.run_initialized':
+    case 'deep_research.run_initialized': {
+      const fields = legacyConfigFields(input);
+      if (fields.status === 'mistyped') {
+        return refusedUpcast(
+          compatibility,
+          `${reducerReadRowReason(compatibility.targetStem, 'mistyped')}:${fields.field}`,
+        );
+      }
       data = {
-        generation: positiveInteger(input.generation, 1),
+        generation: fields.generation,
         charterDigest: recordDigest,
         configDigest: recordDigest,
         executorFingerprint: sha256Bytes(canonicalBytes(stringValue(input.executor, 'legacy'))),
         replayFingerprint: context.replay.final_digest,
-        maxIterations: positiveInteger(input.maxIterations, 0),
+        maxIterations: fields.maxIterations,
         convergencePolicyVersion: 'legacy-jsonl@1',
         ...legacyTopic(input.topic),
       };
       warnings.push('Legacy config has one digest for both charter and configuration evidence.');
+      for (const field of fields.converted) {
+        warnings.push(`The config ${field} was a numeric string and is carried as the number it spells.`);
+      }
       break;
+    }
     case 'deep_research.run_resumed':
       data = {
         priorTailDigest: context.prevEventHash,
@@ -628,7 +739,18 @@ export function upcastLegacyDeepResearchRecord(
     case 'deep_research.idea_rejected':
     case 'deep_research.idea_rejected_removed':
     case 'deep_research.idea_rejected_reset':
-    case 'deep_research.question_conflict': {
+    case 'deep_research.question_conflict':
+    case 'deep_research.user_paused':
+    case 'deep_research.stuck_recovery':
+    case 'deep_research.min_iterations_guard_pass':
+    case 'deep_research.migration':
+    case 'deep_research.novelty_signal_inert':
+    case 'deep_research.trend_flatline':
+    case 'deep_research.pivot_override_accepted':
+    case 'deep_research.pivot_started':
+    case 'deep_research.pivot_selected':
+    case 'deep_research.pivot_completed':
+    case 'deep_research.pivot_failed': {
       const targetStem = compatibility.targetStem;
       const shape = REDUCER_READ_ROW_SHAPES[targetStem] as ReducerReadRowShape;
       const fields = Object.keys(input).filter((field) => !LEGACY_ROW_ENVELOPE_FIELDS.has(field));
@@ -646,6 +768,12 @@ export function upcastLegacyDeepResearchRecord(
         return refusedUpcast(compatibility, 'legacy-row-timestamp-invalid');
       }
       data = Object.fromEntries(fields.map((field) => [field, input[field]])) as JsonObject;
+      // The schema would refuse a wrongly typed value with its generic error, so
+      // the upcaster names the row kind and the field the operator has to fix.
+      const mistyped = findMistypedDeepResearchField(targetStem, data);
+      if (mistyped !== null) {
+        return refusedUpcast(compatibility, `${reducerReadRowReason(targetStem, 'mistyped')}:${mistyped}`);
+      }
       if (input.event !== shape.event) data.eventAlias = input.event as string;
       if ('schemaVersion' in input || 'eventVersion' in input) {
         warnings.push('The row version is carried by the event version and left out of the projected row.');
@@ -664,6 +792,17 @@ export function upcastLegacyDeepResearchRecord(
           compatibility.sourceVersion,
         ),
       });
+  }
+
+  // Every projected row writes its timestamp from the event's occurrence time,
+  // so a row that carries its own UTC instant keeps it rather than taking the
+  // append time. A timestamp the envelope cannot carry is reported, not kept.
+  if (occurredAt === undefined && Object.hasOwn(input, 'timestamp')) {
+    if (isUtcTimestamp(input.timestamp)) {
+      occurredAt = input.timestamp;
+    } else {
+      warnings.push('The row timestamp is not a UTC instant, so the event records the append time instead.');
+    }
   }
 
   return Object.freeze({

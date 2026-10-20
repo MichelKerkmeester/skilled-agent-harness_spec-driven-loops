@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.29
+version: 1.14.1.0
 ---
 
 # Loop Protocol Reference
@@ -72,7 +72,7 @@ Set up all state files for a new research session.
 2. **Resolve canonical artifact names**:
    - Read legacy aliases during the migration window if needed
    - Write only canonical `deep-research-*` names
-   - Emit a `migration` event for every legacy alias consumed
+   - Record a `migration` event for every legacy alias consumed, appended through the gateway once the run is open, since an append before classification would turn a fresh packet into a partial one
 3. **Resolve local artifact owner**: `artifact_dir = resolveArtifactRoot(specFolder, 'research').artifactDir`, then `mkdir -p {artifact_dir}/iterations`
 4. **Write config**: `research/deep-research-config.json` from template + user parameters
 5. **Initialize state log**: Append the config record as the first line of `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log
@@ -224,10 +224,12 @@ Rejected-cache lifecycle:
 2. The reducer derives the active cache from JSONL events; generated registry and dashboard files expose `rejectedPatterns`, `rejectedPatternIndex`, and `suppressedCandidates`.
 3. Exact suppression compares normalized candidate text against normalized rejected text.
 4. Fuzzy suppression uses `rejectedPatternFuzzyThreshold` from config when present, otherwise `0.85`, and only applies when the rejected category is compatible with the candidate category.
-5. `ideaRejectedRemoved` removes a single active pattern by id or by pattern/category.
-6. `ideaRejectedReset` clears all active rejected patterns for the current replay.
+5. `idea_rejected_removed` removes a single active pattern by id or by pattern/category.
+6. `idea_rejected_reset` clears all active rejected patterns for the current replay.
 
-The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `idea_rejected` event if it remains relevant. Existing `ideaRejected` replay rows are legacy aliases and remain accepted for backward compatibility.
+The active cache is capped at 100 entries. When the replay would exceed that cap, the oldest active entry is evicted and the reducer emits a warning. Operators can re-add an evicted pattern with another `idea_rejected` event if it remains relevant. Existing `ideaRejected`, `ideaRejectedRemoved` and `ideaRejectedReset` replay rows are legacy aliases and remain accepted for backward compatibility.
+
+When every candidate is suppressed, the auto workflow halts for operator input. In a ledger-backed run the operator records the `idea_rejected_removed` or `idea_rejected_reset` row through the append gateway (`append-mode-event.cjs --mode research --run-directory <artifact dir> --event-json <row file>`), never by editing the state log, which the next projection replaces. The row shapes and the full command are in `../state/state-jsonl.md` section 7.
 
 Ideas lifecycle:
 

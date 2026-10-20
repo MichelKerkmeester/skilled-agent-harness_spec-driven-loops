@@ -109,7 +109,7 @@ state_write_protocol:
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
   pinned_bookkeeping:
-    events: [config_warning, graph_convergence, lock_released, migration, min_iterations_guard_pass, stuckRecovery, userPaused, schema_mismatch]
+    events: [config_warning, graph_convergence, lock_released, schema_mismatch]
     directive: "bookkeeping_log"
     handling: "These rows are workflow bookkeeping that the research ledger schema pins to the legacy path: they have no lossless research-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
@@ -275,7 +275,11 @@ workflow:
           - "{state_paths.packet_dir}/.pause"
         migration_policy: "dual-read / single-write for 4 weeks"
         on_legacy_read:
-          bookkeeping_log: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
+          set: { legacy_migration_detected: true, migration_recorded: false }
+          outputs:
+            - legacy_path: "The legacy artifact path that was read"
+            - canonical_path: "The canonical artifact path it maps to"
+          note: "Only detect and bind here. The migration row is appended by step_record_artifact_migration, once the session is classified and the run is open, because an append before classification would create the state log and turn a fresh packet into a partial one."
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
@@ -595,6 +599,12 @@ workflow:
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
         on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
 
+      step_record_artifact_migration:
+        action: "Record a legacy artifact alias read once per session, after the run is open"
+        skip_when: "legacy_migration_detected != true or migration_recorded == true"
+        append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
+        set: { migration_recorded: true }
+
       step_read_state:
         action: "Read current state from JSONL and strategy"
         read:
@@ -726,7 +736,7 @@ workflow:
         action: "Check for pause sentinel file"
         check: "Does {state_paths.pause_sentinel} exist?"
         if_exists:
-          bookkeeping_log: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          append_jsonl: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           message: "Research paused. Delete research/.deep-research-pause to resume."
           halt: true
         if_not_exists:
@@ -833,7 +843,7 @@ workflow:
       step_emit_min_iterations_guard_pass:
         action: "Persist a first-class event when the convergence floor clears"
         if_pass:
-          bookkeeping_log: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          append_jsonl: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Minimum iteration floor cleared for convergence stopping."
 
       step_emit_blocked_stop:
@@ -1047,7 +1057,7 @@ workflow:
             log: "Loop stopping. Reason: {reason}"
             skip_to: phase_synthesis
         if_stuck_recovery:
-          bookkeeping_log: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
           set: { next_focus: "RECOVERY: Widen scope. Try fundamentally different approach. Least-explored question: {least_explored}" }
           reset: { stuck_count: 0 }
@@ -1095,7 +1105,7 @@ workflow:
           log: "Rejected-pattern cache suppressed the prior candidate; dispatching the next accepted candidate."
         if_all_candidates_suppressed:
           halt: true
-          message: "All next-focus, recovery, and ideas candidates match active rejected patterns. Remove/reset the rejected pattern or provide a new focus."
+          message: 'All next-focus, recovery, and ideas candidates match active rejected patterns. Remove or reset the rejected pattern, or provide a new focus. In a ledger-backed run (a deep-research-ledger/frames folder beside the state log) the next projection replaces a hand-edited state log, so record the removal or reset through the append gateway: write one row to a file, either {"type":"event","event":"idea_rejected_removed","mode":"research","pattern":"<rejected text>","category":"<its category>","timestamp":"<UTC now, e.g. 2026-05-24T00:00:00Z>"} or {"type":"event","event":"idea_rejected_reset","mode":"research","reason":"<why>","timestamp":"<UTC now>"}, then run node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory {artifact_dir} --event-json <that file> and rerun the reducer before resuming.'
 
       step_ideas_backlog_lifecycle:
         action: "Track reducer-owned observed/promoted/rejected idea lifecycle before dispatch"

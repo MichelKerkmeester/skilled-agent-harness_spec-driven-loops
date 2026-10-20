@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.29
+version: 1.11.1.0
 ---
 
 # Deep Review Loop Protocol
@@ -80,6 +80,7 @@ Set up all state files for a new review session. Discover the scope, order dimen
    - `resume`: config + state + strategy all exist and agree
    - `completed-session`: consistent prior state with `config.status == "complete"`
    - `invalid-state`: partial or contradictory artifacts
+   - Review state still under `scratch/` is moved to the canonical names before this step, and nothing is appended then. The moved state log was written without the ledger, so a resume or synthesis sets it aside as `deep-review-state.legacy.jsonl`, opens the run from the moved config and replays its iteration rows through the append gateway. The `deep_review.migration` row is appended once, at the top of the first iteration.
 
 2. **Resolve local artifact owner**: `artifact_dir = resolveArtifactRoot(specFolder, 'review').artifactDir`, then `mkdir -p {artifact_dir}/iterations`
 

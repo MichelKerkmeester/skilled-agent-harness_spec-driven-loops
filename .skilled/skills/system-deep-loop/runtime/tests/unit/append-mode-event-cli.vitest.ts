@@ -936,9 +936,8 @@ describe('legacy spec-protocol rows append through the research gateway', () => 
   // The research workflows wrote these rows directly to the state log before the
   // gateway could carry them as ledger events. Each must still land as the same
   // legacy row, with the same snake_case keys in the same order, because the
-  // state consumers read those names. Only the timestamp is new: it is the
-  // append time, not the workflow's own stamp.
-  const ISO_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+  // state consumers read those names. The timestamp is the workflow's own
+  // stamp too: the event carries it as its occurrence time, not the append time.
 
   const specMutationRow = {
     type: 'spec_mutation',
@@ -1075,13 +1074,8 @@ describe('legacy spec-protocol rows append through the research gateway', () => 
       expect(lines).toHaveLength(1);
       const projectedRow = JSON.parse(lines[lines.length - 1]) as Record<string, unknown>;
 
-      const { timestamp } = projectedRow;
-      expect(typeof timestamp).toBe('string');
-      expect(timestamp).toMatch(ISO_TIMESTAMP_PATTERN);
-
-      const expectedRow = { ...row, timestamp };
-      expect(Object.keys(projectedRow)).toEqual(Object.keys(expectedRow));
-      expect(projectedRow).toEqual(expectedRow);
+      expect(Object.keys(projectedRow)).toEqual(Object.keys(row));
+      expect(projectedRow).toEqual(row);
     });
   }
 

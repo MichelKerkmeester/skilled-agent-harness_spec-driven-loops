@@ -736,6 +736,71 @@ describe('deep-research reduce-state recovery gate', () => {
     expect(rowsNamed('idea_promoted')).toHaveLength(1);
   });
 
+  // The pause, recovery and convergence-floor rows the workflows record, and an
+  // operator's pivot override, were pinned to the legacy path, so a ledger-backed
+  // run lost them at the next projection replace. Every projected row also took
+  // the append time in place of its own timestamp.
+  it('keeps the workflow lifecycle rows and each row\'s own timestamp in a ledger-backed run', () => {
+    const here = dirname(fileURLToPath(import.meta.url));
+    const repoRoot = resolve(here, '..', '..', '..', '..', '..', '..');
+    const gatewayScript = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
+    const specFolder = makeTempSpec();
+    const researchDir = join(specFolder, 'research');
+    const runId = 'lifecycle-ledger-run';
+    const appendEvent = (name: string, event: Record<string, unknown>) => {
+      const eventPath = join(specFolder, `${name}.json`);
+      writeFileSync(eventPath, JSON.stringify(event));
+      const result = spawnSync(process.execPath, [
+        gatewayScript, '--mode', 'research', '--run-directory', researchDir, '--event-json', eventPath,
+      ], { cwd: repoRoot, encoding: 'utf8' });
+      expect(result.status, result.stdout + result.stderr).toBe(0);
+    };
+    const iteration = (run: number) => ({
+      type: 'iteration', run, iteration: run, status: 'complete', focus: 'lifecycle rows',
+      newInfoRatio: 0.3, ruledOut: [], sessionId: runId, lineageId: runId, timestamp: `2026-10-19T12:0${run}:00Z`,
+    });
+    const lifecycleRows = [
+      {
+        type: 'event', event: 'min_iterations_guard_pass', mode: 'research', run: 1, iterationCount: 1,
+        minIterations: 1, timestamp: '2026-10-19T12:01:10Z', sessionId: runId, generation: 1,
+      },
+      {
+        type: 'event', event: 'stuckRecovery', mode: 'research', run: 1, stopReason: 'stuckRecovery',
+        fromIteration: 1, outcome: 'recovered', timestamp: '2026-10-19T12:01:20Z', sessionId: runId, generation: 1,
+      },
+      {
+        type: 'event', event: 'pivot_override_accepted', mode: 'research', run: 1, pivotId: 'pivot-001-a1b2',
+        selectedCandidate: { id: 'candidate-2', focus: 'Transport alternatives' },
+        selectedFrontier: [{ id: 'candidate-2', focus: 'Transport alternatives' }],
+        previousFocus: 'lifecycle rows', saturatedDirections: ['lifecycle rows'],
+        reason: 'Operator prefers the transport direction', agreementReason: 'insufficient_endorsement',
+        timestamp: '2026-10-19T12:01:30Z', sessionId: runId, generation: 1,
+      },
+      {
+        type: 'event', event: 'userPaused', mode: 'research', run: 1, stopReason: 'userPaused',
+        sentinelPath: 'research/.deep-research-pause', timestamp: '2026-10-19T12:01:40Z', sessionId: runId, generation: 1,
+      },
+    ];
+
+    appendEvent('open', {
+      type: 'config', sessionId: runId, lineageId: runId, generation: 1, maxIterations: 4,
+      topic: 'Lifecycle rows', timestamp: '2026-10-19T12:00:00Z',
+    });
+    appendEvent('iteration-1', iteration(1));
+    lifecycleRows.forEach((row, index) => appendEvent(`lifecycle-${index}`, row));
+    appendEvent('iteration-2', iteration(2));
+
+    const records = readStateRecords(specFolder);
+    for (const row of lifecycleRows) {
+      expect(records.filter((record) => record.event === row.event)).toEqual([row]);
+    }
+    expect(records.find((record) => record.type === 'config')?.timestamp).toBe('2026-10-19T12:00:00Z');
+    expect(records.filter((record) => record.type === 'iteration').map((record) => record.timestamp))
+      .toEqual(['2026-10-19T12:01:00Z', '2026-10-19T12:02:00Z']);
+    expect(readdirSync(join(researchDir, 'deep-research-ledger', 'frames'))
+      .filter((name) => name.endsWith('.frame'))).toHaveLength(7);
+  });
+
   it('marks direct strategy questions as legacy imports and warns when writing', () => {
     const specFolder = makeTempSpec();
     writeState(specFolder, '');
