@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9e75c2363e1cc84bee336d2045075b475f0263de564220a0021aa05833b5264b",
+  "manifestHash": "e8d12b1d60bc0f55d202fa29d52d2375916810a28467f1767c22f06bdad343a0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40579,6 +40579,9 @@
     "end with next steps": [
       "end with next steps"
     ],
+    "endless sessions readme": [
+      "endless sessions readme"
+    ],
     "energy level routing": [
       "energy level routing"
     ],
@@ -50267,6 +50270,21 @@
     "handover bound freshness": [
       "handover bound freshness"
     ],
+    "handover docs promotion": [
+      "handover docs promotion"
+    ],
+    "handover docs promotion acceptance criteria": [
+      "handover docs promotion acceptance criteria"
+    ],
+    "handover docs promotion implementation summary": [
+      "handover docs promotion implementation summary"
+    ],
+    "handover docs promotion plan": [
+      "handover docs promotion plan"
+    ],
+    "handover docs promotion tasks": [
+      "handover docs promotion tasks"
+    ],
     "handover fingerprint verify": [
       "handover fingerprint verify"
     ],
@@ -53019,6 +53037,9 @@
     ],
     "in process lineage execution": [
       "in-process lineage execution"
+    ],
+    "in session handover docs": [
+      "in-session handover docs"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -71745,6 +71766,9 @@
     ],
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
+    ],
+    "phase 14 handover docs promotion": [
+      "phase 14 handover docs promotion"
     ],
     "phase 14 results": [
       "phase 14 results"
@@ -107049,6 +107073,9 @@
     ],
     "turn close out": [
       "turn close-out"
+    ],
+    "turn on endless sessions": [
+      "turn on endless sessions"
     ],
     "turn without a suggestion": [
       "turn without a suggestion"

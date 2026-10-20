@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aad48bafda54105976d6381d173a0a9f3475ac61002c7cb868851170e643b6c6",
+  "corpusHash": "82020dd6172c8fbdde859700ca1f0b45faa5010194b0da6005d09df2e88a7c64",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25394,
+  "includedPathCount": 25399,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10298,6 +10298,11 @@
     "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/plan.md",
     "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/spec.md",
     "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/plan.md",
+    "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/spec.md",
+    "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25425,7 +25430,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9e75c2363e1cc84bee336d2045075b475f0263de564220a0021aa05833b5264b",
+  "manifestHash": "e8d12b1d60bc0f55d202fa29d52d2375916810a28467f1767c22f06bdad343a0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27261,6 +27266,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/scratch",
       "reason": "excluded directory"
     },
     {
