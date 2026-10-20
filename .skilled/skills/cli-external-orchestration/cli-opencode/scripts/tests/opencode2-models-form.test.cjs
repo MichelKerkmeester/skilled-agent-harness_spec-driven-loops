@@ -283,14 +283,19 @@ function joinContinuations(lines) {
 // A shell comment names and explains a step without running it, so it is not part of
 // what the block does. A `#` starts a comment only at the start of a line or after
 // whitespace or a separator, and never inside a quote, so a `#` in a URL or a quoted
-// argument survives.
+// argument survives. A `)` that closes a `$(` belongs to the word, so a `#` after it
+// does too.
 function activeShellLines(lines) {
   return lines
     .map((line) => {
       let quote = null;
+      const parentheses = [];
+      let closedSubstitution = false;
 
       for (let index = 0; index < line.length; index += 1) {
         const char = line[index];
+        const previousClosedSubstitution = closedSubstitution;
+        closedSubstitution = false;
 
         if (quote === "'") {
           if (char === "'") quote = null;
@@ -301,6 +306,12 @@ function activeShellLines(lines) {
             index += 1;
           } else if (char === '"') {
             quote = null;
+          } else if (char === '$' && line[index + 1] === '(') {
+            parentheses.push(true);
+            index += 1;
+          } else if (char === ')' && parentheses[parentheses.length - 1] === true) {
+            parentheses.pop();
+            closedSubstitution = true;
           }
           continue;
         }
@@ -309,7 +320,19 @@ function activeShellLines(lines) {
           index += 1;
         } else if (char === "'" || char === '"') {
           quote = char;
-        } else if (char === '#' && (index === 0 || /[\s;|&()]/.test(line[index - 1]))) {
+        } else if (char === '$' && line[index + 1] === '(') {
+          parentheses.push(true);
+          index += 1;
+        } else if (char === '(') {
+          parentheses.push(false);
+        } else if (char === ')') {
+          closedSubstitution = parentheses.pop() === true;
+        } else if (
+          char === '#' &&
+          (index === 0 ||
+            /[\s;|&(]/.test(line[index - 1]) ||
+            (line[index - 1] === ')' && !previousClosedSubstitution))
+        ) {
           return line.slice(0, index).trimEnd();
         }
       }
@@ -319,32 +342,225 @@ function activeShellLines(lines) {
     .filter((line) => line.trim() !== '');
 }
 
-// A provider check is only meaningful against the standalone listing. The matching grep
-// can pipe that listing in directly, or pipe a variable that an earlier line of the same
-// block filled from `opencode2 models --standalone`. Returns null when it does, or the
-// reason it does not, naming the variable that has to hold the listing.
-function standaloneListingProblem(lines, grepIndex) {
-  const grepLine = lines[grepIndex];
-  if (/opencode2 models --standalone\b[^|]*\|\s*grep\b/.test(grepLine)) return null;
+// Top-level shell segments split only where `|`, `||`, `&&` or `;` is an operator, so
+// a separator inside a quote or `$(...)` stays in its segment.
+function shellSegments(line) {
+  const segments = [];
+  const parentheses = [];
+  let quote = null;
+  let start = 0;
+  let operator = null;
 
-  const pipe = grepLine.match(/\|\s*grep\b/);
-  const beforePipe = pipe === null ? grepLine : grepLine.slice(0, pipe.index);
-  const variable = beforePipe.match(
-    /(?:printf|echo)\b[^|]*\$"?\{?([A-Za-z_][A-Za-z0-9_]*)\}?"?/,
-  );
-  if (variable === null) {
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+
+    if (quote === "'") {
+      if (char === "'") quote = null;
+      continue;
+    }
+    if (quote === '"') {
+      if (char === '\\') {
+        index += 1;
+      } else if (char === '"') {
+        quote = null;
+      } else if (char === '$' && line[index + 1] === '(') {
+        parentheses.push(true);
+        index += 1;
+      } else if (char === ')' && parentheses[parentheses.length - 1] === true) {
+        parentheses.pop();
+      }
+      continue;
+    }
+
+    if (char === '\\') {
+      index += 1;
+      continue;
+    }
+    if (char === "'" || char === '"') {
+      quote = char;
+      continue;
+    }
+    if (char === '$' && line[index + 1] === '(') {
+      parentheses.push(true);
+      index += 1;
+      continue;
+    }
+    if (char === '(') {
+      parentheses.push(false);
+      continue;
+    }
+    if (char === ')') {
+      parentheses.pop();
+      continue;
+    }
+    if (parentheses.some(Boolean)) continue;
+
+    let separator = null;
+    if (char === ';') {
+      separator = ';';
+    } else if (char === '|') {
+      separator = line[index + 1] === '|' ? '||' : '|';
+    } else if (char === '&' && line[index + 1] === '&') {
+      separator = '&&';
+    }
+    if (separator === null) continue;
+
+    const text = line.slice(start, index).trim();
+    if (text !== '') segments.push({ text, operator });
+    operator = separator;
+    index += separator.length - 1;
+    start = index + 1;
+  }
+
+  const text = line.slice(start).trim();
+  if (text !== '') segments.push({ text, operator });
+  return segments;
+}
+
+// Quotes and braces are shell spelling, so `$NAME`, `"$NAME"` and `"${NAME}"` all reduce
+// to the name a source command has to name.
+function shellWords(text) {
+  const words = [];
+  let word = '';
+  let quote = null;
+  let substitutionDepth = 0;
+
+  const flush = () => {
+    if (word !== '') words.push(word);
+    word = '';
+  };
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+
+    if (quote === "'") {
+      if (char === "'") quote = null;
+      else word += char;
+      continue;
+    }
+    if (quote === '"') {
+      if (char === '\\') {
+        index += 1;
+        if (index < text.length) word += text[index];
+      } else if (char === '"') {
+        quote = null;
+      } else {
+        word += char;
+      }
+      continue;
+    }
+
+    if (char === '\\') {
+      index += 1;
+      if (index < text.length) word += text[index];
+    } else if (char === "'" || char === '"') {
+      quote = char;
+    } else if (char === '$' && text[index + 1] === '(') {
+      substitutionDepth += 1;
+      word += '$(';
+      index += 1;
+    } else if (char === ')' && substitutionDepth > 0) {
+      substitutionDepth -= 1;
+      word += char;
+    } else if (/\s/.test(char) && substitutionDepth === 0) {
+      flush();
+    } else {
+      word += char;
+    }
+  }
+
+  flush();
+  return words;
+}
+
+const VARIABLE_ARGUMENT_PATTERN = /^\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))$/;
+const GREP_PATTERN = /^grep(?:\s+-[^\s]+)*\s+(['"])\^([^/'"\s]+)\/\1(?:\s*\d*(?:>>?|<)\s*\S+)*\s*$/;
+const OK_VARIABLE_PATTERN = /^([A-Za-z_][A-Za-z0-9_]*_OK)=1$/;
+
+function listingSource(text) {
+  if (/^opencode2\s+models\s+--standalone(?:\s|$)/.test(text)) return { direct: true };
+  if (!/^(?:printf|echo)\b/.test(text)) return null;
+
+  const words = shellWords(text)
+    .slice(1)
+    .filter((word) => !/^\d*(?:>>?|<)/.test(word));
+  const last = words[words.length - 1];
+  const variable = last === undefined ? null : last.match(VARIABLE_ARGUMENT_PATTERN);
+  return variable === null ? null : { name: variable[1] ?? variable[2] };
+}
+
+function grepListing(text) {
+  const match = text.match(GREP_PATTERN);
+  return match === null ? null : { provider: match[2] };
+}
+
+// A provider check counts only when a source segment feeds a grep segment, and an
+// `_OK=1` assignment follows that grep through `&&`.
+function providerCheck(line) {
+  const [source, grep, assignment] = shellSegments(line);
+  if (
+    source === undefined ||
+    grep === undefined ||
+    assignment === undefined ||
+    source.operator !== null ||
+    grep.operator !== '|' ||
+    assignment.operator !== '&&'
+  ) {
+    return null;
+  }
+
+  const listing = grepListing(grep.text);
+  const ok = assignment.text.match(OK_VARIABLE_PATTERN);
+  if (listing === null || ok === null) return null;
+  return { source: source.text, provider: listing.provider, variable: ok[1] };
+}
+
+function providerCheckIndex(lines, provider, variable) {
+  return lines.findIndex((line) => {
+    const check = providerCheck(line);
+    return (
+      check !== null &&
+      check.provider === provider &&
+      (variable === undefined || check.variable === variable)
+    );
+  });
+}
+
+// The last assignment before the grep wins, so a later line that fills the variable
+// from another command invalidates the check even if an earlier line used the listing.
+function lastAssignedValue(lines, beforeIndex, name) {
+  let value = null;
+
+  for (const line of lines.slice(0, beforeIndex)) {
+    for (const segment of shellSegments(line)) {
+      const assignment = segment.text.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+      if (assignment !== null && assignment[1] === name) value = assignment[2].trim();
+    }
+  }
+
+  return value;
+}
+
+// A provider check is only meaningful against the standalone listing. The matching grep
+// can pipe that listing in directly, or pipe a variable whose last assignment came from
+// `opencode2 models --standalone`. Returns null when it does, or the reason it does not,
+// naming the variable that has to hold the listing.
+function standaloneListingProblem(lines, grepIndex) {
+  const check = providerCheck(lines[grepIndex]);
+  if (check === null) {
     return 'the grep must filter output piped from "opencode2 models --standalone"';
   }
 
-  const name = variable[1];
-  const assignment = `${name}=$(opencode2 models --standalone`;
-  const assignedFromStandalone = lines.slice(0, grepIndex).some((earlier) => {
-    const at = earlier.indexOf(assignment);
-    return at !== -1 && (at === 0 || /\s/.test(earlier[at - 1]));
-  });
-  return assignedFromStandalone
+  const source = listingSource(check.source);
+  if (source === null) {
+    return 'the grep must filter output piped from "opencode2 models --standalone"';
+  }
+  if (source.direct) return null;
+
+  const value = lastAssignedValue(lines, grepIndex, source.name);
+  return value !== null && /^\$\(\s*opencode2\s+models\s+--standalone(?:\s|\))/.test(value)
     ? null
-    : `"$${name}" must come from "opencode2 models --standalone" earlier in the block`;
+    : `"$${source.name}" must come from "opencode2 models --standalone" earlier in the block`;
 }
 
 // Every document the skill tree ships, minus the historical and installed trees.
@@ -589,9 +805,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   // The variable gates the default model, so a check on any other provider would report
   // the default present when only that provider is configured. LLM Gateway is the only
   // MiMo route and the other provider OpenCode 2 lists, so its own variable gates MiMo.
-  const goIndex = standalone.findIndex((line) =>
-    /grep\s+(['"])\^opencode-go\/\1.*&&\s*OPENCODE_GO_OK=1\b/.test(line),
-  );
+  const goIndex = providerCheckIndex(standalone, 'opencode-go', 'OPENCODE_GO_OK');
   assert.notEqual(
     goIndex,
     -1,
@@ -604,9 +818,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
     `the OpenCode 2 pre-flight block must set OPENCODE_GO_OK from the standalone "opencode2 models --standalone" listing filtered for the anchored ^opencode-go/ prefix; ${goProblem}:\n${standalone[goIndex]}`,
   );
 
-  const llmIndex = standalone.findIndex((line) =>
-    /grep\s+(['"])\^llmgateway\/\1.*&&\s*LLMGATEWAY_OK=1\b/.test(line),
-  );
+  const llmIndex = providerCheckIndex(standalone, 'llmgateway', 'LLMGATEWAY_OK');
   assert.notEqual(
     llmIndex,
     -1,
@@ -655,6 +867,18 @@ test('the shell comment stripper is quote-aware', () => {
     ['url=http://h/#frag'],
     'a # inside a word is not a comment',
   );
+
+  const substitution = 'V2=$(opencode2 models --standalone)#x; printf \'%s\\n\' "$V2" | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1';
+  assert.deepEqual(
+    stripped(substitution),
+    [substitution],
+    'a # after a ) that closes a $(...) belongs to the word, so the grep stays active',
+  );
+  assert.deepEqual(
+    stripped('(echo hi)# comment'),
+    ['(echo hi)'],
+    'a # after a plain subshell close still starts a comment',
+  );
 });
 
 test('a prefix grep that reads another listing does not count', () => {
@@ -676,6 +900,36 @@ test('a prefix grep that reads another listing does not count', () => {
     standaloneListingProblem(fromProviders, 1),
     /"\$OTHER" must come from "opencode2 models --standalone"/,
     'a grep over another listing must name the variable that has to hold the standalone listing',
+  );
+
+  const direct = [
+    "opencode2 models --standalone 2>/dev/null | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.equal(
+    standaloneListingProblem(direct, 0),
+    null,
+    'a grep piped directly from the standalone listing must count',
+  );
+
+  const quotedEcho = [
+    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    'echo "printf x | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1"',
+  ];
+  assert.notEqual(
+    standaloneListingProblem(quotedEcho, 1),
+    null,
+    'a provider check quoted inside an echo argument must not count',
+  );
+
+  const reassigned = [
+    'V2_MODELS=$(opencode2 models --standalone 2>/dev/null)',
+    'V2_MODELS=$(opencode providers list)',
+    'printf \'%s\\n\' "$V2_MODELS" | grep \'^llmgateway/\' >/dev/null && LLMGATEWAY_OK=1',
+  ];
+  assert.match(
+    standaloneListingProblem(reassigned, 2),
+    /"\$V2_MODELS" must come from "opencode2 models --standalone"/,
+    'a later reassignment from another listing must fail and name the variable',
   );
 });
 
