@@ -31,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the cite-drift failure (`.github/workflows/sk-doc-script-tests.yml`) Done: run 39424650739 attempt 1 failed `test-cite-drift-scan.mjs` with `# fail 1` and no subtest named; attempt 2 passed at the same commit.
+- [x] T002 Record baselines (this folder) Done: worktree-naming 157, battery unit 50, pi-cache-optimizer 118, pi-fast-mode 81; both extensions' `typecheck` and `check:pack` exit 0 locally.
+- [x] T003 List workflows missing from the README tables (`.github/workflows/README.md`) Done: three missing from the contents table and seven from the push versus pull-request table, out of 32.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +41,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 [P] Discover Pi extensions and add type and pack steps (`.github/workflows/pi-extension-tests.yml`) Done: a `discover` job feeds the matrix; each leg runs `npm run --if-present typecheck` and `npm run --if-present check:pack` after `npm test`.
+- [x] T005 [P] List every workflow in the README (`.github/workflows/README.md`) Done: rows for `dependabot-auto-merge.yml`, `message-contract.yml` and `opencode-dual-version.yml`, the Pi row rewritten, and seven workflows added to the push versus pull-request table.
+- [x] T006 [P] Fingerprint before the build (`.skilled/skills/sk-git/scripts/worktree-naming.sh`) Done: `provision_worktree` keeps the fingerprint taken before the build; `_wn_record_build` writes it after a successful build.
+- [x] T007 [P] Test a build that edits its own source (`.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`) Done: five expectations; 157 to 162.
+- [x] T008 [P] Run the battery through a symlinked nested root (`.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`) Done: one test; 50 to 51.
+- [x] T009 Pin the TAP reporter (`.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh`) Done: `node --test-reporter=tap` for the listed node tests.
+- [x] T010 Record the cite-drift evidence (`scratch/cite-drift-evidence.txt`) Done: 170 local runs and 58 CI executions, each suspected cause with the reason it is not supported.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +55,13 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T011 Run the suites Done: worktree-naming PASS=162 FAIL=0, battery 51 of 51, pi-cache-optimizer 118 of 118, pi-fast-mode 81 of 81, sk-doc runner four node tests PASS.
+- [x] T012 Mutate each change Done: the old stamp order fails 2 expectations; dropping `realpathSync` in ancestor detection fails 2 battery tests; a failing node:test fixture prints 0 `not ok` lines on Node 26 without the pin and 1 with it.
+- [x] T013 Dry-run discovery Done: the repository lists two extensions; a fixture with a third extension and a `lib` folder lists three; an empty folder exits 1 with `::error::`.
+- [x] T014 Provision the real worktree twice Done: with stamps moved aside five outputs rebuild, the next provision builds nothing, and the new stamps equal the old ones.
+- [x] T015 Run actionlint and the gate-inputs check Done: both exit 0; gate inputs `RESULT: PASSED`.
+- [x] T016 Check the README tables Done: all 32 workflows appear in the contents table and exactly once in the push versus pull-request table; `validate_document.py` 0 issues.
+- [ ] T017 Validate the packet strict and confirm the CI handoff (`.github/workflows/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,8 +70,8 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +84,3 @@ contextType: "general"
 <!-- /ANCHOR:cross-refs -->
 
 ---
-
-
-

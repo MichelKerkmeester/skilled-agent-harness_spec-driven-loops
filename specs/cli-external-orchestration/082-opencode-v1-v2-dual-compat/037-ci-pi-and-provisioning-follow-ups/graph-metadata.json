@@ -41,13 +41,22 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/cite-drift-evidence.txt",
       ".github/workflows/pi-extension-tests.yml",
       ".github/workflows/README.md",
       ".skilled/skills/sk-git/scripts/worktree-naming.sh",
       ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
       ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      "scratch/mutation/stamp-old-order.txt",
+      "scratch/mutation/battery-no-realpath.txt",
+      "scratch/pi-discovery-dry-run.txt",
+      "scratch/provision-rebuild-then-idle.txt",
+      "scratch/symlinked-root-live-v2.txt",
+      "scratch/readme-table-check.txt",
       ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      ".github/workflows/sk-doc-script-tests.yml"
     ],
     "entities": [
       {
@@ -72,6 +81,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-evidence.txt",
+        "kind": "file",
+        "path": "scratch/cite-drift-evidence.txt",
         "source": "derived"
       },
       {
@@ -105,9 +120,57 @@
         "source": "derived"
       },
       {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "stamp-old-order.txt",
+        "kind": "file",
+        "path": "scratch/mutation/stamp-old-order.txt",
+        "source": "derived"
+      },
+      {
+        "name": "battery-no-realpath.txt",
+        "kind": "file",
+        "path": "scratch/mutation/battery-no-realpath.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-discovery-dry-run.txt",
+        "kind": "file",
+        "path": "scratch/pi-discovery-dry-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "provision-rebuild-then-idle.txt",
+        "kind": "file",
+        "path": "scratch/provision-rebuild-then-idle.txt",
+        "source": "derived"
+      },
+      {
+        "name": "symlinked-root-live-v2.txt",
+        "kind": "file",
+        "path": "scratch/symlinked-root-live-v2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "readme-table-check.txt",
+        "kind": "file",
+        "path": "scratch/readme-table-check.txt",
+        "source": "derived"
+      },
+      {
         "name": "test-cite-drift-scan.mjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
         "source": "derived"
       },
       {
@@ -139,65 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Run 39424650739 failed `test-cite-drift-scan.mjs` on its first attempt and passed on its second at the same commit, and the runner then printed only the log tail, so the failing subtest has no name",
     "created_at": "2026-10-20T21:36:36Z",
-    "last_save_at": "2026-10-20T21:38:31.040Z",
+    "last_save_at": "2026-10-20T22:04:10.683Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49fc38d0bbd4f6960765266b87ae2a6e9bffd3732b6d8bf835594d75309c6a3f",
+    "source_fingerprint": "sha256:c147bfec6863f93eb4d6c7d79855be7486f396af27b4739de4623a9fdeb4337a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5b0e7832a524e93fbe37a312ac2fdb3efe1ec08a7a6b6d3e459517802feac4e1",
-      "plan.md": "21dbb7a1f1c7edb56b3ced1a4748e0d553a6a52f58cbf820d03e6f06a239c9f1",
-      "tasks.md": "5cd28b9f8f5b375fe7b84f6ecf0bec7675e296ac2c275efa653b59d7afa5f9da",
-      "implementation-summary.md": "2261bacc94a4bf209291408e8d886c27e5ed371a33d87789a46b90aa68f4dc4c"
+      "plan.md": "8be028f827e579fc6c909e82b38c926a3df0a09979243d62b8b19c0a741d7636",
+      "tasks.md": "18a9a7df284fd16e5f6b9cfac523139a994f820ed2d5e377a590feac4ec961d6",
+      "implementation-summary.md": "60d08a7873cdffc9521fa56e22c74dc4d7a4e5c3991e0bf78a98877f24798d76"
     },
     "last_active_at": null
   }
