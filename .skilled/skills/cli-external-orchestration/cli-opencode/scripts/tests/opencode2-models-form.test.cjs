@@ -261,8 +261,9 @@ function unprefixedListingNotes(markdown) {
   return offenders;
 }
 
-// A trailing backslash continues the same shell command on the next physical line, so
-// the scan joins those lines into one command and carries the first line's number,
+// A trailing backslash continues the same shell command on the next physical line, and
+// bash removes the backslash-newline pair without inserting anything, so two words split
+// across it join into one. The scan joins those lines and carries the first line's number,
 // which is where a reader has to go to fix the offender.
 function joinContinuations(lines) {
   const joined = [];
@@ -272,7 +273,7 @@ function joinContinuations(lines) {
     let text = lines[index];
     while (/\\\s*$/.test(text) && index + 1 < lines.length) {
       index += 1;
-      text = `${text.replace(/\\\s*$/, ' ')}${lines[index]}`;
+      text = `${text.replace(/\\\s*$/, '')}${lines[index]}`;
     }
     joined.push({ text, lineNumber });
   }
@@ -340,6 +341,12 @@ function activeShellLines(lines) {
       return line;
     })
     .filter((line) => line.trim() !== '');
+}
+
+// Continuations are joined before comments are stripped, so a continued line is read as
+// the single shell line it is instead of a physical line that starts with `#`.
+function activeBlockLines(block) {
+  return activeShellLines(joinContinuations(block).map((entry) => entry.text));
 }
 
 // Top-level shell segments split only where `|`, `||`, `&&` or `;` is an operator, so
@@ -541,6 +548,18 @@ function lastAssignedValue(lines, beforeIndex, name) {
   return value;
 }
 
+// The variable has to hold the listing and nothing else, so the value is one command
+// substitution of the standalone listing with only redirects inside, optionally quoted.
+// A second command or pipeline in the substitution changes what the grep reads.
+const STANDALONE_LISTING_VALUE_PATTERN =
+  /^\$\(\s*opencode2\s+models\s+--standalone(?:\s+\d*(?:>>?|<)\s*\S+)*\s*\)$/;
+const QUOTED_VALUE_PATTERN = /^"([^"]*)"$/;
+
+function holdsStandaloneListing(value) {
+  const quoted = value.match(QUOTED_VALUE_PATTERN);
+  return STANDALONE_LISTING_VALUE_PATTERN.test(quoted === null ? value : quoted[1]);
+}
+
 // A provider check is only meaningful against the standalone listing. The matching grep
 // can pipe that listing in directly, or pipe a variable whose last assignment came from
 // `opencode2 models --standalone`. Returns null when it does, or the reason it does not,
@@ -558,7 +577,7 @@ function standaloneListingProblem(lines, grepIndex) {
   if (source.direct) return null;
 
   const value = lastAssignedValue(lines, grepIndex, source.name);
-  return value !== null && /^\$\(\s*opencode2\s+models\s+--standalone(?:\s|\))/.test(value)
+  return value !== null && holdsStandaloneListing(value)
     ? null
     : `"$${source.name}" must come from "opencode2 models --standalone" earlier in the block`;
 }
@@ -795,7 +814,7 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   }
 
   const standalone = blocks
-    .map(activeShellLines)
+    .map(activeBlockLines)
     .find((fenced) => fenced.some((line) => /opencode2 models --standalone\b/.test(line)));
   assert.ok(
     standalone !== undefined,
@@ -949,6 +968,71 @@ test('a prefix grep that reads another listing does not count', () => {
     standaloneListingProblem(reassigned, 2),
     /"\$V2_MODELS" must come from "opencode2 models --standalone"/,
     'a later reassignment from another listing must fail and name the variable',
+  );
+
+  const fakeListing = [
+    "V2=$(opencode2 models --standalone 2>/dev/null; printf 'opencode-go/fake\\n')",
+    "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.match(
+    standaloneListingProblem(fakeListing, 1),
+    /"\$V2" must come from "opencode2 models --standalone"/,
+    'a listing value carrying a second command must fail and name the variable',
+  );
+
+  const quotedListing = [
+    'V2="$(opencode2 models --standalone 2>/dev/null)"',
+    "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  assert.equal(
+    standaloneListingProblem(quotedListing, 1),
+    null,
+    'a quoted command substitution of the standalone listing must count',
+  );
+});
+
+test('a backslash-newline pair joins two words with nothing in between', () => {
+  const continued = [
+    'V2=$(opencode2 models --standalone 2>/dev/null)',
+    'echo x\\',
+    "#y; printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  const active = activeBlockLines(continued);
+
+  assert.deepEqual(
+    active,
+    [
+      'V2=$(opencode2 models --standalone 2>/dev/null)',
+      "echo x#y; printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+    ],
+    'a `#` joined onto the previous word is not a comment, so its line stays active',
+  );
+  assert.ok(
+    active.some((line) => line.includes("grep '^llmgateway/'")),
+    'the listing check after the joined word must remain an active line',
+  );
+});
+
+test('a continued assignment is stripped after its lines are joined', () => {
+  const continued = [
+    'V2=$(opencode2 models --standalone 2>/dev/null) \\',
+    '#suffix',
+    "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+  ];
+  const active = activeBlockLines(continued);
+
+  assert.deepEqual(
+    active,
+    [
+      'V2=$(opencode2 models --standalone 2>/dev/null)',
+      "printf '%s\\n' \"$V2\" | grep '^llmgateway/' >/dev/null && LLMGATEWAY_OK=1",
+    ],
+    'a comment on the continued line must not be read as the start of a physical line',
+  );
+  assert.equal(
+    standaloneListingProblem(active, 1),
+    null,
+    'the continued assignment must count as the standalone listing check',
   );
 });
 
