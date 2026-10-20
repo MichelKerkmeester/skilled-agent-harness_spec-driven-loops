@@ -1,0 +1,28 @@
+✔ the roster names one opencode-go default (2.155ms)
+✔ SKILL.md's default invocation names the roster default (2.923417ms)
+✔ no current doc names the retired opencode-go id or its bare slug (79.512042ms)
+✔ the setup helper defines classify_version (0.381167ms)
+✔ classify_version reads every shared corpus entry (83.108ms)
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (1.416584ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.531042ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.193834ms)
+✔ a command continued with a backslash is read as one command (0.074167ms)
+✔ a continuation between the binary and models is still one command (0.056208ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (257.238209ms)
+✔ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (68.048833ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.94125ms)
+✔ the shell comment stripper is quote-aware (0.133625ms)
+✔ a prefix grep that reads another listing does not count (0.283334ms)
+✔ unquotedListingCommands flags prose forms and accepts quoted or fenced ones (0.240833ms)
+✔ unprefixedListingNotes flags a note that omits what to look for (0.318458ms)
+✔ no prose line carries an unquoted listing command (47.420542ms)
+✔ a note that sends a reader to the standalone listing names the prefix (60.520834ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.443084
+exit=0

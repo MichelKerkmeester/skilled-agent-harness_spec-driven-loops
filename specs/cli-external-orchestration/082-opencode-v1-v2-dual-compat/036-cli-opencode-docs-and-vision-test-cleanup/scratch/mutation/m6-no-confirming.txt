@@ -1,0 +1,2 @@
+== m6-no-confirming
+ℹ fail 1

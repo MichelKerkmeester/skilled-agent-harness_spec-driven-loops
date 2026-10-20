@@ -1,0 +1,20 @@
+speckit-completion block 3:
+=== Level-2 COMPLETE ===
+  "level": 2,
+=== Level-2 EVIDENCE_MISSING ===
+  "level": 1,
+    "status": "P0_INCOMPLETE",
+    "passed": false,
+=== Level-3 (decision-record present) ===
+  "level": 3,
+    "status": "EVIDENCE_MISSING",
+    "passed": false,
+=== Level-3 with strict:true ===
+  "level": 3,
+    "status": "EVIDENCE_MISSING",
+    "passed": false,
+exit=
+speckit-completion block 6:
+hooks keys: []
+hooks JSON: {}
+exit=0

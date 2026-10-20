@@ -1,0 +1,6 @@
+{
+  "system": [
+    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/.skilled/plugins/tests/.tmp-manual-scenario-oc-b8ovdz/edited.ts: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/.skilled/plugins/tests/.tmp-manual-scenario-oc-b8ovdz/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
+  ]
+}
+exit=0

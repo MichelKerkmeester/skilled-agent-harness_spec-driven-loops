@@ -1,0 +1,16 @@
+--- session.created event (real worktree-guard.sh + check-git-hooks.sh) ---
+--- experimental.chat.system.transform (injection preview) ---
+{
+  "system": [
+    "[session-cleanup] Startup safety warnings:\n[worktree-guard] This top-level session is running on the shared 'sandbox-shared-checkout' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .skilled/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)\n[live-sync] live-sync active (commits auto-publish, checkout auto-follows); disable with SYSTEM_LIVE_SYNC_DISABLED=1\n[session-cleanup] orphan daemon sweep skipped: kill-switch-disabled"
+  ]
+}
+--- second transform call for same session (must be empty: injected once) ---
+{
+  "system": []
+}
+--- session.deleted event (clears in-memory state) ---
+--- dispose() (real session-cleanup.sh, forced no-session-pid safe path) ---
+--- second dispose() call (must be idempotent no-op) ---
+DONE
+exit=0

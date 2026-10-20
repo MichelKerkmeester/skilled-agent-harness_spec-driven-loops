@@ -1,0 +1,2 @@
+== m4-no-prefix-scan
+ℹ fail 1

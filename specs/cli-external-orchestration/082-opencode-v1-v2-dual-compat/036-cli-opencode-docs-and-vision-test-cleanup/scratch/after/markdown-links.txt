@@ -1,0 +1,3 @@
+check-markdown-links: 7784 files, 14193 links checked, 0 broken
+OK — 0 broken markdown links.
+exit=0

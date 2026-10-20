@@ -41,12 +41,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Quote-aware comment stripping and the listing-source check (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`)
-- [ ] T005 Prose guard and prefix-note guard (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`)
-- [ ] T006 Name the prefix in the listing notes (`cli-opencode/**/*.md`, `cli-devin/references/providers-and-models.md`)
-- [ ] T007 Kill-switch tests create no directory (`sk-vision/vision-runtime/tests/plugin.test.ts`)
-- [ ] T008 Playbook snippets call `default.server(...)` (seven playbooks)
-- [ ] T009 Register this phase in the parent (`../spec.md`)
+- [x] T004 Quote-aware comment stripping and the listing-source check (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`) Done: `activeShellLines` walks quote state; `standaloneListingProblem` requires each prefix grep to read the standalone listing; two unit tests.
+- [x] T005 Prose guard and prefix-note guard (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`) Done: `unquotedListingCommands` and `unprefixedListingNotes`, each with a doc scan and a unit test; the prefix guard reads its exemption words from prose only.
+- [x] T006 Name the prefix in the listing notes (`cli-opencode/**/*.md`, `cli-devin/references/providers-and-models.md`) Done: 43 notes in 28 files.
+- [x] T007 Kill-switch tests create no directory (`sk-vision/vision-runtime/tests/plugin.test.ts`) Done: the switch-file path sits under a parent that is never created.
+- [x] T008 Playbook snippets call `default.server(...)` (seven playbooks) Done: ten calls; CO-038 step 2 also copies `hard-rules.json` and the source-root sentinel.
+- [x] T009 Register this phase in the parent (`../spec.md`) Done: phase map row, handoff row and child id in `../graph-metadata.json`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,10 +54,10 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Run the cli-opencode script tests and each guard's mutant
-- [ ] T011 Run `bun test tests` and count the temp directories it adds
-- [ ] T012 Run each changed playbook snippet
-- [ ] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests
+- [x] T010 Run the cli-opencode script tests and each guard's mutant Done: 19/19; six mutants each fail 1 test.
+- [x] T011 Run `bun test tests` and count the temp directories it adds Done: 80/80; no `sk-vision-flags-*` entry added.
+- [x] T012 Run each changed playbook snippet Done: all run from the worktree root with the expected signal (`scratch/after/`).
+- [ ] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests Partial: validator and link integrity pass; sk-doc script tests running.
 - [ ] T014 Luna review, read-only
 - [ ] T015 Validate 082 strict and recursive
 - [ ] T016 Push to main and confirm CI

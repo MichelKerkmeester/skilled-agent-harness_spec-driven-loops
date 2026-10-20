@@ -1,0 +1,2 @@
+== m5-exempt-on-whole-clause
+ℹ fail 1

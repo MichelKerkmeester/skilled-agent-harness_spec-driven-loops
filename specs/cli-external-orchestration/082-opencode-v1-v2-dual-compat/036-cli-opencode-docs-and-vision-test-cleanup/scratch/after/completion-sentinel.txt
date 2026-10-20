@@ -1,0 +1,11 @@
+
+--- dispatching session.idle through the OpenCode adapter ---
+client.session.messages() called with {"path":{"id":"sess-live-adapter-test"},"query":{"limit":20}}
+
+--- advisory log contents ---
+2026-10-20T21:39:57.896Z [completion-evidence-sentinel] claimed done but no implementation-summary.md recorded in specs/999-adapter-packet
+
+--- dispatching the SAME session.idle event again (expect dedup: no new log line) ---
+client.session.messages() called with {"path":{"id":"sess-live-adapter-test"},"query":{"limit":20}}
+log line count first vs second pass: 1 vs 1
+exit=0

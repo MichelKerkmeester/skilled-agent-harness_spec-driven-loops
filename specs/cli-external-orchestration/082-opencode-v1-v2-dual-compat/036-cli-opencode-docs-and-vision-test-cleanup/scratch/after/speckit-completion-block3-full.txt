@@ -1,0 +1,225 @@
+=== Level-2 COMPLETE ===
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+  "level": 2,
+  "filesPresent": {
+    "spec": true,
+    "plan": true,
+    "tasks": true,
+    "acceptanceCriteria": true,
+    "decisionRecord": false,
+    "implementationSummary": true
+  },
+  "checklist": {
+    "error": "verification section not found",
+    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser"
+  },
+  "placeholders": {
+    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/024-metadata-regeneration-and-shared-parser",
+    "files_analyzed": 3,
+    "overall_completion": 100,
+    "total_placeholders": 0,
+    "total_lines": 173,
+    "files": {},
+    "quality": {
+      "enabled": false
+    }
+  },
+  "generatedAt": "2026-10-20T21:38:45.755Z"
+}
+=== Level-2 EVIDENCE_MISSING ===
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+  "level": 1,
+  "filesPresent": {
+    "spec": true,
+    "plan": true,
+    "tasks": true,
+    "acceptanceCriteria": false,
+    "decisionRecord": false,
+    "implementationSummary": true
+  },
+  "checklist": {
+    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+    "status": "P0_INCOMPLETE",
+    "passed": false,
+    "strict": false,
+    "summary": {
+      "total": 15,
+      "completed": 14,
+      "percentage": 93
+    },
+    "priorities": {
+      "p0": {
+        "total": 8,
+        "completed": 7
+      },
+      "p1": {
+        "total": 7,
+        "completed": 7
+      },
+      "p2": {
+        "total": 0,
+        "completed": 0
+      },
+      "untagged": {
+        "total": 0,
+        "completed": 0
+      }
+    },
+    "qualityGates": {
+      "priorityContextMissing": 0,
+      "p0MissingEvidence": 7,
+      "p1MissingEvidence": 7
+    },
+    "acceptance": {
+      "present": false,
+      "total": 0,
+      "unmet": 0,
+      "unbackedWaivers": 0
+    }
+  },
+  "placeholders": {
+    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/006-derived-metadata-repair-tool",
+    "files_analyzed": 3,
+    "overall_completion": 100,
+    "total_placeholders": 0,
+    "total_lines": 384,
+    "files": {},
+    "quality": {
+      "enabled": false
+    }
+  },
+  "generatedAt": "2026-10-20T21:38:45.968Z"
+}
+=== Level-3 (decision-record present) ===
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+  "level": 3,
+  "filesPresent": {
+    "spec": true,
+    "plan": true,
+    "tasks": true,
+    "acceptanceCriteria": false,
+    "decisionRecord": true,
+    "implementationSummary": true
+  },
+  "checklist": {
+    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "status": "EVIDENCE_MISSING",
+    "passed": false,
+    "strict": false,
+    "summary": {
+      "total": 47,
+      "completed": 47,
+      "percentage": 100
+    },
+    "priorities": {
+      "p0": {
+        "total": 15,
+        "completed": 15
+      },
+      "p1": {
+        "total": 23,
+        "completed": 23
+      },
+      "p2": {
+        "total": 9,
+        "completed": 9
+      },
+      "untagged": {
+        "total": 0,
+        "completed": 0
+      }
+    },
+    "qualityGates": {
+      "priorityContextMissing": 0,
+      "p0MissingEvidence": 15,
+      "p1MissingEvidence": 23
+    },
+    "acceptance": {
+      "present": false,
+      "total": 0,
+      "unmet": 0,
+      "unbackedWaivers": 0
+    }
+  },
+  "placeholders": {
+    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "files_analyzed": 3,
+    "overall_completion": 100,
+    "total_placeholders": 0,
+    "total_lines": 483,
+    "files": {},
+    "quality": {
+      "enabled": false
+    }
+  },
+  "generatedAt": "2026-10-20T21:38:46.415Z"
+}
+=== Level-3 with strict:true ===
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+  "level": 3,
+  "filesPresent": {
+    "spec": true,
+    "plan": true,
+    "tasks": true,
+    "acceptanceCriteria": false,
+    "decisionRecord": true,
+    "implementationSummary": true
+  },
+  "checklist": {
+    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "status": "EVIDENCE_MISSING",
+    "passed": false,
+    "strict": true,
+    "summary": {
+      "total": 47,
+      "completed": 47,
+      "percentage": 100
+    },
+    "priorities": {
+      "p0": {
+        "total": 15,
+        "completed": 15
+      },
+      "p1": {
+        "total": 23,
+        "completed": 23
+      },
+      "p2": {
+        "total": 9,
+        "completed": 9
+      },
+      "untagged": {
+        "total": 0,
+        "completed": 0
+      }
+    },
+    "qualityGates": {
+      "priorityContextMissing": 0,
+      "p0MissingEvidence": 15,
+      "p1MissingEvidence": 23
+    },
+    "acceptance": {
+      "present": false,
+      "total": 0,
+      "unmet": 0,
+      "unbackedWaivers": 0
+    }
+  },
+  "placeholders": {
+    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/178-cli-opencode-docs-and-vision-test-cleanup/specs/system-speckit/033-system-speckit-v4/005-skills-runtime-state-consolidation",
+    "files_analyzed": 3,
+    "overall_completion": 100,
+    "total_placeholders": 0,
+    "total_lines": 483,
+    "files": {},
+    "quality": {
+      "enabled": false
+    }
+  },
+  "generatedAt": "2026-10-20T21:38:46.935Z"
+}
+exit=0

@@ -40,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/after/speckit-completion.txt",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
       ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
       ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
@@ -68,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-completion.txt",
+        "kind": "file",
+        "path": "scratch/after/speckit-completion.txt",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 027 left three gaps",
     "created_at": "2026-10-20T21:30:26Z",
-    "last_save_at": "2026-10-20T21:33:24.162Z",
+    "last_save_at": "2026-10-20T21:58:52.584Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:59954753faf906674efa6ba3e639e03c024dde8a9d1beae76918089e8ee5bc8f",
+    "source_fingerprint": "sha256:a278201b17d4d04a30b568a47956f4178ce884afbb59e753ee1f2d984d8163d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "018eddc716d3819a99d93acc490f1fa17e1028d1626563a0000d96fe1c342a5f",
       "plan.md": "1c1ed96ae0aac596c46ce7cf346f556b7205069c893175eabdb177476fa0c770",
-      "tasks.md": "595720b23e85e3b9337e0b270fd2082a3889b0ff72bfb9e4f606a2f82b663b4f",
-      "implementation-summary.md": "e96cf32a2e9a7728c92c9f28c554469cb6da5cb42efdf2f0e6b9999847810fe9"
+      "tasks.md": "f28d33974ea8774d2e9ac54c504da07604ded555e9a678ea82938af5bf39b766",
+      "implementation-summary.md": "af0758244907d64677ad7ca9b33e98b967b277a247b88ac2c7e9658cf1e8c394"
     },
     "last_active_at": null
   }

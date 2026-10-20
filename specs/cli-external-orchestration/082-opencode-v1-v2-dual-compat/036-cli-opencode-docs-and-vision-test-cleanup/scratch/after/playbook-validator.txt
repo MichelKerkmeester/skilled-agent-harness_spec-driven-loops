@@ -1,0 +1,150 @@
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=cli-classifier tier=FAIL_CLOSED scenarios=7 categories=2 operator=4 routing_gold_excluded=3 violations=0 warnings=0
+PASS package=cli-classifier/cli-jev tier=FAIL_CLOSED scenarios=22 categories=5 operator=22 routing_gold_excluded=0 violations=0 warnings=2
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (22 scenarios, 5 categories); derived census is 22 scenarios across 5 categories
+  WARN PROMPT_UNSYNCED cli-invocation/one-judgment-per-type-returns-typed-answer.md:59 cli-invocation/one-judgment-per-type-returns-typed-answer.md:29 scenario contract prompt differs from the execution table's Exact Prompt
+SKIP package=cli-external-orchestration tier=FAIL_CLOSED scenarios=24 categories=4 operator=0 routing_gold_excluded=24 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+PASS package=cli-external-orchestration/cli-claude-code tier=FAIL_CLOSED scenarios=52 categories=12 operator=52 routing_gold_excluded=0 violations=0 warnings=2
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (52 scenarios, 12 categories); derived census is 52 scenarios across 12 categories
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:618 cost-and-background/max-budget-usd-cap.md:29 scenario contract prompt differs from the root summary prompt
+PASS package=cli-external-orchestration/cli-codex tier=FAIL_CLOSED scenarios=42 categories=11 operator=42 routing_gold_excluded=0 violations=0 warnings=4
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (42 scenarios, 11 categories); derived census is 42 scenarios across 11 categories
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:235 cli-invocation/codex-exec-review.md:29 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:715 codex-cloud/codex-cloud-dispatch.md:29 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:295 sandbox-modes/workspace-write-sandbox.md:29 scenario contract prompt differs from the root summary prompt
+PASS package=cli-external-orchestration/cli-cursor tier=FAIL_CLOSED scenarios=40 categories=13 operator=40 routing_gold_excluded=0 violations=0 warnings=5
+  WARN BACKTICK_PATH_UNRESOLVED manual-testing-playbook.md:361 backticked path resolves from no scenario, playbook, skill, hub or repository base: .cursor/worktrees.json
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (40 scenarios, 13 categories); derived census is 40 scenarios across 13 categories
+  WARN PROMPT_UNSYNCED agents-skills-rules/command-roster-invocation.md:80 agents-skills-rules/command-roster-invocation.md:25 scenario contract prompt differs from the execution table's Exact Prompt
+  WARN PROMPT_UNSYNCED mcp-integration/mcp-list-list-tools.md:50 mcp-integration/mcp-list-list-tools.md:29 scenario contract prompt differs from the execution table's Exact Prompt
+  WARN BACKTICK_PATH_UNRESOLVED worktree-isolation/worktree-dry-run-inspection.md:15 backticked path resolves from no scenario, playbook, skill, hub or repository base: .cursor/worktrees.json
+PASS package=cli-external-orchestration/cli-devin tier=FAIL_CLOSED scenarios=36 categories=12 operator=36 routing_gold_excluded=0 violations=0 warnings=2
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (36 scenarios, 12 categories); derived census is 36 scenarios across 12 categories
+  WARN PROMPT_UNSYNCED hooks/confirmed-events-smoke-matrix.md:55 hooks/confirmed-events-smoke-matrix.md:25 scenario contract prompt differs from the execution table's Exact Prompt
+PASS package=cli-external-orchestration/cli-hermes tier=FAIL_CLOSED scenarios=45 categories=11 operator=45 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (45 scenarios, 11 categories); derived census is 45 scenarios across 11 categories
+PASS package=cli-external-orchestration/cli-opencode tier=FAIL_CLOSED scenarios=72 categories=14 operator=72 routing_gold_excluded=0 violations=0 warnings=2
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (72 scenarios, 14 categories); derived census is 72 scenarios across 14 categories
+  WARN BACKTICK_PATH_UNRESOLVED plugin-utilization/system-completion-sentinel.md:35 backticked path resolves from no scenario, playbook, skill, hub or repository base: .skilled/skills/.state/completion-sentinel/advisory-dedup.json
+PASS package=cli-external-orchestration/cli-pi tier=FAIL_CLOSED scenarios=36 categories=11 operator=36 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (36 scenarios, 11 categories); derived census is 36 scenarios across 11 categories
+PASS package=cli-orca tier=FAIL_CLOSED scenarios=8 categories=4 operator=8 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (8 scenarios, 4 categories); derived census is 8 scenarios across 4 categories
+SKIP package=mcp-code-mode tier=FAIL_CLOSED scenarios=32 categories=9 operator=0 routing_gold_excluded=32 violations=0 warnings=2
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (32 scenarios, 9 categories); derived census is 32 scenarios across 9 categories
+SKIP package=mcp-tooling tier=FAIL_CLOSED scenarios=16 categories=1 operator=0 routing_gold_excluded=16 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+PASS package=mcp-tooling/mcp-aside-devtools tier=FAIL_CLOSED scenarios=29 categories=8 operator=29 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (29 scenarios, 8 categories); derived census is 29 scenarios across 8 categories
+PASS package=mcp-tooling/mcp-chrome-devtools tier=FAIL_CLOSED scenarios=30 categories=7 operator=30 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (22 scenarios, 6 categories); derived census is 30 scenarios across 7 categories
+  WARN CENSUS_MISMATCH manual-testing-playbook.md:28 hand-typed census disagrees with the walked tree
+PASS package=mcp-tooling/mcp-click-up tier=FAIL_CLOSED scenarios=42 categories=10 operator=42 routing_gold_excluded=0 violations=0 warnings=19
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:324 cupt-advanced-listing/cap-results.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:312 cupt-advanced-listing/exclude-tag.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:336 cupt-advanced-listing/verbose.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:225 cupt-lifecycle/config-show.md:27 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:165 cupt-lifecycle/install-version.md:27 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:189 cupt-lifecycle/session-auth.md:27 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:542 cupt-lifecycle/status-json.md:27 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:531 cupt-offline-and-cache/clear-cache.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:398 cupt-offline-and-cache/prefetch-offline.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:764 recovery-and-failure/empty-queue.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:786 recovery-and-failure/missing-auth.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:775 recovery-and-failure/status-error.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:473 task-operations/done-with-note.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:300 task-operations/list-today.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:386 task-operations/show-task.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:436 task-operations/statuses-dry-run.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:498 time-and-notes/note-and-notes.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:520 time-and-notes/time-add-manual.md:25 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:797 time-and-notes/time-start-stop.md:25 scenario contract prompt differs from the root summary prompt
+PASS package=mcp-tooling/mcp-figma tier=FAIL_CLOSED scenarios=17 categories=6 operator=17 routing_gold_excluded=0 violations=0 warnings=2
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (17 scenarios, 6 categories); derived census is 17 scenarios across 6 categories
+PASS package=mcp-tooling/mcp-mobbin tier=FAIL_CLOSED scenarios=18 categories=6 operator=18 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (9 scenarios, 5 categories); derived census is 18 scenarios across 6 categories
+  WARN CENSUS_MISMATCH manual-testing-playbook.md:32 hand-typed census disagrees with the walked tree
+PASS package=mcp-tooling/mcp-notion tier=FAIL_CLOSED scenarios=33 categories=8 operator=33 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=mcp-tooling/mcp-obsidian tier=FAIL_CLOSED scenarios=19 categories=6 operator=19 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (19 scenarios, 6 categories); derived census is 19 scenarios across 6 categories
+PASS package=mcp-tooling/mcp-refero tier=FAIL_CLOSED scenarios=17 categories=5 operator=17 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (9 scenarios, 4 categories); derived census is 17 scenarios across 5 categories
+  WARN CENSUS_MISMATCH manual-testing-playbook.md:31 hand-typed census disagrees with the walked tree
+PASS package=sk-code tier=FAIL_CLOSED scenarios=35 categories=12 operator=34 routing_gold_excluded=1 violations=0 warnings=0
+PASS package=sk-code/sk-code-obsidian tier=FAIL_CLOSED scenarios=27 categories=7 operator=27 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-code/sk-code-quality tier=FAIL_CLOSED scenarios=1 categories=1 operator=1 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-code/sk-code-review tier=FAIL_CLOSED scenarios=30 categories=8 operator=30 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (30 scenarios, 8 categories); derived census is 30 scenarios across 8 categories
+PASS package=sk-code/sk-code-skilled tier=FAIL_CLOSED scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-code/sk-code-webflow tier=FAIL_CLOSED scenarios=13 categories=4 operator=13 routing_gold_excluded=0 violations=0 warnings=0
+SKIP package=sk-design tier=FAIL_CLOSED scenarios=4 categories=3 operator=0 routing_gold_excluded=4 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+PASS package=sk-design/sk-design-chart tier=FAIL_CLOSED scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=9
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:264 corpus-integrity/a-chart-that-draws-nothing.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:300 corpus-integrity/catalog-resolves-both-ways.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:282 corpus-integrity/colour-comes-from-one-source.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:356 delivery-and-routing/a-delivery-on-a-dark-system.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:338 delivery-and-routing/form-choice-and-the-diagram-boundary.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:320 delivery-and-routing/opens-with-no-build-step.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:226 reading-the-chart/axis-ladder-fits-the-tallest-mark.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:208 reading-the-chart/headline-agrees-with-the-data.md:34 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:244 reading-the-chart/nothing-runs-past-the-drawing-edge.md:34 scenario contract prompt differs from the root summary prompt
+PASS package=sk-design/sk-design-diagram tier=FAIL_CLOSED scenarios=10 categories=4 operator=10 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-design/sk-design-fundamentals tier=FAIL_CLOSED scenarios=12 categories=4 operator=12 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-design/sk-design-md-generator tier=FAIL_CLOSED scenarios=18 categories=16 operator=18 routing_gold_excluded=0 violations=0 warnings=0
+SKIP package=sk-doc tier=FAIL_CLOSED scenarios=29 categories=8 operator=0 routing_gold_excluded=29 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+PASS package=sk-doc/sk-create-agent tier=FAIL_CLOSED scenarios=6 categories=3 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-benchmark tier=FAIL_CLOSED scenarios=3 categories=2 operator=3 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-changelog tier=FAIL_CLOSED scenarios=12 categories=5 operator=12 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-command tier=FAIL_CLOSED scenarios=6 categories=3 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-diff tier=FAIL_CLOSED scenarios=11 categories=3 operator=11 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (11 scenarios, 3 categories); derived census is 11 scenarios across 3 categories
+PASS package=sk-doc/sk-create-feature-catalog tier=FAIL_CLOSED scenarios=6 categories=3 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-frontmatter tier=FAIL_CLOSED scenarios=11 categories=3 operator=11 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-goal tier=FAIL_CLOSED scenarios=9 categories=1 operator=9 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-manual-testing-playbook tier=FAIL_CLOSED scenarios=6 categories=3 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-quality-control tier=FAIL_CLOSED scenarios=6 categories=2 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-readme tier=FAIL_CLOSED scenarios=4 categories=2 operator=4 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-repo-rule tier=FAIL_CLOSED scenarios=15 categories=4 operator=15 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-skill tier=FAIL_CLOSED scenarios=7 categories=2 operator=7 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-doc/sk-create-with-human-voice tier=FAIL_CLOSED scenarios=9 categories=3 operator=9 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-git tier=FAIL_CLOSED scenarios=46 categories=9 operator=46 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-prompt tier=FAIL_CLOSED scenarios=28 categories=7 operator=28 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (28 scenarios, 7 categories); derived census is 28 scenarios across 7 categories
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (28 scenarios); derived census is 28 scenarios across 7 categories
+PASS package=sk-vision tier=FAIL_CLOSED scenarios=25 categories=6 operator=25 routing_gold_excluded=0 violations=0 warnings=6
+  WARN PROMPT_UNSYNCED guaranteed-vision/classifier-and-env.md:38 guaranteed-vision/classifier-and-env.md:29 scenario contract prompt differs from the execution table's Exact Prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:456 host-adapters/devin-hook.md:29 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:424 host-adapters/opencode-plugin.md:29 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:440 host-adapters/pi-extension.md:29 scenario contract prompt differs from the root summary prompt
+  WARN PROMPT_UNSYNCED host-adapters/vision-blind-model.md:38 host-adapters/vision-blind-model.md:29 scenario contract prompt differs from the execution table's Exact Prompt
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:470 host-adapters/vision-cli.md:29 scenario contract prompt differs from the root summary prompt
+PASS package=system-deep-loop tier=FAIL_CLOSED scenarios=20 categories=7 operator=15 routing_gold_excluded=5 violations=0 warnings=0
+PASS package=system-deep-loop/deep-ai-council tier=FAIL_CLOSED scenarios=33 categories=9 operator=33 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN RESULT_OUTCOME_VOCABULARY_MISSING manual-testing-playbook.md root playbook is missing advisory outcome vocabulary: SKIP
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (33 scenarios, 9 categories); derived census is 33 scenarios across 9 categories
+PASS package=system-deep-loop/deep-research tier=FAIL_CLOSED scenarios=62 categories=9 operator=62 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (54 scenarios, 8 categories); derived census is 62 scenarios across 9 categories
+  WARN CENSUS_MISMATCH manual-testing-playbook.md:30 hand-typed census disagrees with the walked tree
+PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=55 categories=10 operator=55 routing_gold_excluded=0 violations=0 warnings=3
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (55 scenarios, 10 categories); derived census is 55 scenarios across 10 categories
+  WARN PROMPT_UNSYNCED manual-testing-playbook.md:331 iteration-execution-and-state-discipline/graph-events-review.md:32 scenario contract prompt differs from the root summary prompt
+PASS package=system-deep-loop/runtime tier=FAIL_CLOSED scenarios=55 categories=12 operator=55 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (55 scenarios, 12 categories); derived census is 55 scenarios across 12 categories
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=61 categories=10 operator=36 routing_gold_excluded=25 violations=0 warnings=0
+PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=102 categories=10 operator=88 routing_gold_excluded=14 violations=0 warnings=1
+  WARN PROMPT_UNSYNCED ux-hooks/comment-hygiene-checker-baseline.md:52 ux-hooks/comment-hygiene-checker-baseline.md:32 scenario contract prompt differs from the execution table's Exact Prompt
+exit=0
