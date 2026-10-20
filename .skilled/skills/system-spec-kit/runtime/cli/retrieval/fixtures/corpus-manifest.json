@@ -1,5 +1,5 @@
 {
-  "corpusHash": "164e7b79b3623babb2bf89bcfa14ba90afbe895378c03b309b4060a44789741e",
+  "corpusHash": "ffa5e095815cecd6dd50718c56cf7e4cc40b7a10ca59361882883e301d57bb0c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25339,
+  "includedPathCount": 25343,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8930,6 +8930,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
@@ -25370,7 +25374,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d58480d984fc43c60fe373dcb5fce1ce3e5b2a8c4e4504f8b017ff0660a57262",
+  "manifestHash": "c364902cfe06d389d471e8da134453cb90ea84c0562aba0224d0f17799e96352",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26426,6 +26430,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings/scratch",
       "reason": "excluded directory"
     },
     {
