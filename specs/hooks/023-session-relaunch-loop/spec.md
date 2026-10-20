@@ -116,7 +116,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 13 | 013-live-hop-and-notice-reason/ | The killer's notice names the timeout and an ignored template's reason, the nudge fires only inside `skilled-loop`, and a shell shim starts every interactive runtime under the loop, also in repositories that link `.skilled`. | complete |
 | 14 | 014-handover-docs-promotion/ | The root README introduces the in-session handover in plain words with a one-line setup section, the command library lists `/speckit:handoff`, and the other doc surfaces link the setup and keep the handoff note apart from `handover.md`. | complete |
 | 15 | 015-v4-0-0-13-changelog/ | The v4.0.0.13 global Skilled release entry, Sessions That Hand Themselves Over, leads with the in-session handover and also covers OpenCode 1 and 2 dual compatibility and the breaking `sk-code-skilled` rename. | complete |
-| 16 | 016-handover-trigger-review/ | The `/speckit:handoff` doc follows the sk-create-command template, and a ten-iteration deep review checks whether the automatic handover fires every time on Claude, Pi, OpenCode, Codex and Hermes, then fixes what it confirms and proves live hops again. | in progress |
+| 16 | 016-handover-trigger-review/ | The `/speckit:handoff` doc follows the sk-create-command template, and a ten-iteration deep review checks whether the automatic handover fires every time on Claude, Pi, OpenCode, Codex and Hermes, then fixes what it confirms and proves live hops again. | complete |
 
 ### Phase Transition Rules
 
