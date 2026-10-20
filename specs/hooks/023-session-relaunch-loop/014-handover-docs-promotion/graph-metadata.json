@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 013 made every interactive runtime launch hop to a fresh session in the same terminal, and live hops passed on Claude Code, Codex, Pi, OpenCode and Hermes",
     "created_at": "2026-10-20T11:45:42Z",
-    "last_save_at": "2026-10-20T12:00:01.596Z",
+    "last_save_at": "2026-10-20T16:38:28.504Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a700e49d82ff3779a088d2f1b04139a4b429d1e036a318fd20554f40fc79174",
+    "source_fingerprint": "sha256:69e0869c5ba87264ae108c8c14ee9d202d792a99d246178167c409008a277212",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "da97a4919a930b068d6e973c9486d43b051d1afabc382e5f1ae2b5202a0f14de",
+      "spec.md": "2c9474315533c28e2f27c6bf5223323f6e78dbc28cf44a0d3cc43cb43a4a3deb",
       "plan.md": "22493ba5e8ad5a11e7e125c89addd300f5241ac15c753af2822e142012bcde80",
       "tasks.md": "bdc937c3710bc08888886efffd81949e435d098525be19e2c5bd7eed36341660",
       "implementation-summary.md": "a86fe54242cb79add67b91011ee77c00cd3003b3c4519b4566e157a52617d83e"
