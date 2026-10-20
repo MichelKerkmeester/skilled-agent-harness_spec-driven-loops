@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f52dd78c79988331e67741537ed60fcfe63eb4020c340580545b7508c546e854",
+  "manifestHash": "73e726a4dff52dffe03d22783c64cba33e941159b9a743943046b2c8c036579b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72280,6 +72280,9 @@
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
     ],
+    "phase 35 v2 bridge plugin effects": [
+      "phase 35 v2 bridge plugin effects"
+    ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
     ],
@@ -108648,6 +108651,18 @@
     ],
     "v2 4 0 0 release notes": [
       "v2.4.0.0 release notes"
+    ],
+    "v2 bridge plugin effects": [
+      "v2 bridge plugin effects"
+    ],
+    "v2 bridge plugin effects implementation summary": [
+      "v2 bridge plugin effects implementation summary"
+    ],
+    "v2 bridge plugin effects plan": [
+      "v2 bridge plugin effects plan"
+    ],
+    "v2 bridge plugin effects tasks": [
+      "v2 bridge plugin effects tasks"
     ],
     "v3 0 0 0 release notes": [
       "v3.0.0.0 release notes"
