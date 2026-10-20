@@ -34,7 +34,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -179,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +195,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode docs disagree with the installed binaries",
     "created_at": "2026-10-20T08:40:05Z",
-    "last_save_at": "2026-10-20T10:02:55.557Z",
+    "last_save_at": "2026-10-20T10:25:00.509Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a2a791f1359470af0f3d38cdf82204417c4c24f7e90b9459810f7a516e410a84",
+    "source_fingerprint": "sha256:0037cea838e7eaa0bc65d95239ff569ed2cc79947de63e5e44ae132bc6bfdba4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "caf4ddec425baf0128101e1baf6d0bca353acd1e9c19d5e02be88ea902008dc5",
-      "plan.md": "217b182113d5013e9464bf27cbb8d57120f996e4df44311f83c3ec2db4cb366c",
-      "tasks.md": "cb5cc63aeed275886c038b461f0d8802129a76f044ae38b4f916856478129661",
-      "implementation-summary.md": "ce18a4b0182f2e6d31ef74b587a25c4fe3280f82f1bb232ee44c9ff65ac7e4cc"
+      "spec.md": "c98b7a12d93ee71f9051d0a8612dba83a36140d0ad7eb58016d4bca2aa28e2d8",
+      "plan.md": "567aef4fbeb6b1d6b7964eb340953fb7c91eed08cac8f4efb0e0b8429f8869fb",
+      "tasks.md": "b1726409107748c52f18bdbfc9299dab0271f9343a2975a296412bf897431352",
+      "implementation-summary.md": "e1954c7b0c22d39338e87cce151d9f97def0b4878add9a595f311ab8e4a668b7"
     },
     "last_active_at": null
   }

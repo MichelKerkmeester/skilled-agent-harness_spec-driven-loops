@@ -135,7 +135,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 22 | 022-worktree-provision-completeness/ | List every tracked package tree for worktree provisioning, guard the list, and report drift and missing manifests | complete |
 | 23 | 023-sk-vision-runtime-fixes/ | sk-vision runtime fixes from the post-merge research fix list, rows 4, 5, 13, 15, 20, 23, 24, 25 and 26 | Complete |
 | 24 | 024-plugin-inventory-guards/ | Read the v2 plugin list from the folder and guard unmapped hooks, unrouted event names and stale counts | Complete |
-| 25 | 025-cli-opencode-docs-and-listings/ | cli-opencode docs and command listings from the post-merge fix list, rows 9, 10, 11, 12 and 31: one default model id, one agent directory, --share as a deprecated no-op, refreshed flag tables and a command-listed battery leg | In Progress |
+| 25 | 025-cli-opencode-docs-and-listings/ | cli-opencode docs and command listings from the post-merge fix list, rows 9, 10, 11, 12 and 31: one default model id, one agent directory, --share as a deprecated no-op, refreshed flag tables and a command-listed battery leg | Complete |
 | 26 | 026-ci-and-test-runners/ | Run the orphaned suites where a failure blocks, the hooks vitest tree in its own job, and give SECURITY.md a document type | complete |
 
 ### Phase Transition Rules

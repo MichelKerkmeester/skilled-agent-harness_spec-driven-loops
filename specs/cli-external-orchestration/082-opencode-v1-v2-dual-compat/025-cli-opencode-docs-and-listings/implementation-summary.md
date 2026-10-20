@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings"
-    last_updated_at: "2026-10-20T10:02:55Z"
+    last_updated_at: "2026-10-20T10:25:00Z"
     last_updated_by: "generate-context"
-    recent_action: "Rows 9 10 11 12 31 fixed, Luna round 4 PASS, main merged"
-    next_safe_action: "Run the push to main, then prove the battery and the new tests on CI"
+    recent_action: "Battery and new tests passed on CI at main 1d1c8ba931, run 39405362083"
+    next_safe_action: "None; every row is closed and its checks pass on main"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
@@ -19,10 +19,10 @@ _memory:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md"
       - ".github/workflows/opencode-dual-version.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e1a7d8c756d76fb159b84e85503659423e74cda911af7aa3e56cfefd52b983ee"
       session_id: "scaffold-025-cli-opencode-docs-and-listings"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +42,7 @@ _memory:
 | **Spec Folder** | 025-cli-opencode-docs-and-listings |
 | **Completed** | 2026-10-20 |
 | **Level** | 1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -116,6 +116,7 @@ Each fact was probed before any doc changed. OpenCode 1.19.3 ran with a private 
 | Row 12 probe | The binary's option is hidden and deprecated, and a live run printed the discontinued line (`scratch/row12-v1-share-source.txt`, `scratch/row12-v1-share-probe.txt`) |
 | Unit-test step as CI runs it, after the main merge | 46 of 46 pass (`scratch/final/unit-step.txt`) |
 | Luna review, read-only | Rounds 1 to 3 FAIL, round 4 PASS with one P2, fixed (`tasks.md` T014) |
+| CI at main `1d1c8ba931` | OpenCode Dual-Version Battery 39405362083 passed all three jobs, unit tests 46 of 46 on each family and `command-listed` PASS on v1, v2 and the side-by-side job; every other workflow on the commit passed (`tasks.md` T016) |
 | Dispatch rule tests | 38 of 38 pass (`scratch/after/dispatch-rule-checks.txt`) |
 | Workflow lint | `check-gate-inputs.sh` RESULT: PASSED, `actionlint` exit 0 (`scratch/after/workflow-lint.txt`) |
 | Doc gates | Frontmatter coverage 0 violations, markdown links 0 broken, playbook fleet exit 0 with cli-opencode PASS (`scratch/after/doc-gates.txt`, `scratch/after/playbook-fleet.txt`) |
