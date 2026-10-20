@@ -137,28 +137,7 @@ async function sessionCleanupPlugin(input = {}, overrides = {}) {
   let disposed = false;
 
   function runScript(scriptPath, operation, args = [], env = process.env) {
-    let result;
-    try {
-      result = runSync('bash', [scriptPath, ...args], {
-        cwd: projectDir,
-        encoding: 'utf8',
-        env,
-        maxBuffer: MAX_CAPTURE_BYTES * 2,
-        stdio: 'pipe',
-        timeout: PROCESS_TIMEOUT_MS,
-      }) || {};
-    } catch (error) {
-      writeDiagnostic(`[session-cleanup] ${operation} launch failed: ${error?.message || error}`);
-      return {};
-    }
-
-    if (result.error || result.signal
-      || (typeof result.status === 'number' && result.status !== 0)) {
-      const reason = result.error?.message
-        || `status=${result.status ?? 'none'} signal=${result.signal ?? 'none'}`;
-      writeDiagnostic(`[session-cleanup] ${operation} failed: ${reason}`);
-    }
-    return result;
+    return runProcess('bash', [scriptPath, ...args], operation, env);
   }
 
   function runProcess(command, args, operation, env = process.env) {

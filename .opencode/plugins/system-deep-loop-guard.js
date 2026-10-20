@@ -22,13 +22,13 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { createRequire } from 'node:module';
+
 // The guard policy lives outside .skilled/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude hook consumes the
 // same core. A .cjs core is imported here as the ESM default export.
 import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
 import { dualPlugin } from './lib/v2-bridge.js';
-
-import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
@@ -41,7 +41,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
  * Create the system-deep-loop-guard OpenCode plugin hooks.
  *
  * Hard limits (by design, not oversight):
- * - Cannot create hard runtime identity; that remains host/FIX-5 territory.
+ * - Cannot create hard runtime identity; that remains the host's responsibility.
  * - Does not catch a schema-valid, route-matched artifact that internally
  *   does semantically wrong-mode work.
  * - Loop-repeat detection is session-scoped and per-target-agent; it cannot

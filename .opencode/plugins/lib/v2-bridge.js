@@ -3,7 +3,15 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { z } from 'zod';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const MAPPED_HOOKS = new Set([
   'event',
@@ -86,16 +94,20 @@ const EVENT_MAPPINGS = Object.freeze({
   ],
 });
 
-function isUserInboxItem(data) {
-  return data?.item?.type === 'user' && typeof data.item.payload?.text === 'string';
-}
-
 const DEDUPED_SESSION_EVENTS = new Set(['session.idle', 'session.compacted']);
 const SESSION_EVENT_RESET_TYPES = new Set([
   'session.execution.started',
   'session.compaction.started',
   'session.deleted',
 ]);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function isUserInboxItem(data) {
+  return data?.item?.type === 'user' && typeof data.item.payload?.text === 'string';
+}
 
 /**
  * Convert a v2 tool result to the output shape expected by v1 hooks.
@@ -274,6 +286,10 @@ function toV1ToolContext(context, directory) {
     },
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Build a plugin definition that exposes the original v1 server and a v2 setup.
@@ -543,5 +559,9 @@ export function dualPlugin(id, server) {
 
   return { id, server, setup };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS, TOOL_ALIASES };

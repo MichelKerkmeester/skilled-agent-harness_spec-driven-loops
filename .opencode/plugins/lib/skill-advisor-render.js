@@ -77,11 +77,12 @@ export function renderPluginFallbackDirective({ status, freshness } = {}, { setu
 // 4. COMPILED ROUTE SUMMARY
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Render the served compiled decision as one additive, human-legible
-// line. It reports the served authority and outcome (route/clarify/defer/reject),
-// never a new routing target; the compiled decision is byte-identical to legacy
-// on routing fields. Returns null when no compiled decision is served, so the
-// injected context stays byte-identical to the legacy brief.
+/**
+ * Filter a served compiled-route summary down to its string targets.
+ *
+ * @param {object} summary - Compiled-route summary holding a `targets` array
+ * @returns {string[]} Every string entry in `targets`; empty when the shape is invalid
+ */
 export function revealCompiledRouteSummaryTargets(summary) {
   if (!summary || typeof summary !== 'object' || !Array.isArray(summary.targets)) {
     return [];
@@ -97,10 +98,29 @@ function digestCompiledRouteTargets(targets) {
     .slice(0, COMPILED_ROUTE_TARGET_DIGEST_LENGTH);
 }
 
+/**
+ * Digest a summary's revealed targets so a truncated line stays verifiable.
+ *
+ * @param {object} summary - Compiled-route summary holding a `targets` array
+ * @returns {string} Sorted canonical-target SHA-256 digest, truncated to its fixed prefix
+ */
 export function compiledRouteSummaryTargetDigest(summary) {
   return digestCompiledRouteTargets(revealCompiledRouteSummaryTargets(summary));
 }
 
+// The line is additive, never a new routing target: the compiled decision is
+// byte-identical to legacy on routing fields, so only its served authority and
+// outcome are reported. Returning null when no compiled decision is served
+// keeps the injected context byte-identical to the legacy brief.
+/**
+ * Render the served compiled decision as one additive summary line.
+ *
+ * @param {object} summary - Compiled-route summary with `outcome`, `hubId`,
+ *   `servingAuthority` and a `targets` array; absent or outcome-less yields no line
+ * @param {object|boolean} [renderOptions] - `bounded` truncates long target
+ *   lists with a digest, `reveal` keeps them whole
+ * @returns {string|null} Summary line, or null when no compiled decision is served
+ */
 export function renderCompiledRouteSummaryLine(summary, renderOptions = {}) {
   if (!summary || typeof summary !== 'object') return null;
   const outcome = typeof summary.outcome === 'string' ? summary.outcome : null;
