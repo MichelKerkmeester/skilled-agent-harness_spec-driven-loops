@@ -1,0 +1,16 @@
+# .pi extension suites, node v22.23.1
+$ (cd .pi/extensions/pi-cache-optimizer && npm test)
+# Subtest: mutant: forced failure
+not ok 7 - mutant: forced failure
+  error: 'mutant'
+# pass 118
+# fail 1
+exit 1
+$ (cd .pi/extensions/pi-fast-mode-w-subagent-support && npm test)
+   × mutant: forced failure 2ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/config.test.ts > mutant: forced failure
+Error: mutant
+    329| it('mutant: forced failure', () => { throw new Error('mutant'); });
+      Tests  1 failed | 81 passed (82)
+exit 1

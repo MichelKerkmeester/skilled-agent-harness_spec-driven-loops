@@ -36,7 +36,7 @@ for test_file in test_*.py; do
   rm -f "$log"
 done
 
-NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs)
+NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs test-cite-drift-scan.mjs install-guide-contract.test.cjs)
 for test_file in "${NODE_TESTS[@]}"; do
   if [ -n "${ONLY_TESTS:-}" ]; then
     case "$only" in *" $test_file "*) ;; *) continue ;; esac

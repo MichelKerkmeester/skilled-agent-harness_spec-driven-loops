@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unrun tests ci coverage",
+      "phase 29 unrun tests ci coverage",
+      "pi extension tests workflow",
+      "sk-git script tests workflow",
+      "unrun tests ci coverage plan",
+      "unrun tests ci coverage tasks",
+      "unrun tests ci coverage implementation summary"
+    ],
+    "key_topics": [
+      "unrun",
+      "tests",
+      "coverage",
+      "phase",
+      "extension",
+      "workflow",
+      "sk-git",
+      "script",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/pi-extension-tests.yml",
+      ".github/workflows/sk-git-script-tests.yml",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".skilled/scripts/run-node-tests.mjs",
+      ".github/workflows/opencode-dual-version.yml",
+      ".github/workflows/README.md",
+      "scratch/baseline/where-suites-run.txt",
+      "scratch/mutation/run-mutations.sh",
+      "scratch/baseline/suites.txt",
+      "scratch/mutation/skdoc-node-tests.txt",
+      "scratch/mutation/sk-git-naming.txt",
+      "scratch/mutation/pi-extensions.txt",
+      "scratch/after/sk-doc-script-tests.txt",
+      "scratch/after/workflow-lint.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-extension-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/pi-extension-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-git-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "where-suites-run.txt",
+        "kind": "file",
+        "path": "scratch/baseline/where-suites-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "run-mutations.sh",
+        "kind": "script",
+        "path": "scratch/mutation/run-mutations.sh",
+        "source": "derived"
+      },
+      {
+        "name": "suites.txt",
+        "kind": "file",
+        "path": "scratch/baseline/suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skdoc-node-tests.txt",
+        "kind": "file",
+        "path": "scratch/mutation/skdoc-node-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-naming.txt",
+        "kind": "file",
+        "path": "scratch/mutation/sk-git-naming.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-extensions.txt",
+        "kind": "file",
+        "path": "scratch/mutation/pi-extensions.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.txt",
+        "kind": "file",
+        "path": "scratch/after/sk-doc-script-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-lint.txt",
+        "kind": "file",
+        "path": "scratch/after/workflow-lint.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
+    "created_at": "2026-10-20T11:52:31Z",
+    "last_save_at": "2026-10-20T12:05:50.807Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3d08dfc551474e0dbe82740882863005a46e27e71d0714d9d2ed42e1ebbc5c11",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1e78517e2b8cc37e7c88cdf9af4324ab62b9a5d681a90ae9b45e3b2cad1461b7",
+      "plan.md": "6217a5c8f45be17b852fbb500d79bf527e24acc5fecfec4204240fca152f1a2b",
+      "tasks.md": "ac0ad7a0054049ee208c3f6728881f7a0c21d612bc61f85b6d4375cc7e8b1057",
+      "implementation-summary.md": "29cd445b1d8c2f8df58ece7791fcccadd724d0c772e4b1aebaa1a032955dcdba"
+    },
+    "last_active_at": null
+  }
+}

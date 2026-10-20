@@ -1,0 +1,37 @@
+name: sk-git Script Tests
+
+# The worktree naming, allocation and provisioning suite ran in no workflow, so a
+# broken allocator or provisioning rule reached main unseen. The suite builds its
+# own throwaway repositories and stubs every installer, so it needs only git and
+# bash.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/sk-git/**'
+      - '.opencode/skills/sk-git/**'
+      - '.github/workflows/sk-git-script-tests.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/sk-git/**'
+      - '.opencode/skills/sk-git/**'
+      - '.github/workflows/sk-git-script-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sk-git-scripts:
+    name: sk-git script tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      - name: Run the worktree-naming suite
+        run: bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh

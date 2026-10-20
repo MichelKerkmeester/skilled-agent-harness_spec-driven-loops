@@ -1,0 +1,36 @@
+# Where each suite runs on origin/main 7d55952975 (before this phase)
+## grep of .github/ for each suite name or tree
+### worktree-naming.test.sh
+(no match)
+### test-cite-drift-scan
+(no match)
+### test-root-name-consumer-matrix
+(no match)
+### install-guide-contract
+(no match)
+### pi-cache-optimizer
+(no match)
+### pi-fast-mode
+(no match)
+### \.pi/extensions
+7d55952975:.github/dependabot.yml:15:      - "/.pi/extensions/**"
+## sk-doc runner named node list
+39:NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs)
+## shared node runner suffixes and roots (advisory-checks.yml runs it with continue-on-error)
+31:const ROOTS = ['.skilled/skills', '.skilled/scripts', '.opencode/plugins', '.skilled/bin', '.skilled/hooks'];
+33:const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];
+26:      - name: Node test suites (report-only)
+27-        continue-on-error: true
+## shared runner --list hits for the three sk-doc files
+node:test  .skilled/skills/sk-doc/scripts/tests/install-guide-contract.test.cjs
+## repo-wide callers outside specs/ (any runner script a workflow could reach)
+### worktree-naming.test.sh
+7d55952975:.skilled/skills/sk-git/scripts/worktree-provision-paths.txt
+### test-cite-drift-scan
+(no caller)
+### test-root-name-consumer-matrix
+7d55952975:.skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/skill-benchmark-report.json
+7d55952975:.skilled/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/skill-benchmark-report.json
+7d55952975:.skilled/skills/sk-doc/scripts/tests/test_root_name_consumer_matrix.py
+### install-guide-contract
+(no caller)

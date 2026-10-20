@@ -1,0 +1,20 @@
+# Baseline on origin/main 7d55952975, Node 22.23.1, before any edit
+## base-test-cite-drift-scan.mjs
+# tests 67
+# pass 67
+# fail 0
+## base-test-root-name-consumer-matrix.cjs
+JS_MATRIX_PASS=10
+## base-install-guide-contract.test.cjs
+# tests 4
+# pass 4
+# fail 0
+## base-wn
+worktree-naming tests: PASS=109 FAIL=0
+## base-pi-cache-optimizer
+# tests 118
+# pass 118
+# fail 0
+## base-pi-fast-mode-w-subagent-support
+ Test Files  7 passed (7)
+      Tests  81 passed (81)

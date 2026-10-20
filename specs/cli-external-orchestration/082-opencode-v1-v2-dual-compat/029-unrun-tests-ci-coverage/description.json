@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+  "description": "Phase 27: unrun-tests-ci-coverage",
+  "keywords": [
+    "phase",
+    "unrun-tests-ci-coverage"
+  ],
+  "lastUpdated": "2026-10-20T11:52:32.922Z",
+  "specId": "029",
+  "folderSlug": "unrun-tests-ci-coverage",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

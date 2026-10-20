@@ -1,0 +1,12 @@
+# sk-git worktree-naming suite, node v22.23.1
+mutant:  1 file changed, 1 insertion(+), 1 deletion(-)
+$ bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh
+FAIL: bun package never reaches npm (exp='0' got='2')
+FAIL: bun package provisions from a relative worktree path (rc=1 exp=0)
+FAIL: relative worktree path still installs the bun package (exp='1' got='0')
+FAIL: bun package without bun never falls back to npm (exp='0' got='6')
+FAIL: bun.lockb package provisions (rc=1 exp=0)
+FAIL: bun.lockb package installs with bun (exp='1' got='0')
+FAIL: bun.lockb package never reaches npm (exp='0' got='2')
+worktree-naming tests: PASS=98 FAIL=11
+exit 1
