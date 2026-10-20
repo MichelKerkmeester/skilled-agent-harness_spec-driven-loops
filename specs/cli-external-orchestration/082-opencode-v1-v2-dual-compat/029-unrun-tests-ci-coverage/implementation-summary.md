@@ -70,7 +70,7 @@ The sixth suspect, `test-root-name-consumer-matrix.cjs`, was already covered: `t
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Each suite's placement was confirmed by grepping every workflow and the runners they call at `7d55952975` (`scratch/baseline/where-suites-run.txt`). Every suite was run on Node 22.23.1 before the edit, and the git-using ones again with an empty HOME and no git identity, to stand in for the runner. DeepSeek v4.1 flash wrote every code and workflow change from one-change literal briefs. Each wired suite was then broken once and the job's exact command run (`scratch/mutation/run-mutations.sh`), and Luna reviewed the change read-only.
+Each suite's placement was confirmed by grepping every workflow and the runners they call at `7d55952975` (`scratch/baseline/where-suites-run.txt`). Every suite was run on Node 22.23.1 before the edit, and the git-using ones again with an empty HOME, no git identity and a system-only PATH, to stand in for the runner (`scratch/baseline/hermetic.txt`). DeepSeek v4.1 flash wrote every code and workflow change from one-change literal briefs. Each wired suite was then broken once and the job's exact command run (`scratch/mutation/run-mutations.sh`), and Luna reviewed the change read-only.
 <!-- /ANCHOR:how-delivered -->
 
 ---

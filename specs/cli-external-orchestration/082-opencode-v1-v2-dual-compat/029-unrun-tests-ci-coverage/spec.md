@@ -130,7 +130,7 @@ Each of the five suites runs in a job with no `continue-on-error`, and the workf
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | A suite that passes on macOS fails on the Linux runner | Med | Each suite was run on Node 22.23.1 with a system-only PATH and an empty HOME first; the CI run on the pushed commit is the proof |
+| Risk | A suite that passes on macOS fails on the Linux runner | Med | Each suite was run on Node 22.23.1 first, and the git-using ones again with a system-only PATH and an empty HOME (`scratch/baseline/hermetic.txt`); the CI run on the pushed commit is the proof |
 | Risk | `test-cite-drift-scan.mjs` adds about 25 seconds to the sk-doc job | Low | Accepted; the job already walks the whole repository |
 | Dependency | Phases 027, 028, 030 and 031 edit the same parent phase map | Low | The merge keeps every row from both sides |
 <!-- /ANCHOR:risks -->

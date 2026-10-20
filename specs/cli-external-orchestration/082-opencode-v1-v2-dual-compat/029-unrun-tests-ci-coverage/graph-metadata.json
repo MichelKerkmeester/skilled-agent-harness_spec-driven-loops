@@ -47,6 +47,7 @@
       ".github/workflows/opencode-dual-version.yml",
       ".github/workflows/README.md",
       "scratch/baseline/where-suites-run.txt",
+      "scratch/baseline/hermetic.txt",
       "scratch/mutation/run-mutations.sh",
       "scratch/baseline/suites.txt",
       "scratch/mutation/skdoc-node-tests.txt",
@@ -123,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "hermetic.txt",
+        "kind": "file",
+        "path": "scratch/baseline/hermetic.txt",
+        "source": "derived"
+      },
+      {
         "name": "run-mutations.sh",
         "kind": "script",
         "path": "scratch/mutation/run-mutations.sh",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
     "created_at": "2026-10-20T11:52:31Z",
-    "last_save_at": "2026-10-20T12:22:03.920Z",
+    "last_save_at": "2026-10-20T12:32:01.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8a7f0d02c483be1a50ac818460f315caafcfa701b247e7568f00dd5cc86e765",
+    "source_fingerprint": "sha256:eeb913b3f2b128c1d3a53a3c375ad2c0723e16834e37c87580848cd437b383de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b0e583d29f66fdf3523f1f4a7521c5de914e264d9d272570570ff5b6dcfbef2",
+      "spec.md": "7de410f1382c406164489abc9cf07befd7ef28e5b5e5d22a6a19f860491a36ef",
       "plan.md": "a99eb490c7357f35c8c4e88dc754859613aa3edd1cdba9096b33f91fe0df0f88",
-      "tasks.md": "ab93b0ca5d506b097b39f04d2e0ad6f2dc48e2e82e62dd15e5ad4e465479edcd",
-      "implementation-summary.md": "281388c43d9295cc1c7f465e4998781b432ce101bf1a7503a88ee4d3920d74ae"
+      "tasks.md": "1535e151b9b69d0cf4f35f6f4810a64796105d64a26c1c509e65f7c613e4107b",
+      "implementation-summary.md": "6669409094acf74c0ee07cdce8ca79c765f00f0895856343c7ca0bbf91c76975"
     },
     "last_active_at": null
   }
