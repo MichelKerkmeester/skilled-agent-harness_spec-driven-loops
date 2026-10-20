@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # cli-opencode
@@ -93,7 +93,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   </dev/null
 ```
 
-The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+The two versions do not always list the same providers, so on OpenCode 2 check `opencode2 models --standalone` first. OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 You get structured JSON events streamed to stdout as the session runs: `step_start`, `tool_use`, `text` and `step_finish`, every one carrying a `sessionID`, with the reply text in `text` events. The `</dev/null` is mandatory on non-interactive runs on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2. Do not pass top-level `--agent` by default: `context`, `review`, `debug` and `ai-council` are subagents that route through a primary path (or, for `ai-council`, through its own `/deep:ai-council` command). Top-level `--agent` is only conditionally allowed for primary agents such as `plan` or `orchestrate` after `opencode run --help` confirms acceptance. When a specific agent profile matters, describe it in the prompt body instead, as this example does.
 
@@ -145,7 +145,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`, or `opencode2 models <provider-id>` on OpenCode 2. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`, or, on OpenCode 2, by filtering `opencode2 models --standalone` for the `<provider-id>/` prefix. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 

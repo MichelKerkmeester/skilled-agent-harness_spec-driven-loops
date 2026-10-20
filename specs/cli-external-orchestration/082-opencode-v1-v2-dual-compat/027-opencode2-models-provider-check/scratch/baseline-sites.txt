@@ -1,0 +1,49 @@
+ .hermes/skills/cli-opencode/SKILL.md:183:odels <provider>` for live choices, or `opencode2 models <provider>`
+ .skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:78:o a v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/README.md:96:same providers, so on OpenCode 2 check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/README.md:148:th `opencode models <provider-id>`, or `opencode2 models <provider-id>`
+ .skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:178:odels <provider>` for live choices, or `opencode2 models <provider>`
+ .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:93:` provider, so confirm the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:662:On OpenCode 2, confirm the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/context-leaf-agent.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/general-agent-default.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/multi-ai-council-multi-strategy.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md:9:and-versions.md). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/orchestrate-agent-multi-agent.md:52:."`, once the provider is confirmed in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/agent-routing/review-agent-security-audit.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/base-non-interactive-invocation.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/dir-flag-working-directory.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/file-attachment-via-f-flag.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cli-invocation/format-default-vs-json.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/cross-repo-cross-server/cross-repo-dispatch.md:51:<prompt>"`, confirming the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:47:-and-versions.md)). A v2 reader checks `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:202:id in `sessionID`). A v2 reader checks `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:348:ek-v4.1-flash#max`. A v2 reader checks `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:471:at json ...`, and the v2 reader checks `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md:689:versions.md), and its v2 reader checks `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:9:) twin beside it. On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:17:The v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:51:. A v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/multi-provider/variant-levels-comparison.md:59:The v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md:9:nd-versions.md)). On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md:9:twin beside each. On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md:51:?"`, once the provider is confirmed in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md:9:twin beside each. On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md:50:n 2, once the provider is confirmed in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md:9:twin beside each. On OpenCode 2, check `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md:50:ume, once the provider is confirmed in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:104:` provider, so confirm the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:158:o a v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:192:models <provider-id>` on OpenCode 1 or `opencode2 models <provider-id>`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200:opencode2 models opencode-go        >/dev/null 2>&1 && OP
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:206:on OpenCode 2 (confirm the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:285:ax`, once the provider is confirmed in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:250:| `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:252: not [confirmed: `opencode models` and `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md:103:o a v2 reader confirms the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:78:` provider, so confirm the provider in `opencode2 models`
+ .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:136:Code 2 confirm the provider appears in `opencode2 models`

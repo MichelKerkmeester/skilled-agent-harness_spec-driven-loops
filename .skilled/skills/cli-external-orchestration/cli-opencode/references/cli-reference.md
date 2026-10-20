@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -155,7 +155,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt>"
 ```
 
-On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms the provider in `opencode2 models` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms the provider in `opencode2 models --standalone` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
 
 | Flag | Default | Reason |
 |------|---------|--------|
@@ -189,7 +189,7 @@ On OpenCode 1, `--port` only matters when the dispatch needs to bind a known por
 
 ### Provider Auth Pre-Flight (smart fallback)
 
-Before the first dispatch in a session, run a one-shot auth pre-flight with `opencode models <provider-id>` on OpenCode 1 or `opencode2 models <provider-id>` on OpenCode 2, which exits 0 when the provider is configured and 1 when it is not, so a missing default doesn't fail mid-dispatch. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
+Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. On OpenCode 1, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not. OpenCode 2 (2.0.32) rejects that form with `Unexpected positional argument`, so list with `opencode2 models --standalone` and filter for the `<provider-id>/` prefix; `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
 
 ```bash
 # Pre-flight: one check per provider id, once per session
@@ -197,13 +197,13 @@ opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OP
 opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
 opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token)
 opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # LLM Gateway (DevPass); the only MiMo route
-opencode2 models opencode-go        >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode 2: the same check through the v2 binary
+opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode 2: no provider argument, so filter a private-server listing
 echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
 
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
-| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4.1-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
+| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4.1-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models --standalone` first) |
 | Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model). Do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
@@ -282,7 +282,7 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
+On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models --standalone`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
 
 **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 

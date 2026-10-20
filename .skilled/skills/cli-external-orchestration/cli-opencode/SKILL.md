@@ -175,7 +175,7 @@ Core flags on OpenCode 1: `--model`, `--agent`, `--variant`, `--format json`, `-
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices, or `opencode2 models <provider>` on OpenCode 2. Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices, or, on OpenCode 2, `opencode2 models --standalone` filtered for the `<provider>/` prefix (2.0.32's `models` takes no provider argument). Defaults live in §3 Default Invocation, and the roster is [references/providers-and-models.md](references/providers-and-models.md).
 
 **Five providers are reachable** (`opencode-go` default, `openai`, `cline-pass`, `llmgateway` (**DevPass**), `minimax`), with the full roster and per-provider caveats in [references/providers-and-models.md](references/providers-and-models.md). This file deliberately does not restate it: two copies of a model list is how the two disagree.
 

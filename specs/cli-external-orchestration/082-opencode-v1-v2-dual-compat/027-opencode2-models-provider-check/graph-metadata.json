@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode2 models provider check",
+      "phase 27 opencode2 models provider check",
+      "opencode2 models standalone",
+      "unexpected positional argument opencode2 models",
+      "opencode2 models provider check plan",
+      "opencode2 models provider check tasks",
+      "opencode2 models provider check implementation summary"
+    ],
+    "key_topics": [
+      "opencode2",
+      "models",
+      "provider",
+      "check",
+      "phase",
+      "standalone",
+      "unexpected",
+      "positional",
+      "argument",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".hermes/skills/cli-opencode/SKILL.md",
+      ".github/workflows/opencode-dual-version.yml",
+      "scratch/baseline-cli-opencode-tests.txt",
+      "scratch/mutation/m0-old-docs.txt",
+      "scratch/preflight-live.txt",
+      "scratch/v2-positional.txt",
+      "scratch/v2-models-help.txt",
+      "scratch/v1-missing.txt",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+      "scratch/baseline-sites.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-cli-opencode-tests.txt",
+        "kind": "file",
+        "path": "scratch/baseline-cli-opencode-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m0-old-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m0-old-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "preflight-live.txt",
+        "kind": "file",
+        "path": "scratch/preflight-live.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-positional.txt",
+        "kind": "file",
+        "path": "scratch/v2-positional.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-models-help.txt",
+        "kind": "file",
+        "path": "scratch/v2-models-help.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1-missing.txt",
+        "kind": "file",
+        "path": "scratch/v1-missing.txt",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode2-models-form.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-sites.txt",
+        "kind": "file",
+        "path": "scratch/baseline-sites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
+    "created_at": "2026-10-20T11:51:31Z",
+    "last_save_at": "2026-10-20T12:00:48.762Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9852eb319d0f83a18f16ec3a3793f39d3c025390b88556d09777abc4bec62b2a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1682c8b46f81e5ecb0653eaa2a350c22216dcaa59fae003874ae9e57e2529914",
+      "plan.md": "6815e62991ed2650211c4d3b84b51335b091828a954917ba5f4e2a4c000e119b",
+      "tasks.md": "8bdc94c57d1679d6c8f34635a28cf227d21665f56804e9fbad1e6d8be51c7825",
+      "implementation-summary.md": "05c9cd8cd958350af0ea58f4d419c37b1b9b112442a483c85e7bce54dd4c8ca2"
+    },
+    "last_active_at": null
+  }
+}

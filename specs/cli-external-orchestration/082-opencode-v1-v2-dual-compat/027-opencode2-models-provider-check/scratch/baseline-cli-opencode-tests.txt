@@ -1,0 +1,13 @@
+✔ the roster names one opencode-go default (9.221458ms)
+✔ SKILL.md's default invocation names the roster default (3.283333ms)
+✔ no current doc names the retired opencode-go id or its bare slug (209.358208ms)
+✔ the setup helper defines classify_version (0.471041ms)
+✔ classify_version reads every shared corpus entry (160.973792ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 360.860542
