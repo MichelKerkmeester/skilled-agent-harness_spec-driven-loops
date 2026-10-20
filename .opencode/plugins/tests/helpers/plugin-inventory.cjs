@@ -216,6 +216,53 @@ function parameterIndex(fn, identifier) {
   );
 }
 
+// The default expression is what the function reads when the call leaves the parameter empty.
+function parameterDefault(fn, identifier) {
+  const parameter = fn.params[parameterIndex(fn, identifier)];
+  if (parameter === undefined || parameter.type !== 'AssignmentPattern') return null;
+  return parameter.left === identifier ? parameter.right : null;
+}
+
+// A call that omits an argument or passes the global nothing leaves the parameter's default in
+// place, so the default is the value the function actually reads.
+function isOmittedArgument(argument, context) {
+  if (argument === undefined) return true;
+  if (argument.type === 'Identifier' && argument.name === 'undefined') {
+    return context.resolve(argument) === null;
+  }
+  return (
+    argument.type === 'UnaryExpression' &&
+    argument.operator === 'void' &&
+    argument.argument.type === 'Literal' &&
+    argument.argument.value === 0
+  );
+}
+
+// An exported callable can be reached from outside the file, so its parameter keeps reading as the
+// type; both an exported declaration and a separate export list make that escape.
+function exportedCallable(fn, callable, context) {
+  const parent = context.nodeParents.get(fn);
+  if (
+    fn.type === 'FunctionDeclaration' &&
+    parent !== undefined &&
+    (parent.type === 'ExportNamedDeclaration' || parent.type === 'ExportDefaultDeclaration')
+  ) {
+    return true;
+  }
+
+  if (parent !== undefined && parent.type === 'VariableDeclarator' && parent.init === fn) {
+    const declaration = context.nodeParents.get(parent);
+    if (declaration !== undefined && declaration.type === 'ExportNamedDeclaration') return true;
+  }
+
+  return context.nodes.some(
+    ({ node }) =>
+      node.type === 'ExportSpecifier' &&
+      node.local.type === 'Identifier' &&
+      context.resolve(node.local) === callable,
+  );
+}
+
 // A parameter is the event type only when every call passes one, and a function that escapes can
 // be called anywhere; the resolving set keeps one parameter handed to another from looping.
 function isEventTypeParameter(binding, context) {
@@ -225,8 +272,12 @@ function isEventTypeParameter(binding, context) {
   const fn = directParameterOwner(identifier, context);
   if (fn === null) return true;
 
+  // A function that writes its parameter can hold the event type whatever the call passed.
+  if (context.written.has(binding)) return true;
+
   const callable = callableBindingFor(fn, context);
   if (callable === null) return true;
+  if (exportedCallable(fn, callable, context)) return true;
 
   const calls = [];
   for (const { node, parent } of context.nodes) {
@@ -240,13 +291,23 @@ function isEventTypeParameter(binding, context) {
 
   if (calls.length === 0) return true;
 
+  const index = parameterIndex(fn, identifier);
+  const defaultExpression = parameterDefault(fn, identifier);
+
   context.resolvingParams.add(binding);
   try {
-    const index = parameterIndex(fn, identifier);
     for (const call of calls) {
       for (let position = 0; position <= index; position += 1) {
         const argument = call.arguments[position];
-        if (argument === undefined) break;
+        // An explicit nothing is an argument like any other, so only a genuinely absent slot ends
+        // the walk: that slot leaves this parameter and every later one with its default value.
+        const absent = argument === undefined;
+        if (absent || (position === index && isOmittedArgument(argument, context))) {
+          if (defaultExpression !== null && containsEventType(defaultExpression, context)) {
+            return true;
+          }
+          break;
+        }
         if (argument.type === 'SpreadElement') return true;
         if (position === index && containsEventType(argument, context)) return true;
       }

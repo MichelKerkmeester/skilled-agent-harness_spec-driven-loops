@@ -458,6 +458,39 @@ test('a type-named parameter that only reaches itself still reads as the type', 
   assert.deepEqual(handledEventNames(source), ['r.six']);
 });
 
+// A default reads the event type when a call omits the argument or passes the global nothing.
+test('a type-named parameter defaulted from the event type reads as the type', () => {
+  const source = `const pick = (kindType = event.type) => { if (kindType === 'r.event') {} }; pick(); pick(undefined);`;
+  assert.deepEqual(handledEventNames(source), ['r.event']);
+});
+
+// A parameter the function writes can hold the event type whatever its caller passed.
+test('a type-named parameter written inside its function reads as the type', () => {
+  const source = `function route(type) { type = event.type; if (type === 'r.assigned') {} } route('json');`;
+  assert.deepEqual(handledEventNames(source), ['r.assigned']);
+});
+
+// An exported declaration can be called from outside the file, so its parameter keeps counting.
+test('a type-named parameter of an exported function reads as the type', () => {
+  const source = `export function format(type) { if (type === 'a.b') {} } format('json');`;
+  assert.deepEqual(handledEventNames(source), ['a.b']);
+});
+
+// An explicit nothing earlier is ordinary; a missing one leaves this parameter's default in place.
+test('a type-named parameter reads past an argument before its own position', () => {
+  const explicit = `function f(a, type) { if (type === 'r.second') {} } f(undefined, event.type);`;
+  const missing = `const g = (a, kindType = event.type) => { if (kindType === 'r.third') {} }; g();`;
+
+  assert.deepEqual(handledEventNames(explicit), ['r.second']);
+  assert.deepEqual(handledEventNames(missing), ['r.third']);
+});
+
+// A separate export list also lets a function escape, so its parameter keeps counting.
+test('a type-named parameter of a function exported by name reads as the type', () => {
+  const source = `function g(type) { if (type === 'a.c') {} } g('x'); export { g };`;
+  assert.deepEqual(handledEventNames(source), ['a.c']);
+});
+
 // A key and a member property are names, not values, so neither carries the event type.
 test('a type-named object key and member property are not event values', () => {
   const source = `const result = evaluate({ subagentType: args.subagentType }); if (result.ok) {}`;

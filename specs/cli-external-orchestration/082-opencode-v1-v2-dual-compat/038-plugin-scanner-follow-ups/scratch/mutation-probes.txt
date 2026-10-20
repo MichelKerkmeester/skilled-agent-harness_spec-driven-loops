@@ -17,3 +17,16 @@
 == m5-no-cycle-guard exit=1
 ✖ a type-named parameter that only reaches itself still reads as the type (3.697542ms)
 ✖ failing tests:
+== m6-param-write-ignored exit=1
+✖ a type-named parameter written inside its function reads as the type (0.484417ms)
+✖ failing tests:
+== m7-export-ignored exit=1
+✖ a type-named parameter of an exported function reads as the type (0.468083ms)
+✖ failing tests:
+== m8-default-ignored exit=1
+✖ a type-named parameter defaulted from the event type reads as the type (0.462792ms)
+✖ a type-named parameter reads past an argument before its own position (0.154459ms)
+✖ failing tests:
+== m9-explicit-undefined-breaks exit=1
+✖ a type-named parameter reads past an argument before its own position (0.505833ms)
+✖ failing tests:

@@ -107,12 +107,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:377:1
 ✖ a stored helper result that decides an if is reported (0.47ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   'isKnown(eventType)'
   - ]
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:379:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -132,12 +132,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:383:1
 ✖ a stored helper result behind a logical expression that decides a loop is reported (0.148042ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   'matches(event.type)'
   - ]
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:385:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -157,12 +157,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:395:1
 ✖ a stored helper result read inside a nested function is reported (0.080584ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   'check(eventType)'
   - ]
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:397:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -182,12 +182,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:401:1
 ✖ a stored helper result that decides a switch is reported (0.067791ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   'classify(eventType)'
   - ]
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:403:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -207,12 +207,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:420:1
 ✖ a type-named parameter is not the event type when its calls pass no event type (0.072458ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + [
   +   'a.b'
   + ]
   - []
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:422:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -232,12 +232,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:444:1
 ✖ a defaulted type-named parameter is not the event type when its call omits it (0.071792ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + [
   +   'r.four'
   + ]
   - []
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:446:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -257,12 +257,12 @@ test at .opencode/plugins/tests/plugin-inventory.test.cjs:462:1
 ✖ a shorthand type-named property passes the event type (0.059417ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
   + []
   - [
   -   'isKnown({ eventType })'
   - ]
-  
+
       at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:464:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
