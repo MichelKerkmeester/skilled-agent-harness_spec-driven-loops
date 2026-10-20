@@ -1,5 +1,5 @@
 {
-  "manifestHash": "eedabecaa7090c6abf93bf8fabb71146f9bd6db832ee0fc1b642c68ec42614dd",
+  "manifestHash": "dbe81f970fc404eadc8c5edbe83e223683734183dce3391e8f1346c931e68821",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72049,6 +72049,9 @@
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 28 plugin kill switch coverage": [
+      "phase 28 plugin kill switch coverage"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
@@ -74655,6 +74658,18 @@
     ],
     "plugin inventory guards tasks": [
       "plugin inventory guards tasks"
+    ],
+    "plugin kill switch coverage": [
+      "plugin kill switch coverage"
+    ],
+    "plugin kill switch coverage implementation summary": [
+      "plugin kill switch coverage implementation summary"
+    ],
+    "plugin kill switch coverage plan": [
+      "plugin kill switch coverage plan"
+    ],
+    "plugin kill switch coverage tasks": [
+      "plugin kill switch coverage tasks"
     ],
     "plugin knowledge deepening": [
       "Plugin Knowledge Deepening"
@@ -95036,6 +95051,9 @@
     "sk vision js re export": [
       "sk-vision.js re-export"
     ],
+    "sk vision kill switch": [
+      "sk-vision kill switch"
+    ],
     "sk vision lane c": [
       "sk-vision Lane C"
     ],
@@ -99814,6 +99832,9 @@
     ],
     "speckit completion freshness": [
       "SPECKIT_COMPLETION_FRESHNESS"
+    ],
+    "speckit completion master switch": [
+      "speckit completion master switch"
     ],
     "speckit cosine topn reorder default on": [
       "SPECKIT_COSINE_TOPN_REORDER default on"
