@@ -67,6 +67,7 @@ The sixth suspect, `test-root-name-consumer-matrix.cjs`, was already covered: `t
 | `.skilled/scripts/run-node-tests.mjs` | Modified | The `.pi/extensions` comment names the workflow that runs those suites |
 | `.github/workflows/opencode-dual-version.yml` | Modified | The bun comment in both provisioning steps |
 | `.github/workflows/README.md` | Modified | Rows for the two new workflows |
+| `.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` (again) | Modified | A failing node test prints its `not ok` blocks, not only the last 40 lines |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -113,7 +114,8 @@ Each suite's placement was confirmed by grepping every workflow and the runners 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
+1. **An intermittent cite-drift failure.** At main `58ca46e1ec` one of the 67 `test-cite-drift-scan.mjs` tests failed once on CI (run 39424650739, attempt 1) and passed on the rerun of the same commit; it has not failed locally. The runner now prints each failing subtest's `not ok` block, so the next occurrence names the test. Until then a red sk-doc run may be this flake.
+2. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
 <!-- /ANCHOR:limitations -->
 
 ---

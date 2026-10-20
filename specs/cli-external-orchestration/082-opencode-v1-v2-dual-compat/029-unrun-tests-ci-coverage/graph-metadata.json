@@ -54,7 +54,8 @@
       "scratch/mutation/sk-git-naming.txt",
       "scratch/mutation/pi-extensions.txt",
       "scratch/after/sk-doc-script-tests.txt",
-      "scratch/after/workflow-lint.txt"
+      "scratch/after/workflow-lint.txt",
+      "scratch/mutation/skdoc-failure-names.txt"
     ],
     "entities": [
       {
@@ -172,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "skdoc-failure-names.txt",
+        "kind": "file",
+        "path": "scratch/mutation/skdoc-failure-names.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
     "created_at": "2026-10-20T11:52:31Z",
-    "last_save_at": "2026-10-20T12:41:51.936Z",
+    "last_save_at": "2026-10-20T13:01:06.593Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0c3053f86a847388b5f7422fa7cbdb9d49b28ea8552b4ce925667a6e757b829",
+    "source_fingerprint": "sha256:3a3eaaad1c05c8e0dc85d437281f8bcaff35b6cdafed54af1ec4cb49180de8b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "20182858d87384d7b57c1e26688e5cbfac5ba5adaa9641e4b14091f1131d33e4",
+      "spec.md": "9566eb0582d3319d65f2787d88ecddccf37dbffccbc4700b5d9c45d1046e1bcb",
       "plan.md": "040142e2e5e95efb7eabf0f36f7079015cc96aad379312281b5f91f311dad8ba",
-      "tasks.md": "2e4a74eabe70c8d5e23c491647b3a4177efbdbd88a115f2a4955f48522a8bc3d",
-      "implementation-summary.md": "4c9d449e03974a048bacb39400e74ada27d2c3a6c19a89d1aaebb75cfb1b5dde"
+      "tasks.md": "8c38e5358a189d61f51313009519749e27e1a36fe55166ba7143c3014270fdb5",
+      "implementation-summary.md": "f52eb2015d01c81c8cf3c6ed49727013697981e342e07b6410cea07b79fa2c48"
     },
     "last_active_at": null
   }
