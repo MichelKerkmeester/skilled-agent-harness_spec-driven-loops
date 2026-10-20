@@ -1,0 +1,64 @@
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat
+Summary: Errors: 0  Warnings: 1
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/001-unknowns-and-baseline
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/002-pins-imports-dual-export
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/003-hard-plugins
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/005-version-aware-guards
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/007-install-guidance-and-setup-helper
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/008-doctor-and-ci
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/010-documentation-sweep
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+exit=0

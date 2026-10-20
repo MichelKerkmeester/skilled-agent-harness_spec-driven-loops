@@ -1,0 +1,25 @@
+# gh run list --workflow opencode-dual-version.yml --branch main --limit 50
+39309852507 793b50ccbf main push success 2026-10-19T19:18:20Z
+39308825187 6d7f6b8499 main push failure 2026-10-19T19:11:04Z
+39299540911 6358d81eba main push failure 2026-10-19T18:04:55Z
+39294766387 fe1f8a9a53 main push failure 2026-10-19T17:30:55Z
+# all branches, success count:
+1
+# run 39309852507 failing steps:
+Battery on OpenCode v2: 
+Battery on OpenCode v1: 
+Both versions installed at once: 
+# run 39308825187 failing steps:
+Battery on OpenCode v2: Run the version battery for v2
+Battery on OpenCode v1: Run the version battery for v1
+Both versions installed at once: Run the version battery against both installs
+# run 39299540911 failing steps:
+Both versions installed at once: Build the sk-vision bundle the plugin symlink points at
+Battery on OpenCode v1: Build the sk-vision bundle the plugin symlink points at
+Battery on OpenCode v2: Build the sk-vision bundle the plugin symlink points at
+bun: command not found
+# run 39294766387 failing steps:
+Both versions installed at once: Build the sk-vision bundle the plugin symlink points at
+Battery on OpenCode v2: Build the sk-vision bundle the plugin symlink points at
+Battery on OpenCode v1: Build the sk-vision bundle the plugin symlink points at
+bun: command not found

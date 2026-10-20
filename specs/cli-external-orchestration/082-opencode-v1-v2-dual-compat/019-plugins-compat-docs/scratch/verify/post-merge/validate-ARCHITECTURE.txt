@@ -1,0 +1,19 @@
+
+✅ VALID: .opencode/plugins/ARCHITECTURE.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .opencode/plugins/ARCHITECTURE.md, so README rules were applied. Pass --type to choose the rule set.
+
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:51 cites .skilled/skills/sk-vision/vision-runtime/src/plugin.ts:384, whose window may no longer show the claim (p_yes=0.34)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:115 cites .opencode/plugins/lib/v2-bridge.js:207, whose window may no longer show the claim (p_yes=0.46)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:115 cites .opencode/plugins/lib/v2-bridge.js:123, whose window may no longer show the claim (p_yes=0.38)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:115 cites .opencode/plugins/lib/v2-bridge.js:187, whose window may no longer show the claim (p_yes=0.36)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:128 cites .opencode/plugins/lib/v2-bridge.js:283, whose window may no longer show the claim (p_yes=0.43)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:129 cites .opencode/plugins/lib/v2-bridge.js:323, whose window may no longer show the claim (p_yes=0.40)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:132 cites .opencode/plugins/lib/v2-bridge.js:366, whose window may no longer show the claim (p_yes=0.23)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:133 cites .opencode/plugins/lib/v2-bridge.js:243, whose window may no longer show the claim (p_yes=0.36)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:134 cites .opencode/plugins/lib/v2-bridge.js:221, whose window may no longer show the claim (p_yes=0.34)
+cite-drift advisory: .opencode/plugins/ARCHITECTURE.md:136 cites .opencode/plugins/lib/v2-bridge.js:17, whose window may no longer show the claim (p_yes=0.40)
+cite-drift advisory: checked=20 flagged=10 unchecked=37 not_in_range=0 (never blocks; JEV_FEATURE_CITE_DRIFT=0 skips it)
