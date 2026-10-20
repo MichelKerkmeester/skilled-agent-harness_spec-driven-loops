@@ -1,5 +1,5 @@
 {
-  "manifestHash": "73e726a4dff52dffe03d22783c64cba33e941159b9a743943046b2c8c036579b",
+  "manifestHash": "68b17cf080296c1beb589647d351fc87902496bff311975feccea78dab50469a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17643,6 +17643,18 @@
     "ci mirror parity": [
       "ci mirror parity"
     ],
+    "ci pi and provisioning follow ups": [
+      "ci pi and provisioning follow ups"
+    ],
+    "ci pi and provisioning follow ups implementation summary": [
+      "ci pi and provisioning follow ups implementation summary"
+    ],
+    "ci pi and provisioning follow ups plan": [
+      "ci pi and provisioning follow ups plan"
+    ],
+    "ci pi and provisioning follow ups tasks": [
+      "ci pi and provisioning follow ups tasks"
+    ],
     "ci push triggers": [
       "ci push triggers"
     ],
@@ -17900,6 +17912,9 @@
     ],
     "citationpolicy do not cite results": [
       "citationPolicy do_not_cite_results"
+    ],
+    "cite drift flake": [
+      "cite drift flake"
     ],
     "cite drift labels jsonl": [
       "cite-drift-labels.jsonl"
@@ -72283,6 +72298,9 @@
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
+    "phase 37 ci pi and provisioning follow ups": [
+      "phase 37 ci pi and provisioning follow ups"
+    ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
     ],
@@ -73507,6 +73525,9 @@
     ],
     "pi extension brace expansion tasks": [
       "pi extension brace expansion tasks"
+    ],
+    "pi extension discovery matrix": [
+      "pi extension discovery matrix"
     ],
     "pi extension package manifest": [
       "pi extension package manifest"
@@ -76958,6 +76979,9 @@
     ],
     "provision command for a fresh clone": [
       "provision command for a fresh clone"
+    ],
+    "provision stamp fingerprint before build": [
+      "provision stamp fingerprint before build"
     ],
     "provisional benchmark promotion": [
       "provisional benchmark promotion"
