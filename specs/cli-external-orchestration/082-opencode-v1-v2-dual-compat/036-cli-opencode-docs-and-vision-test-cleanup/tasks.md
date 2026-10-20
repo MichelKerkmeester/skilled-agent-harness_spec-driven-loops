@@ -65,6 +65,19 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Review Fixes
+
+- [x] T017 Check the prefix of the model passed to `-m` in every v2 note (`cli-opencode/**/*.md`, `cli-devin/references/providers-and-models.md`) Done: 41 notes; the MiMo note keeps `llmgateway/`.
+- [x] T018 Parse pre-flight lines into top-level shell segments (`opencode2-models-form.test.cjs`) Done: `$(...)` nesting, quoted operators, last assignment wins; three mutants each fail 1 test.
+- [x] T019 Load the goal and watchdog plugins through `server` (`goal-hook.md`, `.skilled/hooks/codex-watchdog/README.md`) Done: CO-039 prints `"verdict":"PASS"`; the watchdog snippet prints `ok`.
+- [x] T020 Load checks expect `ok object` (four hook READMEs) Done: all five checks print `ok object`.
+- [x] T021 Outside fix: refresh the durable-directory manifest (`sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`) Done: adds `.skilled/hooks/session-relaunch/lib` only; `test_readme_manifest.py` passes.
+- [x] T022 Record the type-check output (`scratch/after/sk-vision-tsc.txt`) Done: exit 0.
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

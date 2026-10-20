@@ -1,0 +1,2 @@
+== m7-any-paren-ends-a-word
+ℹ fail 1

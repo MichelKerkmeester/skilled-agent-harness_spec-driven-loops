@@ -40,7 +40,11 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".skilled/hooks/codex-watchdog/README.md",
+      "scratch/after/sk-vision-tsc.txt",
       "scratch/after/speckit-completion.txt",
+      "scratch/after/goal-and-hook-readmes.txt",
+      ".opencode/plugins/tests/README.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
       ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
       ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
@@ -72,9 +76,27 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/codex-watchdog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision-tsc.txt",
+        "kind": "file",
+        "path": "scratch/after/sk-vision-tsc.txt",
+        "source": "derived"
+      },
+      {
         "name": "speckit-completion.txt",
         "kind": "file",
         "path": "scratch/after/speckit-completion.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-and-hook-readmes.txt",
+        "kind": "file",
+        "path": "scratch/after/goal-and-hook-readmes.txt",
         "source": "derived"
       },
       {
@@ -172,29 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 027 left three gaps",
     "created_at": "2026-10-20T21:30:26Z",
-    "last_save_at": "2026-10-20T21:58:52.584Z",
+    "last_save_at": "2026-10-20T22:28:12.275Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a278201b17d4d04a30b568a47956f4178ce884afbb59e753ee1f2d984d8163d8",
+    "source_fingerprint": "sha256:deade6c2cba26c7bada6db71f132fef51f0774b323c8639e70592f9cbe83f27a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "018eddc716d3819a99d93acc490f1fa17e1028d1626563a0000d96fe1c342a5f",
       "plan.md": "1c1ed96ae0aac596c46ce7cf346f556b7205069c893175eabdb177476fa0c770",
-      "tasks.md": "f28d33974ea8774d2e9ac54c504da07604ded555e9a678ea82938af5bf39b766",
-      "implementation-summary.md": "af0758244907d64677ad7ca9b33e98b967b277a247b88ac2c7e9658cf1e8c394"
+      "tasks.md": "50c3ff57be3f233d67394d428a19166bafd22a2d1b31f331d35a1f57751f81b9",
+      "implementation-summary.md": "47cf62e342b41b2656d167cf5aa39a39561cac61b67287911a848426d6ae1a52"
     },
     "last_active_at": null
   }
