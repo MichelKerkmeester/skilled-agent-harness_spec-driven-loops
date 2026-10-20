@@ -84,6 +84,7 @@ Eleven specialized agents own focused roles, and seven CLI bridges let a runtime
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md` and injects a pointer to it plus its completion criteria on every turn (at session start on Cursor), so intent survives context resets instead of fading with the window
+- **In-Session Handover:** hooks on five runtimes watch the context window and hand the work to a fresh session in the same terminal near its limit, see [In-Session Handover](#in-session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -993,6 +994,24 @@ OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at 
 - **Pi, Cursor, Devin, Hermes:** the shared core under `.skilled/hooks/goal/` injects the same objective slice. Pi also manages through `/goal-pi`, Cursor answers a session-free packet read, Devin injects without a management surface, and Hermes binds the packet named by `HERMES_SPEC_FOLDER` under its session id through the repo plugin. Cursor and Devin still record a turn on the bound record, so neither is read-only
 - **Guarded by the validator:** a phase parent or top-level packet goal has one limit, 4,000 characters, and fails only past it. A phase child whose goal has no binding row fails too
 - **Autonomous continuation is default-off** and gated (caps, cooldown, kill-switch). See `.skilled/hooks/goal/README.md` for the model and `.skilled/hooks/goal/goal-plugin.md` for the OpenCode plugin contract
+
+&nbsp;
+#### In-Session Handover
+
+Keeps a long task going when the context window fills, without you closing the terminal or pasting anything into a new session.
+
+Each runtime's hook reads how full its context window is. Near 80% it asks the session to write a handoff note, save its spec packet if one is bound and prepare a relaunch. When the session goes idle, a small watcher ends it. The `skilled-loop` wrapper then starts the same runtime in the same terminal with the same model, and the new session claims the note and carries on.
+
+- **Claude Code:** reads usage from the transcript after each tool call and prompt, and arms the relaunch at `Stop`
+- **Codex:** reads the rollout's latest `token_count` and arms at `Stop`. Approve the repository's hooks in `/hooks` once
+- **Pi:** reads usage at `message_end` and arms at `agent_end` through its extension
+- **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 1 and 2
+- **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
+- **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
+- **Safe by design:** the nudge fires only inside `skilled-loop`, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, and the watcher only ever signals a process the loop started
+- **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
+
+[Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup, and the [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, the per-runtime adapters and troubleshooting.
 
 &nbsp;
 #### OpenCode Plugins
