@@ -202,7 +202,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main at `8c9a14bd59` on 2026-10-20, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds.
 
-**Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On the tested date the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
+**Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On 2026-10-19, after main added `session-relaunch.js`, the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 
 **CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin, sk-vision, agent or dispatch-hook trees, the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself. Each job first puts the pinned `bun` 1.3.9 on `PATH` and provisions every dependency tree the plugins import, including the sk-vision bundle. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19. The runs before it failed at the sk-vision bundle build or the battery step.
 

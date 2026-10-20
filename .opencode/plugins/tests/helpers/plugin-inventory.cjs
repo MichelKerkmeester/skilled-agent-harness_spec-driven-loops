@@ -17,7 +17,8 @@ const path = require('node:path');
 const PLUGIN_DIR = path.resolve(__dirname, '..', '..');
 
 const IDENTIFIER_SOURCE = String.raw`[A-Za-z_$][A-Za-z0-9_$]*`;
-const EVENT_TYPE_SOURCE = String.raw`(?:${IDENTIFIER_SOURCE}(?:\?\.|\.))*(?:${IDENTIFIER_SOURCE})?[tT]ype(?![A-Za-z0-9_$])`;
+// A bracket key reaches the same member as a dot, so both spellings are read alike.
+const EVENT_TYPE_SOURCE = String.raw`(?:${IDENTIFIER_SOURCE}(?:\?\.|\.))*(?:${IDENTIFIER_SOURCE})?(?:[tT]ype(?![A-Za-z0-9_$])|\[\s*'type'\s*\]|\[\s*"type"\s*\])`;
 const EVENT_NAME_SOURCE = String.raw`[a-z]+(?:\.[a-z_]+)+`;
 const COMPARISON_SOURCE = String.raw`(?:===|!==|==|!=)`;
 const OPERAND_SOURCE = String.raw`(?:'[^'\n]*'|"[^"\n]*"|${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`;

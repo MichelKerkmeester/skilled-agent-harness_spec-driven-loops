@@ -244,7 +244,7 @@ test('stripComments keeps strings and drops comments', () => {
 });
 
 test('handledEventNames reads both quote styles, both orders and case labels', () => {
-  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} if (type === \`f.six\`) {} switch (t) { case 'd.four': case "e.five": } // if (type === 'g.seven') {}`;
+  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} if (type === \`f.six\`) {} switch (t) { case 'd.four': case "e.five": } if (event['type'] === 'j.one') {} if (event?.["type"] !== 'j.two') {} // if (type === 'g.seven') {}`;
 
   assert.deepEqual(handledEventNames(source), [
     'a.one',
@@ -253,6 +253,8 @@ test('handledEventNames reads both quote styles, both orders and case labels', (
     'd.four',
     'e.five',
     'f.six',
+    'j.one',
+    'j.two',
   ]);
 });
 
@@ -285,13 +287,15 @@ test('unscannedEventChecks fails closed on forms it cannot resolve', () => {
     `if (eventType === (x ? 'z.c' : 'z.d')) {}      // comparison whose operand is not a single literal\n` +
     `switch (eventType) { case getName(): }          // case label that is not a literal\n` +
     `if (eventType in HANDLERS) {}                   // \`in\` test\n` +
-    `HANDLERS[eventType]?.()                         // index lookup`;
+    `HANDLERS[eventType]?.()                         // index lookup\n` +
+    `if (event['type'] === getName()) {}             // bracket key whose operand is not a literal`;
 
   assert.deepEqual(unscannedEventChecks(source), [
     'HANDLERS[eventType]',
     'case getName():',
     "eventType === (x ? 'z.c' : 'z.d')",
     'eventType in HANDLERS',
+    "event['type'] === getName()",
   ]);
   assert.deepEqual(handledEventNames(source), []);
 });
