@@ -1,250 +1,234 @@
+<!-- ANCHOR:review-synthesis -->
 # Deep Review Report — Session Relaunch Loop
 
-## 1. Executive Summary
+## Executive Summary
 
-**Verdict: CONDITIONAL**  
-**Release readiness: conditional**  
-**Active findings:** P0: 0 · P1: 1 · P2: 3  
-**hasAdvisories:** false under the workflow rule that reserves this flag for PASS verdicts with P2 findings.
+**Verdict: FAIL**  
+**Advisories:** false  
+**Active findings:** P0=1, P1=4, P2=1  
+**Iterations:** 10/10; terminal stop reason: `maxIterationsReached`  
+**Release readiness:** blocked
 
-Five inline iterations covered correctness, security, traceability, maintainability, and a final integration sweep. One P1 finding blocks confidence in the phase 002 closure claim; three P2 findings identify conflicting phase closure, parent phase-map, and parent continuity records. The review stopped at the configured five-iteration cap, so stopReason is maxIterationsReached. Convergence was recorded as telemetry only.
+This review covered the automatic handover chain for Claude Code, Pi, OpenCode, Codex, and Hermes, plus the Cursor and Devin command-only handoff paths. It traced usage reading, nudge delivery, prepare/arm state, killer timeout behavior, the linked `.skilled` topology, project hook registrations, and the handoff command contract. The active P0 means the required linked-repository topology cannot receive automatic runtime callbacks when it links only `.skilled`. Four P1 findings describe missed nudges, missing killer supervision, a stale timeout race, and a likely Cursor command-name mismatch. One command guard remains at P2 after the self-detection claim was narrowed.
 
-The review read source, tests, packet documentation, and stored run evidence. It did not execute tests, runtime smoke commands, validators, or continuity writers.
+The review was performed inline under the dispatcher's execution binding. No nested CLI or provider-backed runtime was launched. The review artifacts and source findings are complete; fixes, automated tests, live hops, and strict packet validation remain follow-up work.
 
-## 2. Planning Trigger
+## Planning Trigger
 
-/speckit:plan is required to reconcile the active acceptance and packet-state findings before the parent packet is treated as closed. Planning Packet impact values are UNKNOWN where no structured impact field was recorded in iteration state.
+`/speckit:plan` is required to address the active P0 and P1 findings before the packet can claim reliable automatic handover. The phase-016 acceptance criteria also require fixes and live-hop evidence.
 
-**Planning Packet**
+### Planning Packet
 
 ```json
 {
   "triggered": true,
-  "verdict": "CONDITIONAL",
+  "verdict": "FAIL",
   "hasAdvisories": false,
   "activeFindings": [
-    {
-      "id": "P1-001",
-      "severity": "P1",
-      "title": "AC-003 is marked Met despite evidence failing its literal smoke requirement",
-      "dimension": "traceability",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:41",
-      "evidence": "REQ-003 requires the plain Pi command to exit 0 and the OpenCode import to print ok. AC-003 records the plain Pi command rc=1 and import output function, yet marks the criterion Met.",
-      "impact": "UNKNOWN",
-      "fixRecommendation": "Rerun the required commands and record matching results, or revise the requirement and acceptance criterion through the packet change process before treating AC-003 as Met.",
-      "disposition": "active",
-      "findingClass": "acceptance_evidence",
-      "scopeProof": "Direct comparison of 002-pi-opencode-adapters/spec.md:120 with acceptance-criteria.md:41 shows the literal requirement, contradictory observed outcomes, and Met status.",
-      "affectedSurfaceHints": ["phase-002 requirement closure", "parent completion claim"]
-    },
-    {
-      "id": "P2-002",
-      "severity": "P2",
-      "title": "Phase 002 closure summary and acceptance record disagree about AC-006",
-      "dimension": "traceability",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:135",
-      "evidence": "Acceptance criteria marks AC-006 Met, says Closeable Yes, and reports strict validation passed; implementation-summary says AC-006 is Unmet and packet validation returned RESULT: FAILED, with other rows still pending.",
-      "impact": "UNKNOWN",
-      "fixRecommendation": "Reconcile the implementation summary and acceptance record against final validation evidence, keeping prior failures only as dated history.",
-      "disposition": "active",
-      "findingClass": "evidence_drift",
-      "scopeProof": "Direct comparison of acceptance-criteria.md:44,65-67 with implementation-summary.md:102-103,135-145 shows incompatible closure states.",
-      "affectedSurfaceHints": ["phase-002 closure summary", "phase-002 acceptance gate"]
-    },
-    {
-      "id": "P2-003",
-      "severity": "P2",
-      "title": "Parent phase contract still describes six phases after Phase 007 was added",
-      "dimension": "traceability",
-      "file": "specs/hooks/023-session-relaunch-loop/spec.md:39",
-      "evidence": "The parent phase map lists seven complete children, while handoff and purpose text still says six, scope and file summaries stop at Phase 006, and the 006-to-007 handoff remains TBD; Phase 006 and 007 metadata say 6 of 6 and 7 of 7.",
-      "impact": "UNKNOWN",
-      "fixRecommendation": "Update the parent phase count, scope and file summaries, and 006-to-007 handoff criteria; reconcile the Phase 006 count if it is intended to describe the current sequence.",
-      "disposition": "active",
-      "findingClass": "phase_transition_drift",
-      "scopeProof": "Cross-document comparison of parent spec.md:39,51,62-86,98-122 with 006/spec.md:27 and 007/spec.md:27 confirms the phase-count and transition mismatch.",
-      "affectedSurfaceHints": ["parent phase scope", "phase transition contract", "phase 006 metadata"]
-    },
-    {
-      "id": "P2-004",
-      "severity": "P2",
-      "title": "Parent goal continuity still carries its initial scaffold state after Phase 007 completion",
-      "dimension": "traceability",
-      "file": "specs/hooks/023-session-relaunch-loop/goal.md:14",
-      "evidence": "The continuity block remains dated 2026-10-16, last updated by scaffold, with the initial recent action and next action, and completion_pct 0; the same goal marks all criteria checked and records Phase 007 complete on 2026-10-19.",
-      "impact": "UNKNOWN",
-      "fixRecommendation": "Refresh the parent continuity fields through the approved continuity workflow so they reflect the current phase and completion evidence.",
-      "disposition": "active",
-      "findingClass": "continuity_drift",
-      "scopeProof": "Direct comparison of goal.md:14-24 with its checked completion criteria at 87-90 and Phase 007 progress row at 112 confirms the continuity block predates the recorded completion.",
-      "affectedSurfaceHints": ["parent goal handoff context", "persisted progress metadata"]
-    }
+    {"id":"LUNA-FANOUT-P0-001","severity":"P0","title":"A .skilled-only linked repository has no project-level automatic hook registrations","file":".skilled/hooks/session-relaunch/README.md:23"},
+    {"id":"LUNA-FANOUT-P1-001","severity":"P1","title":"A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge","file":".skilled/hooks/session-relaunch/lib/context-usage.cjs:46"},
+    {"id":"LUNA-FANOUT-P1-003","severity":"P1","title":"killer spawn errors leave interactive runtimes armed without a retry trigger","file":".skilled/hooks/session-relaunch/claude/stop-arm.mjs:60"},
+    {"id":"LUNA-FANOUT-P1-004","severity":"P1","title":"timeout cleanup can disarm a newer armed record for the same handoff path","file":".skilled/hooks/session-relaunch/lib/killer.cjs:486"},
+    {"id":"LUNA-FANOUT-P1-005","severity":"P1","title":"Cursor's command mirror does not expose the documented /speckit:handoff name","file":".skilled/hooks/session-relaunch/README.md:29"},
+    {"id":"LUNA-FANOUT-P1-006","severity":"P2","title":"A failed or skipped continuity save can still produce a prepared hop","file":".skilled/commands/speckit/handoff.md:61"}
   ],
   "remediationWorkstreams": [
-    {"order": 1, "findingIds": ["P1-001"], "focus": "Re-establish or revise the exact REQ-003 smoke evidence before claiming AC-003 Met."},
-    {"order": 2, "findingIds": ["P2-002"], "focus": "Align phase 002 AC-006, validation, and implementation-summary closure states."},
-    {"order": 3, "findingIds": ["P2-003"], "focus": "Update parent phase-count scope and the 006-to-007 handoff contract."},
-    {"order": 4, "findingIds": ["P2-004"], "focus": "Refresh parent continuity metadata through the approved save workflow."}
+    {"priority":"P0","title":"Provision and verify all five project-level runtime registrations for linked .skilled repositories."},
+    {"priority":"P1","title":"Make Claude transcript tail parsing preserve oversized final JSONL records."},
+    {"priority":"P1","title":"Roll back or retry armed state when killer spawning fails."},
+    {"priority":"P1","title":"Fence killer timeout cleanup with a unique relaunch-record identity."},
+    {"priority":"P1","title":"Align Cursor's documented trigger with its supported command-file name."},
+    {"priority":"P2","title":"Make successful packet continuity save an explicit prerequisite to prepare."}
   ],
   "specSeed": [
-    "Keep REQ-003 and AC-003 aligned with the exact Pi exit status and OpenCode import output that the project accepts.",
-    "Make the parent phase count, in-scope summary, files-to-change summary, and 006-to-007 handoff reflect all seven child phases.",
-    "Reconcile the parent continuity block with the recorded Phase 007 completion state.",
-    "Keep one dated final closure record for Phase 002 that agrees with its acceptance table."
+    "Add linked-consumer acceptance evidence for each runtime registration, not only shell-wrapper discovery.",
+    "Add source-level or testable cases for oversized final transcript rows, spawn failure, and same-path timeout supersession.",
+    "Record Cursor's actual command alias and the command-only Devin direct-file path separately.",
+    "Keep the continuity-save stop branch as a P2 reliability improvement."
   ],
   "planSeed": [
-    "Capture fresh runs of the exact Pi and OpenCode commands named by REQ-003; attach outputs and update AC-003.",
-    "Reconcile AC-006 and the phase 002 implementation summary against the final strict-validation record.",
-    "Update parent phase scope, file summary, count, and 006-to-007 handoff criteria; align Phase 006 count metadata if current.",
-    "Refresh parent goal continuity using the approved continuity writer, then review the generated fields."
+    "P0: add a linked-repository bootstrap/sync path and verify Claude, Pi, OpenCode, Codex, and Hermes registrations.",
+    "P1: add record-aware usage tail handling and an oversized-final-row regression case.",
+    "P1: make spawn failure leave a retryable state and test synchronous and asynchronous errors.",
+    "P1: add record generation/CAS semantics and a same-path replacement timeout test.",
+    "P1: verify and document Cursor's command-palette alias; retain Devin direct-file instructions.",
+    "P2: add a clear successful-save gate before note creation and prepare."
   ],
-  "findingClasses": ["acceptance_evidence", "evidence_drift", "phase_transition_drift", "continuity_drift"],
-  "affectedSurfacesSeed": ["phase 002 acceptance evidence", "phase 002 closure summary", "parent phase map and handoff", "parent goal continuity"],
+  "findingClasses": {
+    "LUNA-FANOUT-P0-001":"UNKNOWN",
+    "LUNA-FANOUT-P1-001":"UNKNOWN",
+    "LUNA-FANOUT-P1-003":"UNKNOWN",
+    "LUNA-FANOUT-P1-004":"UNKNOWN",
+    "LUNA-FANOUT-P1-005":"UNKNOWN",
+    "LUNA-FANOUT-P1-006":"UNKNOWN"
+  },
+  "affectedSurfacesSeed":"UNKNOWN",
   "fixCompletenessRequired": true
 }
 ```
 
-## 3. Active Finding Registry
+The reducer-owned registry contains IDs, severities, titles, files, lines, and dimensions. Structured `findingClass`, `scopeProof`, and `affectedSurfaceHints` are absent there, so the packet marks those fields `UNKNOWN` rather than deriving them from narrative text.
 
-### P1-001 — AC-003 is marked Met despite evidence failing its literal smoke requirement
+## Active Finding Registry
 
-- **Location:** 002-pi-opencode-adapters/acceptance-criteria.md:41
-- **Evidence:** REQ-003 at spec.md:120 requires the plain Pi command to exit 0 and the OpenCode import to print ok. The recorded plain Pi invocation returned rc=1 and the import printed function; AC-003 is nevertheless marked Met.
-- **Impact:** The parent claim that every child acceptance criterion is met is not supported by this evidence.
-- **Recommendation:** Rerun the exact commands and record matching results, or amend the requirement and criterion through the packet change process.
-- **Class / disposition:** acceptance_evidence / active.
-- **Scope proof:** Direct comparison of the phase requirement and AC-003 row.
-- **Affected surfaces:** phase 002 requirement closure; parent completion claim.
+### P0
 
-### P2-002 — Phase 002 closure summary and acceptance record disagree about AC-006
+- **LUNA-FANOUT-P0-001 — A .skilled-only linked repository has no project-level automatic hook registrations**  
+  **Dimension:** correctness · **File:** `.skilled/hooks/session-relaunch/README.md:23` · **Disposition:** active.  
+  **Evidence:** the runtime matrix lists five project-level registrations; the wrapper fixture creates only a `.skilled` symlink and checks wrapper discovery (`tests/skilled-loop-shell.test.cjs:51-58,84-98`).  
+  **Impact:** without those project surfaces, automatic adapters never run in the linked consumer repository.  
+  **Fix:** add and verify a bootstrap/sync step that provisions the five registrations.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-- **Location:** 002-pi-opencode-adapters/implementation-summary.md:135
-- **Evidence:** Acceptance criteria says AC-006 is Met, the phase is closeable, and strict validation passed (acceptance-criteria.md:44,65-67). The implementation summary says AC-006 is Unmet and validation returned RESULT: FAILED, while other rows describe revalidation as pending.
-- **Impact:** The final phase closure state cannot be determined consistently from its own records.
-- **Recommendation:** Reconcile the summary and acceptance record against final validation evidence; retain earlier failures as dated history.
-- **Class / disposition:** evidence_drift / active.
-- **Scope proof:** Direct comparison of acceptance criteria and implementation summary.
-- **Affected surfaces:** phase 002 closure summary; phase 002 acceptance gate.
+### P1
 
-### P2-003 — Parent phase contract still describes six phases after Phase 007 was added
+- **LUNA-FANOUT-P1-001 — A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge**  
+  **Dimension:** correctness · **File:** `.skilled/hooks/session-relaunch/lib/context-usage.cjs:46` · **Disposition:** active.  
+  **Evidence:** the byte tail can start inside the final row; the parser drops the partial first line and returns null (`:94-109`), and the nudge ends on null (`claude/context-nudge.mjs:71-75`). The existing test sizes its tail to include the full row (`tests/context-usage.test.cjs:182-198`).  
+  **Impact:** a high-context session can miss the handoff prompt.  
+  **Fix:** read a complete final record or make an oversized-record read failure observable and retryable.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-- **Location:** spec.md:39
-- **Evidence:** The phase map has seven complete children; handoff and purpose text still say six, scope and file summaries stop at Phase 006, and 006-to-007 remains TBD. Phase 006 calls itself “6 of 6” while Phase 007 says “7 of 7.”
-- **Impact:** The parent does not define a complete current handoff path or a consistent scope for all listed children.
-- **Recommendation:** Update the parent phase count, scope and file summaries, and 006-to-007 handoff; reconcile Phase 006’s count if it is intended to describe the current sequence.
-- **Class / disposition:** phase_transition_drift / active.
-- **Scope proof:** Cross-document comparison of parent spec.md:39,51,62-86,98-122 with Phase 006 and Phase 007 metadata.
-- **Affected surfaces:** parent phase scope; phase transition contract; Phase 006 metadata.
+- **LUNA-FANOUT-P1-003 — killer spawn errors leave interactive runtimes armed without a retry trigger**  
+  **Dimension:** correctness · **File:** `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:60` · **Disposition:** active.  
+  **Evidence:** the record is armed before the spawn attempt; both sync and async spawn-error tests assert it remains armed (`tests/claude-adapters.test.cjs:375-455`).  
+  **Impact:** a final Stop can leave no process watching idle, so the wrapper has no trigger to relaunch.  
+  **Fix:** roll back to pending or guarantee a retry when the killer cannot start.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-### P2-004 — Parent goal continuity still carries its initial scaffold state after Phase 007 completion
+- **LUNA-FANOUT-P1-004 — timeout cleanup can disarm a newer armed record for the same handoff path**  
+  **Dimension:** correctness · **File:** `.skilled/hooks/session-relaunch/lib/killer.cjs:486` · **Disposition:** active.  
+  **Evidence:** timeout cleanup compares path and unarms by status/path (`:480-508`); pending replacements remain armable while a killer owns its lock (`relaunch-core.cjs:403-415`). The existing test changes to a different path (`tests/killer.test.cjs:1291-1358`).  
+  **Impact:** a newer same-path handoff can be disarmed by a stale timeout finalizer.  
+  **Fix:** attach a unique record generation and compare-and-swap that identity.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-- **Location:** goal.md:14
-- **Evidence:** The continuity block remains dated 2026-10-16, says the updater was scaffold, retains the initial recent action and next action, and reports completion_pct 0; the same goal marks all completion criteria checked and records Phase 007 complete on 2026-10-19.
-- **Impact:** A later session receives stale progress and next-action context.
-- **Recommendation:** Refresh the parent continuity fields through the approved continuity workflow.
-- **Class / disposition:** continuity_drift / active.
-- **Scope proof:** Comparison of goal.md:14-24 with its completion criteria at 87-90 and Phase 007 progress at 112.
-- **Affected surfaces:** parent goal handoff context; persisted progress metadata.
+- **LUNA-FANOUT-P1-005 — Cursor's command mirror does not expose the documented /speckit:handoff name**  
+  **Dimension:** correctness · **File:** `.skilled/hooks/session-relaunch/README.md:29` · **Disposition:** active, source-based inference.  
+  **Evidence:** README advertises `/speckit:handoff`, while `.cursor/commands/speckit-handoff.md` is flat. Cursor's [project command documentation](https://docs.cursor.com/en/agent/chat/commands) and [deeplink reference](https://prod.cursor.com/docs/reference/deeplinks) support a file-derived name, but the installed command palette was not checked live.  
+  **Impact:** operators may not find the manual handoff command by following the documented trigger.  
+  **Fix:** verify and document the Cursor alias or add a supported mirror. Devin remains a separate direct-file path per `.devin/SYNC.md:18-21` and README `:45`.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-## 4. Remediation Workstreams
+### P2
 
-1. **P1 closure evidence:** rerun the exact Pi and OpenCode command forms in REQ-003 and update AC-003 from observed results. If the requirement is no longer intended literally, amend both requirement and acceptance criterion under the packet change process.
-2. **P2 phase 002 closure records:** align AC-006, Closeable, strict-validation status, and implementation-summary verification against one final validation record.
-3. **P2 parent phase contract:** update the six/seven phase count, parent scope/file summary, Phase 006 count if applicable, and the 006-to-007 transition criteria.
-4. **P2 parent continuity:** refresh the parent goal’s continuity fields through its canonical writer and inspect the resulting state.
+- **LUNA-FANOUT-P1-006 — A failed or skipped continuity save can still produce a prepared hop**  
+  **Dimension:** correctness · **File:** `.skilled/commands/speckit/handoff.md:61` · **Disposition:** active, downgraded P1 → P2 in iteration 10.  
+  **Evidence:** the command directs a packet save before prepare, but has no explicit failure stop branch; `prepare` validates the note/session and does not receive a save result (`session-relaunch.cjs:361-381,418-439`). The skill's self-detection rule is conditional (`SKILL.md:244`), and the implementation summary says this command has no blocking phases (`implementation-summary.md:81-83`); the template's universal wording conflicts with that rule.  
+  **Impact:** a runner that mishandles a save error could continue with stale packet state. The review does not claim normal compliant execution skips the save.  
+  **Fix:** require a successful save result before note creation and prepare, and stop on failure.  
+  **findingClass / scopeProof / affectedSurfaceHints:** UNKNOWN in structured reducer state.
 
-## 5. Spec Seed
+The registry retains the original P1-006 title as the stable fallback identity. Iteration 10 narrows the supported claim and records its severity transition to P2; it is the same finding, not a second item.
 
-- Keep REQ-003 and AC-003 aligned with the exact Pi exit status and OpenCode import output that the project accepts.
-- Make the parent’s phase count, in-scope summary, files-to-change summary, and 006-to-007 handoff reflect all seven child phases.
-- Reconcile the parent’s continuity timestamp, recent action, next safe action, and completion percentage with the checked completion evidence.
-- Keep one dated final closure record for Phase 002 that agrees with its acceptance table.
+## Remediation Workstreams
 
-## 6. Plan Seed
+1. **P0 — Linked-repository registration.** Provide one supported setup path for the `.claude`, `.pi`, `.opencode`, `.codex`, and `.hermes` project registrations, then verify a consumer repo that links `.skilled` and nothing else receives each callback.
+2. **P1 — Usage record parsing.** Handle a transcript tail that begins within an oversized final assistant row and add a regression case that uses the default 262144-byte tail.
+3. **P1 — Killer start failure.** Make the state retryable when spawn throws or emits an error; test both failure modes and the final-Stop/no-later-event case.
+4. **P1 — Stale timeout identity.** Use a unique record generation or equivalent compare-and-swap in timeout cleanup; add a same-path replacement regression case.
+5. **P1 — Cursor command name.** Check the live Cursor palette, then align the README alias or supported command mirror. Keep Devin's direct-file instructions separate.
+6. **P2 — Continuity save guard.** Add an explicit success gate before prepare and stop with a clear error if the save fails.
 
-- Capture a fresh run of the exact plain Pi command and exact OpenCode import command named in REQ-003; attach outputs and update AC-003.
-- Verify the final Phase 002 strict result and rewrite its AC-006 and implementation-summary status from that same result.
-- Update parent metadata and phase transition rows for seven children; verify the phase map and handoff criteria together.
-- Run the approved continuity save for the parent goal, then compare generated continuity fields with Phase 007 completion evidence.
-- Apply the relevant strict packet and closure checks after those records are reconciled.
+## Spec Seed
 
-## 7. Traceability Status
+- Add an acceptance case for a consumer repository with only `.skilled` linked and require each of the five project registrations to be provisioned and observed.
+- Add failure cases for an oversized final Claude usage row, synchronous/asynchronous killer spawn errors, and same-path timeout supersession.
+- Record the actual Cursor command alias and preserve Devin's documented direct-read invocation.
+- Retain the packet continuity-save gate as a P2 reliability requirement.
+- Keep AC-004/AC-005 fix evidence and AC-006 live-hop evidence separate from this read-only review result.
 
-| Protocol | Level | Status | Evidence / unresolved drift |
-|---|---|---|---|
-| spec_code | Core, hard | **Fail** | Seven phase-map rows conflict with the six-child parent contract and unfinished 006-to-007 transition (P2-003); parent continuity state is stale (P2-004). |
-| checklist_evidence | Core, hard | **Fail** | AC-003 does not demonstrate the literal REQ-003 outcomes (P1-001); AC-006 closure status differs between phase documents (P2-002). |
-| skill_agent | Overlay | Not assessed | This pass did not compare all skill-agent guidance with every runtime adapter. |
-| agent_cross_runtime | Overlay | Partial | Runtime matrix and wrapper/model carry references were reviewed; no full per-runtime live parity replay was run. |
-| feature_catalog_code | Overlay | Not assessed | Catalog-to-implementation mapping was outside the final evidence sweep. |
-| playbook_capability | Overlay | Partial | The benchmark index and three relaunch playbooks point to the same run 10 evidence folder; full capability coverage was not audited. |
-| AC_COVERAGE | Lifecycle | Exempt | The lean parent packet has no root checklist.md or implementation-summary.md; child acceptance records were reviewed directly. |
+## Plan Seed
 
-resource_map_present was false at initialization, so the conditional Resource Map Coverage Gate section was not applicable.
+- Provision project hook/plugin registrations for linked consumer repositories and verify all five automatic adapters.
+- Add an oversized final-row parsing regression and fix the usage reader.
+- Restore retryable state after killer spawn failure and test both error channels.
+- Add record identity fencing and a same-path timeout test.
+- Confirm Cursor's command palette alias and update the command matrix.
+- Add a successful continuity-save check before `prepare`.
+- After fixes, rerun the session-relaunch test suite, execute live hops on Claude, Pi, OpenCode, Codex, and Hermes including a linked repo, then validate the packet.
 
-## 8. Deferred Items
+## Traceability Status
 
-- Do not treat recorded validation results as independently reverified by this lineage. No strict validator, test suite, or runtime smoke command was run.
-- Rerun the P1 smoke commands and reconcile Phase 002 strict-closure records.
-- Refresh parent goal continuity through the canonical writer and review the generated result.
-- Complete the remaining overlay protocol checks if the follow-on plan requires full skill, runtime, catalog, and playbook parity.
-- Graph seeding, resource-map emission, strict packet validation, continuity save, and the standard synthesis closeout command were skipped because they would write outside the dispatcher-bound lineage. The synthesis event was appended through the approved gateway, and the state reducer used an explicit lineage artifact directory without resource-map emission.
+### Core Protocols
+
+- **spec_code — FAIL.** Phase 016 requires the linked `.skilled` case and asks whether the five automatic handovers fire. The current link-only fixture demonstrates wrapper discovery but does not provision project hook registrations. Evidence: phase-016 `spec.md:156-175`; `.skilled/hooks/session-relaunch/README.md:23-30`; `tests/skilled-loop-shell.test.cjs:51-58`.
+- **checklist_evidence — advisory-shortfall.** AC-001/002 are recorded Met in phase-016 `acceptance-criteria.md:25-36`. AC-003 was Unmet before this run; ten iteration artifacts now exist through the dispatcher's inline execution binding, but the literal CLI binary/model behavior was not independently exercised. AC-004/005 remain Unmet pending fixes; AC-006 remains Unmet pending live hops (`acceptance-criteria.md:37-55`). Tasks T006-T013 remain unchecked; the task file records 2/12 P0, 0/13 P1, and 0/1 P2 checklist items verified (`tasks.md:30-162`).
+- **AC_COVERAGE — exempt.** The review target is the root spec folder. Its `checklist.md` and root `implementation-summary.md` are absent, so the lifecycle AC coverage signal is exempt under the workflow rule. The phase-016 child packet has its own acceptance criteria and remains open as above.
+
+### Overlay Protocols
+
+- **skill_agent — PARTIAL.** The handoff command uses the plain workflow structure. The skill makes self-detection conditional on blocking phases, while the template says every workflow command must include it. The phase-016 implementation summary records this conflict. Iteration 10 withdrew the universal requirement claim and retained only the explicit save-failure stop branch as P2.
+- **agent_cross_runtime — FAIL.** The five project registration surfaces were inspected. A `.skilled` symlink alone does not provide those sibling paths.
+- **feature_catalog_code — PARTIAL.** The runtime matrix correctly separates automatic runtimes from command-only runtimes, but the linked-consumer setup lacks the registrations required by the automatic claims.
+- **playbook_capability — PARTIAL.** Source and existing test evidence were reviewed. This lineage did not run the application test suite or provider-backed live hops.
+
+## Resource Map Coverage Gate
+
+- **Entries touched:** 0 of 6 resource-map paths appear in applied reports; no `applied/T-*.md` reports exist under the review target.
+- **Entries not touched:** 6 paths, all `expected-by-scope` because this review is read-only and no implementation report exists: `.skilled/hooks/session-relaunch/README.md`, `.skilled/commands/speckit/handoff.md`, `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs`, `.skilled/hooks/session-relaunch/claude/stop-arm.mjs`, `.skilled/hooks/session-relaunch/lib/context-usage.cjs`, `.skilled/hooks/session-relaunch/lib/killer.cjs`.
+- **Implementation paths absent from resource-map:** 0; no applied report supplies `target_files` to compare.
+
+## Deferred Items
+
+- Fix all active P0/P1 findings before claiming reliable handover; address the P2 save guard in the phase-016 remediation.
+- Confirm the Cursor alias in a live command palette; the finding remains source-based until then.
+- Run the session-relaunch tests and provider-backed live hops on the five automatic runtimes, including the linked-repository topology.
+- Update phase-016 AC/task evidence after remediation and run strict validation at closure.
+- The normal phase-save step was skipped because it would write outside the lineage. No packet continuity or source file was changed.
 
 ## Dimension Expansion Map
 
-- **Completed dimensions:** correctness (iteration 1), security (iteration 2), traceability (iteration 3), maintainability (iteration 4); integration sweep completed in iteration 5.
-- **Completed pivots:** 0.
-- **Failed pivots:** 0.
-- **Audited overrides:** 0.
-- **Selected review directions:** atomic state and timeout transitions; path and command boundaries; requirement-to-acceptance and phase handoffs; policy ownership and configuration consistency; final completion-state reconciliation.
-- **Remaining frontier:** none within the five-iteration cap. Command re-execution and broader overlay checks remain deferred.
-- **Graph state:** unavailable; source discovery used direct reads and exact searches with graphless fallback.
+- **Coverage:** correctness, security, traceability, and maintainability all show covered in reducer state.
+- **Selected directions:** transcript usage and nudge suppression; event/arm and killer state; timeout and wrapper behavior; linked repository and registration surfaces; command-only entrypoints and authoring contract; acceptance/task evidence.
+- **Divergence state:** no started/completed/failed pivots, no audited overrides, no saturated directions, and no remaining frontier are recorded by the reducer.
+- **Council artifacts:** none.
+- **Open evidence edge:** live Cursor command-palette confirmation remains blocked in the source-only pass. Provider-backed hops are deferred follow-up, not a search-debt entry.
 
 ## Search Ledger
 
-- **Graph coverage mode:** graphless_fallback.
-- **Required classes:** requirement_acceptance_drift, closure_evidence_status, phase_map_transition_drift, continuity_state_drift, runtime_policy_integration.
-- **Covered:** the first four classes above, each linked to its iteration evidence and active finding where applicable.
-- **Ruled out:** runtime_policy_integration, plus the iteration 1–2 correctness/security search classes and iteration 4 policy/documentation/configuration/evidence-link checks.
-- **Deferred / blocked:** none in the structured search ledger. Test and validator execution is separately deferred under the write-boundary constraint.
-- **Search debt:** 0.
+- **Search coverage:** required classes 8/8 covered: `adversarial_recheck_open_findings`, `checklist_evidence`, `automatic_project_hook_registration`, `oversized_jsonl_record`, `killer_spawn_failure`, `same_path_record_replacement`, `command_name_resolution`, `continuity_save_completion`. Three classes ruled out: `universal_self_detection_requirement`, `devin_direct_file_entrypoint`, `plain_workflow_contract`. Deferred: 0. Blocked: live Cursor command-palette confirmation. Mode: `graphless_fallback`.
+- **Candidate coverage:** 32 covered; 31 ruled out; none deferred or blocked. Covered: `adversarial_recheck_open_findings`, `arm_event_identity`, `armed_record_freshness`, `automatic_project_hook_registration`, `checklist_evidence`, `command_name_resolution`, `continuity_save_completion`, `cwd_restore`, `devin_direct_file_entrypoint`, `duplicate_review_finding`, `held_nudge_delivery`, `hermes_project_plugin_scope`, `idle_detection`, `kill_target_and_grace`, `killer_spawn_failure`, `linked_repo_root_resolution`, `oversized_jsonl_record`, `plain_workflow_contract`, `prepare_refusal`, `re_nudge_boundary`, `receiving_seed_claim`, `runtime_argument_carry`, `runtime_invocation_classification`, `same_path_record_replacement`, `shared_state_and_install_config`, `shell_wrapper_discovery`, `silent_nudge_suppression`, `spec_folder_record_transport`, `suppression_order`, `timeout_record_supersession`, `tty_gate`, `wrapper_exit_decision`.
+- **Candidate classes ruled out:** `arm_event_identity`, `armed_record_freshness`, `devin_direct_file_entrypoint`, `different_path_record_change`, `duplicate_live_killer`, `duplicate_review_finding`, `freshness_before_signal`, `held_nudge_delivery`, `hermes_project_plugin_scope`, `hop_cap_signal`, `idle_detection`, `install_root_realpath_breaks_note_validation`, `kill_target_and_grace`, `linked_repo_root_resolution`, `linked_skilled_wrapper_lookup`, `path_containment_escape`, `plain_workflow_contract`, `re_nudge_boundary`, `receiving_seed_claim`, `runtime_argument_carry`, `runtime_flag_conflict`, `runtime_invocation_classification`, `shell_wrapper_discovery`, `spec_folder_record_transport`, `stale_future_armedAt_suppression`, `stale_rearm_timestamp`, `suppression_order`, `transcript_missing_grace`, `tty_gate`, `universal_self_detection_requirement`, `wrapper_exit_decision`.
+- **Search debt:** none (`searchDebt=[]`).
+- **Ruled-out candidate records:** SL-002, SL-003, SL-004, SL-005, SL-007, SL-008, SL-009, SL-010, SL-012, SL-013, SL-016, SL-020, SL-021, SL-022, SL-023, SL-024, SL-025, SL-026, SL-027, SL-031, SL-032, SL-033. Their source evidence and proofs are preserved in `deep-review-findings-registry.json` under `ruledOutCandidates` and `cleanSearchProof`.
+- **Clean-search proof IDs:** SL-002, SL-003, SL-004, SL-005, SL-007, SL-008, SL-009, SL-010, SL-012, SL-013, SL-016, SL-020, SL-021, SL-022, SL-023, SL-024, SL-025, SL-026, SL-027, SL-031, SL-032, SL-033.
 
-Representative evidence:
+## Audit Appendix
 
-- REQ-003 and AC-003: 002-pi-opencode-adapters/spec.md:120, acceptance-criteria.md:41 → P1-001.
-- AC-006 final status: 002-pi-opencode-adapters/acceptance-criteria.md:44,65-67, implementation-summary.md:135 → P2-002.
-- Parent phase count and transition: spec.md:39,51,62-122, 006-deep-review-2-remediation/spec.md:27, 007-handoff-gate-exemptions/spec.md:27 → P2-003.
-- Parent continuity: goal.md:14-24,87-112 → P2-004.
-- Runtime policy ruled out: spec-gate-core.mjs:71,1568, spec-gate-core.test.mjs:896-945, AGENTS.md:70,75, opencode.json:3,6-11.
+### Convergence Summary
 
-## 10. Audit Appendix
+- Iterations: 10/10; stop reason: `maxIterationsReached`.
+- Verdict: FAIL, recomputed from active P0=1, P1=4, P2=1.
+- Dimension coverage: 4/4. Convergence score: 1.0; graph convergence: 0 (graphless fallback).
+- Registry: six active findings and one resolved finding. The iteration-3 bound packet-path claim remains resolved.
+- Claim adjudication: iteration 10 passed with five active P0/P1 findings and no missing packets.
 
-### Iteration and convergence record
+### Coverage Summary
 
-| Iteration | Focus | Verdict | New findings | Ratio |
-|---|---|---|---:|---:|
-| 1 | Correctness | PASS | 0 | 0.00 |
-| 2 | Security | PASS | 0 | 0.00 |
-| 3 | Traceability | CONDITIONAL | 1 P1, 2 P2 | 1.00 |
-| 4 | Maintainability | PASS | 0 | 0.00 |
-| 5 | Integration sweep | CONDITIONAL | 1 P2 | 0.25 |
+The ten iteration narratives and delta rows are present. The final pass re-read all six open findings and phase-016 checklist evidence. Runtime tests and live hops were not run; the source-only evidence does not satisfy the remediation and live-proof acceptance rows.
 
-- **Terminal stop:** maxIterationsReached at iteration 5 of 5.
-- **Dimension coverage:** 4/4 configured review dimensions (1.0).
-- **Convergence score:** 0.75; telemetry only under the configured max-iterations stop policy.
-- **Active totals:** P0 0, P1 1, P2 3. Resolved findings: 0.
-- **Search debt:** 0; graph data was unavailable and graphless fallback evidence was recorded.
-- **Verification boundary:** tests, runtime commands, and packet validators were not executed. The review cites stored outcomes but does not claim those runs were repeated.
-- **Write boundary:** review artifacts were written only under specs/hooks/023-session-relaunch-loop/review/lineages/luna. Graph seeding, root resource-map output, validation, continuity save, and git staging were not performed.
+### Ruled-Out Claims
 
-### Core sources reviewed
+Thirty-one candidate classes are marked ruled out by the reducer, with 22 structured clean-search proofs. The report preserves those proof IDs and the full evidence objects in the registry. The prior iteration 9 search found no duplicate report for the Cursor-name or continuity-save findings; adjacent handoff defects were rechecked as addressed.
 
-- Session relaunch state and timeout code: relaunch-core.cjs, killer.cjs, skilled-loop.
-- Path containment and spec-gate code: session-relaunch.cjs, spec-gate-core.mjs, and targeted test definitions.
-- Phase 002 REQ-003, AC-003, AC-006, and implementation-summary closure evidence.
-- Parent phase map, goal criteria/continuity, Phase 006/007 metadata, runtime-state guidance, OpenCode configuration, and run 10 documentation pointers.
+### Sources Reviewed
 
-### Scope conflict
+- Iterations 1-10, deltas 001-010, `deep-review-state.jsonl`, findings registry, dashboard, strategy, and generated resource map.
+- Session-relaunch README, runtime adapters, shared context parser/state core, killer, shell shim, project registration files, and their existing test sources.
+- Phase-016 spec, acceptance criteria, tasks, implementation summary, handoff command, and `sk-create-command` skill/template.
+- Cursor official command and deeplink documentation linked above.
 
-The workflow asks for graph seeding, resource-map/validation outputs, and continuity saving, while this lineage is bound to a single review subdirectory. Those steps were skipped and recorded in iteration narratives. No review target was edited.
+### Core Protocols
 
+- **spec_code:** phase-016 requirements compared against current source; linked consumer registration remains a P0 gap.
+- **checklist_evidence:** acceptance and task status preserved as read; no rows were edited; AC-004/005/006 remain open.
+
+### Overlay Protocols
+
+- **skill_agent:** conditional skill rule and conflicting universal template wording recorded; handoff command remains structurally plain.
+- **agent_cross_runtime:** five runtime registrations compared against the link-only consumer topology.
+- **feature_catalog_code:** documented runtime matrix compared against automatic and command-only source surfaces.
+- **playbook_capability:** source and existing-test references reviewed; provider-backed capabilities remain unverified in this run.
+
+<!-- /ANCHOR:review-synthesis -->

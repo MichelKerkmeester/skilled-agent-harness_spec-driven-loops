@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -62,7 +62,7 @@ A matching armed record is consumed only when it is fresh and below the hop cap.
 
 ### Shell Shim And Symlinked Repositories
 
-`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, Cursor `agent`, `ls` and `resume`, and `hermes chat` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. A wrapped `hermes` launch alone gets `HERMES_ENABLE_PROJECT_PLUGINS=1`, the switch Hermes needs to load the relaunch bridge. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
+`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Its automatic hop also needs the runtime folders `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes` linked or registered, because each runtime reads its hooks from the project it starts in. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, Cursor `agent`, `ls` and `resume`, and `hermes chat` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. A wrapped `hermes` launch alone gets `HERMES_ENABLE_PROJECT_PLUGINS=1`, the switch Hermes needs to load the relaunch bridge. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
 
 ### Pi And OpenCode Adapters
 
@@ -88,7 +88,7 @@ Hermes fires `on_session_end` after every message, so the plugin arms there and 
 
 ### Command-Only Runtimes
 
-Cursor ships on the command trigger because its evidence is source-only and `stop` is not wired in this repository's `.cursor/hooks.json`. Devin ships on the command trigger because its hook usage is unverified. On both, `/speckit:handoff` writes the note and runs prepare. Outside skilled-loop, prepare prints one runtime-specific manual claim command and exits 3. A prepared record stays pending because no arm event exists for these runtimes. When the runtime exits with a pending record, the wrapper also prints its manual claim command and preserves the runtime exit code. When a path contains `!`, the printed seed places the bang in single quotes outside the double quotes, as in `/tmp/han"'!'"doff.md`. Interactive Bash keeps the path intact when history expansion is on. If the wrapper cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record`, consumes the record and exits 1 without a manual claim command.
+Cursor ships on the command trigger because its evidence is source-only and `stop` is not wired in this repository's `.cursor/hooks.json`. Devin ships on the command trigger because its hook usage is unverified. On both, `/speckit:handoff` writes the note and runs prepare. Cursor names a project command after its file, so there the command is `/speckit-handoff`. Outside skilled-loop, prepare prints one runtime-specific manual claim command and exits 3. A prepared record stays pending because no arm event exists for these runtimes. When the runtime exits with a pending record, the wrapper also prints its manual claim command and preserves the runtime exit code. When a path contains `!`, the printed seed places the bang in single quotes outside the double quotes, as in `/tmp/han"'!'"doff.md`. Interactive Bash keeps the path intact when history expansion is on. If the wrapper cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record`, consumes the record and exits 1 without a manual claim command.
 
 ---
 ## 3. SOURCE FILES

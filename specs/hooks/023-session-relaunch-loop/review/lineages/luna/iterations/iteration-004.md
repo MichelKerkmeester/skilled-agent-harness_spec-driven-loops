@@ -1,31 +1,29 @@
-# Iteration 004 — Maintainability
+# Iteration 4 — security
 
 ## Dimension
 
-Maintainability — review ownership and consistency for the runtime-state exemption, its documentation and tests, and the OpenCode model configuration.
+Security and lifecycle integrity: arm-event identity, killer spawn failure, and re-arm behavior across the five automatic runtimes.
 
 ## Files Reviewed
 
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:71
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568
-- .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896
-- .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:919
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:12
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:28
-- AGENTS.md:70
-- AGENTS.md:75
-- opencode.json:3
-- opencode.json:6
-- opencode.json:10
-- .skilled/hooks/session-relaunch/README.md:9
-- .skilled/skills/system-spec-kit/benchmark/reports/README.md:27
-- .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:46
-- .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:118
-- .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:94
-- specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md:27
-- specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/acceptance-criteria.md
-- specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/implementation-summary.md
-- specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md (checked; absent)
+- .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:357-415,689-703,871-876
+- .skilled/hooks/session-relaunch/claude/stop-arm.mjs:48-71,88-155
+- .skilled/hooks/session-relaunch/codex/stop-arm.mjs:48-70,87-135
+- .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:41-109
+- .skilled/hooks/session-relaunch/pi/session-relaunch.ts:235-307,374-390
+- .skilled/hooks/session-relaunch/opencode/session-relaunch.js:155-185,274-295
+- .skilled/hooks/session-relaunch/lib/killer.cjs:146-185,610-627
+- .skilled/bin/skilled-loop:423-436
+- .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:375-455,619-632
+- .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs:566-642
+- .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:375-408
+- .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:463-532,891-896
+- .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:469-493
+- .opencode/plugins/tests/session-relaunch.test.cjs:932-960
+- specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md:60-78,102-106,125-127
+- specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md:46-53
+- specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md:65-80
+- specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md:1-23
 
 ## Findings by Severity
 
@@ -35,34 +33,57 @@ None.
 
 ### P1 Findings
 
-None.
+1. **LUNA-FANOUT-P1-003 — killer spawn errors leave interactive runtimes armed without a retry trigger**
+   - **Case:** During a threshold handoff, the first killer `spawn` throws or emits `error` for Claude Stop, Codex Stop, Pi `agent_end`, or OpenCode `session.idle`, and the user does not start another turn.
+   - **File:** .skilled/hooks/session-relaunch/claude/stop-arm.mjs:60-70.
+   - **Evidence:** The adapters arm the record before starting the killer. Claude and Codex catch the async spawn error and only log it at `stop-arm.mjs:59-70` and `codex/stop-arm.mjs:59-69`; Pi and OpenCode likewise only log at `pi/session-relaunch.ts:263-275` and `opencode/session-relaunch.js:170-184`. The record therefore remains `armed` without a live killer. The killer is the process that waits for idle and sends SIGTERM (`killer.cjs:146-185,610-627`). `skilled-loop` waits for the runtime command to exit before checking `should-relaunch` (`skilled-loop:423-432`), so a still-open interactive runtime has no actor left to stop it. `armableRecord` allows a later event to re-arm an `armed` record only after the killer lock is gone (`relaunch-core.cjs:403-415`); recovery consequently depends on another host event. Existing adapter tests explicitly assert that sync/async spawn failures leave the record armed (`claude-adapters.test.cjs:375-455`, `codex-adapters.test.cjs:566-642`, `pi/session-relaunch.test.ts:463-532`).
+   - **Impact:** A single transient killer launch error can strand the automatic hop until the user submits another turn or manually exits the runtime. This fails the phase's stated question of whether automatic handover fires every time it should; the error is logged, but the wrapper cannot act on the armed record while the runtime remains open.
+   - **findingClass:** lifecycle-reliability
+   - **scopeProof:** claude/stop-arm.mjs:139-155; codex/stop-arm.mjs:119-135; pi/session-relaunch.ts:263-307; opencode/session-relaunch.js:170-184,274-292; killer.cjs:610-627; skilled-loop:423-432.
+   - **affectedSurfaceHints:** all five arm adapters, killer launch, and the wrapper's post-exit relaunch decision. The persistence is directly relevant to the four interactive Stop/idle flows; Hermes' `on_session_end` path also leaves an armed record on spawn error, while whether Hermes exits at that point is deferred to the runtime-lifecycle pass.
+   - **Recommendation:** Retry killer startup once within the arm flow, and if the retry also fails, expose a controlled fallback that prevents the wrapper from waiting indefinitely on a record with no supervising killer.
+   - **Prior-review check:** The archived M5-P2-001 concerned Claude spawning a duplicate killer for an already-armed record. Current `armableRecord` checks armed status and the live lock before re-arming, so that defect is not repeated here. The archived report did not identify this spawn-failure recovery gap; current adapter tests still confirm the armed-without-killer state.
 
 ### P2 Findings
 
 None.
 
-## Review Notes
-
-The exemption path is held in one `RUNTIME_STATE_RELATIVE_PATH` constant. Its code comment explains why gitignored state is exempt and why a concern README remains gated. The regression tests cover a handoff note, the concern README, a lookalike `.stateful` path, joined traversal, relative paths, and the root README boundary. The spec-gate README and both Gate 2/Gate 3 clauses in `AGENTS.md` describe the same runtime-state boundary.
-
-The OpenCode default and the `build` and `plan` variants use the same model and `max` setting required by phase 007. The session-relaunch and three runtime playbooks point to the shared run 10 benchmark folder, so the result has one evidence location. I found no duplicated policy implementation or conflicting model value in these surfaces. Tests and validators were read as evidence only; none were run.
-
 ## Traceability Checks
 
-- Runtime-state exemption ownership and documented exception boundary: pass by direct comparison of implementation, regression tests, and framework guidance.
-- OpenCode model configuration and run 10 evidence pointers: pass by direct comparison of `opencode.json` and the linked phase/playbook records.
-- The phase-count and acceptance-evidence findings from iteration 003 remain open; this pass added no new traceability result.
+- Phase 016 states that the review must determine whether automatic handover fires every time on the five automatic runtimes and requires confirmed P1 findings to be fixed.
+- Shared `armableRecord` checks loop, session, runtime, status, and live-killer ownership. `arm()` restamps `armedAt` and cwd; the earlier duplicate-Claude-arm defect is guarded in current code.
+- Full event registration and Hermes process-exit timing remain scheduled for the later hook-registration/runtime-lifecycle passes.
+
+## Edge Cases and Ruled Out
+
+- Wrong loop, session, runtime, or non-armable status is refused by `armableRecord` before the adapters call `arm()`.
+- An armed record with a live killer is not re-armed; an armed record whose killer is gone can be re-armed with a fresh `armedAt` and cwd.
+- The prior Claude duplicate-killer finding is fixed in the current shared guard. This finding is distinct: it concerns failure to start the first killer and the absence of an immediate retry or fallback.
+- Hermes has the same best-effort spawn-error logging, but its event is `on_session_end`; the exact point at which that host process exits needs a lifecycle read before asserting the same stranded-session impact.
 
 ## SCOPE VIOLATIONS
 
-- Graph seeding, resource-map emission, strict packet validation, and continuity save remain skipped because those workflow steps would write outside the dispatcher-bound lineage. No target files were changed.
+- scope_violation: the workflow step_graph_upsert writes shared coverage-graph storage outside this lineage; it was skipped under the lineage-only write boundary.
+- scope_violation: the workflow step_graph_convergence normally invokes convergence.cjs in write mode, which appends observability data to shared graph storage. No default write-mode graph command was run. Graph work remains graphless_fallback; maxIterationsReached is the configured stop policy.
+- These are workflow mutations outside the authorized write surface, not product findings.
 
-## Next Dimension
+## EXECUTION CONFLICT
 
-Iteration 005: final integration sweep across the reviewed implementation, child closure evidence, parent status, and active findings.
+The reducer strategy continues to label some deferred directions BLOCKED after one attempt. The lead's steer requires all runtimes and chain stages; review continues against that steer and the configured ten-iteration cap.
 
-## Verdict
+## Next Focus
 
-The reviewed runtime-state policy has one implementation owner, matching tests and guidance, and the OpenCode model values agree. No maintainability defect was confirmed.
+Follow killer idle detection, signal, grace, timeout, and record-change paths, including Hermes process lifetime after `on_session_end`.
 
-Review verdict: PASS
+## Claim Adjudication
+
+- **Finding:** LUNA-FANOUT-P1-003
+- **claim:** For interactive runtime arm events, a killer spawn error can leave the record armed without a supervisor; the wrapper only evaluates relaunch after the runtime exits, and no retry is scheduled until another host event.
+- **evidenceRefs:** .skilled/hooks/session-relaunch/claude/stop-arm.mjs:59-70,139-155; .skilled/hooks/session-relaunch/codex/stop-arm.mjs:59-69,119-135; .skilled/hooks/session-relaunch/pi/session-relaunch.ts:263-307; .skilled/hooks/session-relaunch/opencode/session-relaunch.js:170-184,274-292; .skilled/hooks/session-relaunch/lib/killer.cjs:146-185,610-627; .skilled/bin/skilled-loop:423-432.
+- **counterevidenceSought:** The arm guards, core retry eligibility, runtime handlers, killer signal path, wrapper exit loop, existing spawn-error adapter tests, and prior review findings were checked. The adapters do permit a later event to re-arm after the failed spawn, but none starts a retry from the failure callback.
+- **alternativeExplanation:** The hop still completes if the runtime exits on its own after the hook, or if a later host event reaches the re-arm path. That does not cover an interactive session left open after the one spawn error.
+- **finalSeverity:** P1
+- **confidence:** 0.96
+- **downgradeTrigger:** A current bounded retry or fallback that reliably causes the wrapper to reach its relaunch decision after a failed killer spawn, without requiring a new user turn or manual exit.
+
+Review verdict: CONDITIONAL

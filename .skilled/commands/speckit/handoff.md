@@ -60,6 +60,8 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state. The automatic nudge asks for the note first and the save second. Both orders meet that need. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`. Record the repo-relative packet path in `spec_folder`. When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save. When Gate 3 was never answered, leave `spec_folder` empty.
 
+If the save fails, stop here. Do not write the note or run `prepare`, because the receiving session would resume stale packet state. Report `STATUS=FAIL ERROR="continuity save failed: <reason>"`.
+
 ### Step 3: Write The Handoff Note
 
 Create the directory first:

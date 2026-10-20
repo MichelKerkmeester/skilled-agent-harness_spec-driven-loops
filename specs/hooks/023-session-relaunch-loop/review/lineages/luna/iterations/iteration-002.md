@@ -1,24 +1,19 @@
-# Iteration 002 — Security
+# Iteration 2 — correctness
 
 ## Dimension
 
-Security — path containment, private runtime state, shell and notification escaping, and the runtime-state Gate 3 exemption.
+Correctness: suppression guards, reminder state, and nudge delivery across the automatic adapters.
 
 ## Files Reviewed
 
-- .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:43
-- .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:538
-- .skilled/hooks/session-relaunch/lib/nudge.cjs:190
-- .skilled/hooks/session-relaunch/lib/nudge.cjs:202
-- .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:128
-- .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:149
-- .skilled/hooks/session-relaunch/lib/killer.cjs:511
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1521
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1546
-- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1573
-- .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896
-- .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:919
-- .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:751
+- .skilled/hooks/session-relaunch/lib/nudge.cjs:270-310, 318-458, 466-500
+- .skilled/hooks/session-relaunch/pi/session-relaunch.ts:313-403
+- .skilled/hooks/session-relaunch/opencode/session-relaunch.js:110-153, 329-347
+- .skilled/hooks/session-relaunch/codex/shared.mjs:65-115
+- .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:54-103
+- .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:485-503
+- .skilled/hooks/session-relaunch/tests/nudge.test.cjs:655-658, 700-755, 1012-1066
+- specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md:1-23
 
 ## Findings by Severity
 
@@ -34,19 +29,30 @@ None.
 
 None.
 
-## Review Notes
-
-The state directory rejects symlink entries and foreign ownership, then pins its mode to 0700. Handoff paths are constrained to the configured handoff directory and checked through real paths for the directory, parent, and existing file. The nudge seed parser requires an absolute path and rejects line breaks. Manual claim command construction escapes shell-sensitive characters in the path; notification construction serializes the command as a string rather than interpolating it into AppleScript source.
-
-The Gate 3 exemption resolves lexical paths through existing symlinks before testing repository containment. The exemption applies only under the runtime-state root, while the concern README remains gated. The tests define cases for lookalike directories, traversal, symlink escapes, and the intended README boundary. No security defect was confirmed in the reviewed surfaces. Test definitions were read but not run.
-
 ## Traceability Checks
 
-- Security boundary claims were compared with implementation and targeted test definitions: pass.
-- Requirement and closure evidence alignment remains reserved for iteration 003.
+- The phase 013 requirement says a nudge is useful only inside skilled-loop; the shared decision returns quietly when the wrapper identifier is absent.
+- The phase 016 review target asks for each automatic runtime. Claude, Pi, OpenCode, Codex, and Hermes use the shared suppression and threshold decision; Pi and OpenCode add stateful delivery behavior that was reviewed here.
+- Checklist evidence and the command-contract dimension remain assigned to later passes.
 
-## Verdict
+## Edge Cases and Ruled Out
 
-The examined path and command boundaries match the stated behavior. Continue with packet and acceptance-evidence reconciliation.
+- Threshold comparison is inclusive, and the one extra reminder is allowed at threshold plus 0.05; shared tests cover the boundary and the spent-level case.
+- Pending handoff records suppress repeat prompts. Armed records suppress only while still current under the wrapper's max-age rule.
+- The earlier DS-009 report claimed a future armedAt remained fresh after a backward clock change. Current shouldRelaunch explicitly returns stale when now is earlier than armedAt, so that finding is no longer present in this code.
+- Pi holds its prompt until agent_end, attempts arming first, and drops the held text only when a live handoff or hop cap makes it redundant.
+- OpenCode queues the nudge, records the level as it consumes pending output, and requests replay after plugin restart only when a level is persisted but no active nudge exists.
+
+## EXECUTION CONFLICT
+
+After iteration 1's reducer pass, the generated strategy labeled “Cross-runtime adapter parity: deferred to later iterations” as BLOCKED, although the lead's steer requires every automatic runtime and chain step to be reviewed. This is an internal strategy-state conflict, not a product finding. Following the dispatcher ruling and current steer, runtime coverage continues in the next iterations.
+
+## Next Focus
+
+Review handoff note creation, continuity save instructions, prepare validation, and runtime/session refusal paths.
+
+## Claim Adjudication
+
+No P0 or P1 findings were introduced in this iteration.
 
 Review verdict: PASS

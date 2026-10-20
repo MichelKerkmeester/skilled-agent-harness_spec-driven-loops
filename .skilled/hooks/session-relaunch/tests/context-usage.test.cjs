@@ -197,6 +197,18 @@ test('readClaudeFill finds a complete entry at the end of a long transcript', (t
   assert.deepEqual(result, { fillTokens: 400843, model: 'claude-haiku-5-5' });
 });
 
+test('readClaudeFill widens the tail past a final row larger than the default tail', (t) => {
+  const sandbox = createSandbox(t);
+  const targetLine = JSON.stringify(mainEntryFromFixture());
+  const oversizedRow = JSON.stringify({
+    type: 'user',
+    message: { content: [{ type: 'tool_result', content: 'x'.repeat(600000) }] },
+  });
+  const transcriptPath = path.join(sandbox.repoRoot, 'oversized-transcript.jsonl');
+  fs.writeFileSync(transcriptPath, `${targetLine}\n${oversizedRow}\n`);
+  assert.deepEqual(readClaudeFill(transcriptPath), { fillTokens: 400843, model: 'claude-haiku-5-5' });
+});
+
 test('readClaudeFill treats transcript read errors as absent', (t) => {
   const sandbox = createSandbox(t);
   const transcriptPath = path.join(sandbox.repoRoot, 'unreadable-transcript.jsonl');
@@ -259,6 +271,18 @@ test('readCodexUsage selects the latest token_count and its last input usage', (
     fillTokens: 13523,
     modelContextWindow: 258400,
   });
+});
+
+test('readCodexUsage widens the tail past a final row larger than the default tail', (t) => {
+  const sandbox = createSandbox(t);
+  const tokenCount = JSON.stringify({
+    type: 'event_msg',
+    payload: { type: 'token_count', info: { last_token_usage: { input_tokens: 123456 }, model_context_window: 272000 } },
+  });
+  const oversizedRow = JSON.stringify({ type: 'response_item', payload: { output: 'x'.repeat(600000) } });
+  const transcriptPath = path.join(sandbox.repoRoot, 'oversized-rollout.jsonl');
+  fs.writeFileSync(transcriptPath, `${tokenCount}\n${oversizedRow}\n`);
+  assert.deepEqual(readCodexUsage(transcriptPath), { fillTokens: 123456, modelContextWindow: 272000 });
 });
 
 test('readCodexUsage treats missing rollout files as absent', (t) => {
