@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
+  "manifestHash": "d58480d984fc43c60fe373dcb5fce1ce3e5b2a8c4e4504f8b017ff0660a57262",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71899,6 +71899,9 @@
     "phase 24 plan": [
       "phase 24 plan"
     ],
+    "phase 24 plugin inventory guards": [
+      "phase 24 plugin inventory guards"
+    ],
     "phase 24 readme freshness fixes": [
       "phase 24 readme freshness fixes"
     ],
@@ -74490,6 +74493,18 @@
     ],
     "plugin inventory": [
       "plugin inventory"
+    ],
+    "plugin inventory guards": [
+      "plugin inventory guards"
+    ],
+    "plugin inventory guards implementation summary": [
+      "plugin inventory guards implementation summary"
+    ],
+    "plugin inventory guards plan": [
+      "plugin inventory guards plan"
+    ],
+    "plugin inventory guards tasks": [
+      "plugin inventory guards tasks"
     ],
     "plugin knowledge deepening": [
       "Plugin Knowledge Deepening"

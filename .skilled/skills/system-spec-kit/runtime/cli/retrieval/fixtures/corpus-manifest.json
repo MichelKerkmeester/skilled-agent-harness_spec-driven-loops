@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a410e6adebeca7dc62433d4bf0b680ce01b86d79aab8816bfd732056ca0ba083",
+  "corpusHash": "164e7b79b3623babb2bf89bcfa14ba90afbe895378c03b309b4060a44789741e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25335,
+  "includedPathCount": 25339,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8926,6 +8926,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
@@ -25366,7 +25370,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
+  "manifestHash": "d58480d984fc43c60fe373dcb5fce1ce3e5b2a8c4e4504f8b017ff0660a57262",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26418,6 +26422,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7179,
-    "ok": 14608,
+    "ok": 14612,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25335,
+  "documentsScanned": 25339,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
+  "manifestHash": "d58480d984fc43c60fe373dcb5fce1ce3e5b2a8c4e4504f8b017ff0660a57262",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36979,
+      "ok": 36984,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -69007,6 +69007,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards/scratch",
       "reason": "excluded directory"
     },
     {
