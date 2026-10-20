@@ -16,6 +16,9 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_TAIL_BYTES = 262144;
+// A single tool result or image row can outgrow the default tail, so a miss widens the
+// read up to this bound before the usage counts as absent.
+const MAX_TAIL_BYTES = 16 * 1024 * 1024;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -71,6 +74,32 @@ function parseTranscriptEntry(line) {
   }
 }
 
+// Returns the last entry `matches` accepts, widening the tail while the read starts
+// mid-file and holds no match. A read error propagates to the caller.
+function latestTailEntry(transcriptPath, tailBytes, matches) {
+  let byteCount = tailBytes;
+  for (;;) {
+    const tail = readTail(transcriptPath, byteCount);
+    const lines = tail.text.split(/\r?\n/);
+    if (
+      !tail.startsAtBeginning
+      && lines.length > 0
+      && parseTranscriptEntry(lines[0]) === null
+    ) {
+      lines.shift();
+    }
+
+    let latest = null;
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      const entry = parseTranscriptEntry(line);
+      if (entry !== null && matches(entry)) latest = entry;
+    }
+    if (latest !== null || tail.startsAtBeginning || byteCount >= MAX_TAIL_BYTES) return latest;
+    byteCount = Math.min(Math.max(byteCount * 4, DEFAULT_TAIL_BYTES), MAX_TAIL_BYTES);
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -84,27 +113,15 @@ function parseTranscriptEntry(line) {
  * assistant entry exists or the transcript cannot be read.
  */
 function readClaudeFill(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
-  let tail;
+  let lastAssistant;
   try {
-    tail = readTail(transcriptPath, tailBytes);
+    lastAssistant = latestTailEntry(
+      transcriptPath,
+      tailBytes,
+      (entry) => entry.type === 'assistant' && entry.isSidechain !== true,
+    );
   } catch {
     return null;
-  }
-
-  const lines = tail.text.split(/\r?\n/);
-  if (
-    !tail.startsAtBeginning
-    && lines.length > 0
-    && parseTranscriptEntry(lines[0]) === null
-  ) {
-    lines.shift();
-  }
-
-  let lastAssistant = null;
-  for (const line of lines) {
-    if (!line.trim()) continue;
-    const entry = parseTranscriptEntry(line);
-    if (entry?.type === 'assistant' && entry.isSidechain !== true) lastAssistant = entry;
   }
   if (lastAssistant === null) return null;
 
@@ -116,30 +133,17 @@ function readClaudeFill(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {})
 
 /** Read the latest Codex rollout token count from a transcript tail. */
 function readCodexUsage(transcriptPath, { tailBytes = DEFAULT_TAIL_BYTES } = {}) {
-  let tail;
+  let latestCount;
   try {
-    tail = readTail(transcriptPath, tailBytes);
+    latestCount = latestTailEntry(
+      transcriptPath,
+      tailBytes,
+      (entry) => entry.type === 'event_msg' && entry.payload?.type === 'token_count',
+    );
   } catch {
     return null;
   }
-
-  const lines = tail.text.split(/\r?\n/);
-  if (
-    !tail.startsAtBeginning
-    && lines.length > 0
-    && parseTranscriptEntry(lines[0]) === null
-  ) {
-    lines.shift();
-  }
-
-  let latestInfo = null;
-  for (const line of lines) {
-    if (!line.trim()) continue;
-    const entry = parseTranscriptEntry(line);
-    if (entry?.type === 'event_msg' && entry.payload?.type === 'token_count') {
-      latestInfo = entry.payload.info ?? null;
-    }
-  }
+  const latestInfo = latestCount?.payload.info ?? null;
   if (latestInfo === null) return null;
 
   return {

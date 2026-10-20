@@ -50,7 +50,7 @@ Your architecture, decisions and session history are written into the spec folde
 
 A long task keeps going when the context window fills. The session writes a handoff note and ends, then a fresh session starts in the same terminal and picks the note up. No copy-paste, no restart.
 
-- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff`
+- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
 - When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
 - One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
 - Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
@@ -254,9 +254,9 @@ Add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of your checko
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
 ```
 
-Open a new terminal. Every interactive `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` now starts under the nearest `.skilled/bin/skilled-loop`. The shim finds it by walking up from the current directory. A symlinked `.skilled` counts, so another repository that links this checkout's `.skilled` hops the same way. Subcommands, print modes, version and help still run the binary directly.
+Open a new terminal. Every interactive `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` now starts under the nearest `.skilled/bin/skilled-loop`. The shim finds it by walking up from the current directory. A symlinked `.skilled` counts, so another repository that links this checkout's `.skilled` starts under the wrapper too. It hops on its own when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`, because each runtime reads its hooks from the project it starts in. Subcommands, print modes, version and help still run the binary directly.
 
-At 80% of the context window the session writes a handoff note, saves its spec packet if one is bound and ends. The wrapper then starts a fresh session in the same terminal, and that session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`.
+At 80% of the context window the session writes a handoff note, saves its spec packet if one is bound and ends. The wrapper then starts a fresh session in the same terminal, and that session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`, which Cursor names `/speckit-handoff`.
 
 - **Hermes:** the shim gives a wrapped launch `HERMES_ENABLE_PROJECT_PLUGINS=1`. List `repo-guards` under `plugins.enabled` in `~/.hermes/config.yaml` as well
 - **Threshold:** `SESSION_RELAUNCH_THRESHOLD` sets the trigger point, `0.80` by default
@@ -1630,7 +1630,7 @@ Gate 3 blocks file modifications until a spec folder answer is provided.
 
 With the shell shim sourced, the session hands off before it runs out. It writes a handoff note, saves its spec packet if one is bound and ends, and a fresh session starts in the same terminal and picks up the remaining work.
 
-- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff`
+- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
 - Without the shim or a hand-started `skilled-loop`, the runtime's own auto-compaction takes over, as it always did
 - [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup
 
