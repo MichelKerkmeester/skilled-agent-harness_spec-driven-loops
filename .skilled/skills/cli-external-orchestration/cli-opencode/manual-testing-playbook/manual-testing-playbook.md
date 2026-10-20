@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -939,7 +939,7 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 
 ## 22. PLUGIN UTILIZATION (`CO-040..CO-056`)
 
-Each scenario makes a live session on OpenCode 1 and OpenCode 2 hit one plugin's hook and checks the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
+Each scenario drives a live session on OpenCode 1 and OpenCode 2 at one plugin's hook and checks for the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
 
 Run results live in the skill's `benchmark/reports/` folder; the first run is `2026-10-20--manual-testing-playbook--plugin-utilization`, and its findings name the plugins whose expected effects were missing on OpenCode 2, and why.
 

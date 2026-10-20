@@ -76,7 +76,7 @@ The scenarios share one runner, `run-plugin-scenario.sh`. It routes the llmgatew
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-OpenCode 1 with DeepSeek v4.1 flash high wrote the scenario files from short briefs. I ran every scenario myself from the worktree, on OpenCode 1.19.3 and 2.0.32 (`--standalone`), and read each verdict from the capture, log or event file rather than the model's reply. A temporary probe plugin recorded which events each version delivers. That probe is how the v2 causes were confirmed. Luna reviewed read-only over four rounds. Rounds 1 to 3 found safety gaps in the scenario commands: guards that did not stop, temp paths left unchecked, and state that was not restored on interrupt. All were fixed, and the changed blocks were re-run.
+OpenCode 1 with DeepSeek v4.1 flash high wrote the scenario files from short briefs. I ran every scenario myself from the worktree, on OpenCode 1.19.3 and 2.0.32 (`--standalone`), and read each verdict from the capture, log or event file rather than the model's reply. A temporary probe plugin recorded which events each version delivers. That probe is how the v2 causes were confirmed. Luna reviewed read-only over five rounds. Rounds 1 to 4 found safety gaps in the scenario commands: guards that did not stop, temp paths left unchecked, and state that was not restored on interrupt. All were fixed, and the changed blocks were re-run.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -115,6 +115,12 @@ OpenCode 1 with DeepSeek v4.1 flash high wrote the scenario files from short bri
 1. **Seven plugins have no effect on OpenCode 2.** There are four causes. The shell tool is named `shell`, not `bash`. The subagent tool is `subagent`, and its argument is `agent`. `opencode2 run` never sends `session.created` for its own session. The bridge's `message.updated` lacks a top-level `sessionID` and `info.time.completed`. Each cause needs a bridge or plugin fix and its own test.
 2. **The runs are model-driven.** A model can refuse or rephrase a trigger prompt. The prompts are framed as test fixtures for that reason, and a refusal shows up as a missing tool call, not as a false PASS.
 3. **One run per cell.** Each verdict rests on one live session per version, not on repeated trials.
+4. **Review follow-ups left open.** The last review round raised these. None changes a verdict. They were left open to close the phase:
+   - Run the commit-gate probe in a disposable repository instead of a linked worktree.
+   - Reject an `EVIDENCE_DIR` outside the running checkout.
+   - Add an `EXIT` trap for the goal scenario's state folders.
+   - Keep the sentinel trap armed until its restore succeeds.
+   - Compare the dist file after its restore, before the backup is removed.
 <!-- /ANCHOR:limitations -->
 
 ---

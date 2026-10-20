@@ -56,7 +56,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` first failed on `test_readme_manifest.py` because the new report folder was missing from the durable-directory manifest, then passed after the test's own `--write` refresh; `cite-drift-gate.mjs --base` the merge base exits 0 with no new broken citation. Outputs: `scratch/live-runs/local-checks.txt`]
-- [ ] T012 Luna review, read-only
+- [x] T012 Luna review, read-only [EVIDENCE: five rounds; rounds 1-4 fixed; round 5 false claims fixed, the rest listed as follow-ups in `implementation-summary.md`]
 - [ ] T013 Recursive strict validation of 082 prints `RESULT: PASSED`
 - [ ] T014 Merge to main, push, and read every CI workflow's conclusion
 <!-- /ANCHOR:phase-3 -->
@@ -110,7 +110,7 @@ contextType: "general"
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks [EVIDENCE: `bash -n run-plugin-scenario.sh` and `node --check` on both `.mjs` files exit 0; the comment hygiene checker exits 0 on all three]
-- [x] CHK-011 [P0] No console errors or warnings [EVIDENCE: `scratch/live-runs/local-checks.txt`: every check exits 0; the remaining validator warnings (hand-typed census) are the same class the baseline already carried]
+- [x] CHK-011 [P0] No console errors or warnings [EVIDENCE: `scratch/live-runs/local-checks.txt`: the sk-doc script suite first exited 1 on `test_readme_manifest.py` (the new report folder was missing from the durable-directory manifest) and exited 0 after the manifest refresh; every other check exits 0; the remaining validator warnings (hand-typed census) are the same class the baseline already carried]
 - [x] CHK-012 [P1] Error handling implemented [EVIDENCE: the runner exits 2 on bad usage; the proxy answers 502 on an upstream error and never lets a capture error stop forwarding]
 - [x] CHK-013 [P1] Code follows project patterns [EVIDENCE: module and component headers match `opencode-setup.sh` and the plugin modules]
 <!-- /ANCHOR:code-quality -->
