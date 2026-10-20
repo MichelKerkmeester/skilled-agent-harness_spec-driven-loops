@@ -58,7 +58,7 @@ This is **Phase 30** of the OpenCode v1 and v2 dual-compatibility specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Run inside `.worktrees/NNN-slug`, the battery's v2 leg reported all 17 plugin files failed, while the same battery passed in a plain clone and on CI. The private server's plugin read shows why: 17 entries from the main checkout's `.opencode/plugins` are active and the worktree's 17 are `failed` with `Duplicate plugin ID`. OpenCode 2.0.32 collects `.opencode` from every ancestor folder with no stop at the repository root, while OpenCode 1.19.3 stops at the worktree root. So the battery could not judge a nested worktree, and a real OpenCode 2 session there runs the main checkout's plugin code.
+Run inside `.worktrees/NNN-slug`, the battery's v2 leg reported all 17 plugin files failed, while the same battery passed in a plain clone and on CI. The private server's plugin read shows why: 17 entries from the main checkout's `.opencode/plugins` are active and the worktree's 17 are `failed` with `Duplicate plugin ID`. OpenCode 2.0.32 collects `.opencode` from every ancestor folder with no stop at the repository root, while OpenCode 1.19.3 stops at the worktree root: its `plugin_origins` there list the worktree's 17 files and none from the outer checkout (`scratch/rootcause/v1-origins.json`). So the battery could not judge a nested worktree, and a real OpenCode 2 session there runs the main checkout's plugin code.
 
 ### Purpose
 The battery judges the root's own plugins in any checkout layout and names the shadowing when it happens, and the docs tell a person why a worktree's plugin change has no effect on OpenCode 2.

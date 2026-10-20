@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "total": 18,
+  "underWorktree": 17,
+  "underOuterNotWorktree": 0,
+  "other": [
+    "file:///Users/michelkerkmeester/.config/opencode/plugins/orca-opencode-status.js"
+  ]
+}

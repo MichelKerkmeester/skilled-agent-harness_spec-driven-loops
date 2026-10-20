@@ -18,3 +18,7 @@ config:{directory:process.env.OPENCODE_CONFIG_DIR,project:!O(process.env.OPENCOD
 
 # v2 git discovery: worktree = --show-toplevel (so the walk is not the git root)
 rev-parse","--git-dir","--git-common-dir","--show-toplevel"
+
+# OpenCode 1.19.3 in the nested worktree: plugin_origins from `opencode debug config` (v1-origins.json)
+# 17 under the worktree, 0 from the outer checkout, 1 global (~/.config/opencode/plugins/orca-opencode-status.js),
+# so v1's walk stops at the worktree and the outer checkout's plugins do not load.
