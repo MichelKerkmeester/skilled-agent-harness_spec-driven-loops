@@ -1,5 +1,5 @@
 {
-  "manifestHash": "375f978c7db0771cb07ce62c1ce811f8de41be9ee61967c098849c55d79ec06c",
+  "manifestHash": "30f9d81f14144ed8bfb1015b3639b1ed86408c1315ed356190b9b62278b9b9dc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -39318,6 +39318,9 @@
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
+    "duplicate plugin id worktree": [
+      "duplicate plugin id worktree"
+    ],
     "duplicate review skip behavior": [
       "duplicate review skip behavior"
     ],
@@ -65633,6 +65636,18 @@
     "nested workflow packet": [
       "nested workflow packet"
     ],
+    "nested worktree battery": [
+      "nested worktree battery"
+    ],
+    "nested worktree battery implementation summary": [
+      "nested worktree battery implementation summary"
+    ],
+    "nested worktree battery plan": [
+      "nested worktree battery plan"
+    ],
+    "nested worktree battery tasks": [
+      "nested worktree battery tasks"
+    ],
     "neutral delegation wording": [
       "neutral delegation wording"
     ],
@@ -67785,6 +67800,9 @@
     ],
     "opencode 1 and opencode 2 lineage argv": [
       "OpenCode 1 and OpenCode 2 lineage argv"
+    ],
+    "opencode 2 ancestor opencode folder": [
+      "opencode 2 ancestor opencode folder"
     ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
@@ -72150,6 +72168,9 @@
     ],
     "phase 30 epic deep review": [
       "phase 30 epic deep review"
+    ],
+    "phase 30 nested worktree battery": [
+      "phase 30 nested worktree battery"
     ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
