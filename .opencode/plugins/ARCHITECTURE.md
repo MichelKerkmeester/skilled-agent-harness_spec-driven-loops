@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`.opencode/plugins/` holds the 17 plugin files that OpenCode discovers as local plugins. Every file runs on OpenCode 1 and OpenCode 2 because each one default-exports `{ id, setup, server }`, where `server` is the OpenCode 1 entry and `setup` is the OpenCode 2 entry, and a plugin that exported only one entry would be a silent no-op on the other host. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
+`.opencode/plugins/` holds the plugin files that OpenCode discovers (17 on 2026-10-20) as local plugins. Every file runs on OpenCode 1 and OpenCode 2 because each one default-exports `{ id, setup, server }`, where `server` is the OpenCode 1 entry and `setup` is the OpenCode 2 entry, and a plugin that exported only one entry would be a silent no-op on the other host. The per-file inventory table lives in [README.md](./README.md) and is linked here rather than repeated.
 
 The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`, the `opencode-ai` package) and OpenCode 2.0.32 (`opencode2` launcher). The doctor battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 
@@ -48,13 +48,13 @@ The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`
                                   └──────────────────────────────┘
 ```
 
-The diagram shows the 16 bridged plugins. `sk-vision.js` exports its own `setup`, which always registers its OpenCode 2 command without going through the bridge. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on, and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:384-386`, Section 4).
+The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vision.js` exports its own `setup`, which always registers its OpenCode 2 command without going through the bridge. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on, and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:384-386`, Section 4).
 
 ---
 
 ## 2. PACKAGE TOPOLOGY
 
-`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Sixteen of the entry files build their export with `dualPlugin(id, server)` from `lib/v2-bridge.js`, which puts `lib/` on the load path of every plugin except sk-vision.
+`lib/` holds the modules the entry files import and `tests/` holds the regression suites. Every entry file except sk-vision builds its export with `dualPlugin(id, server)` from `lib/v2-bridge.js`, which puts `lib/` on their load path.
 
 ```text
 .opencode/plugins/
@@ -121,7 +121,7 @@ Allowed dependency direction:
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:207`, `lib/v2-bridge.js:402`) and leaves `server`, the v1 factory, unchanged. Sixteen of the 17 entry files build their export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:490`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
+**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:207`, `lib/v2-bridge.js:402`) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:490`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
 
 **Hook mapping.** The bridge maps the v1 hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js:8-15`). The table is the full mapping.
 
@@ -167,7 +167,7 @@ Three plugins are the exceptions. `sk-git-message-gate.js` has no switch at all.
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Sixteen plugins call their core inside the one v1 factory, so the same core serves the OpenCode 1 hooks and, through the bridge, the OpenCode 2 registrations. sk-vision calls its core from its own `server` and `setup` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`, `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:484-490`). Nothing under `lib/` or `tests/` is a plugin source.
+Most entry files are transport adapters that translate OpenCode events into the shared policy cores under `.skilled/skills/` and `.skilled/hooks/`. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. Every plugin except sk-vision calls its core inside the one v1 factory, so the same core serves the OpenCode 1 hooks and, through the bridge, the OpenCode 2 registrations. sk-vision calls its core from its own `server` and `setup` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`, `.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:484-490`). Nothing under `lib/` or `tests/` is a plugin source.
 
 Four capabilities have no OpenCode 2 equivalent:
 
@@ -185,7 +185,7 @@ Four capabilities have no OpenCode 2 equivalent:
 3. Use only the mapped hook keys or accept that the others do nothing on OpenCode 2.
 4. Run `tests/plugin-inventory.test.cjs`. The v2 suites find the new file on their own; add a case to `PLUGINS` in `tests/v2-hard-plugins.test.cjs` only when the plugin needs behavior checks.
 5. Gate it with `isHookEnabled('<concern>')`.
-6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the 17-file and 16-bridged counts in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
+6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the dated file count in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
 7. Run the plugin suite and both battery families.
 
 A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }` the way sk-vision does (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`), and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.

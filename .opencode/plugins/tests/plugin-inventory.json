@@ -4,7 +4,7 @@
   ],
   "skippedHooks": [],
   "unscannedEventChecks": [
-    { "file": "opencode-goal.js", "check": "eventType.endsWith(", "reason": "Matches any event ending in .disposed. OpenCode 2.0.32 delivers neither server.instance.disposed nor global.disposed, so the branch runs only on OpenCode 1." }
+    { "file": "opencode-goal.js", "check": "eventType.endsWith(", "events": ["server.instance.disposed", "global.disposed"], "reason": "Matches any event ending in .disposed. OpenCode 2.0.32 delivers neither server.instance.disposed nor global.disposed, so the branch runs only on OpenCode 1." }
   ],
   "events": {
     "passThrough": [

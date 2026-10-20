@@ -105,21 +105,35 @@ function handledEventNames(source) {
 
 function unscannedEventChecks(source) {
   const checks = new Set();
-  const comparison = new RegExp(
-    String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*(${IDENTIFIER_SOURCE})`,
-    'g',
-  );
-  const methodPatterns = [
+  // Either operand order names no literal event, so both are reported.
+  const comparisons = [
+    new RegExp(
+      String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*(${IDENTIFIER_SOURCE})`,
+      'g',
+    ),
+    new RegExp(
+      String.raw`(${IDENTIFIER_SOURCE})\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`,
+      'g',
+    ),
+  ];
+  // A case label holding an identifier or a member expression is resolved at runtime, not by the scan.
+  const unreadablePatterns = [
     new RegExp(String.raw`${EVENT_TYPE_SOURCE}\.(?:startsWith|endsWith|includes|match)\(`, 'g'),
     new RegExp(String.raw`\.(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`, 'g'),
+    new RegExp(
+      String.raw`case\s+(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*:`,
+      'g',
+    ),
   ];
 
   let match;
-  while ((match = comparison.exec(source)) !== null) {
-    if (match[1] !== 'undefined' && match[1] !== 'null') checks.add(match[0].trim());
+  for (const pattern of comparisons) {
+    while ((match = pattern.exec(source)) !== null) {
+      if (match[1] !== 'undefined' && match[1] !== 'null') checks.add(match[0].trim());
+    }
   }
 
-  for (const pattern of methodPatterns) {
+  for (const pattern of unreadablePatterns) {
     while ((match = pattern.exec(source)) !== null) checks.add(match[0].trim());
   }
 

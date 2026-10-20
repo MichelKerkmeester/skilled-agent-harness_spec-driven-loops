@@ -144,7 +144,7 @@ plugins/
 | `system-skill-advisor.js` | Spawns the skill-advisor subprocess on a prompt-cache miss, manages a TTL+LRU prompt cache with in-flight dedup, integrates transform-dedup where the opt-in same-message dedup bases its decision on the full advisor block before directive-lifecycle reduction and suppresses a repeated transform for the same message and exposes `spec_kit_skill_advisor_status`. |
 | `system-spec-gate.js` | Maps OpenCode's transport onto the runtime-neutral spec-gate core. Classify best-effort fetches the last user message via `ctx.client`. Enforce throws `system-spec-gate:` on deny. `event` sweeps, advances and evicts state. |
 | `sk-code-post-edit-quality.js` | Correlates `tool.execute.before` file paths to `tool.execute.after` callIDs, runs the post-edit router core and drains findings on the next transform. |
-| `lib/v2-bridge.js` | Builds the dual export for the 16 bridged plugins. `server` is the unchanged v1 factory, and `setup` maps its hooks onto OpenCode 2 registrations and returns a cleanup function. |
+| `lib/v2-bridge.js` | Builds the dual export for every bridged plugin. `server` is the unchanged v1 factory, and `setup` maps its hooks onto OpenCode 2 registrations and returns a cleanup function. |
 | `lib/tool-identity.js` | The `tool` identity helper. Returns a v1 tool definition unchanged and carries zod as `tool.schema`. |
 | `lib/opencode-message-identity.js` | Shared stable transform identity and dedup state used by the advisor plugin. |
 

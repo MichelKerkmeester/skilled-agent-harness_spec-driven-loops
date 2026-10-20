@@ -72,6 +72,18 @@ function listedEvents(manifest) {
   ];
 }
 
+async function loadBridge() {
+  return import(pathToFileURL(path.join(PLUGIN_DIR, 'lib', 'v2-bridge.js')).href);
+}
+
+function knownEventNames(bridge, manifest) {
+  return new Set([
+    ...Object.values(bridge.EVENT_ALIASES),
+    ...Object.values(bridge.EVENT_MAPPINGS).map((mapping) => mapping.type),
+    ...listedEvents(manifest).map((entry) => entry.event),
+  ]);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. INVENTORY CASES
 // ─────────────────────────────────────────────────────────────────────────────
@@ -150,21 +162,31 @@ test('every bridged plugin maps all of its hooks', async () => {
 });
 
 test('every handled event name reaches v2 plugins or is listed', async () => {
-  const bridgeUrl = pathToFileURL(path.join(PLUGIN_DIR, 'lib', 'v2-bridge.js')).href;
-  const bridge = await import(bridgeUrl);
+  const bridge = await loadBridge();
   const manifest = readManifest();
   const inventory = readInventory();
-  const known = new Set([
-    ...Object.values(bridge.EVENT_ALIASES),
-    ...Object.values(bridge.EVENT_MAPPINGS).map((mapping) => mapping.type),
-    ...listedEvents(manifest).map((entry) => entry.event),
-  ]);
+  const known = knownEventNames(bridge, manifest);
 
   for (const stem of inventory.bridged) {
     for (const name of handledEventNames(readPluginSource(stem))) {
       assert.ok(
         known.has(name),
         `${stem}.js handles ${name}, which the bridge neither maps nor aliases and the manifest does not list`,
+      );
+    }
+  }
+});
+
+test('every event an unscanned check covers reaches v2 plugins or is listed', async () => {
+  const bridge = await loadBridge();
+  const manifest = readManifest();
+  const known = knownEventNames(bridge, manifest);
+
+  for (const entry of manifest.unscannedEventChecks) {
+    for (const name of entry.events ?? []) {
+      assert.ok(
+        known.has(name),
+        `${entry.file} ${entry.check} covers ${name}, which the bridge neither maps nor aliases and the manifest does not list`,
       );
     }
   }
@@ -211,10 +233,12 @@ test('handledEventNames reads both quote styles, both orders and case labels', (
 });
 
 test('unscannedEventChecks reports checks the scan cannot read', () => {
-  const source = `if (eventType === SESSION_IDLE) {} if (eventType.endsWith('.x')) {} if (KNOWN.has(eventType)) {} if (type === 'a.b') {} if (type === undefined) {}`;
+  const source = `if (eventType === SESSION_IDLE) {} if (eventType.endsWith('.x')) {} if (KNOWN.has(eventType)) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
 
   assert.deepEqual(unscannedEventChecks(source), [
     '.has(eventType)',
+    'SESSION_IDLE === eventType',
+    'case EVENTS.IDLE:',
     'eventType === SESSION_IDLE',
     'eventType.endsWith(',
   ]);
@@ -235,6 +259,10 @@ test('every unscanned event check is listed', () => {
   }
 
   for (const entry of listed) {
+    assert.ok(
+      Array.isArray(entry.events) && entry.events.length > 0,
+      `${entry.file} lists ${entry.check} without the event names it covers`,
+    );
     assert.ok(
       unscannedEventChecks(readPluginSource(entry.file.replace(/\.js$/, ''))).includes(entry.check),
       `${entry.file} lists ${entry.check}, which is no longer in the file`,
