@@ -27,9 +27,9 @@ contextType: "implementation"
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/165-handover-docs-promotion` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 14 of 14 |
+| **Phase** | 14 of 15 |
 | **Predecessor** | 013-live-hop-and-notice-reason |
-| **Successor** | None |
+| **Successor** | 015-v4-0-0-13-changelog |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met, `validate_document.py` passes on every touched doc and strict validation of this folder prints `RESULT: PASSED`. |
 <!-- /ANCHOR:metadata -->
 
