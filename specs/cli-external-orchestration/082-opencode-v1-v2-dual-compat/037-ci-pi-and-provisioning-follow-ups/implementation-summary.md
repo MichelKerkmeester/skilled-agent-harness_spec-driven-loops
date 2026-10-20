@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups"
     last_updated_at: "2026-10-21T00:10:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built and verified the five changes; Luna review in progress"
+    recent_action: "Four Luna rounds closed; merged main and refreshed the sk-doc manifest"
     next_safe_action: "Merge main, push, and record the CI handoff"
     blockers: []
     key_files:
@@ -74,6 +74,7 @@ The cite-drift failure did not come back in 170 local runs or in the test's 57 o
 | `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | A build that edits its own source is rebuilt next time |
 | `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modified | End-to-end battery run through a symlinked nested root |
 | `.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` | Modified | TAP reporter pinned for the listed node tests |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modified | Adds `.skilled/hooks/session-relaunch/lib`, whose arrival on main had failed sk-doc Script Tests on every push since |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -82,6 +83,10 @@ The cite-drift failure did not come back in 170 local runs or in the test's 57 o
 ## How It Was Delivered
 
 DeepSeek v4.1 flash at max thinking wrote each change through cli-pi on llmgateway, one short brief per change. GPT-6 Luna at max effort reviewed read-only through cli-codex. The orchestrator reran every suite, mutated each change against the old code, dry-ran the discovery step and provisioned the real worktree, with the evidence under `scratch/`.
+
+Luna ran four rounds. Round 1 found only P2s: the runner's `not ok` search found nothing under the spec reporter, which led to the TAP pin, and a `[[ ]]` style note. Round 2 found one P1: the docs said every Pi script was optional while `npm test` is required. It also found two overstated claims, all fixed. Rounds 3 and 4 found README rows that overpromised: the message-contract exemptions and the trigger-index token gap, fixed in `df79e217b2` and `596309acba`.
+
+Main's sk-doc Script Tests had failed on every push since another change added `.skilled/hooks/session-relaunch/lib` without refreshing the frozen manifest. This phase refreshed it in its own commit, because the push needed green CI. The diff adds that one directory.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -112,7 +117,9 @@ DeepSeek v4.1 flash at max thinking wrote each change through cli-pi on llmgatew
 | TAP pin | Failing fixture on Node 26: 0 `not ok` lines bare, 1 pinned; the four listed node tests PASS through the runner |
 | README tables | 32 of 32 workflows in both tables (`scratch/readme-table-check.txt`); `validate_document.py` 0 issues |
 | `actionlint`, gate inputs | Exit 0; `RESULT: PASSED` |
-| sk-doc runner, full | Every test passes except `test_readme_manifest.py`, which fails on main too since `.skilled/hooks/session-relaunch/lib` was added |
+| sk-doc runner, full | All pass after the manifest refresh; before it, `test_readme_manifest.py` failed exactly as on main |
+| Plugin suite after the merge | 458 of 458 |
+| `actionlint` on every workflow | Exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,6 +130,8 @@ DeepSeek v4.1 flash at max thinking wrote each change through cli-pi on llmgatew
 1. **The cite-drift failure is not explained.** It happened once in 58 CI executions and never locally. If it happens again, the runner's log now names the subtest.
 2. **A build that rewrites its own tracked inputs now rebuilds once more.** Its pre-build fingerprint differs from the files it leaves behind, so the next provision rebuilds it once and then goes idle, provided the build is deterministic. None of the five listed builds does this: their stamps were identical before and after.
 3. **A new source file counts only once git tracks it,** as before.
+4. **The trigger-index workflow's own comment** (`trigger-index-rebuild.yml`, the concurrency note) still says the index waits for "the next push". The README now says a later push that starts a run, because a second default-token push starts none either. That comment is outside this phase's files.
+5. **`[ ]` stays in the shell changes.** Luna's round 1 P2 asked for `[[ ]]`, and the surrounding files use `[ ]`.
 <!-- /ANCHOR:limitations -->
 
 ---

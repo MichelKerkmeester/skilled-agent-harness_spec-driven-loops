@@ -48,6 +48,7 @@
       ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
       ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
       ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
       "scratch/mutation/stamp-old-order.txt",
       "scratch/mutation/battery-no-realpath.txt",
       "scratch/pi-discovery-dry-run.txt",
@@ -55,8 +56,7 @@
       "scratch/symlinked-root-live-v2.txt",
       "scratch/readme-table-check.txt",
       ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
-      ".github/workflows/sk-doc-script-tests.yml"
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
     ],
     "entities": [
       {
@@ -126,6 +126,12 @@
         "source": "derived"
       },
       {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "stamp-old-order.txt",
         "kind": "file",
         "path": "scratch/mutation/stamp-old-order.txt",
@@ -168,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "sk-doc-script-tests.yml",
-        "kind": "config",
-        "path": ".github/workflows/sk-doc-script-tests.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Run 39424650739 failed `test-cite-drift-scan.mjs` on its first attempt and passed on its second at the same commit, and the runner then printed only the log tail, so the failing subtest has no name",
     "created_at": "2026-10-20T21:36:36Z",
-    "last_save_at": "2026-10-20T22:12:27.666Z",
+    "last_save_at": "2026-10-20T22:27:28.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e03d5297365022a13eb05d514fbe561a6019c2826a32930ed3ea9b8260d523a",
+    "source_fingerprint": "sha256:78dfcf0941ff19ce661e205969373b22e26b121a175b0f8d8cb0031754c2971c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a43c5d672e820520a0693f82daade7ffb1a9f2c9b77c199a686fb2ea988c05c8",
       "plan.md": "8be028f827e579fc6c909e82b38c926a3df0a09979243d62b8b19c0a741d7636",
       "tasks.md": "d9a1bd83a8684ce93236e600fdcd5eea4c350960dffe61b84bbcb24088d1e896",
-      "implementation-summary.md": "aec4b33fca13933153faf78e08cba5c53a396b1fd49b1e014125066e2bfba4b7"
+      "implementation-summary.md": "2e205029b39fa54bc09a4ad8be94d62d60f24989f9c33bac3fde0fc1d0e1bb23"
     },
     "last_active_at": null
   }
