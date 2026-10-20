@@ -1,0 +1,9 @@
+VERDICT: FAIL
+
+P1 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/implementation-summary.md:39 - Marks the phase Completed while spec.md:25 says In Progress and tasks.md:58-60 leave the PASS review, strict validation and pushed-main CI proof open; align the summary with the task and spec status.
+
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/implementation-summary.md:109 - Says external install guides are checked only on a later sk-doc push, but the sk-doc workflow has no path filter and runs on every matching push and pull request at .github/workflows/sk-doc-script-tests.yml:8-12; correct the limitation.
+
+P2 .github/workflows/sk-git-script-tests.yml:5 - Says the suite needs only git and bash, but it invokes Node at .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh:469; update the comment to include Node.
+
+Verification: `actionlint` passed on the three changed workflows (exit 0). The added-comment scan found no spec or task identifiers. `git diff --check` exited 2 for extra blank lines at EOF in two packet documents. The gate-input rerun hit read-only temp-file errors and reported zero inputs resolved despite `RESULT: PASSED`, so it is inconclusive; committed scratch evidence records a prior full pass. The host is Darwin, so Ubuntu compatibility was assessed statically, not by running the jobs. No files were edited.

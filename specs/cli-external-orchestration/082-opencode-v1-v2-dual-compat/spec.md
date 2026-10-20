@@ -138,6 +138,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 25 | 025-cli-opencode-docs-and-listings/ | cli-opencode docs and command listings from the post-merge fix list, rows 9, 10, 11, 12 and 31: one default model id, one agent directory, --share as a deprecated no-op, refreshed flag tables and a command-listed battery leg | Complete |
 | 26 | 026-ci-and-test-runners/ | Run the orphaned suites where a failure blocks, the hooks vitest tree in its own job, and give SECURITY.md a document type | complete |
 | 28 | 028-plugin-kill-switch-coverage/ | Make system-speckit-completion and the sk-vision plugin honor the shared kill switches, the master SYSTEM_HOOKS_DISABLED and their own concern switch, on both OpenCode lines | In Progress |
+| 29 | 029-unrun-tests-ci-coverage/ | Run the suites no blocking job ran: the two .pi extension suites, the sk-git worktree-naming suite and two sk-doc node tests; correct the dual-version bun comment | Complete |
 
 ### Phase Transition Rules
 
@@ -173,4 +174,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 020-plugins-purity-dual-export | 026-ci-and-test-runners | 020's purity fix is on main and the post-merge fix list assigns rows 14, 16, 17, 28, 32, 33 and 34 to this group | `014-post-merge-deep-research/research/research.md` §6 rows; the `hooks-vitest` job passes on CI at the pushed commit |
 | 014-post-merge-deep-research | 024-plugin-inventory-guards | The fix list names rows 6, 7, 8 and 30 for the plugin bridge and inventories | `014/research/research.md` fix list and `024/scratch/mutation/` |
 | 019-plugins-compat-docs | 028-plugin-kill-switch-coverage | ARCHITECTURE.md lists two plugins outside the shared kill switches | New tests under `.opencode/plugins/tests/` and `vision-runtime/tests/` fail on the old code and pass on the new; the battery passes on CI at the pushed commit |
+| 026-ci-and-test-runners | 029-unrun-tests-ci-coverage | 026 recorded the `.pi` suites and three sk-doc tests as unrun, and the open-work list of 2026-10-20 assigns item 6 and the bun comment to this group | `029/scratch/mutation/`; the sk-git and Pi Extension jobs pass on CI at the pushed commit |
 <!-- /ANCHOR:phase-map -->

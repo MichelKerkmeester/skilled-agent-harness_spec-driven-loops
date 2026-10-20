@@ -1,0 +1,18 @@
+{
+  "specFolder": "hooks/023-session-relaunch-loop/014-handover-docs-promotion",
+  "description": "Phase 14: handover-docs-promotion",
+  "keywords": [
+    "phase",
+    "handover-docs-promotion"
+  ],
+  "lastUpdated": "2026-10-20T11:45:44.015Z",
+  "specId": "014",
+  "folderSlug": "handover-docs-promotion",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

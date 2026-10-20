@@ -1,0 +1,6 @@
+$ actionlint (3 workflows)
+exit 0
+$ bash .github/scripts/check-gate-inputs.sh
+files=43 inputs_resolved=229 dynamic_inputs=11 twin_pairs=295 failures=0
+RESULT: PASSED
+exit 0

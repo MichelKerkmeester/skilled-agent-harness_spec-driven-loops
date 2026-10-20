@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9e75c2363e1cc84bee336d2045075b475f0263de564220a0021aa05833b5264b",
+  "manifestHash": "eedabecaa7090c6abf93bf8fabb71146f9bd6db832ee0fc1b642c68ec42614dd",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40579,6 +40579,9 @@
     "end with next steps": [
       "end with next steps"
     ],
+    "endless sessions readme": [
+      "endless sessions readme"
+    ],
     "energy level routing": [
       "energy level routing"
     ],
@@ -50267,6 +50270,21 @@
     "handover bound freshness": [
       "handover bound freshness"
     ],
+    "handover docs promotion": [
+      "handover docs promotion"
+    ],
+    "handover docs promotion acceptance criteria": [
+      "handover docs promotion acceptance criteria"
+    ],
+    "handover docs promotion implementation summary": [
+      "handover docs promotion implementation summary"
+    ],
+    "handover docs promotion plan": [
+      "handover docs promotion plan"
+    ],
+    "handover docs promotion tasks": [
+      "handover docs promotion tasks"
+    ],
     "handover fingerprint verify": [
       "handover fingerprint verify"
     ],
@@ -53019,6 +53037,9 @@
     ],
     "in process lineage execution": [
       "in-process lineage execution"
+    ],
+    "in session handover docs": [
+      "in-session handover docs"
     ],
     "inbound enhances": [
       "inbound enhances"
@@ -71746,6 +71767,9 @@
     "phase 14 gate index and deletions": [
       "phase 14 gate index and deletions"
     ],
+    "phase 14 handover docs promotion": [
+      "phase 14 handover docs promotion"
+    ],
     "phase 14 results": [
       "phase 14 results"
     ],
@@ -72027,6 +72051,9 @@
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
+    ],
+    "phase 29 unrun tests ci coverage": [
+      "phase 29 unrun tests ci coverage"
     ],
     "phase 3 admission gold": [
       "phase 3 admission gold"
@@ -73348,6 +73375,9 @@
     ],
     "pi extension system": [
       "pi extension system"
+    ],
+    "pi extension tests workflow": [
+      "pi extension tests workflow"
     ],
     "pi extensions": [
       "pi extensions"
@@ -94193,6 +94223,9 @@
     "sk git script exit codes": [
       "sk-git script exit codes"
     ],
+    "sk git script tests workflow": [
+      "sk-git script tests workflow"
+    ],
     "sk git scripts folder": [
       "sk-git scripts folder"
     ],
@@ -107050,6 +107083,9 @@
     "turn close out": [
       "turn close-out"
     ],
+    "turn on endless sessions": [
+      "turn on endless sessions"
+    ],
     "turn without a suggestion": [
       "turn without a suggestion"
     ],
@@ -107841,6 +107877,18 @@
     ],
     "unresolvedcriticaldisagreements": [
       "unresolvedCriticalDisagreements"
+    ],
+    "unrun tests ci coverage": [
+      "unrun tests ci coverage"
+    ],
+    "unrun tests ci coverage implementation summary": [
+      "unrun tests ci coverage implementation summary"
+    ],
+    "unrun tests ci coverage plan": [
+      "unrun tests ci coverage plan"
+    ],
+    "unrun tests ci coverage tasks": [
+      "unrun tests ci coverage tasks"
     ],
     "unsafe type casts reduced": [
       "unsafe type casts reduced"

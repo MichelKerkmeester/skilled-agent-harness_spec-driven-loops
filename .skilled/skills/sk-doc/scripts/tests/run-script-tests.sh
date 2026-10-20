@@ -36,7 +36,7 @@ for test_file in test_*.py; do
   rm -f "$log"
 done
 
-NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs)
+NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs test-cite-drift-scan.mjs install-guide-contract.test.cjs)
 for test_file in "${NODE_TESTS[@]}"; do
   if [ -n "${ONLY_TESTS:-}" ]; then
     case "$only" in *" $test_file "*) ;; *) continue ;; esac
@@ -50,6 +50,9 @@ for test_file in "${NODE_TESTS[@]}"; do
     echo "PASS $test_file"
   else
     echo "FAIL $test_file (exit $status)"
+    # A node:test file reports each failing subtest as a `not ok` block that can sit
+    # far above the tail, so print those blocks first or the failure has no name.
+    grep -n -A 20 '^not ok' "$log" | head -n 120 || true
     tail -n 40 "$log"
     failed+=("$test_file")
   fi

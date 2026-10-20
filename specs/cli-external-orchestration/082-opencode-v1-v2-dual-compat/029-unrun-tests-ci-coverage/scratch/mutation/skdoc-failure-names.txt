@@ -1,0 +1,13 @@
+# failing-subtest names in the runner's FAIL output, node v22.23.1
+# mutant: a forced failure inserted as the FIRST test of test-cite-drift-scan.mjs, so its not-ok block sits far above the 40-line tail
+import test from 'node:test';
+test('mutant: forced failure', () => { throw new Error('mutant'); });
+$ ONLY_TESTS=test-cite-drift-scan.mjs bash run-script-tests.sh   (new runner), lines naming the failure
+exit 1
+FAIL test-cite-drift-scan.mjs (exit 1)
+3:not ok 1 - mutant: forced failure
+1 failing: test-cite-drift-scan.mjs
+$ same, runner before this change
+exit 1
+FAIL test-cite-drift-scan.mjs (exit 1)
+1 failing: test-cite-drift-scan.mjs
