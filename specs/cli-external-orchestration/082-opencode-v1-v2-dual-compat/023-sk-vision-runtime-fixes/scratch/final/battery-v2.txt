@@ -1,0 +1,51 @@
+{
+  "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes",
+  "family": "v2",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "a v2 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode2"
+      ]
+    },
+    {
+      "leg": "plugin-active",
+      "family": "v2",
+      "status": "FAIL",
+      "reason": "the stable read shows missing or inactive plugins",
+      "details": [
+        "classifier-injection-screen.js: status failed",
+        "cli-dispatch-audit.js: status failed",
+        "codex-hooks-watchdog.js: status failed",
+        "mcp-route-guard.js: status failed",
+        "opencode-goal.js: status failed",
+        "session-cleanup.js: status failed",
+        "session-relaunch.js: status failed",
+        "sk-code-post-edit-quality.js: status failed",
+        "sk-git-message-gate.js: status failed",
+        "sk-git-preflight-advisory.js: status failed",
+        "sk-vision.js: status failed",
+        "system-completion-sentinel.js: status failed",
+        "system-deep-loop-guard.js: status failed",
+        "system-dist-freshness-guard.js: status failed",
+        "system-skill-advisor.js: status failed",
+        "system-spec-gate.js: status failed",
+        "system-speckit-completion.js: status failed"
+      ]
+    },
+    {
+      "leg": "skill-visible",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "57 skill entries visible",
+      "details": [
+        "entries: 74",
+        "visible: 57"
+      ]
+    }
+  ],
+  "exit": 1
+}

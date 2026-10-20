@@ -3,10 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it, spyOn } from "bun:test";
-import { chmodSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { RuntimeClient } from "./client.js";
+import { RuntimeClient } from "../../src/runtime/client.js";
 
 describe("RuntimeClient close", () => {
   it("does not start the runtime when closed while still provisioning", async () => {
@@ -214,6 +214,144 @@ describe("RuntimeClient close", () => {
         if (value === undefined) delete process.env[key];
         else process.env[key] = value;
       }
+    }
+  }, 10_000);
+});
+
+describe("RuntimeClient probes and startup", () => {
+  it("clears the startup ping timer after a fast ping", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const stub = join(dir, "python");
+    writeFileSync(
+      stub,
+      `#!/bin/sh
+while read -r line; do
+  id=$(printf '%s' "$line" | sed -E 's/.*"id":(-?[0-9]+).*/\\1/')
+  [ "$id" = "-1" ] && exit 0
+  printf '{"id":%s,"result":{}}\\n' "$id"
+done
+`,
+    );
+    chmodSync(stub, 0o755);
+
+    const saved = {
+      python: process.env.SK_VISION_PYTHON,
+    };
+    process.env.SK_VISION_PYTHON = stub;
+
+    type TimerHandle = ReturnType<typeof setTimeout>;
+    const realSetTimeout = globalThis.setTimeout;
+    const realClearTimeout = globalThis.clearTimeout;
+    const pingTimers: TimerHandle[] = [];
+    const cleared = new Set<TimerHandle>();
+    const refAtClear = new Map<TimerHandle, boolean>();
+    globalThis.setTimeout = ((
+      fn: (...args: unknown[]) => void,
+      ms?: number,
+      ...rest: unknown[]
+    ) => {
+      const handle = (realSetTimeout as unknown as (...args: unknown[]) => TimerHandle)(
+        fn,
+        ms,
+        ...rest,
+      );
+      if (ms === 15_000) pingTimers.push(handle);
+      return handle;
+    }) as unknown as typeof globalThis.setTimeout;
+    globalThis.clearTimeout = ((handle?: TimerHandle) => {
+      if (handle !== undefined) {
+        cleared.add(handle);
+        refAtClear.set(handle, (handle as unknown as { hasRef(): boolean }).hasRef());
+      }
+      (realClearTimeout as unknown as (handle?: TimerHandle) => void)(handle);
+    }) as unknown as typeof globalThis.clearTimeout;
+
+    let client: RuntimeClient | undefined;
+    try {
+      client = new RuntimeClient({ timeoutMs: 2_000 });
+      await client.ready;
+    } finally {
+      globalThis.setTimeout = realSetTimeout;
+      globalThis.clearTimeout = realClearTimeout;
+      if (saved.python === undefined) delete process.env.SK_VISION_PYTHON;
+      else process.env.SK_VISION_PYTHON = saved.python;
+    }
+
+    expect(pingTimers.length).toBe(1);
+    for (const handle of pingTimers) {
+      expect(cleared.has(handle)).toBe(true);
+      expect(refAtClear.get(handle)).toBe(false);
+    }
+    await client?.close();
+  }, 10_000);
+
+  it("removes only a venv it made when close() lands during mkdir", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const venv = join(dir, "venv");
+    const existing = join(dir, "existing-venv");
+    mkdirSync(existing);
+
+    const saved = {
+      venv: process.env.SK_VISION_VENV_DIR,
+      python: process.env.SK_VISION_PYTHON,
+      provision: process.env.SK_VISION_DISABLE_AUTO_PROVISION,
+    };
+    process.env.SK_VISION_VENV_DIR = existing;
+    delete process.env.SK_VISION_PYTHON;
+    delete process.env.SK_VISION_DISABLE_AUTO_PROVISION;
+
+    try {
+      const first: RuntimeClient = new RuntimeClient({
+        pythonPath: join(dir, "missing-python"),
+        timeoutMs: 1_000,
+        notify: (m) => {
+          if (m.message.startsWith("Installing")) void first.close();
+        },
+      });
+      await first.ready.catch(() => undefined);
+      expect(existsSync(existing)).toBe(true);
+
+      process.env.SK_VISION_VENV_DIR = venv;
+      const client: RuntimeClient = new RuntimeClient({
+        pythonPath: join(dir, "missing-python"),
+        timeoutMs: 1_000,
+        notify: (m) => {
+          if (m.message.startsWith("Installing")) void client.close();
+        },
+      });
+      await client.ready.catch(() => undefined);
+      expect(existsSync(venv)).toBe(false);
+    } finally {
+      for (const [key, value] of [
+        ["SK_VISION_VENV_DIR", saved.venv],
+        ["SK_VISION_PYTHON", saved.python],
+        ["SK_VISION_DISABLE_AUTO_PROVISION", saved.provision],
+      ] as const) {
+        if (value === undefined) delete process.env[key];
+        else process.env[key] = value;
+      }
+    }
+  }, 10_000);
+
+  it("treats a probe that outlives its timeout as present", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "sk-vision-client-"));
+    const stub = join(dir, "python");
+    writeFileSync(stub, `#!/bin/sh\nsleep 1\nexit 1\n`);
+    chmodSync(stub, 0o755);
+
+    const saved = {
+      probe: process.env.SK_VISION_PROBE_TIMEOUT_MS,
+    };
+    process.env.SK_VISION_PROBE_TIMEOUT_MS = "100";
+
+    try {
+      const probe = Object.assign(Object.create(RuntimeClient.prototype), {
+        probes: new AbortController(),
+      }) as unknown as { hasMoondream(python: string): Promise<boolean> };
+      expect(await probe.hasMoondream(stub)).toBe(true);
+    } finally {
+      if (saved.probe === undefined) delete process.env.SK_VISION_PROBE_TIMEOUT_MS;
+      else process.env.SK_VISION_PROBE_TIMEOUT_MS = saved.probe;
     }
   }, 10_000);
 });

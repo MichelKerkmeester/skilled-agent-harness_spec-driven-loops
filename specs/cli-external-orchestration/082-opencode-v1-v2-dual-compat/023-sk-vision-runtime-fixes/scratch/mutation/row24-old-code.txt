@@ -1,0 +1,8 @@
+# row24 against HEAD src/plugin.ts: keeps image inspection and the tools when command registration fails
+error: command editor unavailable
+(fail) v2 tool registration > keeps image inspection and the tools when command registration fails [0.38ms]
+ 0 pass
+ 1 fail
+# row24 against the fixed src/plugin.ts
+ 1 pass
+ 0 fail

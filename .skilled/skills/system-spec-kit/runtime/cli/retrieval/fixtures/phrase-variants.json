@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4fbc09bf388efbc717125b0036f9ccc7fe65de379fd3137725a38bb837a7a876",
+  "manifestHash": "bc20b64072df307aa7f70b0c9270ebdc7a741aacd8a6646b52638500bcd513b6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -94682,6 +94682,9 @@
     "sk vision feature catalog": [
       "sk-vision feature catalog"
     ],
+    "sk vision fix list rows": [
+      "sk vision fix list rows"
+    ],
     "sk vision force auto inspect": [
       "sk-vision force auto-inspect"
     ],
@@ -94975,6 +94978,21 @@
     ],
     "sk vision run index": [
       "sk-vision run index"
+    ],
+    "sk vision runtime fixes": [
+      "sk vision runtime fixes"
+    ],
+    "sk vision runtime fixes from the post merge": [
+      "sk vision runtime fixes from the post merge"
+    ],
+    "sk vision runtime fixes implementation summary": [
+      "sk vision runtime fixes implementation summary"
+    ],
+    "sk vision runtime fixes plan": [
+      "sk vision runtime fixes plan"
+    ],
+    "sk vision runtime fixes tasks": [
+      "sk vision runtime fixes tasks"
     ],
     "sk vision runtime fork": [
       "sk-vision runtime fork"

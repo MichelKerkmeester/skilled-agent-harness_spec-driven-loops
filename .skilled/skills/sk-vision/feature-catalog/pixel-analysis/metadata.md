@@ -6,7 +6,7 @@ trigger_phrases:
   - "what are the dimensions of this image"
   - "sk_vision_metadata"
   - "verify a downloaded image"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Image metadata (sk_vision_metadata)
@@ -46,7 +46,7 @@ A missing file raises `INVALID_INPUT`. Data-URL sources report image fields with
 | File | Type | Role |
 |---|---|---|
 | `vision-runtime/python/runtime.test.ts` | Integration | Asserts dimensions and format on a fixture image and `INVALID_INPUT` on a missing file |
-| `vision-runtime/src/providers/photon.test.ts` | Unit | Covers `extForContentType` used to preserve downloaded types |
+| `vision-runtime/tests/providers/photon.test.ts` | Unit | Covers `extForContentType` used to preserve downloaded types |
 | `references/runtime-reference.md` | Reference | Documents the metadata contract |
 
 ---

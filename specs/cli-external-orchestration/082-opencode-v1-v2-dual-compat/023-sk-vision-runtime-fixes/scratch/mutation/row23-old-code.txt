@@ -1,0 +1,40 @@
+# row23 against HEAD src/runtime/client.ts: clears the startup ping timer
+error: expect(received).toBe(expected)
+Expected: true
+Received: false
+(fail) RuntimeClient probes and startup > clears the startup ping timer after a fast ping [25.64ms]
+ 0 pass
+ 1 fail
+# row23 against fixed src/runtime/client.ts: clears the startup ping timer
+ 1 pass
+ 0 fail
+# row23 (after review round 1) against HEAD src/runtime/client.ts: clears the startup ping timer
+error: expect(received).toBe(expected)
+Expected: true
+Received: false
+(fail) RuntimeClient probes and startup > clears the startup ping timer after a fast ping [50.88ms]
+ 0 pass
+ 1 fail
+# row23 (after review round 1) against fixed-minus-unref src/runtime/client.ts: clears the startup ping timer
+ 1 pass
+ 0 fail
+# row23 (after review round 1) against fixed src/runtime/client.ts: clears the startup ping timer
+ 1 pass
+ 0 fail
+# row23 (after review round 2) against HEAD src/runtime/client.ts
+error: expect(received).toBe(expected)
+Expected: true
+Received: false
+(fail) RuntimeClient probes and startup > clears the startup ping timer after a fast ping [21.52ms]
+ 0 pass
+ 1 fail
+# row23 (after review round 2) against fixed-minus-unref src/runtime/client.ts
+error: expect(received).toBe(expected)
+Expected: false
+Received: true
+(fail) RuntimeClient probes and startup > clears the startup ping timer after a fast ping [22.92ms]
+ 0 pass
+ 1 fail
+# row23 (after review round 2) against fixed src/runtime/client.ts
+ 1 pass
+ 0 fail

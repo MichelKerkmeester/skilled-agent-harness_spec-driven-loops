@@ -1,0 +1,98 @@
+bun test v1.3.9 (cf6cdbbb)
+
+tests/model-modality.test.ts:
+(pass) isTextOnlyModel > classifies listed text-only families as text-only [0.11ms]
+(pass) isTextOnlyModel > does not classify an unlisted model as text-only [0.03ms]
+(pass) isTextOnlyModel > returns false for a missing model rather than guessing
+(pass) isTextOnlyModel > honours SK_VISION_FORCE=1 for any model
+(pass) isTextOnlyModel > extends the allowlist from SK_VISION_TEXT_ONLY_MODELS [0.23ms]
+(pass) isTextOnlyModel > treats a declared non-image input modality as authoritative text-only [0.03ms]
+
+tests/plugin.test.ts:
+(pass) v2 attachment URL mapping > wraps bare base64 data in a MIME data URL
+(pass) v2 attachment URL mapping > preserves an attachment value that is already a data URL [0.01ms]
+(pass) matchVisionTemplate > returns the question when both slots hold the same text [0.09ms]
+(pass) matchVisionTemplate > returns an empty string when both slots are empty
+(pass) matchVisionTemplate > returns a question containing $1, a newline and backticks exactly
+(pass) matchVisionTemplate > returns null when the prompt has text outside the template
+(pass) matchVisionTemplate > returns null when the slots hold different text
+(pass) matchVisionTemplate > returns null when the template has no argument slots [0.03ms]
+(pass) readVisionTemplate > returns the shipped command body without its frontmatter [1.97ms]
+(pass) readVisionTemplate > returns null when the project has no vision command [0.18ms]
+(pass) v2 setup prompt hook > appends the handler's text to a prompt that matches the template [0.44ms]
+(pass) v2 setup prompt hook > leaves a prompt that does not match the template unchanged
+(pass) v2 setup prompt hook > passes a data: image from the prompt as the last message with mime image/png [0.43ms]
+(pass) v2 setup prompt hook > maps a non-data file uri to a mime by extension and to an empty mime otherwise [0.20ms]
+(pass) v2 setup prompt hook > falls back to the file uri for the mime when the name has no known extension [0.11ms]
+(pass) v2 setup prompt hook > leaves the prompt unchanged when the handler throws [0.20ms]
+[sk-vision] prompt hook failed: null
+(pass) v2 setup prompt hook > resolves and leaves the prompt unchanged when the handler rejects with null and debug is on [1.06ms]
+(pass) v2 setup prompt hook > registers no prompt hook when the project has no template
+(pass) v2 automatic image inspection > guarantees evidence for a text-only model and appends it after a blank line
+(pass) v2 automatic image inspection > skips inspection when the prompt has no image file
+(pass) v2 automatic image inspection > leaves a template prompt to the command path without inspecting
+(pass) v2 automatic image inspection > fails open when evidence rejects [0.51ms]
+(pass) v2 command execute > hands the prompt's data: image to the handler as the last message when no template exists [0.13ms]
+(pass) v2 tool registration > adds every inspection tool through the v2 tool editor and removes them on dispose [0.18ms]
+(pass) v2 tool registration > keeps the command and skips inspection on a host without session.hook [0.08ms]
+(pass) v2 tool registration > adds no tools when automatic inspection is off [0.09ms]
+(pass) v2 tool registration > keeps the prompt hook and disposes cleanly when tool registration fails [0.04ms]
+(pass) v2 tool registration > releases everything setup holds when the prompt hook fails to register
+(pass) v2 tool registration > still releases the inspection client and keeps the hook error when command disposal fails [0.01ms]
+(pass) v2 tool registration > releases every handle and rethrows the first error when one disposal fails
+(pass) v2 tool registration > keeps image inspection and the tools when command registration fails [0.21ms]
+(pass) v2 grace for models off the text-only list > asks for the grace, not the full wait, for a model off the text-only list
+(pass) v2 grace for models off the text-only list > waits for the evidence when reading the session model fails
+
+tests/layout.test.ts:
+(pass) test layout > keeps no test file under src/ [0.69ms]
+
+tests/host-adapter.test.ts:
+(pass) OpenCode host adapter > registers the event, chat.message, tool and dispose hooks [37.99ms]
+(pass) OpenCode host adapter > returns only dispose when disabled
+
+tests/evidence/prompt-evidence.test.ts:
+(pass) findImagePathInText > finds a relative image path that exists on disk [0.33ms]
+(pass) findImagePathInText > finds an absolute image path
+(pass) findImagePathInText > ignores a path that does not resolve to a file
+(pass) findImagePathInText > ignores a file that exists but is not an image
+(pass) findImagePathInText > returns the last resolvable image when several are named [0.16ms]
+(pass) findImagePathInText > handles a quoted path containing a space
+(pass) findImagePathInText > strips punctuation a sentence leaves on the path
+(pass) findImagePathInText > returns undefined for empty or non-string input [0.04ms]
+(pass) evidenceForPrompt > returns undefined without spawning a runtime when no image is named [0.11ms]
+(pass) wrapEvidence > wraps rendered text in the delimiter hosts look for [0.01ms]
+(pass) wrapEvidence > does not reuse the tag name the inner renderers already emit [0.02ms]
+
+tests/providers/photon.test.ts:
+(pass) extForContentType > maps known content types to their extension [0.11ms]
+(pass) extForContentType > falls back to the URL extension when content type is unknown [0.06ms]
+(pass) extForContentType > defaults to .img when nothing matches
+(pass) parseBBox > parses normalized comma-separated bboxes [0.10ms]
+(pass) parseBBox > rejects malformed input [0.02ms]
+
+tests/runtime/client.test.ts:
+(pass) RuntimeClient close > does not start the runtime when closed while still provisioning [300.87ms]
+(pass) RuntimeClient close > stops a provisioning step that is still running and settles ready [133.13ms]
+(pass) RuntimeClient close > forces a provisioning step that ignores SIGTERM to exit before close resolves [2132.96ms]
+(pass) RuntimeClient close > kills an interpreter probe still running and stops before creating the venv [152.62ms]
+(pass) RuntimeClient probes and startup > clears the startup ping timer after a fast ping [27.17ms]
+(pass) RuntimeClient probes and startup > removes the venv it made when close() lands during mkdir [1.14ms]
+(pass) RuntimeClient probes and startup > treats a probe that outlives its timeout as present [103.85ms]
+
+tests/opencode/attachments.test.ts:
+(pass) AttachmentInjector guaranteed vision > awaits the full analysis for a text-only model even when it is slower than the grace [127.25ms]
+(pass) AttachmentInjector guaranteed vision > does not block a non-text-only model past the grace (evidence absent when analysis is slower) [21.18ms]
+(pass) AttachmentInjector evidenceText grace > returns without an analysis that is still running when the grace runs out [22.93ms]
+(pass) AttachmentInjector evidenceText grace > includes an analysis that finishes inside the grace [6.97ms]
+
+tests/opencode/tools.test.ts:
+(pass) toV2Tools > re-shapes every OpenCode 1 tool under the same name and description [0.91ms]
+(pass) toV2Tools > parses arguments with the OpenCode 1 schema [1.06ms]
+(pass) toV2Tools > returns the OpenCode 1 tool's text as the OpenCode 2 content [0.65ms]
+(pass) toV2Tools > carries an object result's metadata and attachments into the OpenCode 2 result [0.10ms]
+
+ 73 pass
+ 0 fail
+ 164 expect() calls
+Ran 73 tests across 9 files. [3.12s]
