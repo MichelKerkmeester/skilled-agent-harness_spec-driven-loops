@@ -18,3 +18,12 @@
 ## Out of scope
 - `~/.claude/CLAUDE.md` mirrors AGENTS.md outside the repository; it is not edited here and now differs from AGENTS.md by these 11 tightenings.
 - The canary checks only the repository's AGENTS.md for the delivery prefix.
+
+## Third check: Spec-Kit Check
+- CI on main: the two checks above passed on `e38ff13143` and `cd7f160e02` (Rule Canary Sync success, sk-doc Script Tests success).
+- CI "Spec-Kit Check" has failed on main since `47371b495f` and last passed at `33d619a538`. On `cd7f160e02` its CLI vitest project reported 2 failed, 178 passed, 3 skipped test files.
+- Reproduced locally on `8ff49aeb42`: `tests/playbook-provenance-paths.vitest.ts` and `tests/workflow-invariance.vitest.ts` fail, 2 failed and 3 passed tests, exit 1 (`scratch/before/spec-kit-check-vitest.txt`).
+- Cause: commit `b830fd0276` (add a self-relaunching session loop) wrote two playbook provenance lines as `` Provenance: `<path>`. `` with backticks and a trailing period, a form the provenance test does not accept, and wrote "the Hermes sync manifest" in `session-relaunch-command-runtimes.md`, where `manifest` is a word the invariance test bans on public surfaces. That commit reached main through `585c90f5f7` and `47371b495f`.
+- Fix: in `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/`, `session-relaunch-command-runtimes.md` and `session-relaunch-pi-opencode.md` now carry `Provenance: <path>` bare; both paths exist on disk. The Hermes sentence now names `.hermes/SYNC.md`, which documents both steps at line 41. Neither test was changed.
+- After: the two tests pass, 5 of 5, exit 0 (`scratch/after/spec-kit-check-vitest.txt`). The whole CLI vitest project passes 180 files with 3 skipped, 2059 tests passed and 20 skipped, exit 0 (`scratch/after/spec-kit-cli-project-summary.txt`).
+- CI on main: Spec-Kit Check passed on `457c4ac107`, run `39380190180`, with every other CI check on that commit passing too. Before that it was red on main from `47371b495f` through `22f563b032` (run `39373558502`).

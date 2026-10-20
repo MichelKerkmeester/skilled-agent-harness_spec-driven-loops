@@ -1,0 +1,37 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/skills/system-spec-kit
+
+ ❯ |root| runtime/tests/opencode-plugins-folder-purity.vitest.ts (1 test | 1 failed) 125ms
+     × contains only importable plugin entrypoints with valid hook objects 125ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |root| runtime/tests/opencode-plugins-folder-purity.vitest.ts > OpenCode plugins folder purity > contains only importable plugin entrypoints with valid hook objects
+AssertionError: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/plugins/classifier-injection-screen.js object default export has no recognized OpenCode hook keys: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ runtime/tests/opencode-plugins-folder-purity.vitest.ts:93:10
+     91|         .toEqual(expect.any(Object));
+     92|       expect(hasHookProperty(pluginDefault), `${pluginFile} object def…
+     93|         .toBe(true);
+       |          ^
+     94|     }
+     95|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  07:32:49
+   Duration  231ms (transform 78ms, setup 17ms, import 10ms, tests 125ms, environment 0ms)
+
+exit=1

@@ -1,0 +1,19 @@
+# Which branch of the purity test each .skilled/plugins entry takes (the test scans only entries whose Dirent isFile() is true)
+classifier-injection-screen.js	isFile=true	symlink=false	dual
+cli-dispatch-audit.js	isFile=true	symlink=false	dual
+codex-hooks-watchdog.js	isFile=true	symlink=false	dual
+mcp-route-guard.js	isFile=true	symlink=false	dual
+opencode-goal.js	isFile=true	symlink=false	dual
+session-cleanup.js	isFile=true	symlink=false	dual
+session-relaunch.js	isFile=true	symlink=false	dual
+sk-code-post-edit-quality.js	isFile=true	symlink=false	dual
+sk-git-message-gate.js	isFile=true	symlink=false	dual
+sk-git-preflight-advisory.js	isFile=true	symlink=false	dual
+sk-vision.js	isFile=false	symlink=true	not scanned (Dirent is not a regular file); default export shape would be dual
+system-completion-sentinel.js	isFile=true	symlink=false	dual
+system-deep-loop-guard.js	isFile=true	symlink=false	dual
+system-dist-freshness-guard.js	isFile=true	symlink=false	dual
+system-skill-advisor.js	isFile=true	symlink=false	dual
+system-spec-gate.js	isFile=true	symlink=false	dual
+system-speckit-completion.js	isFile=true	symlink=false	dual
+# sk-vision.js -> ../skills/sk-vision/vision-runtime/dist/plugin.js; that target is gitignored (.gitignore:60 dist/) and Spec-Kit Check does not build it.

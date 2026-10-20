@@ -1,0 +1,40 @@
+# Mutation probe (dual-server-no-hooks): a temporary .opencode/plugins/zz-mutation-probe.js containing:
+#   export default { id: 'zz-mutation-probe', server: async () => ({ notAHook: true }), setup: async () => undefined };
+# The probe was deleted after the run.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/skills/system-spec-kit
+
+ ❯ |root| runtime/tests/opencode-plugins-folder-purity.vitest.ts (1 test | 1 failed) 404ms
+     × contains only importable plugin entrypoints with valid hook objects 403ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |root| runtime/tests/opencode-plugins-folder-purity.vitest.ts > OpenCode plugins folder purity > contains only importable plugin entrypoints with valid hook objects
+AssertionError: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/plugins/zz-mutation-probe.js dual plugin server factory returned no recognized OpenCode hook keys: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ runtime/tests/opencode-plugins-folder-purity.vitest.ts:98:12
+     96|           .toEqual(expect.any(Object));
+     97|         expect(hasHookProperty(hooks), `${pluginFile} dual plugin serv…
+     98|           .toBe(true);
+       |            ^
+     99|         continue;
+    100|       }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  07:43:29
+   Duration  518ms (transform 231ms, setup 14ms, import 10ms, tests 404ms, environment 0ms)
+
+exit=1

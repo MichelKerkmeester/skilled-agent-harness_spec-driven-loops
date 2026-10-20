@@ -1,0 +1,1 @@
+PASS: authored artifact name is exempt: .opencode/plugins/ARCHITECTURE.md
