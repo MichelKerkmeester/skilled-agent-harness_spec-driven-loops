@@ -1,7 +1,7 @@
 ---
 title: "CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-dist-freshness-guard plugin for CO-053. It focuses on the stale compiled dist warning that reaches the system prompt and the plugin log."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2
@@ -53,9 +53,9 @@ Operators run the exact prompt and command sequence for `CO-053` and confirm the
 export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 export AI_SESSION_CHILD=1
 E=.opencode/skills/sk-design/sk-design-md-generator/backend/dist/cli.js
-BACKUP="$(mktemp)"
-cp -p "$E" "$BACKUP"
-trap 'cp -p "$BACKUP" "$E"; rm -f "$BACKUP"' EXIT
+BACKUP="$(mktemp)" || exit 1
+cp -p "$E" "$BACKUP" && cmp -s "$E" "$BACKUP" || { echo "could not back up $E"; rm -f "$BACKUP"; exit 1; }
+trap 'cp -p "$BACKUP" "$E" && cmp -s "$BACKUP" "$E" && rm -f "$BACKUP" || echo "restore failed; backup kept at $BACKUP"' EXIT
 printf '\n' >> $E
 touch -t 200001010000 $E
 node -e "const d=require('./.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'); console.log(d.checkAllFreshness({workspaceRoot:process.cwd()}).filter(r=>r.stale).map(r=>r.packageId))"

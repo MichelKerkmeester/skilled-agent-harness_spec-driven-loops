@@ -41,9 +41,12 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "benchmark/reports/README.md",
+      "scratch/live-runs/results-matrix.md",
+      "scratch/live-runs/round4-rerun.txt",
+      "scratch/live-runs/local-checks.txt",
       ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
       "scratch/live-runs/event-probe-summary.txt",
-      "scratch/live-runs/results-matrix.md",
       "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
@@ -78,6 +81,30 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "round4-rerun.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/round4-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "local-checks.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/local-checks.txt",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
@@ -87,12 +114,6 @@
         "name": "event-probe-summary.txt",
         "kind": "file",
         "path": "scratch/live-runs/event-probe-summary.txt",
-        "source": "derived"
-      },
-      {
-        "name": "results-matrix.md",
-        "kind": "doc",
-        "path": "scratch/live-runs/results-matrix.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doctor's version battery reports all 17 files in `.opencode/plugins/` as loaded on OpenCode 1.19.3 and active on OpenCode 2.0.32",
     "created_at": "2026-10-20T16:42:45Z",
-    "last_save_at": "2026-10-20T18:33:32.560Z",
+    "last_save_at": "2026-10-20T19:42:12.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce19ac982c86d0cd691a671f4bc1e0eaa7ea0e78396867242d49f2e7c8425e71",
+    "source_fingerprint": "sha256:a2973e89695c1938a2b920ca2de3ab3be177b2932082ab73c8acccacb5fdc71b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55a9d765ca937431e665ffa6b78b32670d4ff24921a60929798457ca2ce33eb5",
       "plan.md": "b2546105775b004565738dbd16bc9578d0cbde99062d9a523300cce46e78a9bb",
-      "tasks.md": "474dc5c347f73b125ccce96015b91f8ad4738d20a7872943da95a942584a7c51",
-      "implementation-summary.md": "2b446c81daa161e80735e0ade9156f0f22c7285a9cd9443dffb5b5991110d7bd"
+      "tasks.md": "4e3798cca41215c353e2e3b17b8c23b734bc32b76ef2ce79c0e776d7c435fc86",
+      "implementation-summary.md": "2f3071fda279f64571f330c07fa4d308c1d1ac158b984801d2737c2e92f1af39"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 785,
+  "derived_count": 786,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -271,6 +271,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--opencode-8",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--opencode-9",
     ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-08-08--manual-testing-playbook--prompt-templates",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/benchmark/reports/2026-10-20--manual-testing-playbook--plugin-utilization",
     ".skilled/skills/cli-external-orchestration/cli-pi",
     ".skilled/skills/cli-external-orchestration/cli-pi/benchmark",
     ".skilled/skills/cli-external-orchestration/cli-pi/benchmark/reports",

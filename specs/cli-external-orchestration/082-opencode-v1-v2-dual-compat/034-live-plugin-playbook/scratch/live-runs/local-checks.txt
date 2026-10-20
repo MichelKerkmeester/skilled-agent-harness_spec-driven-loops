@@ -1,0 +1,70 @@
+Local runs of the doc checks CI runs, from the worktree at 43d570d14f plus the packet doc edits.
+
+$ node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict 2>&1 | grep -A2 "package=cli-external-orchestration/cli-opencode"
+PASS package=cli-external-orchestration/cli-opencode tier=FAIL_CLOSED scenarios=72 categories=14 operator=72 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (72 scenarios, 14 categories); derived census is 72 scenarios across 14 categories
+PASS package=cli-external-orchestration/cli-pi tier=FAIL_CLOSED scenarios=36 categories=11 operator=36 routing_gold_excluded=0 violations=0 warnings=1
+exit=0
+
+$ node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict
+PASS package=system-deep-loop/runtime tier=FAIL_CLOSED scenarios=55 categories=12 operator=55 routing_gold_excluded=0 violations=0 warnings=1
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (55 scenarios, 12 categories); derived census is 55 scenarios across 12 categories
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=61 categories=10 operator=36 routing_gold_excluded=25 violations=0 warnings=0
+PASS package=system-spec-kit tier=FAIL_CLOSED scenarios=102 categories=10 operator=88 routing_gold_excluded=14 violations=0 warnings=1
+  WARN PROMPT_UNSYNCED ux-hooks/comment-hygiene-checker-baseline.md:52 ux-hooks/comment-hygiene-checker-baseline.md:32 scenario contract prompt differs from the execution table's Exact Prompt
+exit=0
+exit=0
+
+$ node .opencode/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs
+check-markdown-links: 7784 files, 14193 links checked, 0 broken
+OK — 0 broken markdown links.
+exit=0
+
+$ bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh
+PASS test_surface_packet_sections.py
+PASS test_template_version_seed.py
+PASS test_validate_catalog_package.py
+PASS test_validation_switch.py
+PASS test_validator.py
+PASS test-frontmatter-version.mjs
+PASS test-frontmatter-version-bump.mjs
+PASS test-cite-drift-scan.mjs
+PASS install-guide-contract.test.cjs
+1 failing: test_readme_manifest.py
+exit=1
+
+$ node .skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs
+220 unresolved or past-end citations, report only
+exit=0
+
+$ node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-gate.mjs
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 796.920709
+exit=0
+
+The sk-doc script suite failed above on test_readme_manifest.py: the new report folder
+2026-10-20--manual-testing-playbook--plugin-utilization was missing from the frozen
+durable-directory manifest. The test's own refresh command added it (one line, derived_count 785 -> 786):
+
+$ python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write
+WROTE .skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json directories=786
+$ python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible
+exit=0
+$ bash .opencode/skills/sk-doc/scripts/tests/run-script-tests.sh
+PASS test-frontmatter-version-bump.mjs
+PASS test-cite-drift-scan.mjs
+PASS install-guide-contract.test.cjs
+all sk-doc script tests passed
+exit=0
+
+The cite-drift gate's 220 unresolved citations are report-only on a push run (exit 0); the gate
+fails a pull request only on citations its diff adds.
+
+$ node .skilled/skills/sk-doc/shared/scripts/cite-drift-gate.mjs --base 981b27805b
+220 older unresolved or past-end citations, not blocking
+exit=0

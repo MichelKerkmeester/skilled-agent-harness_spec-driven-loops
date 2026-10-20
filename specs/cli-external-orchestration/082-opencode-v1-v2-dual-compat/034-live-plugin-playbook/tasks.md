@@ -55,7 +55,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` all sk-doc script tests passed; `cite-drift-gate.mjs --base origin/main` no new broken citation]
+- [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` first failed on `test_readme_manifest.py` because the new report folder was missing from the durable-directory manifest, then passed after the test's own `--write` refresh; `cite-drift-gate.mjs --base` the merge base exits 0 with no new broken citation. Outputs: `scratch/live-runs/local-checks.txt`]
 - [ ] T012 Luna review, read-only
 - [ ] T013 Recursive strict validation of 082 prints `RESULT: PASSED`
 - [ ] T014 Merge to main, push, and read every CI workflow's conclusion
@@ -110,7 +110,7 @@ contextType: "general"
 ## Code Quality
 
 - [x] CHK-010 [P0] Code passes lint/format checks [EVIDENCE: `bash -n run-plugin-scenario.sh` and `node --check` on both `.mjs` files exit 0; the comment hygiene checker exits 0 on all three]
-- [ ] CHK-011 [P0] No console errors or warnings
+- [x] CHK-011 [P0] No console errors or warnings [EVIDENCE: `scratch/live-runs/local-checks.txt`: every check exits 0; the remaining validator warnings (hand-typed census) are the same class the baseline already carried]
 - [x] CHK-012 [P1] Error handling implemented [EVIDENCE: the runner exits 2 on bad usage; the proxy answers 502 on an upstream error and never lets a capture error stop forwarding]
 - [x] CHK-013 [P1] Code follows project patterns [EVIDENCE: module and component headers match `opencode-setup.sh` and the plugin modules]
 <!-- /ANCHOR:code-quality -->
@@ -137,7 +137,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Adversarial table tests [EVIDENCE: not applicable; no parser, path or redaction code changed]
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed [EVIDENCE: 17 plugins × 2 versions, with the dispatch audit plugin split into its guard and log halves]
 - [x] CHK-FIX-006 [P1] Hostile env variant executed [EVIDENCE: the kill-switch runs and the child-flag-off spec-gate runs]
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA [EVIDENCE: `scratch/live-runs/round4-rerun.txt` re-ran the changed blocks at `43d570d14f`]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -155,9 +155,9 @@ contextType: "general"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized [EVIDENCE: the AC table, this checklist and `implementation-summary.md` name the same evidence files and verdict counts]
 - [x] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-042 [P2] README updated (if applicable) [EVIDENCE: `benchmark/README.md` and `benchmark/reports/README.md` list the new report]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -176,9 +176,9 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 10/12 |
-| P1 Items | 13 | 10/13 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 12 | 11/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-20
 <!-- /ANCHOR:summary -->

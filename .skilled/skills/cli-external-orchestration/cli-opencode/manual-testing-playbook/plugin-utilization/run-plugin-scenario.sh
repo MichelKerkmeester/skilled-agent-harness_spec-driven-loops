@@ -29,6 +29,11 @@ if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
 fi
 VERSION=$1 NAME=$2 PROMPT=$3
 shift 3
+# The name becomes part of every evidence file path, so it must stay a plain slug.
+if ! [[ "$NAME" =~ ^[a-z0-9][a-z0-9-]*$ ]]; then
+  echo "name must be lowercase letters, digits and hyphens: $NAME" >&2
+  exit 2
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # The session always runs in the checkout that holds this script, so a scenario's
