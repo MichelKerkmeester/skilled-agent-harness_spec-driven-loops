@@ -110,7 +110,7 @@ Allowed dependency direction:
 
 **OpenCode 1 load path.** The OpenCode 1 host calls `server(input)` and registers the returned hooks directly. The input carries the keys `client`, `project`, `worktree`, `directory`, `experimental_workspace`, `serverUrl` and `$`.
 
-**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the v1-shaped input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory` and `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js:287-297`), then calls `server(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js:520-527`).
+**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the v1-shaped input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory` and `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js:287-297`), then calls `server(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js:532-539`).
 
 **Key modules:**
 
@@ -121,31 +121,31 @@ Allowed dependency direction:
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:285`, `lib/v2-bridge.js:532`) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
+**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:285`, `lib/v2-bridge.js:544`) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
 
 **Hook mapping.** The bridge maps the v1 hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js:8-15`). The table is the full mapping.
 
 | v1 hook | OpenCode 2 registration | Notes |
 |---|---|---|
-| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js:383-444`, `lib/v2-bridge.js:324-341`) |
-| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js:446-459`, `lib/v2-bridge.js:123-145`) |
-| `tool.execute.after` | `ctx.tool.hook('execute.after')` | reports the same v1 tool names, converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` and gives a `shell` result a string `output` (`lib/v2-bridge.js:461-472`, `lib/v2-bridge.js:147-156`) |
-| `experimental.chat.system.transform` | `ctx.session.hook('context')` | announces the session before the transform runs, calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js:474-494`) |
-| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js:496-519`) |
+| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js:383-456`, `lib/v2-bridge.js:324-341`) |
+| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js:458-471`, `lib/v2-bridge.js:123-145`) |
+| `tool.execute.after` | `ctx.tool.hook('execute.after')` | reports the same v1 tool names, converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` and gives a `shell` result a string `output` (`lib/v2-bridge.js:473-484`, `lib/v2-bridge.js:147-156`) |
+| `experimental.chat.system.transform` | `ctx.session.hook('context')` | announces the session before the transform runs, calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js:486-506`) |
+| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js:508-531`) |
 | `dispose` | the cleanup function `setup` returns | aborts the event stream, disposes every registration and then calls the v1 `dispose`, collecting errors and rethrowing them as an `AggregateError` when there are several (`lib/v2-bridge.js:343-380`) |
 | any other key | not registered | does nothing on OpenCode 2 and shows up in `cleanup.skippedKeys` (`lib/v2-bridge.js:299,380`) |
 
-**Event aliases and mappings.** Inside the `event` leg, two v2 events are also delivered under a v1 name and three are rewritten into a different v1 event shape (`lib/v2-bridge.js:17-20`, `lib/v2-bridge.js:29-87`). The aliases and the mappings are:
+**Event aliases and mappings.** Inside the `event` leg, two v2 events are also delivered under a v1 name and three have a different v1 event shape also delivered; the original v2 event is delivered in every case (`lib/v2-bridge.js:17-20`, `lib/v2-bridge.js:29-87`). The aliases and the mappings are:
 
 | v2 event | v1 delivery | Notes |
 |---|---|---|
 | `session.execution.succeeded` | also delivered as `session.idle` | alias (`lib/v2-bridge.js:17-20`) |
 | `session.compaction.ended` | also delivered as `session.compacted` | alias (`lib/v2-bridge.js:17-20`) |
-| `session.text.ended` | becomes `message.part.updated` | a text part with a top-level `sessionID` (`lib/v2-bridge.js:30-42`) |
-| `session.step.ended` | becomes `message.updated` | cost, tokens, a top-level `sessionID` and `info.time.completed` from the event's `created` time (`lib/v2-bridge.js:43-56`) |
-| `session.inbox.enqueued` | becomes `message.updated` and `message.part.updated` | a user item becomes a user `message.updated` and its text `message.part.updated`, sharing the inbox id (`lib/v2-bridge.js:57-86`) |
+| `session.text.ended` | the original is delivered and `message.part.updated` is also delivered | a text part with a top-level `sessionID` (`lib/v2-bridge.js:30-42`) |
+| `session.step.ended` | the original is delivered and `message.updated` is also delivered | cost, tokens, a top-level `sessionID` and `info.time.completed` from the event's `created` time (`lib/v2-bridge.js:43-56`) |
+| `session.inbox.enqueued` | the original is delivered and `message.updated` and `message.part.updated` are also delivered | a user item becomes a user `message.updated` and its text `message.part.updated`, sharing the inbox id (`lib/v2-bridge.js:57-86`) |
 
-The bridge also announces each session once. `opencode2 run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js:324-341`, `lib/v2-bridge.js:390-399`, `lib/v2-bridge.js:474-481`). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` clears the record (`lib/v2-bridge.js:390-392`, `lib/v2-bridge.js:430-436`).
+The bridge also announces each session once. `opencode2 run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js:324-341`, `lib/v2-bridge.js:394-405`, `lib/v2-bridge.js:486-493`). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` waits for any in-flight announcement before it clears the record (`lib/v2-bridge.js:394-405`, `lib/v2-bridge.js:390-392`, `lib/v2-bridge.js:443-448`).
 
 The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-bridge.js:93`). Their delivery latches reset when the session sees `session.execution.started`, `session.compaction.started` or `session.deleted` (`lib/v2-bridge.js:94-98`).
 

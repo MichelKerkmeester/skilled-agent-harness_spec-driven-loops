@@ -56,6 +56,14 @@ case "$EVID/" in
   "$ROOT"/*|"$ROOT_REAL"/*) ;;
   *) echo "EVIDENCE_DIR must be inside $ROOT: $EVID" >&2; exit 2 ;;
 esac
+# A symlinked folder on the way could point outside the checkout, so check the part that already exists.
+EXISTING="$EVID"
+while [[ ! -d "$EXISTING" ]]; do EXISTING="$(dirname "$EXISTING")"; done
+EXISTING_REAL="$(cd "$EXISTING" && pwd -P)" || exit 2
+case "$EXISTING_REAL/" in
+  "$ROOT_REAL"/*) ;;
+  *) echo "EVIDENCE_DIR resolves outside $ROOT: $EVID" >&2; exit 2 ;;
+esac
 mkdir -p "$EVID" || exit 2
 EVID="$(cd "$EVID" && pwd -P)" || exit 2
 case "$EVID/" in

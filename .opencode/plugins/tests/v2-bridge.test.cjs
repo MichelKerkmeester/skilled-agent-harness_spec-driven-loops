@@ -654,6 +654,96 @@ test('a system transform waits for a real session.created already being delivere
   }
 });
 
+test('session.deleted waits for an in-flight announcement of the same session', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  const receivedEvents = [];
+  const order = [];
+  let releaseCreated;
+  let createdStarted;
+  let releaseStream;
+  let finishStream;
+  const createdGate = new Promise((resolve) => {
+    releaseCreated = resolve;
+  });
+  const createdBegun = new Promise((resolve) => {
+    createdStarted = resolve;
+  });
+  const streamGate = new Promise((resolve) => {
+    releaseStream = resolve;
+  });
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
+  });
+  context.event.subscribe = () => (async function* () {
+    try {
+      await streamGate;
+      yield { type: 'session.deleted', data: { sessionID: 'ses_q' } };
+    } finally {
+      finishStream();
+    }
+  })();
+  const plugin = dualPlugin('deleted-waits-announce-test', async () => ({
+    event: async ({ event }) => {
+      if (event.type === 'session.created') {
+        createdStarted();
+        await createdGate;
+      }
+      receivedEvents.push(event);
+      order.push(event.type);
+    },
+    'experimental.chat.system.transform': async () => {},
+  }));
+  const cleanup = await plugin.setup(context);
+
+  try {
+    const transformDone = sessionHooks.get('context')({ sessionID: 'ses_q', system: [] });
+    await createdBegun;
+    releaseStream();
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(order, []);
+
+    releaseCreated();
+    await transformDone;
+    await streamFinished;
+
+    assert.deepEqual(order, ['session.created', 'session.deleted']);
+    assert.equal(
+      receivedEvents.filter((event) => event.type === 'session.created').length,
+      1,
+    );
+  } finally {
+    releaseCreated();
+    releaseStream();
+    await cleanup();
+  }
+});
+
+test('an event failure during context announcement is reported at cleanup', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  const eventError = new Error('event hook failed');
+  let transformed = false;
+  context.event.subscribe = () => (async function* () {})();
+  const plugin = dualPlugin('event-failure-cleanup-test', async () => ({
+    event: async ({ event }) => {
+      if (event.type === 'session.created') throw eventError;
+    },
+    'experimental.chat.system.transform': async (_input, output) => {
+      transformed = true;
+      output.system.push('after-event-failure');
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+  const contextEvent = { sessionID: 'ses_e', system: [] };
+
+  await sessionHooks.get('context')(contextEvent);
+
+  assert.equal(transformed, true);
+  assert.deepEqual(contextEvent.system, [{ type: 'text', text: 'after-event-failure' }]);
+  await assert.rejects(cleanup(), (error) => error === eventError);
+});
+
 test('a tool named constructor reaches the plugin as a plain string', async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
@@ -1460,9 +1550,11 @@ test('execute.before writes a changed subagent_type back to agent', async () => 
 test('execute.after gives a v2 shell call the v1 string output', async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, toolHooks } = createV2Context();
+  let receivedInput;
   let receivedOutput;
   const plugin = dualPlugin('shell-output-test', async () => ({
-    'tool.execute.after': async (_input, output) => {
+    'tool.execute.after': async (input, output) => {
+      receivedInput = input;
       receivedOutput = output;
     },
   }));
@@ -1483,9 +1575,36 @@ test('execute.after gives a v2 shell call the v1 string output', async () => {
     },
   });
 
+  assert.equal(receivedInput.tool, 'bash');
+  assert.equal(receivedInput.args.command, 'echo probe-123');
   assert.equal(typeof receivedOutput.output, 'string');
   assert.equal(receivedOutput.output, 'probe-123\n');
   assert.deepEqual(receivedOutput.metadata, { status: 'completed', truncated: false, exit: 0 });
+  await cleanup();
+});
+
+test('execute.after presents a v2 subagent call as task with subagent_type', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedInput;
+  const plugin = dualPlugin('subagent-after-name-test', async () => ({
+    'tool.execute.after': async (input) => {
+      receivedInput = input;
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  await toolHooks.get('execute.after')({
+    tool: 'subagent',
+    sessionID: 'ses_x',
+    id: 'call_1',
+    input: { agent: 'general', prompt: 'p' },
+    status: 'completed',
+    result: { output: 'done' },
+  });
+
+  assert.equal(receivedInput.tool, 'task');
+  assert.equal(receivedInput.args.subagent_type, 'general');
   await cleanup();
 });
 

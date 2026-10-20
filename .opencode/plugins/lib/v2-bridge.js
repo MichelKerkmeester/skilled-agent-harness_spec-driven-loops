@@ -387,6 +387,10 @@ export function dualPlugin(id, server) {
           try {
             for await (const event of eventStream) {
               const data = event.data;
+              if (event.type === 'session.deleted') {
+                const deletedID = data?.sessionID ?? data?.info?.id;
+                if (deletedID !== undefined) await announcingSessions.get(deletedID);
+              }
               if (event.type === 'session.created' && data?.sessionID !== undefined) {
                 const announced = announcedSessions.has(data.sessionID)
                   || announcingSessions.has(data.sessionID);
@@ -440,7 +444,6 @@ export function dualPlugin(id, server) {
                 const sessionID = data?.sessionID ?? data?.info?.id;
                 if (sessionID !== undefined) {
                   announcedSessions.delete(sessionID);
-                  announcingSessions.delete(sessionID);
                 }
               }
             }
