@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Source Root Consumer Plugin Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // A consumer project may expose the source tree as .skilled, as .opencode, or not at all.

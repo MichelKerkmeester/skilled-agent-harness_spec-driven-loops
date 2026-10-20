@@ -18,6 +18,9 @@ const { test } = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const KILL_SWITCH_ENV = 'SYSTEM_COMPLETION_SENTINEL_DISABLED';
+// Fixtures age entries relative to the core's own retention window plus a margin, so a
+// changed default keeps each entry on the side of the boundary the test needs.
+const STALE_MARGIN_DAYS = 10;
 const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'system-completion-sentinel.js')).href;
 const coreUrl = pathToFileURL(path.join(
   __dirname,
@@ -70,8 +73,9 @@ test('session.created invokes the throttled state sweep, pruning a stale dedup e
     const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
     const freshAdvisedAt = isoDaysAgo(1);
+    const staleAdvisedAt = isoDaysAgo(sentinelCore.DEFAULT_RETENTION_DAYS + STALE_MARGIN_DAYS);
     writeDedupStore(stateDir, {
-      stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) },
+      stale: { fingerprint: 'sha256:stale', advisedAt: staleAdvisedAt },
       fresh: { fingerprint: 'sha256:fresh', advisedAt: freshAdvisedAt },
     });
 
@@ -95,7 +99,13 @@ test('kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created 
     await withEnv(KILL_SWITCH_ENV, '1', async () => {
       const { default: sentinelCore } = await loadCore();
       const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
-      const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(400) } };
+      // Many retention windows old, so a sweep that did run could not leave it standing.
+      const originalStore = {
+        stale: {
+          fingerprint: 'sha256:stale',
+          advisedAt: isoDaysAgo(sentinelCore.DEFAULT_RETENTION_DAYS * 10),
+        },
+      };
       writeDedupStore(stateDir, originalStore);
 
       const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
@@ -114,7 +124,12 @@ test('a second session.created on the same plugin instance within the sweep inte
   try {
     const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
-    writeDedupStore(stateDir, { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) } });
+    writeDedupStore(stateDir, {
+      stale: {
+        fingerprint: 'sha256:stale',
+        advisedAt: isoDaysAgo(sentinelCore.DEFAULT_RETENTION_DAYS + STALE_MARGIN_DAYS),
+      },
+    });
 
     const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });
     await hooks.event({ event: { type: 'session.created' } });
@@ -123,7 +138,12 @@ test('a second session.created on the same plugin instance within the sweep inte
     // Re-seed a stale entry directly, bypassing the sweep, to prove the
     // SECOND session.created on the SAME plugin instance -- well within the
     // sweep interval -- never touches the store at all.
-    const secondStale = { stale2: { fingerprint: 'sha256:stale2', advisedAt: isoDaysAgo(40) } };
+    const secondStale = {
+      stale2: {
+        fingerprint: 'sha256:stale2',
+        advisedAt: isoDaysAgo(sentinelCore.DEFAULT_RETENTION_DAYS + STALE_MARGIN_DAYS),
+      },
+    };
     writeDedupStore(stateDir, secondStale);
     await hooks.event({ event: { type: 'session.created' } });
 
@@ -139,7 +159,12 @@ test('an unrelated event type never triggers the sweep', async () => {
   try {
     const { default: sentinelCore } = await loadCore();
     const { stateDir } = sentinelCore.resolveSentinelPaths(projectDir);
-    const originalStore = { stale: { fingerprint: 'sha256:stale', advisedAt: isoDaysAgo(40) } };
+    const originalStore = {
+      stale: {
+        fingerprint: 'sha256:stale',
+        advisedAt: isoDaysAgo(sentinelCore.DEFAULT_RETENTION_DAYS + STALE_MARGIN_DAYS),
+      },
+    };
     writeDedupStore(stateDir, originalStore);
 
     const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir });

@@ -125,23 +125,30 @@ function guardLogLineCount(dir) {
   }
 }
 
-// Run a plugin interaction with console.warn/error/log trapped, and return any
-// captured calls -- the guard must NEVER write to the terminal (that is exactly
-// the overlay that corrupts the OpenCode chat input).
+// Run a plugin interaction with console.warn/error/log and the raw stdout/stderr streams
+// trapped, and return any captured calls -- the guard must NEVER write to the terminal
+// (that is exactly the overlay that corrupts the OpenCode chat input), and a plugin that
+// bypasses console by writing to the streams directly must be caught too.
 async function runTrapped(callback) {
   const consoleCalls = [];
   const originalWarn = console.warn;
   const originalError = console.error;
   const originalLog = console.log;
+  const originalStdoutWrite = process.stdout.write;
+  const originalStderrWrite = process.stderr.write;
   console.warn = (message) => consoleCalls.push(`warn:${message}`);
   console.error = (message) => consoleCalls.push(`error:${message}`);
   console.log = (message) => consoleCalls.push(`log:${message}`);
+  process.stdout.write = (chunk) => { consoleCalls.push(`stdout:${chunk}`); return true; };
+  process.stderr.write = (chunk) => { consoleCalls.push(`stderr:${chunk}`); return true; };
   try {
     await callback();
   } finally {
     console.warn = originalWarn;
     console.error = originalError;
     console.log = originalLog;
+    process.stdout.write = originalStdoutWrite;
+    process.stderr.write = originalStderrWrite;
   }
   return consoleCalls;
 }

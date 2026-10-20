@@ -22,6 +22,10 @@ const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
 const GUARD_LOG_RELATIVE = ['.skilled', 'skills', '.state', 'loop-guard', 'guard-warnings.log'];
 
+// Set once the fixture tree exists and removed by the finalizer at the bottom of this file,
+// so a failed assertion still cleans it up.
+let fixtureDir;
+
 function writeFixtureRegistry(dir) {
   const registryDir = path.join(dir, '.skilled', 'skills', 'system-deep-loop');
   fs.mkdirSync(registryDir, { recursive: true });
@@ -77,6 +81,7 @@ async function main() {
   assert.equal(typeof pluginModule.default.server, 'function');
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'system-deep-loop-guard-'));
+  fixtureDir = tmpDir;
   writeFixtureRegistry(tmpDir);
   const hooks = await pluginModule.default.server({ directory: tmpDir });
   const beforeHook = hooks['tool.execute.before'];
@@ -220,8 +225,8 @@ async function main() {
 
   // Command-driven dispatches (iteration-state markers present) never count toward the
   // threshold -- but only when the marker co-occurs with a Config: path that resolves to
-  // a real, on-disk deep-loop config (R3-P1-001 hardening: a bare marker alone is no
-  // longer sufficient, see the forgery regression cases below).
+  // a real, on-disk deep-loop config; a bare marker alone is not sufficient, see the
+  // forgery regression cases below.
   const sessionC = 'session-loop-c';
   clearGuardLog(tmpDir);
   const reviewConfigDir = path.join(tmpDir, 'specs', 'example', 'review');
@@ -250,9 +255,9 @@ async function main() {
   }
   assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'bounded review iteration markers with a real config file remain command-driven');
 
-  // Forgery regression (R3-P1-001): a bare iteration marker with no Config: reference, or
-  // one pointing at a nonexistent file, must not bypass loop-repeat counting -- closing the
-  // "just paste the marker text" bypass the review found.
+  // Forgery regression: a bare iteration marker with no Config: reference, or one pointing
+  // at a nonexistent file, must not bypass loop-repeat counting -- closing the "just paste
+  // the marker text" bypass.
   const sessionForgedNoConfig = 'session-loop-forged-no-config';
   clearGuardLog(tmpDir);
   for (let i = 1; i <= 3; i += 1) {
@@ -442,11 +447,14 @@ async function main() {
   delete process.env['SYSTEM_DEEP_LOOP_GUARD_ARCHIVE_RETENTION_DAYS'];
   delete process.env[WARN_LOG_MAX_BYTES_ENV];
 
-  fs.rmSync(tmpDir, { recursive: true, force: true });
   console.log('system-deep-loop-guard.test.cjs: all assertions passed');
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  })
+  .finally(() => {
+    if (fixtureDir) fs.rmSync(fixtureDir, { recursive: true, force: true });
+  });

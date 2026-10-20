@@ -206,9 +206,21 @@ function writeFixtureFile(filePath, content) {
 function makeAdvisorFixture(sourceName = '.skilled') {
   // An ambient absolute DB-dir override points the advisor outside this fixture, so the
   // signature never sees the files the test writes. Editor and MCP environments set it,
-  // which made these tests pass locally and fail under those runtimes.
+  // which made these tests pass locally and fail under those runtimes. The override is
+  // cleared only for this fixture's lifetime and restored by the caller's teardown, so the
+  // mutation never reaches the tests that follow.
+  const previousDbDirs = {
+    SYSTEM_SKILL_ADVISOR_DB_DIR: process.env.SYSTEM_SKILL_ADVISOR_DB_DIR,
+    MK_SKILL_ADVISOR_DB_DIR: process.env.MK_SKILL_ADVISOR_DB_DIR,
+  };
   delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
   delete process.env.MK_SKILL_ADVISOR_DB_DIR;
+  const restoreDbDirEnv = () => {
+    for (const [name, value] of Object.entries(previousDbDirs)) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  };
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-signature-'));
   writeFixtureFile(path.join(root, sourceName, 'skills', 'system-spec-kit', 'SKILL.md'), '# Sentinel\n');
   writeFixtureFile(path.join(root, sourceName, 'skills', 'demo', 'SKILL.md'), '# Demo\n');
@@ -219,7 +231,7 @@ function makeAdvisorFixture(sourceName = '.skilled') {
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill_graph_compiler.py'), 'COMPILER = 1\n');
   writeFixtureFile(path.join(advisorRoot, 'scripts', 'skill-graph.json'), '{"skills":[]}\n');
   writeFixtureFile(path.join(advisorRoot, 'database', 'skill-graph.sqlite'), 'sqlite-v1');
-  return { root, advisorRoot };
+  return { root, advisorRoot, restoreDbDirEnv };
 }
 
 function compiledRouteSummary(targets, overrides = {}) {
@@ -501,7 +513,7 @@ test('termination grace stays inside the configured timeout budget', async () =>
 });
 
 test('multi-file freshness invalidates cache and ignores WAL-only mtime changes', async () => {
-  const { root, advisorRoot } = makeAdvisorFixture();
+  const { root, advisorRoot, restoreDbDirEnv } = makeAdvisorFixture();
   try {
     const children = Array.from({ length: 8 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
     const calls = [];
@@ -535,6 +547,7 @@ test('multi-file freshness invalidates cache and ignores WAL-only mtime changes'
     assert.equal(calls.length, 6, 'checkpointed main database changes invalidate cache');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
   }
 });
 
@@ -554,7 +567,7 @@ test('unavailable freshness bypasses completed cache entries', async () => {
 });
 
 test('the signature follows skills held only under the legacy source-root name', async () => {
-  const { root } = makeAdvisorFixture('.opencode');
+  const { root, restoreDbDirEnv } = makeAdvisorFixture('.opencode');
   try {
     const children = Array.from({ length: 3 }, () => fakeChild({ stdout: cliEnvelope({ freshness: 'live' }) }));
     const calls = [];
@@ -574,6 +587,7 @@ test('the signature follows skills held only under the legacy source-root name',
     assert.equal(calls.length, 2, 'a skill change under .opencode should invalidate cache');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+    restoreDbDirEnv();
   }
 });
 
