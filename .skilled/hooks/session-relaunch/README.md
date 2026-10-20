@@ -169,6 +169,19 @@ When a new hop goes ahead, `prepare` marks as `done` every other note this sessi
 
 The hook keeps per-session nudge levels in `nudge-<session-id>.json` in the same runtime state directory. The hooks and wrapper append events to `relaunch.log` on a best-effort basis. The killer appends its events there too. A failed append in the killer is not swallowed. Each event is one line, appended under fsync at mode 0600, with the mode re-pinned on every append. When the previous last line has no newline, as after a partial write, the new event starts on its own line, so concurrent writers keep one event per line. A short write, from a full disk or a file-size limit, throws `relaunch log short write: wrote X of Y bytes to <path>` instead of losing the event quietly. The killer lock file stores the owner pid, the creation timestamp and the expiry stamp. A lock past its expiry counts as stale, so a reused pid cannot keep the loop pinned. Active or newly created locks log `killer-lock-held`. Stale locks log `killer-lock-stale` before the killer removes and retries them.
 
+### Hop History
+
+`relaunch.log` sits in a temporary directory the system clears, so it is no record of past hops. Each hop therefore also appends one line to `.skilled/skills/.state/session-relaunch/hop-history.log`, beside the handoff notes. That folder is gitignored and persists. A repository that links this checkout's `.skilled` writes to the same file, and each line carries the session's folder so you can tell them apart.
+
+| Event | Written when |
+|---|---|
+| `handed-over` | The wrapper decided to relaunch, so the session handed over. The line carries the hop number. |
+| `claimed` | The fresh session claimed the note. |
+| `done` | The fresh session completed the note. |
+| `timed-out` | The old session did not end in time, so the killer disarmed the record and no hop ran. |
+
+Each line holds the time, the event, the runtime, the hop number, the session folder, the first line of the note's Goal and the note's filename, separated by tabs. A failed write never fails the hop. Read the latest lines with `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history`, or `history --last <count>`, and `/doctor:setup` shows the last one. Set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice each time a session hands over.
+
 ---
 
 ## 5. SWITCHES AND DEFAULTS
@@ -183,6 +196,7 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 | `SESSION_RELAUNCH_WINDOW_TOKENS` | unset, resolved automatically | A positive value overrides Claude settings. Otherwise the resolver checks the project-local settings override, then the project settings, from the session cwd up to the repository root, and the settings file in the home directory for `autoCompactWindow`. Outside a repository only the cwd is checked. If none is usable, a model name containing `[1m]` uses a one-million-token fallback. Other models use a 200-thousand-token fallback. |
 | `SESSION_RELAUNCH_MAX_HOPS` | `10` | Highest completed hop count allowed. The cap is enforced at three points: the wrapper declines a record at or above it, `prepare` at that count writes no record, prints its hop-limit line with the manual claim command and exits 3, and the killer unarms the record with reason `hop-cap` and signals nothing. No adapter nudges at the cap. Zero is accepted and declines every hop. Unset, empty, negative, non-integer or non-numeric values use 10. |
 | `SESSION_RELAUNCH_MAX_AGE_MIN` | `10` | Maximum age in minutes for an armed relaunch record. Zero is accepted and makes any older record stale. Unset, empty, negative or non-numeric values use 10. |
+| `SESSION_RELAUNCH_NOTIFY_HOPS` | unset, off | Set to `1` for a macOS notice titled "Session handed over" each time the wrapper relaunches a session. It names the runtime, the session folder and the note's goal. Off by default, so a clone shows no notice until its owner sets it. |
 | `SESSION_RELAUNCH_REPO_ROOT` | unset, the install root | Absolute path to the repository that holds the concern. Planned handoff note paths resolve under it, so a runtime started in a subdirectory still writes under the repo root. The generic `REPO_ROOT` is not read. |
 | `SKILLED_LOOP_HOPS` | `0` | Wrapper-managed completed-hop count. It must be a non-negative integer. |
 
@@ -190,7 +204,7 @@ The wrapper accepts `-n` or `--name` with a value, and `--name=value`. The first
 
 The killer CLI requires `--loop-id` and `--target-pid`. `--transcript` is optional: the Claude and Codex Stop hooks and the Pi arm pass it (Pi passes its session file when the path resolves). The Hermes arm and the OpenCode plugin do not. Without it, idle means the configured idle time has elapsed since the killer started. The loop id must be greater than 1 and match `SKILLED_LOOP_ID`. The defaults are `--idle-ms 3000` and `--timeout-ms 30000`. The killer polls every 100 ms. `--no-notify` defaults to off. Without it, a timeout attempts a notification. The Stop hook starts the killer without `--no-notify`.
 
-`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3, and inside the loop it does the same at the hop cap. A refused prepare exits 2. The CLI prints its usage and exits 0 when it gets no command, `--help` or `-h`, and a wrong option prints the error plus that subcommand's usage line and exits 2.
+`prepare` receives the note through `--handoff <path>`, while `claim` and `complete` receive it positionally. Both `prepare` and `claim` require `--session <id>`. Only Claude Code can omit the flag and use `CLAUDE_CODE_SESSION_ID`. A successful prepare exits 0 and leaves the record pending for Stop to arm. Outside `skilled-loop`, prepare prints the manual claim command and exits 3, and inside the loop it does the same at the hop cap. A refused prepare exits 2. `history [--last <count>]` prints the latest hop-history lines, 20 by default, or `no hop recorded yet` with the file path, and exits 0. The CLI prints its usage and exits 0 when it gets no command, `--help` or `-h`, and a wrong option prints the error plus that subcommand's usage line and exits 2.
 
 ---
 
@@ -247,6 +261,7 @@ session-relaunch/
 |   `-- session-relaunch.js (browsability symlink -> ../../../plugins/session-relaunch.js)
 +-- lib/
 |   +-- context-usage.cjs
+|   +-- hop-history.cjs
 |   +-- killer.cjs
 |   +-- nudge.cjs
 |   +-- relaunch-core.cjs

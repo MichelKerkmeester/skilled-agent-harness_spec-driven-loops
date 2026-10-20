@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -90,6 +90,10 @@ Hermes fires `on_session_end` after every message, so the plugin arms there and 
 
 Cursor ships on the command trigger because its evidence is source-only and `stop` is not wired in this repository's `.cursor/hooks.json`. Devin ships on the command trigger because its hook usage is unverified. On both, `/speckit:handoff` writes the note and runs prepare. Cursor names a project command after its file, so there the command is `/speckit-handoff`. Outside skilled-loop, prepare prints one runtime-specific manual claim command and exits 3. A prepared record stays pending because no arm event exists for these runtimes. When the runtime exits with a pending record, the wrapper also prints its manual claim command and preserves the runtime exit code. When a path contains `!`, the printed seed places the bang in single quotes outside the double quotes, as in `/tmp/han"'!'"doff.md`. Interactive Bash keeps the path intact when history expansion is on. If the wrapper cannot decode the record returned by `should-relaunch`, it prints `warning: could not read the relaunch record`, consumes the record and exits 1 without a manual claim command.
 
+### Hop History
+
+Each hop appends one tab-separated line to `.skilled/skills/.state/session-relaunch/hop-history.log`, a gitignored file that persists, unlike the temporary `relaunch.log`. The wrapper's relaunch decision writes `handed-over` with the hop number, the receiving session's claim and completion write `claimed` and `done`, and a killer timeout writes `timed-out`. Each line carries the runtime, the session folder and the first line of the note's Goal. `session-relaunch.cjs history [--last <count>]` prints the latest lines, and `/doctor:setup` shows the last one without changing its status. `SESSION_RELAUNCH_NOTIFY_HOPS=1` adds a macOS notice for each hand-over and is off by default.
+
 ---
 ## 3. SOURCE FILES
 
@@ -97,6 +101,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 
 | File | Layer | Role |
 |---|---|---|
+| .skilled/hooks/session-relaunch/lib/hop-history.cjs | Lib | Appends hop events to the persistent hop history, reads it back and shows the optional hand-over notice. |
 | .skilled/hooks/session-relaunch/claude/context-nudge.mjs | Handler | Reads hook input and returns threshold or claim-seed context. |
 | .skilled/hooks/session-relaunch/claude/stop-arm.mjs | Handler | Arms a matching prepared record on Stop and starts the killer. |
 | .skilled/hooks/session-relaunch/codex/prompt-seed.mjs | Handler | Answers `[session-relaunch]` seeds and runs the nudge check on UserPromptSubmit. |
@@ -122,6 +127,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 
 | File | Type | Role |
 |---|---|---|
+| .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Node test | Checks hop history lines, the history command and the off-by-default notice. |
 | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs | Node test | Checks Claude nudge and Stop adapter behavior. |
 | .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs | Node test | Checks Codex seed, threshold, arming and registration behavior. |
 | .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs | Node test | Checks Hermes usage, seed, window sources, arming and pid lookup. |

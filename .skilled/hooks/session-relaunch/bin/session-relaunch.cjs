@@ -11,6 +11,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
 const nudge = require('../lib/nudge.cjs');
+const hopHistory = require('../lib/hop-history.cjs');
 const { isHookEnabled, loadConfigFile, configPath } = require('../../shared/hook-flags.cjs');
 // Must match the runtimes skilled-loop can launch, or prepare refuses a loop the wrapper started.
 const LOOP_RUNTIMES = core.RUNTIMES;
@@ -43,6 +44,10 @@ const SUBCOMMANDS = {
   consume: {
     syntax: 'consume --loop-id <loop-id>',
     summary: 'Print the handoff path and its spec folder, then remove the relaunch record.',
+  },
+  history: {
+    syntax: 'history [--last <count>]',
+    summary: 'Print the latest hops from the hop history, 20 by default.',
   },
 };
 
@@ -475,6 +480,14 @@ function shouldRelaunch(args) {
       reason: decision.reason ?? 'ready',
     });
   } catch {}
+  if (decision.relaunch && typeof record?.handoff === 'string') {
+    const hops = Number(record.hops);
+    hopHistory.recordHop('handed-over', record.handoff, {
+      hop: Number.isInteger(hops) && hops >= 0 ? hops + 1 : null,
+      runtime: record.runtime,
+    });
+    hopHistory.notifyHandOver(record.handoff, { switches, runtime: record.runtime });
+  }
   return decision.relaunch ? 0 : 1;
 }
 
@@ -491,13 +504,16 @@ function claim(args) {
     throw new Error(`session id is required through ${sessionSource}`);
   }
   core.claimHandoff(handoffPath, { sessionId });
+  hopHistory.recordHop('claimed', handoffPath);
   printHandoffBody(handoffPath);
   return 0;
 }
 
 function complete(args) {
   const { positional } = parseArgs(args, { positionalCount: 1 });
-  core.completeHandoff(handoffPathWithinRepo(positional[0]));
+  const handoffPath = handoffPathWithinRepo(positional[0]);
+  core.completeHandoff(handoffPath);
+  hopHistory.recordHop('done', handoffPath);
   return 0;
 }
 
@@ -575,6 +591,22 @@ function consume(args) {
   return 0;
 }
 
+function history(args) {
+  const { options } = parseArgs(args, { flags: ['--last'] });
+  let last = 20;
+  if (options['--last'] !== undefined) {
+    last = Number(options['--last']);
+    if (!Number.isInteger(last) || last < 1) {
+      throw invocationError('--last must be a positive whole number');
+    }
+  }
+  const lines = hopHistory.readHistory({ last });
+  process.stdout.write(lines.length
+    ? `${lines.join('\n')}\n`
+    : `no hop recorded yet (${hopHistory.historyPath()})\n`);
+  return 0;
+}
+
 /**
  * Execute one session-relaunch CLI command.
  *
@@ -597,6 +629,7 @@ function main(args = process.argv.slice(2)) {
       case 'claim': return claim(commandArgs);
       case 'complete': return complete(commandArgs);
       case 'consume': return consume(commandArgs);
+      case 'history': return history(commandArgs);
       default: throw invocationError(
         `command must be one of ${Object.keys(SUBCOMMANDS).join(', ')}`,
       );

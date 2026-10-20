@@ -9,6 +9,7 @@ const { randomUUID } = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 const core = require('./relaunch-core.cjs');
 const nudge = require('./nudge.cjs');
+const hopHistory = require('./hop-history.cjs');
 
 const POLL_INTERVAL_MS = 100;
 const TRANSCRIPT_MISSING_GRACE_MS = 1000;
@@ -508,6 +509,7 @@ function recordTimeout(options, environment, record) {
     });
   }
   log('killer-timeout', environment, { targetPid: options.targetPid });
+  if (handoffPath) hopHistory.recordHop('timed-out', handoffPath, { env: environment, runtime });
   if (!options.noNotify && handoffPath) {
     notifyManualClaim(handoffPath, runtime, specFolderFromHandoff(handoffPath), environment);
   }
