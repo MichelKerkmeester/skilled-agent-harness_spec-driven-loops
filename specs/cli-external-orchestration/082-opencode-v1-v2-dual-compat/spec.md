@@ -144,6 +144,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 31 | 031-plugin-scanner-ast/ | Read plugin source with a parser so the inventory guard's four recorded blind spots close as a class, check the sk-vision symlink in the plugins purity test and build its bundle in Spec-Kit Check, and list every suite in the plugin tests README | Complete |
 | 32 | 032-plugin-tests-ci-and-stale-bundles/ | Run the OpenCode plugin suites in a blocking workflow, rerun Spec-Kit Check on a plugin-only change, and rebuild a provisioned output whose git-tracked sources changed since provisioning last built it | Complete |
 | 33 | 033-battery-mcp-prompt-commands/ | Accept an OpenCode 2 MCP prompt in the battery's `command-listed` leg only when its server is in the config sources the private server reports | Complete |
+| 34 | 034-live-plugin-playbook/ | Add a playbook scenario per plugin and run each live on OpenCode 1 and 2 with DeepSeek v4.1 flash high, recording an observed effect or the root cause of its absence | In Progress |
 
 ### Phase Transition Rules
 
@@ -185,4 +186,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 024-plugin-inventory-guards | 031-plugin-scanner-ast | 024 recorded four scanner spellings as follow-ups, and the open-work list of 2026-10-20 assigns item 8 and the last two item 9 fixes to this group | `031/scratch/mutation/`; Spec-Kit Check passes on CI at the pushed commit |
 | 031-plugin-scanner-ast | 032-plugin-tests-ci-and-stale-bundles | 031 recorded that no workflow runs `.opencode/plugins/tests` and that Spec-Kit Check ignores `.opencode/plugins/**`, 028's kill switch was missing from a stale built bundle, and the operator approved the three as one group on 2026-10-20 | `032/scratch/mutation/`; the plugin-test workflow passes on CI at the pushed commit |
 | 030-nested-worktree-battery | 033-battery-mcp-prompt-commands | The v2 `command-listed` leg passes whether or not the MCP prompt is listed, and the dual-version battery passes on CI at the pushed commit | `033/implementation-summary.md` verification table: the unit, mutation, worktree and main-checkout battery runs; the dual-version battery workflow at the pushed commit |
+| 019-plugins-compat-docs | 034-live-plugin-playbook | The 17 plugins load on both versions, so a missing effect is a utilization gap rather than a load failure | `034/scratch/live-runs/results-matrix.md` and `034/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
