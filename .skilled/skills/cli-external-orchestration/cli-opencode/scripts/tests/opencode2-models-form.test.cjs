@@ -187,6 +187,72 @@ function unversionedV1Forms(markdown) {
   return offenders;
 }
 
+// A listing command written as prose reads like a command but is never checked by the
+// fenced-block scan, so it must be quoted like every runnable example. The match is
+// case-sensitive, because the capitalised "OpenCode models" is the product name rather
+// than a command.
+const UNQUOTED_LISTING_PATTERN = /(?<![\w-])opencode2?\s+models\b/g;
+
+function unquotedListingCommands(markdown) {
+  const offenders = [];
+  let inFence = false;
+
+  for (const { text: line, lineNumber } of joinContinuations(markdown.split('\n'))) {
+    if (line.trim().startsWith('```')) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    // The span is replaced by a space so its removal cannot join two words into a token
+    // the lookbehind would then read as part of a longer name.
+    const prose = line.replace(INLINE_CODE_SPAN_PATTERN, ' ');
+    for (const match of prose.matchAll(UNQUOTED_LISTING_PATTERN)) {
+      offenders.push({ lineNumber, text: line.trim(), command: match[0] });
+    }
+  }
+
+  return offenders;
+}
+
+// A note that sends a reader to the standalone listing is only useful when it says what
+// to look for. OpenCode 2 prints ids as `<provider>/<model>`, so the note has to name
+// the prefix, filter or grep for it, or quote a span ending in `/`.
+const LISTING_NOTE_PATTERN = /opencode2 models --standalone\b/;
+const CHECK_WORD_PATTERN = /\b(check|checks|confirm|confirms|confirmed)\b/i;
+const PREFIX_WORD_PATTERN = /\bprefix(?:es)?\b/i;
+const FILTER_WORD_PATTERN = /\bfilter(?:ed)?\b/i;
+const GREP_WORD_PATTERN = /\bgrep\b/i;
+
+function unprefixedListingNotes(markdown) {
+  const offenders = [];
+  let inFence = false;
+
+  for (const { text: line, lineNumber } of joinContinuations(markdown.split('\n'))) {
+    if (line.trim().startsWith('```')) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+
+    for (const { start, end } of clauseRanges(line)) {
+      const clause = line.slice(start, end);
+      if (!LISTING_NOTE_PATTERN.test(clause)) continue;
+      if (!CHECK_WORD_PATTERN.test(clause)) continue;
+      if (PREFIX_WORD_PATTERN.test(clause)) continue;
+      if (FILTER_WORD_PATTERN.test(clause)) continue;
+      if (GREP_WORD_PATTERN.test(clause)) continue;
+
+      const spans = [...clause.matchAll(INLINE_CODE_SPAN_PATTERN)].map((match) => match[1]);
+      if (spans.some((span) => span.endsWith('/'))) continue;
+
+      offenders.push({ lineNumber, text: clause.trim() });
+    }
+  }
+
+  return offenders;
+}
+
 // A trailing backslash continues the same shell command on the next physical line, so
 // the scan joins those lines into one command and carries the first line's number,
 // which is where a reader has to go to fix the offender.
@@ -602,5 +668,106 @@ test('a prefix grep that reads another listing does not count', () => {
     standaloneListingProblem(fromProviders, 1),
     /"\$OTHER" must come from "opencode2 models --standalone"/,
     'a grep over another listing must name the variable that has to hold the standalone listing',
+  );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. PROSE COMMANDS ARE QUOTED AND LISTING NOTES SAY WHAT TO LOOK FOR
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('unquotedListingCommands flags prose forms and accepts quoted or fenced ones', () => {
+  assert.deepEqual(
+    unquotedListingCommands('Run opencode2 models --standalone first.').map((hit) => hit.lineNumber),
+    [1],
+    'a prose listing command must be flagged',
+  );
+  assert.deepEqual(
+    unquotedListingCommands('Run `opencode2 models --standalone` first.'),
+    [],
+    'an inline code span is the place for a prose command',
+  );
+  assert.deepEqual(
+    unquotedListingCommands(['```bash', 'opencode models llmgateway', '```'].join('\n')),
+    [],
+    'a fenced block is a transcript, not prose',
+  );
+  assert.deepEqual(
+    unquotedListingCommands('OpenCode models is the product name.'),
+    [],
+    'the capitalised product name is not a command',
+  );
+});
+
+test('unprefixedListingNotes flags a note that omits what to look for', () => {
+  assert.deepEqual(
+    unprefixedListingNotes('Confirm the provider in `opencode2 models --standalone` first.').map(
+      (hit) => hit.lineNumber,
+    ),
+    [1],
+    'a note that names no prefix must be flagged',
+  );
+  assert.deepEqual(
+    unprefixedListingNotes(
+      'Confirm that `opencode2 models --standalone` lists ids under the `<provider>/` prefix first.',
+    ),
+    [],
+    'a note naming the prefix must pass',
+  );
+  assert.deepEqual(
+    unprefixedListingNotes('Once the provider is confirmed in `opencode2 models --standalone`.'),
+    [{ lineNumber: 1, text: 'Once the provider is confirmed in `opencode2 models --standalone`' }],
+    'the clause text is reported so the reader can find it',
+  );
+});
+
+test('no prose line carries an unquoted listing command', () => {
+  const offenders = [];
+
+  const scan = (file) => {
+    for (const offender of unquotedListingCommands(read(file))) {
+      offenders.push(`${relativeToRepoRoot(file)}:${offender.lineNumber}: ${offender.text}`);
+    }
+  };
+
+  for (const file of documents(CLI_ROOT)) scan(file);
+
+  // The Hermes runtime carries a generated copy of this skill, so the same prose command
+  // must not reappear there, and a missing copy is a build that was never finished.
+  assert.ok(
+    fs.existsSync(HERMES_SKILL),
+    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
+  );
+  scan(HERMES_SKILL);
+
+  assert.equal(
+    offenders.join('\n'),
+    '',
+    `a listing command in prose is never run as written, so it must sit in an inline code span, but these do not:\n${offenders.join('\n')}`,
+  );
+});
+
+test('a note that sends a reader to the standalone listing names the prefix', () => {
+  const offenders = [];
+
+  const scan = (file) => {
+    for (const offender of unprefixedListingNotes(read(file))) {
+      offenders.push(`${relativeToRepoRoot(file)}:${offender.lineNumber}: ${offender.text}`);
+    }
+  };
+
+  for (const file of documents(CLI_ROOT)) scan(file);
+
+  // The Hermes runtime carries a generated copy of this skill, so the same unprefixed
+  // note must not reappear there, and a missing copy is a build that was never finished.
+  assert.ok(
+    fs.existsSync(HERMES_SKILL),
+    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
+  );
+  scan(HERMES_SKILL);
+
+  assert.equal(
+    offenders.join('\n'),
+    '',
+    `a note that sends a reader to "opencode2 models --standalone" must name the <provider>/ prefix the listing prints, but these do not:\n${offenders.join('\n')}`,
   );
 });
