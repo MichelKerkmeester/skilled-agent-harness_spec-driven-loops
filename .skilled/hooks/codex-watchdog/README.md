@@ -102,7 +102,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 node -e "import('./.skilled/plugins/codex-hooks-watchdog.js').then(m => console.log('ok', typeof m.default))"
 ```
 
-Expected result: `ok function`.
+Expected result: `ok object`, the dual plugin export.
 
 ```bash
 # Verify the kill switch short-circuits
