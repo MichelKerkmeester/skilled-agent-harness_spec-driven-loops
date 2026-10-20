@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 replay walkthrough"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.28
+version: 1.4.1.0
 ---
 
 # cli-opencode permissions matrix
@@ -221,7 +221,7 @@ Research source: the SmallCode deep-research record and its patch-ready deepenin
 The incident doc records:
 
 - Date: 2026-05-04.
-- Executor: `opencode-go/deepseek-v4-flash`.
+- Executor: `opencode-go/deepseek-v4.1-flash`.
 - Mode: `/deep:review:auto`.
 - Flag: `--dangerously-skip-permissions`.
 - Damage: 44 files deleted across two phase children.

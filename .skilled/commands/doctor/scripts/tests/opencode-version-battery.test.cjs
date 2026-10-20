@@ -21,11 +21,14 @@ const test = require('node:test');
 const { pathToFileURL } = require('node:url');
 
 const {
+  allowedCommandSources,
+  legCommandListed,
   legFamilyPresent,
   legPluginActive,
   legPluginDiscovered,
   legPluginLoad,
   legsForV2,
+  listCommandNames,
   listPluginFiles,
   main,
   parseArgs,
@@ -33,6 +36,7 @@ const {
   readV2,
   selectBinary,
   stableIndex,
+  V2_BUILTIN_COMMANDS,
 } = require('../opencode-version-battery.cjs');
 const { parseOpencodeVersion } = require(path.resolve(
   __dirname, '..', '..', '..', '..',
@@ -96,8 +100,22 @@ function pluginRoot(t, names) {
   return root;
 }
 
+// Writes one command file, creating its sub-folders so a name like `b/c` lands in
+// the nested shape the runtime registers as a slashed name.
+function commandFile(root, name) {
+  const file = path.join(root, '.opencode', 'commands', `${name}.md`);
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, '---\ndescription: fixture command\n---\n');
+}
+
+// Builds a HOME and an XDG config home under the system temp folder, so a leg that
+// reads the global command directories never reads the operator's own.
+function emptyEnv(t) {
+  return { HOME: tempRoot(t), XDG_CONFIG_HOME: tempRoot(t) };
+}
+
 // Writes an executable stand-in for the v2 binary into a temporary folder: it
-// answers the serve banner and both API reads, and records its pid and private
+// answers the serve banner and every API read, and records its pid and private
 // folder so the test can judge them once the battery has finished.
 function fakeServer(t, root) {
   const dir = tempRoot(t);
@@ -115,10 +133,12 @@ if (args[0] === 'serve') {
   console.log('server password FAKE-SECRET-123');
   setInterval(() => {}, 1000);
 } else if (args[0] === 'api') {
-  const plugin = args[4].startsWith('/api/plugin');
-  const data = plugin
+  const apiPath = args[4];
+  const data = apiPath.startsWith('/api/plugin')
     ? [{ id: 'alpha', source: { type: 'local', path: path.join(root, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } }]
-    : [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }];
+    : apiPath.startsWith('/api/command')
+      ? [{ name: 'battery', description: 'fixture command' }]
+      : [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }];
   console.log(JSON.stringify({ data }));
 }
 `;
@@ -131,11 +151,12 @@ function fileRecord(root, name, broken = false) {
   return { name, path: path.join(root, '.opencode', 'plugins', name), broken };
 }
 
-function debugConfigFor(files) {
+function debugConfigFor(files, commands = []) {
   return {
     exit: 0,
     stdout: JSON.stringify({
       plugin_origins: files.map((file) => ({ spec: pathToFileURL(file.path).href })),
+      command: Object.fromEntries(commands.map((name) => [name, { template: 'fixture' }])),
     }),
   };
 }
@@ -310,10 +331,10 @@ test('R8: v2 counts that never stabilise degrade plugin-active with the counts',
   assert.equal(stableIndex([0, 3, 3]), 2);
 });
 
-test('R9: v2 a server that never started degrades plugin-active and skill-visible', async (t) => {
+test('R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed', async (t) => {
   const files = [fileRecord(FIXTURE_ROOT, 'alpha.js')];
   const reason = 'fixture: no listening line or password within 30 s';
-  const [active, skill] = legsForV2(files, { started: false, reason }, FIXTURE_ROOT);
+  const [active, skill, commands] = legsForV2(files, { started: false, reason }, FIXTURE_ROOT);
   assert.equal(active.status, 'DEGRADED');
   assert.equal(active.leg, 'plugin-active');
   assert.equal(active.family, 'v2');
@@ -322,6 +343,10 @@ test('R9: v2 a server that never started degrades plugin-active and skill-visibl
   assert.equal(skill.leg, 'skill-visible');
   assert.equal(skill.family, 'v2');
   assert.match(skill.reason, /no listening line/);
+  assert.equal(commands.status, 'DEGRADED');
+  assert.equal(commands.leg, 'command-listed');
+  assert.equal(commands.family, 'v2');
+  assert.match(commands.reason, /no listening line/);
 
   const root = pluginRoot(t, ['alpha.js']);
   const { calls, deps } = makeDeps({
@@ -334,6 +359,7 @@ test('R9: v2 a server that never started degrades plugin-active and skill-visibl
   const degraded = summaryOf(calls).results.filter((result) => result.status === 'DEGRADED');
   assert.ok(degraded.some((result) => result.leg === 'plugin-active'));
   assert.ok(degraded.some((result) => result.leg === 'skill-visible'));
+  assert.ok(degraded.some((result) => result.leg === 'command-listed'));
 });
 
 test('R10: family v2 requested with only a v1 candidate skips and exits 3', async (t) => {
@@ -469,6 +495,104 @@ test('R18: a spaced value that is itself a flag is a usage error, the = form is 
   }
 });
 
+test('C1: v2 lists a nested project and allows the ancestor folder and the built-ins', (t) => {
+  const outer = tempRoot(t);
+  commandFile(outer, 'outer-only');
+  const inner = path.join(outer, 'inner');
+  commandFile(inner, 'a');
+  commandFile(inner, 'b/c');
+  const sources = allowedCommandSources(inner, 'v2', emptyEnv(t));
+  assert.deepEqual(sources.required, ['a', 'b/c']);
+  const result = legCommandListed('v2', ['a', 'b/c', 'outer-only', ...V2_BUILTIN_COMMANDS], sources);
+  assert.equal(result.status, 'PASS');
+  assert.equal(result.leg, 'command-listed');
+  assert.equal(result.family, 'v2');
+  assert.equal(result.reason, 'all 2 command files listed');
+  assert.deepEqual(result.details, ['listed: 5', 'required: 2']);
+});
+
+test('C2: v2 without the ancestor folder fails naming the ancestor command, then passes', (t) => {
+  const isolated = tempRoot(t);
+  commandFile(isolated, 'a');
+  commandFile(isolated, 'b/c');
+  const env = emptyEnv(t);
+  const refused = legCommandListed(
+    'v2', ['a', 'b/c', 'outer-only', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated, 'v2', env),
+  );
+  assert.equal(refused.status, 'FAIL');
+  assert.match(resultText(refused), /outer-only: listed, in no command folder/);
+  const accepted = legCommandListed(
+    'v2', ['a', 'b/c', ...V2_BUILTIN_COMMANDS], allowedCommandSources(isolated, 'v2', env),
+  );
+  assert.equal(accepted.status, 'PASS');
+});
+
+test('C3: v1 does not walk up, so an ancestor command and a built-in are both strays', (t) => {
+  const outer = tempRoot(t);
+  commandFile(outer, 'outer-only');
+  const inner = path.join(outer, 'inner');
+  commandFile(inner, 'a');
+  commandFile(inner, 'b/c');
+  const env = emptyEnv(t);
+  const walkUp = legCommandListed('v1', ['a', 'b/c', 'outer-only'], allowedCommandSources(inner, 'v1', env));
+  assert.equal(walkUp.status, 'FAIL');
+  assert.match(resultText(walkUp), /outer-only: listed, in no command folder/);
+  const builtin = legCommandListed('v1', ['a', 'b/c', 'init'], allowedCommandSources(inner, 'v1', env));
+  assert.equal(builtin.status, 'FAIL');
+  assert.match(resultText(builtin), /init: listed, in no command folder/);
+});
+
+test('C4: v2 fails when a project command file is missing from the listing', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  commandFile(root, 'b/c');
+  const result = legCommandListed(
+    'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', emptyEnv(t)),
+  );
+  assert.equal(result.status, 'FAIL');
+  assert.match(resultText(result), /b\/c: in the command folder, not listed/);
+});
+
+test('C5: a listing that did not parse fails command-listed on either family', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  const env = emptyEnv(t);
+  for (const family of ['v1', 'v2']) {
+    const result = legCommandListed(family, null, allowedCommandSources(root, family, env));
+    assert.equal(result.status, 'FAIL', family);
+    assert.equal(result.reason, 'the command listing did not parse');
+  }
+});
+
+test('C6: a command file in the global config folder is allowed on both families', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  const env = emptyEnv(t);
+  const globalDir = path.join(env.XDG_CONFIG_HOME, 'opencode', 'commands');
+  fs.mkdirSync(globalDir, { recursive: true });
+  fs.writeFileSync(path.join(globalDir, 'g.md'), '---\ndescription: global command\n---\n');
+  for (const family of ['v1', 'v2']) {
+    const sources = allowedCommandSources(root, family, env);
+    assert.ok(sources.allowed.has('g'), family);
+    assert.ok(!sources.required.includes('g'), family);
+    const listed = family === 'v1' ? ['a', 'g'] : ['a', 'g', ...V2_BUILTIN_COMMANDS];
+    assert.equal(legCommandListed(family, listed, sources).status, 'PASS', family);
+  }
+});
+
+test('C7: both command folder spellings are read, with slashed names and a followed link', (t) => {
+  const root = tempRoot(t);
+  const opencode = path.join(root, '.opencode');
+  fs.mkdirSync(path.join(opencode, 'command', 'create'), { recursive: true });
+  fs.writeFileSync(path.join(opencode, 'command', 'agent-router.md'), '');
+  fs.writeFileSync(path.join(opencode, 'command', 'create', 'readme.md'), '');
+  fs.mkdirSync(path.join(opencode, 'commands'), { recursive: true });
+  fs.writeFileSync(path.join(opencode, 'commands', 'linked.md'), '');
+  fs.symlinkSync(path.join(opencode, 'commands', 'linked.md'), path.join(opencode, 'commands', 'alias.md'));
+  assert.deepEqual(listCommandNames(opencode), ['agent-router', 'alias', 'create/readme', 'linked']);
+  assert.deepEqual(listCommandNames(path.join(root, 'missing')), []);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. ADVERSARIAL CASES AND CROSS-CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -562,15 +686,20 @@ test('adversarial: a root with spaces and $(id) reaches the collectors as one st
   const dir = path.join(root, '.opencode', 'plugins');
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'alpha.js'), 'export default async () => ({});\n');
+  commandFile(root, 'alpha');
   const files = listPluginFiles(root);
   const { calls, deps } = makeDeps({
     env: { OPENCODE_BIN: V1_BIN },
     probeVersion: () => ({ output: '1.19.3', error: null }),
-    runDebugConfig: () => debugConfigFor(files),
+    runDebugConfig: () => debugConfigFor(files, ['alpha']),
     runHarness: () => harnessFor(files),
   });
   const code = await main(['--family=v1', '--root=' + root, '--json'], deps);
   assert.equal(code, 0);
+  const listed = summaryOf(calls).results.find((result) => result.leg === 'command-listed');
+  assert.ok(listed);
+  assert.equal(listed.status, 'PASS');
+  assert.equal(listed.reason, 'all 1 command files listed');
   assert.equal(calls.runDebugConfig.length, 1);
   assert.deepEqual(calls.runDebugConfig[0], [V1_BIN, root]);
   assert.equal(calls.runHarness.length, 1);
@@ -597,6 +726,7 @@ test('probe count: three candidates sharing one path probe each distinct path on
       reason: 'fixture: server started',
       reads: [{ entries }, { entries }],
       skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+      commands: { data: [] },
     }),
   });
   const code = await main(['--family=both', '--root=' + root, '--json'], deps);
@@ -621,6 +751,7 @@ test('a broken symlink in the plugin folder fails plugin-discovered naming it', 
 
 test('real readV2: the password reaches no result, stream or leftover file and the fake server is gone', async (t) => {
   const root = pluginRoot(t, ['alpha.js']);
+  commandFile(root, 'battery');
   const server = fakeServer(t, root);
   const { calls, deps } = makeDeps({
     env: { OPENCODE_BIN: server.script },
@@ -638,6 +769,9 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   const active = summary.results.find((result) => result.leg === 'plugin-active');
   assert.ok(active);
   assert.equal(active.status, 'PASS');
+  const listed = summary.results.find((result) => result.leg === 'command-listed');
+  assert.ok(listed);
+  assert.equal(listed.status, 'PASS');
   assert.equal(calls.readV2.length, 1);
 
   const secret = 'FAKE-SECRET-123';

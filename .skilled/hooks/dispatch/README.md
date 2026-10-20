@@ -44,7 +44,7 @@ The five checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`
 | `stdin-redirect-required` | An `opencode run` command closes/redirects stdin (`</dev/null`, heredoc, herestring, or a pipe feeding `opencode run`) |
 | `no-bare-agent-general` | No bare top-level `--agent general` (opencode rejects it at runtime) |
 | `command-flag-for-slash-prompt` | A slash-command-shaped prompt (`/family:name ...`) is paired with `--command` |
-| `share-requires-confirmation` | No `--share` flag present (it publishes the session) |
+| `share-requires-confirmation` | No `--share` flag present (a deprecated no-op on OpenCode 1.19.3, absent on OpenCode 2) |
 | `non-interactive-permission-mode-risk` | A `claude -p`/`--print` command runs with `--dangerously-skip-permissions` or `--permission-mode bypassPermissions` |
 
 A check returns `true` when the command *satisfies* the rule; `false` means violated. An unknown check id is skipped (the CI validator catches typos, not this hot path), and a throwing check resolves to satisfied so it can never block a dispatch.

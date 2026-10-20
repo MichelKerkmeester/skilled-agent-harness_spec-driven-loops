@@ -170,7 +170,7 @@ Honor explicit user model, port, and handback phrasing verbatim. Otherwise use t
 
 ### Core Invocation Pattern
 
-Core flags on OpenCode 1: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, session/fork flags, `--share` and `--port` for detached sessions, `--file`, `--thinking`, `--pure`, and log flags. On OpenCode 2 the effort collapses onto `-m provider/model#<level>`, `--dir` becomes a start-in-directory `cd`, and `--share`, `--port` and `--pure` are absent on `run` (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)).
+Core flags on OpenCode 1: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, session/fork flags, `--port` for detached sessions, `--file`, `--thinking`, `--pure`, `--title`, `--command`, `--attach` (with `-p`/`-u`), `-i`, `--auto` and log flags. On OpenCode 2 the effort collapses onto `-m provider/model#<level>`, `--dir` becomes a start-in-directory `cd`, `run` adds `--standalone` and `--server`, the log flags are global flags, and `--share`, `--port` and `--pure` are absent on `run` (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)).
 
 > **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation, on both versions, because the hang is observed on OpenCode 1 and unverified on OpenCode 2 (see `references/integration-patterns.md` §6).
 
@@ -204,11 +204,11 @@ See [agent-delegation.md](../../../.skilled/skills/cli-external-orchestration/cl
 
 ### Essential Commands
 
-On OpenCode 1, `--share --port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1. OpenCode 2.0.32 runs the session as `orchestrate`, and how it then routes subagents is untested.
+On OpenCode 1, `--port <N>` serves explicit detached sessions and `--dir` serves cross-repo dispatch. On OpenCode 2 those flags are gone from `run` and a cross-repo dispatch starts in the target directory (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). `--agent orchestrate` routes generic subagents on OpenCode 1. OpenCode 2.0.32 runs the session as `orchestrate`, and how it then routes subagents is untested.
 
 ### Error Handling
 
-Install missing binaries, refuse ambiguous self-invocation, run provider pre-flight for model/auth errors, check version drift for unknown flags, force `--format json` for empty streams, add `</dev/null` for background loops, confirm `--share` and use `--pure` only for plugin crashes (both OpenCode 1 only, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)), inspect state logs for stuck sessions.
+Install missing binaries, refuse ambiguous self-invocation, run provider pre-flight for model/auth errors, check version drift for unknown flags, force `--format json` for empty streams, add `</dev/null` for background loops, never pass `--share`, and use `--pure` only for plugin crashes (both OpenCode 1 only, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)), inspect state logs for stuck sessions.
 
 ---
 
@@ -241,7 +241,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 ### ⛔ NEVER
 
 1. Invoke this skill from within OpenCode itself for a self-dispatch. Refuse with the documented error message and use a sibling cli-* / fresh shell / parallel-session keywords.
-2. Pass `--share` without operator confirmation (CHK-033, OpenCode 1 only, absent from OpenCode 2 `run`, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). A share URL exposes session contents.
+2. Pass `--share`. On OpenCode 1.19.3 it is a hidden, deprecated flag that only prints "Session sharing has been discontinued", and OpenCode 2 `run` has no such flag (see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)).
 3. Trust dispatched session output blindly for security-sensitive code, send sensitive data (API keys, passwords, credentials) in prompts, or hammer the API with rapid sequential calls.
 4. Use `--pure` outside of plugin debugging (OpenCode 1 only, absent from OpenCode 2 `run`, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). Disabling plugins removes the entire point of cli-opencode dispatch.
 5. Nest `opencode run` inside a dispatched session's tool calls. Use OpenCode's native Task tool for sub-agent dispatch.
@@ -249,7 +249,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 ### ⚠️ ESCALATE IF
 
 1. OpenCode CLI is not installed and user has not acknowledged (provide `brew install opencode` or `curl -fsSL https://opencode.ai/install | bash`).
-2. Operator wants to publish a `--share` URL (OpenCode 1 only, absent from OpenCode 2 `run`, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)). Get explicit confirmation per CHK-033.
+2. Operator asks for a share URL. OpenCode 1.19.3 discontinued session sharing and OpenCode 2 `run` has no share flag, so say there is no URL to publish.
 3. Binary version differs from the OpenCode 1 (1.19.3) or OpenCode 2 (2.0.32) baseline. Run `opencode --version` and `opencode run --help`, then surface drift and fall back or require approval.
 4. Smart router cannot map the prompt to one of the three use cases. Surface the disambiguation checklist from UNKNOWN_FALLBACK.
 5. Self-invocation guard trips AND the prompt is ambiguous. Surface the refusal with three remediation options (sibling cli-* / fresh shell / parallel-session keywords).
@@ -313,7 +313,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 - Use case (1 / 2 / 3) classified explicitly before invocation.
 - JSON event stream captured, parsed incrementally, validated, integrated.
 - No security vulnerabilities introduced from generated code.
-- `--share` URLs opt-in with operator confirmation per CHK-033 (OpenCode 1 only, see [`references/install-and-versions.md`](../../../.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md)).
+- No dispatch passes `--share` (discontinued on 1.19.3, absent from OpenCode 2 `run`).
 - Background dispatches in `while read` loops include `</dev/null` redirect.
 - Memory Handback extracted and saved through `generate-context.js` when applicable.
 

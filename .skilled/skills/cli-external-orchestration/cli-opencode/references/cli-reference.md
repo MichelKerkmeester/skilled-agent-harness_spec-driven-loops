@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -98,30 +98,34 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 
 ### Core flags
 
-The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column gives the 2.0.32 counterpart, says when the flag is absent on `run` or marks the behavior unverified. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
+The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column gives the 2.0.32 counterpart, says when the flag is absent on `run` or is a global flag there. The full per-version flag delta and the side-by-side layouts are in [install-and-versions.md](./install-and-versions.md).
 
 | Flag / Option | Type | Purpose | OpenCode 2 |
 |---------------|------|---------|------------|
 | `[message..]` | positional | One or more positional message strings. Place the message before variadic `-f` flags | same |
-| `--print-logs` | boolean | Stream logs to stderr | same |
-| `--log-level` | enum | `DEBUG`, `INFO`, `WARN`, `ERROR` | unverified on OpenCode 2.0.32 |
+| `--print-logs` | boolean | Stream logs to stderr | global flag on 2.0.32 |
+| `--log-level` | enum | `DEBUG`, `INFO`, `WARN`, `ERROR` | global flag on 2.0.32, lowercase all, trace, debug, info, warn, warning, error, fatal, none |
 | `--pure` (OpenCode 1 only) | boolean | Run without external plugins (skill loads disabled) | absent on `run` |
 | `--command` (OpenCode 1 only) | string | Run a known command, the message becomes its args | No `run` flag. A registered command runs through the server API (`POST /api/session/{id}/command`) |
 | `-c`, `--continue` | boolean | Continue the last session in this project | same |
 | `-s`, `--session` | string | Continue a specific session id | same |
 | `--fork` | boolean | Fork before continuing. It requires `--continue` or `--session` | same |
-| `--share` (OpenCode 1 only) | boolean | Publish a shareable URL for this session | absent on `run` |
-| `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4-flash` | `-m provider/model#<level>` (model and effort in one flag) |
-| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Runs the session as that agent, `general` included. An unknown slug exits 1 |
+| `--share` (OpenCode 1 only) | boolean | Hidden and deprecated on 1.19.3: prints "Session sharing has been discontinued" and publishes nothing. Never pass it | absent on `run` |
+| `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4.1-flash` | `-m provider/model#<level>` (model and effort in one flag) |
+| `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`, which links to `.skilled/agents/` in this repository) | listed. Runs the session as that agent, `general` included. An unknown slug exits 1 |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
 | `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
 | `--title` | string | Session title (truncated message used when omitted) | same |
 | `--attach` (OpenCode 1 only) | string | Attach to a running OpenCode server URL | `--server <url>` |
-| `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) | unverified on OpenCode 2.0.32 |
+| `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) | absent on `run` |
 | `--dir` (OpenCode 1 only) | string | Working directory or remote-server path | No `--dir`. Start in the directory: `cd <path> && opencode2 run ...` |
 | `--port` (OpenCode 1 only) | number | Local server port (random when omitted) | absent on `run` |
 | `--variant` (OpenCode 1 only) | string | Provider-specific reasoning effort (`high`, `max`, `minimal`, etc.) | No `--variant`. Effort rides in the model selector: `-m provider/model#<level>` |
 | `--thinking` | boolean | Show thinking blocks (default false) | same |
+| `-u`, `--username` (OpenCode 1 only) | string | Basic auth username (or `OPENCODE_SERVER_USERNAME`, default `opencode`) | absent on `run` |
+| `-i`, `--interactive` (OpenCode 1 only) | boolean | Direct interactive split-footer mode (default false) | absent on `run` |
+| `--auto` | boolean | Auto-approve permissions that are not explicitly denied. Dangerous | same |
+| — | — | Run with a private server instead of the background service | `--standalone` (boolean) |
 
 > **Message/file ordering:** Because `[message..]` is variadic, put the prompt before every `-f`/`--file` flag: `opencode run "prompt" -f /path/to/file`. Putting `-f` first can make the parser consume the prompt as another file argument.
 
@@ -134,7 +138,7 @@ The skill builds every dispatch from a base shape and overlays use-case-specific
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent <agent-slug> \
   --variant max \
   --format json \
@@ -155,7 +159,7 @@ On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves int
 
 | Flag | Default | Reason |
 |------|---------|--------|
-| `--model` | `opencode-go/deepseek-v4-flash` | The Go gateway fronts the latency-optimized flash model with max-tier-pinned reasoning. The operator may override it (e.g. `opencode-go/glm-5.3-flash` or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
+| `--model` | `opencode-go/deepseek-v4.1-flash` | The Go gateway fronts the latency-optimized flash model with max-tier-pinned reasoning. The operator may override it (e.g. `opencode-go/glm-5.3-flash` or any live OpenAI GPT-6 slug: `openai/gpt-6-sol`, `openai/gpt-6-sol-fast`, `openai/gpt-6-luna`, `openai/gpt-6-luna-fast`) |
 | `--agent` | per use case | Required for use case 1 / 3, optional for use case 2 |
 | `--variant max` (OpenCode 1 only) | max | Flash is max-tier-pinned by policy, so a lower requested effort is upgraded automatically. On OpenCode 2 the effort rides on `-m` as `#max` |
 | `--format json` | json | Structured event stream is what external runtimes parse |
@@ -177,7 +181,7 @@ Foreground `| tail` accidentally works because the upstream pipe stage provides 
 
 ### Sessions, share URLs, and ports
 
-On OpenCode 1, `--share` publishes the session over the OpenCode share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). External-runtime dispatches do NOT publish share URLs by default. On OpenCode 2, `--share` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
+On OpenCode 1.19.3, `--share` is a hidden and deprecated option. Passing it prints `!  Session sharing has been discontinued` and the run carries on, but nothing is published and no URL is printed. OpenCode 2 `run` has no `--share` flag at all. No dispatch should pass `--share`.
 
 On OpenCode 1, `--port` only matters when the dispatch needs to bind a known port (e.g. for a parallel detached session that another tool will attach to). The default random port is correct for one-shot dispatches. On OpenCode 2, `--port` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
 
@@ -199,7 +203,7 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
-| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
+| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4.1-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm the provider in `opencode2 models` first) |
 | Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model). Do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
@@ -248,7 +252,7 @@ Surface these verbatim to the operator when the pre-flight decision tree lands o
 **Default missing, fallback configured:**
 
 ```text
-The skill default `opencode-go/deepseek-v4-flash` is not configured on this machine.
+The skill default `opencode-go/deepseek-v4.1-flash` is not configured on this machine.
 A configured fallback is available. Pick one:
   A) Use `openai/gpt-6-sol --variant high` on OpenCode 1 or `-m openai/gpt-6-sol#high` on OpenCode 2 (OpenAI flagship persona, configured now, paid)
   B) Use `llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2 (MiMo through DevPass LLM Gateway, configured now, per token)
@@ -278,7 +282,7 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-On OpenCode 1 the default model is `opencode-go/deepseek-v4-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
+On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
 
 **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 
@@ -286,7 +290,7 @@ On OpenCode 1 the default model is `opencode-go/deepseek-v4-flash --variant max`
 
 ## 6. AGENT FLAG
 
-`--agent <slug>` loads an agent definition from `.skilled/agents/<slug>.md` (project-local) or the user-level fallback. The agent definition's frontmatter pins the model, tool permissions, and system prompt that shape the dispatch.
+`--agent <slug>` loads an agent definition from `.opencode/agents/<slug>.md`, which in this repository links to `.skilled/agents/`, where the files are edited. The agent definition's frontmatter pins the model, tool permissions, and system prompt that shape the dispatch.
 
 ### Discovering agents
 
@@ -347,7 +351,7 @@ There is no per-session directory under `~/.opencode/state/<sessionID>/` on a st
 
 ### Share URLs
 
-On OpenCode 1, `--share` publishes a session URL via OpenCode's share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). The CHK-033 P1 checklist item requires operator confirmation before publishing a share URL because the URL exposes the session contents. On OpenCode 2, `--share` is absent on `run` (see [install-and-versions.md](./install-and-versions.md)).
+On OpenCode 1.19.3, `--share` is a hidden, deprecated option. It prints `!  Session sharing has been discontinued`, publishes nothing and prints no URL. OpenCode 2 `run` has no `--share` flag at all, so no dispatch passes it and there is no share URL to publish.
 
 ---
 
@@ -365,7 +369,7 @@ This reference is pinned to OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32. If th
 | Symptom | Likely cause |
 |---------|--------------|
 | `unknown option --variant` (OpenCode 1 only) | v1.2 or earlier, when the variant flag was named `--reasoning`. On OpenCode 2 the effort rides on the model id instead (`-m provider/model#<level>`) |
-| `unknown option --share` (OpenCode 1 only) | Older standalone build without share infrastructure. `--share` is absent on `run` on OpenCode 2 |
+| `"!  Session sharing has been discontinued" on stderr (OpenCode 1 only)` | `--share` was passed; on 1.19.3 it is a deprecated no-op. Drop the flag. OpenCode 2 `run` has no `--share` |
 | `unknown option --format json` | v1.0, when the JSON event stream was the default and the flag did not exist |
 | `MODULE_NOT_FOUND` | Plugin loader crash, so rerun with `--pure` (OpenCode 1 only) to bypass plugins |
 
@@ -382,7 +386,7 @@ This reference is pinned to OpenCode 1 at 1.19.3 and OpenCode 2 at 2.0.32. If th
 | Session never finishes | Tool call hung | Run `opencode export <sessionID>` and inspect the message log it returns |
 | Plugin load crash | Misconfigured plugin | Rerun with `--pure` (OpenCode 1 only) to bypass all plugins |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session. See ADR-001 |
-| `--share` URL leaks (OpenCode 1 only) | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |
+| `--share` passed (OpenCode 1 only) | Nothing is published on 1.19.3, the flag only prints a warning | Drop the flag |
 
 ---
 

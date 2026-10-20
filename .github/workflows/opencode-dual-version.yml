@@ -29,6 +29,8 @@ on:
       - '.opencode/commands/doctor/scripts/opencode-version-battery.cjs'
       - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
+      - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
   push:
     branches: [main, 'skilled/**']
@@ -52,6 +54,8 @@ on:
       - '.opencode/commands/doctor/scripts/opencode-version-battery.cjs'
       - '.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
+      - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
+      - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
 
 permissions:
@@ -94,16 +98,17 @@ jobs:
           source .skilled/skills/sk-git/scripts/worktree-naming.sh
           provision_worktree "$GITHUB_WORKSPACE"
 
-      # Two of the trigger paths are unit tests, and a trigger path no step runs
-      # starts the workflow without checking the change that started it. Both
-      # read fixtures and the repository's own config, never an installed binary,
-      # so they run before either family is installed.
-      - name: Run the config-shape and battery unit tests
+      # Some of the trigger paths are unit tests, and a trigger path no step runs
+      # starts the workflow without checking the change that started it. They read
+      # fixtures, the repository's own config and the skill's documentation, never
+      # an installed binary, so they run before either family is installed.
+      - name: Run the config-shape, battery and cli-opencode doc unit tests
         run: |
           set -euo pipefail
           node --test \
             .skilled/bin/tests/opencode-config-shape.test.cjs \
-            .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
+            .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs \
+            .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
 
       # The sk-vision TypeScript suite and type check need the provisioned trees, so they
       # ride the v1 leg rather than a second provisioning job. The Python handler suite

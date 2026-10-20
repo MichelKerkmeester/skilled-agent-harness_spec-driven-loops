@@ -1,0 +1,63 @@
+# opencode2 2.0.32: private serve in the worktree root (scratch/v2-api-probe.cjs); names and modes only, permissions and models omitted
+## /api/command?location%5Bdirectory%5D={DIR} read counts [0,42,42]: 42 entries
+init
+review
+vision
+agent-router
+create/agent
+create/benchmark
+create/changelog
+create/command
+create/diff
+create/feature-catalog
+create/goal
+create/manual-testing-playbook
+create/readme
+create/repo-rule
+create/skill-parent
+create/skill
+create/with-human-voice
+deep/ai-council
+deep/research
+deep/review
+design/chart
+design/diagram
+design/extract
+doctor/deep-loop
+doctor/env
+doctor/git
+doctor/mcp
+doctor/runtime-mirrors
+doctor/setup
+doctor/sk-code
+doctor/skill-advisor
+doctor/speckit
+doctor/update
+goal-opencode
+prompt/improve
+speckit/complete
+speckit/handoff
+speckit/implement
+speckit/plan
+speckit/resume
+speckit/save
+speckit/search
+## /api/agent?location%5Bdirectory%5D={DIR} read counts [18,-1,-1,-1,-1,-1,-1,-1,18,18]: 18 entries
+build (primary)
+general (subagent)
+explore (subagent)
+compaction (primary, hidden)
+title (primary, hidden)
+summary (primary, hidden)
+plan (primary)
+ai-council (subagent)
+code (subagent)
+context (subagent)
+debug (subagent)
+deep-research (subagent)
+deep-review (subagent)
+design (subagent)
+markdown (all)
+orchestrate (primary)
+prompt-improver (subagent)
+review (subagent)

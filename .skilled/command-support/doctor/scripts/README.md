@@ -138,6 +138,7 @@ The battery runs five legs:
 - `plugin-load`: PASS when the import check exits 0 and reports every top-level `.js` file loaded.
 - `plugin-active`: PASS when two consecutive reads give the same non-zero count and, on that read, every top-level `.js` file has an entry under the inspected root with status active.
 - `skill-visible`: PASS when the skill listing parses and has an entry that mentions the inspected root.
+- `command-listed`: PASS when every `.md` file under the project's `.opencode/command(s)` folder is listed and every listed name comes from a folder the runtime reads (the global config folders, and on OpenCode 2 every ancestor `.opencode` folder plus the built-ins `init` and `review`).
 
 A family that is not installed is SKIP, never FAIL.
 

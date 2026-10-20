@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -32,7 +32,7 @@ The cli-opencode skill exposes the project's full agent roster. The calling AI s
 | `opencode debug agent <slug>` | Print resolved frontmatter and system prompt for a slug |
 | `opencode debug skill <slug>` | Print skill resolution if the agent loads one |
 
-Project-local agents resolve from `.skilled/agents/<slug>.md`. User-level agents fall back from `~/.opencode/agents/<slug>.md` when the project file is missing. The `debug agent` subcommand prints the merged result so the calling AI can confirm which file the dispatch will load.
+OpenCode loads `.opencode/agents/<slug>.md`, which in this repository links to `.skilled/agents/`, where the files are edited. On OpenCode 1.19.3, user-level agents fall back from `~/.config/opencode/` (or `$XDG_CONFIG_HOME/opencode/`), `~/.opencode/` and `$OPENCODE_CONFIG_DIR` when the project file is missing. Which of those OpenCode 2.0.32 reads is unverified. The `debug agent` subcommand prints the merged result so the calling AI can confirm which file the dispatch will load.
 
 ### Orchestration principle
 
@@ -56,7 +56,7 @@ Calling AI (CONDUCTOR)
   v
 opencode run --agent <slug> (EXECUTOR ENTRY)
   |
-  |-- Resolves .skilled/agents/<slug>.md frontmatter
+  |-- Resolves .opencode/agents/<slug>.md frontmatter
   |-- Pins model, tool permissions, system prompt, behavioral rules
   |-- Loads project plugins, skills, and MCP servers
   |
@@ -84,7 +84,7 @@ On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary a
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent <slug> \
   --variant max \
   --format json \
@@ -250,7 +250,7 @@ Mirroring the sibling cli-* skills, cli-opencode supports an inline routing patt
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -265,7 +265,7 @@ cd /repo && opencode2 run --standalone \
   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
 ```
 
-On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skilled/agents/review.md`. The remaining prompt is passed to that agent. OpenCode 2.0.32 does not: an `As @review:` body runs under the default agent there. The routing rule above still sends review work through `--agent orchestrate`, whose subagent routing is untested on OpenCode 2.0.32.
+On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.opencode/agents/review.md`. The remaining prompt is passed to that agent. OpenCode 2.0.32 does not: an `As @review:` body runs under the default agent there. The routing rule above still sends review work through `--agent orchestrate`, whose subagent routing is untested on OpenCode 2.0.32.
 
 ### When to prefer `--agent` vs `As @<agent>:`
 
@@ -289,7 +289,7 @@ Example:
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -343,7 +343,7 @@ The calling AI wants a security-focused review of a single file. No `--agent` fl
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /path/to/repo \
@@ -372,7 +372,7 @@ The calling AI's first 3 debug attempts failed. Escalate to a fresh-context disp
 ```bash
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /path/to/repo \

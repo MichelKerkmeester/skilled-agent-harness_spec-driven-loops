@@ -1,0 +1,27 @@
+# main checkout read-only check of .skilled/commands/deep/assets/compiled
+## git status --porcelain --ignored
+## git ls-files
+       0
+## check-ignore
+not ignored (exit 1)
+## ls -la
+ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/deep/assets/compiled: No such file or directory
+## du
+du: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/deep/assets/compiled: No such file or directory
+(eval):1: no matches found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/commands/deep/assets/compiled/*
+## ls deep/assets
+total 1480
+drwxr-xr-x@ 11 michelkerkmeester  staff     352 Oct 20 09:07 .
+drwxr-xr-x@  6 michelkerkmeester  staff     192 Oct 11 11:54 ..
+-rw-r--r--@  1 michelkerkmeester  staff   16123 Oct  6 19:47 deep-ai-council-auto.yaml
+-rw-r--r--@  1 michelkerkmeester  staff   15053 Oct  6 19:47 deep-ai-council-confirm.yaml
+-rw-r--r--@  1 michelkerkmeester  staff   19816 Oct  8 12:04 deep-ai-council-presentation.txt
+-rw-r--r--@  1 michelkerkmeester  staff  159497 Oct 20 09:07 deep-research-auto.yaml
+-rw-r--r--@  1 michelkerkmeester  staff  140035 Oct 20 09:07 deep-research-confirm.yaml
+-rw-r--r--@  1 michelkerkmeester  staff   29809 Oct  8 12:04 deep-research-presentation.txt
+-rw-r--r--@  1 michelkerkmeester  staff  178565 Oct 20 09:07 deep-review-auto.yaml
+-rw-r--r--@  1 michelkerkmeester  staff  154042 Oct 20 09:07 deep-review-confirm.yaml
+-rw-r--r--@  1 michelkerkmeester  staff   31908 Oct  8 12:04 deep-review-presentation.txt
+## full main checkout status --porcelain
+ M .pi/settings.json
+ M specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/description.json

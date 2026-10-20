@@ -11,7 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -75,7 +75,7 @@ At the end of your response, include a structured handback inside delimiters:
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -112,7 +112,7 @@ Context:
 Constraints:
 - This session must NOT modify the parent session's state.
 - Write results to <state file path>.
-- Publish a share URL only if the operator confirmed (CHK-033).
+- Do not pass `--share`: it is a deprecated no-op on OpenCode 1.19.3 and publishes nothing.
 - Do NOT delegate the same prompt back to OpenCode (cycle protection).
 
 Success criteria:
@@ -122,9 +122,8 @@ Success criteria:
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -139,7 +138,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt-from-template>" 2>&1
 ```
 
-On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
 
 For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned, and rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead. The command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
 
@@ -178,7 +177,7 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -205,7 +204,7 @@ Dispatch a task to a specific agent slug. See `../references/agent-delegation.md
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -264,7 +263,7 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -308,7 +307,7 @@ Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That
 # On OpenCode 1 (1.19.3):
 opencode run \
   --command deep/research \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -345,9 +344,8 @@ Input: <input data path>
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --share \
   --port 4097 \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -362,7 +360,7 @@ cd /repo && opencode2 run --standalone \
   "<prompt>" 2>&1
 ```
 
-On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
 
 ---
 
@@ -391,9 +389,8 @@ Constraints:
 for n in $(seq 1 8); do
   port=$((4100 + n))
   opencode run \
-    --share \
     --port "$port" \
-    --model opencode-go/deepseek-v4-flash \
+    --model opencode-go/deepseek-v4.1-flash \
     --variant max \
     --format json \
     --dir /repo \
@@ -413,7 +410,7 @@ done
 wait
 ```
 
-On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
 
 ---
 
@@ -440,7 +437,7 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -476,7 +473,7 @@ Target: an implementation-ready plan that another agent can execute.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -512,7 +509,7 @@ Format: markdown.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent markdown \
   --variant max \
   --format json \
@@ -749,7 +746,7 @@ Output:
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
