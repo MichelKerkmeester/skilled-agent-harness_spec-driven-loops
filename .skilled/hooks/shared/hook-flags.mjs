@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Flags ESM Facade
+// ───────────────────────────────────────────────────────────────────
+
 // ESM facade over the canonical CommonJS resolver so .mjs adapters and OpenCode
 // ESM plugins share one implementation with the .cjs adapters. Keeping a single
 // source of truth in hook-flags.cjs means the kill-switch semantics can never

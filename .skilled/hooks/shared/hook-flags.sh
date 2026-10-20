@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: HOOK FLAGS GUARD
+# ───────────────────────────────────────────────────────────────
 # Shared hook kill-switch guard - POSIX sh mirror of hook-flags.cjs / .mjs.
 # Usage:  . "<repo>/.skilled/hooks/shared/hook-flags.sh"; hook_enabled <concern> || exit 0
 # ENABLED (return 0) unless master SYSTEM_HOOKS_DISABLED or per-concern SYSTEM_<CONCERN>_DISABLED

@@ -8,7 +8,7 @@ import path from 'node:path';
 import { defineConfig } from 'vitest/config';
 
 const REPO_ROOT = path.resolve(import.meta.dirname, '..', '..');
-const OPENCODE_ROOT = path.join(REPO_ROOT, '.skilled');
+const SKILLED_ROOT = path.join(REPO_ROOT, '.skilled');
 const HOOKS_ROOT = import.meta.dirname;
 
 // Some hook suites are written for `node --test` or plain `node`, which CI and each README
@@ -29,7 +29,7 @@ export default defineConfig({
     alias: [
       {
         find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
-        replacement: `${OPENCODE_ROOT}/`,
+        replacement: `${SKILLED_ROOT}/`,
       },
     ],
   },

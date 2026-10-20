@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Kill-Switch Resolver
+// ───────────────────────────────────────────────────────────────────
 "use strict";
 
 // Central kill-switch resolver for every repo-authored runtime hook. A hook is
@@ -13,6 +16,10 @@
 // exporting env vars every session. The environment always wins over the file,
 // so a persistent default in the file can still be overridden per session.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require("node:fs");
 const path = require("node:path");
 
@@ -21,6 +28,10 @@ const path = require("node:path");
 // the whole library from a single place; entry points with no flag dependency
 // (the standalone daemon launchers) call it themselves.
 require("./env-aliases.cjs").applyEnvAliases();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const MASTER_FLAG = "SYSTEM_HOOKS_DISABLED";
 // The master switch was renamed from its opaque prefix to a self-describing one.
@@ -82,6 +93,10 @@ const LEGACY_ALIASES = {
   "task-dispatch": ["MK_TASK_DISPATCH_DISABLED"],
   "post-edit-quality": ["MK_POST_EDIT_QUALITY_DISABLED"],
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // The operator config file: sibling of this shared/ dir, in the hooks hub root.
 // Overridable via HOOK_FLAGS_CONFIG so tests and alternate layouts can point
@@ -146,6 +161,10 @@ function _resetConfigCache() {
   cachedConfig = null;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 // True unless the master switch or one of this concern's kill-switches is set.
 // `env` is injectable for testing; it defaults to the live process environment.
 // When `env` is passed explicitly, the config file is skipped so tests stay
@@ -204,6 +223,10 @@ function concernFlag(concern) {
   if (CONCERN_CANONICAL[slug]) return CONCERN_CANONICAL[slug];
   return "SYSTEM_" + slug.toUpperCase().replace(/[^A-Z0-9]+/g, "_") + "_DISABLED";
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   isHookEnabled,

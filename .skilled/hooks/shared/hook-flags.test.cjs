@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Kill-Switch Resolver Tests
+// ───────────────────────────────────────────────────────────────────
 "use strict";
 
 const { test } = require("node:test");
@@ -11,6 +14,7 @@ const {
   concernFlag,
   isTruthy,
   MASTER_FLAG,
+  LEGACY_ALIASES,
   loadConfigFile,
   _resetConfigCache,
 } = require("./hook-flags.cjs");
@@ -92,9 +96,31 @@ test("environment overrides the config file both ways", () => {
 });
 
 test("explicit env without a config arg ignores the config file (test isolation)", () => {
-  // passing an explicit env must not read the on-disk file, so existing callers
-  // that inject env stay hermetic
-  assert.equal(isHookEnabled("skill-advisor", {}), true);
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "hookflags-"));
+  const f = path.join(dir, "hook-flags.env");
+  fs.writeFileSync(f, "SYSTEM_SKILL_ADVISOR_DISABLED=1\n");
+  // Clear every name that could answer for this concern from the live
+  // environment, so the temp file is what decides.
+  const names = [MASTER_FLAG, "MK_HOOKS_DISABLED", "SYSTEM_SKILL_ADVISOR_DISABLED", ...LEGACY_ALIASES["skill-advisor"]];
+  const prev = names.map((name) => [name, process.env[name]]);
+  const prevCfg = process.env.HOOK_FLAGS_CONFIG;
+  try {
+    for (const name of names) delete process.env[name];
+    process.env.HOOK_FLAGS_CONFIG = f;
+    _resetConfigCache();
+    // passing an explicit env must not read the on-disk file, so existing callers
+    // that inject env stay hermetic
+    assert.equal(isHookEnabled("skill-advisor", {}), true);
+    // while the same call with no env argument does read the file
+    assert.equal(isHookEnabled("skill-advisor"), false);
+  } finally {
+    if (prevCfg === undefined) delete process.env.HOOK_FLAGS_CONFIG; else process.env.HOOK_FLAGS_CONFIG = prevCfg;
+    for (const [name, value] of prev) {
+      if (value === undefined) delete process.env[name]; else process.env[name] = value;
+    }
+    _resetConfigCache();
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("loadConfigFile parses KEY=value, ignoring comments/blanks/quotes/malformed", () => {
