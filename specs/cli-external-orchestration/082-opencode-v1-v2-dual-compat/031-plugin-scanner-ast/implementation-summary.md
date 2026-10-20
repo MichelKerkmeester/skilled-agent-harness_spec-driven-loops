@@ -63,7 +63,7 @@ The purity test now lists symlinks too. For `sk-vision.js` it checks that the li
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/tests/helpers/plugin-inventory.cjs` | Modified | Event readers on `rolldown/parseAst` |
-| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | One fixture per closed gap and per review finding, plus aliases and a parse failure (seventeen in all) |
+| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | One fixture per closed gap and per review finding, plus aliases and a parse failure (eighteen in all) |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modified | Checks symlinked entries |
 | `.github/workflows/spec-kit-check.yml` | Modified | Builds the sk-vision bundle before the vitest projects |
 | `.opencode/plugins/tests/README.md` | Modified | Every suite and the full tree |
@@ -86,6 +86,7 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 
 | Decision | Why |
 |----------|-----|
+| Keep the name heuristic for the event type and record its false positive | Which variable carries the event is a runtime fact; resolving bindings removed the spelling errors, but no static rule can tell an unrelated `type` from the event's. |
 | Do not count a `typeof` check as an event check | It reads the value's type tag, never which event arrived; six real-plugin checks use it, and listing them would claim events they do not select. |
 | Use `rolldown/parseAst` rather than add a parser | It is already installed and pinned through vitest's vite, so no dependency is added. |
 | Load it with `createRequire` from `.skilled/package.json` | The plugin tests resolve from `.opencode`, whose `node_modules` does not hold it. |
@@ -102,13 +103,13 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Check | Result |
 |-------|--------|
 | Plugin suite baseline | 417 of 417 (`scratch/baseline/plugin-suite.txt`) |
-| Plugin suite after | 433 of 433: one test removed, seventeen added (`scratch/after/plugin-suite.txt`) |
+| Plugin suite after | 434 of 434: one test removed, eighteen added (`scratch/after/plugin-suite.txt`) |
 | Old vs new helper on 16 bridged plugins | Identical (`scratch/mutation/scan-parity.txt`) |
-| New fixtures on the old helper | Exit 1, 15 of the 17 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt` and the three `round*-fixtures-on-prior-helper.txt` records) |
-| Mutants m1, m2 and m3 of the new helper | m1 fails 2 tests, m2 fails 2, m3 (typeof carve-out removed) fails the real-plugin listing test |
+| New fixtures on the old helper | Exit 1, 16 of the 18 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt` and the three `round*-fixtures-on-prior-helper.txt` records) |
+| Mutants m1, m2 and m3 of the new helper | Each fails 2 tests; m3 (typeof carve-out removed) also trips the real-plugin listing test on `typeof payload.type === 'string'` |
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures |
-| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 pending |
+| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 FAIL: two P1s and one P2. Fixed: a call in a test that receives a wrapped event type, and the fixture count. Recorded, not fixed: a parameter that is named `type` but carries no event counts as the event type (Known Limitations 1). Round 5 pending |
 | Strict validation, CI | Pending |
 <!-- /ANCHOR:verification -->
 
@@ -117,7 +118,7 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The event type is known by name.** `type`, a name ending in `Type`, a `.type` field or an alias of one; a check on an event type held under any other name is invisible. The two-version battery remains the authoritative guard.
+1. **The event type is known by name.** `type`, a name ending in `Type`, a `.type` field or an alias of one. A check on an event type held under any other name is invisible, and an unrelated value that happens to be named `type` is read as the event type; telling the two apart needs to know what a value means, which a static scan cannot. The two-version battery remains the authoritative guard.
 2. **No CI job runs `.opencode/plugins/tests`.** The guard and its fixtures run locally only; no workflow names that directory.
 3. **Spec-Kit Check does not trigger on `.opencode/plugins/**`.** A plugin-only change does not rerun the purity test.
 <!-- /ANCHOR:limitations -->

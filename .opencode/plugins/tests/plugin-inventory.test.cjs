@@ -367,6 +367,12 @@ test('a shadowed undefined is not read as the no-event sentinel', () => {
   assert.deepEqual(unscannedEventChecks(source), ['eventType === undefined']);
 });
 
+// A wrapper call around the type does not hide it from the helper-call rule.
+test('a helper that receives a wrapped event type inside a test is reported', () => {
+  const source = `if (isKnown(normalize(eventType))) {} if (isString(typeof eventType)) {} log(normalize(eventType));`;
+  assert.deepEqual(unscannedEventChecks(source), ['isKnown(normalize(eventType))']);
+});
+
 // A source the parser cannot read fails loudly instead of passing empty.
 test('a source the parser cannot read fails instead of passing empty', () => {
   assert.throws(() => handledEventNames('if (type === '));

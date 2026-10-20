@@ -1,0 +1,6 @@
+# Round-4 fixture against the round-3 helper (commit 3770dbf1da), node v26.8.2
+exit 1
+ℹ tests 30
+ℹ pass 29
+ℹ fail 1
+✖ a helper that receives a wrapped event type inside a test is reported (0.722208ms)

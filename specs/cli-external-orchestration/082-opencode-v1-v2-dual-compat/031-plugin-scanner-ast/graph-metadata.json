@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`.opencode/plugins/tests/helpers/plugin-inventory.cjs` found event checks with regular expressions over comment-stripped text",
     "created_at": "2026-10-20T13:20:08Z",
-    "last_save_at": "2026-10-20T14:22:11.390Z",
+    "last_save_at": "2026-10-20T14:32:12.908Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c1828e61182f00e9118a6eced60271580e10de42164d576dd5ff93d86f484d1",
+    "source_fingerprint": "sha256:60e50cd83291e57fb5394f25db5f1bfc2573d5c5c3676db473fce6d381bf57ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "52f40992693267fe71ab642edf935c3754eada271268da038b0b58cfc364db38",
+      "spec.md": "6f660143c084a267604159ea0c87dda054462ed8d178959515df6fb59642f353",
       "plan.md": "6905f3c5c079deb6ee572cb988975444eb956a580f711d32fbf9beaa89185a23",
-      "tasks.md": "b77919a08c8342f3d56b6cea7cc2b4af703e61cb4d056cac1c7b6c2c9a21c0e7",
-      "implementation-summary.md": "a4e3c2bb268a9b228a2de68928a4dd5d323a4ffd13d987249f77c5c2a1207ecd"
+      "tasks.md": "7f9f0c483d8982fbb5fd4d47a10186872946c5e982882e885afa0ccab094f90f",
+      "implementation-summary.md": "5a780d42828ba40841c49b1ac9eedf3acb42bfb496468cc9f7958996d80c701c"
     },
     "last_active_at": null
   }

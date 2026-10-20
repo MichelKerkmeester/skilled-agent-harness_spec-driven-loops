@@ -747,7 +747,8 @@ function readCall(node, parent, source, context, handled, unscanned) {
     }
   }
 
-  if (!node.arguments.some((argument) => isEventType(argument, context))) return;
+  // A call in a test receives the event type even when another call wraps it.
+  if (!node.arguments.some((argument) => containsEventType(argument, context))) return;
   if (!isInTestPosition(node, context.nodeParents)) return;
   unscanned.add(text(source, node));
 }

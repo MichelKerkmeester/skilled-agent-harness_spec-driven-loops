@@ -88,7 +88,7 @@ The scanner reads plugin source as a syntax tree, the sk-vision link meets the p
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/tests/helpers/plugin-inventory.cjs` | Modify | Section 4 reads a syntax tree instead of matching text; `stripComments` is no longer exported |
-| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modify | Drops the `stripComments` test, puts the case-label fixture under a switch on the event type, adds fifteen fixtures, one per closed gap or review finding |
+| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modify | Drops the `stripComments` test, puts the case-label fixture under a switch on the event type, adds eighteen fixtures, one per closed gap or review finding |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modify | Lists and checks symlinked entries; keeps sk-vision's GPU flag off while it runs |
 | `.github/workflows/spec-kit-check.yml` | Modify | Builds the sk-vision bundle before the vitest projects |
 | `.opencode/plugins/tests/README.md` | Modify | Five missing rows and the full directory tree |

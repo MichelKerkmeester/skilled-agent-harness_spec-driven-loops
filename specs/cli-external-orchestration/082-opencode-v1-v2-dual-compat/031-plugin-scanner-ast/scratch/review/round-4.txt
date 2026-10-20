@@ -1,0 +1,6 @@
+VERDICT: FAIL
+P1 .opencode/plugins/tests/helpers/plugin-inventory.cjs:173 - A non-event parameter named `type` is counted as handling `session.created`, so unrelated code can satisfy event coverage - Resolve the binding before applying name heuristics and mark ambiguous values unscanned.
+P1 .opencode/plugins/tests/helpers/plugin-inventory.cjs:750 - `if (isKnown(normalize(eventType))) {}` produces neither a handled nor unscanned entry, contradicting the broad coverage claim in `.opencode/plugins/ARCHITECTURE.md:229` - Detect event-type references nested in test-position calls while preserving the `typeof` carve-out.
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/spec.md:91 - The spec says fifteen fixtures, while the test diff and summary record seventeen added tests - Reconcile the count or explain the difference.
+
+Verification: `node --test .opencode/plugins/tests/plugin-inventory.test.cjs` exited 1 before tests ran because `mkdtempSync` hit `EPERM`. `actionlint` and `git diff --check HEAD~4 HEAD` exited 0. Direct probes reproduced both scanner defects; the current scan matched the saved old-helper output for all 16 bridged plugins.
