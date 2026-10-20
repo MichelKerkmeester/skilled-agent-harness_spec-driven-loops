@@ -24,9 +24,13 @@
 // remain a thin, default-export-only OpenCode plugin while a Claude/Bash CLI
 // shim consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like system-deep-loop-guard.js.
+import { createRequire } from 'node:module';
 import core from '../skills/system-spec-kit/runtime/cli/lib/completion-state.cjs';
 import { tool } from './lib/tool-identity.js';
 import { dualPlugin } from './lib/v2-bridge.js';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
@@ -45,10 +49,11 @@ import { dualPlugin } from './lib/v2-bridge.js';
  */
 async function MkSpeckitCompletionPlugin(ctx) {
   // Kill-switch: return an empty plugin object so the tool is never
-  // registered at all -- the same env var the core checks per-call, read
-  // here too so setting it makes the surface a full no-op (no registration),
-  // not just a registered tool that always answers `disabled`.
-  if (process.env[core.DISABLED_ENV] === '1') {
+  // registered at all. The shared resolver answers for the master switch,
+  // the `completion` concern and its aliases (this plugin's own
+  // SYSTEM_SPECKIT_COMPLETION_DISABLED among them) and the hook-flags.env
+  // file, so this plugin goes quiet whenever the rest of the fleet does.
+  if (!isHookEnabled('completion')) {
     return {};
   }
 
@@ -57,7 +62,7 @@ async function MkSpeckitCompletionPlugin(ctx) {
   return {
     tool: {
       system_speckit_completion: tool({
-        description: 'Return a spec folder\'s inferred level (1/2/3), checklist P0/P1/P2 completion with evidence gaps, and placeholder completeness percentage, merged from check-completion.sh and calculate-completeness.sh. Read-only; never blocks or writes. Set SYSTEM_SPECKIT_COMPLETION_DISABLED=1 to make this a full no-op.',
+        description: 'Return a spec folder\'s inferred level (1/2/3), checklist P0/P1/P2 completion with evidence gaps, and placeholder completeness percentage, merged from check-completion.sh and calculate-completeness.sh. Read-only; never blocks or writes. Set SYSTEM_SPECKIT_COMPLETION_DISABLED=1, or SYSTEM_HOOKS_DISABLED=1 for every hook, to make this a full no-op.',
         args: {
           specFolder: tool.schema.string().optional(),
           strict: tool.schema.boolean().optional(),

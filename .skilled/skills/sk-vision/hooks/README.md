@@ -4,7 +4,7 @@ description: "How sk-vision reaches its runtime on each of four coding hosts, an
 trigger_phrases:
   - "sk-vision host adapters"
   - "sk-vision hooks"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-vision host adapters
@@ -58,6 +58,10 @@ Every path fails open. A malformed payload, a disabled kill-switch, an unbuilt r
 Disable it with `SYSTEM_SK_VISION_DISABLED=1`, or every hook in this repository with `SYSTEM_HOOKS_DISABLED=1`.
 
 Its timeout is 60 seconds. A warm model answers well inside that. A cold first load downloads roughly 3.9 GB of weights and will exceed it, and the host skips a timed-out hook, so the first image-bearing turn after a cold start arrives without evidence. Later turns are fast.
+
+### OpenCode plugin switch
+
+The OpenCode plugin that `.opencode/plugins/sk-vision.js` loads honors the same two switches. With either set, it registers nothing: on OpenCode 1 its `server` returns only `dispose`, and on OpenCode 2 its `setup` adds no `/vision` command, prompt hook or tool.
 
 ---
 

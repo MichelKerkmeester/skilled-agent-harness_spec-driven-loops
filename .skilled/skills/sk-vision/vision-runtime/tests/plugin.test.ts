@@ -2,8 +2,9 @@
 // MODULE: Vision Plugin Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from "bun:test";
+import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { Part } from "@opencode-ai/sdk";
@@ -866,5 +867,110 @@ describe("v2 grace for models off the text-only list", () => {
       throw new Error("no session");
     });
     expect(guaranteed).toBe(true);
+  });
+});
+
+describe("kill switches", () => {
+  let savedEnv: Record<string, string | undefined> = {};
+
+  // tests/ sits at the same depth as src/, so the plugin's own relative lookup
+  // resolves the same file from here.
+  const hookFlags = createRequire(import.meta.url)(
+    join(import.meta.dir, "..", "..", "..", "..", "hooks", "shared", "hook-flags.cjs"),
+  ) as { _resetConfigCache: () => void };
+
+  const isSwitchEnv = (key: string): boolean =>
+    key.endsWith("_DISABLED") || key === "HOOK_FLAGS_CONFIG" || key === "SK_VISION_AUTOINSPECT";
+
+  beforeEach(() => {
+    // The resolver honors many aliases per concern, so any inherited `_DISABLED`
+    // name could flip a case that expects the plugin on.
+    savedEnv = Object.fromEntries(
+      Object.entries(process.env).filter(([key]) => isSwitchEnv(key)),
+    );
+    for (const name of Object.keys(savedEnv)) delete process.env[name];
+    process.env.HOOK_FLAGS_CONFIG = join(
+      mkdtempSync(join(tmpdir(), "sk-vision-flags-")),
+      "absent.env",
+    );
+    // The resolver caches the switch file per process, so an earlier setup call
+    // may already have read the real one.
+    hookFlags._resetConfigCache();
+  });
+
+  afterEach(() => {
+    for (const name of Object.keys(process.env)) {
+      if (isSwitchEnv(name)) delete process.env[name];
+    }
+    Object.assign(process.env, savedEnv);
+    hookFlags._resetConfigCache();
+  });
+
+  it("registers the command on OpenCode 2 when no switch is set", async () => {
+    const { ctx, registeredCommands } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual(["vision"]);
+
+    await cleanup();
+  });
+
+  it("registers nothing on OpenCode 2 with SYSTEM_HOOKS_DISABLED=1", async () => {
+    process.env.SYSTEM_HOOKS_DISABLED = "1";
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+    expect(typeof cleanup).toBe("function");
+
+    await cleanup();
+  });
+
+  it("registers nothing on OpenCode 2 with SYSTEM_SK_VISION_DISABLED=1", async () => {
+    process.env.SYSTEM_SK_VISION_DISABLED = "1";
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+    expect(typeof cleanup).toBe("function");
+
+    await cleanup();
+  });
+
+  it("returns only dispose on OpenCode 1 with SYSTEM_HOOKS_DISABLED=1", async () => {
+    process.env.SYSTEM_HOOKS_DISABLED = "1";
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toEqual(["dispose"]);
+  });
+
+  it("returns only dispose on OpenCode 1 with SYSTEM_SK_VISION_DISABLED=true", async () => {
+    process.env.SYSTEM_SK_VISION_DISABLED = "true";
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toEqual(["dispose"]);
+  });
+
+  it("keeps the v1 command hook when no switch is set", async () => {
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toContain("command.execute.before");
+  });
+
+  it("createSetup skips every registration when isEnabled returns false", async () => {
+    const setup = createSetup({
+      handle: async () => {},
+      readTemplate: () => TEMPLATE,
+      isEnabled: () => false,
+    });
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+
+    await cleanup();
   });
 });

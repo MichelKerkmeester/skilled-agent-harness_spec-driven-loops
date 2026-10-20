@@ -1,0 +1,21 @@
+## sk-vision: new tests against the old source (HEAD .skilled/skills/sk-vision/vision-runtime/src/plugin.ts)
+error: expect(received).toEqual(expected)
+(fail) kill switches > registers nothing on OpenCode 2 with SYSTEM_HOOKS_DISABLED=1 [1.42ms]
+error: expect(received).toEqual(expected)
+(fail) kill switches > registers nothing on OpenCode 2 with SYSTEM_SK_VISION_DISABLED=1 [0.16ms]
+error: expect(received).toEqual(expected)
+(fail) kill switches > returns only dispose on OpenCode 1 with SYSTEM_HOOKS_DISABLED=1 [0.19ms]
+error: expect(received).toEqual(expected)
+(fail) kill switches > returns only dispose on OpenCode 1 with SYSTEM_SK_VISION_DISABLED=true [0.11ms]
+error: expect(received).toEqual(expected)
+(fail) kill switches > createSetup skips every registration when isEnabled returns false [0.16ms]
+ 35 pass
+ 5 fail
+
+## sk-vision: new tests against the new source
+
+ 40 pass
+ 0 fail
+ 91 expect() calls
+Ran 40 tests across 1 file. [36.00ms]
+(exit statuses: exit-statuses.txt)

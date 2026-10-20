@@ -1,0 +1,5 @@
+no switch: v1 keys=["command.execute.before"] v2 registered=["command:vision","hook:prompt"]
+SYSTEM_HOOKS_DISABLED: v1 keys=["dispose"] v2 registered=[]
+SYSTEM_SK_VISION_DISABLED: v1 keys=["dispose"] v2 registered=[]
+bundle-check: all assertions passed
+exit 0
