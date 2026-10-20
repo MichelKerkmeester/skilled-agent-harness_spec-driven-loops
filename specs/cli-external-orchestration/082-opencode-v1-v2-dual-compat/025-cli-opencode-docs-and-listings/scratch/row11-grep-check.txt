@@ -3,7 +3,7 @@
 HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:35:Project-local agents resolve from `.skilled/agents/<slug>.md`. User-level agents fall back from `~/.opencode/agents/<slug>.md
 HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:59:  |-- Resolves .skilled/agents/<slug>.md frontmatter
 HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md:268:On OpenCode 1, the dispatched session parses the `As @review:` prefix and loads the review agent's frontmatter from `.skille
-HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:115:| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Runs the session as that agent, `general` 
+HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:115:| `--agent` | string | Agent slug (loads from `.skilled/agents/<slug>.md`) | listed. Runs the session as that agent, `general`
 HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:289:`--agent <slug>` loads an agent definition from `.skilled/agents/<slug>.md` (project-local) or the user-level fallback. The age
 HEAD:.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md:171:The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool per
 ## after (worktree)
