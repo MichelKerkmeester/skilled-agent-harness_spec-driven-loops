@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -123,12 +123,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -148,6 +142,12 @@
       },
       {
         "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The doctor's version battery reports all 17 files in `.opencode/plugins/` as loaded on OpenCode 1.19.3 and active on OpenCode 2.0.32",
     "created_at": "2026-10-20T16:42:45Z",
-    "last_save_at": "2026-10-20T20:14:05.984Z",
+    "last_save_at": "2026-10-20T20:19:14.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f7816704b575d62f460d356cead5ad8bd8b9f6a11c32e2cd612f95dab60e102",
+    "source_fingerprint": "sha256:03199425550ed89a6d0150e8c566db96db5d4efbe4e57716f4caa6f0aca20c85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "55a9d765ca937431e665ffa6b78b32670d4ff24921a60929798457ca2ce33eb5",
+      "spec.md": "e28ec29ad56eda7618652b2b5daa3e068ec1d6f68429f1f7782587b31a97bb3d",
       "plan.md": "b2546105775b004565738dbd16bc9578d0cbde99062d9a523300cce46e78a9bb",
-      "tasks.md": "db7a3e61f9f733c6820d8b741cdd376639853ac6efa2977e8413ac387a0fd7c2",
-      "implementation-summary.md": "a334f91c8ad5ebc487598adf9e29d88f40e6c2d828565e62a1cbe7c9dffb05b4"
+      "tasks.md": "1c7b971c651bc58b108daae8275163489817cfd1558c8b5679fcc555afc8ed24",
+      "implementation-summary.md": "36fe2620975f81e31dd0a3a8c783e046094ee275f4de63a26c30e198bf705495"
     },
     "last_active_at": null
   }

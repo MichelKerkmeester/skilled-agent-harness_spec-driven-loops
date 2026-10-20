@@ -58,7 +58,7 @@ contextType: "general"
 - [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` first failed on `test_readme_manifest.py` because the new report folder was missing from the durable-directory manifest, then passed after the test's own `--write` refresh; `cite-drift-gate.mjs --base` the merge base exits 0 with no new broken citation. Outputs: `scratch/live-runs/local-checks.txt`]
 - [x] T012 Luna review, read-only [EVIDENCE: five rounds; rounds 1-4 fixed; round 5 false claims fixed, the rest listed as follow-ups in `implementation-summary.md`]
 - [x] T013 Recursive strict validation of 082 prints `RESULT: PASSED` [EVIDENCE: `validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --strict --recursive` at `edc47165e3`: 35 `RESULT: PASSED`, 0 failed, exit 0]
-- [ ] T014 Merge to main, push, and read every CI workflow's conclusion
+- [x] T014 Merge to main, push, and read every CI workflow's conclusion [EVIDENCE: pushed `72d091fcd5` to main; all 14 workflows success: Command Tree Parity 39490284507, Advisory Checks 39490284238, Markdown Link Integrity 39490284396, Dispatch Enforcement Guard 39490284229, Message Contract 39490284262, Rule Canary Sync 39490284289, Gate Inputs 39490284380, Playbook Operator Contract 39490284235, Changed Packet Validation 39490284563, sk-doc Script Tests 39490284230, sk-doc Rename Harness 39490284337, OpenCode Dual-Version Battery 39490284331, OpenCode Plugin Tests 39490284454, Trigger Index Rebuild 39490284282]
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -120,7 +120,7 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-020 [P0] All acceptance criteria met [EVIDENCE: AC-001 to AC-006 Met in `acceptance-criteria.md`]
 - [x] CHK-021 [P0] Manual testing complete [EVIDENCE: 36 run files in `scratch/live-runs/`, the matrix in `results-matrix.md`]
 - [x] CHK-022 [P1] Edge cases tested [EVIDENCE: a model refusal was rerun with a clearer prompt, not counted against the plugin (post-edit and sentinel runs); the sentinel's dedup record was cleared before the second version]
 - [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: every refusing plugin was driven into its refusal on v1: dispatch guard, message gate, spec gate, deep-loop guard]
@@ -176,7 +176,7 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
+| P0 Items | 12 | 12/12 |
 | P1 Items | 13 | 12/13 |
 | P2 Items | 1 | 1/1 |
 
