@@ -124,6 +124,7 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 1. **Nested packages rebuild their parent.** A tracked file under `runtime/cli` also counts for `runtime`, so changing it rebuilds both. That is an extra build, never a missed one.
 2. **A new source file is not an input until git tracks it.** An untracked file the build would compile does not change the fingerprint until it is added.
 3. **The main checkout's bundle.** Nothing here touches the operator's checkout. Its stale sk-vision bundle refreshes the first time `worktree-naming.sh provision` runs there, which also rebuilds the other listed outputs once, because no stamps exist yet.
+4. **A source edited during a build.** The stamp is the fingerprint taken after the build, so a tracked source changed while the build runs is recorded as built, and the next provision skips that output. Taking the fingerprint before the build and recording it on success would close this; it is a follow-up.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,4 @@
+VERDICT: PASS
+P2 .skilled/skills/sk-git/scripts/worktree-naming.sh:718 - If a tracked source changes after the build reads it but before the stamp is recorded, the stamp can describe newer inputs than the output and let the next provision skip a stale artifact - Capture the fingerprint before building and record that value only after success, so later source changes still trigger a rebuild.
+
+Verification: `actionlint` and Bash 3.2 syntax checking passed. Checked-in round-4 evidence reports 157/0 tests, 2 failures on the previous script, and 0 built/14 present when provisioning from `.skilled`. The Node 22.23.1 log reports 436/436 tests, but a clean Ubuntu CI run is not recorded. The test suite was blocked because `mktemp -d` was denied; `check-gate-inputs.sh` printed `RESULT: PASSED` despite temp-file errors, so that result is inconclusive. Bash 5 was unavailable.
