@@ -23,7 +23,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 **Outputs:**
 
 - A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<first 8 chars of the session id>.md`.
-- One `STATUS=` line per the exit code in Step 5.
+- One `STATUS=` line per the exit code in Step 5: `STATUS=OK RESULT=prepared HANDOFF=<path>`, `STATUS=OK RESULT=manual HANDOFF=<path>` or `STATUS=FAIL ERROR="<reason>"`.
 - When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
 
 **CLI:** `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs`
@@ -38,7 +38,7 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ## 3. WORKFLOW OVERVIEW
 
-| Step | Name | Purpose | Output |
+| Step | Name | Purpose | Outputs |
 |---|---|---|---|
 | 1 | Resolve inputs | Session id, cwd, spec binding | Values for the note |
 | 2 | Save the packet | Claude runs `/speckit:save`. Other runtimes use the continuity writer when a packet is bound | Fresh continuity |
@@ -50,17 +50,17 @@ The relaunch loop carries work into a fresh session near the end of this session
 
 ## 4. INSTRUCTIONS
 
-### Step 1: Resolve inputs
+### Step 1: Resolve Inputs
 
 - Session id: both commands require `--session <id>`. Claude Code can omit the flag because the CLI reads `$CLAUDE_CODE_SESSION_ID`. Other runtimes pass the id directly. If a runtime exposes no session-id variable, such as Devin or Cursor, run `uuidgen` once and reuse that value for the rest of the session. The id fills the note's `session_id`, the filename suffix and `--session`.
 - cwd: the absolute working directory.
 - Spec binding: use the repo-relative packet path when one is bound. Use `none` when Gate 3 was answered D) Skip. Leave the field empty when Gate 3 was never answered.
 
-### Step 2: Save the bound packet
+### Step 2: Save The Bound Packet
 
 When `spec_folder` is a packet path, save its continuity before `prepare` so the receiving session's `/speckit:resume` lands on fresh state. The automatic nudge asks for the note first and the save second. Both orders meet that need. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`. Record the repo-relative packet path in `spec_folder`. When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save. When Gate 3 was never answered, leave `spec_folder` empty.
 
-### Step 3: Write the handoff note
+### Step 3: Write The Handoff Note
 
 Create the directory first:
 
@@ -100,7 +100,7 @@ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff 
 
 Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `--runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor`, `hermes` or `devin`. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
-### Step 5: Report by exit code
+### Step 5: Report By Exit Code
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
 - `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
@@ -120,7 +120,9 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 ---
 
-## 5. RECEIVING A HANDOFF
+## 5. REFERENCE
+
+### Receiving A Handoff
 
 A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
 
