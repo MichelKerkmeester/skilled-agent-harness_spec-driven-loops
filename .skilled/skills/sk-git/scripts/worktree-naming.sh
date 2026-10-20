@@ -595,19 +595,20 @@ _wn_output_stale() {
   echo changed
 }
 
-# _wn_record_build <dir> <pkg> [source...] -- record the fingerprint of the
+# _wn_record_build <dir> <pkg> <fingerprint> -- record the fingerprint of the
 # tracked inputs a successful build consumed, so the next provision can tell
-# whether the sources changed since. A build that emits nothing still ran against
+# whether the sources changed since. The fingerprint is the one taken before the
+# build ran, so a build that edits its own sources leaves that edit looking
+# unbuilt to the next provision. A build that emits nothing still ran against
 # these inputs, so recording them is what keeps the next provision from looping.
 # Outside a git work tree there is nothing to record.
 _wn_record_build() {
-  local root="$1" pkg="$2" stamp
-  shift 2
+  local root="$1" pkg="$2" fingerprint="$3" stamp
   git -C "$root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 0
   stamp="$(_wn_build_stamp "$root" "$pkg")" || return 0
   [ -n "$stamp" ] || return 0
   mkdir -p "$(dirname "$stamp")" || return 1
-  _wn_input_fingerprint "$root" "$pkg" "$@" > "$stamp"
+  printf '%s\n' "$fingerprint" > "$stamp"
 }
 
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
@@ -617,7 +618,7 @@ _wn_record_build() {
 # half-provisioned tree is never reported ready.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
-  local tool deps_root install_log build_reason stale_reason top
+  local tool deps_root install_log build_reason stale_reason top built_fingerprint
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -706,6 +707,9 @@ provision_worktree() {
       else
         echo "  building $pkg" >&2
       fi
+      # Fingerprint the inputs before the build, not after: a build that edits its
+      # own sources must leave that edit visible to the next provision.
+      built_fingerprint="$(_wn_input_fingerprint "$dir" "$pkg" $sources)" || built_fingerprint=""
       if ! ( cd "$dir/$pkg" && "${build_cmd[@]}" >/dev/null 2>&1 ); then
         echo "  FAILED: $pkg build" >&2
         failed=$((failed + 1))
@@ -714,8 +718,11 @@ provision_worktree() {
         failed=$((failed + 1))
       else
         # A stamp that cannot be written only costs a rebuild next time, so it never
-        # fails provisioning, which callers run under set -e.
-        _wn_record_build "$dir" "$pkg" $sources || :
+        # fails provisioning, which callers run under set -e. With no fingerprint
+        # taken before the build there is nothing trustworthy to record.
+        if [ -n "$built_fingerprint" ]; then
+          _wn_record_build "$dir" "$pkg" "$built_fingerprint" || :
+        fi
         built=$((built + 1))
       fi
     fi
