@@ -110,43 +110,46 @@ Allowed dependency direction:
 
 **OpenCode 1 load path.** The OpenCode 1 host calls `server(input)` and registers the returned hooks directly. The input carries the keys `client`, `project`, `worktree`, `directory`, `experimental_workspace`, `serverUrl` and `$`.
 
-**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the v1-shaped input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory` and `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js:209-218`), then calls `server(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js:390-397`).
+**OpenCode 2 load path.** The OpenCode 2 host calls `setup(ctx)` in `lib/v2-bridge.js`. The bridge builds the v1-shaped input, with `client` from `createV1Client(ctx)`, `worktree` and `directory` from `ctx.location.directory` and `project`, `experimental_workspace`, `serverUrl` and `$` set to `undefined` (`lib/v2-bridge.js:287-297`), then calls `server(input)` once, registers each mapped hook and returns the cleanup function. A failed registration runs that cleanup and rethrows the original error (`lib/v2-bridge.js:520-527`).
 
 **Key modules:**
 
-- `lib/v2-bridge.js` owns the dual export: `dualPlugin` (`lib/v2-bridge.js:207`), the v1 client adapter `createV1Client` (`lib/v2-bridge.js:123`), the tool-context adapter `toV1ToolContext` (`lib/v2-bridge.js:187-197`) and the tool result converter `toV1ToolOutput` (`lib/v2-bridge.js:63`).
+- `lib/v2-bridge.js` owns the dual export: `dualPlugin` (`lib/v2-bridge.js:285`), the v1 client adapter `createV1Client` (`lib/v2-bridge.js:201`), the tool-context adapter `toV1ToolContext` (`lib/v2-bridge.js:265-276`) and the tool result converter `toV1ToolOutput` (`lib/v2-bridge.js:106`).
 - `lib/tool-identity.js`, the identity helper for tool definitions.
 
 ---
 
 ## 4. RUNTIME SUBSYSTEMS
 
-**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:207`, `lib/v2-bridge.js:402`) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
+**Dual export.** `dualPlugin(id, server)` returns `{ id, server, setup }` (`lib/v2-bridge.js:285`, `lib/v2-bridge.js:532`) and leaves `server`, the v1 factory, unchanged. Every entry file except sk-vision builds its export with it. `sk-vision.js` instead builds its own `{ id: 'sk-vision', server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). Every default export therefore carries exactly the keys `id`, `server` and `setup`, and each host calls only its own entry.
 
 **Hook mapping.** The bridge maps the v1 hook keys a factory returns onto OpenCode 2 registrations, driven by the `MAPPED_HOOKS` set (`lib/v2-bridge.js:8-15`). The table is the full mapping.
 
 | v1 hook | OpenCode 2 registration | Notes |
 |---|---|---|
-| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler and adds `info: { id: sessionID }` to session events (`lib/v2-bridge.js:283-321`) |
-| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, writes changed args back to `event.input` and denies the call on a throw (`lib/v2-bridge.js:323-335`) |
-| `tool.execute.after` | `ctx.tool.hook('execute.after')` | converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` (`lib/v2-bridge.js:337-347`, `lib/v2-bridge.js:63`) |
-| `experimental.chat.system.transform` | `ctx.session.hook('context')` | calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js:350-364`) |
-| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js:366-389`) |
-| `dispose` | the cleanup function `setup` returns | aborts the event stream, disposes every registration and then calls the v1 `dispose`, collecting errors and rethrowing them as an `AggregateError` when there are several (`lib/v2-bridge.js:243-280`) |
-| any other key | not registered | does nothing on OpenCode 2 and shows up in `cleanup.skippedKeys` (`lib/v2-bridge.js:221,280`) |
+| `event` | `ctx.event.subscribe` | replays each v2 event to the v1 handler, adds `info: { id: sessionID }` to session events and announces each session once with a synthesized `session.created` (`lib/v2-bridge.js:383-444`, `lib/v2-bridge.js:324-341`) |
+| `tool.execute.before` | `ctx.tool.hook('execute.before')` | passes `{ tool, sessionID, callID }` and `{ args }`, reports v2 `shell` and `subagent` as `bash` and `task` with `subagent_type` added beside `agent`, writes changed args back under the v2 names and denies the call on a throw (`lib/v2-bridge.js:446-459`, `lib/v2-bridge.js:123-145`) |
+| `tool.execute.after` | `ctx.tool.hook('execute.after')` | reports the same v1 tool names, converts the v2 result to `{ title, output, metadata }` with `toV1ToolOutput` and gives a `shell` result a string `output` (`lib/v2-bridge.js:461-472`, `lib/v2-bridge.js:147-156`) |
+| `experimental.chat.system.transform` | `ctx.session.hook('context')` | announces the session before the transform runs, calls the v1 transform with `{ sessionID, model? }` and `{ system: [] }` and pushes each returned string to `event.system` as a text item (`lib/v2-bridge.js:474-494`) |
+| `tool` | `ctx.tool.transform` | adds each v1 definition with its zod `args` converted by `z.toJSONSchema`, a string result becomes `{ content }` and an object result `{ content: output, metadata }` with `title` copied into metadata (`lib/v2-bridge.js:496-519`) |
+| `dispose` | the cleanup function `setup` returns | aborts the event stream, disposes every registration and then calls the v1 `dispose`, collecting errors and rethrowing them as an `AggregateError` when there are several (`lib/v2-bridge.js:343-380`) |
+| any other key | not registered | does nothing on OpenCode 2 and shows up in `cleanup.skippedKeys` (`lib/v2-bridge.js:299,380`) |
 
-**Event aliases and mappings.** Inside the `event` leg, two v2 events are also delivered under a v1 name and two are rewritten into a different v1 event shape (`lib/v2-bridge.js:17-48`). The aliases and the mappings are:
+**Event aliases and mappings.** Inside the `event` leg, two v2 events are also delivered under a v1 name and three are rewritten into a different v1 event shape (`lib/v2-bridge.js:17-20`, `lib/v2-bridge.js:29-87`). The aliases and the mappings are:
 
 | v2 event | v1 delivery | Notes |
 |---|---|---|
 | `session.execution.succeeded` | also delivered as `session.idle` | alias (`lib/v2-bridge.js:17-20`) |
 | `session.compaction.ended` | also delivered as `session.compacted` | alias (`lib/v2-bridge.js:17-20`) |
-| `session.text.ended` | becomes `message.part.updated` | delivered with a text part (`lib/v2-bridge.js:22-48`) |
-| `session.step.ended` | becomes `message.updated` | delivered with cost and tokens (`lib/v2-bridge.js:22-48`) |
+| `session.text.ended` | becomes `message.part.updated` | a text part with a top-level `sessionID` (`lib/v2-bridge.js:30-42`) |
+| `session.step.ended` | becomes `message.updated` | cost, tokens, a top-level `sessionID` and `info.time.completed` from the event's `created` time (`lib/v2-bridge.js:43-56`) |
+| `session.inbox.enqueued` | becomes `message.updated` and `message.part.updated` | a user item becomes a user `message.updated` and its text `message.part.updated`, sharing the inbox id (`lib/v2-bridge.js:57-86`) |
 
-The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-bridge.js:50`). Their delivery latches reset when the session sees `session.execution.started`, `session.compaction.started` or `session.deleted` (`lib/v2-bridge.js:51-55`).
+The bridge also announces each session once. `opencode2 run` sends no `session.created` for its own session, so before that session's first other `session.*` event or its first system transform, whichever comes first, the bridge delivers `session.created` with `{ sessionID, info: { id } }` (`lib/v2-bridge.js:324-341`, `lib/v2-bridge.js:390-399`, `lib/v2-bridge.js:474-481`). A real `session.created` that arrives later for an announced session is dropped, and `session.deleted` clears the record (`lib/v2-bridge.js:390-392`, `lib/v2-bridge.js:430-436`).
 
-**v1 client and tool-context adapters.** `createV1Client(ctx)` maps `session.messages`, `session.promptAsync` with queued delivery, `session.create`, `session.prompt` and `session.delete` onto the v2 session methods (`lib/v2-bridge.js:123`), and a missing v2 method throws through `requireV2SessionMethod` (`lib/v2-bridge.js:94`). `toV1ToolContext` builds the per-call v1 tool context (`lib/v2-bridge.js:187-197`), where `abort` is the v2 signal, `directory` and `worktree` come from the location, `metadata(update)` calls `progress` and `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js:193-195`). The client adapter has no `tui` member, so `client.tui.showToast` is unavailable to bridged plugins on OpenCode 2.
+The once-per-session events are `session.idle` and `session.compacted` (`lib/v2-bridge.js:93`). Their delivery latches reset when the session sees `session.execution.started`, `session.compaction.started` or `session.deleted` (`lib/v2-bridge.js:94-98`).
+
+**v1 client and tool-context adapters.** `createV1Client(ctx)` maps `session.messages`, `session.promptAsync` with queued delivery, `session.create`, `session.prompt` and `session.delete` onto the v2 session methods (`lib/v2-bridge.js:201`), and a missing v2 method throws through `requireV2SessionMethod` (`lib/v2-bridge.js:172`). `toV1ToolContext` builds the per-call v1 tool context (`lib/v2-bridge.js:265-276`), where `abort` is the v2 signal, `directory` and `worktree` come from the location, `metadata(update)` calls `progress` and `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js:271-274`). The client adapter has no `tui` member, so `client.tui.showToast` is unavailable to bridged plugins on OpenCode 2.
 
 **sk-vision's own path.** `sk-vision.js` skips the bridge and builds its own `{ id, server, setup }` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:542`). On OpenCode 1 its `server` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:164`) returns `command.execute.before`, which runs `/vision` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:188-190`), unless the plugin option `enabled: false` is set, in which case it returns only `dispose` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:174-176`). The same `dispose`-only result follows when `visionHooksEnabled()` is false (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:174-176`), and `setup` then registers nothing (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:379-380`). With `SK_VISION_AUTOINSPECT=1` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:179`) it also returns `event`, `chat.message`, the 13 `sk_vision_*` tools and `dispose` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:213-238`), with progress messages through `client.tui.showToast` when present (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:195-200`). On OpenCode 2, `createSetup` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:372`) registers the `vision` command through `ctx.command.transform` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:383`) and a `ctx.session.hook('prompt')` hook (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:433`) that expands the project `/vision` template and, with the flag on, adds image evidence to the prompt, where a model off the text-only list gets a 2-second grace and a listed text-only model waits for the full analysis (`.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts:51`, `.skilled/skills/sk-vision/vision-runtime/src/opencode/attachments.ts:96-101`). The 13 tools register through `ctx.tool.transform` after the prompt hook (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:496-500`), only with `SK_VISION_AUTOINSPECT=1` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:524`), a failed tool registration fails open and the model reaches the tools through OpenCode 2's code-mode `execute` tool.
 
@@ -176,7 +179,7 @@ Four capabilities have no OpenCode 2 equivalent:
 | Server-side toast | the v2 `Context` has no `tui` member and the event domain is subscribe-only | sk-vision's toast calls are skipped on v2 |
 | Agent `temperature` | no effect on 2.0.32 with the `openai-compatible` provider package, the only one tested | no effect observed on the one provider tested |
 | A global `command.execute.before` observer | v2 has none | sk-vision instead owns its command through `ctx.command.transform` (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:383`) |
-| Tool `ask` inside a bridged tool | `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js:193-195`) | a bridged plugin cannot raise a permission prompt |
+| Tool `ask` inside a bridged tool | `ask` throws `ask is not available on OpenCode 2` (`lib/v2-bridge.js:271-274`) | a bridged plugin cannot raise a permission prompt |
 
 ### Adding a plugin
 
@@ -200,7 +203,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1
 node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 ```
 
-**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main at `8c9a14bd59` on 2026-10-20, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds.
+**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main at `8c9a14bd59` on 2026-10-20, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds. After the bridge gained tool aliases, the session announcement and the inbox mapping it passed 453 of 453 on 2026-10-20.
 
 **Purity test.** `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` imports every entry file, symlinks included. For `sk-vision.js` it first checks that the link is relative, stays inside the repository and resolves to a built bundle, then applies the same export contract as any other entry. Spec-Kit Check builds the sk-vision bundle with bun before it runs the test, because the bundle is a build output git ignores.
 
@@ -226,7 +229,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - OpenCode 2.0.32 does not deliver `server.instance.disposed` or `global.disposed` to plugins; it sends `location.shutdown` and runs the cleanup the bridge returns. The disposal branches in `system-skill-advisor.js` and `system-dist-freshness-guard.js` therefore run only on OpenCode 1 (observed 2026-10-20, listed in `tests/plugin-inventory.json`).
 - The event-name guard in `tests/plugin-inventory.test.cjs` parses each bridged plugin with the rolldown parser already installed under `.skilled/node_modules`, so comments and string contents are never read as code and an escaped name is read as the name it spells. It resolves every name through its lexical scope, and it reports every other check on the event type for `unscannedEventChecks`, including one that wraps the type in a call; a `typeof` check reads only the value's type, so it is not counted as an event check. It knows the event type by name: `type`, a name ending in `Type`, a `.type` field, or a local declared from one of those. It does not follow values: a check on an event type held under any other name is invisible to it, an unrelated value that happens to be named `type` is read as the event type, and a helper's result stored in a variable and tested later is not seen. A file it cannot parse fails the test. The authoritative guard for what each plugin does on each host is still the two-version doctor battery.
 - OpenCode 2.0.32 merges every ancestor `.opencode` folder, so a session started in a worktree nested inside another checkout, such as `.worktrees/NNN-slug`, registers the outer checkout's plugins first and the worktree's own copies fail with `Duplicate plugin ID` (observed 2026-10-20). That session runs the outer checkout's plugin code. OpenCode 1.19.3 stops at the worktree root. To run a worktree's own plugins on OpenCode 2, start it with `OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR=<worktree>/.opencode`, or use a checkout outside the other one.
-- Live delivery of each bridged hook on a running OpenCode 2 host is not verified plugin by plugin.
+- Live delivery is verified per plugin by the `plugin-utilization` playbook in `cli-opencode`. On 2026-10-20 all 17 plugins showed their checked effect on OpenCode 1.19.3 and 2.0.32 (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/results-matrix.md`).
 
 ---
 
