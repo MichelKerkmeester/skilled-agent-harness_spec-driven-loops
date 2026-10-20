@@ -70,13 +70,9 @@ test('injects the active_goal brief as agent_message when a goal is active', () 
   assert.ok(typeof response.agent_message === 'string' && response.agent_message.length > 0);
   assert.ok(response.agent_message.startsWith('[active_goal:'));
   assert.ok(response.agent_message.includes('objective: Ship the widget'));
-  // goal_prompt's Role line is baked in once at setGoal() time from the
-  // goal-setting runtime's label, not re-derived from the reading adapter's
-  // renderGoalBrief({runtimeLabel}) call — a shared goal-core.cjs detail
-  // (renderGoalBrief's runtimeLabel param is currently unused there), so
-  // this asserts the runtime-agnostic Role-line shape rather than hardcoding
-  // a capitalized "Cursor" that only this adapter's own call site requests.
-  assert.ok(response.agent_message.includes('execution agent operating under the active session goal'));
+  assert.ok(response.agent_message.includes(
+    'Role: Focused Cursor execution agent operating under the active session goal.',
+  ));
   assert.ok(response.agent_message.trimEnd().endsWith('[/active_goal]'));
 });
 

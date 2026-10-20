@@ -11,9 +11,17 @@
 // place that boundary is drawn, so the CommonJS core and the ESM plugin cannot
 // drift apart on it.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { createHash } = require('node:crypto');
 const { existsSync, readdirSync, readFileSync, realpathSync, statSync } = require('node:fs');
 const { join, resolve, isAbsolute, relative, dirname } = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const GOAL_FILENAME = 'goal.md';
 const LOG_ANCHOR = '<!-- ANCHOR:log -->';
@@ -35,6 +43,10 @@ const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->\n?/g;
 // starts with a number, such as a year, keeps it.
 const HEADING_SECTION_NUMBER_PATTERN = /^(#{1,6}[ \t]+)\d+(?:\.\d+)*\.[ \t]+/gm;
 const ANCHOR_BODY_PATTERN = (id) => new RegExp(`<!-- ANCHOR:${id} -->([\\s\\S]*?)<!-- /ANCHOR:${id} -->`);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Split a goal document into its frontmatter block and body.
@@ -97,6 +109,10 @@ function criteriaBullets(content) {
     .filter((line) => /^-\s+\[[ xX]\]\s+/.test(line))
     .map((line) => `- ${line.replace(/^-\s+\[[ xX]\]\s+/, '')}`);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. PACKET PROJECTION
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * The objective slice: what the runtime stores and judges completion against.
@@ -454,6 +470,10 @@ function readPacketGoal(workspace, packetPath) {
     hash: durableSliceHash(content),
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   GOAL_FILENAME,

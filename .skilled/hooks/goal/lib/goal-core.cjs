@@ -152,15 +152,13 @@ function isPluginDisabled(env = process.env) {
   return !isHookEnabled('goal', env);
 }
 
-/**
- * Walk up from `startDir` looking for a repo root marker (`.git` or the
- * `.opencode` skills tree). Falls back to `startDir` when nothing is found.
- */
 // One walk, shared with the slice module. Two copies of the same marker list
 // drift the moment a marker is added to one of them, and the two engines would
 // then disagree about which directory a packet path is relative to.
 /**
- * Find the repository root a packet path is resolved against.
+ * Find the repository root a packet path is resolved against, walking up from
+ * `startDir` to the first directory holding a `.git` or `.skilled/skills`
+ * marker. Falls back to `startDir` when nothing is found.
  *
  * @param {string} [startDir] - Any directory inside the repository.
  * @returns {string} The repository root.

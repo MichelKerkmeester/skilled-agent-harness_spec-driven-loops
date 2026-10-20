@@ -2,23 +2,23 @@
 // MODULE: Pi Extension - Goal Context
 // ───────────────────────────────────────────────────────────────────
 
-import { join } from "node:path";
+import { join } from 'node:path';
 
 import type {
   ExtensionAPI,
   ExtensionCommandContext,
   ExtensionContext,
   TurnEndEvent,
-} from "@earendil-works/pi-coding-agent";
+} from '@earendil-works/pi-coding-agent';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. TYPES AND CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const RUNTIME = "pi";
-const RUNTIME_LABEL = "Pi";
-const DISCOVERY_CORE_PATH = "../../.skilled/hooks/goal/lib/goal-core.cjs";
-const MANAGE_CLI_RELATIVE_PATH = ".skilled/hooks/goal/bin/goal.cjs";
+const RUNTIME = 'pi';
+const RUNTIME_LABEL = 'Pi';
+const DISCOVERY_CORE_PATH = '../../.skilled/hooks/goal/lib/goal-core.cjs';
+const MANAGE_CLI_RELATIVE_PATH = '.skilled/hooks/goal/bin/goal.cjs';
 
 type GoalRecord = {
   goalId?: string;
@@ -45,9 +45,21 @@ type GoalOptions = {
 type GoalCore = {
   isPluginDisabled(): boolean;
   resolveRepoRoot(startDir: string): string;
-  renderGoalBrief(input: { goal: GoalRecord | null; runtimeLabel: string; workspace?: string }): string;
-  renderResendReminder(goal: GoalRecord | null, workspace: string, options?: { recordCommand?: string }): string;
-  verifyGoalHeuristic(input: { goal: GoalRecord; transcriptText: string; assistantText?: string }): { verdict: string; reason: string };
+  renderGoalBrief(input: {
+    goal: GoalRecord | null;
+    runtimeLabel: string;
+    workspace?: string;
+  }): string;
+  renderResendReminder(
+    goal: GoalRecord | null,
+    workspace: string,
+    options?: { recordCommand?: string },
+  ): string;
+  verifyGoalHeuristic(input: {
+    goal: GoalRecord;
+    transcriptText: string;
+    assistantText?: string;
+  }): { verdict: string; reason: string };
   readGoalRecord(options: GoalOptions): GoalRecord | null;
   recordTurn(input: object, options: GoalOptions): GoalRecord | null;
 };
@@ -64,14 +76,14 @@ function asGoalCore(module: unknown): GoalCore {
 /** Load correctly from both the canonical file and Pi's discovery symlink. */
 async function loadGoalCore(): Promise<GoalCore> {
   try {
-    return asGoalCore(await import("../lib/goal-core.cjs"));
+    return asGoalCore(await import('../lib/goal-core.cjs'));
   } catch {
     return asGoalCore(await import(DISCOVERY_CORE_PATH));
   }
 }
 
 function goalOptions(ctx: ExtensionContext): GoalOptions {
-  let sessionId = "";
+  let sessionId = '';
   try {
     sessionId = ctx.sessionManager.getSessionId();
   } catch {
@@ -98,12 +110,12 @@ async function runGoalCommand(
       process.execPath,
       [
         cliPath,
-        ...(userArgs.length > 0 ? userArgs : ["show"]),
-        "--runtime",
+        ...(userArgs.length > 0 ? userArgs : ['show']),
+        '--runtime',
         RUNTIME_LABEL,
-        "--session",
+        '--session',
         options.scope.sessionId,
-        "--workspace",
+        '--workspace',
         options.scope.workspace,
       ],
       { cwd: repoRoot, timeout: 10_000 },
@@ -112,15 +124,15 @@ async function runGoalCommand(
     if (!output) {
       ctx.ui.notify(
         'STATUS=FAIL ACTION=show ERROR="Goal manage CLI returned no output"\ncode=GOAL_CLI_EMPTY',
-        "error",
+        'error',
       );
       return;
     }
-    ctx.ui.notify(output, output.startsWith("STATUS=OK") ? "info" : "error");
+    ctx.ui.notify(output, output.startsWith('STATUS=OK') ? 'info' : 'error');
   } catch {
     ctx.ui.notify(
       'STATUS=FAIL ACTION=show ERROR="Goal manage CLI is unavailable"\ncode=GOAL_CLI_UNAVAILABLE',
-      "error",
+      'error',
     );
   }
 }
@@ -129,37 +141,43 @@ async function runGoalCommand(
 // 3. LIFECYCLE HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Flattens a Message-shaped `content` field (plain string, or a `TextContent[]`-style array) into plain text. */
+/**
+ * Flattens a Message-shaped `content` field (plain string, or a
+ * `TextContent[]`-style array) into plain text.
+ */
 function extractContentText(content: unknown): string {
-  if (typeof content === "string") return content;
+  if (typeof content === 'string') return content;
   if (Array.isArray(content)) {
     return content
       .map((item) => {
-        if (item && typeof item === "object" && (item as { type?: unknown }).type === "text") {
-          return String((item as { text?: unknown }).text ?? "");
+        if (item && typeof item === 'object' && (item as { type?: unknown }).type === 'text') {
+          return String((item as { text?: unknown }).text ?? '');
         }
-        return "";
+        return '';
       })
       .filter(Boolean)
-      .join("\n");
+      .join('\n');
   }
-  return "";
+  return '';
 }
 
 /**
- * Flattens a `turn_end` event's tool results plus its ending message into one evidence string for the heuristic verifier.
+ * Flattens a `turn_end` event's tool results plus its ending message into one
+ * evidence string for the heuristic verifier.
  *
  * Tool results come first and the assistant message last: the verifier judges
  * only the tail of the evidence, so on a tool-heavy turn the message must sit
  * inside that tail window or the turn's own conclusion is never judged.
  */
 function extractTurnEndText(event: TurnEndEvent): string {
-  const messageText = extractContentText((event.message as { content?: unknown } | undefined)?.content);
+  const messageText = extractContentText(
+    (event.message as { content?: unknown } | undefined)?.content,
+  );
   const toolResultText = (event.toolResults || [])
     .map((result) => extractContentText(result.content))
     .filter(Boolean)
-    .join("\n");
-  return [toolResultText, messageText].filter(Boolean).join("\n");
+    .join('\n');
+  return [toolResultText, messageText].filter(Boolean).join('\n');
 }
 
 /**
@@ -193,41 +211,55 @@ function extractTurnEndText(event: TurnEndEvent): string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function goalContext(pi: ExtensionAPI): void {
-  pi.registerCommand("goal-pi", {
-    description: "Manage the active goal for this Pi session: bind <packet>, show, resent, log, packet <path>, set, clear",
+  pi.registerCommand('goal-pi', {
+    description:
+      'Manage the active goal for this Pi session: bind <packet>, show, resent, log, '
+      + 'packet <path>, set, clear',
     handler: (args, ctx) => runGoalCommand(pi, args, ctx),
   });
 
-  pi.on("input", async (event, ctx) => {
+  pi.on('input', async (event, ctx) => {
     try {
       const core = await loadGoalCore();
-      if (core.isPluginDisabled()) return { action: "continue" };
+      if (core.isPluginDisabled()) return { action: 'continue' };
       const options = goalOptions(ctx);
       const goal = core.readGoalRecord(options);
-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
-      if (!brief) return { action: "continue" };
+      const brief = core.renderGoalBrief({
+        goal,
+        runtimeLabel: RUNTIME_LABEL,
+        workspace: options.scope.workspace,
+      });
+      if (!brief) return { action: 'continue' };
       // A bound packet whose durable slice moved past the operator's copy gets
       // one reminder line per turn. It rides the same injection and never
       // blocks: the agent resends, the operator sets, work continues.
-      const reminder = core.renderResendReminder(goal, options.scope.workspace, { recordCommand: "/goal-pi resent" });
-      const text = reminder ? `${event.text}\n\n${brief}\n${reminder}` : `${event.text}\n\n${brief}`;
-      return { action: "transform", text };
+      const reminder = core.renderResendReminder(goal, options.scope.workspace, {
+        recordCommand: '/goal-pi resent',
+      });
+      const text = reminder
+        ? `${event.text}\n\n${brief}\n${reminder}`
+        : `${event.text}\n\n${brief}`;
+      return { action: 'transform', text };
     } catch {
       // Fail open because a goal-state bug must never alter a valid user turn.
-      return { action: "continue" };
+      return { action: 'continue' };
     }
   });
 
-  pi.on("session_start", async (_event, ctx) => {
+  pi.on('session_start', async (_event, ctx) => {
     try {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return;
       const options = goalOptions(ctx);
       const goal = core.readGoalRecord(options);
-      const brief = core.renderGoalBrief({ goal, runtimeLabel: RUNTIME_LABEL, workspace: options.scope.workspace });
+      const brief = core.renderGoalBrief({
+        goal,
+        runtimeLabel: RUNTIME_LABEL,
+        workspace: options.scope.workspace,
+      });
       if (!brief) return;
       pi.sendMessage(
-        { customType: "goal-context-restore", content: brief, display: false },
+        { customType: 'goal-context-restore', content: brief, display: false },
         { triggerTurn: false },
       );
     } catch {
@@ -236,27 +268,29 @@ export default function goalContext(pi: ExtensionAPI): void {
     }
   });
 
-  pi.on("turn_end", async (event, ctx) => {
+  pi.on('turn_end', async (event, ctx) => {
     try {
       const core = await loadGoalCore();
       if (core.isPluginDisabled()) return;
       const options = goalOptions(ctx);
       const goal = core.readGoalRecord(options);
-      if (!goal || goal.status !== "active") return;
+      if (!goal || goal.status !== 'active') return;
 
       const transcriptText = extractTurnEndText(event);
-      const assistantText = extractContentText((event.message as { content?: unknown } | undefined)?.content);
+      const assistantText = extractContentText(
+        (event.message as { content?: unknown } | undefined)?.content,
+      );
       const verdict = core.verifyGoalHeuristic({ goal, transcriptText, assistantText });
       core.recordTurn({}, options);
 
-      if (verdict.verdict !== "met") {
+      if (verdict.verdict !== 'met') {
         pi.sendMessage(
           {
-            customType: "goal-verify-nudge",
+            customType: 'goal-verify-nudge',
             content: `[goal_verify] verdict=${verdict.verdict}; reason=${verdict.reason}`,
             display: false,
           },
-          { deliverAs: "nextTurn" },
+          { deliverAs: 'nextTurn' },
         );
       }
     } catch {

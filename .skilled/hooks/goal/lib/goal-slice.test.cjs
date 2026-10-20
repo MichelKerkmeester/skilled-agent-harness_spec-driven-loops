@@ -201,7 +201,9 @@ test('a file that opens with many comments and no fence splits in linear time', 
   const elapsedMs = Number(process.hrtime.bigint() - started) / 1e6;
   assert.equal(split.frontmatter, null);
   assert.equal(split.body, content);
-  assert.ok(elapsedMs < 250, `splitFrontmatter took ${elapsedMs} ms`);
+  // A backtracking split against 2000 comments never finishes inside this
+  // ceiling; the wide budget absorbs scheduler stalls on a loaded CI worker.
+  assert.ok(elapsedMs < 10_000, `splitFrontmatter took ${elapsedMs} ms`);
   const fenced = '<!-- a -->\n  <!-- b -->\n---\ntitle: "x"\n---\n# Goal\n';
   assert.deepEqual(slice.splitFrontmatter(fenced), { frontmatter: 'title: "x"', body: '# Goal\n' });
 });

@@ -70,6 +70,9 @@ test('emits the brief as additionalContext for an active goal and keeps the even
   const response = JSON.parse(stdout);
   assert.equal(response.hookSpecificOutput.hookEventName, 'SessionStart');
   assert.ok(response.hookSpecificOutput.additionalContext.startsWith('[active_goal:'));
+  assert.ok(response.hookSpecificOutput.additionalContext.includes(
+    'Role: Focused Devin execution agent operating under the active session goal.',
+  ));
 });
 
 test('a bound packet renders from the file without frontmatter and carries the reminder while unresent', () => {
