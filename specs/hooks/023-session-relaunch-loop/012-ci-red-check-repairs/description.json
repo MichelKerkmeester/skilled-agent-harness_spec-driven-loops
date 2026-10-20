@@ -6,19 +6,20 @@
     "phase",
     "ci-red-check-repairs"
   ],
-  "lastUpdated": "2026-10-20T05:08:18.188Z",
+  "lastUpdated": "2026-10-20T06:45:03.931Z",
   "specId": "012",
   "folderSlug": "ci-red-check-repairs",
   "parentChain": [
     "hooks",
     "023-session-relaunch-loop"
   ],
-  "memorySequence": 5,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "19-10-26_21-53__trimmed-agents-md-back-inside-the-16-kb-delivery.md",
     "19-10-26_22-16__renumbered-from-008-to-012-to-avoid-a-collision.md",
     "20-10-26_05-52__repaired-the-third-ci-check-main-turned-red-spec.md",
     "20-10-26_05-58__repaired-the-third-ci-check-main-turned-red-spec.md",
-    "20-10-26_06-08__repaired-the-third-ci-check-main-turned-red-spec.md"
+    "20-10-26_06-08__repaired-the-third-ci-check-main-turned-red-spec.md",
+    "20-10-26_07-45__recorded-the-main-ci-result-for-the-spec-kit.md"
   ]
 }

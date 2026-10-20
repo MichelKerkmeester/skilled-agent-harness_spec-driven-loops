@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks/023-session-relaunch-loop/012-ci-red-check-repairs"
-    last_updated_at: "2026-10-20T05:08:18Z"
+    last_updated_at: "2026-10-20T06:45:03Z"
     last_updated_by: "generate-context"
-    recent_action: "Fixed Spec-Kit Check lines; local CLI run: 180 files passed, 3 skipped"
-    next_safe_action: "Monitor Spec-Kit Check on main; it is proven only locally so far"
+    recent_action: "Spec-Kit Check passed on main at 457c4ac107, run 39380190180"
+    next_safe_action: "None; every repaired check passes on main"
     blockers: []
     key_files:
       - "AGENTS.md"
       - ".skilled/hooks/hook-flags.env.example"
       - "scratch/after/spec-kit-cli-project-summary.txt"
     session_dedup:
-      fingerprint: "sha256:ec6bf5d693ef0953f5f9817ec2742caf34d235c67300e8a22c6cad4b54d788f4"
+      fingerprint: "sha256:ab19e700f950004431ae3eb49f7e4ab30a90c24e0e9e4e13fba4121936f315df"
       session_id: "scaffold-012-ci-red-check-repairs"
       parent_session_id: null
     completion_pct: 100
@@ -112,7 +112,7 @@ On main, Rule Canary Sync and sk-doc Script Tests passed on e38ff13143 and cd7f1
 
 1. **~/.claude/CLAUDE.md now differs from AGENTS.md** It mirrors AGENTS.md outside the repository, was not edited in this phase, and matched AGENTS.md before this change but differs now (scratch/causes.txt).
 2. **The canary checks only the repository AGENTS.md** The delivery prefix is measured on that one copy, so this check reports no drift in any other rule copy.
-3. **Spec-Kit Check is proven locally, not yet on main** It was red on main from 47371b495f. The fix passes locally: the two failing tests pass 5 of 5, and the CLI vitest project reports 180 files passed and 3 skipped (scratch/after/spec-kit-check-vitest.txt, scratch/after/spec-kit-cli-project-summary.txt). A CI run on main has not shown it green yet.
+3. **Spec-Kit Check needed a second repair to pass on main** It was red on main from 47371b495f. These playbook fixes made its CLI vitest step pass, which let its Runtime vitest step run for the first time since then; that step failed on 22f563b032 (run 39373558502) and was repaired in the dual-compat packet's phase 020. Spec-Kit Check then passed on main at 457c4ac107, run 39380190180.
 <!-- /ANCHOR:limitations -->
 
 ---

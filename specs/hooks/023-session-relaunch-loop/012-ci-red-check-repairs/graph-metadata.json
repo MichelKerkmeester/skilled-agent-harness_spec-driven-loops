@@ -168,19 +168,13 @@
         "source": "derived"
       },
       {
-        "name": "Fixed Spec",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Monitor Spec",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -188,7 +182,7 @@
     ],
     "causal_summary": "Three CI checks failed on main before this phase",
     "created_at": "2026-10-19T20:37:50Z",
-    "last_save_at": "2026-10-20T05:08:18.188Z",
+    "last_save_at": "2026-10-20T06:45:03.931Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +191,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50bd88085cb4a07ac64e8f4423803c3810e2c75f9c085a440f9ff1f5719987b8",
+    "source_fingerprint": "sha256:d351f78df05f6b4d81f551ceafe80685efbcec5a3afdd1dcd2254125ed689def",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49168a8fd3d9669687f25705220974350b7570149228fed11c60a4d4e41b46b8",
       "plan.md": "6b92bde9f54228b590dbb3bde54d8afb38f7b4586b5ac14d6c58d51db1ceaa70",
       "tasks.md": "3b0054c5f59f96b78fb934b3793454c6ebef1c0b241061a57f21c73441c34bcf",
-      "implementation-summary.md": "e0973edd3b4b36029bd5fb41ab8527e75dd6ae6981b32e01db672bd00fc28ebf"
+      "implementation-summary.md": "e2451d40ff955725af3e1288c08bb614f6b93f25179eaef5f0f9bb77101b7869"
     },
     "last_active_at": null
   }
