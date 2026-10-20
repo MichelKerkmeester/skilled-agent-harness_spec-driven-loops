@@ -1,3 +1,7 @@
 exit statuses (old code / new code)
 speckit-completion test: 1 / 0
 sk-vision plugin test: 1 / 0
+after the env-isolation fix (old code / new code)
+speckit-completion test: 1 / 0
+sk-vision plugin test: 1 / 0
+new code with inherited switches set: completion 0, sk-vision 0

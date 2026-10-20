@@ -19,7 +19,6 @@ const CONFIG_ENV = 'HOOK_FLAGS_CONFIG';
 const MASTER_ENV = 'SYSTEM_HOOKS_DISABLED';
 const MASTER_ALIAS_ENV = 'MK_HOOKS_DISABLED';
 const DISABLED_ENV = 'SYSTEM_SPECKIT_COMPLETION_DISABLED';
-const TOUCHED_ENVS = [CONFIG_ENV, MASTER_ENV, MASTER_ALIAS_ENV, DISABLED_ENV];
 
 function loadPlugin() {
   const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'system-speckit-completion.js')).href;
@@ -58,15 +57,14 @@ function registersTool(registrations) {
 }
 
 async function main() {
+  // The resolver honors many aliases per concern, so any inherited `_DISABLED`
+  // name could flip a case that expects the plugin on.
+  const savedEnv = Object.fromEntries(Object.entries(process.env).filter(([key]) => key.endsWith('_DISABLED') || key === CONFIG_ENV));
+  for (const name of Object.keys(savedEnv)) delete process.env[name];
+
   // The shared resolver also reads a hook-flags.env file, so point it at a path
   // that cannot exist: only the switch under test may decide the outcome.
-  const originalEnv = {};
-  for (const name of TOUCHED_ENVS) originalEnv[name] = process.env[name];
-
   process.env[CONFIG_ENV] = path.join(__dirname, 'no-such-hook-flags.env');
-  delete process.env[MASTER_ENV];
-  delete process.env[MASTER_ALIAS_ENV];
-  delete process.env[DISABLED_ENV];
 
   try {
     const pluginModule = await loadPlugin();
@@ -148,10 +146,10 @@ async function main() {
 
     console.log('system-speckit-completion.test.cjs: all assertions passed');
   } finally {
-    for (const name of TOUCHED_ENVS) {
-      if (originalEnv[name] === undefined) delete process.env[name];
-      else process.env[name] = originalEnv[name];
+    for (const name of Object.keys(process.env)) {
+      if (name.endsWith('_DISABLED') || name === CONFIG_ENV) delete process.env[name];
     }
+    Object.assign(process.env, savedEnv);
   }
 }
 

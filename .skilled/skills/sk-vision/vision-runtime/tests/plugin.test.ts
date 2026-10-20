@@ -870,30 +870,26 @@ describe("v2 grace for models off the text-only list", () => {
 });
 
 describe("kill switches", () => {
-  const switchEnv = [
-    "HOOK_FLAGS_CONFIG",
-    "SYSTEM_HOOKS_DISABLED",
-    "MK_HOOKS_DISABLED",
-    "SYSTEM_SK_VISION_DISABLED",
-    "SK_VISION_AUTOINSPECT",
-  ];
-  const savedEnv: Record<string, string | undefined> = {};
+  let savedEnv: Record<string, string | undefined> = {};
+
+  const isSwitchEnv = (key: string): boolean =>
+    key.endsWith("_DISABLED") || key === "HOOK_FLAGS_CONFIG" || key === "SK_VISION_AUTOINSPECT";
 
   beforeEach(() => {
-    for (const name of switchEnv) savedEnv[name] = process.env[name];
+    // The resolver honors many aliases per concern, so any inherited `_DISABLED`
+    // name could flip a case that expects the plugin on.
+    savedEnv = Object.fromEntries(
+      Object.entries(process.env).filter(([key]) => isSwitchEnv(key)),
+    );
+    for (const name of Object.keys(savedEnv)) delete process.env[name];
     process.env.HOOK_FLAGS_CONFIG = join(tmpdir(), "sk-vision-no-hook-flags.env");
-    delete process.env.SYSTEM_HOOKS_DISABLED;
-    delete process.env.MK_HOOKS_DISABLED;
-    delete process.env.SYSTEM_SK_VISION_DISABLED;
-    delete process.env.SK_VISION_AUTOINSPECT;
   });
 
   afterEach(() => {
-    for (const name of switchEnv) {
-      const value = savedEnv[name];
-      if (value === undefined) delete process.env[name];
-      else process.env[name] = value;
+    for (const name of Object.keys(process.env)) {
+      if (isSwitchEnv(name)) delete process.env[name];
     }
+    Object.assign(process.env, savedEnv);
   });
 
   it("registers the command on OpenCode 2 when no switch is set", async () => {
