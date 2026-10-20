@@ -59,8 +59,8 @@ contextType: "general"
 - [x] T012 Lint the changed workflows (`scratch/after/workflow-lint.txt`) Done: `check-gate-inputs.sh` RESULT: PASSED with 0 failures, and `actionlint` exit 0 on all three.
 - [x] T013 Run the changed suites after the edits (`scratch/after/`) Done: the hooks tree passes 204 of 204 and the sk-code script tests 27 of 27 (`scratch/after/sk-code-script-tests.txt`), and the sk-doc script suite passes 35 with 1 skipped as in CI (`scratch/after/sk-doc-script-tests.txt`).
 - [x] T014 Review the change read-only with Luna until PASS (`scratch/review/`) Done: round 1 FAIL (row 33 suite only under the advisory runner; row 28 evidence used `--no-install`), round 2 FAIL (packet marked Complete before the CI proof; installed-state audit run lacked its exit), round 3 PASS with one P2, a missing sk-code run log, now `scratch/after/sk-code-script-tests.txt`.
-- [ ] T015 Validate this folder strict and 082 recursively, each RESULT: PASSED
-- [ ] T016 Rows 17 and 28: prove the `hooks-vitest` job and the audit step pass on CI at the pushed main commit
+- [x] T015 Validate this folder strict and 082 recursively, each RESULT: PASSED Done: after the main merge, the recursive strict run over 082 printed RESULT: PASSED for all 23 folders, exit 0.
+- [x] T016 Rows 17 and 28: prove the `hooks-vitest` job and the audit step pass on CI at the pushed main commit Done: at main `bb0680d9bb`, Dispatch Enforcement Guard run 39389716576 passed both jobs, and `hooks-vitest` ran 6 files and 204 of 204 tests. The same commit passed sk-code Script Tests (39389716546), sk-doc Script Tests (39389716415, both node tests PASS), OpenCode Dual-Version Battery (39389716463, the unit-test step 35 of 35 on v1 and v2) and Spec-Kit Check (39389716535).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,9 +68,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

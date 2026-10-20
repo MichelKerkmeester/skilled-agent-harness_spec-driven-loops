@@ -1,0 +1,38 @@
+✔ the plugin folder matches the inventory manifest (20.682375ms)
+✔ readInventory reports an unlisted file, a missing manifest file and a bridged exception (3.974625ms)
+✔ every bridged plugin maps all of its hooks (175.080041ms)
+✖ every handled event name reaches v2 plugins or is listed (27.990667ms)
+✔ every event an unscanned check covers reaches v2 plugins or is listed (0.308958ms)
+✔ every listed event is still handled by a plugin (35.757791ms)
+✔ every listed skipped hook names a bridged plugin (2.533583ms)
+✔ stripComments keeps strings and drops comments (0.183541ms)
+✔ handledEventNames reads both quote styles, both orders and case labels (0.163333ms)
+✔ handledEventNames reads names from a resolved collection (0.977917ms)
+✔ unscannedEventChecks reports checks the scan cannot read (182.026791ms)
+✔ unscannedEventChecks fails closed on forms it cannot resolve (0.247916ms)
+✔ every unscanned event check is listed (70.644708ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 579.7095
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:165:1
+✖ every handled event name reaches v2 plugins or is listed (27.990667ms)
+  AssertionError [ERR_ASSERTION]: session-cleanup.js handles session.bogus, which the bridge neither maps nor aliases and the manifest does not list
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/plugin-inventory.test.cjs:173:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

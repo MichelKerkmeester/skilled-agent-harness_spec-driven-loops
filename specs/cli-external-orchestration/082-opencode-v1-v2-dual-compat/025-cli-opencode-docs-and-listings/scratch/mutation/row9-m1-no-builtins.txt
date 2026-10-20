@@ -1,0 +1,6 @@
+# mutation m1-no-builtins: V2_BUILTIN_COMMANDS emptied, so init and review are not subtracted
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (18.616792ms)
+ℹ pass 35
+ℹ fail 1
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (18.616792ms)
+exit 1

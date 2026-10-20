@@ -1,0 +1,9 @@
+# mutation row10-m0: the new test run against the cli-opencode docs as they are on main (git archive HEAD)
+✖ no current doc names the retired opencode-go id (44.736042ms)
+ℹ pass 2
+ℹ fail 1
+✖ failing tests:
+✖ no current doc names the retired opencode-go id (44.736042ms)
+  AssertionError [ERR_ASSERTION]: opencode-go/deepseek-v4-flash is retired, but it is still named at:
+offender lines: 66
+exit 1

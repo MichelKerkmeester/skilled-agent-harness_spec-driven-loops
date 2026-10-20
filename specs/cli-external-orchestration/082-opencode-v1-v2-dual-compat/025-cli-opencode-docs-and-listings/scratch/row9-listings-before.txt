@@ -1,0 +1,9 @@
+# Command listings in worktree 164 (nested inside the main checkout), before any change
+v1 1.19.3 debug config command keys: 40
+v2 2.0.32 GET /api/command: 42
+files under .opencode/commands/**/*.md: 40
+v2 minus v1: ["init","review"]
+v1 minus v2: []
+tree minus v1: []
+v1 minus tree: []
+A raw v1-to-v2 comparison reports init and review as drift; the main checkout above this worktree holds the same 40 files today, so the walk-up adds nothing visible right now (a read-only `find .skilled/commands -name "*.md"` in the main checkout lists the same 40 names, diff empty).

@@ -1,0 +1,7 @@
+PASS mode=coverage scope=all-skills docs=101 carrying-detailed-block=101 violations=0
+frontmatter exit 0
+check-markdown-links: 7762 files, 14149 links checked, 0 broken
+OK — 0 broken markdown links.
+links exit 0
+validate-playbook-package: unknown argument: .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+playbook exit 2

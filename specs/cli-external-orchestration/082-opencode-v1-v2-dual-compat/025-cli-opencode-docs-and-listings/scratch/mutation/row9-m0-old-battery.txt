@@ -1,0 +1,20 @@
+# mutation m0-old-battery: the battery as it is on main, new tests unchanged
+✖ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (1.470042ms)
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (7.942083ms)
+✖ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (20.20875ms)
+✖ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (6.984375ms)
+✖ C4: v2 fails when a project command file is missing from the listing (6.226625ms)
+✖ C5: a listing that did not parse fails command-listed on either family (2.057084ms)
+✖ C6: a command file in the global config folder is allowed on both families (7.170125ms)
+✖ C7: both command folder spellings are read, with slashed names and a followed link (11.255583ms)
+ℹ pass 26
+ℹ fail 10
+✖ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (1.470042ms)
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (7.942083ms)
+✖ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (20.20875ms)
+✖ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (6.984375ms)
+✖ C4: v2 fails when a project command file is missing from the listing (6.226625ms)
+✖ C5: a listing that did not parse fails command-listed on either family (2.057084ms)
+✖ C6: a command file in the global config folder is allowed on both families (7.170125ms)
+✖ C7: both command folder spellings are read, with slashed names and a followed link (11.255583ms)
+exit 1

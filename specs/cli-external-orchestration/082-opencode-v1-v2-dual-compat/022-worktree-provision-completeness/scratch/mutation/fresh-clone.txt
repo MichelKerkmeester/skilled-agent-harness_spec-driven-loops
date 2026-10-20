@@ -1,0 +1,40 @@
+# Fresh-clone provisioning with only the CI toolchain on PATH
+$ git clone -q --no-hardlinks <worktree> <scratch>/fresh
+clone exit=0
+cloned HEAD: b0133e893a0318b373bddfb1070e8c135ac97eeb; worktree HEAD: b0133e893a0318b373bddfb1070e8c135ac97eeb
+$ cp the worktree's uncommitted worktree-naming.sh and worktree-provision-paths.txt into the clone
+sha256 worktree-naming.sh worktree=03fd114b7db9cd2a clone=03fd114b7db9cd2a
+sha256 worktree-provision-paths.txt worktree=1fb7c3721b60d961 clone=1fb7c3721b60d961
+CIPATH=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g022/bun/node_modules/.bin:/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin:/usr/bin:/bin:/usr/sbin:/sbin (each nested shell re-exports it, since a login profile prepends ~/.local/bin on this machine)
+$ env -i HOME=$HOME PATH=$CIPATH bash -c 'set -euo pipefail; export PATH="$CIPATH"; source .skilled/skills/sk-git/scripts/worktree-naming.sh; provision_worktree "$PWD"'
+node /Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin/node v22.23.1, npm 10.9.8, bun 1.3.9
+  provisioning .skilled (npm ci)
+  provisioning .opencode (npm ci)
+  provisioning .skilled/skills/sk-vision/vision-runtime (bun install)
+  building .skilled/skills/sk-vision/vision-runtime
+  provisioning .skilled/skills/system-spec-kit (npm ci)
+  building .skilled/skills/system-spec-kit/runtime
+  building .skilled/skills/system-spec-kit/runtime/cli
+  provisioning .skilled/skills/system-skill-advisor/runtime (npm ci)
+  building .skilled/skills/system-skill-advisor/runtime
+  provisioning .skilled/skills/system-deep-loop (npm ci)
+  provisioning .skilled/skills/system-deep-loop/runtime (npm ci)
+  provisioning .skilled/skills/sk-doc (npm ci)
+  provisioning .pi/extensions/pi-cache-optimizer (npm ci)
+  provisioning .pi/extensions/pi-fast-mode-w-subagent-support (npm ci)
+  provisioning .skilled/skills/sk-design/sk-design-md-generator/backend (npm ci)
+  building .skilled/skills/sk-design/sk-design-md-generator/backend
+provisioned: 11 installed, 5 built, 3 already present, 0 failed
+provision exit=0 seconds=43
+$ (cd .pi/extensions/pi-cache-optimizer && env -i HOME=$HOME PATH=$CIPATH npm test)
+# pass 118
+# fail 0
+test exit=0
+$ (cd .pi/extensions/pi-fast-mode-w-subagent-support && env -i HOME=$HOME PATH=$CIPATH npm test)
+ Test Files  7 passed (7)
+      Tests  81 passed (81)
+test exit=0
+$ (cd .skilled/skills/sk-design/sk-design-md-generator/backend && env -i HOME=$HOME PATH=$CIPATH npm test)
+ Test Files  20 passed (20)
+      Tests  176 passed (176)
+test exit=0

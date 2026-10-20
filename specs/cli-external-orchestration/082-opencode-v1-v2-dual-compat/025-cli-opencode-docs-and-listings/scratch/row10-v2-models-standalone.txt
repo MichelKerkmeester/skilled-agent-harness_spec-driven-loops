@@ -1,0 +1,6 @@
+# opencode2 2.0.32: opencode2 models --standalone (private server, private OPENCODE_DB, data home holding only a copy of auth.json, removed after); provider prefixes counted
+  18 cline-pass
+ 215 llmgateway
+ 438 llmgateway-providers
+  10 opencode
+exit 0

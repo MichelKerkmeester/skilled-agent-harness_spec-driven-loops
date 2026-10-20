@@ -1,0 +1,11 @@
+# npm 11.19.1 on node 26.8.2 against a lockfile missing a declared dependency, plus a listed path with no package.json
+  provisioning pkg (npm ci)
+  FAILED: pkg
+    npm error code EUSAGE
+    npm error
+    npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+    npm error
+    lockfile drift: package.json and its lockfile disagree; run npm install in pkg and commit the lockfile
+  WARNING: gone is listed but has no package.json; skipped
+provisioned: 0 installed, 0 built, 0 already present, 1 failed
+exit=1

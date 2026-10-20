@@ -1,0 +1,10 @@
+# mutation m2-no-walk-up: the ancestor walk-up normalisation removed
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (15.770792ms)
+✖ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (19.203666ms)
+✖ C6: a command file in the global config folder is allowed on both families (10.129667ms)
+ℹ pass 33
+ℹ fail 3
+✖ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (15.770792ms)
+✖ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (19.203666ms)
+✖ C6: a command file in the global config folder is allowed on both families (10.129667ms)
+exit 1

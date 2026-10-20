@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -60,7 +60,7 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -85,7 +85,7 @@ On OpenCode 1, the dispatched session loads the `system-skill-advisor` skill, ca
 
 ### What it does
 
-On OpenCode 1, a second `opencode run --share --port <N>` invocation from inside an existing OpenCode session spawns a separate session with its own session id, its own state directory, and a publishable share URL. The original session continues unaffected.
+On OpenCode 1, a second `opencode run --port <N>` invocation from inside an existing OpenCode session spawns a separate session with its own session id and its own state directory. Nothing is published: `--share` is a deprecated no-op on 1.19.3, so no dispatch passes it. The original session continues unaffected.
 
 ### Why it matters
 
@@ -93,7 +93,6 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 
 - A unique session id (not a fork of the parent)
 - An independent state directory (no shared `messages.jsonl`)
-- An optional share URL so the operator can inspect it from a browser
 - The same plugin / skill / MCP runtime as the parent
 
 ### Invocation shape
@@ -101,9 +100,8 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --share \
   --port 4096 \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent deep-research \
   --variant max \
   --format json \
@@ -111,7 +109,7 @@ opencode run \
   "Run iteration N of the deep-research loop for the approved spec folder. State file at scratch/iteration-N.jsonl."
 ```
 
-On OpenCode 2, `--share` and `--port` have no `run` form (OpenCode 1 only). See `./install-and-versions.md`.
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `./install-and-versions.md`.
 
 The skill's smart router gates this use case behind ADR-001's self-invocation signal. When the signal trips AND the prompt explicitly names a parallel detached session, the router permits the dispatch. Otherwise it refuses (see `./integration-patterns.md` for the full decision tree).
 
@@ -133,7 +131,7 @@ External runtimes (Claude Code, OpenCode, Copilot) parse the event stream increm
 # On OpenCode 1 (1.19.3):
 opencode run \
   --format json \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent general \
   --variant max \
   --dir /repo \
@@ -168,7 +166,7 @@ cd /repo && opencode2 run --standalone \
 
 ### What it does
 
-The `--agent <slug>` flag loads an agent definition from `.skilled/agents/<slug>.md`. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
+The `--agent <slug>` flag loads an agent definition from `.opencode/agents/<slug>.md`, which in this repository links to `.skilled/agents/`, where the files are edited. The frontmatter pins the model, tool permissions, and system prompt. Specialized agents (`deep-research`, `deep-review`, `context`, `review`, `ai-council`, etc.) provide domain-specific behavior the calling AI can target. OpenCode 2.0.32 loads the same definitions and registers their mode, permissions and temperature. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so a pinned model against `-m` is untested there.
 
 ### Why it matters
 
@@ -180,7 +178,7 @@ Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` fl
 # On OpenCode 1 (1.19.3):
 opencode run \
   --agent deep-review \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -217,7 +215,7 @@ A calling AI in one repo (e.g. a sibling project) can dispatch into a different 
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
   --dir /path/to/other-repo \
-  --model opencode-go/deepseek-v4-flash \
+  --model opencode-go/deepseek-v4.1-flash \
   --agent general \
   --variant max \
   --format json \

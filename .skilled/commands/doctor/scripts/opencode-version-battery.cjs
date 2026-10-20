@@ -5,8 +5,9 @@
 'use strict';
 
 // Compatibility battery for the OpenCode v1 and v2 surfaces: it proves the
-// plugin folder is discovered, importable and active, and that the skill folder
-// is visible, on whichever major version is installed.
+// plugin folder is discovered, importable and active, that the skill folder is
+// visible, and that the command listing matches the repository's command files,
+// on whichever major version is installed.
 //
 // Every binary runs against a private data home, and the v2 leg starts its own
 // `serve` on a loopback port with a private database, so the shared service is
@@ -51,6 +52,10 @@ const VERSION_PATTERN = /^\s*(?:[A-Za-z][\w.-]*\s+)?[vV]?(\d+)\.(\d+)\.(\d+)(?:[
 
 const FAMILIES = ['v1', 'v2'];
 const PLUGIN_DIR_PARTS = ['.opencode', 'plugins'];
+
+// v2 always registers these two commands and neither lives in a command folder,
+// so a listing that carries them is never a stray.
+const V2_BUILTIN_COMMANDS = ['init', 'review'];
 
 const PROBE_TIMEOUT_MS = 5000;
 const CONFIG_TIMEOUT_MS = 60000;
@@ -135,6 +140,87 @@ function entryLabel(entry) {
   const sourcePath = typeof entry?.source?.path === 'string' ? entry.source.path : null;
   if (sourcePath) return path.basename(sourcePath);
   return typeof entry?.id === 'string' ? entry.id : 'plugin entry';
+}
+
+// Lists the command names one config directory registers: every `.md` file under
+// its `command` and `commands` folders, named by the relative path without the
+// extension, because that is the name the runtime answers to.
+function listCommandNames(dir) {
+  const names = [];
+  const seen = new Set();
+
+  const walk = (current, prefix) => {
+    let real;
+    try {
+      real = fs.realpathSync(current);
+    } catch {
+      return;
+    }
+    // A linked folder can point back at an ancestor, so a visited real path ends the walk.
+    if (seen.has(real)) return;
+    seen.add(real);
+
+    let entries;
+    try {
+      entries = fs.readdirSync(current, { withFileTypes: true });
+    } catch (error) {
+      if (error?.code === 'ENOENT') return;
+      throw error;
+    }
+
+    for (const entry of entries) {
+      const full = path.join(current, entry.name);
+      let stat;
+      try {
+        stat = fs.statSync(full); // stat follows a link, so a linked file or folder still counts.
+      } catch {
+        continue; // A broken link registers no command.
+      }
+      if (stat.isDirectory()) {
+        walk(full, `${prefix}${entry.name}/`);
+      } else if (stat.isFile() && entry.name.endsWith('.md')) {
+        names.push(`${prefix}${entry.name.slice(0, -'.md'.length)}`);
+      }
+    }
+  };
+
+  for (const folder of ['command', 'commands']) walk(path.join(dir, folder), '');
+  return [...new Set(names)].sort();
+}
+
+// Names the command folders a runtime may legitimately list beyond the project's
+// own: the global config directories it reads, the ancestor folders v2 merges as
+// well, and the v2 built-ins that live in no folder at all.
+function allowedCommandSources(root, family, env) {
+  const required = listCommandNames(path.join(root, '.opencode'));
+  const allowed = new Set();
+
+  const home = typeof env?.HOME === 'string' && env.HOME.length > 0 ? env.HOME : null;
+  const configHome = typeof env?.XDG_CONFIG_HOME === 'string' && env.XDG_CONFIG_HOME.length > 0
+    ? env.XDG_CONFIG_HOME
+    : (home ? path.join(home, '.config') : null);
+  const globalDirs = [];
+  if (configHome) globalDirs.push(path.join(configHome, 'opencode'));
+  if (home) globalDirs.push(path.join(home, '.opencode'));
+  if (typeof env?.OPENCODE_CONFIG_DIR === 'string' && env.OPENCODE_CONFIG_DIR.length > 0) {
+    globalDirs.push(env.OPENCODE_CONFIG_DIR);
+  }
+  for (const dir of globalDirs) for (const name of listCommandNames(dir)) allowed.add(name);
+
+  if (family === 'v2') {
+    // v2 walks past the repository root and merges each ancestor's `.opencode`, so a
+    // worktree nested inside another checkout also lists that checkout's commands.
+    let current = path.dirname(root);
+    while (true) {
+      for (const name of listCommandNames(path.join(current, '.opencode'))) allowed.add(name);
+      const parent = path.dirname(current);
+      if (parent === current) break;
+      current = parent;
+    }
+    for (const name of V2_BUILTIN_COMMANDS) allowed.add(name);
+  }
+
+  return { required, allowed };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -411,17 +497,30 @@ function legPluginActive(files, reads, root) {
   );
 }
 
-// A server that never started makes both v2 legs unjudgeable, so they degrade
+// A server that never started makes every v2 leg unjudgeable, so they degrade
 // with the collector's reason instead of failing on evidence nobody gathered.
-function legsForV2(files, v2, root) {
+// A command listing that never settled degrades for the same reason: its last
+// body is not a final one, so judging it would read an unsettled list as truth.
+function legsForV2(files, v2, root, env) {
   if (!v2 || v2.started !== true) {
     const reason = v2?.reason || 'the private v2 server did not start';
     return [
       makeResult('plugin-active', 'v2', 'DEGRADED', reason),
       makeResult('skill-visible', 'v2', 'DEGRADED', reason),
+      makeResult('command-listed', 'v2', 'DEGRADED', reason),
     ];
   }
-  return [legPluginActive(files, v2.reads, root), legSkillVisible(v2.skills, root)];
+  const commandLeg = v2.commandsStable === true
+    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env))
+    : makeResult(
+      'command-listed', 'v2', 'DEGRADED', 'the command listing never settled on a non-zero count',
+      [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],
+    );
+  return [
+    legPluginActive(files, v2.reads, root),
+    legSkillVisible(v2.skills, root),
+    commandLeg,
+  ];
 }
 
 // Passes when the skill endpoint lists at least one entry from this root, so a
@@ -437,6 +536,51 @@ function legSkillVisible(response, root) {
   return makeResult(
     'skill-visible', 'v2', 'PASS', `${visible.length} skill entries visible`,
     [`entries: ${response.data.length}`, `visible: ${visible.length}`],
+  );
+}
+
+// Names the commands a v1 config registers, or null when the config did not
+// parse, so an unreadable config is never read as an empty listing.
+function commandNamesFromConfig(debugConfig) {
+  const commands = parseJsonObject(String(debugConfig?.stdout ?? ''))?.command;
+  if (!commands || typeof commands !== 'object' || Array.isArray(commands)) return null;
+  return Object.keys(commands);
+}
+
+// Names the commands in a v2 listing, or null when the body did not parse, for
+// the same reason a v1 config that did not parse carries no names.
+function commandNamesFromResponse(response) {
+  if (!response || typeof response !== 'object' || !Array.isArray(response.data)) return null;
+  return response.data
+    .map((entry) => entry?.name)
+    .filter((name) => typeof name === 'string' && name.length > 0);
+}
+
+// Fails when a project command file is missing from the listing or a listed name
+// comes from no folder this runtime reads, so a global, inherited or built-in
+// command is never counted as a stray.
+function legCommandListed(family, listed, sources) {
+  if (!Array.isArray(listed)) {
+    return makeResult('command-listed', family, 'FAIL', 'the command listing did not parse');
+  }
+
+  const { required, allowed } = sources;
+  const present = new Set(listed);
+  const details = [];
+
+  for (const name of required) {
+    if (!present.has(name)) details.push(`${name}: in the command folder, not listed`);
+  }
+  for (const name of listed) {
+    if (!required.includes(name) && !allowed.has(name)) details.push(`${name}: listed, in no command folder`);
+  }
+
+  if (details.length > 0) {
+    return makeResult('command-listed', family, 'FAIL', 'the command listing does not match the command folders', details);
+  }
+  return makeResult(
+    'command-listed', family, 'PASS', `all ${required.length} command files listed`,
+    [`listed: ${listed.length}`, `required: ${required.length}`],
   );
 }
 
@@ -510,8 +654,12 @@ async function main(argv, deps = {}) {
           results.push(makeResult('plugin-load', 'v1', 'FAIL', error.message));
           continue;
         }
-        results.push(legPluginDiscovered(files, runtime.runDebugConfig(selected.path, args.root)));
+        const debugConfig = runtime.runDebugConfig(selected.path, args.root);
+        results.push(legPluginDiscovered(files, debugConfig));
         results.push(legPluginLoad(files, runtime.runHarness(args.root)));
+        results.push(legCommandListed(
+          'v1', commandNamesFromConfig(debugConfig), allowedCommandSources(args.root, 'v1', runtime.env),
+        ));
       } else {
         let files = [];
         try {
@@ -520,7 +668,7 @@ async function main(argv, deps = {}) {
           if (error?.code !== 'NO_PLUGIN_DIR') throw error;
         }
         const v2 = await runtime.readV2(selected.path, args.root);
-        results.push(...legsForV2(files, v2, args.root));
+        results.push(...legsForV2(files, v2, args.root, runtime.env));
       }
     }
 
@@ -764,9 +912,10 @@ function readApiJson(bin, serverUrl, apiPath, env, cwd) {
   }
 }
 
-// Starts a private v2 server on a free loopback port, reads the plugin endpoint
-// until its count stabilises, then reads the skill endpoint; the server is killed
-// and the private folder removed on every path, including a thrown error or a signal.
+// Starts a private v2 server on a free loopback port, reads the plugin and the
+// command endpoint until each count stabilises, then reads the skill endpoint; the
+// server is killed and the private folder removed on every path, including a
+// thrown error or a signal.
 async function readV2(bin, root, env = process.env) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-v2-'));
   const childEnv = {
@@ -835,7 +984,30 @@ async function readV2(bin, root, env = process.env) {
 
     const skillPath = `/api/skill?location%5Bdirectory%5D=${encodeURIComponent(root)}`;
     const skills = readApiJson(bin, serverUrl, skillPath, apiEnv, root);
-    return { started: true, reason: 'the private v2 server answered', reads, skills };
+
+    // The first command read after start-up can come back empty, so the listing is
+    // only judged once two consecutive reads agree on a non-zero count. The settle
+    // verdict and the counts travel with the result, so a leg can degrade on an
+    // unsettled listing instead of judging the last body as final.
+    const commandPath = `/api/command?location%5Bdirectory%5D=${encodeURIComponent(root)}`;
+    const commandCounts = [];
+    let commands = null;
+    for (let attempt = 0; attempt < READ_ATTEMPTS; attempt += 1) {
+      commands = readApiJson(bin, serverUrl, commandPath, apiEnv, root);
+      commandCounts.push(Array.isArray(commands?.data) ? commands.data.length : 0);
+      if (stableIndex(commandCounts) !== -1) break;
+      if (attempt < READ_ATTEMPTS - 1) await sleep(READ_INTERVAL_MS);
+    }
+
+    return {
+      started: true,
+      reason: 'the private v2 server answered',
+      reads,
+      skills,
+      commands,
+      commandCounts,
+      commandsStable: stableIndex(commandCounts) !== -1,
+    };
   } finally {
     await cleanup();
     process.removeListener('SIGINT', onSigint);
@@ -866,6 +1038,9 @@ function defaultDeps() {
 module.exports = {
   parseVersion,
   parseArgs,
+  listCommandNames,
+  allowedCommandSources,
+  V2_BUILTIN_COMMANDS,
   listPluginFiles,
   selectBinary,
   legFamilyPresent,
@@ -875,6 +1050,7 @@ module.exports = {
   legPluginActive,
   legsForV2,
   legSkillVisible,
+  legCommandListed,
   worstExit,
   formatHuman,
   main,

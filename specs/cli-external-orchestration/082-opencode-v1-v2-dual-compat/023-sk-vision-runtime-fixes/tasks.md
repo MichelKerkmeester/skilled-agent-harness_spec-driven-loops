@@ -65,6 +65,7 @@ contextType: "general"
 - [x] T018 Review round 2 with Luna, read-only (`scratch/final/luna-review-2.txt`) Done: PASS on all nine rows.
 - [x] T019 Fill this folder's records and the parent phase rows (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`) Done: every placeholder replaced, and the parent carries the phase 23 row in the documentation map and the 014-to-023 handoff row.
 - [x] T020 Run strict validation of this folder (`bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes --strict`) Done: `RESULT: PASSED` with no errors.
+- [x] T021 Row 13 follow-up: refresh the sk-doc durable-directory manifest after the test move (`.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`) Done: CI's sk-doc Script Tests failed on main commit `cc9c933980` because `vision-runtime/src/opencode` no longer qualifies once its tests left; `test_readme_manifest.py --write` dropped that one entry (786 to 785 directories), and the local sk-doc script suite then passed (`scratch/final/sk-doc-script-tests.txt`).
 <!-- /ANCHOR:phase-3 -->
 
 ---

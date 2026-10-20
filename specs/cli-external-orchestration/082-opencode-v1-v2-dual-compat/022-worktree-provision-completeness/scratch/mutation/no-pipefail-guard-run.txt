@@ -1,0 +1,4 @@
+# new tests against the new script minus the '|| true' on the error-line pipeline
+FAIL: a silent install failure under set -e reaches the summary (rc=1 exp=0)
+worktree-naming tests: PASS=108 FAIL=1
+exit=1

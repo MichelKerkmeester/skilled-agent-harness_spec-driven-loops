@@ -37,7 +37,7 @@
   {
     "id": "share-requires-confirmation",
     "check": "share-requires-confirmation",
-    "message": "`--share` publishes the session and requires prior operator confirmation.",
+    "message": "`--share` publishes nothing: OpenCode 1.19.3 discontinued session sharing and OpenCode 2 `run` has no such flag. Drop it.",
     "severity": "warn",
     "appliesTo": ["v1", "v2"]
   }

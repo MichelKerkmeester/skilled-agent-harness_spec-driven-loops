@@ -1,0 +1,40 @@
+✖ the plugin folder matches the inventory manifest (20.447291ms)
+✔ readInventory reports an unlisted file, a missing manifest file and a bridged exception (2.885166ms)
+✔ every bridged plugin maps all of its hooks (80.13775ms)
+✔ every handled event name reaches v2 plugins or is listed (7.163416ms)
+✔ every listed event is still handled by a plugin (6.879959ms)
+✔ every listed skipped hook names a bridged plugin (2.534167ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.30125
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:78:1
+✖ the plugin folder matches the inventory manifest (20.447291ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'zz-probe.js is not bridged and not listed as a native-dual exception'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/plugin-inventory.test.cjs:80:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'zz-probe.js is not bridged and not listed as a native-dual exception' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit 1

@@ -1,0 +1,38 @@
+# opencode 1.19.3: opencode agent list, run from the worktree root, private data home
+build (primary)
+]
+compaction (primary)
+]
+explore (subagent)
+]
+general (subagent)
+]
+plan (primary)
+]
+summary (primary)
+]
+title (primary)
+]
+ai-council (subagent)
+]
+code (subagent)
+]
+context (subagent)
+]
+debug (subagent)
+]
+deep-research (subagent)
+]
+deep-review (subagent)
+]
+design (subagent)
+]
+markdown (all)
+]
+orchestrate (primary)
+]
+prompt-improver (subagent)
+]
+review (subagent)
+]
+exit 0

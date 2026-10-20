@@ -1,14 +1,14 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.5.0
+version: 1.4.7.0
 ---
 
 # cli-opencode: Manual Testing Playbook
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `opencode run` invocations, inspect real outputs, capture real exit codes and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
-> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords (OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
+> **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--port <N>` with explicit parallel-session keywords (OpenCode 1 only, with no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 > **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
@@ -46,6 +46,8 @@ This playbook provides 55 deterministic scenarios across 13 categories validatin
 
 Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
+> **Since then:** OpenCode 1.19.3 discontinued session sharing, so the operator-confirmed `--share` flows the coverage note mentions no longer publish anything, and the default model is now `opencode-go/deepseek-v4.1-flash`. See SKILL.md NEVER rule 2 and `references/providers-and-models.md`.
+
 ### Realistic Test Model
 
 1. A realistic user request is given to an orchestrator running on a non-OpenCode runtime (Claude Code, Copilot or raw shell), OR an in-OpenCode operator with explicit parallel-session keywords.
@@ -68,12 +70,12 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. On OpenCode 1, the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. OpenCode 2 is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). Drift handled per `references/cli-reference.md` §9.
-4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
+4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4.1-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.
 8. The operator's repo root resolves via `REPO_ROOT="$(pwd)"` (run from the project root). On OpenCode 1, most scenarios pass `--dir "$(pwd)"` directly so they portably target whichever repo the operator runs them in (OpenCode 2 has no `--dir`, so it starts in the directory instead: `cd <path> && opencode2 run ...`). The `<repo-root>` placeholders in prose refer to the same value. Adapt to a different absolute path only if a scenario explicitly requires a non-default repo (e.g., CO-029 cross-repo dispatch derives a sibling path via `dirname "$(pwd)"`).
-9. Destructive scenarios involving `--share` (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. These are OpenCode 1 only scenarios, because OpenCode 2 `run` has no `--share` or `--dir` ([install reference](../references/install-and-versions.md)). Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. Each MUST NOT publish the share URL to anyone without explicit operator confirmation per CHK-033. Recovery is mandatory after every run (pass or fail). Step (a) revoke every captured share URL via `opencode session revoke ${SESSION_ID}`. Step (b) remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/`. The test only validates the session-creation path. No real URL publication occurs.
+9. Destructive scenarios (CO-026, CO-027, CO-028) MUST follow strict sandboxing and recovery rules. These are OpenCode 1 only scenarios, because OpenCode 2 `run` has no `--port` or `--dir` ([install reference](../references/install-and-versions.md)). Each MUST run with `--dir /tmp/co-share-sandbox-NNN/` (where NNN is the scenario ID). Each MUST NOT run with `--dir` pointing at the operator project tree. No scenario passes `--share`: on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, so these scenarios publish nothing. Recovery is mandatory after every run (pass or fail): remove the sandbox tmpdir via `rm -rf /tmp/co-share-sandbox-NNN/` and confirm the capture files are outside the project tree.
 
 ---
 
@@ -88,7 +90,7 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 - Session id captured from the `sessionID` field of the event stream
 - The final `text` event summary
 - The final user-facing outcome and a PASS, PARTIAL or FAIL verdict with rationale
-- For destructive `--share` scenarios (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)), capture explicit operator confirmation per CHK-033 (or notation that the share URL was NOT published)
+- For the CHK-033 destructive scenarios (CO-026, CO-027, CO-028), capture the sandbox `--dir` value and confirm the dispatch transcript contains no `--share` invocation (on OpenCode 1 it publishes nothing, and OpenCode 2 `run` has no such flag, see the [install reference](../references/install-and-versions.md))
 
 ---
 
@@ -170,7 +172,7 @@ This section records wave planning and capacity guidance for the manual testing 
 5. Run parallel detached scenarios (CO-026, CO-027, CO-028) in a dedicated wave with isolated port range (e.g., 4096-4299) to avoid port collisions with other workloads.
 6. After each wave, save context and evidence (JSON event streams, session ids, ratio computations), then begin the next wave.
 7. Record utilization table, per-feature file references and evidence paths in the final report.
-8. Operator confirmation required per CHK-033 before any `--share` URL is actually published (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). The playbook validates session creation only.
+8. No scenario passes `--share` (OpenCode 1 treats it as a hidden, deprecated no-op that publishes nothing, and OpenCode 2 `run` has no such flag, see the [install reference](../references/install-and-versions.md)). The playbook validates session creation only.
 
 ### Recommended Wave Plan
 
@@ -197,7 +199,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`). Both versions emit the same event schema (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+On OpenCode 1, verify the canonical `opencode run --model opencode-go/deepseek-v4.1-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime. OpenCode 2 has no `--dir` (start in the directory: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"`). Both versions emit the same event schema (`step_start`, `tool_use`, `text` and `step_finish`, with the session id in `sessionID`). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 #### Scenario Contract
 
@@ -478,7 +480,7 @@ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs descri
 
 ## 11. SESSION CONTINUITY (`CO-018..CO-020`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` URL gate (CHK-033), which is OpenCode 1 only, with no OpenCode 2 `run` equivalent ([install reference](../references/install-and-versions.md)).
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` prohibition: on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, and OpenCode 2 `run` has no such flag ([install reference](../references/install-and-versions.md)).
 
 ### CO-018 | Continue last session via -c
 
@@ -516,13 +518,13 @@ Expected signals: Both exit 0. SID captured non-empty. Second turn references pr
 
 #### Description
 
-Verify `--fork --continue` creates a new session id distinct from the parent, AND that `--share` is documented as opt-in requiring operator confirmation per CHK-033 (NEVER rule 2). The `--share` gate is OpenCode 1 only, with no OpenCode 2 `run` equivalent ([install reference](../references/install-and-versions.md)).
+Verify `--fork --continue` creates a new session id distinct from the parent, AND that SKILL.md NEVER rule 2 forbids `--share` and states it is a deprecated no-op. On OpenCode 1 `--share` publishes nothing, and OpenCode 2 `run` has no such flag ([install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is documented as opt-in requiring operator confirmation per CHK-033 (OpenCode 1 only, because OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an external-AI conductor verifying both --fork and --share contracts, (1) dispatch a first turn and capture its session id, (2) dispatch a second turn with --fork --continue and capture the new session id, (3) verify the new session id is distinct from the first turn's id, AND (4) grep the cli-opencode SKILL.md NEVER rules to confirm --share is forbidden and documented as a deprecated no-op (OpenCode 1 treats `--share` as a deprecated no-op, and OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
 
-Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 cites the `--share` confirmation requirement (OpenCode 1 only, no OpenCode 2 `run` equivalent, see the [install reference](../references/install-and-versions.md)). CHK-033 referenced.
+Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 forbids `--share` and states it is a hidden, deprecated flag that publishes nothing (OpenCode 2 `run` has no `--share`, see the [install reference](../references/install-and-versions.md)).
 
 #### Test Execution
 
@@ -648,11 +650,11 @@ This category covers 3 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify `opencode run --share --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
+Verify `opencode run --port <N>` (with explicit parallel-session keywords in the prompt) creates a SEPARATE session with its own session id and its own state directory under `~/.opencode/state/` and the dispatch is NOT refused by the self-invocation guard (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --share --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
+Prompt summary: As an in-OpenCode operator (or external runtime simulating one) spawning a parallel detached OpenCode session for a small isolated worker task, dispatch opencode run with --port 4096 and a prompt that explicitly says "parallel detached session" + "ablation suite" so the smart router permits use case 2. Verify the dispatch creates a new session with its own session id, its own state directory at ~/.opencode/state/<id>/ and that the dispatch is NOT refused (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)).
 
 Expected signals: Exit 0. New SID captured non-empty. State directory exists. Zero refusal messages.
 
@@ -668,7 +670,7 @@ Verify a 3-worker farm loop with the documented `</dev/null` redirect spawns all
 
 #### Scenario Contract
 
-Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --share --port (4100 + N) and a small isolated task (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)). Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
+Prompt summary: As an in-OpenCode operator (or fresh shell) running a parallel worker farm, dispatch a 3-worker loop using TEMPLATE 8 from prompt_templates.md. Each worker uses opencode run with --port (4100 + N) and a small isolated task (OpenCode 1 only, because OpenCode 2 `run` has no `--share` or `--port`, see the [install reference](../references/install-and-versions.md)). Critically, append the documented </dev/null redirect to each backgrounded invocation. After the loop, wait for all workers to complete and verify all 3 produced output files.
 
 Expected signals: WAIT exit 0. 3 logs with content. 3 distinct session ids. Each worker references its own number.
 

@@ -159,8 +159,9 @@ export const CHECKS = {
     return /--command(\s|=)/.test(cmd);
   },
   'v2-slash-prompt-route': (cmd) => !/(?:["']|\s)\s*\/[a-z0-9]+:[a-z0-9-]+/i.test(cmd),
-  // --share publishes the session; flag for confirmation (advisory — can't verify consent
-  // here). `--share=<value>` publishes exactly as the bare flag does.
+  // --share publishes nothing: OpenCode 1.19.3 keeps it as a hidden, deprecated flag that
+  // only prints a warning, and OpenCode 2 `run` has no such flag. A dispatch that passes it,
+  // bare or as `--share=<value>`, still expects a share, so the advisory names the flag.
   'share-requires-confirmation': (cmd) => !/--share(?:\s|=|$)/.test(cmd),
   // The four availability rules below were declared with `severity: error` but had no
   // implementation, so they never refused anything. Each answers one question: does the

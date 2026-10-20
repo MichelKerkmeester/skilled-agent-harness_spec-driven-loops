@@ -1,0 +1,43 @@
+✔ the inventory names at least one bridged plugin (0.368209ms)
+✔ classifier-injection-screen registers v2 hooks (22.265292ms)
+✔ cli-dispatch-audit registers v2 hooks (2.020792ms)
+✔ codex-hooks-watchdog registers v2 hooks (0.517292ms)
+✔ mcp-route-guard registers v2 hooks (0.681042ms)
+✔ opencode-goal registers v2 hooks (6.686125ms)
+✔ session-cleanup registers v2 hooks (0.705417ms)
+✔ session-relaunch registers v2 hooks (1.413417ms)
+✔ sk-code-post-edit-quality registers v2 hooks (1.751792ms)
+✔ sk-git-message-gate registers v2 hooks (2.559666ms)
+✔ sk-git-preflight-advisory registers v2 hooks (0.656209ms)
+✔ system-completion-sentinel registers v2 hooks (1.641541ms)
+✔ system-deep-loop-guard registers v2 hooks (0.703417ms)
+✔ system-dist-freshness-guard registers v2 hooks (1.18875ms)
+✔ system-skill-advisor registers v2 hooks (6.801541ms)
+✔ system-spec-gate registers v2 hooks (2.207875ms)
+✔ system-speckit-completion registers v2 hooks (0.625208ms)
+✖ zz-probe registers v2 hooks (0.493166ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.83925
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/v2-registration.test.cjs:79:3
+✖ zz-probe registers v2 hooks (0.493166ms)
+  AssertionError [ERR_ASSERTION]: zz-probe must register at least one v2 hook
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/v2-registration.test.cjs:99:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

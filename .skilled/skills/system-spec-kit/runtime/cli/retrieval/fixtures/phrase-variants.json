@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4fbc09bf388efbc717125b0036f9ccc7fe65de379fd3137725a38bb837a7a876",
+  "manifestHash": "0f8bf6213014a6df01928b6c62231e6aa19419bf16120224a610c16ffcca20c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20433,6 +20433,18 @@
     "cli opencode deepseek deferred dispatch": [
       "cli-opencode deepseek deferred dispatch"
     ],
+    "cli opencode docs and listings": [
+      "cli opencode docs and listings"
+    ],
+    "cli opencode docs and listings implementation summary": [
+      "cli opencode docs and listings implementation summary"
+    ],
+    "cli opencode docs and listings plan": [
+      "cli opencode docs and listings plan"
+    ],
+    "cli opencode docs and listings tasks": [
+      "cli opencode docs and listings tasks"
+    ],
     "cli opencode dual dispatch": [
       "cli opencode dual dispatch"
     ],
@@ -24368,6 +24380,9 @@
     ],
     "command input gate placement": [
       "command input gate placement"
+    ],
+    "command listed battery leg": [
+      "command-listed battery leg"
     ],
     "command md yaml alignment": [
       "command md yaml alignment"
@@ -68126,6 +68141,9 @@
     "opencode session relaunch": [
       "OpenCode session relaunch"
     ],
+    "opencode share flag discontinued": [
+      "opencode share flag discontinued"
+    ],
     "opencode shell checklist": [
       "opencode shell checklist"
     ],
@@ -71899,11 +71917,17 @@
     "phase 24 plan": [
       "phase 24 plan"
     ],
+    "phase 24 plugin inventory guards": [
+      "phase 24 plugin inventory guards"
+    ],
     "phase 24 readme freshness fixes": [
       "phase 24 readme freshness fixes"
     ],
     "phase 24 tasks": [
       "phase 24 tasks"
+    ],
+    "phase 25 cli opencode docs": [
+      "phase 25 cli opencode docs"
     ],
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
@@ -74490,6 +74514,18 @@
     ],
     "plugin inventory": [
       "plugin inventory"
+    ],
+    "plugin inventory guards": [
+      "plugin inventory guards"
+    ],
+    "plugin inventory guards implementation summary": [
+      "plugin inventory guards implementation summary"
+    ],
+    "plugin inventory guards plan": [
+      "plugin inventory guards plan"
+    ],
+    "plugin inventory guards tasks": [
+      "plugin inventory guards tasks"
     ],
     "plugin knowledge deepening": [
       "Plugin Knowledge Deepening"
@@ -94682,6 +94718,9 @@
     "sk vision feature catalog": [
       "sk-vision feature catalog"
     ],
+    "sk vision fix list rows": [
+      "sk vision fix list rows"
+    ],
     "sk vision force auto inspect": [
       "sk-vision force auto-inspect"
     ],
@@ -94975,6 +95014,21 @@
     ],
     "sk vision run index": [
       "sk-vision run index"
+    ],
+    "sk vision runtime fixes": [
+      "sk vision runtime fixes"
+    ],
+    "sk vision runtime fixes from the post merge": [
+      "sk vision runtime fixes from the post merge"
+    ],
+    "sk vision runtime fixes implementation summary": [
+      "sk vision runtime fixes implementation summary"
+    ],
+    "sk vision runtime fixes plan": [
+      "sk vision runtime fixes plan"
+    ],
+    "sk vision runtime fixes tasks": [
+      "sk vision runtime fixes tasks"
     ],
     "sk vision runtime fork": [
       "sk-vision runtime fork"
@@ -111307,6 +111361,18 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
+    "worktree provision completeness": [
+      "worktree provision completeness"
+    ],
+    "worktree provision completeness implementation summary": [
+      "worktree provision completeness implementation summary"
+    ],
+    "worktree provision completeness plan": [
+      "worktree provision completeness plan"
+    ],
+    "worktree provision completeness tasks": [
+      "worktree provision completeness tasks"
+    ],
     "worktree provision paths missing packages": [
       "worktree provision paths missing packages"
     ],
@@ -111327,6 +111393,9 @@
     ],
     "worktree provisioning": [
       "worktree provisioning"
+    ],
+    "worktree provisioning completeness list every package tree guard": [
+      "worktree provisioning completeness list every package tree guard"
     ],
     "worktree provisioning drift": [
       "worktree provisioning drift"

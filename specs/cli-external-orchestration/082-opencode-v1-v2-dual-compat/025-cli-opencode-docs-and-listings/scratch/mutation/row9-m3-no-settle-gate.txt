@@ -1,0 +1,4 @@
+# mutation row9-m3: the settle gate removed (every started v2 result is judged)
+✖ C8: v2 a command listing that never settles degrades command-listed (3.8825ms)
+ℹ fail 1
+ℹ pass 36

@@ -1,0 +1,31 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness",
+  "description": "Five tracked package trees were missing from the worktree provision list, so a fresh worktree installed a subset of what the repo needs",
+  "keywords": [
+    "worktree",
+    "provisioning",
+    "completeness",
+    "list",
+    "every",
+    "package",
+    "tree",
+    "guard",
+    "report",
+    "drift",
+    "missing",
+    "manifests",
+    "detect",
+    "bun",
+    "lockb"
+  ],
+  "lastUpdated": "2026-10-20T08:20:00.000Z",
+  "specId": "022",
+  "folderSlug": "worktree-provision-completeness",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

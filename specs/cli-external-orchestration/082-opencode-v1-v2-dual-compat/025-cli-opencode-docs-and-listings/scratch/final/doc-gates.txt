@@ -1,0 +1,9 @@
+check-markdown-links: 7762 files, 14149 links checked, 0 broken
+OK — 0 broken markdown links.
+links exit 0
+PASS mode=coverage scope=all-skills docs=101 carrying-detailed-block=101 violations=0
+frontmatter exit 0
+PASS package=cli-external-orchestration/cli-opencode tier=FAIL_CLOSED scenarios=55 categories=13 operator=55 routing_gold_excluded=0 violations=0 warnings=1
+exit=0
+playbook exit 0
+PASS: 68 Hermes skill copies in sync

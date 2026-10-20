@@ -1,0 +1,3 @@
+# opencode 1.19.3 binary (~/.local/lib/node_modules/opencode-ai/bin/opencode.exe): run command's share option and the use of it in the run handler that follows it (the next 40,000 characters hold no other share read), extracted with strings -n 6
+.option("share",{type:"boolean",describe:"deprecated: session sharing was discontinued",hidden:!0}).option("model",{type:"string",alias:["m"],describe:"model to use in th
+if(j.share)z.println(z.Style.TEXT_DANGER_BOLD+"!  Session sharing has been discontinued")}async function n(G,Q){let W=await G.session.create({title:j.title!==void 0&&j.ti
