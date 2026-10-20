@@ -139,6 +139,7 @@ function runAdapter(sandbox, adapterPath, payload) {
 
 test('context-nudge fires at threshold once and again at threshold plus 0.05', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   const transcriptPath = writeRollout(sandbox, 800);
@@ -171,6 +172,7 @@ test('context-nudge fires at threshold once and again at threshold plus 0.05', a
 
 test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   const transcriptPath = writeRollout(sandbox, 800);
@@ -279,6 +281,7 @@ test('UserPromptSubmit seed passes its carried folder to seedText', async (t) =>
 
 test('UserPromptSubmit adapter nudges when a non-seed prompt crosses threshold', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   const transcriptPath = writeRollout(sandbox, 850);
@@ -640,6 +643,7 @@ test('Stop logs an async killer spawn error and leaves the record armed', async 
 
 test('context-nudge plans the handoff note under the resolved repo root', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   const transcriptPath = writeRollout(sandbox, 800);
@@ -668,6 +672,7 @@ test('context-nudge plans the handoff note under the resolved repo root', async 
 
 test('context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'codex-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';

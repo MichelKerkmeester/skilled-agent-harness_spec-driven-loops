@@ -509,15 +509,20 @@ function recordTimeout(options, environment, record) {
 }
 
 function notifyManualClaim(filePath, runtime, specFolder, environment) {
-  // A notice has no stderr, so an unusable template is logged before the plain command goes out.
+  // A notice has no stderr, so an unusable template is logged and its reason rides in the
+  // subtitle; otherwise the operator sees a plain command with no hint their options were lost.
   const templateProblem = core.manualTemplateProblem(environment);
   if (templateProblem) log('killer-manual-template', environment, { problem: templateProblem });
   const command = core.manualClaimCommand(runtime, filePath, specFolder, environment);
   const escapedCommand = JSON.stringify(command);
+  const subtitle = templateProblem
+    ? ' subtitle ' + JSON.stringify(`Manual template ignored: ${templateProblem}`)
+    : '';
   try {
     spawnSync('osascript', [
       '-e',
-      'display notification ' + escapedCommand + ' with title "Session relaunch needs attention"',
+      'display notification ' + escapedCommand
+        + ' with title "Session relaunch needs attention (killer timed out)"' + subtitle,
     ], {
       encoding: 'utf8',
       timeout: NOTIFICATION_TIMEOUT_MS,

@@ -12,7 +12,7 @@ Manual entry point for the session relaunch loop. Writes this session's handoff 
 
 ## 1. PURPOSE
 
-The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
+The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. The automatic nudge fires only inside `skilled-loop`. Outside the loop, a session keeps working and runs this command only when the operator explicitly asks for a manual handoff. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
 
 ---
 
@@ -104,7 +104,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
 
 - `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
 - `2`: refused. Show the stderr reason verbatim. Fix the cause it names, then run `prepare` again. The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process. Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
-- `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
+- `3`: no automatic hop. Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback. Both cases print the claim command for the selected runtime. Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`. For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under it.
 
 | Runtime | Printed command |
 |---|---|
@@ -144,13 +144,13 @@ The note's status moves only `open -> claimed -> done`. When this session prepar
 
 The note is written and `prepare` exits `0`. On an automatic runtime, its arm event can qualify the record for relaunch when the session ends.
 
-**Example 2: outside the loop**
+**Example 2: outside the loop, at the operator's request**
 
 ```text
 /speckit:handoff
 ```
 
-`prepare` exits `3` and the command shows the selected runtime's printed claim command so the operator can run the hop by hand.
+The operator asked for a manual handoff. `prepare` exits `3` and the command shows the selected runtime's printed claim command so the operator can run the hop by hand. Without that request, a session outside the loop keeps working.
 
 ---
 
