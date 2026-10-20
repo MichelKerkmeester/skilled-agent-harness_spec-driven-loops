@@ -88,7 +88,7 @@ Every documented OpenCode 2 provider check runs against a private server and act
 | `.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md` | Modify | The same inline span |
 | `.hermes/skills/cli-opencode/SKILL.md` | Regenerate | From the edited `SKILL.md` |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs` | Create | The form classifier, the doc scan and the pre-flight block check |
-| `.github/workflows/opencode-dual-version.yml` | Modify | Run the new test in the unit-test step, and list cli-devin in both path filters |
+| `.github/workflows/opencode-dual-version.yml` | Modify | Run the new test in the unit-test step, and list every Markdown file under `cli-external-orchestration` in both path filters, since the test reads them all |
 <!-- /ANCHOR:scope -->
 
 ---

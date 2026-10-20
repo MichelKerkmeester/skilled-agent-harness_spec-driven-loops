@@ -44,6 +44,7 @@
       ".github/workflows/opencode-dual-version.yml",
       "scratch/baseline-cli-opencode-tests.txt",
       "scratch/mutation/m0-old-docs.txt",
+      "scratch/mutation/m14-round3-docs.txt",
       "scratch/mutation/m10-round2-docs.txt",
       "scratch/mutation/m8-unlabelled-v1-docs.txt",
       "scratch/preflight-live.txt",
@@ -101,6 +102,12 @@
         "name": "m0-old-docs.txt",
         "kind": "file",
         "path": "scratch/mutation/m0-old-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m14-round3-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m14-round3-docs.txt",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
     "created_at": "2026-10-20T11:51:31Z",
-    "last_save_at": "2026-10-20T12:40:18.910Z",
+    "last_save_at": "2026-10-20T12:54:02.405Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0c0f534072a40275bb3750676ebdc88b3121d8a84b4730c86801b28622f1b190",
+    "source_fingerprint": "sha256:a0f38f80dc70037d4f3453b63ce2f5efd3e522505f55297c7881828ff5031b7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0f83dd6f9db696a06de783f4a0875748d6bc102d2647df78d31f277c66a6892e",
+      "spec.md": "4ada0a8b28d1cc3ffa7a09f7ad1696df5058df6692be026c16dc5e8203f98fa4",
       "plan.md": "6815e62991ed2650211c4d3b84b51335b091828a954917ba5f4e2a4c000e119b",
       "tasks.md": "8dda807b1ba0da3ee01f4f50926d631ccfa55a82f170866fd41790c48e7bc049",
-      "implementation-summary.md": "8e53346ce2b9055c4400ac6e86844da241f0aac4dcc9afea58013d1b0d35d8e8"
+      "implementation-summary.md": "55853bdcddf3b8a23c41c602ad8dd7ee051cf403506491aca8639054b91362dd"
     },
     "last_active_at": null
   }

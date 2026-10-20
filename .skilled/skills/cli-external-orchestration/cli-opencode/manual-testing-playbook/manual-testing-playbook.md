@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -70,7 +70,7 @@ Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default inv
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. On OpenCode 1, the CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. OpenCode 2 is 2.0.32, a separate install ([install reference](../references/install-and-versions.md)). Drift handled per `references/cli-reference.md` §9.
-4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4.1-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
+4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4.1-flash` resolves (confirm via `opencode models opencode-go` on OpenCode 1). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.skilled/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Skill Advisor, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) can call `advisor_status` and Code Graph search. Use case 3 (CO-021) additionally needs `.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs` present on disk.

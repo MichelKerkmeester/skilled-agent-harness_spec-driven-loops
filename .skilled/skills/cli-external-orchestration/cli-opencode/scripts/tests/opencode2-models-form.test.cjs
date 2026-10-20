@@ -107,45 +107,27 @@ function problemsWith(args) {
   return problems;
 }
 
-// OpenCode 2 lists only these providers, so a `models <provider>` argument naming any
-// other one is a v1 command by construction. Naming one of these leaves the reader
-// unable to tell which version would run the command.
-const V2_PROVIDERS = new Set(['llmgateway', 'llmgateway-providers', 'cline-pass', 'opencode']);
-
 // In a v2-only layout the v2 binary is named `opencode`, where `opencode models
 // <provider>` is rejected, so a command both binaries answer to needs its version named
-// beside it. A prose command lives in an inline code span. A fenced block is a shell
-// transcript, and its first non-empty line is the comment that names the version for
-// every command below it.
+// beside it. The provider it names cannot settle the version, because the v2 binary
+// rejects every provider that way. A prose command lives in an inline code span. A
+// fenced block is a shell transcript, and its first non-empty line is the comment that
+// names the version for every command below it.
 const INLINE_CODE_SPAN_PATTERN = /`([^`]*)`/g;
 const V1_COMMAND_PATTERN = /(?<![\w-])opencode\s+models\b/g;
 const VERSION_LABEL_PATTERN = /OpenCode 1\b|\bv1\b|1\.19/;
 
 // The remainder ends where `commandsIn` ends it, so a pipeline, redirect, separator or
-// the closing backtick of an inline span is not read as part of the command. A flag
-// narrows the listing rather than naming a provider, so the provider is the first token
-// that does not start with a hyphen.
+// the closing backtick of an inline span is not read as part of the command.
 function v1CommandProblems(source, lineNumber, labelled) {
-  const offenders = [];
+  if (labelled) return [];
 
+  const offenders = [];
   for (const match of source.matchAll(V1_COMMAND_PATTERN)) {
     const remainder = source
       .slice(match.index + match[0].length)
       .split(REMAINDER_END_PATTERN)[0];
-    const provider = remainder
-      .split(/\s+/)
-      .filter(Boolean)
-      .find((token) => !token.startsWith('-'));
-    // A placeholder or a missing provider leaves the version open the same way a v2
-    // provider does; one that v2 does not list pins the command to v1 instead.
-    const ambiguous =
-      provider === undefined ||
-      provider.startsWith('<') ||
-      provider.startsWith('[') ||
-      V2_PROVIDERS.has(provider);
-    if (ambiguous && !labelled) {
-      offenders.push({ lineNumber, text: `${match[0]}${remainder}`.trim() });
-    }
+    offenders.push({ lineNumber, text: `${match[0]}${remainder}`.trim() });
   }
 
   return offenders;
@@ -199,6 +181,22 @@ function joinContinuations(lines) {
   return joined;
 }
 
+// A shell comment names and explains a step without running it, so it is not part of
+// what the block does. A trailing comment is cut at the first ` #` after the line's
+// last quote, so a `#` inside a quoted argument survives.
+function activeShellLines(lines) {
+  return lines
+    .filter((line) => {
+      const trimmed = line.trim();
+      return trimmed !== '' && !trimmed.startsWith('#');
+    })
+    .map((line) => {
+      const lastQuote = Math.max(line.lastIndexOf('"'), line.lastIndexOf("'"));
+      const commentStart = line.indexOf(' #', lastQuote + 1);
+      return commentStart === -1 ? line : line.slice(0, commentStart);
+    });
+}
+
 // Every document the skill tree ships, minus the historical and installed trees.
 function documents(dir) {
   const found = [];
@@ -244,7 +242,7 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
   );
 });
 
-test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run', () => {
+test('unversionedV1Forms flags every opencode models command without a version label', () => {
   const flagged = (line) => unversionedV1Forms(line).length;
 
   assert.equal(
@@ -259,8 +257,13 @@ test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run',
   );
   assert.equal(
     flagged('Run `opencode models opencode-go` first.'),
+    1,
+    'a named provider must be flagged, since a v2-only layout names its v2 binary opencode',
+  );
+  assert.equal(
+    flagged('Run `opencode models opencode-go` on OpenCode 1.'),
     0,
-    'a provider OpenCode 2 does not list is v1 by construction',
+    'a named version must clear the form even when the provider is named',
   );
   assert.equal(
     flagged(['```', 'opencode models llmgateway >/dev/null', '```'].join('\n')),
@@ -340,8 +343,12 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
   for (const file of documents(CLI_ROOT)) scan(file);
 
   // The Hermes runtime carries a generated copy of this skill, so the same form must
-  // not reappear there; a checkout that has not built it yet has nothing to scan.
-  if (fs.existsSync(HERMES_SKILL)) scan(HERMES_SKILL);
+  // not reappear there, and a missing copy is a build that was never finished.
+  assert.ok(
+    fs.existsSync(HERMES_SKILL),
+    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
+  );
+  scan(HERMES_SKILL);
 
   assert.equal(
     offenders.join('\n'),
@@ -350,7 +357,7 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
   );
 });
 
-test('a prose opencode models command OpenCode 2 would also run names its version', () => {
+test('every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode', () => {
   const offenders = [];
 
   const scan = (file) => {
@@ -362,13 +369,17 @@ test('a prose opencode models command OpenCode 2 would also run names its versio
   for (const file of documents(CLI_ROOT)) scan(file);
 
   // The Hermes runtime carries a generated copy of this skill, so the same unlabelled
-  // form must not reappear there; a checkout that has not built it yet has nothing to scan.
-  if (fs.existsSync(HERMES_SKILL)) scan(HERMES_SKILL);
+  // form must not reappear there, and a missing copy is a build that was never finished.
+  assert.ok(
+    fs.existsSync(HERMES_SKILL),
+    'the generated Hermes copy is missing; run `sync-skills-hermes.cjs`',
+  );
+  scan(HERMES_SKILL);
 
   assert.equal(
     offenders.join('\n'),
     '',
-    `in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so a prose "opencode models" command that OpenCode 2 would also run must name its version, but these do not:\n${offenders.join('\n')}`,
+    `in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so every documented "opencode models" command must name its version, but these do not:\n${offenders.join('\n')}`,
   );
 });
 
@@ -400,9 +411,9 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
     block.push(line);
   }
 
-  const standalone = blocks.find((fenced) =>
-    fenced.some((line) => line.includes('opencode2 models --standalone')),
-  );
+  const standalone = blocks
+    .map(activeShellLines)
+    .find((fenced) => fenced.some((line) => /opencode2 models --standalone\b/.test(line)));
   assert.ok(
     standalone !== undefined,
     'the provider pre-flight section has no fenced bash block with an "opencode2 models --standalone" command',

@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.40
+version: 1.5.1.0
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly.
@@ -71,7 +71,7 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--mod
 |----------|-------|
 | `deepseek-v4.1-flash` | Latency-optimized reasoning model that takes images as well as text, pinned to `--thinking max` by policy — a tier this route carries. **The deep-loop fan-out reaches this route through the provider-qualified literal `opencode-go/deepseek-v4.1-flash`**, which dispatches as `--model opencode-go/deepseek-v4.1-flash` at `--thinking max`; the bare literal still goes to DevPass. Both routes now name the *same* model again, because this id moved onto the gateway's own `deepseek-v4.1-flash` name and off `deepseek-v4-flash-vision-exp`; they stay separate routes under the one-literal-one-provider rule, which is why DevPass holds the bare literal's fan-out slot. Catalog-verified 2026-09-11 (1M context, 384K output, `images: yes`), and the route returned a real reply through its `opencode` client that same day |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
-| `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has no `xhigh` — dispatched at its top tier `--thinking max`; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04. Reachable as `--model opencode-go/glm-5.3-flash`. **Direct-dispatch route only since 2026-09-05:** the bare `glm-5.3-flash` literal now maps to `llmgateway` in `PI_MODEL_PROVIDERS`, and one literal maps to one provider, so the deep-loop fan-out reaches GLM-5.3-Flash through DevPass, not here |
+| `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has no `xhigh` — dispatched at its top tier `--thinking max`; ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04. Reachable as `--model opencode-go/glm-5.3-flash`. **Direct-dispatch route only since 2026-09-05:** the bare `glm-5.3-flash` literal now maps to `llmgateway` in `PI_MODEL_PROVIDERS`, and one literal maps to one provider, so the deep-loop fan-out reaches GLM-5.3-Flash through DevPass, not here |
 | `mimo-v2.6-pro` | MiMo-V2.6-Pro via the Go gateway, a Pi builtin id. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. **Direct-dispatch route only**, because the bare `mimo-v2.6-pro` literal maps to `llmgateway`. Reachable as `--model opencode-go/mimo-v2.6-pro`. Dispatch-verified 2026-09-30 at `--thinking high` with a `PONG` reply |
 | `mimo-v2.6-flash` | MiMo-V2.6-Flash via the Go gateway, a Pi builtin id with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. **Direct-dispatch route only**, because the bare `mimo-v2.6-flash` literal maps to `llmgateway`. Reachable as `--model opencode-go/mimo-v2.6-flash`. Dispatch-verified 2026-09-30 at `--thinking high` with a `PONG` reply |
 

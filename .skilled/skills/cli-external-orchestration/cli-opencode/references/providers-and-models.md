@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -63,12 +63,12 @@ GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (bas
 
 ### opencode-go
 
-opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route, since the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
+opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4.1-flash`, the flash family's opencode-go route, since the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go` on OpenCode 1.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway, **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` (OpenCode 1 only) by policy, a tier this route carries. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost ($0.15 in / $0.60 out per 1M, cached reads $0.003) and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
-| `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
+| `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on OpenCode 1 on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04 (OpenCode 2 lists no `opencode-go` provider) |
 | `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. A live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 | `opencode-go/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
