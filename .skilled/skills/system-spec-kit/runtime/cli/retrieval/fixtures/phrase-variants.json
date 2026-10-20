@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d28ff3aa8bc780aafee71f8a6ce2a17db37d7ba6cfc5d62a58ecd1b0738bbfad",
+  "manifestHash": "e74ddcaf3d9667052c0214db07d66031f2ac0cfcf80a498230a85200e3c0e3d4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71827,6 +71827,9 @@
     "phase 20 plan": [
       "phase 20 plan"
     ],
+    "phase 20 plugins purity dual export": [
+      "phase 20 plugins purity dual export"
+    ],
     "phase 20 rename plan": [
       "phase 20 rename plan"
     ],
@@ -74523,6 +74526,18 @@
     ],
     "plugins inventory update": [
       "plugins inventory update"
+    ],
+    "plugins purity dual export": [
+      "plugins purity dual export"
+    ],
+    "plugins purity dual export implementation summary": [
+      "plugins purity dual export implementation summary"
+    ],
+    "plugins purity dual export plan": [
+      "plugins purity dual export plan"
+    ],
+    "plugins purity dual export tasks": [
+      "plugins purity dual export tasks"
     ],
     "plugins we support": [
       "plugins we support"

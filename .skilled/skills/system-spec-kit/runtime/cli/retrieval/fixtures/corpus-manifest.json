@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ba9ee8702130d6ccd23f1e266cec179434a3aeff5691ae7b463c168ab52eab72",
+  "corpusHash": "d4b56fd476c54160744eae3e7b6ded6f1041c3c033ad40324780ea2257f9e229",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25313,
+  "includedPathCount": 25317,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8908,6 +8908,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25344,7 +25348,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d28ff3aa8bc780aafee71f8a6ce2a17db37d7ba6cfc5d62a58ecd1b0738bbfad",
+  "manifestHash": "e74ddcaf3d9667052c0214db07d66031f2ac0cfcf80a498230a85200e3c0e3d4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26380,6 +26384,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/scratch",
       "reason": "excluded directory"
     },
     {
