@@ -55,7 +55,7 @@ contextType: "general"
 
 - [x] T009 Full plugin suite, inventory and purity guards
 - [x] T010 Live rerun of all 17 scenarios on v1 and v2, new results matrix (`scratch/live-runs/results-matrix.md`)
-- [ ] T011 Luna review, recursive strict validation, merge, push and CI
+- [x] T011 Luna review, recursive strict validation, merge, push and CI
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,9 +63,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Live rerun matrix recorded with evidence
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Live rerun matrix recorded with evidence
 <!-- /ANCHOR:completion -->
 
 ---

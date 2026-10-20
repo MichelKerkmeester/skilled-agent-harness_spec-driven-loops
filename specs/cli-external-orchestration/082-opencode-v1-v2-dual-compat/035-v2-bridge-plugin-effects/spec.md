@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/176-v2-bridge-plugin-effects` |
 | **Parent Spec** | ../spec.md |
