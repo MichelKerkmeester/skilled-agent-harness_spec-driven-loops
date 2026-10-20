@@ -17,6 +17,11 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs"
   ],
   "manual": {
@@ -222,7 +227,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T04:58:21.612Z",
+    "last_save_at": "2026-10-20T04:59:17.431Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,12 +235,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:356ddc3594bed993fa38bac686bd53a5ac211e384b4ebf0c0e3fe93ac133ed93",
+    "source_fingerprint": "sha256:943d2e3924b3d9e4eb36a9efae34055e92360c75f61d17804b8acfc70686923a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "323b23bddfbcb3a38867e4adb765641ea87a4285107dd1fbf7c96750a2e61797",
+      "spec.md": "5486846c81a77d237437915d259e0c72efdae4310a046251d5db8d70b0d3efca",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_at": null
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
+    "last_active_at": "2026-10-19T21:51:10.408Z"
   }
 }

@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post merge research sk-code-skilled and sk-doc conformance",
+      "post-merge sk-code conformance",
+      "post-merge sk-doc conformance",
+      "unmounted sk-doc frontmatter tests"
+    ],
+    "key_topics": [
+      "post",
+      "merge",
+      "research",
+      "sk-code-skilled",
+      "sk-doc",
+      "conformance",
+      "post-merge",
+      "sk-code",
+      "unmounted",
+      "frontmatter",
+      "tests",
+      "four"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/steering-log.md",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "research/resource-map.md",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/scripts/run-node-tests.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "steering-log.md",
+        "kind": "doc",
+        "path": "research/steering-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "Research Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Answer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Backlog",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reason Eliminated",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Divergence Map",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the dispatch adapter suite runner",
+    "created_at": "2026-10-19T18:30:36Z",
+    "last_save_at": "2026-10-19T21:51:10.383Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:95161e899ab4eb9c43ae005c4f555df2b56ded77e918e3a3b9e590df56ff5083",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "998e6af2dc53a0040db9e7e1857886dacca2ae3c91a8986c92aa58193e49cd07",
+      "research/research.md": "f12b863ce15d5a4f4aee17ff42c72709cded6c467403881952eef58301c45be2"
+    },
+    "last_active_at": null
+  }
+}

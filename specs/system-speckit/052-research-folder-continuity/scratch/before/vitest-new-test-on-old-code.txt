@@ -1,0 +1,52 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/save-continuity-write.vitest.ts (17 tests | 1 failed) 2315ms
+     × writes a research record continuity into its spec.md 87ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/save-continuity-write.vitest.ts > save writer continuity write > writes a research record continuity into its spec.md
+AssertionError: expected '_memory:\n  continuity:\n    packet_p…' to contain 'recent_action: "Closed the fixture re…'
+
+- Expected
++ Received
+
+- recent_action: "Closed the fixture research"
++ _memory:
++   continuity:
++     packet_pointer: "system-speckit/300-research"
++     last_updated_at: "2026-09-01T00:00:00Z"
++     last_updated_by: "tester"
++     recent_action: "Initialize continuity block"
++     next_safe_action: "Replace template defaults on first save"
++     blockers: []
++     key_files: []
++     session_dedup:
++       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
++       session_id: "fixture-research"
++       parent_session_id: null
++     completion_pct: 0
++     open_questions: []
++     answered_questions: []
+
+ ❯ tests/save-continuity-write.vitest.ts:411:19
+    409|     const spec = read(`${research}/spec.md`);
+    410|     const block = continuityBlock(spec);
+    411|     expect(block).toContain('recent_action: "Closed the fixture resear…
+       |                   ^
+    412|     expect(block).toContain('next_safe_action: "Verify the research fi…
+    413|     expect(block).not.toContain('Initialize continuity block');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  23:50:00
+   Duration  2.41s (transform 604ms, setup 14ms, import 15ms, tests 2.31s, environment 0ms)
+
+exit=1

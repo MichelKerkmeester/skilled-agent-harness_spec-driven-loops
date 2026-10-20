@@ -1,0 +1,5 @@
+# exit statuses, old files restored from HEAD then the fix put back
+canary on HEAD AGENTS.md: exit 1
+canary on trimmed AGENTS.md: exit 0
+test_validation_switch on HEAD example: exit 1
+test_validation_switch on fixed example: exit 0

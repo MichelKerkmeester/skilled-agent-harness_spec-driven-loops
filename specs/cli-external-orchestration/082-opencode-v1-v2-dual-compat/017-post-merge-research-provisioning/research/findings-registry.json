@@ -1,0 +1,137 @@
+{
+  "sessionId": "2026-10-19T19:09:11.320Z",
+  "parentSessionId": "2026-10-19T18:32:07.939Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-provisioning-and-adapter-suite-runner-paths-can-still-fail-drift-or-mislea",
+      "inboxId": null,
+      "text": "Which provisioning and adapter-suite-runner paths can still fail, drift or mislead after the merge?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-provisioning-and-adapter-suite-runner-paths-can-still-fail-drift-or-mislea",
+      "inboxId": null,
+      "text": "Which provisioning and adapter-suite-runner paths can still fail, drift or mislead after the merge?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether the mcp-code-mode and sk-design-backend lockfiles are git-tracked (manifests confirmed tracked; lockfile tracked-status not separately checked).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any repo gate actually runs the two `.pi` extension packages' test scripts (their `check` scripts exist; no consuming gate found) — determines F1's real impact.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the hooks vitest tree should join `dispatch-enforcement-guard.yml` or a new workflow (design decision, out of research scope).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-pi-extensions-pi-cache-optimizer-tracked-manifest-tracked-lockfile-declares-test",
+      "text": "`.pi/extensions/pi-cache-optimizer` — tracked manifest + tracked lockfile; declares `test: node --import jiti/register --test tests/*.test.ts`, `typecheck`, `check` [SOURCE: .pi/extensions/pi-cache-optimizer/package.json:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-pi-extensions-pi-fast-mode-w-subagent-support-tracked-manifest-tracked-package-l",
+      "text": "`.pi/extensions/pi-fast-mode-w-subagent-support` — tracked manifest + tracked `package-lock.json`; declares `test: vitest run`, `check` [SOURCE: .pi/extensions/pi-fast-mode-w-subagent-support/package.json:1]",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-skilled-skills-mcp-code-mode-mcp-server-tracked-manifest-a-package-lock-json-sit",
+      "text": "`.skilled/skills/mcp-code-mode/mcp-server` — tracked manifest; a `package-lock.json` sits beside it on main (manifest tracked confirmed; lockfile tracked-status not separately checked)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-skilled-skills-mcp-tooling-mcp-obsidian-mcp-servers-obsidian-mcp-tracked-manifes",
+      "text": "`.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp` — tracked manifest, no lockfile",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-skilled-skills-sk-design-sk-design-md-generator-backend-tracked-manifest-tracked",
+      "text": "`.skilled/skills/sk-design/sk-design-md-generator/backend` — tracked manifest + tracked lockfile",
+      "addedAtIteration": 1,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 0,
+    "resolvedQuestions": 1,
+    "carriedForwardOpenQuestions": 3,
+    "keyFindings": 5,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.95,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/152-post-merge-research-provisioning/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

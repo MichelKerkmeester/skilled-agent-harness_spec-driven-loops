@@ -416,7 +416,7 @@ const CARRIED_CONTINUITY_FIELDS = [
   'session_dedup',
 ] as const;
 
-/** The continuity block a save writes into a leaf summary, or why it cannot. */
+/** The continuity block a save writes into a leaf's host doc, or why it cannot. */
 type SaveContinuityUpdate =
   | { ok: true; markdown: string; dropped: string[] }
   | { ok: false; errors: string[] };
@@ -426,7 +426,7 @@ function formatContinuityError(error: ThinContinuityValidationError): string {
 }
 
 /**
- * Merge a save payload's continuity fields over the block a leaf summary already
+ * Merge a save payload's continuity fields over the block a leaf's host doc already
  * holds. The payload wins field by field. A field it leaves out keeps its stored
  * value while that value passes the validator. Most blocks written by hand fail it
  * somewhere, and a save that refused them all could never repair one, so a stored
@@ -507,6 +507,23 @@ interface ContinuityWritePlan {
   patch: Record<string, unknown>;
   packetPointer: string;
   dropped: string[];
+  hostPath: string;
+}
+
+/**
+ * The doc a leaf's continuity block lives in: its implementation summary, or, for a
+ * research record, which never gets one, its spec.md. Null when the leaf has neither.
+ */
+function continuityHostPath(leafPath: string): string | null {
+  const summaryPath = path.join(leafPath, 'implementation-summary.md');
+  if (fsSync.existsSync(summaryPath)) {
+    return summaryPath;
+  }
+  const specPath = path.join(leafPath, 'spec.md');
+  if (fsSync.existsSync(specPath) && /<!--\s*SPECKIT_LEVEL:\s*research\s*-->/.test(fsSync.readFileSync(specPath, 'utf8'))) {
+    return specPath;
+  }
+  return null;
 }
 
 /**
@@ -550,16 +567,16 @@ async function planContinuityWrite(params: {
     return null;
   }
 
-  const summaryPath = path.join(resolution.leafPath, 'implementation-summary.md');
+  const hostPath = continuityHostPath(resolution.leafPath);
   const leafLabel = display(resolution.leafPath);
-  if (!fsSync.existsSync(summaryPath)) {
+  if (!hostPath) {
     warn(`   Continuity not written: ${leafLabel} has no implementation-summary.md yet`);
     return null;
   }
 
   const packetPointer = getPacketIdFromGraphMetadata(resolution.leafPath);
   const update = buildSaveContinuityMarkdown(
-    fsSync.readFileSync(summaryPath, 'utf8'),
+    fsSync.readFileSync(hostPath, 'utf8'),
     patch,
     packetPointer,
     new Date().toISOString(),
@@ -570,11 +587,11 @@ async function planContinuityWrite(params: {
   if (resolution.route.length > 0) {
     log(`   Continuity routed to ${leafLabel} via ${resolution.route.join(' -> ')}`);
   }
-  return { leafPath: resolution.leafPath, patch, packetPointer, dropped: update.dropped };
+  return { leafPath: resolution.leafPath, patch, packetPointer, dropped: update.dropped, hostPath };
 }
 
 /**
- * Write the planned continuity block. The summary is re-read and the merge rebuilt
+ * Write the planned continuity block. The host doc is re-read and the merge rebuilt
  * here, under the leaf's own canonical-save lock when the leaf is not the save
  * target, so a save that reached the leaf through its parent cannot interleave with
  * one aimed at the leaf directly.
@@ -592,9 +609,8 @@ async function writePlannedContinuity(params: {
   const leafLock = leafIsTarget ? null : acquireCanonicalSaveLock(plan.leafPath);
   let dropped: string[];
   try {
-    const summaryPath = path.join(plan.leafPath, 'implementation-summary.md');
     const update = buildSaveContinuityMarkdown(
-      fsSync.readFileSync(summaryPath, 'utf8'),
+      fsSync.readFileSync(plan.hostPath, 'utf8'),
       plan.patch,
       plan.packetPointer,
       now,
@@ -603,13 +619,13 @@ async function writePlannedContinuity(params: {
       throw new Error(`Continuity rejected for ${plan.packetPointer}: ${update.errors.join('; ')}`);
     }
     dropped = update.dropped;
-    const tempPath = path.join(plan.leafPath, `.implementation-summary.md.${process.pid}.${Date.now()}.tmp`);
+    const tempPath = path.join(plan.leafPath, `.${path.basename(plan.hostPath)}.${process.pid}.${Date.now()}.tmp`);
     fsSync.writeFileSync(tempPath, update.markdown, 'utf8');
-    fsSync.renameSync(tempPath, summaryPath);
+    fsSync.renameSync(tempPath, plan.hostPath);
     stampCompletionFingerprintIfNeeded(plan.leafPath);
 
     // The save target's own refresh never reads a leaf below it, so a leaf reached
-    // through its parent refreshes here, after its summary holds the final bytes.
+    // through its parent refreshes here, after its host doc holds the final bytes.
     if (!leafIsTarget) {
       const graphApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
       if (typeof graphApiModule?.refreshGraphMetadata !== 'function') {

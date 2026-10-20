@@ -1,0 +1,472 @@
+{
+  "sessionId": "2026-10-19T19:08:58.499Z",
+  "parentSessionId": "2026-10-19T18:20:15.000Z",
+  "lineageMode": "restart",
+  "generation": 2,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-why-does-a-plain-pi-help-in-the-trusted-main-checkout-register-no-fast-and-what-",
+      "inboxId": null,
+      "text": "Why does a plain `pi --help` in the trusted main checkout register no `--fast`, and what claim design registers exactly one copy in every layout?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-plugins-tests-generators-and-docs-still-assume-one-opencode-version-or-a-f",
+      "inboxId": null,
+      "text": "Which plugins, tests, generators and docs still assume one OpenCode version or a fixed file list?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-sk-vision-opencode-2-runtime-paths-can-still-misbehave-registration-grace-",
+      "inboxId": null,
+      "text": "Which sk-vision OpenCode 2 runtime paths can still misbehave (registration, grace, close, interpreter checks, venv race)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-4-do-cli-opencode-the-doctor-battery-and-the-ci-workflow-match-opencode-1-19-3-and",
+      "inboxId": null,
+      "text": "Do cli-opencode, the doctor battery and the CI workflow match OpenCode 1.19.3 and 2.0.32 as installed, and did CI pass on main?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-where-do-the-changed-code-and-docs-miss-sk-code-skilled-and-sk-doc-and-what-dual",
+      "inboxId": null,
+      "text": "Where do the changed code and docs miss sk-code-skilled and sk-doc, and what dual-version architecture should the remediation converge on?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-2-which-plugins-tests-generators-and-docs-still-assume-one-opencode-version-or-a-f",
+      "inboxId": null,
+      "text": "Which plugins, tests, generators and docs still assume one OpenCode version or a fixed file list?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-why-does-a-plain-pi-help-in-the-trusted-main-checkout-register-no-fast-and-what-",
+      "inboxId": null,
+      "text": "Why does a plain `pi --help` in the trusted main checkout register no `--fast`, and what claim design registers exactly one copy in every layout?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-which-sk-vision-opencode-2-runtime-paths-can-still-misbehave-registration-grace-",
+      "inboxId": null,
+      "text": "Which sk-vision OpenCode 2 runtime paths can still misbehave (registration, grace, close, interpreter checks, venv race)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-4-do-cli-opencode-the-doctor-battery-and-the-ci-workflow-match-opencode-1-19-3-and",
+      "inboxId": null,
+      "text": "Do cli-opencode, the doctor battery and the CI workflow match OpenCode 1.19.3 and 2.0.32 as installed, and did CI pass on main?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-where-do-the-changed-code-and-docs-miss-sk-code-skilled-and-sk-doc-and-what-dual",
+      "inboxId": null,
+      "text": "Where do the changed code and docs miss sk-code-skilled and sk-doc, and what dual-version architecture should the remediation converge on?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Does the duplicate-flag conflict diagnostic surface visibly to users in coexistence layouts (worktree + user alias) if flags register unconditionally, and is any severity above \"diagnostic\"?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do claim-gated `/fast` command and session-start side effects need the same un-gating, or a final-pass-aware claim (requires an eviction/takeover primitive that today's bus API lacks)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the same alias-pruning interaction affect other packages that ship both a user-level symlink and a project copy (e.g. pi-cache-optimizer)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which **generator scripts** still assume one OpenCode version or a fixed file list (the unexamined sub-angle of the open key question)?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Does the OpenCode 2.0.32 host in fact emit the pass-through event names the plugins gate on (`session.created`, `server.instance.disposed`, `global.disposed`)? README:65 concedes this is unverified; closing it needs a read-only live observation, not edits.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Should `skippedKeys` become loud (asserted empty per bridged plugin, exceptions manifest-gated) — sequencing question for the remediation phase.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Where do the changed code and docs miss sk-code-skilled and sk-doc, and what dual-version architecture should the remediation converge on?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which plugins, tests, generators and docs still assume one OpenCode version or a fixed file list? — generators closed here; cross-branch docs sweep remains.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which sk-vision OpenCode 2 runtime paths can still misbehave (registration, grace, close, interpreter checks, venv race)?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried from iteration 1: does the duplicate-flag conflict diagnostic surface visibly in coexistence layouts; do claim-gated `/fast` and session-start side effects need un-gating; does the alias-pruning interaction affect other packages (pi-cache-optimizer)?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Do cli-opencode, the doctor battery and the CI workflow match OpenCode 1.19.3 and 2.0.32 as installed, and did CI pass on main? (partial input from F-03: listing batteries must subtract built-ins and normalize the walk-up effect)",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried from iteration 2: does the OpenCode 2.0.32 host emit the pass-through event names the plugins gate on (`session.created`, `server.instance.disposed`, `global.disposed`); should `skippedKeys` become loud.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Carried from iterations 1–3 (unchanged): does the duplicate-flag conflict diagnostic surface visibly in coexistence layouts if flags register unconditionally, and is anything above \"diagnostic\"; do claim-gated `/fast` and session-start side effects need un-gating or a final-pass-aware claim (eviction primitive absent); does the alias-pruning interaction affect other user-symlink+project-copy packages (e.g. pi-cache-optimizer); the event-name live-delivery observation (row 8); the `skippedKeys` loudness sequencing decision (row 7).",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "\"Which plugins, tests, generators and docs still assume one OpenCode version or a fixed file list?\" — plugins/tests/generators enumerated (this session, iterations 2–3); remaining tail: the wide changed-docs sweep outside 018's focus set (~227 docs with their own mode validators), i.e. the last limb of Q2.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Sibling open questions folded into the record (owner: operator probes or later checks): 015 — does OpenCode 2.0.32's `@opencode/plugin` context declare `session`/`tool` domains (retires f-004); how often does a real `ctx.session.get` fail (weights f-002). 016 — does 1.19.3 accept `--share` at runtime; which agent directory does the binary read; which plugin failed the v1 import harness at `6d7f6b8499` (the `battery-v1` artifact of run 39308825187 holds it). 017 — does any repo gate run the `.pi` extension packages' tests (weights row 2); are the `mcp-code-mode` and `sk-design-md-generator/backend` lockfiles tracked; should the hooks tree join the existing guard workflow or get its own. 018 — does the vitest run report 80; does a dedicated adapter-suite runner already cover `.pi` (retires row 32); do the remaining ~227 docs pass their validators.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which plugins, tests, generators and docs still assume one OpenCode version or a fixed file list?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-f1-p1-root-cause-hypothesis-confirmed-with-a-decisive-refinement-the-claim-liste",
+      "text": "**F1 (P1, root cause — hypothesis CONFIRMED with a decisive refinement).** The claim listener survives from the pre-trust pass into the trusted pass on the shared per-loader event bus, and every final-pass copy stands down. The refinement: the copy that wins the claim is the **user-scope symlink alias** (`~/.pi/agent/extensions/pi-fast-mode-w-subagent-support` → main checkout) loaded by the untrusted pre-trust pass, not any project copy. Real-run trace: one `on` (pass A claim) then one `emit` with `listeners=1` (pass B probe → marked claimed → stand-down).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-f2-p1-the-zero-flag-mechanism-in-the-trusted-main-checkout-the-alias-is-pruned-f",
+      "text": "**F2 (P1, the zero-flag mechanism).** In the trusted main checkout the alias is **pruned from the final set** by realpath dedupe (alias realpath == project copy realpath; project scope outranks user scope), so the claimed+flagged pass-A entry is discarded while the surviving project copy stood down → zero `--fast`. Final set: 31 extensions, single flagless fast-mode entry. In a worktree the alias realpath (main checkout) differs from the worktree copy, so BOTH entries survive; the pass-A alias entry keeps `flags=[fast]` → exactly one. This explains all four observed counts, including `-a`/`-na` (single-pass, no pre-trust listener, project copy claims).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-f3-p1-blast-radius-in-the-trusted-main-checkout-the-stand-down-kills-the-whole-e",
+      "text": "**F3 (P1, blast radius).** In the trusted main checkout the stand-down kills the whole extension, not just the flag: the factory returns before `/fast` command registration, status handling and session-start wiring (same early return at src/index.ts:123-124). Inference from the confirmed early return; flag absence is directly observed.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-f4-p2-the-extension-source-comment-s-model-pi-fails-the-whole-load-when-two-copi",
+      "text": "**F4 (P2).** The extension source comment's model (\"Pi ... fails the whole load when two copies register one flag\") is contradicted by the loader: conflicts are reported as diagnostics and \"precedence is handled by load order\" [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/resource-loader.js:583-585].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-f5-p2-claim-design-recommended-design-gate-only-side-effects-on-the-claim-regist",
+      "text": "**F5 (P2, claim design).** Recommended design — **gate only side effects on the claim; register the flag before/outside the claim early-return** (minimal change to `claimPackage` usage). Verified by mechanics against all four observed layouts: main trusted → dedupe leaves only the project copy, which registers unconditionally (exactly 1, no conflict); worktree trusted → alias entry + worktree copy both register, conflict is a diagnostic and load-order precedence (project rank 0 first) makes the worktree copy the effective one; untrusted → only the alias copy loads and registers; `-a`/`-na` → single pass, project/worktree copy claims and registers. Residual: `/fast` and other side-effect registrations stay claim-gated, so in the trusted main checkout they remain dead until the deeper fix; full-unconditional registration (drop the claim) fixes everything but runs both copies' handlers in coexistence layouts.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-f6-p2-upstream-fix-path-pi-side-options-release-pre-trust-event-bus-subscription",
+      "text": "**F6 (P2, upstream fix path).** Pi-side options: release pre-trust event-bus subscriptions when `reload()` discards the pre-trust set, or have `loadFinalExtensionSet` prefer a final-pass copy over a pruned-path preloaded claim. Runtime-scoping will NOT fix it: the final pass reuses the pre-trust runtime [SOURCE: /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/resource-loader.js:560,577].",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-f7-p3-ruled-out-release-on-project-trust-claim-design-refuted-in-sandbox-the-int",
+      "text": "**F7 (P3, ruled out).** Release-on-`project_trust` claim design: refuted in sandbox (the internally re-run pre-trust pass re-claims and is pruned again). Realpath-keyed claims with same-file takeover: fragile across a second `reload()` on the same loader (stale listeners re-mark fresh probes); not recommended without an eviction primitive.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-observation-method-a-harness-that-calls-loadprojecttrustextensions-and-then-relo",
+      "text": "Observation (method): a harness that calls `loadProjectTrustExtensions()` and then `reload({resolveProjectTrust})` runs the pre-trust pass TWICE and distorts which copy claims; real runs run it exactly once inside `reload()`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-session-relaunch-s-three-event-types-are-covered-message-updated-source-opencode",
+      "text": "`session-relaunch`'s three event types are covered (`message.updated` [SOURCE: .opencode/plugins/session-relaunch.js:228] via the step-ended mapping; `message.part.updated` [SOURCE: .opencode/plugins/session-relaunch.js:269] via the text-ended mapping; `session.idle` [SOURCE: .opencode/plugins/session-relaunch.js:295] via alias + pass-through) — the specific question in the focus is answered affirmatively **for session-relaunch**, contingent on the live host.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-session-created-core-trigger-of-session-cleanup-source-opencode-plugins-session-",
+      "text": "`session.created`: core trigger of `session-cleanup` [SOURCE: .opencode/plugins/session-cleanup.js:247]; also `opencode-goal` [SOURCE: .opencode/plugins/opencode-goal.js:3222], `system-deep-loop-guard` [SOURCE: .opencode/plugins/system-deep-loop-guard.js:67], `codex-hooks-watchdog` [SOURCE: .opencode/plugins/codex-hooks-watchdog.js:78]. The bridge passes it through and reshapes its payload [SOURCE: .opencode/plugins/tests/v2-bridge.test.cjs:91] — but only against a stub stream.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-tests-v2-hard-plugins-test-cjs-pins-its-own-plugins-array-5-names-source-opencod",
+      "text": "`tests/v2-hard-plugins.test.cjs` pins its own `PLUGINS` array — 5 names [SOURCE: .opencode/plugins/tests/v2-hard-plugins.test.cjs:28], with `sk-vision` among them [SOURCE: .opencode/plugins/tests/v2-hard-plugins.test.cjs:61].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-tests-v2-registration-test-cjs-pins-plugin-names-12-names-source-opencode-plugin",
+      "text": "`tests/v2-registration.test.cjs` pins `PLUGIN_NAMES` — 12 names [SOURCE: .opencode/plugins/tests/v2-registration.test.cjs:19].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-1-p1-no-v1-only-plugin-remains-on-main-but-nothing-guards-the-invariant",
+      "text": "F-1 (P1) — No v1-only plugin remains on main, but nothing guards the invariant",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-f-2-p1-both-v2-suites-pin-hand-maintained-lists-the-union-happens-to-be-complete",
+      "text": "F-2 (P1) — Both v2 suites pin hand-maintained lists; the union happens to be complete, by coincidence only",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-f-3-p2-sk-vision-is-a-designed-bridge-exception-a-naive-fail-on-any-entry-withou",
+      "text": "F-3 (P2) — sk-vision is a designed bridge exception; a naive \"fail on any entry without `dualPlugin`\" guard is invalid",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-f-4-p2-cleanup-skippedkeys-is-the-bridge-s-only-signal-for-silently-dropped-hook",
+      "text": "F-4 (P2) — `cleanup.skippedKeys` is the bridge's only signal for silently dropped hooks, and nothing asserts it for the 16 bridged plugins",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-f-5-p2-core-behaviors-gate-on-event-names-whose-live-delivery-on-opencode-2-0-32",
+      "text": "F-5 (P2) — Core behaviors gate on event names whose live delivery on OpenCode 2.0.32 is explicitly unverified",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-f-6-p3-readme-count-drift-is-real-mirror-sync-is-governed-and-does-not-depend-on",
+      "text": "F-6 (P3) — README count drift is real; mirror sync is governed and does not depend on the README",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-union-of-the-two-lists-17-exactly-today-s-directory-the-four-plugins-absent-from",
+      "text": "Union of the two lists = 17 = exactly today's directory. The four plugins absent from `PLUGIN_NAMES` (`opencode-goal`, `system-completion-sentinel`, `system-skill-advisor`, `system-spec-gate`) are covered only because the hard suite independently lists all four. **No test enumerates `.opencode/plugins/`** (grep for `readdir*` across `tests/*.cjs`); `goal-doc-contract.test.cjs` enumerates a different directory [SOURCE: .opencode/plugins/tests/goal-doc-contract.test.cjs:53].",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-01-p2-mechanism-closed-the-reappeared-generator-render-command-contract-cjs-re",
+      "text": "**F-01 (P2, mechanism closed).** The \"reappeared\" generator: `render-command-contract.cjs` re-created `.skilled/commands/deep/assets/compiled/` (now holding only `manifest.jsonl`) on every live render between phase 004 and `59565c1849`, because `appendManifestRow` mkdir-recurses before appending [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs:138-140]. `59565c1849` repointed the writer, the projection-manifest seed [SOURCE: .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts:200], the README snippet [SOURCE: .skilled/command-support/deep/assets/compiled/README.md:112] and the gitignore rule [SOURCE: .gitignore:202] to `.skilled/command-support/deep/assets/compiled/manifest.jsonl`. A post-fix live render lands there with exit 0 and the old directory absent [SOURCE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/009-sk-code-opencode-alignment/scratch/gates/render-manifest-live.txt:1-5].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-f-02-p3-orphaned-data-not-regeneration-the-main-checkout-s-untracked-manifest-js",
+      "text": "**F-02 (P3, orphaned data, not regeneration).** The main checkout's untracked `manifest.jsonl` (mtime 2026-07-13, never tracked by any commit) predates the merge entirely; nothing regenerated it and the old path is written and read by nothing in the merged main. It became status-visible only because `59565c1849` retired the old-path gitignore rule. It is inert on both versions (non-markdown) but is stale pre-move data sitting inside the live command tree and makes the main checkout's tree diverge from fresh clones.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-f-03-p2-registration-semantics-residual-watch-items-no-non-command-file-register",
+      "text": "**F-03 (P2, registration semantics + residual watch-items).** No non-command file registers as a command on OpenCode 1.19.3 or 2.0.32 after the move: both scan the symlinked single tree and register markdown only (12 non-command `.md` registered before the move — the actual pre-merge defect; v2 isolated listing `commands: 41`, `moved-file entries: []` [SOURCE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/scratch/v2-command-isolated.txt:2-3], v1 parity at REQ-006 [SOURCE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/spec.md:158]). Listings additionally include non-tree builtin entries (`init`, `review`) and the v2 nested-worktree superset effect from ancestor `.opencode` merging [SOURCE: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/004-agents-commands-config/spec.md:134].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-f-04-p2-parity-generator-enumeration-every-dual-read-surface-reads-the-same-on-b",
+      "text": "**F-04 (P2, parity + generator enumeration).** Every dual-read surface reads the same on both versions: `.opencode/commands` and `.opencode/agents` are symlinks to `.skilled/*` (single file set, `diff -rq` zero differences); `opencode.json` keeps the v1 shape which OpenCode 2 converts on load, guarded by `.skilled/bin/tests/opencode-config-shape.test.cjs` against v2-only keys [SOURCE: .skilled/bin/tests/opencode-config-shape.test.cjs:15-19]; agent mirrors were synced and checker-verified in phase 004. Fixed-list sweep across generators/validators closes clean: `compile-command-contracts.cjs` writes its targets from the command-support base [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:699], and `validate-command-references.cjs` walks directories dynamically with only `README.md`/`.contract.md` skips [SOURCE: .skilled/commands/scripts/validate-command-references.cjs:201].",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-f-05-p3-remediation-bundle-1-delete-the-orphaned-untracked-skilled-commands-deep",
+      "text": "**F-05 (P3, remediation bundle).** (1) Delete the orphaned untracked `.skilled/commands/deep/assets/compiled/` in the main checkout; no gitignore re-entry needed. (2) Keep the `59565c1849` relocation as merged. (3) Normalize doctor/listing checks: subtract builtin entries (`init`, `review`) and account for v2's ancestor walk-up so nested vs isolated listings compare like-for-like. (4) Later polish: consider relocating the per-render manifest append out of the `.skilled` source tree into a build/state directory, per the sk-code-skilled contract that the commands tree holds only commands — current placement works (gitignored, gate-verified), so this is hygiene, not a bug.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-f-06-p3-premise-correction-for-the-packet-record-the-focus-s-premise-that-the-ma",
+      "text": "**F-06 (P3, premise correction for the packet record).** The focus's premise that the manifest \"reappeared\" is materially corrected: the file itself was never removed (never tracked), while the *directory* is what transiently reappeared — the renderer re-created it between 004 and 59565c1849 whenever a live render ran, and any checkout with such a render in that window still carries a fresh-looking folder. In the main checkout the surviving file predates the merge (Jul 13 mtime), so no render replenished it there.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-cli-dispatch-the-opencode-version-cjs-version-resolver-plus-per-version-argv-doc",
+      "text": "**cli dispatch** — the `opencode-version.cjs` version resolver plus per-version argv documentation and a doctor battery that parses `--version` rather than pinning.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-commands-agents-config-single-shared-trees-via-symlinks-opencode-commands-skille",
+      "text": "**Commands/agents/config** — single shared trees via symlinks (`.opencode/commands` → `.skilled/commands`, same for agents) plus the v1-shape `opencode.json` that OpenCode 2 converts on load, guarded against v2-only keys by the config-shape test.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-plugins-the-dualplugin-bridge-lib-v2-bridge-js-mapped-hook-set-event-aliases-two",
+      "text": "**Plugins** — the `dualPlugin` bridge (`lib/v2-bridge.js`): mapped hook set, event aliases, two synthesized stream→event mappings, `skippedKeys` accounting.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-provisioning-worktree-provision-paths-txt-driving-provision-worktree-bun-vs-npm-",
+      "text": "**Provisioning** — `worktree-provision-paths.txt` driving `provision_worktree` (bun vs npm choice, lockfile-frozen installs).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-q2-stays-open-deliberately-its-plugins-tests-generators-limbs-are-now-enumerated",
+      "text": "**Q2 stays open**, deliberately. Its plugins/tests/generators limbs are now enumerated (plugins: 16/16 bridged + one designed exception; tests: the two pinned arrays, README:77, the provision list; generators: closed clean by 59565c1849 with dynamic walkers verified), and the cli-opencode doc drift is enumerated by 016. What remains is breadth: ~227 changed docs outside 018's focus set have their own mode validators but have not been swept for OpenCode-version assumptions. A box ticked now would overstate the run.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-sibling-018-s-own-bookkeeping-note-is-folded-in-as-an-observation-its-substance-",
+      "text": "**Sibling 018's own bookkeeping note is folded in as an observation**: its substance answered 2/2 but its reducer recorded 1/2 because iteration 2 wrote its question text with markdown emphasis; recorded here so closeout does not misread conformance coverage.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-ci-a-coverage-rule-that-every-suite-named-in-a-trigger-path-has-a-job-that-runs-",
+      "text": "CI: a coverage rule that every suite named in a trigger path has a job that runs it.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-listings-doctor-listing-batteries-subtract-the-non-tree-builtins-init-review-and",
+      "text": "Listings: doctor/listing batteries subtract the non-tree builtins (`init`, `review`) and normalize OpenCode 2's ancestor `.opencode` walk-up before comparing.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-plugins-a-plugin-inventory-module-readdir-s-opencode-plugins-classifies-entries-",
+      "text": "Plugins: a `plugin-inventory` module `readdir`s `.opencode/plugins`, classifies entries (regular `.js` = bridge consumer; symlink/dist bundle = native-dual exception), feeds both v2 suites, and is checked both ways (unlisted entry fails; manifest entry naming a missing file fails).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-provisioning-a-test-enumerating-tracked-package-json-files-under-skilled-opencod",
+      "text": "Provisioning: a test enumerating tracked `package.json` files under `.skilled/`, `.opencode/`, `.pi/` against the provision list.",
+      "addedAtIteration": 4,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 4,
+    "openQuestions": 1,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 15,
+    "keyFindings": 35,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.6,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/149-opencode-dual-compat-deep-research/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

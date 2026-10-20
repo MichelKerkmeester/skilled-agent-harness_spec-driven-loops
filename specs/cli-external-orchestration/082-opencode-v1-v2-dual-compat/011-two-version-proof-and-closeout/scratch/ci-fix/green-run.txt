@@ -1,0 +1,4 @@
+run 39309852507 head 793b50ccbf success
+Battery on OpenCode v2: success
+Battery on OpenCode v1: success
+Both versions installed at once: success

@@ -1,0 +1,8 @@
+# second run on main after the PATH fix: gh run 39308825187 (6d7f6b8499), all three battery jobs FAIL
+Cannot find module '@spec-kit/shared/workspace/repo-root.mjs'
+Cannot find module '.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js'
+# fresh clone, CI's old steps only (.opencode npm ci): battery v1 exit=1 with the same missing modules
+# fresh clone, provision_worktree with the pinned bun on PATH: provisioned: 8 installed, 4 built, 3 already present, 0 failed
+battery v1: PASS v1 plugin-load: all 17 plugin files loaded
+battery v2: PASS v2 plugin-active: all 17 plugin files active
+actionlint .github/workflows/opencode-dual-version.yml: exit 0, no findings

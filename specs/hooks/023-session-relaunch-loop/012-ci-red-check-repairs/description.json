@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "hooks/023-session-relaunch-loop/012-ci-red-check-repairs",
+  "description": "Phase 12: ci-red-check-repairs",
+  "keywords": [
+    "phase",
+    "ci-red-check-repairs"
+  ],
+  "lastUpdated": "2026-10-19T21:16:31.388Z",
+  "specId": "012",
+  "folderSlug": "ci-red-check-repairs",
+  "parentChain": [
+    "hooks",
+    "023-session-relaunch-loop"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-10-26_21-53__trimmed-agents-md-back-inside-the-16-kb-delivery.md",
+    "19-10-26_22-16__renumbered-from-008-to-012-to-avoid-a-collision.md"
+  ]
+}

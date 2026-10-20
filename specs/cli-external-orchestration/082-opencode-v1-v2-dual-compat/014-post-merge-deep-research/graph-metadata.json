@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post merge deep research",
+      "dual compat drift research",
+      "pi fast mode trusted project",
+      "post-merge dual compat research",
+      "opencode dual version remediation list",
+      "pi fast mode zero flag",
+      "disk derived plugin inventory"
+    ],
+    "key_topics": [
+      "post",
+      "merge",
+      "deep",
+      "research",
+      "dual",
+      "compat",
+      "drift",
+      "fast",
+      "mode",
+      "trusted",
+      "project",
+      "post-merge"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/steering-log.md",
+      "research/deep-research-state.jsonl",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "research/resource-map.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".github/workflows/opencode-dual-version.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "steering-log.md",
+        "kind": "doc",
+        "path": "research/steering-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Research Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Answer The",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi Fast",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Claim",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trusted Project",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Plugin Bridge Drift",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dual Reads",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the dispatch adapter suite runner",
+    "created_at": "2026-10-19T18:19:07Z",
+    "last_save_at": "2026-10-19T21:50:59.249Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:3480988e193eaf37caf5388547e993afa84fcfc9555da0ec9d675401017d337e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "415735421cb5a9299d2d96a18bde7f6f75b32fff28ef790c5199e696c7f313e1",
+      "research/research.md": "c1e68886e4c2f71b2bd42937c4707426e2d4480a6c171365deb0b4e0fa542346"
+    },
+    "last_active_at": null
+  }
+}

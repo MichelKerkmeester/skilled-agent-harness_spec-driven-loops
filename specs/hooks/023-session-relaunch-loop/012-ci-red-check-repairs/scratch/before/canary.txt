@@ -1,0 +1,3 @@
+MISSING: AGENTS.md: "#### Blast-Radius Management" ends at byte 16626, past the 16384-byte delivery prefix
+
+BLOCKED: 1 rule invariant(s) drifted. Restore the load-bearing wording in the file(s) above so every copy agrees.

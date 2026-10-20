@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "post merge research cli-opencode, doctor and ci",
+      "cli-opencode flag drift",
+      "opencode dual-version ci result",
+      "doctor version battery claims"
+    ],
+    "key_topics": [
+      "post",
+      "merge",
+      "research",
+      "cli-opencode",
+      "doctor",
+      "flag",
+      "drift",
+      "opencode",
+      "dual-version",
+      "result",
+      "version",
+      "battery"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/steering-log.md",
+      ".github/workflows/opencode-dual-version.yml",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      "research/iterations/iteration-001.md",
+      "research/deltas/iter-001.jsonl",
+      "research/resource-map.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "steering-log.md",
+        "kind": "doc",
+        "path": "research/steering-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/opencode-version.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Research Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Answer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Backlog",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Eliminated Alternatives",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reason Eliminated",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Divergence Map",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Convergence Report",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the dispatch adapter suite runner",
+    "created_at": "2026-10-19T18:30:35Z",
+    "last_save_at": "2026-10-19T21:51:04.748Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c7e10f8b0aebf5f8dbebd81b35024fbf833dac156e012cc294d52640507b93d9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9dcc3f5ac7d8dfd3c979e67283da8f9846dc9075caa7953815b144c7efb44d30",
+      "research/research.md": "9c0b538f6e57f0cd9473eae70fbbd25ee60830b315cc203ad717909cf7d0c376"
+    },
+    "last_active_at": null
+  }
+}

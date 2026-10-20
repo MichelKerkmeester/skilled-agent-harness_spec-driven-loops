@@ -47,7 +47,10 @@
       "scratch/remediation/suites-before.txt",
       "scratch/remediation/adapter-suites-owning-runner.txt",
       "scratch/validate-recursive.txt",
-      ".github/workflows/opencode-dual-version.yml",
+      "scratch/ci-fix/repro.txt",
+      "scratch/ci-fix/provision.txt",
+      "scratch/ci-fix/green-run.txt",
+      "scratch/ci-fix/gate-inputs.txt",
       ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
@@ -121,9 +124,27 @@
         "source": "derived"
       },
       {
-        "name": "opencode-dual-version.yml",
-        "kind": "config",
-        "path": ".github/workflows/opencode-dual-version.yml",
+        "name": "repro.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/repro.txt",
+        "source": "derived"
+      },
+      {
+        "name": "provision.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/provision.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green-run.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/green-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inputs.txt",
+        "kind": "file",
+        "path": "scratch/ci-fix/gate-inputs.txt",
         "source": "derived"
       },
       {
@@ -179,29 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The build spans eleven phase children",
     "created_at": "2026-10-18T12:45:10Z",
-    "last_save_at": "2026-10-19T17:25:03.811Z",
+    "last_save_at": "2026-10-19T20:10:45.475Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:daa3100ab7995edc5350c5d2922d207975a7370299de8388c5e19f4392bc1172",
+    "source_fingerprint": "sha256:544f39783c47dfb68f9914f92d74c9f4b42404444685b7a422cdcfe4782c118d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d36915a8f8cb8139f80c20c1bdced6ec1bd953a189d5fc2f38aff403930368c5",
       "plan.md": "3b3520898f8b1402419fdb16bcd26894f3cf05cd21bd4c88d14bc4b2512f3976",
       "tasks.md": "80d95516fa66817a37607674e39ec2b05b48288aaaaf5fba2b3d29a99681e04c",
-      "implementation-summary.md": "06cf96821e7cfcc544415f327e3b4c84367f98e3df2f02b8a9ebd02fc0af6e96"
+      "implementation-summary.md": "2017d748937011a56f058db2cf34fe7bbe3ec96d1c373e78c3dc5ecd85a13805"
     },
     "last_active_at": null
   }
