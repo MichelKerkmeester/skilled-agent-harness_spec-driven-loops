@@ -1,0 +1,2 @@
+== m12-join-inserts-space
+ℹ fail 1

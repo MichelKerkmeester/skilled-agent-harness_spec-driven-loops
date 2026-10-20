@@ -53,7 +53,7 @@ Five follow-ups from phases 027 and 028 are closed, and two problems found on th
 
 ### Phase 36: cli-opencode-docs-and-vision-test-cleanup
 
-**Pre-flight comments.** The doc test used to cut a trailing comment at the first ` #` after a line's last quote, so a quote inside the comment kept a fake `grep '^opencode-go/' ... && OPENCODE_GO_OK=1` active. `activeShellLines` now walks each line's quote state and `$(...)` nesting: a `#` starts a comment only outside quotes, unescaped, at the line start, after whitespace or `;|&(`, or after a `)` that closes a plain subshell. A provider check now counts only as top-level shell segments, split outside quotes and substitutions: a source, then a `grep '^<provider>/'`, then `&& <NAME>_OK=1`. The source must be `opencode2 models --standalone` itself, or `printf`/`echo` of a variable whose last assignment before the grep is `$(opencode2 models --standalone ...)`. A check written inside a quoted string, or a variable reassigned from another command, no longer counts.
+**Pre-flight comments.** The doc test used to cut a trailing comment at the first ` #` after a line's last quote, so a quote inside the comment kept a fake `grep '^opencode-go/' ... && OPENCODE_GO_OK=1` active. `activeShellLines` now walks each line's quote state and `$(...)` nesting: a `#` starts a comment only outside quotes, unescaped, at the line start, after whitespace or `;|&(`, or after a `)` that closes a plain subshell. Continuations are joined first, with nothing between, as bash does. A provider check then counts only as top-level shell segments, split outside quotes and substitutions: a source, then a `grep '^<provider>/'`, then `&& <NAME>_OK=1`. The source must be `opencode2 models --standalone` itself, or `printf`/`echo` of a variable whose last assignment before the grep is a substitution of the standalone listing alone, optionally quoted, with only redirects inside. A check written inside a quoted string, or a variable reassigned from another command, no longer counts.
 
 **Listing notes.** 43 notes across the cli-opencode docs and one cli-devin reference sent an OpenCode 2 reader to `opencode2 models --standalone` without saying what to look for. Each now tells the reader to check that the listing holds the `<provider>/` prefix of the model they pass to `-m`. A first pass named fixed prefixes, and review showed that was wrong in two ways: some notes said v2 lists no `opencode-go` and then asked for `opencode-go/`, and others checked `llmgateway/` next to a command passing an `opencode-go` model. The MiMo note keeps `llmgateway/`, because its command passes an `llmgateway/` model.
 
@@ -82,7 +82,7 @@ Five follow-ups from phases 027 and 028 are closed, and two problems found on th
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every code and doc change from twelve one-change briefs. I wrote this folder's docs, registered the phase, ran every check below and wrote the mutants. Luna (GPT-6 Luna, max, fast, read-only through cli-codex) reviews the range from the baseline commit `b66382b384`. Round 1 failed with five P1s and one P2, all fixed: the contradictory and mismatched notes, the `$(...)#` stripper gap, the quoted-string and reassigned-variable gaps in the source check, and the two missed plugin calls, plus the missing type-check evidence.
+DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every code and doc change from twelve one-change briefs. I wrote this folder's docs, registered the phase, ran every check below and wrote the mutants. Luna (GPT-6 Luna, max, fast, read-only through cli-codex) reviews the range from the baseline commit `b66382b384`. Round 1 failed with five P1s and one P2, all fixed: the contradictory and mismatched notes, the `$(...)#` stripper gap, the quoted-string and reassigned-variable gaps in the source check, and the two missed plugin calls, plus the missing type-check evidence. Round 2 failed with three P1s and one P2: two more scanner gaps (a hash bash reads mid-word after a continuation, and a substitution that runs a second command after the listing), both fixed; the unrecorded manifest rerun, fixed; and the v2 examples that still pass the default `opencode-go` model, recorded below rather than changed.
 
 **Outside fix.** Main's sk-doc Script Tests job has failed since the hop-history merge `2aee29cd64` (run 39503477757): it added `.skilled/hooks/session-relaunch/lib`, and the frozen durable-directory manifest no longer reproduced. On the coordinator's instruction this phase refreshed the manifest with `test_readme_manifest.py --write`; the diff adds that one directory, the test then passes, and the directory needs no README. Nothing else from that work was changed.
 <!-- /ANCHOR:how-delivered -->
@@ -108,8 +108,8 @@ DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every c
 
 | Check | Result |
 |-------|--------|
-| cli-opencode script tests | PASS, 19/19 (baseline 13/13) |
-| Mutants of the new rules (`scratch/mutation/`) | Each of nine fails 1 test: text-level comment cut, any listing counts, no prose scan, no prefix scan, exemption on the whole clause, no `confirming`, any `)` ends a word, first assignment wins, segments ignore quotes |
+| cli-opencode script tests | PASS, 21/21 (baseline 13/13) |
+| Mutants of the new rules (`scratch/mutation/`) | Each of twelve fails at least 1 test: text-level comment cut, any listing counts, no prose scan, no prefix scan, exemption on the whole clause, no `confirming`, any `)` ends a word, first assignment wins, segments ignore quotes, strip before join, value prefix only, join inserts a space |
 | sk-vision `bun test tests` | PASS, 80/80 (baseline 80/80); `sk-vision-flags-*` entries 63 before and 63 after a run (baseline added 7) |
 | sk-vision `bunx tsc --noEmit` (`scratch/after/sk-vision-tsc.txt`) | PASS, exit 0 |
 | speckit-completion steps 3 and 6 (`scratch/after/speckit-completion.txt`) | Run; step 6 prints `hooks keys: []` with the switch set (baseline: `TypeError`, exit 1) |
@@ -119,7 +119,9 @@ DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every c
 | post-edit-quality live block | Run, exit 0; the advisory finding is injected |
 | cli-dispatch-audit live block | Run, exit 0; the bearer token is logged as `[REDACTED]` |
 | CO-039 scratch script and the codex-watchdog kill-switch snippet (`scratch/after/goal-and-hook-readmes.txt`) | CO-039 prints `"verdict":"PASS"`, exit 0; the watchdog snippet prints `ok`, exit 0; all five hook README load checks print `ok object` |
-| sk-doc `test_readme_manifest.py` after the manifest refresh | PASS, `reproduced=True` |
+| sk-doc `test_readme_manifest.py` after the manifest refresh (`scratch/after/readme-manifest.txt`) | PASS, `reproduced=True` |
+| sk-doc script tests, full run after the refresh (`scratch/after/sk-doc-script-tests.txt`) | PASS, all passed, exit 0 |
+| sk-doc rename harness rerun on a quiet worktree (`scratch/after/rename-harness-rerun.txt`) | PASS, 4 tests; the first run failed only because this phase wrote files while it ran |
 | CO-038 steps 2 to 4 | Step 3 prints `[commit-scope-drops-untracked]`; step 4 with `SKGIT_ADVISORY=0` prints `{"system":[]}` |
 | Playbook validator `--strict` | PASS, exit 0; cli-opencode 72 scenarios, 0 violations |
 | Markdown link integrity | PASS, 0 broken links |
@@ -134,5 +136,6 @@ DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every c
 2. **A speckit-completion fixture moved.** Step 3's "Level-2 EVIDENCE_MISSING" fixture now reports `level: 1` and `P0_INCOMPLETE`, so its expected values are stale. The snippet runs; the fixture choice is outside this phase.
 3. **The cli-pi twin of CO-038** also copies only the sk-git `SKILL.md` into its scratch repo, so it may print no advisory for the same reason. It drives a Pi extension, not this plugin, and was not run here.
 4. **The prefix guard reads wording.** A clause that names a prefix the reader should not look for still passes; review covers that.
-5. **Some READMEs describe a `__test` surface.** `.opencode/plugins/tests/README.md` and `system-spec-kit/runtime/hooks/opencode/README.md` mention `.__test` helpers hanging off a default export. They are prose, not runnable snippets, so this phase left them; the sk-code alignment review of `.opencode/plugins` owns them.
+5. **The v2 examples still pass the skill default `opencode-go/deepseek-v4.1-flash`.** OpenCode 2 lists no `opencode-go` provider on this machine, so those examples would fail here as written. They show the skill's documented default on both versions; switching an example to another provider is a change to the default the skill's own rule says needs the operator's approval. Every such note now tells the reader to check the listing for the prefix of the model they pass first.
+6. **Some READMEs describe a `__test` surface.** `.opencode/plugins/tests/README.md` and `system-spec-kit/runtime/hooks/opencode/README.md` mention `.__test` helpers hanging off a default export. They are prose, not runnable snippets, so this phase left them; the sk-code alignment review of `.opencode/plugins` owns them.
 <!-- /ANCHOR:limitations -->

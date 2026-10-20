@@ -1,0 +1,2 @@
+== m10-strip-before-join
+ℹ fail 2

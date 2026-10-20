@@ -44,6 +44,9 @@
       "scratch/after/sk-vision-tsc.txt",
       "scratch/after/speckit-completion.txt",
       "scratch/after/goal-and-hook-readmes.txt",
+      "scratch/after/readme-manifest.txt",
+      "scratch/after/sk-doc-script-tests.txt",
+      "scratch/after/rename-harness-rerun.txt",
       ".opencode/plugins/tests/README.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
       ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
@@ -97,6 +100,24 @@
         "name": "goal-and-hook-readmes.txt",
         "kind": "file",
         "path": "scratch/after/goal-and-hook-readmes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "readme-manifest.txt",
+        "kind": "file",
+        "path": "scratch/after/readme-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.txt",
+        "kind": "file",
+        "path": "scratch/after/sk-doc-script-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rename-harness-rerun.txt",
+        "kind": "file",
+        "path": "scratch/after/rename-harness-rerun.txt",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 027 left three gaps",
     "created_at": "2026-10-20T21:30:26Z",
-    "last_save_at": "2026-10-20T22:28:12.275Z",
+    "last_save_at": "2026-10-20T22:49:46.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:deade6c2cba26c7bada6db71f132fef51f0774b323c8639e70592f9cbe83f27a",
+    "source_fingerprint": "sha256:47ae6767a0ef7cf7c8fab17d21ba0c3573d2c60c4beb688c3041a61fc83c99cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "018eddc716d3819a99d93acc490f1fa17e1028d1626563a0000d96fe1c342a5f",
       "plan.md": "1c1ed96ae0aac596c46ce7cf346f556b7205069c893175eabdb177476fa0c770",
       "tasks.md": "50c3ff57be3f233d67394d428a19166bafd22a2d1b31f331d35a1f57751f81b9",
-      "implementation-summary.md": "47cf62e342b41b2656d167cf5aa39a39561cac61b67287911a848426d6ae1a52"
+      "implementation-summary.md": "e0ba0c08aa3fe7cd8178ccfd152b1a8e31c54055f4ed38114bb56f0b9b7b617c"
     },
     "last_active_at": null
   }
