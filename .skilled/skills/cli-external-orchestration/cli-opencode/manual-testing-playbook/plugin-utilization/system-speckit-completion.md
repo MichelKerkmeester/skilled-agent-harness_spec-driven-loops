@@ -1,7 +1,7 @@
 ---
 title: "CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-speckit-completion plugin for CO-056. It focuses on the read-only completion tool that returns a spec folder's level and checklist evidence."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2
@@ -66,12 +66,6 @@ jq -r 'select(.type=="tool_use") | .part.state.output' "$EVIDENCE_DIR/speckit-co
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-056 | system-speckit-completion | Confirm the read-only completion tool returns the packet path and level on both versions | `Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE.` | Runner on v1 and v2, then the `jq` tool-call read and a `grep` for `"specFolder"` and `"level"` on each events file | Tool result is JSON holding `"specFolder"` (the absolute packet path) and `"level"` | `speckit-completion.v1.events.jsonl`, `speckit-completion.v2.events.jsonl` | PASS only when both JSON fields are present on both versions | On v2 the call arrives through `execute`; read the result payload, and confirm the packet path exists first |
-
-### Recorded Run (2026-10-20)
-
-- v1 verdict: PASS. The tool was called directly.
-- v2 verdict: PASS. The tool was reached through `execute`.
-- Evidence: `speckit-completion.v1.txt` and `speckit-completion.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

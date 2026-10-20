@@ -1,7 +1,7 @@
 ---
 title: "CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-spec-gate plugin for CO-055. It focuses on the deferred Gate 3 instruction and the enforced refusal of a write that has no bound spec folder."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2
@@ -70,13 +70,6 @@ rm -rf scratch-probe
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-055 | system-spec-gate | Enforce the gate on a write with no bound spec folder and confirm the deferral and log signals | `This is a test of the spec-gate plugin. Do not ask me any questions and do not answer a documentation question yourself. Use the write tool to create the file scratch-probe/gate-probe.txt containing the word hello, then report exactly what the tool returned.` | Guarded runner with `env -u AI_SESSION_CHILD SYSTEM_SPEC_GATE_ENFORCE=1` on v1 and v2, then `jq` on the events and capture, `grep` on the effects, and an absence check for the file | `write` ends in error starting `system-spec-gate: DENIED: this Write/Edit needs a bound spec folder first.`; prompt holds `SPEC GATE: this session needs a spec-folder decision`; log gains a `would-deny` line; file absent | `spec-gate.v1.events.jsonl`, `spec-gate.v1.capture.jsonl`, `spec-gate.v1.effects.txt`, and the v2 counterparts | PASS only when the write is denied and all three signals are present on both versions | Confirm `AI_SESSION_CHILD` is unset, since the child flag pre-resolves the gate; read the error from the event JSON |
-
-### Recorded Run (2026-10-20)
-
-- v1 verdict: PASS.
-- v2 verdict: PASS.
-- Not covered: the plugin's `bash` mutation leg, which returns early on v2 because the tool is `shell`.
-- Evidence: `spec-gate.v1.txt` and `spec-gate.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

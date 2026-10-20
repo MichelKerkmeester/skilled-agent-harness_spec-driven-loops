@@ -1,7 +1,7 @@
 ---
 title: "CO-044 -- opencode-goal live utilization on OpenCode 1 and 2"
 description: "This scenario validates opencode-goal for `CO-044`. It focuses on confirming that a live session can set a goal, read its status and see the goal injected into a later request on both OpenCode versions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-044 -- opencode-goal live utilization on OpenCode 1 and 2
@@ -65,12 +65,6 @@ jq -r '.system[]' "$EVIDENCE_DIR/opencode-goal.v2.capture.jsonl" | grep -E '\[ac
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-044 | opencode-goal live utilization on OpenCode 1 and 2 | Confirm a live session sets, persists and injects a goal on both versions | `Call the opencode_goal tool with action 'set' and objective 'Probe goal canary 7Q4Z'. Then call the opencode_goal_status tool. Then reply with the single word DONE.` | 1. Export a fresh `OPENCODE_GOAL_STATE_DIR` -> 2. Run `opencode-goal` on v1 -> 3. Read the tool envelope, state file and system prompt -> 4. Run on v2 -> 5. Repeat the reads | `STATUS=OK ACTION=set` with `goal_present=true`; one 64-hex JSON file holds `7Q4Z`; a later request holds `[active_goal:goal-<uuid>]` | `opencode-goal.v1.txt`, `opencode-goal.v2.txt` | PASS if all three signals appear on that version; FAIL if any is missing | Confirm the state directory is exported to both runs; on v2 read the `execute` result |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS (tools called directly). The `set` envelope was `STATUS=OK ACTION=set`, the state file held `7Q4Z`, and a later request carried `[active_goal:goal-<uuid>]`.
-- v2: PASS (tools reached through `execute`). The same envelope and injected line were present.
-- Evidence: `opencode-goal.v1.txt` and `opencode-goal.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

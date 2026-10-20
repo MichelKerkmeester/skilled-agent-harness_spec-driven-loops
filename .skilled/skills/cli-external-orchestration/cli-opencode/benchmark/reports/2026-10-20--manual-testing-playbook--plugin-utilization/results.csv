@@ -1,0 +1,35 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-040-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,next request carries the Jev injection screen advisory
+CO-040-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,next request carries the Jev injection screen advisory
+CO-041-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,refused opencode run --help by hard rule and appended an audit record
+CO-041-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell on OpenCode 2; the command ran unblocked and no audit record was written
+CO-042-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,logged codex hook drift detected on session.created
+CO-042-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,opencode2 run delivers no session.created for its own session; nothing logged
+CO-043-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,logged a Code Mode route advisory for the native mobbin call
+CO-043-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,logged a Code Mode route advisory for the native mobbin call
+CO-044-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,"set returned STATUS=OK, state file holds the objective, [active_goal] injected"
+CO-044-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,"same, with the tools reached through execute"
+CO-045-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,startup warnings injected and dispose logged
+CO-045-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,startup guards never run because the run session gets no session.created; dispose still logs
+CO-046-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,handoff nudge injected past the configured window
+CO-046-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,"bridged message.updated has no properties.sessionID or info.time.completed, so usage is never recorded"
+CO-047-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,comment-hygiene finding logged and injected
+CO-047-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,comment-hygiene finding logged and injected
+CO-048-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,refused the off-template commit before git ran; HEAD unchanged
+CO-048-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell; only the git commit-msg hook refused; HEAD unchanged
+CO-049-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,add-pathspec-matches-nothing advisory injected
+CO-049-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell; no advisory
+CO-050-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon
+CO-050-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon through execute
+CO-051-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the quoted completion claim
+CO-051-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the quoted completion claim
+CO-052-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,refused the mode-mismatched deep-research dispatch
+CO-052-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the subagent tool is named subagent with argument agent; the guard never ran
+CO-053-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,stale-dist warning injected and logged
+CO-053-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,stale-dist warning injected and logged from the transform
+CO-054-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,Advisor live brief injected; kill switch removes it
+CO-054-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,Advisor live brief injected; kill switch removes it
+CO-055-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,write refused with system-spec-gate DENIED and the deferral injected
+CO-055-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,write refused with system-spec-gate DENIED and the deferral injected
+CO-056-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,tool returned the packet JSON
+CO-056-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,tool returned the packet JSON through execute

@@ -1,7 +1,7 @@
 ---
 title: "CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-preflight-advisory plugin for `CO-049`. It focuses on the advisory for a git command that fails a warn rule and on its delivery in the next request."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2
@@ -73,12 +73,6 @@ git status --short
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 || CO-049 | sk-git-preflight-advisory | Confirm the `add-pathspec-matches-nothing` advisory reaches the next request | `This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:<br>git add no-such-path-preflight-probe.txt<br>Then reply with the single word DONE.` | 1. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-preflight "$PROMPT"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" \| grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'` -> 3. `git status --short` -> 4. Repeat 1 to 3 with `v2` | The next request holds `[add-pathspec-matches-nothing] This pathspec matches no files`; nothing is staged | `git-preflight.v1.capture.jsonl`, `git-preflight.v1.events.jsonl`, `git-preflight.v1.exit` and the v2 equivalents | PASS if the next request carries the advisory; FAIL if it does not | Put the command on its own line; a trailing ` .` is skipped by the rule; on v2 the tool is `shell` |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS.
-- v2: FAIL (tool named `shell`).
-- Evidence files: `git-preflight.v1.txt`, `git-preflight.v2.txt` under the packet's `scratch/live-runs/`.
 
 ---
 

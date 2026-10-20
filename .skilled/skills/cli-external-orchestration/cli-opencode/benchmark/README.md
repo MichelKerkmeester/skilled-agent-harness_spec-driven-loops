@@ -29,6 +29,7 @@ Every file inside a run-label folder carries the marker `_Derived after the fact
 
 | Run label | Trace mode | Verdict | Scenarios | Source |
 |---|---|---|---|---|
+| [`2026-10-20--manual-testing-playbook--plugin-utilization/`](./reports/2026-10-20--manual-testing-playbook--plugin-utilization/) | live | **FAIL** | 34 (27 PASS, 7 FAIL) | `034-live-plugin-playbook` |
 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `004-goal-hook-playbooks-and-validation` |
 
 ---

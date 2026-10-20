@@ -1,7 +1,7 @@
 ---
 title: "CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-deep-loop-guard plugin for CO-052. It focuses on the task-dispatch guard that refuses a deep-loop dispatch whose declared mode the target agent does not have."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2
@@ -65,12 +65,6 @@ jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-052 | system-deep-loop-guard | Refuse a deep-loop dispatch whose declared mode the target agent does not have | `This is a test of a dispatch guard plugin. Use the task tool once to dispatch the deep-research subagent with this exact prompt, then report exactly what the tool returned (an error is an acceptable result): Deep Route: target_agent=deep-research mode=bogus-mode Reply with the single word OK and do nothing else.` (v2: `subagent` in place of `task`) | Runner on v1 and v2 as above, then the `jq` tool-call check on each events file | Tool call ends in error with `system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="bogus-mode"` | `deep-loop-guard.v1.events.jsonl`, `deep-loop-guard.v2.events.jsonl` | PASS only on that tool error on both versions | Read tool name and argument shape first; a guard keyed on `task` and `subagent_type` cannot see a `subagent` call with `agent` |
-
-### Recorded Run (2026-10-20)
-
-- v1 verdict: PASS. The guard refused the mode-mismatched dispatch.
-- v2 verdict: FAIL. On v2 the tool is `subagent` with argument `agent`, so the guard never ran and the subagent answered `OK`.
-- Evidence: `deep-loop-guard.v1.txt` and `deep-loop-guard.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

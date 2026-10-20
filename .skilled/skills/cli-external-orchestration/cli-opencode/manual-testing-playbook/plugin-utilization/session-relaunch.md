@@ -1,7 +1,7 @@
 ---
 title: "CO-046 -- session-relaunch live utilization on OpenCode 1 and 2"
 description: "This scenario validates the session-relaunch plugin for `CO-046`. It focuses on the handoff nudge injected into later requests once a skilled loop passes the configured context window."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-046 -- session-relaunch live utilization on OpenCode 1 and 2
@@ -69,12 +69,6 @@ cat "$EVIDENCE_DIR/session-relaunch.v2.exit"
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 || CO-046 | session-relaunch | Confirm the handoff nudge reaches a later request inside a skilled loop | `Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.` | 1. `AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 session-relaunch "<prompt>"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" \| grep -E '\[session-relaunch\] Context is past the configured window'` -> 3. Repeat 1 and 2 with `v2` | A later request's system prompt holds `[session-relaunch] Context is past the configured window`; the `echo relaunch-probe` tool call completes | `session-relaunch.v1.capture.jsonl`, `session-relaunch.v1.events.jsonl`, `session-relaunch.v1.exit` and the v2 equivalents | PASS if a request after the first carries the marker; FAIL if no later request carries it | Inspect `message.updated` properties; on v2 the bridge sends `{ info }` only, so usage is never recorded |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS.
-- v2: FAIL. The bridge maps `session.step.ended` to `message.updated` with properties `{ info }` only; the plugin needs `properties.sessionID` and `info.time.completed`, so it never records usage.
-- Evidence files: `session-relaunch.v1.txt`, `session-relaunch.v2.txt` under the packet's `scratch/live-runs/`.
 
 ---
 

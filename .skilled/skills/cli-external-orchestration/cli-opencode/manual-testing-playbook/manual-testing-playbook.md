@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -941,7 +941,7 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 
 Each scenario makes a live session on OpenCode 1 and OpenCode 2 hit one plugin's hook and checks the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
 
-Recorded result: on 2026-10-20, all 17 plugins worked on OpenCode 1.19.3 and 10 of 17 worked on OpenCode 2.0.32. The seven that did not work were cli-dispatch-audit, codex-hooks-watchdog, session-cleanup startup guards, session-relaunch, sk-git-message-gate, sk-git-preflight-advisory and system-deep-loop-guard. The first cause is the tool naming: the v2 shell tool is named `shell` and the subagent tool `subagent`, so cli-dispatch-audit, sk-git-message-gate, sk-git-preflight-advisory and system-deep-loop-guard return early on their `bash` and `task` checks. The second cause is that `opencode2 run` delivers no `session.created` for its own session, so codex-hooks-watchdog and the session-cleanup startup guards never fire. The third cause is that the bridge's `message.updated` lacks `sessionID` and `time.completed`, so session-relaunch never records usage and never nudges.
+Run results live in the skill's `benchmark/reports/` folder; the first run is `2026-10-20--manual-testing-playbook--plugin-utilization`, and its findings name the plugins that did not fire on OpenCode 2 and why.
 
 - `CO-040`: [Classifier injection screen](plugin-utilization/classifier-injection-screen.md)
 - `CO-041`: [CLI dispatch audit](plugin-utilization/cli-dispatch-audit.md)

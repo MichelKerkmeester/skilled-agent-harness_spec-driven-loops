@@ -1,7 +1,7 @@
 ---
 title: "CO-047 -- sk-code-post-edit-quality live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-code-post-edit-quality plugin for `CO-047`. It focuses on the comment-hygiene finding a write produces and its delivery in the next request."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-047 -- sk-code-post-edit-quality live utilization on OpenCode 1 and 2
@@ -34,7 +34,7 @@ Operators run the exact prompt and command sequence for `CO-047` and confirm the
   Then reply with the single word DONE. Do not run any other tool.
   ```
 - Expected execution process: Start a run, let the model write the two-line fixture, then read the new log line and the system prompt of the next captured request.
-- Expected signals: A `post-edit-quality.log` line holds `[comment-hygiene] ... pe-probe.js:1:`, and the next request's system prompt holds `[post-edit-quality] Advisory findings from recent edits:`.
+- Expected signals: A `post-edit-quality.log` line holds a `[comment-hygiene]` line that names `pe-probe.js` and its line 1, and the next request's system prompt holds `[post-edit-quality] Advisory findings from recent edits:`.
 - Evidence requirements: The `effects.txt` log line, the matching system-prompt line in `capture.jsonl`, the write tool call in `events.jsonl`, and the exit status.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the log line and the advisory line.
 - Pass/fail: PASS if both the comment-hygiene log line and the advisory in a later request appear; FAIL if either is absent.
@@ -71,13 +71,7 @@ jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v2.capture.jsonl" | grep -E '
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-047 | sk-code-post-edit-quality | Confirm a comment-hygiene finding is logged and delivered to the next request | `Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe.js with exactly these two lines:<br>// Aspect ratio taken from the 640/480 baseline.<br>export const ratio = 640 / 480;<br>Then reply with the single word DONE. Do not run any other tool.` | 1. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 post-edit-quality "$PROMPT"` -> 2. `grep -E '\[comment-hygiene\].*pe-probe\.js:1:' "$EVIDENCE_DIR/post-edit-quality.v1.effects.txt"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v1.capture.jsonl" \| grep -E '\[post-edit-quality\] Advisory findings from recent edits:'` -> 4. Repeat 1 to 3 with `v2` | The log holds `[comment-hygiene] ... pe-probe.js:1:`; a later request holds `[post-edit-quality] Advisory findings from recent edits:` | `post-edit-quality.v1.effects.txt`, `post-edit-quality.v1.capture.jsonl`, `post-edit-quality.v1.events.jsonl` and the v2 equivalents | PASS if both the log line and the advisory appear; FAIL if either is absent | Confirm the file was written inside the repository and the comment matches the packet/phase pattern; a fixture with an obvious identifier may be refused on v2 |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS.
-- v2: PASS.
-- Evidence files: `post-edit-quality.v1.txt`, `post-edit-quality.v2.txt` under the packet's `scratch/live-runs/`.
+|| CO-047 | sk-code-post-edit-quality | Confirm a comment-hygiene finding is logged and delivered to the next request | `Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe.js with exactly these two lines:<br>// Aspect ratio taken from the 640/480 baseline.<br>export const ratio = 640 / 480;<br>Then reply with the single word DONE. Do not run any other tool.` | 1. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 post-edit-quality "$PROMPT"` -> 2. `grep -E '\[comment-hygiene\].*pe-probe\.js:1:' "$EVIDENCE_DIR/post-edit-quality.v1.effects.txt"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v1.capture.jsonl" \| grep -E '\[post-edit-quality\] Advisory findings from recent edits:'` -> 4. Repeat 1 to 3 with `v2` | The log holds a `[comment-hygiene]` line that names `pe-probe.js` and its line 1; a later request holds `[post-edit-quality] Advisory findings from recent edits:` | `post-edit-quality.v1.effects.txt`, `post-edit-quality.v1.capture.jsonl`, `post-edit-quality.v1.events.jsonl` and the v2 equivalents | PASS if both the log line and the advisory appear; FAIL if either is absent | Confirm the file was written inside the repository and the comment matches the packet/phase pattern; a fixture with an obvious identifier may be refused on v2 |
 
 ---
 

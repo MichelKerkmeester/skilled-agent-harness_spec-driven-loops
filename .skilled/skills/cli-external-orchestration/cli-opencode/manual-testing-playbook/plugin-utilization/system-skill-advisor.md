@@ -1,7 +1,7 @@
 ---
 title: "CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-skill-advisor plugin for CO-054. It focuses on the advisor brief that scores the user prompt against the skill graph and its kill switch."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2
@@ -68,14 +68,6 @@ jq -r '.system[]' "$EVIDENCE_DIR/killswitch-skill-advisor.v2.capture.jsonl" | gr
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-054 | system-skill-advisor | Confirm the advisor names `sk-git` and that the kill switch removes the brief on both versions | `Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?` | Runner as `skill-advisor` on v1 and v2, then the same on each version as `killswitch-skill-advisor` with `SYSTEM_SKILL_ADVISOR_DISABLED=1`, then `jq` and `grep` on each capture | `Advisor: live;` naming `sk-git`; recorded line `Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.`; 0 lines with the switch | `skill-advisor.v1.capture.jsonl`, `killswitch-skill-advisor.v1.capture.jsonl`, `skill-advisor.v2.capture.jsonl`, `killswitch-skill-advisor.v2.capture.jsonl` | PASS only when the live line names `sk-git` and the switch run counts 0 on both versions | Rerun once if the first run shows `Advisor: outage (fail_open)`; count lines from the capture file, not the reply |
-
-### Recorded Run (2026-10-20)
-
-- v1 verdict: PASS. The live run carried the advisor line and the kill switch dropped it.
-- v2 verdict: PASS. The live run carried the advisor line and the kill switch dropped it.
-- Kill switch verdict: PASS on both. 0 lines with the switch; 2 on v1 and 1 on v2 without it.
-- Evidence: `skill-advisor.v1.txt`, `skill-advisor.v2.txt`, `killswitch-skill-advisor.v1.txt`, and `killswitch-skill-advisor.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
-- Note: the first v1 run of a fresh worktree showed `Advisor: outage (fail_open)`; later runs were `live`.
 
 ---
 

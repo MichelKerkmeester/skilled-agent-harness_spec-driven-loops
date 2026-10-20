@@ -1,7 +1,7 @@
 ---
 title: "CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2"
 description: "This scenario validates cli-dispatch-audit for `CO-041`. It focuses on confirming that a blocked CLI dispatch is refused before it runs and that every allowed dispatch appends one audit record on both OpenCode versions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2
@@ -66,12 +66,6 @@ cat "$EVIDENCE_DIR"/dispatch-*.v*.exit
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-041 | cli-dispatch-audit live utilization on OpenCode 1 and 2 | Confirm the guard refuses a bad dispatch and the audit leg writes one record per version | `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help` then `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null` | 1. Run `dispatch-guard` on v1 -> 2. Run `dispatch-audit` on v1 -> 3. Read the events error and the effects log line -> 4. Repeat both runs on v2 -> 5. Repeat both reads on v2 | Guard call errors with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; audit effects show `"runtime":"opencode"` and `"skill":"cli-opencode"` | `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt`, `dispatch-audit.v2.txt` | PASS if both legs hold on that version; FAIL if the guard command runs or no audit record is written | Read the tool name in the events file first; on v2 the shell tool is `shell`, so both hooks return early |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS (guard and log). The tool call ended in error naming both rules, and `cli-dispatch-audit.log` gained a record with `"runtime":"opencode"` and `"skill":"cli-opencode"`.
-- v2: FAIL (guard and log). On v2 the tool is `shell`, so `opencode run --help` ran unblocked and no record was written.
-- Evidence: `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt` and `dispatch-audit.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

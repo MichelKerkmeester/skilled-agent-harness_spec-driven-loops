@@ -1,7 +1,7 @@
 ---
 title: "CO-043 -- mcp-route-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates mcp-route-guard for `CO-043`. It focuses on confirming that a native MCP call to a server the Code Mode manifest covers logs a WARN advisory on both OpenCode versions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-043 -- mcp-route-guard live utilization on OpenCode 1 and 2
@@ -66,12 +66,6 @@ cat "$EVIDENCE_DIR/mcp-route-guard.v1.exit" "$EVIDENCE_DIR/mcp-route-guard.v2.ex
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-043 | mcp-route-guard live utilization on OpenCode 1 and 2 | Confirm a native `mobbin` call logs the Code Mode advisory on both versions | `Call the mobbin_ping tool and print its output, then reply DONE.` on v1, `Call the ping tool of the mobbin MCP server and print its output, then reply DONE.` on v2 | 1. Resolve the stub path and register `mobbin` through `CFG_EXTRA` -> 2. Run `mcp-route-guard` on v1 -> 3. Read the tool result and WARN line -> 4. Run on v2 with the `mcp.servers` shape -> 5. Repeat both reads | Tool returns `pong-stub` and `[mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin"` is appended | `mcp-route-guard.v1.txt`, `mcp-route-guard.v2.txt` | PASS if both the output and the WARN line appear on that version; FAIL if either is missing | Confirm the stub path is absolute and the `CFG_EXTRA` shape matches the version; on v2 read the `execute` call |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS. `mobbin_ping` returned `pong-stub` and `mcp-route-guard.log` gained the WARN line.
-- v2: PASS. On v2 the model called the server through `execute` as `tools.mobbin.ping()`, returned `pong-stub`, and the WARN line was appended.
-- Evidence: `mcp-route-guard.v1.txt` and `mcp-route-guard.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

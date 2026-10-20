@@ -1,7 +1,7 @@
 ---
 title: "CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-message-gate plugin for `CO-048`. It focuses on refusing an off-template commit message before git runs."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CO-048` and confirm the
 - Evidence requirements: The tool call status and error text from `events.jsonl`, the `HEAD` value before and after, and the exit status.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the refusing layer and the unchanged `HEAD`.
 - Pass/fail: PASS if the tool call itself ends in the gate's error and `HEAD` is unchanged; FAIL if the command ran and only the git `commit-msg` hook refused it.
-- Failure triage: A `BLOCKED: commit message failed the commit message contract` text in a completed tool output is the git hook, not the plugin, and does not count. On v2 the tool is named `shell`, so the plugin never runs.
+- Failure triage: The git commit-msg hook's own refusal text (it starts with the word blocked in capitals and names the commit message contract) in a completed tool output is the git hook, not the plugin, and does not count. On v2 the tool is named `shell`, so the plugin never runs.
 
 ---
 
@@ -71,13 +71,7 @@ git rev-parse HEAD
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-048 | sk-git-message-gate | Confirm an off-template commit is refused before git runs and `HEAD` stays put | `This is a test of a commit-message gate plugin in a throwaway worktree. Run this shell command once, unchanged; it is expected to be refused:<br>git commit --allow-empty -m 'bad'<br>Then report exactly what the tool returned.` | 1. `git rev-parse HEAD` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-message-gate "$PROMPT"` -> 3. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl"` -> 4. Repeat 1 to 3 with `v2`; compare `HEAD` | The tool call ends in error with `sk-git-message-gate: sk-git blocked this commit message`; `HEAD` is unchanged | `git-message-gate.v1.events.jsonl`, `git-message-gate.v1.exit` and the v2 equivalents, plus the before and after `HEAD` values | PASS if the tool call itself ends in the gate error and `HEAD` is unchanged; FAIL if only the git hook refused it | A `BLOCKED: commit message failed the commit message contract` text in a completed output is the git hook, not the plugin; on v2 the tool is `shell` |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS.
-- v2: FAIL. The tool is `shell` on v2; the command ran and only the git hook refused it; HEAD unchanged.
-- Evidence files: `git-message-gate.v1.txt`, `git-message-gate.v2.txt` under the packet's `scratch/live-runs/`.
+|| CO-048 | sk-git-message-gate | Confirm an off-template commit is refused before git runs and `HEAD` stays put | `This is a test of a commit-message gate plugin in a throwaway worktree. Run this shell command once, unchanged; it is expected to be refused:<br>git commit --allow-empty -m 'bad'<br>Then report exactly what the tool returned.` | 1. `git rev-parse HEAD` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-message-gate "$PROMPT"` -> 3. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl"` -> 4. Repeat 1 to 3 with `v2`; compare `HEAD` | The tool call ends in error with `sk-git-message-gate: sk-git blocked this commit message`; `HEAD` is unchanged | `git-message-gate.v1.events.jsonl`, `git-message-gate.v1.exit` and the v2 equivalents, plus the before and after `HEAD` values | PASS if the tool call itself ends in the gate error and `HEAD` is unchanged; FAIL if only the git hook refused it | The git commit-msg hook's own refusal text (it starts with the word blocked in capitals and names the commit message contract) in a completed output is the git hook, not the plugin; on v2 the tool is `shell` |
 
 ---
 

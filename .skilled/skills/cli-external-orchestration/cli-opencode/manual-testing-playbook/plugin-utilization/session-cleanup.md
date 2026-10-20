@@ -1,7 +1,7 @@
 ---
 title: "CO-045 -- session-cleanup live utilization on OpenCode 1 and 2"
 description: "This scenario validates session-cleanup for `CO-045`. It focuses on confirming that startup safety warnings are injected and the dispose hook writes its log line on both OpenCode versions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-045 -- session-cleanup live utilization on OpenCode 1 and 2
@@ -64,12 +64,6 @@ cat "$EVIDENCE_DIR/baseline.v1.exit" "$EVIDENCE_DIR/baseline.v2.exit"
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-045 | session-cleanup live utilization on OpenCode 1 and 2 | Confirm the startup warning and the dispose log line on both versions | `Reply with the single word OK.` | 1. Export a fresh `SESSION_CLEANUP_LOG_PATH` -> 2. Run `baseline` on v1 -> 3. Grep the capture for the startup line and read the log -> 4. Run on v2 -> 5. Repeat both reads | System prompt holds `[session-cleanup] Startup safety warnings:`; the log gains a line such as `action=skip reason=no-session-pid` | `baseline.v1.txt`, `baseline.v2.txt` | PASS if both halves hold on that version; FAIL if the warning or the dispose line is missing | Confirm the log path is exported; a missing startup warning points at `session.created`, which the v2 run session does not receive |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS (both halves). The system prompt carried `[session-cleanup] Startup safety warnings:` and the log gained `action=skip reason=no-session-pid` at dispose.
-- v2: FAIL on the startup half (no `session.created` for the run's own session); the dispose half works and writes the log line.
-- Evidence: `baseline.v1.txt` and `baseline.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2"
 description: "This scenario validates codex-hooks-watchdog for `CO-042`. It focuses on confirming that a live session reports drifted user-global Codex hooks into the watchdog log on both OpenCode versions."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2
@@ -30,8 +30,8 @@ Operators run the exact prompt and command sequence for `CO-042` and confirm the
 - Expected execution process: Confirm drift with the installer in check mode, run the prompt through the scenario runner on v1 and then on v2 with `AI_SESSION_CHILD=1`, and read the new log line from each effects file.
 - Expected signals: `effects.txt` shows a new `codex-hooks-watchdog.log` line containing `codex hook drift detected`.
 - Evidence requirements: Capture the installer's check status before the runs and the effects file and exit status for each version.
-- Desired user-visible outcome: A per-version verdict naming the watchdog log line, or a SKIP when the checkout has no drift.
-- Pass/fail: PASS if the log gains a `codex hook drift detected` line on that version. FAIL if the session runs and no line is written. SKIP if the installer check exits zero, because the plugin is silent by design with no drift.
+- Desired user-visible outcome: A per-version verdict naming the watchdog log line, or a SKIP, blocker: the installer check exits 0 on this machine, so there is no Codex hook drift for the plugin to report.
+- Pass/fail: PASS if the log gains a `codex hook drift detected` line on that version. FAIL if the session runs and no line is written. SKIP, blocker: the installer check exits 0 on this machine, so there is no Codex hook drift for the plugin to report.
 - Failure triage: Run `node .opencode/bin/install-codex-hooks.mjs --check; echo $?` first and confirm a non-zero status. If drift exists but no line is written, check whether the session delivered `session.created`; on OpenCode 2 the run session does not.
 
 ---
@@ -61,13 +61,7 @@ cat "$EVIDENCE_DIR/baseline.v1.exit" "$EVIDENCE_DIR/baseline.v2.exit"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-042 | codex-hooks-watchdog live utilization on OpenCode 1 and 2 | Confirm a live session logs drifted Codex hooks on both versions | `Reply with the single word OK.` | 1. `node .opencode/bin/install-codex-hooks.mjs --check; echo $?` returns non-zero -> 2. Run `baseline` on v1 -> 3. Grep the v1 effects file -> 4. Run `baseline` on v2 -> 5. Grep the v2 effects file | `codex-hooks-watchdog.log` gains a line containing `codex hook drift detected` | `baseline.v1.txt`, `baseline.v2.txt`, and `deep-loop-guard.v2.txt` for the subagent session observation | PASS if the line is written on that version; FAIL if the session runs and no line appears; SKIP with no drift | Confirm the installer check is non-zero first, then check whether `session.created` was delivered |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS. The log gained `codex hook drift detected; run: node <installer> --check`.
-- v2: FAIL. `opencode2 run` delivers no `session.created` for the run's own session, so nothing was logged. A subagent session created later in a v2 run did trigger it (seen in the deep-loop-guard v2 run).
-- Evidence: `baseline.v1.txt`, `baseline.v2.txt` and `deep-loop-guard.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
+| CO-042 | codex-hooks-watchdog live utilization on OpenCode 1 and 2 | Confirm a live session logs drifted Codex hooks on both versions | `Reply with the single word OK.` | 1. `node .opencode/bin/install-codex-hooks.mjs --check; echo $?` returns non-zero -> 2. Run `baseline` on v1 -> 3. Grep the v1 effects file -> 4. Run `baseline` on v2 -> 5. Grep the v2 effects file | `codex-hooks-watchdog.log` gains a line containing `codex hook drift detected` | `baseline.v1.txt`, `baseline.v2.txt`, and `deep-loop-guard.v2.txt` for the subagent session observation | PASS if the line is written on that version; FAIL if the session runs and no line appears; SKIP, blocker: the installer check exits 0 on this machine, so there is no Codex hook drift for the plugin to report | Confirm the installer check is non-zero first, then check whether `session.created` was delivered |
 
 ---
 

@@ -1,0 +1,537 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "live",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "cli-opencode",
+    "root": ".skilled/skills/cli-external-orchestration/cli-opencode"
+  },
+  "executor": "opencode",
+  "model": "llmgateway/deepseek-v4.1-flash",
+  "variant": "high",
+  "verdict": "FAIL",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 34
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CO-040-V1",
+      "verdict": "PASS",
+      "reason": "next request carries the Jev injection screen advisory",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "classifier-injection-screen",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/injection-screen.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-040-V2",
+      "verdict": "PASS",
+      "reason": "next request carries the Jev injection screen advisory",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "classifier-injection-screen",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/injection-screen.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-041-V1",
+      "verdict": "PASS",
+      "reason": "refused opencode run --help by hard rule and appended an audit record",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "cli-dispatch-audit",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dispatch-guard.v1.txt",
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dispatch-audit.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-041-V2",
+      "verdict": "FAIL",
+      "reason": "the shell tool is named shell on OpenCode 2; the command ran unblocked and no audit record was written",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "cli-dispatch-audit",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dispatch-guard.v2.txt",
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dispatch-audit.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-042-V1",
+      "verdict": "PASS",
+      "reason": "logged codex hook drift detected on session.created",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "codex-hooks-watchdog",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/baseline.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-042-V2",
+      "verdict": "FAIL",
+      "reason": "opencode2 run delivers no session.created for its own session; nothing logged",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "codex-hooks-watchdog",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/baseline.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-043-V1",
+      "verdict": "PASS",
+      "reason": "logged a Code Mode route advisory for the native mobbin call",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "mcp-route-guard",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/mcp-route-guard.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-043-V2",
+      "verdict": "PASS",
+      "reason": "logged a Code Mode route advisory for the native mobbin call",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "mcp-route-guard",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/mcp-route-guard.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-044-V1",
+      "verdict": "PASS",
+      "reason": "set returned STATUS=OK, state file holds the objective, [active_goal] injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "opencode-goal",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/opencode-goal.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-044-V2",
+      "verdict": "PASS",
+      "reason": "same, with the tools reached through execute",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "opencode-goal",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/opencode-goal.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-045-V1",
+      "verdict": "PASS",
+      "reason": "startup warnings injected and dispose logged",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "session-cleanup",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/baseline.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-045-V2",
+      "verdict": "FAIL",
+      "reason": "startup guards never run because the run session gets no session.created; dispose still logs",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "session-cleanup",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/baseline.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-046-V1",
+      "verdict": "PASS",
+      "reason": "handoff nudge injected past the configured window",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "session-relaunch",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/session-relaunch.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-046-V2",
+      "verdict": "FAIL",
+      "reason": "bridged message.updated has no properties.sessionID or info.time.completed, so usage is never recorded",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "session-relaunch",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/session-relaunch.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-047-V1",
+      "verdict": "PASS",
+      "reason": "comment-hygiene finding logged and injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-code-post-edit-quality",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/post-edit-quality.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-047-V2",
+      "verdict": "PASS",
+      "reason": "comment-hygiene finding logged and injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-code-post-edit-quality",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/post-edit-quality.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-048-V1",
+      "verdict": "PASS",
+      "reason": "refused the off-template commit before git ran; HEAD unchanged",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-git-message-gate",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/git-message-gate.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-048-V2",
+      "verdict": "FAIL",
+      "reason": "the shell tool is named shell; only the git commit-msg hook refused; HEAD unchanged",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-git-message-gate",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/git-message-gate.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-049-V1",
+      "verdict": "PASS",
+      "reason": "add-pathspec-matches-nothing advisory injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-git-preflight-advisory",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/git-preflight.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-049-V2",
+      "verdict": "FAIL",
+      "reason": "the shell tool is named shell; no advisory",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-git-preflight-advisory",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/git-preflight.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-050-V1",
+      "verdict": "PASS",
+      "reason": "sk_vision_status returned provider photon",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-vision",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/sk-vision.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-050-V2",
+      "verdict": "PASS",
+      "reason": "sk_vision_status returned provider photon through execute",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "sk-vision",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/sk-vision.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-051-V1",
+      "verdict": "PASS",
+      "reason": "advisory logged for the quoted completion claim",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-completion-sentinel",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/completion-sentinel.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-051-V2",
+      "verdict": "PASS",
+      "reason": "advisory logged for the quoted completion claim",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-completion-sentinel",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/completion-sentinel.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-052-V1",
+      "verdict": "PASS",
+      "reason": "refused the mode-mismatched deep-research dispatch",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-deep-loop-guard",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/deep-loop-guard.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-052-V2",
+      "verdict": "FAIL",
+      "reason": "the subagent tool is named subagent with argument agent; the guard never ran",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-deep-loop-guard",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/deep-loop-guard.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-053-V1",
+      "verdict": "PASS",
+      "reason": "stale-dist warning injected and logged",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-dist-freshness-guard",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dist-freshness.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-053-V2",
+      "verdict": "PASS",
+      "reason": "stale-dist warning injected and logged from the transform",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-dist-freshness-guard",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/dist-freshness.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-054-V1",
+      "verdict": "PASS",
+      "reason": "Advisor live brief injected; kill switch removes it",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-skill-advisor",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/skill-advisor.v1.txt",
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/killswitch-skill-advisor.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-054-V2",
+      "verdict": "PASS",
+      "reason": "Advisor live brief injected; kill switch removes it",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-skill-advisor",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/skill-advisor.v2.txt",
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/killswitch-skill-advisor.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-055-V1",
+      "verdict": "PASS",
+      "reason": "write refused with system-spec-gate DENIED and the deferral injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-spec-gate",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/spec-gate.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-055-V2",
+      "verdict": "PASS",
+      "reason": "write refused with system-spec-gate DENIED and the deferral injected",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-spec-gate",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/spec-gate.v2.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-056-V1",
+      "verdict": "PASS",
+      "reason": "tool returned the packet JSON",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-speckit-completion",
+      "openCode": "1.19.3",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/speckit-completion.v1.txt"
+      ]
+    },
+    {
+      "scenarioId": "CO-056-V2",
+      "verdict": "PASS",
+      "reason": "tool returned the packet JSON through execute",
+      "stage": "plugin-utilization",
+      "classKind": "manual",
+      "providerModel": "llmgateway/deepseek-v4.1-flash",
+      "variant": "high",
+      "plugin": "system-speckit-completion",
+      "openCode": "2.0.32",
+      "evidence": [
+        "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/speckit-completion.v2.txt"
+      ]
+    }
+  ],
+  "provenance": {
+    "packet": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+    "evidence": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs",
+    "executedOn": "2026-10-20",
+    "worktree": "174-live-plugin-playbook"
+  },
+  "executionContext": {
+    "openCode1": "opencode run 1.19.3",
+    "openCode2": "opencode2 run --standalone 2.0.32",
+    "runner": "manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh"
+  }
+}

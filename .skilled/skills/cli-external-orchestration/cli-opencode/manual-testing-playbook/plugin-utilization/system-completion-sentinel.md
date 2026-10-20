@@ -1,7 +1,7 @@
 ---
 title: "CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-completion-sentinel plugin for `CO-051`. It focuses on the advisory appended when a completion claim names a spec folder with an incomplete checklist."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2
@@ -66,12 +66,6 @@ grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 || CO-051 | system-completion-sentinel | Confirm a completion claim for an incomplete packet produces one advisory | `This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.` | 1. `rm -f .skilled/skills/.state/completion-sentinel/advisory-dedup.json` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 completion-sentinel "$PROMPT"` -> 3. `grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/completion-sentinel.v1.effects.txt"` -> 4. Repeat 1 to 3 with `v2` | `effects.txt` holds `[completion-evidence-sentinel] claimed done but only 0/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook` | `completion-sentinel.v1.effects.txt`, `completion-sentinel.v1.events.jsonl`, `completion-sentinel.v1.exit` and the v2 equivalents | PASS if the advisory names the packet and its incomplete P0 count; FAIL if no advisory is written | Delete the dedup state before each version; on v2 `session.execution.succeeded` is aliased to `session.idle` |
-
-### Recorded Run (2026-10-20)
-
-- v1: PASS.
-- v2: PASS (on v2 `session.execution.succeeded` is aliased to `session.idle`).
-- Evidence files: `completion-sentinel.v1.txt`, `completion-sentinel.v2.txt` under the packet's `scratch/live-runs/`.
 
 ---
 

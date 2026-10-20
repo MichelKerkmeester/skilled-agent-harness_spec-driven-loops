@@ -1,7 +1,7 @@
 ---
 title: "CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-dist-freshness-guard plugin for CO-053. It focuses on the stale compiled dist warning that reaches the system prompt and the plugin log."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2
@@ -71,12 +71,6 @@ cp -p /tmp/cli.js.bak $E
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | CO-053 | system-dist-freshness-guard | Make a provisioned package stale and confirm the warning reaches the prompt and the log on both versions | `Reply with the single word OK.` | Stale setup and confirm command, then the runner on v1 and v2, then `jq` on each `.capture.jsonl` and `grep` on each `.effects.txt`, then restore | Prompt holds `[dist-freshness-guard] Local compiled dist is stale` and `STALE DIST WARNING: design-system-extractor`; log gains a line prefixed `session.created:` on v1 and `inject:` on v2 | `dist-freshness.v1.capture.jsonl`, `dist-freshness.v1.effects.txt`, `dist-freshness.v2.capture.jsonl`, `dist-freshness.v2.effects.txt` | PASS only when both markers and the log line appear on both versions | Run the confirm command first; an unprovisioned package reports `unprovisioned`, not `stale`, so use the provisioned backend sample |
-
-### Recorded Run (2026-10-20)
-
-- v1 verdict: PASS. The system prompt carried both markers and the log line came from `session.created:`.
-- v2 verdict: PASS. The system prompt carried both markers and the log line came from `inject:`.
-- Evidence: `dist-freshness.v1.txt` and `dist-freshness.v2.txt` under `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch/live-runs/`.
 
 ---
 
