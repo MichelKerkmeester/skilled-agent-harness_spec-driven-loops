@@ -6,15 +6,16 @@
     "phase",
     "opencode2-models-provider-check"
   ],
-  "lastUpdated": "2026-10-20T12:00:48.762Z",
+  "lastUpdated": "2026-10-20T12:24:44.622Z",
   "specId": "027",
   "folderSlug": "opencode2-models-provider-check",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "20-10-26_13-00__every-documented-opencode-2-provider-check-now.md"
+    "20-10-26_13-00__every-documented-opencode-2-provider-check-now.md",
+    "20-10-26_13-24__round-2-fixes-every-opencode-models-form-opencode.md"
   ]
 }

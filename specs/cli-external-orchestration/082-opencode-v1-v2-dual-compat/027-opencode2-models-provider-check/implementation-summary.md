@@ -8,19 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check"
-    last_updated_at: "2026-10-20T12:00:48Z"
+    last_updated_at: "2026-10-20T12:24:44Z"
     last_updated_by: "generate-context"
-    recent_action: "Finished docs, Hermes copy, test and workflow line; 9 of 9 cli-opencode tests pass"
-    next_safe_action: "Run the Luna review, then merge main and push"
+    recent_action: "Committed the round-2 fixes; 12 of 12 cli-opencode tests pass"
+    next_safe_action: "Run Luna review round 3, then merge main and push"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs"
-      - ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md"
+      - ".github/workflows/opencode-dual-version.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-027-opencode2-models-provider-check"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 85
     open_questions: []
     answered_questions: []
 ---
