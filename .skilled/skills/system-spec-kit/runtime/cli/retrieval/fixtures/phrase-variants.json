@@ -1,5 +1,5 @@
 {
-  "manifestHash": "086f3391e6465092c873bf9ce8023b015f580242179d29e77aa8f5a7c6124979",
+  "manifestHash": "ee0da16f0e33e86984f3ba7ab59674bc4b08d0140d613de5f2f28fe14bca0f99",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13044,6 +13044,18 @@
     "batched rescue hydration": [
       "batched rescue hydration"
     ],
+    "battery mcp prompt commands": [
+      "battery mcp prompt commands"
+    ],
+    "battery mcp prompt commands implementation summary": [
+      "battery mcp prompt commands implementation summary"
+    ],
+    "battery mcp prompt commands plan": [
+      "battery mcp prompt commands plan"
+    ],
+    "battery mcp prompt commands tasks": [
+      "battery mcp prompt commands tasks"
+    ],
     "battery misses": [
       "battery misses"
     ],
@@ -23310,6 +23322,9 @@
     ],
     "code mode utcp architecture": [
       "code mode utcp architecture"
+    ],
+    "code mode utcp codemode usage": [
+      "code_mode utcp_codemode_usage"
     ],
     "code mode workflow examples": [
       "code mode workflow examples"
@@ -60022,6 +60037,9 @@
     "mcp orca verification checklist": [
       "mcp-orca verification checklist"
     ],
+    "mcp prompt command listed": [
+      "mcp prompt command listed"
+    ],
     "mcp query interface": [
       "mcp query interface"
     ],
@@ -72213,6 +72231,9 @@
     ],
     "phase 32 plugin tests ci and stale bundles": [
       "phase 32 plugin tests ci and stale bundles"
+    ],
+    "phase 33 battery mcp prompt commands": [
+      "phase 33 battery mcp prompt commands"
     ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
