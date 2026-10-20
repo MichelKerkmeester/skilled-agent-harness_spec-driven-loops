@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -76,7 +76,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `opencode serve` | Start a headless server | YES (for parallel detached sessions) |
 | `opencode web` | Start a server plus open the web interface | YES (when the operator wants a browser surface) |
 | `opencode acp` | Start an ACP (Agent Client Protocol) server | No (specialized integration path) |
-| `opencode attach <url>` | Attach to a running OpenCode server | YES (for share-URL flows) |
+| `opencode attach <url>` | Attach to a running OpenCode server | YES (to attach to a running server started with opencode serve) |
 | `opencode agent` | Manage agent definitions | YES (for agent listing) |
 | `opencode debug` | Debugging and troubleshooting tools | YES (for `debug skill` and `debug agent` listings) |
 | `opencode mcp` | Manage MCP server registrations | No |
@@ -114,7 +114,7 @@ The table gives the OpenCode 1 (1.19.3) form of each flag. The OpenCode 2 column
 | `-m`, `--model` | string | Provider/model selector, e.g. `opencode-go/deepseek-v4.1-flash` | `-m provider/model#<level>` (model and effort in one flag) |
 | `--agent` | string | Agent slug (loads from `.opencode/agents/<slug>.md`, which links to `.skilled/agents/` in this repository) | listed. Runs the session as that agent, `general` included. An unknown slug exits 1 |
 | `--format` | enum | `default` (formatted) or `json` (raw event stream) | same |
-| `-f`, `--file` | array | Attach files to the message. The positional message must come first | same |
+| `-f`, `--file` | array | Attach files to the message. The positional message must come first | listed as a single string on 2.0.32 (`--file, -f string`); whether it repeats is unverified, so pass one file per flag |
 | `--title` | string | Session title (truncated message used when omitted) | same |
 | `--attach` (OpenCode 1 only) | string | Attach to a running OpenCode server URL | `--server <url>` |
 | `-p`, `--password` | string | Basic auth password (or `OPENCODE_SERVER_PASSWORD`) | absent on `run` |
