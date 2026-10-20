@@ -64,7 +64,7 @@ This is **Phase 28** of the OpenCode v1 and v2 dual-compatibility packet. It clo
 The repo's master switch `SYSTEM_HOOKS_DISABLED` silences every hook and plugin except three. `sk-git-message-gate.js` is switchless by design, because the commit and push rules carry no bypass. The other two are gaps. `system-speckit-completion.js` checks only `SYSTEM_SPECKIT_COMPLETION_DISABLED === '1'`, so the master switch, the older `MK_HOOKS_DISABLED`, values such as `true`, and the switch file `hook-flags.env` all leave its tool registered. The sk-vision plugin reads no switch at all, so on OpenCode 2 its `/vision` command and prompt hook register even with every hook switched off, and on OpenCode 1 only the plugin option `enabled: false` stops it.
 
 ### Purpose
-An operator who sets the master switch, or a plugin's own concern switch, gets a plugin that registers nothing, the same way for sixteen of the seventeen plugins and on both OpenCode lines. `sk-git-message-gate.js` stays switchless.
+An operator who sets the master switch, or a plugin's own concern switch, gets these two plugins registering nothing, on both OpenCode lines. Sixteen of the seventeen plugins now stop their work under the master switch; a few of those keep a status tool registered to report that they are off, as the plugins README describes. `sk-git-message-gate.js` stays switchless.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -75,7 +75,7 @@ An operator who sets the master switch, or a plugin's own concern switch, gets a
 ### In Scope
 - `system-speckit-completion.js`: replace the bare env check with `isHookEnabled('completion')`, the concern whose aliases already list `SYSTEM_SPECKIT_COMPLETION_DISABLED`.
 - `vision-runtime/src/plugin.ts`: check `isHookEnabled('sk-vision')` in the v1 `server` and the v2 `setup`, the concern the Devin hook already uses. A disabled plugin returns only `dispose` on v1 and registers nothing on v2. If the resolver cannot be loaded, the plugin stays on, matching the resolver's own fail-open rule.
-- Tests: the speckit-completion test gains the master switch, its alias and a truthy non-`1` value, on `server` and `setup`; the sk-vision plugin test gains the master and concern switches on `server` and `setup`.
+- Tests: the speckit-completion test gains the master switch, its alias on `server` and `setup`, and a truthy non-`1` value on `server`; the sk-vision plugin test gains the master and concern switches on `server` and `setup`.
 - Docs: the kill-switch paragraph and the known-gaps list in `.opencode/plugins/ARCHITECTURE.md`, and any README line that repeats the gap.
 
 ### Out of Scope

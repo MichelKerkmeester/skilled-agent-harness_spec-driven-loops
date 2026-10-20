@@ -48,7 +48,7 @@ The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`
                                   └──────────────────────────────┘
 ```
 
-The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vision.js` exports its own `setup`, which registers its OpenCode 2 command without going through the bridge unless a kill switch is set. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:429-433`), and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:496-500`, Section 4).
+The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vision.js` exports its own `setup`, which registers its OpenCode 2 command without going through the bridge; with a kill switch set, that `setup` returns a no-op cleanup and registers nothing. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:429-433`), and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:496-500`, Section 4).
 
 ---
 

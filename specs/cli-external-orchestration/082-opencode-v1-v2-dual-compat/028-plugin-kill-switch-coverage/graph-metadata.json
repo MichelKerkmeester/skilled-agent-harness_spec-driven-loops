@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin except three",
     "created_at": "2026-10-20T11:53:35Z",
-    "last_save_at": "2026-10-20T12:40:35.859Z",
+    "last_save_at": "2026-10-20T13:00:46.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53ab26c2083c8e623e7b1a3f4aee117661970af47853fad6abd6fdad4fd3955b",
+    "source_fingerprint": "sha256:ed4ba5bdfc62cd3f96b5c103f7b769ce59c4a9f8a49fe4b6b23a5a84d50ba948",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28c3a0899a63e088303b7bdff5996c4216e68914313d8e79b095a28212ecb190",
-      "plan.md": "bc26a6d287f1aec96828e124744489a3025b615333e22e9d5e3612595a6da710",
-      "tasks.md": "9e058ac9da001470397e8b307b265c9978cd4629bf1b4d9676ddbed38cc6545e",
-      "implementation-summary.md": "d177b74d3b74bb5a59885570c15f624080627287e723a6ae41cb8c6ca9beb028"
+      "spec.md": "616dd618059b3c9c60f778518b83d4365fadf10e4f9a70e9606faca6f916ed02",
+      "plan.md": "4b9b281f2333d96d847f8fd2b27bc851a48a579ef63e80a1a88850666444b324",
+      "tasks.md": "11ad116f84180c4c73da3dbbdf077549932579f01fa58625dfe7453682ec7924",
+      "implementation-summary.md": "075aeea372a94631aff72dca46183740637c630835463ba783b769e1630710b8"
     },
     "last_active_at": null
   }

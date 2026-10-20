@@ -1,8 +1,4 @@
-plugins exit 0
-vision exit 0
-tsc exit 0
-ℹ tests 417
-ℹ pass 417
-ℹ fail 0
- 83 pass
- 0 fail
+final-state run at 68bc38956e plus the uncommitted doc and probe edits
+plugins node --test exit 0: ℹ pass 417 ℹ fail 0 
+sk-vision bun test exit 0:  83 pass  0 fail 
+sk-vision tsc exit 0

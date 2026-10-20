@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Setting `SYSTEM_HOOKS_DISABLED=1` now turns off sixteen of the seventeen OpenCode plugins, on both OpenCode lines. Before this phase two more stayed on: the speckit-completion tool and the sk-vision `/vision` command.
+Setting `SYSTEM_HOOKS_DISABLED=1` now stops the work of sixteen of the seventeen OpenCode plugins, on both OpenCode lines. Before this phase two more stayed on: the speckit-completion tool and the sk-vision `/vision` command.
 
 ### Phase 28: plugin-kill-switch-coverage
 
@@ -113,5 +113,3 @@ DeepSeek v4.1 flash wrote the code, tests and doc edits from short literal brief
 <!-- /ANCHOR:limitations -->
 
 ---
-
-
