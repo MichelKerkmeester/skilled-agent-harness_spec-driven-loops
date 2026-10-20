@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b544b8f11bbccd992a429619e9614d35e492359d1e9197b87c3344c5cb7f6d8f",
+  "manifestHash": "4d99e0ab8c747b1435fcc56cab9e8612bb3494c30ddbe573203cf92e58925913",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72175,6 +72175,9 @@
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
     ],
+    "phase 31 plugin scanner ast": [
+      "phase 31 plugin scanner ast"
+    ],
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
     ],
@@ -74698,6 +74701,9 @@
     "plugin inventory guards tasks": [
       "plugin inventory guards tasks"
     ],
+    "plugin inventory parser": [
+      "plugin inventory parser"
+    ],
     "plugin kill switch coverage": [
       "plugin kill switch coverage"
     ],
@@ -74733,6 +74739,18 @@
     ],
     "plugin roster makemd beancount": [
       "plugin roster makemd beancount"
+    ],
+    "plugin scanner ast": [
+      "plugin scanner ast"
+    ],
+    "plugin scanner ast implementation summary": [
+      "plugin scanner ast implementation summary"
+    ],
+    "plugin scanner ast plan": [
+      "plugin scanner ast plan"
+    ],
+    "plugin scanner ast tasks": [
+      "plugin scanner ast tasks"
     ],
     "plugin scanner readiness": [
       "plugin scanner readiness"
@@ -95362,6 +95380,9 @@
     ],
     "sk vision status": [
       "sk_vision_status"
+    ],
+    "sk vision symlink purity": [
+      "sk-vision symlink purity"
     ],
     "sk vision teardown leak": [
       "sk-vision teardown leak"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "74ee20633ecd2bed59407b6de997ce26e875198085c373a0fd16b87095f7b575",
+  "corpusHash": "b44e5d6dab750f5b941a838f580d0225854bfcefb08f228e155a0c1df1fa2b4b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25415,
+  "includedPathCount": 25419,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8954,6 +8954,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25446,7 +25450,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b544b8f11bbccd992a429619e9614d35e492359d1e9197b87c3344c5cb7f6d8f",
+  "manifestHash": "4d99e0ab8c747b1435fcc56cab9e8612bb3494c30ddbe573203cf92e58925913",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26526,6 +26530,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/scratch",
       "reason": "excluded directory"
     },
     {
