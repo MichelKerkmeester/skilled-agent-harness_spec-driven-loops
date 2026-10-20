@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8a74cfdcc96a667bf12b470b6f1d4880bef4f2b964ff50958db2b8d170ad11c5",
+  "corpusHash": "3cbf7917fecf3e4d785ac6bb86aef9560f81dfd409f3064bf40853eff2278621",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25470,
+  "includedPathCount": 25471,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8066,6 +8066,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -25501,7 +25502,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "bfbd76574024b9493e127dd9412091bf90cbfab89c1ec6ee42697fb1636ce976",
+  "manifestHash": "f52dd78c79988331e67741537ed60fcfe63eb4020c340580545b7508c546e854",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
