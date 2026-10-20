@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/172-v4-0-0-13-changelog-and-handover-review` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 15 of 15 |
+| **Phase** | 15 of 16 |
 | **Predecessor** | 014-handover-docs-promotion |
-| **Successor** | None |
+| **Successor** | 016-handover-trigger-review |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met, `validate_document.py` passes on the release entry and strict validation of this folder prints `RESULT: PASSED`. |
 <!-- /ANCHOR:metadata -->
 

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/016-handover-trigger-review",
+  "spec_folder": "hooks/023-session-relaunch-loop/016-handover-trigger-review",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover trigger review",
+      "phase 16 handover trigger review",
+      "speckit handoff command template",
+      "handover fires every time",
+      "handover trigger review plan",
+      "handover trigger review tasks",
+      "handover trigger review acceptance criteria",
+      "handover trigger review implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "trigger",
+      "review",
+      "phase",
+      "speckit",
+      "handoff",
+      "command",
+      "template",
+      "fires",
+      "every",
+      "time",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Part",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
+    "created_at": "2026-10-20T16:40:55Z",
+    "last_save_at": "2026-10-20T16:44:24.761Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eb06016966c95d9f96e9528b2679e469e4b43e3e94ae016c07c4eac373fe2018",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0e4efea0baa7b6801b1d949daecf9c4a1dca0278ec09a2fb691067bb079ff129",
+      "plan.md": "c7a6d1f3f46b55f0bb38ccc5e4f91a406e2f754bf84630c16546397e8173e694",
+      "tasks.md": "1c69603a4bce84c002923d7f0f2f1daaa90a9946ee78eb4666bde7b287241cc8",
+      "implementation-summary.md": "5623b33dfe3e887072bf15fad4e04d8c46be2ca594517d85dea8ad9e6b85cc6d"
+    },
+    "last_active_at": null
+  }
+}
