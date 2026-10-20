@@ -4,18 +4,26 @@ name: sk-git Script Tests
 # broken allocator or provisioning rule reached main unseen. The suite builds its
 # own throwaway repositories and stubs every installer, so it needs only git, bash
 # and node, which reads package manifests.
+# It also runs when any tracked package manifest changes, because the suite
+# checks every one against the provisioning list.
 on:
   pull_request:
     branches: [main, 'skilled/**']
     paths:
       - '.skilled/skills/sk-git/**'
       - '.opencode/skills/sk-git/**'
+      - '.skilled/**/package.json'
+      - '.opencode/**/package.json'
+      - '.pi/**/package.json'
       - '.github/workflows/sk-git-script-tests.yml'
   push:
     branches: [main, 'skilled/**']
     paths:
       - '.skilled/skills/sk-git/**'
       - '.opencode/skills/sk-git/**'
+      - '.skilled/**/package.json'
+      - '.opencode/**/package.json'
+      - '.pi/**/package.json'
       - '.github/workflows/sk-git-script-tests.yml'
 
 permissions:

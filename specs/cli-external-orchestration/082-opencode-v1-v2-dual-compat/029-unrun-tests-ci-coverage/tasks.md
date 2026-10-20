@@ -41,7 +41,7 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T003 Item 6: add `test-cite-drift-scan.mjs` and `install-guide-contract.test.cjs` to sk-doc's named node list (`.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh`) Done: with a failing test appended to each, the new runner exits 1 and names both, and the base runner exits 0 (`scratch/mutation/skdoc-node-tests.txt`).
-- [x] T004 Item 6: a blocking sk-git workflow that runs `worktree-naming.test.sh` (`.github/workflows/sk-git-script-tests.yml`) Done: with provisioning made to pick npm for a bun package, the job's command exits 1 with 11 failures (`scratch/mutation/sk-git-naming.txt`).
+- [x] T004 Item 6: a blocking sk-git workflow that runs `worktree-naming.test.sh` (`.github/workflows/sk-git-script-tests.yml`) Done: with provisioning made to pick npm for a bun package, the job's command exits 1 with 11 failures (`scratch/mutation/sk-git-naming.txt`). Its filters also cover every tracked `package.json` under `.skilled`, `.opencode` and `.pi`, which the suite's provisioning-gap test reads.
 - [x] T005 Item 6: a blocking matrix workflow that runs each `.pi` extension's `npm test` after `npm ci` (`.github/workflows/pi-extension-tests.yml`) Done: with a failing test appended to one file per extension, each leg's `npm test` exits 1 (`scratch/mutation/pi-extensions.txt`).
 - [x] T006 Item 6: name the new workflow in the shared runner's `.pi/extensions` comment (`.skilled/scripts/run-node-tests.mjs`)
 - [x] T007 Item 6: rows for the two new workflows (`.github/workflows/README.md`)

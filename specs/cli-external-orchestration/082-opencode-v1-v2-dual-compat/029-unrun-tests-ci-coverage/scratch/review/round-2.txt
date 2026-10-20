@@ -1,0 +1,5 @@
+VERDICT: FAIL
+
+P1 .github/workflows/sk-git-script-tests.yml:11 / .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh:497 - The workflow watches only the sk-git trees, but the suite scans tracked package manifests across `.skilled`, `.opencode`, and `.pi`; changes elsewhere can bypass this gate - add package manifest filters for all three roots to both events.
+
+Verification: `actionlint` on four relevant workflows and the comment-hygiene checker on changed JS and shell files exited 0; the added-comment scan found no spec or task labels. The mutation logs show each wired command fails on a mutant, and the unmutated sk-doc runner passes. The Round 1 findings are fixed. Ubuntu compatibility was assessed statically against the workflow setup and the [Ubuntu runner image manifest](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md); I did not run the jobs on Ubuntu. The worktree is clean.

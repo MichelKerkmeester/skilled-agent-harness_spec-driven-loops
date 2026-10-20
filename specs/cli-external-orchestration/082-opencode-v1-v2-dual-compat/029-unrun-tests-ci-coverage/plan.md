@@ -55,7 +55,7 @@ Other - CI wiring.
 
 ### Key Components
 - **`run-script-tests.sh`**: sk-doc's blocking runner; its named node list grows by two files.
-- **`sk-git-script-tests.yml`**: one job, Node 22, runs `worktree-naming.test.sh`; the suite sets its own git identity in its throwaway repositories.
+- **`sk-git-script-tests.yml`**: one job, Node 22, runs `worktree-naming.test.sh`; the suite sets its own git identity in its throwaway repositories. It triggers on sk-git and on any tracked `package.json` under `.skilled`, `.opencode` or `.pi`, because the suite checks every manifest against the provisioning list.
 - **`pi-extension-tests.yml`**: a two-leg matrix, one leg per extension, `npm ci` then `npm test` in the extension's folder.
 
 ### Data Flow
