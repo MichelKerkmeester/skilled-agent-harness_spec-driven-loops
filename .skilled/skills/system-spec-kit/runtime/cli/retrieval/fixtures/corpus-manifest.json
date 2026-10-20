@@ -1,5 +1,5 @@
 {
-  "corpusHash": "025393046ea5b664bb5e8b7e8eddbf4dd051fcd8d052dc124b1dded19b079a8e",
+  "corpusHash": "3cbf7917fecf3e4d785ac6bb86aef9560f81dfd409f3064bf40853eff2278621",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25465,
+  "includedPathCount": 25471,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8066,6 +8066,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -10369,6 +10370,11 @@
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/plan.md",
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md",
     "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/plan.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/spec.md",
+    "specs/hooks/023-session-relaunch-loop/017-hop-history/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25496,7 +25502,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "51a5dbd85963728effdb28b3be3f175b3546d94063d2b1680ddc13383eef25be",
+  "manifestHash": "f52dd78c79988331e67741537ed60fcfe63eb4020c340580545b7508c546e854",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27376,6 +27382,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/017-hop-history/scratch",
       "reason": "excluded directory"
     },
     {

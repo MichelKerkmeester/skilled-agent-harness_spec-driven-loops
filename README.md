@@ -216,6 +216,8 @@ Another clone is checked only after `git config --local skilled.trustRepoHooks t
 
 Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
 
+Every setting has a working default. To change one, see [Environment Settings](#environment-settings), or run `/doctor:env`, which lists them all and saves a change after your yes.
+
 ### Turn On Endless Sessions
 
 Add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, then open a new terminal:
@@ -230,7 +232,7 @@ Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `d
 - **Another repository** that links this checkout's `.skilled` hops too when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`
 - **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
 
-The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
+`/doctor:setup` shows the last hop, so you can confirm it works without watching the terminal. The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
 
 ### Keep It Healthy
 
@@ -1009,6 +1011,7 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 - **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
 - **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
 - **Safe by design:** the nudge fires only inside `skilled-loop`, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, and the watcher only ever signals a process the loop started
+- **Hop history:** every hand-over, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
 - **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
 
 [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup, and the [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, the per-runtime adapters and troubleshooting.
@@ -1258,6 +1261,7 @@ Ten commands check and repair the setup, one per area.
 **`/doctor:setup`** - read-only onboarding and health check
 
 - Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure
+- Shows the last session hop from the hop history
 - Lists every other doctor command, and writes nothing
 
 **`/doctor:speckit`** - spec-kit retrieval
@@ -1301,8 +1305,8 @@ Ten commands check and repair the setup, one per area.
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 
-- Shows each switch's default and purpose, and where it is set, by name only and never by value
-- Saves a preference only after showing the exact line and getting your yes
+- Shows each setting in `ENV-REFERENCE.md` and `.env.example`, with its default, its purpose and where it is set, by name only and never by value
+- Saves a preference to `hook-flags.env` or Claude Code's `settings.local.json` only after showing the exact line and getting your yes, or prints an `export` line for your shell profile
 - Never asks for or saves a secret
 
 &nbsp;
@@ -1502,6 +1506,25 @@ The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack)
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only
 
 &nbsp;
+### Environment Settings
+
+Every setting has a default, so you can start without setting anything. Two example files list them, and no reader loads their values: copy a line into the place its reader looks, then uncomment it and change the value.
+
+- **[`.env.example`](.env.example)** lists every setting the code reads, grouped by area, with its default and what it does
+- **[`.skilled/hooks/hook-flags.env.example`](.skilled/hooks/hook-flags.env.example)** lists the switches that are also read from a file: the hook, validation and Jev switches and the hop notice
+
+Where you set a value depends on what reads it:
+
+| Where | Read by | Use it for |
+| --- | --- | --- |
+| `export NAME=value` in `~/.zshrc` or `~/.bashrc` | Everything started from that shell | Any setting. It wins over `hook-flags.env` |
+| `.skilled/hooks/hook-flags.env` | The hooks, the validators and the Jev features | The switches in `hook-flags.env.example`. [Off Switches](#off-switches) shows how to create it |
+| `.claude/settings.local.json`, `env` block | Claude Code only | Settings for Claude Code sessions only |
+| `.env` | Code Mode only | The provider keys in section 1 of `.env.example` |
+
+Git ignores all four, so your values stay on your machine. `/doctor:env list` shows every setting and where it is set, by name only. `/doctor:env <NAME>` shows one setting, then saves a new value to `hook-flags.env` or `settings.local.json` after showing you the exact line, or prints the `export` line for your profile. It never asks for a key.
+
+&nbsp;
 ### Off Switches
 
 The AI hooks, the validators and the git hooks all have off switches. A switch set in the environment always works, inline as `SYSTEM_HOOKS_DISABLED=1 <command>` or exported from your shell profile. The hook switches, the two validation switches and the Jev feature switches also read `.skilled/hooks/hook-flags.env`, a personal file git ignores. A value set in the environment still wins over the file, even `0`.
@@ -1516,7 +1539,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
 - **Git hooks, for good.** `/doctor:git hooks` lists the optional gates and switches one off in git config as `speckit.hooks.<key>`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once
 - **Commit, PR and branch rules.** These have no bypass. `/doctor:git standards` changes a rule in the repository's own `.sk-git/` copy of the templates, and every gate follows the change
-- **The full list.** [`.env.example`](.env.example) lists the switches with their defaults. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
+- **The full list.** [`.env.example`](.env.example) lists every switch with its default, and [Environment Settings](#environment-settings) says where to set each one. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
 
 To stop using the git hooks, remove them and switch off the session check that would put them back:
 

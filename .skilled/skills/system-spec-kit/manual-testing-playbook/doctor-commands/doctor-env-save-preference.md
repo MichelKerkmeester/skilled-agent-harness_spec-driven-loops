@@ -1,7 +1,7 @@
 ---
 title: "DOC-355 -- Doctor env save preference"
 description: "Manual scenario validating that /doctor:env saves a preference only after it shows the exact destination line and the operator answers an unambiguous yes, and that a dry run writes nothing."
-version: 1.2.0.0
+version: 1.2.1.0
 id: doctor-commands-doctor-env-save-preference
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -90,7 +90,7 @@ If the destination menu omits the hook-flags.env option, inspect the eligibility
 - Command entrypoint: [.skilled/commands/doctor/env.md](../../../../commands/doctor/env.md)
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-env.yaml](../../../../commands/doctor/assets/doctor-env.yaml)
 - Presentation contract: [.skilled/commands/doctor/assets/doctor-env-presentation.txt](../../../../commands/doctor/assets/doctor-env-presentation.txt)
-- Inventory source of truth: [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](../../runtime/ENV-REFERENCE.md)
+- Inventory source of truth: [.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md](../../runtime/ENV-REFERENCE.md), supplemented by the root `.env.example`
 - Environment guide: [doctor-commands README](README.md)
 
 The `/doctor:env` route is a standalone companion with no entry in the doctor route manifest.

@@ -1282,6 +1282,11 @@ test('killer timeout keeps a re-prepared pending record and still logs and notif
     assert.equal(core.readRelaunchFile(loopId, sandbox.env).status, 'pending');
     assert.match(readKillerLog(sandbox), /killer-timeout/);
     assert.equal(notifications.length, 1);
+    const history = fs.readFileSync(
+      path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log'),
+      'utf8',
+    );
+    assert.match(history, /\ttimed-out\tclaude\t/);
   } finally {
     childProcess.spawnSync = realSpawnSync;
     killChild(target);

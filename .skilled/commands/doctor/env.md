@@ -51,7 +51,7 @@ Every user-visible prompt, menu, inventory or state table, preference display, d
 
 ## 6. WORKFLOW SUMMARY
 
-1. Read .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md at invocation time and parse both documented table shapes.
+1. Read .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md at invocation time and parse both documented table shapes, then add every setting in .env.example that the reference does not document.
 2. Display the deduplicated live switch inventory and read-only set/unset state for each supported source.
 3. Resolve the requested section or variable, then explain secret and per-invocation switches without requesting or persisting their values.
 4. For selected preferences, validate the requested value, show the exact proposed line and destination, and write only after an explicit yes. --dry-run shows the same preview without writing.
