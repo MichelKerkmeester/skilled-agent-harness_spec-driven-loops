@@ -592,6 +592,93 @@ test('a system transform waits for an announcement the stream already started', 
   }
 });
 
+test('a system transform waits for a real session.created already being delivered', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  const receivedEvents = [];
+  const order = [];
+  let releaseCreated;
+  let createdStarted;
+  let finishStream;
+  const createdGate = new Promise((resolve) => {
+    releaseCreated = resolve;
+  });
+  const createdBegun = new Promise((resolve) => {
+    createdStarted = resolve;
+  });
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
+  });
+  context.event.subscribe = () => (async function* () {
+    try {
+      yield { type: 'session.created', data: { sessionID: 'ses_r', parentID: 'p' } };
+    } finally {
+      finishStream();
+    }
+  })();
+  const plugin = dualPlugin('context-wait-real-created-test', async () => ({
+    event: async ({ event }) => {
+      receivedEvents.push(event);
+      if (event.type === 'session.created') {
+        createdStarted();
+        await createdGate;
+      }
+      order.push(`event:${event.type}`);
+    },
+    'experimental.chat.system.transform': async () => {
+      order.push('transform');
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  try {
+    await createdBegun;
+    const transformDone = sessionHooks.get('context')({ sessionID: 'ses_r', system: [] });
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(order, []);
+
+    releaseCreated();
+    await transformDone;
+    await streamFinished;
+
+    assert.equal(order.filter((entry) => entry === 'event:session.created').length, 1);
+    assert.equal(order.indexOf('event:session.created') < order.indexOf('transform'), true);
+    assert.equal(
+      receivedEvents.filter((event) => event.type === 'session.created').length,
+      1,
+    );
+    assert.equal(receivedEvents[0].properties.parentID, 'p');
+  } finally {
+    releaseCreated();
+    await cleanup();
+  }
+});
+
+test('a tool named constructor reaches the plugin as a plain string', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedPair;
+  const plugin = dualPlugin('constructor-name-test', async () => ({
+    'tool.execute.before': async (input, output) => {
+      receivedPair = { input, args: output.args };
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  await toolHooks.get('execute.before')({
+    tool: 'constructor',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: {},
+  });
+
+  assert.equal(receivedPair.input.tool, 'constructor');
+  assert.equal(typeof receivedPair.input.tool, 'string');
+  await cleanup();
+});
+
 test('a transform without an event hook does not synthesize an event', async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context, sessionHooks } = createV2Context();

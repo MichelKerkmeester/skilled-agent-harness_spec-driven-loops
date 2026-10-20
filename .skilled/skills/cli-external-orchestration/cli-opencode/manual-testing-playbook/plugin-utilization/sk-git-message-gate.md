@@ -1,7 +1,7 @@
 ---
 title: "CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-message-gate plugin for `CO-048`. It focuses on refusing an off-template commit message before git runs."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2
@@ -47,9 +47,9 @@ Operators run the exact prompt and command sequence for `CO-048` and confirm the
 
 1. Setup: create a disposable repository, set its `skgit.contractDir` to this checkout's sk-git assets, record `HEAD_BEFORE` and install the `EXIT` trap that removes it.
 2. v1 run: run the runner with `AI_SESSION_CHILD=1`.
-3. v1 check: read the tool call status and error, then assert `HEAD` still equals `HEAD_BEFORE`.
+3. v1 check: read the tool call status and error, assert the gate refusal, and print both `HEAD` hashes while stopping with `FAIL` when `HEAD` moved or the refusal is missing.
 4. v2 run: repeat the same runner call with `v2`.
-5. v2 check: repeat the same checks against the v2 evidence files.
+5. v2 check: repeat the same checks against the v2 evidence files, including both `HEAD` hashes and the gate-refusal assertion.
 6. Cleanup: remove the probe repository and clear the trap.
 
 ### Exact Command Sequence
@@ -67,19 +67,21 @@ git -C $PROBE_REPO commit --allow-empty -m 'bad'
 Then report exactly what the tool returned."
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 git-message-gate "$PROMPT"
-test "$(git -C "$PROBE_REPO" rev-parse HEAD)" = "$HEAD_BEFORE"
+HEAD_AFTER="$(git -C "$PROBE_REPO" rev-parse HEAD)"; echo "HEAD before $HEAD_BEFORE after $HEAD_AFTER"; [ "$HEAD_AFTER" = "$HEAD_BEFORE" ] || { echo "FAIL: the probe repository gained a commit"; exit 1; }
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl"
+jq -r 'select(.type=="tool_use") | .part.state.error // empty' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl" | grep -q 'sk-git-message-gate: sk-git blocked this commit message' || { echo "FAIL: no gate refusal on v1"; exit 1; }
 
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v2 git-message-gate "$PROMPT"
-test "$(git -C "$PROBE_REPO" rev-parse HEAD)" = "$HEAD_BEFORE"
+HEAD_AFTER="$(git -C "$PROBE_REPO" rev-parse HEAD)"; echo "HEAD before $HEAD_BEFORE after $HEAD_AFTER"; [ "$HEAD_AFTER" = "$HEAD_BEFORE" ] || { echo "FAIL: the probe repository gained a commit"; exit 1; }
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v2.events.jsonl"
+jq -r 'select(.type=="tool_use") | .part.state.error // empty' "$EVIDENCE_DIR/git-message-gate.v2.events.jsonl" | grep -q 'sk-git-message-gate: sk-git blocked this commit message' || { echo "FAIL: no gate refusal on v2"; exit 1; }
 rm -rf "$PROBE_REPO"; trap - EXIT
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-048 | sk-git-message-gate | Confirm an off-template commit is refused before git runs and `HEAD` stays put | `This is a test of a commit-message gate plugin against a disposable repository. Run this shell command once, unchanged; it is expected to be refused:<br>git -C <probe repository> commit --allow-empty -m 'bad'<br>Then report exactly what the tool returned.` | 1. Create a disposable repository: `PROBE_REPO="$(mktemp -d)"`, install the `rm -rf "$PROBE_REPO"` `EXIT` trap, `git init` with an initial commit, set `skgit.contractDir`, then `HEAD_BEFORE="$(git -C "$PROBE_REPO" rev-parse HEAD)"` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-message-gate "$PROMPT"` -> 3. `test "$(git -C "$PROBE_REPO" rev-parse HEAD)" = "$HEAD_BEFORE"` -> 4. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl"` -> 5. Repeat 2 to 4 with `v2` -> 6. `rm -rf "$PROBE_REPO"; trap - EXIT` | The tool call ends in error with `sk-git-message-gate: sk-git blocked this commit message`; `HEAD` is unchanged | `git-message-gate.v1.events.jsonl`, `git-message-gate.v1.exit` and the v2 equivalents, plus the before and after `HEAD` values | PASS if the tool call itself ends in the gate error and `HEAD` is unchanged; FAIL if only the git hook refused it | The git commit-msg hook's own refusal text (it starts with the word blocked in capitals and names the commit message contract) in a completed output is the git hook, not the plugin; the probe repository has no commit-msg hook, so a missed gate lands the commit there and its HEAD moves, which is a FAIL and changes nothing outside the probe repository |
+| CO-048 | sk-git-message-gate | Confirm an off-template commit is refused before git runs and `HEAD` stays put | `This is a test of a commit-message gate plugin against a disposable repository. Run this shell command once, unchanged; it is expected to be refused:<br>git -C <probe repository> commit --allow-empty -m 'bad'<br>Then report exactly what the tool returned.` | 1. Create a disposable repository: `PROBE_REPO="$(mktemp -d)"`, install the `rm -rf "$PROBE_REPO"` `EXIT` trap, `git init` with an initial commit, set `skgit.contractDir`, then `HEAD_BEFORE="$(git -C "$PROBE_REPO" rev-parse HEAD)"` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-message-gate "$PROMPT"` -> 3. `HEAD_AFTER="$(git -C "$PROBE_REPO" rev-parse HEAD)"; echo "HEAD before $HEAD_BEFORE after $HEAD_AFTER"; [ "$HEAD_AFTER" = "$HEAD_BEFORE" ] \|\| { echo "FAIL: the probe repository gained a commit"; exit 1; }` -> 4. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl"` then `jq -r 'select(.type=="tool_use") \| .part.state.error // empty' "$EVIDENCE_DIR/git-message-gate.v1.events.jsonl" \| grep -q 'sk-git-message-gate: sk-git blocked this commit message' \|\| { echo "FAIL: no gate refusal on v1"; exit 1; }` -> 5. Repeat 2 to 4 with `v2` -> 6. `rm -rf "$PROBE_REPO"; trap - EXIT` | The tool call ends in error with `sk-git-message-gate: sk-git blocked this commit message`; `HEAD` is unchanged | `git-message-gate.v1.events.jsonl`, `git-message-gate.v1.exit` and the v2 equivalents, plus the before and after `HEAD` values | PASS if the tool call itself ends in the gate error and `HEAD` is unchanged; FAIL if only the git hook refused it | The git commit-msg hook's own refusal text (it starts with the word blocked in capitals and names the commit message contract) in a completed output is the git hook, not the plugin; the probe repository has no commit-msg hook, so a missed gate lands the commit there and its HEAD moves, which is a FAIL and changes nothing outside the probe repository |
 
 ---
 

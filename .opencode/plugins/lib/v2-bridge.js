@@ -121,7 +121,7 @@ function toV1ToolOutput(event) {
 }
 
 function toV1ToolName(tool) {
-  return TOOL_ALIASES[tool] ?? tool;
+  return Object.hasOwn(TOOL_ALIASES, tool) ? TOOL_ALIASES[tool] : tool;
 }
 
 function toV1ToolArgs(tool, args) {
@@ -321,17 +321,17 @@ export function dualPlugin(id, server) {
     };
 
     // v2 can deliver session traffic before session.created, so synthesize the event v1 plugins wait for.
-    const announceSession = async (sessionID) => {
+    const announceSession = async (
+      sessionID,
+      properties = { sessionID, info: { id: sessionID } },
+    ) => {
       if (typeof hooks.event !== 'function' || sessionID === undefined) return;
       const inFlight = announcingSessions.get(sessionID);
       if (inFlight) return inFlight;
       if (announcedSessions.has(sessionID)) return;
 
       announcedSessions.add(sessionID);
-      const delivery = deliverEvent('session.created', {
-        sessionID,
-        info: { id: sessionID },
-      });
+      const delivery = deliverEvent('session.created', properties);
       announcingSessions.set(sessionID, delivery);
       try {
         await delivery;
@@ -388,8 +388,17 @@ export function dualPlugin(id, server) {
             for await (const event of eventStream) {
               const data = event.data;
               if (event.type === 'session.created' && data?.sessionID !== undefined) {
-                if (announcedSessions.has(data.sessionID)) continue;
-                announcedSessions.add(data.sessionID);
+                const announced = announcedSessions.has(data.sessionID)
+                  || announcingSessions.has(data.sessionID);
+                if (!announced) {
+                  await announceSession(
+                    data.sessionID,
+                    data.info === undefined ? { ...data, info: { id: data.sessionID } } : data,
+                  );
+                } else {
+                  await announcingSessions.get(data.sessionID);
+                }
+                continue;
               } else if (
                 event.type.startsWith('session.')
                 && event.type !== 'session.deleted'

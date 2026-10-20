@@ -48,12 +48,19 @@ fi
 MODEL_V1="llmgateway/deepseek-v4.1-flash"
 MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
 echo "running in $ROOT" >&2
-mkdir -p "$EVID" || exit 2
-EVID="$(cd "$EVID" && pwd)" || exit 2
 # Evidence must stay inside this checkout, so a run never writes into another tree.
+ROOT_REAL="$(cd "$ROOT" && pwd -P)" || exit 2
+case "$EVID" in /*) ;; *) EVID="$PWD/$EVID" ;; esac
 case "$EVID/" in
-  "$ROOT"/*) ;;
+  */../*) echo "EVIDENCE_DIR must not contain ..: $EVID" >&2; exit 2 ;;
+  "$ROOT"/*|"$ROOT_REAL"/*) ;;
   *) echo "EVIDENCE_DIR must be inside $ROOT: $EVID" >&2; exit 2 ;;
+esac
+mkdir -p "$EVID" || exit 2
+EVID="$(cd "$EVID" && pwd -P)" || exit 2
+case "$EVID/" in
+  "$ROOT_REAL"/*) ;;
+  *) echo "EVIDENCE_DIR resolves outside $ROOT: $EVID" >&2; exit 2 ;;
 esac
 
 EVENTS="$EVID/$NAME.$VERSION.events.jsonl"
