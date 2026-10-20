@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -100,7 +100,7 @@ cd "$REPO_ROOT" && opencode2 run \
 
 On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
-OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms the provider in `opencode2 models --standalone` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+OpenCode 2 lists no `opencode-go` provider here, so a v2 reader confirms that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
 
 ### Why it matters
 

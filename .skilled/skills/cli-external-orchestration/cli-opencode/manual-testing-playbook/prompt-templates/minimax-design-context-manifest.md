@@ -1,12 +1,12 @@
 ---
 title: "CO-037 -- MiniMax design build dispatch carries a measured Style Reference"
 description: "Verifies that MiniMax-M3 design/UI build dispatches use the profiled small-model prompt shape and carry a measured Style Reference (extracted via sk-design-md-generator), required files, measured-token manifest, and fidelity proof instead of thin generic design context."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-037 -- MiniMax design build dispatch carries a measured Style Reference
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models --standalone` for the provider first.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the model's `<provider>/` prefix first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-037`.
 

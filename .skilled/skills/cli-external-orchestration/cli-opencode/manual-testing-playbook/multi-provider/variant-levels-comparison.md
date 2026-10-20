@@ -1,12 +1,12 @@
 ---
 title: "CO-012 -- Variant levels (minimal/low/medium/high)"
 description: "This scenario validates the `--variant` flag levels for `CO-012`. It focuses on confirming the `opencode-go/deepseek-v4.1-flash` variant range (minimal through the skill-verified `high` default) maps to reasoning effort and produces materially different response depth between extremes."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-012 -- Variant levels (minimal/low/medium/high)
 
-**Version note.** The commands in this scenario target OpenCode 1 (1.19.3). Each has its OpenCode 2 (2.0.32) twin beside it. On OpenCode 2, check `opencode2 models --standalone` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../../references/install-and-versions.md).
+**Version note.** The commands in this scenario target OpenCode 1 (1.19.3). Each has its OpenCode 2 (2.0.32) twin beside it. On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The side-by-side layout and the version-specific flag surfaces live in the [install reference](../../references/install-and-versions.md).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-012`.
 
@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-On OpenCode 1, this scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. On OpenCode 2 the effort rides on the model selector (`-m provider/model#<level>`). The v2 reader confirms the provider in `opencode2 models --standalone` first. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go and Cline routes) accept reasoning-effort variants.
+On OpenCode 1, this scenario validates Variant levels for `CO-012`. It focuses on confirming the `--variant` flag accepts the documented per-provider range and that the response depth materially differs between extremes when the same prompt is dispatched. On OpenCode 2 the effort rides on the model selector (`-m provider/model#<level>`). The v2 reader confirms that `opencode2 models --standalone` lists the model's `<provider>/` prefix first. Underlying-model conventions apply: the DeepSeek-family reasoning models (via the opencode-go and Cline routes) accept reasoning-effort variants.
 
 ### Why This Matters
 
@@ -56,7 +56,7 @@ On OpenCode 1, for full-spectrum validation on a provider whose full range is ve
 
 | Model | Variant range to sweep |
 |---|---|
-| `opencode-go/deepseek-v4.1-flash` | On OpenCode 1, reasoning model pinned to `--variant max` (its top thinking tier) by policy, now the skill's operative default. Treat any other value as unverified until smoke-tested. On OpenCode 2 the effort rides on the model id (`-m opencode-go/deepseek-v4.1-flash#max`). The v2 reader confirms the provider in `opencode2 models --standalone` first |
+| `opencode-go/deepseek-v4.1-flash` | On OpenCode 1, reasoning model pinned to `--variant max` (its top thinking tier) by policy, now the skill's operative default. Treat any other value as unverified until smoke-tested. On OpenCode 2 the effort rides on the model id (`-m opencode-go/deepseek-v4.1-flash#max`). The v2 reader confirms that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix first |
 | `llmgateway/mimo-v2.6-pro` | On OpenCode 1, `--variant` maps to MiMo reasoning effort (`none`/`low`/`medium`/`high`), so always use `high` per the MiMo effort map. On OpenCode 2 the level rides on the model id (`-m llmgateway/mimo-v2.6-pro#high`). Whether the gateway accepts it is unverified on OpenCode 2.0.32 |
 | `openai/gpt-6-sol` | On OpenCode 1, `--variant` maps to OpenAI reasoning effort (`none`/`low`/`medium`/`high`/`xhigh`). On OpenCode 2 the level rides on the model id (`-m openai/gpt-6-sol#<level>`). Whether the provider accepts it is unverified on OpenCode 2.0.32 |
 

@@ -1,12 +1,12 @@
 ---
 title: "CO-018 -- Continue last session via -c / --continue"
 description: "This scenario validates the `-c` / `--continue` flag for `CO-018`. It focuses on confirming the next dispatch resumes the most recent session in the project and the follow-up prompt has access to the prior turn's context."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-018 -- Continue last session via -c / --continue
 
-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models --standalone` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-c`/`--continue` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
+**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-c`/`--continue` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-018`.
 

@@ -1,12 +1,12 @@
 ---
 title: "CO-029 -- Cross-repo dispatch via --dir"
 description: "This scenario validates cross-repo dispatch for `CO-029`. It focuses on confirming `--dir <other-repo-path>` targets a different repo's plugin / skill / MCP runtime without leaving the calling session."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-029 -- Cross-repo dispatch via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
 
-**Version note.** The commands in this scenario target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin given beside each (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models --standalone` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+**Version note.** The commands in this scenario target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin given beside each (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-029`.
 

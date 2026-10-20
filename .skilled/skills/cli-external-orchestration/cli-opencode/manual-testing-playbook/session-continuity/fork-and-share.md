@@ -1,12 +1,12 @@
 ---
 title: "CO-020 -- Fork session (--fork) and share URL gate (--share)"
 description: "This scenario validates the `--fork` and `--share` surfaces for `CO-020`. It focuses on confirming `--fork` (with `--continue` or `--session`) branches an existing session, and that SKILL.md NEVER rule 2 forbids `--share` because it is a deprecated no-op."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-020 -- Fork session (--fork) and share URL gate (--share) (OpenCode 1 only for the `--share` gate, with the OpenCode 2 fork twin beside each command)
 
-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models --standalone` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 1, `--share` is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, and OpenCode 2 `run` has no `--share` (see the [install reference](../../references/install-and-versions.md)).
+**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. On OpenCode 1, `--share` is a hidden, deprecated flag that only prints `Session sharing has been discontinued`, and OpenCode 2 `run` has no `--share` (see the [install reference](../../references/install-and-versions.md)).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-020`.
 

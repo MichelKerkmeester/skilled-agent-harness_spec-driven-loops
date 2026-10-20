@@ -1,12 +1,12 @@
 ---
 title: "CO-019 -- Resume specific session by id (-s / --session)"
 description: "This scenario validates the `-s <id>` / `--session <id>` flag for `CO-019`. It focuses on confirming a specific session can be resumed by id and the resumed turn has access to that session's prior context."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-019 -- Resume specific session by id (-s / --session)
 
-**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check `opencode2 models --standalone` first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
+**Version note.** These commands target OpenCode 1 (1.19.3), with the OpenCode 2 (2.0.32) twin beside each. On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. The `-s`/`--session` session flag is kept on both versions (see the [install reference](../../references/install-and-versions.md)).
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-019`.
 
