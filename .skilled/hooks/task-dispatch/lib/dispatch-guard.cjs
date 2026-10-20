@@ -84,6 +84,13 @@ const BLOCK_AT_COUNT = 3;
 // 3. HELPERS -- registry + mode mismatch
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Index the deep-loop mode registry by agent, mapping each agent to the set of
+ * workflow modes it is registered for.
+ *
+ * @param {string} registryPath - absolute path to mode-registry.json
+ * @returns {Map<string, { workflowModes: Set<string> }>|null} agent index, or null when unreadable
+ */
 function loadRegistryAgents(registryPath) {
   try {
     const raw = readFileSync(registryPath, 'utf8');
@@ -91,7 +98,9 @@ function loadRegistryAgents(registryPath) {
     const map = new Map();
     for (const mode of data.modes || []) {
       const agent = typeof mode.agent === 'string' ? mode.agent.toLowerCase() : '';
-      const workflowMode = typeof mode.workflowMode === 'string' ? mode.workflowMode.toLowerCase() : '';
+      const workflowMode = typeof mode.workflowMode === 'string'
+        ? mode.workflowMode.toLowerCase()
+        : '';
       if (!agent || !workflowMode) continue;
 
       const entry = map.get(agent) || { workflowModes: new Set() };
@@ -104,6 +113,12 @@ function loadRegistryAgents(registryPath) {
   }
 }
 
+/**
+ * Read the workflow mode a dispatch prompt declares.
+ *
+ * @param {string} promptText - raw args.prompt value
+ * @returns {string|null} lowercased declared mode, or null when absent
+ */
 function declaredModeFromPrompt(promptText) {
   const text = promptText || '';
   const deepRouteMatch = /(?:^|\n)\s*Deep Route:[^\n]*?\bmode=([a-z0-9-]+)/i.exec(text);
@@ -111,6 +126,14 @@ function declaredModeFromPrompt(promptText) {
   return match ? match[1].toLowerCase() : null;
 }
 
+/**
+ * Render the operator-facing detail for a Deep Route mode mismatch.
+ *
+ * @param {string} subagentType - resolved agent identity
+ * @param {Set<string>} registryModes - modes the agent is registered for
+ * @param {string} declaredMode - mode the prompt declares
+ * @returns {string} one-line mismatch detail
+ */
 function mismatchDetail(subagentType, registryModes, declaredMode) {
   const allowedModes = [...registryModes].sort().join('|');
   return [
@@ -131,6 +154,13 @@ function mismatchDetail(subagentType, registryModes, declaredMode) {
 // cannot produce with text alone.
 const STATE_CONFIG_PATH_REGEX = /(?:^|\n)\s*-?\s*Config:\s*(\S+)/i;
 
+/**
+ * Resolve the deep-loop config artifact a prompt's "Config:" line names.
+ *
+ * @param {string} promptText - raw args.prompt value
+ * @param {string} projectDir - project root used to resolve relative paths
+ * @returns {string|null} absolute config path, or null when absent or traversing
+ */
 function resolveCommandConfigPath(promptText, projectDir) {
   const match = STATE_CONFIG_PATH_REGEX.exec(promptText || '');
   if (!match) return null;
@@ -139,6 +169,14 @@ function resolveCommandConfigPath(promptText, projectDir) {
   return isAbsolute(rawPath) ? rawPath : join(projectDir || '.', rawPath);
 }
 
+/**
+ * Decide whether a prompt is a real command-owned iteration pack: an in-bounds
+ * iteration marker plus a Config: path that resolves to a deep-loop config.
+ *
+ * @param {string} promptText - raw args.prompt value
+ * @param {string} projectDir - project root used to resolve relative paths
+ * @returns {boolean} true when the dispatch carries command-owned iteration state
+ */
 function isCommandDrivenIteration(promptText, projectDir) {
   const match = ITERATION_MARKER_REGEX.exec(promptText || '');
   if (!match) return false;
@@ -201,14 +239,35 @@ function resolveTargetIdentity(subagentType, promptText) {
 // 5. HELPERS -- session-scoped loop-repeat state (atomic file persistence)
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Encode a session id into a filesystem-safe state-file key.
+ *
+ * @param {string} sessionID - current session id
+ * @returns {string} hex-encoded session key
+ */
 function sessionStateKey(sessionID) {
   return Buffer.from(String(sessionID), 'utf8').toString('hex');
 }
 
+/**
+ * Build the per-session loop-state file path.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} sessionID - current session id
+ * @returns {string} absolute state-file path
+ */
 function loopStatePath(stateDir, sessionID) {
   return join(stateDir, `${sessionStateKey(sessionID)}.json`);
 }
 
+/**
+ * Read the persisted loop state for one session, tolerating a missing or
+ * unreadable file.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} sessionID - current session id
+ * @returns {object} parsed state, or an empty object when unavailable
+ */
 function readLoopState(stateDir, sessionID) {
   try {
     const raw = readFileSync(loopStatePath(stateDir, sessionID), 'utf8');
@@ -219,6 +278,15 @@ function readLoopState(stateDir, sessionID) {
   }
 }
 
+/**
+ * Persist one session's loop state through a temp-file rename so a concurrent
+ * reader never observes a partial write.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} sessionID - current session id
+ * @param {object} state - state to persist
+ * @returns {boolean} true when the state reached its final path
+ */
 function writeLoopStateAtomic(stateDir, sessionID, state) {
   try {
     mkdirSync(stateDir, { recursive: true });
@@ -250,7 +318,9 @@ function writeLoopStateAtomic(stateDir, sessionID, state) {
  */
 function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
   const state = readLoopState(stateDir, sessionID);
-  const dispatches = state.dispatches && typeof state.dispatches === 'object' ? state.dispatches : {};
+  const dispatches = state.dispatches && typeof state.dispatches === 'object'
+    ? state.dispatches
+    : {};
   const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
     ? dispatches[targetAgent]
     : { count: 0 };
@@ -268,6 +338,13 @@ function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
   return { count: entry.count, persisted };
 }
 
+/**
+ * Render the operator-facing detail for repeated hand-offs to a loop executor.
+ *
+ * @param {string} targetAgent - resolved loop-executor identity
+ * @param {number} count - non-command-driven hand-off count this session
+ * @returns {string} one-line repeat detail
+ */
 function loopRepeatDetail(targetAgent, count) {
   return [
     'system-deep-loop-guard: loop-like repeated dispatch --',
@@ -278,11 +355,19 @@ function loopRepeatDetail(targetAgent, count) {
   ].join(' ');
 }
 
-// Soft warnings must never reach stdout/stderr: OpenCode's TUI paints plugin
-// console output onto the prompt input line during tool.execute.before, where it
-// sticks until a redraw. Persisting to a state-dir log keeps the signal auditable
-// without corrupting the interactive session. Fail-open -- a logging error must
-// never affect or block the dispatch this hook guards.
+/**
+ * Append one warning line to the bounded state-dir log, rotating it first.
+ *
+ * Soft warnings must never reach stdout/stderr: OpenCode's TUI paints plugin
+ * console output onto the prompt input line during tool.execute.before, where it
+ * sticks until a redraw. Persisting to a state-dir log keeps the signal auditable
+ * without corrupting the interactive session. Fail-open -- a logging error must
+ * never affect or block the dispatch this hook guards.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} detail - warning detail to record
+ * @returns {boolean} true when the line was written
+ */
 function appendWarningLog(stateDir, detail) {
   const line = `${new Date().toISOString()} [system-deep-loop-guard] WARN: ${detail}\n`;
   try {
@@ -297,6 +382,14 @@ function appendWarningLog(stateDir, detail) {
   }
 }
 
+/**
+ * Record that reject mode could not enforce its decision, so the dispatch was
+ * allowed. Falls back to a sibling log path when the state dir is unusable.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @param {string} reason - why reject mode degraded
+ * @returns {void}
+ */
 function appendRejectModeDegradedAudit(stateDir, reason) {
   const detail = `reject-mode degraded -- ${reason}; dispatch allowed`;
   if (appendWarningLog(stateDir, detail)) return;
@@ -349,6 +442,12 @@ function maintainWarningLogPath(logPath, incomingBytes = 0) {
   }
 }
 
+/**
+ * Rotate and age-prune the state-dir warning log.
+ *
+ * @param {string} stateDir - loop-guard state directory
+ * @returns {void}
+ */
 function maintainWarningLog(stateDir) {
   maintainWarningLogPath(join(stateDir, WARN_LOG_FILENAME));
 }
@@ -374,7 +473,10 @@ function pruneLoopGuardArchive(stateDir) {
   } catch (_) {
     return;
   }
-  const retentionMs = positiveIntFromEnv(LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV, DEFAULT_ARCHIVE_RETENTION_DAYS) * MS_PER_DAY;
+  const retentionMs = positiveIntFromEnv(
+    LOOP_GUARD_ARCHIVE_RETENTION_DAYS_ENV,
+    DEFAULT_ARCHIVE_RETENTION_DAYS,
+  ) * MS_PER_DAY;
   const now = Date.now();
   for (const entry of entries) {
     if (!entry.isFile()) continue;
@@ -430,7 +532,10 @@ function acquireSweepLock(stateDir, intervalMs, now) {
 function sweepStaleLoopGuardStates(stateDir, runtimeState) {
   let lockPath = null;
   try {
-    const intervalMs = positiveIntFromEnv(LOOP_GUARD_SWEEP_INTERVAL_MS_ENV, DEFAULT_SWEEP_INTERVAL_MS);
+    const intervalMs = positiveIntFromEnv(
+      LOOP_GUARD_SWEEP_INTERVAL_MS_ENV,
+      DEFAULT_SWEEP_INTERVAL_MS,
+    );
     const now = Date.now();
     if (now - (runtimeState.lastLoopGuardSweepAtMs || 0) <= intervalMs) return;
     lockPath = acquireSweepLock(stateDir, intervalMs, now);
@@ -448,7 +553,10 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
     const archiveDir = ensureLoopGuardArchiveDir(stateDir);
     if (!archiveDir) return;
 
-    const activeRetentionMs = positiveIntFromEnv(LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV, DEFAULT_ACTIVE_RETENTION_DAYS) * MS_PER_DAY;
+    const activeRetentionMs = positiveIntFromEnv(
+      LOOP_GUARD_ACTIVE_RETENTION_DAYS_ENV,
+      DEFAULT_ACTIVE_RETENTION_DAYS,
+    ) * MS_PER_DAY;
     for (const entry of entries) {
       if (!entry.isFile()) continue;
       const sourcePath = join(stateDir, entry.name);
@@ -555,7 +663,12 @@ function evaluateDispatch(request = {}) {
     // -- Check 2: loop-like repeated hand-off to a command-owned loop executor --
     if (LOOP_EXECUTOR_AGENTS.has(targetAgent) && sessionID) {
       const commandDriven = isCommandDrivenIteration(prompt, projectDir);
-      const { count, persisted } = recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven);
+      const { count, persisted } = recordLoopDispatch(
+        stateDir,
+        sessionID,
+        targetAgent,
+        commandDriven,
+      );
 
       if (!persisted) {
         if (environment[REJECT_LOOP_ENV] === '1') audits.push('loop state persistence unavailable');
