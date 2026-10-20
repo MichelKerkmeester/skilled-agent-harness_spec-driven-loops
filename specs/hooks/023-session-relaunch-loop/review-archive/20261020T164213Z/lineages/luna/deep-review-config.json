@@ -1,0 +1,134 @@
+{
+  "topic": "Review: specs/hooks/023-session-relaunch-loop",
+  "sessionId": "fanout-luna-1792421295628-xsy88n",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks/023-session-relaunch-loop",
+  "createdAt": "2026-10-19T14:54:42Z",
+  "status": "complete",
+  "releaseReadinessState": "conditional",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/hooks/023-session-relaunch-loop",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "resource_map_present": false,
+  "stopPolicy": "max-iterations",
+  "reviewScopeFiles": [
+    "specs/hooks/023-session-relaunch-loop/spec.md",
+    "specs/hooks/023-session-relaunch-loop/goal.md",
+    "specs/hooks/023-session-relaunch-loop/graph-metadata.json",
+    "specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop/spec.md",
+    "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/spec.md",
+    "specs/hooks/023-session-relaunch-loop/003-command-trigger-runtimes/spec.md",
+    "specs/hooks/023-session-relaunch-loop/004-integration-review-and-docs-closure/spec.md",
+    "specs/hooks/023-session-relaunch-loop/005-deep-review-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/006-deep-review-2-remediation/spec.md",
+    "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+    ".skilled/hooks/session-relaunch/lib/killer.cjs",
+    ".skilled/bin/skilled-loop",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+    ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+    "AGENTS.md",
+    "opencode.json"
+  ],
+  "resource_map": {
+    "emit": false
+  }
+}

@@ -1,13 +1,13 @@
 OpenAI Codex v0.163.0
 --------
-workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
+workdir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
 model: gpt-6-luna
 provider: openai
 approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR]
 reasoning effort: max
 reasoning summaries: none
-session id: 01a154a2-a820-7a92-8f85-f478f33241c9
+session id: 01a15a36-3f47-7ab0-9d63-c8812347a696
 --------
 user
 GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
@@ -19,7 +19,15 @@ You are orchestrating the deep-review workflow YAML as a detached fan-out lineag
 
 EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.
 Perform each iteration yourself in THIS session — read the sources, then write the iteration
-file, its delta, the state record, and the synthesis directly into the lineage directory below.
+file, its delta, and the synthesis into the lineage directory below.
+State records go through the append gateway instead: hand every one, from the run-opening
+config row (step_create_state_log) to the terminal synthesis record, to
+.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.
+Never create, append to, or rewrite deep-review-state.jsonl yourself: a row written there beside the
+ledger makes the gateway refuse every later projection, and the lineage fails.
+After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:
+node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs specs/hooks/023-session-relaunch-loop --artifact-dir specs/hooks/023-session-relaunch-loop/review/lineages/luna --create-missing-anchors
+It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.
 NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no
 'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.
 The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this
@@ -33,16 +41,16 @@ Before iteration 1, read .skilled/skills/system-deep-loop/deep-review/assets/pro
 - Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.
 - The delta contains the iteration row followed by one {"type":"finding","id":"<id>","severity":"P0|P1|P2","title":"<text>","file":"<path:line>","iteration":N} row per finding.
 - End the narrative with exactly one final Review verdict: PASS, CONDITIONAL, or FAIL line.
-- Read the timestamp from the clock when writing and append the state record immediately after its iteration, never in a batch at the end.
+- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.
 
 Read .skilled/skills/system-deep-loop/deep-review/SKILL.md and execute the review loop with these parameters:
   spec_folder: specs/hooks/023-session-relaunch-loop
-  config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna
-  session_id: fanout-luna-1792421295628-xsy88n
+  config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna
+  session_id: fanout-luna-1792514860659-ivxs3k
   executor: cli-codex model=gpt-6-luna
   loop_type: review
   config.stopPolicy: max-iterations
-  config.maxIterations: 5
+  config.maxIterations: 10
   config.convergenceThreshold: 0.1
   config.convergenceMode: default
 
@@ -54,13 +62,13 @@ spec_folder: specs/hooks/023-session-relaunch-loop
 execution_mode: AUTONOMOUS
 lineage_mode: auto
 
-The step_resolve_artifact_root step will bind artifact_dir to /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna via the
+The step_resolve_artifact_root step will bind artifact_dir to /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna via the
 config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node
 command; bind artifact_dir directly to the override value.
 
 Run phase_init, phase_main_loop (until config.maxIterations is reached; treat convergence before that as telemetry only and broaden review angles instead of synthesizing early), and phase_synthesis.
 Write EVERY file you create or modify inside specs/hooks/023-session-relaunch-loop/review/lineages/luna and nowhere else — that directory is
-your entire write surface. Its absolute path is /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna; the
+your entire write surface. Its absolute path is /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review/specs/hooks/023-session-relaunch-loop/review/lineages/luna; the
 relative form is resolved from the repository root, so a path that drops the leading
 directories (for example one starting with review/ or research/) lands OUTSIDE the lineage and
 fails it. You may read anywhere, but do NOT modify, create, or delete any file
@@ -92,7 +100,16 @@ hook: UserPromptSubmit Completed
 hook: UserPromptSubmit Completed
 hook: UserPromptSubmit Completed
 codex
-This is a contained review artifact write: all output is bound to the specified lineage directory, with no repository code changes. I’ll surface the repository context and routing first, then follow the review skill’s five-iteration workflow.
+Stakes: this is a read-heavy review with writes confined to the bound Luna lineage. I’ll follow the inline deep-review workflow and use its append gateway and reducer for state.
+
+review_target: specs/hooks/023-session-relaunch-loop  
+review_target_type: spec-folder  
+review_dimensions: all  
+spec_folder: specs/hooks/023-session-relaunch-loop  
+execution_mode: AUTONOMOUS  
+lineage_mode: auto
+
+SKILL ROUTING: User directed → system-deep-loop/deep-review.
 hook: PreToolUse
 hook: PreToolUse
 hook: PreToolUse
@@ -100,18 +117,14 @@ hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 exec
-/bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Execute deep-review workflow YAML as detached fan-out lineage; review specs/hooks/023-session-relaunch-loop and write iteration artifacts only under its luna lineage directory."' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
- succeeded in 482ms:
+/bin/zsh -lc 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Execute a detached deep-review fan-out lineage for specs/hooks/023-session-relaunch-loop, read workflow instructions and review all dimensions, write iteration artifacts only into specs/hooks/023-session-relaunch-loop/review/lineages/luna, append state through append-mode-event.cjs and reduce state after each record."' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 218ms:
 {
-  "candidatePhraseCount": 4440,
+  "candidatePhraseCount": 5087,
   "discardedTokens": [
     {
       "reason": "below-min-token-length",
-      "token": "as"
-    },
-    {
-      "reason": "beyond-max-query-tokens",
-      "token": "lineage"
+      "token": "a"
     },
     {
       "reason": "beyond-max-query-tokens",
@@ -139,7 +152,27 @@ exec
     },
     {
       "reason": "beyond-max-query-tokens",
+      "token": "read"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "workflow"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "instructions"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
       "token": "and"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "all"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "dimensions"
     },
     {
       "reason": "beyond-max-query-tokens",
@@ -159,11 +192,11 @@ exec
     },
     {
       "reason": "beyond-max-query-tokens",
-      "token": "under"
+      "token": "into"
     },
     {
       "reason": "beyond-max-query-tokens",
-      "token": "its"
+      "token": "lineages"
     },
     {
       "reason": "beyond-max-query-tokens",
@@ -171,12 +204,48 @@ exec
     },
     {
       "reason": "beyond-max-query-tokens",
-      "token": "directory"
+      "token": "append"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "state"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "through"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "mode"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "event"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "cjs"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "reduce"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "after"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "each"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "record"
     }
   ],
-  "indexHash": "80cf30c22e741e20f5b6744d3aa6c310a1f0518309615db35c6a1710762d67a9",
-  "manifestHash": "5ba26dd18f146d5e5de69e02426f5bfe56e0a0ce13e0efa081af7337946cd621",
-  "normalizedQuery": "execute deep review workflow yaml as detached fan out lineage review specs hooks 023 session relaunch loop and write iteration artifacts only under its luna lineage directory",
+  "indexHash": "2992b7bad576656ca449581302ce7a2e63cd6d2e0f9a28740cc054ad40b32e0a",
+  "manifestHash": "a451e3035fac08663a22dcb014f0e6a785e71698c0173c324198ec26a5f7251c",
+  "normalizedQuery": "execute a detached deep review fan out lineage for specs hooks 023 session relaunch loop read workflow instructions and review all dimensions write iteration artifacts only into specs hooks 023 session relaunch loop review lineages luna append state through append mode event cjs and reduce state after each record",
   "results": [
     {
       "matchClass": "query-containment",
@@ -193,13 +262,13 @@ exec
   "specFolder": null,
   "tokens": [
     "execute",
+    "detached",
     "deep",
     "review",
-    "workflow",
-    "yaml",
-    "detached",
     "fan",
-    "out"
+    "out",
+    "lineage",
+    "for"
   ],
   "truncated": false
 }
@@ -213,66 +282,24 @@ hook: PostToolUse Completed
 hook: PreToolUse
 hook: PreToolUse
 hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
-exec
-/bin/zsh -lc "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"Execute the repository system-deep-loop deep-review workflow inline for specs/hooks/023-session-relaunch-loop, creating five iteration review artifacts only in the provided luna lineage directory.\"}' --format json" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
- succeeded in 2522ms:
-{
-  "status": "ok",
-  "degraded": true,
-  "source": "local-scorer",
-  "data": {
-    "recommendations": [
-      {
-        "skillId": "system-deep-loop",
-        "confidence": 0.95,
-        "uncertainty": 0.15,
-        "reason": "Matched: !deep-review(keyword), !deep-review(signal), !system-deep-loop(explicit), !system-deep-loop(keyword), !system-deep-loop(signal) [Candidate-3 deep routing: system-deep-loop review MED]"
-      },
-      {
-        "skillId": "system-spec-kit",
-        "confidence": 0.95,
-        "uncertainty": 0.23,
-        "reason": "Matched: !graph:depends(system-deep-loop,0.7), !graph:enhances(sk-code,0.3), !graph:enhances(system-deep-loop,0.6), !session, !session(multi)"
-      },
-      {
-        "skillId": "memory:save",
-        "confidence": 0.92,
-        "uncertainty": 0.2,
-        "reason": "Matched: !intent:memory, context, memory(name)"
-      },
-      {
-        "skillId": "sk-code",
-        "confidence": 0.85,
-        "uncertainty": 0.31,
-        "reason": "Matched: !intent:review, !review, !review(keyword), !review(multi), review [disambiguation: deep-review reserved for this prompt]"
-      }
-    ],
-    "effectiveThresholds": {
-      "confidenceThreshold": 0.8,
-      "uncertaintyThreshold": 0.35,
-      "confidenceOnly": false
-    }
-  }
-}
-
-hook: PostToolUse
-hook: PostToolUse
-hook: PostToolUse
-hook: PostToolUse Completed
-hook: PostToolUse Completed
-hook: PostToolUse Completed
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
-hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
@@ -283,7 +310,7 @@ hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 exec
-/bin/zsh -lc 'cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-decisions.md .skilled/repo-rules/communication-handoff.md .skilled/repo-rules/answer-the-actual-request.md .skilled/skills/system-spec-kit/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
+/bin/zsh -lc 'cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-decisions.md .skilled/repo-rules/communication-handoff.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
  succeeded in 0ms:
 ---
 title: "Rule: Communication"
@@ -1047,843 +1074,12 @@ operator unable to tell whether anything is happening or whether it is their mov
 - [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
 - [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
 - [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.
----
-title: "Rule: Answer the actual request"
-description: "Answer the request that was made. A warning nobody asked for, a quieter version of the ask, an invented constraint, a dressed-up refusal and a stall dressed as diligence are one failure."
-trigger_phrases:
-  - "unsolicited warning"
-  - "disclaimer nobody asked for"
-  - "silent reinterpretation"
-  - "safer version of the ask"
-  - "narrower answer than asked"
-  - "invented rule"
-  - "invented restriction"
-  - "policy that does not exist"
-  - "dressed up refusal"
-  - "refusal wearing a rule"
-  - "the real answer is no"
-  - "estimate as a stall"
-  - "scope inflation"
-  - "months of work before starting"
-  - "the first answer is the true one"
-  - "interrogation to get the truth"
-  - "soft refusal"
-  - "warning as filler"
-  - "unnecessary disclaimer"
-  - "refused the request"
-importance_tier: important
-contextType: reference
-version: 1.0.0.3
----
 
-# Rule: Answer the actual request
-
-> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before answering anything you are tempted to reshape.
-> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
-
-## Fires when
-
-- About to prepend a warning, caveat or disclaimer the request did not ask for.
-- About to deliver a narrower, "safer" or easier version of the ask.
-- About to cite a rule, restriction, policy, limit or permission.
-- About to decline, deflect or steer the operator off the request.
-- About to open a task by stating how long or costly it will be.
-
-## The rule
-
-**Answer the request that was made. When you cannot or will not, say so plainly.
-The substitution, the refusal and the reason are never dressed as process.**
-
----
-
-## 1. WARNINGS ANSWER THE ASK
-
-A caveat earns its place by naming a failure that can happen here. A disclaimer that
-does not, such as a generic "be careful" or a safety note on a mundane request, is
-filler that [`communication.md`](communication.md) §3 already cuts. One that also
-nudges the reader off the request is a soft refusal wearing a caution. If the failure
-is real, name it.
-
----
-
-## 2. NO SILENT REINTERPRETATION
-
-Delivering a narrower, safer or easier version of the ask is the scope transformation
-[`scope-discipline.md`](scope-discipline.md) §1 names. Either deliver the ask, or say in the first lines what you are changing and
-why, then deliver that. A swap the reader has to notice on their own is a failure
-even when the swapped answer is better.
-
----
-
-## 3. INVENTED CONSTRAINTS
-
-Never cite a rule, restriction, policy, limit or permission you cannot point to. A
-restriction that changes shape, or quietly disappears, under pushback was never a
-restriction. Withdraw it and answer with the real reason, never a new invented one.
-
----
-
-## 4. AN HONEST NO
-
-Declining is a legitimate answer, and it is honest only when it names the real
-reason. "I can't because policy", with no policy behind it, is §3's fabrication
-wearing a refusal. If the real reason is that the task is open-ended, risky, or
-simply unwanted, say that.
-
----
-
-## 5. ESTIMATES INFORM, NEVER GATE
-
-Never open a task with an effort or timeline estimate nobody asked for, and never
-use one to argue against starting. "This will take months" before the first line of
-work is stalling dressed as diligence. When the honest reading is that the task is too
-big for one pass, name the smallest slice worth delivering and start there, saying
-what is deferred. That is scoping, not stalling.
-
----
-
-## 6. THE FIRST ANSWER IS THE TRUE ONE
-
-A status, a "done" or a reason that becomes accurate only after the reader pushes
-back failed when it was written, not when it was corrected. The loop of confident
-claim, interrogation, partial confession, repeat is the close-out failure
-[`evidence-and-proof.md`](evidence-and-proof.md) §10 forbids, arriving one reply late.
-The first report carries the confession already.
-
----
-
-## 7. WHAT THIS RULE IS NOT
-
-- **Not a license to drop real caveats.** A warning naming a failure that can
-  actually happen stays. This rule removes only warnings that guard against nothing.
-- **Not a ban on estimates.** Section 5 bans the estimate-as-verdict nobody asked
-  for, not the estimate the reader requests or
-  [`communication-decisions.md`](communication-decisions.md) §4 requires before a
-  long stretch.
-- **Not a ban on refusing.** A genuine restriction named with its source is the
-  honest form of the same sentence, and it is the only form allowed to cite one.
-
----
-
-## 8. SELF-CHECK
-
-- [ ] Every warning in the reply names a failure that can actually happen here.
-- [ ] If the answer is a different version of the ask, the first lines say so and why.
-- [ ] Every rule, restriction, or policy cited points to its source.
-- [ ] A decline carries its real reason, not a borrowed one.
-- [ ] No task opened with an estimate the operator did not ask for.
-- [ ] The first answer stands on its own, and nothing in it needs a pushback to become true.
----
-name: system-spec-kit
-description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
-allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.8.3.0
----
-
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
-
-# Spec Kit - Mandatory Conversation Documentation
-
-Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3+), template usage, and context preservation through AGENTS.md-enforced workflows.
-
-## 1. WHEN TO USE
-
-### What is a Spec Folder?
-
-A **spec folder** is a numbered directory (e.g., `007-auth-feature/`) that contains documentation for a single feature/task or a coordinated packet of related phase work:
-
-Spec folders may also be nested as coordination-root packets with direct-child phase folders (e.g., `specs/02--track/022-feature/011-phase/002-child/`).
-
-- **Purpose**: Track specifications, plans, tasks, and decisions for one unit of work
-- **Location**: Under `specs/` using either `###-short-name/` at the root or nested packet paths for phased coordination
-- **Contents**: Markdown files (spec.md, plan.md, tasks.md, and implementation-summary.md when work is complete) plus optional support folders such as `scratch/`, `research/`, or `review/`
-
-Think of it as a "project folder" for AI-assisted development - it keeps context organized and enables session continuity.
-
-### Activation Triggers
-
-**MANDATORY for ALL file modifications:**
-- Code files: JS, TS, Python, CSS, HTML
-- Documentation: Markdown, README, guides
-- Configuration: JSON, YAML, TOML, env templates
-- Templates, knowledge base, build/tooling files
-
-**Request patterns that trigger activation:**
-- "Add/implement/create [feature]"
-- "Fix/update/refactor [code]"
-- "Modify/change [configuration]"
-- Positive keywords include add, implement, fix, update, create, modify, rename, delete and configure. The authoritative Gate 3 classifier intentionally omits `analyze`, `decompose` and `phase` from positive triggers; `analyze` is a read-only disqualifier unless a real write, memory-save or resume trigger is also present.
-
-**Example triggers:**
-- "Add email validation to the signup form" → Level 1-2
-- "Refactor the authentication module" → Level 2-3
-- "Fix the button alignment bug" → Level 1
-- "Implement user dashboard with analytics" → Level 3
-
-### When NOT to Use
-
-- Pure exploration/reading (no file modifications)
-- Single typo fixes (<5 characters in one file)
-- Whitespace-only changes
-- Auto-generated file updates (package-lock.json)
-- User explicitly selects Option D (skip documentation)
-
-**Rule of thumb:** If modifying ANY file content → Activate this skill.
-Status: ✅ This requirement applies immediately once file edits are requested.
-
-### Distributed Governance Rule
-
-Any agent writing authored spec folder docs (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`, `goal.md`, `before-after.md`, `timeline.md`, `roadmap.md` (the last six optional)) MUST use contract-backed templates through `create.sh` or the inline renderer. `goal.md` may also come from `/create:goal`, whose per-kind templates are parity-checked copies of `goal.md.tmpl`. This is a workflow-required gate, not a runtime hook: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` after authored spec-doc writes and before completion claims, then route continuity updates through /speckit:save. Deep-research workflow-owned packet markdown (`research/iterations/*.md`, `research/deep-research-*.md`, and progressive `research/research.md` loop updates) is exempt from that generic per-write rule; `/deep:research` must instead run targeted strict validation after every `spec.md` mutation it performs. @deep-research retains exclusive write access for `research/research.md`; @debug retains exclusive write access for `debug-delegation.md`.
-
-- `handover.md` stays in the canonical recovery ladder and is maintained through `/speckit:save` handover_state routing using the handover template for initial creation.
-- `review-report.md` remains owned by `@deep-review` when deep review workflows synthesize findings.
-- `resource-map.md` is a lazy add-on in every level contract; render it with the inline gate renderer when a packet wants a lean file ledger alongside `implementation-summary.md`. The deep loops write their own evidence ledger of the same name into their artifact directory, not the packet root.
-
-### Utility Template Triggers
-
-| Template              | Trigger Keywords                                                                                                              | Action                    |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| `handover.md`         | "handover", "next session", "continue later", "pass context", "ending session", "save state", "multi-session", "for next AI"  | Suggest `/speckit:save` handover maintenance |
-| `debug-delegation.md` | "stuck", "can't fix", "tried everything", "same error", "fresh eyes", "hours on this", "still failing", "need help debugging" | Suggest Task-tool debug delegation |
-
-**Rule:** When detected, proactively suggest the appropriate action.
-
----
-
-## 2. SMART ROUTING
-
-### Resource Domains
-
-This skill uses simple intent/domain routing, not keyed runtime resource routing. It does not select whole `references/<key>/` or `assets/<key>/` subtrees from project, mode, stack, or model signals. Instead, the router discovers markdown resources recursively from `references/` and `assets/`, then applies intent scoring from `RESOURCE_MAP` to load real, guarded resources from the current inventory. Keep this section domain-focused rather than static file inventories.
-
-- `references/retrieval/` for the trigger-index lookup and the ripgrep recipes.
-- `references/memory/` for continuity save workflows, trigger-phrase behavior, and the shared embedding stack.
-- `references/templates/` for level selection, template selection, and structure guides.
-- `references/validation/` for checklist policy, verification rules, decision formats, and template compliance contracts.
-- `references/structure/` for folder organization and sub-folder versioning.
-- `references/workflows/` for command workflows, shared intake, rename procedures, and worked examples.
-- `references/debugging/` for troubleshooting and root-cause methodology.
-- `references/cli/` for daemon CLI behavior, shared smart-router behavior, and continuity handback contracts.
-- `references/config/` for runtime environment configuration and launcher/lease contracts.
-- `assets/*.md` for shared decision matrices, template mapping, and parallel dispatch support.
-
-**Typed leaf projection (fleet routing standard).** system-spec-kit is a normal, registry-less single-mode skill whose sole workflow mode is `system-spec-kit` (there is no `mode-registry.json`). Its router routes ONLY into the `references/` and `assets/` doc corpora, so those are the only routable leaves: every one is enumerated in `leaf-manifest.json`, generated from `leaf-manifest.config.json` (`generate-leaf-manifest.cjs --write .skilled/skills/system-spec-kit`; byte-stable under `--check`). `leaf-aliases.json` binds each router-emitted root-relative path (e.g. `references/memory/memory-system.md`) to its typed `(system-spec-kit, leafResourceId)` identity so a deterministic router replay recovers real typed pairs against the manifest. The `RESOURCE_MAP` below names every leaf in that manifest under at least one intent, so each reference and asset is reachable through the router as well as by browsing; the manifest stays the inventory, and a leaf added to the corpus without an intent is a routing gap to close, not a browse-only tier. The rest of the package is deliberately NOT routable: `runtime/cli/`, `runtime/`, `shared/`, `templates/`, `changelog/` and other engine dirs are the spec-kit runtime, and `feature-catalog/` + `manual-testing-playbook/` are runtime-engine capability docs and behavior-test fixtures — no `RESOURCE_MAP` intent selects them, so they are excluded from `leafRoots` and never appear in the manifest. This is an intentionally thin router: it maps spec-folder workflow intents (plan, implement, complete, memory, phase, hooks, …) to a small set of reference docs, while the large playbook chiefly exercises validation and generator behavior rather than doc routing (most scenarios carry empty typed gold). Regenerate `leaf-manifest.json` and keep `leaf-aliases.json` in sync whenever the `references/` or `assets/` corpus changes.
-
-### Template and Script Sources of Truth
-
-- Level definitions and template size guidance: level specifications reference
-- Template usage and composition rules: [template-guide.md](./references/templates/template-guide.md)
-- Use the Level contract for operational templates; `create.sh` and the Level contract resolver share the same template index.
-- Use `templates/changelog/` for packet-local nested changelog generation at completion time.
-- Script architecture, build outputs, and runtime entrypoints: [runtime/cli/README.md](./runtime/cli/README.md)
-- Memory save JSON schema and workflow contracts: [save-workflow.md](./references/memory/save-workflow.md)
-- Nested packet changelog workflow: [nested-changelog.md](./references/workflows/nested-changelog.md)
-
-Primary operational scripts:
-- `spec/validate.sh`
-- `spec/create.sh`
-- `spec/archive.sh`
-- `spec/refresh-track-roots.mjs`
-- `spec/sweep-track-roots.mjs`
-- `spec/check-completion.sh`
-- `spec/recommend-level.sh`
-- `runtime/lib/templates/level-contract-resolver.ts`
-
-Spec-script exit codes (`spec/*.sh`; distinct from the daemon-backed memory CLI taxonomy in §3):
-- `0`: success.
-- `1`: user error such as bad flags or invalid input.
-- `2`: validation error.
-- `3`: system error such as missing folders, missing manifests, or file I/O failures.
-
-### Resource Loading Levels
-
-| Level       | When to Load               | Resources                    |
-| ----------- | -------------------------- | ---------------------------- |
-| ALWAYS      | Every skill invocation     | Shared patterns + SKILL.md   |
-| CONDITIONAL | If intent signals match   | Intent-mapped references     |
-| ON_DEMAND   | Only on explicit request   | Deep-dive quality standards  |
-
-`references/workflows/quick-reference.md` is the primary first-touch command surface. Keep the compact `spec_kit` and `memory` command map there, including `/speckit:plan --intake-only` as the standalone intake entry, `/speckit:plan` and `/speckit:complete` smart delegation notes, and the pointer from `/deep:research` to `../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`, and use this file only to point readers to it rather than duplicating the full matrix.
-
-### Smart Router Pseudocode
-
-The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling. Because this skill is an intent/domain router, Pattern 3 is adapted to extensible intent labels over discovered resources rather than keyed resource subdirectories.
-
-- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
-- Pattern 2: Existence-Check Before Load - `load_if_available()` guards, de-duplicates with `seen`, and checks `inventory`.
-- Pattern 3: Extensible Routing Key - command and intent signals select domain labels and resource maps without forcing `references/<key>/` or `assets/<key>/` subtrees.
-- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` asks for disambiguation and missing-resource cases return a "no knowledge base" notice.
-
-```python
-from pathlib import Path
-
-SKILL_ROOT = Path(__file__).resolve().parent
-RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/workflows/quick-reference.md"
-
-INTENT_SIGNALS = {
-    "PLAN": {"weight": 3, "keywords": ["plan", "design", "new spec", "level selection", "option b"]},
-    "RESEARCH": {"weight": 3, "keywords": ["investigate", "explore", "analyze", "prior work", "evidence"]},
-    "IMPLEMENT": {"weight": 3, "keywords": ["implement", "build", "execute", "workflow"]},
-    "DEBUG": {"weight": 4, "keywords": ["stuck", "error", "not working", "failed", "debug"]},
-    "COMPLETE": {"weight": 4, "keywords": ["done", "complete", "finish", "verify", "checklist"]},
-    "MEMORY": {"weight": 4, "keywords": ["memory", "save context", "resume", "checkpoint", "context"]},
-    "HANDOVER": {"weight": 4, "keywords": ["handover", "continue later", "next session", "pause"]},
-    "PHASE": {"weight": 4, "keywords": ["phase", "decompose", "split", "workstream", "multi-phase", "phased approach", "phased", "multi-session"]},
-    "RETRIEVAL_TUNING": {"weight": 3, "keywords": ["retrieval", "search tuning", "fusion", "scoring", "pipeline"]},
-    "INTAKE": {"weight": 4, "keywords": ["intake", "folder_state", "start_state", "repair-mode", "intake-only"]},
-    "HOOKS": {"weight": 4, "keywords": ["hook", "skill advisor hook", "advisor hook", "prompt-time advisor", "advisor_validate", "goal plugin", "opencode-goal", "/goal", "active_goal", "session goal", "set goal", "bind goal", "update the goal", "resend goal", "durable slice"]},
-    "LAUNCHER": {"weight": 4, "keywords": ["launcher", "lease", "pid file", "single-writer", "lease_held_by"]},
-    "RENAME": {"weight": 3, "keywords": ["rename", "mechanical refactor", "rename pattern", "git mv", "case variants"]},
-    "EVALUATION": {"weight": 3, "keywords": ["evaluate", "ablation", "benchmark", "baseline", "metrics"]},
-    "SCORING_CALIBRATION": {"weight": 3, "keywords": ["calibration", "scoring", "normalization", "decay", "interference"]},
-    "ROLLOUT_FLAGS": {"weight": 3, "keywords": ["feature flag", "rollout", "toggle", "enable", "disable"]},
-    "GOVERNANCE": {"weight": 3, "keywords": ["governance", "tenant", "retention", "audit"]},
-    "DISPATCH": {"weight": 3, "keywords": ["dispatch", "parallel agents", "agent header", "result envelope", "sub-agent", "fan-out"]},
-    "AUTO_MODE": {"weight": 3, "keywords": [":auto", "auto mode", "autopilot", "unattended", "setup resolution"]},
-    "CLI_TRANSPORT": {"weight": 3, "keywords": ["daemon cli", "cli shim", "memory handback", "smart router", "cli-*", "warm-only"]},
-    "TEMPLATE_AUTHORING": {"weight": 3, "keywords": ["template style", "author a template", "template convention", "tmpl", "template anchors"]},
-}
-
-RESOURCE_MAP = {
-    "PLAN": [
-        "references/templates/template-guide.md",
-        "references/workflows/intake-contract.md",
-        "references/validation/template-compliance-contract.md",
-        "assets/level-decision-matrix.md",
-        "assets/complexity-decision-matrix.md",
-        "references/templates/level-selection-guide.md",
-        "references/templates/level-specifications.md",
-        "references/structure/folder-structure.md",
-    ],
-    "RESEARCH": [
-        "references/workflows/quick-reference.md",
-        "references/workflows/worked-examples.md",
-        "references/memory/epistemic-vectors.md",
-        "references/retrieval/retrieval-conventions.md",
-        "references/structure/grep-convention.md",
-    ],
-    "IMPLEMENT": [
-        "references/validation/validation-rules.md",
-        "references/validation/template-compliance-contract.md",
-        "references/templates/template-guide.md",
-        "assets/template-mapping.md",
-        "references/workflows/execution-methods.md",
-        "references/validation/path-scoped-rules.md",
-    ],
-    "DEBUG": [
-        "references/debugging/troubleshooting.md",
-        "references/debugging/universal-debugging-methodology.md",
-        "references/workflows/quick-reference.md",
-    ],
-    "COMPLETE": [
-        "references/validation/validation-rules.md",
-        "references/workflows/nested-changelog.md",
-        "references/workflows/intake-contract.md",
-        "references/workflows/spec-folder-write-recipe.md",
-        "references/workflows/spec-folder-authoring-checklist.md",
-        "references/validation/decision-format.md",
-        "references/validation/five-checks.md",
-    ],
-    "MEMORY": [
-        "references/memory/memory-system.md",
-        "references/memory/save-workflow.md",
-        "references/memory/trigger-config.md",
-        "references/structure/folder-routing.md",
-    ],
-    "HANDOVER": [
-        "references/workflows/quick-reference.md",
-    ],
-    "PHASE": [
-        "references/structure/phase-definitions.md",
-        "references/structure/sub-folder-versioning.md",
-        "references/validation/phase-checklists.md",
-        "references/structure/phase-system.md",
-    ],
-    "RETRIEVAL_TUNING": [
-        "references/memory/embedder-pluggability.md",
-        "references/memory/trigger-config.md",
-    ],
-    "INTAKE": [
-        "references/workflows/intake-contract.md",
-        "references/templates/template-guide.md",
-        "references/validation/template-compliance-contract.md",
-    ],
-    "HOOKS": [
-        "references/config/hook-system.md",
-        "references/workflows/goal-set-string-playbook.md",
-    ],
-    "LAUNCHER": [
-        "references/config/launcher-lease.md",
-        "references/memory/memory-system.md",
-    ],
-    "RENAME": [
-        "references/workflows/rename-pattern.md",
-    ],
-    "EVALUATION": [
-        "references/memory/epistemic-vectors.md",
-        "references/config/environment-variables.md",
-    ],
-    "SCORING_CALIBRATION": [
-        "references/config/environment-variables.md",
-    ],
-    "ROLLOUT_FLAGS": [
-        "references/config/environment-variables.md",
-    ],
-    "DISPATCH": [
-        "references/workflows/agent-io-contract.md",
-        "assets/parallel-dispatch-config.md",
-    ],
-    "AUTO_MODE": [
-        "references/workflows/auto-mode-contract.md",
-    ],
-    "CLI_TRANSPORT": [
-        "references/cli/daemon-cli-reference.md",
-        "references/cli/memory-handback.md",
-        "references/cli/shared-smart-router.md",
-    ],
-    "TEMPLATE_AUTHORING": [
-        "references/templates/template-style-guide.md",
-        "references/templates/template-guide.md",
-    ],
-    "GOVERNANCE": [
-        "references/config/environment-variables.md",
-    ],
-}
-
-COMMAND_BOOSTS = {
-    "/speckit:plan": "PLAN",
-    "/speckit:implement": "IMPLEMENT",
-    "/speckit:complete": "COMPLETE",
-    "/speckit:plan --intake-only": "INTAKE",
-    "/speckit:plan :with-phases": "PHASE",
-    "/speckit:search": "MEMORY",
-    "/speckit:save": "MEMORY",
-    "/speckit:resume": "MEMORY",
-}
-
-LOADING_LEVELS = {
-    "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["deep dive", "full validation", "full checklist", "full template", "save context", "/speckit:save", "/speckit:resume", "implementation-summary", "tasks.md", "spec folder", "phase folder", "description metadata"],
-    "ON_DEMAND": [
-        "references/validation/phase-checklists.md",
-        "references/templates/template-guide.md",
-        "references/workflows/intake-contract.md",
-    ],
-}
-
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is planning, memory, validation, phase, debug, or completion work",
-    "Confirm the target spec folder or command surface",
-    "Provide one concrete file, error, or expected output",
-    "Confirm which verification gate must pass",
-]
-
-def _task_text(task) -> str:
-    parts = [
-        str(getattr(task, "query", "")),
-        str(getattr(task, "text", "")),
-        " ".join(getattr(task, "keywords", []) or []),
-        str(getattr(task, "command", "")),
-    ]
-    return " ".join(parts).lower()
-
-def _guard_in_skill(relative_path: str) -> str:
-    """Allow markdown loads only within this skill folder."""
-    resolved = (SKILL_ROOT / relative_path).resolve()
-    resolved.relative_to(SKILL_ROOT)
-    if resolved.suffix.lower() != ".md":
-        raise ValueError(f"Only markdown resources are routable: {relative_path}")
-    return resolved.relative_to(SKILL_ROOT).as_posix()
-
-def _guard_resource_map(resource_map: dict[str, list[str]]) -> None:
-    """Reject compatibility stubs as router targets while allowing them to preserve old links."""
-    for intent, resources in resource_map.items():
-        for relative_path in resources:
-            guarded = _guard_in_skill(relative_path)
-            if guarded.startswith("references/"):
-                tail = guarded.removeprefix("references/")
-                if "/" not in tail and "-" in Path(tail).stem:
-                    raise ValueError(f"RESOURCE_MAP must target canonical references, not compatibility stubs: {intent} -> {guarded}")
-
-def discover_markdown_resources() -> set[str]:
-    """Recursively discover routable markdown docs for this skill only."""
-    docs = []
-    for base in RESOURCE_BASES:
-        if base.exists():
-            docs.extend(p for p in base.rglob("*.md") if p.is_file())
-    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
-
-def score_intents(task) -> dict[str, float]:
-    """Weighted scoring from request text, keywords, and explicit command boosts."""
-    text = _task_text(task)
-    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
-
-    for intent, cfg in INTENT_SIGNALS.items():
-        for keyword in cfg["keywords"]:
-            if keyword in text:
-                scores[intent] += cfg["weight"]
-
-    command = str(getattr(task, "command", "")).lower()
-    for prefix, intent in COMMAND_BOOSTS.items():
-        if command.startswith(prefix):
-            scores[intent] += 6
-
-    return scores
-
-def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
-    """Return primary intent and secondary intent when scores are close."""
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    if not ranked or ranked[0][1] <= 0:
-        return []
-
-    selected = [ranked[0][0]]
-    if len(ranked) > 1:
-        primary_score = ranked[0][1]
-        secondary_intent, secondary_score = ranked[1]
-        if secondary_score > 0 and (primary_score - secondary_score) <= ambiguity_delta:
-            selected.append(secondary_intent)
-
-    return selected[:max_intents]
-
-def route_speckit_resources(task):
-    """Scoped, recursive, weighted, ambiguity-aware routing."""
-    _guard_resource_map(RESOURCE_MAP)
-    _guard_resource_map({
-        "ALWAYS": LOADING_LEVELS["ALWAYS"],
-        "ON_DEMAND": LOADING_LEVELS["ON_DEMAND"],
-    })
-    inventory = discover_markdown_resources()
-    scores = score_intents(task)
-    intents = select_intents(scores, ambiguity_delta=1.0)
-    loaded = []
-    seen = set()
-
-    def load_if_available(relative_path: str) -> None:
-        guarded = _guard_in_skill(relative_path)
-        if guarded in inventory and guarded not in seen:
-            load(guarded)
-            loaded.append(guarded)
-            seen.add(guarded)
-
-    # ALWAYS: base references for every invocation
-    for relative_path in LOADING_LEVELS["ALWAYS"]:
-        load_if_available(relative_path)
-
-    if max(scores.values() or [0]) < 0.5:
-        return {
-            "intents": intents or ["UNKNOWN"],
-            "intent_scores": scores,
-            "load_level": "UNKNOWN_FALLBACK",
-            "needs_disambiguation": True,
-            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
-            "resources": loaded,
-        }
-
-    # CONDITIONAL: intent-scored resources
-    matched_intents = []
-    for intent in intents:
-        before_count = len(loaded)
-        for relative_path in RESOURCE_MAP.get(intent, []):
-            load_if_available(relative_path)
-        if len(loaded) > before_count:
-            matched_intents.append(intent)
-
-    # ON_DEMAND: explicit deep-dive requests
-    text = _task_text(task)
-    if any(keyword in text for keyword in LOADING_LEVELS["ON_DEMAND_KEYWORDS"]):
-        for relative_path in LOADING_LEVELS["ON_DEMAND"]:
-            load_if_available(relative_path)
-
-    if not loaded:
-        load_if_available(DEFAULT_RESOURCE)
-
-    result = {"intents": intents, "intent_scores": scores, "resources": loaded}
-    if not matched_intents:
-        result["notice"] = f"No knowledge base found for intent(s): {', '.join(intents)}"
-    return result
-```
-
----
-
-## 3. HOW IT WORKS
-
-### Core Workflow
-
-1. Gate 3 selects an existing, new, related, skipped, or phase spec folder before file changes.
-2. For new folders, estimate level from LOC, risk, affected systems, and verification needs; create from contract-backed templates.
-3. Keep phase parents lean: parent folders hold `spec.md`, `description.json`, and `graph-metadata.json`; child phases hold working docs.
-4. Clear both completion gates before claiming done: the priority-ordered checklist in the `tasks.md` verification section, and the closure verdict in `acceptance-criteria.md`. See Two Completion Gates below.
-5. Preserve continuity in `implementation-summary.md` or through canonical `/speckit:save` with `generate-context.js`.
-
-### Two Completion Gates
-
-Level 2+ packets close through two different documents. They are often conflated, so keep the question each one answers distinct.
-
-| | `tasks.md` verification section | `acceptance-criteria.md` |
-|---|---|---|
-| Answers | Is the work done? | May the packet close? |
-| Unit | A checklist item | A criterion, written Given / When / Then |
-| Vocabulary | `[ ]` / `[x]`, tagged P0, P1 or P2 | `Met`, `Unmet`, `Waived`, `Superseded` |
-| Enforced by | `check-completion.sh` | `AC_CLOSURE` and `AC_COVERAGE` in `validate.sh` |
-| Blocks when | A P0 or P1 item is incomplete, an item carries no priority tag, or a completed P0/P1 item cites no evidence. P2 blocks only under `--strict` | Any criterion is still `Unmet`, or a `Waived` or `Superseded` row names a decision record that does not exist |
-
-The two are linked rather than parallel. `AC_COVERAGE` requires every criterion's evidence to trace back into the merged tasks document, so `tasks.md` is where the proof lives and `acceptance-criteria.md` is where the verdict lives. A criterion marked `Met` with no traceable item behind it is the failure that rule exists to catch.
-
-`acceptance-criteria.md` is an optional add-on: `validate.sh` warns when a Level 2+ packet has none. Once the file exists, `AC_CLOSURE` is an error-severity gate on that packet.
-
-### Retrieval and Continuity
-
-Retrieval is file-based and needs no running service. Gate 1 resolves a prompt against the committed trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, which exits `0` on candidates, `1` on a clean no-hit and `2` on a bad invocation or unreadable index. Free-text retrieval uses the literal ripgrep recipes in [`references/retrieval/retrieval-conventions.md`](references/retrieval/retrieval-conventions.md), scoped by track and packet through the trailing positional path. Those recipes are precise only because the corpus is regular: [`references/structure/grep-convention.md`](references/structure/grep-convention.md) holds the frontmatter, anchor, naming and body-preservation rules that `validate.sh` enforces on every spec document.
-
-Recovery walks the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, then packet-first spec docs, then the bounded context recipe. `/speckit:resume` owns that ladder. Saves go through `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked by `/speckit:save`; the writer updates the packet's continuity surfaces in place and there is no indexing hand-off afterwards.
-
-Regenerate the index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
-
-**Declared loss.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal are gone and have no file-based successor. A lookup that matches nothing returns nothing; callers must say so plainly rather than degrading to a guess. What `trigger_phrases` never declared, the index cannot find — see `references/retrieval/retrieval-conventions.md` §8 for what belongs in that field.
-
-### Reranking
-
-Model-based cross-encoder/local-GGUF reranking was removed in the 014 deprecation: the local model path was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were removed earlier in 022/013). Nothing reranks retrieval today. Ripgrep produces matches, paths and lines and never orders them by relevance; ordering is the caller's job, using the deterministic tuple in `references/retrieval/retrieval-conventions.md` §5. That tuple is a stable sort, not a relevance model. The `SPECKIT_CROSS_ENCODER`/`RERANKER_LOCAL` flags are no longer wired.
-
-### Security
-
-- `VOYAGE_API_KEY` is read from the process environment only. It must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set it in shell init files owned by the operator with mode `600`.
-- Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
-
-### Validation and Recovery
-
-Run `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> --strict` before completion claims. Validation errors block completion; warnings must be addressed or documented. Startup, resume, hook, goal plugin, code graph, and Code Graph readiness details live in `references/config/hook-system.md`, `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md`, `.skilled/hooks/goal/goal-plugin.md`, `runtime/hooks/README.md` (Claude and OpenCode hook folders; OpenCode uses plugin-backed delivery), and the code graph references.
-
-### OpenCode Goal Plugin
-
-The packet `goal.md` is the source of goal state. A session binds to it (`opencode_goal({ action: "bind", packetPath })` on OpenCode, `bin/goal.cjs bind <packet>` on Pi), the runtime injects the objective slice built from the file on every turn, and the per-session record under `.skilled/skills/.state/goal/` keeps only the pointer, liveness and telemetry. When an operator says "set the goal", "bind the goal", "update the goal" or "resend the goal" in conversation, that is this surface: render the parent's chat slice from the file and hand it over to be set, keep reminding while it stays unset and never stop work for it. `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>` prints it as `chat_slice`. What that slice contains and when it may be sent are section 4 of `sk-create-goal`'s [budget-and-handoff.md](../sk-doc/sk-create-goal/references/budget-and-handoff.md), and authoring or amending a `goal.md` is `/create:goal`'s. The OpenCode surface is `.skilled/plugins/opencode-goal.js` plus `.skilled/commands/goal-opencode.md`; it injects with `experimental.chat.system.transform`, observes lifecycle events through the plugin `event` hook, and exposes `opencode_goal` / `opencode_goal_status` plugin tools. Use [`.skilled/hooks/goal/goal-plugin.md`](../../hooks/goal/goal-plugin.md) for the operator contract, restart requirement, environment variables, validation commands, and boundary between raw `objective` and generated `goalPrompt`.
-
-### Code Graph and Search Routing
-
-
----
-
-## 4. RULES
-
-### ✅ ALWAYS
-
-1. **Determine level (1/2/3/3+) before ANY file changes** - Count LOC, assess complexity/risk
-2. **Scaffold from contract-backed templates** - Use `create.sh` or `inline-gate-renderer`, NEVER create from scratch
-3. **Fill ALL placeholders** - Remove placeholder markers and sample content
-4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
-5. **Prefer coordinated related packets before new top-level folders** - Check active and related specs, their scope, status, and Phase Documentation Map. When related work qualifies for phase decomposition, recommend one phased packet rather than separate single-spec folders.
-6. **Get explicit user approval before changes** - Show level, path, templates, approach. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
-7. **Use consistent folder naming** - `specs/###-short-name/` format
-8. **Clear both completion gates (Level 2+)** - The `tasks.md` verification checklist AND the `acceptance-criteria.md` closure verdict. Load both before claiming done; see §3 Two Completion Gates
-9. **Mark items `[x]` with evidence** - Include links, test outputs, screenshots
-10. **Complete P0/P1 before claiming done** - No exceptions
-11. **Suggest handover.md on session-end keywords** - "continue later", "next session"
-12. **Run validate.sh before completion** - Completion Verification requirement
-13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
-14. **Suggest /speckit:save when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
-15. **Suggest Task-tool debug delegation after 3+ failed fix attempts on same error** - Do not continue without offering a fresh debugging pass
-16. **Apply the phased-packet preference without bypassing qualification** - Suggest `/speckit:plan :with-phases` only when phase complexity score >= 25 AND documentation level >= 3. If either condition fails, use a standard packet; if the work is new or unrelated, create a separate packet and evaluate that packet independently. A series parent is the exception: a different change to the same artifact as an existing packet in the same track joins or creates a series parent (`references/structure/phase-definitions.md` §2).
-17. **Route all code creation/updates through `sk-code`** - Full surface alignment is mandatory before claiming completion
-   - **Authoring-time vs review-time load**: `sk-code` is loaded at TWO distinct points in `/speckit:complete`. (a) Authoring-time (Step 10 development): when the implementation target is under `.skilled/skills/`, `.skilled/agents/`, `.skilled/commands/`, or `.opencode/specs/`, load the matching sk-code authoring checklist (`../sk-code/sk-code-skilled/assets/checklists/{surface}-authoring.md`) and, for `.opencode/specs/` targets, the system-spec-kit spec-folder docs (`references/workflows/spec-folder-authoring-checklist.md` + `references/workflows/spec-folder-write-recipe.md`) BEFORE the first write. (b) Review-time (Step 11 review): the existing `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) overlay runs after writes complete. Authoring-time load surfaces invariants the writer needs to honor; review-time load catches drift the writer didn't honor. See the `cross_skill_authoring_load` block in `speckit-complete.yaml` for the YAML contract.
-18. **Route all documentation creation/updates through `sk-doc`** - Full alignment is mandatory before claiming completion
-19. **Enforce ToC policy from validation rules** - Only `research/research.md` may include a Table of Contents section; remove ToC headings from standard spec artifacts
-20. **Literal naming for AI-derived spec folders and phases** - When the AI (not the user) picks a spec-folder or phase slug, the name MUST describe the concrete work being built or fixed. Names must include a specific subject token (the component, behavior, or bug being addressed). Forbidden as standalone slugs: `remediation`, `cleanup`, `fix`, `phase-N`, `review-remediation`, `round-N`. Good remediation-packet examples: `fix-deep-review-p1-p2-findings-for-sk-doc-skill`, `harden-mcp-server-startup-races`, `fix-singleton-leak-in-launcher`. Good phase-decomposition examples: `data-model-design`, `api-implementation`, `ui-integration`. **Remediation-packet source/target rule** - remediation slugs MUST follow `NNN-fix-<source>-for-<target>` where: **Source** = the event or evidence that triggered the packet (e.g. `deep-review-p0-p1-findings`, `verdict-fail`, `audit-finding-NN`); **Target** = the specific component being remediated (e.g. `skill-local-benchmarks-format`, `trigger-index-generator`, `launcher-cache`). The source names WHERE the work comes from; the target names WHAT is being fixed. Do not conflate them: the thing being remediated is the target, not the source. Worked example: `007-fix-deep-review-p0-p1-findings-for-skill-local-benchmarks-format` (source=`deep-review-p0-p1-findings`, target=`skill-local-benchmarks-format`). This rule is documentation-layer guidance; `validate.sh` does not lint slugs today (operator decision; may be lifted in a follow-on packet).
-
-### ⛔ NEVER
-
-1. **Create documentation from scratch** - Use templates only
-2. **Skip spec folder creation** - Unless user explicitly selects D
-3. **Make changes before spec + approval** - Spec folder is prerequisite. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, record the approval request in that directory and continue. Interactive sessions always ask.
-4. **Leave placeholders in final docs** - All must be replaced
-5. **Decide autonomously update vs create** - Always ask user. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the update-or-create question with its default in the lineage directory and continue.
-6. **Claim done without clearing both completion gates** - Level 2+ requires the `tasks.md` verification checklist verified with evidence AND every `acceptance-criteria.md` criterion `Met`, `Waived` or `Superseded`
-7. **Proceed without spec folder confirmation** - Wait for A/B/C/D. **Child dispatch:** when `AI_SESSION_CHILD=1` marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask.
-8. **Skip validation before completion** - Completion Verification hard block
-9. **Add ToC sections to standard spec artifacts** - `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, and `resource-map.md` must not contain ToC headings
-
-### ⚠️ ESCALATE IF
-
-1. **Scope grows during implementation** - Run `upgrade-level.sh` to add higher-level templates (recommended), then auto-populate all placeholder content:
-   - Read all existing spec files (spec.md, plan.md, tasks.md, implementation-summary.md) for context
-   - Replace every placeholder marker pattern in newly injected sections with content derived from that context
-   - For sections without sufficient source context, write "N/A - insufficient source context" instead of fabricating content
-   - Run `check-placeholders.sh <spec-folder>` to verify zero placeholders remain (see level specifications reference for the full procedure)
-   - Document the level change in changelog
-2. **Uncertainty about level <80%** - Present level options to user, default to higher. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the level question with the higher level as its default in the lineage directory and continue.
-3. **Template doesn't fit requirements** - Adapt closest template, document modifications
-4. **User requests skip (Option D)** - Warn about tech debt, explain debugging challenges, confirm consent. When `AI_SESSION_CHILD=1` marks a non-interactive child, record the skip request in the lineage directory with documentation kept as the default and continue.
-5. **Validation fails with errors** - Report specific failures, provide fix guidance, re-run after fixes
-
----
-
-## 5. SUCCESS CRITERIA
-
-Success means the selected spec folder uses the right template set, placeholders and sample content are removed, links between packet docs work, continuity is saved or updated, Level 2+ `tasks.md` P0/P1 checklist items are verified with evidence, every `acceptance-criteria.md` criterion is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` has no blocking errors.
-
----
-
-## 6. INTEGRATION POINTS
-
-P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code updates route through `sk-code`; documentation updates route through `sk-doc`; git handoff routes through `sk-git`.
-
-### Quick Reference Commands
-
-| Command | Usage |
-| --- | --- |
-| Canonical intake | `/speckit:plan --intake-only "Description"` |
-| Create spec folder | `./runtime/cli/spec/create.sh "Description" --short-name name --level 2` |
-| Create in a track | Add `--track <track>` to the create command. The new packet is also listed in `specs/<track>/graph-metadata.json` |
-| Track-root lists | `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --apply` after moving, renaming or deleting a packet in a track by hand; `archive.sh` refreshes it itself. The pre-push hook blocks a commit whose track lists other packets than it holds |
-| Validate | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/007-feature/` |
-| Verify code alignment drift | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root .skilled/skills/system-spec-kit` |
-| Save context | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json specs/007-feature/` |
-| Gate 1 trigger lookup | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (exit `0` hit, `1` no-hit, `2` broken) |
-| Regenerate trigger index | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
-| Free-text retrieval | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, scoped by the trailing positional path |
-| Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
-| Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |
-| Completeness | `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/007-feature/` |
-| Worktree isolation | `.skilled/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
-| Session cleanup | `.skilled/scripts/session-cleanup.sh` resolves PIDs across claude/opencode/opencode runtimes |
-
-Canonical command lifecycle: `/speckit:plan --intake-only` establishes or repairs the packet when standalone intake is needed, `/deep:research` follows `../system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` when research needs bounded `spec.md` anchoring, and `/speckit:plan` or `/speckit:complete` continue from the same folder while reusing the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md`) only when the local `folder_state` still needs repair. When intake runs, the returned `start_state` is the canonical downstream field.
-
-**Remember**: This skill is the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and workflow-required validation for all file modifications. Every conversation that modifies files MUST have a spec folder.
-
----
-
-## 7. REFERENCES AND RELATED RESOURCES
-
-The router discovers reference, asset, and script docs dynamically. Start with `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/retrieval/retrieval-conventions.md`, `references/structure/grep-convention.md`, `references/memory/save-workflow.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `runtime/cli/` when present.
-
-Scripts: `runtime/cli/spec/validate.sh`, `runtime/cli/spec/create.sh`, `runtime/cli/dist/continuity/generate-context.js`, `runtime/cli/spec/check-completion.sh`.
-
-Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, and `system-deep-loop` for iterative research and audit (its `research` and `review` modes).
-
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
 exec
-/bin/zsh -lc "cat 'REPO RULES.md'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
- succeeded in 0ms:
-# REPO RULES
-
-Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
-before your first write of the session; this document then routes you to every rule
-file that governs what you are about to do. **It is a router, not a rulebook:** it
-holds no rules of its own.
-
----
-
-## 1. HOW TO USE THIS
-
-1. **Match on the action you are about to take**, not the topic of the request.
-2. **Load before the action.** A rule read afterwards is a post-mortem.
-3. **A file already in context is not re-read.**
-4. **Every trigger that fires is loaded, not just the first.** They compose; the more
-   specific wins on conflict. Three and four firing at once is the normal case, not an
-   edge case.
-5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.
-
-### Precedence
-
-| Level | Source | Can be overridden? |
-|-------|--------|--------------------|
-| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
-| 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
-| 3 | These rule files, and the guidance in a skill's `SKILL.md` | Only by level 1 or 2 |
-| 4 | General judgment | By anything above |
-
-A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
-`AGENTS.md` forbids. Gate 5 does not change that: it makes the **load** mandatory,
-while what you load stays at level 3, the obligation to read is tier 1, the content
-is not.
-
----
-
-## 2. TRIGGER TABLE
-
-| You are about to… | Load | It settles |
-|-------------------|------|-----------|
-| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "scalable", "extensible", "might need", "best practice", "while we're here" · add a test beyond the coverage floor | [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
-| Touch a file outside the ask · fix something noticed in passing · change something else because it would make the fix easier · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked · notice a defect, smell or stale comment outside the files in scope | [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
-| Say "done", "works", "fixed", "passing", "no regressions" · report a result · quote a number · act on a tool's or sub-agent's success report · close out a turn · report a file path or command output · write a completion summary or tick something off as done | [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md) | What counts as proof, how a green run lies, what an honest close-out contains |
-| Decide whether to hand work to another runtime at all · hand it to a CLI executor, sub-agent, fan-out lineage, or deep loop · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](.skilled/repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
-| Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config · make any call that leaves this machine · truncate · touch branches, tags, or reflogs | [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
-| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch · call a failure a flake, infra, or pre-existing | [`root-cause-and-debugging.md`](.skilled/repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
-| Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified · not know while a plausible answer is available · see sources disagree, or the code contradict the spec, the docs or the operator · the operator asserts something you believe is wrong · change a checked answer after pushback or doubt, or drop an approach before it concludes | [`uncertainty-and-honesty.md`](.skilled/repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
-| Prepend a warning, caveat or disclaimer the request did not ask for · answer a narrower, "safer" or easier version of the ask · cite a rule, restriction, policy, limit or permission · decline, deflect or steer the reader off the request · open a task with an effort or timeline estimate | [`answer-the-actual-request.md`](.skilled/repo-rules/answer-the-actual-request.md) | Whether the reply answers the request that was made, and what an honest no looks like |
-| Write any substantive reply · the reader says they did not follow | [`communication.md`](.skilled/repo-rules/communication.md) | How a reply reads: length, filler, and no table in a reply |
-| Draft or edit any sentence a reader will read · choose a word · place a dash, colon or semicolon · split or join sentences · write a paragraph | [`communication-prose.md`](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation |
-| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`communication-decisions.md`](.skilled/repo-rules/communication-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
-| End a turn · report work done, blocked, or partly done · end a turn while something you started is still running · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`communication-handoff.md`](.skilled/repo-rules/communication-handoff.md) | What is the operator's to do next, what is still running and what resumes it, and when a question becomes a structured choice |
-| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result · create a new skill under a hub, or refactor one that already lives there | [`skill-hub-routing.md`](.skilled/repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
-
----
-
-## 3. INDEX
-
-| Rule | Summary |
-|------|---------|
-| [Overengineering](.skilled/repo-rules/prevent-overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
-| [Scope discipline](.skilled/repo-rules/scope-discipline.md) | The requested scope is the deliverable. Adjacent problems get named, not fixed. |
-| [Evidence and proof](.skilled/repo-rules/evidence-and-proof.md) | A claim is only as strong as the observation behind it, and a receipt confirms only what could have contradicted it. Distinguish observed from derived from inferred. |
-| [Delegation and orchestration](.skilled/repo-rules/delegation-and-orchestration.md) | Delegating makes you the orchestrator; brief with evidence, and no single model's verdict closes a question. |
-| [Blast radius](.skilled/repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
-| [Root cause](.skilled/repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism that caused the failure. |
-| [Uncertainty and honesty](.skilled/repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have and halt on a contradiction. |
-| [Answer the actual request](.skilled/repo-rules/answer-the-actual-request.md) | Answer the request that was made. A warning nobody asked for, a quieter version of the ask, an invented constraint, a dressed-up refusal and a stall dressed as diligence are one failure. |
-| [Communication](.skilled/repo-rules/communication.md) | Write so the reader can act after one pass: no table in a reply, nothing that does not carry information. |
-| [Communication prose](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation. |
-| [Communication decisions](.skilled/repo-rules/communication-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
-| [Communication handoff](.skilled/repo-rules/communication-handoff.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
-| [Hub routing](.skilled/repo-rules/skill-hub-routing.md) | A hub routes in two stages, so a mode registered on one surface is not reachable, and a gate run without its hub argument reports on a hub you did not touch. |
-
-Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
-permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
-
----
-
-## 4. SCOPE OF THIS DOCUMENT
-
-**In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
-the posture to hold when work is handed to another runtime, how the resulting reply
-reads, what you may claim about wiring you have changed, and how a turn hands control
-back to the operator. The delegation posture was the first widening and Delivery the
-second, added when `AGENTS.md` §8 moved down. Delivery is one of two rules here whose
-trigger is a whole turn rather than a specific action, the other being the handback rule,
-which fires at every turn's end, and §8 keeps the two clauses that must bind even when
-nothing loads.
-
-**Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
-of agent and CLI dispatch: which agent, which command, which model, which flags.
-Those belong to `AGENTS.md` §2 and the skills it routes to, and are deliberately
-absent here so each has exactly one place to change. The line is between plumbing and
-posture: how to dispatch is theirs, how to think while dispatching is ours.
-
-**The routing carve-out, added deliberately as the third widening.** *Selecting* a
-route stays Out. *Verifying wiring you changed, and what you may claim about it*, is
-In; it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
-is the one rule on this side of that line, and it carries no route-selection guidance:
-the mechanics stay in the skills, and the rule points at them. A fourth widening that
-admits selection itself would dissolve the boundary; this one does not.
-
-**The ask-surface carve-out, added as the fourth widening, on an operator decision that
-overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
-naming a question tool per runtime reads as the "which command" family, and the paragraph
-above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
-and what follows is the narrowing that keeps the boundary standing. *Choosing between
-runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
-asks the operator a question, in the runtime you are already running in*, is In. That is not
-a selection, because nothing is being selected: the runtime is a given, and the rule records
-which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
-is the one rule on this side of that line, its §5 is the only place a tool name appears, and
-it names only what this repository confirms. A fifth widening that let a rule pick between
-runtimes would be the dissolution this one avoids.
-
-exec
-/bin/zsh -lc 'cat .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl .skilled/agents/deep-review.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
-hook: PostToolUse
-hook: PostToolUse
-hook: PostToolUse
+/bin/zsh -lc 'cat .skilled/skills/system-deep-loop/deep-review/SKILL.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
  succeeded in 0ms:
 ---
 name: deep-review
@@ -2334,275 +1530,13 @@ Key integrations:
 ### Code Graph Integration
 
 The review loop consumes the shared runtime graph and its strict mode-gate validator; packet-specific convergence and state rules remain in this skill.
----
-title: "deep-review"
-description: "Autonomous review loop that audits one dimension per iteration with fresh context, classifies every finding by blocking severity and ends with a release-readiness verdict."
-trigger_phrases:
-  - "deep review"
-  - "convergence review"
-  - "review loop"
-  - "release readiness"
-  - "convergence detection"
-  - "/deep:review"
-version: 1.11.0.36
----
 
-# deep-review
-
-> Run an autonomous review loop that audits one dimension per pass with fresh context, classifies every finding by blocking severity and ends with a release-readiness verdict that routes the next command.
-
----
-
-## 1. AT A GLANCE
-
-| Aspect | What you get |
-|---|---|
-| **Use it for** | Multi-pass code audit where each dimension gets a fresh agent, findings carry blocking severity and the loop stops on a convergence signal |
-| **Invoke with** | `/deep:review:auto` (autonomous), `/deep:review:confirm` (approval-gated) or `/deep:review` (asks which mode). Keyword triggers include "deep review", "convergence review", "release readiness" and "spec folder review" |
-| **Works on** | Five target types: a spec folder, a skill package, a named agent, a spec track or an explicit file set |
-| **Produces** | A release-readiness verdict (PASS, CONDITIONAL or FAIL), a full findings registry, a dashboard, an iteration audit trail and a nine-section review report under `{spec_folder}/review/` |
-
----
-
-## 2. OVERVIEW
-
-### Why This Skill Exists
-
-A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
-
-That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
-
-### What It Does
-
-`deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
-
-It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
-
-### The Dimension Coverage
-
-| Dimension | What the skill audits |
-|---|---|
-| **Correctness** | logic, invariants, state transitions and edge cases against observable intent, with file:line evidence |
-| **Security** | trust boundaries, auth behavior, input handling and secrets exposure, with file:line evidence |
-| **Traceability** | spec-to-code alignment, checklist evidence and cross-reference integrity across linked artifacts |
-| **Maintainability** | codebase patterns, documentation quality and the ease of safe follow-on changes |
-
----
-
-## 3. QUICK START
-
-**Step 1: Invoke it.** Pick a mode. Autonomous runs straight through with no gates. Confirm asks for approval at each iteration. Plain `/deep:review` asks which mode you want.
-
-```bash
-/deep:review:auto "skill deep-review"
-/deep:review:confirm "<spec-folder>"
-/deep:review "skill deep-review"
-```
-
-The target can be a spec folder path, a skill name, an agent name, a track name or a file set.
-
-**Step 2: Run the primary workflow.** The command YAML initializes the packet, dispatches iterations, evaluates convergence and synthesizes the report.
-
-```bash
-/deep:review:auto "track skilled-agent-orchestration" --max-iterations 10 --convergence 0.05
-```
-
-Expected output: a review report at `{spec_folder}/review/review-report.md` with a verdict, the active findings registry, remediation workstreams and an audit appendix. Iteration files live under `{spec_folder}/review/iterations/`.
-
-**Step 3: Verify the reducer output after the loop finishes.**
-
-```bash
-node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder>
-```
-
-Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iterationsCompleted`, `findings` and convergence fields.
-
----
-
-## 4. HOW IT WORKS
-
-### Iteration Lifecycle
-
-The command YAML workflow owns dispatch. It initializes the review packet on first run, then loops: check convergence, dispatch the `@deep-review` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration audits one review dimension. The agent reads the current strategy (including the audit focus) and prior findings from disk, executes review actions, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents and never nests another loop. It never asks the user a question.
-
-The four review dimensions are correctness, security, traceability and maintainability. Correctness and security are required for coverage before the loop can stop. Traceability and maintainability are not required but are audited when configured.
-
-### Severity Classification and Verdicts
-
-Every finding carries a blocking severity.
-
-| Severity | Weight | Meaning |
-|---|---|---|
-| **P0** | 10 | Correctness failure, security vulnerability or spec contradiction. Blocks a PASS verdict |
-| **P1** | 5 | Degraded behavior, incomplete implementation or missing validation. Triggers a CONDITIONAL verdict |
-| **P2** | 1 | Style, naming or documentation gaps. Rides as a PASS advisory |
-
-The loop ends with one of three verdicts.
-
-| Verdict | Condition | Route |
-|---|---|---|
-| **PASS** | No active P0 or P1 findings | `/create:changelog` |
-| **CONDITIONAL** | No P0 remains, P1 findings still need attention | `/speckit:plan` for remediation |
-| **FAIL** | An active P0 remains or a legal-stop gate failed at terminal stop time | `/speckit:plan` for remediation |
-
-### Externalized State
-
-All continuity lives in packet files under `{spec_folder}/review/`, not in conversation memory.
-
-| File under `{spec_folder}/review/` | Role |
-|---|---|
-| `deep-review-config.json` | Settings. Immutable after init |
-| `deep-review-state.jsonl` | Append-only log of every iteration, event and convergence signal |
-| `deep-review-strategy.md` | Dimension coverage and the next audit focus |
-| `deep-review-findings-registry.json` | Indexed discovery set |
-| `deep-review-dashboard.md` | Convergence trends |
-| `review-report.md` | The workflow-owned final report |
-
-The reducer machine-owns the strategy sections and the dashboard. The findings registry is reducer-owned too. The agent writes only iteration files and JSONL records. The workflow owns the canonical `review-report.md`. Because state is on disk, a crashed run resumes from the packet files. Use `/deep:review:auto` again and the workflow picks up the active lineage.
-
-### Convergence Detection
-
-Convergence is a weighted vote over three signals.
-
-| Signal | Weight | What it evaluates |
-|---|---|---|
-| **Rolling Average** | 0.30 | The last two severity-weighted finding yields |
-| **MAD Noise Floor** | 0.25 | The latest ratio against statistical noise |
-| **Dimension Coverage** | 0.45 | That every configured dimension has been audited |
-
-When the weighted stop score clears the composite threshold (default 0.60), the loop enters the legal-stop gate bundle.
-
-Nine gates must all pass before STOP is legal. The bundle covers finding stability, dimension coverage, P0 resolution, evidence density, hotspot saturation, claim adjudication, fix-completeness replay, candidate coverage and graphless fallback. If any gate fails, the loop persists a `blocked_stop` event and continues with a recovery focus. A P0 override raises the new-findings ratio so any fresh P0 finding forces at least one more iteration regardless of the other signals.
-
-The shipped config carries the shared anti-convergence contract:
-
-- `antiConvergence.minIterations` = 2
-- `convergenceMode` = "default"
-- `stopPolicy` = "fail-closed"
-
-Runtime capability loading rejects a missing or permissive stop policy. The optimizer manifest locks convergence mode and enforces `minIterations <= maxIterations`.
-
-### Adversarial Self-Check
-
-Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enters the active findings registry. The agent re-reads the cited code and checks the finding against the source evidence, rejecting inference-only claims. Findings that fail this check are downgraded with a rationale recorded in the iteration narrative.
-
----
-
-## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Use `deep-review` when you need a multi-pass audit where each dimension gets a dedicated agent and the stop condition is gated rather than guessed. Run it before a release to get a verdict you can ship against. Run it when you want the review to run unattended. Run it after `@context` or `/speckit:plan` has established the implementation context, to audit code against that plan. Run it when you want a convergence-gated loop that stops when findings run dry instead of when you decide to call it.
-
-Skip it for the lighter cases:
-
-- Single-pass review: `sk-code`'s code-review mode is faster.
-- External investigation: `deep-research`.
-- One-shot codebase lookup: `@context`.
-- Strategy comparison: `deep-ai-council`.
-
-### Sibling Deep Loops
-
-`deep-review` shares the `runtime/` with the other active deep-loop families. Each owns a different phase and none crosses into another's territory.
-
-| Skill | Relationship |
-|---|---|
-| `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access |
-| `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after |
-
-`sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, its validation, its memory continuity and its resume protocol.
-
----
-
-## 6. TROUBLESHOOTING
-
-| What you see | Why | Fix |
-|---|---|---|
-| Loop runs to max iterations without converging | The threshold is too tight or the target has real structural issues | Raise `--convergence` and re-run with auto-resume |
-| P0 keeps blocking convergence | Either a real P0 survived the adversarial check or a P1 was misclassified up | Read the Hunter/Skeptic/Referee output in the iteration file |
-| Loop stuck on one dimension | The strategy next-focus is not advancing | Inspect `deep-review-strategy.md` |
-| `review-report.md` missing sections | Synthesis was interrupted | Re-run synthesis. JSONL state is intact |
-| Reducer refuses to write derived state | `reduce-state.cjs` detected JSONL corruption | Repair the line or pass `--lenient` |
-| Packet resumes when you expected a new run | An active lineage exists in the config | Archive the existing `review/` tree and pass `--restart` or delete the config |
-| Loop will not continue after pause | The pause file is still present | Remove `{spec_folder}/review/.deep-review-pause` and re-invoke the command |
-
----
-
-## 7. FAQ
-
-**Q: How does deep-review differ from sk-code's code-review mode?**
-
-A: `sk-code`'s code-review mode is a single-pass review that reads the diff once and reports findings with no convergence gating. `deep-review` runs multiple iterations, each with a fresh agent auditing one dimension. It stops only when the convergence signal clears and every legal-stop gate passes. It produces a full findings registry, a dashboard, an iteration audit trail and a release-readiness verdict. Use `sk-code`'s code-review mode for a quick PR check. Use `deep-review` when you need a gated audit with a verdict.
-
-**Q: What does FAIL mean and what do I do next?**
-
-A: FAIL means an active P0 finding remains at terminal stop time or a legal-stop gate failed. The P0 is a correctness failure, a security vulnerability or a spec contradiction that blocks release. The review report includes remediation workstreams grouped from the active findings. Run `/speckit:plan` to create a fix plan from those workstreams. Fix the P0s, then re-run the review loop.
-
-**Q: How do I review a skill or a single file set?**
-
-A: Pass the target directly. A skill review audits the skill's SKILL.md, references, assets, scripts and the files it claims to own. A file set review accepts an explicit set. Both modes run the same iteration lifecycle and produce the same verdict-bearing report.
-
-```bash
-/deep:review:auto "skill deep-research"
-/deep:review:auto "files src/handler.ts,src/middleware/auth.ts,__tests__/handler.test.ts"
-```
-
-**Q: Why does each iteration get a fresh agent?**
-
-A: A shared context window fills with stale findings that degrade reasoning quality across a long session. By dispatching a fresh LEAF agent per iteration and externalizing state to disk, every round starts with a clean window. The agent reads only the current strategy and audit focus plus prior findings, then writes back. Nothing lingers.
-
-**Q: Can I pause the loop and resume later?**
-
-A: Yes. Place a `.deep-review-pause` sentinel file in the `review/` directory. The loop finishes the current iteration and detects the sentinel, then stops. Remove the sentinel and re-invoke the command to resume. All state is on disk, so you can resume days later.
-
----
-
-## 8. VERIFICATION
-
-The skill ships two validation packages.
-
-### Feature Catalog
-
-The `feature-catalog/` covers every capability across its categories: loop lifecycle, state management, convergence and review output. Each category documents inputs, outputs, the owning resource and acceptance criteria.
-
-### Manual Testing Playbook
-
-Deterministic scenarios under `manual-testing-playbook/` cover loop lifecycle, state management, convergence, recovery and review output. Preconditions, expected signals and pass, fail or partial verdict rules are defined in the root playbook. Every scenario maps to a dedicated feature file with the canonical prompt, expected signals and live source anchors.
-
-```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/README.md --type readme
-```
-
-Expected output: zero issues reported.
-
----
-
-## 9. RELATED DOCUMENTS
-
-| Document | Purpose |
-|---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full operating contract |
-| [`references/protocol/quick-reference.md`](./references/protocol/quick-reference.md) | One-page operator cheat sheet with commands, defaults, dimensions, verdicts and convergence rules |
-| [`references/protocol/loop-protocol.md`](./references/protocol/loop-protocol.md) | Four-phase lifecycle, dispatch contract and executor invariants |
-| [`references/protocol/loop-state-and-gates.md`](./references/protocol/loop-state-and-gates.md) | State transitions, error handling and binary quality gates |
-| [`references/convergence/convergence.md`](./references/convergence/convergence.md) | Stop condition algorithms, legal-stop gates and recovery strategies |
-| [`references/convergence/convergence-signals.md`](./references/convergence/convergence-signals.md) | Three-signal weighted vote, severity-weighted ratio and signal math |
-| [`references/convergence/convergence-recovery.md`](./references/convergence/convergence-recovery.md) | Stuck recovery, recovery strategy selection and escalation |
-| [`references/state/state-format.md`](./references/state/state-format.md) | Packet file hub with owners, mutability rules and navigation |
-| [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event and blocked-stop JSONL record types |
-| [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard and resource-map outputs |
-| [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation and reconstruction |
-| [`assets/review-mode-contract.yaml`](./assets/review-mode-contract.yaml) | Source of truth for this loop's dimensions, verdicts, gates and lifecycle modes, and for loop rules stricter than the review mode's, such as a file:line requirement at every severity. The severity ids and their meanings belong to [`review-core.md`](../../sk-code/sk-code-review/references/review-core.md) |
-| [`../runtime/scripts/reduce-state.cjs`](../runtime/scripts/reduce-state.cjs) | The single state reducer that updates the findings registry, dashboard and strategy |
-| [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
-| [`assets/deep-review-config.json`](./assets/deep-review-config.json) | Config template with defaults for max iterations, convergence threshold, anti-convergence floor and executor |
-| [`assets/deep-review-strategy.md`](./assets/deep-review-strategy.md) | Strategy template with dimensions, coverage tracker and next-focus rotation |
-| [`assets/deep-review-dashboard.md`](./assets/deep-review-dashboard.md) | Dashboard template with convergence trend and iteration summary |
-| [`assets/prompt-pack-iteration.md.tmpl`](./assets/prompt-pack-iteration.md.tmpl) | The per-iteration prompt template dispatched to the LEAF agent |
-| [`assets/runtime-capabilities.json`](./assets/runtime-capabilities.json) | Declared capability manifest checked at runtime for parity gate validation |
-| [`feature-catalog/`](./feature-catalog/) | Feature inventory across loop lifecycle, state management, convergence and review output |
-| [`manual-testing-playbook/`](./manual-testing-playbook/) | Deterministic scenarios with preconditions, expected signals and per-feature execution contracts |
-| [`behavior-benchmark/`](./behavior-benchmark/) | Executor-model behavior benchmark (RVB): what the model does at `/deep:review` under realistic prompts, including dispatch evidence, presentation and latency vs Claude |
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+exec
+/bin/zsh -lc 'cat .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl .skilled/agents/deep-review.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
 DEEP-REVIEW
 Resolved route: mode=review; target_agent=@deep-review; execution=single_review_iteration; state_source=externalized_files; do_not_switch_mode=true
 
@@ -2781,6 +1715,7 @@ permission:
   glob: allow
   webfetch: deny
   chrome_devtools: deny
+  browser: deny
   task: deny
   list: allow
   patch: deny
@@ -3378,12 +2313,180 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 └──────────────────────────────────────────┘
 ```
 
+exec
+/bin/zsh -lc 'cat "REPO RULES.md"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+# REPO RULES
+
+Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
+before your first write of the session; this document then routes you to every rule
+file that governs what you are about to do. **It is a router, not a rulebook:** it
+holds no rules of its own.
+
+---
+
+## 1. HOW TO USE THIS
+
+1. **Match on the action you are about to take**, not the topic of the request.
+2. **Load before the action.** A rule read afterwards is a post-mortem.
+3. **A file already in context is not re-read.**
+4. **Every trigger that fires is loaded, not just the first.** They compose; the more
+   specific wins on conflict. Three and four firing at once is the normal case, not an
+   edge case.
+5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.
+
+### Precedence
+
+| Level | Source | Can be overridden? |
+|-------|--------|--------------------|
+| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
+| 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
+| 3 | These rule files, and the guidance in a skill's `SKILL.md` | Only by level 1 or 2 |
+| 4 | General judgment | By anything above |
+
+A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
+`AGENTS.md` forbids. Gate 5 does not change that: it makes the **load** mandatory,
+while what you load stays at level 3, the obligation to read is tier 1, the content
+is not.
+
+---
+
+## 2. TRIGGER TABLE
+
+| You are about to… | Load | It settles |
+|-------------------|------|-----------|
+| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "scalable", "extensible", "might need", "best practice", "while we're here" · add a test beyond the coverage floor | [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
+| Touch a file outside the ask · fix something noticed in passing · change something else because it would make the fix easier · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked · notice a defect, smell or stale comment outside the files in scope | [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
+| Say "done", "works", "fixed", "passing", "no regressions" · report a result · quote a number · act on a tool's or sub-agent's success report · close out a turn · report a file path or command output · write a completion summary or tick something off as done | [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md) | What counts as proof, how a green run lies, what an honest close-out contains |
+| Decide whether to hand work to another runtime at all · hand it to a CLI executor, sub-agent, fan-out lineage, or deep loop · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](.skilled/repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
+| Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config · make any call that leaves this machine · truncate · touch branches, tags, or reflogs | [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
+| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch · call a failure a flake, infra, or pre-existing | [`root-cause-and-debugging.md`](.skilled/repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
+| Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified · not know while a plausible answer is available · see sources disagree, or the code contradict the spec, the docs or the operator · the operator asserts something you believe is wrong · change a checked answer after pushback or doubt, or drop an approach before it concludes | [`uncertainty-and-honesty.md`](.skilled/repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
+| Prepend a warning, caveat or disclaimer the request did not ask for · answer a narrower, "safer" or easier version of the ask · cite a rule, restriction, policy, limit or permission · decline, deflect or steer the reader off the request · open a task with an effort or timeline estimate | [`answer-the-actual-request.md`](.skilled/repo-rules/answer-the-actual-request.md) | Whether the reply answers the request that was made, and what an honest no looks like |
+| Write any substantive reply · the reader says they did not follow | [`communication.md`](.skilled/repo-rules/communication.md) | How a reply reads: length, filler, and no table in a reply |
+| Draft or edit any sentence a reader will read · choose a word · place a dash, colon or semicolon · split or join sentences · write a paragraph | [`communication-prose.md`](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation |
+| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`communication-decisions.md`](.skilled/repo-rules/communication-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
+| End a turn · report work done, blocked, or partly done · end a turn while something you started is still running · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`communication-handoff.md`](.skilled/repo-rules/communication-handoff.md) | What is the operator's to do next, what is still running and what resumes it, and when a question becomes a structured choice |
+| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result · create a new skill under a hub, or refactor one that already lives there | [`skill-hub-routing.md`](.skilled/repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
+
+---
+
+## 3. INDEX
+
+| Rule | Summary |
+|------|---------|
+| [Overengineering](.skilled/repo-rules/prevent-overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
+| [Scope discipline](.skilled/repo-rules/scope-discipline.md) | The requested scope is the deliverable. Adjacent problems get named, not fixed. |
+| [Evidence and proof](.skilled/repo-rules/evidence-and-proof.md) | A claim is only as strong as the observation behind it, and a receipt confirms only what could have contradicted it. Distinguish observed from derived from inferred. |
+| [Delegation and orchestration](.skilled/repo-rules/delegation-and-orchestration.md) | Delegating makes you the orchestrator; brief with evidence, and no single model's verdict closes a question. |
+| [Blast radius](.skilled/repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
+| [Root cause](.skilled/repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism that caused the failure. |
+| [Uncertainty and honesty](.skilled/repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have and halt on a contradiction. |
+| [Answer the actual request](.skilled/repo-rules/answer-the-actual-request.md) | Answer the request that was made. A warning nobody asked for, a quieter version of the ask, an invented constraint, a dressed-up refusal and a stall dressed as diligence are one failure. |
+| [Communication](.skilled/repo-rules/communication.md) | Write so the reader can act after one pass: no table in a reply, nothing that does not carry information. |
+| [Communication prose](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation. |
+| [Communication decisions](.skilled/repo-rules/communication-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
+| [Communication handoff](.skilled/repo-rules/communication-handoff.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
+| [Hub routing](.skilled/repo-rules/skill-hub-routing.md) | A hub routes in two stages, so a mode registered on one surface is not reachable, and a gate run without its hub argument reports on a hub you did not touch. |
+
+Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
+permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
+
+---
+
+## 4. SCOPE OF THIS DOCUMENT
+
+**In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
+the posture to hold when work is handed to another runtime, how the resulting reply
+reads, what you may claim about wiring you have changed, and how a turn hands control
+back to the operator. The delegation posture was the first widening and Delivery the
+second, added when `AGENTS.md` §8 moved down. Delivery is one of two rules here whose
+trigger is a whole turn rather than a specific action, the other being the handback rule,
+which fires at every turn's end, and §8 keeps the two clauses that must bind even when
+nothing loads.
+
+**Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
+of agent and CLI dispatch: which agent, which command, which model, which flags.
+Those belong to `AGENTS.md` §2 and the skills it routes to, and are deliberately
+absent here so each has exactly one place to change. The line is between plumbing and
+posture: how to dispatch is theirs, how to think while dispatching is ours.
+
+**The routing carve-out, added deliberately as the third widening.** *Selecting* a
+route stays Out. *Verifying wiring you changed, and what you may claim about it*, is
+In; it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
+is the one rule on this side of that line, and it carries no route-selection guidance:
+the mechanics stay in the skills, and the rule points at them. A fourth widening that
+admits selection itself would dissolve the boundary; this one does not.
+
+**The ask-surface carve-out, added as the fourth widening, on an operator decision that
+overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
+naming a question tool per runtime reads as the "which command" family, and the paragraph
+above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
+and what follows is the narrowing that keeps the boundary standing. *Choosing between
+runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
+asks the operator a question, in the runtime you are already running in*, is In. That is not
+a selection, because nothing is being selected: the runtime is a given, and the rule records
+which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
+is the one rule on this side of that line, its §5 is the only place a tool name appears, and
+it names only what this repository confirms. A fifth widening that let a rule pick between
+runtimes would be the dissolution this one avoids.
+
+exec
+/bin/zsh -lc 'ls -la specs/hooks/023-session-relaunch-loop && ls -la specs/hooks/023-session-relaunch-loop/review/lineages/luna' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+hook: PostToolUse
+hook: PostToolUse
+ succeeded in 0ms:
+total 80
+drwxr-xr-x@ 26 michelkerkmeester  staff    832 Oct 20 18:44 .
+drwxr-xr-x@ 32 michelkerkmeester  staff   1024 Oct 20 18:30 ..
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 001-claude-relaunch-loop
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 002-pi-opencode-adapters
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 003-command-trigger-runtimes
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 004-integration-review-and-docs-closure
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 005-deep-review-remediation
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Oct 20 18:30 006-deep-review-2-remediation
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Oct 20 18:30 007-handoff-gate-exemptions
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Oct 20 18:30 008-review-3-remediation
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 009-research-fixes-and-core-consolidation
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Oct 20 18:30 010-post-fix-research
+drwxr-xr-x@ 11 michelkerkmeester  staff    352 Oct 20 18:30 011-post-fix-remediation
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Oct 20 18:30 012-ci-red-check-repairs
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Oct 20 18:30 013-live-hop-and-notice-reason
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Oct 20 18:44 014-handover-docs-promotion
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Oct 20 18:44 015-v4-0-0-13-changelog
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Oct 20 18:44 016-handover-trigger-review
+-rw-r--r--@  1 michelkerkmeester  staff    563 Oct 20 18:30 description.json
+-rw-r--r--@  1 michelkerkmeester  staff   9838 Oct 20 18:30 goal.md
+-rw-r--r--@  1 michelkerkmeester  staff   6508 Oct 20 18:44 graph-metadata.json
+drwxr-xr-x@  9 michelkerkmeester  staff    288 Oct 20 18:30 research
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Oct 20 18:47 review
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Oct 20 18:42 review-archive
+drwxr-xr-x@  3 michelkerkmeester  staff     96 Oct 20 18:30 scratch
+-rw-------@  1 michelkerkmeester  staff  16212 Oct 20 18:44 spec.md
+total 16
+drwx------@ 9 michelkerkmeester  staff   288 Oct 20 18:47 .
+drwxr-xr-x@ 3 michelkerkmeester  staff    96 Oct 20 18:42 ..
+drwxr-xr-x@ 2 michelkerkmeester  staff    64 Oct 20 18:47 .executor-state
+drwxr-xr-x@ 3 michelkerkmeester  staff    96 Oct 20 18:47 containment
+drwx------@ 7 michelkerkmeester  staff   224 Oct 20 18:47 deep-review-audit-ledger
+drwx------@ 7 michelkerkmeester  staff   224 Oct 20 18:47 deep-review-effect-ledger
+-rw-r--r--@ 1 michelkerkmeester  staff   402 Oct 20 18:47 invocation-metadata.json
+drwxr-xr-x@ 3 michelkerkmeester  staff    96 Oct 20 18:47 locks-and-fencing-v1
+-rw-r--r--@ 1 michelkerkmeester  staff  2942 Oct 20 18:42 steer.md
+
 hook: PostToolUse
 hook: PostToolUse
 hook: PostToolUse
 hook: PostToolUse
 hook: PostToolUse
 hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
 hook: PostToolUse Completed
 hook: PostToolUse Completed
 hook: PostToolUse Completed
@@ -3402,6 +2505,18 @@ hook: PreToolUse
 hook: PreToolUse
 hook: PreToolUse
 hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
@@ -3412,7 +2527,366 @@ hook: PreToolUse Completed
 hook: PreToolUse Completed
 hook: PreToolUse Completed
 exec
-/bin/zsh -lc 'cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-decisions.md .skilled/repo-rules/communication-handoff.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
+/bin/zsh -lc 'cat .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+---
+title: Deep Review Quick Reference
+description: One-page cheat sheet for the autonomous deep review loop.
+trigger_phrases:
+  - "deep review quick reference"
+  - "review loop cheat sheet"
+  - "p0 p1 p2 severity ladder"
+  - "release readiness verdicts"
+  - "review loop troubleshooting"
+importance_tier: normal
+contextType: general
+version: 1.11.0.16
+---
+
+# Deep Review Quick Reference
+
+One-page cheat sheet for the autonomous deep review loop.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### When to Use
+
+- Looking up the canonical `/deep:review` invocation without re-reading the full SKILL.md.
+- Confirming default thresholds, verdicts, or release-readiness states at a glance.
+- Refreshing the artifact-name and packet-file checklist before a manual orchestration pass.
+- Triaging a stuck loop and need the fastest path to convergence semantics.
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `/deep:review:auto "target"` | Run autonomous review (no approval gates) |
+| `/deep:review:confirm "target"` | Run review with approval gates at each iteration |
+| `/deep:review "target"` | Ask which mode to use |
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--max-iterations` | 7 | Maximum review iterations |
+| `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--stop-policy` | convergence | Use `max-iterations` when convergence must not end the run before the iteration ceiling |
+| `--spec-folder` | auto | Target spec folder path |
+| `--restart` | off | Archive the current review packet and start a fresh lineage |
+| `--severity-threshold` | P2 | Minimum severity to report |
+
+---
+
+## 2. WHEN TO USE
+
+| Scenario | Use |
+|----------|-----|
+| Multi-pass code quality audit | `/deep:review` |
+| Simple single-pass code review | `sk-code` (code-review mode) |
+| Pre-release readiness check | `/deep:review:auto "spec folder"` |
+| Spec/implementation alignment check | `/deep:review:auto "skill sk-name"` |
+| Deep technical investigation | `/deep:research` (different skill) |
+
+---
+
+## 3. ARCHITECTURE
+
+```
+/deep:review  -->  YAML workflow  -->  @deep-review agent (LEAF)
+    |                    |                      |
+    |                    |                      +-- Read state
+    |                    |                      +-- Review (3-5 actions)
+    |                    |                      +-- Write findings (P0/P1/P2)
+    |                    |                      +-- Update state
+    |                    |
+    |                    +-- Init (config, strategy, state)
+    |                    +-- Loop (dispatch, evaluate, decide)
+    |                    +-- Synthesize (review-report.md)
+    |                    +-- Save (memory context)
+```
+
+---
+
+## 4. STATE FILES
+
+Review mode stores its packet under the resolved local review path rooted at `{spec_folder}/review/`:
+
+| File | Location | Format | Purpose |
+|------|----------|--------|---------|
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable) |
+| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
+| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
+| Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |
+| Dashboard | `review/deep-review-dashboard.md` | Markdown | Auto-generated review dashboard |
+| Iterations | `review/iterations/iteration-NNN.md` | Markdown | Per-iteration findings (write-once) |
+| Report | `review/review-report.md` | Markdown | Final 9-section review report |
+| Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
+
+### Lifecycle Modes
+
+| Mode | Effect |
+|------|--------|
+| `resume` | Continue the current review lineage without resetting generation |
+| `restart` | Archive current review state and start a new generation |
+| `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
+| `completed-continue` (deferred) | Reserved. Snapshot the completed review and reopen it for amendment-only review deltas. Not runtime-wired. |
+
+---
+
+## 5. REVIEW DIMENSIONS
+
+| ID | Dimension | Priority | Description |
+|----|-----------|----------|-------------|
+| D1 | Correctness | 1 | Logic errors, off-by-one, wrong return types, broken invariants |
+| D2 | Security | 2 | Injection, auth bypass, secrets exposure, unsafe deserialization |
+| D3 | Traceability | 3 | Spec/code alignment, checklist evidence, cross-reference integrity |
+| D4 | Maintainability | 4 | Patterns, clarity, documentation quality, ease of safe follow-on changes |
+
+---
+
+## 6. REVIEW VERDICTS
+
+| Verdict | Condition | Meaning | Next Command |
+|---------|-----------|---------|--------------|
+| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
+| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
+| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+
+### Release Readiness
+
+`releaseReadinessState` is the canonical config/report field for review readiness tracking.
+
+| State | Meaning |
+|-------|---------|
+| `in-progress` | Review still running or required coverage incomplete |
+| `converged` | All 4 dimensions covered and the stabilization pass found no new P0/P1 findings |
+| `release-blocking` | At least one unresolved P0 remains active |
+
+---
+
+## 7. REVIEW QUALITY GUARDS
+
+| Gate | Rule |
+|------|------|
+| Evidence | Every active finding has file:line evidence and is not inference-only |
+| Scope | Findings and reviewed files stay within declared review scope |
+| Coverage | Configured dimensions plus required traceability protocols are covered before STOP |
+
+---
+
+## 8. REVIEW CONVERGENCE
+
+| Signal | Weight | Description |
+|--------|--------|-------------|
+| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `0.08` |
+| MAD Noise Floor | 0.25 | Latest ratio within noise floor |
+| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+
+**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+
+**P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
+
+---
+
+## 9. AGENT ITERATION CHECKLIST
+
+Each @deep-review iteration:
+1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+2. Determine focus dimension from strategy "Next Focus"
+4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+6. Update `deep-review-strategy.md` (findings, coverage, next focus)
+7. Append iteration record to `deep-review-state.jsonl`
+
+---
+
+## 10. REVIEW REPORT SECTIONS
+
+| # | Section | Purpose |
+|---|---------|---------|
+| 1 | Executive Summary | Verdict, active P0/P1/P2 counts, scope, `hasAdvisories` |
+| 2 | Planning Trigger | Why the verdict routes to planning or changelog follow-up |
+| 3 | Active Finding Registry | Deduped active findings with evidence and final severity |
+| 4 | Remediation Workstreams | Grouped action lanes derived from active findings |
+| 5 | Spec Seed | Minimal spec delta derived from review results |
+| 6 | Plan Seed | Action-ready plan starter for remediation |
+| 7 | Traceability Status | Core vs overlay protocol status and unresolved gaps |
+| 8 | Deferred Items | P2 advisories, blocked checks, and follow-up items |
+| 9 | Audit Appendix | Coverage, replay validation, and convergence evidence |
+
+---
+
+## 11. TUNING GUIDE
+
+| Goal | Adjustment |
+|------|------------|
+| Deeper review | Lower convergence (0.05), raise max iterations (10) |
+| Forced iteration ceiling | Set `--stop-policy=max-iterations` with the desired `--max-iterations` |
+| Faster completion | Raise convergence (0.15), lower max iterations (5) |
+| Focus on security | Specify `--dimensions security,correctness` |
+| Broad coverage | Use all 4 default dimensions and allow the stabilization pass to run |
+
+---
+
+## 12. TROUBLESHOOTING
+
+| Problem | Fix |
+|---------|-----|
+| Stops too early | Lower `--convergence` from 0.10 to 0.05, or use `--stop-policy=max-iterations` when early convergence is unacceptable |
+| Stuck on one dimension | Check strategy.md "Next Focus" rotation |
+| P0 findings blocking convergence | Expected behavior: P0 override prevents premature stop |
+| Review-report missing sections | Verify synthesis phase completed (check state.jsonl for synthesis event) |
+| Agent ignores state | Verify file paths in dispatch prompt |
+
+---
+
+## 13. RELATED
+
+| Resource | Purpose |
+|----------|---------|
+| `deep-research` | Investigation/research (not review) |
+| `sk-code` (code-review mode) | Single-pass code review |
+| `@deep-review` | Single review iteration agent (LEAF) |
+| `@context` | Single-pass codebase search |
+| `generate-context.js` | Memory save script |
+
+For review-specific protocol documentation, see local `references/`:
+- `loop-protocol.md`, Review loop lifecycle (4 phases)
+- `../state/state-format.md`, Review state file schemas
+- `../convergence/convergence.md`, Review convergence algorithms
+
+exec
+/bin/zsh -lc 'cat "REPO RULES.md"' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+# REPO RULES
+
+Repo-local operating rules. `AGENTS.md` **Gate 5 (§2)** makes reading this mandatory
+before your first write of the session; this document then routes you to every rule
+file that governs what you are about to do. **It is a router, not a rulebook:** it
+holds no rules of its own.
+
+---
+
+## 1. HOW TO USE THIS
+
+1. **Match on the action you are about to take**, not the topic of the request.
+2. **Load before the action.** A rule read afterwards is a post-mortem.
+3. **A file already in context is not re-read.**
+4. **Every trigger that fires is loaded, not just the first.** They compose; the more
+   specific wins on conflict. Three and four firing at once is the normal case, not an
+   edge case.
+5. **Nothing fires → `AGENTS.md` alone governs.** Do not hunt for a rule to apply.
+
+### Precedence
+
+| Level | Source | Can be overridden? |
+|-------|--------|--------------------|
+| 1 | Every `AGENTS.md` §1 hard blocker, the Four Laws, PLAN-WORKFLOW LOCK, Comment Hygiene, and every mandatory gate in §2 | No |
+| 2 | An explicit, in-the-moment operator instruction | Not applicable, it is the instruction |
+| 3 | These rule files, and the guidance in a skill's `SKILL.md` | Only by level 1 or 2 |
+| 4 | General judgment | By anything above |
+
+A rule file may tighten `AGENTS.md`. None relaxes a HARD BLOCK or authorizes what
+`AGENTS.md` forbids. Gate 5 does not change that: it makes the **load** mandatory,
+while what you load stays at level 3, the obligation to read is tier 1, the content
+is not.
+
+---
+
+## 2. TRIGGER TABLE
+
+| You are about to… | Load | It settles |
+|-------------------|------|-----------|
+| Add a file, module, class, interface, option, layer, or dependency · generalize something that works · write "flexible", "future-proof", "scalable", "extensible", "might need", "best practice", "while we're here" · add a test beyond the coverage floor | [`prevent-overengineering.md`](.skilled/repo-rules/prevent-overengineering.md) | Whether this should exist at all, and at what size |
+| Touch a file outside the ask · fix something noticed in passing · change something else because it would make the fix easier · rename, reformat, or delete beyond the named area · deviate from an approved plan · decide what to do with the rest when part of the work is blocked · notice a defect, smell or stale comment outside the files in scope | [`scope-discipline.md`](.skilled/repo-rules/scope-discipline.md) | What is yours to change, and how to raise what isn't |
+| Say "done", "works", "fixed", "passing", "no regressions" · report a result · quote a number · act on a tool's or sub-agent's success report · close out a turn · report a file path or command output · write a completion summary or tick something off as done | [`evidence-and-proof.md`](.skilled/repo-rules/evidence-and-proof.md) | What counts as proof, how a green run lies, what an honest close-out contains |
+| Decide whether to hand work to another runtime at all · hand it to a CLI executor, sub-agent, fan-out lineage, or deep loop · compose the prompt one will act on · accept or quote what one returned · answer a judgment question from your own reading alone | [`delegation-and-orchestration.md`](.skilled/repo-rules/delegation-and-orchestration.md) | The orchestrating posture, what a brief must carry, why one model is one opinion |
+| Delete, overwrite, migrate, deploy, publish, send, install · force-push or rewrite history · change a shared contract · touch auth, data, or config · make any call that leaves this machine · truncate · touch branches, tags, or reflogs | [`blast-radius.md`](.skilled/repo-rules/blast-radius.md) | Reversibility, the rollback sentence, when to stop for a yes |
+| Diagnose a failure · make a red check green · attempt the same fix twice · add a special case, retry, sleep, or broadened catch · call a failure a flake, infra, or pre-existing | [`root-cause-and-debugging.md`](.skilled/repo-rules/root-cause-and-debugging.md) | Fixing the producer instead of the symptom, and when to level up to the seam |
+| Answer without certainty · contradict the operator · fill a gap with a plausible guess · hit a contradiction between two things that must both be true · name a path, flag, function, version, or number you have not verified · not know while a plausible answer is available · see sources disagree, or the code contradict the spec, the docs or the operator · the operator asserts something you believe is wrong · change a checked answer after pushback or doubt, or drop an approach before it concludes | [`uncertainty-and-honesty.md`](.skilled/repo-rules/uncertainty-and-honesty.md) | Confidence bands, UNKNOWN, contradiction halts |
+| Prepend a warning, caveat or disclaimer the request did not ask for · answer a narrower, "safer" or easier version of the ask · cite a rule, restriction, policy, limit or permission · decline, deflect or steer the reader off the request · open a task with an effort or timeline estimate | [`answer-the-actual-request.md`](.skilled/repo-rules/answer-the-actual-request.md) | Whether the reply answers the request that was made, and what an honest no looks like |
+| Write any substantive reply · the reader says they did not follow | [`communication.md`](.skilled/repo-rules/communication.md) | How a reply reads: length, filler, and no table in a reply |
+| Draft or edit any sentence a reader will read · choose a word · place a dash, colon or semicolon · split or join sentences · write a paragraph | [`communication-prose.md`](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation |
+| Present a recommendation, a fork, or a trade-off · answer a complex or ambiguous request · start a multi-step stretch the reader cannot see inside · report what a long run found · list every option you considered | [`communication-decisions.md`](.skilled/repo-rules/communication-decisions.md) | Verdict first, one recommended path, saying where you are going before a long stretch |
+| End a turn · report work done, blocked, or partly done · end a turn while something you started is still running · ask the operator anything · end a turn on a fork or two acceptable paths · continue past a decision nobody made | [`communication-handoff.md`](.skilled/repo-rules/communication-handoff.md) | What is the operator's to do next, what is still running and what resumes it, and when a question becomes a structured choice |
+| Wire, rewire or remove a mode in a parent-hub skill · edit a hub's registry, router, `ROUTER.md`, `graph-metadata.json` or `SKILL.md` mode table · report that a mode is registered, routed, reachable or integrated · quote a per-hub gate result · create a new skill under a hub, or refactor one that already lives there | [`skill-hub-routing.md`](.skilled/repo-rules/skill-hub-routing.md) | The two routing stages, what "integrated" requires, and checking the hub you actually changed |
+
+---
+
+## 3. INDEX
+
+| Rule | Summary |
+|------|---------|
+| [Overengineering](.skilled/repo-rules/prevent-overengineering.md) | Build the smallest thing that solves the stated problem; take a costlier move only by naming what fails at the cheaper one. |
+| [Scope discipline](.skilled/repo-rules/scope-discipline.md) | The requested scope is the deliverable. Adjacent problems get named, not fixed. |
+| [Evidence and proof](.skilled/repo-rules/evidence-and-proof.md) | A claim is only as strong as the observation behind it, and a receipt confirms only what could have contradicted it. Distinguish observed from derived from inferred. |
+| [Delegation and orchestration](.skilled/repo-rules/delegation-and-orchestration.md) | Delegating makes you the orchestrator; brief with evidence, and no single model's verdict closes a question. |
+| [Blast radius](.skilled/repo-rules/blast-radius.md) | Size effort to what the change can break; no irreversible step without a named rollback and a yes. |
+| [Root cause](.skilled/repo-rules/root-cause-and-debugging.md) | Fix the producer, not the symptom; every fix names the mechanism that caused the failure. |
+| [Uncertainty and honesty](.skilled/repo-rules/uncertainty-and-honesty.md) | Never fabricate; mark the confidence you actually have and halt on a contradiction. |
+| [Answer the actual request](.skilled/repo-rules/answer-the-actual-request.md) | Answer the request that was made. A warning nobody asked for, a quieter version of the ask, an invented constraint, a dressed-up refusal and a stall dressed as diligence are one failure. |
+| [Communication](.skilled/repo-rules/communication.md) | Write so the reader can act after one pass: no table in a reply, nothing that does not carry information. |
+| [Communication prose](.skilled/repo-rules/communication-prose.md) | How a sentence reads: sentence and paragraph shape, plain words, punctuation. |
+| [Communication decisions](.skilled/repo-rules/communication-decisions.md) | When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work. |
+| [Communication handoff](.skilled/repo-rules/communication-handoff.md) | End every turn by naming what is now the operator's to do, in the form that lets them do it. |
+| [Hub routing](.skilled/repo-rules/skill-hub-routing.md) | A hub routes in two stages, so a mode registered on one surface is not reachable, and a gate run without its hub argument reports on a hub you did not touch. |
+
+Each file expands `AGENTS.md` and is bounded by it: where a rule file appears to
+permit something `AGENTS.md` restricts, `AGENTS.md` wins and the rule file is wrong.
+
+---
+
+## 4. SCOPE OF THIS DOCUMENT
+
+**In:** how to think and act, restraint, scope, evidence, risk, diagnosis, honesty,
+the posture to hold when work is handed to another runtime, how the resulting reply
+reads, what you may claim about wiring you have changed, and how a turn hands control
+back to the operator. The delegation posture was the first widening and Delivery the
+second, added when `AGENTS.md` §8 moved down. Delivery is one of two rules here whose
+trigger is a whole turn rather than a specific action, the other being the handback rule,
+which fires at every turn's end, and §8 keeps the two clauses that must bind even when
+nothing loads.
+
+**Out:** skill routing, workflow selection, spec-folder mechanics, and the *mechanics*
+of agent and CLI dispatch: which agent, which command, which model, which flags.
+Those belong to `AGENTS.md` §2 and the skills it routes to, and are deliberately
+absent here so each has exactly one place to change. The line is between plumbing and
+posture: how to dispatch is theirs, how to think while dispatching is ours.
+
+**The routing carve-out, added deliberately as the third widening.** *Selecting* a
+route stays Out. *Verifying wiring you changed, and what you may claim about it*, is
+In; it is an evidence obligation whose subject happens to be routing. `skill-hub-routing.md`
+is the one rule on this side of that line, and it carries no route-selection guidance:
+the mechanics stay in the skills, and the rule points at them. A fourth widening that
+admits selection itself would dissolve the boundary; this one does not.
+
+**The ask-surface carve-out, added as the fourth widening, on an operator decision that
+overrode a research refusal.** A four-iteration decision-test run returned *refuse* here:
+naming a question tool per runtime reads as the "which command" family, and the paragraph
+above pre-refuses a fourth widening that admits selection. The operator widened it anyway,
+and what follows is the narrowing that keeps the boundary standing. *Choosing between
+runtimes, agents, commands, models or flags* stays Out, unchanged. *Naming the surface that
+asks the operator a question, in the runtime you are already running in*, is In. That is not
+a selection, because nothing is being selected: the runtime is a given, and the rule records
+which of its surfaces carries an obligation the rule already imposes. `communication-handoff.md`
+is the one rule on this side of that line, its §5 is the only place a tool name appears, and
+it names only what this repository confirms. A fifth widening that let a rule pick between
+runtimes would be the dissolution this one avoids.
+
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+exec
+/bin/zsh -lc 'cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-decisions.md .skilled/repo-rules/communication-handoff.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
  succeeded in 0ms:
 ---
 title: "Rule: Communication"
@@ -4181,16 +3655,545 @@ hook: PostToolUse
 hook: PostToolUse
 hook: PostToolUse
 exec
-/bin/zsh -lc 'wc -l .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl .skilled/agents/deep-review.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
+/bin/zsh -lc 'rg --files .skilled/commands/deep --hidden' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+exec
+/bin/zsh -lc 'cat specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md && cat specs/hooks/023-session-relaunch-loop/review/lineages/luna/invocation-metadata.json && rg --files specs/hooks/023-session-relaunch-loop/review/lineages/luna --hidden' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
  succeeded in 0ms:
-     449 .skilled/skills/system-deep-loop/deep-review/SKILL.md
-     269 .skilled/skills/system-deep-loop/deep-review/README.md
-     164 .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
-     610 .skilled/agents/deep-review.md
-    1492 total
+.skilled/commands/deep/assets/deep-research-confirm.yaml
+.skilled/commands/deep/assets/deep-review-auto.yaml
+.skilled/commands/deep/assets/deep-review-presentation.txt
+.skilled/commands/deep/assets/deep-research-auto.yaml
+.skilled/commands/deep/assets/deep-ai-council-auto.yaml
+.skilled/commands/deep/assets/deep-review-confirm.yaml
+.skilled/commands/deep/assets/deep-research-presentation.txt
+.skilled/commands/deep/assets/deep-ai-council-confirm.yaml
+.skilled/commands/deep/assets/deep-ai-council-presentation.txt
+.skilled/commands/deep/review.md
+.skilled/commands/deep/ai-council.md
+.skilled/commands/deep/research.md
+
+ succeeded in 0ms:
+# Lead steering for this review lineage
+
+These rulings come from the lead and bind every iteration.
+
+## Focus
+
+The review question is: does the automatic in-session handover fire every time it should on the five automatic runtimes (Claude Code, Pi, OpenCode, Codex and Hermes)? That covers a session started through the shell shim `.skilled/bin/skilled-loop-shell.sh` or through `.skilled/bin/skilled-loop`, including a repository whose `.skilled` is a symlink to this checkout. Cursor and Devin are command-only by design; review only their `/speckit:handoff` path.
+
+Trace each runtime's whole chain and look for any condition that silently stops a hop:
+
+1. Usage signal read (transcript tail, `message_end`, `info.tokens`, Codex `token_count`, Hermes `post_api_request`) and window resolution.
+2. Threshold check and nudge delivery to the model (once, plus the +5% re-nudge), including suppression rules (outside loop, pending or fresh armed record, hop cap, existing open note).
+3. The note, continuity save and `prepare` the model runs, with its exit codes and refusals (running shell children, session id, runtime mismatch).
+4. The arm event (Claude Stop, Pi `agent_end`, OpenCode `session.idle`, Codex Stop, Hermes `on_session_end`) and the killer spawn, re-arm and lock logic.
+5. Killer idle detection, SIGTERM, grace, timeout path.
+6. `skilled-loop` relaunch decision, cwd, model and flag carry, seed text, and the receiving session's claim.
+7. Shim decisions: wrapper discovery walking up from `$PWD` through a symlinked `.skilled`, interactive versus pass-through argument classification, TTY checks, Hermes plugin env.
+8. Repo-root and state-path resolution when `.skilled` is a symlink (does any adapter, CLI or killer resolve paths through the real path and miss the linking repository's state or config?).
+9. Hook registrations actually present in `.claude/settings.json`, `.codex/hooks.json`, the Pi extension symlink, the OpenCode plugin and the Hermes `repo-guards` bridge, and whether a linking repository gets them.
+
+Also check that `.skilled/commands/speckit/handoff.md` conforms to the sk-doc `sk-create-command` contract (`.skilled/skills/sk-doc/sk-create-command/SKILL.md` and its assets).
+
+## Rules
+
+- Each finding needs a severity (P0 blocks a hop on an automatic runtime, P1 makes a hop unreliable or wrong, P2 is drift or polish), a `file:line`, a concrete repro or the exact condition, and a concrete fix.
+- Do not re-report findings already recorded in `specs/hooks/023-session-relaunch-loop/review-archive/*/review-report.md`, `specs/hooks/023-session-relaunch-loop/research/research.md` or `specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/research.md` unless the code still shows the defect today; say so when you do.
+- Spread the ten iterations across the chain steps above so every runtime and every step gets read at least once; later iterations adversarially re-check earlier findings.
+{"effectiveConfig":{"kind":"cli-codex","executable":"codex","executableVersion":"sha256:8813367285524ac798dd96d1b071aea30d58708c7226fd236cd275cf1cfdee31","model":"gpt-6-luna","reasoningEffort":"max","serviceTier":"fast","sandboxMode":"workspace-write","permissionMode":"acceptEdits","webSearch":"inherit"},"invocationFingerprint":"inv:24803e26641f22a9c3141e13526f33593e61d76c03686090c3e26d98fbb3e625"}
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-audit-ledger/frames/0000000000000001.frame
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/invocation-metadata.json
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/coordinator-state.json
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/grant-journal.jsonl
+specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-effect-ledger/frames/0000000000000001.frame
+
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+codex
+The lineage already contains the lead’s steering file and invocation metadata. Its scope spans all ten handover chain steps, including the `skilled-loop` shell and CLI paths, runtime hooks, and command-only Cursor/Devin handoff. I’ll spread the ten passes across those areas and keep the reviewed sources read-only.
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+hook: PreToolUse Completed
+exec
+/bin/zsh -lc 'rg -n "step_create_state_log|phase_init|phase_main_loop|phase_synthesis|step_reduce_state|step_append|fanout_lineage_artifact_dir|stopReason|maxIterationsReached|step_write_iteration" .skilled/commands/deep/assets/deep-review-auto.yaml' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+39:  config.fanout_lineage_artifact_dir: "[optional internal path] - Fan-out lineage artifact override for command-owned single-lineage execution."
+45:  trigger: "At workflow START, before phase_init"
+159:    branch_on: "config.fanout_lineage_artifact_dir"
+162:        artifact_dir: "{config.fanout_lineage_artifact_dir}"
+163:        artifact_root_dir: "{config.fanout_lineage_artifact_dir}"
+165:        artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
+176:    branch_on: "config.fanout_lineage_artifact_dir"
+202:    description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+212:      deep/review command surface with config.fanout_lineage_artifact_dir so the LEAF
+215:      After all lineages complete, jump directly to phase_synthesis — skip phase_init and
+216:      phase_main_loop entirely (those are the single-executor path). The merge step in
+217:      phase_synthesis will consolidate results across all lineages.
+237:  phase_init:
+381:          open_run: "Run step_create_state_log.command unchanged. With the hand-written log set aside, it opens the run from the moved config."
+412:          skip_to: phase_synthesis
+529:      step_create_state_log:
+757:               stopReason = "blockedStop"
+762:             a) if iteration_count >= max_iterations: set decision = "STOP", stopReason = "maxIterationsReached", hard_stop_reason = "max_iterations_reached", preserve any failed legal-stop gates as terminal evidence, and proceed to synthesis without legal-stop veto
+765:             Operator stop reasons (`maxIterationsReached`, `manualStop`, `userPaused`, unrecoverable `error`) are terminal ceilings. They do not hide failed gates; they record them in synthesis and stop dispatch.
+800:               stopReason = "blockedStop"
+832:                    stopReason = "blockedStop"
+900:              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused]
+1085:                  skip_to: phase_synthesis
+1088:              skip_to: phase_synthesis
+1091:            skip_to: phase_synthesis
+1111:        action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused"
+1708:            - "PRE-DISPATCH RULE (read before running the script): when this run is ITSELF a fan-out CLI lineage — config.fanout_lineage_artifact_dir is bound, or SPECKIT_FANOUT_LINEAGE_ID / SPECKIT_CLI_DISPATCH_STACK / CODEX_SESSION_ID is present in the environment — the lineage IS the executor. Do NOT run this dispatch script. Perform the iteration in-process instead: read the rendered prompt at {state_paths.prompt_dir}/iteration-{current_iteration}.md, do the review pass yourself, write the iteration file and the delta, and hand the iteration record to the append gateway (append-mode-event.cjs) exactly as the leaf contract requires, never writing the state log yourself, then continue to post_dispatch_validate."
+2228:  phase_synthesis:
+2264:          - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+2446:        skip_when: "config.fanout_lineage_artifact_dir is present"
 
 exec
-/bin/zsh -lc 'cat .skilled/repo-rules/prevent-overengineering.md .skilled/repo-rules/scope-discipline.md .skilled/repo-rules/evidence-and-proof.md .skilled/repo-rules/delegation-and-orchestration.md .skilled/repo-rules/uncertainty-and-honesty.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/148-session-relaunch-deep-review
+/bin/zsh -lc 'cat specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-audit-ledger/frames/0000000000000001.frame specs/hooks/023-session-relaunch-loop/review/lineages/luna/deep-review-effect-ledger/frames/0000000000000001.frame specs/hooks/023-session-relaunch-loop/review/lineages/luna/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/coordinator-state.json specs/hooks/023-session-relaunch-loop/review/lineages/luna/locks-and-fencing-v1/2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704/grant-journal.jsonl' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+{"canonical_event_bytes":"eyJhdXRob3JpdHlfZXBvY2giOjEsImNhdXNhdGlvbl9pZCI6bnVsbCwiY29ycmVsYXRpb25faWQiOiJmYW5vdXQtbHVuYS0xNzkyNTE0ODYwNjU5LWl2eHMzayIsImVudmVsb3BlX3ZlcnNpb24iOjEsImV2ZW50X2lkIjoiZGVjaXNpb24tOTk3ZGQxMmYtNjA5NC00Mjg3LTllMTctYzU0YTRhNmZkZTJhIiwiZXZlbnRfdHlwZSI6ImF1dGhvcml6YXRpb24uZGVjaXNpb24ucmVjb3JkZWQiLCJldmVudF92ZXJzaW9uIjoxLCJpZGVtcG90ZW5jeV9rZXkiOiJhdXRob3JpemF0aW9uLWRlY2lzaW9uOmVmZmVjdC1pbnRlbnQtZjI4YTk3MTkyMDdiNTBmOWJiNzg4MzE0MWM1MmE4NTQ5NDU2YmY1ODVhMzBiOGM0NzhlMGY0YzBlZDYyODI2NC1yZXF1ZXN0Iiwib2NjdXJyZWRfYXQiOiIyMDI2LTEwLTIwVDE2OjQ3OjQ2LjYzMloiLCJwYXlsb2FkIjp7ImFjdG9yX2lkIjoiZmFub3V0LWVmZmVjdC13cml0ZXIiLCJhY3Rvcl9pZF92ZXJpZmllZCI6dHJ1ZSwiYXV0aG9yaXR5X2Vwb2NoIjoxLCJhdXRob3JpdHlfc3RhdGUiOiJsZWdhY3lfYXV0aG9yaXRhdGl2ZSIsImNhcGFiaWxpdHlfaWQiOiJmYW5vdXQtZWZmZWN0LXdyaXRlIiwiY2FwYWJpbGl0eV9pZF92ZXJpZmllZCI6dHJ1ZSwiY2F1c2F0aW9uX2lkIjpudWxsLCJjb3JyZWxhdGlvbl9pZCI6ImZhbm91dC1sdW5hLTE3OTI1MTQ4NjA2NTktaXZ4czNrIiwiZGVjaWRlZF9hdCI6IjIwMjYtMTAtMjBUMTY6NDc6NDYuNjMyWiIsImRlY2lzaW9uIjoiYWxsb3ciLCJkZWNpc2lvbl9kaWdlc3QiOiIyZjIwMzI3OGIzZjQyNGU0ODM3MDA2ODY2ZmRiZGRhMDI2MTU5ZjczMTkxYWUwNjc5NTg0NjEzZjdkMmZjZGI3IiwiZGVjaXNpb25faWQiOiJkZWNpc2lvbi05OTdkZDEyZi02MDk0LTQyODctOWUxNy1jNTRhNGE2ZmRlMmEiLCJkb21haW5fbGVkZ2VyX2lkIjoiZGVlcC1yZXZpZXctZWZmZWN0LWxlZGdlciIsImV2YWx1YXRvcl92ZXJzaW9uIjoiMSIsImV2ZW50X3JlZ2lzdHJ5X2RpZ2VzdCI6IjBjYWU2NDRjNTYwM2UyMjg5MmQ5NjYzYzY0MjJiZDIxNzBkMzRlNmMyYTg3MTZlNzA4YjU4NWIwZDVlNWNiODciLCJldmlkZW5jZV9kaWdlc3QiOiIxMjgwMmYyNDU3ZDAyZmQ3MmYyNTFlZDgzNmZhZDAyZTUzZTE0NDkwZGJhZWEwNjkyMTBmNzgzYTAwZDI1Mjg1IiwiZXZpZGVuY2VfZGlnZXN0X3ZlcmlmaWVkIjp0cnVlLCJleHBpcmVzX2F0IjoiMjAyNi0xMC0yMFQxNjo0ODo0Ni42MzJaIiwiaWRlbXBvdGVuY3lfa2V5X2RpZ2VzdCI6ImYyOGE5NzE5MjA3YjUwZjliYjc4ODMxNDFjNTJhODU0OTQ1NmJmNTg1YTMwYjhjNDc4ZTBmNGMwZWQ2MjgyNjQiLCJtYXRjaGVkX3J1bGVfaWRzIjpbImZhbm91dC1lZmZlY3Qtd3JpdGVyLW9ubHkiXSwibW9kZSI6ImRlZXAtcmV2aWV3IiwicG9saWN5X2RpZ2VzdCI6IjAwMzI2MzE1NWMzNzQ2ZWJkMjE3MjVlMTE2OWNkZDg3MjNlZjgxMmU0YTdjYjlmZjBmYWYxYjU5MWM2ODAzZjEiLCJwb2xpY3lfaWQiOiJmYW5vdXQtZWZmZWN0LXRyYW5zaXRpb24tcG9saWN5IiwicG9saWN5X3ZlcnNpb24iOjEsInByaW9yX2hlYWRfaGFzaCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJwcmlvcl9oZWFkX3NlcXVlbmNlIjowLCJwcmlvcl9zdGF0ZV9maW5nZXJwcmludCI6ImQ3YmJjN2I1NjFkYjk1MjA1MmMyN2Q5NDk1OGM0YmY2MjFiOTQ0Y2ZiMDU1ODBhMTM3MGEyNmRiMWVjZjcwYTEiLCJwcmlvcl9zdGF0ZV92ZXJzaW9uIjoiZGVlcC1yZXZpZXctZWZmZWN0QDEiLCJyZWFzb25fY29kZSI6ImFsbG93ZWQiLCJyZXF1ZXN0X2RpZ2VzdCI6ImUyNzcyZjcwYjM2MWFhN2FkMWVmYWU3MDMxYzlmOTRmNWY2NTJkMmI5OTNlZDYxMTEyNzNiYWRjZmQ4OWIzZTkiLCJyZXF1ZXN0X2lkIjoiZWZmZWN0LWludGVudC1mMjhhOTcxOTIwN2I1MGY5YmI3ODgzMTQxYzUyYTg1NDk0NTZiZjU4NWEzMGI4YzQ3OGUwZjRjMGVkNjI4MjY0LXJlcXVlc3QiLCJyZXF1ZXN0ZWRfZXZlbnRfZGlnZXN0IjoiMTI4MDJmMjQ1N2QwMmZkNzJmMjUxZWQ4MzZmYWQwMmU1M2UxNDQ5MGRiYWVhMDY5MjEwZjc4M2EwMGQyNTI4NSIsInJlcXVlc3RlZF9ldmVudF9pZCI6ImVmZmVjdC1pbnRlbnQtZjI4YTk3MTkyMDdiNTBmOWJiNzg4MzE0MWM1MmE4NTQ5NDU2YmY1ODVhMzBiOGM0NzhlMGY0YzBlZDYyODI2NCIsInJlcXVlc3RlZF9ldmVudF90eXBlIjoiZGVlcC1sb29wLmVmZmVjdC5pbnRlbnQtcmVjb3JkZWQiLCJyZXF1ZXN0ZWRfZXZlbnRfdmVyc2lvbiI6MSwic3RyZWFtX2lkIjoicmVjb3ZlcmFibGUtZWZmZWN0OmZhbm91dC1sdW5hLTE3OTI1MTQ4NjA2NTktaXZ4czNrOmZhbm91dC1kaXNwYXRjaDpsdW5hOmF0dGVtcHQtMSJ9LCJwcm9kdWNlciI6eyJuYW1lIjoidHJhbnNpdGlvbi1hdXRob3JpemF0aW9uLWdhdGV3YXkiLCJ2ZXJzaW9uIjoiMSJ9LCJyZWNvcmRlZF9hdCI6IjIwMjYtMTAtMjBUMTY6NDc6NDYuNjQ1WiIsInN0cmVhbV9pZCI6ImRlZXAtcmV2aWV3LWF1ZGl0LWxlZGdlciIsInN0cmVhbV9zZXF1ZW5jZSI6MX0=","canonical_event_hash":"f20492d81007758e5acfd036461e65961101b0ba715354dfabe84c369c70ad42","decision_digest":"2f203278b3f424e4837006866fdbdda026159f73191ae0679584613f7d2fcdb7","frame_version":1,"ledger_id":"deep-review-audit-ledger","prev_record_hash":"0000000000000000000000000000000000000000000000000000000000000000","record_hash":"8c182f06c03c48beb73b2d5f6305534dad733e9f27d07e2131e1039a3dc3d824","sequence":1}
+{"authorization_ref":{"audit_ledger_id":"deep-review-audit-ledger","audit_record_hash":"8c182f06c03c48beb73b2d5f6305534dad733e9f27d07e2131e1039a3dc3d824","audit_sequence":1,"authority_epoch":1,"decision_digest":"2f203278b3f424e4837006866fdbdda026159f73191ae0679584613f7d2fcdb7","decision_id":"decision-997dd12f-6094-4287-9e17-c54a4a6fde2a","fence_token":1,"policy_digest":"003263155c3746ebd21725e1169cdd8723ef812e4a7cb9ff0faf1b591c6803f1","request_digest":"e2772f70b361aa7ad1efae7031c9f94f5f652d2b993ed6111273badcfd89b3e9"},"canonical_event_bytes":"eyJhdXRob3JpdHlfZXBvY2giOjEsImNhdXNhdGlvbl9pZCI6bnVsbCwiY29ycmVsYXRpb25faWQiOiJmYW5vdXQtbHVuYS0xNzkyNTE0ODYwNjU5LWl2eHMzayIsImVudmVsb3BlX3ZlcnNpb24iOjEsImV2ZW50X2lkIjoiZWZmZWN0LWludGVudC1mMjhhOTcxOTIwN2I1MGY5YmI3ODgzMTQxYzUyYTg1NDk0NTZiZjU4NWEzMGI4YzQ3OGUwZjRjMGVkNjI4MjY0IiwiZXZlbnRfdHlwZSI6ImRlZXAtbG9vcC5lZmZlY3QuaW50ZW50LXJlY29yZGVkIiwiZXZlbnRfdmVyc2lvbiI6MSwiaWRlbXBvdGVuY3lfa2V5IjoicmVjb3ZlcmFibGUtZWZmZWN0OnYxOmVjODE1ZTdlYWNmMDIwYjk3MGVhODFlY2Y2ZjA0NzJmNjk2OTE1NGY1NDViMjJlN2NjOWQ5Y2NkYWNmOTE3MzYiLCJvY2N1cnJlZF9hdCI6IjIwMjYtMTAtMjBUMTY6NDc6NDYuNTcyWiIsInBheWxvYWQiOnsiYWRhcHRlciI6eyJhZGFwdGVyX2lkIjoiZmFub3V0LWV4ZWN1dG9yLXN1YnByb2Nlc3MiLCJhZGFwdGVyX3ZlcnNpb24iOiIxIiwiZWZmZWN0X3R5cGUiOiJzdWJwcm9jZXNzIiwiaWRlbXBvdGVuY3lfbW9kZSI6InBvc3Rjb25kaXRpb24iLCJyZWNvbmNpbGlhdGlvbiI6ImNvbmNsdXNpdmUiLCJyZXBsYXlfc2FmZSI6dHJ1ZX0sImVmZmVjdF9pZCI6ImVmZmVjdC1mMjhhOTcxOTIwN2I1MGY5YmI3ODgzMTQxYzUyYTg1NDk0NTZiZjU4NWEzMGI4YzQ3OGUwZjRjMGVkNjI4MjY0IiwiZWZmZWN0X3R5cGUiOiJzdWJwcm9jZXNzIiwiZXhwZWN0ZWRfcG9zdGNvbmRpdGlvbl9kaWdlc3QiOiI0Mzc3YzcwN2IwOTk4NjBlYmZlMTdkYjhmYjEwMGZiOWE5Y2JiMDI5NDdmZjllOTM0MDExMmZhYWU2NzQyOGM3IiwiaWRlbXBvdGVuY3lfa2V5IjoicmVjb3ZlcmFibGUtZWZmZWN0OnYxOmVjODE1ZTdlYWNmMDIwYjk3MGVhODFlY2Y2ZjA0NzJmNjk2OTE1NGY1NDViMjJlN2NjOWQ5Y2NkYWNmOTE3MzYiLCJpbnB1dF9kaWdlc3QiOiI0Mzc3YzcwN2IwOTk4NjBlYmZlMTdkYjhmYjEwMGZiOWE5Y2JiMDI5NDdmZjllOTM0MDExMmZhYWU2NzQyOGM3IiwibG9naWNhbF9lZmZlY3RfaWQiOiJmYW5vdXQtZGlzcGF0Y2g6bHVuYTphdHRlbXB0LTEiLCJvcGVyYXRpb24iOiJkaXNwYXRjaC1leGVjdXRvciIsInJlY292ZXJ5X3BvbGljeSI6InJlY29uY2lsZS1iZWZvcmUtcmVwbGF5IiwicmVwbGF5X2ZpbmdlcnByaW50IjoiMzgyZjViMGEyMzlhYWEyYjE0YTA5MmU3ZDBkYzhkOGFiMmEzYzY0MDc2N2M1YmQxMTJjYzYxMmIxMTRiODBlNiIsInJlcXVlc3RlZF9hdCI6IjIwMjYtMTAtMjBUMTY6NDc6NDYuNTcyWiIsInJ1bl9pZCI6ImZhbm91dC1sdW5hLTE3OTI1MTQ4NjA2NTktaXZ4czNrIiwic2FmZV9tZXRhZGF0YSI6eyJhdHRlbXB0IjoxLCJjYW5vbmljYWxfbW9kZSI6ImRlZXAtcmV2aWV3IiwibGluZWFnZV9sYWJlbCI6Imx1bmEifSwic2VjcmV0X3JlZmVyZW5jZXMiOltdLCJ0YXJnZXRfaWRlbnRpdHkiOiJzdWJwcm9jZXNzOmZhbm91dDpkZWVwLXJldmlldzpsdW5hIn0sInByb2R1Y2VyIjp7Im5hbWUiOiJmYW5vdXQtZWZmZWN0LWRpc3BhdGNoIiwidmVyc2lvbiI6IjEifSwicmVjb3JkZWRfYXQiOiIyMDI2LTEwLTIwVDE2OjQ3OjQ2LjU3MloiLCJzdHJlYW1faWQiOiJyZWNvdmVyYWJsZS1lZmZlY3Q6ZmFub3V0LWx1bmEtMTc5MjUxNDg2MDY1OS1pdnhzM2s6ZmFub3V0LWRpc3BhdGNoOmx1bmE6YXR0ZW1wdC0xIiwic3RyZWFtX3NlcXVlbmNlIjoxfQ==","canonical_event_hash":"12802f2457d02fd72f251ed836fad02e53e14490dbaea069210f783a00d25285","frame_version":1,"ledger_id":"deep-review-effect-ledger","prev_record_hash":"0000000000000000000000000000000000000000000000000000000000000000","receipt":{"committed_at":"2026-10-20T16:47:46.751Z","event_id":"effect-intent-f28a9719207b50f9bb7883141c52a8549456bf585a30b8c478e0f4c0ed628264","event_type":"deep-loop.effect.intent-recorded","event_version":1,"ledger_id":"deep-review-effect-ledger","sequence":1,"stream_id":"recoverable-effect:fanout-luna-1792514860659-ivxs3k:fanout-dispatch:luna:attempt-1","stream_sequence":1},"record_hash":"49cb5ff30dfb4c5bfcd20808341704bd5d34d917f4cf54a9bde74c13a244f141","sequence":1}
+{"activeLease":null,"generation":2,"journalHeadHash":"2c1c281d16f92a8c57c464f28aa9e988413acb74afe11707271630e8a5e4bce5","lastFenceToken":1,"resource":{"atomicityDomain":"single-host-filesystem","components":{"ledgerId":"deep-review-effect-ledger"},"kind":"ledger","orderKey":"010|locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger","resourceDigest":"2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704","resourceKey":"locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger"},"schemaVersion":1,"stateHash":"1f445da083d0b4f5332a09ae277d8d295d26de040b7472121a01959ac8c99557"}
+{"fenceToken":1,"lease":{"acquiredAt":"2026-10-20T16:47:46.673Z","correlationId":"22b1d63e-2f9f-4805-9522-2a08e7c637b8","expiresAt":"2026-10-20T16:48:16.673Z","fenceToken":1,"leaseId":"502712aa-9580-4a4c-821c-8a04ed9a8be5","ownerId":"authorized-ledger-append-fence","renewedAt":"2026-10-20T16:47:46.673Z","resource":{"atomicityDomain":"single-host-filesystem","components":{"ledgerId":"deep-review-effect-ledger"},"kind":"ledger","orderKey":"010|locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger","resourceDigest":"2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704","resourceKey":"locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger"}},"priorRecordHash":"0000000000000000000000000000000000000000000000000000000000000000","reason":"resource-available","recordHash":"2c1c281d16f92a8c57c464f28aa9e988413acb74afe11707271630e8a5e4bce5","recordedAt":"2026-10-20T16:47:46.673Z","resource":{"atomicityDomain":"single-host-filesystem","components":{"ledgerId":"deep-review-effect-ledger"},"kind":"ledger","orderKey":"010|locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger","resourceDigest":"2153efebfc6fc439b5f53412041541aeb7e0d32c56ab6e944a316000bf174704","resourceKey":"locks-v1|single-host-filesystem|ledger|ledgerId=deep-review-effect-ledger"},"schemaVersion":1,"sequence":1}
+
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse
+exec
+/bin/zsh -lc 'cat .skilled/repo-rules/communication-decisions.md .skilled/repo-rules/communication-handoff.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
+ succeeded in 0ms:
+---
+title: "Rule: Communication decisions"
+description: "When the reader has to decide or act on what you found, lead with the verdict, recommend one path, and say where you are going before a long stretch of work."
+trigger_phrases:
+  - "which option should i pick"
+  - "here are the trade-offs"
+  - "survey of options"
+  - "i listed every alternative"
+  - "buried the verdict"
+  - "the conclusion is at the bottom"
+  - "picked the answer early"
+  - "must do versus nice to have"
+  - "state the assumption"
+  - "which reading did you take"
+  - "say where you are going"
+  - "intended path"
+  - "what to expect at each checkpoint"
+  - "roadmap before the work"
+  - "long stretch with no update"
+  - "went quiet for twenty minutes"
+  - "presenting a synthesis"
+  - "handing over a file path"
+  - "who is the reader"
+  - "reader triage"
+  - "what does the reader already know"
+  - "time estimate"
+  - "how long will this take"
+  - "recommend one option"
+  - "too many options"
+importance_tier: important
+contextType: reference
+version: 1.3.0.5
+---
+
+# Rule: Communication decisions
+
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before presenting a recommendation, a fork, a plan, or the result of a long run.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+
+## Fires when
+
+- About to present a recommendation, a fork, or a trade-off.
+- About to answer a complex or ambiguous request.
+- About to start a multi-step stretch of work the reader will not see inside.
+- About to report what a long autonomous run found.
+- About to list every option you considered, which is the tempting shape and usually the wrong one.
+
+## The rule
+
+**When the reader has to decide, put the verdict first and recommend one path.**
+
+How the sentences read is [`communication.md`](communication.md). This file governs the
+shape of the decision you are handing over.
+
+---
+
+## 1. LEAD WITH THE RECOMMENDATION, BUT EARN IT
+
+Put the verdict first, the order [`communication.md`](communication.md) §5 sets for every
+reply, and reach it by analysis. The order of the reply is not the
+order of the thinking, and it must not become it.
+
+If you cannot state the verdict yet, say that. A named uncertainty is a verdict about
+the state of the evidence.
+
+The failure this prevents: two of them. A reply the reader must finish before learning
+what you think, and a conclusion that got picked early and defended afterwards.
+
+---
+
+## 2. RECOMMEND ONE APPROACH
+
+**Recommend one.** Name its main trade-off. Mention an alternative only when it could
+change the decision.
+
+**Separate required from optional.** Mark must-do work distinctly from nice-to-have.
+
+**Name the failure a best practice prevents.** Never cite a best practice, guardrail, or
+extra layer without stating the specific bug, cost or user problem it avoids.
+
+**State assumptions when evidence is missing.** A visible assumption can be corrected by
+the reader. A silent one cannot.
+
+---
+
+## 3. KNOW THE READER, THEN ANSWER
+
+**Triage the reader before you draft.** Decide who will read this and what they already
+hold. Then name what they need. The gap between the two is what the reply owes. Decide
+that gap, with the verdict, before the first sentence.
+
+The failure this prevents: two of them. An accurate and complete answer pitched at a
+reader nobody modeled, and a takeaway settled after the drafting, which the first
+sentence misses.
+
+**An ambiguous request still gets the answer first.** When two readings lead to different
+answers, give the answer for the likelier one, then say in one line which reading you
+took. When they lead to materially different work, ask before starting it, per
+[`uncertainty-and-honesty.md`](uncertainty-and-honesty.md) §1. Ask only the one or two
+questions that would change the approach. Consolidate them into a single prompt, per
+`AGENTS.md` §2, and escalate rather than guess, per `AGENTS.md` §7.
+
+A question that would not change what you do is not a clarifying question. It is a delay.
+
+The failure this prevents: a reply that opens by restating the request and buries the
+answer, and a misread nobody catches because the reading taken was never named.
+
+---
+
+## 4. SAY WHERE YOU ARE GOING BEFORE A LONG STRETCH
+
+Before a stretch of work the reader cannot see inside, post the intended path: a short
+numbered list of what you will do, and what they should expect at each checkpoint.
+
+When the stretch is long, attach a concrete time estimate to that list. Minutes or
+hours, never vague. Base it on how long a similar run took and name that run. With no
+such run, say the figure is an assumption.
+
+**Clipped means not narrating each step. It never means starting without saying where you
+are going.** [`communication.md`](communication.md) §1 holds the first and this section holds the second.
+
+Update the path when it changes.
+
+The failure this prevents: twenty minutes of silence, then a result the reader has to
+reverse-engineer a plan from in order to judge, and a duration expectation nobody
+stated, which the reader meets as a surprise.
+
+---
+
+## 5. A SYNTHESIS IS NOT A FILE PATH
+
+When a long run produces findings, the findings go in the message. The artifact path goes
+in the message too, after them, so the reader can go deeper.
+
+Handing over a path and a count is not a report.
+
+What belongs in the message: the answer, the few findings that carry it, the uncertainty
+that matters, and what was ruled out. What does not: per-iteration narration, internal
+metrics, and the full evidence chain.
+
+**Where the run has its own contract for this, that contract wins.** The deep-loop modes
+each specify what their completion message carries. This section is the floor for everything with
+no such contract.
+
+---
+
+## 6. WHAT THIS RULE IS NOT
+
+- **Not licence to skip the analysis.** Verdict first is an ordering of the writing, never
+  a shortcut in the reasoning.
+- **Not a mandate to ask.** Section 3 caps questions at the one or two that would change
+  the approach, and `AGENTS.md` §3 refuses "should I continue?" for a step
+  that is already clear and in scope.
+- **Not a reason to narrate.** Section 4 asks for one list before the work, not a running
+  commentary during it.
+
+---
+
+## 7. SELF-CHECK
+
+- [ ] The verdict is in the first few lines, and I reached it by analysis rather than committing to it early.
+- [ ] I recommended one approach and named its trade-off, rather than surveying options.
+- [ ] Required and optional work are visibly distinct.
+- [ ] Every best practice or extra layer I recommended names the failure it prevents.
+- [ ] Assumptions I made on missing evidence are stated, not silent.
+- [ ] Before a long stretch, I said where I was going, and I revised it when it changed.
+- [ ] A synthesis I reported carries its findings, not just its path and its counts.
+- [ ] Before drafting I decided who reads this and what they hold, and the gap between that and what they need is what the reply supplies.
+- [ ] A long stretch carried a concrete time estimate, in minutes or hours, based on a named earlier run or marked as an assumption.
+---
+title: "Rule: Communication handoff"
+description: "End every turn by naming what is now the operator's to do, in the form that lets them do it."
+trigger_phrases:
+  - "what do i do now"
+  - "end of turn handback"
+  - "next steps for the operator"
+  - "who does what next"
+  - "the reply ended with nothing to do"
+  - "buried the ask"
+  - "i asked in prose"
+  - "structured choice instead of prose"
+  - "offer options not paragraphs"
+  - "waiting on the user"
+  - "blocked on a decision"
+  - "needs your approval"
+  - "unanswered question at the end"
+  - "should i continue"
+  - "which option do you want"
+  - "handing control back"
+  - "the operator has to act"
+  - "nothing is blocked on you"
+  - "state restatement cadence"
+  - "where were we"
+  - "catch me up"
+  - "closing contract"
+  - "one concrete next action"
+  - "what is in flight"
+  - "still running in the background"
+  - "did it stall or is it working"
+  - "will you continue on your own"
+  - "waiting on me or on a machine"
+  - "resume condition"
+importance_tier: important
+contextType: reference
+version: 1.6.0.5
+---
+
+# Rule: Communication handoff
+
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before ending a turn that leaves the operator anything to do.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+
+## Fires when
+
+- About to end a turn, of any kind, substantive or not.
+- About to report that work is done, blocked, partially done, or waiting on something.
+- About to end a turn while something you started is still running.
+- About to ask the operator anything.
+- About to state a fork, a trade-off, or two acceptable paths.
+- About to continue past a decision that was never actually made, which is when this rule earns its load.
+
+## The rule
+
+**End every turn by naming what is now the operator's to do, in the form that lets them do it.**
+
+Naming is the obligation. An action the operator has to infer from a status report is an
+action that does not happen.
+
+---
+
+## 1. THE HANDBACK IS A SEPARATE THING FROM THE STATUS
+
+Every substantive turn ends with an honest status, a read-only turn included. `AGENTS.md` §10
+requires it and this section lists what it holds. Say each part briefly:
+
+1. **What ran or was read, and what it returned**, with the receipts from
+   [`evidence-and-proof.md`](evidence-and-proof.md) §1.
+2. **What is inferred** rather than observed.
+3. **What only the operator can verify.**
+4. **The state of the work:** edited / committed / pushed / dirty, and which branch.
+5. **Known residual risk.** Any risk the operator must weigh before relying on the work, such as an untested path or a state that could not be checked. Write "none known" when there is none.
+
+What was not done belongs in the status as well, and [`evidence-and-proof.md`](evidence-and-proof.md) §10
+says how to report it. The status reports what happened. The handback reports what happens next,
+and it is a different document.
+
+**Restate the state when the reader must re-orient.** It fires when the direction of the
+work changes, when two attempts at the same fix have failed or when the work resumes after
+a gap. The restatement says what is done, what is open and what changed, and carries the
+operator's standing constraints and decisions in their own words. It replaces the previous
+stated state. It does not summarize the reply.
+
+The failure this prevents: a reader who returns mid task and trusts a stated state that
+the turns since have superseded.
+
+**Position it last**, so a reader who stops halfway through a reply has still hit it.
+
+The close of the turn is a contract with two clauses. Completed work is shown, as the
+changed file, the passing check or the output, after the outcome that
+[`communication.md`](communication.md) §5 puts first. When a command ran, name the command
+and its exit status or result beside the claim it supports, before your reading of it. What happens next is exactly one concrete action, in the form that lets the operator do
+it, or the one line that says nothing is.
+
+The failure this prevents: a close out the operator reads, agrees with and acts on
+nothing from, because the work was claimed instead of shown and the next steps
+scattered, no single concrete action among them.
+
+---
+
+## 2. WHAT COUNTS AS AN OPERATOR ACTION
+
+Only things the operator does, and only things that are actually theirs.
+
+| Is an operator action | Is not |
+|---|---|
+| A decision only they can make | A decision you already made and are narrating |
+| A credential, an approval, an access grant | A step you could take and chose not to |
+| Running something you cannot run | Work you left undone and are reframing as theirs |
+| Reviewing a change before it ships | A summary of what you just did |
+
+Padding the list with your own remaining work is the common failure: it trains the operator
+to skim the one list they need to read.
+
+---
+
+## 3. NOTHING TO DO IS ALSO AN ANSWER
+
+When nothing is blocked on the operator, say that in one line and stop.
+
+The failure this prevents: an operator who reads every reply twice looking for the thing they
+were supposed to notice.
+
+---
+
+## 4. WHEN THE THING YOU NEED IS A DECISION
+
+**Ask as a structured choice when all three hold:**
+
+- The alternatives are nameable, not open-ended.
+- The answer changes what you do next. A question that changes nothing is a delay, per
+  [`communication-decisions.md`](communication-decisions.md) §3.
+- You cannot resolve it from the request, the code or a sensible default.
+
+**Otherwise put it in prose and keep going.** `AGENTS.md` §3 already refuses "should I
+continue?" for a step that is clear and in scope.
+
+Recommend one option and say why.
+
+The failure this prevents: two of them. A question nobody answers because it was a sentence in
+a paragraph, and a menu that appears for something the operator expected you to handle.
+
+---
+
+## 5. THE QUESTION SURFACE IS PER RUNTIME
+
+The posture above binds on every runtime. Resolve the surface at the runtime you are in
+rather than assuming one.
+
+| Runtime | Surface | How this is known |
+|---|---|---|
+| Claude Code | `AskUserQuestion` | Named in this repository |
+| Pi | The `@juicesharp/rpiv-ask-user-question` extension, typed options rather than free text | Recorded as installed in `.pi/PLUGINS.md` |
+| OpenCode | A built-in equivalent | Operator-reported, name not recorded here |
+| Codex | `request_user_input`, only on a turn whose tool list names it. Plan mode has it, Default mode only behind a feature that ships off, and `codex exec` never | Read from the Codex 0.160.1 binary's own instructions |
+| Anything else | No native surface assumed | Use the fallback below |
+
+**A runtime with no such surface is not exempt.** It falls back to a numbered list of named
+options with the recommendation marked.
+
+Do not invent a tool name to fill a gap in that table. An invented name fails silently, the
+question is never asked, and the turn ends looking complete. Where the row says unverified,
+check first or use the fallback.
+
+---
+
+## 6. WHAT IS STILL RUNNING, AND WHAT RESUMES YOU
+
+**Name what is in flight.** Anything you started that is still running and not yet
+reportable: a background agent, a dispatched lane, a watcher, a long suite, a build. One
+item is a line. More than one is a small table, the item and the state it is actually in.
+That table is this rule's one carve-out from [`communication.md`](communication.md) §2.
+The state is the payload: what it is doing now, how far in it is, what it is waiting on.
+
+**Say what resumes you.** One line, of the shape "I will continue autonomously when …",
+naming the event that unblocks you: a lane returning, a suite going green, a watcher firing.
+
+**Neither is ceremony.** A turn with nothing running writes no table and claims no resume
+condition. A turn that genuinely needs a decision says so and stops, and never claims it
+will continue by itself.
+
+The failure this prevents: a turn that goes quiet while work is still running, leaving the
+operator unable to tell whether anything is happening or whether it is their move.
+
+---
+
+## 7. WHAT THIS RULE IS NOT
+
+- **Not licence to ask more.** The bar in §4 is narrow on purpose, and `AGENTS.md` §2
+  consolidates whatever survives it into a single prompt.
+- **Not licence to stop early.** Naming what is left is never a substitute for finishing what
+  is yours, and `AGENTS.md` §3 refuses partial work framed as a checkpoint.
+- **Not a template.** No heading is required, no fixed wording. A reader who can act is the
+  only test.
+
+---
+
+## 8. SELF-CHECK
+
+- [ ] The status names what ran, what is inferred, what only the operator can verify, the state of the work and any known residual risk. It says "none known" when there is none.
+- [ ] The turn ends by naming what is the operator's to do, or by saying nothing is.
+- [ ] Every item on that list is theirs, not mine reframed.
+- [ ] The handback is last, and survives a reader who stops halfway.
+- [ ] Anything asked as a structured choice passes all three conditions in §4.
+- [ ] Any choice I offered carries a recommendation and a reason.
+- [ ] Nothing was handed back that I could have decided or done myself.
+- [ ] No question-tool name appears that I did not confirm for the runtime I am in.
+- [ ] Where the direction changed, two fixes failed or the work resumed after a gap, I restated what is done, what is open and what changed.
+- [ ] Anything I started that is still running is named with the state it is in, and nothing appears there that has already finished.
+- [ ] A claim that I will continue on my own names the event that resumes me, and no such claim stands on a turn that needs an operator decision.
+
+exec
+/bin/zsh -lc 'cat .skilled/repo-rules/prevent-overengineering.md .skilled/repo-rules/scope-discipline.md .skilled/repo-rules/evidence-and-proof.md .skilled/repo-rules/delegation-and-orchestration.md .skilled/repo-rules/blast-radius.md .skilled/repo-rules/uncertainty-and-honesty.md' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/172-v4-0-0-13-changelog-and-handover-review
  succeeded in 0ms:
 ---
 title: "Rule: Prevent overengineering"
@@ -4980,6 +4983,164 @@ reverse. When a delegate's work does belong in your commit, read it first and sa
 - [ ] Every gate the delegate cannot ask about was answered in the prompt itself, not only waived in the environment.
 - [ ] I read the exit status as the process ending, and checked the artifacts and their content for the verdict.
 ---
+title: "Rule: Blast radius and reversibility"
+description: "Size effort to what the change can break; no irreversible step without a named rollback and a yes."
+trigger_phrases:
+  - "reversibility ladder"
+  - "rollback sentence"
+  - "stakes read"
+  - "stop for a yes"
+  - "irreversible"
+  - "force push"
+  - "rewrite history"
+  - "delete overwrite migrate deploy"
+  - "sending is publishing"
+  - "overwriting an untracked file"
+  - "persistence boundaries"
+  - "who still speaks the old contract"
+  - "installing is a mutation"
+  - "reversible decisions are cheap"
+  - "decision velocity"
+  - "name the rollback first"
+  - "irreversible change"
+  - "rollback plan"
+importance_tier: important
+contextType: reference
+version: 1.0.1.4
+---
+
+# Rule: Blast radius and reversibility
+
+> Routed from [`REPO RULES.md`](../../REPO%20RULES.md). Load before the action, not after it.
+> Expands `AGENTS.md`, never overrides it. Where they appear to disagree, `AGENTS.md` wins and this file is wrong. Say so.
+
+## Fires when
+
+- Delete, overwrite, truncate, migrate, deploy, publish, send, or install.
+- Force-push, rewrite history, touch branches, tags, or reflogs.
+- Change a shared contract: API shape, schema, serialized format, config key, exported signature.
+- Touch authentication, authorization, secrets, billing, or persisted user data.
+- Any call that leaves this machine.
+
+## The rule
+
+**Size the effort to what the change can break. Never take an irreversible step without
+a written rollback and an explicit yes.**
+
+---
+
+## 1. OPEN WITH A STAKES READ
+
+One line, before the work: *"Low blast, reversible: one file, no callers outside the
+module."* / *"High blast: touches auth middleware and persisted session rows.
+Irreversible once migrated."*
+
+It makes you notice the migration is one-way before you write it, and tells the operator
+what they are approving.
+
+---
+
+## 2. THE REVERSIBILITY LADDER
+
+| Tier | Examples | What it needs |
+|------|----------|---------------|
+| **Trivially reversible** | Working-tree edit to a tracked file; a new untracked file; a local commit | Proceed |
+| **Reversible with effort** | A migration with a working down step; a regenerable artifact; an installed dependency | Say what undoing costs, then proceed; an install still waits for a yes (`AGENTS.md` §3) |
+| **Irreversible** | Sent message, comment, or email; published package or release; deleted remote data; an overwritten or deleted untracked file; rewritten shared history; force-push; **any push to a non-allowlisted remote branch**; an external call with side effects; a destructive migration with no down step | **Written rollback + explicit yes, first** |
+
+Two traps sit in the middle tier and behave like the bottom one:
+
+- **Overwriting or deleting an untracked or ignored file** is irreversible; git holds no
+  copy. Look at the target before writing over it or removing it, always.
+  This does not cover runtime lock or state files a running workflow creates and regenerates itself, such as `.deep-review.lock`.
+- **Sending is publishing.** Content that reaches an external service may be cached,
+  logged, or indexed even if you delete it a second later.
+
+The tiers cut both ways. The bottom tier says stop and ask; **the top tier says decide
+and move on.** A change that reverts in one line does not earn a paragraph of
+deliberation, a comparison table, or a question to the operator. Pick the option you
+would defend, mark the spot if the choice is non-obvious, and keep going.
+
+The failure this prevents is the mirror of the one below: not a risky step taken without
+a rollback, but a cheap step stalled at a fork this table has already priced as free.
+
+---
+
+## 3. THE ROLLBACK SENTENCE
+
+Before any tier-2 or tier-3 action, write it out: **"To undo this: ___"**; the command,
+the backup path, the revert commit, the down migration. If you cannot complete that
+sentence with something real, **you are not ready to act**; that is the finding, and it
+goes to the operator.
+
+At tier 3, **stop and wait for a yes.** Not "I'll proceed unless you object."
+
+**Before you stop, finish what the yes does not depend on.** Do every reversible step
+first, so the operator approves a finished, reviewable result and the yes is the last
+step.
+
+**Approval does not transfer.** A yes for one destructive action does not cover the next
+one, a later one of the same kind, or a wider version of the same one. Each push to a
+non-allowlisted remote branch needs its own in-the-moment yes.
+
+---
+
+## 4. WHO STILL SPEAKS THE OLD CONTRACT
+
+Before changing anything shared, enumerate what was built against the old shape:
+
+- Deployed servers and running processes still on the old code.
+- Installed clients, SDKs, and other repositories that pin this interface.
+- Caches, queues, and in-flight messages holding the old format.
+- **Persisted data written by the old code:** the most-missed one.
+- Saved configuration, environment files, and CI definitions.
+- Documentation and examples that will now be wrong.
+
+Name the ones that exist here. "No other callers" is a claim under
+`evidence-and-proof.md`, grep for it, do not assume it.
+
+---
+
+## 5. PERSISTENCE BOUNDARIES
+
+**Removing a file from the working tree is not eradicating its content.** These are
+different jobs and the operator means one of them:
+
+| Boundary | Where the content still lives |
+|----------|-------------------------------|
+| Working tree | the file itself |
+| Local repository | index, stashes, prior commits, reflog |
+| Remote | pushed branches, tags, PRs, forks, CI logs |
+| Derived | build artifacts, caches, coverage reports, bundles |
+| External | logs, backups, monitoring, anything already sent |
+
+Inventory every location that applies, then **keep ordinary removal scoped to the
+surface that was asked for**. Do not rewrite history, branches, or reflogs to "finish
+the job" until the rollback is written and the operator has approved that specific
+destructive step. If a secret was committed, say so plainly, rotation is the real
+remedy and it is the operator's to run.
+
+---
+
+## 6. INSTALLING IS A MUTATION
+
+A dependency install changes the environment, the lockfile, and the trust surface, and
+it is the one mutation that feels like a read. Same gates as any other change: in scope,
+is there an existing tool, what is the rollback. Prefer what the project already has.
+
+---
+
+## 7. SELF-CHECK
+
+- [ ] Placed the action on the reversibility ladder and said so.
+- [ ] Looked at the target before deleting or overwriting it.
+- [ ] The rollback sentence is written and concrete.
+- [ ] For tier 3, I have an explicit, in-the-moment yes for *this* action.
+- [ ] Enumerated what still speaks the old contract, by searching rather than assuming.
+- [ ] Removal is scoped to the requested surface; nothing wider happened silently.
+- [ ] Cheap, reversible forks were decided rather than deliberated.
+- [ ] Any installation went through the same scope, approval and verification as any other mutation.
+---
 title: "Rule: Uncertainty and honest reporting"
 description: "Never fabricate; mark the confidence you actually have and halt on a contradiction."
 trigger_phrases:
@@ -5142,3 +5303,4 @@ flip under pressure and settled steps get re-checked until a correct result is t
 - [ ] A correction to my own earlier claim was stated once and plainly, without a retraction narrative.
 - [ ] Anything I reopened had a named reason, and nothing flipped on pushback or doubt alone.
 
+hook: PostToolUse

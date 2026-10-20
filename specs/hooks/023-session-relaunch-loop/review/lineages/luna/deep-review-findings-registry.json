@@ -1,343 +1,591 @@
 {
-  "sessionId": "fanout-luna-1792421295628-xsy88n",
+  "sessionId": "fanout-luna-1792514860659-ivxs3k",
   "parentSessionId": null,
   "generation": 1,
   "lineageMode": "new",
   "continuedFromRun": null,
   "terminalStop": {
     "stopReason": "maxIterationsReached",
-    "totalIterations": 5,
-    "timestamp": "2026-10-19T15:06:32.201Z"
+    "totalIterations": 10,
+    "timestamp": "2026-10-20T17:59:53.618Z"
   },
   "status": "COMPLETE",
   "openFindings": [
     {
-      "findingId": "P1-001",
-      "severity": "P1",
-      "title": "AC-003 is marked Met despite evidence failing its literal smoke requirement",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md",
-      "line": 41,
-      "description": "Traceability: REQ-003 requires the plain Pi command to exit 0 and the OpenCode import to print ok. AC-003 records the plain Pi command rc=1 and import output function, yet marks the criterion Met.",
-      "findingClass": "acceptance_evidence",
+      "findingId": "LUNA-FANOUT-P0-001",
+      "severity": "P0",
+      "title": "A .skilled-only linked repository has no project-level automatic hook registrations",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 23,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of 002-pi-opencode-adapters/spec.md:120 with acceptance-criteria.md:41 shows the literal requirement, contradictory observed outcomes, and Met status.",
-      "affectedSurfaceHints": [
-        "phase-002 requirement closure",
-        "parent completion claim"
-      ],
-      "contentHash": "a34ed7aa6608c6409581aa6abccaaa6ba84f7058b69d7d4f0bcf6e8639c68f15",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 8,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-001",
+      "severity": "P1",
+      "title": "A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge",
+      "file": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      "line": 46,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
           "from": null,
           "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-002",
-      "severity": "P2",
-      "title": "Phase 002 closure summary and acceptance record disagree about AC-006",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
-      "line": 135,
-      "description": "Traceability: Acceptance criteria marks AC-006 Met, says Closeable Yes, and reports strict validation passed; implementation-summary says AC-006 is Unmet and packet validation returned RESULT: FAILED, with other rows still pending.",
-      "findingClass": "evidence_drift",
+      "findingId": "LUNA-FANOUT-P1-003",
+      "severity": "P1",
+      "title": "killer spawn errors leave interactive runtimes armed without a retry trigger",
+      "file": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of acceptance-criteria.md:44,65-67 with implementation-summary.md:102-103,135-145 shows incompatible closure states.",
-      "affectedSurfaceHints": [
-        "phase-002 closure summary",
-        "phase-002 acceptance gate"
-      ],
-      "contentHash": "2b748b24af5f47dbbb2ec283aa0844e5a966a83e4c20f1d8e6c3caa8ae471c27",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 4,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-003",
-      "severity": "P2",
-      "title": "Parent phase contract still describes six phases after Phase 007 was added",
-      "file": "specs/hooks/023-session-relaunch-loop/spec.md",
-      "line": 39,
-      "description": "Traceability: The parent phase map lists seven complete children, while handoff and purpose text still says six, scope and file summaries stop at Phase 006, and the 006-to-007 handoff remains TBD; Phase 006 and 007 metadata say 6 of 6 and 7 of 7.",
-      "findingClass": "phase_transition_drift",
+      "findingId": "LUNA-FANOUT-P1-004",
+      "severity": "P1",
+      "title": "timeout cleanup can disarm a newer armed record for the same handoff path",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 486,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Cross-document comparison of parent spec.md:39,51,62-86,98-122 with 006/spec.md:27 and 007/spec.md:27 confirms the phase-count and transition mismatch.",
-      "affectedSurfaceHints": [
-        "parent phase scope",
-        "phase transition contract",
-        "phase 006 metadata"
-      ],
-      "contentHash": "93ba8121fdf8bfa576aa6c1c7bb8a4006a63d647e2ad58be8bdd34c1c8696476",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
-      "status": "active",
-      "transitions": [
-        {
-          "iteration": 3,
-          "from": null,
-          "to": "P2",
-          "reason": "Initial discovery (delta)"
-        }
-      ],
-      "dimensions": [
-        "traceability"
-      ],
-      "mergedFindingIds": []
-    },
-    {
-      "findingId": "P2-004",
-      "severity": "P2",
-      "title": "Parent goal continuity still carries its initial scaffold state after Phase 007 completion",
-      "file": "specs/hooks/023-session-relaunch-loop/goal.md",
-      "line": 14,
-      "description": "Traceability: The continuity block remains dated 2026-10-16, last updated by scaffold, with recent_action Authored the durable directive, next_safe_action Execute against the completion criteria, and completion_pct 0; the same goal marks all criteria checked and records Phase 007 complete on 2026-10-19.",
-      "findingClass": "continuity_drift",
-      "deltaStatus": null,
-      "scopeProof": "Direct comparison of goal.md:14-24 with its checked completion criteria at 87-90 and Phase 007 progress row at 112 confirms the continuity block predates the recorded completion.",
-      "affectedSurfaceHints": [
-        "parent goal handoff context",
-        "persisted progress metadata"
-      ],
-      "contentHash": "6e22b25a7617bb669fca9ca46a332425f170a595c0093a8b631ac830fac93496",
-      "dimension": "traceability",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
       "firstSeen": 5,
-      "lastSeen": 5,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
           "iteration": 5,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-005",
+      "severity": "P1",
+      "title": "Cursor's command mirror does not expose the documented /speckit:handoff name",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-006",
+      "severity": "P2",
+      "title": "A failed or skipped continuity save can still produce a prepared hop",
+      "file": ".skilled/commands/speckit/handoff.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
       ],
       "mergedFindingIds": []
     }
   ],
-  "resolvedFindings": [],
+  "resolvedFindings": [
+    {
+      "findingId": "LUNA-FANOUT-P1-002",
+      "severity": "P1",
+      "title": "prepare drops the bound packet path before the receiving session seed is built",
+      "file": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      "line": 418,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
   "blockedStopHistory": [],
   "persistentSameSeverity": [
     {
-      "findingId": "P1-001",
-      "severity": "P1",
-      "title": "AC-003 is marked Met despite evidence failing its literal smoke requirement",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md",
-      "line": 41,
-      "description": "Traceability: REQ-003 requires the plain Pi command to exit 0 and the OpenCode import to print ok. AC-003 records the plain Pi command rc=1 and import output function, yet marks the criterion Met.",
-      "findingClass": "acceptance_evidence",
+      "findingId": "LUNA-FANOUT-P0-001",
+      "severity": "P0",
+      "title": "A .skilled-only linked repository has no project-level automatic hook registrations",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 23,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of 002-pi-opencode-adapters/spec.md:120 with acceptance-criteria.md:41 shows the literal requirement, contradictory observed outcomes, and Met status.",
-      "affectedSurfaceHints": [
-        "phase-002 requirement closure",
-        "parent completion claim"
-      ],
-      "contentHash": "a34ed7aa6608c6409581aa6abccaaa6ba84f7058b69d7d4f0bcf6e8639c68f15",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 8,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-001",
+      "severity": "P1",
+      "title": "A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge",
+      "file": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      "line": 46,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
           "from": null,
           "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-002",
-      "severity": "P2",
-      "title": "Phase 002 closure summary and acceptance record disagree about AC-006",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
-      "line": 135,
-      "description": "Traceability: Acceptance criteria marks AC-006 Met, says Closeable Yes, and reports strict validation passed; implementation-summary says AC-006 is Unmet and packet validation returned RESULT: FAILED, with other rows still pending.",
-      "findingClass": "evidence_drift",
+      "findingId": "LUNA-FANOUT-P1-003",
+      "severity": "P1",
+      "title": "killer spawn errors leave interactive runtimes armed without a retry trigger",
+      "file": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of acceptance-criteria.md:44,65-67 with implementation-summary.md:102-103,135-145 shows incompatible closure states.",
-      "affectedSurfaceHints": [
-        "phase-002 closure summary",
-        "phase-002 acceptance gate"
-      ],
-      "contentHash": "2b748b24af5f47dbbb2ec283aa0844e5a966a83e4c20f1d8e6c3caa8ae471c27",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 4,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-003",
-      "severity": "P2",
-      "title": "Parent phase contract still describes six phases after Phase 007 was added",
-      "file": "specs/hooks/023-session-relaunch-loop/spec.md",
-      "line": 39,
-      "description": "Traceability: The parent phase map lists seven complete children, while handoff and purpose text still says six, scope and file summaries stop at Phase 006, and the 006-to-007 handoff remains TBD; Phase 006 and 007 metadata say 6 of 6 and 7 of 7.",
-      "findingClass": "phase_transition_drift",
+      "findingId": "LUNA-FANOUT-P1-004",
+      "severity": "P1",
+      "title": "timeout cleanup can disarm a newer armed record for the same handoff path",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 486,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Cross-document comparison of parent spec.md:39,51,62-86,98-122 with 006/spec.md:27 and 007/spec.md:27 confirms the phase-count and transition mismatch.",
-      "affectedSurfaceHints": [
-        "parent phase scope",
-        "phase transition contract",
-        "phase 006 metadata"
-      ],
-      "contentHash": "93ba8121fdf8bfa576aa6c1c7bb8a4006a63d647e2ad58be8bdd34c1c8696476",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 5,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-005",
+      "severity": "P1",
+      "title": "Cursor's command mirror does not expose the documented /speckit:handoff name",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
       ],
       "mergedFindingIds": []
     }
   ],
-  "severityChanged": [],
-  "repeatedFindings": [
+  "severityChanged": [
     {
-      "findingId": "P1-001",
-      "severity": "P1",
-      "title": "AC-003 is marked Met despite evidence failing its literal smoke requirement",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md",
-      "line": 41,
-      "description": "Traceability: REQ-003 requires the plain Pi command to exit 0 and the OpenCode import to print ok. AC-003 records the plain Pi command rc=1 and import output function, yet marks the criterion Met.",
-      "findingClass": "acceptance_evidence",
+      "findingId": "LUNA-FANOUT-P1-006",
+      "severity": "P2",
+      "title": "A failed or skipped continuity save can still produce a prepared hop",
+      "file": ".skilled/commands/speckit/handoff.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of 002-pi-opencode-adapters/spec.md:120 with acceptance-criteria.md:41 shows the literal requirement, contradictory observed outcomes, and Met status.",
-      "affectedSurfaceHints": [
-        "phase-002 requirement closure",
-        "parent completion claim"
-      ],
-      "contentHash": "a34ed7aa6608c6409581aa6abccaaa6ba84f7058b69d7d4f0bcf6e8639c68f15",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "repeatedFindings": [
+    {
+      "findingId": "LUNA-FANOUT-P0-001",
+      "severity": "P0",
+      "title": "A .skilled-only linked repository has no project-level automatic hook registrations",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 23,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-001",
+      "severity": "P1",
+      "title": "A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge",
+      "file": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      "line": 46,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
           "from": null,
           "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-002",
-      "severity": "P2",
-      "title": "Phase 002 closure summary and acceptance record disagree about AC-006",
-      "file": "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md",
-      "line": 135,
-      "description": "Traceability: Acceptance criteria marks AC-006 Met, says Closeable Yes, and reports strict validation passed; implementation-summary says AC-006 is Unmet and packet validation returned RESULT: FAILED, with other rows still pending.",
-      "findingClass": "evidence_drift",
+      "findingId": "LUNA-FANOUT-P1-003",
+      "severity": "P1",
+      "title": "killer spawn errors leave interactive runtimes armed without a retry trigger",
+      "file": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      "line": 60,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Direct comparison of acceptance-criteria.md:44,65-67 with implementation-summary.md:102-103,135-145 shows incompatible closure states.",
-      "affectedSurfaceHints": [
-        "phase-002 closure summary",
-        "phase-002 acceptance gate"
-      ],
-      "contentHash": "2b748b24af5f47dbbb2ec283aa0844e5a966a83e4c20f1d8e6c3caa8ae471c27",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 4,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
       ],
       "mergedFindingIds": []
     },
     {
-      "findingId": "P2-003",
-      "severity": "P2",
-      "title": "Parent phase contract still describes six phases after Phase 007 was added",
-      "file": "specs/hooks/023-session-relaunch-loop/spec.md",
-      "line": 39,
-      "description": "Traceability: The parent phase map lists seven complete children, while handoff and purpose text still says six, scope and file summaries stop at Phase 006, and the 006-to-007 handoff remains TBD; Phase 006 and 007 metadata say 6 of 6 and 7 of 7.",
-      "findingClass": "phase_transition_drift",
+      "findingId": "LUNA-FANOUT-P1-004",
+      "severity": "P1",
+      "title": "timeout cleanup can disarm a newer armed record for the same handoff path",
+      "file": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      "line": 486,
+      "description": "",
+      "findingClass": null,
       "deltaStatus": null,
-      "scopeProof": "Cross-document comparison of parent spec.md:39,51,62-86,98-122 with 006/spec.md:27 and 007/spec.md:27 confirms the phase-count and transition mismatch.",
-      "affectedSurfaceHints": [
-        "parent phase scope",
-        "phase transition contract",
-        "phase 006 metadata"
-      ],
-      "contentHash": "93ba8121fdf8bfa576aa6c1c7bb8a4006a63d647e2ad58be8bdd34c1c8696476",
-      "dimension": "traceability",
-      "firstSeen": 3,
-      "lastSeen": 5,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 10,
       "status": "active",
       "transitions": [
         {
-          "iteration": 3,
+          "iteration": 5,
           "from": null,
-          "to": "P2",
+          "to": "P1",
           "reason": "Initial discovery (delta)"
         }
       ],
       "dimensions": [
-        "traceability"
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-005",
+      "severity": "P1",
+      "title": "Cursor's command mirror does not expose the documented /speckit:handoff name",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-FANOUT-P1-006",
+      "severity": "P2",
+      "title": "A failed or skipped continuity save can still produce a prepared hop",
+      "file": ".skilled/commands/speckit/handoff.md",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 10,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
       ],
       "mergedFindingIds": []
     }
@@ -349,200 +597,299 @@
     "maintainability": true
   },
   "findingsBySeverity": {
-    "P0": 0,
-    "P1": 1,
-    "P2": 3
+    "P0": 1,
+    "P1": 4,
+    "P2": 1
   },
-  "openFindingsCount": 4,
-  "resolvedFindingsCount": 0,
-  "convergenceScore": 0.75,
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 1,
+  "convergenceScore": 1,
   "graphConvergenceScore": 0,
   "graphDecision": null,
   "graphBlockers": [],
   "graphSignals": {},
   "candidateCoverage": {
     "covered": [
-      "closure_evidence_status",
-      "continuity_state_drift",
-      "phase_map_transition_drift",
-      "requirement_acceptance_drift"
+      "adversarial_recheck_open_findings",
+      "arm_event_identity",
+      "armed_record_freshness",
+      "automatic_project_hook_registration",
+      "checklist_evidence",
+      "command_name_resolution",
+      "continuity_save_completion",
+      "cwd_restore",
+      "devin_direct_file_entrypoint",
+      "duplicate_review_finding",
+      "held_nudge_delivery",
+      "hermes_project_plugin_scope",
+      "idle_detection",
+      "kill_target_and_grace",
+      "killer_spawn_failure",
+      "linked_repo_root_resolution",
+      "oversized_jsonl_record",
+      "plain_workflow_contract",
+      "prepare_refusal",
+      "re_nudge_boundary",
+      "receiving_seed_claim",
+      "runtime_argument_carry",
+      "runtime_invocation_classification",
+      "same_path_record_replacement",
+      "shared_state_and_install_config",
+      "shell_wrapper_discovery",
+      "silent_nudge_suppression",
+      "spec_folder_record_transport",
+      "suppression_order",
+      "timeout_record_supersession",
+      "tty_gate",
+      "wrapper_exit_decision"
     ],
     "ruledOut": [
-      "command_injection",
-      "configuration_inconsistency",
-      "documentation_contract_drift",
-      "event_durability",
-      "evidence_link_drift",
-      "filesystem_permissions",
-      "gate_exemption_scope",
-      "path_traversal",
-      "policy_duplication",
-      "process_target_identity",
-      "runtime_policy_integration",
-      "state_transition",
-      "symlink_escape",
-      "timeout_cleanup"
+      "arm_event_identity",
+      "armed_record_freshness",
+      "devin_direct_file_entrypoint",
+      "different_path_record_change",
+      "duplicate_live_killer",
+      "duplicate_review_finding",
+      "freshness_before_signal",
+      "held_nudge_delivery",
+      "hermes_project_plugin_scope",
+      "hop_cap_signal",
+      "idle_detection",
+      "install_root_realpath_breaks_note_validation",
+      "kill_target_and_grace",
+      "linked_repo_root_resolution",
+      "linked_skilled_wrapper_lookup",
+      "path_containment_escape",
+      "plain_workflow_contract",
+      "re_nudge_boundary",
+      "receiving_seed_claim",
+      "runtime_argument_carry",
+      "runtime_flag_conflict",
+      "runtime_invocation_classification",
+      "shell_wrapper_discovery",
+      "spec_folder_record_transport",
+      "stale_future_armedAt_suppression",
+      "stale_rearm_timestamp",
+      "suppression_order",
+      "transcript_missing_grace",
+      "tty_gate",
+      "universal_self_detection_requirement",
+      "wrapper_exit_decision"
     ],
     "deferred": [],
     "blocked": [],
     "byBugClass": {
-      "state_transition": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "timeout_cleanup": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "process_target_identity": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "event_durability": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "concurrent_update": {
-        "covered": false,
-        "ruledOut": false,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          1
-        ]
-      },
-      "path_traversal": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "symlink_escape": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "filesystem_permissions": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "command_injection": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "gate_exemption_scope": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          2
-        ]
-      },
-      "requirement_acceptance_drift": {
+      "oversized_jsonl_record": {
         "covered": true,
         "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          10
+        ]
+      },
+      "silent_nudge_suppression": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime-specific usage event and window parity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "suppression_order": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "re_nudge_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "held_nudge_delivery": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "armed_record_freshness": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stale_future_armedAt_suppression": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "note_save_prepare_refusal": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "kill_and_relaunch": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_folder_record_transport": {
+        "covered": true,
+        "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
           3,
-          5
+          6
         ]
       },
-      "closure_evidence_status": {
+      "prepare_refusal": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3,
-          5
+          3
         ]
       },
-      "phase_map_transition_drift": {
+      "path_containment_escape": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_flag_conflict": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "sk-doc command-template conformance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "arm_event_identity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "killer_spawn_failure": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          3,
+          4,
+          10
+        ]
+      },
+      "duplicate_live_killer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_rearm_timestamp": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "Claude hook registration and event binding": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "Hermes process-exit timing after on_session_end": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "idle_detection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
           5
         ]
       },
-      "policy_duplication": {
-        "covered": false,
+      "kill_target_and_grace": {
+        "covered": true,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
-          4
+          5
         ]
       },
-      "documentation_contract_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "configuration_inconsistency": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "evidence_link_drift": {
-        "covered": false,
-        "ruledOut": true,
-        "deferred": false,
-        "blocked": false,
-        "iterations": [
-          4
-        ]
-      },
-      "continuity_state_drift": {
+      "timeout_record_supersession": {
         "covered": true,
         "ruledOut": false,
         "deferred": false,
@@ -551,13 +898,310 @@
           5
         ]
       },
-      "runtime_policy_integration": {
+      "same_path_record_replacement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          10
+        ]
+      },
+      "transcript_missing_grace": {
         "covered": false,
         "ruledOut": true,
         "deferred": false,
         "blocked": false,
         "iterations": [
           5
+        ]
+      },
+      "different_path_record_change": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "freshness_before_signal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "hop_cap_signal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "full hook registration and linked repository state resolution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "wrapper_exit_decision": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "cwd_restore": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "runtime_argument_carry": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "receiving_seed_claim": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "shim_discovery_and_symlink_state_resolution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "command_only_handoff_contract": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6,
+          8
+        ]
+      },
+      "shell_wrapper_discovery": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "runtime_invocation_classification": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "tty_gate": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "hermes_project_plugin_scope": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "linked_skilled_wrapper_lookup": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "realpath_state_and_config_resolution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "automatic_hook_registration": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "linked_repo_root_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "shared_state_and_install_config": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "automatic_project_hook_registration": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8,
+          10
+        ]
+      },
+      "install_root_realpath_breaks_note_validation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "adversarial_recheck_of_open_findings": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "command_name_resolution": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "continuity_save_completion": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "plain_workflow_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "devin_direct_file_entrypoint": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "duplicate_review_finding": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "adversarial_recheck_open_findings": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9,
+          10
+        ]
+      },
+      "universal_self_detection_requirement": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "live Cursor command-palette confirmation unavailable in this source-only review": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
         ]
       }
     }
@@ -565,545 +1209,826 @@
   "searchDebt": [],
   "ruledOutCandidates": [
     {
-      "iteration": 1,
-      "id": "SL-001",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
-      ],
-      "bugClass": "state_transition",
-      "disposition": "ruled_out",
-      "rationale": "The reviewed single-writer transition guards prevent an invalid status transition in these paths.",
-      "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:319",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:348"
-      ],
-      "reason": "Both state transition functions check current record status before writing."
-    },
-    {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-002",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
       ],
-      "bugClass": "timeout_cleanup",
+      "bugClass": "suppression_order",
       "disposition": "ruled_out",
-      "rationale": "The replacement-note guard and unarm preconditions prevent the observed different-path case.",
+      "rationale": "The reviewed shared ordering matches the intended suppressions; the adapters invoke the shared decision before emitting handoff text.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:480",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:496"
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:394-420",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:438-458",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:1012-1048"
       ],
-      "reason": "Current state is checked before timeout disarm and the transition has expected-value guards."
+      "reason": "No divergence found in the shared guard order."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
       ],
-      "bugClass": "process_target_identity",
+      "bugClass": "held_nudge_delivery",
       "disposition": "ruled_out",
-      "rationale": "The reviewed path fails closed when ancestry cannot be established and narrows the documented pid reuse interval.",
+      "rationale": "The delayed delivery path rechecks the exact conditions that could make the held nudge redundant.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:579",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:582"
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:347-352",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-399"
       ],
-      "reason": "Ancestry is checked immediately before signaling; no actionable defect was established."
+      "reason": "No lost or prematurely emitted held nudge was found in the current path."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
+      ],
+      "bugClass": "re_nudge_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The source preserves the level across the delivery boundary and its shared boundary logic is covered.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:123-152",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:335-345",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:655-658",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:1051-1065"
+      ],
+      "reason": "No lost first reminder or incorrect +5% boundary was identified."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
         ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
       ],
-      "bugClass": "event_durability",
+      "bugClass": "armed_record_freshness",
       "disposition": "ruled_out",
-      "rationale": "The writer does not report a short write as success.",
+      "rationale": "Adversarially rechecked prior finding DS-009 against current code.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:598",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:604"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:485-503",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:363-390",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md:24",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:492-501"
       ],
-      "reason": "Byte count is checked before fsync and return."
+      "reason": "The reviewed condition is fixed in current shouldRelaunch."
     },
     {
-      "iteration": 2,
-      "id": "SL-001",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
       ],
-      "bugClass": "path_traversal",
+      "bugClass": "path_containment_escape",
       "disposition": "ruled_out",
-      "rationale": "The CLI rejects paths outside the designated handoff directory after realpath checks.",
+      "rationale": "The current prepare path includes lexical and realpath containment checks.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:138",
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:168"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-193"
       ],
-      "reason": "The reviewed existing-file and missing-file paths preserve containment beneath the canonical handoff directory."
+      "reason": "No path escape was found in the reviewed branch."
     },
     {
-      "iteration": 2,
-      "id": "SL-002",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
       ],
-      "bugClass": "filesystem_permissions",
+      "bugClass": "runtime_flag_conflict",
       "disposition": "ruled_out",
-      "rationale": "The reviewed directory setup rejects redirected and foreign-owned state directories.",
+      "rationale": "The loop runtime remains authoritative inside the wrapper.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:49",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:56"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:331-350"
       ],
-      "reason": "Ownership, directory type, and mode are checked before state use."
+      "reason": "No runtime mismatch path remained."
     },
     {
-      "iteration": 2,
-      "id": "SL-003",
+      "iteration": 4,
+      "id": "SL-009",
       "dimension": "security",
       "targetRefs": [
         ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
       ],
-      "bugClass": "command_injection",
+      "bugClass": "arm_event_identity",
       "disposition": "ruled_out",
-      "rationale": "The reviewed command path is quoted and notification data is serialized.",
+      "rationale": "The shared identity gate refuses mismatched loop/session/runtime and adapter handlers are bound to their host event; Claude registration itself is deferred for direct config verification.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:540",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:513"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs:89-102",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:54-62",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-382",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:274-284"
       ],
-      "reason": "No executable interpolation sink was found in the inspected construction."
+      "reason": "No mismatched record was found in the reviewed event paths."
     },
     {
-      "iteration": 2,
-      "id": "SL-004",
+      "iteration": 4,
+      "id": "SL-010",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
       ],
-      "bugClass": "gate_exemption_scope",
+      "bugClass": "duplicate_live_killer",
       "disposition": "ruled_out",
-      "rationale": "The exemption guard distinguishes runtime data from its concern README.",
+      "rationale": "Current shared guard checks status plus liveKillerPid before re-arming.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1555",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1576"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:93-102",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md:46-53"
       ],
-      "reason": "Targeted test definitions cover lookalikes, traversal, and README boundaries."
+      "reason": "The current code rejects an already-armed record while a killer owns the lock."
     },
     {
       "iteration": 4,
-      "id": "SL-004",
-      "dimension": "maintainability",
+      "id": "SL-012",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts"
       ],
-      "bugClass": "policy_duplication",
+      "bugClass": "stale_rearm_timestamp",
       "disposition": "ruled_out",
-      "rationale": "Policy ownership is centralized and boundary cases are explicit in tests.",
+      "rationale": "The shared transition restamps both fields, and current tests cover the core behavior plus a runtime adapter.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:71",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:368-384",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:469-493",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:891-896"
       ],
-      "reason": "No second exemption implementation or untested state-root condition was found in the reviewed files."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-005",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "AGENTS.md",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md"
-      ],
-      "bugClass": "documentation_contract_drift",
-      "disposition": "ruled_out",
-      "rationale": "The same exception and boundary appear in the policy core and user-facing guidance.",
-      "evidenceRefs": [
-        "AGENTS.md:70",
-        "AGENTS.md:75",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:28"
-      ],
-      "reason": "No conflicting state-path wording was found across the reviewed surfaces."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-006",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "opencode.json",
-        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md"
-      ],
-      "bugClass": "configuration_inconsistency",
-      "disposition": "ruled_out",
-      "rationale": "All three model settings agree with the phase requirement.",
-      "evidenceRefs": [
-        "opencode.json:3",
-        "opencode.json:6",
-        "opencode.json:10",
-        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md"
-      ],
-      "reason": "No model or variant mismatch was found."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-007",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md"
-      ],
-      "bugClass": "evidence_link_drift",
-      "disposition": "ruled_out",
-      "rationale": "The run record has a single indexed location shared by the tested playbooks.",
-      "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/benchmark/reports/README.md:27",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:46",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:118",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:94"
-      ],
-      "reason": "No stale or inconsistent run 10 pointer was found."
+      "reason": "The stale timestamp/cwd failure fixed in phase 011 does not remain in current arm logic."
     },
     {
       "iteration": 5,
-      "id": "SL-012",
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "idle_detection",
+      "disposition": "ruled_out",
+      "rationale": "The current wait loop enforces idle and missing-file grace before the signal path.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:146-185"
+      ],
+      "reason": "No early-signal path was found in the reviewed branch."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "kill_target_and_grace",
+      "disposition": "ruled_out",
+      "rationale": "The target gates and post-signal grace are present.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:547-634"
+      ],
+      "reason": "No signal/grace ordering defect was found."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-020",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
-        "AGENTS.md",
-        "opencode.json"
+        ".skilled/bin/skilled-loop"
       ],
-      "bugClass": "runtime_policy_integration",
+      "bugClass": "wrapper_exit_decision",
       "disposition": "ruled_out",
-      "rationale": "No cross-surface integration mismatch was found in the reviewed implementation.",
+      "rationale": "The wrapper gates on a readable armed record and an open note, and prints the manual command on decline paths.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896",
-        "AGENTS.md:70",
-        "AGENTS.md:75",
-        "opencode.json:3"
+        ".skilled/bin/skilled-loop:423-514"
       ],
-      "reason": "The implementation, boundary tests, guidance, and model configuration agree."
+      "reason": "The inspected decision, cwd, note-state, and exit-130 paths preserve a claim route."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs"
+      ],
+      "bugClass": "runtime_argument_carry",
+      "disposition": "ruled_out",
+      "rationale": "The builder reconstructs documented fields and the inspected tests assert runtime argv and manual parity.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:169-239",
+        ".skilled/hooks/session-relaunch/README.md:23-33",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:930-965,1049-1084,1251-1275,1596-1645"
+      ],
+      "reason": "No carry mismatch was found in the documented runtime matrix."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
+      ],
+      "bugClass": "receiving_seed_claim",
+      "disposition": "ruled_out",
+      "rationale": "consume re-reads the note metadata and returns spec_folder directly to the wrapper.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:536-575",
+        ".skilled/bin/skilled-loop:93-105,507-510",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:191-235"
+      ],
+      "reason": "The prior finding omitted the live note-to-consume-to-seed source and is retracted."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "shell_wrapper_discovery",
+      "disposition": "ruled_out",
+      "rationale": "The shim ascends from PWD and tests cover repository-root and nested paths with .skilled symlinked to this checkout.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:166-179",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:53-58,85-98"
+      ],
+      "reason": "The inspected resolver and tests cover both link and nested-directory cases in Bash and zsh."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-024",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "runtime_invocation_classification",
+      "disposition": "ruled_out",
+      "rationale": "The resolver separates first-word subcommands from flags and the source tests exercise interactive and pass-through tables for all seven runtimes.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:54-164",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:24-51,85-107"
+      ],
+      "reason": "No classification mismatch was identified in the reviewed lists and cases."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-025",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "tty_gate",
+      "disposition": "ruled_out",
+      "rationale": "The launch function checks file descriptors 0 and 1 and tests cover direct and wrapped launches.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:185-204",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:147-187"
+      ],
+      "reason": "The checked gate matches the documented need for a terminal handoff."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-026",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "hermes_project_plugin_scope",
+      "disposition": "ruled_out",
+      "rationale": "The shim scopes the environment prefix to Hermes and the test asserts the following command sees it unset.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:187-203",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:189-203"
+      ],
+      "reason": "The variable is scoped to the wrapped Hermes invocation in source and test evidence."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-027",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "linked_repo_root_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The note-root, XDG state, hook-config, and cwd sources were compared across the adapters and wrapper.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:236-249",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:182-204",
+        ".skilled/bin/skilled-loop:282-298,423-436",
+        ".skilled/hooks/session-relaunch/README.md:184"
+      ],
+      "reason": "The install-root behavior is documented and the loop record returns the project cwd for continuation."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-031",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md"
+      ],
+      "bugClass": "plain_workflow_contract",
+      "disposition": "ruled_out",
+      "rationale": "The command has canonical numbered sections, no required argument, two examples, structured statuses, and the machine contract explicitly excludes it from router families.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:1-162",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md:262-269",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md:47-75",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:4-10"
+      ],
+      "reason": "The plain-command structure and router-contract scope match the reviewed authoring guidance."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-032",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".devin/SYNC.md",
+        ".skilled/hooks/session-relaunch/README.md"
+      ],
+      "bugClass": "devin_direct_file_entrypoint",
+      "disposition": "ruled_out",
+      "rationale": "The sync manifest confirms no command surface and the session-relaunch README explicitly instructs Devin to read and follow the canonical file.",
+      "evidenceRefs": [
+        ".devin/SYNC.md:20",
+        ".skilled/hooks/session-relaunch/README.md:31,45"
+      ],
+      "reason": "The direct-file fallback is documented, though the shared matrix's slash-command shorthand is misleading."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-033",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/*/review-report.md",
+        "specs/hooks/023-session-relaunch-loop/research/research.md",
+        "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/research.md"
+      ],
+      "bugClass": "duplicate_review_finding",
+      "disposition": "ruled_out",
+      "rationale": "The targeted search found older handoff items but no matching Cursor command-name or skipped-save finding; the existing exit-3 and note-supersession findings are addressed in the current command.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:105-107,135"
+      ],
+      "reason": "No prior report records either current finding, and the adjacent old handoff issues were rechecked as fixed."
     }
   ],
   "cleanSearchProof": [
     {
-      "iteration": 1,
-      "id": "SL-001",
-      "dimension": "correctness",
-      "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
-      ],
-      "bugClass": "state_transition",
-      "disposition": "ruled_out",
-      "rationale": "The reviewed single-writer transition guards prevent an invalid status transition in these paths.",
-      "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:319",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:348"
-      ],
-      "proof": "Both state transition functions check current record status before writing."
-    },
-    {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-002",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
       ],
-      "bugClass": "timeout_cleanup",
+      "bugClass": "suppression_order",
       "disposition": "ruled_out",
-      "rationale": "The replacement-note guard and unarm preconditions prevent the observed different-path case.",
+      "rationale": "The reviewed shared ordering matches the intended suppressions; the adapters invoke the shared decision before emitting handoff text.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:480",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:496"
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:394-420",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:438-458",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:1012-1048"
       ],
-      "proof": "Current state is checked before timeout disarm and the transition has expected-value guards."
+      "proof": "No divergence found in the shared guard order."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-003",
       "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts"
       ],
-      "bugClass": "process_target_identity",
+      "bugClass": "held_nudge_delivery",
       "disposition": "ruled_out",
-      "rationale": "The reviewed path fails closed when ancestry cannot be established and narrows the documented pid reuse interval.",
+      "rationale": "The delayed delivery path rechecks the exact conditions that could make the held nudge redundant.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:579",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:582"
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:347-352",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-399"
       ],
-      "proof": "Ancestry is checked immediately before signaling; no actionable defect was established."
+      "proof": "No lost or prematurely emitted held nudge was found in the current path."
     },
     {
-      "iteration": 1,
+      "iteration": 2,
       "id": "SL-004",
       "dimension": "correctness",
       "targetRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
+      ],
+      "bugClass": "re_nudge_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The source preserves the level across the delivery boundary and its shared boundary logic is covered.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:123-152",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:335-345",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:655-658",
+        ".skilled/hooks/session-relaunch/tests/nudge.test.cjs:1051-1065"
+      ],
+      "proof": "No lost first reminder or incorrect +5% boundary was identified."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
         ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
       ],
-      "bugClass": "event_durability",
+      "bugClass": "armed_record_freshness",
       "disposition": "ruled_out",
-      "rationale": "The writer does not report a short write as success.",
+      "rationale": "Adversarially rechecked prior finding DS-009 against current code.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:598",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:604"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:485-503",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:363-390",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md:24",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:492-501"
       ],
-      "proof": "Byte count is checked before fsync and return."
+      "proof": "The reviewed condition is fixed in current shouldRelaunch."
     },
     {
-      "iteration": 2,
-      "id": "SL-001",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
       ],
-      "bugClass": "path_traversal",
+      "bugClass": "path_containment_escape",
       "disposition": "ruled_out",
-      "rationale": "The CLI rejects paths outside the designated handoff directory after realpath checks.",
+      "rationale": "The current prepare path includes lexical and realpath containment checks.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:138",
-        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:168"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-193"
       ],
-      "proof": "The reviewed existing-file and missing-file paths preserve containment beneath the canonical handoff directory."
+      "proof": "No path escape was found in the reviewed branch."
     },
     {
-      "iteration": 2,
-      "id": "SL-002",
-      "dimension": "security",
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "correctness",
       "targetRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
       ],
-      "bugClass": "filesystem_permissions",
+      "bugClass": "runtime_flag_conflict",
       "disposition": "ruled_out",
-      "rationale": "The reviewed directory setup rejects redirected and foreign-owned state directories.",
+      "rationale": "The loop runtime remains authoritative inside the wrapper.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:49",
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:56"
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:331-350"
       ],
-      "proof": "Ownership, directory type, and mode are checked before state use."
+      "proof": "No runtime mismatch path remained."
     },
     {
-      "iteration": 2,
-      "id": "SL-003",
+      "iteration": 4,
+      "id": "SL-009",
       "dimension": "security",
       "targetRefs": [
         ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js"
       ],
-      "bugClass": "command_injection",
+      "bugClass": "arm_event_identity",
       "disposition": "ruled_out",
-      "rationale": "The reviewed command path is quoted and notification data is serialized.",
+      "rationale": "The shared identity gate refuses mismatched loop/session/runtime and adapter handlers are bound to their host event; Claude registration itself is deferred for direct config verification.",
       "evidenceRefs": [
-        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:540",
-        ".skilled/hooks/session-relaunch/lib/killer.cjs:513"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415",
+        ".skilled/hooks/session-relaunch/codex/stop-arm.mjs:89-102",
+        ".skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:54-62",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-382",
+        ".skilled/hooks/session-relaunch/opencode/session-relaunch.js:274-284"
       ],
-      "proof": "No executable interpolation sink was found in the inspected construction."
+      "proof": "No mismatched record was found in the reviewed event paths."
     },
     {
-      "iteration": 2,
-      "id": "SL-004",
+      "iteration": 4,
+      "id": "SL-010",
       "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
       ],
-      "bugClass": "gate_exemption_scope",
+      "bugClass": "duplicate_live_killer",
       "disposition": "ruled_out",
-      "rationale": "The exemption guard distinguishes runtime data from its concern README.",
+      "rationale": "Current shared guard checks status plus liveKillerPid before re-arming.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1555",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1576"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:93-102",
+        "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md:46-53"
       ],
-      "proof": "Targeted test definitions cover lookalikes, traversal, and README boundaries."
+      "proof": "The current code rejects an already-armed record while a killer owns the lock."
     },
     {
       "iteration": 4,
-      "id": "SL-004",
-      "dimension": "maintainability",
+      "id": "SL-012",
+      "dimension": "security",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts"
       ],
-      "bugClass": "policy_duplication",
+      "bugClass": "stale_rearm_timestamp",
       "disposition": "ruled_out",
-      "rationale": "Policy ownership is centralized and boundary cases are explicit in tests.",
+      "rationale": "The shared transition restamps both fields, and current tests cover the core behavior plus a runtime adapter.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:71",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896"
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:368-384",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:469-493",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:891-896"
       ],
-      "proof": "No second exemption implementation or untested state-root condition was found in the reviewed files."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-005",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "AGENTS.md",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md"
-      ],
-      "bugClass": "documentation_contract_drift",
-      "disposition": "ruled_out",
-      "rationale": "The same exception and boundary appear in the policy core and user-facing guidance.",
-      "evidenceRefs": [
-        "AGENTS.md:70",
-        "AGENTS.md:75",
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:28"
-      ],
-      "proof": "No conflicting state-path wording was found across the reviewed surfaces."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-006",
-      "dimension": "maintainability",
-      "targetRefs": [
-        "opencode.json",
-        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md"
-      ],
-      "bugClass": "configuration_inconsistency",
-      "disposition": "ruled_out",
-      "rationale": "All three model settings agree with the phase requirement.",
-      "evidenceRefs": [
-        "opencode.json:3",
-        "opencode.json:6",
-        "opencode.json:10",
-        "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md"
-      ],
-      "proof": "No model or variant mismatch was found."
-    },
-    {
-      "iteration": 4,
-      "id": "SL-007",
-      "dimension": "maintainability",
-      "targetRefs": [
-        ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md"
-      ],
-      "bugClass": "evidence_link_drift",
-      "disposition": "ruled_out",
-      "rationale": "The run record has a single indexed location shared by the tested playbooks.",
-      "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/benchmark/reports/README.md:27",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:46",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:118",
-        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:94"
-      ],
-      "proof": "No stale or inconsistent run 10 pointer was found."
+      "proof": "The stale timestamp/cwd failure fixed in phase 011 does not remain in current arm logic."
     },
     {
       "iteration": 5,
-      "id": "SL-012",
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "idle_detection",
+      "disposition": "ruled_out",
+      "rationale": "The current wait loop enforces idle and missing-file grace before the signal path.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:146-185"
+      ],
+      "proof": "No early-signal path was found in the reviewed branch."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-016",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs"
+      ],
+      "bugClass": "kill_target_and_grace",
+      "disposition": "ruled_out",
+      "rationale": "The target gates and post-signal grace are present.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:547-634"
+      ],
+      "proof": "No signal/grace ordering defect was found."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-020",
       "dimension": "maintainability",
       "targetRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
-        "AGENTS.md",
-        "opencode.json"
+        ".skilled/bin/skilled-loop"
       ],
-      "bugClass": "runtime_policy_integration",
+      "bugClass": "wrapper_exit_decision",
       "disposition": "ruled_out",
-      "rationale": "No cross-surface integration mismatch was found in the reviewed implementation.",
+      "rationale": "The wrapper gates on a readable armed record and an open note, and prints the manual command on decline paths.",
       "evidenceRefs": [
-        ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568",
-        ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896",
-        "AGENTS.md:70",
-        "AGENTS.md:75",
-        "opencode.json:3"
+        ".skilled/bin/skilled-loop:423-514"
       ],
-      "proof": "The implementation, boundary tests, guidance, and model configuration agree."
+      "proof": "The inspected decision, cwd, note-state, and exit-130 paths preserve a claim route."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-021",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs"
+      ],
+      "bugClass": "runtime_argument_carry",
+      "disposition": "ruled_out",
+      "rationale": "The builder reconstructs documented fields and the inspected tests assert runtime argv and manual parity.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:169-239",
+        ".skilled/hooks/session-relaunch/README.md:23-33",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:930-965,1049-1084,1251-1275,1596-1645"
+      ],
+      "proof": "No carry mismatch was found in the documented runtime matrix."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-022",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs"
+      ],
+      "bugClass": "receiving_seed_claim",
+      "disposition": "ruled_out",
+      "rationale": "consume re-reads the note metadata and returns spec_folder directly to the wrapper.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:536-575",
+        ".skilled/bin/skilled-loop:93-105,507-510",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:191-235"
+      ],
+      "proof": "The prior finding omitted the live note-to-consume-to-seed source and is retracted."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-023",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "shell_wrapper_discovery",
+      "disposition": "ruled_out",
+      "rationale": "The shim ascends from PWD and tests cover repository-root and nested paths with .skilled symlinked to this checkout.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:166-179",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:53-58,85-98"
+      ],
+      "proof": "The inspected resolver and tests cover both link and nested-directory cases in Bash and zsh."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-024",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "runtime_invocation_classification",
+      "disposition": "ruled_out",
+      "rationale": "The resolver separates first-word subcommands from flags and the source tests exercise interactive and pass-through tables for all seven runtimes.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:54-164",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:24-51,85-107"
+      ],
+      "proof": "No classification mismatch was identified in the reviewed lists and cases."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-025",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "tty_gate",
+      "disposition": "ruled_out",
+      "rationale": "The launch function checks file descriptors 0 and 1 and tests cover direct and wrapped launches.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:185-204",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:147-187"
+      ],
+      "proof": "The checked gate matches the documented need for a terminal handoff."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-026",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "bugClass": "hermes_project_plugin_scope",
+      "disposition": "ruled_out",
+      "rationale": "The shim scopes the environment prefix to Hermes and the test asserts the following command sees it unset.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop-shell.sh:187-203",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:189-203"
+      ],
+      "proof": "The variable is scoped to the wrapped Hermes invocation in source and test evidence."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-027",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "linked_repo_root_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The note-root, XDG state, hook-config, and cwd sources were compared across the adapters and wrapper.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:236-249",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:182-204",
+        ".skilled/bin/skilled-loop:282-298,423-436",
+        ".skilled/hooks/session-relaunch/README.md:184"
+      ],
+      "proof": "The install-root behavior is documented and the loop record returns the project cwd for continuation."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-031",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md"
+      ],
+      "bugClass": "plain_workflow_contract",
+      "disposition": "ruled_out",
+      "rationale": "The command has canonical numbered sections, no required argument, two examples, structured statuses, and the machine contract explicitly excludes it from router families.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:1-162",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md:262-269",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md:47-75",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:4-10"
+      ],
+      "proof": "The plain-command structure and router-contract scope match the reviewed authoring guidance."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-032",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".devin/SYNC.md",
+        ".skilled/hooks/session-relaunch/README.md"
+      ],
+      "bugClass": "devin_direct_file_entrypoint",
+      "disposition": "ruled_out",
+      "rationale": "The sync manifest confirms no command surface and the session-relaunch README explicitly instructs Devin to read and follow the canonical file.",
+      "evidenceRefs": [
+        ".devin/SYNC.md:20",
+        ".skilled/hooks/session-relaunch/README.md:31,45"
+      ],
+      "proof": "The direct-file fallback is documented, though the shared matrix's slash-command shorthand is misleading."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-033",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks/023-session-relaunch-loop/review-archive/*/review-report.md",
+        "specs/hooks/023-session-relaunch-loop/research/research.md",
+        "specs/hooks/023-session-relaunch-loop/010-post-fix-research/research/research.md"
+      ],
+      "bugClass": "duplicate_review_finding",
+      "disposition": "ruled_out",
+      "rationale": "The targeted search found older handoff items but no matching Cursor command-name or skipped-save finding; the existing exit-3 and note-supersession findings are addressed in the current command.",
+      "evidenceRefs": [
+        ".skilled/commands/speckit/handoff.md:105-107,135"
+      ],
+      "proof": "No prior report records either current finding, and the adjacent old handoff issues were rechecked as fixed."
     }
   ],
   "searchCoverage": {
     "requiredBugClasses": [
-      "requirement_acceptance_drift",
-      "closure_evidence_status",
-      "phase_map_transition_drift",
-      "continuity_state_drift",
-      "runtime_policy_integration"
+      "adversarial_recheck_open_findings",
+      "checklist_evidence",
+      "automatic_project_hook_registration",
+      "oversized_jsonl_record",
+      "killer_spawn_failure",
+      "same_path_record_replacement",
+      "command_name_resolution",
+      "continuity_save_completion"
     ],
     "covered": [
-      "requirement_acceptance_drift",
-      "closure_evidence_status",
-      "phase_map_transition_drift",
-      "continuity_state_drift"
+      "adversarial_recheck_open_findings",
+      "checklist_evidence",
+      "automatic_project_hook_registration",
+      "oversized_jsonl_record",
+      "killer_spawn_failure",
+      "same_path_record_replacement",
+      "command_name_resolution",
+      "continuity_save_completion"
     ],
     "ruledOut": [
-      "runtime_policy_integration"
+      "universal_self_detection_requirement",
+      "devin_direct_file_entrypoint",
+      "plain_workflow_contract"
     ],
     "deferred": [],
-    "blocked": [],
+    "blocked": [
+      "live Cursor command-palette confirmation unavailable in this source-only review"
+    ],
     "graphCoverageMode": "graphless_fallback"
   },
   "traceability": {
     "summary": {
-      "required": 2,
-      "executed": 2,
+      "required": 0,
+      "executed": 0,
       "pass": 0,
       "partial": 0,
-      "fail": 2,
+      "fail": 0,
       "blocked": 0,
       "notApplicable": 0,
-      "gatingFailures": 2
+      "gatingFailures": 0
     },
-    "results": [
-      {
-        "applicable": true,
-        "counts": {
-          "fail": 2,
-          "partial": 0,
-          "pass": 0
-        },
-        "evidence": [
-          "specs/hooks/023-session-relaunch-loop/spec.md:39",
-          "specs/hooks/023-session-relaunch-loop/spec.md:98",
-          "specs/hooks/023-session-relaunch-loop/spec.md:122",
-          "specs/hooks/023-session-relaunch-loop/goal.md:14",
-          "specs/hooks/023-session-relaunch-loop/goal.md:112"
-        ],
-        "findingRefs": [
-          "P2-003",
-          "P2-004"
-        ],
-        "gateClass": "hard",
-        "protocolId": "spec_code",
-        "status": "fail",
-        "summary": "Parent phase count and handoff text remain stale, and the parent continuity block predates the checked completion record."
-      },
-      {
-        "applicable": true,
-        "counts": {
-          "fail": 2,
-          "partial": 0,
-          "pass": 0
-        },
-        "evidence": [
-          "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/spec.md:120",
-          "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:41",
-          "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/acceptance-criteria.md:67",
-          "specs/hooks/023-session-relaunch-loop/002-pi-opencode-adapters/implementation-summary.md:135"
-        ],
-        "findingRefs": [
-          "P1-001",
-          "P2-002"
-        ],
-        "gateClass": "hard",
-        "protocolId": "checklist_evidence",
-        "status": "fail",
-        "summary": "AC-003 outcomes do not satisfy the literal requirement and AC-006 has incompatible final closure states."
-      }
-    ]
+    "results": []
   },
   "divergence": {
     "started": [],

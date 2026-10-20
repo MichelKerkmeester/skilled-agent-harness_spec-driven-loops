@@ -1,0 +1,347 @@
+{
+  "agent_definition_loaded": true,
+  "dimensions": [
+    "correctness",
+    "traceability"
+  ],
+  "durationMs": 0,
+  "filesReviewed": [
+    ".skilled/hooks/session-relaunch/README.md:21-31,41-45",
+    ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18,38-60,86-114",
+    ".skilled/hooks/session-relaunch/claude/context-nudge.mjs:69-84",
+    ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:48-70,88-155",
+    ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:358-384,403-443",
+    ".skilled/hooks/session-relaunch/lib/killer.cjs:480-508,636-664",
+    ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs:182-198",
+    ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:375-455",
+    ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1291-1358",
+    ".claude/settings.json:120-128,190-193",
+    ".codex/hooks.json:64-68,137-141,157-160",
+    ".pi/extensions/session-relaunch.ts:8-14",
+    ".opencode/plugins/session-relaunch.js:13-18",
+    ".hermes/plugins/repo-guards/plugin.yaml:4-18",
+    ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:51-58,84-98",
+    ".cursor/commands/speckit-handoff.md:1-5",
+    ".devin/SYNC.md:18-21",
+    ".skilled/commands/speckit/handoff.md:27,44,59-62,95-107",
+    ".skilled/skills/sk-doc/sk-create-command/SKILL.md:237-244",
+    ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md:451-474",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md:156-175",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/acceptance-criteria.md:25-55",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md:30-162",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/implementation-summary.md:74-83",
+    "specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md:1-26"
+  ],
+  "findingDetails": [
+    {
+      "id": "LUNA-FANOUT-P0-001",
+      "severity": "P0",
+      "title": "A .skilled-only linked repository has no project-level automatic hook registrations"
+    },
+    {
+      "id": "LUNA-FANOUT-P1-001",
+      "severity": "P1",
+      "title": "A Claude transcript row larger than the 256 KiB tail silently suppresses the nudge"
+    },
+    {
+      "id": "LUNA-FANOUT-P1-003",
+      "severity": "P1",
+      "title": "killer spawn errors leave interactive runtimes armed without a retry trigger"
+    },
+    {
+      "id": "LUNA-FANOUT-P1-004",
+      "severity": "P1",
+      "title": "timeout cleanup can disarm a newer armed record for the same handoff path"
+    },
+    {
+      "id": "LUNA-FANOUT-P1-005",
+      "severity": "P1",
+      "title": "Cursor's command mirror does not expose the documented /speckit:handoff name"
+    },
+    {
+      "id": "LUNA-FANOUT-P1-006",
+      "severity": "P2",
+      "title": "Packet-bound continuity save lacks an explicit stop branch on failure"
+    }
+  ],
+  "findingsCount": 6,
+  "findingsNew": [],
+  "findingsSummary": {
+    "P0": 1,
+    "P1": 4,
+    "P2": 1
+  },
+  "focus": "correctness/traceability: final adversarial re-check of all active findings, severity challenge, and checklist evidence",
+  "generation": 1,
+  "iteration": 10,
+  "lineageMode": "new",
+  "mode": "review",
+  "newFindingsRatio": 0,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "reviewDepthApplicability": {
+    "enforcement": "strict",
+    "scopeClass": "complex",
+    "reason": "Final adjudication spans five automatic runtimes, shared parser/state transitions, command-only entrypoints, and packet traceability.",
+    "evidenceRefs": [
+      ".skilled/hooks/session-relaunch/README.md:21-31",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18,38-60,94-109",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:139-155",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs:480-508",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/acceptance-criteria.md:25-55"
+    ]
+  },
+  "reviewDepthSchemaVersion": 2,
+  "run": "fanout-luna-1792514860659-ivxs3k",
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "adversarial_recheck_open_findings",
+      "checklist_evidence",
+      "automatic_project_hook_registration",
+      "oversized_jsonl_record",
+      "killer_spawn_failure",
+      "same_path_record_replacement",
+      "command_name_resolution",
+      "continuity_save_completion"
+    ],
+    "covered": [
+      "adversarial_recheck_open_findings",
+      "checklist_evidence",
+      "automatic_project_hook_registration",
+      "oversized_jsonl_record",
+      "killer_spawn_failure",
+      "same_path_record_replacement",
+      "command_name_resolution",
+      "continuity_save_completion"
+    ],
+    "ruledOut": [
+      "universal_self_detection_requirement",
+      "devin_direct_file_entrypoint",
+      "plain_workflow_contract"
+    ],
+    "deferred": [],
+    "blocked": [
+      "live Cursor command-palette confirmation unavailable in this source-only review"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-034",
+      "bugClass": "automatic_project_hook_registration",
+      "dimension": "correctness",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P0-001",
+      "hypothesis": "A linked repository with only .skilled may still load all automatic callbacks.",
+      "invariant": "Each runtime requires its project registration in the consumer repository.",
+      "rationale": "README lists five sibling registration surfaces; the fixture creates only .skilled.",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/README.md",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "README runtime matrix and symlink fixture",
+          "evidenceRefs": [
+            ".skilled/hooks/session-relaunch/README.md:23-30",
+            ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:51-58,84-98"
+          ],
+          "result": "Wrapper discovery exists; project hook provisioning is absent."
+        }
+      ]
+    },
+    {
+      "id": "SL-035",
+      "bugClass": "oversized_jsonl_record",
+      "dimension": "correctness",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P1-001",
+      "hypothesis": "A final assistant record larger than the default tail may be lost.",
+      "invariant": "The latest complete usage row must remain parseable at threshold time.",
+      "rationale": "Byte-tail slicing and first-partial-line discard can leave no assistant entry.",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        ".skilled/hooks/session-relaunch/claude/context-nudge.mjs"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "usage reader, nudge null path, and long-row test",
+          "evidenceRefs": [
+            ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18,38-60,94-109",
+            ".skilled/hooks/session-relaunch/claude/context-nudge.mjs:71-75",
+            ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs:182-198"
+          ],
+          "result": "Partial final row is skipped; null usage returns without a nudge."
+        }
+      ]
+    },
+    {
+      "id": "SL-036",
+      "bugClass": "killer_spawn_failure",
+      "dimension": "correctness",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P1-003",
+      "hypothesis": "Killer spawn failure may leave an armed record without a supervisor.",
+      "invariant": "An armed record must have a live killer or an explicit retryable state.",
+      "rationale": "Arm precedes spawn; tests confirm both spawn-error paths leave it armed.",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "stop-arm spawn path and error tests",
+          "evidenceRefs": [
+            ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:48-70,139-155",
+            ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:375-455"
+          ],
+          "result": "Sync throw and async error are logged with no rollback or independent retry."
+        }
+      ]
+    },
+    {
+      "id": "SL-037",
+      "bugClass": "same_path_record_replacement",
+      "dimension": "correctness",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P1-004",
+      "hypothesis": "An old timeout may disarm a replacement that reuses its handoff path.",
+      "invariant": "Stale finalizers must compare the exact record identity they observed.",
+      "rationale": "Timeout checks path, unarm checks status/path, and pending records can arm while the old killer lock is live.",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "timeout finalizer, armable predicate, arm write, supersession test",
+          "evidenceRefs": [
+            ".skilled/hooks/session-relaunch/lib/killer.cjs:480-508,636-664",
+            ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:368-384,403-415,430-442",
+            ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1291-1358"
+          ],
+          "result": "Different-path replacement is covered; same-path replacement has no identity comparison."
+        }
+      ]
+    },
+    {
+      "id": "SL-038",
+      "bugClass": "command_name_resolution",
+      "dimension": "traceability",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P1-005",
+      "hypothesis": "Cursor may not expose the README trigger for the flat command file.",
+      "invariant": "A documented command trigger must resolve to an available command file.",
+      "rationale": "README names /speckit:handoff; only mirror is speckit-handoff.md; official docs support the file-derived inference.",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/README.md",
+        ".cursor/commands/speckit-handoff.md"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "runtime matrix, mirror filename, official command docs",
+          "evidenceRefs": [
+            ".skilled/hooks/session-relaunch/README.md:29,45",
+            ".cursor/commands/speckit-handoff.md:1-5",
+            "https://docs.cursor.com/en/agent/chat/commands",
+            "https://prod.cursor.com/docs/reference/deeplinks"
+          ],
+          "result": "Mismatch remains source-based; live palette check is direct confirmation."
+        }
+      ]
+    },
+    {
+      "id": "SL-039",
+      "bugClass": "continuity_save_completion",
+      "dimension": "correctness",
+      "disposition": "finding",
+      "linkedFindingId": "LUNA-FANOUT-P1-006",
+      "hypothesis": "A failed packet continuity save may not stop later prepare.",
+      "invariant": "Fresh continuity should be confirmed before the receiver resumes a bound packet.",
+      "rationale": "Command requires a prior save but has no explicit failure branch; the skill rule is conditional and template wording conflicts.",
+      "targetRefs": [
+        ".skilled/commands/speckit/handoff.md",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md"
+      ],
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "save step, prepare validation, skill rule, template wording",
+          "evidenceRefs": [
+            ".skilled/commands/speckit/handoff.md:27,59-62,95-107",
+            ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:361-381,418-439",
+            ".skilled/skills/sk-doc/sk-create-command/SKILL.md:237-244",
+            ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md:461-474"
+          ],
+          "result": "Missing explicit stop branch retained at P2; universal mandatory-self-detection claim withdrawn."
+        }
+      ]
+    }
+  ],
+  "sessionId": "fanout-luna-1792514860659-ivxs3k",
+  "status": "complete",
+  "targetSelection": {
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search",
+      "path_match",
+      "prior_review_search"
+    ],
+    "selectedTargets": [
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      ".pi/extensions/session-relaunch.ts",
+      ".opencode/plugins/session-relaunch.js",
+      ".hermes/plugins/repo-guards/plugin.yaml",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+      ".cursor/commands/speckit-handoff.md",
+      ".devin/SYNC.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/acceptance-criteria.md",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/implementation-summary.md",
+      "specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md"
+    ],
+    "selectionReason": "Re-read every open finding at source, challenged severity, and completed the reserved checklist pass.",
+    "evidenceRefs": [
+      "specs/hooks/023-session-relaunch-loop/review/lineages/luna/steer.md:1-26",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs:1291-1358",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/acceptance-criteria.md:25-55",
+      "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md:30-162"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "partial"
+  },
+  "target_agent": "deep-review",
+  "timestamp": "2026-10-20T17:50:23Z",
+  "traceabilityChecks": {
+    "checklist_evidence": "AC-001/002 are recorded Met; AC-003 review artifacts are present with inline-executor limitation; AC-004/005/006 remain open; T006-T013 remain unchecked.",
+    "feature_catalog_code": "README distinguishes five automatic runtimes from command-only paths; linked consumer registration gap remains.",
+    "skill_agent": "SKILL.md:244 is conditional; template line 463 conflicts. The save-failure stop branch is retained at P2 only.",
+    "agent_cross_runtime": "Inspected project registration surfaces for Claude, Pi, OpenCode, Codex, and Hermes; .skilled-only link does not provision them.",
+    "spec_code": "The phase-016 linked-.skilled requirement is not met by wrapper discovery alone; ten inline iteration artifacts now record the review.",
+    "playbook_capability": "Static source and recorded-test evidence only; no provider-backed runtime claim.",
+    "duplicate_review_finding": "Iteration 9 found no matching prior Cursor-name or continuity-save issue; adjacent handoff issues were rechecked as addressed."
+  },
+  "type": "iteration"
+}
