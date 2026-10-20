@@ -48,7 +48,12 @@ test('a section whose two answers mean 0.75 is flagged', async () => {
   const stub = scripted([body(0.8), body(0.7)]);
   const result = await screenText(ONE_SECTION, { env: {}, gate: GATE, classify: stub.classify });
 
-  assert.deepEqual(result, { checked: 1, flagged: [{ heading: '# Example', mean: 0.75, position: 1 }], unchecked: 0, unmeasured: 0 });
+  assert.deepEqual(result, {
+    checked: 1,
+    flagged: [{ heading: '# Example', mean: 0.75, position: 1 }],
+    unchecked: 0,
+    unmeasured: 0,
+  });
   assert.equal(stub.calls.length, 2);
   assert.equal(stub.calls[0].file, GATE.path);
   assert.deepEqual(stub.calls[0].args, ['noul', '--provider', 'official', '-q', INSTRUCTION]);

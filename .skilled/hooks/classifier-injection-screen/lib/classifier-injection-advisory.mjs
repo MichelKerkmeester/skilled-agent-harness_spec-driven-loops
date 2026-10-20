@@ -88,7 +88,10 @@ export function advisoryLine(flagged, checked) {
  * }} [options] The environment, plus gate and screen seams for tests.
  * @returns {Promise<string | null>} The advisory line, or null.
  */
-export async function screenAdvisory(text, { env = process.env, ready = featureReady, screen = screenText } = {}) {
+export async function screenAdvisory(
+  text,
+  { env = process.env, ready = featureReady, screen = screenText } = {},
+) {
   if (typeof text !== 'string' || text.trim() === '') return null;
   const gate = ready('injection-screen', env);
   if (!gate.ready) return null;

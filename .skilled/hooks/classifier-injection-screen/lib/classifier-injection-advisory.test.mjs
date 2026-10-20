@@ -86,7 +86,11 @@ test('blank text adds no advisory and never asks the gate', async () => {
   for (const text of ['', '   \n\t\n']) {
     const gate = readyStub(true);
     const screen = screenStub();
-    const result = await screenAdvisory(text, { env: {}, ready: gate.ready, screen: screen.screen });
+    const result = await screenAdvisory(text, {
+      env: {},
+      ready: gate.ready,
+      screen: screen.screen,
+    });
 
     assert.equal(result, null);
     assert.equal(gate.calls.length, 0);

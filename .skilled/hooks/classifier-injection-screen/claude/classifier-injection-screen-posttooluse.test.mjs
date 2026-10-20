@@ -10,15 +10,24 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { test } from 'node:test';
+import { after, test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const HOOK = path.join(path.dirname(fileURLToPath(import.meta.url)), 'classifier-injection-screen-posttooluse.mjs');
 
+// Every fixture root this file creates, so the suite can remove them again.
+const fixtureRoots = [];
+
 // Fresh temp directory whose name marks it as a fixture.
 function tempDir(prefix) {
-  return fs.mkdtempSync(path.join(os.tmpdir(), `injection-screen-${prefix}-`));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), `injection-screen-${prefix}-`));
+  fixtureRoots.push(root);
+  return root;
 }
+
+after(() => {
+  for (const root of fixtureRoots) fs.rmSync(root, { recursive: true, force: true });
+});
 
 // A stub `jev` first on PATH: `auth status` passes and `noul` prints the
 // probability the test chose. Every call is appended to the log beside it.
@@ -42,7 +51,13 @@ exit 0
 // missing hook-flags file so no local kill-switch can leak in.
 function hookEnv(bin, extra = {}) {
   const env = { ...process.env };
-  for (const key of ['JEV_FEATURES', 'JEV_FEATURE_INJECTION_SCREEN', 'SYSTEM_HOOKS_DISABLED', 'SYSTEM_INJECTION_SCREEN_DISABLED', 'JEV_PROVIDER']) {
+  for (const key of [
+    'JEV_FEATURES',
+    'JEV_FEATURE_INJECTION_SCREEN',
+    'SYSTEM_HOOKS_DISABLED',
+    'SYSTEM_INJECTION_SCREEN_DISABLED',
+    'JEV_PROVIDER',
+  ]) {
     delete env[key];
   }
   return {

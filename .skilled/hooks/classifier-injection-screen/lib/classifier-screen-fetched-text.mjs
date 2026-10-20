@@ -130,7 +130,10 @@ function sliceLongSections(sections) {
       continue;
     }
     for (let offset = 0; offset < section.text.length; offset += MAX_SECTION_CHARS) {
-      pieces.push({ heading: section.heading, text: section.text.slice(offset, offset + MAX_SECTION_CHARS) });
+      pieces.push({
+        heading: section.heading,
+        text: section.text.slice(offset, offset + MAX_SECTION_CHARS),
+      });
     }
   }
   return pieces;
