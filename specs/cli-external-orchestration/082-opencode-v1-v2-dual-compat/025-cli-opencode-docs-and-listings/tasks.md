@@ -57,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T013 Lint the changed workflow and rerun the changed suites (`scratch/after/`)
-- [ ] T014 Review the change read-only with Luna until PASS (`scratch/review/`)
-- [ ] T015 Validate this folder strict and 082 recursively, each RESULT: PASSED
+- [x] T013 Lint the changed workflow and rerun the changed suites after the main merge (`scratch/final/`) Done: the unit-test step as CI runs it passes 46 of 46, the dispatch rule tests 38 of 38, `check-gate-inputs.sh` RESULT: PASSED, `actionlint` exit 0, markdown links 0 broken, frontmatter coverage 0 violations, the playbook fleet exit 0 and the Hermes copies in sync. Live, both `command-listed` legs PASS; v2 `plugin-active` fails here as it did at baseline (`scratch/final/battery-live.txt`).
+- [x] T014 Review the change read-only with Luna until PASS (`scratch/briefs/luna-*.md`) Done: round 1 FAIL (an unsettled v2 command listing was judged; a bare retired slug the test missed; the Hermes copy unscanned; a stale share heading), round 2 FAIL (the v2 `--file` cell; the `attach` row's share use; the v2 provider claim, now backed by `scratch/row10-v2-models-standalone.txt`), round 3 FAIL (the default check matched the id anywhere in the section; the dated note's share clause), round 4 PASS with one P2, trailing whitespace in an evidence file, fixed. Mutations for the fixes: `scratch/mutation/row9-m3-no-settle-gate.txt`, `row10-m1-bare-slug.txt`, `row10-m2-default-selector.txt`.
+- [x] T015 Validate this folder strict and 082 recursively, each RESULT: PASSED Done: after the main merge, this folder strict RESULT: PASSED and the recursive strict run over 082 RESULT: PASSED for every folder.
 - [ ] T016 Row 9 and row 10: prove the battery job passes on CI on both families at the pushed main commit
 <!-- /ANCHOR:phase-3 -->
 

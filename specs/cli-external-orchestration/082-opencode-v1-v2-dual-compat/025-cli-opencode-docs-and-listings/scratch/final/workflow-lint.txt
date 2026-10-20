@@ -1,0 +1,4 @@
+files=41 inputs_resolved=228 dynamic_inputs=11 twin_pairs=287 failures=0
+RESULT: PASSED
+exit 0
+actionlint exit 0

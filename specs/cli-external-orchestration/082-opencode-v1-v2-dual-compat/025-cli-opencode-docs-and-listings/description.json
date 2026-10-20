@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
   "description": "cli-opencode docs and command listings",
   "keywords": [
@@ -7,14 +8,15 @@
     "command",
     "listings"
   ],
-  "lastUpdated": "2026-10-20T08:40:05.879Z",
+  "lastUpdated": "2026-10-20T10:02:55.557Z",
   "specId": "025",
   "folderSlug": "cli-opencode-docs-and-listings",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-10-26_11-02__the-battery-gains-a-command-listed-leg-on-both.md"
+  ]
 }

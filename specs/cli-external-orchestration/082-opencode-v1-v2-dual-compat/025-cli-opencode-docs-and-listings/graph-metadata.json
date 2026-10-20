@@ -50,12 +50,12 @@
       ".github/workflows/opencode-dual-version.yml",
       "scratch/v2-api-probe.cjs",
       "scratch/battery-live-after-a.txt",
-      "scratch/mutation/row10-m0-old-docs.txt",
       "scratch/row11-grep-check.txt",
       "scratch/row12-v1-share-source.txt",
       "scratch/row12-v1-share-probe.txt",
-      "scratch/after/unit-step.txt",
-      "scratch/after/dispatch-rule-checks.txt"
+      "scratch/final/unit-step.txt",
+      "scratch/after/dispatch-rule-checks.txt",
+      "scratch/after/workflow-lint.txt"
     ],
     "entities": [
       {
@@ -137,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "row10-m0-old-docs.txt",
-        "kind": "file",
-        "path": "scratch/mutation/row10-m0-old-docs.txt",
-        "source": "derived"
-      },
-      {
         "name": "row11-grep-check.txt",
         "kind": "file",
         "path": "scratch/row11-grep-check.txt",
@@ -163,13 +157,19 @@
       {
         "name": "unit-step.txt",
         "kind": "file",
-        "path": "scratch/after/unit-step.txt",
+        "path": "scratch/final/unit-step.txt",
         "source": "derived"
       },
       {
         "name": "dispatch-rule-checks.txt",
         "kind": "file",
         "path": "scratch/after/dispatch-rule-checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-lint.txt",
+        "kind": "file",
+        "path": "scratch/after/workflow-lint.txt",
         "source": "derived"
       },
       {
@@ -205,8 +205,8 @@
     ],
     "causal_summary": "The cli-opencode docs disagree with the installed binaries",
     "created_at": "2026-10-20T08:40:05Z",
-    "last_save_at": "2026-10-20T09:07:46.264Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-20T10:02:55.557Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba503ba0d256240b9a4fc724655bb1649e7d54e15ef86441d0fec6a2ab261258",
+    "source_fingerprint": "sha256:a2a791f1359470af0f3d38cdf82204417c4c24f7e90b9459810f7a516e410a84",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "caf4ddec425baf0128101e1baf6d0bca353acd1e9c19d5e02be88ea902008dc5",
       "plan.md": "217b182113d5013e9464bf27cbb8d57120f996e4df44311f83c3ec2db4cb366c",
-      "tasks.md": "4f7e46d6199315ec618d6fefc5c38dc0b46fc90ab57f1376b32fa8dbfa1eaa2a",
-      "implementation-summary.md": "507cd9a5d2c2b726b13068a7bc18d76a972af6b62c105467c1be388242ce8df2"
+      "tasks.md": "cb5cc63aeed275886c038b461f0d8802129a76f044ae38b4f916856478129661",
+      "implementation-summary.md": "ce18a4b0182f2e6d31ef74b587a25c4fe3280f82f1bb232ee44c9ff65ac7e4cc"
     },
     "last_active_at": null
   }

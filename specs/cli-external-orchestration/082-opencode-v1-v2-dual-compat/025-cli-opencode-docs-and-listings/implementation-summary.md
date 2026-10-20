@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings"
-    last_updated_at: "2026-10-20T09:10:00Z"
-    last_updated_by: "template-author"
-    recent_action: "All five rows edited and checked locally; Luna review and CI proof pending"
-    next_safe_action: "Run the Luna review, then merge main, push and watch CI"
+    last_updated_at: "2026-10-20T10:02:55Z"
+    last_updated_by: "generate-context"
+    recent_action: "Rows 9 10 11 12 31 fixed, Luna round 4 PASS, main merged"
+    next_safe_action: "Run the push to main, then prove the battery and the new tests on CI"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-025-cli-opencode-docs-and-listings"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ A reader of the cli-opencode skill now gets the default model id, the agent dire
 
 ### Phase 25: cli-opencode-docs-and-listings
 
-**Row 9.** The doctor's OpenCode version battery has a `command-listed` leg on both families. It reads the v1 `debug config` command keys and the v2 `GET /api/command` listing, and compares each with the `.md` files under the project's `.opencode/command(s)` folder. Names from the global config folders are allowed on both families. On v2 the leg also allows every ancestor `.opencode` folder's commands, because v2 walks past the repository root, and the two built-ins `init` and `review`. A raw comparison read those as drift. The orphaned `.skilled/commands/deep/assets/compiled/` folder was already gone from the main checkout when this phase looked, and nothing under it is tracked.
+**Row 9.** The doctor's OpenCode version battery has a `command-listed` leg on both families. It reads the v1 `debug config` command keys and the v2 `GET /api/command` listing, and compares each with the `.md` files under the project's `.opencode/command(s)` folder. Names from the global config folders are allowed on both families. On v2 the leg also allows every ancestor `.opencode` folder's commands, because v2 walks past the repository root, and the two built-ins `init` and `review`. A raw comparison read those as drift. A v2 listing that never settles on a non-zero count degrades the leg instead of being judged. The orphaned `.skilled/commands/deep/assets/compiled/` folder was already gone from the main checkout when this phase looked, and nothing under it is tracked.
 
-**Row 10.** Every current cli-opencode doc dispatches `opencode-go/deepseek-v4.1-flash`, the roster's default and the only DeepSeek flash id `opencode models opencode-go` lists. One dated coverage note keeps the old id it recorded, and the changelog and benchmark folders are untouched. `default-model-id.test.cjs` holds the docs to the roster and runs in the battery job's unit-test step.
+**Row 10.** Every current cli-opencode doc, and the generated Hermes copy of `SKILL.md`, dispatches `opencode-go/deepseek-v4.1-flash`, the roster's default and the only DeepSeek flash id `opencode models opencode-go` lists. One dated coverage note keeps the old id it recorded, and the changelog and benchmark folders are untouched. `default-model-id.test.cjs` holds the docs to the roster, catches the slug with or without its provider prefix, checks every model selector in `SKILL.md`'s default invocation, and runs in the battery job's unit-test step.
 
 **Row 11.** The docs say OpenCode loads `.opencode/agents/<slug>.md`, which in this repository links to `.skilled/agents/`, where the files are edited. Both versions list the same 11 repo agents.
 
@@ -109,12 +109,13 @@ Each fact was probed before any doc changed. OpenCode 1.19.3 ran with a private 
 
 | Check | Result |
 |-------|--------|
-| Row 9 tests | 36 of 36 pass; on main's battery 10 fail; with the built-ins not subtracted 1 fails; with the walk-up removed 3 fail (`scratch/mutation/row9-*.txt`) |
+| Row 9 tests | 37 of 37 pass; on main's battery 10 fail; with the built-ins not subtracted 1 fails; with the walk-up removed 3 fail; with the settle gate removed 1 fails (`scratch/mutation/row9-*.txt`) |
 | Row 9 live, nested worktree | v1 and v2 `command-listed` both PASS, v2 listing 42 against 40 required (`scratch/battery-live-after-a.txt`) |
-| Row 10 test | 3 of 3 pass; against main's docs the retired-id test fails (`scratch/mutation/row10-m0-old-docs.txt`) |
+| Row 10 test | 3 of 3 pass; against main's docs the retired-id test fails, the bare slug is caught, and a default example switched to another provider fails (`scratch/mutation/row10-m*.txt`) |
 | Row 11 grep | Six runtime-load claims on main, none after (`scratch/row11-grep-check.txt`) |
 | Row 12 probe | The binary's option is hidden and deprecated, and a live run printed the discontinued line (`scratch/row12-v1-share-source.txt`, `scratch/row12-v1-share-probe.txt`) |
-| Unit-test step as CI runs it | 45 of 45 pass (`scratch/after/unit-step.txt`) |
+| Unit-test step as CI runs it, after the main merge | 46 of 46 pass (`scratch/final/unit-step.txt`) |
+| Luna review, read-only | Rounds 1 to 3 FAIL, round 4 PASS with one P2, fixed (`tasks.md` T014) |
 | Dispatch rule tests | 38 of 38 pass (`scratch/after/dispatch-rule-checks.txt`) |
 | Workflow lint | `check-gate-inputs.sh` RESULT: PASSED, `actionlint` exit 0 (`scratch/after/workflow-lint.txt`) |
 | Doc gates | Frontmatter coverage 0 violations, markdown links 0 broken, playbook fleet exit 0 with cli-opencode PASS (`scratch/after/doc-gates.txt`, `scratch/after/playbook-fleet.txt`) |
