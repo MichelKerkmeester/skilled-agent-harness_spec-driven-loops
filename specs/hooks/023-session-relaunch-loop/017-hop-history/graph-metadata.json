@@ -42,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      ".skilled/hooks/hook-flags.env",
       ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/lib/killer.cjs",
@@ -79,6 +80,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
     "created_at": "2026-10-20T20:08:29Z",
-    "last_save_at": "2026-10-20T20:46:56.136Z",
+    "last_save_at": "2026-10-20T21:22:07.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +209,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:363e40c453d94ddbb546ded8c310424cc9e4abb49fe2c66a1befce88fcf8c611",
+    "source_fingerprint": "sha256:c02d14133fe627e8f253d5f4fb16621bb64f7ed5bb8b7f8a8b8233fe4a1bccf1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40ca7a948e990269ad9bdf7d795af3dba359aa0b0936682c7cd6392c40235b64",
+      "spec.md": "f93fed6d0dff85fe4fbfe6e9ca7f4d1f691fe278ae92c3f154e66c9d18ce6cb3",
       "plan.md": "26a82e28d609f59e2d2c911ee4340fae01bc4f1292b0e6f277a164b3c0f32f39",
-      "tasks.md": "8f587e2add1ee7862e4990f4e6f796296fc50f68f0940a6ab15a296353e17e46",
-      "implementation-summary.md": "0fbd302bb4f8b6c59fb855f0fd1739ca59b62efb5967245045af0f26954f0a52"
+      "tasks.md": "38809bcfec04d3b888583b6de2d3afac3b581104b369f6fdd0e319d939e84721",
+      "implementation-summary.md": "0a09cdc85504a39b672e8735ffb5b887b7c7fbfd19fbf84c07c5f017fb425dde"
     },
     "last_active_at": null
   }
