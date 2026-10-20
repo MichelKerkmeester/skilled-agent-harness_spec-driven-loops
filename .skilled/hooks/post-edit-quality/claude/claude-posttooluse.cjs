@@ -105,7 +105,9 @@ async function main() {
   const toolName = payload.tool_name;
   if (toolName !== 'Write' && toolName !== 'Edit') return;
 
-  const toolInput = payload.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
+  const toolInput = payload.tool_input && typeof payload.tool_input === 'object'
+    ? payload.tool_input
+    : {};
   const filePath = toolInput.file_path;
   if (typeof filePath !== 'string' || !filePath) return;
 

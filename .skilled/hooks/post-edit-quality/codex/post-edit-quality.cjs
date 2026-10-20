@@ -111,7 +111,9 @@ async function main() {
 
   if (!CODEX_EDIT_TOOLS.has(String(payload.tool_name || '').toLowerCase())) return;
 
-  const toolInput = payload.tool_input && typeof payload.tool_input === 'object' ? payload.tool_input : {};
+  const toolInput = payload.tool_input && typeof payload.tool_input === 'object'
+    ? payload.tool_input
+    : {};
   const projectDir = typeof payload.cwd === 'string' && payload.cwd
     ? payload.cwd
     : (process.env.CODEX_PROJECT_DIR || process.cwd());
