@@ -1,0 +1,9 @@
+repo:
+extensions=["pi-cache-optimizer","pi-fast-mode-w-subagent-support"]
+Found ["pi-cache-optimizer","pi-fast-mode-w-subagent-support"]
+fixture with a third extension and a lib folder:
+extensions=["pi-cache-optimizer","pi-fast-mode-w-subagent-support","pi-new-extension"]
+Found ["pi-cache-optimizer","pi-fast-mode-w-subagent-support","pi-new-extension"]
+empty extensions folder:
+::error::No folder under .pi/extensions holds a package.json
+exit=1

@@ -1055,6 +1055,44 @@ test('nested: real readV2 under an outer checkout passes plugin-active with an i
   assert.equal(record.configDir, path.join(root, '.opencode'));
 });
 
+// A worktree reached through a symlinked alias must still be found nested and
+// isolated, or the outer checkout's plugin copy would shadow the aliased root's.
+test('nested: real readV2 through a symlinked alias of a nested root isolates and passes plugin-active', async (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(outer, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  const real = path.join(outer, 'wt');
+  fs.mkdirSync(path.join(real, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(real, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  commandFile(real, 'battery');
+  const alias = path.join(tempRoot(t), 'alias');
+  fs.symlinkSync(real, alias);
+  const server = fakeServer(t, alias, { ancestor: outer });
+  const { calls, deps } = makeDeps({
+    env: { OPENCODE_BIN: server.script },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: (bin, dir) => readV2(bin, dir, envWithoutSwitches()),
+  });
+
+  const code = await main(['--family=v2', '--root=' + alias, '--json'], deps);
+  const summary = summaryOf(calls);
+  assert.equal(code, 0, JSON.stringify(summary.results));
+  const active = summary.results.find((result) => result.leg === 'plugin-active');
+  assert.ok(active);
+  assert.equal(active.status, 'PASS', resultText(active));
+  assert.match(active.details[0], /^isolated: OpenCode 2 also loads /);
+  assert.ok(active.details[0].includes(path.join(fs.realpathSync(outer), '.opencode', 'plugins')));
+  const skill = summary.results.find((result) => result.leg === 'skill-visible');
+  assert.ok(skill);
+  assert.equal(skill.status, 'PASS', resultText(skill));
+  const listed = summary.results.find((result) => result.leg === 'command-listed');
+  assert.ok(listed);
+  assert.equal(listed.status, 'PASS', resultText(listed));
+  const record = JSON.parse(fs.readFileSync(server.record, 'utf8'));
+  assert.equal(record.projectDisable, '1');
+  assert.equal(record.configDir, path.join(alias, '.opencode'));
+});
+
 test('nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root', (t) => {
   const outer = tempRoot(t);
   fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });

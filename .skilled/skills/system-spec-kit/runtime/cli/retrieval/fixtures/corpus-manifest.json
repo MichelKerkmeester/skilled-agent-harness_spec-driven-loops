@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3cbf7917fecf3e4d785ac6bb86aef9560f81dfd409f3064bf40853eff2278621",
+  "corpusHash": "9017737ffb7a4f82aef43b7e580eaaf1872bf4b6872ad2c31b9c340d71ecddc4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25471,
+  "includedPathCount": 25479,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8995,6 +8995,14 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25502,7 +25510,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f52dd78c79988331e67741537ed60fcfe63eb4020c340580545b7508c546e854",
+  "manifestHash": "542eaa239c4b45b13579e1a1eaccbeb5a491c0ab6d2887844bf9670e36c78e77",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26598,6 +26606,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

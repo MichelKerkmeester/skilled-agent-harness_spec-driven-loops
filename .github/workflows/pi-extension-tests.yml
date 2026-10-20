@@ -1,9 +1,10 @@
 name: Pi Extension Tests
 
-# Each .pi extension carries its own TypeScript suite, run by its own package
-# script from its own lockfile, and no workflow called either one, so a broken
-# extension reached main unseen. Each leg installs one extension from its
-# lockfile and runs its test script.
+# Every folder under .pi/extensions that holds a package.json is found at run
+# time, so adding an extension needs no edit here. Each one installs from its
+# lockfile, then runs its test script, which is required: an extension without
+# one fails its leg on purpose, so an untested extension cannot pass. The
+# typecheck and the pack check run only when the extension defines them.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -20,13 +21,38 @@ permissions:
   contents: read
 
 jobs:
+  discover:
+    name: Discover extensions
+    runs-on: ubuntu-latest
+    outputs:
+      extensions: ${{ steps.list.outputs.extensions }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: List extension folders
+        id: list
+        shell: bash
+        run: |
+          set -euo pipefail
+          folders=$(find .pi/extensions -mindepth 2 -maxdepth 2 -name package.json \
+            | sed -e 's|/package\.json$||' -e 's|.*/||' \
+            | sort)
+          if [ -z "$folders" ]; then
+            echo "::error::No folder under .pi/extensions holds a package.json"
+            exit 1
+          fi
+          extensions=$(printf '%s\n' "$folders" | jq -R -s -c 'split("\n")|map(select(length>0))')
+          echo "extensions=$extensions" >> "$GITHUB_OUTPUT"
+          echo "Found $extensions"
+
   pi-extension:
     name: ${{ matrix.extension }} tests
+    needs: discover
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        extension: [pi-cache-optimizer, pi-fast-mode-w-subagent-support]
+        extension: ${{ fromJSON(needs.discover.outputs.extensions) }}
     defaults:
       run:
         working-directory: .pi/extensions/${{ matrix.extension }}
@@ -43,3 +69,9 @@ jobs:
 
       - name: Run the test script
         run: npm test
+
+      - name: Typecheck
+        run: npm run --if-present typecheck
+
+      - name: Check the packed extension
+        run: npm run --if-present check:pack

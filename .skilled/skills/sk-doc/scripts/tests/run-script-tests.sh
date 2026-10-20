@@ -44,12 +44,15 @@ for test_file in "${NODE_TESTS[@]}"; do
   case "$skip" in *" $test_file "*) echo "SKIP $test_file"; continue ;; esac
 
   log="$(mktemp)"
-  node "$test_file" >"$log" 2>&1
+  node --test-reporter=tap "$test_file" >"$log" 2>&1
   status=$?
   if [ "$status" -eq 0 ]; then
     echo "PASS $test_file"
   else
     echo "FAIL $test_file (exit $status)"
+    # TAP is pinned so the `not ok` lines exist whether or not a terminal is
+    # attached and on Node versions whose default reporter is spec (the flag
+    # needs Node 18.15 or later; CI runs 22).
     # A node:test file reports each failing subtest as a `not ok` block that can sit
     # far above the tail, so print those blocks first or the failure has no name.
     grep -n -A 20 '^not ok' "$log" | head -n 120 || true

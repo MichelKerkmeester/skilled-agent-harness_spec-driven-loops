@@ -1,0 +1,5 @@
+not ok 46 - nested: real readV2 through a symlinked alias of a nested root isolates and passes plugin-active
+not ok 47 - nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root
+# tests 51
+# pass 49
+# fail 2

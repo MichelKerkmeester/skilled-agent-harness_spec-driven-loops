@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups",
+  "description": "Phase 37: ci-pi-and-provisioning-follow-ups",
+  "keywords": [
+    "phase",
+    "ci-pi-and-provisioning-follow-ups"
+  ],
+  "lastUpdated": "2026-10-20T21:36:37.953Z",
+  "specId": "037",
+  "folderSlug": "ci-pi-and-provisioning-follow-ups",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
