@@ -25,10 +25,12 @@ const TOOL_ALIASES = Object.freeze({
   subagent: 'task',
 });
 
+// A mapping entry may emit several v1 events, and a null payload skips its delivery.
 const EVENT_MAPPINGS = Object.freeze({
   'session.text.ended': {
     type: 'message.part.updated',
     properties: (data) => ({
+      sessionID: data.sessionID,
       part: {
         type: 'text',
         text: data.text,
@@ -40,7 +42,7 @@ const EVENT_MAPPINGS = Object.freeze({
   },
   'session.step.ended': {
     type: 'message.updated',
-    properties: (data) => {
+    properties: (data, event) => {
       const info = {
         id: data.assistantMessageID,
         sessionID: data.sessionID,
@@ -48,10 +50,45 @@ const EVENT_MAPPINGS = Object.freeze({
       };
       if (data.cost !== undefined) info.cost = data.cost;
       if (data.tokens !== undefined) info.tokens = toV1Tokens(data.tokens);
-      return { info };
+      if (typeof event.created === 'number') info.time = { completed: event.created };
+      return { sessionID: data.sessionID, info };
     },
   },
+  'session.inbox.enqueued': [
+    {
+      type: 'message.updated',
+      properties: (data, event) => {
+        if (!isUserInboxItem(data)) return null;
+        const info = {
+          id: data.inboxID,
+          sessionID: data.sessionID,
+          role: 'user',
+        };
+        if (typeof event.created === 'number') info.time = { created: event.created };
+        return { sessionID: data.sessionID, info };
+      },
+    },
+    {
+      type: 'message.part.updated',
+      properties: (data) => {
+        if (!isUserInboxItem(data)) return null;
+        return {
+          sessionID: data.sessionID,
+          part: {
+            type: 'text',
+            text: data.item.payload.text,
+            sessionID: data.sessionID,
+            messageID: data.inboxID,
+          },
+        };
+      },
+    },
+  ],
 });
+
+function isUserInboxItem(data) {
+  return data?.item?.type === 'user' && typeof data.item.payload?.text === 'string';
+}
 
 const DEDUPED_SESSION_EVENTS = new Set(['session.idle', 'session.compacted']);
 const SESSION_EVENT_RESET_TYPES = new Set([
@@ -381,9 +418,13 @@ export function dualPlugin(id, server) {
                 });
               }
 
-              const mapping = EVENT_MAPPINGS[event.type];
-              if (mapping) {
-                await deliverEvent(mapping.type, mapping.properties(data));
+              const mappings = EVENT_MAPPINGS[event.type];
+              if (mappings) {
+                for (const mapping of Array.isArray(mappings) ? mappings : [mappings]) {
+                  const properties = mapping.properties(data, event);
+                  if (properties === null) continue;
+                  await deliverEvent(mapping.type, properties);
+                }
               }
 
               if (event.type === 'session.deleted') {

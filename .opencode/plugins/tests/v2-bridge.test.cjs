@@ -648,6 +648,7 @@ test('session.text.ended maps to a v1 assistant text-part event', async () => {
   assert.deepEqual(receivedEvents[2], {
     type: 'message.part.updated',
     properties: {
+      sessionID: 'session_text',
       part: {
         type: 'text',
         text: 'The assistant completed the goal.',
@@ -688,6 +689,7 @@ test('session.step.ended maps to a v1 message update with token usage fields', a
   assert.deepEqual(receivedEvents[2], {
     type: 'message.updated',
     properties: {
+      sessionID: 'session_step',
       info: {
         id: 'assistant_step',
         sessionID: 'session_step',
@@ -697,6 +699,96 @@ test('session.step.ended maps to a v1 message update with token usage fields', a
       },
     },
   });
+});
+
+test('session.step.ended carries created as the completed time', async () => {
+  const created = 1792528288311;
+  const receivedEvents = await forwardEventsToV1([{
+    type: 'session.step.ended',
+    created,
+    data: {
+      sessionID: 'ses_x',
+      assistantMessageID: 'msg_a',
+      finish: 'tool-calls',
+      cost: 0.0005,
+      tokens: { input: 4014, output: 48, reasoning: 0, cache: { read: 8064, write: 0 } },
+    },
+  }]);
+  const messageUpdated = receivedEvents.find((event) => event.type === 'message.updated');
+
+  assert.equal(messageUpdated.properties.sessionID, 'ses_x');
+  assert.deepEqual(messageUpdated.properties.info.time, { completed: created });
+  assert.equal(messageUpdated.properties.info.sessionID, 'ses_x');
+});
+
+test('session.step.ended without a created time omits info.time', async () => {
+  const receivedEvents = await forwardEventsToV1([{
+    type: 'session.step.ended',
+    data: { sessionID: 'ses_no_time', assistantMessageID: 'msg_no_time' },
+  }]);
+  const messageUpdated = receivedEvents.find((event) => event.type === 'message.updated');
+
+  assert.equal(Object.hasOwn(messageUpdated.properties.info, 'time'), false);
+  assert.equal(messageUpdated.properties.sessionID, 'ses_no_time');
+});
+
+test('a user inbox item emits the user message then its text part in order', async () => {
+  const created = 1792528284181;
+  const receivedEvents = await forwardEventsToV1([
+    {
+      id: 'evt_1',
+      created,
+      type: 'session.inbox.enqueued',
+      data: {
+        sessionID: 'ses_x',
+        inboxID: 'msg_u',
+        item: { type: 'user', payload: { text: 'Step 1: run ...' }, delivery: 'queue' },
+      },
+    },
+  ]);
+
+  assert.deepEqual(
+    receivedEvents.map((event) => event.type),
+    ['session.created', 'session.inbox.enqueued', 'message.updated', 'message.part.updated'],
+  );
+  assert.deepEqual(receivedEvents[2], {
+    type: 'message.updated',
+    properties: {
+      sessionID: 'ses_x',
+      info: { id: 'msg_u', sessionID: 'ses_x', role: 'user', time: { created } },
+    },
+  });
+  assert.deepEqual(receivedEvents[3], {
+    type: 'message.part.updated',
+    properties: {
+      sessionID: 'ses_x',
+      part: {
+        type: 'text',
+        text: 'Step 1: run ...',
+        sessionID: 'ses_x',
+        messageID: 'msg_u',
+      },
+    },
+  });
+});
+
+test('a non-user inbox item maps to nothing beyond the original event', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    {
+      id: 'evt_2',
+      type: 'session.inbox.enqueued',
+      data: {
+        sessionID: 'ses_x',
+        inboxID: 'msg_synthetic',
+        item: { type: 'synthetic', payload: { text: 'ignored' }, delivery: 'queue' },
+      },
+    },
+  ]);
+
+  assert.deepEqual(receivedEvents.map((event) => event.type), [
+    'session.created',
+    'session.inbox.enqueued',
+  ]);
 });
 
 test('setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events', async () => {
