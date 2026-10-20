@@ -617,7 +617,7 @@ _wn_record_build() {
 # half-provisioned tree is never reported ready.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
-  local tool deps_root install_log build_reason stale_reason
+  local tool deps_root install_log build_reason stale_reason top
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -625,6 +625,10 @@ provision_worktree() {
   # The dependency walk stops where it meets this path, so it must be absolute
   # and resolved like the paths the walk compares it with.
   dir="$(cd "$dir" && pwd -P)" || { echo "cannot resolve worktree: $dir" >&2; return 1; }
+  # The list holds paths relative to the worktree root, so a subdirectory means that root.
+  if top="$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null)" && [ -n "$top" ]; then
+    dir="$(cd "$top" && pwd -P)" || { echo "cannot resolve worktree: $top" >&2; return 1; }
+  fi
   list="$(_wn_provision_paths_file)" || return 1
   [ -f "$list" ] || { echo "missing provision path list: $list" >&2; return 1; }
 

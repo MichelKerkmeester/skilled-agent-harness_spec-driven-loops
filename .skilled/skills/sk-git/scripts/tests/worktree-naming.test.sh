@@ -443,6 +443,22 @@ git -C "$DEP_TREE" add shared-lib/index.ts
 expect_rc "a staged extra source provisions" 0 run_dep_provision
 expect_eq "a staged extra source rebuilds once" "$((DEP_BEFORE + 2))" "$(stale_build_lines)"
 
+# A subdirectory argument must provision the worktree that holds it, because the
+# list's paths are relative to the worktree root.
+DEP_SUBDIR_OUT="$PROV/dep-subdir.out"
+rm -f "$DEP_TREE/needs-build/dist/index.js"
+run_dep_subdir_provision() {
+  (
+    source "$DEP_PROV/scripts/worktree-naming.sh"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$DEP_TREE/shared-lib"
+  ) > "$DEP_SUBDIR_OUT" 2>&1
+}
+DEP_SUBDIR_BEFORE="$(stale_build_lines)"
+expect_rc "a worktree subdirectory provisions" 0 run_dep_subdir_provision
+expect_eq "a worktree subdirectory builds as its root does" "$((DEP_SUBDIR_BEFORE + 1))" "$(stale_build_lines)"
+expect_eq "a worktree subdirectory warns about no listed path" "" \
+  "$(grep 'listed but has no package.json' "$DEP_SUBDIR_OUT" || true)"
+
 # Outside a git work tree only a missing output builds, as before.
 PLAIN_TREE="$PROV/plain-tree"
 mkdir -p "$PLAIN_TREE/needs-build/src" "$PLAIN_TREE/needs-build/dist"
@@ -495,7 +511,7 @@ run_relative_provision() {
   (
     cd "$PROV" || exit 1
     source "$PROV/scripts/worktree-naming.sh"
-    PATH="$PROV/bin:$PATH" provision_worktree rel-tree
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree rel-tree
   )
 }
 : > "$BUN_LOG"
@@ -512,7 +528,7 @@ NOBUN_PATH="$PROV/nobun-bin:$(dirname "$(command -v node)"):/usr/bin:/bin"
 run_nobun_provision() {
   (
     source "$PROV/scripts/worktree-naming.sh"
-    PATH="$NOBUN_PATH" provision_worktree "$NOBUN_TREE"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$NOBUN_PATH" provision_worktree "$NOBUN_TREE"
   )
 }
 if PATH="$NOBUN_PATH" command -v bun >/dev/null 2>&1; then
@@ -550,7 +566,7 @@ chmod +x "$PROV/drift-bin/npm"
 run_drift_provision() {
   (
     source "$PROV/scripts/worktree-naming.sh"
-    PATH="$PROV/drift-bin:$PATH" provision_worktree "$DRIFT_TREE"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/drift-bin:$PATH" provision_worktree "$DRIFT_TREE"
   ) 2> "$PROV/drift.err"
 }
 expect_rc "lockfile drift fails provisioning" 1 run_drift_provision
@@ -564,7 +580,7 @@ mkdir -p "$MISSING_TREE/needs-install"
 run_missing_provision() {
   (
     source "$PROV/scripts/worktree-naming.sh"
-    PATH="$PROV/bin:$PATH" provision_worktree "$MISSING_TREE"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$MISSING_TREE"
   ) 2> "$PROV/missing.err"
 }
 expect_rc "a listed path without package.json does not fail provisioning" 0 run_missing_provision
@@ -580,7 +596,7 @@ printf '#!/usr/bin/env bash\nexit 1\n' > "$PROV/quiet-fail-bin/npm"
 chmod +x "$PROV/quiet-fail-bin/npm"
 run_strict_quiet_fail_provision() {
   bash -c 'set -euo pipefail; source "$1/scripts/worktree-naming.sh"
-    PATH="$1/quiet-fail-bin:$PATH" provision_worktree "$2"' \
+    GIT_CEILING_DIRECTORIES="$1" PATH="$1/quiet-fail-bin:$PATH" provision_worktree "$2"' \
     _ "$PROV" "$QUIET_FAIL_TREE" > "$PROV/quiet-fail.out" 2>&1
 }
 expect_rc "a silent install failure under set -e still fails the run" 1 run_strict_quiet_fail_provision

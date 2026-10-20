@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 32: plugin-tests-ci-and-stale-bundles"
-description: "No workflow ran the 436 OpenCode plugin tests, Spec-Kit Check did not rerun the plugins purity test on a plugin-only change, and provisioning built a listed output only when it was missing, so an existing checkout kept a stale built plugin after its source changed. This phase adds a blocking plugin-test workflow, widens Spec-Kit Check's trigger, and rebuilds an output that is older than a tracked file in its package."
+description: "No workflow ran the 436 OpenCode plugin tests, Spec-Kit Check did not rerun the plugins purity test on a plugin-only change, and provisioning built a listed output only when it was missing, so an existing checkout kept a stale built plugin after its source changed. This phase adds a blocking plugin-test workflow, widens Spec-Kit Check's trigger, and rebuilds an output when the tracked files it was built from have changed since provisioning last built it."
 trigger_phrases:
   - "plugin tests ci and stale bundles"
   - "phase 32 plugin tests ci and stale bundles"
@@ -133,7 +133,7 @@ The plugin suites block a bad change on CI, a plugin-only change reruns the puri
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | The plugin workflow runs on most changes to the three source roots | Low | The suites read files across all three roots, so a narrower filter would miss a change that breaks them; one run is about one minute of provisioning plus 25 seconds of tests |
-| Risk | Hashing every tracked input on each provision | Low | Under a second for the largest input set (1,413 files) |
+| Risk | Hashing every tracked input on each provision | Low | Under a second for the largest input set: 1,435 tracked paths in 0.87 s (`scratch/fingerprint-timing.txt`) |
 | Risk | An existing checkout has no stamps | Low | Its first provision rebuilds every listed output once, which is also what refreshes a stale bundle |
 | Risk | A tracked file in a nested package counts toward its parent's output | Low | A change under `runtime/cli` also rebuilds `runtime`; an extra build, never a skipped one |
 | Dependency | Other groups may edit the parent phase map | Low | The merge keeps every row from both sides |

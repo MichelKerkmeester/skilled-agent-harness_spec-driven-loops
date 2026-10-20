@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The 436 OpenCode plugin tests now run in a blocking workflow, a plugin-only change reruns the purity test, and provisioning rebuilds a built output whose tracked sources are newer than it."
+description: "The 436 OpenCode plugin tests now run in a blocking workflow, a plugin-only change reruns the purity test, and provisioning rebuilds a built output whose tracked sources changed since it last built it."
 trigger_phrases:
   - "plugin tests ci and stale bundles implementation summary"
 importance_tier: "normal"
@@ -87,9 +87,10 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 |----------|-----|
 | A new workflow, not a step in the dual-version battery | The suites need a trigger as wide as the three source roots; on the battery that would install both OpenCode families on nearly every commit |
 | Trigger on `.skilled/**`, `.opencode/**` and `.pi/**` | The read trace reaches all three roots; a narrower list would miss a change that breaks a suite |
-| Compare git-tracked files only | A build writes untracked files newer than its output; counting them would rebuild on every provision |
+| Compare git-tracked files only | A build writes untracked files of its own; counting them would rebuild on every provision |
 | Record a stamp of the tracked inputs after each build, under the git directory | Comparing file times with the output missed a deleted input, and looped when a build skipped emission; a fingerprint catches the first and a stamp rewritten on every build ends the second. Keeping it in the git directory keeps it per worktree and out of `git status` |
-| Fingerprint the work tree, not the index, and compare no file times | Review found that an index fingerprint missed unstaged deletions and edits, and that a time comparison rebuilt forever for a source with a future modification time. Hashing the tracked files on disk costs under a second for the largest input set (1,413 files, 0.73 s) |
+| Fingerprint the work tree, not the index, and compare no file times | Review found that an index fingerprint missed unstaged deletions and edits, and that a time comparison rebuilt forever for a source with a future modification time. Hashing the tracked files on disk costs under a second for the largest input set: 1,435 tracked paths in 0.87 s (`scratch/fingerprint-timing.txt`) |
+| A subdirectory argument provisions its whole worktree | The list holds root-relative paths, so a subdirectory skipped every entry and still exited 0 |
 | Outside a git work tree, only a missing output builds | Keeps the old behavior where there is no tracked set to compare |
 | List lines name the sources a build compiles outside its package | The spec-kit runtime, its CLI and the advisor runtime compile `shared`, `runtime` or the advisor's `hooks`; without these a change there would leave the output stale. Every other reader of the list ignores fields after the second |
 | Trigger on `.claude`, `.codex`, `.cursor`, `.devin`, `.env.example`, one archived spec folder and the root project markers | A retrace that resolved relative reads found the goal checks reading files there, and the suites probe `esbuild.config.mjs`, `manifest.json`, `wrangler.toml` and `src/` to tell a project checkout from this repository |
@@ -105,7 +106,8 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 |-------|--------|
 | Plugin suites, Node 22.23.1, workflow command | PASS, 436 of 436 |
 | Same command with one broken test | exit 1, 1 failing |
-| `worktree-naming.test.sh` | PASS=154 FAIL=0 (109 before) |
+| `worktree-naming.test.sh` | PASS=157 FAIL=0 (109 before) |
+| Subdirectory checks on the previous script | FAIL=2, exit 1 |
 | Stamp checks on the file-time script | FAIL=16, exit 1 |
 | Mutant without the fingerprint comparison | FAIL=9, exit 1, the deletion checks among them |
 | Mutant that never records a stamp | FAIL=11, exit 1, the loop check among them |

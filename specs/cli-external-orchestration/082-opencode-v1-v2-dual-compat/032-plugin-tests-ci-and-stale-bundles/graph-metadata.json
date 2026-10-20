@@ -47,6 +47,7 @@
       ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
       ".skilled/skills/sk-git/SKILL.md",
       ".github/workflows/README.md",
+      "scratch/fingerprint-timing.txt",
       "scratch/real-stamp-provision-1.txt",
       "scratch/mutation/broken-plugin-test.txt",
       "scratch/mutation/old-script-new-tests.txt",
@@ -54,8 +55,7 @@
       "scratch/mutation/before-no-workflow-runs-plugin-tests.txt",
       "scratch/node22-plugin-tests.txt",
       "scratch/mutation/package-only-script-source-tests.txt",
-      "scratch/trace/reads-outside-source-roots.txt",
-      "scratch/mutation/mtime-script-stamp-tests.txt"
+      "scratch/trace/reads-outside-source-roots.txt"
     ],
     "entities": [
       {
@@ -125,6 +125,12 @@
         "source": "derived"
       },
       {
+        "name": "fingerprint-timing.txt",
+        "kind": "file",
+        "path": "scratch/fingerprint-timing.txt",
+        "source": "derived"
+      },
+      {
         "name": "real-stamp-provision-1.txt",
         "kind": "file",
         "path": "scratch/real-stamp-provision-1.txt",
@@ -173,12 +179,6 @@
         "source": "derived"
       },
       {
-        "name": "mtime-script-stamp-tests.txt",
-        "kind": "file",
-        "path": "scratch/mutation/mtime-script-stamp-tests.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
     "created_at": "2026-10-20T15:30:08Z",
-    "last_save_at": "2026-10-20T16:32:35.723Z",
+    "last_save_at": "2026-10-20T16:45:18.475Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e59cc82ba06b27b8af616db9f31da2120e58386d907b585822f6cf632848a49",
+    "source_fingerprint": "sha256:31690af69a136bcb19824239f0835ae6c285ebeb27a39b09820c8d92ce967b9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "890fbf7c53bcdc50798f91047e7dccfb8b2447f553f999e5cee9ce03903b598a",
-      "plan.md": "c3ad6475512d2510d801356933beb84d600d6478e59091c30392fe043f296ceb",
-      "tasks.md": "7496a12e3c141b04f39d780743436719986a836fcfb94bdd2431bb43dc67bf3c",
-      "implementation-summary.md": "40b969133e4993681ed4cdcb780e1cf45033cd2ebd8b70e616d893baa7d709b6"
+      "spec.md": "545906dc019426e0ee85cdade7d36b0945cb990f011e38b875ff4c8afc1d2db7",
+      "plan.md": "bb110011a349611e922bef7c5bc40a9b7e9ead70501b532592428016dd365594",
+      "tasks.md": "6871e673d076e17de85993bf0f12426f8048b6cf96d426385cdc4f9758c7f0b9",
+      "implementation-summary.md": "b294387c4d94f6128a1ce8876004b8fbda4207de708ac53ef7365ac5d0f73a20"
     },
     "last_active_at": null
   }

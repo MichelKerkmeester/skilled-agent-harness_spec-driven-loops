@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 32: plugin-tests-ci-and-stale-bundles"
-description: "A new blocking workflow provisions every listed tree and runs the OpenCode plugin suites on Node 22, Spec-Kit Check's triggers gain the plugins folder, and provisioning rebuilds a listed output when a git-tracked file in its package is newer than it."
+description: "A new blocking workflow provisions every listed tree and runs the OpenCode plugin suites on Node 22, Spec-Kit Check's triggers gain the plugins folder, and provisioning rebuilds a listed output when the fingerprint of its git-tracked sources differs from the one it recorded at the last build."
 trigger_phrases:
   - "plugin tests ci and stale bundles plan"
 importance_tier: "normal"
