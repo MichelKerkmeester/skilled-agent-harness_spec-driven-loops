@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5f590425d210709439236780975956eb009d3311ffda1279bb3f07c24353fac3",
+  "corpusHash": "4fe87f354a1e4f9c85e6cd91e80eef4ed024e368e00271b8494c9e24a813f324",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25309,
+  "includedPathCount": 25313,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8904,6 +8904,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/research.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/steering-log.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25340,7 +25344,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
+  "manifestHash": "778c3e90d2cb3a8737d57f4666e5f360b5fb8d5dd2dbfd2f242d830892913c22",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26372,6 +26376,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/scratch",
       "reason": "excluded directory"
     },
     {

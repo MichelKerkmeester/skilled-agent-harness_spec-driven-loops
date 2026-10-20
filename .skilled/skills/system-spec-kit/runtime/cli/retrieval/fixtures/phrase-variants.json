@@ -1,5 +1,5 @@
 {
-  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
+  "manifestHash": "778c3e90d2cb3a8737d57f4666e5f360b5fb8d5dd2dbfd2f242d830892913c22",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71725,6 +71725,9 @@
     "phase 19 plan": [
       "phase 19 plan"
     ],
+    "phase 19 plugins compat docs": [
+      "phase 19 plugins compat docs"
+    ],
     "phase 19 routing miss fixes": [
       "phase 19 routing miss fixes"
     ],
@@ -74505,6 +74508,18 @@
     ],
     "plugin2 auth null fix": [
       "plugin2.auth null fix"
+    ],
+    "plugins compat docs": [
+      "plugins compat docs"
+    ],
+    "plugins compat docs implementation summary": [
+      "plugins compat docs implementation summary"
+    ],
+    "plugins compat docs plan": [
+      "plugins compat docs plan"
+    ],
+    "plugins compat docs tasks": [
+      "plugins compat docs tasks"
     ],
     "plugins inventory update": [
       "plugins inventory update"
