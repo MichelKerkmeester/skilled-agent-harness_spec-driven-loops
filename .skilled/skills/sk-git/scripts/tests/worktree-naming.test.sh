@@ -261,7 +261,9 @@ run_fixture_provision() {
   local fixture_tree="$1"
   (
     source "$PROV/scripts/worktree-naming.sh"
-    PATH="$PROV/bin:$PATH" provision_worktree "$fixture_tree"
+    # The suite runs inside its own repository; the ceiling keeps a fixture without
+    # a .git of its own from being read as part of it.
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$fixture_tree"
   )
 }
 
@@ -276,12 +278,12 @@ ALREADY_BUILT_LINES="$(awk '$1 == "already-built" { count++ } END { print count 
 expect_eq "first run installs and builds once" "1 1" "$INSTALL_LINES $BUILD_LINES"
 expect_eq "first run builds only the missing output" "1 0" "$BUILD_LINES $ALREADY_BUILT_LINES"
 
-BUILD_LINES_BEFORE="$BUILD_LINES"
+BUILD_LINES_BEFORE="$(awk '$2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG")"
 run_second_fixture_provision() {
   run_fixture_provision "$TREE" || return 1
   local build_lines_after
   build_lines_after="$(awk '$2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG")"
-  [ "$build_lines_after" -eq "$BUILD_LINES_BEFORE" ] && [ "$build_lines_after" -eq 1 ]
+  [ "$build_lines_after" -eq "$BUILD_LINES_BEFORE" ]
 }
 expect_rc "second run exits 0 and adds no build line" 0 run_second_fixture_provision
 
@@ -304,47 +306,98 @@ mkdir -p "$FAILED_TREE/needs-build"
 cp "$TREE/needs-build/package.json" "$FAILED_TREE/needs-build/package.json"
 NPM_STUB_BUILD_FAIL=1 expect_rc "failed build fails provisioning" 1 run_fixture_provision "$FAILED_TREE"
 
-# ── a stale output rebuilds; untracked newer files do not ────────
-# Fixed timestamps keep the comparison independent of the clock and of how finely
-# the shell compares modification times.
+# ── the build stamp decides staleness; untracked newer files do not ──
+# Fixed timestamps keep the checks independent of the clock and of how finely the
+# shell compares modification times.
 STALE_TREE="$PROV/stale-tree"
+rm -rf "$STALE_TREE"
 mkdir -p "$STALE_TREE/needs-build/src" "$STALE_TREE/needs-build/dist"
 printf '{}\n' > "$STALE_TREE/needs-build/package.json"
 printf 'export {};\n' > "$STALE_TREE/needs-build/src/index.ts"
+printf 'readme\n' > "$STALE_TREE/needs-build/README.md"
 : > "$STALE_TREE/needs-build/dist/index.js"
 git -C "$STALE_TREE" init -q
-git -C "$STALE_TREE" add needs-build/package.json needs-build/src/index.ts
-touch -t 202001010000 "$STALE_TREE/needs-build/package.json" "$STALE_TREE/needs-build/src/index.ts"
+git -C "$STALE_TREE" add needs-build/package.json needs-build/src/index.ts needs-build/README.md
+git -C "$STALE_TREE" -c core.hooksPath="$TMP/.nohooks" -c user.email=t@t -c user.name=t \
+  commit -q -m init
+touch -t 202001010000 "$STALE_TREE/needs-build/package.json" \
+  "$STALE_TREE/needs-build/src/index.ts" "$STALE_TREE/needs-build/README.md"
 touch -t 202101010000 "$STALE_TREE/needs-build/dist/index.js"
 stale_build_lines() {
   awk '$2 == "run" && $3 == "build" { count++ } END { print count + 0 }' "$NPM_LOG"
 }
+STALE_OUT_FILE="$PROV/stale.out"
+run_stale_provision() {
+  run_fixture_provision "$STALE_TREE" > "$STALE_OUT_FILE" 2>&1
+}
+run_stale_noop_provision() {
+  ( export NPM_STUB_BUILD_NOOP=1; run_fixture_provision "$STALE_TREE" ) > "$STALE_OUT_FILE" 2>&1
+}
 
+# An existing output with no stamp has no record of what produced it, so the
+# first provision builds once and records the fingerprint it built from.
 STALE_BEFORE="$(stale_build_lines)"
-expect_rc "an output newer than every tracked file is not rebuilt" 0 run_fixture_provision "$STALE_TREE"
-expect_eq "an output newer than every tracked file adds no build" "$STALE_BEFORE" "$(stale_build_lines)"
+expect_rc "an unrecorded output provisions" 0 run_stale_provision
+expect_rc "an unrecorded output says why it rebuilt" 0 \
+  grep -q 'rebuilding needs-build (no record of the sources it was built from)' "$STALE_OUT_FILE"
+expect_eq "an unrecorded output builds once" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
 
-# Untracked files a build writes, newer than the output, must not mark it stale.
+expect_rc "a recorded output provisions" 0 run_stale_provision
+expect_eq "a recorded output adds no build" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
+
+# Untracked files a build writes, newer than the stamp, must not mark it stale.
 mkdir -p "$STALE_TREE/needs-build/dist/nested"
 : > "$STALE_TREE/needs-build/dist/nested/chunk.js"
 : > "$STALE_TREE/needs-build/tsconfig.tsbuildinfo"
-touch -t 202201010000 "$STALE_TREE/needs-build/dist/nested/chunk.js" "$STALE_TREE/needs-build/tsconfig.tsbuildinfo"
-expect_rc "untracked newer files leave the output alone" 0 run_fixture_provision "$STALE_TREE"
-expect_eq "untracked newer files add no build" "$STALE_BEFORE" "$(stale_build_lines)"
+touch -t 203001010000 "$STALE_TREE/needs-build/dist/nested/chunk.js" \
+  "$STALE_TREE/needs-build/tsconfig.tsbuildinfo"
+expect_rc "untracked newer files still provision" 0 run_stale_provision
+expect_eq "untracked newer files add no build" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
 
-# A tracked source edited after the build makes the output stale.
-touch -t 202201010000 "$STALE_TREE/needs-build/src/index.ts"
-run_stale_provision() {
-  local out
-  out="$(run_fixture_provision "$STALE_TREE" 2>&1)"
-  grep -q 'rebuilding needs-build (sources newer than dist/index.js)' <<< "$out"
-}
-expect_rc "a tracked source newer than the output rebuilds it and says why" 0 run_stale_provision
-expect_eq "a stale output builds exactly once" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
+# A tracked source edited and staged moves the stamped fingerprint, including a
+# change the build itself does not read.
+printf 'export const x = 1;\n' > "$STALE_TREE/needs-build/src/index.ts"
+git -C "$STALE_TREE" add needs-build/src/index.ts
+expect_rc "a staged source change provisions" 0 run_stale_provision
+expect_rc "a staged source change says why it rebuilt" 0 \
+  grep -q 'rebuilding needs-build (sources changed since its last build)' "$STALE_OUT_FILE"
+expect_eq "a staged source change rebuilds once" "$((STALE_BEFORE + 2))" "$(stale_build_lines)"
+expect_rc "the recorded staged change provisions" 0 run_stale_provision
+expect_eq "the recorded staged change adds no build" "$((STALE_BEFORE + 2))" "$(stale_build_lines)"
 
-# A source outside the package that the list names counts as well.
+# An edit nobody staged leaves the fingerprint alone, so only the stamp's own
+# time can catch it; the rebuild rewrites the stamp, which settles it again.
+touch -t 203001010000 "$STALE_TREE/needs-build/src/index.ts"
+expect_rc "an unstaged edit provisions" 0 run_stale_provision
+expect_eq "an unstaged edit newer than the stamp rebuilds once" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
+touch -t 202001010000 "$STALE_TREE/needs-build/src/index.ts"
+expect_rc "a settled stamp provisions" 0 run_stale_provision
+expect_eq "an input older than the rewritten stamp adds no build" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
+
+# A deletion stops the file being listed at all, so only the fingerprint sees it.
+git -C "$STALE_TREE" rm -q needs-build/README.md
+expect_rc "a deleted tracked input provisions" 0 run_stale_provision
+expect_eq "a deleted tracked input rebuilds once" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+expect_rc "the recorded deletion provisions" 0 run_stale_provision
+expect_eq "the recorded deletion adds no build" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+
+# A build that emits nothing still consumed the changed sources, so recording the
+# fingerprint ends the rebuild loop instead of repeating it on every provision.
+printf 'export const y = 1;\n' > "$STALE_TREE/needs-build/src/index.ts"
+git -C "$STALE_TREE" add needs-build/src/index.ts
+expect_rc "a staged change before a build that writes nothing provisions" 0 run_stale_noop_provision
+expect_eq "a build that writes nothing still counts as the rebuild" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
+expect_rc "the recorded no-emission build provisions" 0 run_stale_provision
+expect_eq "a build that wrote nothing ends the rebuild loop" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
+
+# The stamp lives in the git directory, never in the work tree.
+expect_eq "the stamp is not inside the work tree" "" \
+  "$(git -C "$STALE_TREE" status --porcelain --ignored | grep provision-stamps || true)"
+
+# A source outside the package that the list names counts the same way.
 DEP_PROV="$PROV/dep-prov"
 DEP_TREE="$DEP_PROV/tree"
+rm -rf "$DEP_PROV"
 mkdir -p "$DEP_PROV/scripts" "$DEP_TREE/shared-lib" "$DEP_TREE/needs-build/dist"
 cp "$NAMING" "$DEP_PROV/scripts/worktree-naming.sh"
 printf 'needs-build  dist/index.js  shared-lib\n' > "$DEP_PROV/scripts/worktree-provision-paths.txt"
@@ -358,15 +411,18 @@ touch -t 202101010000 "$DEP_TREE/needs-build/dist/index.js"
 run_dep_provision() {
   (
     source "$DEP_PROV/scripts/worktree-naming.sh"
-    PATH="$PROV/bin:$PATH" provision_worktree "$DEP_TREE"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$PROV/bin:$PATH" provision_worktree "$DEP_TREE"
   )
 }
 DEP_BEFORE="$(stale_build_lines)"
-expect_rc "an output newer than its listed sources is not rebuilt" 0 run_dep_provision
-expect_eq "an output newer than its listed sources adds no build" "$DEP_BEFORE" "$(stale_build_lines)"
-touch -t 202201010000 "$DEP_TREE/shared-lib/index.ts"
-expect_rc "a listed source outside the package newer than the output provisions" 0 run_dep_provision
-expect_eq "a listed source outside the package newer than the output rebuilds it" "$((DEP_BEFORE + 1))" "$(stale_build_lines)"
+expect_rc "an unrecorded extra source provisions" 0 run_dep_provision
+expect_eq "an unrecorded extra source builds once" "$((DEP_BEFORE + 1))" "$(stale_build_lines)"
+expect_rc "a recorded extra source provisions" 0 run_dep_provision
+expect_eq "a recorded extra source adds no build" "$((DEP_BEFORE + 1))" "$(stale_build_lines)"
+printf 'export const z = 1;\n' > "$DEP_TREE/shared-lib/index.ts"
+git -C "$DEP_TREE" add shared-lib/index.ts
+expect_rc "a staged extra source provisions" 0 run_dep_provision
+expect_eq "a staged extra source rebuilds once" "$((DEP_BEFORE + 2))" "$(stale_build_lines)"
 
 # Outside a git work tree only a missing output builds, as before.
 PLAIN_TREE="$PROV/plain-tree"

@@ -5,10 +5,10 @@
 # One path per line, relative to the repository root, naming a directory that
 # holds a package.json. A line may add a second whitespace-separated field: a
 # file relative to the package directory that the package's build writes.
-# Any further fields name other repository-relative paths the build compiles; a
-# git-tracked file there newer than the output also makes provision rebuild it.
-# Provision builds the package when that file is missing, or when a git-tracked
-# file in the package is newer than it. A package with a bun.lock or bun.lockb
+# Provision builds the package when that file is missing, and rebuilds it when
+# the package's git-tracked files changed since provisioning last built it. Any
+# further fields name other repository-relative paths the build compiles, whose
+# tracked files count the same way. A package with a bun.lock or bun.lockb
 # and no package-lock.json is installed and built with bun. Blank lines and #
 # comments are ignored.
 #

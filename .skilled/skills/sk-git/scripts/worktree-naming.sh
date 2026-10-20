@@ -520,29 +520,87 @@ _wn_have_tool() {
   return 1
 }
 
-# _wn_output_stale <dir> <pkg> <artifact> [source...] -- succeed when a git-tracked
-# file under the package, or under any extra source path the list names, is newer than
-# its built output. Only tracked files count: a build writes untracked files of its
-# own, such as nested dist folders and tsbuildinfo, which would otherwise mark every
-# output stale again. Outside a git work tree nothing is stale.
+# _wn_build_stamp <dir> <pkg> -- print where the build stamp for a package lives:
+# a file under the worktree's own git directory, so it is per-worktree and never
+# appears in the work tree or in what git status reports. Outside a git work tree
+# it prints nothing.
+_wn_build_stamp() {
+  local gitdir
+  gitdir="$(git -C "$1" rev-parse --absolute-git-dir 2>/dev/null)" || return 1
+  [ -n "$gitdir" ] || return 1
+  printf '%s/provision-stamps/%s\n' "$gitdir" "$(printf '%s' "$2" | tr '/' '_')"
+}
+
+# _wn_input_fingerprint <dir> <pkg> [source...] -- print a fingerprint of the
+# git-tracked inputs a build consumes: the index entries under the package and
+# under any extra source path the list names, hashed together. An added, removed,
+# renamed or committed content change moves the fingerprint; untracked build
+# products do not.
+_wn_input_fingerprint() {
+  local dir="$1" pkg="$2"
+  shift 2
+  git -C "$dir" ls-files -s -- "$pkg" "$@" | git -C "$dir" hash-object --stdin
+}
+
+# _wn_output_stale <dir> <pkg> <artifact> [source...] -- succeed and print why a
+# built output must be rebuilt. Each successful build records a stamp holding the
+# fingerprint of the tracked inputs it consumed, so a missing stamp means the
+# output has no record of what produced it (unrecorded). A stamp whose fingerprint
+# no longer matches the current inputs, or a tracked input newer than the stamp
+# file, means the sources moved since that build (changed). The fingerprint is
+# what catches a deleted input, which comparing file times cannot: a deletion
+# simply stops being listed, and the old loop only looked at files still present.
+# Comparing against the stamp instead of the output also survives a build that
+# emits nothing when its inputs are unchanged, which previously left an old
+# output looking stale on every later provision. Untracked files a build writes,
+# such as nested dist folders and tsbuildinfo, never count. Outside a git work
+# tree nothing is stale.
 _wn_output_stale() {
-  local root="$1" pkg="$2" out="$1/$2/$3" f
+  local root="$1" pkg="$2" stamp current f
   shift 3
   git -C "$root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+  stamp="$(_wn_build_stamp "$root" "$pkg")" || return 1
+  if [ ! -f "$stamp" ]; then
+    echo unrecorded
+    return 0
+  fi
+  current="$(_wn_input_fingerprint "$root" "$pkg" "$@")" || return 1
+  if [ "$current" != "$(cat "$stamp")" ]; then
+    echo changed
+    return 0
+  fi
   while IFS= read -r -d '' f; do
-    [ "$root/$f" -nt "$out" ] && return 0
+    if [ "$root/$f" -nt "$stamp" ]; then
+      echo changed
+      return 0
+    fi
   done < <(git -C "$root" ls-files -z -- "$pkg" "$@")
   return 1
 }
 
+# _wn_record_build <dir> <pkg> [source...] -- record the fingerprint of the
+# tracked inputs a successful build consumed, so the next provision can tell
+# whether the sources changed since. A build that emits nothing still ran against
+# these inputs, so recording them is what keeps the next provision from looping.
+# Outside a git work tree there is nothing to record.
+_wn_record_build() {
+  local root="$1" pkg="$2" stamp
+  shift 2
+  git -C "$root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 0
+  stamp="$(_wn_build_stamp "$root" "$pkg")" || return 0
+  [ -n "$stamp" ] || return 0
+  mkdir -p "$(dirname "$stamp")" || return 1
+  _wn_input_fingerprint "$root" "$pkg" "$@" > "$stamp"
+}
+
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
-# Idempotent: existing dependencies are skipped, and a listed output is built when it
-# is missing or older than a tracked file in its package or in a source path its
-# list line names. Exits non-zero if any install or build failed, so a
+# Idempotent: existing dependencies are skipped, a listed output is built when it is
+# missing, and rebuilt when the tracked sources its list line names changed since
+# provisioning last built it. Exits non-zero if any install or build failed, so a
 # half-provisioned tree is never reported ready.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
-  local tool deps_root install_log build_reason
+  local tool deps_root install_log build_reason stale_reason
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -610,7 +668,7 @@ provision_worktree() {
       if [ ! -e "$dir/$pkg/$artifact" ]; then
         build_reason=missing
       # The list's paths contain no spaces, so the unquoted split into arguments is safe.
-      elif _wn_output_stale "$dir" "$pkg" "$artifact" $sources; then
+      elif stale_reason="$(_wn_output_stale "$dir" "$pkg" "$artifact" $sources)"; then
         build_reason=stale
       fi
     fi
@@ -619,7 +677,11 @@ provision_worktree() {
       # bun passes flags after the script name on to the script, so its flag goes first.
       if [ "$tool" = bun ]; then build_cmd=(bun run --silent build); else build_cmd=(npm run build --silent); fi
       if [ "$build_reason" = stale ]; then
-        echo "  rebuilding $pkg (sources newer than $artifact)" >&2
+        if [ "$stale_reason" = unrecorded ]; then
+          echo "  rebuilding $pkg (no record of the sources it was built from)" >&2
+        else
+          echo "  rebuilding $pkg (sources changed since its last build)" >&2
+        fi
       else
         echo "  building $pkg" >&2
       fi
@@ -630,6 +692,9 @@ provision_worktree() {
         echo "  FAILED: $pkg build left $artifact missing" >&2
         failed=$((failed + 1))
       else
+        # A stamp that cannot be written only costs a rebuild next time, so it never
+        # fails provisioning, which callers run under set -e.
+        _wn_record_build "$dir" "$pkg" $sources || :
         built=$((built + 1))
       fi
     fi

@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `worktree-naming.test.sh`, `node --test`, `actionlint`, `check-gate-inputs.sh` |
 
 ### Overview
-The plugin suites get their own workflow rather than a step in the dual-version battery: they read files across `.skilled`, `.opencode` and `.pi`, so they need a wide trigger, and widening the battery's would install both OpenCode families on nearly every commit. Provisioning keeps its missing-output rule and adds a stale-output rule that compares git-tracked files only, so files a build writes never re-trigger it.
+The plugin suites get their own workflow rather than a step in the dual-version battery: they read files across `.skilled`, `.opencode` and `.pi`, so they need a wide trigger, and widening the battery's would install both OpenCode families on nearly every commit. Provisioning keeps its missing-output rule and adds a stale-output rule driven by a stamp it records after each build: a fingerprint of the git-tracked inputs, so files a build writes never re-trigger it, a deleted input does, and a build that writes nothing new cannot loop.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,11 +55,12 @@ CI gate plus an idempotent provisioning rule.
 
 ### Key Components
 - **`opencode-plugin-tests.yml`**: checkout, Node 22, `provision_worktree "$GITHUB_WORKSPACE"` with bun 1.3.9 on PATH, then `node --test '.opencode/plugins/tests/*.test.cjs'`. Node 22 takes a glob there, not a directory.
-- **`_wn_output_stale`**: lists the package's tracked files with `git ls-files -z` and succeeds on the first one newer than the output; outside a git work tree it never succeeds.
-- **The build rule in `provision_worktree`**: builds when the output is missing, or rebuilds when it is stale, printing `rebuilding <pkg> (sources newer than <artifact>)`.
+- **`_wn_output_stale`**: reports `unrecorded` when the package has no stamp, and `changed` when the fingerprint of its tracked inputs (`git ls-files -s` over the package and the extra sources its list line names, hashed) differs from the stamp or a tracked input is newer than the stamp; outside a git work tree it never succeeds.
+- **`_wn_record_build`**: after a successful build, writes the current fingerprint to the package's stamp under the worktree's git directory.
+- **The build rule in `provision_worktree`**: builds when the output is missing, or rebuilds when it is stale, printing why.
 
 ### Data Flow
-`git pull` gives changed tracked files a fresh modification time; the next `provision` sees one newer than the built output and rebuilds that package. A fresh checkout has no outputs, so it builds them as before.
+`git pull` changes the tracked inputs, so their fingerprint no longer matches the stamp; the next `provision` rebuilds that package and records the new fingerprint. A fresh checkout has no outputs, so it builds them as before and records stamps.
 <!-- /ANCHOR:architecture -->
 
 
@@ -77,7 +78,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## 5. TESTING STRATEGY
 
 - The suite's import closure and file reads were traced with a module resolve hook and an fs wrapper (`scratch/trace/`), which set the trigger to the three source roots.
-- Fixed `touch -t` timestamps make the stale-output checks independent of the clock and of bash 3.2's whole-second comparison.
+- Fixed `touch -t` timestamps make the unstaged-edit checks independent of the clock and of bash 3.2's whole-second comparison; fixtures without their own `.git` run under `GIT_CEILING_DIRECTORIES`, because the suite itself runs inside a repository.
 - A real worktree was provisioned twice after a fresh create, and once after touching a source, to show the rule neither loops nor misses (`scratch/real-reprovision-*.txt`).
 <!-- /ANCHOR:testing -->
 

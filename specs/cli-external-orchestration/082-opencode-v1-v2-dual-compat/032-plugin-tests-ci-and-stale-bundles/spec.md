@@ -74,7 +74,7 @@ The plugin suites block a bad change on CI, a plugin-only change reruns the puri
 ### In Scope
 - Part 1: a blocking workflow that provisions every listed tree and runs `node --test '.opencode/plugins/tests/*.test.cjs'` on Node 22, triggered by any change under `.skilled/**`, `.opencode/**` or `.pi/**`, or to the runtime and spec files the goal checks read (`.claude`, `.codex`, `.cursor`, `.devin`, `.env.example` and one archived spec folder).
 - Part 2: `.opencode/plugins/**` and `.skilled/plugins/**` in both of Spec-Kit Check's trigger lists.
-- Part 3: `provision_worktree` rebuilds a listed output when a git-tracked file in its package, or in a source path its list line names, is newer than the output, and says so; tests that fail on the old script.
+- Part 3: `provision_worktree` rebuilds a listed output when the git-tracked files in its package, or in a source path its list line names, changed since provisioning last built it, judged by a stamp it records under the worktree's git directory, and says so; tests that fail on the old script.
 - The workflow README rows (the new workflow and the missing `sk-code-script-tests.yml`), the sk-git provisioning rule and the provision list's header comment.
 
 ### Out of Scope
@@ -133,7 +133,8 @@ The plugin suites block a bad change on CI, a plugin-only change reruns the puri
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | The plugin workflow runs on most changes to the three source roots | Low | The suites read files across all three roots, so a narrower filter would miss a change that breaks them; one run is about one minute of provisioning plus 25 seconds of tests |
-| Risk | macOS `/bin/bash` 3.2 compares modification times in whole seconds | Low | A source edited in the same second as its build is not seen as newer; a real build takes longer than that, and the tests use fixed timestamps |
+| Risk | macOS `/bin/bash` 3.2 compares modification times in whole seconds | Low | Only unstaged edits rely on file times; staged and committed changes go through the fingerprint |
+| Risk | An existing checkout has no stamps | Low | Its first provision rebuilds every listed output once, which is also what refreshes a stale bundle |
 | Risk | A tracked file in a nested package counts toward its parent's output | Low | A change under `runtime/cli` also rebuilds `runtime`; an extra build, never a skipped one |
 | Dependency | Other groups may edit the parent phase map | Low | The merge keeps every row from both sides |
 <!-- /ANCHOR:risks -->

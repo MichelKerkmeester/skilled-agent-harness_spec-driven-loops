@@ -49,13 +49,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The OpenCode plugin suites ran nowhere but a developer's machine, so the inventory guard and the v2 registration test could not stop a bad change. They now run in their own blocking workflow. A plugin-only change also reruns Spec-Kit Check, which owns the plugins purity test. And provisioning no longer leaves a stale build in place: when a tracked source is newer than its built output, the next provision rebuilds it.
+The OpenCode plugin suites ran nowhere but a developer's machine, so the inventory guard and the v2 registration test could not stop a bad change. They now run in their own blocking workflow. A plugin-only change also reruns Spec-Kit Check, which owns the plugins purity test. And provisioning no longer leaves a stale build in place: when the tracked sources a build consumed have changed since provisioning last built it, the next provision rebuilds it.
 
 ### Phase 32: plugin-tests-ci-and-stale-bundles
 
 The new workflow provisions every tree the provision list names, the way the dual-version battery does, and runs `node --test '.opencode/plugins/tests/*.test.cjs'` on Node 22. It triggers on any change under `.skilled`, `.opencode` or `.pi`, because a trace of the suites showed them reading skill, command, hook and Pi files across all three roots.
 
-`provision_worktree` keeps building a missing output and now also rebuilds one that is older than any git-tracked file in its package. Only tracked files count, so the files a build writes for itself, such as nested `dist` folders and `tsbuildinfo`, never mark the output stale again. If your main checkout still runs an old sk-vision bundle, `worktree-naming.sh provision` now rebuilds it.
+`provision_worktree` keeps building a missing output and now also rebuilds one whose sources changed. After each successful build it records a stamp under the worktree's own git directory: a fingerprint of the git-tracked files in the package and in any extra source path its list line names. The next provision rebuilds when no stamp exists, when the fingerprint differs (an added, removed, renamed or committed change), or when a tracked file is newer than the stamp (an edit not yet staged). Only tracked files count, so the files a build writes for itself, such as nested `dist` folders and `tsbuildinfo`, never trigger it, and a build that writes nothing new still records its stamp, so it cannot rebuild on every run. If your main checkout still runs an old sk-vision bundle, its first `worktree-naming.sh provision` finds no stamps and rebuilds every listed output once.
 
 ### Files Changed
 
@@ -64,8 +64,8 @@ The new workflow provisions every tree the provision list names, the way the dua
 | `.github/workflows/opencode-plugin-tests.yml` | Created | Runs the plugin suites in a blocking job |
 | `.github/workflows/spec-kit-check.yml` | Modified | Reruns on a plugin-only change |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modified | Rebuilds a stale output and says why |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Fourteen checks for the stale-output rule |
-| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Header states the rule |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Checks for the stamp rule, extra sources and a tree outside git |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Header states the rule; three lines name the sources their builds compile |
 | `.skilled/skills/sk-git/SKILL.md` | Modified | The provisioning rule states it |
 | `.github/workflows/README.md` | Modified | Rows for the new workflow and `sk-code-script-tests.yml` |
 <!-- /ANCHOR:what-built -->
@@ -75,7 +75,7 @@ The new workflow provisions every tree the provision list names, the way the dua
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edits from four literal briefs; the spec docs and every check are the orchestrator's. Review, validation and the CI proof follow in `tasks.md`.
+DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edits from eight literal briefs; the spec docs and every check are the orchestrator's. Review, validation and the CI proof follow in `tasks.md`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -88,6 +88,7 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 | A new workflow, not a step in the dual-version battery | The suites need a trigger as wide as the three source roots; on the battery that would install both OpenCode families on nearly every commit |
 | Trigger on `.skilled/**`, `.opencode/**` and `.pi/**` | The read trace reaches all three roots; a narrower list would miss a change that breaks a suite |
 | Compare git-tracked files only | A build writes untracked files newer than its output; counting them would rebuild on every provision |
+| Record a stamp of the tracked inputs after each build, under the git directory | Comparing file times with the output missed a deleted input, and looped when a build skipped emission; a fingerprint catches the first and a stamp rewritten on every build ends the second. Keeping it in the git directory keeps it per worktree and out of `git status` |
 | Outside a git work tree, only a missing output builds | Keeps the old behavior where there is no tracked set to compare |
 | List lines name the sources a build compiles outside its package | The spec-kit runtime, its CLI and the advisor runtime compile `shared`, `runtime` or the advisor's `hooks`; without these a change there would leave the output stale. Every other reader of the list ignores fields after the second |
 | Trigger on `.claude`, `.codex`, `.cursor`, `.devin`, `.env.example` and one archived spec folder | A retrace that resolved relative reads found the goal checks reading files there |
@@ -103,11 +104,11 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 |-------|--------|
 | Plugin suites, Node 22.23.1, workflow command | PASS, 436 of 436 |
 | Same command with one broken test | exit 1, 1 failing |
-| `worktree-naming.test.sh` | PASS=123 FAIL=0 (109 before) |
-| New checks on the old script | FAIL=2, exit 1 |
-| Mutant counting untracked files | FAIL=4, exit 1 |
-| Extra-source checks on the package-only script | FAIL=1, exit 1 |
-| Real worktree, touched source then two provisions | one rebuild with the message, then 0 built |
+| `worktree-naming.test.sh` | PASS=144 FAIL=0 (109 before) |
+| Stamp checks on the file-time script | FAIL=16, exit 1 |
+| Mutant without the fingerprint comparison | FAIL=9, exit 1, the deletion checks among them |
+| Mutant that never records a stamp | FAIL=11, exit 1, the loop check among them |
+| Real worktree, provision with stamps recorded | 0 built (`scratch/real-stamp-provision-1.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | exit 0, RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
@@ -116,10 +117,11 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Whole-second comparison on macOS.** `/bin/bash` 3.2 compares modification times in whole seconds, so a source edited in the same second as its build is not seen as newer. A real build takes longer than a second, and the tests use fixed timestamps.
+1. **Whole-second comparison on macOS, for unstaged edits only.** `/bin/bash` 3.2 compares modification times in whole seconds, so an unstaged edit made in the same second as the stamp is not seen as newer. Staged and committed changes go through the fingerprint, which has no clock.
 2. **Nested packages rebuild their parent.** A tracked file under `runtime/cli` also counts for `runtime`, so changing it rebuilds both. That is an extra build, never a missed one.
-3. **Root-file probes are not triggers.** The suites also check that `esbuild.config.mjs`, `manifest.json`, `wrangler.toml` and `src/2_javascript` do not exist at the repository root, to tell this repository from a project one. Adding one of those files would not start the workflow; the next change under a source root would.
-4. **The main checkout's bundle.** Nothing here touches the operator's checkout; its stale sk-vision bundle refreshes the next time `worktree-naming.sh provision` runs there.
+3. **An unstaged deletion is not seen.** The fingerprint reads the index, so a file deleted from disk but not from the index changes nothing until the deletion is staged.
+4. **Root-file probes are not triggers.** The suites also check that `esbuild.config.mjs`, `manifest.json`, `wrangler.toml` and `src/2_javascript` do not exist at the repository root, to tell this repository from a project one. Adding one of those files would not start the workflow; the next change under a source root would.
+5. **The main checkout's bundle.** Nothing here touches the operator's checkout. Its stale sk-vision bundle refreshes the first time `worktree-naming.sh provision` runs there, which also rebuilds the other listed outputs once, because no stamps exist yet.
 <!-- /ANCHOR:limitations -->
 
 ---
