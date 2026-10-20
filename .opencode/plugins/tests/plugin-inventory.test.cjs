@@ -281,6 +281,40 @@ test('an alias of the event type is read like the type itself', () => {
   );
 });
 
+// A write through an allow-listed member still changes the collection.
+test('a write through a collection member makes the collection untrusted', () => {
+  const source =
+    `const A = ['session.idle']; A.length = 0; if (A.includes(eventType)) {}\n` +
+    `const B = new Set(['session.created']); B.has = () => true; if (B.has(eventType)) {}`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ['A.includes(eventType)', 'B.has(eventType)']);
+});
+
+// A shadowed or reassigned name no longer carries the event type.
+test('an alias that is shadowed or reassigned is not an alias', () => {
+  const source =
+    `const t = event.type; function f(t) { if (t === 'x.shadow') {} }\n` +
+    `let k = event.type; k = other; if (k === 'x.reassigned') {}`;
+  assert.deepEqual(handledEventNames(source), []);
+});
+
+// Destructuring binds the type field in parameters and in defaults too.
+test('a destructured type field is read in parameters and with defaults', () => {
+  const source =
+    `function onEvent({ type: kind }) { if (kind === 'p.param') {} }\n` +
+    `const { type: name = 'none' } = event; if (name === 'p.default') {}`;
+  assert.deepEqual(handledEventNames(source), ['p.default', 'p.param']);
+});
+
+// A local Set or Object must not be mistaken for the built-in that builds a literal collection.
+test('a local Set or Object is not trusted to build a literal collection', () => {
+  const source =
+    `const Set = class { has() { return false; } }; const S = new Set(['s.one']); if (S.has(eventType)) {}\n` +
+    `function g(Object) { const F = Object.freeze(['s.two']); if (F.includes(eventType)) {} }`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ['F.includes(eventType)', 'S.has(eventType)']);
+});
+
 // A source the parser cannot read fails loudly instead of passing empty.
 test('a source the parser cannot read fails instead of passing empty', () => {
   assert.throws(() => handledEventNames('if (type === '));

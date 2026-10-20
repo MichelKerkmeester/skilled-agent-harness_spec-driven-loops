@@ -49,11 +49,13 @@
       ".opencode/plugins/README.md",
       ".skilled/package.json",
       "scratch/baseline/plugin-suite.txt",
+      "scratch/after/plugin-suite.txt",
       "scratch/mutation/scan-parity.txt",
       "scratch/mutation/scanner-old-helper.txt",
       "scratch/mutation/purity-symlink.txt",
       ".opencode/plugins/sk-vision.js",
-      ".skilled/package-lock.json"
+      ".skilled/package-lock.json",
+      "scratch/mutation/round1-fixtures-on-prior-helper.txt"
     ],
     "entities": [
       {
@@ -159,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "round1-fixtures-on-prior-helper.txt",
+        "kind": "file",
+        "path": "scratch/mutation/round1-fixtures-on-prior-helper.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -193,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/plugins/tests/helpers/plugin-inventory.cjs` found event checks with regular expressions over comment-stripped text",
     "created_at": "2026-10-20T13:20:08Z",
-    "last_save_at": "2026-10-20T13:33:10.836Z",
+    "last_save_at": "2026-10-20T13:47:53.606Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9575af32876b6e8623a6bd953cacbe2edd21f4d78919a028cc4ba8308d815303",
+    "source_fingerprint": "sha256:73ca6346cb9609eb63ebac3d21a36e6f99c5d429581d5afef805d18a9baa809c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0eeeacf50cfa8a9fe426977a606abb46e03cc65b510ea8e8e679e0c002014880",
       "plan.md": "6905f3c5c079deb6ee572cb988975444eb956a580f711d32fbf9beaa89185a23",
-      "tasks.md": "f3fae502b92c0095266e0532e97910166c113fa2b9cb1c1b1debb0c6374317ca",
-      "implementation-summary.md": "c7159e4233a7ac7eb3ec2b9bba729918e1ae80225064293e55c7750aba60b4dd"
+      "tasks.md": "7a8ec4faaca5936fbf754ce5a9cc120bcdea7f2110e685a19ac10a8517aca097",
+      "implementation-summary.md": "ed5d62207e5bf42c5c282b5baf59165e83751a6122b7d5624790c175228103bc"
     },
     "last_active_at": null
   }

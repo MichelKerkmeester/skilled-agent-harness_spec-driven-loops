@@ -101,13 +101,13 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Check | Result |
 |-------|--------|
 | Plugin suite baseline | 417 of 417 (`scratch/baseline/plugin-suite.txt`) |
-| Plugin suite after | 422 of 422: one test removed, six added |
+| Plugin suite after | 426 of 426: one test removed, ten added (`scratch/after/plugin-suite.txt`) |
 | Old vs new helper on 16 bridged plugins | Identical (`scratch/mutation/scan-parity.txt`) |
-| New fixtures on the old helper | Exit 1, the six new tests fail (`scratch/mutation/scanner-old-helper.txt`) |
-| Mutants m1 and m2 of the new helper | Each fails exactly one test |
+| New fixtures on the old helper | Exit 1, 9 of the 10 new tests fail; the shadowed-alias test fails on the first parser commit instead (`scratch/mutation/scanner-old-helper.txt`, `round1-fixtures-on-prior-helper.txt`) |
+| Mutants m1 and m2 of the new helper | m1 fails 1 test, m2 fails 2 |
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures |
-| Luna review | Pending |
+| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 pending |
 | Strict validation, CI | Pending |
 <!-- /ANCHOR:verification -->
 

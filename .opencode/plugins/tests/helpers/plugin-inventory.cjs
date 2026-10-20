@@ -181,34 +181,112 @@ function isEventType(node, aliases) {
   return false;
 }
 
-// A local name can carry the type field too, including one destructured out of it, so aliases are
-// collected to a fixed point before the main walk reads any comparison or switch.
-function collectEventTypeAliases(nodes) {
+// Every pattern form hides its names at a different depth, so one walk flattens them all.
+function forEachPatternName(pattern, visit) {
+  if (pattern === null || pattern === undefined) return;
+
+  if (pattern.type === 'Identifier') {
+    visit(pattern.name);
+    return;
+  }
+  if (pattern.type === 'ObjectPattern') {
+    for (const property of pattern.properties) {
+      if (property.type === 'RestElement') forEachPatternName(property.argument, visit);
+      else forEachPatternName(property.value, visit);
+    }
+    return;
+  }
+  if (pattern.type === 'ArrayPattern') {
+    for (const element of pattern.elements) forEachPatternName(element, visit);
+    return;
+  }
+  if (pattern.type === 'AssignmentPattern') {
+    forEachPatternName(pattern.left, visit);
+    return;
+  }
+  if (pattern.type === 'RestElement') forEachPatternName(pattern.argument, visit);
+}
+
+// A name bound in more than one place can mean something else at the check, so aliases need a count.
+function collectBindings(nodes) {
+  const bindings = new Map();
+  const bind = (pattern) =>
+    forEachPatternName(pattern, (name) => {
+      bindings.set(name, (bindings.get(name) ?? 0) + 1);
+    });
+
+  for (const { node } of nodes) {
+    if (node.type === 'VariableDeclarator') {
+      bind(node.id);
+    } else if (
+      node.type === 'FunctionDeclaration' ||
+      node.type === 'FunctionExpression' ||
+      node.type === 'ArrowFunctionExpression'
+    ) {
+      bind(node.id);
+      for (const param of node.params) bind(param);
+    } else if (node.type === 'CatchClause') {
+      bind(node.param);
+    } else if (node.type === 'ClassDeclaration' || node.type === 'ClassExpression') {
+      bind(node.id);
+    } else if (
+      node.type === 'ImportSpecifier' ||
+      node.type === 'ImportDefaultSpecifier' ||
+      node.type === 'ImportNamespaceSpecifier'
+    ) {
+      bind(node.local);
+    }
+  }
+
+  return bindings;
+}
+
+// A name written after it is bound no longer holds the value the check was written for.
+function collectAssignedNames(nodes) {
+  const assigned = new Set();
+
+  for (const { node } of nodes) {
+    if (node.type === 'AssignmentExpression') {
+      forEachPatternName(node.left, (name) => assigned.add(name));
+    } else if (node.type === 'UpdateExpression' && node.argument.type === 'Identifier') {
+      assigned.add(node.argument.name);
+    }
+  }
+
+  return assigned;
+}
+
+// A local name can carry the type field too, including one destructured out of it, but only while
+// that name means one thing and is never rewritten.
+function collectEventTypeAliases(nodes, context) {
   const aliases = new Set();
+  const mayAlias = (name) => context.bindings.get(name) === 1 && !context.assignedNames.has(name);
   let changed = true;
 
   while (changed) {
     changed = false;
     for (const { node } of nodes) {
-      if (node.type !== 'VariableDeclarator') continue;
-
-      if (node.id.type === 'Identifier') {
-        if (aliases.has(node.id.name) || !isEventType(node.init, aliases)) continue;
+      if (node.type === 'VariableDeclarator') {
+        if (node.id.type !== 'Identifier' || !isEventType(node.init, aliases)) continue;
+        if (aliases.has(node.id.name) || !mayAlias(node.id.name)) continue;
         aliases.add(node.id.name);
         changed = true;
-        continue;
       }
 
-      if (node.id.type !== 'ObjectPattern') continue;
-      for (const property of node.id.properties) {
+      if (node.type !== 'ObjectPattern') continue;
+      for (const property of node.properties) {
         if (property.type !== 'Property' || property.computed) continue;
         const key = property.key;
         const namesType =
           (key.type === 'Identifier' && key.name === 'type') ||
           (key.type === 'Literal' && key.value === 'type');
         if (!namesType) continue;
-        if (property.value.type !== 'Identifier' || aliases.has(property.value.name)) continue;
-        aliases.add(property.value.name);
+        const value =
+          property.value.type === 'AssignmentPattern' ? property.value.left : property.value;
+        if (value.type !== 'Identifier' || aliases.has(value.name) || !mayAlias(value.name)) {
+          continue;
+        }
+        aliases.add(value.name);
         changed = true;
       }
     }
@@ -284,8 +362,8 @@ function isBindingIdentifier(node, parent) {
 
 // A collection whose name is read any other way can be changed or exported, which makes its
 // literal contents unable to describe what the check actually sees.
-function isCollectionReferenceOnly(name, declarationId, nodes) {
-  for (const { node, parent } of nodes) {
+function isCollectionReferenceOnly(name, declarationId, context) {
+  for (const { node, parent } of context.nodes) {
     if (node.type !== 'Identifier' || node.name !== name) continue;
     if (node === declarationId || isBindingIdentifier(node, parent)) continue;
     if (
@@ -296,7 +374,16 @@ function isCollectionReferenceOnly(name, declarationId, nodes) {
       parent.property.type === 'Identifier' &&
       COLLECTION_MEMBERS.has(parent.property.name)
     ) {
-      continue;
+      // Assigning through, updating or deleting a member changes the collection, so it is not a read.
+      const memberParent = context.nodeParents.get(parent);
+      const writesMember =
+        memberParent !== undefined &&
+        ((memberParent.type === 'AssignmentExpression' && memberParent.left === parent) ||
+          (memberParent.type === 'UpdateExpression' && memberParent.argument === parent) ||
+          (memberParent.type === 'UnaryExpression' &&
+            memberParent.operator === 'delete' &&
+            memberParent.argument === parent));
+      if (!writesMember) continue;
     }
     return false;
   }
@@ -321,6 +408,8 @@ function resolveCollection(node, context, resolving = new Set()) {
   }
 
   if (node.type === 'NewExpression') {
+    // A local Set shadows the built-in, so its constructor cannot build a trusted literal collection.
+    if (context.bindings.has('Set')) return null;
     if (node.callee.type !== 'Identifier' || node.callee.name !== 'Set') return null;
     if (node.arguments.length !== 1 || node.arguments[0].type !== 'ArrayExpression') return null;
     return resolveCollection(node.arguments[0], context, resolving);
@@ -338,6 +427,8 @@ function resolveCollection(node, context, resolving = new Set()) {
       node.arguments.length === 1 &&
       node.arguments[0].type === 'ArrayExpression'
     ) {
+      // A local Object shadows the built-in, so freeze cannot make a trusted literal collection.
+      if (context.bindings.has('Object')) return null;
       return resolveCollection(node.arguments[0], context, resolving);
     }
     return null;
@@ -365,7 +456,7 @@ function resolveCollection(node, context, resolving = new Set()) {
   try {
     const names = resolveCollection(declarator.init, context, resolving);
     if (names === null) return null;
-    return isCollectionReferenceOnly(name, declarator.id, context.nodes) ? names : null;
+    return isCollectionReferenceOnly(name, declarator.id, context) ? names : null;
   } finally {
     resolving.delete(name);
   }
@@ -441,8 +532,16 @@ function readCall(node, parent, source, aliases, context, handled, unscanned) {
 
 function scanEvents(source) {
   const nodes = walkAst(parseAst(source, { lang: 'js' }));
-  const aliases = collectEventTypeAliases(nodes);
-  const context = { nodes, declarators: collectDeclarators(nodes) };
+  // Member parent links let a read be told apart from a write through the same member.
+  const nodeParents = new Map(nodes.map(({ node, parent }) => [node, parent]));
+  const context = {
+    nodes,
+    nodeParents,
+    declarators: collectDeclarators(nodes),
+    bindings: collectBindings(nodes),
+    assignedNames: collectAssignedNames(nodes),
+  };
+  const aliases = collectEventTypeAliases(nodes, context);
   const handled = new Set();
   const unscanned = new Set();
 

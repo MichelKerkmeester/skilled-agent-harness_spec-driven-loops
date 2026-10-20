@@ -1,35 +1,39 @@
-# plugin-inventory.test.cjs against helper variants, node v26.8.2, worktree base 3303bfb38e
+# plugin-inventory.test.cjs (22 tests, working tree on b9ecf48c09) against helper variants, node v26.8.2
 
-## OLD text-scan helper (HEAD)
+## OLD text-scan helper (the parent of this phase's first commit)
 exit 1
-ℹ tests 18
-ℹ pass 12
-ℹ fail 6
-✖ a case label counts only under a switch on the event type (0.242959ms)
-✖ a collection that is changed after it is built is reported, not trusted (0.865ms)
-✖ a source the parser cannot read fails instead of passing empty (0.115041ms)
-✖ an alias of the event type is read like the type itself (0.101167ms)
-✖ comment and string text is never read as an event check (0.396459ms)
-✖ handledEventNames reads an escaped event name as the name it spells (0.664166ms)
+ℹ tests 22
+ℹ pass 13
+ℹ fail 9
+✖ a case label counts only under a switch on the event type (0.13225ms)
+✖ a collection that is changed after it is built is reported, not trusted (0.760708ms)
+✖ a destructured type field is read in parameters and with defaults (0.071333ms)
+✖ a local Set or Object is not trusted to build a literal collection (1.164584ms)
+✖ a source the parser cannot read fails instead of passing empty (0.184167ms)
+✖ a write through a collection member makes the collection untrusted (0.192334ms)
+✖ an alias of the event type is read like the type itself (0.094542ms)
+✖ comment and string text is never read as an event check (0.4405ms)
+✖ handledEventNames reads an escaped event name as the name it spells (0.595375ms)
 
 ## new helper, mutant m1: switch discriminant check removed
-1
+mutant lines: 1
 exit 1
-ℹ tests 18
-ℹ pass 17
+ℹ tests 22
+ℹ pass 21
 ℹ fail 1
-✖ a case label counts only under a switch on the event type (0.650083ms)
+✖ a case label counts only under a switch on the event type (0.634042ms)
 
-## new helper, mutant m2: collection treated as unchanged regardless of use
-1
+## new helper, mutant m2: collection reference check removed
+mutant lines: 1
 exit 1
-ℹ tests 18
-ℹ pass 17
-ℹ fail 1
-✖ a collection that is changed after it is built is reported, not trusted (0.694375ms)
+ℹ tests 22
+ℹ pass 20
+ℹ fail 2
+✖ a collection that is changed after it is built is reported, not trusted (0.685959ms)
+✖ a write through a collection member makes the collection untrusted (0.145167ms)
 
 ## new helper, unmodified
 exit 0
-ℹ tests 18
-ℹ pass 18
+ℹ tests 22
+ℹ pass 22
 ℹ fail 0

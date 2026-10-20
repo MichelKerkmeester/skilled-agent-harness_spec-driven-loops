@@ -1,0 +1,9 @@
+# Round-1 fixtures against the round-0 parser helper (commit b9ecf48c09), node v26.8.2
+exit 1
+ℹ tests 22
+ℹ pass 18
+ℹ fail 4
+✖ a destructured type field is read in parameters and with defaults (0.1835ms)
+✖ a local Set or Object is not trusted to build a literal collection (0.146125ms)
+✖ a write through a collection member makes the collection untrusted (0.946709ms)
+✖ an alias that is shadowed or reassigned is not an alias (0.2365ms)
