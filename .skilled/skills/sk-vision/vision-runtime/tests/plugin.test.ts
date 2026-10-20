@@ -872,6 +872,7 @@ describe("v2 grace for models off the text-only list", () => {
 
 describe("kill switches", () => {
   let savedEnv: Record<string, string | undefined> = {};
+  let absentSwitchCase = 0;
 
   // tests/ sits at the same depth as src/, so the plugin's own relative lookup
   // resolves the same file from here.
@@ -889,8 +890,11 @@ describe("kill switches", () => {
       Object.entries(process.env).filter(([key]) => isSwitchEnv(key)),
     );
     for (const name of Object.keys(savedEnv)) delete process.env[name];
+    // The path must stay absent so the resolver reads no switch file, and its
+    // parent is never created so the case leaves no directory behind.
     process.env.HOOK_FLAGS_CONFIG = join(
-      mkdtempSync(join(tmpdir(), "sk-vision-flags-")),
+      tmpdir(),
+      `sk-vision-flags-absent-${process.pid}-${++absentSwitchCase}`,
       "absent.env",
     );
     // The resolver caches the switch file per process, so an earlier setup call
