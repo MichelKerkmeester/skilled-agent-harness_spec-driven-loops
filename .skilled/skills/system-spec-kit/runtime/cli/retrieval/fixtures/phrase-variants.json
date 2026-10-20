@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3336d96763329a10c06a89a068bf900d8677b1c7c230e7db899598da52907132",
+  "manifestHash": "868d30ec8c93a18e663c21ccbc18b0ed7835faaecc48706df6c4bb67e542b443",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20472,6 +20472,18 @@
     "cli opencode docs and listings tasks": [
       "cli opencode docs and listings tasks"
     ],
+    "cli opencode docs and vision test cleanup": [
+      "cli opencode docs and vision test cleanup"
+    ],
+    "cli opencode docs and vision test cleanup implementation summary": [
+      "cli opencode docs and vision test cleanup implementation summary"
+    ],
+    "cli opencode docs and vision test cleanup plan": [
+      "cli opencode docs and vision test cleanup plan"
+    ],
+    "cli opencode docs and vision test cleanup tasks": [
+      "cli opencode docs and vision test cleanup tasks"
+    ],
     "cli opencode dual dispatch": [
       "cli opencode dual dispatch"
     ],
@@ -25849,6 +25861,9 @@
     ],
     "confirm mode stop hint implementation summary": [
       "confirm mode stop hint implementation summary"
+    ],
+    "confirm the provider prefix": [
+      "confirm the provider prefix"
     ],
     "confirm variant parity": [
       "confirm variant parity"
@@ -72298,6 +72313,9 @@
     "phase 35 v2 bridge plugin effects": [
       "phase 35 v2 bridge plugin effects"
     ],
+    "phase 36 cli opencode docs and vision test cleanup": [
+      "phase 36 cli opencode docs and vision test cleanup"
+    ],
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
     ],
@@ -74847,6 +74865,9 @@
     ],
     "plugin operation logic": [
       "plugin operation logic"
+    ],
+    "plugin playbook snippet default server": [
+      "plugin playbook snippet default server"
     ],
     "plugin rename": [
       "plugin rename"
