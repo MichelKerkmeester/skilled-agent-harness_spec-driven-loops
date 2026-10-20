@@ -265,6 +265,8 @@ export function dualPlugin(id, server) {
     let eventFailure;
     let cleanupPromise;
     const sessionEventState = new Map();
+    const announcedSessions = new Set();
+    const announcingSessions = new Map();
 
     const deliverEvent = async (type, properties) => {
       const sessionID = properties?.sessionID
@@ -279,6 +281,26 @@ export function dualPlugin(id, server) {
       }
 
       await hooks.event({ event: { type, properties } });
+    };
+
+    // v2 can deliver session traffic before session.created, so synthesize the event v1 plugins wait for.
+    const announceSession = async (sessionID) => {
+      if (typeof hooks.event !== 'function' || sessionID === undefined) return;
+      const inFlight = announcingSessions.get(sessionID);
+      if (inFlight) return inFlight;
+      if (announcedSessions.has(sessionID)) return;
+
+      announcedSessions.add(sessionID);
+      const delivery = deliverEvent('session.created', {
+        sessionID,
+        info: { id: sessionID },
+      });
+      announcingSessions.set(sessionID, delivery);
+      try {
+        await delivery;
+      } finally {
+        announcingSessions.delete(sessionID);
+      }
     };
 
     const cleanup = () => {
@@ -328,6 +350,17 @@ export function dualPlugin(id, server) {
           try {
             for await (const event of eventStream) {
               const data = event.data;
+              if (event.type === 'session.created' && data?.sessionID !== undefined) {
+                if (announcedSessions.has(data.sessionID)) continue;
+                announcedSessions.add(data.sessionID);
+              } else if (
+                event.type.startsWith('session.')
+                && event.type !== 'session.deleted'
+                && data?.sessionID !== undefined
+              ) {
+                await announceSession(data.sessionID);
+              }
+
               const properties =
                 event.type.startsWith('session.')
                 && data?.sessionID !== undefined
@@ -351,6 +384,14 @@ export function dualPlugin(id, server) {
               const mapping = EVENT_MAPPINGS[event.type];
               if (mapping) {
                 await deliverEvent(mapping.type, mapping.properties(data));
+              }
+
+              if (event.type === 'session.deleted') {
+                const sessionID = data?.sessionID ?? data?.info?.id;
+                if (sessionID !== undefined) {
+                  announcedSessions.delete(sessionID);
+                  announcingSessions.delete(sessionID);
+                }
               }
             }
           } catch (error) {
@@ -391,6 +432,12 @@ export function dualPlugin(id, server) {
 
       if (typeof hooks['experimental.chat.system.transform'] === 'function') {
         const registration = await ctx.session.hook('context', async (event) => {
+          // An event hook failure belongs to the event path's report, not to this request.
+          try {
+            await announceSession(event.sessionID);
+          } catch (error) {
+            eventFailure ??= error;
+          }
           const hookOutput = { system: [] };
           const hookInput = { sessionID: event.sessionID };
           if (event.model !== undefined) hookInput.model = event.model;

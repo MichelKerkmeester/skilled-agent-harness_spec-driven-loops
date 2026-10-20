@@ -103,9 +103,14 @@ test('session.created adds v1 session info while preserving v2 event data', asyn
 
 test('session events keep an existing info payload unchanged', async () => {
   const data = { sessionID: 'session_existing', info: { id: 'existing' } };
-  const v1Event = await forwardEventToV1({ type: 'session.updated', data });
+  const v1Events = await forwardEventsToV1([{ type: 'session.updated', data }]);
 
-  assert.strictEqual(v1Event.properties, data);
+  assert.deepEqual(v1Events.map((event) => event.type), ['session.created', 'session.updated']);
+  assert.deepEqual(v1Events[0], {
+    type: 'session.created',
+    properties: { sessionID: 'session_existing', info: { id: 'session_existing' } },
+  });
+  assert.strictEqual(v1Events[1].properties, data);
 });
 
 test('message events do not gain session info', async () => {
@@ -333,12 +338,20 @@ test('execution and compaction events emit their v1 aliases once', async () => {
 
   assert.deepEqual(receivedEvents, [
     {
+      type: 'session.created',
+      properties: { sessionID: 'session_execution', info: { id: 'session_execution' } },
+    },
+    {
       type: 'session.execution.succeeded',
       properties: { sessionID: 'session_execution', info: { id: 'session_execution' } },
     },
     {
       type: 'session.idle',
       properties: { sessionID: 'session_execution', info: { id: 'session_execution' } },
+    },
+    {
+      type: 'session.created',
+      properties: { sessionID: 'session_compaction', info: { id: 'session_compaction' } },
     },
     {
       type: 'session.compaction.ended',
@@ -351,6 +364,10 @@ test('execution and compaction events emit their v1 aliases once', async () => {
     {
       type: 'session.compacted',
       properties: { sessionID: 'session_compaction', info: { id: 'session_compaction' } },
+    },
+    {
+      type: 'session.created',
+      properties: { sessionID: 'session_unrelated', info: { id: 'session_unrelated' } },
     },
     {
       type: 'session.updated',
@@ -418,6 +435,197 @@ test('session.deleted clears the session event alias state', async () => {
   assert.equal(receivedEvents.filter((event) => event.type === 'session.idle').length, 2);
 });
 
+test('a session event before session.created announces the session first', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
+  ]);
+
+  assert.deepEqual(receivedEvents.map((event) => event.type), [
+    'session.created',
+    'session.execution.started',
+  ]);
+  assert.deepEqual(receivedEvents[0], {
+    type: 'session.created',
+    properties: { sessionID: 'ses_a', info: { id: 'ses_a' } },
+  });
+});
+
+test('a later session.created does not announce an already announced session', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
+    { type: 'session.created', data: { sessionID: 'ses_a' } },
+  ]);
+
+  assert.equal(
+    receivedEvents.filter((event) => event.type === 'session.created').length,
+    1,
+  );
+  assert.deepEqual(receivedEvents.map((event) => event.type), [
+    'session.created',
+    'session.execution.started',
+  ]);
+});
+
+test('a leading session.created is delivered once without a synthesized duplicate', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.created', data: { sessionID: 'ses_b', parentID: 'ses_parent' } },
+    { type: 'session.execution.started', data: { sessionID: 'ses_b' } },
+  ]);
+
+  assert.deepEqual(receivedEvents.map((event) => event.type), [
+    'session.created',
+    'session.execution.started',
+  ]);
+  assert.deepEqual(receivedEvents[0], {
+    type: 'session.created',
+    properties: { sessionID: 'ses_b', parentID: 'ses_parent', info: { id: 'ses_b' } },
+  });
+  assert.equal(
+    receivedEvents.filter((event) => event.type === 'session.created').length,
+    1,
+  );
+});
+
+test('a system transform before the stream announces its session once', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  const receivedEvents = [];
+  const order = [];
+  let releaseStream;
+  let finishStream;
+  const streamGate = new Promise((resolve) => {
+    releaseStream = resolve;
+  });
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
+  });
+  context.event.subscribe = () => (async function* () {
+    try {
+      await streamGate;
+      yield { type: 'session.execution.started', data: { sessionID: 'ses_c' } };
+    } finally {
+      finishStream();
+    }
+  })();
+  const plugin = dualPlugin('context-announce-test', async () => ({
+    event: async ({ event }) => {
+      receivedEvents.push(event);
+      order.push(`event:${event.type}`);
+    },
+    'experimental.chat.system.transform': async () => {
+      order.push('transform');
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  try {
+    await sessionHooks.get('context')({ sessionID: 'ses_c', system: [] });
+    assert.deepEqual(order, ['event:session.created', 'transform']);
+
+    releaseStream();
+    await streamFinished;
+
+    assert.deepEqual(receivedEvents.map((event) => event.type), [
+      'session.created',
+      'session.execution.started',
+    ]);
+    assert.equal(
+      receivedEvents.filter((event) => event.type === 'session.created').length,
+      1,
+    );
+  } finally {
+    await cleanup();
+  }
+});
+
+test('a system transform waits for an announcement the stream already started', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  const order = [];
+  let releaseCreated;
+  let createdStarted;
+  let finishStream;
+  const createdGate = new Promise((resolve) => {
+    releaseCreated = resolve;
+  });
+  const createdBegun = new Promise((resolve) => {
+    createdStarted = resolve;
+  });
+  const streamFinished = new Promise((resolve) => {
+    finishStream = resolve;
+  });
+  context.event.subscribe = () => (async function* () {
+    try {
+      yield { type: 'session.execution.started', data: { sessionID: 'ses_d' } };
+    } finally {
+      finishStream();
+    }
+  })();
+  const plugin = dualPlugin('context-wait-test', async () => ({
+    event: async ({ event }) => {
+      if (event.type === 'session.created') {
+        createdStarted();
+        await createdGate;
+      }
+      order.push(`event:${event.type}`);
+    },
+    'experimental.chat.system.transform': async () => {
+      order.push('transform');
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  try {
+    await createdBegun;
+    const transformDone = sessionHooks.get('context')({ sessionID: 'ses_d', system: [] });
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(order, []);
+
+    releaseCreated();
+    await transformDone;
+    await streamFinished;
+    assert.equal(order.indexOf('event:session.created') < order.indexOf('transform'), true);
+    assert.equal(order.filter((entry) => entry === 'event:session.created').length, 1);
+  } finally {
+    releaseCreated();
+    await cleanup();
+  }
+});
+
+test('a transform without an event hook does not synthesize an event', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, sessionHooks } = createV2Context();
+  let transformed = false;
+  const plugin = dualPlugin('no-event-hook-transform-test', async () => ({
+    'experimental.chat.system.transform': async () => {
+      transformed = true;
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  try {
+    await sessionHooks.get('context')({ sessionID: 'ses_no_event', system: [] });
+    assert.equal(transformed, true);
+  } finally {
+    await cleanup();
+  }
+});
+
+test('session.deleted allows the same session to be announced again', async () => {
+  const receivedEvents = await forwardEventsToV1([
+    { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
+    { type: 'session.deleted', data: { sessionID: 'ses_a' } },
+    { type: 'session.execution.started', data: { sessionID: 'ses_a' } },
+  ]);
+  const announcements = receivedEvents.filter((event) => event.type === 'session.created');
+
+  assert.equal(announcements.length, 2);
+  assert.deepEqual(
+    announcements.map((event) => event.properties.sessionID),
+    ['ses_a', 'ses_a'],
+  );
+});
+
 test('session.text.ended maps to a v1 assistant text-part event', async () => {
   const receivedEvents = await forwardEventsToV1([{
     type: 'session.text.ended',
@@ -431,9 +639,13 @@ test('session.text.ended maps to a v1 assistant text-part event', async () => {
 
   assert.deepEqual(
     receivedEvents.map((event) => event.type),
-    ['session.text.ended', 'message.part.updated'],
+    ['session.created', 'session.text.ended', 'message.part.updated'],
   );
-  assert.deepEqual(receivedEvents[1], {
+  assert.deepEqual(receivedEvents[0], {
+    type: 'session.created',
+    properties: { sessionID: 'session_text', info: { id: 'session_text' } },
+  });
+  assert.deepEqual(receivedEvents[2], {
     type: 'message.part.updated',
     properties: {
       part: {
@@ -467,9 +679,13 @@ test('session.step.ended maps to a v1 message update with token usage fields', a
 
   assert.deepEqual(
     receivedEvents.map((event) => event.type),
-    ['session.step.ended', 'message.updated'],
+    ['session.created', 'session.step.ended', 'message.updated'],
   );
-  assert.deepEqual(receivedEvents[1], {
+  assert.deepEqual(receivedEvents[0], {
+    type: 'session.created',
+    properties: { sessionID: 'session_step', info: { id: 'session_step' } },
+  });
+  assert.deepEqual(receivedEvents[2], {
     type: 'message.updated',
     properties: {
       info: {
@@ -538,7 +754,7 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
     return {
       event: async ({ event: v1Event }) => {
         receivedEvents.push(v1Event);
-        resolveEvent();
+        if (receivedEvents.length === 2) resolveEvent();
       },
       'tool.execute.before': async (inputPair, outputPair) => {
         beforePair = { input: inputPair, args: outputPair.args };
@@ -569,10 +785,16 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
   const cleanup = await plugin.setup(context);
 
   await eventReceived;
-  assert.deepEqual(receivedEvents, [{
-    type: event.type,
-    properties: { ...event.data, info: { id: 'session_1' } },
-  }]);
+  assert.deepEqual(receivedEvents, [
+    {
+      type: 'session.created',
+      properties: { sessionID: 'session_1', info: { id: 'session_1' } },
+    },
+    {
+      type: event.type,
+      properties: { ...event.data, info: { id: 'session_1' } },
+    },
+  ]);
   assert.deepEqual([...toolHooks.keys()], ['execute.before', 'execute.after']);
   assert.deepEqual([...sessionHooks.keys()], ['context']);
 
