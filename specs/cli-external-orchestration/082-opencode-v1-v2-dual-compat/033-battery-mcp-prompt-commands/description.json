@@ -1,11 +1,11 @@
 {
   "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
-  "description": "Phase 33: battery-mcp-prompt-commands",
+  "description": "OpenCode 2 lists each prompt of a connected MCP server as a command named `<server>:<prompt>`",
   "keywords": [
     "phase",
     "battery-mcp-prompt-commands"
   ],
-  "lastUpdated": "2026-10-20T16:44:32.384Z",
+  "lastUpdated": "2026-10-20T17:01:28.000Z",
   "specId": "033",
   "folderSlug": "battery-mcp-prompt-commands",
   "parentChain": [

@@ -103,6 +103,27 @@ function parseJsonObject(text) {
   return start !== -1 && end > start ? attempt(trimmed.slice(start, end + 1)) : null;
 }
 
+// Parses a JSON array out of a stream that may carry leading noise, returning
+// null when nothing parseable is present. The config endpoint answers with a
+// top-level array, which the object parser refuses by design.
+function parseJsonArray(text) {
+  const trimmed = String(text ?? '').trim();
+  if (!trimmed) return null;
+  const attempt = (candidate) => {
+    try {
+      const value = JSON.parse(candidate);
+      return Array.isArray(value) ? value : null;
+    } catch {
+      return null;
+    }
+  };
+  const direct = attempt(trimmed);
+  if (direct) return direct;
+  const start = trimmed.indexOf('[');
+  const end = trimmed.lastIndexOf(']');
+  return start !== -1 && end > start ? attempt(trimmed.slice(start, end + 1)) : null;
+}
+
 // Renders an entry's source as text, whichever shape the server sends it in.
 function sourceText(entry) {
   const source = entry?.source;
@@ -577,12 +598,40 @@ function legsForV2(files, v2, root, env) {
   // the allowlist is built from that folder, not from the caller's.
   const isolated = (v2.shadowing || []).length > 0;
   const sourceEnv = isolated ? { ...env, OPENCODE_CONFIG_DIR: path.join(root, '.opencode') } : env;
-  const commandLeg = v2.commandsStable === true
-    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', sourceEnv, isolated))
+  const listed = commandNamesFromResponse(v2.commands);
+  const sources = {
+    ...allowedCommandSources(root, 'v2', sourceEnv, isolated),
+    mcpServers: mcpServerNames(v2.config),
+  };
+  let commandLeg = v2.commandsStable === true
+    ? legCommandListed('v2', listed, sources)
     : makeResult(
       'command-listed', 'v2', 'DEGRADED', 'the command listing never settled on a non-zero count',
       [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],
     );
+
+  // A config that did not parse leaves the MCP server names unknown, so a
+  // `<server>:<prompt>` name no command folder holds cannot be judged. When those
+  // names are the only failure the leg degrades; a missing project command or an
+  // unprefixed stray is still proven by the listing alone, so that failure stays.
+  if (Array.isArray(listed) && !Array.isArray(v2.config) && commandLeg.status === 'FAIL') {
+    const unjudged = listed
+      .filter((name) => !sources.required.includes(name) && !sources.allowed.has(name))
+      .filter((name) => promptServerOf(name) !== null)
+      .map((name) => `${name}: listed, in no command folder`);
+    const details = commandLeg.details || [];
+    const onlyUnjudged = unjudged.length > 0
+      && details.length === unjudged.length
+      && unjudged.every((detail) => details.includes(detail));
+    if (onlyUnjudged) {
+      commandLeg = makeResult(
+        'command-listed', 'v2', 'DEGRADED',
+        'the config sources did not parse, so MCP prompt commands cannot be judged',
+        unjudged,
+      );
+    }
+  }
+
   return [
     legPluginActive(files, v2.reads, root, v2.shadowing || []),
     legSkillVisible(v2.skills, root),
@@ -623,6 +672,37 @@ function commandNamesFromResponse(response) {
     .filter((name) => typeof name === 'string' && name.length > 0);
 }
 
+// Names the MCP servers a config response declares. OpenCode 2 nests them under
+// each source's info.mcp.servers, while the older shape lists them directly
+// under info.mcp. A prompt a connected server contributes is listed by the
+// runtime without a source field, so this is the only way to tell it apart from
+// a stray command.
+function mcpServerNames(configResponse) {
+  if (!Array.isArray(configResponse)) return [];
+  const names = new Set();
+  for (const entry of configResponse) {
+    const mcp = entry?.info?.mcp;
+    if (!mcp || typeof mcp !== 'object' || Array.isArray(mcp)) continue;
+    const servers = mcp.servers;
+    if (servers && typeof servers === 'object' && !Array.isArray(servers)) {
+      for (const name of Object.keys(servers)) names.add(name);
+      continue;
+    }
+    for (const name of Object.keys(mcp)) {
+      if (name !== 'servers') names.add(name);
+    }
+  }
+  return [...names].sort();
+}
+
+// Splits a `<server>:<prompt>` name into its server, or null when the colon does
+// not stand between two non-empty parts, so a bare colon is never a server.
+function promptServerOf(name) {
+  const colon = name.indexOf(':');
+  if (colon <= 0 || colon >= name.length - 1) return null;
+  return name.slice(0, colon);
+}
+
 // Fails when a project command file is missing from the listing or a listed name
 // comes from no folder this runtime reads, so a global, inherited or built-in
 // command is never counted as a stray.
@@ -632,22 +712,36 @@ function legCommandListed(family, listed, sources) {
   }
 
   const { required, allowed } = sources;
+  const mcpServers = sources.mcpServers ?? [];
   const present = new Set(listed);
   const details = [];
+  let mcpAccepted = 0;
 
   for (const name of required) {
     if (!present.has(name)) details.push(`${name}: in the command folder, not listed`);
   }
   for (const name of listed) {
-    if (!required.includes(name) && !allowed.has(name)) details.push(`${name}: listed, in no command folder`);
+    if (required.includes(name) || allowed.has(name)) continue;
+    const server = promptServerOf(name);
+    if (server !== null) {
+      const configured = Array.isArray(mcpServers)
+        ? mcpServers.includes(server)
+        : (mcpServers instanceof Set && mcpServers.has(server));
+      if (configured) {
+        mcpAccepted += 1;
+        continue;
+      }
+    }
+    details.push(`${name}: listed, in no command folder`);
   }
 
   if (details.length > 0) {
     return makeResult('command-listed', family, 'FAIL', 'the command listing does not match the command folders', details);
   }
+  const passed = [`listed: ${listed.length}`, `required: ${required.length}`];
+  if (mcpAccepted > 0) passed.push(`mcp prompts: ${mcpAccepted}`);
   return makeResult(
-    'command-listed', family, 'PASS', `all ${required.length} command files listed`,
-    [`listed: ${listed.length}`, `required: ${required.length}`],
+    'command-listed', family, 'PASS', `all ${required.length} command files listed`, passed,
   );
 }
 
@@ -961,8 +1055,9 @@ async function stopChild(child) {
 }
 
 // Runs one authenticated read against the private server; a failed spawn or an
-// unparseable body returns null so the caller degrades instead of crashing.
-function readApiJson(bin, serverUrl, apiPath, env, cwd) {
+// unparseable body returns null so the caller degrades instead of crashing. The
+// parser is selectable because one endpoint answers with an array.
+function readApiJson(bin, serverUrl, apiPath, env, cwd, parse = parseJsonObject) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-api-'));
   try {
     const args = ['api', '--server', serverUrl, 'GET', apiPath];
@@ -973,7 +1068,7 @@ function readApiJson(bin, serverUrl, apiPath, env, cwd) {
       maxBuffer: MAX_BUFFER,
       stdio: ['ignore', fd, 'pipe'],
     }));
-    return parseJsonObject(result.stdout?.toString() ?? '');
+    return parse(result.stdout?.toString() ?? '');
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
   }
@@ -1062,6 +1157,11 @@ async function readV2(bin, root, env = process.env) {
       if (attempt < READ_ATTEMPTS - 1) await sleep(READ_INTERVAL_MS);
     }
 
+    // The config sources name the MCP servers whose prompts the command listing
+    // also carries; without them a connected server's prompt reads as a stray.
+    const configPath = `/api/config?location%5Bdirectory%5D=${encodeURIComponent(root)}`;
+    const config = readApiJson(bin, serverUrl, configPath, apiEnv, root, parseJsonArray);
+
     return {
       started: true,
       reason: 'the private v2 server answered',
@@ -1070,6 +1170,7 @@ async function readV2(bin, root, env = process.env) {
       commands,
       commandCounts,
       commandsStable: stableIndex(commandCounts) !== -1,
+      config,
       shadowing,
     };
   } finally {
@@ -1117,6 +1218,7 @@ module.exports = {
   legsForV2,
   legSkillVisible,
   legCommandListed,
+  mcpServerNames,
   worstExit,
   formatHuman,
   main,

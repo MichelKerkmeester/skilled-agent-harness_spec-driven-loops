@@ -32,6 +32,7 @@ const {
   listCommandNames,
   listPluginFiles,
   main,
+  mcpServerNames,
   parseArgs,
   parseVersion,
   readV2,
@@ -170,15 +171,25 @@ if (args[0] === 'serve') {
 } else if (args[0] === 'api') {
   const apiPath = args[4];
   const configOk = process.env.OPENCODE_CONFIG_PROJECT_DISABLE !== '1' || process.env.OPENCODE_CONFIG_DIR === path.join(root, '.opencode');
+  const prompt = { name: 'code_mode:utcp_codemode_usage', description: 'fixture prompt' };
   const commands = ignoreSwitches && ancestor
-    ? [{ name: 'battery', description: 'fixture command' }, { name: 'outer-only', description: 'fixture command' }]
-    : (configOk ? [{ name: 'battery', description: 'fixture command' }] : []);
-  const data = apiPath.startsWith('/api/plugin')
-    ? pluginData()
-    : apiPath.startsWith('/api/command')
-      ? commands
-      : (configOk ? [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] : []);
-  console.log(JSON.stringify({ data }));
+    ? [{ name: 'battery', description: 'fixture command' }, { name: 'outer-only', description: 'fixture command' }, prompt]
+    : (configOk ? [{ name: 'battery', description: 'fixture command' }, prompt] : []);
+  if (apiPath.startsWith('/api/config')) {
+    // The config endpoint answers with a top-level array, not the usual data envelope.
+    console.log(JSON.stringify([{
+      type: 'document',
+      path: path.join(root, 'opencode.json'),
+      info: { mcp: { servers: { code_mode: { type: 'local' } } } },
+    }]));
+  } else {
+    const data = apiPath.startsWith('/api/plugin')
+      ? pluginData()
+      : apiPath.startsWith('/api/command')
+        ? commands
+        : (configOk ? [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] : []);
+    console.log(JSON.stringify({ data }));
+  }
 }
 `;
   fs.writeFileSync(script, source);
@@ -656,6 +667,121 @@ test('C8: v2 a command listing that never settles degrades command-listed', (t) 
   assert.deepEqual(result.details, ['counts: [0,0,0]']);
 });
 
+test('C9: mcpServerNames reads both config shapes and refuses a non-array', () => {
+  const v2 = [
+    { type: 'document', path: '/fixture/opencode.json', info: { mcp: { servers: { zebra: {}, code_mode: {} } } } },
+    { type: 'directory', path: '/fixture/.opencode' },
+  ];
+  assert.deepEqual(mcpServerNames(v2), ['code_mode', 'zebra']);
+  const v1 = [{ info: { mcp: { code_mode: {}, servers: null } } }];
+  assert.deepEqual(mcpServerNames(v1), ['code_mode']);
+  assert.deepEqual(mcpServerNames(null), []);
+  assert.deepEqual(mcpServerNames({ info: { mcp: { servers: { code_mode: {} } } } }), []);
+});
+
+test('C10: v2 passes when the listing carries a prompt from a configured MCP server', (t) => {
+  const root = pluginRoot(t, ['alpha.js']);
+  commandFile(root, 'battery');
+  const files = listPluginFiles(root);
+  const config = [{
+    type: 'document',
+    path: path.join(root, 'opencode.json'),
+    info: { mcp: { servers: { code_mode: { type: 'local' } } } },
+  }];
+  const listed = [{ name: 'battery' }, { name: 'code_mode:utcp_codemode_usage' }];
+  const result = legsForV2(
+    files,
+    {
+      started: true,
+      reads: [{ entries: files.map((file) => v2Entry(file)) }],
+      skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+      commands: { data: listed },
+      commandCounts: [listed.length, listed.length],
+      commandsStable: true,
+      config,
+    },
+    root,
+    emptyEnv(t),
+  ).find((item) => item.leg === 'command-listed');
+  assert.ok(result);
+  assert.equal(result.status, 'PASS');
+  assert.deepEqual(result.details, ['listed: 2', 'required: 1', 'mcp prompts: 1']);
+});
+
+test('C11: an unconfigured server prefix and an unprefixed stray both fail', (t) => {
+  const root = tempRoot(t);
+  commandFile(root, 'a');
+  const sources = { ...allowedCommandSources(root, 'v2', emptyEnv(t)), mcpServers: ['code_mode'] };
+  const other = legCommandListed('v2', ['a', 'other_server:prompt'], sources);
+  assert.equal(other.status, 'FAIL');
+  assert.match(resultText(other), /other_server:prompt: listed, in no command folder/);
+  const stray = legCommandListed('v2', ['a', 'stray'], sources);
+  assert.equal(stray.status, 'FAIL');
+  assert.match(resultText(stray), /stray: listed, in no command folder/);
+  const accepted = legCommandListed('v2', ['a', 'code_mode:x'], sources);
+  assert.equal(accepted.status, 'PASS');
+  assert.ok(accepted.details.includes('mcp prompts: 1'));
+});
+
+test('C12: legsForV2 with an unreadable config degrades an MCP prompt and still fails a stray', (t) => {
+  const root = pluginRoot(t, ['alpha.js']);
+  commandFile(root, 'battery');
+  const files = listPluginFiles(root);
+  const base = {
+    started: true,
+    reads: [{ entries: files.map((file) => v2Entry(file)) }],
+    skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+    commands: { data: [{ name: 'battery' }] },
+    commandCounts: [1, 1],
+    commandsStable: true,
+    config: null,
+  };
+  const pass = legsForV2(files, base, root, emptyEnv(t)).find((item) => item.leg === 'command-listed');
+  assert.equal(pass.status, 'PASS');
+  assert.ok(!pass.details.some((detail) => detail.startsWith('mcp prompts:')));
+  const prefixed = {
+    ...base,
+    commands: { data: [{ name: 'battery' }, { name: 'code_mode:x' }] },
+    commandCounts: [2, 2],
+  };
+  const degraded = legsForV2(files, prefixed, root, emptyEnv(t)).find((item) => item.leg === 'command-listed');
+  assert.equal(degraded.status, 'DEGRADED');
+  assert.equal(degraded.reason, 'the config sources did not parse, so MCP prompt commands cannot be judged');
+  assert.deepEqual(degraded.details, ['code_mode:x: listed, in no command folder']);
+  const stray = {
+    ...base,
+    commands: { data: [{ name: 'battery' }, { name: 'stray' }] },
+    commandCounts: [2, 2],
+  };
+  const fail = legsForV2(files, stray, root, emptyEnv(t)).find((item) => item.leg === 'command-listed');
+  assert.equal(fail.status, 'FAIL');
+  assert.match(resultText(fail), /stray: listed, in no command folder/);
+});
+
+test('C13: legsForV2 with an unreadable config and a stray keeps the stray a failure', (t) => {
+  const root = pluginRoot(t, ['alpha.js']);
+  commandFile(root, 'battery');
+  const files = listPluginFiles(root);
+  const listed = [{ name: 'battery' }, { name: 'code_mode:x' }, { name: 'stray-command' }];
+  const result = legsForV2(
+    files,
+    {
+      started: true,
+      reads: [{ entries: files.map((file) => v2Entry(file)) }],
+      skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+      commands: { data: listed },
+      commandCounts: [listed.length, listed.length],
+      commandsStable: true,
+      config: null,
+    },
+    root,
+    emptyEnv(t),
+  ).find((item) => item.leg === 'command-listed');
+  assert.ok(result);
+  assert.equal(result.status, 'FAIL');
+  assert.match(resultText(result), /stray-command: listed, in no command folder/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. ADVERSARIAL CASES AND CROSS-CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -842,6 +968,14 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   assert.equal(listed.status, 'PASS');
   assert.equal(calls.readV2.length, 1);
   assert.equal(collected.commandsStable, true);
+  assert.ok(Array.isArray(collected.config));
+  assert.deepEqual(mcpServerNames(collected.config), ['code_mode']);
+  const judged = legsForV2(
+    listPluginFiles(root), collected, root, { OPENCODE_BIN: server.script },
+  ).find((result) => result.leg === 'command-listed');
+  assert.ok(judged);
+  assert.equal(judged.status, 'PASS');
+  assert.ok(judged.details.includes('mcp prompts: 1'), JSON.stringify(judged.details));
 
   const secret = 'FAKE-SECRET-123';
   assert.ok(!JSON.stringify(summary.results).includes(secret));
