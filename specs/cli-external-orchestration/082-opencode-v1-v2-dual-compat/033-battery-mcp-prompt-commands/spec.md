@@ -27,7 +27,7 @@ contextType: "general"
 | **Branch** | `worktrees/173-battery-mcp-prompt-commands` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 33 of 33 |
-| **Predecessor** | 031-plugin-scanner-ast |
+| **Predecessor** | 032-plugin-tests-ci-and-stale-bundles |
 | **Successor** | None |
 | **Handoff Criteria** | The v2 `command-listed` leg passes whether or not the MCP prompt is listed, and the dual-version battery passes on CI at the pushed commit |
 <!-- /ANCHOR:metadata -->

@@ -35,6 +35,7 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands"
   ],
   "manual": {
@@ -240,7 +241,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T17:28:40.980Z",
+    "last_save_at": "2026-10-20T17:30:46.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -248,13 +249,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3ea59e9201c2f5814ad8931afc3442e5176def0a7bbac42f59941f63cbc7817c",
+    "source_fingerprint": "sha256:62ed21e879e64e9c39ab66c118e7e2157278f929d6d78530fdefb774de3e63aa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d02a102eb5e2b2857ded920166e64c8b965f472d416d7c5fd51476c212d9bab2",
+      "spec.md": "8aca6686defc551b4be4f7b27f75451b3baabea0a9dbb966cdf67e3832c919e8",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
-    "last_active_at": "2026-10-20T15:00:57.181Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
+    "last_active_at": "2026-10-20T17:15:51.841Z"
   }
 }

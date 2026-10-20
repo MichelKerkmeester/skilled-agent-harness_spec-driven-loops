@@ -193,7 +193,7 @@
     ],
     "causal_summary": "OpenCode 2 lists each prompt of a connected MCP server as a command named `<server>:<prompt>`",
     "created_at": "2026-10-20T16:44:31Z",
-    "last_save_at": "2026-10-20T17:28:40.950Z",
+    "last_save_at": "2026-10-20T17:30:46.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +202,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3e2d7124de3bacc6a2970c8f61a5a0740fe2dc66d628c5c6a9ff0bb239e570fd",
+    "source_fingerprint": "sha256:0796e8b1b76cc2b21922e85f6fdd0c2dbef9f2d87446546d0a650f4abf4d676a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6d5dccf510ecc38c282441b9932cac982cca824eb0d07960222589bbe9f32e41",
+      "spec.md": "476c473ff2cb01605c676172b95e6274c02618cb25539f1cc54f16d9fb186d59",
       "plan.md": "72f5772ddb3d604e7788e5a5e1fb12e0ae69aef743dcea2b10007789c29809aa",
       "tasks.md": "280f8613096966d753df0de1ed28c54a00119437a995d30943cf4964a0e3fddc",
       "implementation-summary.md": "09fa95a4189053f4b38c85e325ec9fde98462741d394d9d256c2a16c917ac2b6"

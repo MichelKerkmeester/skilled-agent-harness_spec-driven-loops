@@ -1,0 +1,11 @@
+# Repository files outside .skilled, .opencode and .pi that the plugin suites read (relative paths resolved; existence probes for absent root files included)
+.cursor/commands/goal-cursor.md
+.cursor/hooks.json
+.devin/hooks.v1.json
+.env.example
+esbuild.config.mjs
+manifest.json
+relative-repo/.skilled/skills/.state/session-relaunch/handoffs
+specs/system-deep-loop/z_archive/026-goal-opencode-plugin/012-regression-test-backfill/graph-metadata.json
+src/2_javascript
+wrangler.toml

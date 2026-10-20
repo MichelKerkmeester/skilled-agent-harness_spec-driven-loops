@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin tests ci and stale bundles",
+      "phase 32 plugin tests ci and stale bundles",
+      "opencode plugin tests workflow",
+      "stale bundle provisioning",
+      "plugin tests ci and stale bundles plan",
+      "plugin tests ci and stale bundles tasks",
+      "plugin tests ci and stale bundles implementation summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "tests",
+      "stale",
+      "bundles",
+      "phase",
+      "opencode",
+      "workflow",
+      "bundle",
+      "provisioning",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/workflows/spec-kit-check.yml",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".github/workflows/README.md",
+      "scratch/fingerprint-timing.txt",
+      "scratch/real-stamp-provision-1.txt",
+      "scratch/mutation/broken-plugin-test.txt",
+      "scratch/mutation/old-script-new-tests.txt",
+      "scratch/mutation/m1-untracked-counted.txt",
+      "scratch/mutation/before-no-workflow-runs-plugin-tests.txt",
+      "scratch/node22-plugin-tests.txt",
+      "scratch/mutation/package-only-script-source-tests.txt",
+      "scratch/trace/reads-outside-source-roots.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-check.yml",
+        "kind": "config",
+        "path": ".github/workflows/spec-kit-check.yml",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-provision-paths.txt",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/worktree-provision-paths.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "fingerprint-timing.txt",
+        "kind": "file",
+        "path": "scratch/fingerprint-timing.txt",
+        "source": "derived"
+      },
+      {
+        "name": "real-stamp-provision-1.txt",
+        "kind": "file",
+        "path": "scratch/real-stamp-provision-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "broken-plugin-test.txt",
+        "kind": "file",
+        "path": "scratch/mutation/broken-plugin-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "old-script-new-tests.txt",
+        "kind": "file",
+        "path": "scratch/mutation/old-script-new-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m1-untracked-counted.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m1-untracked-counted.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before-no-workflow-runs-plugin-tests.txt",
+        "kind": "file",
+        "path": "scratch/mutation/before-no-workflow-runs-plugin-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "node22-plugin-tests.txt",
+        "kind": "file",
+        "path": "scratch/node22-plugin-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "package-only-script-source-tests.txt",
+        "kind": "file",
+        "path": "scratch/mutation/package-only-script-source-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reads-outside-source-roots.txt",
+        "kind": "file",
+        "path": "scratch/trace/reads-outside-source-roots.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
+    "created_at": "2026-10-20T15:30:08Z",
+    "last_save_at": "2026-10-20T17:15:51.809Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9ec7cca86bb370c36aabc0082338a58dce6d70fa4bbccbc51341cde42661430c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "643a224b74f2d823fa53efd87ccfcb5a18998ae44218c02d0dd78dbd8c474c21",
+      "plan.md": "b472f63cbeb296ba1c89ba18644fe68be6c2cae3639c61f4eda7eec578004291",
+      "tasks.md": "6bb7bcce4fc24f3e46e6b4de3f416419ef024cad3735331b285df7ac311ce3fc",
+      "implementation-summary.md": "554ee20386c7579d1bb6450c285d767aee6e635bf064dc5c883dbb60a4ac05d4"
+    },
+    "last_active_at": null
+  }
+}

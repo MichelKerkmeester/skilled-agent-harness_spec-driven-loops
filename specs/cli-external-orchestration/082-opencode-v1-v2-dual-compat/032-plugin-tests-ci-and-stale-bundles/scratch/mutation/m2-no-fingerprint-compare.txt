@@ -1,0 +1,10 @@
+FAIL: a staged source change says why it rebuilt (rc=1 exp=0)
+FAIL: a staged source change rebuilds once (exp='5' got='4')
+FAIL: the recorded staged change adds no build (exp='5' got='4')
+FAIL: an unstaged edit newer than the stamp rebuilds once (exp='6' got='5')
+FAIL: an input older than the rewritten stamp adds no build (exp='6' got='5')
+FAIL: a deleted tracked input rebuilds once (exp='7' got='5')
+FAIL: the recorded deletion adds no build (exp='7' got='5')
+FAIL: a build that writes nothing still counts as the rebuild (exp='8' got='5')
+FAIL: a build that wrote nothing ends the rebuild loop (exp='8' got='5')
+worktree-naming tests: PASS=135 FAIL=9

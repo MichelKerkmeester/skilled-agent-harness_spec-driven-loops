@@ -1,0 +1,5 @@
+FAIL: untracked newer files add no build (exp='3' got='4')
+FAIL: a tracked source newer than the output rebuilds it and says why (rc=1 exp=0)
+FAIL: a tree outside git never rebuilds an existing output (exp='4' got='5')
+FAIL: a tree outside git builds a missing output once (exp='5' got='6')
+worktree-naming tests: PASS=115 FAIL=4
