@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e8d12b1d60bc0f55d202fa29d52d2375916810a28467f1767c22f06bdad343a0",
+  "manifestHash": "a81c273bd2b31319cc1a3730e5166c58c62e601aa5d264861a2a42ff5e736c29",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72052,6 +72052,9 @@
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
+    "phase 29 unrun tests ci coverage": [
+      "phase 29 unrun tests ci coverage"
+    ],
     "phase 3 admission gold": [
       "phase 3 admission gold"
     ],
@@ -73372,6 +73375,9 @@
     ],
     "pi extension system": [
       "pi extension system"
+    ],
+    "pi extension tests workflow": [
+      "pi extension tests workflow"
     ],
     "pi extensions": [
       "pi extensions"
@@ -94217,6 +94223,9 @@
     "sk git script exit codes": [
       "sk-git script exit codes"
     ],
+    "sk git script tests workflow": [
+      "sk-git script tests workflow"
+    ],
     "sk git scripts folder": [
       "sk-git scripts folder"
     ],
@@ -107868,6 +107877,18 @@
     ],
     "unresolvedcriticaldisagreements": [
       "unresolvedCriticalDisagreements"
+    ],
+    "unrun tests ci coverage": [
+      "unrun tests ci coverage"
+    ],
+    "unrun tests ci coverage implementation summary": [
+      "unrun tests ci coverage implementation summary"
+    ],
+    "unrun tests ci coverage plan": [
+      "unrun tests ci coverage plan"
+    ],
+    "unrun tests ci coverage tasks": [
+      "unrun tests ci coverage tasks"
     ],
     "unsafe type casts reduced": [
       "unsafe type casts reduced"
