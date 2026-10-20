@@ -1,0 +1,41 @@
+✔ the plugin folder matches the inventory manifest (38.739792ms)
+✔ readInventory reports an unlisted file, a missing manifest file and a bridged exception (6.53075ms)
+✔ every bridged plugin maps all of its hooks (233.907875ms)
+✔ every handled event name reaches v2 plugins or is listed (48.556708ms)
+✔ every event an unscanned check covers reaches v2 plugins or is listed (0.371416ms)
+✖ every listed event is still handled by a plugin (40.210834ms)
+✔ every listed skipped hook names a bridged plugin (2.448375ms)
+✔ stripComments keeps strings and drops comments (0.173291ms)
+✔ handledEventNames reads both quote styles, both orders and case labels (0.227708ms)
+✔ handledEventNames reads names from a resolved collection (1.231833ms)
+✔ unscannedEventChecks reports checks the scan cannot read (0.845833ms)
+✔ every unscanned event check is listed (66.231209ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 507.690583
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:196:1
+✖ every listed event is still handled by a plugin (40.210834ms)
+  AssertionError [ERR_ASSERTION]: session.status is listed in the manifest but no bridged plugin handles it
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/plugin-inventory.test.cjs:206:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

@@ -1,0 +1,59 @@
+✔ system-completion-sentinel exports and registers v2 hooks (37.045792ms)
+✔ system-spec-gate exports and registers v2 hooks (7.035041ms)
+✔ system-skill-advisor exports and registers v2 hooks (9.534292ms)
+✔ opencode-goal exports and registers v2 hooks (10.208791ms)
+✔ sk-vision-renamed exports and registers v2 hooks (5.646292ms)
+✖ every native-dual exception has a hard-plugin case (11.069875ms)
+✖ every hard-plugin case names a plugin in the inventory (1.777833ms)
+✔ system-completion-sentinel records an advisory after a completed session event (4.622ms)
+✔ system-spec-gate rejects a denied write through execute.before (4.619292ms)
+✔ opencode-goal queues its continuation through session.prompt (39.062875ms)
+✔ opencode-goal records v2 assistant evidence and token usage from session events (28.746125ms)
+✔ system-skill-advisor clears session transform dedup after compaction (1.352833ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 241.192084
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:347:1
+✖ every native-dual exception has a hard-plugin case (11.069875ms)
+  AssertionError [ERR_ASSERTION]: sk-vision is a native-dual exception without a v2 registration case
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/v2-hard-plugins.test.cjs:349:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/v2-hard-plugins.test.cjs:356:1
+✖ every hard-plugin case names a plugin in the inventory (1.777833ms)
+  AssertionError [ERR_ASSERTION]: sk-vision-renamed has a case but no plugin file
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/v2-hard-plugins.test.cjs:360:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

@@ -1,0 +1,38 @@
+✔ the plugin folder matches the inventory manifest (18.288792ms)
+✔ readInventory reports an unlisted file, a missing manifest file and a bridged exception (2.01525ms)
+✖ every bridged plugin maps all of its hooks (67.272709ms)
+✔ every handled event name reaches v2 plugins or is listed (6.747667ms)
+✔ every listed event is still handled by a plugin (6.5355ms)
+✔ every listed skipped hook names a bridged plugin (1.752541ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 145.700833
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:130:1
+✖ every bridged plugin maps all of its hooks (67.272709ms)
+  AssertionError [ERR_ASSERTION]: sk-git-message-gate.js unmapped hooks
+  + actual - expected
+  
+  + [
+  +   'chat.message'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g024/mcopy/.opencode/plugins/tests/plugin-inventory.test.cjs:144:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'chat.message' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit 1

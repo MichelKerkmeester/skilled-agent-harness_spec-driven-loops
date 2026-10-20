@@ -224,6 +224,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - OpenCode 2 has no server-side toast and agent `temperature` has no effect (see Section 5).
 - The proposed version floors of 1.19.0 and 2.0.32 are inferred and unprobed below the tested versions.
 - OpenCode 2.0.32 does not deliver `server.instance.disposed` or `global.disposed` to plugins; it sends `location.shutdown` and runs the cleanup the bridge returns. The disposal branches in `system-skill-advisor.js` and `system-dist-freshness-guard.js` therefore run only on OpenCode 1 (observed 2026-10-20, listed in `tests/plugin-inventory.json`).
+- The event-name guard in `tests/plugin-inventory.test.cjs` is a static scan of plugin source, not a parser. It blanks comments, reads quoted and static template literals, case labels and literal Sets and arrays, and reports any other check on an event type it cannot resolve. Some spellings still escape it: escaped literals such as `'session.idle'`, check-like text inside a string, case labels under a switch that is not on an event type, and a literal collection changed later by `push` or `add`. The authoritative guard for what each plugin does on each host is the two-version doctor battery, which loads every plugin on OpenCode 1 and OpenCode 2.
 - Live delivery of each bridged hook on a running OpenCode 2 host is not verified plugin by plugin.
 
 ---
