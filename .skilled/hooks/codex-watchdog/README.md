@@ -108,7 +108,7 @@ Expected result: `ok function`.
 # Verify the kill switch short-circuits
 CODEX_HOOKS_WATCHDOG_DISABLED=1 node -e "
   import('./.skilled/plugins/codex-hooks-watchdog.js').then(async m => {
-    const plugin = await m.default({ directory: process.cwd() });
+    const plugin = await m.default.server({ directory: process.cwd() });
     // session.created with disabled flag -> no log written, no throw
     await plugin.event({ event: { type: 'session.created', sessionID: 'test' } });
     console.log('ok');
