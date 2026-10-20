@@ -204,7 +204,7 @@
     ],
     "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
     "created_at": "2026-10-20T11:51:31Z",
-    "last_save_at": "2026-10-20T13:13:15.372Z",
+    "last_save_at": "2026-10-20T13:13:33.167Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77ee0c3544f098692df97df003f085ef033b2596cb2d0ef00ccabde8992882c9",
+    "source_fingerprint": "sha256:1e026df5f941a69d7b663c42470f1ac222804f4533ec0ef45cb027faa8347165",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ada0a8b28d1cc3ffa7a09f7ad1696df5058df6692be026c16dc5e8203f98fa4",
       "plan.md": "6815e62991ed2650211c4d3b84b51335b091828a954917ba5f4e2a4c000e119b",
       "tasks.md": "cf5ac75a34c033b290a2af999ffa38fe472d417121b7c1b43b32ef9fea4c6d6b",
-      "implementation-summary.md": "f8e0eae4fba71017cd176c989e3e835119def1916f66a725a02cb8a93e381cc2"
+      "implementation-summary.md": "6e810a3f381540bc3f3e9bbb0fa1d69cb401b3c4a6a8ea51569e821a994e571f"
     },
     "last_active_at": null
   }
