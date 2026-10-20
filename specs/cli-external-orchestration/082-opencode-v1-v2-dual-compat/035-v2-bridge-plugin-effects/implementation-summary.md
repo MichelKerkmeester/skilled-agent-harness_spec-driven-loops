@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "All 17 repository plugins now act on OpenCode 2, not only load there. The v2 bridge reports v2's shell and subagent tools under their v1 names, announces each session once with session.created, and fills the message events v1 plugins read, so the seven plugins that did nothing on v2 now show their effect in a live run."
 trigger_phrases:
   - "v2 bridge plugin effects implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects"
-    last_updated_at: "2026-10-20T20:32:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-20T21:35:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Recorded the live rerun and the first review round"
+    next_safe_action: "Finish the review rounds, merge main, push and record CI"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/plugins/lib/v2-bridge.js"
+      - ".opencode/plugins/tests/v2-bridge.test.cjs"
+      - ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh"
+      - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/results-matrix.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-035-v2-bridge-plugin-effects"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -45,18 +49,29 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Seven plugins loaded on OpenCode 2 and then did nothing, because the bridge passed v2's tool names and events through unchanged. The fix sits in the one shared bridge, so no plugin file changed, and a live run now shows all 17 plugins acting on both versions.
 
-### Phase 35: v2-bridge-plugin-effects
+### OpenCode 2 bridge
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The bridge now hands v1 hooks the names and shapes they were written for. A v2 `shell` call reaches a hook as `bash`, and a `subagent` call as `task` with `subagent_type` set from `agent`. A changed agent goes back to v2 under `agent`, and the added field never reaches v2's input. A `shell` result gives the after hook its text as a string. Each session gets one `session.created`, delivered before its first other event or its first system transform. A transform that arrives while that delivery is still running waits for it. The mapped `message.updated` carries `sessionID` and `info.time.completed`, and a user inbox item becomes a user message with its text part. With those fields, session-relaunch records usage and can seed a handoff.
+
+### Playbook runner
+
+The five follow-ups from the last 034 review are closed:
+- The commit-gate probe runs against a disposable repository that reads this checkout's commit rules. Its block stops with FAIL when `HEAD` moves or the refusal is missing.
+- The runner refuses an evidence folder outside its checkout. It checks the path as given and again after resolving it, which catches `..` segments and symlinks.
+- The goal scenario removes its state folders on an interrupted run.
+- The sentinel and dist-freshness restores keep their backup and trap until the restored file matches.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/plugins/lib/v2-bridge.js` | Modified | Tool aliases, session announcement, message event fields |
+| `.opencode/plugins/tests/v2-bridge.test.cjs` | Modified | A test per mapping, plus the concurrency and inherited-name cases |
+| `.opencode/plugins/ARCHITECTURE.md`, `.opencode/plugins/README.md` | Modified | Describe the mappings and point at the live result |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/` | Modified | The runner check, five scenario fixes and the triage text for the new mappings |
+| `035-v2-bridge-plugin-effects/scratch/live-runs/` | Created | Raw v2 probe, test baseline, every scenario's output and the results matrix |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -64,7 +79,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+A raw v2 probe plugin first logged the unbridged event envelopes, tool hook events and context calls. It confirmed all four causes from 034, and it showed that each envelope carries a `created` time and that a user prompt arrives as `session.inbox.enqueued`. OpenCode 1 running DeepSeek v4.1 flash at high effort wrote each change from a short brief. The orchestrator read each diff, reran the tests and fixed two concurrency details itself: a transform now waits for an announcement already in flight, which a test that fails without it covers, and an event-hook error on that path is recorded for cleanup instead of failing the request. Every scenario block then ran live on both versions, one at a time, so that two runs never wrote to the same log. Luna reviewed read-only.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -74,7 +89,11 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Fix the shared bridge, not each plugin | The operator chose it on 2026-10-20. One mapping serves every plugin, and a new plugin gets it for free |
+| Announce a session from the event stream or the first transform, whichever comes first | The first `context` call can run before the stream delivers the session's first event, and session-cleanup's startup warning must reach the first request |
+| Take `info.time.completed` from the envelope's `created` time | The step event has no completion field; `created` is the moment v2 recorded the step's end, so no value is invented |
+| Keep the scenario temp files in the system temp folder | The runner's snapshot and the scenario backups are removed by their traps. Putting the snapshot inside the watched log trees would mix it into the run's effects. Luna's first-round finding on this was declined for that reason |
+| Keep the 034 matrix unchanged | It records what OpenCode 2 did before the fix; this phase's matrix is the after picture |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -84,7 +103,16 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Plugin suite `node --test '.opencode/plugins/tests/*.test.cjs'` | PASS, 455 of 455 (436 before this phase, `scratch/live-runs/baseline-tests.txt`) |
+| Bridge suite mutation: in-flight check moved after the announced check | FAIL as expected, 1 test, then PASS restored |
+| Purity vitest `opencode-plugins-folder-purity.vitest.ts` | PASS, 1 of 1 |
+| Version battery in worktree 176 | PASS on v1 (4 legs) and v2 (4 legs, isolated read) |
+| Battery unit tests | PASS, 50 of 50 |
+| Live playbook, all 17 scenarios on v1 and v2 | 17 of 17 PASS on each version; every block exited 0 (`scratch/live-runs/results-matrix.md`) |
+| Shell legs of dist-freshness and spec-gate on v2 | dist-freshness logs `risky-bash:` on both; spec-gate behaves the same on both (`scratch/live-runs/shell-legs.txt`) |
+| Runner evidence-folder check | Refuses `/tmp/...`, a `..` path and an in-checkout symlink to an outside folder |
+| Playbook package validator | PASS, 72 scenarios, 14 categories, 0 violations |
+| Luna review round 1 | FAIL: 4 P1 and 1 P2. Three P1s and the P2 were fixed; one P1 was declined (see Key Decisions) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -92,9 +120,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Shell redirect writes pass the spec gate on both versions.** The gate's core finds no file path in a shell command and allows it. This behaves the same on v1 and v2 and is not a bridge gap.
+2. **A model can skip the requested tool.** In the full pass, the v1 spec-gate run asked the documentation question instead of calling `write`. A rerun with the same prompt called it and was denied. A FAIL caused by a missing tool call needs one rerun before it counts.
+3. **The sentinel's wording follows the packet's state.** Phase 034 is closed, so the advisory now reports items with no evidence marker rather than an incomplete P0 count. The scenario check accepts both wordings.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

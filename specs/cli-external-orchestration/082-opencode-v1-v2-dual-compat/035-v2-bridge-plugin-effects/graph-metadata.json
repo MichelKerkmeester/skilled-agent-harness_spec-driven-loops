@@ -39,11 +39,13 @@
       "tasks.md",
       "implementation-summary.md",
       ".opencode/plugins/lib/v2-bridge.js",
-      ".opencode/plugins/ARCHITECTURE.md",
       ".opencode/plugins/tests/v2-bridge.test.cjs",
+      ".opencode/plugins/ARCHITECTURE.md",
       ".opencode/plugins/README.md",
-      "scratch/live-runs/raw-probe.txt",
-      "scratch/live-runs/baseline-tests.txt"
+      "scratch/live-runs/baseline-tests.txt",
+      "scratch/live-runs/results-matrix.md",
+      "scratch/live-runs/shell-legs.txt",
+      "scratch/live-runs/raw-probe.txt"
     ],
     "entities": [
       {
@@ -77,15 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
         "name": "v2-bridge.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
         "source": "derived"
       },
       {
@@ -95,15 +97,27 @@
         "source": "derived"
       },
       {
-        "name": "raw-probe.txt",
-        "kind": "file",
-        "path": "scratch/live-runs/raw-probe.txt",
-        "source": "derived"
-      },
-      {
         "name": "baseline-tests.txt",
         "kind": "file",
         "path": "scratch/live-runs/baseline-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "shell-legs.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/shell-legs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "raw-probe.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/raw-probe.txt",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "All 17 repository plugins register as `active` on OpenCode 2.0.32, but phase 034's live runs showed only 10 of them act",
     "created_at": "2026-10-20T20:32:45Z",
-    "last_save_at": "2026-10-20T20:34:46.834Z",
+    "last_save_at": "2026-10-20T21:32:31.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:285fd7c8ae3d09b10e77a90da01cf359fa7ecf31084e3d31a2699b55717befc7",
+    "source_fingerprint": "sha256:6a762def7b7f212a18c8b3639894732280fa56cf47d3ba15d8aef9d8449bd2e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a9f48fb024056ec5b512a0ecd79571a20f63ffe6824c2bf96091e5a3becbbf4",
       "plan.md": "94f5a248c082b1f4cd57cfa8cfa381071f9b714ffed0891d60b5c6de5626052c",
-      "tasks.md": "d15dcaac679c467d292c8a9ea864b52764c7df917f96ae93ccbb2bb7d74ebeef",
-      "implementation-summary.md": "b70e023558749e9179690a7c9a356e0bfaaf94a7dcb340bde8440a8c4b5bfb3b"
+      "tasks.md": "bf1aa0cf8db47bbb9f10db711aae7c104280b156d2802d5b93ea9ba486887152",
+      "implementation-summary.md": "f6e7cdc52e18f0efbf7028e546718a187e263a54ab350095079d64590c3e5f15"
     },
     "last_active_at": null
   }
