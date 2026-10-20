@@ -33,15 +33,20 @@ test('every repository path a goal document cites still exists', () => {
   // Only paths inside the two trees this contract owns; a reference to a spec
   // packet or an external file is not this test's business.
   const CITED = /`((?:\.(?:skilled|opencode)\/(?:hooks|plugins|commands)|\.claude|\.codex|\.cursor|\.devin|\.pi)\/[A-Za-z0-9._/-]+\.(?:cjs|mjs|js|ts|md|json|yaml))`/g;
+  const citedPaths = [];
   const missing = [];
   for (const doc of DOCS) {
-    let text;
-    try { text = read(doc); } catch { continue; }
-    for (const match of text.matchAll(CITED)) {
+    // A document that cannot be read means the roster is stale, so let the read
+    // throw instead of turning it into a silent pass.
+    for (const match of read(doc).matchAll(CITED)) {
       const cited = match[1];
+      citedPaths.push(cited);
       try { readFileSync(join(REPO_ROOT, cited)); } catch { missing.push(`${doc} -> ${cited}`); }
     }
   }
+  // An empty extraction makes the comparison vacuous: regex drift or a document
+  // that stopped citing paths must fail here rather than pass by omission.
+  assert.ok(citedPaths.length > 0, 'the goal documents cite at least one repository path');
   assert.deepEqual(missing, [], `goal documents cite paths that do not exist:\n${missing.join('\n')}`);
 });
 
@@ -125,13 +130,16 @@ test('every goal kill-switch name a document teaches actually disables something
     '.skilled/hooks/goal/README.md',
     '.skilled/hooks/goal/goal-plugin.md',
   ];
+  const named = [];
   const dead = [];
   for (const rel of ROSTERS) {
-    let text;
-    try { text = read(rel); } catch { continue; }
-    for (const m of text.matchAll(/\b([A-Z][A-Z0-9_]*GOAL[A-Z0-9_]*DISABLED)\b/g)) {
+    // Same rule as the path roster: an unreadable document fails, it does not
+    // quietly shrink the set of documents checked.
+    for (const m of read(rel).matchAll(/\b([A-Z][A-Z0-9_]*GOAL[A-Z0-9_]*DISABLED)\b/g)) {
+      named.push(m[1]);
       if (!live.has(m[1])) dead.push(`${rel} -> ${m[1]}`);
     }
   }
+  assert.ok(named.length > 0, 'the rosters name at least one kill-switch');
   assert.deepEqual(dead, [], `documents teach kill-switch names the resolver does not honour:\n${dead.join('\n')}`);
 });

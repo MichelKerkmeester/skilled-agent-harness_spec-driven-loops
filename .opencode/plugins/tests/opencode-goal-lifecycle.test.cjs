@@ -7,10 +7,11 @@
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { mkdir, mkdtemp, readFile, readdir, rename, rm, utimes, writeFile } = require('node:fs/promises');
+const { access, mkdir, mkdtemp, readFile, readdir, rename, rm, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
+
 const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-log.cjs');
 
 const testDir = dirname(__filename);
@@ -93,8 +94,10 @@ async function readGoalEventEntries(stateDir) {
 }
 
 async function fileExists(path) {
+  // access answers existence without reading the payload, and a directory is an
+  // existing path rather than the EISDIR error a readFile probe raises.
   try {
-    await readFile(path, 'utf8');
+    await access(path);
     return true;
   } catch (error) {
     if (error?.code === 'ENOENT') return false;
@@ -770,7 +773,13 @@ test('malformed session deletion preserves another session verifier lock', async
   const firstIdle = plugin.event({
     event: { type: 'session.idle', properties: { sessionID: 'session-lock-preserved' } },
   });
-  while (verifierCalls === 0) await new Promise((resolve) => setImmediate(resolve));
+  // The verifier only starts from the idle handler, so poll with a deadline: a
+  // regression that never starts it must fail here instead of hanging the suite.
+  const verifierDeadline = Date.now() + 5000;
+  while (verifierCalls === 0 && Date.now() < verifierDeadline) {
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  assert.equal(verifierCalls, 1, 'the first idle event starts one verification');
   await plugin.event({ event: { type: 'session.deleted', properties: {} } });
   const secondIdle = plugin.event({
     event: { type: 'session.idle', properties: { sessionID: 'session-lock-preserved' } },
@@ -996,6 +1005,9 @@ test('disabled plugin events leave the state directory unchanged', async () => w
     event: { type: 'session.deleted', properties: { sessionID: 'session-disabled-inert' } },
   });
   assert.deepEqual(await directorySnapshot(disabledStateDir), beforeDisabled);
+  // An unchanged entry list is also what a never-created directory reports, so
+  // assert the directory itself is still absent.
+  await assert.rejects(access(disabledStateDir), { code: 'ENOENT' }, 'the disabled plugin must not create its state directory');
 }));
 
 test('disabled env flips apply per call to transform and tools', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
@@ -1139,7 +1151,7 @@ test('orphan sweep archives stale active files and keeps recent files', async ()
   assert.equal(await fileExists(recentActivePath), true);
 }));
 
-test('orphan sweep does not archive a goal refreshed after the stale read', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+test('orphan sweep archives only when the live goal is stale too', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const archiveDir = join(stateDir, '.archive');
   await mkdir(archiveDir, { recursive: true, mode: 0o700 });
   const sessionID = 'session-orphan-refresh-race';
@@ -1148,39 +1160,30 @@ test('orphan sweep does not archive a goal refreshed after the stale read', asyn
   const freshUpdatedAtMs = 40 * 24 * 60 * 60 * 1000;
   const activePath = helpers.goalPathForSession(sessionID, { stateDir });
   const archivePath = join(archiveDir, `${helpers.sessionKeyForSession(sessionID)}.json`);
-  let refreshPromise = null;
-  const metrics = new Proxy({}, {
-    get(target, property) {
-      return target[property];
-    },
-    set(target, property, value) {
-      target[property] = value;
-      if (property === 'sweepJsonParse' && !refreshPromise) {
-        refreshPromise = helpers.setGoal(sessionID, objective, {
-          stateDir,
-          nowMs: freshUpdatedAtMs,
-          goalIdFactory: () => 'orphan-refresh-race-goal',
-        });
-      }
-      return true;
-    },
-  });
-
-  await writeFile(activePath, JSON.stringify({
+  // The sweep samples every `.json` record it finds, so a leftover legacy copy
+  // of this session's old record is the stale sample that must not decide an
+  // archive. The live record written below is the authoritative fresh re-read.
+  const staleLegacyPath = join(stateDir, `${Buffer.from(sessionID, 'utf8').toString('hex')}.json`);
+  const staleRecord = {
     sessionId: sessionID,
     goalId: 'orphan-refresh-race-goal',
     objective,
     status: 'active',
     createdAtMs: staleUpdatedAtMs,
     updatedAtMs: staleUpdatedAtMs,
-  }), 'utf8');
+  };
+  await writeFile(staleLegacyPath, JSON.stringify(staleRecord), 'utf8');
   const staleActiveDate = new Date(staleUpdatedAtMs);
-  await utimes(activePath, staleActiveDate, staleActiveDate);
+  await utimes(staleLegacyPath, staleActiveDate, staleActiveDate);
+  await writeFile(activePath, JSON.stringify({ ...staleRecord, updatedAtMs: freshUpdatedAtMs }), 'utf8');
+  const freshActiveDate = new Date(freshUpdatedAtMs);
+  await utimes(activePath, freshActiveDate, freshActiveDate);
 
+  const sweepMetrics = {};
   const sweepPlugin = await pluginModule.default.server({}, {
     stateDir,
     nowMs: freshUpdatedAtMs,
-    metrics,
+    metrics: sweepMetrics,
   });
   await sweepPlugin.event({
     event: {
@@ -1188,8 +1191,9 @@ test('orphan sweep does not archive a goal refreshed after the stale read', asyn
       properties: { sessionID: 'session-sweep-refresh-race-trigger' },
     },
   });
-  assert.ok(refreshPromise, 'sweep pre-archive read should trigger the queued fresh write');
-  await refreshPromise;
+  // Observation only: it proves the sweep sampled the stale record, so a sweep
+  // that never ran cannot make the survival assertion pass by doing nothing.
+  assert.equal(sweepMetrics.sweepJsonParse, 1, 'the sweep parsed the stale record');
   const activeGoal = await helpers.readGoal(sessionID, { stateDir });
   assert.equal(activeGoal?.status, 'active');
   assert.equal(activeGoal?.updatedAtMs, freshUpdatedAtMs);

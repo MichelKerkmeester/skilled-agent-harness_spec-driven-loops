@@ -11,6 +11,7 @@ const { chmod, mkdir, mkdtemp, readFile, readdir, rm, stat, utimes, writeFile } 
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
+
 const { readContinuationEntries, restoreEnv } = require('./helpers/continuation-log.cjs');
 
 const testDir = dirname(__filename);

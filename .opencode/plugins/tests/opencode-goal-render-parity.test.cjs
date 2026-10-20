@@ -5,14 +5,15 @@
 // Two implementations render the same injected block: the OpenCode plugin and
 // the runtime-neutral core that Pi, Cursor and Devin use. A model reading one
 // runtime's block must find the same field names it learned on another, so the
-// label set is a contract. Exactly one line differs by design: `usage:`, where
-// OpenCode reports a native token count and an auto-turn ratio and the other
-// runtimes report an honest absence and a turn estimate.
+// label set is a contract. Exactly two lines differ by design: `usage:`, where
+// OpenCode reports a native token count and an auto-turn ratio while the other
+// runtimes report an honest absence and a turn estimate, and the `Role:` line
+// inside `goal_prompt:`, which names the runtime doing the reading.
 'use strict';
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { mkdtemp, rm } = require('node:fs/promises');
+const { mkdir, mkdtemp, rm, stat, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -40,7 +41,21 @@ function labelsOf(block) {
     .filter(Boolean);
 }
 
-test('both renderers emit the same ordered label set, and only the usage line differs', async () => {
+// Masks the three values each runtime owns: the goal id, the usage line, and the
+// runtime name baked into the role line. Everything else must match line for
+// line, so drift in a shared line or in the prompt block fails here.
+function comparableLines(block) {
+  return block.split('\n').map((line) => {
+    if (line.startsWith('[active_goal:')) return '[active_goal:<id>]';
+    if (line.startsWith('usage:')) return 'usage: <runtime-specific>';
+    if (/^Role: Focused .+? execution agent operating under the active session goal\.$/.test(line)) {
+      return 'Role: Focused <runtime> execution agent operating under the active session goal.';
+    }
+    return line;
+  });
+}
+
+test('both renderers emit the same ordered labels and blocks, differing only where a runtime names itself', async () => {
   const pluginModule = await import(pluginUrl);
   const helpers = await loadGoalCore(pluginModule);
   const stateDir = await mkdtemp(join(tmpdir(), 'goal-parity-'));
@@ -63,10 +78,21 @@ test('both renderers emit the same ordered label set, and only the usage line di
     );
 
     const lineFor = (block, label) => block.split('\n').find((line) => line.startsWith(`${label}:`));
+    assert.deepEqual(
+      comparableLines(coreBlock),
+      comparableLines(pluginBlock),
+      'the blocks may differ only in the goal id, the usage line and the role line',
+    );
     for (const label of ['status', 'last_check', 'directive']) {
       assert.equal(lineFor(coreBlock, label), lineFor(pluginBlock, label), `${label} must be identical`);
     }
     assert.equal(lineFor(coreBlock, 'objective'), lineFor(pluginBlock, 'objective'));
+
+    const coreRole = lineFor(coreBlock, 'Role');
+    const pluginRole = lineFor(pluginBlock, 'Role');
+    assert.notEqual(coreRole, pluginRole, 'the role line names the reading runtime');
+    assert.match(coreRole, /^Role: Focused Pi execution agent/);
+    assert.match(pluginRole, /^Role: Focused OpenCode execution agent/);
 
     const coreUsage = lineFor(coreBlock, 'usage');
     const pluginUsage = lineFor(pluginBlock, 'usage');
@@ -87,7 +113,6 @@ test('the brief cache key changes when a same-length write lands in the same mil
     const options = { stateDir };
     await helpers.setGoal('cache-session', OBJECTIVE, options);
     const path = helpers.goalPathForSession('cache-session', options);
-    const { stat } = require('node:fs/promises');
     const before = await stat(path, { bigint: true });
     const keyBefore = helpers.goalBriefCacheKey(before);
     // A verdict flip is the same byte length, so a millisecond-resolution key
@@ -106,7 +131,6 @@ test('the brief cache key changes when a same-length write lands in the same mil
 // different name, or not at all, breaks the contract the model reads across
 // runtimes.
 test('both renderers emit the same criteria field for a bound packet', async () => {
-  const { mkdir, writeFile } = require('node:fs/promises');
   const pluginModule = await import(pluginUrl);
   const helpers = await loadGoalCore(pluginModule);
   const workspace = await mkdtemp(join(tmpdir(), 'goal-parity-packet-'));
@@ -136,6 +160,11 @@ test('both renderers emit the same criteria field for a bound packet', async () 
       labelsOf(pluginBlock),
       ['[active_goal:<id>]', 'status', 'objective', 'criteria', 'goal_prompt', 'last_check', 'usage', 'directive', '[/active_goal]'],
       'the pinned bound label set',
+    );
+    assert.deepEqual(
+      comparableLines(coreBlock),
+      comparableLines(pluginBlock),
+      'the bound blocks may differ only in the goal id, the usage line and the role line',
     );
     const criteriaOf = (block) => block.split('\n').filter((line) => line === '- alpha holds' || line === '- beta holds');
     assert.deepEqual(criteriaOf(coreBlock), ['- alpha holds', '- beta holds']);

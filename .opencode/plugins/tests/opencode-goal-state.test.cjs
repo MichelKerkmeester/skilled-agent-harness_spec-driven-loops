@@ -8,10 +8,11 @@
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { test } = require('node:test');
-const { mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
+const { access, mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
+
 const { restoreEnv } = require('./helpers/continuation-log.cjs');
 
 const testDir = dirname(__filename);
@@ -56,8 +57,10 @@ async function readGoalEventEntries(directory) {
 }
 
 async function fileExists(path) {
+  // access answers existence without reading the payload, and a directory is an
+  // existing path rather than the EISDIR error a readFile probe raises.
   try {
-    await readFile(path, 'utf8');
+    await access(path);
     return true;
   } catch (error) {
     if (error?.code === 'ENOENT') return false;
@@ -501,29 +504,12 @@ test('stored prompt fields avoid rebuilding prompt enhancement', async () => wit
     createdAtMs: 10000,
     updatedAtMs: 10000,
   }, null, 2)}\n`, 'utf8');
-  const originalRegExpTest = RegExp.prototype.test;
-  let clearScoreRegexCount = 0;
-  const clearScorePatterns = new Set([
-    '(^|\\n)Role:',
-    '(^|\\n)Objective:',
-    '(^|\\n)Method:',
-    '(^|\\n)Success Criteria:',
-    '(^|\\n)Stop Conditions:',
-    '\\[[A-Z_ ]+\\]|TODO|TBD|placeholder',
-  ]);
-  RegExp.prototype.test = function patchedRegExpTest(value) {
-    if (clearScorePatterns.has(this.source)) clearScoreRegexCount += 1;
-    return originalRegExpTest.call(this, value);
-  };
-  try {
-    const promptMetrics = {};
-    const storedGoal = await helpers.readGoal('session-stored-prompt', { stateDir, metrics: promptMetrics });
-    assert.equal(clearScoreRegexCount, 0);
-    assert.equal(promptMetrics.scoreEnhancedGoalPrompt || 0, 0);
-    assert.deepEqual(storedGoal.promptEnhancement, enhancedPrompt.promptEnhancement);
-  } finally {
-    RegExp.prototype.test = originalRegExpTest;
-  }
+  const promptMetrics = {};
+  const storedGoal = await helpers.readGoal('session-stored-prompt', { stateDir, metrics: promptMetrics });
+  // A stored prompt must be reused as-is: scoring it again is the work this
+  // guards against, and the counter proves the scoring path never ran.
+  assert.equal(promptMetrics.scoreEnhancedGoalPrompt || 0, 0);
+  assert.deepEqual(storedGoal.promptEnhancement, enhancedPrompt.promptEnhancement);
 }));
 
 test('goal status can omit injection preview without rendering it', async () => withState(async ({ helpers, stateDir }) => {
