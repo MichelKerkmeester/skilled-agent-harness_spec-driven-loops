@@ -1,5 +1,5 @@
 {
-  "manifestHash": "72c1fd964afdc6372bebf709b3aca36dad762df485bdd3e3e0d0943b3731f962",
+  "manifestHash": "b260bf5a03d750cd88f1086e2520ca8091f3a507c5882392d2b7984ed02989f6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41368,6 +41368,9 @@
     "event rate measurement finding": [
       "event rate measurement finding"
     ],
+    "event scanner data flow": [
+      "event scanner data flow"
+    ],
     "event time invalidation pending": [
       "event-time invalidation pending"
     ],
@@ -72319,6 +72322,9 @@
     "phase 37 ci pi and provisioning follow ups": [
       "phase 37 ci pi and provisioning follow ups"
     ],
+    "phase 38 plugin scanner follow ups": [
+      "phase 38 plugin scanner follow ups"
+    ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
     ],
@@ -74892,6 +74898,18 @@
     ],
     "plugin scanner ast tasks": [
       "plugin scanner ast tasks"
+    ],
+    "plugin scanner follow ups": [
+      "plugin scanner follow ups"
+    ],
+    "plugin scanner follow ups implementation summary": [
+      "plugin scanner follow ups implementation summary"
+    ],
+    "plugin scanner follow ups plan": [
+      "plugin scanner follow ups plan"
+    ],
+    "plugin scanner follow ups tasks": [
+      "plugin scanner follow ups tasks"
     ],
     "plugin scanner readiness": [
       "plugin scanner readiness"
@@ -85172,6 +85190,9 @@
     ],
     "rollback window monitoring plan": [
       "rollback window monitoring plan"
+    ],
+    "rolldown direct dependency": [
+      "rolldown direct dependency"
     ],
     "rolling novelty mad": [
       "rolling novelty MAD"
@@ -107562,6 +107583,9 @@
     ],
     "type definitions": [
       "type definitions"
+    ],
+    "type parameter false positive": [
+      "type parameter false positive"
     ],
     "type ramp per size": [
       "type ramp per size"

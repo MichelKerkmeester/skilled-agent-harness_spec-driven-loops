@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8d9fc53c1f7677e42764f5e64548ed3cd3d2e3c5e5de3ad81ffd7c4836bd7b2f",
+  "corpusHash": "22d47fb795ea0a9f4decb3a6cb8afe01aee9b8ee27e21ccc2ee5dfffcb12c3e7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25483,
+  "includedPathCount": 25487,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9007,6 +9007,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25514,7 +25518,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "72c1fd964afdc6372bebf709b3aca36dad762df485bdd3e3e0d0943b3731f962",
+  "manifestHash": "b260bf5a03d750cd88f1086e2520ca8091f3a507c5882392d2b7984ed02989f6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26622,6 +26626,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
