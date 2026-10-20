@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nested worktree battery",
+      "phase 30 nested worktree battery",
+      "duplicate plugin id worktree",
+      "opencode 2 ancestor opencode folder",
+      "nested worktree battery plan",
+      "nested worktree battery tasks",
+      "nested worktree battery implementation summary"
+    ],
+    "key_topics": [
+      "nested",
+      "worktree",
+      "battery",
+      "phase",
+      "duplicate",
+      "plugin",
+      "opencode",
+      "ancestor",
+      "folder",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+      ".skilled/skills/sk-git/references/worktree-workflows.md",
+      "scratch/rootcause/summary.txt",
+      "scratch/rootcause/base-v2.json",
+      "scratch/mutation/baseline.txt",
+      "scratch/rootcause/after-v2.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/worktree-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/rootcause/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "base-v2.json",
+        "kind": "config",
+        "path": "scratch/rootcause/base-v2.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/mutation/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-v2.json",
+        "kind": "config",
+        "path": "scratch/rootcause/after-v2.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Version Battery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "OpenCode",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Run inside `.worktrees/NNN-slug`, the battery's v2 leg reported all 17 plugin files failed, while the same battery passed in a plain clone and on CI",
+    "created_at": "2026-10-20T12:43:27Z",
+    "last_save_at": "2026-10-20T12:51:35.791Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70221b6daa8d3222020320364036693b6f0bae67e7c61972cd2219c70ab4357a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "04fa04d37cf7bf05d7956b03aada5cf362ae20152012a8ffce5f18bb3c295650",
+      "plan.md": "6ba5459b0dfa76bce1a6fc2f86a6980560f91f8ea38e1f9304d1859308a983fb",
+      "tasks.md": "68f856d147623e97cfa58c13be2219702e2aba696ddc0ca5929907979013e29e",
+      "implementation-summary.md": "24a56ff45cd67d81ece5f0308b735b2868d3e93d7272124cc63b93d7f03828a5"
+    },
+    "last_active_at": null
+  }
+}

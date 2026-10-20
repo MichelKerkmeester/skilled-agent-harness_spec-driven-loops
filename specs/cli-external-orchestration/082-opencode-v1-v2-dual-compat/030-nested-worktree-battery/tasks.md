@@ -1,0 +1,82 @@
+---
+title: "Tasks: Phase 30: nested-worktree-battery"
+description: "Task Format: T### [P?] Description (file path)"
+trigger_phrases:
+  - "nested worktree battery tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+# Tasks: Phase 30: nested-worktree-battery
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [x] T001 Create worktree 169 from `origin/main` at `97c9a1105f` and provision it (11 installed, 5 built, 0 failed). Item 7.
+- [x] T002 Baseline: the battery fails v2 plugin-active in worktree 169 (`scratch/rootcause/base-v2.json`), v1 passes there, and the test suite passes 37 of 37 (`scratch/mutation/baseline.txt`). Item 7.
+- [x] T003 Root cause: the private server's read shows 17 outer plugins active and 17 worktree plugins failed with `Duplicate plugin ID`; a plain clone passes; the OpenCode 2 source walks every ancestor with no stop (`scratch/rootcause/summary.txt`). Item 7.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [x] T004 Add `ancestorPluginDirs` and `v2ServerEnv`, use them in `readV2`, and return `shadowing` (`.skilled/commands/doctor/scripts/opencode-version-battery.cjs`). Item 7.
+- [x] T005 Put an `isolated:` line per ancestor folder first in the plugin-active details (`.skilled/commands/doctor/scripts/opencode-version-battery.cjs`). Item 7.
+- [x] T006 Make the fake server behave like OpenCode 2 under an outer checkout; add three nested tests and the plain-root assertions (`.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs`). Item 7.
+- [x] T007 [P] Add the battery sentence and the known limit (`.opencode/plugins/ARCHITECTURE.md`). Item 7.
+- [x] T008 [P] Add the troubleshooting entry (`.skilled/skills/sk-git/references/worktree-workflows.md`). Item 7.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [x] T009 The test suite passes 40 of 40; mutants m1 to m4 fail 4, 2, 2 and 2 tests (`scratch/mutation/`). Item 7.
+- [x] T010 The battery passes v2 in worktree 169 with an `isolated:` line, and in a plain clone with none (`scratch/rootcause/after-v2.json`, `after-plain-v2.json`). Item 7.
+- [ ] T011 Luna review passes. Item 7.
+- [ ] T012 Strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`. Item 7.
+- [ ] T013 The Dual-Version Battery passes on CI at the pushed main commit. Item 7.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->
+
+---

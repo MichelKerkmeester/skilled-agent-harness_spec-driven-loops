@@ -22,6 +22,7 @@ const { pathToFileURL } = require('node:url');
 
 const {
   allowedCommandSources,
+  ancestorPluginDirs,
   legCommandListed,
   legFamilyPresent,
   legPluginActive,
@@ -37,6 +38,7 @@ const {
   selectBinary,
   stableIndex,
   V2_BUILTIN_COMMANDS,
+  v2ServerEnv,
 } = require('../opencode-version-battery.cjs');
 const { parseOpencodeVersion } = require(path.resolve(
   __dirname, '..', '..', '..', '..',
@@ -117,7 +119,7 @@ function emptyEnv(t) {
 // Writes an executable stand-in for the v2 binary into a temporary folder: it
 // answers the serve banner and every API read, and records its pid and private
 // folder so the test can judge them once the battery has finished.
-function fakeServer(t, root) {
+function fakeServer(t, root, options = {}) {
   const dir = tempRoot(t);
   const script = path.join(dir, 'fake-opencode.cjs');
   const record = path.join(dir, 'server.json');
@@ -126,16 +128,34 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = ${JSON.stringify(root)};
 const record = ${JSON.stringify(record)};
+const ancestor = ${JSON.stringify(options.ancestor || null)};
 const args = process.argv.slice(2);
+
+// Mirrors OpenCode 2's plugin discovery: the ancestor walk merges an outer
+// checkout's copies as duplicates, and the two config switches turn it off.
+function pluginData() {
+  const own = { id: 'alpha', source: { type: 'local', path: path.join(root, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } };
+  if (process.env.OPENCODE_CONFIG_PROJECT_DISABLE === '1') {
+    return process.env.OPENCODE_CONFIG_DIR === path.join(root, '.opencode') ? [own] : [];
+  }
+  if (ancestor) {
+    return [
+      { id: 'alpha', source: { type: 'local', path: path.join(ancestor, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } },
+      { ...own, state: { status: 'failed', error: 'Duplicate plugin ID: alpha' } },
+    ];
+  }
+  return [own];
+}
+
 if (args[0] === 'serve') {
-  fs.writeFileSync(record, JSON.stringify({ pid: process.pid, dir: path.dirname(process.env.OPENCODE_DB) }));
+  fs.writeFileSync(record, JSON.stringify({ pid: process.pid, dir: path.dirname(process.env.OPENCODE_DB), projectDisable: process.env.OPENCODE_CONFIG_PROJECT_DISABLE ?? null, configDir: process.env.OPENCODE_CONFIG_DIR ?? null }));
   console.log('server listening on http://127.0.0.1:' + args[2]);
   console.log('server password FAKE-SECRET-123');
   setInterval(() => {}, 1000);
 } else if (args[0] === 'api') {
   const apiPath = args[4];
   const data = apiPath.startsWith('/api/plugin')
-    ? [{ id: 'alpha', source: { type: 'local', path: path.join(root, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } }]
+    ? pluginData()
     : apiPath.startsWith('/api/command')
       ? [{ name: 'battery', description: 'fixture command' }]
       : [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }];
@@ -810,7 +830,67 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   assert.ok(!calls.stderr.join('').includes(secret));
 
   const record = JSON.parse(fs.readFileSync(server.record, 'utf8'));
+  // A plain root keeps OpenCode 2's own project discovery.
+  assert.equal(record.projectDisable, null);
+  assert.equal(record.configDir, null);
+  assert.deepEqual(collected.shadowing, []);
   const leftovers = fs.existsSync(record.dir) ? fs.readdirSync(record.dir) : [];
   assert.deepEqual(leftovers, []);
   assert.throws(() => process.kill(record.pid, 0), (error) => error.code === 'ESRCH');
+});
+
+// A worktree under another checkout: the outer plugin folder is the one ancestor found.
+test('nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root', (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  const root = path.join(outer, 'wt');
+  fs.mkdirSync(path.join(root, '.opencode', 'plugins'), { recursive: true });
+  assert.deepEqual(ancestorPluginDirs(root), [path.join(outer, '.opencode', 'plugins')]);
+  assert.deepEqual(ancestorPluginDirs(tempRoot(t)), []);
+});
+
+test('nested: v2ServerEnv isolates a nested root and leaves a plain root alone', (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  const root = path.join(outer, 'wt');
+  fs.mkdirSync(root, { recursive: true });
+  const temp = tempRoot(t);
+  const nested = v2ServerEnv({ KEEP: 'x' }, root, temp);
+  assert.equal(nested.childEnv.OPENCODE_CONFIG_PROJECT_DISABLE, '1');
+  assert.equal(nested.childEnv.OPENCODE_CONFIG_DIR, path.join(root, '.opencode'));
+  assert.equal(nested.childEnv.KEEP, 'x');
+  assert.equal(nested.childEnv.OPENCODE_DB, path.join(temp, 'private.db'));
+  const plain = v2ServerEnv({}, tempRoot(t), temp);
+  assert.deepEqual(plain.shadowing, []);
+  assert.equal(plain.childEnv.OPENCODE_CONFIG_PROJECT_DISABLE, undefined);
+  assert.equal(plain.childEnv.OPENCODE_CONFIG_DIR, undefined);
+});
+
+// The outer checkout's copy would shadow the root's as a duplicate ID; the isolated
+// read judges the root's own plugin and says why.
+test('nested: real readV2 under an outer checkout passes plugin-active with an isolated line', async (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(outer, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  const root = path.join(outer, 'wt');
+  fs.mkdirSync(path.join(root, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(root, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  commandFile(root, 'battery');
+  const server = fakeServer(t, root, { ancestor: outer });
+  const { calls, deps } = makeDeps({
+    env: { OPENCODE_BIN: server.script },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: (bin, dir) => readV2(bin, dir, process.env),
+  });
+
+  await main(['--family=v2', '--root=' + root, '--json'], deps);
+  const summary = summaryOf(calls);
+  const active = summary.results.find((result) => result.leg === 'plugin-active');
+  assert.ok(active);
+  assert.equal(active.status, 'PASS', resultText(active));
+  assert.match(active.details[0], /^isolated: OpenCode 2 also loads /);
+  assert.ok(active.details[0].includes(path.join(outer, '.opencode', 'plugins')));
+  const record = JSON.parse(fs.readFileSync(server.record, 'utf8'));
+  assert.equal(record.projectDisable, '1');
+  assert.equal(record.configDir, path.join(root, '.opencode'));
 });

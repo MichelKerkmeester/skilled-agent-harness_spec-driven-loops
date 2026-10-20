@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -618,6 +618,19 @@ git worktree prune
 3. If investigate: Review test output, check dependencies are installed, verify environment matches main worktree
 4. If proceed: Document that baseline is broken
 5. If abort: Remove worktree
+
+### OpenCode 2 Runs the Main Checkout's Plugins
+
+**Symptom**: In a worktree under `.worktrees/`, OpenCode 2 lists each repository plugin twice: the main checkout's copy active, the worktree's copy failed with `Duplicate plugin ID`.
+
+**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout. The session runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there. OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
+
+**Solution**:
+```bash
+# Load only this worktree's .opencode on OpenCode 2
+OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$PWD/.opencode" opencode2
+```
+The doctor battery does this on its own: its v2 read names each outer plugin folder in an `isolated:` line.
 
 ### Cannot Determine Project Type
 

@@ -223,6 +223,45 @@ function allowedCommandSources(root, family, env) {
   return { required, allowed };
 }
 
+// Lists every ancestor plugin folder above the root. OpenCode 2 merges each
+// ancestor's `.opencode` with no stop at the repository root, so a worktree nested
+// inside another checkout registers that checkout's plugins first and its own
+// copies fail as duplicate IDs.
+function ancestorPluginDirs(root) {
+  const found = [];
+  let current = path.dirname(root);
+  while (true) {
+    const dir = path.join(current, ...PLUGIN_DIR_PARTS);
+    try {
+      if (fs.statSync(dir).isDirectory()) found.push(dir);
+    } catch {
+      // A missing or unreadable folder is simply not an ancestor plugin folder.
+    }
+    const parent = path.dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return found;
+}
+
+// Builds the private v2 server's environment. A root under an ancestor plugin
+// folder turns the ancestor walk off and names its own `.opencode` as the config
+// folder, the two switches OpenCode 2 reads, so only the root's plugins load; any
+// other root keeps OpenCode 2's normal project discovery.
+function v2ServerEnv(env, root, temp) {
+  const shadowing = ancestorPluginDirs(root);
+  const childEnv = {
+    ...env,
+    OPENCODE_DB: path.join(temp, 'private.db'),
+    XDG_DATA_HOME: path.join(temp, 'data'),
+  };
+  if (shadowing.length > 0) {
+    childEnv.OPENCODE_CONFIG_PROJECT_DISABLE = '1';
+    childEnv.OPENCODE_CONFIG_DIR = path.join(root, '.opencode');
+  }
+  return { childEnv, shadowing };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. PARSERS AND LEGS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -459,18 +498,19 @@ function stableIndex(counts) {
 
 // Judges the plugin endpoint once its entry count stabilises, failing on any
 // file missing from the stable read or any entry that is not active.
-function legPluginActive(files, reads, root) {
+function legPluginActive(files, reads, root, shadowing = []) {
+  const notes = shadowing.map((dir) => `isolated: OpenCode 2 also loads ${dir}, so this read ran with OPENCODE_CONFIG_PROJECT_DISABLE=1 and OPENCODE_CONFIG_DIR=${path.join(root, '.opencode')}`);
   const readList = Array.isArray(reads) ? reads : [];
   const counts = readList.map((read) => countEntriesUnder(Array.isArray(read?.entries) ? read.entries : [], root));
   const stable = stableIndex(counts);
   if (stable === -1) {
     return makeResult(
       'plugin-active', 'v2', 'DEGRADED', 'the plugin entry count never stabilised',
-      [`counts: ${counts.join(', ')}`],
+      [...notes, `counts: ${counts.join(', ')}`],
     );
   }
   if (files.length === 0) {
-    return makeResult('plugin-active', 'v2', 'FAIL', `no plugin files under ${root}`);
+    return makeResult('plugin-active', 'v2', 'FAIL', `no plugin files under ${root}`, notes);
   }
 
   const prefix = pluginDirPrefix(root);
@@ -489,11 +529,11 @@ function legPluginActive(files, reads, root) {
   }
 
   if (details.length > 0) {
-    return makeResult('plugin-active', 'v2', 'FAIL', 'the stable read shows missing or inactive plugins', details);
+    return makeResult('plugin-active', 'v2', 'FAIL', 'the stable read shows missing or inactive plugins', [...notes, ...details]);
   }
   return makeResult(
     'plugin-active', 'v2', 'PASS', `all ${files.length} plugin files active`,
-    files.map((file) => file.name),
+    [...notes, ...files.map((file) => file.name)],
   );
 }
 
@@ -517,7 +557,7 @@ function legsForV2(files, v2, root, env) {
       [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],
     );
   return [
-    legPluginActive(files, v2.reads, root),
+    legPluginActive(files, v2.reads, root, v2.shadowing || []),
     legSkillVisible(v2.skills, root),
     commandLeg,
   ];
@@ -918,11 +958,7 @@ function readApiJson(bin, serverUrl, apiPath, env, cwd) {
 // thrown error or a signal.
 async function readV2(bin, root, env = process.env) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'opencode-battery-v2-'));
-  const childEnv = {
-    ...env,
-    OPENCODE_DB: path.join(temp, 'private.db'),
-    XDG_DATA_HOME: path.join(temp, 'data'),
-  };
+  const { childEnv, shadowing } = v2ServerEnv(env, root, temp);
   let child = null;
   let cleaning = null;
 
@@ -965,7 +1001,7 @@ async function readV2(bin, root, env = process.env) {
 
     const password = await waitForBanner(child, port, SERVER_WAIT_MS);
     if (password === null) {
-      return { started: false, reason: `no listening line or password within ${SERVER_WAIT_MS / 1000} s` };
+      return { started: false, reason: `no listening line or password within ${SERVER_WAIT_MS / 1000} s`, shadowing };
     }
 
     const apiEnv = { ...childEnv, OPENCODE_PASSWORD: password };
@@ -1007,6 +1043,7 @@ async function readV2(bin, root, env = process.env) {
       commands,
       commandCounts,
       commandsStable: stableIndex(commandCounts) !== -1,
+      shadowing,
     };
   } finally {
     await cleanup();
@@ -1040,6 +1077,8 @@ module.exports = {
   parseArgs,
   listCommandNames,
   allowedCommandSources,
+  ancestorPluginDirs,
+  v2ServerEnv,
   V2_BUILTIN_COMMANDS,
   listPluginFiles,
   selectBinary,
