@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin scanner follow ups",
+      "phase 38 plugin scanner follow ups",
+      "event scanner data flow",
+      "type parameter false positive",
+      "rolldown direct dependency",
+      "plugin scanner follow ups plan",
+      "plugin scanner follow ups tasks",
+      "plugin scanner follow ups implementation summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "scanner",
+      "follow",
+      "ups",
+      "phase",
+      "event",
+      "data",
+      "flow",
+      "type",
+      "parameter",
+      "false",
+      "positive"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+      ".opencode/plugins/tests/plugin-inventory.test.cjs",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".opencode/plugins/tests/README.md",
+      ".skilled/package.json",
+      ".skilled/package-lock.json",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin-inventory.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/plugin-inventory.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The event guard in `plugin-inventory.cjs` reports a helper that receives the event type only when the call sits in a branch test, so `const ok = isKnown(eventType); if (ok) {}` decides a branch the scan never reports",
+    "created_at": "2026-10-20T22:53:31Z",
+    "last_save_at": "2026-10-20T22:56:14.732Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3717c5322a5c7a3b9da637c0559f4ab6abac2aad17b29721496efc8dbb5d419b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2aa6fa99308d9f8eed9d8bfebf13d1828a0cda003c2c92960f81cd9336ff64ce",
+      "plan.md": "6bbbc9d738f223ca12149f868cf6f3af69973caab652ee64da45dda8a2f87d87",
+      "tasks.md": "741e984218024447f5718612cea73399bfac6207545d6e5ccf01226e9fbccf61",
+      "implementation-summary.md": "a832eaad9c6dd6f813f0a42f29b6cd8ffb2825e27b451bce8459835e65e37f91"
+    },
+    "last_active_at": null
+  }
+}

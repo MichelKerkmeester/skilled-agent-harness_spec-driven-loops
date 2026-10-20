@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups",
+  "description": "Phase 38: plugin-scanner-follow-ups",
+  "keywords": [
+    "phase",
+    "plugin-scanner-follow-ups"
+  ],
+  "lastUpdated": "2026-10-20T22:53:32.038Z",
+  "specId": "038",
+  "folderSlug": "plugin-scanner-follow-ups",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

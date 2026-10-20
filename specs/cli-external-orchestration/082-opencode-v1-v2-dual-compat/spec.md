@@ -147,6 +147,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 34 | 034-live-plugin-playbook/ | Add a playbook scenario per plugin and run each live on OpenCode 1 and 2 with DeepSeek v4.1 flash high, recording an observed effect or the root cause of its absence | Complete |
 | 35 | 035-v2-bridge-plugin-effects/ | Make the v2 bridge hand plugins the v1 tool names, a once-per-session `session.created` and complete message events, then rerun the live playbook on both versions | In Progress |
 | 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | Complete |
+| 38 | 038-plugin-scanner-follow-ups/ | Make the plugin event scanner follow a helper's stored result into a later test, stop reading an unrelated `type` parameter as the event type, declare rolldown directly and date the plugin-tree ordinals | In Progress |
 
 ### Phase Transition Rules
 
@@ -191,4 +192,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 019-plugins-compat-docs | 034-live-plugin-playbook | The 17 plugins load on both versions, so a missing effect is a utilization gap rather than a load failure | `034/scratch/live-runs/results-matrix.md` and `034/implementation-summary.md` |
 | 034-live-plugin-playbook | 035-v2-bridge-plugin-effects | 034 recorded seven plugins that load on OpenCode 2 but never act, with four root causes, and the operator chose a fix in the shared bridge on 2026-10-20 | `035/scratch/live-runs/results-matrix.md`; the plugin tests and the dual-version battery pass on CI at the pushed commit |
 | 032-plugin-tests-ci-and-stale-bundles | 037-ci-pi-and-provisioning-follow-ups | 029, 030 and 032 recorded the cite-drift flake, the unrun Pi type and pack checks, the hand-written Pi matrix, the missing symlinked-root battery test, the after-the-build fingerprint and the missing README rows, and the open-work goal of 2026-10-20 assigns them to one group | `037/implementation-summary.md`; the Pi, sk-git, sk-doc and dual-version workflows pass on CI at the pushed commit |
+| 031-plugin-scanner-ast | 038-plugin-scanner-follow-ups | 031 recorded that the scanner does not follow a helper's stored result and reads any `type` parameter as the event type, and that rolldown reaches the tests only through vitest's vite; 024 recorded undated ordinals in the plugin tree; the open-work goal of 2026-10-20 assigns them to one group | `038/implementation-summary.md`; the plugin tests pass on CI at the pushed commit |
 <!-- /ANCHOR:phase-map -->
