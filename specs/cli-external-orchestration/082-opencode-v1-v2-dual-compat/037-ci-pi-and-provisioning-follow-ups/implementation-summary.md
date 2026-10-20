@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Four recorded follow-ups are closed or bounded. The Pi workflow finds its extensions at run time and also type-checks and pack-checks them, provisioning stamps the fingerprint taken before a build, the battery has an end-to-end test through a symlinked nested root, and the sk-doc runner names a failing subtest on every Node version. The workflows README lists all 32 workflows."
+description: "Four recorded follow-ups are closed or bounded. The Pi workflow finds its extensions at run time and also type-checks and pack-checks them, provisioning stamps the fingerprint taken before a build, the battery has an end-to-end test through a symlinked nested root, and the sk-doc runner names a failing subtest whether or not a terminal is attached, on Node 18.15 or later. The workflows README lists all 32 workflows."
 trigger_phrases:
   - "ci pi and provisioning follow ups implementation summary"
 importance_tier: "normal"
@@ -56,7 +56,7 @@ A new Pi extension now gets tested without anyone editing a workflow, and a type
 
 ### Phase 37: ci-pi-and-provisioning-follow-ups
 
-The Pi workflow used to name its two extensions by hand and run only their test scripts. A `discover` job now lists every folder under `.pi/extensions/` that holds a `package.json`, and each leg also runs `typecheck` and `check:pack` when the extension defines them. pi-fast-mode defines no `check:pack`, so its leg skips that step.
+The Pi workflow used to name its two extensions by hand and run only their test scripts. A `discover` job now lists every folder under `.pi/extensions/` that holds a `package.json`, and each leg runs the extension's `test` script, which is required, then `typecheck` and `check:pack` when the extension defines them. pi-fast-mode defines no `check:pack`, so its leg skips that step.
 
 Provisioning used to fingerprint a package's tracked sources after its build. The fingerprint is now taken before the build and written only when the build succeeds. A source edited while the build ran therefore shows up as changed on the next provision.
 
@@ -93,7 +93,7 @@ DeepSeek v4.1 flash at max thinking wrote each change through cli-pi on llmgatew
 |----------|-----|
 | Keep `[ ]` tests in the two shell files | Luna's round 1 P2 asked for `[[ ]]`. `worktree-naming.sh` uses `[ ]` in 60 conditions and `[[ ]]` in 7, and the test file uses no `[[ ]]`, so the new lines match the code around them |
 | Bound the cite-drift failure rather than change the test | No run reproduced it and no candidate cause holds up. Changing the test on a guess would hide the next occurrence, so the runner was made to name it instead |
-| Run `typecheck` and `check:pack` with `--if-present` | pi-fast-mode defines no `check:pack`. A new extension without either script still gets its tests run |
+| Run `typecheck` and `check:pack` with `--if-present`, and `test` without it | pi-fast-mode defines no `check:pack`. A new extension without either optional script still gets its tests run, and one without a `test` script fails its leg so an untested extension cannot pass |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -105,7 +105,7 @@ DeepSeek v4.1 flash at max thinking wrote each change through cli-pi on llmgatew
 |-------|--------|
 | `worktree-naming.test.sh` | PASS=162 FAIL=0 (157 before); the old stamp order fails 2 (`scratch/mutation/stamp-old-order.txt`) |
 | Battery unit tests | 51 of 51 (50 before); no `realpathSync` in ancestor detection fails 2 (`scratch/mutation/battery-no-realpath.txt`) |
-| Pi extensions | pi-cache-optimizer 118 of 118, pi-fast-mode 81 of 81; both `typecheck` and `check:pack` exit 0 |
+| Pi extensions | pi-cache-optimizer 118 of 118, pi-fast-mode 81 of 81; both `typecheck` exit 0; pi-cache-optimizer `check:pack` exits 0, and pi-fast-mode defines none, so its step is skipped |
 | Discovery dry run | Repository 2, fixture 3 with a `lib` folder left out, empty folder exit 1 (`scratch/pi-discovery-dry-run.txt`) |
 | Provision twice | Five rebuilds with stamps moved aside, then 0 built; stamps identical (`scratch/provision-rebuild-then-idle.txt`) |
 | Symlinked root, live | OpenCode 2.0.32 battery through a symlinked alias of worktree 179: every leg PASS with the isolated line (`scratch/symlinked-root-live-v2.txt`) |

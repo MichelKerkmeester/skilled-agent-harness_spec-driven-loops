@@ -76,7 +76,7 @@ Each recorded follow-up is either fixed with a test that fails on the old code o
 
 ### In Scope
 - Reproduce or bound the cite-drift failure and remove the causes the evidence supports.
-- Discover Pi extensions from the tree and run `test`, `typecheck` and `check:pack` when an extension defines them.
+- Discover Pi extensions from the tree, run each one's required `test` script, and run `typecheck` and `check:pack` when it defines them.
 - Add an end-to-end battery test through a symlinked root nested under another checkout.
 - Take the provisioning fingerprint before the build and write it only after the build succeeds.
 - Add every workflow file to both README tables.
@@ -109,7 +109,7 @@ Each recorded follow-up is either fixed with a test that fails on the old code o
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The Pi workflow finds every extension under `.pi/extensions/` that has a `package.json` and runs its `test`, `typecheck` and `check:pack` scripts when defined. | A dry run of the discovery step lists both extensions, and a third fixture extension is listed with no workflow edit; both extensions pass all their defined scripts locally. |
+| REQ-001 | The Pi workflow finds every extension under `.pi/extensions/` that has a `package.json`, runs its `test` script, which every extension must define, and runs `typecheck` and `check:pack` when defined. | A dry run of the discovery step lists both extensions, and a third fixture extension is listed with no workflow edit; both extensions pass every script they define locally. |
 | REQ-002 | A provision stamp records the fingerprint taken before the build and is written only when the build succeeds. | A new test with a build that edits a tracked source while it runs passes on the new code and fails on the old order; a second provision of the real worktree builds nothing. |
 
 ### P1 - Required (complete OR user-approved deferral)

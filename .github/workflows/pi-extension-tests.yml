@@ -2,8 +2,9 @@ name: Pi Extension Tests
 
 # Every folder under .pi/extensions that holds a package.json is found at run
 # time, so adding an extension needs no edit here. Each one installs from its
-# lockfile, then runs its test script plus its typecheck and pack check when it
-# defines them.
+# lockfile, then runs its test script, which is required: an extension without
+# one fails its leg on purpose, so an untested extension cannot pass. The
+# typecheck and the pack check run only when the extension defines them.
 on:
   pull_request:
     branches: [main, 'skilled/**']

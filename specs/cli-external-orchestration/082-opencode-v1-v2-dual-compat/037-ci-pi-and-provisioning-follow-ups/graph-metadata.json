@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Run 39424650739 failed `test-cite-drift-scan.mjs` on its first attempt and passed on its second at the same commit, and the runner then printed only the log tail, so the failing subtest has no name",
     "created_at": "2026-10-20T21:36:36Z",
-    "last_save_at": "2026-10-20T22:04:10.683Z",
+    "last_save_at": "2026-10-20T22:12:27.666Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c147bfec6863f93eb4d6c7d79855be7486f396af27b4739de4623a9fdeb4337a",
+    "source_fingerprint": "sha256:5e03d5297365022a13eb05d514fbe561a6019c2826a32930ed3ea9b8260d523a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5b0e7832a524e93fbe37a312ac2fdb3efe1ec08a7a6b6d3e459517802feac4e1",
+      "spec.md": "a43c5d672e820520a0693f82daade7ffb1a9f2c9b77c199a686fb2ea988c05c8",
       "plan.md": "8be028f827e579fc6c909e82b38c926a3df0a09979243d62b8b19c0a741d7636",
-      "tasks.md": "18a9a7df284fd16e5f6b9cfac523139a994f820ed2d5e377a590feac4ec961d6",
-      "implementation-summary.md": "60d08a7873cdffc9521fa56e22c74dc4d7a4e5c3991e0bf78a98877f24798d76"
+      "tasks.md": "d9a1bd83a8684ce93236e600fdcd5eea4c350960dffe61b84bbcb24088d1e896",
+      "implementation-summary.md": "aec4b33fca13933153faf78e08cba5c53a396b1fd49b1e014125066e2bfba4b7"
     },
     "last_active_at": null
   }

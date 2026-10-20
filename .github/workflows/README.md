@@ -39,7 +39,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
 | `opencode-dual-version.yml` | Installs OpenCode 1.19.3 and 2.0.32 into separate prefixes and runs the version battery on each and on both together. Also runs the config-shape, battery and cli-opencode unit tests and the sk-vision runtime suite. |
 | `opencode-plugin-tests.yml` | Provisions every listed tree and runs the OpenCode plugin suites under `.opencode/plugins/tests`, the inventory and registration guards among them. |
-| `pi-extension-tests.yml` | Finds each folder under `.pi/extensions/` that holds a `package.json` at run time, so a new extension needs no edit here. Installs it from its lockfile, then runs its test script plus its typecheck and pack check when it defines them. |
+| `pi-extension-tests.yml` | Finds each folder under `.pi/extensions/` that holds a `package.json` at run time, so a new extension needs no edit here. Installs it from its lockfile, runs its test script, which every extension must define, then its typecheck and pack check when it defines them. |
 | `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
 | `repo-rules-corpus.yml` | Keeps the `.skilled/repo-rules/` corpus loadable. |

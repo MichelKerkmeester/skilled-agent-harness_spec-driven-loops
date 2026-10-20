@@ -32,7 +32,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Read the cite-drift failure (`.github/workflows/sk-doc-script-tests.yml`) Done: run 39424650739 attempt 1 failed `test-cite-drift-scan.mjs` with `# fail 1` and no subtest named; attempt 2 passed at the same commit.
-- [x] T002 Record baselines (this folder) Done: worktree-naming 157, battery unit 50, pi-cache-optimizer 118, pi-fast-mode 81; both extensions' `typecheck` and `check:pack` exit 0 locally.
+- [x] T002 Record baselines (this folder) Done: worktree-naming 157, battery unit 50, pi-cache-optimizer 118, pi-fast-mode 81; both extensions' `typecheck` exits 0 locally; pi-cache-optimizer's `check:pack` exits 0 and pi-fast-mode defines none.
 - [x] T003 List workflows missing from the README tables (`.github/workflows/README.md`) Done: three missing from the contents table and seven from the push versus pull-request table, out of 32.
 <!-- /ANCHOR:phase-1 -->
 
@@ -41,7 +41,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 [P] Discover Pi extensions and add type and pack steps (`.github/workflows/pi-extension-tests.yml`) Done: a `discover` job feeds the matrix; each leg runs `npm run --if-present typecheck` and `npm run --if-present check:pack` after `npm test`.
+- [x] T004 [P] Discover Pi extensions and add type and pack steps (`.github/workflows/pi-extension-tests.yml`) Done: a `discover` job feeds the matrix; each leg runs the required `npm test`, then `npm run --if-present typecheck` and `npm run --if-present check:pack`.
 - [x] T005 [P] List every workflow in the README (`.github/workflows/README.md`) Done: rows for `dependabot-auto-merge.yml`, `message-contract.yml` and `opencode-dual-version.yml`, the Pi row rewritten, and seven workflows added to the push versus pull-request table.
 - [x] T006 [P] Fingerprint before the build (`.skilled/skills/sk-git/scripts/worktree-naming.sh`) Done: `provision_worktree` keeps the fingerprint taken before the build; `_wn_record_build` writes it after a successful build.
 - [x] T007 [P] Test a build that edits its own source (`.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh`) Done: five expectations; 157 to 162.
