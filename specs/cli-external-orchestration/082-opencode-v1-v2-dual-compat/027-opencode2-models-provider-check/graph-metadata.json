@@ -44,6 +44,7 @@
       ".github/workflows/opencode-dual-version.yml",
       "scratch/baseline-cli-opencode-tests.txt",
       "scratch/mutation/m0-old-docs.txt",
+      "scratch/mutation/m8-unlabelled-v1-docs.txt",
       "scratch/preflight-live.txt",
       "scratch/v2-positional.txt",
       "scratch/v2-models-help.txt",
@@ -99,6 +100,12 @@
         "name": "m0-old-docs.txt",
         "kind": "file",
         "path": "scratch/mutation/m0-old-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m8-unlabelled-v1-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m8-unlabelled-v1-docs.txt",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
     "created_at": "2026-10-20T11:51:31Z",
-    "last_save_at": "2026-10-20T12:12:50.827Z",
+    "last_save_at": "2026-10-20T12:24:19.938Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3060f949e1c441ff2f4f87ab1d3cbdcf43bd2e7e745e4db035cfe0d0853b0cf0",
+    "source_fingerprint": "sha256:6676aecf1bedc45aa7f986553031de3da34430a53ec9e21cea58a0a13f863f5f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1682c8b46f81e5ecb0653eaa2a350c22216dcaa59fae003874ae9e57e2529914",
+      "spec.md": "53eed21455bb6ad60b1d7e23407ee8ab87da60aca620be5f7fe5f1682935e70e",
       "plan.md": "6815e62991ed2650211c4d3b84b51335b091828a954917ba5f4e2a4c000e119b",
       "tasks.md": "8bdc94c57d1679d6c8f34635a28cf227d21665f56804e9fbad1e6d8be51c7825",
-      "implementation-summary.md": "747ae280611de2c5f1d77b56c5972342532cae712492588d6e8bc4778a54a54c"
+      "implementation-summary.md": "a729c4f4267a54480695dbc64c59e0f600fe8a179ccddc1ee6089f9d67f38668"
     },
     "last_active_at": null
   }

@@ -104,6 +104,52 @@ function problemsWith(args) {
   return problems;
 }
 
+// OpenCode 2 lists only these providers, so a `models <provider>` argument naming any
+// other one is a v1 command by construction. Naming one of these leaves the reader
+// unable to tell which version would run the command.
+const V2_PROVIDERS = new Set(['llmgateway', 'llmgateway-providers', 'cline-pass', 'opencode']);
+
+// In a v2-only layout the v2 binary is named `opencode`, where `opencode models
+// <provider>` is rejected, so a prose command both binaries answer to needs its
+// version named beside it. Only prose is scanned: a fenced block is a shell
+// transcript whose `opencode2` forms the command scan already reads.
+const INLINE_MODELS_PATTERN = /`(opencode models[^`]*)`/g;
+const VERSION_LABEL_PATTERN = /OpenCode 1\b|\bv1\b|1\.19/;
+
+function unversionedV1Forms(markdown) {
+  const offenders = [];
+  let inFence = false;
+
+  markdown.split('\n').forEach((line, index) => {
+    if (line.startsWith('```')) {
+      inFence = !inFence;
+      return;
+    }
+    if (inFence) return;
+    if (VERSION_LABEL_PATTERN.test(line) || line.includes('opencode2 models --standalone')) return;
+
+    for (const match of line.matchAll(INLINE_MODELS_PATTERN)) {
+      // A flag narrows the listing rather than naming a provider, so the provider is
+      // the first token that does not start with a hyphen.
+      const provider = match[1]
+        .slice('opencode models'.length)
+        .split(/\s+/)
+        .filter(Boolean)
+        .find((token) => !token.startsWith('-'));
+      // A placeholder or a missing provider leaves the version open the same way a v2
+      // provider does; one that v2 does not list pins the command to v1 instead.
+      const ambiguous =
+        provider === undefined ||
+        provider.startsWith('<') ||
+        provider.startsWith('[') ||
+        V2_PROVIDERS.has(provider);
+      if (ambiguous) offenders.push({ lineNumber: index + 1, text: match[0] });
+    }
+  });
+
+  return offenders;
+}
+
 // A trailing backslash continues the same shell command on the next physical line, so
 // the scan joins those lines into one command and carries the first line's number,
 // which is where a reader has to go to fix the offender.
@@ -168,6 +214,31 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
   );
 });
 
+test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run', () => {
+  const flagged = (line) => unversionedV1Forms(line).length;
+
+  assert.equal(
+    flagged('Run `opencode models <provider>` first.'),
+    1,
+    'a versionless placeholder must be flagged',
+  );
+  assert.equal(
+    flagged('Run `opencode models llmgateway` on OpenCode 1.'),
+    0,
+    'a named version must clear the form',
+  );
+  assert.equal(
+    flagged('Run `opencode models opencode-go` first.'),
+    0,
+    'a provider OpenCode 2 does not list is v1 by construction',
+  );
+  assert.equal(
+    flagged(['```bash', '`opencode models <provider>`', '```'].join('\n')),
+    0,
+    'a fenced block is not prose',
+  );
+});
+
 test("commandsIn keeps a redirect's file descriptor out of the arguments", () => {
   const filtered = commandsIn(
     "opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null",
@@ -227,6 +298,28 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
   );
 });
 
+test('a prose opencode models command OpenCode 2 would also run names its version', () => {
+  const offenders = [];
+
+  const scan = (file) => {
+    for (const offender of unversionedV1Forms(read(file))) {
+      offenders.push(`${relativeToRepoRoot(file)}:${offender.lineNumber}: ${offender.text}`);
+    }
+  };
+
+  for (const file of documents(CLI_ROOT)) scan(file);
+
+  // The Hermes runtime carries a generated copy of this skill, so the same unlabelled
+  // form must not reappear there; a checkout that has not built it yet has nothing to scan.
+  if (fs.existsSync(HERMES_SKILL)) scan(HERMES_SKILL);
+
+  assert.equal(
+    offenders.join('\n'),
+    '',
+    `in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so a prose "opencode models" command that OpenCode 2 would also run must name its version, but these do not:\n${offenders.join('\n')}`,
+  );
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. THE PROVIDER PRE-FLIGHT CHECK USES A STANDALONE LISTING
 // ─────────────────────────────────────────────────────────────────────────────
@@ -250,11 +343,15 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
 
   assert.ok(block.length > 0, 'the provider pre-flight section has no fenced bash block');
 
+  // The variable gates the default model, so a check on any other provider would report
+  // the default present when only that provider is configured.
   const standaloneListing = block.some((line) =>
-    /opencode2 models --standalone\b.*\|\s*grep\s+(['"])\^[\w.-]+\/\1/.test(line),
+    /opencode2 models --standalone\b.*\|\s*grep\s+(['"])\^opencode-go\/\1.*&&\s*OPENCODE_GO_OK=1\b/.test(
+      line,
+    ),
   );
   assert.ok(
     standaloneListing,
-    `the provider pre-flight block must filter a standalone listing for an anchored ^<provider>/ prefix, but it does not:\n${block.join('\n')}`,
+    `the provider pre-flight block must set OPENCODE_GO_OK from a standalone listing filtered for the anchored ^opencode-go/ prefix, but it does not:\n${block.join('\n')}`,
   );
 });

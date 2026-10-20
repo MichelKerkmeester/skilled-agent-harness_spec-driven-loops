@@ -57,15 +57,16 @@ If you follow the pre-flight in `cli-reference.md` on OpenCode 2 now, it reports
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph and its v2 script line, three inline spans, and the v1 label and v2 form on the subcommand row and the MiMo row |
+| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph and its v2 script line, three inline spans, and an OpenCode 1 label with the v2 form on the subcommand row, the MiMo row, the default-model paragraph and the LLM Gateway note |
 | `cli-opencode/SKILL.md`, `cli-opencode/README.md` | Modified | The provider-argument sentences, plus one inline span in the README |
 | `cli-opencode/references/install-and-versions.md` | Modified | The listing table row, its citation and the v2 layout sentence |
-| `cli-opencode/references/providers-and-models.md` | Modified | One inline span, and the v1 label and v2 form on its three `opencode models <provider>` sites |
+| `cli-opencode/references/providers-and-models.md` | Modified | One inline span, and an OpenCode 1 label, with the v2 form where v2 has the provider, on seven `opencode models` sites |
+| `cli-opencode/references/context-budget.md` | Modified | An OpenCode 1 label on the `opencode-go` confirmation |
 | `cli-opencode/assets/`, `cli-opencode/references/` (three more), `cli-opencode/manual-testing-playbook/` (19 files) | Modified | `--standalone` on each inline span |
 | `cli-devin/references/providers-and-models.md` | Modified | The same inline span |
 | `.hermes/skills/cli-opencode/SKILL.md` | Regenerated | `sync-skills-hermes.cjs` from the edited `SKILL.md` |
-| `cli-opencode/scripts/tests/opencode2-models-form.test.cjs` | Created | The form classifier (positional arguments, `--server` without a URL), the redirect and continuation cases, the doc scan and the anchored pre-flight filter check |
-| `.github/workflows/opencode-dual-version.yml` | Modified | The unit-test step runs the new test |
+| `cli-opencode/scripts/tests/opencode2-models-form.test.cjs` | Created | The form classifier (positional arguments, `--server` without a URL), the redirect and continuation cases, the `opencode2` doc scan, the prose rule for unlabelled `opencode models` forms OpenCode 2 would also run, and the pre-flight check that `OPENCODE_GO_OK` comes from an anchored `^opencode-go/` filter |
+| `.github/workflows/opencode-dual-version.yml` | Modified | The unit-test step runs the new test, and both path filters list cli-devin, whose docs the test reads |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,12 +98,13 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 | Check | Result |
 |-------|--------|
 | Baseline cli-opencode tests | 5 of 5 pass (`scratch/baseline-cli-opencode-tests.txt`) |
-| cli-opencode tests after | 10 of 10 pass |
+| cli-opencode tests after | 12 of 12 pass |
 | New test against main's docs | 2 of 4 fail, naming 49 sites, the 49 the baseline listed (`scratch/mutation/m0-old-docs.txt`) |
-| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, and not joining backslash continuations fails 1 (`scratch/mutation/m1-*` to `m6-*`) |
+| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, not joining backslash continuations fails 1, filtering the default's variable for `^llmgateway/` fails 1, and never accepting a version label fails 2 (`scratch/mutation/m1-*` to `m9-*`) |
+| Prose rule against the docs before its labels | 1 of 7 fails (`scratch/mutation/m8-unlabelled-v1-docs.txt`) |
 | Pre-flight line live | `llmgateway` OK=1, `opencode-go` OK=0, unknown OK=0 under `pipefail`; the old form exits 1 for `llmgateway` too (`scratch/preflight-live.txt`) |
 | `sync-skills-hermes.cjs --check` | PASS: 68 copies in sync |
-| `check-gate-inputs.sh`, `actionlint` | Both exit 0 |
+| `check-gate-inputs.sh`, `actionlint` | Both exit 0 after the filter change |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,9 +112,8 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A cli-devin-only edit does not start the battery job.** The test scans cli-devin's docs, but the workflow's path filter lists cli-opencode and the Hermes copy only, so a change confined to cli-devin is checked on the next run that does trigger. Adding cli-devin to the filter would run the whole two-version battery on every cli-devin edit.
-2. **`opencode models` is read as OpenCode 1.** In a v2-only layout the v2 binary is named `opencode`, and no scan can tell from one line which layout a reader has. The docs label every `opencode models <provider>` site as the OpenCode 1 form and give the v2 form beside it, and `install-and-versions.md` covers the v2-only layout; the test checks only the `opencode2` name.
-3. **The test reads quoted commands, not prose.** A sentence that describes the bare form without quoting it in backticks or a code block is not checked.
+1. **The v2-only layout is caught by provider, not by layout.** In a v2-only layout the v2 binary is named `opencode`, and one line cannot say which layout a reader has. The prose rule therefore flags an unlabelled `opencode models` span only when OpenCode 2 would also run it: a placeholder, a bare listing, or a provider 2.0.32 lists (`llmgateway`, `llmgateway-providers`, `cline-pass`, `opencode`). A span naming a provider only OpenCode 1 lists, such as `opencode-go`, is OpenCode 1 by construction and passes. Commands inside fenced blocks are left to the `opencode2` scan, so a fenced v1 command must sit in a block written for OpenCode 1, as the pre-flight block's v1 lines do.
+2. **The provider list is pinned to 2.0.32.** If a later OpenCode 2 lists another provider, `V2_PROVIDERS` in the test needs that provider added.
 <!-- /ANCHOR:limitations -->
 
 ---

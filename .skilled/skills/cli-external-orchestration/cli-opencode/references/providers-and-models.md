@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -54,7 +54,7 @@ OpenCode resolves models through configured providers. The model string passed t
 
 ### openai
 
-GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` before dispatching any slug not in the table.
+GPT-6 via the `openai` provider: two personas (sol/luna) × two speed tiers (base / fast) = 4 slugs (the Terra persona was retired). `gpt-6-sol` is the flagship default persona. On 2026-09-23 `opencode models openai` listed the base and `-fast` slugs for both personas and no `-pro` slug for either, so this roster carries no Pro tier. The catalog also lists `openai/gpt-6-astra` and `openai/gpt-6-astra-fast`, which are not on this roster. Run `opencode models openai` (OpenCode 1; OpenCode 2 lists no `openai` provider) before dispatching any slug not in the table.
 
 | Persona | Base | Fast (low-latency) |
 |---------|------|--------------------|
@@ -69,7 +69,7 @@ opencode-go gateway (subsidized "2x usage" rate). It fronts the DeepSeek, GLM, a
 |----------|----------|-------|
 | `opencode-go/deepseek-v4.1-flash` | ✓ | DeepSeek V4.1 Flash via the Go gateway, **the mode default**. Takes images as well as text, so a dispatch that needs a screenshot or diagram does not have to leave the default route. Reasoning model pinned to `--variant max` (OpenCode 1 only) by policy, a tier this route carries. On OpenCode 2 the equivalent is `-m opencode-go/deepseek-v4.1-flash#max`. List-verified and **dispatch-verified 2026-09-11** (a live `opencode run` turn returned its token for $0.0012). It superseded `deepseek-v4-flash-vision-exp` on this route at an identical catalog cost ($0.15 in / $0.60 out per 1M, cached reads $0.003) and the same 1M context and 384K output ceiling, so the move trades no capability and no price |
 | `opencode-go/glm-5.3` | no | Z.AI GLM 5.3 via the Go gateway, list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
-| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
+| `opencode-go/glm-5.3-flash` | no | Z.AI GLM-5.3-Flash via the Go gateway, a reasoning model whose ladder here is `low`/`high`/**`max`** (this route has **no `xhigh`**), pinned to `--variant max` (OpenCode 1 only) by policy. On OpenCode 2 the equivalent is `-m opencode-go/glm-5.3-flash#max`. Ladder re-verified in `opencode models opencode-go --verbose` on OpenCode 1 on 2026-09-04 (OpenCode 2 lists no `opencode-go` provider) |
 | `opencode-go/qwen3.8-max` | no | Qwen 3.8 Max via the Go gateway. A live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 | `opencode-go/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 | `opencode-go/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Go gateway, with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. No variants are listed, so omit `--variant` (OpenCode 1 only). No v2 form is given for this route. See [install-and-versions.md](./install-and-versions.md). Dispatch-verified 2026-09-30 with a `PONG` reply |
@@ -84,11 +84,11 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 | `cline-pass/cline-pass/mimo-v2.6-pro` | no | MiMo-V2.6-Pro via the Cline provider, covered by the Cline Pass. Reasoning and image-capable, 1M context and 131K output. Pass the three-segment id. Cline's `xiaomi/mimo-v2.6-pro` id bills Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so it is not on the roster. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 | `cline-pass/cline-pass/mimo-v2.6-flash` | no | MiMo-V2.6-Flash via the Cline provider, on the Pass like the Pro row above and with the same limits and id rule. Dispatch-verified 2026-09-30 with a `PONG` reply |
 
-> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
+> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` on OpenCode 1 lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
 ### llmgateway
 
-DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway`.
+DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-compatible. Pass the **two-segment** `llmgateway/<id>` to `--model`. Authenticate with `opencode auth login`, where the credential registers as **`llmgateway`** and shows in `opencode auth list` as "DevPass (LLM Gateway)". Confirm live slugs via `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
 
 > **The gateway takes BARE model ids.** `llmgateway/deepseek-v4.1-flash` is provider + id, and the id sent on the wire is `deepseek-v4.1-flash`. Sending a prefixed id returns `400 "Provider llmgateway does not support model …"`. This is the inverse of the `cline-pass` rule above, so the two sections must not be copied into each other. The gateway also rewrites ids upstream in its reply (`deepseek/…`, `zai/…`). Those names are informational and are never sent.
 

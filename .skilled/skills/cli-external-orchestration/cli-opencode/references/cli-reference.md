@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -241,7 +241,7 @@ opencode auth login          # → provider llmgateway; model llmgateway/mimo-v2
 opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
 ```
 
-> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. Confirm live LLM Gateway slugs with `opencode models llmgateway`.
+> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. Confirm live LLM Gateway slugs with `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
@@ -282,7 +282,7 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models --standalone`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on a given install.
+On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once the provider is confirmed in `opencode2 models --standalone`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on OpenCode 1; on OpenCode 2, list with `opencode2 models --standalone` and filter for the `<provider>/` prefix.
 
 **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 
