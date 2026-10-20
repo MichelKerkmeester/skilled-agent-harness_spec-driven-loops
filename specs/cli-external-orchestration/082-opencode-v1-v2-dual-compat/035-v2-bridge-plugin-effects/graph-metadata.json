@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v2 bridge plugin effects",
+      "phase 35 v2 bridge plugin effects",
+      "v2 bridge plugin effects plan",
+      "v2 bridge plugin effects tasks",
+      "v2 bridge plugin effects implementation summary"
+    ],
+    "key_topics": [
+      "bridge",
+      "plugin",
+      "effects",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "repository",
+      "plugins",
+      "register",
+      "active"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/tests/v2-bridge.test.cjs",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".opencode/plugins/README.md",
+      "scratch/live-runs/baseline-tests.txt",
+      "scratch/live-runs/verification.txt",
+      "scratch/live-runs/results-matrix.md",
+      "scratch/live-runs/shell-legs.txt",
+      "scratch/live-runs/raw-probe.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/v2-bridge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-tests.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/baseline-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/verification.txt",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "shell-legs.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/shell-legs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "raw-probe.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/raw-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "All 17 repository plugins register as `active` on OpenCode 2.0.32, but phase 034's live runs showed only 10 of them act",
+    "created_at": "2026-10-20T20:32:45Z",
+    "last_save_at": "2026-10-20T22:09:16.870Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f498b3d93ba12d72c909b0a8f164e5bc7b2a96d7d59a1e2a2526e3c032ba752",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8a9f48fb024056ec5b512a0ecd79571a20f63ffe6824c2bf96091e5a3becbbf4",
+      "plan.md": "94f5a248c082b1f4cd57cfa8cfa381071f9b714ffed0891d60b5c6de5626052c",
+      "tasks.md": "bf1aa0cf8db47bbb9f10db711aae7c104280b156d2802d5b93ea9ba486887152",
+      "implementation-summary.md": "fbc8175694de7e1453eadd065e4fe0343949d4ddd37284c8ac463073c3401c2d"
+    },
+    "last_active_at": null
+  }
+}

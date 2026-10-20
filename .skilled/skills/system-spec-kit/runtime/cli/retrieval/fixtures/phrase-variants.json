@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74d2f449555a46eec99f721d0db1b6055368a11aff577ef412e40cc313f4b7d1",
+  "manifestHash": "73e726a4dff52dffe03d22783c64cba33e941159b9a743943046b2c8c036579b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37751,6 +37751,9 @@
     "doctor env plan": [
       "doctor env plan"
     ],
+    "doctor env reads env example": [
+      "doctor env reads env example"
+    ],
     "doctor env tasks": [
       "doctor env tasks"
     ],
@@ -72277,6 +72280,9 @@
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
     ],
+    "phase 35 v2 bridge plugin effects": [
+      "phase 35 v2 bridge plugin effects"
+    ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
     ],
@@ -103869,6 +103875,9 @@
     "system spec kit 2 8 3 0": [
       "system-spec-kit 2.8.3.0"
     ],
+    "system spec kit 2 8 4 0": [
+      "system-spec-kit 2.8.4.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -104297,6 +104306,9 @@
     ],
     "system spec kit v2 8 3 0": [
       "system-spec-kit v2.8.3.0"
+    ],
+    "system spec kit v2 8 4 0": [
+      "system-spec-kit v2.8.4.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -108639,6 +108651,18 @@
     ],
     "v2 4 0 0 release notes": [
       "v2.4.0.0 release notes"
+    ],
+    "v2 bridge plugin effects": [
+      "v2 bridge plugin effects"
+    ],
+    "v2 bridge plugin effects implementation summary": [
+      "v2 bridge plugin effects implementation summary"
+    ],
+    "v2 bridge plugin effects plan": [
+      "v2 bridge plugin effects plan"
+    ],
+    "v2 bridge plugin effects tasks": [
+      "v2 bridge plugin effects tasks"
     ],
     "v3 0 0 0 release notes": [
       "v3.0.0.0 release notes"

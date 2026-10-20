@@ -38,6 +38,7 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups"
   ],
   "manual": {
@@ -243,7 +244,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T21:38:31.062Z",
+    "last_save_at": "2026-10-20T22:23:30.871Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -251,10 +252,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fca4090d7415d15edcdfc3a415ede48860652b1a167441ca52d4075c5c1cd654",
+    "source_fingerprint": "sha256:91ecbb056020b35af42473425e529d08fe501ed0e5917ecddbe9cd57c61c8a7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3bd01e5cfb80e4e056c94029fe544a448b8545e09bbb27bcc9515d71de57fcc",
+      "spec.md": "38c41d37d9b1d906ffb0712ce17bde79e84414fd5b9ecb224589fe2196b6217e",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles",

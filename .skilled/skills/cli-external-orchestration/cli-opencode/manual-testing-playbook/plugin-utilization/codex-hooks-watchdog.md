@@ -1,7 +1,7 @@
 ---
 title: "CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2"
 description: "This scenario validates codex-hooks-watchdog for `CO-042`. It focuses on confirming that a live session reports drifted user-global Codex hooks into the watchdog log on both OpenCode versions."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2
@@ -32,7 +32,7 @@ Operators run the exact prompt and command sequence for `CO-042` and confirm the
 - Evidence requirements: Capture the installer's check status before the runs and the effects file and exit status for each version.
 - Desired user-visible outcome: A per-version verdict naming the watchdog log line, or a SKIP, blocker: the installer check exits 0 on this machine, so there is no Codex hook drift for the plugin to report.
 - Pass/fail: PASS if the log gains a `codex hook drift detected` line on that version. FAIL if the session runs and no line is written. SKIP, blocker: the installer check exits 0 on this machine, so there is no Codex hook drift for the plugin to report.
-- Failure triage: Run `node .opencode/bin/install-codex-hooks.mjs --check; echo $?` first and confirm a non-zero status. If drift exists but no line is written, check whether the session delivered `session.created`; on OpenCode 2 the run session does not.
+- Failure triage: Run `node .opencode/bin/install-codex-hooks.mjs --check; echo $?` first and confirm a non-zero status. If drift exists but no line is written, check whether the session delivered `session.created`; on OpenCode 2 the bridge delivers it once per session, before that session's first event or system transform, because `opencode2 run` sends none for its own session.
 
 ---
 

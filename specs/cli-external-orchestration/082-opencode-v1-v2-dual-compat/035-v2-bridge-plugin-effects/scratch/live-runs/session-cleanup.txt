@@ -1,0 +1,13 @@
+# scenario session-cleanup, run 2026-10-20T21:29:15Z in worktree 176, HEAD db73b963b3
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+baseline v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-20T23:29:31+0200 action=skip reason=no-session-pid
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+baseline v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-20T23:29:31+0200 action=skip reason=no-session-pid
+2026-10-20T23:29:39+0200 action=skip reason=no-session-pid
+0
+0
+# block exit 0

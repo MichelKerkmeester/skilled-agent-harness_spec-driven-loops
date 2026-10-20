@@ -19,10 +19,18 @@ const EVENT_ALIASES = Object.freeze({
   'session.compaction.ended': 'session.compacted',
 });
 
+// v2 renamed the tools and argument v1 plugins match on, so map them back before dispatch.
+const TOOL_ALIASES = Object.freeze({
+  shell: 'bash',
+  subagent: 'task',
+});
+
+// A mapping entry may emit several v1 events, and a null payload skips its delivery.
 const EVENT_MAPPINGS = Object.freeze({
   'session.text.ended': {
     type: 'message.part.updated',
     properties: (data) => ({
+      sessionID: data.sessionID,
       part: {
         type: 'text',
         text: data.text,
@@ -34,7 +42,7 @@ const EVENT_MAPPINGS = Object.freeze({
   },
   'session.step.ended': {
     type: 'message.updated',
-    properties: (data) => {
+    properties: (data, event) => {
       const info = {
         id: data.assistantMessageID,
         sessionID: data.sessionID,
@@ -42,10 +50,45 @@ const EVENT_MAPPINGS = Object.freeze({
       };
       if (data.cost !== undefined) info.cost = data.cost;
       if (data.tokens !== undefined) info.tokens = toV1Tokens(data.tokens);
-      return { info };
+      if (typeof event.created === 'number') info.time = { completed: event.created };
+      return { sessionID: data.sessionID, info };
     },
   },
+  'session.inbox.enqueued': [
+    {
+      type: 'message.updated',
+      properties: (data, event) => {
+        if (!isUserInboxItem(data)) return null;
+        const info = {
+          id: data.inboxID,
+          sessionID: data.sessionID,
+          role: 'user',
+        };
+        if (typeof event.created === 'number') info.time = { created: event.created };
+        return { sessionID: data.sessionID, info };
+      },
+    },
+    {
+      type: 'message.part.updated',
+      properties: (data) => {
+        if (!isUserInboxItem(data)) return null;
+        return {
+          sessionID: data.sessionID,
+          part: {
+            type: 'text',
+            text: data.item.payload.text,
+            sessionID: data.sessionID,
+            messageID: data.inboxID,
+          },
+        };
+      },
+    },
+  ],
 });
+
+function isUserInboxItem(data) {
+  return data?.item?.type === 'user' && typeof data.item.payload?.text === 'string';
+}
 
 const DEDUPED_SESSION_EVENTS = new Set(['session.idle', 'session.compacted']);
 const SESSION_EVENT_RESET_TYPES = new Set([
@@ -75,6 +118,41 @@ function toV1ToolOutput(event) {
     output: result.output ?? result.content ?? '',
     metadata: result.metadata ?? {},
   };
+}
+
+function toV1ToolName(tool) {
+  return Object.hasOwn(TOOL_ALIASES, tool) ? TOOL_ALIASES[tool] : tool;
+}
+
+function toV1ToolArgs(tool, args) {
+  if (tool !== 'subagent' || args === null || typeof args !== 'object') return args;
+  return { ...args, subagent_type: args.agent };
+}
+
+function toV2ToolArgs(tool, originalArgs, args) {
+  if (tool !== 'subagent' || args === null || typeof args !== 'object') return args;
+
+  const next = { ...args };
+  if (Object.hasOwn(next, 'subagent_type') && next.subagent_type !== originalArgs?.agent) {
+    next.agent = next.subagent_type;
+  }
+
+  const originalHadSubagentType = originalArgs !== null
+    && typeof originalArgs === 'object'
+    && Object.hasOwn(originalArgs, 'subagent_type');
+  if (!originalHadSubagentType) delete next.subagent_type;
+  return next;
+}
+
+function toV1ToolHookOutput(event) {
+  const output = toV1ToolOutput(event);
+  if (event.tool !== 'shell' || event.status === 'error') return output;
+
+  const shellOutput = event.result?.output;
+  if (shellOutput !== null && typeof shellOutput === 'object' && typeof shellOutput.output === 'string') {
+    return { ...output, output: shellOutput.output };
+  }
+  return output;
 }
 
 function toV1Tokens(tokens) {
@@ -224,6 +302,8 @@ export function dualPlugin(id, server) {
     let eventFailure;
     let cleanupPromise;
     const sessionEventState = new Map();
+    const announcedSessions = new Set();
+    const announcingSessions = new Map();
 
     const deliverEvent = async (type, properties) => {
       const sessionID = properties?.sessionID
@@ -238,6 +318,26 @@ export function dualPlugin(id, server) {
       }
 
       await hooks.event({ event: { type, properties } });
+    };
+
+    // v2 can deliver session traffic before session.created, so synthesize the event v1 plugins wait for.
+    const announceSession = async (
+      sessionID,
+      properties = { sessionID, info: { id: sessionID } },
+    ) => {
+      if (typeof hooks.event !== 'function' || sessionID === undefined) return;
+      const inFlight = announcingSessions.get(sessionID);
+      if (inFlight) return inFlight;
+      if (announcedSessions.has(sessionID)) return;
+
+      announcedSessions.add(sessionID);
+      const delivery = deliverEvent('session.created', properties);
+      announcingSessions.set(sessionID, delivery);
+      try {
+        await delivery;
+      } finally {
+        announcingSessions.delete(sessionID);
+      }
     };
 
     const cleanup = () => {
@@ -287,6 +387,30 @@ export function dualPlugin(id, server) {
           try {
             for await (const event of eventStream) {
               const data = event.data;
+              if (event.type === 'session.deleted') {
+                const deletedID = data?.sessionID ?? data?.info?.id;
+                if (deletedID !== undefined) await announcingSessions.get(deletedID);
+              }
+              if (event.type === 'session.created' && data?.sessionID !== undefined) {
+                const announced = announcedSessions.has(data.sessionID)
+                  || announcingSessions.has(data.sessionID);
+                if (!announced) {
+                  await announceSession(
+                    data.sessionID,
+                    data.info === undefined ? { ...data, info: { id: data.sessionID } } : data,
+                  );
+                } else {
+                  await announcingSessions.get(data.sessionID);
+                }
+                continue;
+              } else if (
+                event.type.startsWith('session.')
+                && event.type !== 'session.deleted'
+                && data?.sessionID !== undefined
+              ) {
+                await announceSession(data.sessionID);
+              }
+
               const properties =
                 event.type.startsWith('session.')
                 && data?.sessionID !== undefined
@@ -307,9 +431,20 @@ export function dualPlugin(id, server) {
                 });
               }
 
-              const mapping = EVENT_MAPPINGS[event.type];
-              if (mapping) {
-                await deliverEvent(mapping.type, mapping.properties(data));
+              const mappings = EVENT_MAPPINGS[event.type];
+              if (mappings) {
+                for (const mapping of Array.isArray(mappings) ? mappings : [mappings]) {
+                  const properties = mapping.properties(data, event);
+                  if (properties === null) continue;
+                  await deliverEvent(mapping.type, properties);
+                }
+              }
+
+              if (event.type === 'session.deleted') {
+                const sessionID = data?.sessionID ?? data?.info?.id;
+                if (sessionID !== undefined) {
+                  announcedSessions.delete(sessionID);
+                }
               }
             }
           } catch (error) {
@@ -322,14 +457,15 @@ export function dualPlugin(id, server) {
 
       if (typeof hooks['tool.execute.before'] === 'function') {
         const registration = await ctx.tool.hook('execute.before', async (event) => {
+          const originalArgs = event.input;
           const hookInput = {
-            tool: event.tool,
+            tool: toV1ToolName(event.tool),
             sessionID: event.sessionID,
             callID: event.id,
           };
-          const hookOutput = { args: event.input };
+          const hookOutput = { args: toV1ToolArgs(event.tool, originalArgs) };
           await hooks['tool.execute.before'](hookInput, hookOutput);
-          event.input = hookOutput.args;
+          event.input = toV2ToolArgs(event.tool, originalArgs, hookOutput.args);
         });
         registrations.push(registration);
       }
@@ -337,18 +473,24 @@ export function dualPlugin(id, server) {
       if (typeof hooks['tool.execute.after'] === 'function') {
         const registration = await ctx.tool.hook('execute.after', async (event) => {
           const hookInput = {
-            tool: event.tool,
+            tool: toV1ToolName(event.tool),
             sessionID: event.sessionID,
             callID: event.id,
-            args: event.input,
+            args: toV1ToolArgs(event.tool, event.input),
           };
-          await hooks['tool.execute.after'](hookInput, toV1ToolOutput(event));
+          await hooks['tool.execute.after'](hookInput, toV1ToolHookOutput(event));
         });
         registrations.push(registration);
       }
 
       if (typeof hooks['experimental.chat.system.transform'] === 'function') {
         const registration = await ctx.session.hook('context', async (event) => {
+          // An event hook failure belongs to the event path's report, not to this request.
+          try {
+            await announceSession(event.sessionID);
+          } catch (error) {
+            eventFailure ??= error;
+          }
           const hookOutput = { system: [] };
           const hookInput = { sessionID: event.sessionID };
           if (event.model !== undefined) hookInput.model = event.model;
@@ -402,4 +544,4 @@ export function dualPlugin(id, server) {
   return { id, server, setup };
 }
 
-export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS };
+export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS, TOOL_ALIASES };

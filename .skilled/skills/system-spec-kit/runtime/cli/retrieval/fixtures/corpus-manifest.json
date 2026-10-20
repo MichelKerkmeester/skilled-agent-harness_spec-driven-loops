@@ -1,5 +1,5 @@
 {
-  "corpusHash": "940db1c600ea282413016974143e37bca1405ff5d3e94ccb807c04d2473cd98e",
+  "corpusHash": "7064d811fdc5655f70691b71eace23fa3bcf45d750c98389b583082592b8a59a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25470,
+  "includedPathCount": 25475,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8066,6 +8066,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -8994,6 +8995,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25501,7 +25506,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "74d2f449555a46eec99f721d0db1b6055368a11aff577ef412e40cc313f4b7d1",
+  "manifestHash": "73e726a4dff52dffe03d22783c64cba33e941159b9a743943046b2c8c036579b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26597,6 +26602,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch",
       "reason": "excluded directory"
     },
     {
