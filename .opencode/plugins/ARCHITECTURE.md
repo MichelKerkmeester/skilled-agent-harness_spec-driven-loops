@@ -86,8 +86,10 @@ The diagram shows the 16 bridged plugins. `sk-vision.js` exports its own `setup`
 │   └── v2-bridge.js           # builds the dual export and maps the v1 hooks onto OpenCode 2
 ├── tests/                     # regression suites for the entry files
 │   ├── v2-bridge.test.cjs     # covers the bridge itself
+│   ├── plugin-inventory.test.cjs   # inventory, unmapped-hook and event-name guards
+│   ├── plugin-inventory.json       # native-dual exceptions and event-name lists
 │   ├── v2-hard-plugins.test.cjs    # v2 registration for five plugins, behavior cases for four
-│   ├── v2-registration.test.cjs    # checks the dual export shape for 12 plugins
+│   ├── v2-registration.test.cjs    # checks the dual export shape for every bridged plugin
 │   └── ...                    # the remaining v1 behavior suites
 ├── README.md                  # folder index with the per-file inventory
 └── ARCHITECTURE.md            # this document
@@ -181,12 +183,12 @@ Four capabilities have no OpenCode 2 equivalent:
 1. Write the v1 factory.
 2. Default-export `dualPlugin('<id>', factory)`.
 3. Use only the mapped hook keys or accept that the others do nothing on OpenCode 2.
-4. Add the plugin to `PLUGIN_NAMES` in `tests/v2-registration.test.cjs`, or add it to the `PLUGINS` array in `tests/v2-hard-plugins.test.cjs` together with a behavior case.
+4. Run `tests/plugin-inventory.test.cjs`. The v2 suites find the new file on their own; add a case to `PLUGINS` in `tests/v2-hard-plugins.test.cjs` only when the plugin needs behavior checks.
 5. Gate it with `isHookEnabled('<concern>')`.
-6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update every count that names the plugin total: the 17-file and 16-bridged counts in both documents, the plugin suite's test total and the 12-plugin or five-plugin count of whichever suite list gained the plugin. `tests/README.md` keeps a hand-written v2 coverage list that does not yet name `session-relaunch`, so treat the two suite lists as the source of truth: `PLUGIN_NAMES` in `tests/v2-registration.test.cjs` for 12 plugins and `PLUGINS` in `tests/v2-hard-plugins.test.cjs` for the other five.
+6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update the 17-file and 16-bridged counts in both documents. The inventory in `tests/helpers/plugin-inventory.cjs` is the source of truth for which plugins the v2 suites cover.
 7. Run the plugin suite and both battery families.
 
-A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }` the way sk-vision does (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`), and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
+A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }` the way sk-vision does (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`), and it goes in `nativeDual` in `tests/plugin-inventory.json` with its reason, and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
 
 ---
 
@@ -198,7 +200,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1
 node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 ```
 
-**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites. It passes 397 of 397 on main, and the two hand-written v2 lists together cover all 17 plugins.
+**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main on 2026-10-19, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds.
 
 **Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On the tested date the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 
@@ -221,7 +223,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - `sk-vision.js` reads no switch on OpenCode, so its `/vision` command registers even when the hooks are switched off. Only the OpenCode 1 plugin option `enabled: false` drops it.
 - OpenCode 2 has no server-side toast and agent `temperature` has no effect (see Section 5).
 - The proposed version floors of 1.19.0 and 2.0.32 are inferred and unprobed below the tested versions.
-- The v2 test lists are hand-written, so a new plugin is covered only once it is added to `PLUGIN_NAMES` (`tests/v2-registration.test.cjs:19-32`) or to the hard-plugin suite.
+- OpenCode 2.0.32 does not deliver `server.instance.disposed` or `global.disposed` to plugins; it sends `location.shutdown` and runs the cleanup the bridge returns. The disposal branches in `system-skill-advisor.js` and `system-dist-freshness-guard.js` therefore run only on OpenCode 1 (observed 2026-10-20, listed in `tests/plugin-inventory.json`).
 - Live delivery of each bridged hook on a running OpenCode 2 host is not verified plugin by plugin.
 
 ---

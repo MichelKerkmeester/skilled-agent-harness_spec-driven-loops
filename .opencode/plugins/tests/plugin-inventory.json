@@ -1,0 +1,29 @@
+{
+  "nativeDual": [
+    { "file": "sk-vision.js", "reason": "Registers command.transform, which the bridge does not map, so it exports its own { id, setup, server }." }
+  ],
+  "skippedHooks": [],
+  "unscannedEventChecks": [
+    { "file": "opencode-goal.js", "check": "eventType.endsWith(", "reason": "Matches any event ending in .disposed. OpenCode 2.0.32 delivers neither server.instance.disposed nor global.disposed, so the branch runs only on OpenCode 1." }
+  ],
+  "events": {
+    "passThrough": [
+      { "event": "session.created", "observed": "Delivered to a v2 plugin by OpenCode 2.0.32 on 2026-10-20." },
+      { "event": "session.deleted", "observed": "Delivered to a v2 plugin by OpenCode 2.0.32 on 2026-10-20." }
+    ],
+    "notDelivered": [
+      { "event": "server.instance.disposed", "reason": "OpenCode 2.0.32 sent location.shutdown and then ran the plugin cleanup on 2026-10-20; this name never arrived." },
+      { "event": "global.disposed", "reason": "OpenCode 2.0.32 sent location.shutdown and then ran the plugin cleanup on 2026-10-20; this name never arrived." }
+    ],
+    "unverified": [
+      { "event": "session.status", "reason": "Needs a model turn; not observed on OpenCode 2." },
+      { "event": "session.resumed", "reason": "Not observed on OpenCode 2." },
+      { "event": "session.compact", "reason": "Not observed on OpenCode 2." },
+      { "event": "permission.asked", "reason": "Needs a model turn; not observed on OpenCode 2." },
+      { "event": "permission.replied", "reason": "Needs a model turn; not observed on OpenCode 2." },
+      { "event": "question.asked", "reason": "Needs a model turn; not observed on OpenCode 2." },
+      { "event": "question.replied", "reason": "Needs a model turn; not observed on OpenCode 2." },
+      { "event": "question.rejected", "reason": "Needs a model turn; not observed on OpenCode 2." }
+    ]
+  }
+}

@@ -401,3 +401,5 @@ export function dualPlugin(id, server) {
 
   return { id, server, setup };
 }
+
+export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS };

@@ -70,7 +70,7 @@ Three plugins are exceptions. `sk-git-message-gate.js` has no switch, because th
 | `lib/opencode-goal-core.js` | WeakMap registry that binds a goal plugin module's helpers to its server, so both entries read the same state. |
 | `lib/sk-code-post-edit-quality-core.js` | Constants, the callID-to-filePath correlation map and the finding formatter for the post-edit-quality plugin. |
 
-The bridge mapping is exercised against stub contexts in the test suites. The doctor battery confirms that all 17 plugins load on 1.19.3 and show active on 2.0.32. Live delivery of each bridged hook on a running OpenCode 2 host is not verified plugin by plugin.
+The bridge mapping is exercised against stub contexts in the test suites. On 2026-10-19 the doctor battery confirmed that all 17 plugins load on 1.19.3 and show active on 2.0.32. On 2026-10-20 a probe plugin on a private OpenCode 2.0.32 host received `session.created` and `session.deleted` under those names, and received `location.shutdown` instead of `server.instance.disposed` or `global.disposed`. `tests/plugin-inventory.json` lists every event name a bridged plugin handles that the bridge neither maps nor aliases, grouped as observed, not delivered or unverified. Live delivery of each bridged hook is not verified plugin by plugin.
 
 ---
 
@@ -82,9 +82,10 @@ The bridge mapping is exercised against stub contexts in the test suites. The do
 |---|---|
 | `tests/v2-bridge.test.cjs` | The bridge itself: event aliases and mappings, the v1 client adapters, hook registration and cleanup, tool result conversion and the `tool` identity contract. |
 | `tests/v2-hard-plugins.test.cjs` | Export and v2 registration checks for five plugins (`system-completion-sentinel`, `system-spec-gate`, `system-skill-advisor`, `opencode-goal`, `sk-vision`) through a stub v2 context, plus behavior cases for the first four. sk-vision's v2 behavior is tested in its own `bun test` suite under `../skills/sk-vision/vision-runtime/`. |
-| `tests/v2-registration.test.cjs` | The dual export shape, at least one v2 registration and the cleanup function for 12 plugins. |
+| `tests/v2-registration.test.cjs` | The dual export shape, at least one v2 registration and the cleanup function for every bridged plugin the inventory finds. |
+| `tests/plugin-inventory.test.cjs` | The inventory itself: every `.js` file is bridged or a listed native-dual exception, every bridged plugin maps all its hooks, and every event name a bridged plugin compares against is mapped, aliased or listed in `tests/plugin-inventory.json`. The event names come from a scan of `type` comparisons and `case` labels; any other kind of event check, such as `eventType.endsWith(`, must be listed under `unscannedEventChecks` with a reason. |
 
-Between them, `tests/v2-registration.test.cjs` and `tests/v2-hard-plugins.test.cjs` cover all 17 plugins. Both lists are written out by hand, so a new plugin is covered only once it gets a row in one of them.
+The plugin list comes from the folder, not from a hand-written list. `tests/helpers/plugin-inventory.cjs` treats a file as bridged when it exports `dualPlugin('<file stem>'`, and `tests/plugin-inventory.json` names the exceptions: sk-vision is the one native-dual plugin, and it needs a case in `tests/v2-hard-plugins.test.cjs`. A new plugin file that is neither bridged nor listed fails `tests/plugin-inventory.test.cjs`.
 
 The remaining `*.test.cjs` files cover v1 behavior and adjacent contracts. `tests/README.md` indexes the suites, though it does not yet list `session-relaunch.test.cjs`, and `tests/helpers/` holds the shared fixtures.
 
@@ -125,6 +126,8 @@ plugins/
 `-- tests/
     +-- README.md
     +-- helpers/
+    +-- plugin-inventory.test.cjs
+    +-- plugin-inventory.json
     +-- v2-bridge.test.cjs
     +-- v2-hard-plugins.test.cjs
     +-- v2-registration.test.cjs
