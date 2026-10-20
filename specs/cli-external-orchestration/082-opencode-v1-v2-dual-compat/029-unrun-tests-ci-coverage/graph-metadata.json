@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
     "created_at": "2026-10-20T11:52:31Z",
-    "last_save_at": "2026-10-20T12:05:50.807Z",
+    "last_save_at": "2026-10-20T12:14:31.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d08dfc551474e0dbe82740882863005a46e27e71d0714d9d2ed42e1ebbc5c11",
+    "source_fingerprint": "sha256:043a4520bd20be11394732397e73da61b68831dad4d79be51a99644b8f4327c0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e78517e2b8cc37e7c88cdf9af4324ab62b9a5d681a90ae9b45e3b2cad1461b7",
+      "spec.md": "2b0e583d29f66fdf3523f1f4a7521c5de914e264d9d272570570ff5b6dcfbef2",
       "plan.md": "6217a5c8f45be17b852fbb500d79bf527e24acc5fecfec4204240fca152f1a2b",
-      "tasks.md": "ac0ad7a0054049ee208c3f6728881f7a0c21d612bc61f85b6d4375cc7e8b1057",
-      "implementation-summary.md": "29cd445b1d8c2f8df58ece7791fcccadd724d0c772e4b1aebaa1a032955dcdba"
+      "tasks.md": "ba12a2f7b4ebc4611c47cd8130b42669ec9ecafaef01140bb16e1157dd2b4f02",
+      "implementation-summary.md": "281388c43d9295cc1c7f465e4998781b432ce101bf1a7503a88ee4d3920d74ae"
     },
     "last_active_at": null
   }

@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-unrun-tests-ci-coverage |
-| **Completed** | 2026-10-20 |
+| **Completed** | Not yet: Luna review, strict validation and the CI proof on main are open |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -106,10 +106,7 @@ Each suite's placement was confirmed by grepping every workflow and the runners 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Install guides outside sk-doc.** `install-guide-contract.test.cjs` validates every `INSTALL-GUIDE.md` in the repository, but sk-doc's job triggers only on sk-doc paths, so a broken guide in another skill is caught on the next sk-doc push, not its own.
-2. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
+1. **A third `.pi` extension.** The matrix names the two extensions that exist; a new one must be added to it.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

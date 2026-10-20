@@ -79,7 +79,6 @@ Each of the five suites runs in a job with no `continue-on-error`, and the workf
 
 ### Out of Scope
 - The `.pi` typecheck and pack scripts - the open item was about tests that never run, and `tsc` 7 on the runner is a separate question.
-- Triggering sk-doc's job on changes to the install guides that `install-guide-contract.test.cjs` reads in other skills - those guides live under every skill, and a repo-wide trigger would run the whole sk-doc suite on most pushes.
 - The missing `sk-code-script-tests.yml` row in `.github/workflows/README.md` - phase 026's file.
 
 ### Files to Change

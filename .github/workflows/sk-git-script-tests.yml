@@ -2,8 +2,8 @@ name: sk-git Script Tests
 
 # The worktree naming, allocation and provisioning suite ran in no workflow, so a
 # broken allocator or provisioning rule reached main unseen. The suite builds its
-# own throwaway repositories and stubs every installer, so it needs only git and
-# bash.
+# own throwaway repositories and stubs every installer, so it needs only git, bash
+# and node, which reads package manifests.
 on:
   pull_request:
     branches: [main, 'skilled/**']
