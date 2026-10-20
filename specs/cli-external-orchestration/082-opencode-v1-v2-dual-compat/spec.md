@@ -124,7 +124,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 11 | 011-two-version-proof-and-closeout/ | Prove the tree on both versions and close the packet | Complete |
 | 12 | 012-sk-vision-v2-prompt-hook/ | Run sk-vision's automatic image check through the OpenCode 2 prompt hook | Complete |
 | 13 | 013-sk-vision-v2-tools-and-loose-ends/ | Register sk-vision's tools on OpenCode 2 and close phase 012's loose ends | Complete |
-| 19 | 019-plugins-compat-docs/ | Plugins README v1 and v2 compatibility and ARCHITECTURE.md | In Progress |
+| 19 | 019-plugins-compat-docs/ | Plugins README v1 and v2 compatibility and ARCHITECTURE.md | Complete |
 
 ### Phase Transition Rules
 

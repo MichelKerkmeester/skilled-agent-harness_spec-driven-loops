@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-19 |
 | **Branch** | `scaffold/019-plugins-compat-docs` |
 | **Parent Spec** | ../spec.md |

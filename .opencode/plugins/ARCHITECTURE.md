@@ -48,7 +48,7 @@ The dual-version proof was captured on 2026-10-19 on OpenCode 1.19.3 (`opencode`
                                   └──────────────────────────────┘
 ```
 
-The diagram shows the 16 bridged plugins. `sk-vision.js` exports its own `setup`, which registers its OpenCode 2 command, prompt hook and tools directly instead of going through the bridge (Section 4).
+The diagram shows the 16 bridged plugins. `sk-vision.js` exports its own `setup`, which always registers its OpenCode 2 command without going through the bridge. It adds the prompt hook only when a project `/vision` template exists or auto-inspection is on, and it adds the tools only with auto-inspection on (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:384-386`, Section 4).
 
 ---
 
@@ -58,7 +58,22 @@ The diagram shows the 16 bridged plugins. `sk-vision.js` exports its own `setup`
 
 ```text
 .opencode/plugins/
-├── <16 bridged>.js            # 16 entry files built with dualPlugin, each default-exporting { id, setup, server } (inventory in README.md)
+├── classifier-injection-screen.js   # this file and the 15 below are built with dualPlugin, each default-exporting { id, setup, server }
+├── cli-dispatch-audit.js
+├── codex-hooks-watchdog.js
+├── mcp-route-guard.js
+├── opencode-goal.js
+├── session-cleanup.js
+├── session-relaunch.js
+├── sk-code-post-edit-quality.js
+├── sk-git-message-gate.js
+├── sk-git-preflight-advisory.js
+├── system-completion-sentinel.js
+├── system-deep-loop-guard.js
+├── system-dist-freshness-guard.js
+├── system-skill-advisor.js
+├── system-spec-gate.js
+├── system-speckit-completion.js
 ├── sk-vision.js               # the 17th entry, unbridged, a symlink to ../skills/sk-vision/vision-runtime/dist/plugin.js
 ├── lib/                       # shared modules the entry files import, never plugin sources
 │   ├── classifier-injection-screen-core.js
@@ -168,8 +183,10 @@ Four capabilities have no OpenCode 2 equivalent:
 3. Use only the mapped hook keys or accept that the others do nothing on OpenCode 2.
 4. Add the plugin to `PLUGIN_NAMES` in `tests/v2-registration.test.cjs`, or add it to the `PLUGINS` array in `tests/v2-hard-plugins.test.cjs` together with a behavior case.
 5. Gate it with `isHookEnabled('<concern>')`.
-6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here. `tests/README.md` keeps a hand-written v2 coverage list that does not yet name `session-relaunch`, so treat the two suite lists as the source of truth: `PLUGIN_NAMES` in `tests/v2-registration.test.cjs` for 12 plugins and `PLUGINS` in `tests/v2-hard-plugins.test.cjs` for the other five.
+6. Add the file to the inventory table and directory tree in `README.md` and to the topology in Section 2 here, and update every count that names the plugin total: the 17-file and 16-bridged counts in both documents, the plugin suite's test total and the 12-plugin or five-plugin count of whichever suite list gained the plugin. `tests/README.md` keeps a hand-written v2 coverage list that does not yet name `session-relaunch`, so treat the two suite lists as the source of truth: `PLUGIN_NAMES` in `tests/v2-registration.test.cjs` for 12 plugins and `PLUGINS` in `tests/v2-hard-plugins.test.cjs` for the other five.
 7. Run the plugin suite and both battery families.
+
+A plugin that needs an OpenCode 2 registration the bridge does not map, such as a command, skips steps 2 and 3. It default-exports its own `{ id, setup, server }` the way sk-vision does (`.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:347-353`), and its v2 check goes in `PLUGINS` in `tests/v2-hard-plugins.test.cjs`.
 
 ---
 
@@ -185,7 +202,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 
 **Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On the tested date the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 
-**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin paths. Each job first puts the pinned `bun` 1.3.9 on `PATH` and provisions every dependency tree the plugins import, including the sk-vision bundle. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19. The runs before it failed at the sk-vision bundle build or the battery step.
+**CI workflow.** `.github/workflows/opencode-dual-version.yml` runs the battery per family plus a job with both versions installed, on pushes and pull requests to `main` and `skilled/**` that touch the plugin, sk-vision, agent or dispatch-hook trees, the package manifests and lockfiles, the battery script and its test, the config-shape test, `opencode.json` or the workflow itself. Each job first puts the pinned `bun` 1.3.9 on `PATH` and provisions every dependency tree the plugins import, including the sk-vision bundle. The first run with all three jobs green was on main at `793b50ccbf` on 2026-10-19. The runs before it failed at the sk-vision bundle build or the battery step.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The plugins README now states both tested OpenCode versions and matches the code again, and ARCHITECTURE.md explains the dual export and the bridge in depth. The phase is one Luna round short of close."
+description: "The plugins README now states both tested OpenCode versions and matches the code again, and ARCHITECTURE.md explains the dual export and the bridge in depth. Luna passed both files on the 25th review round."
 trigger_phrases:
   - "plugins compat docs implementation summary"
 importance_tier: "normal"
@@ -8,12 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs"
-    last_updated_at: "2026-10-19T21:50:00Z"
+    last_updated_at: "2026-10-20T06:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Docs written, Luna round 20 blocked"
-    next_safe_action: "Run the 20th Luna round once the cli-codex usage limit resets, then close the phase"
-    blockers:
-      - "The 20th Luna review round is pending because cli-codex returned a usage-limit error until 23:49 local time"
+    recent_action: "Luna PASS on round 25"
+    next_safe_action: "Merge main, rerun the checks and push"
+    blockers: []
     key_files:
       - ".opencode/plugins/README.md"
       - ".opencode/plugins/ARCHITECTURE.md"
@@ -22,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-019-plugins-compat-docs"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,7 +41,7 @@ _memory:
 | **Spec Folder** | 019-plugins-compat-docs |
 | **Completed** | 2026-10-19 |
 | **Level** | 1 |
-| **Status** | In Progress, blocked on the final Luna review |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -120,8 +119,8 @@ Every fact was checked against the code by loading each plugin's v1 factory with
 | Authored-name check | PASS, the name is exempt (`scratch/verify/kebab.txt`) |
 | `test_readme_manifest.py` | Manifest reproducible (`scratch/verify/manifest.txt`) |
 | Plugin suite `node --test .opencode/plugins/tests/` | 397 pass, 0 fail (`scratch/verify/plugins.txt`) |
-| Luna review | 19 completed rounds, all FAIL. Each round raised only wording or accuracy findings that were then fixed. The last completed round raised one P2, the syntax loop's exit status, and that is fixed. A 20th round could not run, because cli-codex returned a usage-limit error until 23:49 local time. Luna PASS is therefore NOT reached |
-| Strict validation | See `tasks.md` T009, still open |
+| Luna review | PASS on round 25 with no findings (`scratch/verify/luna-pass.txt`). Rounds 1 to 24 each raised wording or accuracy findings, and every one was fixed before the next round. Round 20 first hit a cli-codex usage limit and ran after it reset |
+| Strict validation | 019 strict and 082 recursive, see `tasks.md` T009 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -129,10 +128,9 @@ Every fact was checked against the code by loading each plugin's v1 factory with
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Luna has not given a PASS.** The final review round is pending until the cli-codex usage limit resets. Every finding the 19 completed rounds raised is fixed, including the last round's P2. That fix has not been re-reviewed yet.
-2. **The two kill-switch gaps stand.** `system-speckit-completion.js` ignores the master kill switch, and `sk-vision.js` reads no switch on OpenCode. Both are documented as they are, not fixed.
-3. **`.opencode/plugins/tests/README.md` does not list `session-relaunch`.** The README notes the gap instead of editing that file.
-4. **Live per-hook delivery on OpenCode 2 is not verified plugin by plugin.** The doctor battery proves all 17 files load on 1.19.3 and show active on 2.0.32, and the stub-context tests prove the mapping, but no live host run exercised every hook.
+1. **The two kill-switch gaps stand.** `system-speckit-completion.js` ignores the master kill switch, and `sk-vision.js` reads no switch on OpenCode. Both are documented as they are, not fixed.
+2. **`.opencode/plugins/tests/README.md` does not list `session-relaunch`.** The README notes the gap instead of editing that file.
+3. **Live per-hook delivery on OpenCode 2 is not verified plugin by plugin.** The doctor battery proves all 17 files load on 1.19.3 and show active on 2.0.32, and the stub-context tests prove the mapping, but no live host run exercised every hook.
 <!-- /ANCHOR:limitations -->
 
 ---

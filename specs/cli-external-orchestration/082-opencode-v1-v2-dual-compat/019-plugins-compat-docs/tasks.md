@@ -50,7 +50,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Luna review until PASS (`.opencode/plugins/README.md`, `.opencode/plugins/ARCHITECTURE.md`) (Luna through cli-codex, read-only) Blocked: 19 rounds FAIL with every finding fixed, the 20th round hit the cli-codex usage limit.
+- [x] T006 Luna review until PASS (`.opencode/plugins/README.md`, `.opencode/plugins/ARCHITECTURE.md`) (Luna through cli-codex, read-only) Done: PASS on round 25 with no findings, after 24 rounds whose findings were all fixed (`scratch/verify/luna-pass.txt`).
 - [x] T007 Run the sk-doc validator on both files (`validate_document.py` from `.skilled/skills/sk-doc/shared/scripts/`) (orchestrator) Done: README VALID with 0 issues, ARCHITECTURE.md VALID with 1 warning, the document-type fallback to README rules (`scratch/verify/validate-README.txt`, `scratch/verify/validate-ARCHITECTURE.txt`).
 - [x] T008 Run `test_readme_manifest.py` and the plugin suite `node --test .opencode/plugins/tests/` (orchestrator) Done: manifest reproduced True (`scratch/verify/manifest.txt`) and the suite passes 397 of 397 with 0 fail (`scratch/verify/plugins.txt`).
 - [x] T009 Run strict validation of this folder and recursive validation of the 082 parent (`validate.sh --strict`, then `--recursive`) (orchestrator) Done: 019 strict `RESULT: PASSED` with 0 errors, 082 recursive 15 of 15 `RESULT: PASSED` (`scratch/verify/validate-019.txt`, `validate-082.txt`).
@@ -61,9 +61,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

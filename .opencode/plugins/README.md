@@ -21,7 +21,11 @@ Every plugin here runs on both OpenCode majors. OpenCode 1 calls `server(input)`
 
 The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-vision`, `system-completion`, `system-deep-loop`). Most files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. `opencode-goal.js` is the exception: it implements the goal state machine and goal tools itself and shares only selected helpers. The single shared boundary every plugin honors in normal operation: **never write to stdout or stderr**, because OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers or persisted to bounded workspace logs.
 
-Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin stops its main work. Most become full no-ops, while the goal tools and the advisor status tool stay registered and report that they are disabled. All advisory checks fail open. Two plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js` and the dispatch guard in `cli-dispatch-audit.js`. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
+Most plugins honor a per-concern kill switch through the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin stops its main work.
+
+Most become full no-ops, while the goal tools and the advisor status tool stay registered and report that they are disabled. All advisory checks fail open.
+
+Two plugins reject by default by throwing from `tool.execute.before`: `sk-git-message-gate.js` and the dispatch guard in `cli-dispatch-audit.js`. Other rejection is opt-in: `SYSTEM_SPEC_GATE_ENFORCE` for spec-gate deny, and `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` for the deep-loop guard, which otherwise only warns.
 
 Three plugins are exceptions. `sk-git-message-gate.js` has no switch, because the commit, PR and branch rules carry no bypass on any surface. `system-speckit-completion.js` reads only its own `SYSTEM_SPECKIT_COMPLETION_DISABLED=1`, so the master switch leaves its tool registered. `sk-vision.js` reads no switch on OpenCode: its `/vision` command registers by default (on OpenCode 1 only the plugin option `enabled: false` drops it, and OpenCode 2 always registers it), and automatic image analysis and its tools are opt-in through `SK_VISION_AUTOINSPECT=1`.
 
@@ -35,7 +39,7 @@ Three plugins are exceptions. `sk-git-message-gate.js` has no switch, because th
 | `cli-dispatch-audit.js` | `dispatch`, `dispatch-guard` | `tool.execute.before` and `tool.execute.after` for Bash | `tool.execute.before` blocks a CLI dispatch that breaks a hard rule declared in the target skill's `SKILL.md` by throwing, and fails open on its own errors. `tool.execute.after` records redacted dispatch telemetry after completed CLI calls, recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
 | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
-| `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest plugin. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
+| `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest hand-written plugin, second only to the compiled sk-vision bundle. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform`, `dispose` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
 | `session-relaunch.js` | `session-relaunch` | `event` (`message.updated`/`message.part.updated`/`session.idle`), `experimental.chat.system.transform` | Tracks usage and seed text. While this session has no matching relaunch record, it pushes the active nudge on every request. Outside `skilled-loop`, it keeps nudging until the handoff note exists. While a matching seed's note is open, it injects the seed on each request, then a claimed reminder once the note is claimed. It arms the record on `session.idle`. The plugin runs the detached killer with `node` because OpenCode hosts plugins on Bun. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID, because the after hook has no file path. `tool.execute.after` runs the router core. Findings drain on the next transform and are recorded to a workspace log. |
@@ -202,7 +206,13 @@ node --test .skilled/plugins/tests/*.test.cjs
 Expected result: Node discovers every current CJS test file and reports the suite result. A failing test is a validation failure.
 
 ```bash
-(rc=0; for f in .skilled/plugins/*.js; do node --check "$f" || rc=1; done; exit "$rc")
+(
+  rc=0
+  for f in .skilled/plugins/*.js
+  do node --check "$f" || rc=1
+  done
+  exit "$rc"
+)
 ```
 
 Expected result: exit status 0, with no syntax errors across every plugin. Any failing file makes the command exit 1. `node --check` checks syntax only and does not resolve imports.

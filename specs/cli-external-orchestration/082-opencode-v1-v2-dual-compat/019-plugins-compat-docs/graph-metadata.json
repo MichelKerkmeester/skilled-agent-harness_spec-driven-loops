@@ -32,7 +32,7 @@
       "versions"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -50,6 +50,7 @@
       "scratch/verify/kebab.txt",
       "scratch/verify/manifest.txt",
       "scratch/verify/plugins.txt",
+      "scratch/verify/luna-pass.txt",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs/spec.md",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
       "scratch/verify/validate-019.txt"
@@ -146,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "luna-pass.txt",
+        "kind": "file",
+        "path": "scratch/verify/luna-pass.txt",
+        "source": "derived"
+      },
+      {
         "name": "validate-019.txt",
         "kind": "file",
         "path": "scratch/verify/validate-019.txt",
@@ -153,12 +160,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,13 +189,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "The plugins README did not say which OpenCode versions the plugins run on, and it had drifted from the code",
     "created_at": "2026-10-19T18:47:08Z",
-    "last_save_at": "2026-10-19T21:53:15.226Z",
+    "last_save_at": "2026-10-20T04:58:18.393Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26ad2eb8a731a22217784ace0eba3ce3776ba0b23eba42d844ef4420fdaaff01",
+    "source_fingerprint": "sha256:9251c2a5e398975239c9ad9291bbc5e3c376f30b45e5de669122d77ab0e0b19c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "61b1b8d4bbb97d27d35b9b4ab20380a482347ff2f4b12208a22677abeb0b5149",
+      "spec.md": "b615c92670a8a2333e9c4430b002c26180e7b6121e43f551e478c0c85fe057b5",
       "plan.md": "a53a8f0f86fd1f8f0f55b25a850183957b264178d2ac9952a13fcb901175074a",
-      "tasks.md": "a1f5a9b589f6b08f5046dfb6de7302d5d06d2d9378bcfdcc5c5c175ae085223a",
-      "implementation-summary.md": "f123067b7f2c251686ccc824d11e3f8c61e5ae763e58875541b2b45c90611d7e"
+      "tasks.md": "a6f4fb7229382b9267ec1a5b9e0fa7e1c56c9c7a7ca04fd5054d5412caec7310",
+      "implementation-summary.md": "6a3b67efd46cd3bf5cdad8d3e7b7f06a7789958cc01ac12ee841a52a60907ad1"
     },
     "last_active_at": null
   }
