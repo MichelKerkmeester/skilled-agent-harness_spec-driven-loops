@@ -46,8 +46,8 @@ contextType: "general"
 - [x] T006 Run one live scenario per plugin on both versions and keep the evidence (`scratch/live-runs/*.v1.txt`, `*.v2.txt`)
 - [x] T007 Check the skill-advisor kill switch on both versions (`scratch/live-runs/killswitch-skill-advisor.*`)
 - [x] T008 Write the results matrix with root causes (`scratch/live-runs/results-matrix.md`)
-- [ ] T009 Write one scenario file per plugin through the OpenCode DeepSeek writer (`manual-testing-playbook/plugin-utilization/*.md`)
-- [ ] T010 Register the category and its count in the root playbook (`manual-testing-playbook/manual-testing-playbook.md`)
+- [x] T009 Write one scenario file per plugin through the OpenCode DeepSeek writer (`manual-testing-playbook/plugin-utilization/*.md`) [EVIDENCE: 17 files, CO-040 to CO-056]
+- [x] T010 Register the category and its count in the root playbook (`manual-testing-playbook/manual-testing-playbook.md`) [EVIDENCE: section 22, the section 18 index and the 72-scenario, 14-category census]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,7 +55,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally
+- [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` all sk-doc script tests passed; `cite-drift-gate.mjs --base origin/main` no new broken citation]
 - [ ] T012 Luna review, read-only
 - [ ] T013 Recursive strict validation of 082 prints `RESULT: PASSED`
 - [ ] T014 Merge to main, push, and read every CI workflow's conclusion
