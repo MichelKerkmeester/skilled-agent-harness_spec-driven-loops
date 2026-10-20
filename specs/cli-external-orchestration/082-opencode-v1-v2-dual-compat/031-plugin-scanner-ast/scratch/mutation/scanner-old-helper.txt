@@ -1,57 +1,60 @@
-# plugin-inventory.test.cjs (30 tests, working tree on 3770dbf1da) against helper variants, node v26.8.2
+# plugin-inventory.test.cjs (32 tests, working tree on a10c18a50e) against helper variants, node v26.8.2
 
 ## OLD text-scan helper (the parent of this phase's first commit, 3303bfb38e)
 exit 1
-ℹ tests 30
+ℹ tests 32
 ℹ pass 14
-ℹ fail 16
-✖ a case label counts only under a switch on the event type (0.251959ms)
-✖ a collection that is changed after it is built is reported, not trusted (0.7475ms)
-✖ a destructured type field is read in parameters and with defaults (0.078125ms)
-✖ a helper that receives a wrapped event type inside a test is reported (0.06175ms)
-✖ a helper that receives the event type inside a test is reported (0.601875ms)
-✖ a local Set or Object is not trusted to build a literal collection (0.890542ms)
-✖ a membership method that does not fit the collection is reported (0.139583ms)
-✖ a same-named parameter does not stand in for an outer collection (0.12975ms)
-✖ a shadowed undefined is not read as the no-event sentinel (0.266167ms)
-✖ a source the parser cannot read fails instead of passing empty (0.101084ms)
-✖ a wrapped event type is reported in comparisons, switches and membership checks (0.07575ms)
-✖ a write through a collection member makes the collection untrusted (0.238167ms)
-✖ an alias of the event type is read like the type itself (0.114333ms)
-✖ an unrelated same-named parameter does not cancel an outer alias (0.073334ms)
-✖ comment and string text is never read as an event check (0.2955ms)
-✖ handledEventNames reads an escaped event name as the name it spells (0.562416ms)
+ℹ fail 18
+✖ a callback method that can reach the collection makes it untrusted (0.111334ms)
+✖ a case label counts only under a switch on the event type (0.192167ms)
+✖ a collection that is changed after it is built is reported, not trusted (1.841042ms)
+✖ a computed static type key is read as the type field (0.069917ms)
+✖ a destructured type field is read in parameters and with defaults (0.42275ms)
+✖ a helper that receives a wrapped event type inside a test is reported (0.137333ms)
+✖ a helper that receives the event type inside a test is reported (1.005125ms)
+✖ a local Set or Object is not trusted to build a literal collection (0.57825ms)
+✖ a membership method that does not fit the collection is reported (0.395792ms)
+✖ a same-named parameter does not stand in for an outer collection (0.502375ms)
+✖ a shadowed undefined is not read as the no-event sentinel (0.511959ms)
+✖ a source the parser cannot read fails instead of passing empty (0.1415ms)
+✖ a wrapped event type is reported in comparisons, switches and membership checks (0.271416ms)
+✖ a write through a collection member makes the collection untrusted (1.554792ms)
+✖ an alias of the event type is read like the type itself (0.331792ms)
+✖ an unrelated same-named parameter does not cancel an outer alias (0.317417ms)
+✖ comment and string text is never read as an event check (0.372375ms)
+✖ handledEventNames reads an escaped event name as the name it spells (0.753917ms)
 
 ## new helper, mutant m1: switch discriminant check removed
 mutant lines: 1
 exit 1
-ℹ tests 30
-ℹ pass 28
+ℹ tests 32
+ℹ pass 30
 ℹ fail 2
-✖ a case label counts only under a switch on the event type (0.639292ms)
-✖ a wrapped event type is reported in comparisons, switches and membership checks (0.190625ms)
+✖ a case label counts only under a switch on the event type (0.851042ms)
+✖ a wrapped event type is reported in comparisons, switches and membership checks (0.22625ms)
 
 ## new helper, mutant m2: collection reference check removed
 mutant lines: 1
 exit 1
-ℹ tests 30
-ℹ pass 28
-ℹ fail 2
-✖ a collection that is changed after it is built is reported, not trusted (0.908209ms)
-✖ a write through a collection member makes the collection untrusted (0.190667ms)
+ℹ tests 32
+ℹ pass 29
+ℹ fail 3
+✖ a callback method that can reach the collection makes it untrusted (0.26225ms)
+✖ a collection that is changed after it is built is reported, not trusted (1.34025ms)
+✖ a write through a collection member makes the collection untrusted (0.313167ms)
 
 ## new helper, mutant m3: typeof carve-out removed (a typeof reads a type tag, not an event name)
 mutant lines: 1
 exit 1
-ℹ tests 30
-ℹ pass 28
+ℹ tests 32
+ℹ pass 30
 ℹ fail 2
-✖ a helper that receives a wrapped event type inside a test is reported (0.585333ms)
-✖ every unscanned event check is listed (3.856667ms)
+✖ a helper that receives a wrapped event type inside a test is reported (1.105834ms)
+✖ every unscanned event check is listed (4.75975ms)
 has an event check the scan cannot read: typeof payload.type === 'string'
 
 ## new helper, unmodified
 exit 0
-ℹ tests 30
-ℹ pass 30
+ℹ tests 32
+ℹ pass 32
 ℹ fail 0

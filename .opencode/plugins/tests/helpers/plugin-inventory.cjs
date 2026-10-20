@@ -88,8 +88,9 @@ function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir
 // An event name is a dotted lowercase path; a bare word next to a type check is not one.
 const EVENT_NAME = /^[a-z]+(?:\.[a-z_]+)+$/;
 const COMPARISON_OPERATORS = new Set(['===', '!==', '==', '!=']);
-// A collection stays readable only while every use is a read through one of these members;
-// anything else could change it or hand it to code that does.
+// A collection stays readable only while every use is a read through one of these members, but the
+// iteration methods are left out because each passes the collection itself to its callback, which
+// could then change it.
 const COLLECTION_MEMBERS = new Set([
   'has',
   'includes',
@@ -98,12 +99,6 @@ const COLLECTION_MEMBERS = new Set([
   'length',
   'size',
   'at',
-  'forEach',
-  'some',
-  'every',
-  'find',
-  'filter',
-  'map',
   'join',
   'values',
   'keys',
@@ -334,10 +329,10 @@ function buildScopes(program, parents) {
           bindPattern(property.argument, scope, kind, declarator, false);
           continue;
         }
-        const namesType =
-          !property.computed &&
-          ((property.key.type === 'Identifier' && property.key.name === 'type') ||
-            (property.key.type === 'Literal' && property.key.value === 'type'));
+        const namesType = property.computed
+          ? staticString(property.key) === 'type'
+          : (property.key.type === 'Identifier' && property.key.name === 'type') ||
+            (property.key.type === 'Literal' && property.key.value === 'type');
         // The value of a `type` property carries the type field, including a defaulted binding.
         bindPattern(property.value, scope, kind, declarator, namesType);
       }

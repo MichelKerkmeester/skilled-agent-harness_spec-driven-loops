@@ -1,0 +1,7 @@
+# Workflow checks on a10c18a50e plus working tree
+## actionlint .github/workflows/spec-kit-check.yml
+exit 0
+## bash .github/scripts/check-gate-inputs.sh
+files=43 inputs_resolved=230 dynamic_inputs=11 twin_pairs=295 failures=0
+RESULT: PASSED
+exit 0

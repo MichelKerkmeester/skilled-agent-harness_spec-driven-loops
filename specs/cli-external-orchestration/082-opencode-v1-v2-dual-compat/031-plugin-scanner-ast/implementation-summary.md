@@ -63,7 +63,7 @@ The purity test now lists symlinks too. For `sk-vision.js` it checks that the li
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/tests/helpers/plugin-inventory.cjs` | Modified | Event readers on `rolldown/parseAst` |
-| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | One fixture per closed gap and per review finding, plus aliases and a parse failure (eighteen in all) |
+| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | One fixture per closed gap and per review finding, plus aliases and a parse failure (twenty in all) |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modified | Checks symlinked entries |
 | `.github/workflows/spec-kit-check.yml` | Modified | Builds the sk-vision bundle before the vitest projects |
 | `.opencode/plugins/tests/README.md` | Modified | Every suite and the full tree |
@@ -103,13 +103,13 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Check | Result |
 |-------|--------|
 | Plugin suite baseline | 417 of 417 (`scratch/baseline/plugin-suite.txt`) |
-| Plugin suite after | 434 of 434: one test removed, eighteen added (`scratch/after/plugin-suite.txt`) |
+| Plugin suite after | 436 of 436: one test removed, twenty added (`scratch/after/plugin-suite.txt`) |
 | Old vs new helper on 16 bridged plugins | Identical (`scratch/mutation/scan-parity.txt`) |
-| New fixtures on the old helper | Exit 1, 16 of the 18 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt` and the three `round*-fixtures-on-prior-helper.txt` records) |
-| Mutants m1, m2 and m3 of the new helper | Each fails 2 tests; m3 (typeof carve-out removed) also trips the real-plugin listing test on `typeof payload.type === 'string'` |
+| New fixtures on the old helper | Exit 1, 18 of the 20 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt` and the three `round*-fixtures-on-prior-helper.txt` records) |
+| Mutants m1, m2 and m3 of the new helper | m1 and m3 fail 2 tests, m2 fails 3; m3 (typeof carve-out removed) also trips the real-plugin listing test on `typeof payload.type === 'string'` |
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
-| `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures |
-| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 FAIL: two P1s and one P2. Fixed: a call in a test that receives a wrapped event type, and the fixture count. Recorded, not fixed: a parameter that is named `type` but carries no event counts as the event type (Known Limitations 1). Round 5 pending |
+| `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures (`scratch/after/workflow-checks.txt`) |
+| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 FAIL: two P1s and one P2. Fixed: a call in a test that receives a wrapped event type, and the fixture count. Recorded, not fixed: a parameter that is named `type` but carries no event counts as the event type (Known Limitations 1). Round 5 (last, by the stop rule) FAIL: two P1s and two P2s. Fixed without a further Luna round: callback methods no longer count as reads, and a computed static `['type']` key is read (both covered by `round5-fixtures-on-prior-helper.txt`); the gate-inputs output is saved. Recorded, not fixed: a helper's result stored in a variable and tested later (Known Limitations 2) |
 | Strict validation, CI | Pending |
 <!-- /ANCHOR:verification -->
 
@@ -119,8 +119,10 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 ## Known Limitations
 
 1. **The event type is known by name.** `type`, a name ending in `Type`, a `.type` field or an alias of one. A check on an event type held under any other name is invisible, and an unrelated value that happens to be named `type` is read as the event type; telling the two apart needs to know what a value means, which a static scan cannot. The two-version battery remains the authoritative guard.
-2. **No CI job runs `.opencode/plugins/tests`.** The guard and its fixtures run locally only; no workflow names that directory.
-3. **Spec-Kit Check does not trigger on `.opencode/plugins/**`.** A plugin-only change does not rerun the purity test.
+2. **The guard does not follow values.** A helper's result stored in a variable and tested later, as in `const ok = isKnown(eventType); if (ok)`, is not seen. Following it needs data-flow analysis, not scope resolution.
+3. **The last review round's two fixes were not re-reviewed.** The callback-method and computed-key fixes landed after Luna's fifth and final round; they are covered by fixtures that fail on the prior helper.
+4. **No CI job runs `.opencode/plugins/tests`.** The guard and its fixtures run locally only; no workflow names that directory.
+5. **Spec-Kit Check does not trigger on `.opencode/plugins/**`.** A plugin-only change does not rerun the purity test.
 <!-- /ANCHOR:limitations -->
 
 ---

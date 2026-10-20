@@ -1,0 +1,7 @@
+# Round-5 fixtures against the round-4 helper (commit a10c18a50e), node v26.8.2
+exit 1
+ℹ tests 32
+ℹ pass 30
+ℹ fail 2
+✖ a callback method that can reach the collection makes it untrusted (0.588375ms)
+✖ a computed static type key is read as the type field (0.176625ms)

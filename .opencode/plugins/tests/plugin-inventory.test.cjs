@@ -373,6 +373,19 @@ test('a helper that receives a wrapped event type inside a test is reported', ()
   assert.deepEqual(unscannedEventChecks(source), ['isKnown(normalize(eventType))']);
 });
 
+// A method that hands the collection to a callback can let that callback change it.
+test('a callback method that can reach the collection makes it untrusted', () => {
+  const source = `const A = ['c.one']; A.forEach((value, index, all) => { all.length = 0; }); if (A.includes(eventType)) {}`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ['A.includes(eventType)']);
+});
+
+// A computed key whose value is statically `type` names the same field as a plain one.
+test('a computed static type key is read as the type field', () => {
+  const source = `const { ['type']: kind } = event; if (kind === 'c.computed') {}`;
+  assert.deepEqual(handledEventNames(source), ['c.computed']);
+});
+
 // A source the parser cannot read fails loudly instead of passing empty.
 test('a source the parser cannot read fails instead of passing empty', () => {
   assert.throws(() => handledEventNames('if (type === '));
