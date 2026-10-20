@@ -6,15 +6,16 @@
     "phase",
     "plugin-kill-switch-coverage"
   ],
-  "lastUpdated": "2026-10-20T13:11:31.081Z",
+  "lastUpdated": "2026-10-20T13:37:01.897Z",
   "specId": "028",
   "folderSlug": "plugin-kill-switch-coverage",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "20-10-26_14-11__routed-system-speckit-completion-and-the-sk.md"
+    "20-10-26_14-11__routed-system-speckit-completion-and-the-sk.md",
+    "20-10-26_14-37__phase-complete-both-plugins-honor-the-shared-kill.md"
   ]
 }

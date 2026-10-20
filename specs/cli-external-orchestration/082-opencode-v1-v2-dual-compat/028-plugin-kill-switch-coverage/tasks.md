@@ -55,8 +55,8 @@ contextType: "general"
 - [x] T008 Rebuild the sk-vision bundle locally and check the built `dist/plugin.js` honors the switch through the `.opencode/plugins/sk-vision.js` link (item 5b)
 - [x] T009 Drop the two gaps from `.opencode/plugins/ARCHITECTURE.md` and any README line that repeats them (item 5)
 - [x] T010 Luna review until PASS (item 5)
-- [ ] T011 Strict validation of this child and recursive validation of 082 print `RESULT: PASSED` (item 5)
-- [ ] T012 Push to main and confirm every CI run, the two-version battery included (item 5)
+- [x] T011 Strict validation of this child and recursive validation of 082 print `RESULT: PASSED` (item 5)
+- [x] T012 Push to main and confirm every CI run, the two-version battery included (item 5)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

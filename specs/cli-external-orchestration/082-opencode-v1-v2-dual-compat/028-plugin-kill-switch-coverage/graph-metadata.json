@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -152,12 +152,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -177,6 +171,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin except three",
     "created_at": "2026-10-20T11:53:35Z",
-    "last_save_at": "2026-10-20T13:11:31.081Z",
+    "last_save_at": "2026-10-20T13:37:01.897Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6eb6815a059685b2021664036bf3ef6d9e6d011fb198a897dcaedf5bcd8a9c05",
+    "source_fingerprint": "sha256:8b37b84a57488c9eefc0315d2a54b6f15d8eebfae1eb84a543315cbe23f6e9a2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "616dd618059b3c9c60f778518b83d4365fadf10e4f9a70e9606faca6f916ed02",
+      "spec.md": "cca47c3e3d2d3a9ac680ff00a3856c28b19463715ff5ef5f5501c69efec3a329",
       "plan.md": "4b9b281f2333d96d847f8fd2b27bc851a48a579ef63e80a1a88850666444b324",
-      "tasks.md": "b9391e1acc7d11fe839d0460e8eac47554fecb05bdd02472545fe41940721083",
-      "implementation-summary.md": "ddd805b7ce3e1496ca41f8da2cd3d258b21211fbd2ccb93b0d4431c16b0ae085"
+      "tasks.md": "d64fba2b1366651cb61ebc1eecda4d02e8a5ad83312d809f51ee5dbebb33b1bf",
+      "implementation-summary.md": "610c055b610047379b444530c86e5c0fc1b557e0aaf5864c3350fdf856afab3b"
     },
     "last_active_at": null
   }
