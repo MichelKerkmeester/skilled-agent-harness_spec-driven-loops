@@ -123,10 +123,11 @@ test('kill switch off: chat.system.transform still normalizes output.system and 
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// P1 fix: the real chat.system.transform input is `{ sessionID?, model }` --
-// no prompt field ever exists on it. extractPrompt(input) alone can never
-// find a prompt in production, so the gate could never open on OpenCode. The
-// fix best-effort fetches the session's last user message via ctx.client.
+// The real chat.system.transform input is `{ sessionID?, model }` -- no prompt
+// field ever exists on it. extractPrompt(input) alone can never find a prompt
+// in production, so the gate could never open on OpenCode. A best-effort fetch
+// of the session's last user message via ctx.client supplies the missing
+// prompt.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens the gate on the OpenCode classify surface', async () => {
@@ -223,8 +224,8 @@ test('P1 fix: no real session (no sessionID on input) never attempts the ctx.cli
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// P2 fix: classify and enforce must key a missing sessionID under the SAME
-// fallback. Neither hook input below carries a sessionID at all.
+// classify and enforce must key a missing sessionID under the SAME fallback.
+// Neither hook input below carries a sessionID at all.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('P2 fix: classify and enforce key an absent sessionID under the same fallback -- enforce sees what classify opened', async () => {
@@ -240,7 +241,7 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
         // (not the ctx.client fallback) since a no-session turn correctly never
         // attempts a ctx.client fetch (see the "never attempts the ctx.client
         // fetch" test above) -- this test isolates the session-key fallback
-        // itself, independent of the P1 ctx.client fix.
+        // itself, independent of the ctx.client fallback.
         const output = {};
         await hooks['experimental.chat.system.transform']({ prompt: 'fix the login bug' }, output);
         const guardCore = await loadCore();
@@ -269,16 +270,16 @@ test('P2 fix: classify and enforce key an absent sessionID under the same fallba
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// P2 highest-blast proof: SYSTEM_SPEC_GATE_ENFORCE unset never denies a Write/Edit
-// through the real OpenCode adapter surface, even once the P1 fix lets the
-// classify path actually open the gate via ctx.client.
+// The enforce-unset contract: SYSTEM_SPEC_GATE_ENFORCE unset never denies a
+// Write/Edit through the real OpenCode adapter surface, even once classify
+// opens the gate from the session's last user message via ctx.client.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the OpenCode adapter, even after classify opens the gate', async () => {
   const { default: MkSpecGatePlugin } = await loadPlugin();
   const projectDir = makeProjectDir();
   try {
-    await withEnv('SYSTEM_SPEC_GATE_ENFORCE', undefined, async () => {
+    await withEnv('SYSTEM_SPEC_GATE_ENFORCE', undefined, () => withEnv('AI_SESSION_CHILD', undefined, async () => {
       const sessionID = 'enforce-unset-session';
       const ctx = {
         directory: projectDir,
@@ -305,15 +306,15 @@ test('SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the O
           `${tool} must never deny while SYSTEM_SPEC_GATE_ENFORCE is unset`,
         );
       }
-    });
+    }));
   } finally {
     fs.rmSync(projectDir, { recursive: true, force: true });
   }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WS1: one structured telemetry line per open-gate mutation event, written
-// via the shared appendWarningLog/formatSpecGateEvent core helpers.
+// One structured telemetry line per open-gate mutation event, written via the
+// shared appendWarningLog/formatSpecGateEvent core helpers.
 // ─────────────────────────────────────────────────────────────────────────────
 
 function warningLogPath(projectDir) {
@@ -383,8 +384,8 @@ test('WS1 telemetry: SYSTEM_SPEC_GATE_DISABLED=1 writes no telemetry line at all
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WS4: a dispatched/child session (AI_SESSION_CHILD=1) is a complete Gate-3
-// no-op through the OpenCode adapter, even with enforce on.
+// A dispatched/child session (AI_SESSION_CHILD=1) is a complete Gate-3 no-op
+// through the OpenCode adapter, even with enforce on.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the OpenCode adapter', async () => {
