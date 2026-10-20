@@ -6,7 +6,7 @@ trigger_phrases:
   - "crop this area of the screenshot"
   - "sk_vision_crop"
   - "save a cropped region"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Region cropping (sk_vision_crop)
@@ -46,7 +46,7 @@ Malformed or unordered bboxes are rejected with a structured error — the same 
 | File | Type | Role |
 |---|---|---|
 | `vision-runtime/python/runtime.test.ts` | Integration | Asserts crop dimensions and file output; rejects bad bboxes |
-| `vision-runtime/src/providers/photon.test.ts` | Unit | Covers `parseBBox` normalization and rejection |
+| `vision-runtime/tests/providers/photon.test.ts` | Unit | Covers `parseBBox` normalization and rejection |
 | `references/runtime-reference.md` | Reference | Documents the crop contract |
 
 ---

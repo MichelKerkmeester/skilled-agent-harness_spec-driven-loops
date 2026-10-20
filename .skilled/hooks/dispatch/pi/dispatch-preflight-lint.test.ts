@@ -1,4 +1,7 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { delimiter, join } from "node:path";
+import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { inspectDispatch } from "../lib/dispatch-audit.mjs";
@@ -141,6 +144,28 @@ describe("Pi dispatch deny matrix", () => {
 });
 
 describe("registered Pi extension boundary", () => {
+  // The tool_call path runs every hard rule, the binary availability checks included, and
+  // those read PATH. A CI runner has no devin or pi, so a dispatch these tests allow would
+  // be refused for the machine instead of the command. Stub binaries keep the verdict about
+  // the command alone.
+  let stubDir = "";
+  let savedPath: string | undefined;
+  beforeAll(() => {
+    stubDir = mkdtempSync(join(tmpdir(), "pi-preflight-bin-"));
+    for (const name of ["devin", "pi"]) {
+      const file = join(stubDir, name);
+      writeFileSync(file, "#!/bin/sh\nexit 0\n");
+      chmodSync(file, 0o755);
+    }
+    savedPath = process.env.PATH;
+    process.env.PATH = `${stubDir}${delimiter}${savedPath ?? ""}`;
+  });
+  afterAll(() => {
+    if (savedPath === undefined) delete process.env.PATH;
+    else process.env.PATH = savedPath;
+    rmSync(stubDir, { recursive: true, force: true });
+  });
+
   it("registers input and tool_call callbacks on the default factory", () => {
     const { api, handlers } = makeExtensionApi();
     dispatchPreflightLint(api);

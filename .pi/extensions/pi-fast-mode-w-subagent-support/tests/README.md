@@ -18,7 +18,7 @@ trigger_phrases:
 
 Current state:
 
-- 7 files, 80 tests.
+- 7 files, 81 tests.
 - Suites run against temporary directories and in-process fakes, so they touch no real Pi state.
 - Coverage spans command parsing, config, the payload gate, status, toggle notifications, session-start precedence, and handoff propagation.
 
@@ -30,7 +30,7 @@ Current state:
 |------|--------|
 | `commands.test.ts` | `parseFastCommand` and `getFastCommandCompletions` from `../src/commands.ts`. |
 | `config.test.ts` | `DEFAULT_CONFIG`, target and config normalization, scope selection, JSON IO, and one-time legacy migration from `../src/config.ts`. |
-| `extension.test.ts` | `piFastModeExtension` registration, toggle notifications, indicator, the startup flag from `../src/index.ts`, and standing down when another copy already loaded. |
+| `extension.test.ts` | `piFastModeExtension` registration, toggle notifications, indicator, the startup flag from `../src/index.ts`, and the copy claim: a copy at another real path stands down, copies at one real path both register. |
 | `handoff.test.ts` | `readHandoff` and `writeHandoff` env-value handling from `../src/handoff.ts`. |
 | `payload-status.test.ts` | Model matching, payload mutation (`../src/payload.ts`), and status behavior (`../src/status.ts`). |
 | `precedence.test.ts` | The `session_start` resolution order: explicit `--fast`, then inherited env, then persisted config. |
@@ -50,7 +50,7 @@ Expected output:
 
 ```text
 Test Files  7 passed (7)
-     Tests  80 passed (80)
+     Tests  81 passed (81)
 ```
 
 Run a single file with `npx vitest run tests/config.test.ts` from inside the package.

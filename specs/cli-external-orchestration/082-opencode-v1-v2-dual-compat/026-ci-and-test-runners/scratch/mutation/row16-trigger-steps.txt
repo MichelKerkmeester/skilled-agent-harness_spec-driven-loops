@@ -1,0 +1,11 @@
+# row 16: every .skilled trigger-path test is named in a run step (count of non-trigger lines naming it)
+## HEAD
+.skilled/bin/tests/opencode-config-shape.test.cjs steps=0
+.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs steps=0
+## working tree
+.skilled/bin/tests/opencode-config-shape.test.cjs steps=1
+.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs steps=1
+## the step's command, real tree
+ℹ tests 35
+ℹ pass 35
+ℹ fail 0

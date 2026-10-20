@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # Runs every sk-doc script test the way it is written: pytest for a file that
-# defines test functions, python for a file that runs itself. Space-separated
-# names in SKIP_TESTS are left out; ONLY_TESTS, when set, runs just those.
+# defines test functions, python for a file that runs itself, and node for the
+# self-running node scripts named in NODE_TESTS. The node scripts are listed by
+# name because the shared node runner collects only *.test.mjs and *.test.cjs,
+# and its run is advisory, so a glob-free list here is the one place they block.
+# Space-separated names in SKIP_TESTS are left out; ONLY_TESTS, when set, runs
+# just those.
 set -uo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -21,6 +25,26 @@ for test_file in test_*.py; do
   else
     python3 "$test_file" >"$log" 2>&1
   fi
+  status=$?
+  if [ "$status" -eq 0 ]; then
+    echo "PASS $test_file"
+  else
+    echo "FAIL $test_file (exit $status)"
+    tail -n 40 "$log"
+    failed+=("$test_file")
+  fi
+  rm -f "$log"
+done
+
+NODE_TESTS=(test-frontmatter-version.mjs test-frontmatter-version-bump.mjs)
+for test_file in "${NODE_TESTS[@]}"; do
+  if [ -n "${ONLY_TESTS:-}" ]; then
+    case "$only" in *" $test_file "*) ;; *) continue ;; esac
+  fi
+  case "$skip" in *" $test_file "*) echo "SKIP $test_file"; continue ;; esac
+
+  log="$(mktemp)"
+  node "$test_file" >"$log" 2>&1
   status=$?
   if [ "$status" -eq 0 ]; then
     echo "PASS $test_file"

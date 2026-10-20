@@ -94,6 +94,29 @@ jobs:
           source .skilled/skills/sk-git/scripts/worktree-naming.sh
           provision_worktree "$GITHUB_WORKSPACE"
 
+      # Two of the trigger paths are unit tests, and a trigger path no step runs
+      # starts the workflow without checking the change that started it. Both
+      # read fixtures and the repository's own config, never an installed binary,
+      # so they run before either family is installed.
+      - name: Run the config-shape and battery unit tests
+        run: |
+          set -euo pipefail
+          node --test \
+            .skilled/bin/tests/opencode-config-shape.test.cjs \
+            .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs
+
+      # The sk-vision TypeScript suite and type check need the provisioned trees, so they
+      # ride the v1 leg rather than a second provisioning job. The Python handler suite
+      # under python/ is left out because it needs Pillow, which the runner lacks.
+      - name: Run the sk-vision runtime suite
+        if: matrix.family == 'v1'
+        working-directory: .skilled/skills/sk-vision/vision-runtime
+        run: |
+          set -euo pipefail
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
+          bun test tests
+          bunx tsc --noEmit
+
       # Both packages claim the `opencode` name, so each family owns its prefix
       # and the battery reaches the binary by its full path.
       - name: Install OpenCode ${{ matrix.family }}

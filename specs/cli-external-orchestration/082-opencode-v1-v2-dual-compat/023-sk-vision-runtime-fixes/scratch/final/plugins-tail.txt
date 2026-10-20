@@ -1,0 +1,12 @@
+✔ sk-git-preflight-advisory registers v2 hooks (1.970083ms)
+✔ system-deep-loop-guard registers v2 hooks (0.9795ms)
+✔ system-dist-freshness-guard registers v2 hooks (2.005125ms)
+✔ system-speckit-completion registers v2 hooks (1.813875ms)
+ℹ tests 397
+ℹ suites 3
+ℹ pass 397
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26790.89675

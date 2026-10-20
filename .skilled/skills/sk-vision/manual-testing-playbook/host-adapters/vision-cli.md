@@ -1,7 +1,7 @@
 ---
 title: "VSN-029 -- Cursor CLI read"
 description: "This scenario validates that Cursor's `/vision` command runs the built CLI, answers from its output, and honors the documented exit-code contract."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VSN-029 -- Cursor CLI read
@@ -91,7 +91,7 @@ PASS if all three exit codes hold and the live command answers from the block. F
 | `vision-runtime/src/evidence/prompt-evidence.ts` | Shared detection and analysis core |
 | `.cursor/commands/vision.md` | Cursor command that invokes the CLI |
 | `.skilled/skills/sk-vision/hooks/cursor/vision-rule.md` | Always-apply rule, symlinked into `.cursor/rules/` |
-| `vision-runtime/src/evidence/prompt-evidence.test.ts` | Detection and wrapper assertions |
+| `vision-runtime/tests/evidence/prompt-evidence.test.ts` | Detection and wrapper assertions |
 
 ---
 

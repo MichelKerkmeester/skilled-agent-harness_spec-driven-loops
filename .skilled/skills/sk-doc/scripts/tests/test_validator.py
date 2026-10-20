@@ -107,6 +107,22 @@ TEST_CASES: List[Dict[str, Any]] = [
         "expected_errors": [],
         "expected_document_type": "spec",
         "description": "Spec doc auto-detects from /specs/ path"
+    },
+    {
+        "file": "security-policy/SECURITY.md",
+        "doc_type": None,
+        "expected_exit": 0,
+        "expected_errors": [],
+        "expected_document_type": "security_policy",
+        "description": "SECURITY.md auto-detects as a security policy instead of falling back to README rules"
+    },
+    {
+        "file": "security-policy-no-reporting/SECURITY.md",
+        "doc_type": None,
+        "expected_exit": 1,
+        "expected_errors": ["missing_required_section"],
+        "expected_document_type": "security_policy",
+        "description": "A security policy without a reporting section is rejected"
     }
 ]
 

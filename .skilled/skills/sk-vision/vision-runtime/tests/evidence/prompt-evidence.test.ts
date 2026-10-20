@@ -2,7 +2,7 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { evidenceForPrompt, findImagePathInText, wrapEvidence } from "./prompt-evidence.js";
+import { evidenceForPrompt, findImagePathInText, wrapEvidence } from "../../src/evidence/prompt-evidence.js";
 
 let workspace: string;
 let screenshot: string;

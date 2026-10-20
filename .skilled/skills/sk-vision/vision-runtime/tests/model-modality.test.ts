@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { isTextOnlyModel } from "./model-modality.js";
+import { isTextOnlyModel } from "../src/model-modality.js";
 
 describe("isTextOnlyModel", () => {
   it("classifies listed text-only families as text-only", () => {

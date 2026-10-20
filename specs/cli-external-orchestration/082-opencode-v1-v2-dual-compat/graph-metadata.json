@@ -23,7 +23,10 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners"
   ],
   "manual": {
     "depends_on": [],
@@ -62,6 +65,7 @@
       "spec.md",
       "goal.md",
       "research/research.md",
+      "014-post-merge-deep-research/research/research.md",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
       "001-unknowns-and-baseline/goal.md",
       "002-pins-imports-dual-export/goal.md",
@@ -77,8 +81,7 @@
       "012-sk-vision-v2-prompt-hook/goal.md",
       "research/steering-log.md",
       ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
-      ".opencode/package.json"
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
     ],
     "entities": [
       {
@@ -124,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
-        "source": "derived"
-      },
-      {
         "name": "Research Record",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -160,7 +157,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Register Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -224,11 +221,17 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Version Detection",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T06:45:07.427Z",
+    "last_save_at": "2026-10-20T07:57:11.818Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -236,13 +239,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d6d458d754e57ca0c6a4c6308dd2ec9ca75d5a0d887c05f7d61e2e93b4f0eccd",
+    "source_fingerprint": "sha256:2824f6d013b1ddf9e5cc00595604211a197c8d4085c993704c18b8ac412247bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "907f1edcf1f1ec7076fa863274fdc41f182c086c5af5013b901d039055cb04ae",
+      "spec.md": "6a10b61e88717355223efc88a193f992ca9562914fad52e3360738ff682aa437",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
-    "last_active_at": "2026-10-20T06:45:07.427Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+    "last_active_at": "2026-10-20T07:28:17.404Z"
   }
 }

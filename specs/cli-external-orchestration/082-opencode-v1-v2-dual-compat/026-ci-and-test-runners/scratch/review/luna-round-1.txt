@@ -1,0 +1,3 @@
+VERDICT: FAIL
+P1 .skilled/skills/sk-code/sk-code-skilled/scripts/tests/run-all-drift-guards.test.cjs:1 The suite is only discovered by the report-only node runner, whose CI step suppresses failures, so row 33 does not block a build as the spec promises -> invoke it from a blocking CI step.
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch/mutation/row28-ancestor-node-modules.txt:18 The evidence adds `--no-install` to the old command and records exit 0, so it does not establish the spec’s exact claim -> capture the old command with the ancestor stub and missing local install, including its exit status, or narrow the claim.

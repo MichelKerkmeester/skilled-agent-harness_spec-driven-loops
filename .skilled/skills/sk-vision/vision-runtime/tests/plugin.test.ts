@@ -7,8 +7,8 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { Part } from "@opencode-ai/sdk";
-import type { VisionCommandPluginInput } from "./opencode/command.js";
-import plugin, { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "./plugin.js";
+import type { VisionCommandPluginInput } from "../src/opencode/command.js";
+import plugin, { createSetup, matchVisionTemplate, readVisionTemplate, toV1FileUrl } from "../src/plugin.js";
 
 type SetupContext = Parameters<ReturnType<typeof createSetup>>[0];
 type PromptHookCallback = Parameters<SetupContext["session"]["hook"]>[1];
@@ -614,6 +614,35 @@ describe("v2 tool registration", () => {
     expect(fake.disposed).toEqual(["tool"]);
   });
 
+  it("keeps the command and skips inspection on a host without session.hook", async () => {
+    const made = makeContext();
+    const ctx = {
+      ...made.ctx,
+      session: {
+        context: made.ctx.session.context,
+        prompt: made.ctx.session.prompt,
+      },
+    } as unknown as SetupContext;
+    let factoryCalls = 0;
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => TEMPLATE,
+      createAutoInspect: () => {
+        factoryCalls += 1;
+        return {
+          evidence: async () => null,
+          tools: [fakeTool("sk_vision_status")],
+          dispose: async () => {},
+        };
+      },
+    })(ctx);
+
+    expect(made.registeredCommands).toEqual(["vision"]);
+    expect(factoryCalls).toBe(0);
+    await expect(dispose()).resolves.toBeUndefined();
+    expect(made.disposed).toEqual(["command"]);
+  });
+
   it("adds no tools when automatic inspection is off", async () => {
     const saved = process.env.SK_VISION_AUTOINSPECT;
     delete process.env.SK_VISION_AUTOINSPECT;
@@ -727,6 +756,69 @@ describe("v2 tool registration", () => {
     ).rejects.toThrow("prompt hook unavailable");
     expect(autoDisposed).toBe(1);
   });
+
+  it("releases every handle and rethrows the first error when one disposal fails", async () => {
+    const made = makeContext();
+    const fake = withToolEditor({
+      ...made.ctx,
+      session: {
+        ...made.ctx.session,
+        hook: async () => ({
+          dispose: async () => {
+            throw new Error("prompt dispose failed");
+          },
+        }),
+      },
+    });
+    let autoDisposed = 0;
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => ({
+        evidence: async () => null,
+        tools: [fakeTool("sk_vision_status")],
+        dispose: async () => {
+          autoDisposed += 1;
+        },
+      }),
+    })(fake.ctx);
+
+    await expect(dispose()).rejects.toThrow("prompt dispose failed");
+    expect(fake.disposed).toEqual(["tool"]);
+    expect(made.disposed).toEqual(["command"]);
+    expect(autoDisposed).toBe(1);
+  });
+
+  it("keeps image inspection and the tools when command registration fails", async () => {
+    const made = makeContext();
+    const fake = withToolEditor(made.ctx);
+    const ctx: SetupContext = {
+      ...fake.ctx,
+      command: {
+        transform: async () => {
+          throw new Error("command editor unavailable");
+        },
+      },
+    };
+    let autoDisposed = 0;
+    const dispose = await createSetup({
+      handle: async () => {},
+      readTemplate: () => null,
+      createAutoInspect: () => ({
+        evidence: async () => null,
+        tools: [fakeTool("sk_vision_status")],
+        dispose: async () => {
+          autoDisposed += 1;
+        },
+      }),
+    })(ctx);
+
+    expect(fake.added).toEqual(["sk_vision_status"]);
+    await expect(dispose()).resolves.toBeUndefined();
+    expect(fake.disposed).toEqual(["tool"]);
+    expect(autoDisposed).toBe(1);
+    expect(made.hook()).toBeDefined();
+  });
 });
 
 describe("v2 grace for models off the text-only list", () => {
@@ -769,10 +861,10 @@ describe("v2 grace for models off the text-only list", () => {
     expect(guaranteed).toBe(false);
   });
 
-  it("asks for the grace when the host cannot report the session model", async () => {
+  it("waits for the evidence when reading the session model fails", async () => {
     const guaranteed = await guaranteedFor(async () => {
       throw new Error("no session");
     });
-    expect(guaranteed).toBe(false);
+    expect(guaranteed).toBe(true);
   });
 });

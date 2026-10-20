@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { extForContentType } from "./photon.js";
-import { parseBBox } from "../opencode/tools.js";
-import { SkVisionError } from "../runtime/client.js";
+import { extForContentType } from "../../src/providers/photon.js";
+import { parseBBox } from "../../src/opencode/tools.js";
+import { SkVisionError } from "../../src/runtime/client.js";
 
 describe("extForContentType", () => {
   it("maps known content types to their extension", () => {
