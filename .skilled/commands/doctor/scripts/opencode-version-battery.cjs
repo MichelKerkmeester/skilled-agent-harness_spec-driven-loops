@@ -499,6 +499,8 @@ function legPluginActive(files, reads, root) {
 
 // A server that never started makes every v2 leg unjudgeable, so they degrade
 // with the collector's reason instead of failing on evidence nobody gathered.
+// A command listing that never settled degrades for the same reason: its last
+// body is not a final one, so judging it would read an unsettled list as truth.
 function legsForV2(files, v2, root, env) {
   if (!v2 || v2.started !== true) {
     const reason = v2?.reason || 'the private v2 server did not start';
@@ -508,10 +510,16 @@ function legsForV2(files, v2, root, env) {
       makeResult('command-listed', 'v2', 'DEGRADED', reason),
     ];
   }
+  const commandLeg = v2.commandsStable === true
+    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env))
+    : makeResult(
+      'command-listed', 'v2', 'DEGRADED', 'the command listing never settled on a non-zero count',
+      [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],
+    );
   return [
     legPluginActive(files, v2.reads, root),
     legSkillVisible(v2.skills, root),
-    legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env)),
+    commandLeg,
   ];
 }
 
@@ -978,7 +986,9 @@ async function readV2(bin, root, env = process.env) {
     const skills = readApiJson(bin, serverUrl, skillPath, apiEnv, root);
 
     // The first command read after start-up can come back empty, so the listing is
-    // only judged once two consecutive reads agree on a non-zero count.
+    // only judged once two consecutive reads agree on a non-zero count. The settle
+    // verdict and the counts travel with the result, so a leg can degrade on an
+    // unsettled listing instead of judging the last body as final.
     const commandPath = `/api/command?location%5Bdirectory%5D=${encodeURIComponent(root)}`;
     const commandCounts = [];
     let commands = null;
@@ -989,7 +999,15 @@ async function readV2(bin, root, env = process.env) {
       if (attempt < READ_ATTEMPTS - 1) await sleep(READ_INTERVAL_MS);
     }
 
-    return { started: true, reason: 'the private v2 server answered', reads, skills, commands };
+    return {
+      started: true,
+      reason: 'the private v2 server answered',
+      reads,
+      skills,
+      commands,
+      commandCounts,
+      commandsStable: stableIndex(commandCounts) !== -1,
+    };
   } finally {
     await cleanup();
     process.removeListener('SIGINT', onSigint);

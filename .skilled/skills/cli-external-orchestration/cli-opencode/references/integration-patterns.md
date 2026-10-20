@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -169,7 +169,7 @@ On OpenCode 2 (2.0.32), `run` has no `--port`, so this shape is unverified on Op
 
 Parallel research, ablation studies, and worker farms need N concurrent sessions. Each must be independent. The detached pattern makes this possible without leaking state between sessions.
 
-### Operator confirmation for share URLs
+### --share is a deprecated no-op
 
 OpenCode 1.19.3 discontinued session sharing, so `--share` is a hidden, deprecated no-op: it prints `!  Session sharing has been discontinued` and publishes nothing. OpenCode 2 `run` has no such flag. No dispatch should pass it.
 

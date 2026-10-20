@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -265,7 +265,7 @@ A configured fallback is available. Pick one:
 
 ```text
 No supported providers are configured on this machine. Run one:
-  - `opencode providers login opencode-go`  (recommended — default for cli-opencode; fronts deepseek-v4-flash)
+  - `opencode providers login opencode-go`  (recommended — default for cli-opencode; fronts deepseek-v4.1-flash)
   - `opencode auth login`                   (MiniMax Token Plan — default MiniMax path; pick "MiniMax Token Plan (minimax.io)" → provider minimax-coding-plan; model minimax-coding-plan/MiniMax-M3)
   - `opencode providers login minimax`      (MiniMax Direct API — pay-per-token; needs MINIMAX_API_KEY; model minimax/MiniMax-M3)
   - `opencode auth login`                   (LLM Gateway — pick "DevPass (LLM Gateway)" → provider llmgateway; the default MiMo route, model llmgateway/mimo-v2.6-pro or llmgateway/mimo-v2.6-flash)

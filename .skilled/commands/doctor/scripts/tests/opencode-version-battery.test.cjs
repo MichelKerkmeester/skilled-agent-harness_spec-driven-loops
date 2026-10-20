@@ -593,6 +593,30 @@ test('C7: both command folder spellings are read, with slashed names and a follo
   assert.deepEqual(listCommandNames(path.join(root, 'missing')), []);
 });
 
+test('C8: v2 a command listing that never settles degrades command-listed', (t) => {
+  const root = pluginRoot(t, ['alpha.js']);
+  const files = listPluginFiles(root);
+  const entries = files.map((file) => v2Entry(file));
+  const result = legsForV2(
+    files,
+    {
+      started: true,
+      reads: [{ entries }, { entries }],
+      skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
+      commands: { data: [] },
+      commandCounts: [0, 0, 0],
+      commandsStable: false,
+    },
+    root,
+    emptyEnv(t),
+  ).find((item) => item.leg === 'command-listed');
+  assert.ok(result);
+  assert.equal(result.status, 'DEGRADED');
+  assert.equal(result.family, 'v2');
+  assert.equal(result.reason, 'the command listing never settled on a non-zero count');
+  assert.deepEqual(result.details, ['counts: [0,0,0]']);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. ADVERSARIAL CASES AND CROSS-CHECKS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -723,6 +747,7 @@ test('probe count: three candidates sharing one path probe each distinct path on
     runHarness: () => harnessFor(files),
     readV2: async () => ({
       started: true,
+      commandsStable: true,
       reason: 'fixture: server started',
       reads: [{ entries }, { entries }],
       skills: { data: [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] },
@@ -753,10 +778,14 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   const root = pluginRoot(t, ['alpha.js']);
   commandFile(root, 'battery');
   const server = fakeServer(t, root);
+  let collected = null;
   const { calls, deps } = makeDeps({
     env: { OPENCODE_BIN: server.script },
     probeVersion: () => ({ output: '2.0.32', error: null }),
-    readV2: (bin, dir) => readV2(bin, dir, process.env),
+    readV2: async (bin, dir) => {
+      collected = await readV2(bin, dir, process.env);
+      return collected;
+    },
   });
 
   const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
@@ -773,6 +802,7 @@ test('real readV2: the password reaches no result, stream or leftover file and t
   assert.ok(listed);
   assert.equal(listed.status, 'PASS');
   assert.equal(calls.readV2.length, 1);
+  assert.equal(collected.commandsStable, true);
 
   const secret = 'FAKE-SECRET-123';
   assert.ok(!JSON.stringify(summary.results).includes(secret));

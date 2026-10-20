@@ -31,6 +31,7 @@ on:
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.hermes/skills/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
   push:
     branches: [main, 'skilled/**']
@@ -56,6 +57,7 @@ on:
       - '.opencode/commands/doctor/scripts/tests/opencode-version-battery.test.cjs'
       - '.skilled/skills/cli-external-orchestration/cli-opencode/**'
       - '.opencode/skills/cli-external-orchestration/cli-opencode/**'
+      - '.hermes/skills/cli-opencode/**'
       - '.github/workflows/opencode-dual-version.yml'
 
 permissions:

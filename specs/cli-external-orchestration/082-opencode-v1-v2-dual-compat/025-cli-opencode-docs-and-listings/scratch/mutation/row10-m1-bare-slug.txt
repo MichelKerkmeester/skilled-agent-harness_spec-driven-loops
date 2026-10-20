@@ -1,0 +1,8 @@
+# mutation row10-m1: the round-2 test against the round-1 docs (commit HEAD), where cli-reference.md still had the bare slug
+    actual: 'references/cli-reference.md:268',
+  + 'references/cli-reference.md:268'
+  references/cli-reference.md:268
+ℹ fail 1
+✖ failing tests:
+✖ no current doc names the retired opencode-go id or its bare slug (62.288708ms)
+ℹ pass 2

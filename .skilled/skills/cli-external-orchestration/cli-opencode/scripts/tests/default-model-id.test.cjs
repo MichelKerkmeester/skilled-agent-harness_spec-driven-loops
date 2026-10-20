@@ -22,14 +22,19 @@ const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 const ROSTER = path.join(SKILL_ROOT, 'references', 'providers-and-models.md');
 const SKILL = path.join(SKILL_ROOT, 'SKILL.md');
 
+// The generated runtime copies ship outside the skill root, so they are found and
+// reported from the repository root instead.
+const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
+const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
+
 // The opencode-go default, as `opencode models opencode-go` lists it.
 const DEFAULT_ID = 'opencode-go/deepseek-v4.1-flash';
 
-// The id the gateway retired. Anything after it makes a different id, so a sibling
-// slug that merely starts the same way is not a match. It is assembled from fragments
-// so this file does not itself spell the dead slug: a search for it across the skill
-// should return the dated record and nothing else.
-const RETIRED_ID = `opencode-go/deepseek-v4${'-flash'}`;
+// The id the gateway retired, assembled from fragments so this file does not itself
+// spell the dead slug: a search for it across the skill should return the dated
+// record and nothing else.
+const RETIRED_SLUG = `deepseek-v4${'-flash'}`;
+const RETIRED_ID = `opencode-go/${RETIRED_SLUG}`;
 
 const DATED_RECORDS = [
   // A dated record keeps the id it recorded, so a coverage note written against the
@@ -51,7 +56,15 @@ function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A character after the id makes a different id, so a sibling slug that merely starts
+// the same way is not a match.
 const RETIRED_ID_PATTERN = new RegExp(`${escapeRegExp(RETIRED_ID)}(?![\\w.-])`);
+
+// The bare slug, for a document that drops the provider prefix while naming the same
+// retired model. A leading word character, `/`, `.` or `-` means a longer slug rather
+// than this one, so a Cline-prefixed id and the rostered form are left to the pattern
+// above.
+const RETIRED_SLUG_PATTERN = new RegExp(`(?<![\\w/.-])${escapeRegExp(RETIRED_SLUG)}(?![\\w.-])`);
 
 function read(file) {
   return fs.readFileSync(file, 'utf8');
@@ -96,6 +109,10 @@ function relativeToSkillRoot(file) {
   return path.relative(SKILL_ROOT, file).split(path.sep).join('/');
 }
 
+function relativeToRepoRoot(file) {
+  return path.relative(REPO_ROOT, file).split(path.sep).join('/');
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. THE ROSTER IS THE SINGLE SOURCE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -136,25 +153,30 @@ test("SKILL.md's default invocation names the roster default", () => {
 // 4. NO CURRENT DOCUMENT DISPATCHES THE RETIRED ID
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('no current doc names the retired opencode-go id', () => {
+test('no current doc names the retired opencode-go id or its bare slug', () => {
   const offenders = [];
 
-  for (const file of documents(SKILL_ROOT)) {
-    const relative = relativeToSkillRoot(file);
+  const scan = (file, relative) => {
     const dated = DATED_RECORDS.filter((record) => record.file === relative);
 
     read(file)
       .split('\n')
       .forEach((line, index) => {
-        if (!RETIRED_ID_PATTERN.test(line)) return;
+        if (!RETIRED_ID_PATTERN.test(line) && !RETIRED_SLUG_PATTERN.test(line)) return;
         if (dated.some((record) => line.startsWith(record.linePrefix))) return;
         offenders.push(`${relative}:${index + 1}`);
       });
-  }
+  };
+
+  for (const file of documents(SKILL_ROOT)) scan(file, relativeToSkillRoot(file));
+
+  // The Hermes runtime carries a generated copy of this skill, so the same id must not
+  // reappear there; a checkout that has not built it yet has nothing to scan.
+  if (fs.existsSync(HERMES_SKILL)) scan(HERMES_SKILL, relativeToRepoRoot(HERMES_SKILL));
 
   assert.equal(
     offenders.join('\n'),
     '',
-    `${RETIRED_ID} is retired, but it is still named at:\n${offenders.join('\n')}`,
+    `${RETIRED_ID} and its bare slug are retired, but they are still named at:\n${offenders.join('\n')}`,
   );
 });
