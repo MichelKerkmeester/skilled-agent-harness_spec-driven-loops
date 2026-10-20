@@ -1,0 +1,4 @@
+Side finding: the first v1 run in the fresh worktree (proxy smoke test, prompt 'Reply with the single word OK.') carried this advisor line:
+Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json
+
+Every later run on both versions carried 'Advisor: live' or 'Advisor: no skill matched.', for example baseline.v1.txt and skill-advisor.v1.txt.

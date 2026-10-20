@@ -16,3 +16,6 @@ DONE
 ## plugin log lines and state files written during the run
 # new log lines
 # files changed since start
+
+## goal state directory after the run (OPENCODE_GOAL_STATE_DIR, one per version)
+e1cb0a40c682913384dc837904f774ad483a3173daa6ca7f0344ba4815ee4f62.json: {"status":"active","objective":"Probe goal canary 7Q4Z-v2"}

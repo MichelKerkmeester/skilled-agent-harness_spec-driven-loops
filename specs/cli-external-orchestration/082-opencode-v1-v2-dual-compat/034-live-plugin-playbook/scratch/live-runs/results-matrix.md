@@ -9,14 +9,14 @@ Runs on 2026-10-20 in worktree `174-live-plugin-playbook`, OpenCode 1.19.3 (`ope
 | `cli-dispatch-audit` (audit log) | PASS | FAIL | `dispatch-audit.v{1,2}.txt` | v1 appends a record to `.skilled/logs/cli-dispatch-audit.log`; v2 appends nothing |
 | `codex-hooks-watchdog` | PASS | FAIL | `baseline.v{1,2}.txt`, `deep-loop-guard.v2.txt` | v1 logs `codex hook drift detected` on `session.created`; v2 never delivers `session.created` for the `run` session, so nothing is logged. It did fire for the subagent session the deep-loop scenario created |
 | `mcp-route-guard` | PASS | PASS | `mcp-route-guard.v{1,2}.txt` | a stub MCP server named `mobbin`; both versions log `native call to "mobbin" -- Code Mode can route this family` |
-| `opencode-goal` | PASS | PASS | `opencode-goal.v{1,2}.txt` | `set` returns `STATUS=OK ACTION=set`, a state file holds the objective, and a later request carries `[active_goal:<id>]`. On v2 the model reaches the tool through the Code Mode `execute` tool |
+| `opencode-goal` | PASS | PASS | `opencode-goal.v{1,2}.txt` | `set` returns `STATUS=OK ACTION=set`, the version's own state directory holds one file whose objective is the canary, and a later request carries `[active_goal:<id>]`. On v2 the model reaches the tool through the Code Mode `execute` tool |
 | `session-cleanup` | PASS | FAIL | `baseline.v{1,2}.txt` | v1 injects `[session-cleanup] Startup safety warnings` and logs at dispose; v2 logs at dispose only, because the startup guards run on `session.created`, which the `run` session never gets |
 | `session-relaunch` | PASS | FAIL | `session-relaunch.v{1,2}.txt` | inside a loop with a tiny window, v1 injects `[session-relaunch] Context is past the configured window`; v2 injects nothing |
 | `sk-code-post-edit-quality` | PASS | PASS | `post-edit-quality.v{1,2}.txt` | writing a file whose comment holds `640/480` logs a comment-hygiene finding and the next request carries `[post-edit-quality] Advisory findings` |
-| `sk-git-message-gate` | PASS | FAIL | `git-message-gate.v{1,2}.txt` | v1 refuses `git commit -m 'bad'` before it runs (`sk-git-message-gate: sk-git blocked this commit message`); on v2 the command runs and only the git `commit-msg` hook rejects it |
+| `sk-git-message-gate` | PASS | FAIL | `git-message-gate.v{1,2}.txt` | v1 refuses `git commit -m 'bad'` before it runs (`sk-git-message-gate: sk-git blocked this commit message`); on v2 the command runs and only the git `commit-msg` hook rejects it. HEAD is the same before and after on both (hashes in the evidence files) |
 | `sk-git-preflight-advisory` | PASS | FAIL | `git-preflight.v{1,2}.txt` | v1 adds `[add-pathspec-matches-nothing]` to the next request; v2 adds nothing |
 | `sk-vision` | PASS | PASS | `sk-vision.v{1,2}.txt` | with `SK_VISION_AUTOINSPECT=1`, `sk_vision_status` returns `provider: photon` on both (through `execute` on v2) |
-| `system-completion-sentinel` | PASS | PASS | `completion-sentinel.v{1,2}.txt` | a quoted completion claim for this packet logs `claimed done but only 0/12 P0 checklist item(s) are complete` on `session.idle` |
+| `system-completion-sentinel` | PASS | PASS | `completion-sentinel.v{1,2}.txt` | a completion claim for this packet, which the model was asked to repeat as a test fixture, logs `claimed done but only 0/12 P0 checklist item(s) are complete` on `session.idle` |
 | `system-deep-loop-guard` | PASS | FAIL | `deep-loop-guard.v{1,2}.txt` | with `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`, v1 refuses the mode-mismatched dispatch; v2 runs the subagent and it answers `OK` |
 | `system-dist-freshness-guard` | PASS | PASS | `dist-freshness.v{1,2}.txt` | a stale sk-design backend dist puts `[dist-freshness-guard] Local compiled dist is stale` in the system prompt on both; v1 logs it from `session.created`, v2 from the transform |
 | `system-skill-advisor` | PASS | PASS | `skill-advisor.v{1,2}.txt` | `Advisor: live; ambiguous: sk-git 0.84/0.16 ...` in the system prompt on both |
@@ -39,5 +39,5 @@ Every cause below was read from the plugin source and confirmed with a probe plu
 ## Side findings
 
 - On 2026-10-20 the battery and CI both called every plugin `active` on OpenCode 2. These runs show registration says nothing about the hooks that filter on a tool name or an event.
-- `dist-freshness`: a stale package with no `node_modules` of its own reports `unprovisioned` rather than `stale`. In a provisioned worktree that covers `system-spec-kit/shared`, `runtime/cli` and `runtime`, so their staleness is silent. This is the same on both versions.
-- The first v1 run of the session showed `Advisor: outage (fail_open)`. Every later run on both versions was `live`.
+- `dist-freshness` (`dist-freshness-unprovisioned.txt`): a stale package with no `node_modules` of its own reports `unprovisioned` rather than `stale`. In a provisioned worktree that covers `system-spec-kit/shared`, `runtime/cli` and `runtime`, so their staleness is silent. This is the same on both versions.
+- `advisor-first-run.txt`: the first v1 run of the session showed `Advisor: outage (fail_open)`. Every later run on both versions was `live`.

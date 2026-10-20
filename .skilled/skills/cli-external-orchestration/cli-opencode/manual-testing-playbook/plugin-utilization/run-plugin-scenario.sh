@@ -20,7 +20,7 @@
 #
 # Exit Codes:
 #   0 - The run finished; read the files for the verdict
-#   2 - Usage error
+#   2 - Usage error, or the capture proxy did not start
 set -uo pipefail
 
 if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
@@ -40,12 +40,19 @@ mkdir -p "$EVID"
 EVENTS="$EVID/$NAME.$VERSION.events.jsonl"
 CAPTURE="$EVID/$NAME.$VERSION.capture.jsonl"
 EFFECTS="$EVID/$NAME.$VERSION.effects.txt"
-rm -f "$EVENTS" "$CAPTURE" "$CAPTURE.ready" "$EFFECTS"
+rm -f "$EVENTS" "$CAPTURE" "$CAPTURE.ready" "$EFFECTS" "$EVID/$NAME.$VERSION.exit"
 
 # Plugin logs and runtime state live in these two trees, so a copy taken now
 # lets the report show only what this run appended.
 WATCH=("$ROOT/.skilled/logs" "$ROOT/.skilled/skills/.state")
 SNAP="$(mktemp -d)"
+PROXY_PID=""
+# An interrupted run must not leave the proxy listening or the snapshot behind.
+cleanup() {
+  [[ -n "$PROXY_PID" ]] && kill "$PROXY_PID" 2>/dev/null
+  rm -rf "$SNAP"
+}
+trap cleanup EXIT
 watched_files() {
   local dir
   for dir in "${WATCH[@]}"; do
@@ -63,6 +70,11 @@ PORT=$((20000 + RANDOM % 20000))
 node "$SCRIPT_DIR/capture-proxy.mjs" "$PORT" "$CAPTURE" &
 PROXY_PID=$!
 for _ in $(seq 1 20); do [[ -f "$CAPTURE.ready" ]] && break; sleep 0.25; done
+# Without the proxy every request would fail and every plugin would look silent.
+if [[ ! -f "$CAPTURE.ready" ]]; then
+  echo "capture proxy did not start on port $PORT" >&2
+  exit 2
+fi
 
 # The inline config points the llmgateway provider at the proxy and leaves every
 # other setting to the checkout's own configuration.
@@ -88,6 +100,7 @@ fi
 STATUS=$?
 kill "$PROXY_PID" 2>/dev/null
 wait "$PROXY_PID" 2>/dev/null
+PROXY_PID=""
 rm -f "$CAPTURE.ready"
 echo "$STATUS" >"$EVID/$NAME.$VERSION.exit"
 
@@ -105,6 +118,5 @@ echo "$STATUS" >"$EVID/$NAME.$VERSION.exit"
     [[ -e "$dir" ]] && find "$dir" -type f -newer "$SNAP/.marker" 2>/dev/null
   done | sed "s|$ROOT/||"
 } >"$EFFECTS"
-rm -rf "$SNAP"
 
 echo "$NAME $VERSION exit=$STATUS requests=$(wc -l <"$CAPTURE" 2>/dev/null | tr -d ' ') evidence=$EVID"

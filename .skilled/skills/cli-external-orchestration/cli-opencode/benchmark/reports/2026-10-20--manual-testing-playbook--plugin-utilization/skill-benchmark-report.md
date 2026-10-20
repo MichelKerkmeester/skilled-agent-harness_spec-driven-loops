@@ -28,7 +28,7 @@ _Derived after the fact from this run's stored record, not written at run time._
 | `CO-042-V2` | `codex-hooks-watchdog` | 2.0.32 | FAIL | opencode2 run delivers no session.created for its own session; nothing logged |
 | `CO-043-V1` | `mcp-route-guard` | 1.19.3 | PASS | logged a Code Mode route advisory for the native mobbin call |
 | `CO-043-V2` | `mcp-route-guard` | 2.0.32 | PASS | logged a Code Mode route advisory for the native mobbin call |
-| `CO-044-V1` | `opencode-goal` | 1.19.3 | PASS | set returned STATUS=OK, state file holds the objective, [active_goal] injected |
+| `CO-044-V1` | `opencode-goal` | 1.19.3 | PASS | set returned STATUS=OK, the state file holds the canary objective, [active_goal] injected |
 | `CO-044-V2` | `opencode-goal` | 2.0.32 | PASS | same, with the tools reached through execute |
 | `CO-045-V1` | `session-cleanup` | 1.19.3 | PASS | startup warnings injected and dispose logged |
 | `CO-045-V2` | `session-cleanup` | 2.0.32 | FAIL | startup guards never run because the run session gets no session.created; dispose still logs |
@@ -42,8 +42,8 @@ _Derived after the fact from this run's stored record, not written at run time._
 | `CO-049-V2` | `sk-git-preflight-advisory` | 2.0.32 | FAIL | the shell tool is named shell; no advisory |
 | `CO-050-V1` | `sk-vision` | 1.19.3 | PASS | sk_vision_status returned provider photon |
 | `CO-050-V2` | `sk-vision` | 2.0.32 | PASS | sk_vision_status returned provider photon through execute |
-| `CO-051-V1` | `system-completion-sentinel` | 1.19.3 | PASS | advisory logged for the quoted completion claim |
-| `CO-051-V2` | `system-completion-sentinel` | 2.0.32 | PASS | advisory logged for the quoted completion claim |
+| `CO-051-V1` | `system-completion-sentinel` | 1.19.3 | PASS | advisory logged for the repeated completion claim |
+| `CO-051-V2` | `system-completion-sentinel` | 2.0.32 | PASS | advisory logged for the repeated completion claim |
 | `CO-052-V1` | `system-deep-loop-guard` | 1.19.3 | PASS | refused the mode-mismatched deep-research dispatch |
 | `CO-052-V2` | `system-deep-loop-guard` | 2.0.32 | FAIL | the subagent tool is named subagent with argument agent; the guard never ran |
 | `CO-053-V1` | `system-dist-freshness-guard` | 1.19.3 | PASS | stale-dist warning injected and logged |

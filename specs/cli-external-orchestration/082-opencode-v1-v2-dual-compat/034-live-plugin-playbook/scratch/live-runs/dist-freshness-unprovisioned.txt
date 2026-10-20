@@ -1,0 +1,9 @@
+Side finding: a changed dist in a package with no node_modules of its own reads as unprovisioned, not stale.
+Reproduced 2026-10-20 in worktree 174 with the shared checker (.skilled/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs).
+
+before the change:
+system-spec-kit/runtime fresh stale=false node_modules=false
+after appending one byte to runtime/dist/tsconfig.tsbuildinfo:
+system-spec-kit/runtime unprovisioned stale=false node_modules=false
+after restoring the file:
+system-spec-kit/runtime fresh stale=false node_modules=false

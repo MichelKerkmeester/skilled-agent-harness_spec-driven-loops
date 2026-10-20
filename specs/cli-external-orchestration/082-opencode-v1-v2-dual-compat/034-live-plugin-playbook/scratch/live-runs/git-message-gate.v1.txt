@@ -28,3 +28,7 @@ ules.
 codex-hooks-watchdog.log: 2026-10-20T17:05:21.254Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
 # files changed since start
 .skilled/logs/codex-hooks-watchdog.log
+
+## worktree HEAD around the run (git rev-parse HEAD, printed by the orchestrator)
+before: 981b27805b4f24ec99a45e56136db7444167c40d
+after:  981b27805b4f24ec99a45e56136db7444167c40d

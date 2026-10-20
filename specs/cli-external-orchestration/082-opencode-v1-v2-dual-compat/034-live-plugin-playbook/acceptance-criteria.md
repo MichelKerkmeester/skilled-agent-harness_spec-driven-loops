@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/034-live-plugin-playbook"
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook"
     last_updated_at: "2026-10-20T16:42:45Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,9 +36,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 082/034-live-plugin-playbook
+**Level:** 2
+**Status:** In Progress
 **Date:** 2026-10-20
 <!-- /ANCHOR:metadata -->
 
@@ -51,7 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the 17 `.js` files in `.opencode/plugins/`, When the playbook is read, Then each has one scenario file under `plugin-utilization/` with a trigger prompt, v1 and v2 runner commands, a check and a cleanup | `ls plugin-utilization/*.md` lists 17 files, CO-040 to CO-056; each has 5 numbered sections | Met | - |
+| AC-002 | REQ-002 | Given each scenario, When it is run live on OpenCode 1.19.3 and 2.0.32, Then its verdict rests on a capture, log or event file | 36 evidence files in `scratch/live-runs/`, each holding the tool calls, the system-prompt lines and the log lines the run produced | Met | - |
+| AC-003 | REQ-003 | Given the runs, When the matrix is read, Then every plugin has a v1 and a v2 verdict pointing at evidence, and each FAIL names a root cause | `scratch/live-runs/results-matrix.md`: v1 17 PASS; v2 10 PASS, 7 FAIL with four numbered causes confirmed by `event-probe-summary.txt` | Met | - |
+| AC-004 | REQ-004 | Given `SYSTEM_SKILL_ADVISOR_DISABLED=1`, When the advisor scenario runs on each version, Then no `Advisor:` line is injected | `killswitch-skill-advisor.v1.txt` and `.v2.txt`: 0 lines, against 2 (v1) and 1 (v2) without the switch | Met | - |
+| AC-005 | REQ-005 | Given the root playbook, When the playbook validator and the doc checks CI runs are run, Then the category is listed and every check passes | `validate-playbook-package.cjs --strict`: cli-opencode PASS, 72 scenarios, 14 categories, 0 violations; links 0 broken; sk-doc script tests pass; cite-drift gate clean | Met | - |
 
 ### Status values
 

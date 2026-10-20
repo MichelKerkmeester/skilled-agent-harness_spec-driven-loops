@@ -33,3 +33,7 @@ Two gate findings fired: the subject `bad` isn't in `type(scope): summary` form,
 ## plugin log lines and state files written during the run
 # new log lines
 # files changed since start
+
+## worktree HEAD around the run (git rev-parse HEAD, printed by the orchestrator)
+before: 981b27805b4f24ec99a45e56136db7444167c40d
+after:  981b27805b4f24ec99a45e56136db7444167c40d

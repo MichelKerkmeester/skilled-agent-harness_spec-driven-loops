@@ -40,3 +40,6 @@ DONE
 codex-hooks-watchdog.log: 2026-10-20T16:50:04.998Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
 # files changed since start
 .skilled/logs/codex-hooks-watchdog.log
+
+## goal state directory after the run (OPENCODE_GOAL_STATE_DIR, one per version)
+4046ea55ba26f93785a23c37c142516cfb132dca602c6741c89c73e6b4025e23.json: {"status":"active","objective":"Probe goal canary 7Q4Z-v1"}

@@ -159,7 +159,7 @@
     {
       "scenarioId": "CO-044-V1",
       "verdict": "PASS",
-      "reason": "set returned STATUS=OK, state file holds the objective, [active_goal] injected",
+      "reason": "set returned STATUS=OK, the state file holds the canary objective, [active_goal] injected",
       "stage": "plugin-utilization",
       "classKind": "manual",
       "providerModel": "llmgateway/deepseek-v4.1-flash",
@@ -355,7 +355,7 @@
     {
       "scenarioId": "CO-051-V1",
       "verdict": "PASS",
-      "reason": "advisory logged for the quoted completion claim",
+      "reason": "advisory logged for the repeated completion claim",
       "stage": "plugin-utilization",
       "classKind": "manual",
       "providerModel": "llmgateway/deepseek-v4.1-flash",
@@ -369,7 +369,7 @@
     {
       "scenarioId": "CO-051-V2",
       "verdict": "PASS",
-      "reason": "advisory logged for the quoted completion claim",
+      "reason": "advisory logged for the repeated completion claim",
       "stage": "plugin-utilization",
       "classKind": "manual",
       "providerModel": "llmgateway/deepseek-v4.1-flash",

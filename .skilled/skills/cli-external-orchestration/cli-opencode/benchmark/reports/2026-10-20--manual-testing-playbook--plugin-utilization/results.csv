@@ -7,7 +7,7 @@ CO-042-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flas
 CO-042-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,opencode2 run delivers no session.created for its own session; nothing logged
 CO-043-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,logged a Code Mode route advisory for the native mobbin call
 CO-043-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,logged a Code Mode route advisory for the native mobbin call
-CO-044-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,"set returned STATUS=OK, state file holds the objective, [active_goal] injected"
+CO-044-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,"set returned STATUS=OK, the state file holds the canary objective, [active_goal] injected"
 CO-044-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,"same, with the tools reached through execute"
 CO-045-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,startup warnings injected and dispose logged
 CO-045-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,startup guards never run because the run session gets no session.created; dispose still logs
@@ -21,8 +21,8 @@ CO-049-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flas
 CO-049-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the shell tool is named shell; no advisory
 CO-050-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon
 CO-050-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,sk_vision_status returned provider photon through execute
-CO-051-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the quoted completion claim
-CO-051-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the quoted completion claim
+CO-051-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the repeated completion claim
+CO-051-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,advisory logged for the repeated completion claim
 CO-052-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,refused the mode-mismatched deep-research dispatch
 CO-052-V2,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,FAIL,the subagent tool is named subagent with argument agent; the guard never ran
 CO-053-V1,cli-opencode,,plugin-utilization,manual,,llmgateway/deepseek-v4.1-flash,high,,PASS,stale-dist warning injected and logged
