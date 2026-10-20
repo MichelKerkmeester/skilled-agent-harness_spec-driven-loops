@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a5c3231e8603c2d880cbdf6621d53f9b1dde8028969026c4e6c9b4dc8f34a2be",
+  "manifestHash": "a823f39c5f2d59199b68cb351a3ee6eb62cbf05640e4265531f3a6f11a2c5b91",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -71851,6 +71851,9 @@
     "phase 21 implementation summary": [
       "phase 21 implementation summary"
     ],
+    "phase 21 pi fast mode trusted flag": [
+      "phase 21 pi fast mode trusted flag"
+    ],
     "phase 21 plan": [
       "phase 21 plan"
     ],
@@ -73219,6 +73222,18 @@
     ],
     "pi fast mode subagent goal": [
       "pi fast mode subagent goal"
+    ],
+    "pi fast mode trusted flag": [
+      "pi fast mode trusted flag"
+    ],
+    "pi fast mode trusted flag implementation summary": [
+      "pi fast mode trusted flag implementation summary"
+    ],
+    "pi fast mode trusted flag plan": [
+      "pi fast mode trusted flag plan"
+    ],
+    "pi fast mode trusted flag tasks": [
+      "pi fast mode trusted flag tasks"
     ],
     "pi fast mode trusted project": [
       "pi fast mode trusted project"

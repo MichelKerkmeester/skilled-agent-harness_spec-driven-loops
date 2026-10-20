@@ -1,0 +1,4 @@
+159-pi-fast-mode-trusted-flag [] exit=1 failed-load=0 conflict=0 last=  /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/models.md
+159-pi-fast-mode-trusted-flag [-a] exit=1 failed-load=0 conflict=0 last=  /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/models.md
+q [] exit=1 failed-load=0 conflict=0 last=  /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/models.md
+q [-a] exit=1 failed-load=0 conflict=0 last=  /Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/docs/models.md

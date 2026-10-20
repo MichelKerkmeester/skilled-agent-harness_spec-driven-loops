@@ -24,6 +24,7 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes"
   ],
   "manual": {
@@ -161,7 +162,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Register Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -229,7 +230,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T07:48:00.351Z",
+    "last_save_at": "2026-10-20T07:52:59.091Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,10 +238,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7f0af184a05be9060dac4a85baf35869e8bb4b69a9f345bc51bc3cc839aa1119",
+    "source_fingerprint": "sha256:0b69aed113887eeff88276eedac052dcf3887ad66d779ee19fca2815c36f2604",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1aaa9b233767162fc5667f30fc26e6036439887d34c515055460cd16194573ca",
+      "spec.md": "534890ae209802f187cc8fa92212ba99237413d6849ec916b15ff238a6ea6c49",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",

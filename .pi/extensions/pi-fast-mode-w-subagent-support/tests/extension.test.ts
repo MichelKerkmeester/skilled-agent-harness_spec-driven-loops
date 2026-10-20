@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
 import { mkdtemp } from "node:fs/promises";
@@ -214,6 +214,36 @@ describe("piFastModeExtension with a second copy", () => {
     expect(second.pi.registerFlag).not.toHaveBeenCalled();
     expect(second.pi.registerCommand).not.toHaveBeenCalled();
     expect(second.pi.on).not.toHaveBeenCalled();
+  });
+
+  it("lets two copies at one real path both register", async () => {
+    const root = await makeTempDir();
+    const realPackage = join(root, "checkout", "pi-fast-mode-w-subagent-support");
+    const linkedPackage = join(root, "agent", "pi-fast-mode-w-subagent-support");
+    await mkdir(join(realPackage, "src"), { recursive: true });
+    await mkdir(dirname(linkedPackage), { recursive: true });
+    await symlink(realPackage, linkedPackage, "dir");
+    const bus = createFakeBus();
+    const first = createFakePi(false, bus);
+    const second = createFakePi(false, bus);
+
+    createPiFastModeExtension({
+      extensionDir: join(linkedPackage, "src"),
+      agentDir: "/agent",
+    })(first.pi as any);
+    createPiFastModeExtension({
+      extensionDir: join(realPackage, "src"),
+      agentDir: "/agent",
+    })(second.pi as any);
+
+    expect(first.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
+    expect(second.pi.registerFlag).toHaveBeenCalledWith(
+      "fast",
+      expect.objectContaining({ type: "boolean" }),
+    );
   });
 
   it("lets both copies register when each load has its own bus", () => {

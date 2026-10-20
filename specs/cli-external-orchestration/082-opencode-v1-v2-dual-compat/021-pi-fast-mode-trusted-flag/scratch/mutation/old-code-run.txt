@@ -1,0 +1,31 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/159-pi-fast-mode-trusted-flag/.pi/extensions/pi-fast-mode-w-subagent-support
+
+ ❯ tests/extension.test.ts (13 tests | 1 failed) 32ms
+   ❯ piFastModeExtension with a second copy (4)
+     × lets two copies at one real path both register 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/extension.test.ts > piFastModeExtension with a second copy > lets two copies at one real path both register
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'fast', ObjectContaining{…} ]
+
+Number of calls: 0
+
+ ❯ tests/extension.test.ts:243:36
+    241|       expect.objectContaining({ type: "boolean" }),
+    242|     );
+    243|     expect(second.pi.registerFlag).toHaveBeenCalledWith(
+       |                                    ^
+    244|       "fast",
+    245|       expect.objectContaining({ type: "boolean" }),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 passed (13)
+   Start at  09:11:20
+   Duration  469ms (import 83%, transform 9%, tests 8%)
+
+old-code vitest exit=1
