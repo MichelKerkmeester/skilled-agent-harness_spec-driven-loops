@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.4.0
+version: 1.0.5.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -41,7 +41,7 @@ Operators confirm that a context nudge can lead to a validated note, Stop-time a
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries. | PASS when the same handoff reaches done after a new Claude process starts with the seed. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
+| session-relaunch-claude | Claude session relaunch | Live: follow a prepared note through a tmux relaunch. | Start a short task. Follow the session-relaunch nudge. Finish the remaining work in the receiving Claude session. | tmux new-session -d -s session-relaunch-check 'SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 bash .skilled/bin/skilled-loop claude "Carry this short task through the handoff and finish it in the receiving session."'<br>tmux attach -t session-relaunch-check | Prepare exits 0 and writes pending. Stop arms the record after the transcript path is present and background tasks have drained. The wrapper starts Claude with the claim seed. The note reaches done. | Capture the tmux pane and handoff status changes. Save relevant relaunch.log entries and the output of `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 3`. | PASS when the same handoff reaches done after a new Claude process starts with the seed. FAIL when an eligible armed record is declined or the note cannot be claimed. | Check note frontmatter and sections. Check Stop session id, runtime log and hop or age decline reason. |
 
 Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and evidence paths for this live check: [`2026-10-19--manual-testing-playbook--session-relaunch-final-code/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-final-code/README.md) records the final-code round, [`2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-live-four-cli/README.md) records the earlier runs made while the gaps were being fixed, and [`2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/`](../../benchmark/reports/2026-10-19--manual-testing-playbook--session-relaunch-gate-exemptions/README.md) records the run with no Gate 3 answer.
 
@@ -330,6 +330,25 @@ Evidence: each test below passes.
 
 PASS when all three pass. FAIL when a concurrent append is lost. FAIL also when a partial line merges with the next event. FAIL also when the log keeps a mode other than 0600.
 
+#### Hop history records each hop (Automatable)
+
+Run the hop-history suite. It drives the CLI in a sandbox repository with a stand-in `osascript` on PATH, so no notice reaches the screen.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/hop-history.test.cjs
+~~~
+
+Evidence: each test below passes.
+
+- `a relaunch decision records a hand-over line with the note goal and hop number`
+- `a declined relaunch records nothing`
+- `claim and complete record the receiving session picking the note up and finishing it`
+- `history prints the latest lines and says when no hop is recorded yet`
+- `the hand-over notice stays off by default`
+- `the hand-over notice fires once the switch is set in the hook-flags file`
+
+PASS when all six pass. FAIL when a hop writes no `handed-over`, `claimed` or `done` line, when a declined relaunch writes one, or when the notice runs with `SESSION_RELAUNCH_NOTIFY_HOPS` unset.
+
 #### Gate 3 Skip seed spelling (Automatable)
 
 Run the nudge suite. The current Skip suffix and the older spelling must both read as `none` for the receiving session.
@@ -388,7 +407,7 @@ Evidence: inside the first session, `echo $SKILLED_LOOP_ID` through the Bash too
 
 ### Expected
 
-During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none.
+During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none. Each hop adds `handed-over`, `claimed` and `done` lines to `.skilled/skills/.state/session-relaunch/hop-history.log`, and a killer timeout adds `timed-out`.
 
 ### Evidence
 
@@ -425,7 +444,8 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/claude/context-nudge.mjs | Reads context usage and emits the threshold and claim-seed context. |
 | .skilled/hooks/session-relaunch/claude/stop-arm.mjs | Arms a matching pending record on Stop. |
 | .skilled/hooks/session-relaunch/lib/killer.cjs | Waits for idle or timeout and signals the Claude process. |
-| .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Prepares and updates handoff state. |
+| .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Prepares and updates handoff state, and prints the hop history. |
+| .skilled/hooks/session-relaunch/lib/hop-history.cjs | Records each hop event and sends the opt-in hand-over notice. |
 | .skilled/bin/skilled-loop | Checks relaunch eligibility and starts Claude with a handoff seed. |
 | .skilled/bin/skilled-loop-shell.sh | Starts a plain `claude` launch under the nearest wrapper, a symlinked `.skilled` included. |
 | .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs | Automates the outside-loop silence check for every Node adapter. |
@@ -436,6 +456,7 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs | Automates prepare refusal and CLI state checks. |
 | .skilled/hooks/session-relaunch/tests/killer.test.cjs | Automates idle signaling and timeout disarming. |
 | .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs | Automates wrapper and hop-cap behavior. |
+| .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Automates the hop history, the history command and the notice switch. |
 
 Provenance: .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 

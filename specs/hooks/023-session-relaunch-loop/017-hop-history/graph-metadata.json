@@ -42,7 +42,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/.state/session-relaunch/hop-history.log",
       ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/lib/killer.cjs",
@@ -80,12 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hop-history.log",
-        "kind": "file",
-        "path": ".skilled/skills/.state/session-relaunch/hop-history.log",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
     "created_at": "2026-10-20T20:08:29Z",
-    "last_save_at": "2026-10-20T20:24:36.406Z",
+    "last_save_at": "2026-10-20T20:46:56.136Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df39aca811b6cf6167f6bbabc9e20af0261eb30462b34bb37bbd6f818953586c",
+    "source_fingerprint": "sha256:363e40c453d94ddbb546ded8c310424cc9e4abb49fe2c66a1befce88fcf8c611",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fc43d77264265a30262384daeeb1671b578d3c7fdef3a0ce3eb74e23c1d44b9b",
+      "spec.md": "40ca7a948e990269ad9bdf7d795af3dba359aa0b0936682c7cd6392c40235b64",
       "plan.md": "26a82e28d609f59e2d2c911ee4340fae01bc4f1292b0e6f277a164b3c0f32f39",
-      "tasks.md": "b73e05ba342ddaa39598bc2548e8c59c0aeb7bdc432bbde211ed40d3cacdb3e8",
-      "implementation-summary.md": "c303449ae494381366d28cc411006c1704d9e7c5e4d5e1ca7446e670907ae686"
+      "tasks.md": "8f587e2add1ee7862e4990f4e6f796296fc50f68f0940a6ab15a296353e17e46",
+      "implementation-summary.md": "0fbd302bb4f8b6c59fb855f0fd1739ca59b62efb5967245045af0f26954f0a52"
     },
     "last_active_at": null
   }

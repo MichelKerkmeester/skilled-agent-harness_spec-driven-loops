@@ -99,6 +99,7 @@ Every hop leaves a line the operator can read later in one command or in `/docto
 | `.skilled/commands/doctor/setup.md`, `assets/doctor-setup.yaml`, `assets/doctor-setup-presentation.txt` | Modify | Last-hop line |
 | `.skilled/hooks/hook-flags.env.example`, `system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | The notice switch |
 | Session-relaunch README, tests README, feature catalog entry, root `README.md` | Modify | Docs |
+| v4.0.0.13 changelog, hooks README, bin README, system-spec-kit README and catalog index, the Claude relaunch playbook, the `/doctor:setup` playbook scenario | Modify | Rollup: the hop history and the notice switch in every doc that describes the loop or `/doctor:setup` |
 <!-- /ANCHOR:scope -->
 
 ---
