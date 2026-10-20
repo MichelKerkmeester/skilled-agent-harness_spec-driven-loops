@@ -85,7 +85,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modify | `ancestorPluginDirs`, `v2ServerEnv`, the `isolated:` note in `legPluginActive` |
-| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modify | Fake server that behaves like OpenCode 2 under an outer checkout (and like one that ignores the switches), seven nested tests, plain-root assertions with a clean environment |
+| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modify | Fake server that behaves like OpenCode 2 under an outer checkout (and like one that ignores the switches), eight nested tests, plain-root assertions with a clean environment |
 | `.opencode/plugins/ARCHITECTURE.md` | Modify | The battery paragraph and a known limit |
 | `.skilled/skills/sk-git/references/worktree-workflows.md` | Modify | A troubleshooting entry |
 <!-- /ANCHOR:scope -->
@@ -107,7 +107,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Every new test fails on the old code or a mutant | `scratch/mutation/m1` to `m7` each fail at least one test |
+| REQ-004 | Every new test fails on the old code or a mutant | `scratch/mutation/m1` to `m8` each fail at least one test |
 | REQ-005 | The docs explain the shadowing for real sessions | The ARCHITECTURE.md known limit and the worktree troubleshooting entry |
 <!-- /ANCHOR:requirements -->
 

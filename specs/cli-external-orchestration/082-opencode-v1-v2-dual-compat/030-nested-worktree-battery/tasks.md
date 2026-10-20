@@ -58,7 +58,7 @@ contextType: "general"
 
 - [x] T009 The test suite passes 45 of 45 (`after-r4.txt`; 37 at baseline). The old battery fails 6 of the new tests (`m1-old-battery-r1.txt`); mutants m2 to m8 fail 2, 2, 2, 1, 1, 2 and 1 tests (`scratch/mutation/`). Item 7.
 - [x] T010 The battery passes both families in worktree 169, v2 with an `isolated:` line, and both families in a plain clone with none (`scratch/rootcause/after-r4-both.json`, `after-r2-plain-both.json`). Item 7.
-- [ ] T011 Luna review passes. Item 7.
+- [x] T011 Luna review passes: round 5 PASS after four FAIL rounds, each finding fixed; one P2 recorded as a follow-up. Item 7.
 - [ ] T012 Strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`. Item 7.
 - [ ] T013 The Dual-Version Battery passes on CI at the pushed main commit. Item 7.
 <!-- /ANCHOR:phase-3 -->

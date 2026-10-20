@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery"
     last_updated_at: "2026-10-20T16:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Fixed the nested-worktree battery, three review rounds addressed"
-    next_safe_action: "Luna round 4, then merge origin/main, push and watch CI"
+    recent_action: "Fixed the nested-worktree battery; Luna round 5 passed with P2s recorded"
+    next_safe_action: "Merge origin/main, push to main and confirm the Dual-Version Battery on CI"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
@@ -60,7 +60,7 @@ The bigger consequence is for real sessions: an OpenCode 2 session started in a 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modified | `ancestorPluginDirs`, `v2ServerEnv`, the `isolated:` note, the ancestor-entry check and the isolation-aware command allowlist |
-| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modified | A fake OpenCode 2 under an outer checkout and one that ignores the switches; seven nested tests; plain-root assertions with a clean environment |
+| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modified | A fake OpenCode 2 under an outer checkout and one that ignores the switches; eight nested tests; plain-root assertions with a clean environment |
 | `.opencode/plugins/ARCHITECTURE.md` | Modified | The battery paragraph and a known limit |
 | `.skilled/skills/sk-git/references/worktree-workflows.md` | Modified | A troubleshooting entry |
 <!-- /ANCHOR:what-built -->
@@ -98,7 +98,7 @@ I reproduced the failure in worktree 169 and read the private server's plugin li
 | Live battery, worktree 169, both families | PASS, exit 0, v2 with an `isolated:` line (`scratch/rootcause/after-r4-both.json`) |
 | Live battery, plain clone, both families | PASS, exit 0, no `isolated:` line (`scratch/rootcause/after-r2-plain-both.json`) |
 | OpenCode 1 origins in worktree 169 | 17 from the worktree, 0 from the outer checkout (`scratch/rootcause/v1-origins.json`) |
-| Luna review | Rounds 1 to 4 FAIL, each finding fixed; round 5 pending |
+| Luna review | Rounds 1 to 4 FAIL, each finding fixed; round 5 PASS with four P2s, three fixed and one recorded below |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -109,6 +109,7 @@ I reproduced the failure in worktree 169 and read the private server's plugin li
 1. **Real OpenCode 2 sessions in a nested worktree still run the outer checkout's plugins.** Start one with `OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$PWD/.opencode"`, or use a checkout outside the main one.
 2. **The filesystem-root guard has no failing mutant.** No machine here has a `/.opencode/plugins` folder, so removing the guard changes nothing the test can see.
 3. **A command present in both the root and an ancestor can't reveal ignored switches.** The names are identical; the plugin check covers that case.
+4. **A symlinked root is resolved only for the ancestor walk.** The legs still match server paths against the root as supplied, and no end-to-end test runs a symlinked root through a server read (Luna round 5, P2 follow-up).
 <!-- /ANCHOR:limitations -->
 
 ---
