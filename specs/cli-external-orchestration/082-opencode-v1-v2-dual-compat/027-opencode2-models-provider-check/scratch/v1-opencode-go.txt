@@ -1,3 +1,5 @@
+# captured 2026-10-20T12:36:35Z; opencode 1.19.3 (OpenCode 1, its own default database)
+$ opencode models opencode-go
 opencode-go/beam-free
 opencode-go/claude-haiku-5-5
 opencode-go/deepseek-v4-pro
@@ -27,3 +29,4 @@ opencode-go/qwen3.7-plus
 opencode-go/qwen3.8-flash
 opencode-go/qwen3.8-max
 opencode-go/step-5-preview
+exit 0

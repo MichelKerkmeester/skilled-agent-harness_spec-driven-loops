@@ -1,9 +1,9 @@
-# The documented OpenCode 2 pre-flight line, run live on 2026-10-20T11:57:20Z with a private OPENCODE_DB and --standalone (no shared service)
-# opencode2 --version: opencode v2.0.32
-# under 'set -o pipefail' to show the full-read grep does not trip SIGPIPE
-provider=opencode-go OK=0
-provider=llmgateway OK=1
-provider=no-such-provider OK=0
-# the old documented form:
-opencode2 models opencode-go exit=1
-opencode2 models llmgateway exit=1 (a listed provider, still reported missing by the old form)
+# The documented OpenCode 2 pre-flight block, extracted from cli-reference.md and run live on 2026-10-20T12:38:57Z
+# opencode2 opencode v2.0.32; private OPENCODE_DB; --standalone, so the shared service is never asked; bash with pipefail
+$ bash -o pipefail <OpenCode 2 block>
+default=0 minimax_token=0 minimax_direct=0 llmgateway=1
+exit 0
+
+# the form the docs used before, for comparison
+$ opencode2 models opencode-go  -> exit 1
+$ opencode2 models llmgateway  -> exit 1 (llmgateway is listed, so the old form misreports it)

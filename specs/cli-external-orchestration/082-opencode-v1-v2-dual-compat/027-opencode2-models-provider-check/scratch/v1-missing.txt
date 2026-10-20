@@ -1,1 +1,4 @@
-[91m[1mError: [0mProvider not found: no-such-provider
+# captured 2026-10-20T12:36:37Z; opencode 1.19.3 (OpenCode 1, its own default database)
+$ opencode models no-such-provider
+Error: Provider not found: no-such-provider
+exit 1

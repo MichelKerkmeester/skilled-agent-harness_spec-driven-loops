@@ -18,9 +18,9 @@
 test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:183:1
 ✖ a command continued with a backslash is read as one command (0.398167ms)
   AssertionError [ERR_ASSERTION]: the continuation must read as one line
-  
+
   2 !== 1
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:185:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

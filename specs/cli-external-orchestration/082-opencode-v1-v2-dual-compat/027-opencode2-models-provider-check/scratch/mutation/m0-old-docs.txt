@@ -67,7 +67,7 @@ test at ../../../../../..oldtree/.skilled/skills/cli-external-orchestration/cli-
   .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:136: opencode2 models (no --standalone or --server, so it reaches the shared service)
   .hermes/skills/cli-opencode/SKILL.md:183: opencode2 models <provider> (positional argument "<provider>"; no --standalone or --server, so it reaches the shared service)
   + actual - expected
-  
+
   + '.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md:78: opencode2 models (no --standalone or --server, so it reaches the shared service)\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/README.md:96: opencode2 models (no --standalone or --server, so it reaches the shared service)\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/README.md:148: opencode2 models <provider-id> (positional argument "<provider-id>"; no --standalone or --server, so it reaches the shared service)\n' +
@@ -118,7 +118,7 @@ test at ../../../../../..oldtree/.skilled/skills/cli-external-orchestration/cli-
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:136: opencode2 models (no --standalone or --server, so it reaches the shared service)\n' +
   +   '.hermes/skills/cli-opencode/SKILL.md:183: opencode2 models <provider> (positional argument "<provider>"; no --standalone or --server, so it reaches the shared service)'
   - ''
-  
+
       at TestContext.<anonymous> (oldtree/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:169:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

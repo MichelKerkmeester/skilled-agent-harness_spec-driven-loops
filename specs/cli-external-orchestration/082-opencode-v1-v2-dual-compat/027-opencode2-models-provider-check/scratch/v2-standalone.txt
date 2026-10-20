@@ -1,3 +1,5 @@
+# captured 2026-10-20T12:36:02Z; v1 1.19.3, v2 opencode v2.0.32; OpenCode 2 with a private OPENCODE_DB
+$ opencode2 models --standalone
 cline-pass/cline-pass/deepseek-v4-flash
 cline-pass/cline-pass/deepseek-v4-pro
 cline-pass/cline-pass/deepseek-v4.1-flash
@@ -679,3 +681,4 @@ opencode/minimax-m3.1-flash-free
 opencode/nemotron-3-ultra-free
 opencode/nemotron-3.5-lightning-free
 opencode/nemotron-3.5-super-vl-free
+exit 0

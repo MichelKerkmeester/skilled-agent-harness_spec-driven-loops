@@ -1,3 +1,5 @@
+# captured 2026-10-20T12:36:33Z; opencode 1.19.3 (OpenCode 1, its own default database)
+$ opencode models --help
 opencode models [provider]
 
 list all available models
@@ -13,3 +15,4 @@ Options:
       --pure        run without external plugins                                           [boolean]
       --verbose     use more verbose model output (includes metadata like costs)           [boolean]
       --refresh     refresh the models cache from models.dev                               [boolean]
+exit 0

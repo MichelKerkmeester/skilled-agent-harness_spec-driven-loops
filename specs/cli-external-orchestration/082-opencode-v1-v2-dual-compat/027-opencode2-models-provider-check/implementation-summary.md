@@ -8,19 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check"
-    last_updated_at: "2026-10-20T12:24:44Z"
+    last_updated_at: "2026-10-20T12:40:18Z"
     last_updated_by: "generate-context"
-    recent_action: "Committed the round-2 fixes; 12 of 12 cli-opencode tests pass"
-    next_safe_action: "Run Luna review round 3, then merge main and push"
+    recent_action: "Applied the round-3 fixes; 13 of 13 cli-opencode tests pass"
+    next_safe_action: "Run Luna review round 4, then merge main and push"
     blockers: []
     key_files:
+      - ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md"
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs"
-      - ".github/workflows/opencode-dual-version.yml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-027-opencode2-models-provider-check"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---
@@ -51,13 +51,13 @@ The OpenCode 2 provider check in the cli-opencode docs never worked. 2.0.32's `m
 
 ### Phase 27: opencode2-models-provider-check
 
-If you follow the pre-flight in `cli-reference.md` on OpenCode 2 now, it reports `llmgateway` present and `opencode-go` absent, which is what 2.0.32 actually lists, and it runs on a private server. The other sites that told you to confirm a provider in `opencode2 models` say `opencode2 models --standalone`. A new test reads every current CLI skill doc and the Hermes copy and fails on either old form, and the battery job runs it.
+The pre-flight in `cli-reference.md` is now two blocks, one per version. The OpenCode 2 block lists once on a private server and filters per provider, so it reports `llmgateway` present and `opencode-go` absent, which is what 2.0.32 actually lists. A v2-only layout runs the same block under the name `opencode`. The other sites that told you to confirm a provider in `opencode2 models` say `opencode2 models --standalone`. A new test reads every current CLI skill doc and the Hermes copy and fails on either old form, and the battery job runs it.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph and its v2 script line, three inline spans, and an OpenCode 1 label with the v2 form on the subcommand row, the MiMo row, the default-model paragraph and the LLM Gateway note |
+| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph, the pre-flight split into an OpenCode 1 block and an OpenCode 2 block, three inline spans, and an OpenCode 1 label with the v2 form on the subcommand row, the MiMo row, the default-model paragraph and the LLM Gateway note |
 | `cli-opencode/SKILL.md`, `cli-opencode/README.md` | Modified | The provider-argument sentences, plus one inline span in the README |
 | `cli-opencode/references/install-and-versions.md` | Modified | The listing table row, its citation and the v2 layout sentence |
 | `cli-opencode/references/providers-and-models.md` | Modified | One inline span, and an OpenCode 1 label, with the v2 form where v2 has the provider, on seven `opencode models` sites |
@@ -98,11 +98,12 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 | Check | Result |
 |-------|--------|
 | Baseline cli-opencode tests | 5 of 5 pass (`scratch/baseline-cli-opencode-tests.txt`) |
-| cli-opencode tests after | 12 of 12 pass |
+| cli-opencode tests after | 13 of 13 pass |
 | New test against main's docs | 2 of 4 fail, naming 49 sites, the 49 the baseline listed (`scratch/mutation/m0-old-docs.txt`) |
-| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, not joining backslash continuations fails 1, filtering the default's variable for `^llmgateway/` fails 1, and never accepting a version label fails 2 (`scratch/mutation/m1-*` to `m9-*`) |
+| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, not joining backslash continuations fails 1, filtering the default's variable for `^llmgateway/` fails 1, never accepting a version label fails 2, an OpenCode 2 block without its `llmgateway` check fails 1, a single-space binary pattern fails 1, and unlabelling the OpenCode 1 block fails 1 (`scratch/mutation/m1-*` to `m13-*`) |
+| Test against the round-2 docs | 2 of 8 fail: the one mixed pre-flight block and the unlabelled `SKILL.md` and `README.md` forms (`scratch/mutation/m10-round2-docs.txt`) |
 | Prose rule against the docs before its labels | 1 of 7 fails (`scratch/mutation/m8-unlabelled-v1-docs.txt`) |
-| Pre-flight line live | `llmgateway` OK=1, `opencode-go` OK=0, unknown OK=0 under `pipefail`; the old form exits 1 for `llmgateway` too (`scratch/preflight-live.txt`) |
+| OpenCode 2 pre-flight block live | Extracted from `cli-reference.md` and run under `bash -o pipefail`: `default=0 minimax_token=0 minimax_direct=0 llmgateway=1`, exit 0; the old form exits 1 for the listed `llmgateway` too (`scratch/preflight-live.txt`) |
 | `sync-skills-hermes.cjs --check` | PASS: 68 copies in sync |
 | `check-gate-inputs.sh`, `actionlint` | Both exit 0 after the filter change |
 <!-- /ANCHOR:verification -->
@@ -112,7 +113,7 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The v2-only layout is caught by provider, not by layout.** In a v2-only layout the v2 binary is named `opencode`, and one line cannot say which layout a reader has. The prose rule therefore flags an unlabelled `opencode models` span only when OpenCode 2 would also run it: a placeholder, a bare listing, or a provider 2.0.32 lists (`llmgateway`, `llmgateway-providers`, `cline-pass`, `opencode`). A span naming a provider only OpenCode 1 lists, such as `opencode-go`, is OpenCode 1 by construction and passes. Commands inside fenced blocks are left to the `opencode2` scan, so a fenced v1 command must sit in a block written for OpenCode 1, as the pre-flight block's v1 lines do.
+1. **The v2-only layout is caught by provider, not by layout.** In a v2-only layout the v2 binary is named `opencode`, and one line cannot say which layout a reader has. The prose rule therefore flags an unlabelled `opencode models` span only when OpenCode 2 would also run it: a placeholder, a bare listing, or a provider 2.0.32 lists (`llmgateway`, `llmgateway-providers`, `cline-pass`, `opencode`). A span naming a provider only OpenCode 1 lists, such as `opencode-go`, is OpenCode 1 by construction and passes. Fenced commands are checked too: an ambiguous fenced command needs the label on its own line or on the first line of its block, as the OpenCode 1 pre-flight block has.
 2. **The provider list is pinned to 2.0.32.** If a later OpenCode 2 lists another provider, `V2_PROVIDERS` in the test needs that provider added.
 <!-- /ANCHOR:limitations -->
 

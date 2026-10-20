@@ -20,9 +20,9 @@
 test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:217:1
 ✖ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.571958ms)
   AssertionError [ERR_ASSERTION]: a named version must clear the form
-  
+
   1 !== 0
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:225:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -47,14 +47,14 @@ test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-open
   .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:83: `opencode models cline-pass`
   .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`
   + actual - expected
-  
+
   + '.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:249: `opencode models`\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:254: `opencode models`\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:79: `opencode models cline-pass`\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:83: `opencode models cline-pass`\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`'
   - ''
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:316:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

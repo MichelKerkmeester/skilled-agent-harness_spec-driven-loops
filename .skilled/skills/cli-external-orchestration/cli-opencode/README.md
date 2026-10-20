@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # cli-opencode
@@ -145,7 +145,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>`, or, on OpenCode 2, by filtering `opencode2 models --standalone` for the `<provider-id>/` prefix. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill checks each provider with `opencode models <provider-id>` on OpenCode 1, or, on OpenCode 2, by filtering `opencode2 models --standalone` for the `<provider-id>/` prefix. The providers, their models and their effort ceilings live in `references/providers-and-models.md`, which is the roster. Restating them here is how the two copies come to disagree. If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 

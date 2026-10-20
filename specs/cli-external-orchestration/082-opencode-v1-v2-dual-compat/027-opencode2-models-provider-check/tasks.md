@@ -56,7 +56,7 @@ Every task closes follow-up item 4 of the operator's open-work list: the `openco
 ## Phase 3: Verification
 
 - [ ] T009 The new test fails on main's docs and two classifier mutants fail (`scratch/mutation/`)
-- [ ] T010 The pre-flight v2 line run live: 0 for a listed provider, 1 for an unlisted one (`scratch/preflight-live.txt`)
+- [ ] T010 The OpenCode 2 pre-flight block run live: `llmgateway=1`, `default=0` (`scratch/preflight-live.txt`)
 - [ ] T011 cli-opencode tests, `sync-skills-hermes.cjs --check`, `check-gate-inputs.sh` and `actionlint` pass
 - [ ] T012 Luna review passes; strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`
 - [ ] T013 Merged, pushed to main, every CI run on the main commit read

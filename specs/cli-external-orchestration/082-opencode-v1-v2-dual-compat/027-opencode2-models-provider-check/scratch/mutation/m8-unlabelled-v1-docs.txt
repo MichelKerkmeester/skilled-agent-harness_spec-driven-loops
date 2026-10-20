@@ -23,11 +23,11 @@ test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-open
   .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:244: `opencode models llmgateway`
   .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`
   + actual - expected
-  
+
   + '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:244: `opencode models llmgateway`\n' +
   +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`'
   - ''
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:316:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

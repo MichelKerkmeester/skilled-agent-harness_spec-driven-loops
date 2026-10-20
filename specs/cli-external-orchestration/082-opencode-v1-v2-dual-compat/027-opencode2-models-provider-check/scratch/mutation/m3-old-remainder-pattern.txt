@@ -18,12 +18,12 @@ test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-open
 ✖ commandsIn keeps a redirect's file descriptor out of the arguments (0.942125ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
   + actual - expected
-  
+
     [
       '--standalone',
   +   '2'
     ]
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:135:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)
@@ -44,10 +44,10 @@ test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-open
   AssertionError [ERR_ASSERTION]: every documented "opencode2 models" command needs --standalone or --server <url> and no positional argument, but these do not:
   .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200: opencode2 models --standalone 2 (positional argument "2")
   + actual - expected
-  
+
   + '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:200: opencode2 models --standalone 2 (positional argument "2")'
   - ''
-  
+
       at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:169:10)
       at Test.runInAsyncScope (node:async_hooks:226:14)
       at Test.run (node:internal/test_runner/test:1402:25)

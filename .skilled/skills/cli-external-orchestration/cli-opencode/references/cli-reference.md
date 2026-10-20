@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.10.0
+version: 1.4.11.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -191,13 +191,23 @@ On OpenCode 1, `--port` only matters when the dispatch needs to bind a known por
 
 Before the first dispatch in a session, run a one-shot auth pre-flight so a missing default doesn't fail mid-dispatch. On OpenCode 1, `opencode models <provider-id>` exits 0 when the provider is configured and 1 when it is not. OpenCode 2 (2.0.32) rejects that form with `Unexpected positional argument`, so list with `opencode2 models --standalone` and filter for the `<provider-id>/` prefix; `--standalone` runs a private server instead of asking the shared background service. Do not grep `opencode providers list` for ids: it prints display names such as `OpenCode Go` and `DevPass (LLM Gateway)`. Cache the result for the session and re-run it only on auth failure.
 
+Run the block for the version you are about to dispatch. A v2-only layout names its binary `opencode`; use the OpenCode 2 block there and replace `opencode2` with `opencode`.
+
 ```bash
-# Pre-flight: one check per provider id, once per session
-opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode Go gateway (default — fronts DeepSeek V4 Flash, Qwen, GLM)
-opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
-opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token)
-opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # LLM Gateway (DevPass); the only MiMo route
-opencode2 models --standalone 2>/dev/null | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode 2: no provider argument, so filter a private-server listing
+# OpenCode 1 pre-flight: one check per provider id, once per session
+opencode models opencode-go         >/dev/null 2>&1 && OPENCODE_GO_OK=1    || OPENCODE_GO_OK=0     # OpenCode 1: OpenCode Go gateway (default — fronts DeepSeek V4 Flash, Qwen, GLM)
+opencode models minimax-coding-plan >/dev/null 2>&1 && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # OpenCode 1: MiniMax Token Plan (default MiniMax path)
+opencode models minimax             >/dev/null 2>&1 && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # OpenCode 1: MiniMax Direct API (pay-per-token)
+opencode models llmgateway          >/dev/null 2>&1 && LLMGATEWAY_OK=1    || LLMGATEWAY_OK=0      # OpenCode 1: LLM Gateway (DevPass); the only MiMo route
+echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
+```
+
+```bash
+# OpenCode 2 pre-flight: `models` takes no provider argument, so list once on a private server and filter per provider
+V2_MODELS=$(opencode2 models --standalone 2>/dev/null)
+printf '%s\n' "$V2_MODELS" | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode Go gateway (2.0.32 lists none here)
+printf '%s\n' "$V2_MODELS" | grep '^llmgateway/'  >/dev/null && LLMGATEWAY_OK=1  || LLMGATEWAY_OK=0   # LLM Gateway (DevPass); the only MiMo route
+MINIMAX_TOKEN_OK=0; MINIMAX_DIRECT_OK=0                                                               # 2.0.32 lists no minimax provider
 echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
 ```
 

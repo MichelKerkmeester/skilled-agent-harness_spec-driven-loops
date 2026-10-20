@@ -101,7 +101,7 @@ Every documented OpenCode 2 provider check runs against a private server and act
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | No current doc quotes a v2 `models` form 2.0.32 rejects or that reaches the shared service. | `opencode2-models-form.test.cjs` passes here and fails on main's docs (`scratch/mutation/`). |
-| REQ-002 | The pre-flight script detects a v2 provider. | Its v2 line run live returns 0 for a listed provider and 1 for an unlisted one (`scratch/preflight-live.txt`). |
+| REQ-002 | The pre-flight detects each provider OpenCode 2 lists. | The OpenCode 2 block, extracted and run live, sets `llmgateway=1` and `default=0` against 2.0.32's listing (`scratch/preflight-live.txt`). |
 
 ### P1 - Required (complete OR user-approved deferral)
 
