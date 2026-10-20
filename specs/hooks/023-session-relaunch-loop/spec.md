@@ -116,6 +116,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 13 | 013-live-hop-and-notice-reason/ | The killer's notice names the timeout and an ignored template's reason, the nudge fires only inside `skilled-loop`, and a shell shim starts every interactive runtime under the loop, also in repositories that link `.skilled`. | complete |
 | 14 | 014-handover-docs-promotion/ | The root README introduces the in-session handover in plain words with a one-line setup section, the command library lists `/speckit:handoff`, and the other doc surfaces link the setup and keep the handoff note apart from `handover.md`. | complete |
 | 15 | 015-v4-0-0-13-changelog/ | The v4.0.0.13 global Skilled release entry, Sessions That Hand Themselves Over, leads with the in-session handover and also covers OpenCode 1 and 2 dual compatibility and the breaking `sk-code-skilled` rename. | complete |
+| 16 | 016-handover-trigger-review/ | The `/speckit:handoff` doc follows the sk-create-command template, and a ten-iteration deep review checks whether the automatic handover fires every time on Claude, Pi, OpenCode, Codex and Hermes, then fixes what it confirms and proves live hops again. | in progress |
 
 ### Phase Transition Rules
 
@@ -142,6 +143,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 011-post-fix-remediation | 013-live-hop-and-notice-reason | phase 011 is Complete and lists the notice reason and the live hop as Known Limitations | `validate.sh 011-post-fix-remediation --strict` RESULT: PASSED |
 | 013-live-hop-and-notice-reason | 014-handover-docs-promotion | phase 013 is Complete with live hops recorded for all five automatic runtimes | `validate.sh 013-live-hop-and-notice-reason --strict` RESULT: PASSED |
 | 014-handover-docs-promotion | 015-v4-0-0-13-changelog | phase 014 is Complete with the in-session handover documented in the root README and the other doc surfaces | `validate.sh 014-handover-docs-promotion --strict` RESULT: PASSED |
+| 015-v4-0-0-13-changelog | 016-handover-trigger-review | phase 015 is Complete with the v4.0.0.13 release entry validated | `validate.sh 015-v4-0-0-13-changelog --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---
