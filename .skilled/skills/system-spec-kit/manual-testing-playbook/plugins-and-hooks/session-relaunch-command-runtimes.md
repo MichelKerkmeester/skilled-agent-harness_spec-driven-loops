@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.3.0
+version: 1.0.4.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -117,7 +117,7 @@ Observe the `UserPromptSubmit` or `PostToolUse` nudge, `Stop` arming with the ro
 
 #### Live Hermes hop in tmux (Live, SKIP 2026-10-18)
 
-Operator decision: this live check was not run. For a future run, start from the repository root. Hermes needs `HERMES_ENABLE_PROJECT_PLUGINS=1` and `repo-guards` under `plugins.enabled` in the user config, the same operator steps the Hermes sync manifest documents.
+Operator decision: this live check was not run. For a future run, start from the repository root. Hermes needs `HERMES_ENABLE_PROJECT_PLUGINS=1` and `repo-guards` under `plugins.enabled` in the user config, the same operator steps `.hermes/SYNC.md` documents.
 
 ~~~bash
 set -euo pipefail
@@ -193,7 +193,7 @@ The live Devin command hop passed on 2026-10-18 with model `swe-2-max`. The hand
 | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Shared nudge text and level suite. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Stub-runtime wrapper relaunch argument tests. |
 
-Provenance: `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`.
+Provenance: .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 
 ---
 

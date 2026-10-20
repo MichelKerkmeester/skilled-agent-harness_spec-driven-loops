@@ -1,0 +1,67 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/157-ci-red-checks-and-research-save/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/workflow-invariance.vitest.ts (2 tests | 1 failed) 340ms
+     × keeps public surfaces free from new private taxonomy leaks 338ms
+ ❯ |cli| tests/playbook-provenance-paths.vitest.ts (3 tests | 1 failed) 19ms
+     × every file carries exactly one provenance line in one of the two forms 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/playbook-provenance-paths.vitest.ts > playbook provenance lines > every file carries exactly one provenance line in one of the two forms
+AssertionError: expected [ …(2) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "plugins-and-hooks/session-relaunch-command-runtimes.md: unrecognised form \"Provenance: `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs`.\"",
++   "plugins-and-hooks/session-relaunch-pi-opencode.md: unrecognised form \"Provenance: `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts`.\"",
++ ]
+
+ ❯ tests/playbook-provenance-paths.vitest.ts:47:22
+     45|       if (!FORM.test(lines[0])) problems.push(`${rel}: unrecognised fo…
+     46|     }
+     47|     expect(problems).toEqual([]);
+       |                      ^
+     48|   });
+     49|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |cli| tests/workflow-invariance.vitest.ts > workflow vocabulary invariance > keeps public surfaces free from new private taxonomy leaks
+AssertionError: expected [ { …(3) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "line": 120,
++     "surface": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
++     "text": "Operator decision: this live check was not run. For a future run, start from the repository root. Hermes needs `HERMES_ENABLE_PROJECT_PLUGINS=1` and `repo-guards` under `plugins.enabled` in the user config, the same operator steps the Hermes sync manifest documents.",
++   },
++ ]
+
+ ❯ tests/workflow-invariance.vitest.ts:196:40
+    194|
+    195|     const liveHits = liveOutputSurfaces();
+    196|     expect([...fileHits, ...liveHits]).toEqual([]);
+       |                                        ^
+    197|   });
+    198|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 3 passed (5)
+   Start at  06:09:37
+   Duration  556ms (transform 25ms, setup 20ms, import 22ms, tests 358ms, environment 0ms)
+
+exit=1

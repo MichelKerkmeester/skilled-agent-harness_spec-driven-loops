@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.2.0
+version: 1.0.3.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -176,7 +176,7 @@ Observe `message.updated` usage handling, `message.part.updated` seed capture an
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Wrapper runtime relaunch argument tests. |
 | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs` | Prepare runtime recording tests. |
 
-Provenance: `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts`.
+Provenance: .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 
 ---
 

@@ -15,6 +15,7 @@
       "phase 8 ci red check repairs",
       "ci red check repairs plan",
       "ci red check repairs tasks",
+      "three ci check repair tasks",
       "ci red check repairs implementation summary"
     ],
     "key_topics": [
@@ -24,15 +25,15 @@
       "phase",
       "plan",
       "tasks",
+      "three",
+      "repair",
       "implementation",
       "summary",
-      "two",
       "checks",
-      "fail",
-      "main"
+      "failed"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -83,6 +84,12 @@
         "source": "derived"
       },
       {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -90,12 +97,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,19 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Two",
+        "name": "Overview Three",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -173,7 +168,13 @@
         "source": "derived"
       },
       {
-        "name": "Verify Rule Canary Sync",
+        "name": "Fixed Spec",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Monitor Spec",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -185,9 +186,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Two CI checks fail on main",
+    "causal_summary": "Three CI checks failed on main before this phase",
     "created_at": "2026-10-19T20:37:50Z",
-    "last_save_at": "2026-10-19T21:35:07.407Z",
+    "last_save_at": "2026-10-20T05:08:18.188Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:180cedd60cda0f643f8eb43070bc7d2e067215e1078cb8dc5a4139bbec16d46a",
+    "source_fingerprint": "sha256:50bd88085cb4a07ac64e8f4423803c3810e2c75f9c085a440f9ff1f5719987b8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1712febf6e31181d45f8675909dea7a5e9ff05531f674a967ec278c94659cfb3",
-      "plan.md": "e473b6dad753cdefd611edbf58ae0c967ba783ce3ddce185238c6f8719c330ee",
-      "tasks.md": "f87efed85ef0b64d4be1ed730b7d32be3143e3562dd6829d34cafa8f6c945aba",
-      "implementation-summary.md": "b7c6e97a4017ae1065af499f68d45b027eb17cfae651cf4b6eae59b75e90f8cc"
+      "spec.md": "49168a8fd3d9669687f25705220974350b7570149228fed11c60a4d4e41b46b8",
+      "plan.md": "6b92bde9f54228b590dbb3bde54d8afb38f7b4586b5ac14d6c58d51db1ceaa70",
+      "tasks.md": "3b0054c5f59f96b78fb934b3793454c6ebef1c0b241061a57f21c73441c34bcf",
+      "implementation-summary.md": "e0973edd3b4b36029bd5fb41ab8527e75dd6ae6981b32e01db672bd00fc28ebf"
     },
     "last_active_at": null
   }
