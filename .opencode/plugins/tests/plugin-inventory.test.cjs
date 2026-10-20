@@ -233,14 +233,15 @@ test('handledEventNames reads both quote styles, both orders and case labels', (
 });
 
 test('unscannedEventChecks reports checks the scan cannot read', () => {
-  const source = `if (eventType === SESSION_IDLE) {} if (eventType.endsWith('.x')) {} if (KNOWN.has(eventType)) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
+  const source = `if (eventType === SESSION_IDLE) {} if (eventType.endsWith('.x')) {} if (eventType.toLowerCase() === 'a.c') {} if (KNOWN.has(eventType)) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
 
   assert.deepEqual(unscannedEventChecks(source), [
     '.has(eventType)',
     'SESSION_IDLE === eventType',
     'case EVENTS.IDLE:',
     'eventType === SESSION_IDLE',
-    'eventType.endsWith(',
+    "eventType.endsWith('.x')",
+    'eventType.toLowerCase()',
   ]);
 });
 

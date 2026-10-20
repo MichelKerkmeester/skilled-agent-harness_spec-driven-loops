@@ -116,9 +116,10 @@ function unscannedEventChecks(source) {
       'g',
     ),
   ];
-  // A case label holding an identifier or a member expression is resolved at runtime, not by the scan.
+  // A method call on the type can select events the scan does not read, and a case label
+  // holding an identifier or member expression is resolved at runtime.
   const unreadablePatterns = [
-    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\.(?:startsWith|endsWith|includes|match)\(`, 'g'),
+    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\.([A-Za-z_$][\w$]*)\(([^()]*)\)`, 'g'),
     new RegExp(String.raw`\.(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`, 'g'),
     new RegExp(
       String.raw`case\s+(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*:`,
