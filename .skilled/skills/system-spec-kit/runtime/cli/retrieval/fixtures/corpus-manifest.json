@@ -1,5 +1,5 @@
 {
-  "corpusHash": "c9adefee10f9d95aa6aaf1e253950727896134336421c80f2ab6e0fb4c2247a5",
+  "corpusHash": "a410e6adebeca7dc62433d4bf0b680ce01b86d79aab8816bfd732056ca0ba083",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25331,
+  "includedPathCount": 25335,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8918,6 +8918,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/spec.md",
@@ -25362,7 +25366,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c44c4d9ac22f399a3c44b205146f4e1ea7f960331be36007b6ddad01ad1f5a5e",
+  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26406,6 +26410,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/scratch",
       "reason": "excluded directory"
     },
     {

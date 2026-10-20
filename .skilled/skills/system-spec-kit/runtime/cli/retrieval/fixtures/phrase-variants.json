@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c44c4d9ac22f399a3c44b205146f4e1ea7f960331be36007b6ddad01ad1f5a5e",
+  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -111325,6 +111325,18 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
+    "worktree provision completeness": [
+      "worktree provision completeness"
+    ],
+    "worktree provision completeness implementation summary": [
+      "worktree provision completeness implementation summary"
+    ],
+    "worktree provision completeness plan": [
+      "worktree provision completeness plan"
+    ],
+    "worktree provision completeness tasks": [
+      "worktree provision completeness tasks"
+    ],
     "worktree provision paths missing packages": [
       "worktree provision paths missing packages"
     ],
@@ -111345,6 +111357,9 @@
     ],
     "worktree provisioning": [
       "worktree provisioning"
+    ],
+    "worktree provisioning completeness list every package tree guard": [
+      "worktree provisioning completeness list every package tree guard"
     ],
     "worktree provisioning drift": [
       "worktree provisioning drift"
