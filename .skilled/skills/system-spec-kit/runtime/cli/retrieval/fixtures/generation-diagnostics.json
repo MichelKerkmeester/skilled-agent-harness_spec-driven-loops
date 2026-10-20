@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0b67df9d326967b5a3442099a3a1018502a62f1c5ad66ef306fea92ec5aebc3f",
+  "manifestHash": "bfd2216e9212eb34ca6e683306c878bd01ea409290cf49740f9659f4f8d89bdf",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -37031,13 +37031,13 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md",
+      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/hooks/023-session-relaunch-loop/review/review-report.md",
+      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -69863,6 +69863,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/lineages",
       "reason": "excluded directory"
     },
     {
