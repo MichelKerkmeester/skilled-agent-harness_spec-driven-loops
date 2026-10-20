@@ -112,6 +112,7 @@ test('seed first turn receives the handoff instructions and carried folder', asy
 
 test('context nudge fires once at threshold and once at threshold plus five points', async (t) => {
   const env = sandbox(t).env;
+  env.SKILLED_LOOP_ID = 'hermes-nudge-loop-0001';
   env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
   env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const payload = {
@@ -183,6 +184,7 @@ test('context nudge stays quiet at the hop limit', async (t) => {
 
 test('reported and default Hermes windows identify their source', async (t) => {
   const env = sandbox(t).env;
+  env.SKILLED_LOOP_ID = 'hermes-nudge-loop-0001';
   env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const reported = await runAdapter(contextAdapter, env, {
     user_message: 'continue',
@@ -408,6 +410,7 @@ test('session end keeps the record armed on an asynchronous spawn error', async 
 test('context nudge plans the handoff note under the resolved repo root', async (t) => {
   const sandboxed = sandbox(t);
   const env = sandboxed.env;
+  env.SKILLED_LOOP_ID = 'hermes-nudge-loop-0001';
   env.SESSION_RELAUNCH_REPO_ROOT = sandboxed.root;
   env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
   env.SESSION_RELAUNCH_THRESHOLD = '0.80';
@@ -435,6 +438,7 @@ test('context nudge plans the handoff note under the resolved repo root', async 
 test('context nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {
   const sandboxed = sandbox(t);
   const env = sandboxed.env;
+  env.SKILLED_LOOP_ID = 'hermes-nudge-loop-0001';
   env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
   env.SESSION_RELAUNCH_WINDOW_TOKENS = '2560';
   env.SESSION_RELAUNCH_THRESHOLD = '0.80';

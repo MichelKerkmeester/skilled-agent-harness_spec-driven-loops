@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.3.0
+version: 1.0.4.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -84,6 +84,14 @@ node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 ~~~
 
 Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `codex`, `cursor-agent`, `hermes` and `devin` into a sandbox bin directory, then records each launch's runtime, arguments and loop environment in `runtime-record.jsonl`. The command-runtime cases assert `codex --no-daemon -m <model> <seed>`, `cursor-agent --model <model> <seed>`, `hermes chat --provider <provider> -m <model> -q <seed>` and `devin --model <model> -- <seed>` on relaunch, valid model and provider values carried on every hop, and none of `resume`, `fork`, `exec`, `queue`, `--resume`, `-r`, `--continue`, `-c`, `--session`, `--create-if-missing`, `--in`, `--no-restore-cwd`, `ls` or a name flag reaching the relaunch arguments. PASS when every case passes.
+
+#### Shell shim resolution (Automatable)
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+~~~
+
+Evidence: all 14 tests pass under bash and zsh. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
 
 ### Live Checks
 
@@ -160,6 +168,21 @@ tmux attach -t "$session_name"
 
 The live Devin command hop passed on 2026-10-18 with model `swe-2-max`. The handoff note moved `open -> claimed -> done`. For a future run, use `/speckit:handoff`, end the session and start the hop by hand with the command printed by `prepare --handoff <note-path> --runtime devin`: `skilled-loop devin -- "[session-relaunch] claim and continue handoff <note-path>"`. The `--` is required because Devin treats a bare positional value as a workspace path. If the path contains `!`, keep the printed `"'!'"` quote sequence intact so interactive Bash preserves it when history expansion is on.
 
+#### Symlinked repository through the shell shim (Live)
+
+Build a repository that links this checkout's `.skilled` and the runtime's config folder, source the shim in a fresh shell and start the plain runtime command there:
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+linked_repo="$(mktemp -d)/linked-repo"
+mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
+for folder in .skilled .codex .hermes .cursor .devin; do ln -s "$repo_root/$folder" "$linked_repo/$folder"; done
+tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.25 SESSION_RELAUNCH_MAX_HOPS=1 && codex -m gpt-6-luna'"
+tmux attach -t shim-codex
+~~~
+
+Repeat with `HERMES_ENABLE_PROJECT_PLUGINS=1 hermes chat --provider llmgateway -m gpt-6-luna`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
+
 ---
 
 ## 4. SOURCE FILES
@@ -188,6 +211,8 @@ The live Devin command hop passed on 2026-10-18 with model `swe-2-max`. The hand
 | `.skilled/hooks/session-relaunch/hermes/session-end-arm.mjs` | Hermes `on_session_end` arm and killer spawn. |
 | `.hermes/plugins/repo-guards/__init__.py` | Plugin bridge and per-session usage records. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `codex`, `hermes`, `cursor-agent` or `devin` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs` | Codex adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs` | Hermes adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Shared nudge text and level suite. |

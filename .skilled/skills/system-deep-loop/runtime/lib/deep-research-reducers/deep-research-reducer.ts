@@ -156,6 +156,20 @@ export const DEEP_RESEARCH_EVENT_ROUTING = Object.freeze({
   'deep_research.idea_rejected': Object.freeze([]),
   'deep_research.idea_rejected_removed': Object.freeze([]),
   'deep_research.idea_rejected_reset': Object.freeze([]),
+  // Workflow lifecycle rows, the reducer's trend advisories and pivot rows: the
+  // state-log reducers read them back from the projected rows, and none of them
+  // carries research evidence, so replaying them moves no plane.
+  'deep_research.user_paused': Object.freeze([]),
+  'deep_research.stuck_recovery': Object.freeze([]),
+  'deep_research.min_iterations_guard_pass': Object.freeze([]),
+  'deep_research.migration': Object.freeze([]),
+  'deep_research.novelty_signal_inert': Object.freeze([]),
+  'deep_research.trend_flatline': Object.freeze([]),
+  'deep_research.pivot_override_accepted': Object.freeze([]),
+  'deep_research.pivot_started': Object.freeze([]),
+  'deep_research.pivot_selected': Object.freeze([]),
+  'deep_research.pivot_completed': Object.freeze([]),
+  'deep_research.pivot_failed': Object.freeze([]),
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepResearchEventStem[] {
@@ -1347,6 +1361,17 @@ function artifactFromEvent(
     case 'deep_research.idea_rejected':
     case 'deep_research.idea_rejected_removed':
     case 'deep_research.idea_rejected_reset':
+    case 'deep_research.user_paused':
+    case 'deep_research.stuck_recovery':
+    case 'deep_research.min_iterations_guard_pass':
+    case 'deep_research.migration':
+    case 'deep_research.novelty_signal_inert':
+    case 'deep_research.trend_flatline':
+    case 'deep_research.pivot_override_accepted':
+    case 'deep_research.pivot_started':
+    case 'deep_research.pivot_selected':
+    case 'deep_research.pivot_completed':
+    case 'deep_research.pivot_failed':
       return null;
   }
   return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);
@@ -1467,6 +1492,17 @@ function statusTransitionForEvent(
     case 'deep_research.idea_rejected':
     case 'deep_research.idea_rejected_removed':
     case 'deep_research.idea_rejected_reset':
+    case 'deep_research.user_paused':
+    case 'deep_research.stuck_recovery':
+    case 'deep_research.min_iterations_guard_pass':
+    case 'deep_research.migration':
+    case 'deep_research.novelty_signal_inert':
+    case 'deep_research.trend_flatline':
+    case 'deep_research.pivot_override_accepted':
+    case 'deep_research.pivot_started':
+    case 'deep_research.pivot_selected':
+    case 'deep_research.pivot_completed':
+    case 'deep_research.pivot_failed':
       return null;
     case 'deep_research.memory_save_failed': {
       const payload = payloadFor(event, 'deep_research.memory_save_failed');
@@ -1868,6 +1904,17 @@ function applyEvent(
     case 'deep_research.idea_rejected':
     case 'deep_research.idea_rejected_removed':
     case 'deep_research.idea_rejected_reset':
+    case 'deep_research.user_paused':
+    case 'deep_research.stuck_recovery':
+    case 'deep_research.min_iterations_guard_pass':
+    case 'deep_research.migration':
+    case 'deep_research.novelty_signal_inert':
+    case 'deep_research.trend_flatline':
+    case 'deep_research.pivot_override_accepted':
+    case 'deep_research.pivot_started':
+    case 'deep_research.pivot_selected':
+    case 'deep_research.pivot_completed':
+    case 'deep_research.pivot_failed':
       break;
     default:
       return assertNeverStem((event as DeepResearchLedgerEvent).payload.stem as never);

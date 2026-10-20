@@ -989,13 +989,27 @@ test('seedInstructions returns the seed text for a well-formed seed and null oth
   assert.equal(seedInstructions({ prompt: undefined, sessionId: SESSION_ID }), null);
 });
 
-test('nudgeDecision folds the threshold, a live handoff, the hop cap and the level', (t) => {
+test('nudgeDecision folds the threshold, the wrapper, a live handoff, the hop cap and the level', (t) => {
   const { nudgeDecision } = nudgeModule;
-  const env = { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR };
+  const outsideLoop = { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR };
+  const env = { ...outsideLoop, SKILLED_LOOP_ID: 'nudge-decision-loop' };
 
   assert.deepEqual(
     nudgeDecision({ ratio: 0.5, threshold: 0.8, sessionId: SESSION_ID, env }),
     { nudge: false, level: 0, reason: 'below-threshold' },
+  );
+  assert.deepEqual(
+    nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env: outsideLoop }),
+    { nudge: false, level: 0, reason: 'outside-loop' },
+  );
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.81,
+      threshold: 0.8,
+      sessionId: SESSION_ID,
+      env: { ...outsideLoop, SKILLED_LOOP_ID: '' },
+    }),
+    { nudge: false, level: 0, reason: 'outside-loop' },
   );
   assert.deepEqual(
     nudgeDecision({ ratio: 0.81, threshold: 0.8, sessionId: SESSION_ID, env }),
@@ -1036,7 +1050,10 @@ test('nudgeDecision folds the threshold, a live handoff, the hop cap and the lev
 
 test('nudgeDecision reads the persisted level when the caller passes none', (t) => {
   const { nudgeDecision } = nudgeModule;
-  const env = { XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR };
+  const env = {
+    XDG_RUNTIME_DIR: recordSandbox(t).XDG_RUNTIME_DIR,
+    SKILLED_LOOP_ID: 'nudge-decision-loop',
+  };
   writeState(SESSION_ID, 1, env);
   assert.deepEqual(
     nudgeDecision({ ratio: 0.82, threshold: 0.8, sessionId: SESSION_ID, env }),

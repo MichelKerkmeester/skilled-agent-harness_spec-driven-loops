@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "d3050be55108d62223edf7c996ca30efe92d7b6b9bb11a2ee674add6797d2aea",
+      "sha256": "b19fb55e3a4081285e61d3ca13b5a8a0a2d59efa08ea1541981592b97429ddd6",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "e8158fdf1eb540f68d88e1e9f18a2878d51bb75904bf976a31ae855696a0d4e6",
+      "sha256": "25bf73c6f8a1533df2e4c9f76e35e916a97b85cdc245f88a5d02fddb81a4f033",
       "section": "full"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "7d117600f18a411b9422ce41ac7e99fc0990d7ceb676b3ec1d21e67ad6ce0259",
+      "sha256": "8481f7a75c83c2a1fb5bacc22bfcb8e493e3d63943af316d81f4aff5eddada8a",
       "section": "full"
     },
     {

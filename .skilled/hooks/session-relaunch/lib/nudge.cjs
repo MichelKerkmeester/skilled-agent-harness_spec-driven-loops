@@ -391,6 +391,15 @@ function handoffPending({ sessionId, env = process.env } = {}) {
   }
 }
 
+// Only the skilled-loop wrapper can end a session and relaunch it with a claim seed.
+// Outside it, prepare can only print a manual claim command and exit 3, so a nudge
+// there turns a working session into one that stops and waits for a hand-off nobody
+// runs. Unset or empty reads as outside, the same test prepare applies.
+/** Report whether this session runs under the skilled-loop wrapper. */
+function insideLoop(env = process.env) {
+  return Boolean(env?.SKILLED_LOOP_ID);
+}
+
 /** Return the env-then-config threshold, accepted when finite in (0, 1]. */
 function relaunchThreshold(config = {}, env = process.env) {
   const value = env.SESSION_RELAUNCH_THRESHOLD
@@ -413,7 +422,8 @@ function nextLevel({ ratio, threshold, state } = {}) {
 
 /**
  * Decide whether an adapter should nudge now, in the order every adapter applies:
- * the threshold, a handoff this session already prepared, the hop cap, then the level.
+ * the threshold, the wrapper, a handoff this session already prepared, the hop cap,
+ * then the level.
  * The state file is read only once the ratio reaches the threshold.
  *
  * @param {Object} options - Fill ratio and session state.
@@ -436,6 +446,7 @@ function nudgeDecision({
   const knownLevel = Number.isInteger(level) && level >= 0 ? level : undefined;
   const quiet = (reason) => ({ nudge: false, level: knownLevel ?? 0, reason });
   if (!(Number(ratio) >= Number(threshold))) return quiet('below-threshold');
+  if (!insideLoop(env)) return quiet('outside-loop');
   if (handoffPending({ sessionId, env })) return quiet('handoff-pending');
   if (hopLimitReached(env)) return quiet('hop-limit');
 

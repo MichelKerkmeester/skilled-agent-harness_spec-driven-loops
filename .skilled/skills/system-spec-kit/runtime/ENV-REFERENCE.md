@@ -114,11 +114,11 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 | `CLAUDE_PID` | (set by Claude Code) | number (process id) | Claude's own process id. Session relaunch `prepare` uses it for the live-shell-child check and the Claude Stop hook as the killer target, both only while it descends from the `skilled-loop` process; otherwise each walks to the loop's direct child. A value that is not a positive integer makes `prepare` exit 2. | `.skilled/hooks/session-relaunch/` |
 | `HERMES_SPEC_FOLDER` | (unset) | string (repo-relative packet path) | The Hermes form of `SYSTEM_SPEC_FOLDER`. The repo-guards plugin reads the bound packet's goal from it and passes it to the relaunch nudge as the payload's `spec_folder`. | `.hermes/plugins/repo-guards/` |
 
-`.skilled/bin/skilled-loop` exports the variables below to the runtime it starts. They describe the running loop, so an operator never sets them; the hooks and the CLI read them:
+`.skilled/bin/skilled-loop` exports the variables below to the runtime it starts. Start a runtime through it by hand, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain interactive `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` launch starts under the nearest wrapper, also in a repository that links `.skilled`. The variables describe the running loop, so an operator never sets them; the hooks and the CLI read them:
 
 | Variable | Set to | Read by |
 |----------|--------|---------|
-| `SKILLED_LOOP_ID` | The wrapper's process id. Its presence marks a session as inside the loop | Every adapter, the CLI and the killer, which signals only descendants of this process |
+| `SKILLED_LOOP_ID` | The wrapper's process id. Its presence marks a session as inside the loop. Unset or empty, no adapter nudges, because only the wrapper can relaunch | Every adapter, the CLI, the killer, which signals only descendants of this process, and the shell shim, which leaves a launch alone once a loop runs |
 | `SKILLED_LOOP_RUNTIME` | The runtime the wrapper started | The CLI, which records it in the relaunch record, and the Hermes arm path |
 | `SKILLED_LOOP_HOPS` | Relaunches so far in this loop, starting at `0` | The CLI, the nudge and the killer, against `SESSION_RELAUNCH_MAX_HOPS` |
 | `SKILLED_LOOP_MODEL`, `SKILLED_LOOP_PROVIDER` | The first launch's model and provider flags | The wrapper itself, which carries them into the relaunch and the manual command |

@@ -167,6 +167,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('keeps the agent quiet at the hop limit', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     process.env.SKILLED_LOOP_HOPS = '1';
     process.env.SESSION_RELAUNCH_MAX_HOPS = '1';
     const { api, handlers } = makeExtensionApi();
@@ -183,6 +184,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('retires a held nudge once the hop count reaches the cap before delivery', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
     const ctx = makeContext();
@@ -199,6 +201,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('agent_end delivers the nudge held from message_end exactly once', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
     const ctx = makeContext();
@@ -245,6 +248,7 @@ describe('session-relaunch Pi extension', () => {
     'sends threshold nudges once, including the 0.05 reminder, then stays quiet',
     async () => {
       setupEnv();
+      process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
       const { api, handlers } = makeExtensionApi();
       sessionRelaunch(api);
       const ctx = makeContext();
@@ -272,6 +276,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('delivers the nudge without waiting for an operator turn', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
 
@@ -288,6 +293,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('includes the save step when SYSTEM_SPEC_FOLDER is unset', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
 
@@ -527,6 +533,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('retries module loading after a dynamic import failure', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     let failuresRemaining = 2;
     const failOncePerPath = async (specifier: string) => {
       if (failuresRemaining > 0) {
@@ -563,6 +570,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('refuses to load a relaunch core that lacks a function it calls', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const actual = await vi.importActual<Record<string, unknown>>('../lib/relaunch-core.cjs');
     const realCore = (actual.default ?? actual) as Record<string, unknown>;
     const brokenCore = { default: { ...realCore, arm: undefined } };
@@ -613,6 +621,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('plans the handoff note under the resolved repo root', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
     await emit(handlers, 'message_end', {
@@ -635,6 +644,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     process.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
@@ -674,6 +684,7 @@ describe('session-relaunch Pi extension', () => {
 
   it('reads the hook flags file once per message_end event', async () => {
     setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
     delete process.env.SESSION_RELAUNCH_THRESHOLD;
     vi.resetModules();
     vi.doMock('../../.skilled/hooks/shared/hook-flags.mjs', async (importOriginal) => {
@@ -787,13 +798,17 @@ describe('session-relaunch Pi extension conformance', () => {
   });
 
   it('a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note', async () => {
-    const text = await nudgeAtNinety(() => { process.env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER; });
+    const text = await nudgeAtNinety(() => {
+      process.env.SKILLED_LOOP_ID = 'pi-conformance-loop-0003';
+      process.env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER;
+    });
     expect(text).toMatch(new RegExp(`^ +spec_folder: ${SPEC_FOLDER}$`, 'm'));
     expect(text).toContain("--runtime 'pi'");
   });
 
   it('a nudge drops an invalid spec folder instead of writing it into the note', async () => {
     const text = await nudgeAtNinety(() => {
+      process.env.SKILLED_LOOP_ID = 'pi-conformance-loop-0003';
       process.env.SYSTEM_SPEC_FOLDER = `${SPEC_FOLDER}\nstatus: done`;
     });
     expect(text).toMatch(/^ +spec_folder: $/m);
@@ -814,6 +829,10 @@ describe('session-relaunch Pi extension conformance', () => {
       });
     });
     expect(text).toBe('');
+  });
+
+  it('a nudge stays silent outside skilled-loop at a fill above the threshold', async () => {
+    expect(await nudgeAtNinety(() => { delete process.env.SKILLED_LOOP_ID; })).toBe('');
   });
 
   it('a nudge stays silent at the hop cap', async () => {

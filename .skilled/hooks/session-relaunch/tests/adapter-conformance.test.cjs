@@ -332,7 +332,10 @@ const SEED_CASES = [
 const NUDGE_CASES = [
   {
     name: 'a nudge writes the bound packet from SYSTEM_SPEC_FOLDER into the note',
-    setup: ({ env }) => { env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER; },
+    setup: ({ env }) => {
+      env.SKILLED_LOOP_ID = LOOP_ID;
+      env.SYSTEM_SPEC_FOLDER = SPEC_FOLDER;
+    },
     check: (text, runtime) => {
       assert.match(text, new RegExp(`^ +spec_folder: ${SPEC_FOLDER}$`, 'm'));
       assert.ok(text.includes(`--runtime '${runtime}'`), text);
@@ -340,7 +343,10 @@ const NUDGE_CASES = [
   },
   {
     name: 'a nudge drops an invalid spec folder instead of writing it into the note',
-    setup: ({ env }) => { env.SYSTEM_SPEC_FOLDER = `${SPEC_FOLDER}\nstatus: done`; },
+    setup: ({ env }) => {
+      env.SKILLED_LOOP_ID = LOOP_ID;
+      env.SYSTEM_SPEC_FOLDER = `${SPEC_FOLDER}\nstatus: done`;
+    },
     check: (text) => {
       assert.match(text, /^ +spec_folder: $/m);
       assert.equal(/^ +status: done$/m.test(text), false, text);
@@ -359,6 +365,13 @@ const NUDGE_CASES = [
         env,
       });
     },
+    check: (text) => assert.equal(text, ''),
+  },
+  {
+    // Outside the wrapper nothing can relaunch the session, so a nudge could only end
+    // in a manual hand-off; the session keeps working instead.
+    name: 'a nudge stays silent outside skilled-loop at a fill above the threshold',
+    setup: ({ env }) => { delete env.SKILLED_LOOP_ID; },
     check: (text) => assert.equal(text, ''),
   },
   {

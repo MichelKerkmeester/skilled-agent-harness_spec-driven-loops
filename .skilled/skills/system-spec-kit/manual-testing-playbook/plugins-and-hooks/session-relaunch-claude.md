@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.2.0
+version: 1.0.3.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -49,10 +49,10 @@ Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and eviden
 
 #### Nudge at threshold (Live)
 
-Start a Claude session with a small context window in a repository where the Claude hooks are installed. Continue turns until the latest assistant usage reaches the configured threshold. Confirm that Claude receives a context nudge with a handoff path and that the nudge level is recorded once in nudge-<session-id>.json. Exit without preparing a note so this check does not request a wrapper hop.
+Start a Claude session through `skilled-loop` with a small context window in a repository where the Claude hooks are installed. The nudge fires only inside the loop. Continue turns until the latest assistant usage reaches the configured threshold. Confirm that Claude receives a context nudge with a handoff path and that the nudge level is recorded once in nudge-<session-id>.json. Exit without preparing a note so this check does not request a wrapper hop.
 
 ~~~bash
-SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 claude "Tell me when the handoff nudge arrives, then wait."
+SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 bash .skilled/bin/skilled-loop claude "Tell me when the handoff nudge arrives, then wait."
 ~~~
 
 Evidence: the model responds to the nudge and the per-session nudge state records the reached level. PASS when the first eligible level arrives once. FAIL when no context is injected at or above the threshold or repeated events send the same level again.
@@ -133,7 +133,7 @@ const killer = require('./.skilled/hooks/session-relaunch/lib/killer.cjs');
     assert.equal(record.status, 'disarmed');
     assert.equal(record.disarmReason, 'killer-timeout');
     assert.equal(notifications.length, 1);
-    assert.match(notifications[0], /Session relaunch needs attention/);
+    assert.match(notifications[0], /Session relaunch needs attention \(killer timed out\)/);
     process.stdout.write('PASS: timeout disarmed the record and attempted a notification\n');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
@@ -145,7 +145,7 @@ const killer = require('./.skilled/hooks/session-relaunch/lib/killer.cjs');
 NODE
 ~~~
 
-Evidence: the record is disarmed with reason killer-timeout and the osascript stub receives one notification command. PASS when both assertions hold. FAIL when the record stays armed or the notification call is not attempted.
+Evidence: the record is disarmed with reason killer-timeout and the osascript stub receives one notification command whose title says the killer timed out. When `SKILLED_LOOP_MANUAL_TEMPLATE` is set without exactly one note placeholder, the command also carries a subtitle that says the template was ignored and why. PASS when both assertions hold. FAIL when the record stays armed or the notification call is not attempted.
 
 #### Kill switch disables both hooks (Automatable)
 
@@ -350,6 +350,42 @@ node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 
 Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
 
+#### No nudge outside skilled-loop (Automatable)
+
+Run the adapter conformance cases for a session that has no `SKILLED_LOOP_ID`. Each adapter runs a turn at 90% fill with a 0.80 threshold and must add nothing, because only the wrapper can relaunch the session.
+
+~~~bash
+node --test --test-name-pattern="outside skilled-loop" .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
+~~~
+
+Evidence: the Claude, Codex, Hermes and OpenCode cases named `a nudge stays silent outside skilled-loop at a fill above the threshold` pass. PASS when all four pass. FAIL when any adapter emits handoff text without a loop id.
+
+#### Shell shim resolution (Automatable)
+
+Run the shell shim suite. It sources `.skilled/bin/skilled-loop-shell.sh` under bash and zsh in a sandbox repository whose `.skilled` is a symlink to this checkout's `.skilled`. It checks that every runtime's interactive forms resolve the wrapper from the repository root and a nested directory. Subcommands, print modes, version and help resolve nothing. A directory with no `.skilled` above it and a session that already has `SKILLED_LOOP_ID` resolve nothing too. Stub `bash`, `claude` and `cursor-agent` binaries then show that a terminal launch goes through the wrapper and a piped launch runs the binary.
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+~~~
+
+Evidence: all 14 tests pass. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
+
+#### Symlinked repository through the shell shim (Live)
+
+Build a repository that links this checkout's `.skilled` and `.claude`, the way a second project shares the framework. Source the shim in a fresh shell, start plain `claude` there and let the hop run.
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+linked_repo="$(mktemp -d)/linked-repo"
+mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
+ln -s "$repo_root/.skilled" "$linked_repo/.skilled"
+ln -s "$repo_root/.claude" "$linked_repo/.claude"
+tmux new-session -d -s shim-claude "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && claude \"Carry this short task through the handoff and finish it in the receiving session.\"'"
+tmux attach -t shim-claude
+~~~
+
+Evidence: inside the first session, `echo $SKILLED_LOOP_ID` through the Bash tool prints a loop id, so the shim started Claude under the wrapper. The nudge arrives, prepare exits 0, the killer ends the session and the wrapper starts Claude again with the claim seed in the same pane. PASS when the note under `.skilled/skills/.state/session-relaunch/handoffs/` reaches done. FAIL when `SKILLED_LOOP_ID` is empty, prepare exits 3 or the pane returns to the shell prompt without a relaunch.
+
 ### Expected
 
 During an eligible live handoff, prepare writes pending. Stop arms it only after the transcript path is present and background tasks have drained. The killer sends SIGTERM only for an armed record after transcript idle. skilled-loop starts a new process with the handoff path in its seed when the record is fresh and under both limits. The receiving session changes the note from open to claimed then done. On timeout, the killer disarms the record, logs `killer-timeout` and attempts the manual-claim notification. A transcript that stays unreadable for 1 s takes the same path. Every arm event restarts a killer for an armed record that has none.
@@ -391,6 +427,9 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 | .skilled/hooks/session-relaunch/lib/killer.cjs | Waits for idle or timeout and signals the Claude process. |
 | .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Prepares and updates handoff state. |
 | .skilled/bin/skilled-loop | Checks relaunch eligibility and starts Claude with a handoff seed. |
+| .skilled/bin/skilled-loop-shell.sh | Starts a plain `claude` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs | Automates the outside-loop silence check for every Node adapter. |
+| .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs | Automates the shell shim's resolution and terminal hand-off. |
 | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs | Covers transcript usage reads, settings fallback and I/O handling. |
 | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs | Automates threshold, seed and adapter checks. |
 | .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs | Covers handoff validation, record state and relaunch decisions. |

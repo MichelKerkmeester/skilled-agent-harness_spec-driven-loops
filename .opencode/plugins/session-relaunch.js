@@ -61,8 +61,9 @@ function shouldPushActiveNudge(activeNudge, sessionID) {
   if (!activeNudge) return false;
   // A session at its hop cap cannot relaunch, so even a held nudge is spent.
   if (nudge.hopLimitReached(process.env)) return false;
-  // Without a usable loop id there is no record to consult, so a readable note is the
-  // only proof this session already wrote its handoff; a missing or broken one is not.
+  // The shared decision never queues a nudge outside the loop, so this branch is a loop
+  // id that cannot name a record: a readable note is then the only proof this session
+  // already wrote its handoff; a missing or broken one is not.
   if (!validLoopId(process.env.SKILLED_LOOP_ID)) {
     return NOTE_NOT_WRITTEN.has(core.noteState(activeNudge.notePath));
   }

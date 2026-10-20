@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason",
+  "spec_folder": "hooks/023-session-relaunch-loop/013-live-hop-and-notice-reason",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live hop and notice reason",
+      "phase 13 live hop and notice reason",
+      "killer notice subtitle",
+      "skilled-loop shell shim",
+      "no nudge outside skilled-loop",
+      "live hop and notice reason plan",
+      "live hop and notice reason tasks",
+      "live hop and notice reason acceptance criteria",
+      "live hop and notice reason implementation summary"
+    ],
+    "key_topics": [
+      "live",
+      "hop",
+      "notice",
+      "reason",
+      "phase",
+      "killer",
+      "subtitle",
+      "skilled-loop",
+      "shell",
+      "shim",
+      "nudge",
+      "outside"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".opencode/plugins/session-relaunch.js",
+      ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      "manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-conformance.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When `SKILLEDLOOPMANUALTEMPLATE` held no note placeholder or more than one, the killer logged `killer-manual-template` but its macOS notice showed only the plain command",
+    "created_at": "2026-10-20T04:14:54Z",
+    "last_save_at": "2026-10-20T04:53:39.267Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:632d0bc9a1582fdc1d1041e563ab5b03a71f362523852af9be7b9d4c3996f79f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "89b0bd5be55990e2e1098f768d6d10b06d6144f3e728a8e14e6bcfa82c539266",
+      "plan.md": "f2be9ec0225aff0a237d59f0e78369461e089cff7164ce8a0db606c256af2e60",
+      "tasks.md": "cfdf5de2b1a75c583b60f03b68e90d33f5e44ba08e0240af20a2622d616f99d3",
+      "implementation-summary.md": "44e72a31ef0169444dee3b8b566bc30b495518e5c31b1a0763645f71de2eeec2"
+    },
+    "last_active_at": null
+  }
+}

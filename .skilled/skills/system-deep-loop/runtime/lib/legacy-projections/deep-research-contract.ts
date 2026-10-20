@@ -92,16 +92,34 @@ const SPEC_PROTOCOL_LEGACY_FIELDS: Readonly<
 
 const SPEC_PROTOCOL_EVENT_STEMS = Object.freeze(new Set(Object.keys(SPEC_PROTOCOL_LEGACY_FIELDS)));
 
-// The rows the research reducer reads back (its own bookkeeping, and the idea
-// rows the agent and the operator record) are rebuilt exactly as they were
-// written: the documented key order, the timestamp in its legacy place, a null
-// the row carried kept as a null, and a field the row left out left out.
+// The rows a ledger-backed run keeps exactly as written (the reducer's own
+// bookkeeping and advisories, the idea rows the agent and the operator record,
+// the workflows' lifecycle rows and the divergent pivot's rows) are rebuilt
+// field for field: the documented key order, the timestamp in its legacy place,
+// a null the row carried kept as a null, and a field the row left out left out.
 // `timestamp` marks where the event's occurrence time goes, and a recorded
 // camelCase alias comes back as the row's event name.
 const IDEA_REJECTION_ROW_FIELDS = Object.freeze([
   'mode', 'run', 'rejectedId', 'ideaId', 'idea', 'pattern', 'category', 'reason',
   'timestamp', 'sessionId', 'generation',
 ]);
+const TREND_ADVISORY_ROW_FIELDS = Object.freeze([
+  'mode', 'severity', 'metric', 'run', 'window', 'value', 'sparkline', 'note', 'timestamp',
+]);
+// Each pivot row follows the pivot event's own field order for its kind.
+function pivotRowFields(eventFields: readonly string[]): readonly string[] {
+  return Object.freeze([
+    'mode', 'run', 'eventId', 'pivotId', 'lifecycle', ...eventFields,
+    'occurredAtIso', 'timestamp', 'sessionId', 'generation',
+  ]);
+}
+
+// The lifecycle rows the workflows write under a camelCase event name, which
+// the stem's snake_case suffix would not reproduce.
+const LEGACY_ROW_EVENT_NAMES: Readonly<Record<string, string>> = Object.freeze({
+  'deep_research.user_paused': 'userPaused',
+  'deep_research.stuck_recovery': 'stuckRecovery',
+});
 const REDUCER_ROW_FIELDS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'deep_research.idea_promoted': Object.freeze([
     'mode', 'run', 'ideaId', 'idea', 'category', 'observationCount', 'minIdeaObservations',
@@ -119,6 +137,33 @@ const REDUCER_ROW_FIELDS: Readonly<Record<string, readonly string[]>> = Object.f
   'deep_research.idea_rejected_reset': Object.freeze([
     'mode', 'run', 'reason', 'timestamp', 'sessionId', 'generation',
   ]),
+  'deep_research.user_paused': Object.freeze([
+    'mode', 'run', 'stopReason', 'sentinelPath', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.stuck_recovery': Object.freeze([
+    'mode', 'run', 'stopReason', 'fromIteration', 'fromFocus', 'toFocus', 'strategy', 'outcome',
+    'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.min_iterations_guard_pass': Object.freeze([
+    'mode', 'run', 'iterationCount', 'minIterations', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.migration': Object.freeze(['legacyPath', 'canonicalPath', 'timestamp']),
+  'deep_research.novelty_signal_inert': TREND_ADVISORY_ROW_FIELDS,
+  'deep_research.trend_flatline': TREND_ADVISORY_ROW_FIELDS,
+  'deep_research.pivot_override_accepted': Object.freeze([
+    'mode', 'run', 'pivotId', 'selectedCandidate', 'selectedFrontier', 'previousFocus',
+    'saturatedDirections', 'reason', 'agreementReason', 'timestamp', 'sessionId', 'generation',
+  ]),
+  'deep_research.pivot_started': pivotRowFields([
+    'ordinal', 'source', 'previousFocus', 'saturatedDirections', 'priorPivotCount',
+    'priorCouncilSeatOutputs', 'remainingIterations', 'acceptedCandidateIds',
+  ]),
+  'deep_research.pivot_selected': pivotRowFields(['selectedCandidate', 'selectedFrontier', 'agreement']),
+  'deep_research.pivot_completed': pivotRowFields([
+    'pivotCount', 'councilSeatOutputs', 'saturatedDirections', 'selectedFrontier', 'selectedCandidate',
+    'previousFocus', 'currentFocus', 'agreement', 'artifactRefs',
+  ]),
+  'deep_research.pivot_failed': pivotRowFields(['reason', 'quorum', 'agreement', 'recoverableByOverride']),
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -305,7 +350,9 @@ export function createDeepResearchProjectionContract(
         }
         row = {
           type: 'event',
-          event: typeof data.eventAlias === 'string' ? data.eventAlias : stem.replace(/^deep_research\./, ''),
+          event: typeof data.eventAlias === 'string'
+            ? data.eventAlias
+            : LEGACY_ROW_EVENT_NAMES[stem] ?? stem.replace(/^deep_research\./, ''),
           ...fields,
         };
       } else if (typeof stem === 'string' && SPEC_PROTOCOL_EVENT_STEMS.has(stem)) {

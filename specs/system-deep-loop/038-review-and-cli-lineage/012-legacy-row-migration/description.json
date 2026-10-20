@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-deep-loop/038-review-and-cli-lineage/012-legacy-row-migration",
+  "description": "Phase 12: legacy-row-migration",
+  "keywords": [
+    "phase",
+    "legacy-row-migration"
+  ],
+  "lastUpdated": "2026-10-20T04:14:56.637Z",
+  "specId": "012",
+  "folderSlug": "legacy-row-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "038-review-and-cli-lineage"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

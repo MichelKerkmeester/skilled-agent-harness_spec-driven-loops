@@ -123,6 +123,7 @@ async function waitFor(predicate, timeoutMs = 1500) {
 
 test('context-nudge fires at 0.80, suppresses the same level, and fires again at +0.05', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 800);
@@ -146,6 +147,7 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
 
 test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 800);
@@ -454,6 +456,7 @@ test('stop-arm logs a synchronous killer spawn throw and leaves the record armed
 
 test('context-nudge plans the handoff note under the resolved repo root', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 800);
@@ -480,6 +483,7 @@ test('context-nudge plans the handoff note under the resolved repo root', async 
 
 test('context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';
@@ -797,6 +801,7 @@ test('stop-arm defers an armed record with a dead killer while background tasks 
 
 test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none', async (t) => {
   const sandbox = createSandbox(t);
+  sandbox.env.SKILLED_LOOP_ID = 'claude-nudge-loop-0001';
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SYSTEM_SPEC_FOLDER = 'specs/hooks/001-session-relaunch';

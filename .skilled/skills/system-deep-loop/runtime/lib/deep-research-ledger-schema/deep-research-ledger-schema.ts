@@ -79,6 +79,7 @@ type DataFieldKind =
   | 'code-array'
   | 'counts'
   | 'digest'
+  | 'finite-number'
   | 'identifier'
   | 'identifier-array'
   | 'json'
@@ -172,6 +173,15 @@ const TERMINAL_STATUS_RULE = Object.freeze({
   kind: 'enum',
   values: ['blocked', 'completed', 'incomplete'],
 } as const);
+const TREND_SEVERITY_RULE = Object.freeze({
+  kind: 'enum',
+  values: ['advisory', 'warning'],
+} as const);
+
+// The stop-reason value a pause or recovery row names is the event itself.
+function stopReasonRule(reason: string): EnumFieldRule {
+  return Object.freeze({ kind: 'enum', values: Object.freeze([reason]) });
+}
 
 // The camelCase event name an older idea row was written under. The reducer
 // reads it as the snake_case name, and the projection writes it back as written.
@@ -191,6 +201,53 @@ const IDEA_REJECTION_FIELD_RULES = Object.freeze({
   reason: 'prose',
   sessionId: 'nullable-prose',
   generation: 'nullable-uint32',
+} as const satisfies Readonly<Record<string, DataFieldRule>>);
+
+// The session identity the research workflows stamp on a lifecycle row. A row
+// written by hand or before the workflow stamped it carries neither field.
+const LIFECYCLE_IDENTITY_RULES = Object.freeze({
+  sessionId: 'nullable-prose',
+  generation: 'nullable-uint32',
+} as const satisfies Readonly<Record<string, DataFieldRule>>);
+
+// The fields a divergent pivot event may carry, held to one rule per field.
+// A research state log row mirrors whichever of them the pivot recorded, and
+// the structured ones (candidates, agreement, artifact refs) travel whole.
+const PIVOT_LIFECYCLE_FIELD_RULES = Object.freeze({
+  ...LIFECYCLE_IDENTITY_RULES,
+  mode: 'code',
+  run: 'nullable-uint32',
+  eventId: 'identifier',
+  lifecycle: 'json',
+  ordinal: 'uint32',
+  source: 'json',
+  previousFocus: 'prose',
+  saturatedDirections: 'json',
+  priorPivotCount: 'uint32',
+  priorCouncilSeatOutputs: 'uint32',
+  remainingIterations: 'uint32',
+  acceptedCandidateIds: 'json',
+  selectedCandidate: 'json',
+  selectedFrontier: 'json',
+  agreement: 'json',
+  pivotCount: 'uint32',
+  councilSeatOutputs: 'uint32',
+  currentFocus: 'prose',
+  artifactRefs: 'json',
+  reason: 'prose',
+  quorum: 'json',
+  recoverableByOverride: 'boolean',
+  occurredAtIso: 'timestamp',
+} as const satisfies Readonly<Record<string, DataFieldRule>>);
+
+const TREND_ADVISORY_FIELD_RULES = Object.freeze({
+  mode: 'code',
+  severity: TREND_SEVERITY_RULE,
+  metric: 'code',
+  run: 'nullable-uint32',
+  window: 'uint32',
+  value: 'finite-number',
+  sparkline: 'prose',
 } as const satisfies Readonly<Record<string, DataFieldRule>>);
 
 const DATA_FIELD_RULES = Object.freeze({
@@ -531,6 +588,44 @@ const DATA_FIELD_RULES = Object.freeze({
   'deep_research.idea_rejected': {},
   'deep_research.idea_rejected_removed': {},
   'deep_research.idea_rejected_reset': {},
+  'deep_research.user_paused': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    stopReason: stopReasonRule('userPaused'),
+    sentinelPath: 'prose',
+  },
+  'deep_research.stuck_recovery': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    stopReason: stopReasonRule('stuckRecovery'),
+  },
+  'deep_research.min_iterations_guard_pass': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    iterationCount: 'uint32',
+    minIterations: 'uint32',
+  },
+  'deep_research.migration': {
+    legacyPath: 'prose',
+    canonicalPath: 'prose',
+  },
+  'deep_research.novelty_signal_inert': TREND_ADVISORY_FIELD_RULES,
+  'deep_research.trend_flatline': TREND_ADVISORY_FIELD_RULES,
+  'deep_research.pivot_override_accepted': {
+    mode: 'code',
+    run: 'nullable-uint32',
+    pivotId: 'identifier',
+    selectedCandidate: 'json',
+    selectedFrontier: 'json',
+    previousFocus: 'prose',
+    saturatedDirections: 'json',
+    reason: 'prose',
+    agreementReason: 'code',
+  },
+  'deep_research.pivot_started': { pivotId: 'identifier' },
+  'deep_research.pivot_selected': { pivotId: 'identifier' },
+  'deep_research.pivot_completed': { pivotId: 'identifier' },
+  'deep_research.pivot_failed': { pivotId: 'identifier' },
 } as const satisfies Readonly<
   Record<DeepResearchEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -577,6 +672,23 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
     generation: 'nullable-uint32',
     eventAlias: eventAliasRule('ideaRejectedReset'),
   }),
+  'deep_research.user_paused': LIFECYCLE_IDENTITY_RULES,
+  'deep_research.stuck_recovery': Object.freeze({
+    ...LIFECYCLE_IDENTITY_RULES,
+    fromIteration: 'uint32',
+    fromFocus: 'prose',
+    toFocus: 'prose',
+    strategy: 'prose',
+    outcome: 'code',
+  }),
+  'deep_research.min_iterations_guard_pass': LIFECYCLE_IDENTITY_RULES,
+  'deep_research.novelty_signal_inert': Object.freeze({ note: 'prose' }),
+  'deep_research.trend_flatline': Object.freeze({ note: 'prose' }),
+  'deep_research.pivot_override_accepted': LIFECYCLE_IDENTITY_RULES,
+  'deep_research.pivot_started': PIVOT_LIFECYCLE_FIELD_RULES,
+  'deep_research.pivot_selected': PIVOT_LIFECYCLE_FIELD_RULES,
+  'deep_research.pivot_completed': PIVOT_LIFECYCLE_FIELD_RULES,
+  'deep_research.pivot_failed': PIVOT_LIFECYCLE_FIELD_RULES,
 });
 
 const SCOPE_FIELDS = Object.freeze({
@@ -626,6 +738,17 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_research.idea_rejected': ['runId', 'lineageId'],
   'deep_research.idea_rejected_removed': ['runId', 'lineageId'],
   'deep_research.idea_rejected_reset': ['runId', 'lineageId'],
+  'deep_research.user_paused': ['runId', 'lineageId'],
+  'deep_research.stuck_recovery': ['runId', 'lineageId'],
+  'deep_research.min_iterations_guard_pass': ['runId', 'lineageId'],
+  'deep_research.migration': ['runId', 'lineageId'],
+  'deep_research.novelty_signal_inert': ['runId', 'lineageId'],
+  'deep_research.trend_flatline': ['runId', 'lineageId'],
+  'deep_research.pivot_override_accepted': ['runId', 'lineageId'],
+  'deep_research.pivot_started': ['runId', 'lineageId'],
+  'deep_research.pivot_selected': ['runId', 'lineageId'],
+  'deep_research.pivot_completed': ['runId', 'lineageId'],
+  'deep_research.pivot_failed': ['runId', 'lineageId'],
 } as const satisfies Readonly<Record<DeepResearchEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
@@ -828,6 +951,8 @@ function isFieldValue(rule: DataFieldRule, value: unknown): boolean {
         && Object.values(value).every(isUint32);
     case 'digest':
       return typeof value === 'string' && HASH_PATTERN.test(value);
+    case 'finite-number':
+      return typeof value === 'number' && Number.isFinite(value);
     case 'identifier':
     case 'reference':
     case 'version':
@@ -903,6 +1028,30 @@ function isData(stem: DeepResearchEventStem, value: unknown): boolean {
     return ['rejectedId', 'ideaId', 'idea', 'pattern'].some((field) => value[field] !== undefined);
   }
   return true;
+}
+
+/**
+ * The first field in a stem's data whose value breaks the rule the schema holds
+ * it to, or null when every field it has a rule for passes. A field with no
+ * rule is left for the exact-field check to name.
+ *
+ * @param stem - The registered stem the data travels under.
+ * @param data - The payload data, before the schema validates it whole.
+ * @returns The offending field name, or null.
+ */
+export function findMistypedDeepResearchField(
+  stem: DeepResearchEventStem,
+  data: Readonly<Record<string, unknown>>,
+): string | null {
+  const required: Readonly<Record<string, DataFieldRule>> = DATA_FIELD_RULES[stem];
+  const optional: Readonly<Record<string, DataFieldRule>> = OPTIONAL_DATA_FIELD_RULES[stem] ?? {};
+  for (const [field, value] of Object.entries(data)) {
+    const rule = Object.hasOwn(required, field)
+      ? required[field]
+      : Object.hasOwn(optional, field) ? optional[field] : undefined;
+    if (rule !== undefined && !isFieldValue(rule, value)) return field;
+  }
+  return null;
 }
 
 function digestPayloadInput(

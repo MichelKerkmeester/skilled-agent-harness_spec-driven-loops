@@ -67,6 +67,85 @@ const AUDIT_LEDGER_ID = 'deep-research-shadow-authorization';
 const AUTHORITY = Object.freeze({ state: 'shadowing' as const, epoch: 1 });
 const temporaryRoots: string[] = [];
 
+// The lifecycle, advisory and pivot rows the research workflows, the reducer
+// and the divergent pivot write, in their documented key order. Each one has to
+// survive a projection replace exactly as written.
+const LEGACY_ROW_TIMESTAMP = '2026-05-24T00:00:00Z';
+const PIVOT_CANDIDATE = Object.freeze({ id: 'candidate-2', focus: 'Transport alternatives' });
+const LEGACY_LIFECYCLE_ROWS = {
+  userPaused: {
+    type: 'event', event: 'userPaused', mode: 'research', run: 7, stopReason: 'userPaused',
+    sentinelPath: 'research/.deep-research-pause', timestamp: LEGACY_ROW_TIMESTAMP,
+    sessionId: 'session-1', generation: 1,
+  },
+  stuckRecoveryDocumented: {
+    type: 'event', event: 'stuckRecovery', mode: 'research', run: 7, stopReason: 'stuckRecovery',
+    fromFocus: 'Connection pooling', toFocus: 'Transport alternatives', strategy: 'try_opposites',
+    timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  stuckRecovery: {
+    type: 'event', event: 'stuckRecovery', mode: 'research', run: 7, stopReason: 'stuckRecovery',
+    fromIteration: 7, outcome: 'recovered', timestamp: LEGACY_ROW_TIMESTAMP,
+    sessionId: 'session-1', generation: 1,
+  },
+  minIterationsGuardPass: {
+    type: 'event', event: 'min_iterations_guard_pass', mode: 'research', run: 4, iterationCount: 4,
+    minIterations: 3, timestamp: LEGACY_ROW_TIMESTAMP, sessionId: 'session-1', generation: 1,
+  },
+  migration: {
+    type: 'event', event: 'migration', legacyPath: 'research/state.jsonl',
+    canonicalPath: 'research/deep-research-state.jsonl', timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  noveltySignalInert: {
+    type: 'event', event: 'novelty_signal_inert', mode: 'research', severity: 'warning',
+    metric: 'newInfoRatio', run: 5, window: 3, value: 0.95, sparkline: '███',
+    note: 'newInfoRatio held flat at 0.95 across 3 iterations.', timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  trendFlatline: {
+    type: 'event', event: 'trend_flatline', mode: 'research', severity: 'advisory',
+    metric: 'convergenceScore', run: 5, window: 3, value: 0.2, sparkline: '▃▃▃',
+    timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  pivotOverrideAccepted: {
+    type: 'event', event: 'pivot_override_accepted', mode: 'research', run: 6, pivotId: 'pivot-001-a1b2',
+    selectedCandidate: PIVOT_CANDIDATE, selectedFrontier: [PIVOT_CANDIDATE],
+    previousFocus: 'Connection pooling', saturatedDirections: ['Connection pooling'],
+    reason: 'Operator prefers the transport direction', agreementReason: 'insufficient_endorsement',
+    timestamp: LEGACY_ROW_TIMESTAMP, sessionId: 'session-1', generation: 1,
+  },
+  pivotStarted: {
+    type: 'event', event: 'pivot_started', mode: 'research', run: 6, eventId: 'pivot-001-a1b2:pivot_started',
+    pivotId: 'pivot-001-a1b2', lifecycle: { from: 'LEGAL_STOP', to: 'PIVOT_PENDING', next: 'COUNCIL_RUNNING' },
+    ordinal: 1, source: { sourceIteration: 6 }, previousFocus: 'Connection pooling',
+    saturatedDirections: ['Connection pooling'], priorPivotCount: 0, priorCouncilSeatOutputs: 0,
+    remainingIterations: 4, acceptedCandidateIds: ['candidate-2'], timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  pivotSelected: {
+    type: 'event', event: 'pivot_selected', mode: 'research', run: 6, pivotId: 'pivot-001-a1b2',
+    lifecycle: { from: 'COUNCIL_RUNNING', to: 'PIVOT_SELECTED' }, selectedCandidate: PIVOT_CANDIDATE,
+    selectedFrontier: [PIVOT_CANDIDATE], agreement: { converged: true, selectedCandidateId: 'candidate-2' },
+    timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  pivotCompleted: {
+    type: 'event', event: 'pivot_completed', mode: 'research', run: 6, pivotId: 'pivot-001-a1b2',
+    lifecycle: { from: 'PIVOT_SELECTED', to: 'PIVOT_COMPLETED', next: 'CONTINUE' }, pivotCount: 1,
+    councilSeatOutputs: 3, saturatedDirections: ['Connection pooling'], selectedFrontier: [PIVOT_CANDIDATE],
+    selectedCandidate: PIVOT_CANDIDATE, previousFocus: 'Connection pooling',
+    currentFocus: 'Transport alternatives', timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+  pivotFailed: {
+    type: 'event', event: 'pivot_failed', mode: 'research', run: 6, pivotId: 'pivot-001-a1b2',
+    lifecycle: { from: 'PIVOT_PENDING', to: 'PIVOT_PENDING' }, reason: 'no_valid_candidates',
+    recoverableByOverride: false, timestamp: LEGACY_ROW_TIMESTAMP,
+  },
+} as const;
+
+// The ledger payload a legacy row travels as: everything but its envelope.
+function legacyRowData(record: Readonly<Record<string, unknown>>): JsonObject {
+  const { type: _type, event: _event, timestamp: _timestamp, ...data } = record;
+  return JSON.parse(JSON.stringify(data)) as JsonObject;
+}
+
 interface Harness {
   readonly registry: EventTypeRegistry;
   readonly policies: TransitionPolicyRegistry;
@@ -586,6 +665,17 @@ function dataFor<TStem extends DeepResearchEventStem>(
       mode: 'research',
       reason: 'Operator wants previously rejected ideas eligible again',
     },
+    'deep_research.user_paused': legacyRowData(LEGACY_LIFECYCLE_ROWS.userPaused),
+    'deep_research.stuck_recovery': legacyRowData(LEGACY_LIFECYCLE_ROWS.stuckRecovery),
+    'deep_research.min_iterations_guard_pass': legacyRowData(LEGACY_LIFECYCLE_ROWS.minIterationsGuardPass),
+    'deep_research.migration': legacyRowData(LEGACY_LIFECYCLE_ROWS.migration),
+    'deep_research.novelty_signal_inert': legacyRowData(LEGACY_LIFECYCLE_ROWS.noveltySignalInert),
+    'deep_research.trend_flatline': legacyRowData(LEGACY_LIFECYCLE_ROWS.trendFlatline),
+    'deep_research.pivot_override_accepted': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotOverrideAccepted),
+    'deep_research.pivot_started': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotStarted),
+    'deep_research.pivot_selected': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotSelected),
+    'deep_research.pivot_completed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotCompleted),
+    'deep_research.pivot_failed': legacyRowData(LEGACY_LIFECYCLE_ROWS.pivotFailed),
   };
   return data[stem] as DeepResearchPayloadMap[TStem];
 }
@@ -1176,7 +1266,7 @@ describe('deep-research typed ledger schema', () => {
     }).status).toBe('migrate');
     expect(decideDeepResearchCompatibility({
       type: 'event',
-      event: 'pivot_started',
+      event: 'lock_released',
       schemaVersion: 1,
     }).status).toBe('pin-old-runtime');
     expect(decideDeepResearchCompatibility({ type: 'unknown', schemaVersion: 1 }).status)
@@ -1419,7 +1509,7 @@ describe('deep-research typed ledger schema', () => {
       expect(result.data).toEqual(data);
     }
 
-    for (const event of ['migration', 'min_iterations_guard_pass'] as const) {
+    for (const event of ['lock_released', 'config_warning'] as const) {
       expect(decideDeepResearchCompatibility({
         type: 'event',
         event,
@@ -1455,26 +1545,32 @@ describe('deep-research typed ledger schema', () => {
     });
   });
 
-  it('pins every reducer-side legacy event shape without a lossless ledger target', () => {
-    const reducerEventShapes = [
-      'novelty_signal_inert',
-      'trend_flatline',
-      'pivot_started',
-      'pivot_selected',
-      'pivot_completed',
-      'pivot_failed',
-      'pivot_override_accepted',
-    ] as const;
+  // A pinned row had no stem, so a projection replace in a ledger-backed run
+  // dropped it. Each of these now migrates to its own stem.
+  it('migrates every lifecycle, advisory and pivot row instead of pinning it', () => {
+    const targets = {
+      userPaused: 'deep_research.user_paused',
+      stuckRecovery: 'deep_research.stuck_recovery',
+      min_iterations_guard_pass: 'deep_research.min_iterations_guard_pass',
+      migration: 'deep_research.migration',
+      novelty_signal_inert: 'deep_research.novelty_signal_inert',
+      trend_flatline: 'deep_research.trend_flatline',
+      pivot_override_accepted: 'deep_research.pivot_override_accepted',
+      pivot_started: 'deep_research.pivot_started',
+      pivot_selected: 'deep_research.pivot_selected',
+      pivot_completed: 'deep_research.pivot_completed',
+      pivot_failed: 'deep_research.pivot_failed',
+    } as const;
 
-    for (const event of reducerEventShapes) {
+    for (const [event, targetStem] of Object.entries(targets)) {
       expect(decideDeepResearchCompatibility({
         type: 'event',
         event,
         schemaVersion: 1,
       })).toMatchObject({
-        status: 'pin-old-runtime',
-        reasonCode: 'legacy-event-has-no-lossless-mode-event',
-        targetStem: null,
+        status: 'migrate',
+        reasonCode: 'registered-pure-upcaster',
+        targetStem,
       });
     }
   });
@@ -1542,6 +1638,18 @@ describe('deep-research typed ledger schema', () => {
         injectedAtIteration: 2, timestamp: '2026-10-19T10:02:00.000Z', sessionId: 'session-1', generation: 1,
       },
     },
+    { stem: 'deep_research.user_paused', record: LEGACY_LIFECYCLE_ROWS.userPaused },
+    { stem: 'deep_research.stuck_recovery', record: LEGACY_LIFECYCLE_ROWS.stuckRecoveryDocumented },
+    { stem: 'deep_research.stuck_recovery', record: LEGACY_LIFECYCLE_ROWS.stuckRecovery },
+    { stem: 'deep_research.min_iterations_guard_pass', record: LEGACY_LIFECYCLE_ROWS.minIterationsGuardPass },
+    { stem: 'deep_research.migration', record: LEGACY_LIFECYCLE_ROWS.migration },
+    { stem: 'deep_research.novelty_signal_inert', record: LEGACY_LIFECYCLE_ROWS.noveltySignalInert },
+    { stem: 'deep_research.trend_flatline', record: LEGACY_LIFECYCLE_ROWS.trendFlatline },
+    { stem: 'deep_research.pivot_override_accepted', record: LEGACY_LIFECYCLE_ROWS.pivotOverrideAccepted },
+    { stem: 'deep_research.pivot_started', record: LEGACY_LIFECYCLE_ROWS.pivotStarted },
+    { stem: 'deep_research.pivot_selected', record: LEGACY_LIFECYCLE_ROWS.pivotSelected },
+    { stem: 'deep_research.pivot_completed', record: LEGACY_LIFECYCLE_ROWS.pivotCompleted },
+    { stem: 'deep_research.pivot_failed', record: LEGACY_LIFECYCLE_ROWS.pivotFailed },
   ] as const;
 
   it.each(reducerReadRows)('upcasts a legacy $record.event row to $stem and projects the same row back', ({ stem, record }) => {
@@ -1602,12 +1710,111 @@ describe('deep-research typed ledger schema', () => {
       [{ ...observed, timestamp: '2026-05-24 00:00:00' }, 'legacy-row-timestamp-invalid'],
       [{ type: 'event', event: 'idea_rejected', mode: 'research', timestamp: '2026-05-24T00:00:00Z' },
         'idea-rejected-fields-missing'],
+      // A wrongly typed value names the row kind and the field instead of
+      // reaching the schema's generic refusal.
+      [{ ...observed, run: '4' }, 'idea-observed-fields-mistyped:run'],
+      [{ ...LEGACY_LIFECYCLE_ROWS.stuckRecovery, fromIteration: 'seven' }, 'stuck-recovery-fields-mistyped:fromIteration'],
+      [{ ...LEGACY_LIFECYCLE_ROWS.minIterationsGuardPass, minIterations: -1 },
+        'min-iterations-guard-pass-fields-mistyped:minIterations'],
+      [{ ...LEGACY_LIFECYCLE_ROWS.userPaused, stopReason: 'paused' }, 'user-paused-fields-mistyped:stopReason'],
+      [{ ...LEGACY_LIFECYCLE_ROWS.pivotFailed, timestamp: null }, 'legacy-row-timestamp-invalid'],
     ] as const;
     for (const [record, reasonCode] of refusals) {
       const result = upcastLegacyDeepResearchRecord(JSON.parse(JSON.stringify(record)), context);
       expect(result.status, reasonCode).toBe('refused');
       if (result.status !== 'refused') continue;
       expect(result.decision).toMatchObject({ status: 'pin-old-runtime', reasonCode });
+    }
+  });
+
+  // The projection writes every row's timestamp from the event's occurrence
+  // time, so an arm that recorded the append time rewrote the row's own time.
+  it.each([
+    ['config', {
+      type: 'config', sessionId: 'run-time-1', lineageId: 'lineage-time-1', generation: 1, maxIterations: 3,
+    }],
+    ['iteration', {
+      type: 'iteration', sessionId: 'run-time-1', parentSessionId: 'lineage-time-1', run: 2, status: 'complete',
+      newInfoRatio: 0.4, ruledOut: [],
+    }],
+    ['resumed', {
+      type: 'event', event: 'resumed', sessionId: 'run-time-1', parentSessionId: 'lineage-time-1', generation: 1,
+    }],
+    ['spec_check_result', {
+      type: 'event', event: 'spec_check_result', folder_state: 'spec-present', normalized_topic: 'topic',
+      specPath: 'spec.md', lockPath: 'research/.deep-research.lock',
+    }],
+  ] as const)('keeps the %s row\'s own timestamp as the event time', (_label, row) => {
+    const context = {
+      scope: { runId: 'run-time-1', lineageId: 'lineage-time-1', iteration: 2 },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-row-time'),
+    };
+    const kept = upcastLegacyDeepResearchRecord({ ...row, timestamp: '2026-05-24T03:04:05Z' }, context);
+    if (kept.status !== 'migrated') throw new Error(kept.decision.reasonCode);
+    expect(kept.occurredAt).toBe('2026-05-24T03:04:05Z');
+
+    // A row with no timestamp has none to keep, so the append time stands.
+    const absent = upcastLegacyDeepResearchRecord({ ...row }, context);
+    if (absent.status !== 'migrated') throw new Error(absent.decision.reasonCode);
+    expect(absent.occurredAt).toBeUndefined();
+
+    // A timestamp that is not a UTC instant cannot travel as the event time. The
+    // append time stands, and the warning says the row's own time was not kept.
+    const offset = upcastLegacyDeepResearchRecord({ ...row, timestamp: '2026-05-24T05:04:05+02:00' }, context);
+    if (offset.status !== 'migrated') throw new Error(offset.decision.reasonCode);
+    expect(offset.occurredAt).toBeUndefined();
+    expect(offset.warnings).toContain(
+      'The row timestamp is not a UTC instant, so the event records the append time instead.',
+    );
+  });
+
+  // A silently defaulted count would open the run with a budget or generation the
+  // operator never set, so a wrongly typed field is refused by name. A numeric
+  // string carries the same number, and a live run may already hold one.
+  it('refuses a mistyped config field by name and converts only a lossless numeric string', () => {
+    const context = {
+      scope: { runId: 'run-config-1', lineageId: 'lineage-config-1' },
+      prevEventHash: '0'.repeat(64),
+      replay: replayMetadata('legacy-config-fields'),
+    };
+    const config = {
+      type: 'config', sessionId: 'run-config-1', lineageId: 'lineage-config-1', generation: 2, maxIterations: 4,
+      topic: 'How does the relaunch loop recover?', timestamp: '2026-05-24T00:00:00Z',
+    };
+
+    for (const field of ['maxIterations', 'generation'] as const) {
+      const converted = upcastLegacyDeepResearchRecord({ ...config, [field]: String(config[field]) }, context);
+      if (converted.status !== 'migrated') throw new Error(converted.decision.reasonCode);
+      expect(converted.data).toMatchObject({ [field]: config[field] });
+      expect(converted.warnings).toContain(
+        `The config ${field} was a numeric string and is carried as the number it spells.`,
+      );
+
+      for (const value of ['4.0', '04', ' 4', 'four', '', -1, 1.5, true, null, [4], { value: 4 }]) {
+        const refused = upcastLegacyDeepResearchRecord({ ...config, [field]: value }, context);
+        expect(refused.status, `${field}=${JSON.stringify(value)}`).toBe('refused');
+        if (refused.status !== 'refused') continue;
+        expect(refused.decision).toMatchObject({
+          status: 'pin-old-runtime',
+          reasonCode: `run-initialized-fields-mistyped:${field}`,
+        });
+      }
+    }
+
+    for (const [field, value] of [['topic', 42], ['topic', null], ['executor', 7], ['executor', ['cli-codex']]] as const) {
+      const refused = upcastLegacyDeepResearchRecord({ ...config, [field]: value }, context);
+      expect(refused.status, `${field}=${JSON.stringify(value)}`).toBe('refused');
+      if (refused.status !== 'refused') continue;
+      expect(refused.decision).toMatchObject({ reasonCode: `run-initialized-fields-mistyped:${field}` });
+    }
+
+    // The well-typed shapes on disk still upcast without a conversion warning.
+    for (const executor of ['cli-codex', { kind: 'cli-codex', model: 'gpt-5.5' }]) {
+      const kept = upcastLegacyDeepResearchRecord({ ...config, executor }, context);
+      if (kept.status !== 'migrated') throw new Error(kept.decision.reasonCode);
+      expect(kept.data).toMatchObject({ generation: 2, maxIterations: 4, topic: config.topic });
+      expect(kept.warnings.some((warning) => /numeric string/.test(warning))).toBe(false);
     }
   });
 

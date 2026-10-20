@@ -69,6 +69,9 @@ afterEach(() => {
 // needs to be JSON.
 const ENUM_PLACEHOLDER_VALUES: Record<string, string> = {
   folder_state: 'spec-present',
+  // The workflow fills the timestamp with the current UTC instant, and a row the
+  // projection writes back field for field must carry one to be accepted.
+  ISO_8601_NOW: '2026-05-24T00:00:00Z',
 };
 
 function renderTemplate(template: string): string {
@@ -288,5 +291,36 @@ describe('deep-research bookkeeping emission', () => {
           + `between ${first.file} and ${second.file}`,
       ).toBe(first.pinned.has(event));
     }
+  });
+
+  // Appending the migration row before session classification would create the
+  // state log and turn a fresh packet into a partial one, so it is recorded only
+  // once the run is classified and opened, and then through the gateway.
+  for (const file of WORKFLOW_FILES) {
+    it(`appends the migration row after session classification and the run open in ${file}`, () => {
+      const filePath = join(ASSETS_DIR, file);
+      const lines = readFileSync(filePath, 'utf8').split('\n');
+      const lineOf = (pattern: RegExp): number => lines.findIndex((line) => pattern.test(line)) + 1;
+      const migrations = extractDirectives(filePath).filter((directive) => directive.event === 'migration');
+
+      expect(migrations.map((directive) => directive.key)).toEqual(['append_jsonl']);
+      expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_classify_session:\s*$/));
+      expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_create_state_log:\s*$/));
+      expect(lines.some((line) => /log_only_bookkeeping/.test(line))).toBe(false);
+    });
+  }
+
+  // A hand-edited state log is replaced at the next projection in a ledger-backed
+  // run, so the halt has to name the gateway command that records the removal.
+  it('names the gateway path for a removal or reset when every candidate is rejected', () => {
+    const text = readFileSync(join(ASSETS_DIR, 'deep-research-auto.yaml'), 'utf8');
+    const halt = text.slice(text.indexOf('if_all_candidates_suppressed:'));
+    const message = halt.slice(0, halt.indexOf('\n\n'));
+    expect(message).toContain(
+      'node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research '
+        + '--run-directory {artifact_dir} --event-json',
+    );
+    expect(message).toContain('"event":"idea_rejected_removed"');
+    expect(message).toContain('"event":"idea_rejected_reset"');
   });
 });

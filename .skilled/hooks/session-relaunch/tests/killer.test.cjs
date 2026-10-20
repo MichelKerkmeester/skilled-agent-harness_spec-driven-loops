@@ -1982,6 +1982,8 @@ test('killer timeout notification fills the manual template from the environment
       'skilled-loop claude --model opus "[session-relaunch] claim and continue handoff '
         + `${handoffPath}${SPEC_FOLDER_SUFFIX}"`,
     );
+    assert.match(notifications[0], / with title "Session relaunch needs attention \(killer timed out\)"$/);
+    assert.doesNotMatch(notifications[0], / subtitle /, 'a usable template leaves the notice without a subtitle');
   } finally {
     childProcess.spawnSync = realSpawnSync;
     if (previousTemplate !== undefined) process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
@@ -2027,6 +2029,13 @@ test('killer timeout logs an unusable manual template before its plain notice', 
     const logLine = readKillerLog(sandbox).split('\n').find((line) => line.includes('killer-manual-template'));
     assert.ok(logLine, 'the killer should log why its notice fell back to the plain command');
     assert.match(logLine, /problem=SKILLED_LOOP_MANUAL_TEMPLATE_holds_no_@@HANDOFF@@_placeholder/);
+    const subtitle = notifications[0].match(/ subtitle ("(?:\\.|[^"\\])*")$/);
+    assert.ok(subtitle, 'the notice should carry the reason its template was ignored');
+    assert.equal(
+      JSON.parse(subtitle[1]),
+      'Manual template ignored: SKILLED_LOOP_MANUAL_TEMPLATE holds no @@HANDOFF@@ placeholder '
+        + 'where the manual command needs exactly one',
+    );
   } finally {
     childProcess.spawnSync = realSpawnSync;
     if (previousTemplate !== undefined) process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;

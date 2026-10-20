@@ -292,9 +292,24 @@ workflow:
           - "{state_paths.local_packet_dir}/iteration-*.md -> {state_paths.iteration_dir}/"
           - "{state_paths.legacy_root_report} -> {state_paths.review_output}"
         on_canonical_present: "Leave canonical review/ state untouched and do not overwrite it with legacy scratch artifacts."
-        on_legacy_detected: "Move only the review-specific whitelist, append a migration event to the canonical JSONL, and leave unrelated scratch files untouched."
+        on_legacy_detected: "Move only the review-specific whitelist, print LEGACY_REVIEW_STATE_MOVED and leave unrelated scratch files untouched. Nothing is appended here: an append before session classification would create the state log and turn a fresh packet into a partial one, and the moved state log was written without the ledger, so the gateway refuses every append to it until step_classify_session.on_moved_legacy_state adopts it."
         on_conflict: "If canonical review/ state and legacy scratch review state both exist but disagree, halt for operator repair instead of merging contradictory state."
-        command: "mkdir -p {state_paths.iteration_dir} && if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}; [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}; [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}; [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}; find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; ; [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}; [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}; if [ -e {state_paths.state_log} ]; then MIGRATION_EVENT=$(mktemp); GATEWAY=.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs; [ -f \"$GATEWAY\" ] || GATEWAY=scripts/append-mode-event.cjs; printf '%s\n' '{\"stem\":\"deep_review.migration\",\"scope\":{\"runId\":\"{session_id}\",\"sessionId\":\"{session_id}\"},\"data\":{\"mode\":\"review\",\"legacyArtifacts\":[\"deep-research-config.json\",\"deep-research-state.jsonl\",\".deep-research-pause\"],\"canonicalArtifacts\":[\"deep-review-config.json\",\"deep-review-state.jsonl\",\".deep-review-pause\"]}}' > \"$MIGRATION_EVENT\"; node \"$GATEWAY\" --mode review --run-directory \"$(dirname {state_paths.state_log})\" --event-json \"$MIGRATION_EVENT\"; MIGRATION_STATUS=$?; rm -f \"$MIGRATION_EVENT\"; [ \"$MIGRATION_STATUS\" -eq 0 ] || exit \"$MIGRATION_STATUS\"; fi; fi; find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \\; 2>/dev/null || true"
+        outputs:
+          - legacy_migration_detected: "true when the command printed LEGACY_REVIEW_STATE_MOVED, else false"
+          - migration_recorded: "false; step_record_artifact_migration sets it once the migration row is appended"
+        command: |
+          mkdir -p {state_paths.iteration_dir}
+          if [ ! -e {state_paths.config} ] && [ ! -e {state_paths.state_log} ] && [ ! -e {state_paths.strategy} ] && [ -e {spec_folder}/scratch/deep-review-strategy.md ] && ( [ -e {spec_folder}/scratch/deep-research-config.json ] || [ -e {spec_folder}/scratch/deep-research-state.jsonl ] ); then
+            [ -e {spec_folder}/scratch/deep-research-config.json ] && mv {spec_folder}/scratch/deep-research-config.json {state_paths.config}
+            [ -e {spec_folder}/scratch/deep-research-state.jsonl ] && mv {spec_folder}/scratch/deep-research-state.jsonl {state_paths.state_log}
+            [ -e {spec_folder}/scratch/deep-review-strategy.md ] && mv {spec_folder}/scratch/deep-review-strategy.md {state_paths.strategy}
+            [ -e {spec_folder}/scratch/deep-review-dashboard.md ] && mv {spec_folder}/scratch/deep-review-dashboard.md {state_paths.dashboard}
+            find {spec_folder}/scratch -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \;
+            [ -e {spec_folder}/scratch/.deep-research-pause ] && mv {spec_folder}/scratch/.deep-research-pause {state_paths.pause_sentinel}
+            [ -e {state_paths.legacy_root_report} ] && mv {state_paths.legacy_root_report} {state_paths.review_output}
+            echo "LEGACY_REVIEW_STATE_MOVED"
+          fi
+          find {state_paths.local_packet_dir} -maxdepth 1 -name 'iteration-*.md' -exec mv {} {state_paths.iteration_dir}/ \; 2>/dev/null || true
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
@@ -333,6 +348,7 @@ workflow:
           - "If lineage_mode == restart and session_state is resume or completed-session, execute on_restart before on_resume or on_completed_session."
           - "If lineage_mode == auto or lineage_mode == resume, preserve the existing resume/completed/fresh behavior."
         on_resume:
+          before_append: "Run on_moved_legacy_state first when it applies."
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
           append_jsonl: '{"stem":"deep_review.run_resumed","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","sourceSessionId":"{session_id}","resumeReason":"Auto-resume: state artifacts are complete and consistent; continue the same lineage.","continuedFromRunId":"{session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
           skip_to: phase_loop
@@ -345,7 +361,53 @@ workflow:
             generation: "{prior_generation + 1}"
           skip_to: step_create_config
         note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-review/references/protocol/loop-protocol.md §Lifecycle Branches for the one-session contract."
+        on_moved_legacy_state:
+          applies_when: "legacy_migration_detected == true and the branch taken resumes the session or goes to synthesis; never on restart or cancel"
+          order: "Runs after classification and before that branch appends anything, the resume event included."
+          note: |
+            The state log moved out of scratch/ was written by hand before the ledger existed, so the
+            gateway refuses every append to it. Set it aside unchanged as deep-review-state.legacy.jsonl,
+            open the run from the moved config, then replay its iteration rows through the gateway,
+            which carries each one whole. Rows the gateway cannot carry stay only in the set-aside file,
+            and the replay reports how many. Exit 2 from any of the three is a halt.
+          set_aside_command: |
+            STATE_LOG="{state_paths.state_log}"
+            LEGACY_LOG="$(dirname "$STATE_LOG")/deep-review-state.legacy.jsonl"
+            if [ -e "$LEGACY_LOG" ]; then
+              echo "A set-aside legacy state log already exists at $LEGACY_LOG. Repair the packet by hand." >&2
+              exit 1
+            fi
+            mv "$STATE_LOG" "$LEGACY_LOG"
+          open_run: "Run step_create_state_log.command unchanged. With the hand-written log set aside, it opens the run from the moved config."
+          replay_command: |
+            GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+            [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+            RUN_DIR="$(dirname "{state_paths.state_log}")"
+            node -e '
+              const fs = require("fs"), os = require("os"), path = require("path");
+              const { spawnSync } = require("child_process");
+              const [gateway, legacyLog, runDir] = process.argv.slice(1);
+              let replayedIterations = 0;
+              let keptOnlyInLegacyLog = 0;
+              for (const line of fs.readFileSync(legacyLog, "utf8").split("\n")) {
+                if (line.trim() === "") continue;
+                let row;
+                try { row = JSON.parse(line); } catch { keptOnlyInLegacyLog += 1; continue; }
+                // The run open already replaced the config row.
+                if (row && row.type === "config") continue;
+                if (!row || row.type !== "iteration") { keptOnlyInLegacyLog += 1; continue; }
+                const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "deep-review-replay-"));
+                const eventFile = path.join(tempDir, "row.json");
+                fs.writeFileSync(eventFile, JSON.stringify(row));
+                const result = spawnSync(process.execPath, [gateway, "--mode", "review", "--run-directory", runDir, "--event-json", eventFile], { encoding: "utf8" });
+                fs.rmSync(tempDir, { recursive: true, force: true });
+                if (result.status === 2) { process.stdout.write(result.stdout || ""); process.exit(2); }
+                if (result.status === 0) replayedIterations += 1; else keptOnlyInLegacyLog += 1;
+              }
+              process.stdout.write(JSON.stringify({ replayedIterations, keptOnlyInLegacyLog, legacyLog }) + "\n");
+            ' "$GATEWAY" "$RUN_DIR/deep-review-state.legacy.jsonl" "$RUN_DIR"
         on_completed_session:
+          before_append: "Run on_moved_legacy_state first when it applies."
           log: "Prior session already completed. Either archive the completed review/ tree and start a fresh session, or jump straight to synthesis with the existing artifacts."
           skip_to: phase_synthesis
         on_invalid_state:
@@ -587,6 +649,12 @@ workflow:
         action: "Refresh the packet lock heartbeat before the iteration begins"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
         on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+
+      step_record_artifact_migration:
+        action: "Record the legacy review state move once per session, after the run is open"
+        skip_when: "legacy_migration_detected != true or migration_recorded == true"
+        append_jsonl: '{"stem":"deep_review.migration","scope":{"runId":"{session_id}","sessionId":"{session_id}"},"data":{"mode":"review","legacyArtifacts":["deep-research-config.json","deep-research-state.jsonl",".deep-research-pause"],"canonicalArtifacts":["deep-review-config.json","deep-review-state.jsonl",".deep-review-pause"]}}'
+        set: { migration_recorded: true }
 
       step_read_state:
         action: "Read current state from JSONL, strategy, and config"

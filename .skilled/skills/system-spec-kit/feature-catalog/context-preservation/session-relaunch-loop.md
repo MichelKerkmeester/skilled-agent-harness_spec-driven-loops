@@ -17,7 +17,9 @@ trigger_phrases:
   - "skilled-loop codex"
   - "skilled-loop hermes"
   - "context handoff to a fresh session"
-version: 1.0.3.0
+  - "skilled-loop shell shim"
+  - "symlinked .skilled relaunch"
+version: 1.0.4.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -28,7 +30,7 @@ version: 1.0.3.0
 
 Shares a structured context handoff across seven runtimes through adapter nudges, a validated note and a wrapper relaunch. Claude Code, Pi, OpenCode, Codex and Hermes run automatically through their adapters. Cursor and Devin run on the `/speckit:handoff` command trigger only.
 
-An automatic adapter asks for a note near its context threshold, validates and prepares it, then arms it at its host's turn-end event. The skilled-loop wrapper starts the selected runtime with a claim seed when the record is armed, fresh and below the hop cap.
+An automatic adapter asks for a note near its context threshold, validates and prepares it, then arms it at its host's turn-end event. The skilled-loop wrapper starts the selected runtime with a claim seed when the record is armed, fresh and below the hop cap. The nudge fires only inside the wrapper. A sourced shell shim starts every interactive runtime launch under the nearest wrapper, including in a repository that links `.skilled` from another checkout.
 
 ---
 
@@ -38,7 +40,7 @@ An automatic adapter asks for a note near its context threshold, validates and p
 
 Claude's context-nudge handles PostToolUse and UserPromptSubmit. It reads the latest main-chain assistant usage and compares it with the configured threshold. The default is 0.80. One additional nudge fires 0.05 above that level. Each level fires once. The text opens with the measured fill as `Context is about N% full`. Once the ratio passes 1 it names the overflow as `past the configured window (over 100% full)` instead, so an over-wide window reads as overflow rather than as a percentage above 100. It then offers the shortcut before the steps: `If the remaining work fits in a few more steps, finish it instead and skip these steps.` Otherwise the handoff steps come first, before any other work. It accepts session ids matching [A-Za-z0-9_-]{1,128}. Transcript read errors produce no usage. Failed Claude settings reads are treated as absent while the resolver checks its next source or model default. If the operator says not to hand off, the nudge yields and the session keeps working. Auto-compaction remains the fallback.
 
-Every adapter asks the same questions before it nudges. A pending record for this session silences the nudge. So does an armed one, until it passes its age limit, because the handoff work is already done. The limit is `SESSION_RELAUNCH_MAX_AGE_MIN`, read from the hook config file and then the environment, as the wrapper reads it. Past that limit the wrapper would decline the record as stale, so the nudge resumes instead of waiting on a relaunch that cannot happen. At the hop cap no adapter nudges, because a prepare there can only decline. A re-nudge also keeps the note path the session already has open: the shared planner returns that session's existing `status: open` note and only otherwise builds a timestamped path.
+Every adapter asks the same questions before it nudges. Outside skilled-loop, with `SKILLED_LOOP_ID` unset or empty, no adapter nudges. Prepare could only print a manual claim command there, so a nudged session would stop and wait for a hand-off nobody runs. It keeps working instead, and auto-compaction stays the fallback. A pending record for this session silences the nudge. So does an armed one, until it passes its age limit, because the handoff work is already done. The limit is `SESSION_RELAUNCH_MAX_AGE_MIN`, read from the hook config file and then the environment, as the wrapper reads it. Past that limit the wrapper would decline the record as stale, so the nudge resumes instead of waiting on a relaunch that cannot happen. At the hop cap no adapter nudges, because a prepare there can only decline. A re-nudge also keeps the note path the session already has open: the shared planner returns that session's existing `status: open` note and only otherwise builds a timestamped path.
 
 Both `prepare` and `claim` require `--session <id>`. Only Claude can use `CLAUDE_CODE_SESSION_ID` instead. `CLAUDE_PID` supplies the runtime process id for the shell-child check, and the Claude Stop hook keeps it as the killer target while it descends from the loop. Runtimes without a session-id variable generate an id with `uuidgen` and reuse it for the session.
 
@@ -58,11 +60,15 @@ A matching armed record is consumed only when it is fresh and below the hop cap.
 
 `SESSION_RELAUNCH_THRESHOLD` controls when each session is nudged. Keep it well above a fresh session's startup fill plus its remaining work. Codex live runs chained hop after hop at `0.12` because each fresh session reached about 10% on startup alone. `SESSION_RELAUNCH_MAX_HOPS` caps completed relaunches. At the cap the chain ends on its own: prepare writes no record, the adapters stop nudging and the killer un-arms an armed record, so a re-nudged receiver is never killed for a relaunch that cannot start. Use a low hop cap for live checks.
 
+### Shell Shim And Symlinked Repositories
+
+`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, Cursor `agent`, `ls` and `resume`, and `hermes chat` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
+
 ### Pi And OpenCode Adapters
 
 Pi checks usage at message_end and holds the nudge text there rather than sending it, because the message that crosses the threshold usually carries the prepare call itself. agent_end re-checks the record and the hop cap, then delivers the held text with deliverAs: 'followUp', triggerTurn: true, so the nudge starts its own turn and needs no operator input. It captures a matching seed in before_agent_start and arms the Pi record on agent_end. Its killer-path resolver walks up from the current directory, so it can find killer.cjs from a repository subdirectory. tsconfig.pi.json includes the Pi extension entry for type-checking.
 
-OpenCode reads message.updated and message.part.updated. It pushes the active nudge on every request while this session has no handoff. Outside skilled-loop it keeps pushing until the handoff note exists. A matching claim seed stays in the system prompt on every request of the session until the note leaves the open state or a new non-seed user message arrives, because an auxiliary request can consume the first prompt. The seed enters through experimental.chat.system.transform. The relaunch record is armed on session.idle.
+OpenCode reads message.updated and message.part.updated. It pushes the active nudge on every request while this session has no handoff. When `SKILLED_LOOP_ID` is set but names no record, it keeps pushing only until the handoff note exists. A matching claim seed stays in the system prompt on every request of the session until the note leaves the open state or a new non-seed user message arrives, because an auxiliary request can consume the first prompt. The seed enters through experimental.chat.system.transform. The relaunch record is armed on session.idle.
 
 The wrapper's Pi relaunch carries provider and model selection together with -ne and each -e extension selection from the initial launch. In this repository, start Pi with -ne -e .pi/extensions/session-relaunch.ts because two installed extensions both register --fast. OpenCode is started with -m <provider/model>. The wrapper preserves that model selection across hops.
 
@@ -108,6 +114,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 | .skilled/hooks/session-relaunch/lib/relaunch-core.cjs | Shared | Validates handoffs and handles relaunch and note state. |
 | .skilled/hooks/session-relaunch/lib/killer.cjs | Script | Waits for transcript idle, gives up after a 1 s unreadable transcript, signals the target and guards stale-lock takeover. |
 | .skilled/bin/skilled-loop | Script | Wraps the seven runtimes and launches eligible relaunches with runtime-specific seed arguments. |
+| .skilled/bin/skilled-loop-shell.sh | Script | Sourced shell shim that starts each interactive runtime launch under the nearest skilled-loop wrapper. |
 | tsconfig.pi.json | TypeScript config | Includes the Pi extension entry so the adapter is type-checked. |
 | .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json | Shared | Declares the Claude and Codex hook bindings rendered into each runtime's config. |
 
@@ -126,6 +133,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 | .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs | Node test | Checks note states and relaunch decisions. |
 | .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs | Node test | Checks prepare, claim, complete and CLI refusal paths. |
 | .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs | Node test | Checks wrapper relaunch and per-runtime seed arguments with stub runtimes. |
+| .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs | Node test | Checks the shell shim's wrapper resolution under bash and zsh through a symlinked `.skilled`, and its terminal hand-off with stub binaries. |
 | .hermes/plugins/repo-guards/tests/test_repo_guards.py | Automated test | Checks the plugin bridge, including the relaunch context and arm paths. |
 
 ---

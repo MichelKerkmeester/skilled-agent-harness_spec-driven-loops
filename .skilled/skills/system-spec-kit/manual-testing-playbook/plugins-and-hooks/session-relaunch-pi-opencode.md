@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.2.0
+version: 1.0.3.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -96,6 +96,14 @@ node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 
 Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before the seed and OpenCode `--prompt` without `--name`.
 
+#### Shell shim resolution (Automatable)
+
+~~~bash
+node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+~~~
+
+Evidence: all 14 tests pass under bash and zsh. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop silence for both adapters is the `a nudge stays silent outside skilled-loop at a fill above the threshold` case in `.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
+
 ### Live Checks
 
 Each live launch overrides the threshold and window-token limit then sets the hop cap to one. These values are test overrides only. Defaults stay unchanged. Submit the exact prompt from the scenario contract and then wait for the nudge, which reaches the model without an operator turn. Pi holds it from `message_end` to `agent_end` and delivers it as a follow-up that starts its own turn. OpenCode carries it in the system prompt on the session's next request. Follow the adapter's generated handoff and `prepare` instructions. Observe the record arm, process handoff and claim seed in the receiving TUI.
@@ -147,6 +155,23 @@ tmux attach -t "$session_name"
 
 Observe `message.updated` usage handling, `message.part.updated` seed capture and the system transform. The claim instructions stay in the system prompt for every request until the note leaves `open` or a new non-seed user message arrives, so an auxiliary request that consumes the first copy no longer drops them. Confirm a matching record arms on `session.idle`, the killer ends the current OpenCode process and the wrapper restarts it with `--prompt "<seed>"` and no name flag. Confirm the receiving TUI claims the note and continues the task. The 2026-10-19 benchmark report for this scenario records the claim and completion those runs reached. `session.idle` on TUI quit remains UNVERIFIED.
 
+#### Symlinked repository through the shell shim (Live)
+
+Build a repository that links this checkout's `.skilled` and the runtime's config folder, source the shim in a fresh shell and start the plain runtime command there:
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+linked_repo="$(mktemp -d)/linked-repo"
+mkdir -p "$linked_repo" && git -C "$linked_repo" init -q
+ln -s "$repo_root/.skilled" "$linked_repo/.skilled"
+ln -s "$repo_root/.pi" "$linked_repo/.pi"
+ln -s "$repo_root/.opencode" "$linked_repo/.opencode"
+tmux new-session -d -s shim-pi "zsh -c 'source \"$repo_root/.skilled/bin/skilled-loop-shell.sh\" && cd \"$linked_repo\" && export SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=1 && pi'"
+tmux attach -t shim-pi
+~~~
+
+Repeat with `opencode` in place of `pi` and a session name of `shim-opencode`. Evidence: the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`, so the shim started the runtime under the wrapper. The nudge arrives, the record arms, the killer ends the process and the wrapper restarts the runtime with the claim seed in the same pane. PASS when the note reaches done on each runtime. FAIL when `SKILLED_LOOP_ID` is empty, prepare exits 3 or the pane returns to the shell prompt without a relaunch.
+
 ---
 
 ## 4. SOURCE FILES
@@ -171,6 +196,8 @@ Observe `message.updated` usage handling, `message.part.updated` seed capture an
 | `.skilled/hooks/session-relaunch/lib/nudge.cjs` | Shared nudge and seed text. |
 | `.skilled/hooks/session-relaunch/lib/context-usage.cjs` | Shared runtime usage and window calculations. |
 | `.skilled/bin/skilled-loop` | Runtime selection, environment export and relaunch arguments. |
+| `.skilled/bin/skilled-loop-shell.sh` | Starts a plain `pi` or `opencode` launch under the nearest wrapper, a symlinked `.skilled` included. |
+| `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Shell shim resolution and terminal hand-off tests. |
 | `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` | Pi adapter regression suite. |
 | `.opencode/plugins/tests/session-relaunch.test.cjs` | OpenCode adapter regression suite. |
 | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs` | Wrapper runtime relaunch argument tests. |

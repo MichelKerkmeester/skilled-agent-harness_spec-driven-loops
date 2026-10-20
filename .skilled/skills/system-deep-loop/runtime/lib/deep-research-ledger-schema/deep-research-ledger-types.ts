@@ -5,6 +5,7 @@
 import type {
   EventEnvelope,
   JsonObject,
+  JsonValue,
 } from '../event-envelope/index.js';
 import type { ReplayFingerprintDescriptor } from '../replay-fingerprint/index.js';
 
@@ -525,6 +526,86 @@ export type IdeaRejectedResetData = JsonObject & {
   readonly eventAlias?: 'ideaRejectedReset';
 };
 
+// The lifecycle rows the research workflows record: a pause, a stuck recovery,
+// the convergence floor clearing and an artifact-path migration. They predate
+// their stems, so each keeps the legacy row's field names, and a field the row
+// left out stays absent.
+interface LifecycleRowIdentity {
+  readonly sessionId?: string | null;
+  readonly generation?: Uint32 | null;
+}
+
+export type UserPausedData = JsonObject & LifecycleRowIdentity & {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly stopReason: 'userPaused';
+  readonly sentinelPath: string;
+};
+
+// The workflow writes the iteration it recovered from and the outcome. The
+// documented shape writes the focus it left, the focus it took and how.
+export type StuckRecoveryData = JsonObject & LifecycleRowIdentity & {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly stopReason: 'stuckRecovery';
+  readonly fromIteration?: Uint32;
+  readonly fromFocus?: string;
+  readonly toFocus?: string;
+  readonly strategy?: string;
+  readonly outcome?: string;
+};
+
+export type MinIterationsGuardPassData = JsonObject & LifecycleRowIdentity & {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly iterationCount: Uint32;
+  readonly minIterations: Uint32;
+};
+
+export interface MigrationData extends JsonObject {
+  readonly legacyPath: string;
+  readonly canonicalPath: string;
+}
+
+// The flat-trend advisories the research reducer derives. Only the inert
+// novelty warning carries a note.
+export type TrendAdvisoryData = JsonObject & {
+  readonly mode: string;
+  readonly severity: 'advisory' | 'warning';
+  readonly metric: string;
+  readonly run: Uint32 | null;
+  readonly window: Uint32;
+  readonly value: number;
+  readonly sparkline: string;
+  readonly note?: string;
+};
+
+// An operator's override of a pivot the council could not endorse. The
+// candidate and frontier are the pivot's own records, carried whole.
+export type PivotOverrideAcceptedData = JsonObject & LifecycleRowIdentity & {
+  readonly mode: string;
+  readonly run: Uint32 | null;
+  readonly pivotId: string;
+  readonly selectedCandidate: JsonValue;
+  readonly selectedFrontier: JsonValue;
+  readonly previousFocus: string;
+  readonly saturatedDirections: JsonValue;
+  readonly reason: string;
+  readonly agreementReason: string;
+};
+
+// A divergent pivot's lifecycle row as a research state log carries it: the
+// pivot id plus whichever of the pivot event's own fields the row was written
+// with, each kept whole.
+export type PivotLifecycleData = JsonObject & LifecycleRowIdentity & {
+  readonly pivotId: string;
+  readonly mode?: string;
+  readonly run?: Uint32 | null;
+  readonly eventId?: string;
+  readonly lifecycle?: JsonValue;
+  readonly occurredAtIso?: string;
+};
+
 // ───────────────────────────────────────────────────────────────────
 // 4. EVENT UNION
 // ───────────────────────────────────────────────────────────────────
@@ -572,6 +653,17 @@ export const DeepResearchEventStems = Object.freeze([
   'deep_research.idea_rejected',
   'deep_research.idea_rejected_removed',
   'deep_research.idea_rejected_reset',
+  'deep_research.user_paused',
+  'deep_research.stuck_recovery',
+  'deep_research.min_iterations_guard_pass',
+  'deep_research.migration',
+  'deep_research.novelty_signal_inert',
+  'deep_research.trend_flatline',
+  'deep_research.pivot_override_accepted',
+  'deep_research.pivot_started',
+  'deep_research.pivot_selected',
+  'deep_research.pivot_completed',
+  'deep_research.pivot_failed',
 ] as const);
 
 export type DeepResearchEventStem = typeof DeepResearchEventStems[number];
@@ -628,6 +720,17 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.idea_rejected': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy idea_rejected row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
   'deep_research.idea_rejected_removed': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy removal row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
   'deep_research.idea_rejected_reset': { status: 'reserved', reason: 'No in-tree writer stages it: the operator records the legacy reset row through the append gateway, which upcasts it to this stem. A writer would speak it once it stages the stem itself.' },
+  'deep_research.user_paused': { status: 'reserved', reason: 'No workflow stages it: the research workflows record the legacy userPaused row through the append gateway, which upcasts it to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.stuck_recovery': { status: 'reserved', reason: 'No workflow stages it: the research workflows record the legacy stuckRecovery row through the append gateway, which upcasts it to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.min_iterations_guard_pass': { status: 'reserved', reason: 'No workflow stages it: the research workflows record the legacy guard row through the append gateway, which upcasts it to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.migration': { status: 'reserved', reason: 'No workflow stages it: the research workflows record the legacy migration row through the append gateway once the run is open, which upcasts it to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.novelty_signal_inert': { status: 'reserved', reason: 'No writer appends it: the research reducer derives this advisory into its registry and dashboard. A row already in a ledger-backed state log upcasts to this stem. The reducer would speak it once it records the advisory as an event.' },
+  'deep_research.trend_flatline': { status: 'reserved', reason: 'No writer appends it: the research reducer derives this advisory into its registry and dashboard. A row already in a ledger-backed state log upcasts to this stem. The reducer would speak it once it records the advisory as an event.' },
+  'deep_research.pivot_override_accepted': { status: 'reserved', reason: 'No workflow stages it: the confirm workflow records the operator override as the legacy row through the append gateway, which upcasts it to this stem. A workflow step would speak it once it stages the stem itself.' },
+  'deep_research.pivot_started': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
+  'deep_research.pivot_selected': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
+  'deep_research.pivot_completed': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
+  'deep_research.pivot_failed': { status: 'reserved', reason: 'No writer appends it to the research state log: the divergent pivot records its lifecycle in its own council state log. A row already in a ledger-backed research state log upcasts to this stem.' },
 } as const satisfies Readonly<Record<DeepResearchEventStem, DeepResearchStemProducerStatus>>);
 
 export const DeepResearchWireEventTypes = Object.freeze({
@@ -673,6 +776,17 @@ export const DeepResearchWireEventTypes = Object.freeze({
   'deep_research.idea_rejected': 'deep-research.ledger.idea-rejected',
   'deep_research.idea_rejected_removed': 'deep-research.ledger.idea-rejected-removed',
   'deep_research.idea_rejected_reset': 'deep-research.ledger.idea-rejected-reset',
+  'deep_research.user_paused': 'deep-research.ledger.user-paused',
+  'deep_research.stuck_recovery': 'deep-research.ledger.stuck-recovery',
+  'deep_research.min_iterations_guard_pass': 'deep-research.ledger.min-iterations-guard-pass',
+  'deep_research.migration': 'deep-research.ledger.migration',
+  'deep_research.novelty_signal_inert': 'deep-research.ledger.novelty-signal-inert',
+  'deep_research.trend_flatline': 'deep-research.ledger.trend-flatline',
+  'deep_research.pivot_override_accepted': 'deep-research.ledger.pivot-override-accepted',
+  'deep_research.pivot_started': 'deep-research.ledger.pivot-started',
+  'deep_research.pivot_selected': 'deep-research.ledger.pivot-selected',
+  'deep_research.pivot_completed': 'deep-research.ledger.pivot-completed',
+  'deep_research.pivot_failed': 'deep-research.ledger.pivot-failed',
 } as const satisfies Readonly<Record<DeepResearchEventStem, string>>);
 
 export type DeepResearchWireEventType =
@@ -721,6 +835,17 @@ export interface DeepResearchPayloadMap {
   readonly 'deep_research.idea_rejected': IdeaRejectedData;
   readonly 'deep_research.idea_rejected_removed': IdeaRejectedRemovedData;
   readonly 'deep_research.idea_rejected_reset': IdeaRejectedResetData;
+  readonly 'deep_research.user_paused': UserPausedData;
+  readonly 'deep_research.stuck_recovery': StuckRecoveryData;
+  readonly 'deep_research.min_iterations_guard_pass': MinIterationsGuardPassData;
+  readonly 'deep_research.migration': MigrationData;
+  readonly 'deep_research.novelty_signal_inert': TrendAdvisoryData;
+  readonly 'deep_research.trend_flatline': TrendAdvisoryData;
+  readonly 'deep_research.pivot_override_accepted': PivotOverrideAcceptedData;
+  readonly 'deep_research.pivot_started': PivotLifecycleData;
+  readonly 'deep_research.pivot_selected': PivotLifecycleData;
+  readonly 'deep_research.pivot_completed': PivotLifecycleData;
+  readonly 'deep_research.pivot_failed': PivotLifecycleData;
 }
 
 export interface DeepResearchScopeMap {
@@ -766,6 +891,17 @@ export interface DeepResearchScopeMap {
   readonly 'deep_research.idea_rejected': DeepResearchBaseScope;
   readonly 'deep_research.idea_rejected_removed': DeepResearchBaseScope;
   readonly 'deep_research.idea_rejected_reset': DeepResearchBaseScope;
+  readonly 'deep_research.user_paused': DeepResearchBaseScope;
+  readonly 'deep_research.stuck_recovery': DeepResearchBaseScope;
+  readonly 'deep_research.min_iterations_guard_pass': DeepResearchBaseScope;
+  readonly 'deep_research.migration': DeepResearchBaseScope;
+  readonly 'deep_research.novelty_signal_inert': DeepResearchBaseScope;
+  readonly 'deep_research.trend_flatline': DeepResearchBaseScope;
+  readonly 'deep_research.pivot_override_accepted': DeepResearchBaseScope;
+  readonly 'deep_research.pivot_started': DeepResearchBaseScope;
+  readonly 'deep_research.pivot_selected': DeepResearchBaseScope;
+  readonly 'deep_research.pivot_completed': DeepResearchBaseScope;
+  readonly 'deep_research.pivot_failed': DeepResearchBaseScope;
 }
 
 export interface DeepResearchLedgerPayload<

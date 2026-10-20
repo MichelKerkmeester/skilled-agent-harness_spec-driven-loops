@@ -113,6 +113,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 10 | 010-post-fix-research/ | Five more research iterations after phase 009, DeepSeek V4.1 Flash max through cli-pi on LLM Gateway, with each finding verified. | complete |
 | 11 | 011-post-fix-remediation/ | Fix all twenty post-fix research findings, the two frontier items and the follow-ups, with failing-first tests and arm conformance cases. | complete |
 | 12 | 012-ci-red-check-repairs/ | AGENTS.md is back inside the 16 KB delivery prefix, and the session-relaunch example line no longer reads as a switch, so Rule Canary Sync and sk-doc Script Tests pass again locally. | complete |
+| 13 | 013-live-hop-and-notice-reason/ | The killer's timeout notice names the timeout and, in a subtitle, why the manual template was ignored; one live Claude hop runs in tmux. | in progress |
 
 ### Phase Transition Rules
 
@@ -136,6 +137,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 009-research-fixes-and-core-consolidation | 010-post-fix-research | phase 009 is Complete and merged to main | `validate.sh 009-research-fixes-and-core-consolidation --strict` RESULT: PASSED |
 | 010-post-fix-research | 011-post-fix-remediation | phase 010 is Complete with a verified report | `research/research.md` in 010 gives every finding a verdict |
 | 007-handoff-gate-exemptions | 012-ci-red-check-repairs | 007's AGENTS.md and hook-flags example changes are on main | The rule canary and the sk-doc script tests pass locally |
+| 011-post-fix-remediation | 013-live-hop-and-notice-reason | phase 011 is Complete and lists the notice reason and the live hop as Known Limitations | `validate.sh 011-post-fix-remediation --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -121,6 +121,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 9 | 009-findings-summary-integrity/ | Read `findingId` delta rows and stop cumulative summaries padding phantom findings | Complete |
 | 10 | 010-config-row-projection-refusal/ | Send every CLI lineage state record through the append gateway | Complete |
 | 11 | 011-gateway-enforcement-and-projection-hygiene/ | Enforce the gateway rule in code, store a retry once, and keep topics, reducer rows and idea rows through the projection | Complete |
+| 12 | 012-legacy-row-migration/ | Migrate the still-pinned legacy rows, keep every row's own timestamp, name mistyped fields including the config row's, record the migration row after session classification in research and review and give the rejected-pattern halt its gateway path | Complete |
 
 ### Phase Transition Rules
 
@@ -143,6 +144,7 @@ Each child keeps its own plan and file list. This table is the audit trail of th
 | 008-lineage-proof-enforcement | 009-findings-summary-integrity | None: 009 touches only the review reducer and does not wait on 008 | `validate.sh --strict` on 009 |
 | `009-findings-summary-integrity` | `010-config-row-projection-refusal` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
 | `010-config-row-projection-refusal` | `011-gateway-enforcement-and-projection-hygiene` | Independent: no ordering dependency | `validate.sh --strict` passes on each child |
+| `011-gateway-enforcement-and-projection-hygiene` | `012-legacy-row-migration` | 011 complete, its field-for-field projection arm in place | `validate.sh --strict` passes on each child |
 <!-- /ANCHOR:phase-map -->
 
 ---

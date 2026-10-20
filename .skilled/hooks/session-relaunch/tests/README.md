@@ -35,6 +35,7 @@ tests/
 +-- relaunch-core.test.cjs         # Core state: arm, unarm, handoff validation, claim, complete
 +-- session-relaunch-cli.test.cjs  # CLI subcommands: prepare, claim, should-relaunch and others
 +-- skilled-loop.test.cjs          # Wrapper that relaunches each runtime with its carried flags
++-- skilled-loop-shell.test.cjs    # Shell shim that starts plain runtime launches under the wrapper
 `-- fixtures/                      # Captured runtime payloads and one recorder script
 ```
 
@@ -44,7 +45,7 @@ tests/
 
 | File | Responsibility |
 |---|---|
-| `adapter-conformance.test.cjs` | Runs one table of seed and nudge cases through the Claude, Codex and Hermes hooks as child processes and through the OpenCode plugin in process. A well-formed seed adds the claim command, a seed with a relative note path adds nothing, an invalid carried folder is not resumed, the nudge writes `SYSTEM_SPEC_FOLDER` and drops an invalid one, and a pending handoff or the hop cap keeps the nudge silent. The Pi extension runs the same cases in `../pi/session-relaunch.test.ts`. |
+| `adapter-conformance.test.cjs` | Runs one table of seed and nudge cases through the Claude, Codex and Hermes hooks as child processes and through the OpenCode plugin in process. A well-formed seed adds the claim command, a seed with a relative note path adds nothing, an invalid carried folder is not resumed, the nudge writes `SYSTEM_SPEC_FOLDER` and drops an invalid one, and a pending handoff, the hop cap or a session outside skilled-loop keeps the nudge silent. The Pi extension runs the same cases in `../pi/session-relaunch.test.ts`. |
 | `claude-adapters.test.cjs` | Checks the Claude Code adapters. The nudge fires at the configured context level, the stop arm records a matching pending record and a synchronous killer spawn failure stays armed, and the `UserPromptSubmit` seed carries the claim and completion instructions. |
 | `codex-adapters.test.cjs` | Checks the Codex adapters. The nudge fires once at the threshold and again one step above it, the stop hook ignores an armed record whose killer lock owner is still alive, and the stop target lookup picks the ancestor directly below the loop process. |
 | `context-usage.test.cjs` | Checks how each runtime reports context fill. Claude reads the last main-chain usage entry and ignores sidechain and cumulative totals. Codex prefers the shared window override over the rollout window. OpenCode and Pi read the usage fields of a completed assistant message, and missing fields count as zero. Settings read errors fall back to an absent window. |
@@ -54,6 +55,7 @@ tests/
 | `relaunch-core.test.cjs` | Checks the core state model. Paths resolve under the isolated runtime directory, `arm` and `unarm` change the record status, `shouldRelaunch` honors the hop cap, handoff validation rejects a note whose status is not open, and `completeHandoff` moves a claimed note to done with completion metadata. The manual claim command places the quoted seed for each runtime. |
 | `session-relaunch-cli.test.cjs` | Checks the command line entry point. It covers the exit codes of `prepare`, `claim` and `should-relaunch`, the runtime conflict check, the running-work check, the refusal to carry a spec folder the loop cannot carry, and the note path resolution from a subdirectory. |
 | `skilled-loop.test.cjs` | Checks the wrapper that starts each runtime and relaunches it. It covers the first launch and each relaunch, the flags and model that carry between hops, the Pi provider and model export, the Codex daemon default, the declined stale armed record, the manual command printed after an exit code 130, and the consumption of a pending decline record. |
+| `skilled-loop-shell.test.cjs` | Checks the shell shim under bash and zsh in a sandbox repository whose `.skilled` is a symlink. Each runtime's interactive forms resolve the wrapper from the root and a nested directory. Subcommands, print modes, version and help resolve nothing, as do a directory with no `.skilled` and a session already inside a loop. Stub binaries and a pseudo-terminal from `script` show that a terminal launch goes through the wrapper and a piped one runs the binary. |
 
 ---
 

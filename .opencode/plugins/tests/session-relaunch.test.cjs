@@ -148,6 +148,7 @@ async function startLoopNudge(t, sessionID) {
 
 test('kill switch stops an active OpenCode nudge', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -185,6 +186,7 @@ test('hook flags written after plugin load silence the next event', async (t) =>
 
 test('active nudge appears on three consecutive system transforms', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '21805';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -204,6 +206,7 @@ test('active nudge appears on three consecutive system transforms', async (t) =>
 
 test('a five-point re-nudge replaces active text and keeps its note path', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '200';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -225,6 +228,7 @@ test('a five-point re-nudge replaces active text and keeps its note path', async
 
 test('OpenCode nudge includes the save step when SYSTEM_SPEC_FOLDER is unset', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -247,10 +251,11 @@ test('OpenCode nudge includes the save step when SYSTEM_SPEC_FOLDER is unset', a
   assert.equal(active[0].includes('/speckit:save'), false);
 });
 
-test('outside a loop, active nudge stops after its planned note file appears', async (t) => {
+test('with a loop id that names no record, the nudge stops after its planned note file appears', async (t) => {
   const root = setupEnv(t);
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
+  process.env.SKILLED_LOOP_ID = 'invalid/loop-id';
   const hooks = await loadPlugin({ directory: root });
   const sessionID = 'ses-note-created-0001';
 
@@ -265,9 +270,6 @@ test('outside a loop, active nudge stops after its planned note file appears', a
   fs.writeFileSync(notePath, 'status: open\n');
   assert.deepEqual(await transform(hooks, sessionID), first);
   fs.writeFileSync(notePath, `---\nstatus: open\nsession_id: ${sessionID}\n---\n`);
-  assert.deepEqual(await transform(hooks, sessionID), []);
-
-  process.env.SKILLED_LOOP_ID = 'invalid/loop-id';
   assert.deepEqual(await transform(hooks, sessionID), []);
 });
 
@@ -407,6 +409,7 @@ test('kill switch suppresses an in-loop nudge before handoff preparation', async
 
 test('an active nudge is not injected into another session', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -419,6 +422,7 @@ test('an active nudge is not injected into another session', async (t) => {
 
 test('a restarted plugin repeats its persisted nudge at the threshold', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const sessionID = 'ses-restarted-nudge-0001';
@@ -435,6 +439,7 @@ test('a restarted plugin repeats its persisted nudge at the threshold', async (t
 
 test('a restarted nudge reuses a matching handoff note', async (t) => {
   const root = setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const sessionID = 'ses-reused-handoff-0001';
@@ -466,16 +471,16 @@ test('a restarted nudge reuses a matching handoff note', async (t) => {
   await hooks.event(assistantEvent(sessionID, 'assistant-after-restart', 90));
   const output = await transform(hooks, sessionID);
 
-  assert.deepEqual(output, []);
+  // Inside the loop no record exists yet, so the restarted nudge shows again and names
+  // the open note this session already started, never the other session's or the done one.
+  assert.equal(output.length, 1);
+  assert.equal(notePathFromNudge(output[0]), notePath);
   assert.equal(nudge.readState(sessionID, process.env), 1);
-  // The held nudge names the matching note: once that note is gone it shows again.
-  fs.rmSync(notePath);
-  const [shown] = await transform(hooks, sessionID);
-  assert.equal(notePathFromNudge(shown), notePath);
 });
 
 test('a restarted nudge ignores a closed handoff note and plans a fresh path', async (t) => {
   const root = setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const sessionID = 'ses-closed-handoff-0001';
@@ -780,6 +785,7 @@ test('a different user message clears the pending seed', async (t) => {
 
 test('interleaved sessions keep their own seed and nudge text', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -831,6 +837,7 @@ test('interleaved sessions keep their own seed and nudge text', async (t) => {
 
 test('recently active session survives the session-state cap', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -1052,6 +1059,7 @@ test('session.idle logs a synchronous killer spawn throw and leaves the record a
 
 test('the planned note path lands under the env repo root, not the session directory', async (t) => {
   const root = setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   const hooks = await loadPlugin({ directory: '/workspace/opencode' });
@@ -1074,6 +1082,7 @@ test('the planned note path lands under the env repo root, not the session direc
 
 test('a relative SESSION_RELAUNCH_REPO_ROOT still yields an absolute planned note path', async (t) => {
   setupEnv(t);
+  process.env.SKILLED_LOOP_ID = 'opencode-nudge-loop-0001';
   stubSpawn(t);
   process.env.SESSION_RELAUNCH_WINDOW_TOKENS = '100';
   process.env.SESSION_RELAUNCH_REPO_ROOT = 'relative-repo';

@@ -84,6 +84,7 @@ bin/
 +-- install-codex-hooks.mjs        # Removes repo-owned Codex hooks from the user-global config
 +-- speckit-completion.cjs         # Completion-state CLI over the runtime-neutral core
 +-- skilled-loop                    # Runs Claude, Pi, OpenCode, Codex, Cursor, Hermes or Devin under a session relaunch loop
++-- skilled-loop-shell.sh           # Sourced by zsh or bash so each interactive runtime launch starts under skilled-loop
 +-- compiled-route.cjs             # Runtime front door: is the compiled router authoritative for a hub
 +-- compiled-route-status.cjs      # Per-hub serving status with a cause code separating drift from breakage
 +-- compiled-route-guard.cjs       # Freshness gate: serving matches inputs, runtime matches source
@@ -157,6 +158,7 @@ Main flow:
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `bash .skilled/bin/skilled-loop [claude|pi|opencode|codex|cursor|hermes|devin] [args...]` | CLI wrapper | Run one of seven runtimes under one loop id (`cursor` launches `cursor-agent`). The wrapper relaunches eligible sessions with a handoff seed. Claude, Pi, OpenCode, Codex and Hermes arm automatically through their adapters. Cursor and Devin never arm. They enter through `/speckit:handoff`. When the session exits with the record still pending, the wrapper prints the manual claim command. |
+| `source /path/to/repo/.skilled/bin/skilled-loop-shell.sh` | Shell shim | Defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as functions that start an interactive session through the nearest `.skilled/bin/skilled-loop` at or above the current directory, a symlinked `.skilled` included. Subcommands, print and one-shot modes, version and help, non-terminal launches and sessions already under a loop run the binary directly. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing. |
 | `node .skilled/bin/system-skill-advisor-launcher.cjs` | CLI | Start the system-skill-advisor daemon. |
 | `node .skilled/bin/skill-advisor.cjs <tool> [flags]` | CLI | Call any of the 9 system-skill-advisor tools from a shell. pass `--trusted` for maintainer mutations. |
 | `node .skilled/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |

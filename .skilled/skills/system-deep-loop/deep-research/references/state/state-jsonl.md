@@ -10,7 +10,7 @@ trigger_phrases:
   - "research event records"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.4
+version: 1.14.1.0
 ---
 
 # Deep Research JSONL State Reference
@@ -83,6 +83,8 @@ The config record captures the initialized loop contract.
 The full config file also stores executor, lineage, reducer, capability matrix, pause sentinel, archive, and file-protection settings.
 
 A ledger projection rebuilds this row thin — only `type`, `topic`, `maxIterations`, `generation`, and `timestamp` — so a refresh that would replace the row while dropping keys from an existing `type: "config"` first line is refused (`ATTRIBUTION_COLLAPSE`) rather than published. Move or migrate the legacy row deliberately before cutting the mode over.
+
+A legacy config row sent through the gateway must carry `generation` and `maxIterations` as non-negative whole numbers, `topic` as a string and `executor` as a string or an object. A count written as a plain digit string such as `"10"` is carried as that number with a warning. Any other wrongly typed field is refused with `run-initialized-fields-mistyped:<field>`, so fix that field in the row and send it again.
 
 ---
 
@@ -324,7 +326,7 @@ Rejected idea removal event:
 ```json
 {
   "type": "event",
-  "event": "ideaRejectedRemoved",
+  "event": "idea_rejected_removed",
   "mode": "research",
   "pattern": "Retry HTTP/3 as the primary latency fix",
   "category": "next-focus",
@@ -337,16 +339,27 @@ Rejected idea reset event:
 ```json
 {
   "type": "event",
-  "event": "ideaRejectedReset",
+  "event": "idea_rejected_reset",
   "mode": "research",
   "reason": "Operator wants previously rejected ideas eligible again",
   "timestamp": "2026-05-24T00:00:00Z"
 }
 ```
 
-The reducer derives a bounded active rejected-pattern cache from these events. `idea_rejected` adds or refreshes one pattern, `ideaRejectedRemoved` removes a single matching pattern or id, and `ideaRejectedReset` clears the active cache. Legacy `ideaRejected`, `ideaRejectedRemoved`, and `ideaRejectedReset` rows remain replayable for existing state logs. The active cache is capped at 100 entries; when more are added, the oldest active entry is evicted and the reducer emits a warning.
+The reducer derives a bounded active rejected-pattern cache from these events. `idea_rejected` adds or refreshes one pattern, `idea_rejected_removed` removes a single matching pattern or id, and `idea_rejected_reset` clears the active cache. Legacy `ideaRejected`, `ideaRejectedRemoved`, and `ideaRejectedReset` rows remain replayable for existing state logs, and the projection writes each one back under the name it was recorded with. The active cache is capped at 100 entries; when more are added, the oldest active entry is evicted and the reducer emits a warning.
 
 Candidate checks compare normalized exact text first, then apply fuzzy matching only when the candidate category is compatible with the rejected category. Omit `category` for a general rejection that can suppress candidates across next-focus, recovery, or ideas surfaces.
+
+When every candidate matches an active rejected pattern, the auto workflow halts for operator input. In a ledger-backed run, one with a `deep-research-ledger/frames` folder beside the state log, the next projection replaces a hand-edited state log, so record the removal or reset through the append gateway. Write the row to a file, then hand it over:
+
+```bash
+node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \
+  --mode research \
+  --run-directory <artifact dir> \
+  --event-json <file holding the idea_rejected_removed or idea_rejected_reset row>
+```
+
+The row takes the shapes shown above with a UTC `timestamp`. Exit `0` means the row is durable. Rerun the reducer before resuming so the rejected-pattern cache reflects it.
 
 Graph convergence event shape lives in `../convergence/convergence-graph.md`.
 
