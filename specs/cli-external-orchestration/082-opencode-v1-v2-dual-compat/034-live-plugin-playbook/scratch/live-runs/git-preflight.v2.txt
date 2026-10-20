@@ -1,0 +1,17 @@
+scenario: git-preflight   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- shell [completed] input={"command":"git add no-such-path-preflight-probe.txt"}
+  result: fatal: pathspec 'no-such-path-preflight-probe.txt' did not match any files
+  
+
+## final reply
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

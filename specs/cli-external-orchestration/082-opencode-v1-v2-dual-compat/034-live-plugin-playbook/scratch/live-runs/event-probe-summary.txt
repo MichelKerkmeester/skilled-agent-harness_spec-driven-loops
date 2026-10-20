@@ -1,0 +1,115 @@
+A temporary probe plugin, built with the same dualPlugin bridge as the repository plugins, logged every event,
+tool.execute.before and system transform it received. Prompt on both versions: "Run the shell command: echo probe-123 . Then reply DONE."
+The probe file was removed from the worktree after the two runs. Counts are consecutive identical lines.
+
+   1 === v1
+   1 factory
+   1 event session.created
+   1 event session.updated
+   1 event message.updated
+   1 event message.part.updated
+   1 event session.updated
+   1 event session.status
+   1 event message.updated
+   1 transform
+   1 event session.updated
+   1 event session.diff
+   1 event message.updated
+   1 event session.updated
+  37 event plugin.added
+   1 event catalog.updated
+   8 event plugin.added
+   1 event reference.updated
+   1 event plugin.added
+   1 event integration.updated
+   1 event catalog.updated
+   1 event session.status
+   1 transform
+   2 event message.part.updated
+  71 event message.part.delta
+   3 event message.part.updated
+   1 before bash {"command":"echo probe-123"}
+   4 event message.part.updated
+   2 event message.updated
+   1 event session.status
+   1 event message.updated
+   1 event session.updated
+   1 event session.diff
+   1 event session.status
+   1 transform
+   1 event message.updated
+   2 event message.part.updated
+   2 event message.part.delta
+   2 event message.part.updated
+   2 event message.updated
+   2 event session.status
+   1 event session.idle
+   1 event session.updated
+   1 event session.diff
+   1 === v2
+   1 factory
+   1 event integration.updated
+   1 event model.updated
+   1 event provider.updated
+   1 event vcs.branch.updated
+   1 event agent.updated
+   1 event command.updated
+   1 event skill.updated
+   1 event websearch.updated
+   1 event reference.updated
+   1 event plugin.updated
+   1 event session.inbox.enqueued
+   1 event session.execution.started
+   1 event session.instructions.updated
+   1 event session.inbox.delivered
+   1 transform
+   1 event session.usage.updated
+   1 event session.renamed
+   1 event session.step.started
+   1 event session.reasoning.started
+   1 event session.reasoning.delta
+   1 event session.tool.input.started
+   1 event session.reasoning.ended
+   1 event session.tool.input.ended
+   1 event session.tool.called
+   1 event session.step.streamed
+   1 before shell {"command":"echo probe-123"}
+   1 event shell.created
+   1 event session.tool.progress
+   1 event shell.exited
+   1 event session.tool.success
+   1 event session.step.ended
+   1 event message.updated
+   1 event session.usage.updated
+   1 transform
+   1 event session.step.started
+   1 event session.text.started
+   1 event session.text.delta
+   1 event session.text.ended
+   1 event message.part.updated
+   1 event session.step.streamed
+   1 event session.step.ended
+   1 event message.updated
+   1 event session.usage.updated
+   1 event session.execution.succeeded
+   1 event session.idle
+   1 event location.shutdown
+
+## session-scoped payloads on v2 (truncated)
+message.updated {"info":{"id":"msg_15a36c62c001L3E79dMzeBqYrX","sessionID":"ses_ea5c93e21ffe5UZazfAuBatw29","role":"assistant","cost":0.0005727834,"tokens":{"input":3871,"outpu
+message.updated {"info":{"id":"msg_15a36da22001CmiZ7EU60XDikG","sessionID":"ses_ea5c93e21ffe5UZazfAuBatw29","role":"assistant","cost":0.0005487533999999999,"tokens":{"input":38
+session.idle {"sessionID":"ses_ea5c93e21ffe5UZazfAuBatw29","info":{"id":"ses_ea5c93e21ffe5UZazfAuBatw29"}}
+
+## probe plugin source (placed as .opencode/plugins/zz-event-probe.js for the two runs, then deleted)
+import { appendFileSync } from 'node:fs';
+import { dualPlugin } from './lib/v2-bridge.js';
+const OUT = '<scratch>/events.log';
+async function probe(ctx) {
+  appendFileSync(OUT, 'factory ' + Date.now() + '\n');
+  return {
+    async event(input) { appendFileSync(OUT, 'event ' + Date.now() + ' ' + (input?.event?.type) + ' ' + JSON.stringify(input?.event?.properties ?? {}).slice(0, 160) + '\n'); },
+    async 'tool.execute.before'(input, output) { appendFileSync(OUT, 'before ' + input.tool + ' ' + JSON.stringify(output.args).slice(0, 200) + '\n'); },
+    async 'experimental.chat.system.transform'(input) { appendFileSync(OUT, 'transform ' + JSON.stringify(input).slice(0, 200) + '\n'); },
+  };
+}
+export default dualPlugin('zz-event-probe', probe);

@@ -1,0 +1,25 @@
+scenario: deep-loop-guard   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- task [error] input={"description":"Dispatch guard probe","subagent_type":"deep-research","prompt":"Deep Route: target_agent=deep-research mode=bogus-mode\nReply with the single word OK and do nothing else."}
+  result: system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="bogus-mode"
+
+## final reply
+Tool returned:
+
+```
+system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="bogus-mode"
+```
+
+The guard blocked the dispatch; the subagent never ran.
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T17:06:18.710Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

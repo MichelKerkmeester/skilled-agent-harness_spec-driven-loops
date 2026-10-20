@@ -1,0 +1,20 @@
+scenario: session-relaunch   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- bash [completed] input={"command":"echo relaunch-probe"}
+  result: relaunch-probe
+  
+
+## final reply
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+[session-relaunch] Context is past the configured window (over 100% full). If the remaining work fits in a few more steps, finish it instead and skip these steps. Otherwise do these steps now, before any other work, so a fresh session continues before auto-compaction has to:
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T16:52:53.769Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

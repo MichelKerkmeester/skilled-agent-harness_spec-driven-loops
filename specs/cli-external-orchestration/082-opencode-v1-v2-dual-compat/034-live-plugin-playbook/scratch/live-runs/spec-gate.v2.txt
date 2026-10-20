@@ -1,0 +1,30 @@
+scenario: spec-gate   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- write [error] input={"path":"scratch-probe/gate-probe-v2.txt","content":"hello\n"}
+  result: system-spec-gate: DENIED: this Write/Edit needs a bound spec folder first.
+  SPEC FOLDER QUESTION - this session has no bound spec folder and a file mutation is about to run.
+  Ask the operator once where this change should live, then continue:
+  A) Use an existing spec folder - reply with its path, e.g. specs/<track>/<NNN-name>
+  B) Create a new spec folder for new or unrelated work - reply with its path, e.g. specs/<track>/<NNN-name> (it does not have to exist yet)
+  C) A related folder, a phase child, or a series parent for a different change to the same artifact as an existing packet in the same track - reply with its path
+  D) Skip - no spec folder needed for this change
+  The answer holds for the re
+
+## final reply
+ferent change to the same artifact as an existing packet in the same track - reply with its path\nD) Skip - no spec folder needed for this change\nThe answer holds for the rest of this session: do not ask this again on later turns.\nThen retry the same call."},"content":[]}
+```
+
+Net effect: no file was created at `scratch-probe/gate-probe-v2.txt`. The gate requires a bound spec folder before any write/edit, and it is asking for one of options A–D. Per your instruction I am not asking the question or choosing an answer — say the word and I'll retry with whichever folder or "skip" you want.
+
+
+## plugin lines in the system prompt (deduplicated)
+SPEC GATE: this session needs a spec-folder decision, but only at the first file mutation.
+
+## plugin log lines and state files written during the run
+# new log lines
+spec-gate-warnings.log: 2026-10-20T17:01:39.084Z [system-spec-gate] opencode | ses_ea5bd1f9affe5p7LeQpJ8F3W35 | write | scratch-probe/gate-probe-v2.txt | would-deny
+# files changed since start
+.skilled/skills/.state/spec-gate/spec-gate-warnings.log
+.skilled/skills/.state/spec-gate/7365735f6561356264316639616666653570374c6551704a384633573335.json

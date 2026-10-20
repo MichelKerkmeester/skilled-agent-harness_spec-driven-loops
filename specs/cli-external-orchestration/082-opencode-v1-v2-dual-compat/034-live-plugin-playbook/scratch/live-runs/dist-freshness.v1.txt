@@ -1,0 +1,20 @@
+scenario: dist-freshness   version: v1   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+OK
+
+
+## plugin lines in the system prompt (deduplicated)
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T16:59:44.916Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+dist-freshness-guard.log (new): 2026-10-20T16:59:44.847Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log
+.skilled/logs/dist-freshness-guard.log

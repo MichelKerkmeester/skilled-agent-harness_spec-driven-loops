@@ -1,0 +1,18 @@
+scenario: opencode-goal   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- execute [completed] input={"code":"const setResult = await tools.opencode_goal({ action: \"set\", objective: \"Probe goal canary 7Q4Z-v2\" });\nconst statusResult = await tools.opencode_goal_status();\nreturn { setResult, statusResult };"}
+  result: {
+    "setResult": "STATUS=OK ACTION=set\nmutation=created\ngoal_present=true\nplugin_id=opencode-goal\ngoal_id=goal-ea0315f9-ad52-4638-b366-76f73ff73d98\nstatus=active\nobjective=\"Probe goal canary 7Q4Z-v2\"\npacket_path=\"\"\npacket_state=unbound\npacket_bound=false\nresend_pending=false\ngoal_prompt=\"Role: Focused OpenCode execution agent operating under the active session goal.\\nObjective: Probe goal canary 7Q4Z-v2\\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\\nMethod:\\n- Restate the concrete completion condition from available evidence before acting.\\n- C
+
+## final reply
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+[active_goal:goal-ea0315f9-ad52-4638-b366-76f73ff73d98]
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

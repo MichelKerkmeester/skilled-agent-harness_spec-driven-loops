@@ -1,0 +1,30 @@
+scenario: git-message-gate   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- bash [error] input={"command":"git commit --allow-empty -m 'bad'","description":"Run the empty commit with message 'bad' as requested to test the gate plugin","workdir":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook"}
+  result: sk-git-message-gate: sk-git blocked this commit message: it breaks the repository's commit message rules.
+    • [subject.format] Authored subject must match type(scope): imperative summary using an allowed type (build, chore, ci, docs, feat, fix, merge, perf, refactor, release, revert, style, test).
+    • [body.required] A prose body is required on every authored commit: add at least one prose line above the trailers.
+    Expected: type(scope): imperative summary
+    Rules: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/skills/sk-git/assets/commit-message-template.md
+    Fix the text and run the command again; there is no bypass.
+
+## final reply
+ules.
+  • [subject.format] Authored subject must match type(scope): imperative summary using an allowed type (build, chore, ci, docs, feat, fix, merge, perf, refactor, release, revert, style, test).
+  • [body.required] A prose body is required on every authored commit: add at least one prose line above the trailers.
+  Expected: type(scope): imperative summary
+  Rules: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/skills/sk-git/assets/commit-message-template.md
+  Fix the text and run the command again; there is no bypass.
+```
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T17:05:21.254Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

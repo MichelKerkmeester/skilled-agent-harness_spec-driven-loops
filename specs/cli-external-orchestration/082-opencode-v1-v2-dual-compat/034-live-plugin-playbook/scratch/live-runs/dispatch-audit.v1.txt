@@ -1,0 +1,34 @@
+scenario: dispatch-audit   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- bash [completed] input={"command":"opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null","timeout":30000}
+  result: opencode run [message..]
+  
+  run opencode with a message
+  
+  Positionals:
+    message  message to send                                                     [array] [default: []]
+  
+  Options:
+    -h, --help         show help                                                             [boolean]
+    -v, --version      show version number                                                   [boolean]
+        --print-logs   print logs to stderr                                                  [boolean]
+        --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+        --pure         run without external plugins                                          [boolean]
+        --command 
+
+## final reply
+First line: `opencode run [message..]`
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+cli-dispatch-audit.log (new): {"schema_version":1,"ts":"2026-10-20T17:03:00.480Z","runtime":"opencode","sessionID":"ses_ea5bbf16bffeDQnUJW6pGRUAH1","callID":"call_00_TbgqK31HwFL0mAs5J7UH1001","skill":"cli-opencode","command":"opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null","commandTruncated":false,"model":null,"target":null,"durationMs":null,"exitCode":0,"outputBytes":2952}
+codex-hooks-watchdog.log: 2026-10-20T17:02:52.693Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/cli-dispatch-audit.log
+.skilled/logs/codex-hooks-watchdog.log

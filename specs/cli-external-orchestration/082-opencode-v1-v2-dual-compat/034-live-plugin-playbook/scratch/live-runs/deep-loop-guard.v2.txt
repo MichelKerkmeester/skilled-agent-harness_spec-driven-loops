@@ -1,0 +1,29 @@
+scenario: deep-loop-guard   version: v2   exit: 0
+model requests captured: 4
+
+## tool calls (name, status, input, first lines of result or error)
+- subagent [completed] input={"agent":"deep-research","description":"Dispatch guard test","prompt":"Deep Route: target_agent=deep-research mode=bogus-mode\nReply with the single word OK and do nothing else."}
+  result: <subagent sessionID="ses_ea5b86d98ffeIBnz27pFcqsIAt" state="completed">
+  OK
+  </subagent>
+
+## final reply
+The subagent tool returned:
+
+```
+<subagent sessionID="ses_ea5b86d98ffeIBnz27pFcqsIAt" state="completed">
+OK
+</subagent>
+```
+
+No error was raised — the `Deep Route: ... mode=bogus-mode` line passed through and the child session replied `OK`.
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T17:06:42.671Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

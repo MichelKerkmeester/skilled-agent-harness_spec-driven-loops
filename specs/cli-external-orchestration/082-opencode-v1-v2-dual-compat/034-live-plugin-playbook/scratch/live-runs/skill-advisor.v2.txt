@@ -1,0 +1,15 @@
+scenario: skill-advisor   version: v2   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+`sk-git` — it owns conventional commits and the git workflow.
+
+
+## plugin lines in the system prompt (deduplicated)
+Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

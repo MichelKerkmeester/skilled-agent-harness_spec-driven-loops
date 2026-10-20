@@ -1,0 +1,17 @@
+scenario: baseline   version: v2   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+OK
+
+
+## plugin lines in the system prompt (deduplicated)
+Advisor: no skill matched.
+
+## plugin log lines and state files written during the run
+# new log lines
+session-cleanup.log: 2026-10-20T18:47:32+0200 action=skip reason=no-session-pid
+# files changed since start
+session-cleanup.log

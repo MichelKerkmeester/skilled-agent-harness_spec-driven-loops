@@ -1,0 +1,26 @@
+scenario: dispatch-guard   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- bash [error] input={"command":"opencode run --help"}
+  result: Dispatch blocked by cli-opencode hard-rule(s):
+    • [stdin-redirect-required] Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.
+    • [explicit-model-required] Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429').
+
+## final reply
+blocked by cli-opencode hard-rule(s):
+  • [stdin-redirect-required] Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.
+  • [explicit-model-required] Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429').
+```
+
+The guard blocked the command without executing it.
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T17:02:07.867Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

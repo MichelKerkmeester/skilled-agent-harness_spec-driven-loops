@@ -1,0 +1,21 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook",
+  "description": "Live plugin utilization playbook on OpenCode v1 and v2",
+  "keywords": [
+    "live",
+    "plugin",
+    "utilization",
+    "playbook",
+    "opencode"
+  ],
+  "lastUpdated": "2026-10-20T16:42:45.968Z",
+  "specId": "034",
+  "folderSlug": "live-plugin-playbook",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -1,0 +1,20 @@
+scenario: post-edit-quality   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- write [completed] input={"path":"specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch-probe/pe-probe-v2.js","content":"// Aspect ratio taken from the 640/480 baseline.\nexport const ratio = 640 / 480;\n"}
+  result: Created file successfully: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch-probe/pe-probe-v2.js
+
+## final reply
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+[post-edit-quality] Advisory findings from recent edits:
+- [comment-hygiene] /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch-probe/pe-probe-v2.js: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-
+
+## plugin log lines and state files written during the run
+# new log lines
+post-edit-quality.log: 2026-10-20T16:57:03.027Z [sk-code-post-edit-quality] [comment-hygiene] /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch-probe/pe-probe-v2.js: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook/scratch-probe/pe-probe-v2.js:1: // Aspect ratio taken from the 640/480
+# files changed since start
+.skilled/logs/post-edit-quality.log

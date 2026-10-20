@@ -1,0 +1,38 @@
+scenario: dispatch-guard   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- shell [completed] input={"command":"opencode run --help"}
+  result: opencode run [message..]
+  
+  run opencode with a message
+  
+  Positionals:
+    message  message to send                                                     [array] [default: []]
+  
+  Options:
+    -h, --help         show help                                                             [boolean]
+    -v, --version      show version number                                                   [boolean]
+        --print-logs   print logs to stderr                                                  [boolean]
+        --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+        --pure         run without external plugins                                          [boolean]
+        --command 
+
+## final reply
+rt, e.g., high, max, minimal)
+                                                                                            [string]
+      --thinking     show thinking blocks                                                  [boolean]
+  -i, --interactive  run in direct interactive split-footer mode          [boolean] [default: false]
+      --auto         auto-approve permissions that are not explicitly denied (dangerous!)
+                                                                          [boolean] [default: false]
+```
+
+Result: exit success, no error, and no guard intervention was visible.
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

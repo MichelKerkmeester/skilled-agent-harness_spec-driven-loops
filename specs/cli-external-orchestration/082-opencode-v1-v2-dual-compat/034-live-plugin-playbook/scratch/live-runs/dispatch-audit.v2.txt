@@ -1,0 +1,34 @@
+scenario: dispatch-audit   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- shell [completed] input={"command":"opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null","timeout":120000}
+  result: opencode run [message..]
+  
+  run opencode with a message
+  
+  Positionals:
+    message  message to send                                                     [array] [default: []]
+  
+  Options:
+    -h, --help         show help                                                             [boolean]
+    -v, --version      show version number                                                   [boolean]
+        --print-logs   print logs to stderr                                                  [boolean]
+        --log-level    log level                  [string] [choices: "DEBUG", "INFO", "WARN", "ERROR"]
+        --pure         run without external plugins                                          [boolean]
+        --command 
+
+## final reply
+First line of output:
+
+```
+opencode run [message..]
+```
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

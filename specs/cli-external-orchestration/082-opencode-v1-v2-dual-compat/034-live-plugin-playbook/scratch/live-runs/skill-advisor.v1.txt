@@ -1,0 +1,17 @@
+scenario: skill-advisor   version: v1   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+sk-git.
+
+
+## plugin lines in the system prompt (deduplicated)
+Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T16:49:30.071Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

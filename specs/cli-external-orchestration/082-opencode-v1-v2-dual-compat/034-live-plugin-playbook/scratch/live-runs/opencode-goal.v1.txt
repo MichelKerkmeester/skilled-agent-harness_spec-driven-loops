@@ -1,0 +1,42 @@
+scenario: opencode-goal   version: v1   exit: 0
+model requests captured: 4
+
+## tool calls (name, status, input, first lines of result or error)
+- opencode_goal [completed] input={"action":"set","objective":"Probe goal canary 7Q4Z-v1"}
+  result: STATUS=OK ACTION=set
+  mutation=created
+  goal_present=true
+  plugin_id=opencode-goal
+  goal_id=goal-f0633174-f8f5-470f-a44e-f815886855f5
+  status=active
+  objective="Probe goal canary 7Q4Z-v1"
+  packet_path=""
+  packet_state=unbound
+  packet_bound=false
+  resend_pending=false
+  goal_prompt="Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Probe goal canary 7Q4Z-v1\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion conditio
+- opencode_goal_status [completed] input={}
+  result: STATUS=OK ACTION=show
+  goal_present=true
+  plugin_id=opencode-goal
+  goal_id=goal-f0633174-f8f5-470f-a44e-f815886855f5
+  status=active
+  objective="Probe goal canary 7Q4Z-v1"
+  packet_path=""
+  packet_state=unbound
+  packet_bound=false
+  resend_pending=false
+  goal_prompt="Role: Focused OpenCode execution agent operating under the active session goal.\nObjective: Probe goal canary 7Q4Z-v1\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available
+
+## final reply
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+[active_goal:goal-f0633174-f8f5-470f-a44e-f815886855f5]
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T16:50:04.998Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log

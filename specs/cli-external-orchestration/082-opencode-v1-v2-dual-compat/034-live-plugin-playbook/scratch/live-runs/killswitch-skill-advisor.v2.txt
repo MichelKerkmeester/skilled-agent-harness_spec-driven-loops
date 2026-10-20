@@ -1,0 +1,14 @@
+scenario: killswitch-skill-advisor   version: v2   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+`sk-git` — it owns numbered worktrees, conventional commits, PRs, and merge/rebase finish workflows.
+
+
+## plugin lines in the system prompt (deduplicated)
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

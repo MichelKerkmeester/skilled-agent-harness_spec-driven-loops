@@ -1,0 +1,23 @@
+scenario: mcp-route-guard   version: v1   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- mobbin_ping [completed] input={}
+  result: pong-stub
+
+## final reply
+`pong-stub`
+
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+mcp-route-guard.log (new): 2026-10-20T16:57:32.337Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+codex-hooks-watchdog.log: 2026-10-20T16:57:25.346Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/mcp-route-guard.log
+.skilled/logs/codex-hooks-watchdog.log

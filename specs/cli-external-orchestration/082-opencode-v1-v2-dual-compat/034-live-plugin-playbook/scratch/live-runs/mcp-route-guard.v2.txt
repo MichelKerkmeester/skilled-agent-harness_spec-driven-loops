@@ -1,0 +1,30 @@
+scenario: mcp-route-guard   version: v2   exit: 0
+model requests captured: 4
+
+## tool calls (name, status, input, first lines of result or error)
+- execute [completed] input={"code":"const res = await tools.opencode.list_mcp_resources({});\nreturn res;"}
+  result: {
+    "resources": [],
+    "templates": []
+  }
+- execute [completed] input={"code":"const out = await tools.mobbin.ping();\nreturn out;"}
+  result: pong-stub
+
+## final reply
+Called `mobbin.ping`. Output:
+
+```
+pong-stub
+```
+
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+mcp-route-guard.log: 2026-10-20T16:57:54.233Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+# files changed since start
+.skilled/logs/mcp-route-guard.log

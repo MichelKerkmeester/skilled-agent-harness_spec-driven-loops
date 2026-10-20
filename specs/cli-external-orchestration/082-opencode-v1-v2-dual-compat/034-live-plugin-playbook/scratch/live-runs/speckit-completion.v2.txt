@@ -1,0 +1,38 @@
+scenario: speckit-completion   version: v2   exit: 0
+model requests captured: 3
+
+## tool calls (name, status, input, first lines of result or error)
+- execute [completed] input={"code":"const out = await tools.system_speckit_completion({ specFolder: \"specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast\" });\nconst lines = String(out ?? \"\").split(\"\\n\").slice(0, 8).join(\"\\n\");\nreturn lines;"}
+  result: {
+    "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
+    "level": 1,
+    "filesPresent": {
+      "spec": true,
+      "plan": true,
+      "tasks": true,
+      "acceptanceCriteria": false,
+
+## final reply
+I'll call the tool and show the first 8 lines of its output.
+First 8 lines of the tool's raw output:
+
+```
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
+  "level": 1,
+  "filesPresent": {
+    "spec": true,
+    "plan": true,
+    "tasks": true,
+    "acceptanceCriteria": false,
+```
+
+DONE
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+# files changed since start

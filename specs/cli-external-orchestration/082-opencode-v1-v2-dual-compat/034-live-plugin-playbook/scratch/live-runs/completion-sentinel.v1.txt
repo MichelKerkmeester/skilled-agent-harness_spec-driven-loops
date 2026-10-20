@@ -1,0 +1,20 @@
+scenario: completion-sentinel   version: v1   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.
+
+
+## plugin lines in the system prompt (deduplicated)
+(not a system-prompt effect)
+
+## plugin log lines and state files written during the run
+# new log lines
+completion-sentinel-advisories.log: 2026-10-20T17:00:58.036Z [completion-evidence-sentinel] claimed done but only 0/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook
+codex-hooks-watchdog.log: 2026-10-20T17:00:47.598Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+# files changed since start
+.skilled/logs/completion-sentinel-advisories.log
+.skilled/logs/codex-hooks-watchdog.log
+.skilled/skills/.state/completion-sentinel/advisory-dedup.json

@@ -1,0 +1,22 @@
+scenario: baseline   version: v1   exit: 0
+model requests captured: 2
+
+## tool calls (name, status, input, first lines of result or error)
+
+## final reply
+OK
+
+
+## plugin lines in the system prompt (deduplicated)
+Advisor: no skill matched.
+[session-cleanup] Startup safety warnings:
+[check-git-hooks] Invalid git hook symlink(s): commit-msg (mismatched),post-commit (mismatched),post-merge (mismatched),post-rewrite (mismatched),pre-commit (mismatched),pre-push (mismatched),prepare-commit-msg (mismatched). Fix: bash .opencode/scripts/install-git-hooks.sh (silence: SPECKIT_GIT_HOOKS_GUARD=off)
+[session-cleanup] orphan daemon sweep skipped: kill-switch-disabled
+
+## plugin log lines and state files written during the run
+# new log lines
+codex-hooks-watchdog.log: 2026-10-20T16:47:10.049Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/174-live-plugin-playbook/.skilled/bin/install-codex-hooks.mjs --check
+session-cleanup.log (new): 2026-10-20T18:47:21+0200 action=skip reason=no-session-pid
+# files changed since start
+.skilled/logs/codex-hooks-watchdog.log
+session-cleanup.log
