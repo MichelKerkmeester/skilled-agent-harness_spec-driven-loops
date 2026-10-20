@@ -946,3 +946,171 @@ test('tool identity preserves the v1 helper contract', async () => {
   assert.equal(typeof tool.schema.object, 'function');
   assert.equal(typeof tool.schema.toJSONSchema, 'function');
 });
+
+test('execute.before presents a v2 shell call to the plugin as bash', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedPair;
+  const plugin = dualPlugin('shell-name-test', async () => ({
+    'tool.execute.before': async (input, output) => {
+      receivedPair = { input, args: output.args };
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  await toolHooks.get('execute.before')({
+    tool: 'shell',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: { command: 'echo probe-123' },
+  });
+
+  assert.equal(receivedPair.input.tool, 'bash');
+  assert.deepEqual(receivedPair.args, { command: 'echo probe-123' });
+  await cleanup();
+});
+
+test('execute.before leaves a non-aliased tool and its args unchanged', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  const args = { path: 'result.txt' };
+  let receivedPair;
+  const plugin = dualPlugin('read-name-test', async () => ({
+    'tool.execute.before': async (input, output) => {
+      receivedPair = { input, args: output.args };
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+  const event = {
+    tool: 'read',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: args,
+  };
+
+  await toolHooks.get('execute.before')(event);
+
+  assert.equal(receivedPair.input.tool, 'read');
+  assert.strictEqual(receivedPair.args, args);
+  assert.strictEqual(event.input, args);
+  await cleanup();
+});
+
+test('execute.before presents a v2 subagent call as task with subagent_type', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedPair;
+  const plugin = dualPlugin('subagent-name-test', async () => ({
+    'tool.execute.before': async (input, output) => {
+      receivedPair = { input, args: output.args };
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+  const event = {
+    tool: 'subagent',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: { agent: 'general', description: 'Reply OK', prompt: 'Reply with the single word: OK' },
+  };
+
+  await toolHooks.get('execute.before')(event);
+
+  assert.equal(receivedPair.input.tool, 'task');
+  assert.equal(receivedPair.args.subagent_type, 'general');
+  assert.equal(receivedPair.args.agent, 'general');
+  assert.equal(receivedPair.args.description, 'Reply OK');
+  assert.equal(Object.hasOwn(event.input, 'subagent_type'), false);
+  assert.equal(event.input.agent, 'general');
+  await cleanup();
+});
+
+test('execute.before writes a changed subagent_type back to agent', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  const plugin = dualPlugin('subagent-override-test', async () => ({
+    'tool.execute.before': async (_input, output) => {
+      output.args = { ...output.args, subagent_type: 'review' };
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+  const event = {
+    tool: 'subagent',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: { agent: 'general', description: 'Reply OK', prompt: 'Reply with the single word: OK' },
+  };
+
+  await toolHooks.get('execute.before')(event);
+
+  assert.equal(event.input.agent, 'review');
+  assert.equal(Object.hasOwn(event.input, 'subagent_type'), false);
+  assert.equal(event.input.description, 'Reply OK');
+  await cleanup();
+});
+
+test('execute.after gives a v2 shell call the v1 string output', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedOutput;
+  const plugin = dualPlugin('shell-output-test', async () => ({
+    'tool.execute.after': async (_input, output) => {
+      receivedOutput = output;
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  await toolHooks.get('execute.after')({
+    tool: 'shell',
+    sessionID: 'ses_x',
+    agent: 'build',
+    messageID: 'msg_y',
+    id: 'call_1',
+    input: { command: 'echo probe-123' },
+    status: 'completed',
+    result: {
+      output: { exit: 0, truncated: false, output: 'probe-123\n', status: 'completed' },
+      content: [{ type: 'text', text: 'probe-123\n' }],
+      metadata: { status: 'completed', truncated: false, exit: 0 },
+    },
+  });
+
+  assert.equal(typeof receivedOutput.output, 'string');
+  assert.equal(receivedOutput.output, 'probe-123\n');
+  assert.deepEqual(receivedOutput.metadata, { status: 'completed', truncated: false, exit: 0 });
+  await cleanup();
+});
+
+test('a v1 hook refusal for bash reaches the host for a v2 shell call', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context, toolHooks } = createV2Context();
+  let receivedTool;
+  const plugin = dualPlugin('shell-deny-test', async () => ({
+    'tool.execute.before': async (input) => {
+      receivedTool = input.tool;
+      throw new Error('Denied by v1 hook');
+    },
+  }));
+  const cleanup = await plugin.setup(context);
+
+  await assert.rejects(
+    toolHooks.get('execute.before')({
+      tool: 'shell',
+      sessionID: 'ses_x',
+      agent: 'build',
+      messageID: 'msg_y',
+      id: 'call_1',
+      input: { command: 'echo probe-123' },
+    }),
+    /Denied by v1 hook/,
+  );
+  assert.equal(receivedTool, 'bash');
+  await cleanup();
+});

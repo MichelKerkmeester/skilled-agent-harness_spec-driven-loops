@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/035-v2-bridge-plugin-effects"
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects"
     last_updated_at: "2026-10-20T20:32:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

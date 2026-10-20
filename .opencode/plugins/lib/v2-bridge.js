@@ -19,6 +19,12 @@ const EVENT_ALIASES = Object.freeze({
   'session.compaction.ended': 'session.compacted',
 });
 
+// v2 renamed the tools and argument v1 plugins match on, so map them back before dispatch.
+const TOOL_ALIASES = Object.freeze({
+  shell: 'bash',
+  subagent: 'task',
+});
+
 const EVENT_MAPPINGS = Object.freeze({
   'session.text.ended': {
     type: 'message.part.updated',
@@ -75,6 +81,41 @@ function toV1ToolOutput(event) {
     output: result.output ?? result.content ?? '',
     metadata: result.metadata ?? {},
   };
+}
+
+function toV1ToolName(tool) {
+  return TOOL_ALIASES[tool] ?? tool;
+}
+
+function toV1ToolArgs(tool, args) {
+  if (tool !== 'subagent' || args === null || typeof args !== 'object') return args;
+  return { ...args, subagent_type: args.agent };
+}
+
+function toV2ToolArgs(tool, originalArgs, args) {
+  if (tool !== 'subagent' || args === null || typeof args !== 'object') return args;
+
+  const next = { ...args };
+  if (Object.hasOwn(next, 'subagent_type') && next.subagent_type !== originalArgs?.agent) {
+    next.agent = next.subagent_type;
+  }
+
+  const originalHadSubagentType = originalArgs !== null
+    && typeof originalArgs === 'object'
+    && Object.hasOwn(originalArgs, 'subagent_type');
+  if (!originalHadSubagentType) delete next.subagent_type;
+  return next;
+}
+
+function toV1ToolHookOutput(event) {
+  const output = toV1ToolOutput(event);
+  if (event.tool !== 'shell' || event.status === 'error') return output;
+
+  const shellOutput = event.result?.output;
+  if (shellOutput !== null && typeof shellOutput === 'object' && typeof shellOutput.output === 'string') {
+    return { ...output, output: shellOutput.output };
+  }
+  return output;
 }
 
 function toV1Tokens(tokens) {
@@ -322,14 +363,15 @@ export function dualPlugin(id, server) {
 
       if (typeof hooks['tool.execute.before'] === 'function') {
         const registration = await ctx.tool.hook('execute.before', async (event) => {
+          const originalArgs = event.input;
           const hookInput = {
-            tool: event.tool,
+            tool: toV1ToolName(event.tool),
             sessionID: event.sessionID,
             callID: event.id,
           };
-          const hookOutput = { args: event.input };
+          const hookOutput = { args: toV1ToolArgs(event.tool, originalArgs) };
           await hooks['tool.execute.before'](hookInput, hookOutput);
-          event.input = hookOutput.args;
+          event.input = toV2ToolArgs(event.tool, originalArgs, hookOutput.args);
         });
         registrations.push(registration);
       }
@@ -337,12 +379,12 @@ export function dualPlugin(id, server) {
       if (typeof hooks['tool.execute.after'] === 'function') {
         const registration = await ctx.tool.hook('execute.after', async (event) => {
           const hookInput = {
-            tool: event.tool,
+            tool: toV1ToolName(event.tool),
             sessionID: event.sessionID,
             callID: event.id,
-            args: event.input,
+            args: toV1ToolArgs(event.tool, event.input),
           };
-          await hooks['tool.execute.after'](hookInput, toV1ToolOutput(event));
+          await hooks['tool.execute.after'](hookInput, toV1ToolHookOutput(event));
         });
         registrations.push(registration);
       }
@@ -402,4 +444,4 @@ export function dualPlugin(id, server) {
   return { id, server, setup };
 }
 
-export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS };
+export { MAPPED_HOOKS, EVENT_ALIASES, EVENT_MAPPINGS, TOOL_ALIASES };
