@@ -58,7 +58,7 @@ The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vi
 
 ```text
 .opencode/plugins/
-├── classifier-injection-screen.js   # this file and the 15 below are built with dualPlugin, each default-exporting { id, setup, server }
+├── classifier-injection-screen.js   # every entry from here to system-speckit-completion.js is built with dualPlugin, each default-exporting { id, setup, server }
 ├── cli-dispatch-audit.js
 ├── codex-hooks-watchdog.js
 ├── mcp-route-guard.js
@@ -74,7 +74,7 @@ The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vi
 ├── system-skill-advisor.js
 ├── system-spec-gate.js
 ├── system-speckit-completion.js
-├── sk-vision.js               # the 17th entry, unbridged, a symlink to ../skills/sk-vision/vision-runtime/dist/plugin.js
+├── sk-vision.js               # the one unbridged entry, a symlink to ../skills/sk-vision/vision-runtime/dist/plugin.js
 ├── lib/                       # shared modules the entry files import, never plugin sources
 │   ├── classifier-injection-screen-core.js
 │   ├── completion-sentinel-core.js
@@ -227,7 +227,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 - OpenCode 2 has no server-side toast and agent `temperature` has no effect (see Section 5).
 - The proposed version floors of 1.19.0 and 2.0.32 are inferred and unprobed below the tested versions.
 - OpenCode 2.0.32 does not deliver `server.instance.disposed` or `global.disposed` to plugins; it sends `location.shutdown` and runs the cleanup the bridge returns. The disposal branches in `system-skill-advisor.js` and `system-dist-freshness-guard.js` therefore run only on OpenCode 1 (observed 2026-10-20, listed in `tests/plugin-inventory.json`).
-- The event-name guard in `tests/plugin-inventory.test.cjs` parses each bridged plugin with the rolldown parser already installed under `.skilled/node_modules`, so comments and string contents are never read as code and an escaped name is read as the name it spells. It resolves every name through its lexical scope, and it reports every other check on the event type for `unscannedEventChecks`, including one that wraps the type in a call; a `typeof` check reads only the value's type, so it is not counted as an event check. It knows the event type by name: `type`, a name ending in `Type`, a `.type` field, or a local declared from one of those. It does not follow values: a check on an event type held under any other name is invisible to it, an unrelated value that happens to be named `type` is read as the event type, and a helper's result stored in a variable and tested later is not seen. A file it cannot parse fails the test. The authoritative guard for what each plugin does on each host is still the two-version doctor battery.
+- The event-name guard in `tests/plugin-inventory.test.cjs` parses each bridged plugin with rolldown, which `.skilled/package.json` now declares directly as a dev dependency. Comments and strings are never read as code, and an escaped name reads as the name it spells. The guard resolves every name through its lexical scope and reports every other check on the event type for `unscannedEventChecks`, including one that wraps the type in a call. A `typeof` check reads only the value's type, so the guard does not count it as an event check. A file it cannot parse fails the test. It knows the event type by name: `type`, a name ending in `Type`, a `.type` field, or a local declared from one of those. An object key or member property with such a name is not a value. A parameter with such a name counts as the event type. It stops counting only when the function has a name, the function never escapes, calls to it exist in the file and every one passes no event type at that position. The guard follows a helper result stored in a variable through declarations and plain assignments, and it reports the helper call when a read of that variable decides a branch: an `if`, a loop, a conditional, a `switch` or a `case`. It still does not follow values across files, through a return value, through object properties or array elements, or through a function that escapes. An unrelated value named `type` that is not a traced parameter is still read as the event type, and a check on an event type held under any other name is invisible to it. The authoritative guard for what each plugin does on each host is still the two-version doctor battery.
 - OpenCode 2.0.32 merges every ancestor `.opencode` folder, so a session started in a worktree nested inside another checkout, such as `.worktrees/NNN-slug`, registers the outer checkout's plugins first and the worktree's own copies fail with `Duplicate plugin ID` (observed 2026-10-20). That session runs the outer checkout's plugin code. OpenCode 1.19.3 stops at the worktree root. To run a worktree's own plugins on OpenCode 2, start it with `OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR=<worktree>/.opencode`, or use a checkout outside the other one.
 - Live delivery is verified per plugin by the `plugin-utilization` playbook in `cli-opencode`. On 2026-10-20 all 17 plugins showed their checked effect on OpenCode 1.19.3 and 2.0.32 (`specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects/scratch/live-runs/results-matrix.md`).
 

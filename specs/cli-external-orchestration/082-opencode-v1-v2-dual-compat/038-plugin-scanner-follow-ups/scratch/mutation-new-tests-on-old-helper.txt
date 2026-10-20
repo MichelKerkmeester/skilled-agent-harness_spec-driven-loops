@@ -1,0 +1,279 @@
+✔ the plugin folder matches the inventory manifest (23.76125ms)
+✔ readInventory reports an unlisted file, a missing manifest file and a bridged exception (2.22225ms)
+✖ every bridged plugin maps all of its hooks (2.345125ms)
+✖ every handled event name reaches v2 plugins or is listed (2.352458ms)
+✖ every event an unscanned check covers reaches v2 plugins or is listed (0.32675ms)
+✔ every listed event is still handled by a plugin (35.844333ms)
+✔ every listed skipped hook names a bridged plugin (1.499917ms)
+✔ handledEventNames reads both quote styles, both orders and case labels (0.215583ms)
+✔ handledEventNames reads an escaped event name as the name it spells (0.068375ms)
+✔ comment and string text is never read as an event check (0.123666ms)
+✔ a case label counts only under a switch on the event type (0.067208ms)
+✔ a collection that is changed after it is built is reported, not trusted (0.287375ms)
+✔ an alias of the event type is read like the type itself (0.09475ms)
+✔ a write through a collection member makes the collection untrusted (0.124708ms)
+✔ an alias that is shadowed or reassigned is not an alias (0.059584ms)
+✔ a destructured type field is read in parameters and with defaults (0.049333ms)
+✔ a local Set or Object is not trusted to build a literal collection (0.146709ms)
+✔ a same-named parameter does not stand in for an outer collection (0.060708ms)
+✔ an unrelated same-named parameter does not cancel an outer alias (0.042792ms)
+✔ a for-of loop that writes an alias cancels it (0.046958ms)
+✔ a membership method that does not fit the collection is reported (0.079417ms)
+✔ a helper that receives the event type inside a test is reported (0.043042ms)
+✔ a wrapped event type is reported in comparisons, switches and membership checks (0.084459ms)
+✔ a shadowed undefined is not read as the no-event sentinel (0.045ms)
+✔ a helper that receives a wrapped event type inside a test is reported (0.044875ms)
+✖ a stored helper result that decides an if is reported (0.47ms)
+✖ a stored helper result behind a logical expression that decides a loop is reported (0.148042ms)
+✔ a stored helper result that never decides a branch is not reported (0.044417ms)
+✖ a stored helper result read inside a nested function is reported (0.080584ms)
+✖ a stored helper result that decides a switch is reported (0.067791ms)
+✔ a callback method that can reach the collection makes it untrusted (0.072166ms)
+✔ a computed static type key is read as the type field (0.031208ms)
+✖ a type-named parameter is not the event type when its calls pass no event type (0.072458ms)
+✔ a type-named parameter that receives the event type reads as the type (0.496917ms)
+✔ a type-named parameter of an uncalled function still reads as the type (0.036125ms)
+✔ a type-named parameter of an escaping function still reads as the type (0.032333ms)
+✖ a defaulted type-named parameter is not the event type when its call omits it (0.071792ms)
+✔ a type-named parameter passed to another type-named parameter is resolved (0.036791ms)
+✔ a type-named object key and member property are not event values (0.031042ms)
+✖ a shorthand type-named property passes the event type (0.059417ms)
+✔ a source the parser cannot read fails instead of passing empty (0.282042ms)
+✔ handledEventNames reads names from a resolved collection (0.083334ms)
+✔ unscannedEventChecks reports checks the scan cannot read (0.078625ms)
+✔ unscannedEventChecks fails closed on forms it cannot resolve (0.085042ms)
+✔ every unscanned event check is listed (40.176209ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 35
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.609042
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:143:1
+✖ every bridged plugin maps all of its hooks (2.345125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs' imported from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/classifier-injection-screen.js
+      at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+      at moduleResolve (node:internal/modules/esm/resolve:879:10)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:389:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:164:1
+✖ every handled event name reaches v2 plugins or is listed (2.352458ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'zod' imported from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/lib/v2-bridge.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:180:1
+✖ every event an unscanned check covers reaches v2 plugins or is listed (0.32675ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'zod' imported from /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/lib/v2-bridge.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:377:1
+✖ a stored helper result that decides an if is reported (0.47ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'isKnown(eventType)'
+  - ]
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:379:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'isKnown(eventType)' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:383:1
+✖ a stored helper result behind a logical expression that decides a loop is reported (0.148042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'matches(event.type)'
+  - ]
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:385:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'matches(event.type)' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:395:1
+✖ a stored helper result read inside a nested function is reported (0.080584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'check(eventType)'
+  - ]
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:397:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'check(eventType)' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:401:1
+✖ a stored helper result that decides a switch is reported (0.067791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'classify(eventType)'
+  - ]
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:403:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'classify(eventType)' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:420:1
+✖ a type-named parameter is not the event type when its calls pass no event type (0.072458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'a.b'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:422:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'a.b' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:444:1
+✖ a defaulted type-named parameter is not the event type when its call omits it (0.071792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'r.four'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:446:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'r.four' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/plugin-inventory.test.cjs:462:1
+✖ a shorthand type-named property passes the event type (0.059417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   'isKnown({ eventType })'
+  - ]
+  
+      at TestContext.<anonymous> (/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/g038-mut.VQA9/.opencode/plugins/tests/plugin-inventory.test.cjs:464:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ 'isKnown({ eventType })' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
