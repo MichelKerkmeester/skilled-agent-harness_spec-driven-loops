@@ -1,0 +1,7 @@
+# Round-3 fixtures against the round-2 helper (commit e7ee2fb310), node v26.8.2
+exit 1
+ℹ tests 29
+ℹ pass 27
+ℹ fail 2
+✖ a shadowed undefined is not read as the no-event sentinel (0.339292ms)
+✖ a wrapped event type is reported in comparisons, switches and membership checks (1.062208ms)

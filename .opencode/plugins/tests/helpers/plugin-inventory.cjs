@@ -116,13 +116,15 @@ function text(source, node) {
 
 // The tree has no parent links, so one generic walk records every node together with the parent
 // that owns it; a method call is reported with its enclosing test, which needs that link.
-function walkAst(root) {
+function walkAst(root, shouldDescend = () => true) {
   const nodes = [];
   const stack = [{ node: root, parent: null }];
 
   while (stack.length > 0) {
     const entry = stack.pop();
     nodes.push(entry);
+
+    if (!shouldDescend(entry.node)) continue;
 
     for (const key of Object.keys(entry.node)) {
       const value = entry.node[key];
@@ -152,12 +154,13 @@ function staticString(node) {
   return undefined;
 }
 
-// A comparison against nothing says no event arrived, so there is no name to read or report.
-function isNothing(node) {
-  return (
-    (node.type === 'Identifier' && node.name === 'undefined') ||
-    (node.type === 'Literal' && node.value === null)
-  );
+// A comparison against nothing says no event arrived, so there is no name to read or report; a
+// shadowed `undefined` is an ordinary operand, not the global sentinel.
+function isNothing(node, context) {
+  if (node.type === 'Identifier' && node.name === 'undefined') {
+    return context.resolve(node) === null;
+  }
+  return node.type === 'Literal' && node.value === null;
 }
 
 function isEventType(node, context) {
@@ -181,6 +184,20 @@ function isEventType(node, context) {
   }
 
   return false;
+}
+
+// A wrapped event type still selects events, so the operand is reported instead of dropped; a
+// nested function body runs later and is not part of the expression evaluated here, and a typeof
+// reads a type tag rather than the event name.
+function containsEventType(node, context) {
+  if (node === null || node === undefined) return false;
+
+  return walkAst(
+    node,
+    (current) =>
+      !FUNCTION_TYPES.has(current.type) &&
+      !(current.type === 'UnaryExpression' && current.operator === 'typeof'),
+  ).some((entry) => isEventType(entry.node, context));
 }
 
 // Every pattern form hides its names at a different depth, so one walk flattens them all.
@@ -605,7 +622,13 @@ function readComparison(node, source, context, handled, unscanned) {
     unscanned.add(text(source, node));
     return;
   }
-  if (!leftIsType && !rightIsType) return;
+  if (!leftIsType && !rightIsType) {
+    // A type hidden inside an operand is reported rather than silently dropped.
+    if (containsEventType(node.left, context) || containsEventType(node.right, context)) {
+      unscanned.add(text(source, node));
+    }
+    return;
+  }
 
   const other = leftIsType ? node.right : node.left;
   const value = staticString(other);
@@ -613,12 +636,18 @@ function readComparison(node, source, context, handled, unscanned) {
     if (EVENT_NAME.test(value)) handled.add(value);
     return;
   }
-  if (!isNothing(other)) unscanned.add(text(source, node));
+  if (!isNothing(other, context)) unscanned.add(text(source, node));
 }
 
 // A case label names an event only when it is a literal; every other label is read at runtime.
 function readSwitch(node, source, context, handled, unscanned) {
-  if (!isEventType(node.discriminant, context)) return;
+  if (!isEventType(node.discriminant, context)) {
+    // A wrapped type is still the switch subject, so the whole switch is reported once.
+    if (containsEventType(node.discriminant, context)) {
+      unscanned.add(`switch (${text(source, node.discriminant)})`);
+    }
+    return;
+  }
 
   for (const switchCase of node.cases) {
     if (switchCase.test === null) continue;
@@ -692,9 +721,23 @@ function readCall(node, parent, source, context, handled, unscanned) {
       return;
     }
 
+    // A wrapped type inside a membership check is reported, and its receiver is left unread.
+    if (
+      (property === 'has' || property === 'includes') &&
+      firstArgument !== undefined &&
+      containsEventType(firstArgument, context)
+    ) {
+      unscanned.add(text(source, node));
+      return;
+    }
+
     // A method on the type can select events the scan cannot read, so a comparison is reported
-    // with its method call and a bare call is reported alone.
+    // with its method call and a bare call is reported alone; a switch discriminant is reported
+    // with its switch instead.
     if (isEventType(callee.object, context)) {
+      if (parent !== null && parent.type === 'SwitchStatement' && parent.discriminant === node) {
+        return;
+      }
       const parentIsComparison =
         parent !== null &&
         parent.type === 'BinaryExpression' &&

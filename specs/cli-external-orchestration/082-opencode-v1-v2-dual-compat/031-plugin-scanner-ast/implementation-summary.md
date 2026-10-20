@@ -63,7 +63,7 @@ The purity test now lists symlinks too. For `sk-vision.js` it checks that the li
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/plugins/tests/helpers/plugin-inventory.cjs` | Modified | Event readers on `rolldown/parseAst` |
-| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | Six fixtures for the closed gaps, aliases and a parse failure |
+| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modified | One fixture per closed gap and per review finding, plus aliases and a parse failure (seventeen in all) |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modified | Checks symlinked entries |
 | `.github/workflows/spec-kit-check.yml` | Modified | Builds the sk-vision bundle before the vitest projects |
 | `.opencode/plugins/tests/README.md` | Modified | Every suite and the full tree |
@@ -86,6 +86,7 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 
 | Decision | Why |
 |----------|-----|
+| Do not count a `typeof` check as an event check | It reads the value's type tag, never which event arrived; six real-plugin checks use it, and listing them would claim events they do not select. |
 | Use `rolldown/parseAst` rather than add a parser | It is already installed and pinned through vitest's vite, so no dependency is added. |
 | Load it with `createRequire` from `.skilled/package.json` | The plugin tests resolve from `.opencode`, whose `node_modules` does not hold it. |
 | Put the case-label fixture under `switch (eventType)` | A `case` under an unrelated switch counting as handled was one of the recorded gaps; the old fixture relied on it. |
@@ -101,13 +102,13 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Check | Result |
 |-------|--------|
 | Plugin suite baseline | 417 of 417 (`scratch/baseline/plugin-suite.txt`) |
-| Plugin suite after | 431 of 431: one test removed, fifteen added (`scratch/after/plugin-suite.txt`) |
+| Plugin suite after | 433 of 433: one test removed, seventeen added (`scratch/after/plugin-suite.txt`) |
 | Old vs new helper on 16 bridged plugins | Identical (`scratch/mutation/scan-parity.txt`) |
-| New fixtures on the old helper | Exit 1, 13 of the 15 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt`, `round1-` and `round2-fixtures-on-prior-helper.txt`) |
-| Mutants m1 and m2 of the new helper | m1 fails 1 test, m2 fails 2 |
+| New fixtures on the old helper | Exit 1, 15 of the 17 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt` and the three `round*-fixtures-on-prior-helper.txt` records) |
+| Mutants m1, m2 and m3 of the new helper | m1 fails 2 tests, m2 fails 2, m3 (typeof carve-out removed) fails the real-plugin listing test |
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures |
-| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 pending |
+| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 pending |
 | Strict validation, CI | Pending |
 <!-- /ANCHOR:verification -->
 

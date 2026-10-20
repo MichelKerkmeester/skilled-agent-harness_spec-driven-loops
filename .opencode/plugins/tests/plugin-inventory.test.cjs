@@ -347,6 +347,26 @@ test('a helper that receives the event type inside a test is reported', () => {
   assert.deepEqual(unscannedEventChecks(source), ['isKnown(eventType)', 'matches(event.type)']);
 });
 
+// A type passed through a call in a comparison, switch or membership check still selects events.
+test('a wrapped event type is reported in comparisons, switches and membership checks', () => {
+  const source =
+    `const KNOWN = new Set(['w.one']); if (KNOWN.has(normalize(eventType))) {}\n` +
+    `if (normalize(event.type) === 'w.two') {}\n` +
+    `switch (eventType.trim()) { case 'w.three': }`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), [
+    'KNOWN.has(normalize(eventType))',
+    "normalize(event.type) === 'w.two'",
+    'switch (eventType.trim())',
+  ]);
+});
+
+// Only the global undefined means no event; a parameter of that name is an ordinary operand.
+test('a shadowed undefined is not read as the no-event sentinel', () => {
+  const source = `function f(undefined) { if (eventType === undefined) {} } if (type === undefined) {}`;
+  assert.deepEqual(unscannedEventChecks(source), ['eventType === undefined']);
+});
+
 // A source the parser cannot read fails loudly instead of passing empty.
 test('a source the parser cannot read fails instead of passing empty', () => {
   assert.throws(() => handledEventNames('if (type === '));

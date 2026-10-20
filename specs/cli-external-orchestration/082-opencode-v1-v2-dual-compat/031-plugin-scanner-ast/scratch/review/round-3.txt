@@ -1,0 +1,6 @@
+VERDICT: FAIL
+P1 .opencode/plugins/tests/helpers/plugin-inventory.cjs:683 - `KNOWN.has(normalize(eventType))` produces no handled or unscanned entry, so the event check escapes the manifest guard - detect event-type references nested in membership arguments and report wrapped values as unscanned
+P2 .opencode/plugins/tests/helpers/plugin-inventory.cjs:158 - A shadowed `undefined` binding is treated as the no-event sentinel, silently dropping `eventType === undefined` from unscanned checks - treat `undefined` as the sentinel only when it resolves to the global binding
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/implementation-summary.md:66 - The summary says six fixtures, while the spec and verification record report fifteen additions - reconcile the count or define the six groups separately from the fifteen tests
+
+Verification: `node --test .opencode/plugins/tests/plugin-inventory.test.cjs` exited 1 before tests because `mkdtempSync` hit `EPERM`. Direct probes reproduced both silent omissions and confirmed the earlier review fixes. `actionlint .github/workflows/spec-kit-check.yml` and `git diff --check HEAD~3 HEAD` exited 0. The saved post-change suite record reports 431/431 passing.
