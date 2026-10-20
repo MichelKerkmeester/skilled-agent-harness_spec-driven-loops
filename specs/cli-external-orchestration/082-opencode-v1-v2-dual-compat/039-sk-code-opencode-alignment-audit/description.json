@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit",
+  "description": "sk-code alignment audit of every OpenCode plugin and hook file",
+  "keywords": [
+    "sk-code",
+    "alignment",
+    "audit",
+    "every",
+    "opencode",
+    "plugin",
+    "hook",
+    "file"
+  ],
+  "lastUpdated": "2026-10-20T23:08:25.947Z",
+  "specId": "039",
+  "folderSlug": "sk-code-opencode-alignment-audit",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
