@@ -10,17 +10,17 @@
 # Usage: run-plugin-scenario.sh <v1|v2> <name> <prompt> [extra opencode args]
 #
 # Environment:
-#   EVIDENCE_DIR  where the run files go (default: $TMPDIR/plugin-utilization)
-#   REPO_ROOT     the checkout to run in (default: this script's repository)
+#   EVIDENCE_DIR  where the run files go (default: .skilled/skills/.state/plugin-utilization
+#                 in this checkout, gitignored, so two worktrees never share it)
 #   CFG_EXTRA     JSON merged into the inline config, e.g. an MCP server
-#   RUN_ALARM     seconds before the run is killed (default: 600)
+#   RUN_ALARM     whole seconds before the run is killed (default: 600)
 #   Any plugin switch (AI_SESSION_CHILD, SK_VISION_AUTOINSPECT, ...) passes through.
 #
 # Writes: <name>.<ver>.events.jsonl, .capture.jsonl, .effects.txt, .exit
 #
 # Exit Codes:
 #   0 - The run finished; read the files for the verdict
-#   2 - Usage error, REPO_ROOT is not a checkout top, or the capture proxy did not start
+#   2 - Usage error, a bad RUN_ALARM, an unusable folder, or the capture proxy did not start
 set -uo pipefail
 
 if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
@@ -31,18 +31,20 @@ VERSION=$1 NAME=$2 PROMPT=$3
 shift 3
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT="${REPO_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
-EVID="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
-MODEL_V1="llmgateway/deepseek-v4.1-flash"
-MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
-# A REPO_ROOT inherited from another task would run the session, and any file or
-# commit it makes, in that checkout instead of this one.
-if [[ "$(git -C "$ROOT" rev-parse --show-toplevel 2>/dev/null)" != "$ROOT" ]]; then
-  echo "REPO_ROOT is not the top of a git checkout: $ROOT" >&2
+# The session always runs in the checkout that holds this script, so a scenario's
+# files and commits can only land there.
+ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)" || exit 2
+EVID="${EVIDENCE_DIR:-$ROOT/.skilled/skills/.state/plugin-utilization}"
+ALARM="${RUN_ALARM:-600}"
+if ! [[ "$ALARM" =~ ^[1-9][0-9]*$ ]]; then
+  echo "RUN_ALARM must be a whole number of seconds: $ALARM" >&2
   exit 2
 fi
+MODEL_V1="llmgateway/deepseek-v4.1-flash"
+MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
 echo "running in $ROOT" >&2
-mkdir -p "$EVID"
+mkdir -p "$EVID" || exit 2
+EVID="$(cd "$EVID" && pwd)" || exit 2
 
 EVENTS="$EVID/$NAME.$VERSION.events.jsonl"
 CAPTURE="$EVID/$NAME.$VERSION.capture.jsonl"
@@ -52,7 +54,8 @@ rm -f "$EVENTS" "$CAPTURE" "$CAPTURE.ready" "$EFFECTS" "$EVID/$NAME.$VERSION.exi
 # Plugin logs and runtime state live in these two trees, so a copy taken now
 # lets the report show only what this run appended.
 WATCH=("$ROOT/.skilled/logs" "$ROOT/.skilled/skills/.state")
-SNAP="$(mktemp -d)"
+SNAP="$(mktemp -d)" || exit 2
+[[ -d "$SNAP" && "$SNAP" != / ]] || exit 2
 PROXY_PID=""
 # An interrupted run must not leave the proxy listening or the snapshot behind.
 cleanup() {
@@ -63,7 +66,7 @@ trap cleanup EXIT
 watched_files() {
   local dir
   for dir in "${WATCH[@]}"; do
-    [[ -e "$dir" ]] && find "$dir" -type f \( -name '*.log' -o -name '*.jsonl' \) 2>/dev/null
+    [[ -e "$dir" ]] && find "$dir" -type f \( -name '*.log' -o -name '*.jsonl' \) -not -path "$EVID/*" 2>/dev/null
   done
 }
 while IFS= read -r file; do
@@ -93,14 +96,14 @@ CONFIG="$(PORT="$PORT" node -e '
 
 cd "$ROOT" || exit 2
 if [[ "$VERSION" == v1 ]]; then
-  OPENCODE_CONFIG_CONTENT="$CONFIG" perl -e "alarm ${RUN_ALARM:-600}; exec @ARGV" \
+  OPENCODE_CONFIG_CONTENT="$CONFIG" perl -e 'alarm shift; exec @ARGV' "$ALARM" \
     opencode run --model "$MODEL_V1" --variant high --format json --dir "$ROOT" "$@" "$PROMPT" \
     </dev/null >"$EVENTS" 2>&1
 else
   # OpenCode 2 loads every parent folder's .opencode, so a nested checkout pins
   # its own config folder or it would load the outer checkout's plugins too.
   OPENCODE_CONFIG_CONTENT="$CONFIG" OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR="$ROOT/.opencode" \
-    perl -e "alarm ${RUN_ALARM:-600}; exec @ARGV" \
+    perl -e 'alarm shift; exec @ARGV' "$ALARM" \
     opencode2 run --standalone -m "$MODEL_V2" --format json "$@" "$PROMPT" \
     </dev/null >"$EVENTS" 2>&1
 fi
@@ -122,7 +125,7 @@ echo "$STATUS" >"$EVID/$NAME.$VERSION.exit"
   done < <(watched_files)
   echo "# files changed during the run"
   for dir in "${WATCH[@]}"; do
-    [[ -e "$dir" ]] && find "$dir" -type f -newer "$SNAP/.marker" 2>/dev/null
+    [[ -e "$dir" ]] && find "$dir" -type f -newer "$SNAP/.marker" -not -path "$EVID/*" 2>/dev/null
   done | sed "s|$ROOT/||"
 } >"$EFFECTS"
 

@@ -18,6 +18,13 @@ import { appendFileSync } from 'node:fs';
 const port = Number(process.argv[2]);
 const capturePath = process.argv[3];
 const upstream = new URL(process.argv[4] || 'https://api.llmgateway.io');
+// Forwarded requests carry the API key, so plain HTTP is allowed only to a local
+// test upstream on this machine.
+const loopback = ['127.0.0.1', 'localhost', '[::1]'].includes(upstream.hostname);
+if (upstream.protocol !== 'https:' && !(upstream.protocol === 'http:' && loopback)) {
+  process.stderr.write(`refusing a non-HTTPS upstream: ${upstream.origin}\n`);
+  process.exit(2);
+}
 const transport = upstream.protocol === 'http:' ? http : https;
 
 if (!Number.isInteger(port) || !capturePath) {
