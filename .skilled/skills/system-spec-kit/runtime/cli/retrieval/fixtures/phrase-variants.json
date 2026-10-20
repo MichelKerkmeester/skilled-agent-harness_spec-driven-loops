@@ -1,5 +1,5 @@
 {
-  "manifestHash": "778c3e90d2cb3a8737d57f4666e5f360b5fb8d5dd2dbfd2f242d830892913c22",
+  "manifestHash": "d28ff3aa8bc780aafee71f8a6ce2a17db37d7ba6cfc5d62a58ecd1b0738bbfad",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -105214,6 +105214,9 @@
     ],
     "three bridge modes": [
       "three bridge modes"
+    ],
+    "three ci check repair tasks": [
+      "three ci check repair tasks"
     ],
     "three corpus metric lanes": [
       "three corpus metric lanes"
