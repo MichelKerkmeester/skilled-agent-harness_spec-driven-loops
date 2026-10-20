@@ -1,0 +1,3 @@
+FAIL: a source edited by the build says why it rebuilt (rc=1 exp=0)
+FAIL: a source edited by the build rebuilds once (exp='2' got='1')
+worktree-naming tests: PASS=160 FAIL=2

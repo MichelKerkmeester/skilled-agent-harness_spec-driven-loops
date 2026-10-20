@@ -1,0 +1,18 @@
+test-cite-drift-scan.mjs repeat runs, worktree 179 at a2d3ccc7c7, macOS, node v26.8.2, 2026-10-20
+serial: 12 runs, failing: 0
+parallel x10: 30 runs, exits:  30 0
+parallel x16: 128 runs, exits:  128 0
+
+CI: sk-doc Script Tests runs created since 2026-10-20T12:40Z (all run test-cite-drift-scan.mjs):
+   8 failure
+  49 success
+every failure lists test_readme_manifest.py as its one failing test; run 39424650739 attempt 1 is the only cite-drift failure (attempt 2 passed)
+attempt 1 tail: '# tests 67 # pass 66 # fail 1 # duration_ms 6847.312386' - no subtest named, the runner printed only the tail then
+
+Candidates and why each is not supported:
+- git environment leak into the fixture repos: the fixtures' own git calls use cleanEnv(), which drops GIT_DIR, GIT_WORK_TREE and the other redirectors; the scan's in-process git calls inherit the job's environment, which is the same on both attempts of one run, so a leak would fail both attempts, not one.
+- a PID-based temp name: the labels and log files under the OS temp folder carry process.pid, and each runner VM runs one job; a clash needs a second live process with the same pid writing the same name, which nothing in the job starts.
+- the 90 s per-call timeouts: attempt 1 reported duration_ms 6847 for the whole file, so no 90 s timeout fired.
+- no other nondeterminism was found: the draw uses a fixed seed, scanned paths are sorted, and every environment change a test makes is restored in finally.
+
+What changes: the runner now pins node:test's TAP reporter, so a failing subtest is named in the log whether or not a terminal is attached, on Node 18.15 or later (the flag's first release; CI runs 22). On Node 26 bare `node <file>` prints the spec format even into a pipe: a failing fixture gave 0 `not ok` lines bare and `not ok 1 - named failing subtest` with --test-reporter=tap. CI runs Node 22, which printed TAP on attempt 1, but the runner printed only the tail then; the `not ok` block printing came later the same day. The next occurrence names its subtest.

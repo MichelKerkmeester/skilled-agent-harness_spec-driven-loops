@@ -30,13 +30,16 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `command-tree-parity.yml` | Keeps the OpenCode and Claude command trees identical, and the Hermes skill and prompt copies equal to their sources. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
 | `deep-loop-runtime.yml` | Runs the deep-loop runtime suites, including the command-contract drift check. |
+| `dependabot-auto-merge.yml` | Turns on auto-merge for an npm security pull request from Dependabot whose every bump is a patch release. Every other Dependabot pull request waits for a person. |
 | `diagram-corpus.yml` | Checks the diagram corpus contract, its mutation suite and both applicator gates. |
 | `dispatch-enforcement-guard.yml` | Checks that every declared dispatch rule is reachable and discriminates. |
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
+| `message-contract.yml` | Holds each pushed commit message, each new branch name and each pull request description to the sk-git templates, so neither a missing hook nor a skipped hook turns the check off. A fork's branch names and a Dependabot pull request's description are not checked. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
+| `opencode-dual-version.yml` | Installs OpenCode 1.19.3 and 2.0.32 into separate prefixes and runs the version battery on each and on both together. Also runs the config-shape, battery and cli-opencode unit tests and the sk-vision runtime suite. |
 | `opencode-plugin-tests.yml` | Provisions every listed tree and runs the OpenCode plugin suites under `.opencode/plugins/tests`, the inventory and registration guards among them. |
-| `pi-extension-tests.yml` | Runs each `.pi` extension's own test script after installing it from its lockfile. |
+| `pi-extension-tests.yml` | Finds each folder under `.pi/extensions/` that holds a `package.json` at run time, so a new extension needs no edit here. Installs it from its lockfile, runs its test script, which every extension must define, then its typecheck and pack check when it defines them. |
 | `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
 | `repo-rules-corpus.yml` | Keeps the `.skilled/repo-rules/` corpus loadable. |
@@ -51,7 +54,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |
 | `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report. Downloads the previous successful run's report as its baseline, which needs `actions: read`. A first run with no baseline records one instead of failing. Does not gate. |
-| `trigger-index-rebuild.yml` | Rebuilds the committed trigger index after a push to `main` or `skilled/**`, staging `trigger-index.json` plus its three fixture sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`. The loop guard skips commits whose message ends with the `Trigger-Index-Rebuild: ci` trailer. It runs in two jobs. `rebuild` holds no secret and no write scope: it generates, verifies, commits and uploads the commit as a one-commit bundle. `push` runs on a fresh runner, checks the bundle with git and pushes it; the write token reaches only that job's push step, and the job runs no repository code. A push rejected because the branch moved exits 0 with a notice, since the run for the newer commit rebuilds the index on its tip. A ruleset or authentication failure exits 1, and so does any other push failure. |
+| `trigger-index-rebuild.yml` | Rebuilds the committed trigger index after a push to `main` or `skilled/**`, staging `trigger-index.json` plus its three fixture sidecars `corpus-manifest.json`, `generation-diagnostics.json` and `phrase-variants.json`. The loop guard skips commits whose message ends with the `Trigger-Index-Rebuild: ci` trailer. It runs in two jobs. `rebuild` holds no secret and no write scope: it generates, verifies, commits and uploads the commit as a one-commit bundle. `push` runs on a fresh runner, checks the bundle with git and pushes it; the write token reaches only that job's push step, and the job runs no repository code. A push rejected because the branch moved exits 0 with a notice, since the run for the newer commit rebuilds the index on its tip. A newer commit pushed with the default `GITHUB_TOKEN` starts no run, so the index then stays unrebuilt until a later push that does start one. A ruleset or authentication failure exits 1, and so does any other push failure. |
 
 ### Push versus pull-request coverage
 
@@ -62,10 +65,13 @@ The repository's documented flow pushes release lines directly, so a gate that r
 | `advisory-checks.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | yes | yes | Guards over the whole tree |
 | `naming-standard-guard.yml` | release lines only | yes | Runs on `skilled/v*` pushes and every pull request |
 | `gate-inputs.yml` | yes, no path filter | yes, no path filter | Guards a move of the source tree, the one change a path filter could miss |
-| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-plugin-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-doc-rename-harness.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
+| `chart-corpus.yml`, `deep-loop-runtime.yml`, `diagram-corpus.yml`, `markdown-link-integrity.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `repo-rules-corpus.yml`, `routing-registry-drift.yml`, `runtime-no-spec-import.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `skill-doc-frontmatter.yml`, `spec-kit-check.yml` | yes, path-filtered | yes, path-filtered | Run only when their inputs change |
 | `changed-packet-validation.yml` | yes | yes | Validates the packets a commit changed and blocks only when head fails a rule the base did not. On push it diffs against the previous tip |
 | `agent-mirror-sync.yml`, `comment-hygiene.yml`, `prompt-card-sync.yml` | no | yes | Review-time checks. The pre-commit hook runs the same checkers on every commit |
+| `dependabot-auto-merge.yml` | no | yes, Dependabot only | Acts only on Dependabot's own pull requests |
+| `message-contract.yml` | yes, every branch | yes, including edits | Holds commit messages, branch names and the pull request description to the templates even when local hooks were skipped. Fork branch names and Dependabot descriptions are exempt |
 | `strict-pass-freshness-report.yml` | schedule | no | A weekly report, not a gate. It downloads the previous successful run's report as its baseline and records one when a first run finds none |
+| `trigger-index-rebuild.yml` | yes, `main` and `skilled/**` | no | Rebuilds the committed index after a push. Also runs by hand |
 
 ---
 

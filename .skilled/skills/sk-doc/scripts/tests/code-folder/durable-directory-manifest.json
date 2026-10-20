@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 786,
+  "derived_count": 787,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -61,6 +61,7 @@
     ".skilled/hooks/session-lifecycle/cursor",
     ".skilled/hooks/session-lifecycle/devin",
     ".skilled/hooks/session-relaunch",
+    ".skilled/hooks/session-relaunch/lib",
     ".skilled/hooks/session-relaunch/tests",
     ".skilled/hooks/shared",
     ".skilled/hooks/skill-advisor",

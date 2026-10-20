@@ -409,6 +409,47 @@ expect_eq "a build that writes nothing still counts as the rebuild" "$((STALE_BE
 expect_rc "the recorded no-emission build provisions" 0 run_stale_provision
 expect_eq "a build that wrote nothing ends the rebuild loop" "$((STALE_BEFORE + 6))" "$(stale_build_lines)"
 
+# A build that edits one of its own tracked sources while it runs must not stamp
+# that edit as built: the stamp holds the fingerprint taken before the build, so
+# the next provision still sees the edit and rebuilds instead of skipping.
+EDIT_PROV="$PROV/edit-prov"
+EDIT_TREE="$EDIT_PROV/tree"
+EDIT_OUT_FILE="$PROV/edit-build.out"
+EDIT_LOG="$PROV/edit-build.log"
+export EDIT_LOG
+rm -rf "$EDIT_PROV"
+mkdir -p "$EDIT_PROV/scripts" "$EDIT_PROV/bin" "$EDIT_TREE/needs-build/src"
+cp "$NAMING" "$EDIT_PROV/scripts/worktree-naming.sh"
+printf 'needs-build  dist/index.js\n' > "$EDIT_PROV/scripts/worktree-provision-paths.txt"
+printf '{}\n' > "$EDIT_TREE/needs-build/package.json"
+printf 'export {};\n' > "$EDIT_TREE/needs-build/src/index.ts"
+git -C "$EDIT_TREE" init -q
+git -C "$EDIT_TREE" add needs-build/package.json needs-build/src/index.ts
+cat > "$EDIT_PROV/bin/npm" <<'EOF'
+#!/usr/bin/env bash
+[ "${1:-}" = run ] || exit 0
+printf 'build\n' >> "$EDIT_LOG"
+mkdir -p dist
+: > dist/index.js
+printf '// edited while the build runs\n' >> src/index.ts
+EOF
+chmod +x "$EDIT_PROV/bin/npm"
+: > "$EDIT_LOG"
+edit_build_lines() { awk 'END { print NR + 0 }' "$EDIT_LOG"; }
+run_edit_provision() {
+  (
+    source "$EDIT_PROV/scripts/worktree-naming.sh"
+    GIT_CEILING_DIRECTORIES="$PROV" PATH="$EDIT_PROV/bin:$PATH" provision_worktree "$EDIT_TREE"
+  ) > "$EDIT_OUT_FILE" 2>&1
+}
+
+expect_rc "a build that edits its own source provisions" 0 run_edit_provision
+expect_eq "a build that edits its own source builds once" 1 "$(edit_build_lines)"
+expect_rc "a source edited by the build provisions" 0 run_edit_provision
+expect_rc "a source edited by the build says why it rebuilt" 0 \
+  grep -q 'rebuilding needs-build (sources changed since its last build)' "$EDIT_OUT_FILE"
+expect_eq "a source edited by the build rebuilds once" 2 "$(edit_build_lines)"
+
 # The stamp lives in the git directory, never in the work tree.
 expect_eq "the stamp is not inside the work tree" "" \
   "$(git -C "$STALE_TREE" status --porcelain --ignored | grep provision-stamps || true)"
