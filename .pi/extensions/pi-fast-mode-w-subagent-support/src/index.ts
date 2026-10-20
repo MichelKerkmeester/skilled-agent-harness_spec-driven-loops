@@ -6,7 +6,8 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { dirname } from "node:path";
+import { realpathSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type {
   ExtensionAPI,
@@ -83,20 +84,31 @@ function notifyFastState(
   );
 }
 
-// Pi drops a duplicate extension only when both paths share a real path and
-// fails the whole load when two copies register one flag, so a worktree's own
-// copy and a user-level link to another checkout cannot both register. One load
-// shares one event bus and Pi clears a stale load's listeners first, so the
-// first copy to load holds the package and a later one stays silent, the
-// load-order precedence Pi applies to conflicts.
-function claimPackage(pi: ExtensionAPI): boolean {
-  const probe = { claimed: false };
+// Pi keeps every copy it loads and keys them by real path. Two copies at one
+// real path collapse into one entry, so both may register. A flag registered by
+// copies at two different real paths is a conflict, and a print-mode run fails
+// on it, so a worktree's own copy and a user-level link to another checkout
+// cannot both register. Pi's pre-trust pass and its trusted pass share one event
+// bus and the earlier pass's listeners stay subscribed, so the first copy to
+// claim the package keeps it and a copy at another real path stands down.
+function realRoot(extensionDir: string): string {
+  const root = dirname(extensionDir);
+  try {
+    return realpathSync(root);
+  } catch {
+    return resolve(root);
+  }
+}
+
+function claimPackage(pi: ExtensionAPI, root: string): boolean {
+  const probe: { claimedBy?: string } = {};
   pi.events.emit(COPY_CLAIM_CHANNEL, probe);
-  if (probe.claimed) return false;
+  if (probe.claimedBy !== undefined && probe.claimedBy !== root) return false;
 
   pi.events.on(COPY_CLAIM_CHANNEL, (data: unknown) => {
     if (typeof data === "object" && data !== null) {
-      (data as { claimed?: boolean }).claimed = true;
+      const claim = data as { claimedBy?: string };
+      claim.claimedBy ??= root;
     }
   });
   return true;
@@ -121,7 +133,7 @@ export function createPiFastModeExtension(
   const agentDir = options.agentDir;
 
   return function piFastModeExtension(pi: ExtensionAPI): void {
-    if (!claimPackage(pi)) return;
+    if (!claimPackage(pi, realRoot(extensionDir))) return;
 
     let config: FastModeConfig = cloneConfig();
     let configPath: string | undefined;
