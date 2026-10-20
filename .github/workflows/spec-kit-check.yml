@@ -86,6 +86,18 @@ jobs:
           npm --prefix .opencode/skills/system-spec-kit/runtime run build
           npm --prefix .opencode/skills/system-spec-kit/runtime/cli run build
 
+      # The plugins-folder purity test imports every plugin entrypoint, including the
+      # sk-vision link, whose target is a bundle bun builds and git ignores.
+      - name: Build the sk-vision plugin bundle
+        run: |
+          set -euo pipefail
+          npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
+          export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
+          cd .opencode/skills/sk-vision/vision-runtime
+          bun install --frozen-lockfile
+          bun run build
+          test -f dist/plugin.js
+
       # The CLI check is the only gate that rejects a reverse import into the
       # engine's internals; before this workflow nothing ran it outside a
       # developer's shell.

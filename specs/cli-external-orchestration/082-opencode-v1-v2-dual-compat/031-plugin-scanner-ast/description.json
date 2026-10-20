@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
+  "description": "Phase 31: plugin-scanner-ast",
+  "keywords": [
+    "phase",
+    "plugin-scanner-ast"
+  ],
+  "lastUpdated": "2026-10-20T13:33:10.836Z",
+  "specId": "031",
+  "folderSlug": "plugin-scanner-ast",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-10-26_14-33__inventory-guard-rewritten-on-rolldown-parseast-sk.md"
+  ]
+}

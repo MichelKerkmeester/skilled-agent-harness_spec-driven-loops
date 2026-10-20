@@ -1,0 +1,124 @@
+# Baseline before any change, 3303bfb38e, node v26.8.2
+## node --test .opencode/plugins/tests/
+✔ system-speckit-completion registers v2 hooks (1.227084ms)
+ℹ tests 417
+ℹ suites 3
+ℹ pass 417
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26736.159333
+
+## old helper scan of bridged plugins
+{
+ "classifier-injection-screen": {
+  "handled": [],
+  "unscanned": []
+ },
+ "cli-dispatch-audit": {
+  "handled": [],
+  "unscanned": []
+ },
+ "codex-hooks-watchdog": {
+  "handled": [],
+  "unscanned": []
+ },
+ "mcp-route-guard": {
+  "handled": [],
+  "unscanned": []
+ },
+ "opencode-goal": {
+  "handled": [
+   "message.part.updated",
+   "message.updated",
+   "permission.asked",
+   "permission.replied",
+   "question.asked",
+   "question.rejected",
+   "question.replied",
+   "session.created",
+   "session.deleted",
+   "session.idle",
+   "session.status"
+  ],
+  "unscanned": [
+   "eventType.endsWith('.disposed')"
+  ]
+ },
+ "session-cleanup": {
+  "handled": [
+   "session.created",
+   "session.deleted"
+  ],
+  "unscanned": []
+ },
+ "session-relaunch": {
+  "handled": [
+   "message.part.updated",
+   "message.updated",
+   "session.idle"
+  ],
+  "unscanned": []
+ },
+ "sk-code-post-edit-quality": {
+  "handled": [],
+  "unscanned": []
+ },
+ "sk-git-message-gate": {
+  "handled": [],
+  "unscanned": []
+ },
+ "sk-git-preflight-advisory": {
+  "handled": [],
+  "unscanned": []
+ },
+ "system-completion-sentinel": {
+  "handled": [
+   "session.created",
+   "session.idle"
+  ],
+  "unscanned": []
+ },
+ "system-deep-loop-guard": {
+  "handled": [
+   "session.created"
+  ],
+  "unscanned": []
+ },
+ "system-dist-freshness-guard": {
+  "handled": [
+   "global.disposed",
+   "server.instance.disposed",
+   "session.created",
+   "session.deleted"
+  ],
+  "unscanned": []
+ },
+ "system-skill-advisor": {
+  "handled": [
+   "global.disposed",
+   "server.instance.disposed",
+   "session.compact",
+   "session.compacted",
+   "session.created",
+   "session.deleted",
+   "session.resumed"
+  ],
+  "unscanned": []
+ },
+ "system-spec-gate": {
+  "handled": [
+   "session.compact",
+   "session.compacted",
+   "session.created",
+   "session.deleted",
+   "session.resumed"
+  ],
+  "unscanned": []
+ },
+ "system-speckit-completion": {
+  "handled": [],
+  "unscanned": []
+ }
+}

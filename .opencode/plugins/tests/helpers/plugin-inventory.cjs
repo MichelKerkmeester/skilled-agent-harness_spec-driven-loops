@@ -9,6 +9,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const { createRequire } = require('node:module');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -16,50 +17,10 @@ const path = require('node:path');
 
 const PLUGIN_DIR = path.resolve(__dirname, '..', '..');
 
-const IDENTIFIER_SOURCE = String.raw`[A-Za-z_$][A-Za-z0-9_$]*`;
-// A bracket key reaches the same member as a dot, so both spellings are read alike.
-const EVENT_TYPE_SOURCE = String.raw`(?:${IDENTIFIER_SOURCE}(?:\?\.|\.))*(?:${IDENTIFIER_SOURCE})?(?:[tT]ype(?![A-Za-z0-9_$])|\[\s*'type'\s*\]|\[\s*"type"\s*\])`;
-const EVENT_NAME_SOURCE = String.raw`[a-z]+(?:\.[a-z_]+)+`;
-const COMPARISON_SOURCE = String.raw`(?:===|!==|==|!=)`;
-const OPERAND_SOURCE = String.raw`(?:'[^'\n]*'|"[^"\n]*"|${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`;
-const BACKTICK = '`';
-const COLLECTION_ELEMENT_SOURCE = String.raw`'(?:${EVENT_NAME_SOURCE})'|"(?:${EVENT_NAME_SOURCE})"|${BACKTICK}(?:${EVENT_NAME_SOURCE})${BACKTICK}`;
-const COLLECTION_ELEMENT_PATTERN = new RegExp(String.raw`^(?:${COLLECTION_ELEMENT_SOURCE})$`);
-const MEMBERSHIP_CALL_SOURCE = String.raw`\.\s*(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`;
-// An interpolated template literal is built at runtime, so a dollar sign only reads as static
-// when no brace follows it.
-const STATIC_LITERAL_SOURCE = String.raw`'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|${BACKTICK}(?:[^${BACKTICK}\\\n$]|\\.|\$(?!\{))*${BACKTICK}`;
-const STATIC_LITERAL_PATTERN = new RegExp(String.raw`^(?:${STATIC_LITERAL_SOURCE})$`);
-// A comparison against these says nothing about which event arrived.
-const SKIPPED_OPERAND_PATTERN = /^(?:undefined|null)(?![A-Za-z0-9_$])/;
-// A separator or a line break ends an operand at bracket depth zero; inside brackets it is part of it.
-const OPERAND_TERMINATORS = new Set([',', '?', ':', ';', '&', '|', '{', '\n']);
-const KEY_MEMBERSHIP_SOURCE = String.raw`${EVENT_TYPE_SOURCE}\s+in\s+${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*`;
-const KEYED_LOOKUP_SOURCE = String.raw`${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*\s*(?:\?\.)?\s*\[\s*${EVENT_TYPE_SOURCE}\s*\]`;
-// An inline receiver has no declaration to resolve, so its array body is read where it stands.
-// Event names cannot contain brackets, so a bracket-free body keeps one array from matching through the next.
-const INLINE_COLLECTION_AT_END = [
-  new RegExp(String.raw`new\s+Set\s*\(\s*\[([^\[\]]*)\]\s*\)\s*$`),
-  new RegExp(String.raw`Object\.freeze\s*\(\s*\[([^\[\]]*)\]\s*\)\s*$`),
-  new RegExp(String.raw`\[([^\[\]]*)\]\s*$`),
-];
-const OPERAND_TAIL_PATTERN = /[A-Za-z0-9_$\])'".`]/;
-const IDENTIFIER_AT_END = new RegExp(String.raw`(?:^|[^A-Za-z0-9_$.])(${IDENTIFIER_SOURCE})\s*$`);
-const RECEIVER_AT_END = new RegExp(
-  String.raw`((?:\s*(?:${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*|\([^()]*\)|\[[^\[\]]*\]))+)\s*$`,
-);
-
-// A slash opens a regex literal only where an expression may begin: after an operator, an
-// opener, or one of the keywords that expects an expression next.
-const REGEX_PREFIX_CHARACTERS = new Set([
-  '(', ',', '=', ':', '[', '!', '&', '|', '?', '{', '}', ';', '+', '-', '*', '%', '<', '>', '~', '^',
-]);
-const REGEX_PREFIX_WORDS = new Set([
-  'await', 'case', 'delete', 'do', 'else', 'in', 'new', 'of', 'return', 'throw', 'typeof', 'void', 'yield',
-]);
-const REGEX_FLAGS = 'dgimsuvy';
-const WHITESPACE_PATTERN = /\s/;
-const WORD_TAIL_PATTERN = /[A-Za-z_$][A-Za-z0-9_$]*$/;
+// The plugin tests sit outside the dependency tree that holds the parser, so it is resolved from
+// the repository root once here instead of being looked up beside this helper.
+const REPO_ROOT = path.resolve(PLUGIN_DIR, '..', '..');
+const { parseAst } = createRequire(path.join(REPO_ROOT, '.skilled', 'package.json'))('rolldown/parseAst');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. MANIFEST READERS
@@ -124,330 +85,404 @@ function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir
 // 4. EVENT READERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function startsRegexLiteral(source, index) {
-  let previous = index - 1;
-  while (previous >= 0 && WHITESPACE_PATTERN.test(source[previous])) previous -= 1;
-  if (previous < 0) return true;
-  if (REGEX_PREFIX_CHARACTERS.has(source[previous])) return true;
+// An event name is a dotted lowercase path; a bare word next to a type check is not one.
+const EVENT_NAME = /^[a-z]+(?:\.[a-z_]+)+$/;
+const COMPARISON_OPERATORS = new Set(['===', '!==', '==', '!=']);
+// A collection stays readable only while every use is a read through one of these members;
+// anything else could change it or hand it to code that does.
+const COLLECTION_MEMBERS = new Set([
+  'has',
+  'includes',
+  'indexOf',
+  'lastIndexOf',
+  'length',
+  'size',
+  'at',
+  'forEach',
+  'some',
+  'every',
+  'find',
+  'filter',
+  'map',
+  'join',
+  'values',
+  'keys',
+  'entries',
+]);
 
-  // A keyword ends in a letter, so the whole word has to be read to tell it from an operand.
-  const word = WORD_TAIL_PATTERN.exec(source.slice(0, previous + 1));
-  return word !== null && REGEX_PREFIX_WORDS.has(word[0]);
+function text(source, node) {
+  return source.slice(node.start, node.end);
 }
 
-function stripComments(source) {
-  const result = [];
-  let quote = null;
-  let index = 0;
+// The tree has no parent links, so one generic walk records every node together with the parent
+// that owns it; a method call is reported with its enclosing test, which needs that link.
+function walkAst(root) {
+  const nodes = [];
+  const stack = [{ node: root, parent: null }];
 
-  while (index < source.length) {
-    const character = source[index];
+  while (stack.length > 0) {
+    const entry = stack.pop();
+    nodes.push(entry);
 
-    if (quote !== null) {
-      result.push(character);
-      if (character === '\\' && index + 1 < source.length) {
-        result.push(source[index + 1]);
-        index += 2;
-        continue;
-      }
-      if (character === quote) quote = null;
-      index += 1;
-      continue;
-    }
-
-    if (character === "'" || character === '"' || character === BACKTICK) {
-      quote = character;
-      result.push(character);
-      index += 1;
-      continue;
-    }
-
-    if (character === '/' && source[index + 1] === '/') {
-      while (index < source.length && source[index] !== '\n') {
-        result.push(' ');
-        index += 1;
-      }
-      continue;
-    }
-
-    if (character === '/' && source[index + 1] === '*') {
-      result.push(' ', ' ');
-      index += 2;
-      while (index < source.length && !(source[index] === '*' && source[index + 1] === '/')) {
-        result.push(source[index] === '\n' ? '\n' : ' ');
-        index += 1;
-      }
-      if (index < source.length) {
-        result.push(' ', ' ');
-        index += 2;
-      }
-      continue;
-    }
-
-    if (character === '/' && startsRegexLiteral(source, index)) {
-      result.push(character);
-      index += 1;
-      let inClass = false;
-      // A literal cannot span lines, so stopping at one keeps a misread slash from eating the file.
-      while (index < source.length && source[index] !== '\n') {
-        const literal = source[index];
-        if (literal === '\\' && index + 1 < source.length) {
-          result.push(literal, source[index + 1]);
-          index += 2;
-          continue;
+    for (const key of Object.keys(entry.node)) {
+      const value = entry.node[key];
+      if (Array.isArray(value)) {
+        for (let index = value.length - 1; index >= 0; index -= 1) {
+          const child = value[index];
+          if (child !== null && typeof child === 'object' && typeof child.type === 'string') {
+            stack.push({ node: child, parent: entry.node });
+          }
         }
-        result.push(literal);
-        index += 1;
-        if (literal === '[') inClass = true;
-        else if (literal === ']') inClass = false;
-        else if (literal === '/' && !inClass) break;
+      } else if (value !== null && typeof value === 'object' && typeof value.type === 'string') {
+        stack.push({ node: value, parent: entry.node });
       }
-      while (index < source.length && REGEX_FLAGS.includes(source[index])) {
-        result.push(source[index]);
-        index += 1;
-      }
-      continue;
     }
-
-    result.push(character);
-    index += 1;
   }
 
-  return result.join('');
+  return nodes;
 }
 
-function literalEventNames(body) {
-  const trimmed = body.trim();
-  if (trimmed === '') return [];
-
-  const elements = trimmed
-    .split(',')
-    .map((element) => element.trim())
-    .filter(Boolean);
-  if (!elements.every((element) => COLLECTION_ELEMENT_PATTERN.test(element))) return null;
-  return elements.map((element) => element.slice(1, -1));
+// Only a string the program cannot rebuild at runtime can name one event.
+function staticString(node) {
+  if (node === null || node === undefined) return undefined;
+  if (node.type === 'Literal' && typeof node.value === 'string') return node.value;
+  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) {
+    return node.quasis[0].value.cooked;
+  }
+  return undefined;
 }
 
-function collectionEventNames(source, identifier) {
-  const escaped = identifier.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const wrappers = [
-    String.raw`new\s+Set\s*\(\s*\[([\s\S]*?)\]\s*\)`,
-    String.raw`Object\.freeze\s*\(\s*\[([\s\S]*?)\]\s*\)`,
-    String.raw`\[([\s\S]*?)\]`,
-  ];
+// A comparison against nothing says no event arrived, so there is no name to read or report.
+function isNothing(node) {
+  return (
+    (node.type === 'Identifier' && node.name === 'undefined') ||
+    (node.type === 'Literal' && node.value === null)
+  );
+}
 
-  for (const wrapper of wrappers) {
-    const pattern = new RegExp(String.raw`(?:const|let|var)\s+${escaped}\s*=\s*${wrapper}`);
-    const declaration = pattern.exec(source);
-    if (declaration === null) continue;
+function isEventType(node, aliases) {
+  if (node === null || node === undefined) return false;
 
-    return literalEventNames(declaration[1]);
+  // The parser wraps an optional chain around its member expression, which is still the field.
+  if (node.type === 'ChainExpression') return isEventType(node.expression, aliases);
+
+  if (node.type === 'Identifier') {
+    return node.name === 'type' || node.name.endsWith('Type') || aliases.has(node.name);
   }
 
-  return null;
-}
-
-function inlineCollectionAtEnd(prefix) {
-  for (const pattern of INLINE_COLLECTION_AT_END) {
-    const match = pattern.exec(prefix);
-    if (match === null) continue;
-    // A bracket that follows an operand is an index or property access, not a collection literal.
-    if (match.index > 0 && OPERAND_TAIL_PATTERN.test(prefix[match.index - 1])) continue;
-
-    return {
-      receiver: match[0].trim(),
-      names: literalEventNames(match[1]),
-    };
+  // A bracket key reaches the same field as a dot, so both spellings count alike.
+  if (node.type === 'MemberExpression') {
+    if (node.computed) {
+      return node.property.type === 'Literal' && node.property.value === 'type';
+    }
+    return node.property.type === 'Identifier' && node.property.name === 'type';
   }
 
-  return null;
+  return false;
 }
 
-// Reads forward to the first terminator outside brackets, so a nested expression stays whole
-// while the delimiter of the enclosing statement ends the operand.
-function rightOperandEnd(source, start) {
-  let depth = 0;
-  let quote = null;
+// A local name can carry the type field too, including one destructured out of it, so aliases are
+// collected to a fixed point before the main walk reads any comparison or switch.
+function collectEventTypeAliases(nodes) {
+  const aliases = new Set();
+  let changed = true;
 
-  for (let index = start; index < source.length; index += 1) {
-    const character = source[index];
+  while (changed) {
+    changed = false;
+    for (const { node } of nodes) {
+      if (node.type !== 'VariableDeclarator') continue;
 
-    if (quote !== null) {
-      if (character === '\\') index += 1;
-      else if (character === quote) quote = null;
-      continue;
-    }
-
-    if (character === "'" || character === '"' || character === BACKTICK) {
-      quote = character;
-      continue;
-    }
-
-    if (character === '(' || character === '[') {
-      depth += 1;
-      continue;
-    }
-
-    if (character === ')' || character === ']') {
-      if (depth === 0) return index;
-      depth -= 1;
-      continue;
-    }
-
-    if (depth === 0 && (character === '}' || OPERAND_TERMINATORS.has(character))) return index;
-  }
-
-  return source.length;
-}
-
-// The mirror of rightOperandEnd: a closing bracket nests backwards, so it reads back to the
-// delimiter that opens the operand.
-function leftOperandStart(source, end) {
-  let depth = 0;
-
-  for (let index = end - 1; index >= 0; index -= 1) {
-    const character = source[index];
-
-    if (character === ')' || character === ']' || character === '}') {
-      depth += 1;
-      continue;
-    }
-
-    if (character === '(' || character === '[' || (character === '{' && depth > 0)) {
-      if (depth === 0) return index + 1;
-      depth -= 1;
-      continue;
-    }
-
-    if (depth === 0 && OPERAND_TERMINATORS.has(character)) return index + 1;
-  }
-
-  return 0;
-}
-
-// Only a static literal on the far side names an event, so anything else is reported as written
-// in either operand order.
-function comparisonChecks(source) {
-  const afterType = new RegExp(String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}`, 'g');
-  const beforeType = new RegExp(String.raw`${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`, 'g');
-  const checks = [];
-
-  for (const match of source.matchAll(afterType)) {
-    const start = match.index + match[0].length;
-    const operand = source.slice(start, rightOperandEnd(source, start)).trim();
-    if (operand === '' || SKIPPED_OPERAND_PATTERN.test(operand)) continue;
-    if (STATIC_LITERAL_PATTERN.test(operand)) continue;
-    checks.push(`${match[0].trim()} ${operand}`);
-  }
-
-  for (const match of source.matchAll(beforeType)) {
-    const operand = source.slice(leftOperandStart(source, match.index), match.index).trim();
-    if (operand === '' || SKIPPED_OPERAND_PATTERN.test(operand)) continue;
-    if (STATIC_LITERAL_PATTERN.test(operand)) continue;
-    checks.push(`${operand} ${match[0].trim()}`);
-  }
-
-  return checks;
-}
-
-// A case label names events only when it is a static literal; every other label is read at runtime.
-function caseChecks(source) {
-  const checks = [];
-
-  for (const match of source.matchAll(/\bcase\s+/g)) {
-    const start = match.index + match[0].length;
-    const label = source.slice(start, rightOperandEnd(source, start)).trim();
-    if (label === '' || STATIC_LITERAL_PATTERN.test(label)) continue;
-    checks.push(`case ${label}:`);
-  }
-
-  return checks;
-}
-
-// A membership call is handled only when its receiver resolves, so every call is read and
-// an unresolved receiver is reported rather than dropped.
-function membershipChecks(source) {
-  const pattern = new RegExp(MEMBERSHIP_CALL_SOURCE, 'g');
-  const checks = [];
-
-  for (const match of source.matchAll(pattern)) {
-    const prefix = source.slice(0, match.index);
-    const inline = inlineCollectionAtEnd(prefix);
-    if (inline !== null) {
-      checks.push({
-        names: inline.names,
-        check: inline.names === null ? `${inline.receiver}${match[0]}` : null,
-      });
-      continue;
-    }
-
-    const identifier = IDENTIFIER_AT_END.exec(prefix);
-    if (identifier !== null) {
-      const resolved = collectionEventNames(source, identifier[1]);
-      if (resolved !== null) {
-        checks.push({ names: resolved, check: null });
+      if (node.id.type === 'Identifier') {
+        if (aliases.has(node.id.name) || !isEventType(node.init, aliases)) continue;
+        aliases.add(node.id.name);
+        changed = true;
         continue;
       }
-    }
 
-    const receiver = RECEIVER_AT_END.exec(prefix);
-    const text = receiver === null ? '' : receiver[1].trim();
-    checks.push({ names: null, check: `${text}${match[0]}` });
+      if (node.id.type !== 'ObjectPattern') continue;
+      for (const property of node.id.properties) {
+        if (property.type !== 'Property' || property.computed) continue;
+        const key = property.key;
+        const namesType =
+          (key.type === 'Identifier' && key.name === 'type') ||
+          (key.type === 'Literal' && key.value === 'type');
+        if (!namesType) continue;
+        if (property.value.type !== 'Identifier' || aliases.has(property.value.name)) continue;
+        aliases.add(property.value.name);
+        changed = true;
+      }
+    }
   }
 
-  return checks;
+  return aliases;
+}
+
+function collectDeclarators(nodes) {
+  const declarators = new Map();
+
+  for (const { node, parent } of nodes) {
+    if (node.type !== 'VariableDeclarator' || node.id.type !== 'Identifier') continue;
+    const entries = declarators.get(node.id.name);
+    const entry = { declarator: node, declaration: parent };
+    if (entries === undefined) declarators.set(node.id.name, [entry]);
+    else entries.push(entry);
+  }
+
+  return declarators;
+}
+
+// Names in binding positions and object keys do not use the value, so they cannot make a
+// collection escape.
+function isBindingIdentifier(node, parent) {
+  if (parent === null) return false;
+  if (parent.type === 'VariableDeclarator') return parent.id === node;
+  if (
+    parent.type === 'FunctionDeclaration' ||
+    parent.type === 'FunctionExpression' ||
+    parent.type === 'ArrowFunctionExpression'
+  ) {
+    return parent.params.includes(node);
+  }
+  if (parent.type === 'CatchClause') return parent.param === node;
+  if (parent.type === 'ClassDeclaration' || parent.type === 'ClassExpression') {
+    return parent.id === node;
+  }
+  if (
+    parent.type === 'ImportSpecifier' ||
+    parent.type === 'ImportDefaultSpecifier' ||
+    parent.type === 'ImportNamespaceSpecifier'
+  ) {
+    return parent.local === node;
+  }
+  if (parent.type === 'MemberExpression' && parent.property === node && !parent.computed) {
+    return true;
+  }
+  if (
+    parent.type === 'Property' &&
+    parent.key === node &&
+    parent.value !== node &&
+    !parent.computed
+  ) {
+    return true;
+  }
+  if (
+    (parent.type === 'MethodDefinition' || parent.type === 'PropertyDefinition') &&
+    parent.key === node &&
+    !parent.computed
+  ) {
+    return true;
+  }
+  if (
+    parent.type === 'LabeledStatement' ||
+    parent.type === 'BreakStatement' ||
+    parent.type === 'ContinueStatement'
+  ) {
+    return parent.label === node;
+  }
+  return false;
+}
+
+// A collection whose name is read any other way can be changed or exported, which makes its
+// literal contents unable to describe what the check actually sees.
+function isCollectionReferenceOnly(name, declarationId, nodes) {
+  for (const { node, parent } of nodes) {
+    if (node.type !== 'Identifier' || node.name !== name) continue;
+    if (node === declarationId || isBindingIdentifier(node, parent)) continue;
+    if (
+      parent !== null &&
+      parent.type === 'MemberExpression' &&
+      parent.object === node &&
+      !parent.computed &&
+      parent.property.type === 'Identifier' &&
+      COLLECTION_MEMBERS.has(parent.property.name)
+    ) {
+      continue;
+    }
+    return false;
+  }
+
+  return true;
+}
+
+// A receiver resolves only when its whole contents are literal event names and its name never
+// leaves the file; every other receiver is reported instead of guessed.
+function resolveCollection(node, context, resolving = new Set()) {
+  if (node === null || node === undefined) return null;
+
+  if (node.type === 'ArrayExpression') {
+    const names = [];
+    for (const element of node.elements) {
+      if (element === null) return null;
+      const value = staticString(element);
+      if (value === undefined || !EVENT_NAME.test(value)) return null;
+      names.push(value);
+    }
+    return names;
+  }
+
+  if (node.type === 'NewExpression') {
+    if (node.callee.type !== 'Identifier' || node.callee.name !== 'Set') return null;
+    if (node.arguments.length !== 1 || node.arguments[0].type !== 'ArrayExpression') return null;
+    return resolveCollection(node.arguments[0], context, resolving);
+  }
+
+  if (node.type === 'CallExpression') {
+    const callee = node.callee;
+    if (
+      callee.type === 'MemberExpression' &&
+      !callee.computed &&
+      callee.object.type === 'Identifier' &&
+      callee.object.name === 'Object' &&
+      callee.property.type === 'Identifier' &&
+      callee.property.name === 'freeze' &&
+      node.arguments.length === 1 &&
+      node.arguments[0].type === 'ArrayExpression'
+    ) {
+      return resolveCollection(node.arguments[0], context, resolving);
+    }
+    return null;
+  }
+
+  if (node.type !== 'Identifier') return null;
+
+  const name = node.name;
+  const entries = context.declarators.get(name);
+  if (entries === undefined || entries.length !== 1) return null;
+
+  const { declarator, declaration } = entries[0];
+  if (
+    declaration === null ||
+    declaration === undefined ||
+    declaration.type !== 'VariableDeclaration' ||
+    declaration.kind !== 'const'
+  ) {
+    return null;
+  }
+  // A cycle never settles on a value, so it stays unresolved rather than recursing forever.
+  if (resolving.has(name)) return null;
+
+  resolving.add(name);
+  try {
+    const names = resolveCollection(declarator.init, context, resolving);
+    if (names === null) return null;
+    return isCollectionReferenceOnly(name, declarator.id, context.nodes) ? names : null;
+  } finally {
+    resolving.delete(name);
+  }
+}
+
+// Only a literal on the other side names an event; every other operand is reported because it
+// could select any event at runtime.
+function readComparison(node, source, aliases, handled, unscanned) {
+  const leftIsType = isEventType(node.left, aliases);
+  const rightIsType = isEventType(node.right, aliases);
+
+  if (leftIsType && rightIsType) {
+    unscanned.add(text(source, node));
+    return;
+  }
+  if (!leftIsType && !rightIsType) return;
+
+  const other = leftIsType ? node.right : node.left;
+  const value = staticString(other);
+  if (value !== undefined) {
+    if (EVENT_NAME.test(value)) handled.add(value);
+    return;
+  }
+  if (!isNothing(other)) unscanned.add(text(source, node));
+}
+
+// A case label names an event only when it is a literal; every other label is read at runtime.
+function readSwitch(node, source, aliases, handled, unscanned) {
+  if (!isEventType(node.discriminant, aliases)) return;
+
+  for (const switchCase of node.cases) {
+    if (switchCase.test === null) continue;
+    const value = staticString(switchCase.test);
+    if (value !== undefined) {
+      if (EVENT_NAME.test(value)) handled.add(value);
+    } else {
+      unscanned.add(`case ${text(source, switchCase.test)}:`);
+    }
+  }
+}
+
+// A membership call on the type reads the receiver's contents; an unresolved receiver is reported
+// because the events it covers are otherwise invisible.
+function readCall(node, parent, source, aliases, context, handled, unscanned) {
+  const callee = node.callee;
+  if (callee.type !== 'MemberExpression') return;
+
+  const property =
+    !callee.computed && callee.property.type === 'Identifier' ? callee.property.name : null;
+  const firstArgument = node.arguments[0];
+
+  if (
+    (property === 'has' || property === 'includes') &&
+    firstArgument !== undefined &&
+    isEventType(firstArgument, aliases)
+  ) {
+    const names = resolveCollection(callee.object, context);
+    if (names === null) unscanned.add(text(source, node));
+    else for (const name of names) handled.add(name);
+    return;
+  }
+
+  // A method on the type can select events the scan cannot read, so a comparison is reported with
+  // its method call and a bare call is reported alone.
+  if (!isEventType(callee.object, aliases)) return;
+
+  const parentIsComparison =
+    parent !== null &&
+    parent.type === 'BinaryExpression' &&
+    COMPARISON_OPERATORS.has(parent.operator);
+  unscanned.add(text(source, parentIsComparison ? parent : node));
+}
+
+function scanEvents(source) {
+  const nodes = walkAst(parseAst(source, { lang: 'js' }));
+  const aliases = collectEventTypeAliases(nodes);
+  const context = { nodes, declarators: collectDeclarators(nodes) };
+  const handled = new Set();
+  const unscanned = new Set();
+
+  for (const { node, parent } of nodes) {
+    if (node.type === 'BinaryExpression') {
+      if (COMPARISON_OPERATORS.has(node.operator)) {
+        readComparison(node, source, aliases, handled, unscanned);
+      } else if (node.operator === 'in' && isEventType(node.left, aliases)) {
+        unscanned.add(text(source, node));
+      }
+      continue;
+    }
+
+    if (node.type === 'SwitchStatement') {
+      readSwitch(node, source, aliases, handled, unscanned);
+      continue;
+    }
+
+    if (node.type === 'CallExpression') {
+      readCall(node, parent, source, aliases, context, handled, unscanned);
+      continue;
+    }
+
+    if (node.type === 'MemberExpression' && node.computed && isEventType(node.property, aliases)) {
+      unscanned.add(text(source, node));
+    }
+  }
+
+  return {
+    handled: [...handled].sort(),
+    unscanned: [...unscanned].sort(),
+  };
 }
 
 function handledEventNames(source) {
-  const scanned = stripComments(source);
-  const names = new Set();
-  const patterns = [
-    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*'(${EVENT_NAME_SOURCE})'`, 'g'),
-    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*"(${EVENT_NAME_SOURCE})"`, 'g'),
-    new RegExp(String.raw`'(${EVENT_NAME_SOURCE})'\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`, 'g'),
-    new RegExp(String.raw`"(${EVENT_NAME_SOURCE})"\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`, 'g'),
-    new RegExp(String.raw`case\s+'(${EVENT_NAME_SOURCE})'\s*:`, 'g'),
-    new RegExp(String.raw`case\s+"(${EVENT_NAME_SOURCE})"\s*:`, 'g'),
-    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*${BACKTICK}(${EVENT_NAME_SOURCE})${BACKTICK}`, 'g'),
-    new RegExp(String.raw`${BACKTICK}(${EVENT_NAME_SOURCE})${BACKTICK}\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`, 'g'),
-    new RegExp(String.raw`case\s+${BACKTICK}(${EVENT_NAME_SOURCE})${BACKTICK}\s*:`, 'g'),
-  ];
-
-  for (const pattern of patterns) {
-    let match;
-    while ((match = pattern.exec(scanned)) !== null) names.add(match[1]);
-  }
-
-  // A membership check names events only when its receiver resolves to a literal collection.
-  for (const check of membershipChecks(scanned)) {
-    if (check.names !== null) for (const name of check.names) names.add(name);
-  }
-
-  return [...names].sort();
+  return scanEvents(source).handled;
 }
 
 function unscannedEventChecks(source) {
-  const scanned = stripComments(source);
-  const checks = new Set([...comparisonChecks(scanned), ...caseChecks(scanned)]);
-  const unreadablePatterns = [
-    // A method call on the type can select events the scan does not read.
-    new RegExp(
-      String.raw`${EVENT_TYPE_SOURCE}\.([A-Za-z_$][\w$]*)\(([^()]*)\)(?:\s*${COMPARISON_SOURCE}\s*${OPERAND_SOURCE})?`,
-      'g',
-    ),
-    new RegExp(KEY_MEMBERSHIP_SOURCE, 'g'),
-    new RegExp(KEYED_LOOKUP_SOURCE, 'g'),
-  ];
-
-  for (const pattern of unreadablePatterns) {
-    for (const match of scanned.matchAll(pattern)) checks.add(match[0].trim());
-  }
-
-  for (const check of membershipChecks(scanned)) {
-    if (check.names === null) checks.add(check.check);
-  }
-
-  return [...checks].sort();
+  return scanEvents(source).unscanned;
 }
 
 module.exports = {
@@ -455,6 +490,5 @@ module.exports = {
   handledEventNames,
   readInventory,
   readManifest,
-  stripComments,
   unscannedEventChecks,
 };

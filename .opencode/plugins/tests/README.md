@@ -25,7 +25,11 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 
 | File | Plugin under test | Pins |
 |---|---|---|
+| `classifier-injection-screen.test.cjs` | `classifier-injection-screen.js` | Screens webfetch results only, buffers each advisory per session and drains it once on the next transform, a disabled plugin is a full no-op, and a screen failure fails open. |
+| `claude-fable-subagent-guard.test.cjs` | Claude PreToolUse guard for Task and Agent | A Fable main loop cannot put a subagent on Fable through a fork, a call with no model or a model outside the allowlist; explicit Opus or Sonnet passes, and unreadable input fails open. |
 | `claude-task-dispatch-guard.test.cjs` | Claude adapter over the shared dispatch-guard core | Adapter behavior over the shared core. |
+| `goal-doc-contract.test.cjs` | Goal documentation | Every path a goal document cites exists, a stated suite count matches its suite, and every goal environment variable and kill-switch name in the docs is one the code reads. |
+| `mcp-route-guard.test.cjs` | `mcp-route-guard.js` | Writes its log under `.skilled`, under `.opencode` when that is the only source root, and under the checkout root when the project sits below it. |
 | `opencode-goal-capabilities.test.cjs` | `opencode-goal.js` | Goal capability and operator-status reporting. |
 | `opencode-goal-continuation.test.cjs` | `opencode-goal.js` | Guarded continuation behavior, using `helpers/continuation-log.cjs`. |
 | `opencode-goal-export-contract.test.cjs` | `opencode-goal.js` | The goal plugin export contract (default export shape, `.__test` surface). |
@@ -35,6 +39,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `opencode-goal-supervisor.test.cjs` | `opencode-goal.js` | Verifier results and durable goal state. |
 | `opencode-goal-tool-path.test.cjs` | `opencode-goal.js` | Tool-context session resolution, packet bind, resent, packet read and the injected resend reminder. |
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
+| `session-relaunch.test.cjs` | `session-relaunch.js` | The kill switch and hook flags silence the relaunch nudge, an active nudge repeats on consecutive transforms, a re-nudge replaces the text and keeps its note path, and the nudge stops once its planned note exists. |
 | `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior, including `tool.execute.before`/`after` callID correlation. |
 | `sk-git-message-gate.test.cjs` | `sk-git-message-gate.js` | Refuses a nonconforming commit in a throwaway repository with its rule id, passes a conforming one, a non-bash tool and a repository without a contract, and refuses when the rules block cannot be read. |
 | `source-root-consumers.test.cjs` | `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`, `codex-hooks-watchdog.js` | Each reads its rules or installer under whichever source root a consumer project carries, and stays silent with neither. |
@@ -58,17 +63,26 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 ```text
 tests/
 +-- README.md                                   # this index
++-- classifier-injection-screen.test.cjs
++-- claude-fable-subagent-guard.test.cjs
 +-- claude-task-dispatch-guard.test.cjs
++-- goal-doc-contract.test.cjs
++-- mcp-route-guard.test.cjs
 +-- opencode-goal-capabilities.test.cjs
 +-- opencode-goal-continuation.test.cjs
-+-- opencode-goal-render-parity.test.cjs
 +-- opencode-goal-export-contract.test.cjs
 +-- opencode-goal-lifecycle.test.cjs
++-- opencode-goal-render-parity.test.cjs
 +-- opencode-goal-state.test.cjs
 +-- opencode-goal-supervisor.test.cjs
 +-- opencode-goal-tool-path.test.cjs
++-- plugin-inventory.json
++-- plugin-inventory.test.cjs
 +-- session-cleanup.test.cjs
++-- session-relaunch.test.cjs
 +-- sk-code-post-edit-quality.test.cjs
++-- sk-git-message-gate.test.cjs
++-- source-root-consumers.test.cjs
 +-- speckit-goal-offer-contract.test.cjs
 +-- system-completion-sentinel.test.cjs
 +-- system-deep-loop-guard.test.cjs
@@ -76,9 +90,13 @@ tests/
 +-- system-skill-advisor.test.cjs
 +-- system-spec-gate.test.cjs
 +-- system-speckit-completion.test.cjs
++-- v2-bridge.test.cjs
++-- v2-hard-plugins.test.cjs
++-- v2-registration.test.cjs
 `-- helpers/
-    +-- README.md
-    `-- continuation-log.cjs
+    +-- continuation-log.cjs
+    +-- plugin-inventory.cjs
+    `-- README.md
 ```
 
 ---

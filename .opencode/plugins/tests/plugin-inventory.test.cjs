@@ -19,7 +19,6 @@ const {
   handledEventNames,
   readInventory,
   readManifest,
-  stripComments,
   unscannedEventChecks,
 } = require('./helpers/plugin-inventory.cjs');
 
@@ -227,24 +226,8 @@ test('every listed skipped hook names a bridged plugin', () => {
 // 6. EVENT SCAN CASES
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('stripComments keeps strings and drops comments', () => {
-  const source =
-    `const a = 'x // y'; // if (type === 'a.b') {}\n/* case 'c.d': */ const b = "e /* f */";\n` +
-    // A regex literal can hold quotes and slashes; read as a string, it swallows the lines after it.
-    `const r = /['"\`]/g; const q = a / b / c; // if (type === 'z.one') {}\nconst s = 'kept';`;
-  const stripped = stripComments(source);
-
-  assert.ok(stripped.includes("'x // y'"));
-  assert.ok(stripped.includes('"e /* f */"'));
-  assert.ok(stripped.includes(`/['"\`]/g`));
-  assert.ok(stripped.includes("'kept'"));
-  assert.ok(!stripped.includes('a.b'));
-  assert.ok(!stripped.includes('c.d'));
-  assert.ok(!stripped.includes('z.one'));
-});
-
 test('handledEventNames reads both quote styles, both orders and case labels', () => {
-  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} if (type === \`f.six\`) {} switch (t) { case 'd.four': case "e.five": } if (event['type'] === 'j.one') {} if (event?.["type"] !== 'j.two') {} // if (type === 'g.seven') {}`;
+  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} if (type === \`f.six\`) {} switch (eventType) { case 'd.four': case "e.five": } if (event['type'] === 'j.one') {} if (event?.["type"] !== 'j.two') {} // if (type === 'g.seven') {}`;
 
   assert.deepEqual(handledEventNames(source), [
     'a.one',
@@ -256,6 +239,51 @@ test('handledEventNames reads both quote styles, both orders and case labels', (
     'j.one',
     'j.two',
   ]);
+});
+
+// An escaped name is decoded, not compared as written.
+test('handledEventNames reads an escaped event name as the name it spells', () => {
+  assert.deepEqual(handledEventNames(`if (event.type === "session\\u002ebogus") {}`), ['session.bogus']);
+});
+
+// Comment and string text is data, never a check.
+test('comment and string text is never read as an event check', () => {
+  const source = `const note = "case 'session.bogus':"; const doc = \`if (type === 'z.one') {}\`; // case 'x.y':\n/* if (type === 'w.two') {} */`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), []);
+});
+
+// A case label counts only under a switch on the event type.
+test('a case label counts only under a switch on the event type', () => {
+  const source = `switch (mode) { case 'session.bogus': } switch (event.type) { case 'session.idle': }`;
+  assert.deepEqual(handledEventNames(source), ['session.idle']);
+});
+
+// A collection that changes after it is built is not trusted.
+test('a collection that is changed after it is built is reported, not trusted', () => {
+  const source =
+    `const EVENTS = ['session.idle']; EVENTS.push('session.bogus'); if (EVENTS.includes(eventType)) {}\n` +
+    `const KNOWN = new Set(['session.created']); KNOWN.add('session.bogus'); if (KNOWN.has(eventType)) {}\n` +
+    `const SHARED = ['session.deleted']; register(SHARED); if (SHARED.includes(eventType)) {}`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), [
+    'EVENTS.includes(eventType)',
+    'KNOWN.has(eventType)',
+    'SHARED.includes(eventType)',
+  ]);
+});
+
+// An alias declared from the event type reads like the type itself.
+test('an alias of the event type is read like the type itself', () => {
+  assert.deepEqual(
+    handledEventNames(`const t = event.type; if (t === 'a.alias') {} const { type: kind } = event; if (kind === 'b.alias') {}`),
+    ['a.alias', 'b.alias'],
+  );
+});
+
+// A source the parser cannot read fails loudly instead of passing empty.
+test('a source the parser cannot read fails instead of passing empty', () => {
+  assert.throws(() => handledEventNames('if (type === '));
 });
 
 test('handledEventNames reads names from a resolved collection', () => {

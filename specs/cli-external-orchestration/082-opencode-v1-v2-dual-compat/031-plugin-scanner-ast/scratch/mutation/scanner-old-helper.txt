@@ -1,0 +1,35 @@
+# plugin-inventory.test.cjs against helper variants, node v26.8.2, worktree base 3303bfb38e
+
+## OLD text-scan helper (HEAD)
+exit 1
+ℹ tests 18
+ℹ pass 12
+ℹ fail 6
+✖ a case label counts only under a switch on the event type (0.242959ms)
+✖ a collection that is changed after it is built is reported, not trusted (0.865ms)
+✖ a source the parser cannot read fails instead of passing empty (0.115041ms)
+✖ an alias of the event type is read like the type itself (0.101167ms)
+✖ comment and string text is never read as an event check (0.396459ms)
+✖ handledEventNames reads an escaped event name as the name it spells (0.664166ms)
+
+## new helper, mutant m1: switch discriminant check removed
+1
+exit 1
+ℹ tests 18
+ℹ pass 17
+ℹ fail 1
+✖ a case label counts only under a switch on the event type (0.650083ms)
+
+## new helper, mutant m2: collection treated as unchanged regardless of use
+1
+exit 1
+ℹ tests 18
+ℹ pass 17
+ℹ fail 1
+✖ a collection that is changed after it is built is reported, not trusted (0.694375ms)
+
+## new helper, unmodified
+exit 0
+ℹ tests 18
+ℹ pass 18
+ℹ fail 0

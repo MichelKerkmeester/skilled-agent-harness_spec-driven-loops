@@ -1,0 +1,35 @@
+# Purity test mutation runs on 3303bfb38e, node v26.8.2
+old test = HEAD's opencode-plugins-folder-purity.vitest.ts, copied beside the new one for the run
+original link: .opencode/plugins/sk-vision.js -> ../skills/sk-vision/vision-runtime/dist/plugin.js
+
+## mutant absolute: link -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/170-plugin-scanner-ast/.opencode/skills/sk-vision/vision-runtime/dist/plugin.js
+### old test
+      Tests  1 passed (1)
+exit 0
+### new test
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+Error: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/170-plugin-scanner-ast/.skilled/plugins/sk-vision.js must link through a relative target so the link survives a clone or worktree move, found /Users/michelkerkmeester/MEGA/Deve
+exit 1
+
+## mutant missing: link -> ../skills/sk-vision/vision-runtime/dist/missing-plugin.js
+### old test
+      Tests  1 passed (1)
+exit 0
+### new test
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+Error: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/170-plugin-scanner-ast/.skilled/plugins/sk-vision.js links to a build output this checkout has not built (../skills/sk-vision/vision-runtime/dist/missing-plugin.js). Run: bash 
+exit 1
+
+## mutant not-a-plugin: link -> lib/tool-identity.js
+### old test
+      Tests  1 passed (1)
+exit 0
+### new test
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/170-plugin-scanner-ast/.skilled/plugins/sk-vision.js must default-export an OpenCode plugin entrypoint: expected { tool: [Function tool], …(1) } to have property "defa
+exit 1
+
+## restored: ../skills/sk-vision/vision-runtime/dist/plugin.js
+### new test
+      Tests  1 passed (1)
+exit 0
