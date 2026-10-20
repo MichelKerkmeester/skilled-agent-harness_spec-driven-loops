@@ -133,7 +133,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 20 | 020-plugins-purity-dual-export/ | Let the plugins purity test load the dual OpenCode export, the last red Spec-Kit Check step | complete |
 | 21 | 021-pi-fast-mode-trusted-flag/ | Register Pi's --fast flag in the trusted main checkout and correct the copy-claim comment and test counts | complete |
 | 23 | 023-sk-vision-runtime-fixes/ | sk-vision runtime fixes from the post-merge research fix list, rows 4, 5, 13, 15, 20, 23, 24, 25 and 26 | Complete |
-| 26 | 026-ci-and-test-runners/ | Run the orphaned suites where a failure blocks, the hooks vitest tree in its own job, and give SECURITY.md a document type | in progress |
+| 26 | 026-ci-and-test-runners/ | Run the orphaned suites where a failure blocks, the hooks vitest tree in its own job, and give SECURITY.md a document type | complete |
 
 ### Phase Transition Rules
 
