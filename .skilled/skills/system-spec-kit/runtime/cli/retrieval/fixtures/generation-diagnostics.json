@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7177,
-    "ok": 14596,
+    "missing-frontmatter": 7179,
+    "ok": 14600,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25321,
+  "documentsScanned": 25327,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a823f39c5f2d59199b68cb351a3ee6eb62cbf05640e4265531f3a6f11a2c5b91",
+  "manifestHash": "4fbc09bf388efbc717125b0036f9ccc7fe65de379fd3137725a38bb837a7a876",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 36961,
+      "ok": 36968,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -28592,6 +28592,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/missing-toc.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/security-policy/SECURITY.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -68987,6 +68999,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch",
       "reason": "excluded directory"
     },
     {

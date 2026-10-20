@@ -1,0 +1,8 @@
+# row 32: adding .pi/extensions to ROOTS discovers no file, so the root is recorded as left out instead
+## --list count, ROOTS as shipped
+137
+## --list count, ROOTS + .pi/extensions
+137
+## test files under .pi/extensions by suffix
+  11 .test.ts
+   2 .test.ts.txt

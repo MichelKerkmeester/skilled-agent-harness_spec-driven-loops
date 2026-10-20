@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+  "description": "CI and test runners: run orphaned suites and add a SECURITY.md document type",
+  "keywords": [
+    "test",
+    "runners",
+    "run",
+    "orphaned",
+    "suites",
+    "security",
+    "document",
+    "type"
+  ],
+  "lastUpdated": "2026-10-20T07:28:17.383Z",
+  "specId": "026",
+  "folderSlug": "ci-and-test-runners",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "20-10-26_08-28__hooks-vitest-tree-needed-path-stubs-for-devin-and.md"
+  ]
+}

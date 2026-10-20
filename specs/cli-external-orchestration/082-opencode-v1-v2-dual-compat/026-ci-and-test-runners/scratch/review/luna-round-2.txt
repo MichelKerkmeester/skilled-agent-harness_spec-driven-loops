@@ -1,0 +1,3 @@
+VERDICT: FAIL
+P1 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md:25 The packet is marked Complete while T014–T016 and the completion checklist remain open, including required pushed-CI proof -> keep completion metadata and the parent phase row incomplete until those gates have evidence
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch/mutation/row28-ancestor-node-modules.txt:9 The successful audit run omits its exact command and exit status; only the missing-install probe records both -> record the installed-state command and its exit 0

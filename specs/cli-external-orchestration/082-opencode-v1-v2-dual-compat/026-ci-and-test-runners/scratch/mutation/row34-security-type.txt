@@ -1,0 +1,16 @@
+# row 34: the two new test_validator.py cases against the old and new validator
+## old validator and rules (HEAD)
+  [FAIL] ✗ security-policy/SECURITY.md
+        Document type mismatch: expected security_policy, got readme
+  [FAIL] ✗ security-policy-no-reporting/SECURITY.md
+        Exit code mismatch: expected 1, got 0
+SUMMARY: 11/13 tests passed
+  - security-policy/SECURITY.md: Document type mismatch: expected security_policy, got readme
+  - security-policy-no-reporting/SECURITY.md: Exit code mismatch: expected 1, got 0
+TEST SUITE FAILED
+## new validator and rules
+SUMMARY: 13/13 tests passed
+## SECURITY.md, new validator
+✅ VALID: SECURITY.md
+Document type: security_policy
+Total issues: 0

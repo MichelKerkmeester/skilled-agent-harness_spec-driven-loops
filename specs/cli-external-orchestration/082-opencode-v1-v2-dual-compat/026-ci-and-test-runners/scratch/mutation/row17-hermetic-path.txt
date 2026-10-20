@@ -1,0 +1,20 @@
+# row 17: the Pi preflight suite on a CI-like PATH (node 20.19.5, PATH=/usr/bin:/bin:/usr/sbin:/sbin, no devin or pi)
+## command -v devin / pi
+devin: absent
+pi: absent
+## old test (HEAD)
+     × allows a positive raw user override for the inspected executor 3ms
+     × allows a named dispatch wrapped in bash -c with escaped quotes 1ms
+     × allows a named cli-pi dispatch and still denies an unnamed one 1ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  3 failed | 35 passed (38)
+## new test (PATH stubs)
+      Tests  38 passed (38)
+## new test, mutant: the extension registers no handler
+218:  return;
+⎯⎯⎯⎯⎯⎯ Failed Tests 19 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  19 failed | 19 passed (38)
+## full hooks tree, new test
+ RUN  v5.0.3 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/ci-sim
+ Test Files  6 passed (6)
+      Tests  204 passed (204)

@@ -1,0 +1,25 @@
+# row 33: the orchestrator test against the shipped script and three mutants
+## shipped script
+ℹ pass 4
+ℹ fail 0
+## mutant: a failing guard is not counted
+53c53
+<     failures=$((failures + 1))
+---
+>     failures=$((failures + 0))
+ℹ pass 2
+ℹ fail 2
+## mutant: the failure path exits 0
+82c82
+<   exit 1
+---
+>   exit 0
+ℹ pass 2
+ℹ fail 2
+## mutant: warnings are not summed
+45c45
+<     warnings=$((warnings + warn_count))
+---
+>     warnings=$((warnings))
+ℹ pass 3
+ℹ fail 1

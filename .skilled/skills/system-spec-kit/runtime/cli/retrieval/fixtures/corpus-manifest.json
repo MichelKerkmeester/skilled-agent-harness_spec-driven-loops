@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ac273e5ccecdfe4190e785ce4f488baa2cc928b4a3865e3dcc1f34292a47f372",
+  "corpusHash": "3110bf3731d4bb0a0953e5e1fe97ee38090a35e74c7deafe3bfacbf0e4ee2b54",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25321,
+  "includedPathCount": 25327,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6176,6 +6176,8 @@
     ".skilled/skills/sk-doc/scripts/tests/missing-emojis.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-sections.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-toc.md",
+    ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
+    ".skilled/skills/sk-doc/scripts/tests/security-policy/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/single-dash-anchors.md",
     ".skilled/skills/sk-doc/scripts/tests/specs/auto-detect-spec.md",
     ".skilled/skills/sk-doc/scripts/tests/structure/negative/missing-divider.md",
@@ -8916,6 +8918,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25352,7 +25358,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a823f39c5f2d59199b68cb351a3ee6eb62cbf05640e4265531f3a6f11a2c5b91",
+  "manifestHash": "4fbc09bf388efbc717125b0036f9ccc7fe65de379fd3137725a38bb837a7a876",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26396,6 +26402,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch",
       "reason": "excluded directory"
     },
     {
