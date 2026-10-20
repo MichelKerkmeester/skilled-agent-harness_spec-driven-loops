@@ -219,7 +219,7 @@ function unquotedListingCommands(markdown) {
 // to look for. OpenCode 2 prints ids as `<provider>/<model>`, so the note has to name
 // the prefix, filter or grep for it, or quote a span ending in `/`.
 const LISTING_NOTE_PATTERN = /opencode2 models --standalone\b/;
-const CHECK_WORD_PATTERN = /\b(check|checks|confirm|confirms|confirmed)\b/i;
+const CHECK_WORD_PATTERN = /\b(check|checks|checking|confirm|confirms|confirmed|confirming)\b/i;
 const PREFIX_WORD_PATTERN = /\bprefix(?:es)?\b/i;
 const FILTER_WORD_PATTERN = /\bfilter(?:ed)?\b/i;
 const GREP_WORD_PATTERN = /\bgrep\b/i;
@@ -239,12 +239,20 @@ function unprefixedListingNotes(markdown) {
       const clause = line.slice(start, end);
       if (!LISTING_NOTE_PATTERN.test(clause)) continue;
       if (!CHECK_WORD_PATTERN.test(clause)) continue;
-      if (PREFIX_WORD_PATTERN.test(clause)) continue;
-      if (FILTER_WORD_PATTERN.test(clause)) continue;
-      if (GREP_WORD_PATTERN.test(clause)) continue;
+
+      // A code span is not prose, so a word inside one cannot explain what the note asks
+      // the reader to look for. Only the prose is searched for the prefix, filter or grep.
+      const prose = clause.replace(INLINE_CODE_SPAN_PATTERN, ' ');
+      if (PREFIX_WORD_PATTERN.test(prose)) continue;
+      if (FILTER_WORD_PATTERN.test(prose)) continue;
+      if (GREP_WORD_PATTERN.test(prose)) continue;
 
       const spans = [...clause.matchAll(INLINE_CODE_SPAN_PATTERN)].map((match) => match[1]);
       if (spans.some((span) => span.endsWith('/'))) continue;
+      // A span carrying both the listing and its grep is the filtered command itself.
+      if (spans.some((span) => span.includes('opencode2 models --standalone') && GREP_WORD_PATTERN.test(span))) {
+        continue;
+      }
 
       offenders.push({ lineNumber, text: clause.trim() });
     }
@@ -717,6 +725,25 @@ test('unprefixedListingNotes flags a note that omits what to look for', () => {
     unprefixedListingNotes('Once the provider is confirmed in `opencode2 models --standalone`.'),
     [{ lineNumber: 1, text: 'Once the provider is confirmed in `opencode2 models --standalone`' }],
     'the clause text is reported so the reader can find it',
+  );
+  assert.deepEqual(
+    unprefixedListingNotes('Confirming the provider in `opencode2 models --standalone` first.').map(
+      (hit) => hit.lineNumber,
+    ),
+    [1],
+    'a confirming note that names no prefix must be flagged',
+  );
+  assert.deepEqual(
+    unprefixedListingNotes(
+      '`jq -r .x | grep y` once the provider is confirmed in `opencode2 models --standalone`.',
+    ).map((hit) => hit.lineNumber),
+    [1],
+    'a grep in an unrelated span must not clear the note',
+  );
+  assert.deepEqual(
+    unprefixedListingNotes("`opencode2 models --standalone | grep '^llmgateway/'` confirms it."),
+    [],
+    'a span holding the filtered listing is the check itself',
   );
 });
 
