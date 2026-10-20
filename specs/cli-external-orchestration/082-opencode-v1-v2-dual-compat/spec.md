@@ -141,7 +141,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 28 | 028-plugin-kill-switch-coverage/ | Make system-speckit-completion and the sk-vision plugin honor the shared kill switches, the master SYSTEM_HOOKS_DISABLED and their own concern switch, on both OpenCode lines | Complete |
 | 29 | 029-unrun-tests-ci-coverage/ | Run the suites no blocking job ran: the two .pi extension suites, the sk-git worktree-naming suite and two sk-doc node tests; correct the dual-version bun comment | Complete |
 | 30 | 030-nested-worktree-battery/ | Make the v2 battery judge a worktree nested inside another checkout: v2 merges every ancestor `.opencode`, so the outer checkout's plugins shadow the worktree's as duplicate IDs; the private server now reads with project config off and the worktree's `.opencode` as its config dir | Complete |
-| 31 | 031-plugin-scanner-ast/ | Read plugin source with a parser so the inventory guard's four recorded blind spots close as a class, check the sk-vision symlink in the plugins purity test and build its bundle in Spec-Kit Check, and list every suite in the plugin tests README | In Progress |
+| 31 | 031-plugin-scanner-ast/ | Read plugin source with a parser so the inventory guard's four recorded blind spots close as a class, check the sk-vision symlink in the plugins purity test and build its bundle in Spec-Kit Check, and list every suite in the plugin tests README | Complete |
 
 ### Phase Transition Rules
 

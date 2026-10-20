@@ -40,7 +40,7 @@ The regex scan is replaced, not extended. `rolldown/parseAst` returns an ESTree 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->

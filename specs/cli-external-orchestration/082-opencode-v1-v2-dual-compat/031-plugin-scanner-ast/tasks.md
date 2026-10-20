@@ -58,8 +58,8 @@ contextType: "general"
 - [x] T011 Item 9: broken links fail the new purity test only (`scratch/mutation/purity-symlink.txt`) Done: an absolute link, a link to a missing bundle and a link to a non-plugin module each exit 0 on the old test and 1 on the new one; the restored link exits 0.
 - [x] T012 Run the full plugin suite and lint the workflow (`scratch/after/plugin-suite.txt`, `scratch/after/workflow-checks.txt`) Done: `node --test .opencode/plugins/tests/` 436 of 436, exit 0 (417, less the removed `stripComments` test, plus twenty); `actionlint` exit 0; `check-gate-inputs.sh` RESULT: PASSED with 0 failures, exit 0.
 - [x] T013 Review the change read-only with Luna, five rounds at most (`scratch/review/round-1.txt` to `round-5.txt`) Done: five rounds, each FAIL, each fixed (see implementation-summary). Round 5 was the last by the group's stop rule: its callback-method P1 and computed-key P2 are fixed and covered by `round5-fixtures-on-prior-helper.txt` but were not re-reviewed by Luna; its data-flow P1 is recorded as a known limit; its missing gate-inputs record is now `scratch/after/workflow-checks.txt`.
-- [ ] T014 Validate this folder strict and 082 recursively, each RESULT: PASSED
-- [ ] T015 Item 9: Spec-Kit Check and the dual-version battery pass on CI at the pushed main commit
+- [x] T014 Validate this folder strict and 082 recursively, each RESULT: PASSED Done: after the main merge `fe8e971132`, this folder printed RESULT: PASSED, and the recursive strict run over 082 printed RESULT: PASSED for all 32 folders, 0 errors.
+- [x] T015 Item 9: Spec-Kit Check and the dual-version battery pass on CI at the pushed main commit Done: at main `fe8e971132`, all 14 runs passed. Spec-Kit Check run 39442263560 ran the step 'Build the sk-vision plugin bundle' (log: `built dist/plugin.js`) and the runtime vitest project passed with `opencode-plugins-folder-purity.vitest.ts` among 109 passing files; OpenCode Dual-Version Battery run 39442263433 passed.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

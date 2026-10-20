@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast"
-    last_updated_at: "2026-10-20T13:33:10Z"
+    last_updated_at: "2026-10-20T15:00:57Z"
     last_updated_by: "generate-context"
-    recent_action: "Parser guard, purity symlink check and README landed locally"
-    next_safe_action: "Run Luna review, then validate, merge main and push"
+    recent_action: "Closed the phase after CI went green at main fe8e971132"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files:
       - ".opencode/plugins/tests/helpers/plugin-inventory.cjs"
@@ -20,10 +20,10 @@ _memory:
       - ".github/workflows/spec-kit-check.yml"
       - ".opencode/plugins/tests/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:044ed7fbc1959a49ec1a244a6d4b2068cce9c326f86e70bbf5c1223a49418341"
       session_id: "scaffold-031-plugin-scanner-ast"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 031-plugin-scanner-ast |
-| **Completed** | Not yet: review, validation and CI pending |
+| **Completed** | 2026-10-20 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -110,7 +110,8 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures (`scratch/after/workflow-checks.txt`) |
 | Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 FAIL: one P1 (an event type wrapped in a call escaped) and two P2s (a shadowed `undefined`, the fixture count); fixed. Round 4 FAIL: two P1s and one P2. Fixed: a call in a test that receives a wrapped event type, and the fixture count. Recorded, not fixed: a parameter that is named `type` but carries no event counts as the event type (Known Limitations 1). Round 5 (last, by the stop rule) FAIL: two P1s and two P2s. Fixed without a further Luna round: callback methods no longer count as reads, and a computed static `['type']` key is read (both covered by `round5-fixtures-on-prior-helper.txt`); the gate-inputs output is saved. Recorded, not fixed: a helper's result stored in a variable and tested later (Known Limitations 2) |
-| Strict validation, CI | Pending |
+| Strict validation | This folder RESULT: PASSED; 082 recursive RESULT: PASSED for all 32 folders after the main merge |
+| CI at main `fe8e971132` | All 14 runs passed; Spec-Kit Check 39442263560 built the sk-vision bundle and passed the purity test; Dual-Version Battery 39442263433 passed |
 <!-- /ANCHOR:verification -->
 
 ---

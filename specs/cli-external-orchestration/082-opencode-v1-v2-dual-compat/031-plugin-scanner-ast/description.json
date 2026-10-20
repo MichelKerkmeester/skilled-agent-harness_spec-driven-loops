@@ -6,15 +6,16 @@
     "phase",
     "plugin-scanner-ast"
   ],
-  "lastUpdated": "2026-10-20T13:33:10.836Z",
+  "lastUpdated": "2026-10-20T15:00:57.151Z",
   "specId": "031",
   "folderSlug": "plugin-scanner-ast",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "20-10-26_14-33__inventory-guard-rewritten-on-rolldown-parseast-sk.md"
+    "20-10-26_14-33__inventory-guard-rewritten-on-rolldown-parseast-sk.md",
+    "20-10-26_16-00__phase-closed-parser-based-inventory-guard-purity.md"
   ]
 }
