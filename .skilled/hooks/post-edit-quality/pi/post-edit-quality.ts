@@ -2,32 +2,32 @@
 // MODULE: Pi Extension - Post-Edit Quality
 // ───────────────────────────────────────────────────────────────────
 
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { existsSync } from "node:fs";
-import { resolve } from "node:path";
-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
+import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
 
 function resultText(findings: unknown[]): string {
   return findings.map((finding) => {
-    if (!finding || typeof finding !== "object") return String(finding);
+    if (!finding || typeof finding !== 'object') return String(finding);
     const item = finding as { label?: unknown; stdout?: unknown };
-    return `[${String(item.label || "quality")}]\n${String(item.stdout || "")}`.trim();
-  }).join("\n\n");
+    return `[${String(item.label || 'quality')}]\n${String(item.stdout || '')}`.trim();
+  }).join('\n\n');
 }
 
 /** Appends post-edit quality findings and staleness banners to an edit/write result. */
 export default function postEditQuality(pi: ExtensionAPI): void {
-  if (!isHookEnabled("post-edit-quality")) return undefined;
-  pi.on("tool_result", async (event, ctx) => {
+  if (!isHookEnabled('post-edit-quality')) return undefined;
+  pi.on('tool_result', async (event, ctx) => {
     try {
-      if (event.toolName !== "edit" && event.toolName !== "write") return;
+      if (event.toolName !== 'edit' && event.toolName !== 'write') return;
       const rawPath = event.input.path;
-      if (typeof rawPath !== "string" || !rawPath) return;
+      if (typeof rawPath !== 'string' || !rawPath) return;
 
       const filePath = resolve(ctx.cwd, rawPath);
       if (!existsSync(filePath)) return;
 
-      const router = await import("../../.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs");
+      const router = await import('../../.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs');
       const entries = router.resolveDispatch(filePath, ctx.cwd);
       const findings = router.runChecks(entries, router.CLAUDE_HOOK_BUDGET_MS, {
         perChildTimeoutMs: router.CLAUDE_CHECKER_TIMEOUT_MS,
@@ -40,7 +40,7 @@ export default function postEditQuality(pi: ExtensionAPI): void {
       if (banner) notices.push(banner);
       if (notices.length > 0) {
         return {
-          content: [...event.content, { type: "text", text: notices.join("\n\n") }],
+          content: [...event.content, { type: 'text', text: notices.join('\n\n') }],
         };
       }
     } catch {

@@ -64,7 +64,12 @@ async function main() {
     : (process.env.DEVIN_PROJECT_DIR || process.cwd());
 
   const result = guardCore.evaluateDispatch({
-    subagentType: firstNonBlankString(toolInput.subagent_type, toolInput.subagentType, toolInput.agent_type, toolInput.agentType),
+    subagentType: firstNonBlankString(
+      toolInput.subagent_type,
+      toolInput.subagentType,
+      toolInput.agent_type,
+      toolInput.agentType,
+    ),
     prompt: toolInput.prompt,
     sessionID: payload?.session_id,
     projectDir,

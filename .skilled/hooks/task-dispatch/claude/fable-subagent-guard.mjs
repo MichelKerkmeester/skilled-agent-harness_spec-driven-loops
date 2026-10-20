@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// FABLE SUBAGENT GUARD (Claude PreToolUse, matcher: Task|Agent)
+// MODULE: Fable Subagent Guard
 // ─────────────────────────────────────────────────────────────────────────────
+// FABLE SUBAGENT GUARD (Claude PreToolUse, matcher: Task|Agent)
 // When the main session runs on a Fable model, subagents must not run on
 // Fable too: only explicit Opus or Sonnet overrides are allowed. Two dispatch
 // shapes would silently inherit the parent model and are therefore denied —

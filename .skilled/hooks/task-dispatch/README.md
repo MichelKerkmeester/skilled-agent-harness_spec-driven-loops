@@ -21,7 +21,7 @@ The core returns a transport-free `allow`/`warn`/`reject` decision; adapters tra
 
 ## 2. WHAT IT DOES
 
-**task-dispatch-guard** evaluates every Task-tool dispatch through two checks. `evaluateDispatch` returns `{ decision, detail, warnings, audits }`; Check 1 runs first and short-circuits to `reject` under the mode-reject env before Check 2 can run, but a mismatch warning is still recorded and Check 2 still runs.
+**task-dispatch-guard** evaluates every Task-tool dispatch through two checks. `evaluateDispatch` returns `{ decision, detail, warnings, audits }`; Check 1 runs first and short-circuits to `reject` under the mode-reject env before Check 2 can run. A reject returns before its detail is added to `warnings`, so only a non-rejecting mismatch is recorded as a warning, and Check 2 runs only when Check 1 does not reject.
 
 *Check 1. Deep Route mode mismatch.* Resolves the real target agent identity (`resolveTargetIdentity` parses `target_agent=@<name>` / `Agent: @<name>` from the prompt body first, falling back to `subagent_type` only when it is not the generic `general` placeholder that `orchestrate` sets for every call). Loads the agent's registered workflow modes from `mode-registry.json`. If the prompt declares a `mode=` that is not in that agent's registered set, it warns (or rejects under `SYSTEM_DEEP_LOOP_GUARD_REJECT=1`):
 
@@ -35,7 +35,7 @@ system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_ty
 system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.
 ```
 
-Warnings are injected into the model's context as `additionalContext`, newline-joined when several apply. A reject becomes the denial reason. Every non-allow decision also appends a `[system-deep-loop-guard] WARN:` line to the shared bounded log `guard-warnings.log` in the state directory (256 KB default, rotated to `.1`). Generic subagents (`context`/`review`/`write`/`debug`) and `ai-council` are intentionally excluded from loop-repeat counting.
+Warnings are injected into the model's context as `additionalContext`, newline-joined when several apply. A reject becomes the denial reason. A warn appends a `[system-deep-loop-guard] WARN:` line to the shared bounded log `guard-warnings.log` in the state directory (256 KB default, rotated to `.1`). Because a reject returns before its detail is added to `warnings`, the Claude, Devin and OpenCode adapters write no WARN line for a reject; only the Pi adapter logs the reject detail. Generic subagents (`context`/`review`/`write`/`debug`) and `ai-council` are intentionally excluded from loop-repeat counting.
 
 **fable-subagent-guard** (Claude only) fires when the main session runs on a Fable model: read from the session transcript's last `"model":"claude-…"` field (tail 2 MB). It denies three dispatch shapes that would silently inherit Fable, each with its own reason:
 

@@ -1,3 +1,8 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin Post-Edit Quality Tests
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
 // Tests for the Devin PostToolUse quality-hook adapter.
 //
 // Every case builds a throwaway project tree so the hook's project-root
@@ -10,8 +15,6 @@
 // alongside `edit` as an edit event, or a write escapes quality checking
 // entirely. The `write` case pins that contract; `edit` is the positive
 // control; `read` is the negative control that must stay silent.
-
-'use strict';
 
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
@@ -90,7 +93,9 @@ function additionalContext(stdout) {
   if (!stdout.trim()) return '';
   try {
     const parsed = JSON.parse(stdout);
-    return (parsed && parsed.hookSpecificOutput && parsed.hookSpecificOutput.additionalContext) || '';
+    return (
+      (parsed && parsed.hookSpecificOutput && parsed.hookSpecificOutput.additionalContext) || ''
+    );
   } catch {
     return '';
   }

@@ -159,7 +159,9 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
     if (typeof projectDir !== 'string' || !projectDir) return [];
     const environment = opts.env || process.env;
 
-    const resolvedFile = path.isAbsolute(absFilePath) ? absFilePath : path.resolve(projectDir, absFilePath);
+    const resolvedFile = path.isAbsolute(absFilePath)
+      ? absFilePath
+      : path.resolve(projectDir, absFilePath);
     const segments = relativeSegments(resolvedFile, projectDir);
     if (!segments || segments.length === 0) return [];
 
@@ -256,12 +258,27 @@ function resolveDispatch(absFilePath, projectDir, opts = {}) {
 // 5. FINDING SHAPING -- bounding + redaction
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Redact secret-shaped assignments in finding text before it is logged or
+ * surfaced, leaving the keyworded prefix so the finding still names its field.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
 function redactSecrets(text) {
   if (typeof text !== 'string' || !text) return text;
   SECRET_PATTERN.lastIndex = 0;
   return text.replace(SECRET_PATTERN, (_match, prefix) => `${prefix}[REDACTED]`);
 }
 
+/**
+ * Redact then bound finding text so one pathological checker cannot flood the
+ * model context, marking the cut so truncation is visible to the reader.
+ *
+ * @param {string} text
+ * @param {number} [maxChars]
+ * @returns {string}
+ */
 function truncateAndRedact(text, maxChars = DEFAULT_MAX_FINDING_CHARS) {
   if (typeof text !== 'string') return '';
   const redacted = redactSecrets(text);
