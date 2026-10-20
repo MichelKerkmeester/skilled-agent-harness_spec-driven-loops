@@ -115,6 +115,8 @@ function main() {
   assert.equal(fs.existsSync(HOOK_PATH), true, 'the Claude task-dispatch-guard hook script must exist');
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'claude-task-guard-'));
+  // Remove the fixture tree even when an assertion aborts the run before teardown.
+  process.on('exit', () => fs.rmSync(tmpDir, { recursive: true, force: true }));
   writeFixtureRegistry(tmpDir);
   const cwd = tmpDir;
 
@@ -295,7 +297,7 @@ function main() {
   }
   assert.doesNotMatch(readGuardLog(cwd), /loop-like/, 'genuinely command-driven iterations (marker + real config file) must never trigger loop-repeat warn');
 
-  // Forgery regression (R3-P1-001): a bare iteration marker with NO Config: line, or one
+  // Forgery regression: a bare iteration marker with NO Config: line, or one
   // pointing at a path that does not exist, must NOT be exempted -- it has to count toward
   // the loop-repeat threshold like any other hand-off, closing the "just paste the marker
   // text" bypass.
@@ -373,7 +375,6 @@ function main() {
   fs.rmSync(blockedStateDirPath, { force: true });
   fs.rmSync(degradedGuardLogPath(cwd), { force: true });
 
-  fs.rmSync(tmpDir, { recursive: true, force: true });
   console.log('claude-task-dispatch-guard.test.cjs: all assertions passed');
 }
 

@@ -897,32 +897,32 @@ test('recently active session survives the session-state cap', async (t) => {
 test(
   'session.idle arms a matching record and spawns the killer without a transcript',
   async (t) => {
-  setupEnv(t);
-  const spawn = stubSpawn(t);
-  const loopId = 'opencode-loop-0001';
-  const sessionID = 'ses_eb7937bc3ffeKQrJWCjyWiOfRn';
-  process.env.SKILLED_LOOP_ID = loopId;
-  core.preparePending({
-    loopId,
-    handoffPath: '/workspace/opencode/handoff.md',
-    sessionId: sessionID,
-    runtime: 'opencode',
-    cwd: '/workspace/opencode',
-    env: process.env,
-  });
-  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+    setupEnv(t);
+    const spawn = stubSpawn(t);
+    const loopId = 'opencode-loop-0001';
+    const sessionID = 'ses_eb7937bc3ffeKQrJWCjyWiOfRn';
+    process.env.SKILLED_LOOP_ID = loopId;
+    core.preparePending({
+      loopId,
+      handoffPath: '/workspace/opencode/handoff.md',
+      sessionId: sessionID,
+      runtime: 'opencode',
+      cwd: '/workspace/opencode',
+      env: process.env,
+    });
+    const hooks = await loadPlugin({ directory: '/workspace/opencode' });
 
-  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+    await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
 
-  const record = core.readRelaunchFile(loopId, process.env);
-  assert.equal(record.status, 'armed');
-  assert.equal(record.cwd, '/workspace/opencode');
-  assert.equal(spawn.calls.length, 1);
-  const [, args, options] = spawn.calls[0];
-  assert.ok(args.includes('--target-pid'));
-  assert.ok(args.includes(String(process.pid)));
-  assert.equal(args.includes('--transcript'), false);
-  assert.equal(options.detached, true);
+    const record = core.readRelaunchFile(loopId, process.env);
+    assert.equal(record.status, 'armed');
+    assert.equal(record.cwd, '/workspace/opencode');
+    assert.equal(spawn.calls.length, 1);
+    const [, args, options] = spawn.calls[0];
+    assert.ok(args.includes('--target-pid'));
+    assert.ok(args.includes(String(process.pid)));
+    assert.equal(args.includes('--transcript'), false);
+    assert.equal(options.detached, true);
     assert.equal(options.stdio, 'ignore');
     assert.equal(spawn.unrefCalls.length, 1);
   },
@@ -931,34 +931,34 @@ test(
 test(
   'session.idle respawns one killer for an armed record whose killer is gone',
   async (t) => {
-  const root = setupEnv(t);
-  const spawn = stubSpawn(t);
-  const loopId = 'opencode-loop-respawn-0001';
-  const sessionID = 'ses-respawn-session-0001';
-  process.env.SKILLED_LOOP_ID = loopId;
-  core.preparePending({
-    loopId,
-    handoffPath: '/workspace/opencode/handoff.md',
-    sessionId: sessionID,
-    runtime: 'opencode',
-    cwd: '/workspace/opencode',
-    env: process.env,
-  });
-  core.arm({ loopId, cwd: '/workspace/opencode', env: process.env });
-  const hooks = await loadPlugin({ directory: '/workspace/opencode' });
+    const root = setupEnv(t);
+    const spawn = stubSpawn(t);
+    const loopId = 'opencode-loop-respawn-0001';
+    const sessionID = 'ses-respawn-session-0001';
+    process.env.SKILLED_LOOP_ID = loopId;
+    core.preparePending({
+      loopId,
+      handoffPath: '/workspace/opencode/handoff.md',
+      sessionId: sessionID,
+      runtime: 'opencode',
+      cwd: '/workspace/opencode',
+      env: process.env,
+    });
+    core.arm({ loopId, cwd: '/workspace/opencode', env: process.env });
+    const hooks = await loadPlugin({ directory: '/workspace/opencode' });
 
-  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
-  assert.equal(spawn.calls.length, 1);
+    await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+    assert.equal(spawn.calls.length, 1);
 
-  const stateDir = path.join(root, 'skilled-relaunch');
-  fs.mkdirSync(stateDir, { recursive: true });
-  fs.writeFileSync(
-    path.join(stateDir, `killer-${loopId}.lock`),
-    `${process.pid} ${new Date().toISOString()}\n`,
-  );
-  await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
-  assert.equal(spawn.calls.length, 1);
-  assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
+    const stateDir = path.join(root, 'skilled-relaunch');
+    fs.mkdirSync(stateDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(stateDir, `killer-${loopId}.lock`),
+      `${process.pid} ${new Date().toISOString()}\n`,
+    );
+    await hooks.event({ event: { type: 'session.idle', properties: { sessionID } } });
+    assert.equal(spawn.calls.length, 1);
+    assert.equal(core.readRelaunchFile(loopId, process.env).status, 'armed');
   },
 );
 

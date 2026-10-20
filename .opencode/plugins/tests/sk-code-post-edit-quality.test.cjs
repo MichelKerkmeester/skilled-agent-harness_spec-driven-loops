@@ -613,6 +613,7 @@ test('OpenCode plugin: kill-switch env makes every hook a full no-op', async (t)
   const pluginModule = await loadPlugin();
   const hooks = await pluginModule.default.server({ directory: tmpDir });
 
+  const previousDisabled = process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED;
   process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED = '1';
   try {
     await hooks['tool.execute.before']({ tool: 'write', callID: 'call-1' }, { args: { filePath: editedFile } });
@@ -621,7 +622,8 @@ test('OpenCode plugin: kill-switch env makes every hook a full no-op', async (t)
     await hooks['experimental.chat.system.transform']({}, output);
     assert.deepEqual(output.system, [], 'the kill-switch must suppress every hook, including surfacing');
   } finally {
-    delete process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED;
+    if (previousDisabled === undefined) delete process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED;
+    else process.env.SK_CODE_POST_EDIT_QUALITY_DISABLED = previousDisabled;
   }
 });
 

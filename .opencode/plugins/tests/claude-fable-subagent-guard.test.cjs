@@ -36,6 +36,10 @@ function transcript(name, lines) {
   return p;
 }
 
+test.after(() => {
+  if (tmpDir) fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
 const mainLine = (model) => ({ type: 'assistant', isSidechain: false, message: { model } });
 const sideLine = (model) => ({ type: 'assistant', isSidechain: true, message: { model } });
 
