@@ -1,0 +1,64 @@
+Re-run of the four scenario blocks changed after review round 4, executed verbatim from the scenario files at commit d2cb5c1297.
+The sk-design backend dist.js hash matched before and after (shasum -c OK), so the dist-freshness trap restored it.
+
+session-cleanup last-command-exit=0 head_same=yes status=0
+system-completion-sentinel last-command-exit=0 head_same=yes status=0
+opencode-goal last-command-exit=0 head_same=yes status=0
+system-dist-freshness-guard last-command-exit=0 head_same=yes status=0
+
+=== session-cleanup
+running in <worktree>
+baseline v1 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-20T21:42:33+0200 action=skip reason=no-session-pid
+running in <worktree>
+baseline v2 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+2026-10-20T21:42:33+0200 action=skip reason=no-session-pid
+2026-10-20T21:42:40+0200 action=skip reason=no-session-pid
+0
+0
+exit=0
+
+=== system-completion-sentinel
+running in <worktree>
+completion-sentinel v1 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+running in <worktree>
+completion-sentinel v2 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+completion-sentinel-advisories.log: 2026-10-20T19:43:10.138Z [completion-evidence-sentinel] claimed done but only 11/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-pla
+exit=0
+
+=== opencode-goal
+running in <worktree>
+opencode-goal v1 exit=0 requests=4 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+["opencode_goal","completed","STATUS=OK ACTION=set\nmutation=created\ngoal_present=true\nplugin_id=opencode-goal\ngoal_id=goal-9ad1efc5-6db2-4fa0-a094-a129f282a00b\nstatus=active\nobjective=\"Probe goal canary 7Q4Z\"\npacket_path=\"\"\npack
+["opencode_goal_status","completed","STATUS=OK ACTION=show\ngoal_present=true\nplugin_id=opencode-goal\ngoal_id=goal-9ad1efc5-6db2-4fa0-a094-a129f282a00b\nstatus=active\nobjective=\"Probe goal canary 7Q4Z\"\npacket_path=\"\"\npacket_state=u
+cb51d83bad7aa8326017a900fd28d8735fe53bca1f7345e04d1500de1955d97b.json
+cb51d83bad7aa8326017a900fd28d8735fe53bca1f7345e04d1500de1955d97b.json.66793.1792525413367.ebf02477a513c.tmp
+<tmp>/tmp.Qetnzn7afZ/cb51d83bad7aa8326017a900fd28d8735fe53bca1f7345e04d1500de1955d97b.json
+[active_goal:goal-9ad1efc5-6db2-4fa0-a094-a129f282a00b]
+[active_goal:goal-9ad1efc5-6db2-4fa0-a094-a129f282a00b]
+running in <worktree>
+opencode-goal v2 exit=0 requests=3 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+["execute","completed","{\n  \"setResult\": \"STATUS=OK ACTION=set\\nmutation=created\\ngoal_present=true\\nplugin_id=opencode-goal\\ngoal_id=goal-37c347fd-5c8b-4abe-abcc-ae6c731a9f47\\nstatus=active\\nobjective=\\\"Probe goal canary 7Q4Z\\
+56caa3abc9d04e08c32aaa4c623a4d9d43d5b571457ac3d0d37eda17cfbcb41e.json
+<tmp>/tmp.N7iHGNcXKv/56caa3abc9d04e08c32aaa4c623a4d9d43d5b571457ac3d0d37eda17cfbcb41e.json
+[active_goal:goal-37c347fd-5c8b-4abe-abcc-ae6c731a9f47]
+exit=0
+
+=== system-dist-freshness-guard
+[ 'sk-design-md-generator/backend' ]
+running in <worktree>
+dist-freshness v1 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log: 2026-10-20T19:43:48.238Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+running in <worktree>
+dist-freshness v2 exit=0 requests=2 evidence=<worktree>/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log: 2026-10-20T19:43:59.948Z [system-dist-freshness-guard] inject: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+exit=0
+
+Reading: session-cleanup, opencode-goal and dist-freshness repeat the recorded verdicts. The sentinel's v2 run logged its advisory (11/12, the packet's count at run time). The v1 model refused to state the fixture sentence unqualified this time, so no claim was made and no advisory was due; the recorded v1 PASS rests on completion-sentinel.v1.txt, and a refusal is a missing trigger, not a plugin fault.
