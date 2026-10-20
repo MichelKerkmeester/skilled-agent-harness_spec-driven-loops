@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d3a90239ffeffea848fb68a7c9b8b7ff1ecaa9432f3fa9f10319f6929da278d5",
+  "corpusHash": "a52e831a29498f6e61c7a438a927f1ad81bb3f3fa34f5f7b1bd3f6ee371f1810",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25403,
+  "includedPathCount": 25407,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8938,6 +8938,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/spec.md",
@@ -25434,7 +25438,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "eedabecaa7090c6abf93bf8fabb71146f9bd6db832ee0fc1b642c68ec42614dd",
+  "manifestHash": "dbe81f970fc404eadc8c5edbe83e223683734183dce3391e8f1346c931e68821",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26498,6 +26502,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage/scratch",
       "reason": "excluded directory"
     },
     {
