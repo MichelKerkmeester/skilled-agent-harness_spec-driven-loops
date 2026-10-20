@@ -23,7 +23,9 @@ Runs on 2026-10-20 in worktree `174-live-plugin-playbook`, OpenCode 1.19.3 (`ope
 | `system-spec-gate` | PASS | PASS | `spec-gate.v{1,2}.txt` | with `SYSTEM_SPEC_GATE_ENFORCE=1` and no child flag, the write is refused with `system-spec-gate: DENIED` and the deferral line is in the system prompt |
 | `system-speckit-completion` | PASS | PASS | `speckit-completion.v{1,2}.txt` | the `system_speckit_completion` tool returns the packet's JSON payload on both |
 
-**Totals.** OpenCode 1: 17 of 17 plugins PASS. OpenCode 2: 10 PASS, 7 FAIL, none NOT-TRIGGERABLE.
+**Totals.** OpenCode 1: 17 of 17 plugins PASS. OpenCode 2: 10 PASS, 7 FAIL, none NOT-TRIGGERABLE. A FAIL means the scenario's checked effect was missing; `session-cleanup` still logs its dispose step on v2.
+
+**Fixture names.** These runs used per-version fixture names (`pe-probe-v1.js`, `scratch-probe/gate-probe-v1.txt` and so on). The committed scenarios later moved to unique temporary names; the checks are the same.
 
 **Kill switch.** `SYSTEM_SKILL_ADVISOR_DISABLED=1` removes the `Advisor:` line on both versions (`killswitch-skill-advisor.v{1,2}.txt`: 0 lines with the switch, 2 on v1 and 1 on v2 without it).
 
@@ -38,6 +40,6 @@ Every cause below was read from the plugin source and confirmed with a probe plu
 
 ## Side findings
 
-- On 2026-10-20 the battery and CI both called every plugin `active` on OpenCode 2. These runs show registration says nothing about the hooks that filter on a tool name or an event.
+- `battery-receipt.txt`: CI battery run 39442263433 on 2026-10-20 reported all 17 plugin files `active` on OpenCode 2, and so did a local battery run that day. Registration does not show whether a hook that filters on a tool name or an event ever fires; these live runs do.
 - `dist-freshness` (`dist-freshness-unprovisioned.txt`): a stale package with no `node_modules` of its own reports `unprovisioned` rather than `stale`. In a provisioned worktree that covers `system-spec-kit/shared`, `runtime/cli` and `runtime`, so their staleness is silent. This is the same on both versions.
 - `advisor-first-run.txt`: the first v1 run of the session showed `Advisor: outage (fail_open)`. Every later run on both versions was `live`.

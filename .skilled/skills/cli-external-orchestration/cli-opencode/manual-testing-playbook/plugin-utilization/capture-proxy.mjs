@@ -18,6 +18,7 @@ import { appendFileSync } from 'node:fs';
 const port = Number(process.argv[2]);
 const capturePath = process.argv[3];
 const upstream = new URL(process.argv[4] || 'https://api.llmgateway.io');
+const transport = upstream.protocol === 'http:' ? http : https;
 
 if (!Number.isInteger(port) || !capturePath) {
   process.stderr.write('usage: node capture-proxy.mjs <port> <capture.jsonl> [upstream-origin]\n');
@@ -58,8 +59,8 @@ http.createServer((req, res) => {
     // A capture failure must never break the run it observes.
     try { record(req.url, body); } catch { /* keep forwarding */ }
     const headers = { ...req.headers, host: upstream.host, 'content-length': String(body.length) };
-    const forward = https.request(
-      { hostname: upstream.hostname, port: upstream.port || 443, path: req.url, method: req.method, headers },
+    const forward = transport.request(
+      { hostname: upstream.hostname, port: upstream.port || (transport === https ? 443 : 80), path: req.url, method: req.method, headers },
       (upstreamRes) => {
         res.writeHead(upstreamRes.statusCode, upstreamRes.headers);
         upstreamRes.pipe(res);

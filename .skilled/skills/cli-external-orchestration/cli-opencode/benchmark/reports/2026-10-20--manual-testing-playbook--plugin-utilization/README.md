@@ -35,4 +35,4 @@ _Derived after the fact from this run's stored record, not written at run time._
 
 ## 3. READING THIS FOLDER
 
-This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. All 17 plugins passed on OpenCode 1.19.3. Seven did not fire on OpenCode 2.0.32; `findings-and-recommendations.md` gives the three causes.
+This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. All 17 plugins passed on OpenCode 1.19.3. Seven scenarios failed on OpenCode 2.0.32 because the checked effect was missing (session-cleanup still logged its dispose step); `findings-and-recommendations.md` gives the three causes.

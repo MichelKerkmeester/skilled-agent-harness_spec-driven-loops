@@ -1,0 +1,23 @@
+CI receipt: OpenCode Dual-Version Battery run 39442263433 on main commit fe8e971132 (2026-10-20T14:46:12Z), all three jobs success.
+Summaries downloaded with: gh run download 39442263433
+
+== battery-v2.json
+PASS v2 family-present: a v2 binary is installed
+PASS v2 plugin-active: all 17 plugin files active
+PASS v2 skill-visible: 60 skill entries visible
+PASS v2 command-listed: all 40 command files listed
+== battery-both.json
+PASS v1 family-present: a v1 binary is installed
+PASS v1 plugin-discovered: all 17 plugin files discovered
+PASS v1 plugin-load: all 17 plugin files loaded
+PASS v1 command-listed: all 40 command files listed
+PASS v2 family-present: a v2 binary is installed
+PASS v2 plugin-active: all 17 plugin files active
+PASS v2 skill-visible: 60 skill entries visible
+PASS v2 command-listed: all 40 command files listed
+
+== local run on the main checkout (981b27805b), 2026-10-20, v2 family:
+PASS v2 family-present: a v2 binary is installed
+PASS v2 plugin-active: all 17 plugin files active
+PASS v2 skill-visible: 60 skill entries visible
+FAIL v2 command-listed: the command listing does not match the command folders

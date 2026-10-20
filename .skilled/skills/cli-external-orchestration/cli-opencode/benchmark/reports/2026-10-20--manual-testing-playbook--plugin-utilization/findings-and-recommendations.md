@@ -26,4 +26,4 @@ The seven OpenCode 2 failures share three causes. Each was read from the plugin 
 
 ## Boundary
 
-The doctor battery and CI both report every plugin as active on OpenCode 2. Registration does not show whether a hook that filters on a tool name or an event ever fires; these live runs do.
+CI battery run 39442263433 on 2026-10-20 reported every plugin active on OpenCode 2 (receipt in the packet's `battery-receipt.txt`). Registration does not show whether a hook that filters on a tool name or an event ever fires; these live runs do.

@@ -20,7 +20,7 @@
 #
 # Exit Codes:
 #   0 - The run finished; read the files for the verdict
-#   2 - Usage error, or the capture proxy did not start
+#   2 - Usage error, REPO_ROOT is not a checkout top, or the capture proxy did not start
 set -uo pipefail
 
 if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
@@ -35,6 +35,13 @@ ROOT="${REPO_ROOT:-$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)}"
 EVID="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 MODEL_V1="llmgateway/deepseek-v4.1-flash"
 MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
+# A REPO_ROOT inherited from another task would run the session, and any file or
+# commit it makes, in that checkout instead of this one.
+if [[ "$(git -C "$ROOT" rev-parse --show-toplevel 2>/dev/null)" != "$ROOT" ]]; then
+  echo "REPO_ROOT is not the top of a git checkout: $ROOT" >&2
+  exit 2
+fi
+echo "running in $ROOT" >&2
 mkdir -p "$EVID"
 
 EVENTS="$EVID/$NAME.$VERSION.events.jsonl"

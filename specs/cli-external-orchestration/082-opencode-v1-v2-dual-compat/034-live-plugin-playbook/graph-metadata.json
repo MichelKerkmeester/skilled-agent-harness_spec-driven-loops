@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The doctor's version battery reports all 17 files in `.opencode/plugins/` as loaded on OpenCode 1.19.3 and active on OpenCode 2.0.32",
     "created_at": "2026-10-20T16:42:45Z",
-    "last_save_at": "2026-10-20T18:19:37.509Z",
+    "last_save_at": "2026-10-20T18:33:32.560Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,7 +204,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:36c330f3fd624dd8178c5e1c453c959bdb05ebe50d3d62228c300d2fac884000",
+    "source_fingerprint": "sha256:ce19ac982c86d0cd691a671f4bc1e0eaa7ea0e78396867242d49f2e7c8425e71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "55a9d765ca937431e665ffa6b78b32670d4ff24921a60929798457ca2ce33eb5",
