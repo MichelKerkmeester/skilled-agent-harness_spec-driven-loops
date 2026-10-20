@@ -11,7 +11,7 @@
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { mkdtemp, readFile, rm } = require('node:fs/promises');
+const { mkdir, mkdtemp, readFile, rm, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -111,6 +111,7 @@ test('terminal same-objective set reports replacement and resets counters', asyn
   );
   assert.match(String(terminalSet), /mutation=created/);
   await plugin.tool.opencode_goal.execute({ action: 'complete' }, terminalCtx);
+  const completedGoalId = (await helpers.readGoal(terminalCtx.sessionID, opts)).goalId;
   const terminalReplace = await plugin.tool.opencode_goal.execute(
     { action: 'set', objective: 'TERMINAL_TOOL_OBJ' },
     terminalCtx,
@@ -118,7 +119,7 @@ test('terminal same-objective set reports replacement and resets counters', asyn
   assert.match(String(terminalReplace), /mutation=replaced/);
   const terminalGoal = await helpers.readGoal(terminalCtx.sessionID, opts);
   assert.ok(terminalGoal.goalId);
-  assert.notEqual(terminalGoal.goalId, 'tool-goal');
+  assert.notEqual(terminalGoal.goalId, completedGoalId);
   assert.equal(terminalGoal.status, 'active');
   assert.equal(terminalGoal.tokensUsed, 0);
   assert.equal(terminalGoal.timeUsedSeconds, 0);
@@ -154,7 +155,9 @@ test('regression graph key files exclude non-deliverable legacy basenames', asyn
     'goal.md',
     'opencode_goal.md',
   ]);
-  const keyFiles = graph?.derived?.key_files || [];
+  const keyFiles = graph?.derived?.key_files;
+  assert.ok(Array.isArray(keyFiles), '012 graph-metadata must expose derived.key_files');
+  assert.ok(keyFiles.length > 0, '012 graph-metadata derived.key_files must not be empty');
   for (const keyFile of keyFiles) {
     const basename = String(keyFile).split('/').at(-1);
     assert.equal(
@@ -166,10 +169,8 @@ test('regression graph key files exclude non-deliverable legacy basenames', asyn
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PACKET BINDING THROUGH THE TOOL PATH
+// 1. PACKET BINDING THROUGH THE TOOL PATH
 // ─────────────────────────────────────────────────────────────────────────────
-
-const { mkdir, writeFile } = require('node:fs/promises');
 
 async function writePacketGoal(root, rel) {
   const dir = join(root, rel);
