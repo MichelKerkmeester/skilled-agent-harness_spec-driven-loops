@@ -61,8 +61,11 @@ Status: [OK|FAIL|ERROR]
 Mutation class: read-only
 Evidence: [N] legs, [N] passed, [N] failed, [N] skipped, [N] degraded, [N] errors
 Recommendation: [the doctor command for each failing or degraded leg, or none]
+Last session hop: [the one line `session-relaunch.cjs history --last 1` printed, or no hop recorded yet]
 STATUS=[status]
 ```
+
+The last session hop line is informational. It shows when a session last handed over, claimed or finished a handoff, and it never changes the status.
 
 ### Failure Summary
 

@@ -882,6 +882,10 @@ test('prepare resolves an absolute note under the CLI repository from a subdirec
   fs.copyFileSync(CLI_PATH, copiedCli);
   fs.copyFileSync(path.resolve(__dirname, '../lib/relaunch-core.cjs'), copiedCore);
   fs.copyFileSync(path.resolve(__dirname, '../lib/nudge.cjs'), copiedNudge);
+  fs.copyFileSync(
+    path.resolve(__dirname, '../lib/hop-history.cjs'),
+    path.join(path.dirname(copiedNudge), 'hop-history.cjs'),
+  );
   fs.copyFileSync(path.resolve(__dirname, '../../shared/hook-flags.cjs'), copiedHookFlags);
   fs.copyFileSync(
     path.resolve(__dirname, '../../shared/env-aliases.cjs'),
@@ -1230,7 +1234,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be one of prepare, should-relaunch, claim, complete, consume\n/,
+    /command must be one of prepare, should-relaunch, claim, complete, consume, history\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');

@@ -36,6 +36,7 @@ upstream_assets:
   sk_git_battery: ".skilled/commands/doctor/scripts/git-setup-check.cjs"
   trigger_index_check: ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
   runtime_mirror_check: ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs"
+  hop_history: ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -54,6 +55,7 @@ execution:
     - "Leg trigger-index: run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json. Exit 0 passes. Exit 1 (stale documents) or 2 and higher (unreadable index) fails, with repair /doctor:speckit."
     - "Leg runtime-mirrors: run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check. Exit 0 passes. Any other exit fails, with repair /doctor:runtime-mirrors."
     - "Leg advisor: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only. Exit 0 with data.freshness set to live is PASS. Exit 0 with any other freshness is DEGRADED, with repair /doctor:skill-advisor rebuild. Exit 75 with a staleDistWarning field in stderr JSON is FAIL, with repair npm --prefix .skilled/skills/system-skill-advisor/runtime run build. Exit 75 without that field is SKIP because the daemon is not running. Any other exit is FAIL, with repair /doctor:skill-advisor rebuild."
+    - "Last session hop (informational, not a leg): run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 1 and show its one output line under the result as the last session hop. Its exit and output never change the status."
     - "Run every leg even when an earlier one fails, then render the per-leg table, the DOCTOR DIAGNOSTIC RESULT summary and the troubleshooting table through .skilled/commands/doctor/assets/doctor-setup-presentation.txt."
 
 # ─────────────────────────────────────────────────────────────────
