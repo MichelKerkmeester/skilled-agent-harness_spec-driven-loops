@@ -1259,6 +1259,7 @@ Ten commands check and repair the setup, one per area.
 **`/doctor:setup`** - read-only onboarding and health check
 
 - Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure
+- Shows the last session hop from the hop history
 - Lists every other doctor command, and writes nothing
 
 **`/doctor:speckit`** - spec-kit retrieval

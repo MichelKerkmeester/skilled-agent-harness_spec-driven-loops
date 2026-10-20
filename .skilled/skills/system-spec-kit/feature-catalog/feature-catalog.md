@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-10-18"
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -909,7 +909,7 @@ Hands a session near its context limit to a fresh one through a structured hando
 
 #### Current Reality
 
-Claude Code, Pi, OpenCode, Codex and Hermes prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_RELAUNCH_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. The automatic nudge fires only inside the wrapper, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`.
+Claude Code, Pi, OpenCode, Codex and Hermes prepare handoffs through automatic adapters. Cursor and Devin use `/speckit:handoff`. `prepare --runtime <name>` selects the manual claim runtime outside the loop and rejects a conflicting runtime inside it. The wrapper relaunches only an armed, fresh record below `SESSION_RELAUNCH_MAX_HOPS`. If a record is still pending at exit, it prints the selected runtime's manual claim command. The automatic nudge fires only inside the wrapper, and a sourced shell shim starts each interactive runtime launch under it, including in a repository that links `.skilled`. Every hand-over, claim, finish and killer timeout adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` read, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
 
 #### Source Files
 

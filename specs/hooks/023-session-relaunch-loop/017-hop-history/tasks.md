@@ -56,6 +56,7 @@ contextType: "implementation"
 - [x] T009 Session-relaunch suite and Pi suite green
 - [x] T010 Live Claude hop from worktree 175 records all three events
 - [x] T011 Docs: concern README, tests README, feature catalog, root README
+- [x] T012 Rollup: v4.0.0.13 changelog, hooks and bin READMEs, system-spec-kit README and catalog index, the Claude relaunch playbook check and the `/doctor:setup` scenario; AGENTS.md checked and left unchanged
 <!-- /ANCHOR:phase-3 -->
 
 ---

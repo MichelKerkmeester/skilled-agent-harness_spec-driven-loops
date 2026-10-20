@@ -68,6 +68,7 @@ A hop records four kinds of line: `handed-over` when the wrapper decides to rela
 | `.skilled/commands/doctor/setup.md`, `assets/doctor-setup.yaml`, `assets/doctor-setup-presentation.txt` | Modified | Last-hop line |
 | `.skilled/hooks/hook-flags.env.example`, `system-spec-kit/runtime/ENV-REFERENCE.md` | Modified | Notice switch |
 | Session-relaunch README, tests README, feature catalog entry, root `README.md` | Modified | Docs |
+| v4.0.0.13 changelog, hooks README, bin README, system-spec-kit README and catalog index, the Claude relaunch playbook, the `/doctor:setup` playbook scenario | Modified | Rollup: the hop history and the notice switch in every doc that describes the loop or `/doctor:setup` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -75,7 +76,7 @@ A hop records four kinds of line: `handed-over` when the wrapper decides to rela
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Tests came first and failed before the code existed. The suite then ran green, and a live Claude hop through `skilled-loop` in a detached tmux session, started from worktree 175 with the notice on, wrote `handed-over`, `claimed` and `done`. `history` printed the three lines. The work merged into main from worktree 175.
+Tests came first and failed before the code existed. The suite then ran green, and a live Claude hop through `skilled-loop` in a detached tmux session, started from worktree 175 with the notice on, wrote `handed-over`, `claimed` and `done`. `history` printed the three lines. The work merged into main from worktree 175. A second pass from worktree 177 carried the history into the v4.0.0.13 changelog and every other doc that describes the loop or `/doctor:setup`. AGENTS.md needed no change, because its Gate 3 already exempts writes that touch only gitignored runtime state under `.skilled/skills/.state/`, which is where the history lives.
 <!-- /ANCHOR:how-delivered -->
 
 ---
