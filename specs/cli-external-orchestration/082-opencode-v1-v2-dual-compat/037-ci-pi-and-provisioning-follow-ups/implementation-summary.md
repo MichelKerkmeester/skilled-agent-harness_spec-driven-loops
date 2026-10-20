@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/037-ci-pi-and-provisioning-follow-ups"
     last_updated_at: "2026-10-21T00:10:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Four Luna rounds closed; merged main and refreshed the sk-doc manifest"
-    next_safe_action: "Merge main, push, and record the CI handoff"
+    recent_action: "Recorded the CI handoff at the pushed main commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".github/workflows/pi-extension-tests.yml"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-037-ci-pi-and-provisioning-follow-ups"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -42,8 +42,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 037-ci-pi-and-provisioning-follow-ups |
-| **Completed** | Pending the CI handoff |
-| **Status** | In Progress |
+| **Completed** | 2026-10-21 |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -120,6 +120,8 @@ Main's sk-doc Script Tests had failed on every push since another change added `
 | sk-doc runner, full | All pass after the manifest refresh; before it, `test_readme_manifest.py` failed exactly as on main |
 | Plugin suite after the merge | 458 of 458 |
 | `actionlint` on every workflow | Exit 0 |
+| Recursive strict validation of 082 | `RESULT: PASSED` for 37 folders |
+| CI handoff | At main `ff2ecb632a` all 17 repository workflows succeeded: Pi Extension Tests 39508434074 (discover, then both extensions with test, typecheck and pack steps), sk-git Script Tests 39508433936, sk-doc Script Tests 39508433768, OpenCode Dual-Version Battery 39508433783, OpenCode Plugin Tests 39508433909, Spec-Kit Check 39508433810, Advisory Checks 39508433965, Changed Packet Validation 39508433819, Command Tree Parity 39508433989, Dispatch Enforcement Guard 39508433925, Gate Inputs 39508434188, Markdown Link Integrity 39508433961, Message Contract 39508433963, Playbook Operator Contract 39508434321, Rule Canary Sync 39508433966, sk-doc Rename Harness 39508434279, Trigger Index Rebuild 39508433996. The one red run at that commit is Dependabot's own `uv` update job, not a repository workflow |
 <!-- /ANCHOR:verification -->
 
 ---

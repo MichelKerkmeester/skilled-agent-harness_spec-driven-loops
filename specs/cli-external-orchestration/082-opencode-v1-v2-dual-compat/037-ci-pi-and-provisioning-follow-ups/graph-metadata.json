@@ -35,7 +35,7 @@
       "drift"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -180,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Run 39424650739 failed `test-cite-drift-scan.mjs` on its first attempt and passed on its second at the same commit, and the runner then printed only the log tail, so the failing subtest has no name",
     "created_at": "2026-10-20T21:36:36Z",
-    "last_save_at": "2026-10-20T22:27:28.067Z",
+    "last_save_at": "2026-10-20T22:43:05.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78dfcf0941ff19ce661e205969373b22e26b121a175b0f8d8cb0031754c2971c",
+    "source_fingerprint": "sha256:0abc531f220cfa4eda2fdf81d2f2639bee914bbeb71010488ab08743a9b34d7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a43c5d672e820520a0693f82daade7ffb1a9f2c9b77c199a686fb2ea988c05c8",
-      "plan.md": "8be028f827e579fc6c909e82b38c926a3df0a09979243d62b8b19c0a741d7636",
-      "tasks.md": "d9a1bd83a8684ce93236e600fdcd5eea4c350960dffe61b84bbcb24088d1e896",
-      "implementation-summary.md": "2e205029b39fa54bc09a4ad8be94d62d60f24989f9c33bac3fde0fc1d0e1bb23"
+      "spec.md": "c81a95d5cc50ac5b1d67af0c7441b9e4d5474baa5506c1328e5a13806705053b",
+      "plan.md": "fea6d0768f81d40adfd25bf28d222b036a0b6abc1f66737e0fbbd4a30aada636",
+      "tasks.md": "7a5cab6b283424eda38ffe2ae2b456ae3c400bc8891b5d57e515bdf64a11f5fa",
+      "implementation-summary.md": "336b7f751911ddbeb1192cf060cac47ee5fed5ed23c08c4530037db1a066fcc4"
     },
     "last_active_at": null
   }

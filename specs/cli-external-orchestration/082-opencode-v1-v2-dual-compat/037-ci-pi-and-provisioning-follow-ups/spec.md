@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/179-ci-pi-and-provisioning-follow-ups` |
 | **Parent Spec** | ../spec.md |

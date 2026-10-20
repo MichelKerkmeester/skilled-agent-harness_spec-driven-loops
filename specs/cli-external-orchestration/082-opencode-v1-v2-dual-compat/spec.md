@@ -146,7 +146,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 33 | 033-battery-mcp-prompt-commands/ | Accept an OpenCode 2 MCP prompt in the battery's `command-listed` leg only when its server is in the config sources the private server reports | Complete |
 | 34 | 034-live-plugin-playbook/ | Add a playbook scenario per plugin and run each live on OpenCode 1 and 2 with DeepSeek v4.1 flash high, recording an observed effect or the root cause of its absence | Complete |
 | 35 | 035-v2-bridge-plugin-effects/ | Make the v2 bridge hand plugins the v1 tool names, a once-per-session `session.created` and complete message events, then rerun the live playbook on both versions | In Progress |
-| 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | In Progress |
+| 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | Complete |
 
 ### Phase Transition Rules
 

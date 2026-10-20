@@ -61,7 +61,7 @@ contextType: "general"
 - [x] T014 Provision the real worktree twice Done: with stamps moved aside five outputs rebuild, the next provision builds nothing, and the new stamps equal the old ones.
 - [x] T015 Run actionlint and the gate-inputs check Done: both exit 0; gate inputs `RESULT: PASSED`.
 - [x] T016 Check the README tables Done: all 32 workflows appear in the contents table and exactly once in the push versus pull-request table; `validate_document.py` 0 issues.
-- [ ] T017 Validate the packet strict and confirm the CI handoff (`.github/workflows/`)
+- [x] T017 Validate the packet strict and confirm the CI handoff (`.github/workflows/`) Done: recursive strict validation of 082 printed `RESULT: PASSED` for 37 folders; at main `ff2ecb632a` all 17 repository workflows succeeded: Pi Extension Tests 39508434074 (discover, then both extensions with test, typecheck and pack steps), sk-git Script Tests 39508433936, sk-doc Script Tests 39508433768, OpenCode Dual-Version Battery 39508433783, OpenCode Plugin Tests 39508433909, Spec-Kit Check 39508433810, Advisory Checks 39508433965, Changed Packet Validation 39508433819, Command Tree Parity 39508433989, Dispatch Enforcement Guard 39508433925, Gate Inputs 39508434188, Markdown Link Integrity 39508433961, Message Contract 39508433963, Playbook Operator Contract 39508434321, Rule Canary Sync 39508433966, sk-doc Rename Harness 39508434279, Trigger Index Rebuild 39508433996.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,7 +69,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

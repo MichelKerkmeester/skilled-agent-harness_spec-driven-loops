@@ -40,7 +40,7 @@ Five independent changes, one commit each. The Pi workflow gains a `discover` jo
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
