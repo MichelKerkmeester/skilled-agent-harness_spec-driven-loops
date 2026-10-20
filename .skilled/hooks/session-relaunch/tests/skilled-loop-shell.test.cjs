@@ -170,7 +170,9 @@ for (const shell of SHELLS) {
     assert.equal(output, 'DIRECT claude --model opus\n');
   });
 
-  test(`${shell.name}: on a terminal the runtime function hands the launch to the wrapper`, { skip: !HAS_SCRIPT && 'script(1) is unavailable' }, (t) => {
+  test(`${shell.name}: on a terminal the runtime function hands the launch to the wrapper`, {
+    skip: !HAS_SCRIPT && 'script(1) is unavailable',
+  }, (t) => {
     const box = sandbox(t);
     const bin = stubBin(box.root);
     const output = launch(
@@ -188,7 +190,9 @@ for (const shell of SHELLS) {
 
   // Hermes loads the relaunch bridge only as a project plugin, so a wrapped Hermes launch
   // needs the switch while every other launch and the caller's shell stay without it.
-  test(`${shell.name}: a wrapped hermes launch alone enables project plugins`, { skip: !HAS_SCRIPT && 'script(1) is unavailable' }, (t) => {
+  test(`${shell.name}: a wrapped hermes launch alone enables project plugins`, {
+    skip: !HAS_SCRIPT && 'script(1) is unavailable',
+  }, (t) => {
     const box = sandbox(t);
     const bin = stubBin(box.root);
     const output = launch(

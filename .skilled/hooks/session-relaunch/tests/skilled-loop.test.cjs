@@ -9,7 +9,7 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
+const { RUNTIMES, manualClaimCommand, validSpecFolder } = require('../lib/relaunch-core.cjs');
 
 const WRAPPER_PATH = path.resolve(__dirname, '../../../bin/skilled-loop');
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
@@ -203,7 +203,15 @@ function createSandbox(t) {
   fs.mkdirSync(home, { recursive: true });
   fs.mkdirSync(binDir, { recursive: true });
   fs.mkdirSync(recordedCwd, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
+  const env = {
+    ...process.env,
+    HOME: home,
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    SESSION_RELAUNCH_REPO_ROOT: repoRoot,
+    // Pin the flags file inside the sandbox so an operator's own hook-flags.env
+    // cannot change what these cases observe.
+    HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
+  };
   for (const key of [
     'SKILLED_LOOP_ID',
     'SKILLED_LOOP_HOPS',
@@ -561,7 +569,7 @@ test('wrapper passes a single prompt argument to the default claude runtime', (t
 });
 
 test('wrapper exports runtime identity for each supported runtime', (t) => {
-  for (const runtime of ['claude', 'pi', 'opencode', 'codex', 'cursor', 'hermes']) {
+  for (const runtime of RUNTIMES) {
     const sandbox = createSandbox(t);
     const { recordPath } = installRuntimeStub(sandbox);
     const result = runWrapper(sandbox, [runtime]);
@@ -1460,7 +1468,7 @@ test('wrapper warns and consumes a relaunch record with truncated parsed output'
   assert.equal(fs.existsSync(relaunchPath), false);
 });
 
-test('wrapper warns and consumes a relaunch record with an empty handoff path', (t) => {
+test('wrapper declines a relaunch record with an empty handoff path without a warning', (t) => {
   const sandbox = createSandbox(t);
   const { recordPath } = installRuntimeStub(sandbox, {
     markers: '1',
