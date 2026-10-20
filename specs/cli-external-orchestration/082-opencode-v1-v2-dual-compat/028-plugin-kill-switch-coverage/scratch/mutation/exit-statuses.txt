@@ -1,0 +1,3 @@
+exit statuses (old code / new code)
+speckit-completion test: 1 / 0
+sk-vision plugin test: 1 / 0

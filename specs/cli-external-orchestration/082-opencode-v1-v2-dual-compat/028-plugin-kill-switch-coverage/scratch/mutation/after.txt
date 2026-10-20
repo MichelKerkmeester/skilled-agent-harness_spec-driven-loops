@@ -1,0 +1,8 @@
+plugins exit 0
+vision exit 0
+tsc exit 0
+ℹ tests 417
+ℹ pass 417
+ℹ fail 0
+ 83 pass
+ 0 fail

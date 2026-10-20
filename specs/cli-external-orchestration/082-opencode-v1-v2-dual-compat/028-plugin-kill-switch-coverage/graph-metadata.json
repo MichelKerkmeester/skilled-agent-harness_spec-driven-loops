@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "plugin kill switch coverage",
+      "phase 28 plugin kill switch coverage",
+      "sk-vision kill switch",
+      "speckit completion master switch",
+      "plugin kill switch coverage plan",
+      "plugin kill switch coverage tasks",
+      "plugin kill switch coverage implementation summary"
+    ],
+    "key_topics": [
+      "plugin",
+      "kill",
+      "switch",
+      "coverage",
+      "phase",
+      "sk-vision",
+      "speckit",
+      "completion",
+      "master",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/plugins/system-speckit-completion.js",
+      ".opencode/plugins/tests/system-speckit-completion.test.cjs",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/ARCHITECTURE.md",
+      ".skilled/hooks/completion/README.md",
+      ".skilled/skills/sk-vision/hooks/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
+      ".opencode/plugins/sk-vision.js",
+      "scratch/mutation/bundle-check.txt",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      "scratch/mutation/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-speckit-completion.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-speckit-completion.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-speckit-completion.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-speckit-completion.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-completion-exposer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-vision.js",
+        "source": "derived"
+      },
+      {
+        "name": "bundle-check.txt",
+        "kind": "file",
+        "path": "scratch/mutation/bundle-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/mutation/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin, except two",
+    "created_at": "2026-10-20T11:53:35Z",
+    "last_save_at": "2026-10-20T12:06:01.708Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e6b87f2655c76bd9f46197dd9f47133ad82732d13f7d71ccc550d4d6175cf331",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "472f029b810f79d49a3712af20d0d97150d4a06d71fd342bcea2683835b81d5b",
+      "plan.md": "bc26a6d287f1aec96828e124744489a3025b615333e22e9d5e3612595a6da710",
+      "tasks.md": "9e058ac9da001470397e8b307b265c9978cd4629bf1b4d9676ddbed38cc6545e",
+      "implementation-summary.md": "d177b74d3b74bb5a59885570c15f624080627287e723a6ae41cb8c6ca9beb028"
+    },
+    "last_active_at": null
+  }
+}

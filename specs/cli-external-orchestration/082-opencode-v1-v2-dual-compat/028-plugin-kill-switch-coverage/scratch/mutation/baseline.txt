@@ -1,0 +1,11 @@
+baseline at 7d55952975
+plugins:
+✔ system-speckit-completion registers v2 hooks (1.539292ms)
+ℹ tests 417
+ℹ suites 3
+ℹ pass 417
+sk-vision:
+ 76 pass
+ 0 fail
+ 181 expect() calls
+Ran 76 tests across 10 files. [3.73s]

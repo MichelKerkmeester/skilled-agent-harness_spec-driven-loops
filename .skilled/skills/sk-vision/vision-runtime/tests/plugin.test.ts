@@ -2,7 +2,7 @@
 // MODULE: Vision Plugin Tests
 // ───────────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from "bun:test";
+import { afterEach, beforeEach, describe, expect, it } from "bun:test";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -866,5 +866,101 @@ describe("v2 grace for models off the text-only list", () => {
       throw new Error("no session");
     });
     expect(guaranteed).toBe(true);
+  });
+});
+
+describe("kill switches", () => {
+  const switchEnv = [
+    "HOOK_FLAGS_CONFIG",
+    "SYSTEM_HOOKS_DISABLED",
+    "MK_HOOKS_DISABLED",
+    "SYSTEM_SK_VISION_DISABLED",
+    "SK_VISION_AUTOINSPECT",
+  ];
+  const savedEnv: Record<string, string | undefined> = {};
+
+  beforeEach(() => {
+    for (const name of switchEnv) savedEnv[name] = process.env[name];
+    process.env.HOOK_FLAGS_CONFIG = join(tmpdir(), "sk-vision-no-hook-flags.env");
+    delete process.env.SYSTEM_HOOKS_DISABLED;
+    delete process.env.MK_HOOKS_DISABLED;
+    delete process.env.SYSTEM_SK_VISION_DISABLED;
+    delete process.env.SK_VISION_AUTOINSPECT;
+  });
+
+  afterEach(() => {
+    for (const name of switchEnv) {
+      const value = savedEnv[name];
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  });
+
+  it("registers the command on OpenCode 2 when no switch is set", async () => {
+    const { ctx, registeredCommands } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual(["vision"]);
+
+    await cleanup();
+  });
+
+  it("registers nothing on OpenCode 2 with SYSTEM_HOOKS_DISABLED=1", async () => {
+    process.env.SYSTEM_HOOKS_DISABLED = "1";
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+    expect(typeof cleanup).toBe("function");
+
+    await cleanup();
+  });
+
+  it("registers nothing on OpenCode 2 with SYSTEM_SK_VISION_DISABLED=1", async () => {
+    process.env.SYSTEM_SK_VISION_DISABLED = "1";
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await plugin.setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+    expect(typeof cleanup).toBe("function");
+
+    await cleanup();
+  });
+
+  it("returns only dispose on OpenCode 1 with SYSTEM_HOOKS_DISABLED=1", async () => {
+    process.env.SYSTEM_HOOKS_DISABLED = "1";
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toEqual(["dispose"]);
+  });
+
+  it("returns only dispose on OpenCode 1 with SYSTEM_SK_VISION_DISABLED=true", async () => {
+    process.env.SYSTEM_SK_VISION_DISABLED = "true";
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toEqual(["dispose"]);
+  });
+
+  it("keeps the v1 command hook when no switch is set", async () => {
+    const hooks = await plugin.server({ directory: "test-project" } as never, {});
+
+    expect(Object.keys(hooks)).toContain("command.execute.before");
+  });
+
+  it("createSetup skips every registration when isEnabled returns false", async () => {
+    const setup = createSetup({
+      handle: async () => {},
+      readTemplate: () => TEMPLATE,
+      isEnabled: () => false,
+    });
+    const { ctx, registeredCommands, hook } = makeContext();
+    const cleanup = await setup(ctx);
+
+    expect(registeredCommands).toEqual([]);
+    expect(hook()).toBeUndefined();
+
+    await cleanup();
   });
 });

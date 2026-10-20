@@ -2,8 +2,9 @@
 // MODULE: Vision Plugin
 // ───────────────────────────────────────────────────────────────────
 
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readFileSync, realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RuntimeClient } from './runtime/client.js';
 import { PhotonProvider } from './providers/photon.js';
@@ -138,6 +139,26 @@ interface V2PluginContext {
   };
 }
 
+/**
+ * True unless the master switch or the sk-vision switch is set. The resolver is
+ * found from this module's real path because OpenCode reaches the bundle through
+ * the `.opencode/plugins/sk-vision.js` symlink; `src/` and `dist/` sit at the same
+ * depth, so one relative path serves both. A missing resolver leaves the plugin
+ * on, the same fail-open rule the resolver applies to a missing switch file.
+ */
+export function visionHooksEnabled(): boolean {
+  try {
+    const here = realpathSync(fileURLToPath(import.meta.url));
+    const requireFromHere = createRequire(here);
+    const flags = requireFromHere(
+      join(dirname(here), '..', '..', '..', '..', 'hooks', 'shared', 'hook-flags.cjs'),
+    ) as { isHookEnabled?: (concern: string) => boolean };
+    return typeof flags.isHookEnabled === 'function' ? flags.isHookEnabled('sk-vision') : true;
+  } catch {
+    return true;
+  }
+}
+
 const VISION_COMMAND_DESCRIPTION = 'Analyze the latest session image with sk-vision.';
 
 const server: Plugin = async (input, options) => {
@@ -150,7 +171,7 @@ const server: Plugin = async (input, options) => {
     reverseSearch?: "auto" | "always";
   } = (options ?? {}) as never;
 
-  if (opts.enabled === false) {
+  if (opts.enabled === false || !visionHooksEnabled()) {
     return { dispose: async () => {} };
   }
 
@@ -337,6 +358,8 @@ interface VisionSetupDeps {
   handle: typeof handleVisionCommand;
   readTemplate: (directory: string) => string | null;
   createAutoInspect?: (directory: string) => V2AutoInspect | null;
+  /** Reads the kill switches when setup runs; omitted means always on. */
+  readonly isEnabled?: () => boolean;
 }
 
 /**
@@ -350,8 +373,11 @@ export function createSetup({
   handle,
   readTemplate,
   createAutoInspect,
+  isEnabled,
 }: VisionSetupDeps): (ctx: V2PluginContext) => Promise<() => Promise<void>> {
   return async (ctx) => {
+    // A switched-off plugin registers nothing, so the host keeps no command, hook or tool.
+    if (isEnabled && !isEnabled()) return async () => {};
     let registration: V2Registration | null = null;
     try {
       registration = await ctx.command.transform((editor) => {
@@ -510,6 +536,7 @@ const setup = createSetup({
   handle: handleVisionCommand,
   readTemplate: readVisionTemplate,
   createAutoInspect: createDefaultAutoInspect,
+  isEnabled: visionHooksEnabled,
 });
 
 export default { id: 'sk-vision', server, setup };
