@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dbe81f970fc404eadc8c5edbe83e223683734183dce3391e8f1346c931e68821",
+  "manifestHash": "0189490c6b07be9629e982232a275ddd2b19bebbd7b52e2760732767e8731f37",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -68378,6 +68378,21 @@
     "opencode2 launcher": [
       "opencode2 launcher"
     ],
+    "opencode2 models provider check": [
+      "opencode2 models provider check"
+    ],
+    "opencode2 models provider check implementation summary": [
+      "opencode2 models provider check implementation summary"
+    ],
+    "opencode2 models provider check plan": [
+      "opencode2 models provider check plan"
+    ],
+    "opencode2 models provider check tasks": [
+      "opencode2 models provider check tasks"
+    ],
+    "opencode2 models standalone": [
+      "opencode2 models standalone"
+    ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
     ],
@@ -72048,6 +72063,9 @@
     ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
+    ],
+    "phase 27 opencode2 models provider check": [
+      "phase 27 opencode2 models provider check"
     ],
     "phase 28 plugin kill switch coverage": [
       "phase 28 plugin kill switch coverage"
@@ -107664,6 +107682,9 @@
     ],
     "uneven hook coverage explained": [
       "uneven hook coverage explained"
+    ],
+    "unexpected positional argument opencode2 models": [
+      "unexpected positional argument opencode2 models"
     ],
     "unforget channel disjointness": [
       "unforget channel disjointness"
