@@ -75,7 +75,6 @@ The plugins purity test recognises the dual OpenCode export — requiring `setup
 
 ### Out of Scope
 - Any change under `.opencode/plugins/` - the dual export is the shape the bridge ships, so the fix lives in the test that reads it, not in the plugins.
-- A green Spec-Kit Check claim on main - only a local pass is proven so far; a CI run on main has not shown it green yet.
 
 ### Files to Change
 
@@ -104,7 +103,7 @@ The plugins purity test recognises the dual OpenCode export — requiring `setup
 |----|-------------|---------------------|
 | REQ-003 | The test still rejects a dual plugin whose server factory returns no hook key, and still rejects hook-less object exports. | Three temporary `.opencode/plugins/zz-mutation-probe.js` files, each deleted after its run, made the fixed test fail with exit 1: a dual export whose `server` returns no hook keys failed with "dual plugin server factory returned no recognized OpenCode hook keys" (`scratch/after/mutation-dual-server-no-hooks.txt`); a dual-shaped object missing `server` (`scratch/after/mutation-dual-missing-server.txt`) and a plain object with no hook keys (`scratch/after/mutation-plain-object-no-hooks.txt`) both failed with "object default export has no recognized OpenCode hook keys". |
 | REQ-004 | The whole Runtime vitest project passes locally. | 109 test files passed, 3 skipped; 1333 tests passed, 13 skipped; exit 0 (`scratch/after/runtime-project-summary.txt`). |
-| REQ-005 | Every record states the main status honestly. | Spec-Kit Check was red on main at `22f563b032` and is proven only locally so far; no record claims a green CI run on main. |
+| REQ-005 | Every record states the main status honestly. | Spec-Kit Check was red on main at `22f563b032` and passed on main at 457c4ac107, run 39380190180; no record claims a main result without its run. |
 <!-- /ANCHOR:requirements -->
 
 ---

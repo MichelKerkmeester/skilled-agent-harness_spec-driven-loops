@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The CI Spec-Kit Check failed on main commit `22f563b032` (run `39373558502`) in its Runtime vitest project step: `runtime/tests/opencode-plugins-folder-purity.vitest.ts` reported `.skilled/plugins/classifier-injection-screen.js object default export has no recognized OpenCode hook keys`, with 1 failed, 108 passed and 3 skipped test files",
     "created_at": "2026-10-20T05:32:19Z",
-    "last_save_at": "2026-10-20T06:18:59.156Z",
+    "last_save_at": "2026-10-20T06:45:07.397Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6927ba663e5ea9ec4ad05060af3d6a40fd883ae279c703dbbc1d88634afd6dbb",
+    "source_fingerprint": "sha256:2f6c9a894c7ee52b95e4145b2bce8e366f344886eb2056988af552dafaf88147",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "139b6f7c1340007c7690da7af51c4b0c9426dcc09ff9b21f5897edd794439302",
+      "spec.md": "70d4341cf2c1018afc0eb3089b5e2b34a7ea98538555ec16c7f634f0618e795b",
       "plan.md": "2548ebcd32de9391e81a0919b33572f4206db2d55d87dec1bcbafd9bd49a183b",
       "tasks.md": "3e75e9ed191cba5bf6a285f04d05fe034f4d882148a31ae5c5b5704de3b7cc51",
-      "implementation-summary.md": "f2af3bec3832fecb24324585b26e11d0e09266018d83a24c2572014364c9ce12"
+      "implementation-summary.md": "cc1b9e958b30407f8c7efd44ee7fe697f9e01328277e9dc4b3be7604928f06e3"
     },
     "last_active_at": null
   }

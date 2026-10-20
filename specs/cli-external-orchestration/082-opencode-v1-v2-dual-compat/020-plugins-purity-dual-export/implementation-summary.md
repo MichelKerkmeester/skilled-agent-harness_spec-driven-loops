@@ -8,16 +8,16 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export"
-    last_updated_at: "2026-10-20T06:08:01Z"
+    last_updated_at: "2026-10-20T06:45:07Z"
     last_updated_by: "generate-context"
-    recent_action: "Taught the purity test the dual export; local Runtime and CLI projects pass"
-    next_safe_action: "Monitor Spec-Kit Check on main; it is proven only locally so far"
+    recent_action: "Spec-Kit Check passed on main at 457c4ac107, run 39380190180"
+    next_safe_action: "None; every repaired check passes on main"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts"
       - "scratch/facts.md"
     session_dedup:
-      fingerprint: "sha256:ee7a767623be926b56c580aa5f84bf1cef335333d3327f94e4cc3e608279aca7"
+      fingerprint: "sha256:d841d87d2e3ca018cbda2cf3a0babda5b620a28c65ee382ad73fbca3dcf828e5"
       session_id: "scaffold-020-plugins-purity-dual-export"
       parent_session_id: null
     completion_pct: 100
@@ -109,7 +109,7 @@ Every claim rests on `scratch/facts.md`, which names a source for each fact, inc
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Spec-Kit Check's green status on main is not established.** The fix passes locally; a CI run on main has not shown it green yet.
+1. **Main status** Spec-Kit Check passed on main at 457c4ac107, run 39380190180, after being red on main from 47371b495f through 22f563b032 (run 39373558502).
 2. **The `sk-vision.js` gap, unchanged by this fix.** `sk-vision.js` is a symlink to `../skills/sk-vision/vision-runtime/dist/plugin.js`, so its Dirent is not a regular file and the test never scans it. Its built bundle has the dual shape locally. That target is gitignored and Spec-Kit Check does not build sk-vision, so widening the filter to symlinks would make CI import a missing file; the gap is recorded instead.
 <!-- /ANCHOR:limitations -->
 
