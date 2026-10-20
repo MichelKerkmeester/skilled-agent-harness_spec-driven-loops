@@ -1,12 +1,12 @@
 ---
 title: "CO-013 -- Unflagged default-agent route"
 description: "This scenario validates the unflagged default-agent route for `CO-013`. It focuses on confirming that OMITTING `--agent` (never passing `--agent general`) produces the expected implementation-style behavior."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-013 -- Unflagged default-agent route
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models` for the provider first.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models --standalone` for the provider first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-013`.
 

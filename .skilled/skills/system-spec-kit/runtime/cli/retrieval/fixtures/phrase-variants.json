@@ -1,5 +1,5 @@
 {
-  "manifestHash": "eedabecaa7090c6abf93bf8fabb71146f9bd6db832ee0fc1b642c68ec42614dd",
+  "manifestHash": "b544b8f11bbccd992a429619e9614d35e492359d1e9197b87c3344c5cb7f6d8f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -39318,6 +39318,9 @@
     "duplicate packet number 001": [
       "duplicate packet number 001"
     ],
+    "duplicate plugin id worktree": [
+      "duplicate plugin id worktree"
+    ],
     "duplicate review skip behavior": [
       "duplicate review skip behavior"
     ],
@@ -65633,6 +65636,18 @@
     "nested workflow packet": [
       "nested workflow packet"
     ],
+    "nested worktree battery": [
+      "nested worktree battery"
+    ],
+    "nested worktree battery implementation summary": [
+      "nested worktree battery implementation summary"
+    ],
+    "nested worktree battery plan": [
+      "nested worktree battery plan"
+    ],
+    "nested worktree battery tasks": [
+      "nested worktree battery tasks"
+    ],
     "neutral delegation wording": [
       "neutral delegation wording"
     ],
@@ -67786,6 +67801,9 @@
     "opencode 1 and opencode 2 lineage argv": [
       "OpenCode 1 and OpenCode 2 lineage argv"
     ],
+    "opencode 2 ancestor opencode folder": [
+      "opencode 2 ancestor opencode folder"
+    ],
     "opencode ablation suite template": [
       "opencode ablation suite template"
     ],
@@ -68377,6 +68395,21 @@
     ],
     "opencode2 launcher": [
       "opencode2 launcher"
+    ],
+    "opencode2 models provider check": [
+      "opencode2 models provider check"
+    ],
+    "opencode2 models provider check implementation summary": [
+      "opencode2 models provider check implementation summary"
+    ],
+    "opencode2 models provider check plan": [
+      "opencode2 models provider check plan"
+    ],
+    "opencode2 models provider check tasks": [
+      "opencode2 models provider check tasks"
+    ],
+    "opencode2 models standalone": [
+      "opencode2 models standalone"
     ],
     "openltm continuity resilience": [
       "openltm continuity resilience"
@@ -72049,6 +72082,12 @@
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
     ],
+    "phase 27 opencode2 models provider check": [
+      "phase 27 opencode2 models provider check"
+    ],
+    "phase 28 plugin kill switch coverage": [
+      "phase 28 plugin kill switch coverage"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
@@ -72129,6 +72168,9 @@
     ],
     "phase 30 epic deep review": [
       "phase 30 epic deep review"
+    ],
+    "phase 30 nested worktree battery": [
+      "phase 30 nested worktree battery"
     ],
     "phase 31 epic review fixes": [
       "phase 31 epic review fixes"
@@ -74655,6 +74697,18 @@
     ],
     "plugin inventory guards tasks": [
       "plugin inventory guards tasks"
+    ],
+    "plugin kill switch coverage": [
+      "plugin kill switch coverage"
+    ],
+    "plugin kill switch coverage implementation summary": [
+      "plugin kill switch coverage implementation summary"
+    ],
+    "plugin kill switch coverage plan": [
+      "plugin kill switch coverage plan"
+    ],
+    "plugin kill switch coverage tasks": [
+      "plugin kill switch coverage tasks"
     ],
     "plugin knowledge deepening": [
       "Plugin Knowledge Deepening"
@@ -95036,6 +95090,9 @@
     "sk vision js re export": [
       "sk-vision.js re-export"
     ],
+    "sk vision kill switch": [
+      "sk-vision kill switch"
+    ],
     "sk vision lane c": [
       "sk-vision Lane C"
     ],
@@ -99814,6 +99871,9 @@
     ],
     "speckit completion freshness": [
       "SPECKIT_COMPLETION_FRESHNESS"
+    ],
+    "speckit completion master switch": [
+      "speckit completion master switch"
     ],
     "speckit cosine topn reorder default on": [
       "SPECKIT_COSINE_TOPN_REORDER default on"
@@ -107643,6 +107703,9 @@
     ],
     "uneven hook coverage explained": [
       "uneven hook coverage explained"
+    ],
+    "unexpected positional argument opencode2 models": [
+      "unexpected positional argument opencode2 models"
     ],
     "unforget channel disjointness": [
       "unforget channel disjointness"

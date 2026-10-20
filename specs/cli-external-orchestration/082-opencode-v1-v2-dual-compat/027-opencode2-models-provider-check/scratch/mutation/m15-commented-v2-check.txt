@@ -1,0 +1,42 @@
+# mutant doc: the OpenCode 2 llmgateway check commented out
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.561459ms)
+✔ unversionedV1Forms flags every opencode models command without a version label (0.325625ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.53ms)
+✔ a command continued with a backslash is read as one command (0.077792ms)
+✔ a continuation between the binary and models is still one command (0.050792ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (40.55425ms)
+✔ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (37.2685ms)
+✖ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.855334ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.86975
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:390:1
+✖ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.855334ms)
+  AssertionError [ERR_ASSERTION]: the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from a listing filtered for the anchored ^llmgateway/ prefix, but it does not:
+  V2_MODELS=$(opencode2 models --standalone 2>/dev/null)
+  printf '%s\n' "$V2_MODELS" | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0
+  MINIMAX_TOKEN_OK=0; MINIMAX_DIRECT_OK=0
+  echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:431:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

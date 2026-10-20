@@ -1,0 +1,44 @@
+# mutant doc: the OpenCode 2 block no longer checks llmgateway
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.756625ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.379083ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.634041ms)
+✔ a command continued with a backslash is read as one command (0.07925ms)
+✔ a continuation between the binary and models is still one command (0.065042ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (43.126167ms)
+✔ a prose opencode models command OpenCode 2 would also run names its version (43.127292ms)
+✖ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.826375ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 129.26475
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:379:1
+✖ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.826375ms)
+  AssertionError [ERR_ASSERTION]: the OpenCode 2 pre-flight block must set LLMGATEWAY_OK from a listing filtered for the anchored ^llmgateway/ prefix, but it does not:
+  # OpenCode 2 pre-flight: `models` takes no provider argument, so list once on a private server and filter per provider
+  V2_MODELS=$(opencode2 models --standalone 2>/dev/null)
+  printf '%s\n' "$V2_MODELS" | grep '^opencode-go/' >/dev/null && OPENCODE_GO_OK=1 || OPENCODE_GO_OK=0  # OpenCode Go gateway (2.0.32 lists none here)
+  printf '%s\n' "$V2_MODELS" | true && LLMGATEWAY_OK=0   # LLM Gateway (DevPass); the only MiMo route
+  MINIMAX_TOKEN_OK=0; MINIMAX_DIRECT_OK=0                                                               # 2.0.32 lists no minimax provider
+  echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MINIMAX_DIRECT_OK llmgateway=$LLMGATEWAY_OK"
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:420:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

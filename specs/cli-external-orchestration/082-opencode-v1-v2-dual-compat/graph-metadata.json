@@ -30,7 +30,10 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast"
   ],
   "manual": {
@@ -236,7 +239,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T13:33:43.570Z",
+    "last_save_at": "2026-10-20T14:43:33.524Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -244,13 +247,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a6f7bd15a859c9eb63cbddd31efc336dfea212ab87fabffa4f457c58b158d3bc",
+    "source_fingerprint": "sha256:0b85f67a7f5c25497b2e3937de3765b1e8dce6012d523500e739420f90493c7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca264818a8fc6b761495d3cfa0568b6193f3b7bd8758ad52c942a574dcbf829f",
+      "spec.md": "998ecdc5b41556f9e63989968918e0aff879d4c84cbc1341db3bd3abac480631",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast",
-    "last_active_at": "2026-10-20T13:33:10.860Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
+    "last_active_at": "2026-10-20T13:37:01.930Z"
   }
 }

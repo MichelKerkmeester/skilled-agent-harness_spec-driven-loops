@@ -1,0 +1,56 @@
+# mutant: the generated Hermes copy deleted
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.563292ms)
+✔ unversionedV1Forms flags every opencode models command without a version label (0.320166ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.530166ms)
+✔ a command continued with a backslash is read as one command (0.092667ms)
+✔ a continuation between the binary and models is still one command (0.05725ms)
+✖ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (39.542083ms)
+✖ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (38.376417ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.533417ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.154083
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:328:1
+✖ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (39.542083ms)
+  AssertionError [ERR_ASSERTION]: the generated Hermes copy is missing; run `sync-skills-hermes.cjs`
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:347:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:360:1
+✖ every opencode models command names OpenCode 1, since a v2-only layout names its v2 binary opencode (38.376417ms)
+  AssertionError [ERR_ASSERTION]: the generated Hermes copy is missing; run `sync-skills-hermes.cjs`
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:373:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1

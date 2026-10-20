@@ -1,0 +1,24 @@
+# v2 plugin entries in the nested worktree, grouped by status and source root (battery readV2, private server)
+   1 active	-	/Users/michelkerkmeester/.config/opencode/plugins/orca-opencode-status.js
+  17 active	-	REPO
+  17 failed	Duplicate plugin ID	REPO/.worktrees/169-nested-worktree-battery
+
+# same read with OPENCODE_CONFIG_PROJECT_DISABLE=1 OPENCODE_CONFIG_DIR=<worktree>/.opencode
+  17 active	REPO/.worktrees/169-nested-worktree-battery
+
+# battery verdicts
+base-v2: family-present=PASS plugin-active=FAIL skill-visible=PASS command-listed=PASS exit=1
+base-v1: family-present=PASS plugin-discovered=PASS plugin-load=PASS command-listed=PASS exit=0
+plain-v2: family-present=PASS plugin-active=PASS skill-visible=PASS command-listed=PASS exit=0
+plain-v1: family-present=PASS plugin-discovered=PASS plugin-load=PASS command-listed=PASS exit=0
+
+# v2 2.0.32 config-directory walk (strings of the installed binary, opencode.exe), no stop bound:
+v=W.slice(0,q.length).includes(y)||e?.project===!1?[]:yield*T.up({targets:["."],start:i.directory})
+config:{directory:process.env.OPENCODE_CONFIG_DIR,project:!O(process.env.OPENCODE_CONFIG_PROJECT_DISABLE??process.env.OPENCODE_DISABLE_PROJECT_CONFIG)
+
+# v2 git discovery: worktree = --show-toplevel (so the walk is not the git root)
+rev-parse","--git-dir","--git-common-dir","--show-toplevel"
+
+# OpenCode 1.19.3 in the nested worktree: plugin_origins from `opencode debug config` (v1-origins.json)
+# 17 under the worktree, 0 from the outer checkout, 1 global (~/.config/opencode/plugins/orca-opencode-status.js),
+# so v1's walk stops at the worktree and the outer checkout's plugins do not load.

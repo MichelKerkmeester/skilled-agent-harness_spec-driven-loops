@@ -1,0 +1,62 @@
+{
+  "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery",
+  "family": "v2",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "a v2 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode2"
+      ]
+    },
+    {
+      "leg": "plugin-active",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "all 17 plugin files active",
+      "details": [
+        "isolated: OpenCode 2 also loads /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins, so this read ran with OPENCODE_CONFIG_PROJECT_DISABLE=1 and OPENCODE_CONFIG_DIR=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.opencode",
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "session-relaunch.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "skill-visible",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "60 skill entries visible",
+      "details": [
+        "entries: 74",
+        "visible: 60"
+      ]
+    },
+    {
+      "leg": "command-listed",
+      "family": "v2",
+      "status": "PASS",
+      "reason": "all 40 command files listed",
+      "details": [
+        "listed: 42",
+        "required: 40"
+      ]
+    }
+  ],
+  "exit": 0
+}

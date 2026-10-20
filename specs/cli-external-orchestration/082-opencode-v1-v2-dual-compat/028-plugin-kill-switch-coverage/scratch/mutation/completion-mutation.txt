@@ -1,0 +1,17 @@
+## speckit-completion: new test against the old plugin (HEAD .opencode/plugins/system-speckit-completion.js)
+AssertionError [ERR_ASSERTION]: SYSTEM_HOOKS_DISABLED=1 must make the OpenCode 1 factory return an empty hooks object
++ actual - expected
+
++ {
++   tool: {
++     system_speckit_completion: {
++       args: {
++         specFolder: ZodOptional {
++           '~standard': {
++             validate: [Function: validate],
++             vendor: 'zod',
++             version: 1
+
+## speckit-completion: new test against the new plugin
+system-speckit-completion.test.cjs: all assertions passed
+(exit statuses: exit-statuses.txt)

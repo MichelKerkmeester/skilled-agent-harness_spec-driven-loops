@@ -1,0 +1,45 @@
+# final test against the docs at e4ddabb4c0, before the round-2 version labels
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.570833ms)
+✔ unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run (0.24625ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.247542ms)
+✔ a command continued with a backslash is read as one command (0.491625ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (254.428791ms)
+✖ a prose opencode models command OpenCode 2 would also run names its version (46.569916ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.497167ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 350.579792
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:301:1
+✖ a prose opencode models command OpenCode 2 would also run names its version (46.569916ms)
+  AssertionError [ERR_ASSERTION]: in a v2-only layout the v2 binary is named "opencode", where "opencode models <provider>" is rejected, so a prose "opencode models" command that OpenCode 2 would also run must name its version, but these do not:
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:244: `opencode models llmgateway`
+  .skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`
+  + actual - expected
+
+  + '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:244: `opencode models llmgateway`\n' +
+  +   '.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`'
+  - ''
+
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:316:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:244: `opencode models llmgateway`\n.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md:87: `opencode models cline-pass`',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

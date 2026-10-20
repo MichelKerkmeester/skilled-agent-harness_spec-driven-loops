@@ -1,0 +1,45 @@
+✔ R1: v1 every plugin file discovered and loaded passes both legs (0.758ms)
+✔ R2: v1 a file missing from the debug config fails plugin-discovered naming it (0.17525ms)
+✔ R3: v1 a harness failure fails plugin-load naming the plugin and its detail (0.070417ms)
+✔ R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered (0.06275ms)
+✔ R5: v1 a plugin with no harness line degrades plugin-load naming it (0.065834ms)
+✔ R6: v2 every plugin active on a stable read passes plugin-active (0.178625ms)
+✔ R7: v2 an entry with a failed status fails plugin-active naming plugin and status (0.131875ms)
+✔ R8: v2 counts that never stabilise degrade plugin-active with the counts (0.155083ms)
+✔ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (2.089667ms)
+✔ R10: family v2 requested with only a v1 candidate skips and exits 3 (1.519041ms)
+✔ R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass (2.407125ms)
+✔ R12: zero plugin files fails (1.070167ms)
+✔ R13: --out to an unwritable path exits 2 (1.610584ms)
+✔ R14: an unknown argument exits 2 with usage on stderr (0.250584ms)
+✔ R15: v2 a plugin file with no entry under the root fails naming the file (0.086791ms)
+✔ R16: --out <file> and --root <dir> parse the same as the = forms (0.283875ms)
+✔ R17: --out as the last argument is a usage error (0.0605ms)
+✔ R18: a spaced value that is itself a flag is a usage error, the = form is kept (0.087833ms)
+✔ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (4.521209ms)
+✔ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (3.687959ms)
+✔ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (4.502541ms)
+✔ C4: v2 fails when a project command file is missing from the listing (3.620666ms)
+✔ C5: a listing that did not parse fails command-listed on either family (2.413916ms)
+✔ C6: a command file in the global config folder is allowed on both families (3.518459ms)
+✔ C7: both command folder spellings are read, with slashed names and a followed link (1.973166ms)
+✔ C8: v2 a command listing that never settles degrades command-listed (1.965167ms)
+✔ parity: the battery parser and the deep-loop resolver agree on one shared list (0.137625ms)
+✔ parity: every shared corpus entry keeps its expected family (0.043959ms)
+✔ adversarial: path-qualified, prerelease and joined output answer the pinned families (0.035166ms)
+✔ adversarial: CRLF and joined version output read as v1, empty and garbage as unknown (0.0235ms)
+✔ adversarial: empty version output is skipped and the family reports SKIP (1.335167ms)
+✔ adversarial: a probe error skips the candidate instead of assuming it (0.05975ms)
+✔ adversarial: a root without .opencode/plugins fails naming the root (0.463667ms)
+✔ adversarial: a root with spaces and $(id) reaches the collectors as one string (2.507208ms)
+✔ probe count: three candidates sharing one path probe each distinct path once (1.941333ms)
+✔ a broken symlink in the plugin folder fails plugin-discovered naming it (1.466375ms)
+✔ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4335.410417ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6422.138333

@@ -1,0 +1,94 @@
+✔ R1: v1 every plugin file discovered and loaded passes both legs (0.998709ms)
+✔ R2: v1 a file missing from the debug config fails plugin-discovered naming it (0.137208ms)
+✔ R3: v1 a harness failure fails plugin-load naming the plugin and its detail (0.062958ms)
+✔ R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered (0.055875ms)
+✔ R5: v1 a plugin with no harness line degrades plugin-load naming it (0.062375ms)
+✔ R6: v2 every plugin active on a stable read passes plugin-active (0.265667ms)
+✔ R7: v2 an entry with a failed status fails plugin-active naming plugin and status (0.095583ms)
+✔ R8: v2 counts that never stabilise degrade plugin-active with the counts (0.136917ms)
+✔ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (3.044709ms)
+✔ R10: family v2 requested with only a v1 candidate skips and exits 3 (1.60925ms)
+✔ R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass (2.602083ms)
+✔ R12: zero plugin files fails (1.147833ms)
+✔ R13: --out to an unwritable path exits 2 (1.937333ms)
+✔ R14: an unknown argument exits 2 with usage on stderr (0.250458ms)
+✔ R15: v2 a plugin file with no entry under the root fails naming the file (0.099209ms)
+✔ R16: --out <file> and --root <dir> parse the same as the = forms (0.291417ms)
+✔ R17: --out as the last argument is a usage error (0.062625ms)
+✔ R18: a spaced value that is itself a flag is a usage error, the = form is kept (0.07575ms)
+✔ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (4.592833ms)
+✔ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (3.96175ms)
+✔ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (4.107042ms)
+✔ C4: v2 fails when a project command file is missing from the listing (3.237ms)
+✔ C5: a listing that did not parse fails command-listed on either family (2.225209ms)
+✔ C6: a command file in the global config folder is allowed on both families (3.421333ms)
+✔ C7: both command folder spellings are read, with slashed names and a followed link (2.064708ms)
+✔ C8: v2 a command listing that never settles degrades command-listed (2.205167ms)
+✔ parity: the battery parser and the deep-loop resolver agree on one shared list (0.161583ms)
+✔ parity: every shared corpus entry keeps its expected family (0.040209ms)
+✔ adversarial: path-qualified, prerelease and joined output answer the pinned families (0.030958ms)
+✔ adversarial: CRLF and joined version output read as v1, empty and garbage as unknown (0.022208ms)
+✔ adversarial: empty version output is skipped and the family reports SKIP (1.591417ms)
+✔ adversarial: a probe error skips the candidate instead of assuming it (0.037333ms)
+✔ adversarial: a root without .opencode/plugins fails naming the root (0.396417ms)
+✔ adversarial: a root with spaces and $(id) reaches the collectors as one string (3.24575ms)
+✔ probe count: three candidates sharing one path probe each distinct path once (2.000541ms)
+✔ a broken symlink in the plugin folder fails plugin-discovered naming it (1.407709ms)
+✔ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4312.616709ms)
+✔ nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root (2.36825ms)
+✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (1.811333ms)
+✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (30737.518167ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 38
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37142.720041
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:852:1
+✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (1.811333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-E1XHAV/wt/.opencode'
+
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:860:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-E1XHAV/wt/.opencode',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:871:1
+✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (30737.518167ms)
+  AssertionError [ERR_ASSERTION]: the plugin entry count never stabilised
+  isolated: OpenCode 2 also loads /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-5xRWBZ/.opencode/plugins, so this read ran with OPENCODE_CONFIG_PROJECT_DISABLE=1 and OPENCODE_CONFIG_DIR=/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-5xRWBZ/wt/.opencode
+  counts: 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+
+  'DEGRADED' !== 'PASS'
+
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:890:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'DEGRADED',
+    expected: 'PASS',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

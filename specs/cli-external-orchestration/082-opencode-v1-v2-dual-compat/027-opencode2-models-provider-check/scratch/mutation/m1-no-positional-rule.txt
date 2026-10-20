@@ -1,0 +1,32 @@
+# mutant: the positional-argument rule removed from problemsWith
+✖ problemsWith classifies the forms OpenCode 2 accepts and rejects (1.316083ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.456583ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (96.40775ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.603625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.839208
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:118:1
+✖ problemsWith classifies the forms OpenCode 2 accepts and rejects (1.316083ms)
+  AssertionError [ERR_ASSERTION]: a positional provider must report a problem even beside --standalone
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:124:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+exit 1
