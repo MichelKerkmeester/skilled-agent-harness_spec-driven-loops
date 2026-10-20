@@ -76,6 +76,8 @@ The pre-flight in `cli-reference.md` is now two blocks, one per version. The Ope
 ## How It Was Delivered
 
 The target came from live probes before any edit: v2 `models --help`, the positional form's error, a standalone listing with a private `OPENCODE_DB`, and v1's exit codes for a listed and a missing provider (`scratch/`). DeepSeek v4.1 flash at max thinking wrote the test, the inline pass, the targeted sentences, the workflow line and the redirect fix through five literal briefs. The orchestrator wrote this folder's docs, ran the Hermes generator and ran every check.
+
+Luna (GPT-6 Luna, read-only) reviewed six rounds. Rounds 1 to 5 failed with P1s that widened the scope: the v1 form unlabelled where a v2-only layout would run it, a pre-flight block that mixed versions and never checked `llmgateway` on OpenCode 2, and a test that could miss `--server` without a URL, split commands, other providers, fenced commands and labels in another clause. Each was fixed with a mutant that proves the test catches it (`scratch/mutation/m1-*` to `m18-*`). Round 6, the last by the coordinator's stop rule, raised one P1 that is another way to hide a line from the text-level pre-flight check, and two P2s; all three are recorded below as known limits and follow-ups rather than fixed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -118,6 +120,15 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 
 1. **Many v2 sentences say "confirm the provider in the listing" without naming the prefix.** About 25 sites, mostly the playbook's version notes, tell a v2 reader to confirm a provider in `opencode2 models --standalone` without saying to look for the `<provider>/` prefix. The command is right and runs on a private server; the wording could be sharper. Recorded as a follow-up from the final review round.
 2. **A version label is read per clause in prose and per line in fenced blocks.** In prose the label must sit in the command's clause (split at table cells, `;`, sentence ends, `, or ` and em dashes); in a fenced block it may sit on the command's line or the block's first line. A clause that labels one command and carries a second unlabelled one passes. A prose form the clause scan cannot see is caught only by review.
+3. **The pre-flight check reads the block's text, not a shell parse.** It drops whole-line comments and cuts a trailing ` #` comment after the last quote, so a line built to hide a fake `grep '^opencode-go/' ... && OPENCODE_GO_OK=1` behind a quoted `#` could pass. The extracted block is also run live (`scratch/preflight-live.txt`), which is the stronger check.
+4. **Unquoted prose is not scanned.** The rule reads inline code spans and fenced blocks; a command written as plain prose, such as the labelled `opencode models llmgateway` sentence in `assets/prompt-templates.md`, would keep no guard if its label were removed.
+
+### Follow-ups from the final review round
+
+- Name the `<provider>/` prefix in the short "confirm the provider in the listing" notes (`README.md:96` and the playbook's version notes).
+- Parse the pre-flight block's comments with quote-aware shell logic, and check that the prefix grep reads the standalone listing.
+- Quote the plain-prose `opencode models` mentions, or extend the scan to prose.
+
 <!-- /ANCHOR:limitations -->
 
 ---

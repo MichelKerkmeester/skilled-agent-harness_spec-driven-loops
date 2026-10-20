@@ -43,11 +43,11 @@ Every task closes follow-up item 4 of the operator's open-work list: the `openco
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 The form test (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`)
-- [ ] T005 `--standalone` on every inline `opencode2 models` span (cli-opencode and cli-devin docs)
-- [ ] T006 The provider-argument sentences and the pre-flight line (`SKILL.md`, `README.md`, `references/cli-reference.md`, `references/install-and-versions.md`)
-- [ ] T007 Regenerate the Hermes copy (`.hermes/skills/cli-opencode/SKILL.md`)
-- [ ] T008 Run the test in the battery job (`.github/workflows/opencode-dual-version.yml`)
+- [x] T004 The form test (`cli-opencode/scripts/tests/opencode2-models-form.test.cjs`)
+- [x] T005 `--standalone` on every inline `opencode2 models` span (cli-opencode and cli-devin docs)
+- [x] T006 The provider-argument sentences and the pre-flight line (`SKILL.md`, `README.md`, `references/cli-reference.md`, `references/install-and-versions.md`)
+- [x] T007 Regenerate the Hermes copy (`.hermes/skills/cli-opencode/SKILL.md`)
+- [x] T008 Run the test in the battery job (`.github/workflows/opencode-dual-version.yml`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,10 +55,10 @@ Every task closes follow-up item 4 of the operator's open-work list: the `openco
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 The new test fails on main's docs and two classifier mutants fail (`scratch/mutation/`)
-- [ ] T010 The OpenCode 2 pre-flight block run live: `llmgateway=1`, `default=0` (`scratch/preflight-live.txt`)
-- [ ] T011 cli-opencode tests, `sync-skills-hermes.cjs --check`, `check-gate-inputs.sh` and `actionlint` pass
-- [ ] T012 Luna review passes; strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`
+- [x] T009 The new test fails on main's docs and two classifier mutants fail (`scratch/mutation/`)
+- [x] T010 The OpenCode 2 pre-flight block run live: `llmgateway=1`, `default=0` (`scratch/preflight-live.txt`)
+- [x] T011 cli-opencode tests, `sync-skills-hermes.cjs --check`, `check-gate-inputs.sh` and `actionlint` pass
+- [x] T012 Luna review: six rounds, the last ending on findings recorded as limits and follow-ups under the coordinator's stop rule; strict validation of this folder and recursive validation of 082 print `RESULT: PASSED`
 - [ ] T013 Merged, pushed to main, every CI run on the main commit read
 <!-- /ANCHOR:phase-3 -->
 
