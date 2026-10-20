@@ -40,7 +40,6 @@ const BROAD_MODE_ENV = 'MCP_ROUTE_GUARD_BROAD_MODE';
 
 // Internal MCP servers this repo registers natively (never worth a routing
 // nudge -- Code Mode does not, and should not, wrap its own siblings).
-const INTERNAL_EXACT_TOKENS = new Set(['code_mode', 'sequential_thinking']);
 const INTERNAL_RAW_TOKENS = [
   'code_mode',
   'sequential_thinking',
@@ -73,7 +72,7 @@ function isInternalServerToken(normalized) {
   // Our own MCP servers carry the framework prefix; the pre-rename opaque prefix
   // stays recognized so a stale connector spelling is still treated as internal.
   if (normalized.startsWith('system_') || normalized.startsWith('mk_')) return true;
-  return INTERNAL_EXACT_TOKENS.has(normalized);
+  return INTERNAL_RAW_TOKENS.includes(normalized);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -96,9 +95,6 @@ function parseClaudeShape(toolName) {
   return { server: remainder.slice(0, sepIndex), tool: remainder.slice(sepIndex + 2) };
 }
 
-// OpenCode's bare `<server>_<tool>` shape carries no reserved delimiter, so the
-// only reliable split point is a known server token -- the manifest-derived
-// family names plus the fixed internal set. Longest-token-first avoids a short
 function candidateServerTokens(families) {
   const tokens = new Set(INTERNAL_RAW_TOKENS);
   for (const rawName of families.values()) {
@@ -107,6 +103,10 @@ function candidateServerTokens(families) {
   return [...tokens].sort((a, b) => b.length - a.length);
 }
 
+// OpenCode's bare `<server>_<tool>` shape carries no reserved delimiter, so the
+// only reliable split point is a known server token -- the manifest-derived
+// family names plus the fixed internal set. Longest token first avoids a short
+// server token swallowing a longer one.
 /**
  * Parse OpenCode's `<server>_<tool>` shape against known server tokens.
  * A tool name that starts with no known token is not classifiable as an MCP

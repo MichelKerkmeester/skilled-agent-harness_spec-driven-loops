@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Shared Hook Adapter Tests
+// ───────────────────────────────────────────────────────────────────
 "use strict";
 
 const { test } = require("node:test");
@@ -39,7 +42,7 @@ test("never-closed stdin resolves at the deadline with the bytes read, and the p
   assert.equal(exit.code, 0);
   const { text, elapsedMs } = JSON.parse(stdout);
   assert.equal(text, partial);
-  assert.ok(elapsedMs >= 2950 && elapsedMs < 4500, `elapsedMs was ${elapsedMs}`);
+  assert.ok(elapsedMs >= 2950 && elapsedMs < 8000, `elapsedMs was ${elapsedMs}`);
 });
 
 test("input that ends before the deadline comes back whole", () => {

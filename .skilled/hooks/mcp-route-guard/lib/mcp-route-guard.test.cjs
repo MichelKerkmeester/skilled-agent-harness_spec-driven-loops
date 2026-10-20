@@ -1,3 +1,8 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: MCP Route Guard Core Tests
+// ───────────────────────────────────────────────────────────────────
+'use strict';
+
 // Tests for the mcp-route-guard core and its Claude PreToolUse hook adapter.
 //
 // (a) Table-driven evaluateNativeMcpCall: warn on a routable connector match,
@@ -13,8 +18,6 @@
 //     connector call yields additionalContext, exit 0, and no
 //     permissionDecision anywhere in the output.
 
-'use strict';
-
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
 const { mkdtempSync, mkdirSync, writeFileSync, rmSync, utimesSync, statSync } = require('node:fs');
@@ -24,6 +27,9 @@ const { join } = require('node:path');
 const guardCore = require('./mcp-route-guard.cjs');
 
 const CLAUDE_HOOK_PATH = join(__dirname, '..', 'claude', 'mcp-route-guard.cjs');
+// Point the adapter at an absent flags file so nothing persisted on this machine
+// can disable the guard and hide the output these tests assert on.
+const ABSENT_FLAGS_CONFIG = join(tmpdir(), 'mcp-route-guard-absent-hook-flags.env');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Fixtures
@@ -147,7 +153,7 @@ function testNormalizationBridgesOfficialAndConnectorSpellings() {
 
 function testInternalServerTokenPrefixDetection() {
   assert.ok(guardCore.isInternalServerToken('system_skill_advisor'), 'system_ prefix is internal');
-  assert.ok(guardCore.isInternalServerToken('system_skill_advisor'), 'system_ prefix is internal');
+  assert.ok(guardCore.isInternalServerToken('mk_code_graph'), 'mk_ prefix is internal');
   assert.ok(guardCore.isInternalServerToken('code_mode'), 'code_mode is internal');
   assert.ok(guardCore.isInternalServerToken('sequential_thinking'), 'sequential_thinking is internal');
   assert.ok(!guardCore.isInternalServerToken('clickup'), 'clickup is not internal');
@@ -252,11 +258,21 @@ function testKillSwitchDisablesEveryDecision() {
 // (f) Claude-hook integration: additionalContext, exit 0, no permissionDecision
 // ─────────────────────────────────────────────────────────────────────────────
 
+// No kill-switch may leak in from this machine's shell or the on-disk flags
+// file: a disabled guard exits without emitting, hiding what the adapter does.
+function hookEnv(extraEnv) {
+  const env = { ...process.env };
+  for (const name of Object.keys(env)) {
+    if (name.endsWith('_DISABLED')) delete env[name];
+  }
+  return { ...env, HOOK_FLAGS_CONFIG: ABSENT_FLAGS_CONFIG, ...extraEnv };
+}
+
 function runClaudeHook(payload, extraEnv) {
   return spawnSync(process.execPath, [CLAUDE_HOOK_PATH], {
     input: typeof payload === 'string' ? payload : JSON.stringify(payload),
     encoding: 'utf8',
-    env: { ...process.env, ...extraEnv },
+    env: hookEnv(extraEnv),
   });
 }
 

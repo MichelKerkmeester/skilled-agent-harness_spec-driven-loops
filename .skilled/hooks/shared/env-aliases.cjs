@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Env Aliases
+// ───────────────────────────────────────────────────────────────────
 "use strict";
 
 // Back-compat bridge for the runtime-hook env namespace. The hook library's env
@@ -27,14 +30,8 @@ const PREFIX_RULES = [
   ["MK_", "SYSTEM_"],
 ];
 
-// No env family is excluded from bridging any more; the daemon rename has landed.
-const SKIP_PREFIXES = [];
-
 function newNameFor(key) {
   if (!key.startsWith("MK_")) return null;
-  for (const skip of SKIP_PREFIXES) {
-    if (key.startsWith(skip)) return null;
-  }
   for (const [oldPrefix, newPrefix] of PREFIX_RULES) {
     if (key.startsWith(oldPrefix)) return newPrefix + key.slice(oldPrefix.length);
   }
@@ -54,4 +51,4 @@ function applyEnvAliases(env) {
   return target;
 }
 
-module.exports = { applyEnvAliases, newNameFor, PREFIX_RULES, SKIP_PREFIXES };
+module.exports = { applyEnvAliases, newNameFor, PREFIX_RULES };
