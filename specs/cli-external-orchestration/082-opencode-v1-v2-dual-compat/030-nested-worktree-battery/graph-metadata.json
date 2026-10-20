@@ -47,7 +47,7 @@
       "scratch/rootcause/summary.txt",
       "scratch/rootcause/base-v2.json",
       "scratch/mutation/baseline.txt",
-      "scratch/rootcause/after-v2.json"
+      "scratch/rootcause/after-r2-both.json"
     ],
     "entities": [
       {
@@ -117,9 +117,9 @@
         "source": "derived"
       },
       {
-        "name": "after-v2.json",
+        "name": "after-r2-both.json",
         "kind": "config",
-        "path": "scratch/rootcause/after-v2.json",
+        "path": "scratch/rootcause/after-r2-both.json",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Run inside `.worktrees/NNN-slug`, the battery's v2 leg reported all 17 plugin files failed, while the same battery passed in a plain clone and on CI",
     "created_at": "2026-10-20T12:43:27Z",
-    "last_save_at": "2026-10-20T12:51:35.791Z",
+    "last_save_at": "2026-10-20T13:10:51.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:70221b6daa8d3222020320364036693b6f0bae67e7c61972cd2219c70ab4357a",
+    "source_fingerprint": "sha256:7600846ea487f39cf63ab2b93153cb5dbfd7e94b04b691837ac536aebeba6dea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "04fa04d37cf7bf05d7956b03aada5cf362ae20152012a8ffce5f18bb3c295650",
+      "spec.md": "ee43c7fa3719084973c3d3692814f118b535a1b640fce3546369e4c7272a219e",
       "plan.md": "6ba5459b0dfa76bce1a6fc2f86a6980560f91f8ea38e1f9304d1859308a983fb",
-      "tasks.md": "68f856d147623e97cfa58c13be2219702e2aba696ddc0ca5929907979013e29e",
+      "tasks.md": "00f0ef54f0d1d8f91e42399f4f4183d874e72fa8a6161d08161f33a1d776b263",
       "implementation-summary.md": "24a56ff45cd67d81ece5f0308b735b2868d3e93d7272124cc63b93d7f03828a5"
     },
     "last_active_at": null

@@ -139,18 +139,23 @@ const path = require('node:path');
 const root = ${JSON.stringify(root)};
 const record = ${JSON.stringify(record)};
 const ancestor = ${JSON.stringify(options.ancestor || null)};
+const ignoreSwitches = ${JSON.stringify(Boolean(options.ignoreSwitches))};
 const args = process.argv.slice(2);
 
 // Mirrors OpenCode 2's plugin discovery: the ancestor walk merges an outer
 // checkout's copies as duplicates, and the two config switches turn it off.
 function pluginData() {
   const own = { id: 'alpha', source: { type: 'local', path: path.join(root, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } };
+  const outer = ancestor
+    ? { id: 'alpha', source: { type: 'local', path: path.join(ancestor, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } }
+    : null;
+  if (ignoreSwitches) return outer ? [outer, own] : [own];
   if (process.env.OPENCODE_CONFIG_PROJECT_DISABLE === '1') {
     return process.env.OPENCODE_CONFIG_DIR === path.join(root, '.opencode') ? [own] : [];
   }
-  if (ancestor) {
+  if (outer) {
     return [
-      { id: 'alpha', source: { type: 'local', path: path.join(ancestor, '.opencode', 'plugins', 'alpha.js') }, state: { status: 'active' } },
+      outer,
       { ...own, state: { status: 'failed', error: 'Duplicate plugin ID: alpha' } },
     ];
   }
@@ -165,10 +170,13 @@ if (args[0] === 'serve') {
 } else if (args[0] === 'api') {
   const apiPath = args[4];
   const configOk = process.env.OPENCODE_CONFIG_PROJECT_DISABLE !== '1' || process.env.OPENCODE_CONFIG_DIR === path.join(root, '.opencode');
+  const commands = ignoreSwitches && ancestor
+    ? [{ name: 'battery', description: 'fixture command' }, { name: 'outer-only', description: 'fixture command' }]
+    : (configOk ? [{ name: 'battery', description: 'fixture command' }] : []);
   const data = apiPath.startsWith('/api/plugin')
     ? pluginData()
     : apiPath.startsWith('/api/command')
-      ? (configOk ? [{ name: 'battery', description: 'fixture command' }] : [])
+      ? commands
       : (configOk ? [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] : []);
   console.log(JSON.stringify({ data }));
 }
@@ -937,4 +945,44 @@ test('nested: a caller switch survives on a plain root and is overridden on a ne
   const nested = v2ServerEnv({ OPENCODE_CONFIG_PROJECT_DISABLE: '0', OPENCODE_CONFIG_DIR: '/caller' }, root, temp);
   assert.equal(nested.childEnv.OPENCODE_CONFIG_PROJECT_DISABLE, '1');
   assert.equal(nested.childEnv.OPENCODE_CONFIG_DIR, path.join(root, '.opencode'));
+});
+
+// A future OpenCode 2 that ignored the switches would bring the ancestor's entries
+// back; the isolated read must fail then, not pass on the root's active copy.
+test('nested: an isolated read that still carries ancestor entries fails plugin-active and command-listed', async (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(outer, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  commandFile(outer, 'outer-only');
+  const root = path.join(outer, 'wt');
+  fs.mkdirSync(path.join(root, '.opencode', 'plugins'), { recursive: true });
+  fs.writeFileSync(path.join(root, '.opencode', 'plugins', 'alpha.js'), 'export default async () => ({});\n');
+  commandFile(root, 'battery');
+  const server = fakeServer(t, root, { ancestor: outer, ignoreSwitches: true });
+  const { calls, deps } = makeDeps({
+    env: { OPENCODE_BIN: server.script },
+    probeVersion: () => ({ output: '2.0.32', error: null }),
+    readV2: (bin, dir) => readV2(bin, dir, envWithoutSwitches()),
+  });
+
+  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
+  assert.notEqual(code, 0);
+  const summary = summaryOf(calls);
+  const active = summary.results.find((result) => result.leg === 'plugin-active');
+  assert.equal(active.status, 'FAIL', resultText(active));
+  assert.match(resultText(active), /loaded from .* although the read was isolated/);
+  const listed = summary.results.find((result) => result.leg === 'command-listed');
+  assert.equal(listed.status, 'FAIL', resultText(listed));
+  assert.match(resultText(listed), /outer-only/);
+});
+
+test('nested: allowedCommandSources allows ancestor commands only when the read is not isolated', (t) => {
+  const outer = tempRoot(t);
+  commandFile(outer, 'outer-only');
+  const root = path.join(outer, 'wt');
+  commandFile(root, 'battery');
+  const env = emptyEnv(t);
+  assert.ok(allowedCommandSources(root, 'v2', env).allowed.has('outer-only'));
+  assert.ok(!allowedCommandSources(root, 'v2', env, true).allowed.has('outer-only'));
+  assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('init'));
 });

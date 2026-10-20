@@ -191,7 +191,7 @@ function listCommandNames(dir) {
 // Names the command folders a runtime may legitimately list beyond the project's
 // own: the global config directories it reads, the ancestor folders v2 merges as
 // well, and the v2 built-ins that live in no folder at all.
-function allowedCommandSources(root, family, env) {
+function allowedCommandSources(root, family, env, isolated = false) {
   const required = listCommandNames(path.join(root, '.opencode'));
   const allowed = new Set();
 
@@ -210,12 +210,15 @@ function allowedCommandSources(root, family, env) {
   if (family === 'v2') {
     // v2 walks past the repository root and merges each ancestor's `.opencode`, so a
     // worktree nested inside another checkout also lists that checkout's commands.
-    let current = path.dirname(root);
-    while (true) {
-      for (const name of listCommandNames(path.join(current, '.opencode'))) allowed.add(name);
-      const parent = path.dirname(current);
-      if (parent === current) break;
-      current = parent;
+    // An isolated read turns the walk off, so an ancestor's commands are strays there.
+    if (!isolated) {
+      let current = path.dirname(root);
+      while (true) {
+        for (const name of listCommandNames(path.join(current, '.opencode'))) allowed.add(name);
+        const parent = path.dirname(current);
+        if (parent === current) break;
+        current = parent;
+      }
     }
     for (const name of V2_BUILTIN_COMMANDS) allowed.add(name);
   }
@@ -537,6 +540,17 @@ function legPluginActive(files, reads, root, shadowing = []) {
     if (status !== 'active') details.push(`${entryLabel(entry)}: status ${status ?? 'unknown'}`);
   }
 
+  // An isolated read must carry nothing from the ancestor folders; an entry from
+  // one means OpenCode 2 ignored the switches, so the read proves nothing.
+  for (const dir of shadowing) {
+    const ancestorPrefix = dir.endsWith(path.sep) ? dir : dir + path.sep;
+    for (const entry of entries) {
+      if (sourceText(entry).includes(ancestorPrefix)) {
+        details.push(`${entryLabel(entry)}: loaded from ${dir} although the read was isolated`);
+      }
+    }
+  }
+
   if (details.length > 0) {
     return makeResult('plugin-active', 'v2', 'FAIL', 'the stable read shows missing or inactive plugins', [...notes, ...details]);
   }
@@ -560,7 +574,7 @@ function legsForV2(files, v2, root, env) {
     ];
   }
   const commandLeg = v2.commandsStable === true
-    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env))
+    ? legCommandListed('v2', commandNamesFromResponse(v2.commands), allowedCommandSources(root, 'v2', env, (v2.shadowing || []).length > 0))
     : makeResult(
       'command-listed', 'v2', 'DEGRADED', 'the command listing never settled on a non-zero count',
       [`counts: ${JSON.stringify(v2.commandCounts ?? [])}`],

@@ -85,7 +85,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/commands/doctor/scripts/opencode-version-battery.cjs` | Modify | `ancestorPluginDirs`, `v2ServerEnv`, the `isolated:` note in `legPluginActive` |
-| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modify | Fake server that behaves like OpenCode 2 under an outer checkout, three nested tests, plain-root assertions |
+| `.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs` | Modify | Fake server that behaves like OpenCode 2 under an outer checkout (and like one that ignores the switches), seven nested tests, plain-root assertions with a clean environment |
 | `.opencode/plugins/ARCHITECTURE.md` | Modify | The battery paragraph and a known limit |
 | `.skilled/skills/sk-git/references/worktree-workflows.md` | Modify | A troubleshooting entry |
 <!-- /ANCHOR:scope -->
@@ -107,7 +107,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | Every new test fails on the old code | `scratch/mutation/m1` to `m4` each fail at least one test |
+| REQ-004 | Every new test fails on the old code or a mutant | `scratch/mutation/m1` to `m7` each fail at least one test |
 | REQ-005 | The docs explain the shadowing for real sessions | The ARCHITECTURE.md known limit and the worktree troubleshooting entry |
 <!-- /ANCHOR:requirements -->
 
@@ -117,7 +117,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The battery's v2 legs pass in worktree 169 and in a plain clone, and CI's Dual-Version Battery passes at the pushed commit.
-- **SC-002**: The battery test suite passes, with the new tests failing on each of the four mutants.
+- **SC-002**: The battery test suite passes, with the new tests failing on the old battery and on each mutant.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -127,7 +127,7 @@ The battery judges the root's own plugins in any checkout layout and names the s
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | OpenCode 2 reading `OPENCODE_CONFIG_PROJECT_DISABLE` and `OPENCODE_CONFIG_DIR` | A later release could rename them, and the nested read would load nothing | With the walk off and no config folder, no repository plugin loads, so plugin-active fails loudly instead of passing |
+| Dependency | OpenCode 2 reading `OPENCODE_CONFIG_PROJECT_DISABLE` and `OPENCODE_CONFIG_DIR` | A later release could rename or ignore them | An isolated read fails plugin-active on any entry from an ancestor folder and command-listed on any ancestor-only command, so ignored switches fail loudly instead of passing |
 | Risk | The isolated read tests a different discovery path from a real session | Low | It runs only when an ancestor plugin folder exists; CI and plain checkouts keep project discovery, and the result says it was isolated |
 | Risk | A plugin folder in a home-level ancestor, such as `~/.opencode/plugins`, also triggers isolation | Low | The result names the folder, and the root's own plugins are still judged |
 <!-- /ANCHOR:risks -->
