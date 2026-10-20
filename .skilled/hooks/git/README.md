@@ -13,7 +13,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`.skilled/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in: a clone does nothing until the installer is run.
+`.skilled/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into the repo's `.git/hooks` directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in: a clone does nothing until the installer is run.
 
 This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.skilled/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`prepare-commit-msg`, `commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.skilled/scripts/git-hooks/`. That `pre-commit` carries its own comment-hygiene gate, does not call this folder's `pre-commit`, and also runs agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint. Run `install-hooks.sh` here directly only to install or test the hygiene helper standalone, without the other gates.
 
@@ -26,14 +26,14 @@ This folder is the standalone/legacy surface. The repository's primary Git hook 
 | Gate | Scope | Behavior | Bypass |
 |---|---|---|---|
 | Comment hygiene | Staged added/modified files (`git diff --cached --name-only --diff-filter=ACM`) | Copies the staged blobs to a temporary tree and runs `check-comment-hygiene.sh` once over all of them. Exit 1 blocks the commit, and any exit other than 0, 1 or 2 blocks naming the exit code. A staged file whose content cannot be read blocks. A submodule entry is skipped. | `SPECKIT_SKIP_COMMENT_HYGIENE=1` (primary pre-commit only). This standalone hook has no per-gate bypass, so use the kill switch below. |
-| Agent mirror-sync | Staged agent files under `.skilled/agents/` or `.claude/agents/` (`--diff-filter=ACMD`) | Runs `check-agent-mirror-sync.cjs` over the staged agent files. Blocks the commit if the `.skilled` / `.claude` mirrors desync. | None per-gate. Use the kill switch. |
+| Agent mirror-sync | Staged agent files under `.opencode/agents/`, `.skilled/agents/`, `.claude/agents/` or `.codex/agents/` (`--diff-filter=ACMD`) | Runs `check-agent-mirror-sync.cjs` over the staged agent files. Blocks the commit if the `.opencode` / `.claude` mirrors desync. | None per-gate. Use the kill switch. |
 
 Both gates resolve their checkers from the repository root. A missing or non-executable comment-hygiene checker blocks in a repository that carries the toolchain and warns and skips anywhere else. If `node` or the mirror-sync checker is unavailable, the mirror gate warns and skips. The kill switch (`hook_enabled git-commit-hooks`) short-circuits the whole hook before any gate runs.
 
 On a block, the hook prints:
 
 ```text
-BLOCKED: <N> file(s) contain ephemeral-artifact pointers in code comments.
+BLOCKED: staged files contain ephemeral-artifact pointers in code comments.
 See: .skilled/skills/sk-code/shared/references/universal/code-style-guide.md §4
 Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line.
 ```
@@ -41,7 +41,7 @@ Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to ex
 or, for the mirror gate:
 
 ```text
-BLOCKED: staged agent files desync the .skilled / .claude mirrors.
+BLOCKED: staged agent files desync the .opencode / .claude mirrors.
 Fix: re-sync the mirrors so each agent body matches, then re-stage.
 ```
 

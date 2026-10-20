@@ -48,7 +48,7 @@ It always exits 0.
 | **Codex** | `codex/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Cursor** | `cursor/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
 | **Devin** | `devin/worktree-guard.sh` (symlink) | SessionStart hook chain | One stderr warning line |
-| **OpenCode** | — | — | Not applicable. OpenCode session guards run inside the owning `mk-*` plugins; this check is wired into the editor runtimes' SessionStart chains. |
+| **OpenCode** | `.skilled/plugins/session-cleanup.js` (startup guard) | Plugin `event` on `session.created` | Runs the same script synchronously with the other startup guards; any warning is surfaced once per session through the system context |
 | **Pi** | — | — | Not applicable. |
 
 One real file backs all four runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.

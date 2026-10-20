@@ -25,7 +25,7 @@ trigger_phrases:
 
 A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `opencode-goal` plugin. It binds a session to a spec packet whose `goal.md` is the directive, renders that file's durable slice with the frontmatter stripped, on every turn where that runtime injects at all (OpenCode, Pi and Devin per turn, Cursor at session start), and keeps only the pointer, liveness and telemetry per session. Pi, Cursor and Devin reach it through native session identity. OpenCode keeps using `opencode-goal` directly, which imports the same slice module.
 
-A sixth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate): an unrelated concept from the AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.skilled/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
+A sixth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate): an unrelated concept from the AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is standalone and opt-in**: it is installed only by its own `install-hooks.sh`, and the repository's primary hook, `.skilled/scripts/git-hooks/pre-commit`, carries its own inline comment-hygiene gate and never calls this folder's hook. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
 A session-relaunch concern, documented in [session-relaunch/](./session-relaunch/README.md), adds context nudges and runtime-specific arming for Claude, Pi, OpenCode, Codex and Hermes sessions started through skilled-loop. Cursor and Devin join the same loop on the `/speckit:handoff` command trigger only. The nudge fires only inside skilled-loop, and the sourced `.skilled/bin/skilled-loop-shell.sh` shim starts every plain interactive runtime launch under the nearest wrapper, a symlinked `.skilled` included. Each hop adds a line to a gitignored hop history, and `SESSION_RELAUNCH_NOTIFY_HOPS` adds an opt-in macOS notice per hand-over.
 
@@ -44,7 +44,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `skill-advisor` | `SYSTEM_SKILL_ADVISOR_DISABLED` | `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED`, `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED` | enabled | inject | wired |
 | `spec-gate` | `SYSTEM_SPEC_GATE_DISABLED` | `SPECKIT_SPEC_GATE_DISABLED` | enabled | notice / deny | wired |
 | `completion` | `SYSTEM_COMPLETION_DISABLED` | `SYSTEM_COMPLETION_SENTINEL_DISABLED`, `SYSTEM_SPECKIT_COMPLETION_DISABLED` | enabled | warn | wired |
-| `codex-watchdog` | `CODEX_WATCHDOG_DISABLED` | none | enabled | warn | wired |
+| `codex-watchdog` | `CODEX_HOOKS_WATCHDOG_DISABLED` | `CODEX_WATCHDOG_DISABLED` | enabled | warn | wired |
 | `permission-policy` | `SYSTEM_PERMISSION_POLICY_DISABLED` | none | enabled | deny | wired |
 | `directive-lifecycle` | `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED` | none | enabled | inject cadence | wired |
 | `dispatch` | `CLI_DISPATCH_AUDIT_DISABLED` | `SYSTEM_DISPATCH_DISABLED` (both concerns) | enabled | audit | wired |
@@ -110,7 +110,7 @@ hooks/
 +-- git/                             # git commit-hooks installer (unrelated concept, see OVERVIEW)
 |   +-- README.md
 |   +-- install-hooks.sh
-|   `-- pre-commit                   # chain-called by .skilled/scripts/git-hooks/pre-commit
+|   `-- pre-commit                   # standalone, opt-in; the primary hook has its own gate
 +-- shared/
 |   `-- hook-adapter-shared.cjs      # stdin collection + fail-open JSON parse, used by the CommonJS and ESM adapters below
 +-- dispatch/                        # cli-opencode dispatch-shape hard-rule + audit hooks
@@ -236,10 +236,10 @@ node -e "import('./.skilled/plugins/mcp-route-guard.js').then(()=>console.log('o
 Expected result: `ok`, no module-resolution error (repeat for `sk-code-post-edit-quality.js`, `system-deep-loop-guard.js`, `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`).
 
 ```bash
-grep -n HYGIENE_HOOK .skilled/scripts/git-hooks/pre-commit
+grep -n COMMENT_CHECKER .skilled/scripts/git-hooks/pre-commit
 ```
 
-Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.skilled/hooks/git/pre-commit"`: confirms the live pre-commit chain still finds the comment-hygiene sub-gate after the move (see [`git/README.md`](./git/README.md)).
+Expected result: a `COMMENT_CHECKER=${SOURCE_ROOT}/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` line: confirms the primary pre-commit runs its own comment-hygiene gate and never calls this folder's `pre-commit` (see [`git/README.md`](./git/README.md)).
 
 ---
 
@@ -248,7 +248,7 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.skilled/hooks/git/pre-commit"`: co
 - [`injection-contract.md`](./injection-contract.md): what every hook (including the ones that stayed in their skill) actually injects.
 - Per-concern READMEs: [`dispatch/`](./dispatch/README.md), [`mcp-route-guard/`](./mcp-route-guard/README.md), [`post-edit-quality/`](./post-edit-quality/README.md), [`classifier-injection-screen/`](./classifier-injection-screen/README.md), [`task-dispatch/`](./task-dispatch/README.md), [`shared/`](./shared/README.md).
 - [`git/README.md`](./git/README.md): the git commit-hooks installer nested in this tree.
-- [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer that chain-calls `git/pre-commit`.
+- [`../scripts/git-hooks/README.md`](../scripts/git-hooks/README.md): the primary git-hooks installer, whose `pre-commit` carries its own comment-hygiene gate.
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
 - [`../plugins/README.md`](../plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
@@ -263,20 +263,20 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 
 | Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
 |---|---|---|---|---|---|---|
-| `codex-watchdog` |, by-design: OpenCode plugin audits Codex hook installation |, by-design: OpenCode plugin audits Codex hook installation |, by-design: OpenCode plugin audits Codex hook installation |, by-design: OpenCode plugin audits Codex hook installation | ✓ covered |, by-design: OpenCode plugin audits Codex hook installation |
+| `codex-watchdog` | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | ✓ covered | by-design: OpenCode plugin audits Codex hook installation |
 | `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `directive-lifecycle` | ✓ covered |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in `system-skill-advisor` lifecycle state |, by-design: embedded in `prompt-advisor.ts` directive de-dup |
+| `directive-lifecycle` | ✓ covered | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in `system-skill-advisor` lifecycle state | by-design: embedded in `prompt-advisor.ts` directive de-dup |
 | `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `dist-freshness` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |, by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.ts` |
+| `dist-freshness` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.ts` |
 | `git-message-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `goal` |, by-design: native host goal command, and the packet goal reaches it through the speckit workflows |, by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
+| `goal` | by-design: native host goal command, and the packet goal reaches it through the speckit workflows | by-design: native host goal command, as for Claude | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
 | `injection-screen` | ✓ covered | n/a: only web tool is the provider-hosted `web_search`, so no local hook ever sees a fetched page | n/a: the `Fetch` postToolUse payload carries only `url`, `status_code` and `content_length` | ✓ covered | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `permission-policy` |, by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists |, by-design: no dedicated permission-request adapter | ✓ covered |, by-design: no dedicated permission-request adapter |, by-design: no separate approval event beyond `tool_call` |
+| `permission-policy` | by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | n/a: fires no permission event at all, so no approval hook exists | by-design: no dedicated permission-request adapter | ✓ covered | by-design: no dedicated permission-request adapter | by-design: no separate approval event beyond `tool_call` |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered |, by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |
-| `session-relaunch` | ✓ covered | ✓ covered |, by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified |, by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered |
+| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: session events run inside the concern plugins (`system-skill-advisor`, `opencode-goal`, `session-cleanup`) | ✓ covered |
+| `session-relaunch` | ✓ covered | ✓ covered | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | by-design: `/speckit:handoff` command trigger, no automatic hop because no usage signal is verified | ✓ covered | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `task-dispatch` | ✓ covered | n/a: codex-cli 0.160 fires `PreToolUse` on `spawn_agent` (as `collaborationspawn_agent`), but a captured payload carries the spawn message encrypted, so no prompt or target reaches a hook | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls, but not yet workflow-nested (`runs.run`) dispatches |
@@ -287,8 +287,8 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 
 | Concern | Runtimes | Real home |
 |---|---|---|
-| `git-worktree-guard` | claude, codex, cursor, devin + hermes plugin | `.skilled/bin/worktree-guard.sh` |
-| `git-hooks-check` | claude, codex, cursor, devin + hermes plugin | `.skilled/bin/check-git-hooks.sh` |
+| `git-worktree-guard` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/bin/worktree-guard.sh` |
+| `git-hooks-check` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/bin/check-git-hooks.sh` |
 | `git-primary-reconcile` | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-primary-reconcile.sh` |
 | `live-sync` (`git-live-follow`) | claude, codex, cursor, devin, pi + opencode plugin + hermes plugin | `.skilled/bin/git-live-follow.sh` |
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin + hermes plugin | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |

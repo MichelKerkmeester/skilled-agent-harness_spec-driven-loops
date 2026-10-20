@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: GIT COMMENT-HYGIENE PRECOMMIT
+# ───────────────────────────────────────────────────────────────
 # Compatibility helper retained for direct legacy invocations.
 # The installed Git hook is .opencode/scripts/git-hooks/pre-commit.
 # Blocks commits that add ephemeral-artifact pointers to code comments.

@@ -58,7 +58,7 @@ It always exits 0.
 | **Codex** | `codex/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Cursor** | `cursor/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
 | **Devin** | `devin/check-git-hooks.sh` (symlink) | SessionStart hook chain | One stderr warning line on drift |
-| **OpenCode** | — | — | Not applicable. OpenCode session guards run inside the owning `mk-*` plugins; this check is wired into the editor runtimes' SessionStart chains. |
+| **OpenCode** | `.skilled/plugins/session-cleanup.js` (startup guard) | Plugin `event` on `session.created` | Runs the same script synchronously with the other startup guards; any warning is surfaced once per session through the system context |
 | **Pi** | — | — | Not applicable. |
 
 One real file backs all four runtimes; the per-runtime entries are symlinks into `.skilled/bin/`.

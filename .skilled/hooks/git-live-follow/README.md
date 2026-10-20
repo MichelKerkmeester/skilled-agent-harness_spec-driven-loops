@@ -18,7 +18,7 @@ contextType: "reference"
 
 `git-live-follow/` is the index for the SessionStart primitive that keeps the operator's primary checkout — the one open in the IDE — current with the live branch. Sessions publish their commits to the shared live branch (`git-sync.sh`); this watcher is the operator side of that loop. It polls the remote and fast-forwards the checkout as new commits land, so the editor shows the current combined state of every active session, seconds behind the latest commit.
 
-It fast-forwards only. It never merges, rebases, or resets: a diverged tree is warned about loudly and left untouched for the operator to reconcile, and a dirty collision is reported rather than clobbered. Untracked scratch files and build output never block a fast-forward, exactly one follower runs per checkout, and every internal failure is non-fatal (exit 0) so session start always continues.
+It fast-forwards only. It never merges, rebases, or resets: a diverged tree is warned about loudly and left untouched for the operator to reconcile, and a dirty collision is reported rather than clobbered. Untracked scratch files and build output never block a fast-forward, exactly one follower runs per checkout, and every failure inside the poll loop is non-fatal (exit 0) so session start always continues. Only a missing `git`, a directory that is not a git checkout, or a manual run on a detached HEAD without `--live` exits 1.
 
 One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi carry relative symlinks into `.skilled/bin/`; OpenCode launches the same script from its session-start plugin (see [`session-cleanup/`](../session-cleanup/README.md)).
 
@@ -43,7 +43,7 @@ One real script backs the wired runtimes. Claude, Codex, Cursor, Devin, and Pi c
 
 | Runtime | Adapter | Event / wiring | Delivery |
 |---|---|---|---|
-| **Claude** | `claude/git-live-follow.sh` (symlink → `../../../bin/git-live-follow.sh`) | SessionStart hook chain, `--start` | One `[live-sync]` status line on stderr; the follower is detached and logs to the common dir; always exits 0 |
+| **Claude** | `claude/git-live-follow.sh` (symlink → `../../../bin/git-live-follow.sh`) | SessionStart hook chain, `--start` | One `[live-sync]` status line on stderr; the follower is detached and logs to the common dir; exits 0 in a git checkout (a missing `git` or a non-repo checkout exits 1 before any status line) |
 | **Codex** | `codex/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Cursor** | `cursor/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
 | **Devin** | `devin/git-live-follow.sh` (symlink) | SessionStart hook chain, `--start` | Same |
@@ -72,7 +72,7 @@ git-live-follow/
 
 | File | Responsibility |
 |---|---|
-| `.skilled/bin/git-live-follow.sh` | The follower. `--start` gate and backgrounding, per-checkout lock, bounded poll of the live branch, fast-forward-only advance, tracked-only dirty test, state logging with rotation. Always exits 0. |
+| `.skilled/bin/git-live-follow.sh` | The follower. `--start` gate and backgrounding, per-checkout lock, bounded poll of the live branch, fast-forward-only advance, tracked-only dirty test, state logging with rotation. Exits 0 for every poll-time failure; a missing `git`, a non-repo checkout, or a manual detached-HEAD run without `--live` exits 1. |
 | `.skilled/plugins/session-cleanup.js` | The OpenCode session-start plugin that launches this script on `session.created` (see [`session-cleanup/`](../session-cleanup/README.md)). Not in this folder. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-start-advisories.ts` | The Pi extension that runs the same script with `--start`. Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.sh` | The shared shell kill-switch resolver (`hook_enabled live-sync`, `hook_enabled live-follow`). Sourced fail-open by `--start`. |
@@ -104,7 +104,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Fast-forward only | It never merges, rebases, or resets. Divergence is warned about, not repaired; a ff collision is blocked and reported. |
 | Never touches uncommitted work | Tracked-only dirty test. A dirty tree is reported, never overwritten; untracked build output never blocks an advance. |
 | Single instance | A per-checkout PID lock under the git common dir makes a second long-running follower exit cleanly. `--once` stays lock-free. |
-| Non-fatal | Missing git, a non-repo checkout, a fetch failure, a missing tip, or any internal error exits 0 so session start continues. |
+| Non-fatal | A fetch failure, a missing tip, or any poll-time error exits 0 so session start continues. A missing `git` or a non-repo checkout exits 1 before the follower starts, as does a manual detached-HEAD run without `--live`. |
 | Imports | Bash only; sources the shared `hook-flags.sh` fail-open. Nothing outside the repo. |
 | Real code | Stays in `.skilled/bin/`; the hub entries are relative symlinks. |
 
