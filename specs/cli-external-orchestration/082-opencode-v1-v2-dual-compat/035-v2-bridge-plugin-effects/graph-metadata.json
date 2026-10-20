@@ -32,7 +32,7 @@
       "active"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -134,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -159,6 +153,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement All",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "All 17 repository plugins register as `active` on OpenCode 2.0.32, but phase 034's live runs showed only 10 of them act",
     "created_at": "2026-10-20T20:32:45Z",
-    "last_save_at": "2026-10-20T22:09:16.870Z",
+    "last_save_at": "2026-10-20T22:57:04.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f498b3d93ba12d72c909b0a8f164e5bc7b2a96d7d59a1e2a2526e3c032ba752",
+    "source_fingerprint": "sha256:361e1dd95d3c9155e1083e58424269061015da20da34aa989b472c887c20471b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a9f48fb024056ec5b512a0ecd79571a20f63ffe6824c2bf96091e5a3becbbf4",
+      "spec.md": "118a6a4f9b5b90d733bcf05646056759ff6a6b886f2555f85576e46ae3b80208",
       "plan.md": "94f5a248c082b1f4cd57cfa8cfa381071f9b714ffed0891d60b5c6de5626052c",
-      "tasks.md": "bf1aa0cf8db47bbb9f10db711aae7c104280b156d2802d5b93ea9ba486887152",
-      "implementation-summary.md": "fbc8175694de7e1453eadd065e4fe0343949d4ddd37284c8ac463073c3401c2d"
+      "tasks.md": "b6f6a3db26d725dd356d7569d3ba8ac5e02d001e17dffff690e3d329d162b1f4",
+      "implementation-summary.md": "256e26186a84dcec6d80cff6a88554a0c3cfd212f8523af94f87277045a7b4fe"
     },
     "last_active_at": null
   }
