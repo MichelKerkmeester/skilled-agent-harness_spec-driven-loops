@@ -1,0 +1,20 @@
+# row26 against HEAD src/runtime/client.ts: removes the venv it made
+error: expect(received).toBe(expected)
+Expected: false
+Received: true
+(fail) RuntimeClient probes and startup > removes the venv it made when close() lands during mkdir [2.92ms]
+ 0 pass
+ 1 fail
+# row26 against fixed src/runtime/client.ts: removes the venv it made
+ 1 pass
+ 0 fail
+# row26 (after review round 1) against HEAD src/runtime/client.ts: removes only a venv it made
+error: expect(received).toBe(expected)
+Expected: false
+Received: true
+(fail) RuntimeClient probes and startup > removes only a venv it made when close() lands during mkdir [4.75ms]
+ 0 pass
+ 1 fail
+# row26 (after review round 1) against fixed src/runtime/client.ts: removes only a venv it made
+ 1 pass
+ 0 fail

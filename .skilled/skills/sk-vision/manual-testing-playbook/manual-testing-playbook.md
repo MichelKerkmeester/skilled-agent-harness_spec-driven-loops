@@ -7,7 +7,7 @@ trigger_phrases:
   - "sk-vision release validation"
 importance_tier: "important"
 contextType: "general"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # sk-vision: Manual Testing Playbook
@@ -570,7 +570,7 @@ Desired user-visible outcome: the Devin note drives a vision-blind model to read
 The shared classifier identifies text-only models by the built-in allowlist, `SK_VISION_TEXT_ONLY_MODELS`, `SK_VISION_FORCE=1`, and a host-declared non-image input modality; a multimodal or unlisted model keeps the non-blocking grace so submission never stalls.
 
 #### Scenario Contract
-Command: `bun test src/model-modality.test.ts` and `bun test src/opencode/attachments.test.ts` in `vision-runtime/`.
+Command: `bun test tests/model-modality.test.ts` and `bun test tests/opencode/attachments.test.ts` in `vision-runtime/`.
 
 Desired user-visible outcome: the classifier and await-vs-race behaviour are proven green (6/0 and 2/0).
 
@@ -604,7 +604,7 @@ Desired user-visible outcome: the GPU is claimed and released on demand.
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
 | `vision-runtime/python/runtime.test.ts` | NDJSON analysis handlers: metadata, crop, colors, diff, annotate, hash_search, zoom; bbox validation; missing-file `INVALID_INPUT` | VSN-002, VSN-006, VSN-007, VSN-008, VSN-009, VSN-010, VSN-011, VSN-013 |
-| `vision-runtime/src/providers/photon.test.ts` | Content-type mapping, URL-extension fallback, normalized bbox parsing | VSN-014, VSN-009 |
+| `vision-runtime/tests/providers/photon.test.ts` | Content-type mapping, URL-extension fallback, normalized bbox parsing | VSN-014, VSN-009 |
 
 The automated suite runs with `bun test` inside `vision-runtime/` (8 tests, 27 expect calls). It proves handler-level behavior with synthetic PNGs but does not load the model; the playbook scenarios add real-model integration coverage.
 

@@ -1,0 +1,19 @@
+row 4: PASS
+
+row 5: PASS
+
+row 13: PASS
+
+row 15: PASS. `actionlint` and direct Bun TypeScript checking passed. The full test run reported 52 pass and 12 `EPERM` temp-directory failures, including [host-adapter.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/tests/host-adapter.test.ts:16). No files were changed during this review.
+
+row 20: FAIL no test covers a host with missing `tool.transform`; the existing test covers a throwing transform ([plugin.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts:661), [plugin.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/src/plugin.ts:472)).
+
+row 23: FAIL the timer test asserts clearing but does not assert `unref()` ([client.test.ts](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/tests/runtime/client.test.ts:242), [client.ts](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:367)).
+
+row 24: PASS
+
+row 25: PASS
+
+row 26: FAIL `mkdir({ recursive: true })` can return an ancestor path, so the cleanup may remove another client’s empty venv. The test closes from the notification before `mkdir` and only checks final absence ([client.ts](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts:150), [client.test.ts](/Users/michelkerkme/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/tests/runtime/client.test.ts:300), [Node.js fs docs](https://nodejs.org/download/release/latest-jod/docs/api/fs.html)).
+
+VERDICT: FAIL

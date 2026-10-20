@@ -131,6 +131,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 18 | 018-post-merge-research-conformance/ | Post-merge research: sk-code-skilled and sk-doc conformance | Complete |
 | 19 | 019-plugins-compat-docs/ | Plugins README v1 and v2 compatibility and ARCHITECTURE.md | Complete |
 | 20 | 020-plugins-purity-dual-export/ | Let the plugins purity test load the dual OpenCode export, the last red Spec-Kit Check step | complete |
+| 23 | 023-sk-vision-runtime-fixes/ | sk-vision runtime fixes from the post-merge research fix list, rows 4, 5, 13, 15, 20, 23, 24, 25 and 26 | Complete |
 
 ### Phase Transition Rules
 
@@ -159,4 +160,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 015 to 018 (parallel siblings) | 014-post-merge-deep-research (A30) | Each sibling session has run its angles and written `research/research.md` | Each sibling `research/research.md` and steering log |
 | 013-sk-vision-v2-tools-and-loose-ends | 019-plugins-compat-docs | Phase 013 closes with the sk-vision tools on both versions, so the plugin surface the docs describe is final | `013/implementation-summary.md` and the 17-plugin battery after the main merge |
 | 019-plugins-compat-docs | 020-plugins-purity-dual-export | 019's docs are on main | The purity test and the Runtime vitest project pass locally; 019's README.md, ARCHITECTURE.md and spec.md are on main at 22f563b032 |
+| 014-post-merge-deep-research | 023-sk-vision-runtime-fixes | The fix list in 014's research.md names rows 4, 5, 13, 15, 20, 23-26 for sk-vision | 014 research.md §9 and 023 scratch/mutation/ |
 <!-- /ANCHOR:phase-map -->

@@ -6,7 +6,7 @@ trigger_phrases:
   - "how does sk-vision integrate with OpenCode"
   - "sk-vision.js"
   - "opencode vision plugin"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OpenCode plugin adapter (sk-vision.js)
@@ -29,6 +29,15 @@ When the user invokes `/vision`, the command hook fetches the latest session ima
 
 The plugin honors `enabled` (disable entirely), `python` (interpreter override), `timeoutMs` and `fetchTimeoutMs` options. `SK_VISION_TEARDOWN` controls command cleanup. `close` shuts down the runtime, `unload` frees the model and `keep` leaves the process running.
 
+### OpenCode 2 bump check
+
+`V2PluginContext` in `vision-runtime/src/plugin.ts` is written by hand, because the published v2 context type declares no `session` or `tool` domain. At each OpenCode 2 version bump:
+
+1. Compare `V2PluginContext` with the `PluginContext` the new `@opencode/plugin` release declares, member by member for `location`, `command`, `session` and `tool`.
+2. Update the interface where the host changed a name or a signature.
+3. Keep the run-time checks in `createSetup`. A host without `session.hook` keeps the `/vision` command and turns template evidence and image inspection off. A host without `tool.transform` registers no tools.
+4. Run `bun test` and `bunx tsc --noEmit` in `vision-runtime/`, then the OpenCode Dual-Version Battery on the new pin.
+
 ---
 
 ## 3. SOURCE FILES
@@ -46,7 +55,7 @@ The plugin honors `enabled` (disable entirely), `python` (interpreter override),
 
 | File | Type | Role |
 |---|---|---|
-| `vision-runtime/src/providers/photon.test.ts` | Unit | Covers the shared arg helpers the plugin tools use |
+| `vision-runtime/tests/providers/photon.test.ts` | Unit | Covers the shared arg helpers the plugin tools use |
 | `vision-runtime/python/runtime.test.ts` | Integration | Exercises the runtime the plugin drives |
 
 ---

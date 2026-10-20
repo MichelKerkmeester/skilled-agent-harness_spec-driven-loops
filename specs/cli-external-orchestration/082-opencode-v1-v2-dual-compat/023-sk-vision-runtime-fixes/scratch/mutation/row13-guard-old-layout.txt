@@ -1,0 +1,19 @@
+# row 13: guard against the old layout (src/model-modality.test.ts restored from HEAD)
++ ]
+
+- Expected  - 1
++ Received  + 3
+
+      at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes/.skilled/skills/sk-vision/vision-runtime/tests/layout.test.ts:18:23)
+(fail) test layout > keeps no test file under src/ [1.29ms]
+
+ 0 pass
+ 1 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [11.00ms]
+exit=0
+# row 13: guard on the new layout
+ 1 pass
+ 0 fail
+ 1 expect() calls
+Ran 1 test across 1 file. [11.00ms]

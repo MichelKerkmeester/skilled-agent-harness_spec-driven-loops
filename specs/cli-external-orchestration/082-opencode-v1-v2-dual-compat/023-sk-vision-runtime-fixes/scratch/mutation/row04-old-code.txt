@@ -1,0 +1,10 @@
+# row04 against HEAD src/plugin.ts: releases every handle and rethrows the first error
+error: expect(received).toEqual(expected)
+- Expected  - 3
++ Received  + 1
+(fail) v2 tool registration > releases every handle and rethrows the first error when one disposal fails [2.79ms]
+ 0 pass
+ 1 fail
+# row04 against the fixed src/plugin.ts
+ 1 pass
+ 0 fail

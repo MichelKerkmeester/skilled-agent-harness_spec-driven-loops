@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-vision cli"
   - "cursor vision command"
   - "sk-vision command entry"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Vision CLI (vision-cli.js)
@@ -49,7 +49,7 @@ The evidence core and the CLI are separate bundle entries on purpose. A bundle e
 
 | File | Type | Role |
 |---|---|---|
-| `vision-runtime/src/evidence/prompt-evidence.test.ts` | Unit | Path detection and the evidence wrapper, including the nested-tag regression |
+| `vision-runtime/tests/evidence/prompt-evidence.test.ts` | Unit | Path detection and the evidence wrapper, including the nested-tag regression |
 | `manual-testing-playbook/host-adapters/vision-cli.md` | Manual playbook | Validates the exit-code contract and a real image read |
 
 ---
