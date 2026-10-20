@@ -1,0 +1,3 @@
+# origin/main b0133e893a, before any edit
+worktree-naming tests: PASS=97 FAIL=0
+exit=0

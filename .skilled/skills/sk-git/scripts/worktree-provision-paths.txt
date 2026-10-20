@@ -5,15 +5,12 @@
 # One path per line, relative to the repository root, naming a directory that
 # holds a package.json. A line may add a second whitespace-separated field: a
 # file relative to the package directory that the package's build writes. Provision
-# builds the package when that file is missing. A package with a bun.lock and no
-# package-lock.json is installed and built with bun. Blank lines and # comments are ignored.
+# builds the package when that file is missing. A package with a bun.lock or
+# bun.lockb and no package-lock.json is installed and built with bun. Blank lines
+# and # comments are ignored.
 #
 # Order is install order: a package whose build another package consumes comes
 # first.
-
-# The repo root. A check that runs from a temporary directory resolves shared
-# packages by walking up from there; without this it finds nothing.
-.
 
 # The shared source tree. Hook and script tests resolve vitest from here.
 .skilled
@@ -53,3 +50,26 @@
 # directory; in a provisioned checkout the copy carries these dependencies with
 # it, and without them the check fails on a hub that is correct.
 .skilled/skills/sk-doc
+
+# The two Pi extensions this repository ships. Each runs its tests and type check
+# from its own directory against its own devDependencies, so a fresh worktree
+# cannot run either without this.
+.pi/extensions/pi-cache-optimizer
+.pi/extensions/pi-fast-mode-w-subagent-support
+
+# The DESIGN.md generator's backend. Its vitest suite imports css-tree, culori and
+# the Playwright packages from here, and its build writes the CLI entry the
+# extract pipeline runs. The install downloads no browser.
+.skilled/skills/sk-design/sk-design-md-generator/backend  dist/cli.js
+
+# Tracked packages left out on purpose. The completeness test in
+# tests/worktree-naming.test.sh reads the path on each "excluded:" line and fails
+# on a tracked package.json that is neither listed nor excluded.
+#
+# excluded: .skilled/skills/mcp-code-mode/mcp-server
+# Code Mode's server must be installed under Node 24: isolated-vm has no build for
+# later Node, and a server built under another version crashes on its first tool
+# call. Its INSTALL-GUIDE.md owns that install.
+#
+# excluded: .skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp
+# It declares no dependencies; the obsidian manual starts the server through npx.

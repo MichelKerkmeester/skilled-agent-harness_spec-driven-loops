@@ -525,7 +525,7 @@ _wn_have_tool() {
 # any install or build failed, so a half-provisioned tree is never reported ready.
 provision_worktree() {
   local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0
-  local tool deps_root
+  local tool deps_root install_log
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
   [ -n "$dir" ] || dir="$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "not in a git repo" >&2; return 1; }
@@ -538,11 +538,17 @@ provision_worktree() {
 
   while read -r pkg artifact _; do
     case "$pkg" in ''|\#*) continue ;; esac
-    [ -f "$dir/$pkg/package.json" ] || continue
-    # A bun lockfile with no npm lockfile marks a bun package. That lockfile pins
-    # versions an ancestor's npm tree need not match, so only the package's own
-    # node_modules counts, and an npm install there would write a second lockfile.
-    if [ -f "$dir/$pkg/bun.lock" ] && [ ! -f "$dir/$pkg/package-lock.json" ]; then
+    # A listed path that lost its manifest is a stale list entry, so name it.
+    if [ ! -f "$dir/$pkg/package.json" ]; then
+      echo "  WARNING: $pkg is listed but has no package.json; skipped" >&2
+      continue
+    fi
+    # A bun lockfile, text bun.lock or binary bun.lockb, with no npm lockfile marks
+    # a bun package. That lockfile pins versions an ancestor's npm tree need not
+    # match, so only the package's own node_modules counts, and an npm install
+    # there would write a second lockfile.
+    if { [ -f "$dir/$pkg/bun.lock" ] || [ -f "$dir/$pkg/bun.lockb" ]; } \
+      && [ ! -f "$dir/$pkg/package-lock.json" ]; then
       tool=bun; deps_root="$dir/$pkg"
     else
       tool=npm; deps_root="$dir"
@@ -553,18 +559,30 @@ provision_worktree() {
     else
       _wn_have_tool "$tool" "$pkg" || { failed=$((failed + 1)); continue; }
       # npm ci needs a lockfile and a failed install cannot be followed by a build.
+      # The installer's output goes to a log, not the terminal, so no --silent:
+      # npm's silent level would drop the error lines a failure needs.
       if [ "$tool" = bun ]; then
-        install_cmd=(bun install --frozen-lockfile --silent)
+        install_cmd=(bun install --frozen-lockfile)
       elif [ -f "$dir/$pkg/package-lock.json" ]; then
-        install_cmd=(npm ci --no-audit --no-fund --silent)
+        install_cmd=(npm ci --no-audit --no-fund)
       else
-        install_cmd=(npm install --no-audit --no-fund --silent)
+        install_cmd=(npm install --no-audit --no-fund)
       fi
       echo "  provisioning $pkg (${install_cmd[0]} ${install_cmd[1]})" >&2
-      if ( cd "$dir/$pkg" && "${install_cmd[@]}" >/dev/null 2>&1 ); then
+      install_log="$(mktemp)"
+      if ( cd "$dir/$pkg" && "${install_cmd[@]}" >"$install_log" 2>&1 ); then
         installed=$((installed + 1))
+        rm -f "$install_log"
       else
         echo "  FAILED: $pkg" >&2
+        # A log with no error line must not end a caller running under set -e.
+        grep -i -m 4 'error' "$install_log" | sed 's/^/    /' >&2 || true
+        # A frozen install refuses a lockfile that no longer matches package.json.
+        # Provisioning reports it rather than rewriting a committed lockfile unseen.
+        if grep -qiE 'in sync|lockfile had changes' "$install_log"; then
+          echo "    lockfile drift: package.json and its lockfile disagree; run ${install_cmd[0]} install in $pkg and commit the lockfile" >&2
+        fi
+        rm -f "$install_log"
         failed=$((failed + 1))
         continue
       fi

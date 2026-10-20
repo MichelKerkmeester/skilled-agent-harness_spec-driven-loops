@@ -1,0 +1,23 @@
+# new tests against the old worktree-naming.sh and the old worktree-provision-paths.txt
+FAIL: bun.lockb package provisions (rc=1 exp=0)
+FAIL: bun.lockb package installs with bun (exp='1' got='0')
+FAIL: bun.lockb package never reaches npm (exp='0' got='2')
+FAIL: lockfile drift shows the installer's error (rc=1 exp=0)
+FAIL: lockfile drift names the repair (rc=1 exp=0)
+FAIL: a listed path without package.json is warned about (rc=1 exp=0)
+FAIL: every tracked package tree is listed or excluded (exp='' got='stale: .
+unlisted: .pi/extensions/pi-cache-optimizer
+unlisted: .pi/extensions/pi-fast-mode-w-subagent-support
+unlisted: .skilled/skills/mcp-code-mode/mcp-server
+unlisted: .skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp
+unlisted: .skilled/skills/sk-design/sk-design-md-generator/backend')
+FAIL: an unlisted tree and a stale entry are both reported (exp='stale: no/such/pkg
+unlisted: .pi/extensions/pi-cache-optimizer' got='stale: .
+stale: no/such/pkg
+unlisted: .pi/extensions/pi-cache-optimizer
+unlisted: .pi/extensions/pi-fast-mode-w-subagent-support
+unlisted: .skilled/skills/mcp-code-mode/mcp-server
+unlisted: .skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp
+unlisted: .skilled/skills/sk-design/sk-design-md-generator/backend')
+worktree-naming tests: PASS=101 FAIL=8
+exit=1

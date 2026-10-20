@@ -132,6 +132,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 19 | 019-plugins-compat-docs/ | Plugins README v1 and v2 compatibility and ARCHITECTURE.md | Complete |
 | 20 | 020-plugins-purity-dual-export/ | Let the plugins purity test load the dual OpenCode export, the last red Spec-Kit Check step | complete |
 | 21 | 021-pi-fast-mode-trusted-flag/ | Register Pi's --fast flag in the trusted main checkout and correct the copy-claim comment and test counts | complete |
+| 22 | 022-worktree-provision-completeness/ | List every tracked package tree for worktree provisioning, guard the list, and report drift and missing manifests | complete |
 
 ### Phase Transition Rules
 
@@ -161,4 +162,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 013-sk-vision-v2-tools-and-loose-ends | 019-plugins-compat-docs | Phase 013 closes with the sk-vision tools on both versions, so the plugin surface the docs describe is final | `013/implementation-summary.md` and the 17-plugin battery after the main merge |
 | 019-plugins-compat-docs | 020-plugins-purity-dual-export | 019's docs are on main | The purity test and the Runtime vitest project pass locally; 019's README.md, ARCHITECTURE.md and spec.md are on main at 22f563b032 |
 | 020-plugins-purity-dual-export | 021-pi-fast-mode-trusted-flag | 020 is on main | The extension vitest run passes 81 tests and the help probe lists --fast once in all six runs |
+| 021-pi-fast-mode-trusted-flag | 022-worktree-provision-completeness | 021 is on main | The naming suite passes 109 tests and a fresh clone provisions 14 trees with 0 failed (`022-worktree-provision-completeness/scratch/mutation/new-code-run.txt`, `022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt`) |
 <!-- /ANCHOR:phase-map -->
