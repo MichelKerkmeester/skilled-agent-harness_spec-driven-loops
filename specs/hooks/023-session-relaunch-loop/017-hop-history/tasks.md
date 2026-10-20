@@ -59,6 +59,7 @@ contextType: "implementation"
 - [x] T012 Rollup: v4.0.0.13 changelog, hooks and bin READMEs, system-spec-kit README and catalog index, the Claude relaunch playbook check and the `/doctor:setup` scenario; AGENTS.md checked and left unchanged
 - [x] T013 `.env.example`: every setting the code reads that an operator can set, including the session-relaunch switches, with its default (`.env.example`)
 - [x] T014 `/doctor:env` reads `.env.example` for the names ENV-REFERENCE lacks and offers `hook-flags.env` for every switch read from it; the root README gains Environment Settings on how to set a value locally (`doctor-env.yaml`, `README.md`)
+- [x] T015 Live `/doctor:env` run of DOC-354, DOC-355 and DOC-356 in the doctor test environment; fix the text-token secret rule and update DOC-356; v4.0.0.13 and system-spec-kit v2.8.4.0 release notes
 <!-- /ANCHOR:phase-3 -->
 
 ---
