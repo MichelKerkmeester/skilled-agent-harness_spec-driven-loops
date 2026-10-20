@@ -180,6 +180,28 @@ test('a symlinked packet that resolves outside the workspace reads as unbound', 
   }
 });
 
+test('a goal.md symlink that leaves the workspace reads as unbound, and one inside still reads', () => {
+  const { symlinkSync } = require('node:fs');
+  const outside = mkdtempSync(join(tmpdir(), 'goal-slice-outside-goal-'));
+  try {
+    writeFileSync(join(outside, 'goal.md'), goalDoc(), 'utf8');
+    mkdirSync(join(workspace, 'specs', 'x', '001-linked-out'), { recursive: true });
+    symlinkSync(join(outside, 'goal.md'), join(workspace, 'specs', 'x', '001-linked-out', 'goal.md'));
+    assert.equal(slice.readPacketGoal(workspace, 'specs/x/001-linked-out'), null);
+
+    const shared = join(workspace, 'specs', 'shared');
+    mkdirSync(shared, { recursive: true });
+    writeFileSync(join(shared, 'goal-source.md'), goalDoc(), 'utf8');
+    mkdirSync(join(workspace, 'specs', 'x', '002-linked-in'), { recursive: true });
+    symlinkSync(join(shared, 'goal-source.md'), join(workspace, 'specs', 'x', '002-linked-in', 'goal.md'));
+    const inside = slice.readPacketGoal(workspace, 'specs/x/002-linked-in');
+    assert.ok(inside);
+    assert.ok(inside.chatSlice.includes('## DURABLE DIRECTIVE'));
+  } finally {
+    rmSync(outside, { recursive: true, force: true });
+  }
+});
+
 test('a missing packet under a symlinked parent that leaves the workspace reads as outside', () => {
   const { symlinkSync } = require('node:fs');
   const outside = mkdtempSync(join(tmpdir(), 'goal-slice-outside-'));

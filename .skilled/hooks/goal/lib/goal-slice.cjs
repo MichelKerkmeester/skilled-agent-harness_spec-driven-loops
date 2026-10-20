@@ -446,6 +446,15 @@ function readPacketGoal(workspace, packetPath) {
   if (!existsSync(goalPath)) return null;
   let content;
   try {
+    // Containment was judged on the packet directory, but the file is read
+    // through its name: a symlinked goal.md can target any file on disk and
+    // have that text injected as the session goal. Judge the file's real path
+    // too, so a link out of the workspace reads as unbound while a link to
+    // another file inside it still reads.
+    const realRoot = realpathSync(resolve(workspace));
+    const realGoal = realpathSync(goalPath);
+    const goalRel = relative(realRoot, realGoal);
+    if (goalRel.startsWith('..') || isAbsolute(goalRel)) return null;
     content = readFileSync(goalPath, 'utf8');
   } catch {
     return null;
