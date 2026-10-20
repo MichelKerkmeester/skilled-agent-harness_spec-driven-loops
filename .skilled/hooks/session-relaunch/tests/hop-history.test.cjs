@@ -10,6 +10,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const core = require('../lib/relaunch-core.cjs');
+const hopHistory = require('../lib/hop-history.cjs');
 
 const CLI_PATH = path.resolve(__dirname, '../bin/session-relaunch.cjs');
 const SESSION_ID = 'session-history-0001';
@@ -194,7 +195,6 @@ test('the hand-over notice fires once the switch is set in the hook-flags file',
 test('a killer timeout records a timed-out line', async (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeNote(sandbox);
-  const hopHistory = require('../lib/hop-history.cjs');
   hopHistory.recordHop('timed-out', handoffPath, { env: sandbox.env });
   const fields = historyLines(sandbox)[0].split('\t');
   assert.equal(fields[1], 'timed-out');

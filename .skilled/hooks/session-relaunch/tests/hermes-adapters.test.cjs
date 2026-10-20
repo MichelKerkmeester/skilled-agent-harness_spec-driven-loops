@@ -20,7 +20,11 @@ const core = require('../lib/relaunch-core.cjs');
 
 function sandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-relaunch-'));
-  const env = { ...process.env, XDG_RUNTIME_DIR: path.join(root, 'runtime') };
+  const env = {
+    ...process.env,
+    XDG_RUNTIME_DIR: path.join(root, 'runtime'),
+    HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
+  };
   for (const key of [
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
     'SYSTEM_HOOKS_DISABLED',
@@ -71,20 +75,29 @@ function makePending(env, loopId, sessionId, runtime = 'hermes') {
 }
 
 test('Hermes captured payload fixtures retain shapes and redact identifiers', () => {
-  const fixtures = [
-    'hermes-on-session-start.json',
-    'hermes-on-session-end.json',
-    'hermes-on-session-finalize.json',
-    'hermes-pre-api-request.json',
-    'hermes-post-api-request.json',
-    'hermes-pre-verify.json',
-    'hermes-usage.json',
-  ].map(captured);
-  assert.equal(fixtures[4].extra.usage.input_tokens, 2048);
-  assert.equal(fixtures[4].session_id, 'session-redacted');
-  assert.equal(fixtures[4].extra.base_url, 'https://api.invalid');
-  assert.equal(fixtures[6].session_id, 'session-redacted');
-  assert.ok(fixtures.every((entry) => !JSON.stringify(entry).includes('/Users/')));
+  const fixtures = new Map([
+    ['hermes-on-session-start.json', 'on_session_start'],
+    ['hermes-on-session-end.json', 'on_session_end'],
+    ['hermes-on-session-finalize.json', 'on_session_finalize'],
+    ['hermes-pre-api-request.json', 'pre_api_request'],
+    ['hermes-post-api-request.json', 'post_api_request'],
+    ['hermes-pre-verify.json', 'pre_verify'],
+    ['hermes-usage.json', null],
+  ].map(([name, event]) => [name, { event, fixture: captured(name) }]));
+
+  for (const [name, { event, fixture }] of fixtures) {
+    assert.equal(fixture.session_id, 'session-redacted', name);
+    const serialized = JSON.stringify(fixture);
+    assert.equal(/\/(?:Users|home)\/|\/tmp\//.test(serialized), false, name);
+    if (event === null) continue;
+    assert.equal(fixture.hook_event_name, event, name);
+    assert.equal(fixture.cwd, '<repo>', name);
+    assert.equal(typeof fixture.extra, 'object', name);
+  }
+
+  const postApi = fixtures.get('hermes-post-api-request.json').fixture;
+  assert.equal(postApi.extra.usage.input_tokens, 2048);
+  assert.equal(postApi.extra.base_url, 'https://api.invalid');
 });
 
 test('Hermes usage counts input and cache tokens, not output tokens', () => {

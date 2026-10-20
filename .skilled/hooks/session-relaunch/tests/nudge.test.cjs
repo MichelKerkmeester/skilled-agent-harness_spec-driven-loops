@@ -8,6 +8,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const nudgeModule = require('../lib/nudge.cjs');
 const {
   handoffText,
   seedText,
@@ -24,7 +25,7 @@ const {
   writeState,
   handoffPending,
   hopLimitReached,
-} = require('../lib/nudge.cjs');
+} = nudgeModule;
 const core = require('../lib/relaunch-core.cjs');
 
 const NOTE_PATH = '/tmp/session-relaunch/handoff-01a14869.md';
@@ -61,7 +62,7 @@ const SEED_STEP_THREE = [
   'treat it as empty.',
 ].join(' ');
 
-test('handoff text includes the note, complete frontmatter, four sections, save step, and quoted prepare command', () => {
+test('handoff text includes the note, frontmatter, all four sections and prepare command', () => {
   const text = handoffText({
     notePath: NOTE_PATH,
     sessionId: SESSION_ID,
@@ -113,7 +114,13 @@ test('handoff text includes the note, complete frontmatter, four sections, save 
     ),
   );
 
-  const unbound = handoffText({ notePath: NOTE_PATH, sessionId: SESSION_ID, specFolder: '', runtime: 'opencode', cliPath: CLI_PATH });
+  const unbound = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: '',
+    runtime: 'opencode',
+    cliPath: CLI_PATH,
+  });
   const unboundSteps = unbound.split('\n').filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
     unboundSteps.map((line) => Number.parseInt(line, 10)),
@@ -690,7 +697,15 @@ test('writeState repairs a permissive state directory back to private mode', (t)
 function recordSandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-nudge-'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
-  return { ...process.env, XDG_RUNTIME_DIR: root };
+  const previousConfigFile = process.env.HOOK_FLAGS_CONFIG;
+  process.env.HOOK_FLAGS_CONFIG = path.join(root, 'hook-flags.env');
+  t.after(() => {
+    if (previousConfigFile === undefined) delete process.env.HOOK_FLAGS_CONFIG;
+    else process.env.HOOK_FLAGS_CONFIG = previousConfigFile;
+  });
+  const env = { ...process.env, XDG_RUNTIME_DIR: root };
+  delete env.SESSION_RELAUNCH_MAX_AGE_MIN;
+  return env;
 }
 
 function envForLoop(env, loopId) {
@@ -921,8 +936,6 @@ test('handoffPending is false when the record cannot be read', (t) => {
 
   assert.equal(handoffPending({ sessionId: SESSION_ID, env: envForLoop(env, loopId) }), false);
 });
-
-const nudgeModule = require('../lib/nudge.cjs');
 
 test('the nudge module exports the one CLI command every adapter prints', () => {
   assert.equal(

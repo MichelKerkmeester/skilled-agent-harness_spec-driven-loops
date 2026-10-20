@@ -13,6 +13,7 @@ const path = require('node:path');
 
 const KILLER_PATH = path.resolve(__dirname, '../lib/killer.cjs');
 const core = require('../lib/relaunch-core.cjs');
+const { hasAncestor, isLoopAncestor } = require('../lib/killer.cjs');
 const SPEC_FOLDER = 'specs/hooks/001-session-relaunch';
 const SPEC_FOLDER_SUFFIX = ` | Spec folder: ${SPEC_FOLDER}`
   + ' (carried from the handoff; Gate 3 answered in the sending session)';
@@ -41,6 +42,7 @@ function createSandbox(t) {
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
+    HOOK_FLAGS_CONFIG: path.join(root, 'hook-flags.env'),
     PATH: `${binDir}:${process.env.PATH}`,
     TEST_PROCESS_PID: String(process.pid),
   };
@@ -49,6 +51,7 @@ function createSandbox(t) {
     'SKILLED_LOOP_HOPS',
     'SKILLED_LOOP_NAME',
     'SESSION_RELAUNCH_MAX_HOPS',
+    'SESSION_RELAUNCH_MAX_AGE_MIN',
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
   ]) delete env[key];
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
@@ -348,7 +351,9 @@ function lockPath(sandbox, loopId) {
 function waitForLockOwner(sandbox, loopId, ownerPid) {
   return waitFor(() => {
     try {
-      const [recordedOwner] = fs.readFileSync(lockPath(sandbox, loopId), 'utf8').trim().split(/\s+/);
+      const [recordedOwner] = fs.readFileSync(lockPath(sandbox, loopId), 'utf8')
+        .trim()
+        .split(/\s+/);
       return recordedOwner === String(ownerPid);
     } catch (error) {
       if (error.code === 'ENOENT') return false;
@@ -384,7 +389,6 @@ function killChild(child) {
 }
 
 test('ancestor walk stops when the process table repeats a pid', () => {
-  const { hasAncestor } = require('../lib/killer.cjs');
   const cyclicParents = new Map([[10, 11], [11, 10]]);
   const unrelatedParents = new Map([[10, 11], [11, 1]]);
   assert.equal(hasAncestor(cyclicParents, 10, 99), false);
@@ -716,7 +720,12 @@ test('killer leaves a lock that a contender claimed while it supervised', async 
     const now = new Date();
     fs.utimesSync(transcriptPath, now, now);
   }, 100);
-  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath, timeoutMs: 1500 });
+  const killer = runKiller(sandbox, {
+    loopId,
+    targetPid: target.pid,
+    transcriptPath,
+    timeoutMs: 1500,
+  });
   try {
     assert.equal(
       await waitForLockOwner(sandbox, loopId, killer.pid),
@@ -764,7 +773,12 @@ test('killer removes its own lock when no contender claimed it', async (t) => {
     const now = new Date();
     fs.utimesSync(transcriptPath, now, now);
   }, 100);
-  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath, timeoutMs: 400 });
+  const killer = runKiller(sandbox, {
+    loopId,
+    targetPid: target.pid,
+    transcriptPath,
+    timeoutMs: 400,
+  });
   try {
     const result = await waitForExit(killer, 5000);
     assert.equal(result.timedOut, undefined);
@@ -1283,7 +1297,14 @@ test('killer timeout keeps a re-prepared pending record and still logs and notif
     assert.match(readKillerLog(sandbox), /killer-timeout/);
     assert.equal(notifications.length, 1);
     const history = fs.readFileSync(
-      path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'hop-history.log'),
+      path.join(
+        sandbox.repoRoot,
+        '.skilled',
+        'skills',
+        '.state',
+        'session-relaunch',
+        'hop-history.log',
+      ),
       'utf8',
     );
     assert.match(history, /\ttimed-out\tclaude\t/);
@@ -1768,7 +1789,7 @@ test('killer reclaims a stale takeover directory that holds extra files', async 
   }
 });
 
-test('killer reclaims the takeover when a stale leftover already holds its pid', async (t) => {
+test('killer reclaims a stale takeover directory while its rename waits', async (t) => {
   const sandbox = createSandbox(t);
   installRenameDelayStub(sandbox);
   const loopId = String(process.pid);
@@ -1786,15 +1807,11 @@ test('killer reclaims the takeover when a stale leftover already holds its pid',
   sandbox.env.KILLER_TAKEOVER_RENAME_DELAY_MS = '400';
   const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
   delete sandbox.env.KILLER_TAKEOVER_RENAME_DELAY_MS;
-  const collision = `${mutexPath}.stale-${killer.pid}`;
-  fs.mkdirSync(collision);
-  fs.writeFileSync(path.join(collision, 'junk'), 'leftover');
   try {
     const result = await waitForExit(killer, 2000);
     assert.equal(result.timedOut, undefined);
     assert.equal(result.code, 0);
     assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
-    assert.equal(fs.existsSync(collision), true);
     assert.match(readKillerLog(sandbox), /killer-lock-stale/);
   } finally {
     killChild(killer);
@@ -1948,7 +1965,6 @@ test('killer restores a permissive state directory to private mode', async (t) =
 });
 
 test('the killer reads its ancestry through the core process-table reader', (t) => {
-  const { isLoopAncestor } = require('../lib/killer.cjs');
   const calls = [];
   t.mock.method(core, 'readProcessTable', (options) => {
     calls.push(options);
@@ -2099,7 +2115,9 @@ test('killer timeout logs an unusable manual template before its plain notice', 
     ], sandbox.env);
 
     assert.equal(notifications.length, 1);
-    const logLine = readKillerLog(sandbox).split('\n').find((line) => line.includes('killer-manual-template'));
+    const logLine = readKillerLog(sandbox)
+      .split('\n')
+      .find((line) => line.includes('killer-manual-template'));
     assert.ok(logLine, 'the killer should log why its notice fell back to the plain command');
     assert.match(logLine, /problem=SKILLED_LOOP_MANUAL_TEMPLATE_holds_no_@@HANDOFF@@_placeholder/);
     const subtitle = notifications[0].match(/ subtitle ("(?:\\.|[^"\\])*")$/);

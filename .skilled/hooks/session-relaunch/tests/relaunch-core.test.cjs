@@ -9,6 +9,7 @@ const { spawn, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const relaunchCore = require('../lib/relaunch-core.cjs');
 const {
   stateDir,
   ensureStateDir,
@@ -31,7 +32,7 @@ const {
   liveKillerPid,
   lockIsExpired,
   readLockState,
-} = require('../lib/relaunch-core.cjs');
+} = relaunchCore;
 
 const SESSION_ID = 'session-test-00000001';
 const LOOP_ID = 'loop-test-00000001';
@@ -783,7 +784,10 @@ test('manualClaimCommand escapes shell-sensitive characters in the handoff path'
 
 test('manualClaimCommand ignores inherited Object properties as runtime names', () => {
   const seed = '"[session-relaunch] claim and continue handoff /tmp/handoff.md"';
-  assert.equal(manualClaimCommand('__proto__', '/tmp/handoff.md'), `skilled-loop __proto__ ${seed}`);
+  assert.equal(
+    manualClaimCommand('__proto__', '/tmp/handoff.md'),
+    `skilled-loop __proto__ ${seed}`,
+  );
   assert.equal(
     manualClaimCommand('constructor', '/tmp/handoff.md'),
     `skilled-loop constructor ${seed}`,
@@ -1137,8 +1141,6 @@ test('manual claim commands balance their parentheses for every spec answer', ()
   }
 });
 
-const relaunchCore = require('../lib/relaunch-core.cjs');
-
 test('shouldRelaunch declines a fresh armed record that names no handoff or no cwd', (t) => {
   createSandbox(t);
   const fresh = { status: 'armed', armedAt: NOW.getTime(), hops: 0 };
@@ -1194,17 +1196,35 @@ test('noteState classifies a note as missing, invalid, open, claimed or done', (
   assert.equal(noteState(sandbox.repoRoot), 'invalid');
 });
 
-test('resolveKillerTarget keeps a preferred pid inside the loop and otherwise walks to the loop child', () => {
+test('resolveKillerTarget keeps a preferred pid inside the loop or walks to its child', () => {
   const { resolveKillerTarget } = relaunchCore;
   // 41 is the hook, 50 its shell, 60 the runtime below loop 100; 70 is a sibling of the loop.
   const table = '41 50\n50 60\n60 100\n100 1\n70 1\n';
-  assert.equal(resolveKillerTarget('100', { preferredPid: '60', pid: 41, processTable: table }), 60);
-  assert.equal(resolveKillerTarget('100', { preferredPid: 50, pid: 41, processTable: table }), 50);
-  assert.equal(resolveKillerTarget('100', { preferredPid: '70', pid: 41, processTable: table }), 60);
-  assert.equal(resolveKillerTarget('100', { preferredPid: 'abc', pid: 41, processTable: table }), 60);
-  assert.equal(resolveKillerTarget('100', { preferredPid: '100', pid: 41, processTable: table }), 60);
+  assert.equal(
+    resolveKillerTarget('100', { preferredPid: '60', pid: 41, processTable: table }),
+    60,
+  );
+  assert.equal(
+    resolveKillerTarget('100', { preferredPid: 50, pid: 41, processTable: table }),
+    50,
+  );
+  assert.equal(
+    resolveKillerTarget('100', { preferredPid: '70', pid: 41, processTable: table }),
+    60,
+  );
+  assert.equal(
+    resolveKillerTarget('100', { preferredPid: 'abc', pid: 41, processTable: table }),
+    60,
+  );
+  assert.equal(
+    resolveKillerTarget('100', { preferredPid: '100', pid: 41, processTable: table }),
+    60,
+  );
   assert.equal(resolveKillerTarget('100', { pid: 41, processTable: table }), 60);
-  assert.equal(resolveKillerTarget('999', { preferredPid: '60', pid: 41, processTable: table }), null);
+  assert.equal(
+    resolveKillerTarget('999', { preferredPid: '60', pid: 41, processTable: table }),
+    null,
+  );
   assert.equal(resolveKillerTarget('loop-id', { pid: 41, processTable: table }), null);
 });
 
@@ -1218,7 +1238,10 @@ test('armableRecord gives every arm path one verdict, ownership before state', (
   assert.deepEqual(armableRecord(mine, caller), { armable: true, reason: 'pending' });
   assert.deepEqual(armableRecord(null, caller), refused('no-record'));
   assert.deepEqual(armableRecord({ ...mine, loopId: 'loop-other' }, caller), refused('other-loop'));
-  assert.deepEqual(armableRecord({ ...mine, sessionId: 'other' }, caller), refused('other-session'));
+  assert.deepEqual(
+    armableRecord({ ...mine, sessionId: 'other' }, caller),
+    refused('other-session'),
+  );
   // A missing session on both sides is no match, so an unnamed payload never arms.
   assert.deepEqual(
     armableRecord({ ...mine, sessionId: undefined }, { ...caller, sessionId: undefined }),
@@ -1232,7 +1255,10 @@ test('armableRecord gives every arm path one verdict, ownership before state', (
   );
   const unnamed = { ...mine };
   delete unnamed.runtime;
-  assert.deepEqual(armableRecord(unnamed, { ...caller, runtime: 'claude' }), { armable: true, reason: 'pending' });
+  assert.deepEqual(
+    armableRecord(unnamed, { ...caller, runtime: 'claude' }),
+    { armable: true, reason: 'pending' },
+  );
   assert.deepEqual(armableRecord(unnamed, caller), refused('other-runtime'));
   for (const status of ['disarmed', 'claimed', 'done', undefined]) {
     assert.deepEqual(armableRecord({ ...mine, status }, caller), refused('not-armable'));
@@ -1249,7 +1275,10 @@ test('armableRecord gives every arm path one verdict, ownership before state', (
 });
 
 test('the core owns the handoff sections and the runtime list as frozen exports', () => {
-  assert.deepEqual(relaunchCore.HANDOFF_SECTIONS, ['Goal', 'Done', 'Remaining work', 'In-flight state']);
+  assert.deepEqual(
+    relaunchCore.HANDOFF_SECTIONS,
+    ['Goal', 'Done', 'Remaining work', 'In-flight state'],
+  );
   assert.equal(Object.isFrozen(relaunchCore.HANDOFF_SECTIONS), true);
   assert.deepEqual(
     relaunchCore.RUNTIMES,
@@ -1298,7 +1327,8 @@ test('manualClaimCommand reads the template from the environment it is given', (
     else process.env.SKILLED_LOOP_MANUAL_TEMPLATE = previousTemplate;
   });
   delete process.env.SKILLED_LOOP_MANUAL_TEMPLATE;
-  const template = 'skilled-loop claude --model x "[session-relaunch] claim and continue handoff @@HANDOFF@@"';
+  const template = 'skilled-loop claude --model x '
+    + '"[session-relaunch] claim and continue handoff @@HANDOFF@@"';
 
   assert.equal(
     manualClaimCommand('claude', handoffPath, '', { SKILLED_LOOP_MANUAL_TEMPLATE: template }),
@@ -1326,13 +1356,25 @@ test('manualTemplateProblem names a template the manual command has to fall back
 test("payloadEventName applies each runtime's rule for a payload that names no event", () => {
   const { payloadEventName } = relaunchCore;
   for (const runtime of ['claude', 'codex', 'hermes']) {
-    assert.equal(payloadEventName({ hook_event_name: 'Stop' }, { runtime, expected: 'Stop' }), 'Stop');
-    assert.equal(payloadEventName({ hook_event_name: 'SessionEnd' }, { runtime, expected: 'Stop' }), null);
+    assert.equal(
+      payloadEventName({ hook_event_name: 'Stop' }, { runtime, expected: 'Stop' }),
+      'Stop',
+    );
+    assert.equal(
+      payloadEventName({ hook_event_name: 'SessionEnd' }, { runtime, expected: 'Stop' }),
+      null,
+    );
   }
   // Claude takes any named event and infers an unnamed one from the payload's shape.
-  assert.equal(payloadEventName({ hook_event_name: 'PostToolUse' }, { runtime: 'claude' }), 'PostToolUse');
+  assert.equal(
+    payloadEventName({ hook_event_name: 'PostToolUse' }, { runtime: 'claude' }),
+    'PostToolUse',
+  );
   assert.equal(payloadEventName({ prompt: 'hi' }, { runtime: 'claude' }), 'UserPromptSubmit');
-  assert.equal(payloadEventName({ hook_event_name: '', prompt: 'hi' }, { runtime: 'claude' }), 'UserPromptSubmit');
+  assert.equal(
+    payloadEventName({ hook_event_name: '', prompt: 'hi' }, { runtime: 'claude' }),
+    'UserPromptSubmit',
+  );
   assert.equal(payloadEventName({}, { runtime: 'claude' }), 'PostToolUse');
   // Hermes takes an omitted name as its event, never a present malformed one.
   const sessionEnd = { runtime: 'hermes', expected: 'on_session_end' };
@@ -1344,7 +1386,7 @@ test("payloadEventName applies each runtime's rule for a payload that names no e
   assert.equal(payloadEventName(null, { runtime: 'codex', expected: 'Stop' }), null);
 });
 
-test('isEntrypoint matches a module run directly or through a linked directory, and nothing else', (t) => {
+test('isEntrypoint matches a directly run or linked module and nothing else', (t) => {
   const { pathToFileURL } = require('node:url');
   const sandbox = createSandbox(t);
   const { isEntrypoint } = relaunchCore;

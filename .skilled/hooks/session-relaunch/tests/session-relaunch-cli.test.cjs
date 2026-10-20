@@ -44,7 +44,8 @@ function createSandbox(t) {
     psPath,
     [
       '#!/bin/sh',
-      'if [ -n "$SESSION_RELAUNCH_TEST_PS_SLEEP" ]; then sleep "$SESSION_RELAUNCH_TEST_PS_SLEEP"; fi',
+      'if [ -n "$SESSION_RELAUNCH_TEST_PS_SLEEP" ]; then'
+        + ' sleep "$SESSION_RELAUNCH_TEST_PS_SLEEP"; fi',
       'if [ -n "$SESSION_RELAUNCH_TEST_RUNTIME_PID" ]; then',
       '  printf "%s %s node\\n" "$SESSION_RELAUNCH_TEST_RUNTIME_PID" "$SKILLED_LOOP_ID"',
       '  printf "%s %s bash\\n" "$SESSION_RELAUNCH_TEST_BUSY_PID" '
@@ -64,6 +65,7 @@ function createSandbox(t) {
     HOME: home,
     XDG_RUNTIME_DIR: xdgRuntimeDir,
     SESSION_RELAUNCH_REPO_ROOT: repoRoot,
+    HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
     PATH: [binDir, process.env.PATH || ''].join(path.delimiter),
     SESSION_RELAUNCH_TEST_PS_OUTPUT: '',
     SESSION_RELAUNCH_TEST_PS_EXIT_CODE: '0',
@@ -284,18 +286,24 @@ test('prepare exits zero under the loop with a Claude process that has no childr
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
   const runtime = await startRuntime(sandbox, 'setInterval(() => {}, 1000);');
-  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const loopPid = 900000;
+  sandbox.env.SKILLED_LOOP_ID = String(loopPid);
   sandbox.env.SKILLED_LOOP_HOPS = '2';
   sandbox.env.SKILLED_LOOP_NAME = 'named-session';
   sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
   sandbox.env.CLAUDE_PID = String(runtime.pid);
+  sandbox.env.SESSION_RELAUNCH_TEST_RUNTIME_PID = String(runtime.pid);
   try {
     const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
     assert.equal(result.status, 0, result.stderr);
-    const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
+    const record = JSON.parse(
+      fs.readFileSync(relaunchPath(sandbox, String(loopPid)), 'utf8'),
+    );
     assert.equal(record.status, 'pending');
     assert.equal(record.hops, 2);
     assert.equal(record.name, 'named-session');
+    const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
+    assert.doesNotMatch(fs.readFileSync(logPath, 'utf8'), /running-work-check-skipped/);
   } finally {
     stopProcessGroup(runtime);
   }
@@ -471,6 +479,19 @@ test('prepare exits two for an invalid handoff note', (t) => {
   assert.match(result.stderr, /handoff status must be open, found claimed/);
 });
 
+test('prepare exits two for an invalid CLAUDE_PID under the loop', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = '900000';
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = 'not-a-pid';
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /CLAUDE_PID must be a positive process id/);
+});
+
 test('prepare exits two when CLAUDE_PID has a live bash child', async (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -542,12 +563,15 @@ test('prepare checks the loop child, not a CLAUDE_PID outside the loop', (t) => 
   const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
 
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox, String(loopPid)), 'utf8')).status, 'pending');
+  assert.equal(
+    JSON.parse(fs.readFileSync(relaunchPath(sandbox, String(loopPid)), 'utf8')).status,
+    'pending',
+  );
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
   assert.doesNotMatch(fs.readFileSync(logPath, 'utf8'), /running-work-check-skipped/);
 });
 
-test('prepare still refuses a live shell child of the loop child when CLAUDE_PID is outside the loop', (t) => {
+test('prepare refuses a live shell child when CLAUDE_PID is outside the loop', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
   sandbox.env.SKILLED_LOOP_ID = '900000';
@@ -566,7 +590,7 @@ test('prepare still refuses a live shell child of the loop child when CLAUDE_PID
 // The wrapper exports a template that repeats the launch options, and drops to the plain
 // command when a carried value holds the placeholder. The command printed in-session takes
 // the same fallback, so it says so on stderr instead of silently losing those options.
-test('prepare warns on stderr when the manual template cannot be filled and prints the plain command', (t) => {
+test('prepare warns and prints the plain command when the template cannot be filled', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox, { specFolder: '' });
   sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
@@ -1406,7 +1430,10 @@ test('consume leaves an empty spec folder unanswered without logging a drop', (t
   const logPath = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log');
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
+  assert.deepEqual(
+    JSON.parse(result.stdout),
+    { handoff: handoffPath, spec_folder: '', note: 'open' },
+  );
   assert.equal(fs.existsSync(logPath), false);
 });
 
@@ -1435,7 +1462,10 @@ test('consume drops a spec folder invalidated after prepare', (t) => {
     : [];
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
+  assert.deepEqual(
+    JSON.parse(result.stdout),
+    { handoff: handoffPath, spec_folder: '', note: 'open' },
+  );
   assert.equal(
     logLines.filter((line) => /\sspec-folder-dropped(?:\s|$)/.test(line)).length,
     1,
@@ -1464,7 +1494,10 @@ test('consume logs a spec folder carried by any frontmatter line', (t) => {
     : [];
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'invalid' });
+  assert.deepEqual(
+    JSON.parse(result.stdout),
+    { handoff: handoffPath, spec_folder: '', note: 'invalid' },
+  );
   assert.equal(
     logLines.filter((line) => /\sspec-folder-dropped(?:\s|$)/.test(line)).length,
     1,
@@ -1536,7 +1569,10 @@ test('consume prints JSON and exits zero when dropped-folder logging fails', (t)
   const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
 
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: handoffPath, spec_folder: '', note: 'open' });
+  assert.deepEqual(
+    JSON.parse(result.stdout),
+    { handoff: handoffPath, spec_folder: '', note: 'open' },
+  );
   assert.equal(fs.existsSync(filePath), false);
 });
 
@@ -1599,7 +1635,10 @@ test('consume reports a missing note and a note that is no longer open', (t) => 
   writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: missingPath });
   let result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
   assert.equal(result.status, 0, result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout), { handoff: missingPath, spec_folder: '', note: 'missing' });
+  assert.deepEqual(
+    JSON.parse(result.stdout),
+    { handoff: missingPath, spec_folder: '', note: 'missing' },
+  );
 
   const claimedPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: SESSION_ID });
   writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', handoff: claimedPath });
