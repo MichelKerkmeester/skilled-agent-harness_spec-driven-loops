@@ -95,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -120,6 +114,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -173,6 +173,12 @@
         "source": "derived"
       },
       {
+        "name": "Version Battery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Review Fixes",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -183,17 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode 2 lists each prompt of a connected MCP server as a command named `<server>:<prompt>`",
     "created_at": "2026-10-20T16:44:31Z",
-    "last_save_at": "2026-10-20T17:30:46.258Z",
+    "last_save_at": "2026-10-20T17:45:33.805Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0796e8b1b76cc2b21922e85f6fdd0c2dbef9f2d87446546d0a650f4abf4d676a",
+    "source_fingerprint": "sha256:747e54251efd5b6bf2aefac73c1aec729afdd5187434cb86a826ee4e9778c7c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "476c473ff2cb01605c676172b95e6274c02618cb25539f1cc54f16d9fb186d59",
-      "plan.md": "72f5772ddb3d604e7788e5a5e1fb12e0ae69aef743dcea2b10007789c29809aa",
-      "tasks.md": "280f8613096966d753df0de1ed28c54a00119437a995d30943cf4964a0e3fddc",
-      "implementation-summary.md": "09fa95a4189053f4b38c85e325ec9fde98462741d394d9d256c2a16c917ac2b6"
+      "spec.md": "98dbbbab64b76183079ae2f6d0e70b40d6ecff5eb094b4f81f94cc85443b4a6e",
+      "plan.md": "9141a60738bd98b15b4e971bd27a7b2f57a66507a7ee175d8c0f023ee929f7a7",
+      "tasks.md": "e344a139937dfb0be9ac8046ea0961681ad0d0b0719d0414dbb62710a89a7654",
+      "implementation-summary.md": "03b46f643034b26b45effefd60334fa409a8bd4bfcfb87fb2168dabe0cfe4d08"
     },
     "last_active_at": null
   }

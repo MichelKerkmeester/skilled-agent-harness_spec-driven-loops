@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands"
-    last_updated_at: "2026-10-20T19:30:00Z"
+    last_updated_at: "2026-10-20T17:45:28Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded test and battery evidence; CI pending"
-    next_safe_action: "Confirm the dual-version battery on CI at the pushed commit"
+    recent_action: "Recorded the CI handoff at the pushed main commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-033-battery-mcp-prompt-commands"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 033-battery-mcp-prompt-commands |
 | **Completed** | 2026-10-20 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -73,7 +73,7 @@ The battery now reads `GET /api/config` once per v2 run. That endpoint answers w
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Every claim was measured before the docs were written. The unit suite moved from 45 to 50 tests (C9 to C13), and five mutations of the new rule were run against it. The battery ran in worktree 173 for both families, three times, with every leg passing. The v2 family then ran nine times over two sessions with `--root` on the main checkout, which produced both listing sizes: four runs listed 43 with `mcp prompts: 1` and the other five listed 42. The isolated nested-worktree read was checked as well. CI has not run yet, so this phase stays In Progress.
+Every claim was measured before the docs were written. The unit suite moved from 45 to 50 tests (C9 to C13), and five mutations of the new rule were run against it. The battery ran in worktree 173 for both families, three times, with every leg passing. The v2 family then ran nine times over two sessions with `--root` on the main checkout, which produced both listing sizes: four runs listed 43 with `mcp prompts: 1` and the other five listed 42. The isolated nested-worktree read was checked as well. CI then passed at the pushed main commit `ec32f8587d`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -107,7 +107,7 @@ Every claim was measured before the docs were written. The unit suite moved from
 | v2 with `--root` on the main checkout, nine runs over two sessions | All PASS; four listed 43 with `mcp prompts: 1`, the other five listed 42 |
 | Isolated nested-worktree read | Reads only its own `.opencode` folder, so no MCP server and no MCP prompt appears; the leg passes |
 | Strict validation | This folder `RESULT: PASSED` |
-| CI at the pushed main commit | Not run yet; the dual-version battery on CI at the pushed main commit remains pending, so this phase is In Progress |
+| CI at the pushed main commit | Passed: all 14 workflows succeeded at `ec32f8587d`, including OpenCode Dual-Version Battery run 39466991017 (v1, v2 and both, every leg PASS), OpenCode Plugin Tests and Spec-Kit Check |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -61,7 +61,7 @@ contextType: "general"
 - [x] T014 Run v2 with `--root` on the main checkout, nine times over two sessions Done: all PASS; four listed 43 with `mcp prompts: 1` and the other five listed 42.
 - [x] T015 Check the isolated read Done: a nested worktree reads only its own `.opencode` folder, so no MCP server and no MCP prompt appears there, and the leg passes.
 - [x] T016 Validate this folder strict Done: `RESULT: PASSED`.
-- [ ] T017 Confirm the CI handoff (`.github/workflows/`) pending: dual-version battery on CI at the pushed main commit
+- [x] T017 Confirm the CI handoff (`.github/workflows/`) Done: all 14 workflows passed at main `ec32f8587d`; OpenCode Dual-Version Battery run 39466991017 passed v1, v2 and both, every leg PASS.
 <!-- /ANCHOR:phase-3 -->
 
 ---

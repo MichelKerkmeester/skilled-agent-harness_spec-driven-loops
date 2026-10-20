@@ -40,7 +40,7 @@ The v2 read gains one call to the private server's `GET /api/config`, whose body
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met (pending: the CI handoff)
+- [x] All acceptance criteria met
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
