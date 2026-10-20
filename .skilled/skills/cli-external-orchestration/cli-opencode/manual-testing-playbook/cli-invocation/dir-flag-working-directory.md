@@ -1,12 +1,12 @@
 ---
 title: "CO-003 -- Working directory pinning via --dir"
 description: "This scenario validates `--dir` for `CO-003`. It focuses on confirming the dispatched session's working directory matches the pinned path so the session loads the correct repository's plugins, skills, and MCP servers."
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # CO-003 -- Working directory pinning via --dir (OpenCode 1 only, OpenCode 2 starts in the directory)
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the directory instead: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) `run` has no `--dir`, so its twin starts in the directory instead: `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-003`.
 

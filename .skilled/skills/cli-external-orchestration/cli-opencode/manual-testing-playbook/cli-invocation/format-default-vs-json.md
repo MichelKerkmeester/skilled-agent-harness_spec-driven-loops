@@ -1,12 +1,12 @@
 ---
 title: "CO-002 -- Output format default vs json"
 description: "This scenario validates `--format default` vs `--format json` for `CO-002`. It focuses on confirming the formatted log and the newline-delimited JSON event stream both run successfully and produce the expected output shape."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # CO-002 -- Output format default vs json
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the model's `<provider>/` prefix first.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-002`.
 

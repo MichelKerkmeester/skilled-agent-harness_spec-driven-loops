@@ -1,12 +1,12 @@
 ---
 title: "CO-001 -- Base non-interactive invocation"
 description: "This scenario validates the canonical opencode run dispatch for `CO-001`. It focuses on confirming the default skill shape (model + agent + variant + format + dir) returns a coherent JSON event stream and exits cleanly."
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # CO-001 -- Base non-interactive invocation
 
-**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `llmgateway/` prefix first, because `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
+**Version note.** These commands target OpenCode 1 (1.19.3). The OpenCode 2 (2.0.32) twin is `cd <repo-root> && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#max --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first; `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-001`.
 

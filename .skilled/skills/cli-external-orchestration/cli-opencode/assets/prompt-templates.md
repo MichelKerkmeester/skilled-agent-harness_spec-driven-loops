@@ -11,7 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -90,7 +90,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt-from-template>" 2>&1
 ```
 
-On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
 
 ---
 

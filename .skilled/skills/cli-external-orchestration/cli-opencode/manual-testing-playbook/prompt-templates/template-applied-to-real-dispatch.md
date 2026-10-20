@@ -1,12 +1,12 @@
 ---
 title: "CO-025 -- Template applied to a real dispatch"
 description: "This scenario validates a template-driven dispatch end-to-end for `CO-025`. It focuses on confirming a chosen template (TEMPLATE 5 — Code review) populated with real placeholders produces a successful opencode run dispatch and the response matches the template's intended output shape."
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # CO-025 -- Template applied to a real dispatch
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the model's `<provider>/` prefix first. On OpenCode 2.0.32, an `As @review:` prompt body is read as plain text, and the session stays with the default agent.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. On OpenCode 2.0.32, an `As @review:` prompt body is read as plain text, and the session stays with the default agent.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-025`.
 

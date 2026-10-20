@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -133,7 +133,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt>" </dev/null
 ```
 
-The two versions do not always list the same providers, so on OpenCode 2 confirm that `opencode2 models --standalone` lists the model's `<provider>/` prefix first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
+The two versions do not always list the same providers, so on OpenCode 2 confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. There, a leading `cd` replaces `--dir` (OpenCode 1 only), and the model id replaces `--variant` (OpenCode 1 only). The side-by-side setup and the capability delta live in [install-and-versions.md](./install-and-versions.md).
 
 If the default provider is not configured, the mode ASKS the operator before substituting. It never silently swaps a model. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §4.
 

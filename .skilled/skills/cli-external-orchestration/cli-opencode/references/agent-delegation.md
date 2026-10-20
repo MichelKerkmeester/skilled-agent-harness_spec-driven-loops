@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -101,7 +101,7 @@ cd /repo && opencode2 run --standalone \
   "<prompt>"
 ```
 
-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
+On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
 
 ### Conductor rules
 

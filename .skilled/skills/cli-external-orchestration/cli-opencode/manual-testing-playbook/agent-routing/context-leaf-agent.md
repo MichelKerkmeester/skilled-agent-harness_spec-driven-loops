@@ -1,12 +1,12 @@
 ---
 title: "CO-014 -- Context LEAF agent (read-only)"
 description: "This scenario validates the context LEAF agent for `CO-014`. It focuses on confirming `--agent context` enforces read-only behavior with no sub-dispatches and no writes."
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # CO-014 -- Context LEAF agent (read-only)
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the model's `<provider>/` prefix first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first. On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-014`.
 

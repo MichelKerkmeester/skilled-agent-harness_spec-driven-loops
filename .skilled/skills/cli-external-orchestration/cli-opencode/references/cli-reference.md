@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -155,7 +155,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt>"
 ```
 
-On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+On OpenCode 1 the working directory rides in `--dir`. On OpenCode 2 it moves into the `cd`. The `--variant max` effort becomes the `#max` suffix on `-m`. A child dispatch adds `--standalone`. On this machine OpenCode 2 lists no `opencode-go` provider, so a v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
 
 | Flag | Default | Reason |
 |------|---------|--------|
@@ -213,7 +213,7 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 
 | State | OPENCODE_GO_OK | Action |
 |-------|----------------|--------|
-| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4.1-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm that `opencode2 models --standalone` lists ids under the `opencode-go/` prefix first) |
+| Default available | 1 | Proceed with `--model opencode-go/deepseek-v4.1-flash --variant max` on OpenCode 1 or `-m opencode-go/deepseek-v4.1-flash#max` on OpenCode 2 (confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first) |
 | Default missing | 0 | **ASK user** before substituting (offer A: openai/gpt-6-sol, B: set up `opencode-go` and retry, C: name a different model). Do not dispatch until configured |
 
 **MiniMax routing** (default = Token Plan, Direct API is the pay-per-token alternative):
@@ -292,7 +292,7 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ## 5. MODEL SELECTION
 
-On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once `opencode2 models --standalone` lists the model's `<provider>/` prefix. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on OpenCode 1; on OpenCode 2, list with `opencode2 models --standalone` and filter for the `<provider>/` prefix.
+On OpenCode 1 the default model is `opencode-go/deepseek-v4.1-flash --variant max` (Go gateway, with flash max-tier-pinned by policy). On OpenCode 2 the same default is `-m opencode-go/deepseek-v4.1-flash#max`, once `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`. Reasoning effort is expressed through the `--variant` flag on OpenCode 1, which maps to a provider-specific effort scale. The model string is always `provider/model-id`. `opencode models <provider>` lists the live options on OpenCode 1; on OpenCode 2, list with `opencode2 models --standalone` and filter for the `<provider>/` prefix.
 
 **Full provider/model roster, the GPT-6 slug grid and the per-provider effort map (`--variant` levels on OpenCode 1, `-m provider/model#<level>` on OpenCode 2) → [providers-and-models.md](./providers-and-models.md).**
 
