@@ -1,0 +1,8 @@
+# mutation row10-m2: SKILL.md's v2 default example switched to another provider
+    actual: '-m llmgateway/deepseek-v4.1-flash#max',
+  -m llmgateway/deepseek-v4.1-flash#max
+  + '-m llmgateway/deepseek-v4.1-flash#max'
+ℹ fail 1
+✖ failing tests:
+ℹ pass 2
+✖ SKILL.md's default invocation names the roster default (1.127667ms)

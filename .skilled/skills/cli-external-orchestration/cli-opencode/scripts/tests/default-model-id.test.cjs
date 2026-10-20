@@ -70,6 +70,19 @@ function read(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
+// OpenCode 1 pins a model with `--model <id>` and OpenCode 2 with `-m <id>` plus an
+// effort suffix (`#max`). The id runs to the next space, so a closing backtick or
+// quote ends it, and the suffix is stripped so both spellings compare equal.
+const MODEL_SELECTOR_PATTERN = /(?<![\w-])(--model|-m)\s+([^\s`'"]+)/g;
+
+function modelSelectors(markdown) {
+  return [...markdown.matchAll(MODEL_SELECTOR_PATTERN)].map((match) => ({
+    flag: match[1],
+    id: match[2].replace(/#.*$/, '').replace(/[`'"]+$/, ''),
+    text: match[0],
+  }));
+}
+
 // The rows under one `### <provider>` heading as cell arrays, with the header and the
 // separator dropped. The next heading of any level ends the block, so a table cannot
 // borrow a default from the provider documented below it.
@@ -143,9 +156,25 @@ test("SKILL.md's default invocation names the roster default", () => {
     section.push(line);
   }
 
-  assert.ok(
-    section.some((line) => line.includes(DEFAULT_ID)),
-    `the Default Invocation section does not name ${DEFAULT_ID}`,
+  // Both dispatch forms ship there as copyable commands, so every selector is a
+  // dispatch an operator may run: one that pins another model is drift, however the
+  // surrounding prose reads.
+  const selectors = modelSelectors(section.join('\n'));
+
+  for (const flag of ['--model', '-m']) {
+    assert.ok(
+      selectors.some((selector) => selector.flag === flag),
+      `the Default Invocation section has no "${flag} <id>" selector`,
+    );
+  }
+
+  const differing = selectors
+    .filter((selector) => selector.id !== DEFAULT_ID)
+    .map((selector) => selector.text);
+  assert.equal(
+    differing.join('\n'),
+    '',
+    `every model selector in the Default Invocation section must pin ${DEFAULT_ID}, but these do not:\n${differing.join('\n')}`,
   );
 });
 

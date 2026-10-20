@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -45,6 +45,8 @@ Canonical package artifacts:
 This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category). 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
 
 Coverage note (2026-04-26): On OpenCode 1, this covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. The OpenCode 2 twins are `-m opencode-go/deepseek-v4.1-flash#max` for `--variant max` and `--server <url>` for `--attach`, while `--share`, `--port` and `--dir` are absent on OpenCode 2 `run` ([install reference](../references/install-and-versions.md)). A v2 reader checks `opencode2 models` first, since OpenCode 2 lists no `opencode-go` provider on this machine, and `llmgateway/deepseek-v4.1-flash` is the route a 2.0.32 run used. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+
+> **Since then:** OpenCode 1.19.3 discontinued session sharing, so the operator-confirmed `--share` flows the coverage note mentions no longer publish anything, and the default model is now `opencode-go/deepseek-v4.1-flash`. See SKILL.md NEVER rule 2 and `references/providers-and-models.md`.
 
 ### Realistic Test Model
 
