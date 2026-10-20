@@ -1,7 +1,7 @@
 ---
 title: "CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-dist-freshness-guard plugin for CO-053. It focuses on the stale compiled dist warning that reaches the system prompt and the plugin log."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2
@@ -45,7 +45,7 @@ Operators run the exact prompt and command sequence for `CO-053` and confirm the
 3. v1 check: read the captured system prompt for both markers and read the effects file for the log line.
 4. v2 run: restore the backup, make the file stale again, then run the runner with `v2`, the same name and prompt.
 5. v2 check: read the captured system prompt for both markers and read the effects file for the log line.
-6. Cleanup: the `EXIT` trap restores `$E` from `BACKUP` even if the run is interrupted; the final line restores it explicitly, removes the temporary backup and clears the trap, then rerun the confirm command until it prints `[]`.
+6. Cleanup: the `EXIT` trap restores `$E` from `BACKUP` even if the run is interrupted; the final line restores it explicitly, and the backup is removed and the trap cleared only after the restored file matches the backup, then rerun the confirm command until it prints `[]`.
 
 ### Exact Command Sequence
 
@@ -68,7 +68,7 @@ bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-pla
 jq -r '.system[]' "$EVIDENCE_DIR/dist-freshness.v2.capture.jsonl" | grep -E 'dist-freshness-guard|STALE DIST WARNING'
 grep -E 'session.created:|inject:' "$EVIDENCE_DIR/dist-freshness.v2.effects.txt"
 
-cp -p "$BACKUP" "$E"; rm -f "$BACKUP"; trap - EXIT
+cp -p "$BACKUP" "$E" && cmp -s "$BACKUP" "$E" && rm -f "$BACKUP" && trap - EXIT || echo "restore failed; backup kept at $BACKUP"
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

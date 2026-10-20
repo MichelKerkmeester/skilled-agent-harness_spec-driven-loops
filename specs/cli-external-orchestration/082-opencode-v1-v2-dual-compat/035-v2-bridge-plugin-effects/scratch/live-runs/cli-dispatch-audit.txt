@@ -1,0 +1,20 @@
+# scenario cli-dispatch-audit, run 2026-10-20T20:56:06Z in worktree 176, HEAD 598bf4842f
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+dispatch-guard v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+dispatch-audit v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+dispatch-guard v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+dispatch-audit v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+["bash","error","Dispatch blocked by cli-opencode hard-rule(s):\n  • [stdin-redirect-required] Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.\n  • [explicit-model-required] Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429')."]
+cli-dispatch-audit.log (new): {"schema_version":1,"ts":"2026-10-20T20:56:34.678Z","runtime":"opencode","sessionID":"ses_ea4e6165affepkpApvhQ4Auiqq","callID":"call_00_YaV6kbLDpTit7XzfEyEO7035","skill":"cli-opencode","command":"opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null","commandTruncated":false,"model":null,"target":null,"durationMs":null,"exitCode":0,"outputBytes":2952}
+.skilled/logs/cli-dispatch-audit.log
+["shell","error","Dispatch blocked by cli-opencode hard-rule(s):\n  • [stdin-redirect-required] Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.\n  • [explicit-model-required] Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429')."]
+cli-dispatch-audit.log: {"schema_version":1,"ts":"2026-10-20T20:57:03.660Z","runtime":"opencode","sessionID":"ses_ea4e59d62ffeSi4EEm90NMqAUW","callID":"call_00_gwaoNrDayeaStrCteouX1665","skill":"cli-opencode","command":"opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null","commandTruncated":false,"model":null,"target":null,"durationMs":null,"exitCode":0,"outputBytes":2952}
+.skilled/logs/cli-dispatch-audit.log
+0
+0
+0
+0
+# block exit 0

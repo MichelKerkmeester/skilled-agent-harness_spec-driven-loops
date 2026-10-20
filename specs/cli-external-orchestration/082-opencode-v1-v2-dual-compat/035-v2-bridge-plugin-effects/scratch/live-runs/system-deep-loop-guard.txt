@@ -1,0 +1,8 @@
+# scenario system-deep-loop-guard, run 2026-10-20T21:30:16Z in worktree 176, HEAD db73b963b3
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+deep-loop-guard v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects
+deep-loop-guard v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/176-v2-bridge-plugin-effects/.skilled/skills/.state/plugin-utilization
+["task","error","system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type=\"deep-research\" (registry modes=\"research\") but the prompt declares mode=\"bogus-mode\""]
+["subagent","error","system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type=\"deep-research\" (registry modes=\"research\") but the prompt declares mode=\"bogus-mode\""]
+# block exit 0

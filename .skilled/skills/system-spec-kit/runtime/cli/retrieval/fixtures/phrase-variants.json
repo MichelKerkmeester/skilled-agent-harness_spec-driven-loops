@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74d2f449555a46eec99f721d0db1b6055368a11aff577ef412e40cc313f4b7d1",
+  "manifestHash": "f52dd78c79988331e67741537ed60fcfe63eb4020c340580545b7508c546e854",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37750,6 +37750,9 @@
     ],
     "doctor env plan": [
       "doctor env plan"
+    ],
+    "doctor env reads env example": [
+      "doctor env reads env example"
     ],
     "doctor env tasks": [
       "doctor env tasks"
@@ -103869,6 +103872,9 @@
     "system spec kit 2 8 3 0": [
       "system-spec-kit 2.8.3.0"
     ],
+    "system spec kit 2 8 4 0": [
+      "system-spec-kit 2.8.4.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -104297,6 +104303,9 @@
     ],
     "system spec kit v2 8 3 0": [
       "system-spec-kit v2.8.3.0"
+    ],
+    "system spec kit v2 8 4 0": [
+      "system-spec-kit v2.8.4.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

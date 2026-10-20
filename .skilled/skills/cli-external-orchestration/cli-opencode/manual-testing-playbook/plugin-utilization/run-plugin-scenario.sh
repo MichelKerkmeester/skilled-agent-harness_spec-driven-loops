@@ -20,7 +20,7 @@
 #
 # Exit Codes:
 #   0 - The run finished; read the files for the verdict
-#   2 - Usage error, a bad RUN_ALARM, an unusable folder, or the capture proxy did not start
+#   2 - Usage error, a bad RUN_ALARM, an unusable or outside-the-checkout folder, or the capture proxy did not start
 set -uo pipefail
 
 if [[ $# -lt 3 || ( "$1" != v1 && "$1" != v2 ) ]]; then
@@ -48,8 +48,28 @@ fi
 MODEL_V1="llmgateway/deepseek-v4.1-flash"
 MODEL_V2="llmgateway/deepseek-v4.1-flash#high"
 echo "running in $ROOT" >&2
+# Evidence must stay inside this checkout, so a run never writes into another tree.
+ROOT_REAL="$(cd "$ROOT" && pwd -P)" || exit 2
+case "$EVID" in /*) ;; *) EVID="$PWD/$EVID" ;; esac
+case "$EVID/" in
+  */../*) echo "EVIDENCE_DIR must not contain ..: $EVID" >&2; exit 2 ;;
+  "$ROOT"/*|"$ROOT_REAL"/*) ;;
+  *) echo "EVIDENCE_DIR must be inside $ROOT: $EVID" >&2; exit 2 ;;
+esac
+# A symlinked folder on the way could point outside the checkout, so check the part that already exists.
+EXISTING="$EVID"
+while [[ ! -d "$EXISTING" ]]; do EXISTING="$(dirname "$EXISTING")"; done
+EXISTING_REAL="$(cd "$EXISTING" && pwd -P)" || exit 2
+case "$EXISTING_REAL/" in
+  "$ROOT_REAL"/*) ;;
+  *) echo "EVIDENCE_DIR resolves outside $ROOT: $EVID" >&2; exit 2 ;;
+esac
 mkdir -p "$EVID" || exit 2
-EVID="$(cd "$EVID" && pwd)" || exit 2
+EVID="$(cd "$EVID" && pwd -P)" || exit 2
+case "$EVID/" in
+  "$ROOT_REAL"/*) ;;
+  *) echo "EVIDENCE_DIR resolves outside $ROOT: $EVID" >&2; exit 2 ;;
+esac
 
 EVENTS="$EVID/$NAME.$VERSION.events.jsonl"
 CAPTURE="$EVID/$NAME.$VERSION.capture.jsonl"

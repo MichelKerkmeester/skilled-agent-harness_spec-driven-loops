@@ -49,7 +49,8 @@
       ".skilled/hooks/session-relaunch/tests/hop-history.test.cjs",
       ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
       ".skilled/commands/doctor/setup.md",
-      ".skilled/hooks/hook-flags.env.example"
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/changelog/skilled/v4.0.0.13.md"
     ],
     "entities": [
       {
@@ -131,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -189,17 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
     "created_at": "2026-10-20T20:08:29Z",
-    "last_save_at": "2026-10-20T21:22:07.191Z",
+    "last_save_at": "2026-10-20T21:45:46.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c02d14133fe627e8f253d5f4fb16621bb64f7ed5bb8b7f8a8b8233fe4a1bccf1",
+    "source_fingerprint": "sha256:aff2ab7814749e9e0117afdf8dcf43436e6bc611a88b51eb27e28f5bb47c4adb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f93fed6d0dff85fe4fbfe6e9ca7f4d1f691fe278ae92c3f154e66c9d18ce6cb3",
+      "spec.md": "0079ea8d345793d0062fa61e0015ea183ed4befd3241299f4591680d87451598",
       "plan.md": "26a82e28d609f59e2d2c911ee4340fae01bc4f1292b0e6f277a164b3c0f32f39",
-      "tasks.md": "38809bcfec04d3b888583b6de2d3afac3b581104b369f6fdd0e319d939e84721",
-      "implementation-summary.md": "0a09cdc85504a39b672e8735ffb5b887b7c7fbfd19fbf84c07c5f017fb425dde"
+      "tasks.md": "bb92a605fa0f38a978713dd9ec28211595279d35d3e7661219e7e1a14dbeada4",
+      "implementation-summary.md": "247ef6537c25ead7348c0c269632bca2fe819e26cd72b0067b1915c49d930738"
     },
     "last_active_at": null
   }

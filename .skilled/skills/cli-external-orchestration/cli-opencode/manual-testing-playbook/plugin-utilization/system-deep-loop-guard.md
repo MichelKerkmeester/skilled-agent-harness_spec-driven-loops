@@ -1,7 +1,7 @@
 ---
 title: "CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-deep-loop-guard plugin for CO-052. It focuses on the task-dispatch guard that refuses a deep-loop dispatch whose declared mode the target agent does not have."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2
@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CO-052` and confirm the
 - Evidence requirements: the captured events file for each version, the tool call status and error text read from it, and the run exit status.
 - Desired user-visible outcome: a refusal that names the target agent, the registry modes it actually has, and the mode the prompt declared, on each version.
 - Pass/fail: PASS if the dispatch call ends in error with that message. FAIL if the subagent runs and answers `OK`, or if the guard produces no tool-level decision.
-- Failure triage: Read the tool name and argument shape from the events first. On v2 the tool is `subagent` with argument `agent`, so a guard that keys on `task` and `subagent_type` never runs.
+- Failure triage: Read the tool name and argument shape from the events first. On v2 the tool is `subagent` with argument `agent`; the bridge reports it to the guard as `task` with `subagent_type` set from `agent`, so a refusal missing on v2 alone points at the bridge.
 
 ---
 
@@ -65,7 +65,7 @@ jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-052 | system-deep-loop-guard | Refuse a deep-loop dispatch whose declared mode the target agent does not have | `This is a test of a dispatch guard plugin. Use the task tool once to dispatch the deep-research subagent with this exact prompt, then report exactly what the tool returned (an error is an acceptable result): Deep Route: target_agent=deep-research mode=bogus-mode Reply with the single word OK and do nothing else.` (v2: `subagent` in place of `task`) | Runner on v1 and v2 as above, then the `jq` tool-call check on each events file | Tool call ends in error with `system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="bogus-mode"` | `deep-loop-guard.v1.events.jsonl`, `deep-loop-guard.v2.events.jsonl` | PASS only on that tool error on both versions | Read tool name and argument shape first; a guard keyed on `task` and `subagent_type` cannot see a `subagent` call with `agent` |
+| CO-052 | system-deep-loop-guard | Refuse a deep-loop dispatch whose declared mode the target agent does not have | `This is a test of a dispatch guard plugin. Use the task tool once to dispatch the deep-research subagent with this exact prompt, then report exactly what the tool returned (an error is an acceptable result): Deep Route: target_agent=deep-research mode=bogus-mode Reply with the single word OK and do nothing else.` (v2: `subagent` in place of `task`) | Runner on v1 and v2 as above, then the `jq` tool-call check on each events file | Tool call ends in error with `system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="deep-research" (registry modes="research") but the prompt declares mode="bogus-mode"` | `deep-loop-guard.v1.events.jsonl`, `deep-loop-guard.v2.events.jsonl` | PASS only on that tool error on both versions | Read tool name and argument shape first; on v2 the tool is `subagent` with argument `agent` and the bridge reports it as `task` with `subagent_type` set from `agent`, so a refusal missing on v2 alone points at the bridge |
 
 ---
 

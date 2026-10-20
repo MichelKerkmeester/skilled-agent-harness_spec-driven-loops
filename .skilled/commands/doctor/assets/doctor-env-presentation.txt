@@ -6,7 +6,7 @@ This file is the source of truth for every user-visible prompt, menu, table, pre
 
 When no selector is passed, first show the live count and the available section headings and variable names, then ask:
 
-    /doctor:env reads the current environment switch reference and reports where each switch is set.
+    /doctor:env reads the environment switch reference and .env.example, and reports where each switch is set.
     Choose one section or variable to inspect, or choose list to print the complete inventory and stop.
 
     [list]
@@ -24,7 +24,7 @@ Accept one listed section, one variable name, list, or cancel. Do not infer a se
 Before handling a selection, show:
 
     Environment Switch Inventory
-    Reference: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+    Reference: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md, plus .env.example for names the reference lacks
     Parsed variables: [unique variable count]
 
     | Section | Variable | Default | Type | Description | Documented source | Class |

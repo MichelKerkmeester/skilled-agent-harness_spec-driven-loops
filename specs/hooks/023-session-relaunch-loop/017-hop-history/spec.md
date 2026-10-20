@@ -101,6 +101,8 @@ Every hop leaves a line the operator can read later in one command or in `/docto
 | Session-relaunch README, tests README, feature catalog entry, root `README.md` | Modify | Docs |
 | v4.0.0.13 changelog, hooks README, bin README, system-spec-kit README and catalog index, the Claude relaunch playbook, the `/doctor:setup` playbook scenario | Modify | Rollup: the hop history and the notice switch in every doc that describes the loop or `/doctor:setup` |
 | `.env.example` | Modify | Every operator-settable variable the code reads, with its default |
+| `/doctor:env` router, workflow and presentation, root README Environment Settings, example-file headers, ENV-REFERENCE, hooks and system-spec-kit READMEs, `/doctor:env` scenarios | Modify | `/doctor:env` sees every `.env.example` setting, and the docs say how to set one locally |
+| `.skilled/changelog/skilled/v4.0.0.13.md`, `system-spec-kit/changelog/v2.8.4.0.md`, `system-spec-kit/SKILL.md` | Modify / Create | Release notes for the hop history and the environment settings work |
 <!-- /ANCHOR:scope -->
 
 ---

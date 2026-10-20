@@ -1,7 +1,7 @@
 ---
 title: "CO-044 -- opencode-goal live utilization on OpenCode 1 and 2"
 description: "This scenario validates opencode-goal for `CO-044`. It focuses on confirming that a live session can set a goal, read its status and see the goal injected into a later request on both OpenCode versions."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CO-044 -- opencode-goal live utilization on OpenCode 1 and 2
@@ -40,32 +40,36 @@ Operators run the exact prompt and command sequence for `CO-044` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: `export OPENCODE_GOAL_STATE_DIR="$(mktemp -d)"` before each version's run so each run has a clean state directory.
+1. Setup: `export OPENCODE_GOAL_STATE_DIR="$(mktemp -d)"` before each version's run so each run has a clean state directory, and install an `EXIT` trap that removes it if the run is interrupted.
 2. v1 run: run the exact prompt through the scenario runner on v1 with `AI_SESSION_CHILD=1` and the state directory exported.
 3. v1 check: read the `opencode_goal` result, list the state directory, grep the state file for `7Q4Z`, grep the capture file for `[active_goal:goal-`, then `rm -rf "$OPENCODE_GOAL_STATE_DIR"`.
 4. v2 run: export a fresh `OPENCODE_GOAL_STATE_DIR="$(mktemp -d)"` and run the same prompt through the scenario runner on v2 with the same environment.
 5. v2 check: repeat all four reads against the v2 evidence and state files, then `rm -rf "$OPENCODE_GOAL_STATE_DIR"`.
-6. Cleanup: each version's state directory is removed right after its check.
+6. Cleanup: each version's state directory is removed right after its check, and the `EXIT` trap removes it if the run is interrupted.
 
 ### Exact Command Sequence
 
 ```bash
 export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 OPENCODE_GOAL_STATE_DIR="$(mktemp -d)" || exit 1; [ -d "$OPENCODE_GOAL_STATE_DIR" ] || exit 1; export OPENCODE_GOAL_STATE_DIR
+trap 'rm -rf "$OPENCODE_GOAL_STATE_DIR"' EXIT
 AI_SESSION_CHILD=1 OPENCODE_GOAL_STATE_DIR="$OPENCODE_GOAL_STATE_DIR" bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 opencode-goal "Call the opencode_goal tool with action 'set' and objective 'Probe goal canary 7Q4Z'. Then call the opencode_goal_status tool. Then reply with the single word DONE."
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/opencode-goal.v1.events.jsonl"
 ls "$OPENCODE_GOAL_STATE_DIR"
 grep -l 7Q4Z "$OPENCODE_GOAL_STATE_DIR"/*.json
 jq -r '.system[]' "$EVIDENCE_DIR/opencode-goal.v1.capture.jsonl" | grep -E '\[active_goal:goal-'
 rm -rf "$OPENCODE_GOAL_STATE_DIR"
+trap - EXIT
 
 OPENCODE_GOAL_STATE_DIR="$(mktemp -d)" || exit 1; [ -d "$OPENCODE_GOAL_STATE_DIR" ] || exit 1; export OPENCODE_GOAL_STATE_DIR
+trap 'rm -rf "$OPENCODE_GOAL_STATE_DIR"' EXIT
 AI_SESSION_CHILD=1 OPENCODE_GOAL_STATE_DIR="$OPENCODE_GOAL_STATE_DIR" bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 opencode-goal "Call the opencode_goal tool with action 'set' and objective 'Probe goal canary 7Q4Z'. Then call the opencode_goal_status tool. Then reply with the single word DONE."
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/opencode-goal.v2.events.jsonl"
 ls "$OPENCODE_GOAL_STATE_DIR"
 grep -l 7Q4Z "$OPENCODE_GOAL_STATE_DIR"/*.json
 jq -r '.system[]' "$EVIDENCE_DIR/opencode-goal.v2.capture.jsonl" | grep -E '\[active_goal:goal-'
 rm -rf "$OPENCODE_GOAL_STATE_DIR"
+trap - EXIT
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

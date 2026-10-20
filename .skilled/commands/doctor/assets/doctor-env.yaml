@@ -26,11 +26,12 @@ operating_mode:
   never_commit: true
 
 # ─────────────────────────────────────────────────────────────────
-# AUTHORITATIVE INVENTORY SOURCE
+# INVENTORY SOURCES
 # ─────────────────────────────────────────────────────────────────
 inventory_source:
   file: ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
-  source_of_truth: "This file is the only source for the inventory. Do not copy its switch list into this workflow or another file."
+  supplement: ".env.example"
+  source_of_truth: "The reference is the primary source and .env.example supplies only the names the reference lacks. Do not copy either switch list into this workflow or another file."
   read_each_invocation: true
   supported_headers:
     modern: "| Variable | Default | Type | Description | Source |"
@@ -41,6 +42,11 @@ inventory_source:
     Extract every shell-style variable identifier from the variable-name cell. A cell may name multiple switches separated by a slash or comma. Preserve the row's heading path and metadata for each extracted name. Deduplicate by exact variable name while retaining all documented occurrences. Report the count of unique variables after expansion and deduplication.
     Before comparing duplicates, read a boolean default by its leading word: ON, true and 1 are one value, OFF, false and 0 are one value, and a trailing parenthetical is ignored.
     If a supported header or nonempty data row is malformed, or duplicate occurrences give one variable conflicting type/default metadata, stop with the presentation contract's safe parse error. Never guess missing metadata or silently omit a malformed switch row. A clean reference with no supported data rows is also a parse error.
+  supplement_extraction: |
+    Then read .env.example at invocation time and add only the variable names the reference does not already document. A reference row always wins over a .env.example line for the same name, and a difference between the two is not a parse error.
+    Walk the file in order. A banner line of the form `# <number>. <TITLE>` starts a section, and a `# --- <label> ---` line starts a subsection under it; use `.env.example > <TITLE> > <label>` as the heading path. A setting line is `NAME=value` or `# NAME=value`, optionally followed by whitespace and `# <description>`. Any other line, including prose that happens to contain an equals sign, is not a setting. NAME must start with a letter and hold only letters, digits and underscores.
+    Map a setting line to: variable name NAME, default the text after `=` (an empty value is `(unset)`), description the trailing comment (empty when there is none), and documented source `.env.example`. Type is boolean when the default is one of true, false, on, off, 0 or 1, or the description says set 1, set true or opt-in; number when the default is numeric; enum when the description lists its choices separated by ` / `, with exactly those choices; string otherwise.
+    Classify every variable in the section whose title starts with CODE MODE as secret: those are provider keys that only Code Mode reads, from .env, so this command never saves them. Count the supplemented names in the unique total.
   output_fields:
     - heading path
     - variable name
@@ -51,7 +57,7 @@ inventory_source:
     - classification
     - read-only source presence
   secret_metadata: |
-    Classify before displaying defaults or reading any current values. If the name ends in a KEY, TOKEN, PASSWORD, SECRET or CREDENTIALS segment, or the description says the value is an API key, an access token, a password, a credential or a secret, classify it as secret. A TOKEN segment followed by THRESHOLD, FLOOR, BUDGET, LIMIT, COUNT, CHARS or VISIBLE counts text tokens, not a credential, so that segment alone does not make the variable secret. Match case-insensitively; treat underscores, hyphens, and spaces as separators in names so compounds such as API_KEY and ACCESS_TOKEN match. When uncertain, classify as secret. For secret rows replace the displayed default with [redacted] and never retrieve or display any current value.
+    Classify before displaying defaults or reading any current values. If the name ends in a KEY, TOKEN, PASSWORD, SECRET or CREDENTIALS segment, or the description says the value is an API key, an access token, a password, a credential or a secret, classify it as secret. A TOKEN segment followed, directly or later in the name, by THRESHOLD, FLOOR, BUDGET, LIMIT, COUNT, CHARS or VISIBLE counts text tokens, not a credential, so that segment alone does not make the variable secret. Match case-insensitively; treat underscores, hyphens, and spaces as separators in names so compounds such as API_KEY and ACCESS_TOKEN match. When uncertain, classify as secret. For secret rows replace the displayed default with [redacted] and never retrieve or display any current value.
   per_invocation_metadata: |
     After secret classification, classify a variable as per-invocation when its section heading is section 5 GIT-HOOK MARKER, or its description/source says it applies to one command, one invocation, one run, a single commit, or a single push. All variables in section 5 are per-invocation, including thresholds. Classify every remaining variable as preference.
   count_policy: "Count unique variable names after multi-name expansion and deduplication; display the count before the tables."
@@ -110,7 +116,7 @@ per_invocation_handling:
 preference_handling:
   behavior: |
     Show the selected variable's current value by source where set, default, type, description, and documented source. Ask for the desired value and validate it against the documented type and any explicit allowed values in the reference. Do not invent enum values or silently coerce input. If the type or allowed values are ambiguous, explain the ambiguity and make no write for that variable.
-    Then ask for a destination. hook-flags.env is eligible only when the reference and its actual reader confirm this variable is one of the hook kill-switches or validation off-switches consumed from that file. Verify eligibility from the existing hook examples/readers; do not treat a similarly named variable as eligible. The Claude settings destination applies only to Claude Code. The shell-profile option prints an export line for the operator to copy; this command never writes a shell profile. Never offer .env as a preference destination.
+    Then ask for a destination. hook-flags.env is eligible only when the variable's actual reader reads it from that file: the hook kill-switches, the validation off-switches, the Jev feature switches, and any other variable whose reference row says it is also read from .skilled/hooks/hook-flags.env, such as SESSION_RELAUNCH_NOTIFY_HOPS. Verify eligibility from the existing hook examples/readers; do not treat a similarly named variable as eligible. The Claude settings destination applies only to Claude Code. The shell-profile option prints an export line for the operator to copy; this command never writes a shell profile. Never offer .env as a preference destination.
     If process environment already sets the variable, explain that it can override the selected file destination in the current process. Generate the exact target line with safe quoting: NAME=value for hook-flags.env, one valid JSON string-valued env property inside the Claude settings env object, or export NAME=value for display only. Treat process environment values as strings even when the documented preference type is boolean or numeric. Do not add unrelated lines or rewrite unrelated configuration.
     Show destination, exact lines, and whether the destination file already exists. For a missing hook-flags.env, preview the initialization from .skilled/hooks/hook-flags.env.example and the resulting selected assignment. Secret assignments in the template must remain blank/redacted; never display or copy a secret value. Ask for the explicit confirmation defined by the presentation asset. Only an unambiguous yes authorizes a file write. A no, cancel, ambiguous response, or interruption makes no write and returns the cancelled status. In dry-run, show the identical destination and exact proposed lines, skip confirmation for a real write, make no write, and continue to STATUS=OK with a dry-run note.
     After an approved hook-flags.env write, read that file again and show only the changed assignment line. After an approved Claude settings write, parse the JSON again and show only the changed env property line. Do not echo other file contents. If the write or re-read fails, stop with a sanitized failure status and no values in the error. For the shell-profile option, print only the exact export line and confirm that no file was written.
