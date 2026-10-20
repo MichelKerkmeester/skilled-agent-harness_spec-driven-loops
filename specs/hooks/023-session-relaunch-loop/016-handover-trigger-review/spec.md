@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/172-v4-0-0-13-changelog-and-handover-review` |
 | **Parent Spec** | ../spec.md |

@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,8 +44,15 @@
       "implementation-summary.md",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
       ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".cursor/commands/speckit-handoff.md"
     ],
     "entities": [
       {
@@ -91,6 +98,42 @@
         "source": "derived"
       },
       {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
@@ -103,13 +146,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "speckit-handoff.md",
+        "kind": "doc",
+        "path": ".cursor/commands/speckit-handoff.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -139,6 +182,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -149,53 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Part",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Review",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
     "created_at": "2026-10-20T16:40:55Z",
-    "last_save_at": "2026-10-20T16:44:24.761Z",
+    "last_save_at": "2026-10-20T18:23:03.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb06016966c95d9f96e9528b2679e469e4b43e3e94ae016c07c4eac373fe2018",
+    "source_fingerprint": "sha256:5716862517439e1fd1650da9eabf0913cae380235ca473d6e8058de2c6b9618d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0e4efea0baa7b6801b1d949daecf9c4a1dca0278ec09a2fb691067bb079ff129",
+      "spec.md": "adc805c1e3a8895fe915c73528cce3569a36b7a904603fc40bbad5b333c5ccdf",
       "plan.md": "c7a6d1f3f46b55f0bb38ccc5e4f91a406e2f754bf84630c16546397e8173e694",
-      "tasks.md": "1c69603a4bce84c002923d7f0f2f1daaa90a9946ee78eb4666bde7b287241cc8",
-      "implementation-summary.md": "5623b33dfe3e887072bf15fad4e04d8c46be2ca594517d85dea8ad9e6b85cc6d"
+      "tasks.md": "53f2c43f46a92d26039d903302e91cc47c738afdf6f8ce2136d4fc0e962c5fb5",
+      "implementation-summary.md": "bfa22cedb232ef863b5dc6bfbe20a78044432ab99e9a3d9eb2fa02358747b6a7"
     },
     "last_active_at": null
   }
