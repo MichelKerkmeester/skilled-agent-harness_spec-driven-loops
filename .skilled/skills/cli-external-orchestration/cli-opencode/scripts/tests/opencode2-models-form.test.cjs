@@ -117,6 +117,11 @@ const INLINE_CODE_SPAN_PATTERN = /`([^`]*)`/g;
 const V1_COMMAND_PATTERN = /(?<![\w-])opencode\s+models\b/g;
 const VERSION_LABEL_PATTERN = /OpenCode 1\b|\bv1\b|1\.19/;
 
+// A prose line can label one command and mention another, so a label only covers the
+// clause it sits in. The line is masked before the split, because a `.` or `|` inside
+// backticks belongs to the command rather than to the sentence or table around it.
+const CLAUSE_BOUNDARY_PATTERN = /\||;|[.!?](?=\s|$)|, or | — /g;
+
 // The remainder ends where `commandsIn` ends it, so a pipeline, redirect, separator or
 // the closing backtick of an inline span is not read as part of the command.
 function v1CommandProblems(source, lineNumber, labelled) {
@@ -131,6 +136,22 @@ function v1CommandProblems(source, lineNumber, labelled) {
   }
 
   return offenders;
+}
+
+// Clause ranges are measured on a copy whose inline code spans are replaced by
+// boundary-free placeholders of the same length, so a command is never cut in two.
+function clauseRanges(line) {
+  const masked = line.replace(INLINE_CODE_SPAN_PATTERN, (span) => 'x'.repeat(span.length));
+  const ranges = [];
+  let start = 0;
+
+  for (const boundary of masked.matchAll(CLAUSE_BOUNDARY_PATTERN)) {
+    ranges.push({ start, end: boundary.index });
+    start = boundary.index + boundary[0].length;
+  }
+
+  ranges.push({ start, end: line.length });
+  return ranges;
 }
 
 function unversionedV1Forms(markdown) {
@@ -153,8 +174,12 @@ function unversionedV1Forms(markdown) {
       continue;
     }
 
-    const labelled = VERSION_LABEL_PATTERN.test(line);
+    const clauses = clauseRanges(line);
     for (const span of line.matchAll(INLINE_CODE_SPAN_PATTERN)) {
+      const clause = clauses.find(
+        (range) => span.index >= range.start && span.index < range.end,
+      );
+      const labelled = VERSION_LABEL_PATTERN.test(line.slice(clause.start, clause.end));
       offenders.push(...v1CommandProblems(span[1], lineNumber, labelled));
     }
   }
@@ -242,7 +267,7 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
   );
 });
 
-test('unversionedV1Forms flags every opencode models command without a version label', () => {
+test('unversionedV1Forms flags only unlabelled forms OpenCode 2 would also run', () => {
   const flagged = (line) => unversionedV1Forms(line).length;
 
   assert.equal(
@@ -281,6 +306,23 @@ test('unversionedV1Forms flags every opencode models command without a version l
     flagged('Use `opencode models <provider>` or `opencode2 models --standalone`.'),
     1,
     'a v2 form beside the v1 form must not label it',
+  );
+
+  const commaOr = unversionedV1Forms(
+    'Use `opencode models llmgateway` on OpenCode 1, or `opencode models cline-pass` for Cline.',
+  );
+  assert.equal(commaOr.length, 1, 'a label in another clause must not cover this command');
+  assert.equal(commaOr[0].text, 'opencode models cline-pass', 'the unlabelled command is the offender');
+
+  assert.equal(
+    flagged('| `opencode models llmgateway` on OpenCode 1 | `opencode models cline-pass` |'),
+    1,
+    'a label in another table cell must not cover this command',
+  );
+  assert.equal(
+    flagged('Run `opencode models llmgateway` (OpenCode 1; v2 has no argument).'),
+    0,
+    'a label before a boundary in the same clause must still clear the command',
   );
 });
 

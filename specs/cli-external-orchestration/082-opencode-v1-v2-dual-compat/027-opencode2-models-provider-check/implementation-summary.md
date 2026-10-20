@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Every documented OpenCode 2 provider check now lists models with --standalone and filters for the provider prefix, so it answers correctly and never asks the shared service; a doc scan test in the battery job holds it."
+description: "Every documented OpenCode 2 provider check now lists models with --standalone and filters for the provider prefix (some short notes only say to confirm the provider in the listing), so it answers correctly and never asks the shared service; a doc scan test in the battery job holds it."
 trigger_phrases:
   - "opencode2 models provider check implementation summary"
 importance_tier: "normal"
@@ -8,19 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/027-opencode2-models-provider-check"
-    last_updated_at: "2026-10-20T12:54:02Z"
+    last_updated_at: "2026-10-20T13:05:31Z"
     last_updated_by: "generate-context"
-    recent_action: "Applied the round-4 fixes; 13 of 13 cli-opencode tests pass"
-    next_safe_action: "Run Luna review round 5, then merge main and push"
+    recent_action: "Applied the round-5 fixes; 13 of 13 cli-opencode tests pass"
+    next_safe_action: "Run Luna review round 6, the last round, then merge main and push"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs"
-      - ".github/workflows/opencode-dual-version.yml"
+      - ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-027-opencode2-models-provider-check"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +47,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The OpenCode 2 provider check in the cli-opencode docs never worked. 2.0.32's `models` takes no provider argument, so `opencode2 models llmgateway` exits 1 even though `llmgateway` is configured, and the bare form the other docs quoted asks the shared background service. Every current doc now lists with `opencode2 models --standalone` and filters for the `<provider>/` prefix.
+The OpenCode 2 provider check in the cli-opencode docs never worked. 2.0.32's `models` takes no provider argument, so `opencode2 models llmgateway` exits 1 even though `llmgateway` is configured, and the bare form the other docs quoted asks the shared background service. Every current doc now quotes `opencode2 models --standalone`, and every provider check, in the pre-flight and in the provider-check sentences, filters for the `<provider>/` prefix. Some shorter notes still say only to confirm the provider in the listing (Known Limitations).
 
 ### Phase 27: opencode2-models-provider-check
 
@@ -101,7 +101,8 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 | Baseline cli-opencode tests | 5 of 5 pass (`scratch/baseline-cli-opencode-tests.txt`) |
 | cli-opencode tests after | 13 of 13 pass |
 | New test against main's docs | 2 of 4 fail, naming 49 sites, the 49 the baseline listed (`scratch/mutation/m0-old-docs.txt`) |
-| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, not joining backslash continuations fails 1, filtering the default's variable for `^llmgateway/` fails 1, never accepting a version label fails 2, an OpenCode 2 block without its `llmgateway` check fails 1, a single-space binary pattern fails 1, unlabelling the OpenCode 1 block fails 1, commenting out the OpenCode 2 `llmgateway` check fails 1, and deleting the Hermes copy fails 2 (`scratch/mutation/m1-*` to `m16-*`) |
+| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, not joining backslash continuations fails 1, filtering the default's variable for `^llmgateway/` fails 1, never accepting a version label fails 2, an OpenCode 2 block without its `llmgateway` check fails 1, a single-space binary pattern fails 1, unlabelling the OpenCode 1 block fails 1, commenting out the OpenCode 2 `llmgateway` check fails 1, deleting the Hermes copy fails 2, and letting a label cover its whole line again fails 1 (`scratch/mutation/m1-*` to `m18-*`) |
+| Test against the round-4 docs | 1 of 8 fails: six commands whose only label sat in another clause of their line (`scratch/mutation/m17-round4-docs.txt`) |
 | Test against the round-3 docs | 1 of 8 fails: seven `opencode models` commands without an OpenCode 1 label (`scratch/mutation/m14-round3-docs.txt`) |
 | Test against the round-2 docs | 2 of 8 fail: the one mixed pre-flight block and the unlabelled `SKILL.md` and `README.md` forms (`scratch/mutation/m10-round2-docs.txt`) |
 | Prose rule against the docs before its labels | 1 of 7 fails (`scratch/mutation/m8-unlabelled-v1-docs.txt`) |
@@ -116,7 +117,7 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 ## Known Limitations
 
 1. **Many v2 sentences say "confirm the provider in the listing" without naming the prefix.** About 25 sites, mostly the playbook's version notes, tell a v2 reader to confirm a provider in `opencode2 models --standalone` without saying to look for the `<provider>/` prefix. The command is right and runs on a private server; the wording could be sharper. Recorded as a follow-up from the final review round.
-2. **A version label is read per line.** The test accepts an `opencode models` command when its own line, or the first line of its fenced block, says OpenCode 1. A line that labels one command and carries a second, unlabelled one passes.
+2. **A version label is read per clause in prose and per line in fenced blocks.** In prose the label must sit in the command's clause (split at table cells, `;`, sentence ends, `, or ` and em dashes); in a fenced block it may sit on the command's line or the block's first line. A clause that labels one command and carries a second unlabelled one passes. A prose form the clause scan cannot see is caught only by review.
 <!-- /ANCHOR:limitations -->
 
 ---

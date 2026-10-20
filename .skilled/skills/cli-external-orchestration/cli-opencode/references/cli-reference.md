@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -81,7 +81,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `opencode debug` | Debugging and troubleshooting tools | YES (for `debug skill` and `debug agent` listings) |
 | `opencode mcp` | Manage MCP server registrations | No |
 | `opencode providers` (alias `auth`) | Manage AI providers and credentials | No (operator-driven setup) |
-| `opencode models [provider]` | List available models (OpenCode 1; on OpenCode 2 `opencode2 models --standalone`, which takes no provider argument) | YES (for capability discovery) |
+| `opencode models [provider]` on OpenCode 1 | List available models (OpenCode 1; on OpenCode 2 `opencode2 models --standalone`, which takes no provider argument) | YES (for capability discovery) |
 | `opencode session` | Manage sessions | No (state inspection only) |
 | `opencode export [sessionID]` | Export session data as JSON | YES (for memory handback flows) |
 | `opencode stats` | Token and cost statistics | No |
@@ -251,7 +251,7 @@ opencode auth login          # → provider llmgateway; model llmgateway/mimo-v2
 opencode auth login          # → provider zai-coding-plan; model zai-coding-plan/glm-5.2
 ```
 
-> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan`. Confirm live LLM Gateway slugs with `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
+> Do not mix region endpoints (international `minimax.io` vs China `minimaxi.com`). Confirm live model ids with `opencode models minimax-coding-plan` on OpenCode 1 (OpenCode 2 lists no minimax provider). Confirm live LLM Gateway slugs with `opencode models llmgateway` on OpenCode 1, or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2.
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 

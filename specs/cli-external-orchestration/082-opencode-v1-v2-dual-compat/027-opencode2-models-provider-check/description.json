@@ -6,18 +6,19 @@
     "phase",
     "opencode2-models-provider-check"
   ],
-  "lastUpdated": "2026-10-20T12:54:02.405Z",
+  "lastUpdated": "2026-10-20T13:05:31.097Z",
   "specId": "027",
   "folderSlug": "opencode2-models-provider-check",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 4,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "20-10-26_13-00__every-documented-opencode-2-provider-check-now.md",
     "20-10-26_13-24__round-2-fixes-every-opencode-models-form-opencode.md",
     "20-10-26_13-40__round-3-fixes-the-pre-flight-is-split-into-an.md",
-    "20-10-26_13-54__round-4-fixes-every-opencode-models-command-names.md"
+    "20-10-26_13-54__round-4-fixes-every-opencode-models-command-names.md",
+    "20-10-26_14-05__round-5-fixes-the-version-label-is-scoped-to-the.md"
   ]
 }

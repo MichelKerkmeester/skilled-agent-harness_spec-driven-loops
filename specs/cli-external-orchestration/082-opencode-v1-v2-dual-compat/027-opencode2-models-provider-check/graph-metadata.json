@@ -44,6 +44,7 @@
       ".github/workflows/opencode-dual-version.yml",
       "scratch/baseline-cli-opencode-tests.txt",
       "scratch/mutation/m0-old-docs.txt",
+      "scratch/mutation/m17-round4-docs.txt",
       "scratch/mutation/m14-round3-docs.txt",
       "scratch/mutation/m10-round2-docs.txt",
       "scratch/mutation/m8-unlabelled-v1-docs.txt",
@@ -102,6 +103,12 @@
         "name": "m0-old-docs.txt",
         "kind": "file",
         "path": "scratch/mutation/m0-old-docs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "m17-round4-docs.txt",
+        "kind": "file",
+        "path": "scratch/mutation/m17-round4-docs.txt",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On OpenCode 2.0.32, `models` takes no positional argument: `opencode2 models opencode-go` exits 1 with `Unexpected positional argument: \"opencode-go\"` (`scratch/v2-positional.txt`)",
     "created_at": "2026-10-20T11:51:31Z",
-    "last_save_at": "2026-10-20T12:54:02.405Z",
+    "last_save_at": "2026-10-20T13:05:31.097Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a0f38f80dc70037d4f3453b63ce2f5efd3e522505f55297c7881828ff5031b7f",
+    "source_fingerprint": "sha256:85290e55f66c5835d84d9604ef065fd3541079ce28bf38ecc9c676443e31b334",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4ada0a8b28d1cc3ffa7a09f7ad1696df5058df6692be026c16dc5e8203f98fa4",
       "plan.md": "6815e62991ed2650211c4d3b84b51335b091828a954917ba5f4e2a4c000e119b",
       "tasks.md": "8dda807b1ba0da3ee01f4f50926d631ccfa55a82f170866fd41790c48e7bc049",
-      "implementation-summary.md": "55853bdcddf3b8a23c41c602ad8dd7ee051cf403506491aca8639054b91362dd"
+      "implementation-summary.md": "8b1c28bcce6d710bc84a606e0e706510d9cedf70700bb806601d5a0eb7d5737b"
     },
     "last_active_at": null
   }
