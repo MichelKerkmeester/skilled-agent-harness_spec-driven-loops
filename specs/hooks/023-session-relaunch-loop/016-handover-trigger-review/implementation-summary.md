@@ -95,6 +95,8 @@ Part A landed in `33a68750b1`. The review ran through `fanout-run.cjs` with one 
 | No violation self-detection block | `sk-create-command/SKILL.md:244` limits it to commands with blocking phases, and the handoff command has none |
 | The P0 became a doc fix, not an installer | The supported linked setup already links the runtime folders and hops live. A bootstrap would add surface no current setup needs |
 | The killer spawn finding was rejected | The next Stop already re-arms an armed record whose killer is gone, and README documents it |
+| The template's self-detection rule now names commands with blocking phases | `command-template.md` said every workflow command needs the block, which contradicted `SKILL.md`. It now says "Every workflow command with blocking phases MUST include:" |
+| `generate-command-routers.cjs` accepts `--check` | Its header and the sk-create-command docs name `--check`, but the parser rejected it with exit 2. It now accepts `--check`, keeps the check as the default and refuses `--check` with `--write` |
 | The timeout fence only treats an armed record with a new `armedAt` as superseded | A same-note record re-prepared to pending still needs its timeout notice, which an existing test guards |
 <!-- /ANCHOR:decisions -->
 
@@ -113,6 +115,7 @@ Part A landed in `33a68750b1`. The review ran through `fanout-run.cjs` with one 
 | sk-code drift guards | 4 of 4 PASS |
 | `validate_document.py` on every touched doc | 0 issues |
 | `hvr_scan.py` on touched docs | 0 hard blockers |
+| `typo-flags.vitest.ts` with the two new router-flag cases | 34 of 34. The `--check` case failed before the fix |
 | Live hops from AI Systems through the shim | Claude, Pi, OpenCode, Codex and Hermes each relaunched with `reason=ready`, and all five notes reached `done` |
 <!-- /ANCHOR:verification -->
 
@@ -123,8 +126,7 @@ Part A landed in `33a68750b1`. The review ran through `fanout-run.cjs` with one 
 
 1. **Hermes nudges one turn late.** Its `pre_llm_call` fires once per user turn, so a fill crossed during a turn is acted on at the next one.
 2. **A receiver can still ignore the seed.** The OpenCode receiver ran `prepare` on its claimed note even though the seed says not to. The CLI refused it, and it completed after a follow-up prompt.
-3. **The violation self-detection rule is inconsistent across sk-create-command.** `command-template.md:462` contradicts `SKILL.md:244`. The proposed one-line amendment is not applied here.
-4. **Cursor's name was not checked in a live palette.** It follows Cursor's documented file-derived naming.
+3. **Cursor's name was not checked in a live palette.** It follows Cursor's documented file-derived naming.
 <!-- /ANCHOR:limitations -->
 
 ---

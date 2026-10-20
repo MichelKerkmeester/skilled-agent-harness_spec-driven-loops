@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
     "created_at": "2026-10-20T16:40:55Z",
-    "last_save_at": "2026-10-20T18:23:03.941Z",
+    "last_save_at": "2026-10-20T18:41:53.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5716862517439e1fd1650da9eabf0913cae380235ca473d6e8058de2c6b9618d",
+    "source_fingerprint": "sha256:391a59bd944fd2ee039db9533dec0e9cbece1d47163ecb3204428c6f776c9f22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "adc805c1e3a8895fe915c73528cce3569a36b7a904603fc40bbad5b333c5ccdf",
       "plan.md": "c7a6d1f3f46b55f0bb38ccc5e4f91a406e2f754bf84630c16546397e8173e694",
       "tasks.md": "53f2c43f46a92d26039d903302e91cc47c738afdf6f8ce2136d4fc0e962c5fb5",
-      "implementation-summary.md": "bfa22cedb232ef863b5dc6bfbe20a78044432ab99e9a3d9eb2fa02358747b6a7"
+      "implementation-summary.md": "03c6bebaf5e32a126260342ea9d87893ebc38c157a4aeab0a90f4d1e44861746"
     },
     "last_active_at": null
   }
