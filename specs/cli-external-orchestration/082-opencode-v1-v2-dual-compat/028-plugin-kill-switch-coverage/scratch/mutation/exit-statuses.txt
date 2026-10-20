@@ -5,3 +5,4 @@ after the env-isolation fix (old code / new code)
 speckit-completion test: 1 / 0
 sk-vision plugin test: 1 / 0
 new code with inherited switches set: completion 0, sk-vision 0
+switch file disabling sk-vision, cached before the block runs: failing cases with the old fixture 2, with the cache reset 0
