@@ -1362,6 +1362,74 @@ test('killer timeout leaves a newer armed handoff to the killer that owns it', a
   }
 });
 
+test('killer timeout leaves a re-armed record for the same handoff alone', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff-a.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+  const watchedArmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+  const transcriptPath = createTranscript(sandbox);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(transcriptPath, now, now);
+  }, 50);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    const timeout = main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--transcript', transcriptPath,
+      '--idle-ms', '200',
+      '--timeout-ms', '700',
+    ], sandbox.env);
+
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    core.preparePending({
+      loopId,
+      handoffPath,
+      sessionId: 'session-killer-0001',
+      runtime: 'claude',
+      name: null,
+      cwd: sandbox.repoRoot,
+      hops: 0,
+      env: sandbox.env,
+    });
+    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env });
+    const rearmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+    assert.notEqual(rearmedAt, watchedArmedAt);
+    await timeout;
+
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'armed', 'the re-armed record must outlive the stale timeout');
+    assert.equal(record.armedAt, rearmedAt);
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-timeout-superseded/);
+    assert.doesNotMatch(killerLog, /^\S+ killer-timeout /m);
+    assert.equal(notifications.length, 0);
+  } finally {
+    clearInterval(touchTimer);
+    childProcess.spawnSync = realSpawnSync;
+    killChild(target);
+  }
+});
+
 test('killer records a timeout when the transcript vanishes while it waits', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);

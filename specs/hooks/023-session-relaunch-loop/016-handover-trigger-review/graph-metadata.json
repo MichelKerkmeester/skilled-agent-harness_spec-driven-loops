@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/016-handover-trigger-review",
+  "spec_folder": "hooks/023-session-relaunch-loop/016-handover-trigger-review",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "handover trigger review",
+      "phase 16 handover trigger review",
+      "speckit handoff command template",
+      "handover fires every time",
+      "handover trigger review plan",
+      "handover trigger review tasks",
+      "handover trigger review acceptance criteria",
+      "handover trigger review implementation summary"
+    ],
+    "key_topics": [
+      "handover",
+      "trigger",
+      "review",
+      "phase",
+      "speckit",
+      "handoff",
+      "command",
+      "template",
+      "fires",
+      "every",
+      "time",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".cursor/commands/speckit-handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-handoff.md",
+        "kind": "doc",
+        "path": ".cursor/commands/speckit-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/speckit:handoff` command doc used a section name the command template does not approve, \"RECEIVING A HANDOFF\"",
+    "created_at": "2026-10-20T16:40:55Z",
+    "last_save_at": "2026-10-20T18:41:53.431Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:391a59bd944fd2ee039db9533dec0e9cbece1d47163ecb3204428c6f776c9f22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "adc805c1e3a8895fe915c73528cce3569a36b7a904603fc40bbad5b333c5ccdf",
+      "plan.md": "c7a6d1f3f46b55f0bb38ccc5e4f91a406e2f754bf84630c16546397e8173e694",
+      "tasks.md": "53f2c43f46a92d26039d903302e91cc47c738afdf6f8ce2136d4fc0e962c5fb5",
+      "implementation-summary.md": "03c6bebaf5e32a126260342ea9d87893ebc38c157a4aeab0a90f4d1e44861746"
+    },
+    "last_active_at": null
+  }
+}

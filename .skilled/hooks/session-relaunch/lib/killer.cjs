@@ -479,11 +479,15 @@ function specFolderFromHandoff(handoffPath) {
 
 function recordTimeout(options, environment, record) {
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
-  // A later prepare can arm a different note while this killer waits. That note
-  // still needs its own killer, so the stale snapshot must not disarm or notify for it.
+  // A later prepare can arm a different note, or re-arm the same one, while this killer
+  // waits. That record still needs its own killer, so the stale snapshot must not disarm
+  // or notify for it. A re-arm keeps the path but always stamps a new armedAt.
   const current = core.readRelaunchFile(options.loopId, environment);
   const currentHandoff = typeof current?.handoff === 'string' ? current.handoff : '';
-  if (currentHandoff !== handoffPath) {
+  if (
+    currentHandoff !== handoffPath
+    || (current?.status === 'armed' && current.armedAt !== record?.armedAt)
+  ) {
     log('killer-timeout-superseded', environment, {
       watched: handoffPath,
       current: currentHandoff,
@@ -499,6 +503,7 @@ function recordTimeout(options, environment, record) {
       reason: 'killer-timeout',
       expectedStatus: 'armed',
       expectedHandoff: handoffPath,
+      expectedArmedAt: record.armedAt,
       env: environment,
     });
   }

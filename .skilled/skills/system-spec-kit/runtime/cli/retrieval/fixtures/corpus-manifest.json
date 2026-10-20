@@ -1,5 +1,5 @@
 {
-  "corpusHash": "822754cc12dab96376b6064acb744c0b13414f46fc75738fe07c044a5c4d3dd4",
+  "corpusHash": "62ae3371d015d3d8d26696e7bb373bfe5bc99a68426f4624f6a06cda65fe0e55",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25419,
+  "includedPathCount": 25438,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -77,6 +77,7 @@
     ".skilled/changelog/skilled/v4.0.0.10.md",
     ".skilled/changelog/skilled/v4.0.0.11.md",
     ".skilled/changelog/skilled/v4.0.0.12.md",
+    ".skilled/changelog/skilled/v4.0.0.13.md",
     ".skilled/changelog/skilled/v4.0.0.2.md",
     ".skilled/changelog/skilled/v4.0.0.3.md",
     ".skilled/changelog/skilled/v4.0.0.4.md",
@@ -8958,6 +8959,14 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -10323,6 +10332,16 @@
     "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/plan.md",
     "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/spec.md",
     "specs/hooks/023-session-relaunch-loop/014-handover-docs-promotion/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/plan.md",
+    "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/spec.md",
+    "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/plan.md",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/spec.md",
+    "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -10346,8 +10365,8 @@
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/review-report.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/review-report.md",
-    "specs/hooks/023-session-relaunch-loop/review/fanout-attribution.md",
-    "specs/hooks/023-session-relaunch-loop/review/review-report.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/fanout-attribution.md",
+    "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md",
     "specs/hooks/023-session-relaunch-loop/spec.md",
     "specs/hooks/024-dispatch-adapter-test-repair/acceptance-criteria.md",
     "specs/hooks/024-dispatch-adapter-test-repair/implementation-summary.md",
@@ -25450,7 +25469,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a451e3035fac08663a22dcb014f0e6a785e71698c0173c324198ec26a5f7251c",
+  "manifestHash": "03791ab41b9932f27b8dc1672d99fbf1fda581a613d7597075764c161649f46e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26537,6 +26556,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
       "reason": "excluded directory"
     },
@@ -27313,11 +27340,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/016-handover-trigger-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks/023-session-relaunch-loop/research/lineages",
       "reason": "excluded directory"
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261019T144809Z/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/lineages",
       "reason": "excluded directory"
     },
     {

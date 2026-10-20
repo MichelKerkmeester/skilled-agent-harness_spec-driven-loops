@@ -129,6 +129,19 @@ describe('typo-proof CLI flag handling', () => {
     expect(result.output).toContain('--bogus-xyz');
   });
 
+  it('generate-command-routers.cjs accepts its documented --check flag', () => {
+    const result = runNode(path.join(CLI, 'codex', 'generate-command-routers.cjs'), ['--check']);
+
+    expect(result.status).toBe(0);
+    expect(result.output).toContain('command-router drift check');
+  });
+
+  it('generate-command-routers.cjs rejects --check together with --write', () => {
+    const result = runNode(path.join(CLI, 'codex', 'generate-command-routers.cjs'), ['--check', '--write']);
+
+    expect(result.status).toBe(2);
+  });
+
   it('dist-freshness.cjs exits 1 when check detects an unknown package', () => {
     const result = runNode(path.join(CLI, 'lib', 'dist-freshness.cjs'), [
       'check',

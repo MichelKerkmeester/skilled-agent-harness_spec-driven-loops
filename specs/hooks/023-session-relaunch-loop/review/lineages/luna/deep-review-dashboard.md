@@ -16,13 +16,13 @@ Reducer-generated observability surface for the active review packet.
 <!-- ANCHOR:status -->
 ## 2. STATUS
 - Review Target: specs/hooks/023-session-relaunch-loop (spec-folder)
-- Started: 2026-10-19T14:54:42Z
+- Started: 2026-10-20T16:53:01Z
 - Status: COMPLETE
-- Iteration: 5 of 5
-- Provisional Verdict: CONDITIONAL
+- Iteration: 10 of 10
+- Provisional Verdict: FAIL
 - hasSearchDebt: false
 - hasAdvisories: false
-- Session ID: fanout-luna-1792421295628-xsy88n
+- Session ID: fanout-luna-1792514860659-ivxs3k
 - Parent Session: none
 - Lifecycle Mode: new
 - Generation: 1
@@ -45,10 +45,10 @@ Reducer-generated observability surface for the active review packet.
 
 | Severity | Count |
 |----------|------:|
-| P0 (Blockers) | 0 |
-| P1 (Required) | 1 |
-| P2 (Suggestions) | 3 |
-| Resolved | 0 |
+| P0 (Blockers) | 1 |
+| P1 (Required) | 4 |
+| P2 (Suggestions) | 1 |
+| Resolved | 1 |
 
 <!-- /ANCHOR:findings-summary -->
 <!-- ANCHOR:progress -->
@@ -56,11 +56,16 @@ Reducer-generated observability surface for the active review packet.
 
 | # | Focus | Dimensions | Ratio | P0/P1/P2 | Status |
 |---|-------|------------|-------|----------|--------|
-| 1 | correctness — shared relaunch state transitions and timeout handling | correctness | 0.00 | 0/0/0 | complete |
-| 2 | security — path containment and shell/notification boundaries | security | 0.00 | 0/0/0 | complete |
-| 3 | traceability — parent phase contract, acceptance evidence, and closure-state reconciliation | traceability | 1.00 | 0/1/2 | complete |
-| 4 | maintainability — runtime-state exemption ownership, documentation, and OpenCode configuration | maintainability | 0.00 | 0/1/2 | complete |
-| 5 | integration — parent goal, phase closure evidence, runtime-state policy, and final packet status | traceability/maintainability | 0.25 | 0/1/3 | complete |
+| 1 | correctness: shared usage and threshold-to-nudge path | correctness | 1.00 | 0/1/0 | complete |
+| 2 | correctness: suppression guards, nudge reminders, and adapter delivery | correctness | 0.00 | 0/0/0 | complete |
+| 3 | correctness: note metadata, prepare validation, and receiving seed continuity | correctness | 1.00 | 0/1/0 | complete |
+| 4 | security: arm-event identity, killer spawn failure, and re-arm behavior across runtimes | security | 1.00 | 0/1/0 | complete |
+| 5 | traceability: killer idle, signal, grace, timeout, and record-change behavior | traceability | 1.00 | 0/1/0 | complete |
+| 6 | maintainability: wrapper exit/decision contract, cwd/model/flag carry, seed generation, and receiving-session claim | maintainability | 0.00 | 0/0/0 | complete |
+| 7 | correctness: shell-shim wrapper discovery, interactive/pass-through classification, TTY behavior, and Hermes plugin environment | correctness | 0.00 | 0/0/0 | complete |
+| 8 | correctness/traceability: linked .skilled root and state/config paths, plus automatic runtime hook registrations | correctness/traceability | 1.00 | 1/0/0 | complete |
+| 9 | correctness/maintainability: Cursor and Devin command-only invocation plus handoff workflow contract | correctness/maintainability/traceability | 1.00 | 0/2/0 | complete |
+| 10 | correctness/traceability: final adversarial re-check of all active findings, severity challenge, and checklist evidence | correctness/traceability | 0.00 | 1/4/1 | complete |
 
 <!-- /ANCHOR:progress -->
 <!-- ANCHOR:dimension-coverage -->
@@ -68,9 +73,9 @@ Reducer-generated observability surface for the active review packet.
 
 | Dimension | Status | Open findings |
 |-----------|--------|--------------:|
-| correctness | covered | 0 |
+| correctness | covered | 6 |
 | security | covered | 0 |
-| traceability | covered | 4 |
+| traceability | covered | 0 |
 | maintainability | covered | 0 |
 
 <!-- /ANCHOR:dimension-coverage -->
@@ -88,12 +93,12 @@ No blocked-stop events recorded.
 <!-- /ANCHOR:graph-convergence -->
 <!-- ANCHOR:trend -->
 ## 8. TREND
-- Last 3 ratios: 1.00 -> 0.00 -> 0.25
-- convergenceScore: 0.75
-- openFindings: 4
-- persistentSameSeverity: 3
-- severityChanged: 0
-- repeatedFindings (deprecated combined bucket): 3
+- Last 3 ratios: 1.00 -> 1.00 -> 0.00
+- convergenceScore: 1.00
+- openFindings: 6
+- persistentSameSeverity: 5
+- severityChanged: 1
+- repeatedFindings (deprecated combined bucket): 6
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:corruption-warnings -->
@@ -104,49 +109,68 @@ No corrupt JSONL lines detected.
 <!-- ANCHOR:search-debt -->
 ## 10. SEARCH DEBT
 - graphCoverageMode: graphless_fallback
-- candidateCoverage: covered=4, ruledOut=14, deferred=0, blocked=0
+- candidateCoverage: covered=32, ruledOut=31, deferred=0, blocked=0
 
 ### Search Debt
 [None yet]
 
 ### Ruled-Out Candidates
-- iteration 1 state_transition (ruled_out): Both state transition functions check current record status before writing.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:319, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:348
-- iteration 1 timeout_cleanup (ruled_out): Current state is checked before timeout disarm and the transition has expected-value guards.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:480, .skilled/hooks/session-relaunch/lib/killer.cjs:496
-- iteration 1 process_target_identity (ruled_out): Ancestry is checked immediately before signaling; no actionable defect was established.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:579, .skilled/hooks/session-relaunch/lib/killer.cjs:582
-- iteration 1 event_durability (ruled_out): Byte count is checked before fsync and return.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:598, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:604
-- iteration 2 path_traversal (ruled_out): The reviewed existing-file and missing-file paths preserve containment beneath the canonical handoff directory.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:138, .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:168
-- iteration 2 filesystem_permissions (ruled_out): Ownership, directory type, and mode are checked before state use.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:49, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:56
-- iteration 2 command_injection (ruled_out): No executable interpolation sink was found in the inspected construction.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:540, .skilled/hooks/session-relaunch/lib/killer.cjs:513
-- iteration 2 gate_exemption_scope (ruled_out): Targeted test definitions cover lookalikes, traversal, and README boundaries.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1555, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1576
-- iteration 4 policy_duplication (ruled_out): No second exemption implementation or untested state-root condition was found in the reviewed files.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:71, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568, .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896
-- iteration 4 documentation_contract_drift (ruled_out): No conflicting state-path wording was found across the reviewed surfaces.; evidence=AGENTS.md:70, AGENTS.md:75, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:28
-- iteration 4 configuration_inconsistency (ruled_out): No model or variant mismatch was found.; evidence=opencode.json:3, opencode.json:6, opencode.json:10, specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md
-- iteration 4 evidence_link_drift (ruled_out): No stale or inconsistent run 10 pointer was found.; evidence=.skilled/skills/system-spec-kit/benchmark/reports/README.md:27, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:46, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:118, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:94
-- iteration 5 runtime_policy_integration (ruled_out): The implementation, boundary tests, guidance, and model configuration agree.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568, .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896, AGENTS.md:70, AGENTS.md:75, opencode.json:3
+- iteration 2 suppression_order (ruled_out): No divergence found in the shared guard order.; evidence=.skilled/hooks/session-relaunch/lib/nudge.cjs:394-420, .skilled/hooks/session-relaunch/lib/nudge.cjs:438-458, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:1012-1048
+- iteration 2 held_nudge_delivery (ruled_out): No lost or prematurely emitted held nudge was found in the current path.; evidence=.skilled/hooks/session-relaunch/pi/session-relaunch.ts:347-352, .skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-399
+- iteration 2 re_nudge_boundary (ruled_out): No lost first reminder or incorrect +5% boundary was identified.; evidence=.skilled/hooks/session-relaunch/opencode/session-relaunch.js:123-152, .skilled/hooks/session-relaunch/opencode/session-relaunch.js:335-345, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:655-658, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:1051-1065
+- iteration 2 armed_record_freshness (ruled_out): The reviewed condition is fixed in current shouldRelaunch.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:485-503, .skilled/hooks/session-relaunch/lib/nudge.cjs:363-390, specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md:24, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:492-501
+- iteration 3 path_containment_escape (ruled_out): No path escape was found in the reviewed branch.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-193
+- iteration 3 runtime_flag_conflict (ruled_out): No runtime mismatch path remained.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:331-350
+- iteration 4 arm_event_identity (ruled_out): No mismatched record was found in the reviewed event paths.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415, .skilled/hooks/session-relaunch/codex/stop-arm.mjs:89-102, .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:54-62, .skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-382, .skilled/hooks/session-relaunch/opencode/session-relaunch.js:274-284
+- iteration 4 duplicate_live_killer (ruled_out): The current code rejects an already-armed record while a killer owns the lock.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415, .skilled/hooks/session-relaunch/claude/stop-arm.mjs:93-102, specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md:46-53
+- iteration 4 stale_rearm_timestamp (ruled_out): The stale timestamp/cwd failure fixed in phase 011 does not remain in current arm logic.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:368-384, .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:469-493, .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:891-896
+- iteration 5 idle_detection (ruled_out): No early-signal path was found in the reviewed branch.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:146-185
+- iteration 5 kill_target_and_grace (ruled_out): No signal/grace ordering defect was found.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:547-634
+- iteration 6 wrapper_exit_decision (ruled_out): The inspected decision, cwd, note-state, and exit-130 paths preserve a claim route.; evidence=.skilled/bin/skilled-loop:423-514
+- iteration 6 runtime_argument_carry (ruled_out): No carry mismatch was found in the documented runtime matrix.; evidence=.skilled/bin/skilled-loop:169-239, .skilled/hooks/session-relaunch/README.md:23-33, .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:930-965,1049-1084,1251-1275,1596-1645
+- iteration 6 receiving_seed_claim (ruled_out): The prior finding omitted the live note-to-consume-to-seed source and is retracted.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:536-575, .skilled/bin/skilled-loop:93-105,507-510, .skilled/hooks/session-relaunch/lib/nudge.cjs:191-235
+- iteration 7 shell_wrapper_discovery (ruled_out): The inspected resolver and tests cover both link and nested-directory cases in Bash and zsh.; evidence=.skilled/bin/skilled-loop-shell.sh:166-179, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:53-58,85-98
+- iteration 7 runtime_invocation_classification (ruled_out): No classification mismatch was identified in the reviewed lists and cases.; evidence=.skilled/bin/skilled-loop-shell.sh:54-164, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:24-51,85-107
+- iteration 7 tty_gate (ruled_out): The checked gate matches the documented need for a terminal handoff.; evidence=.skilled/bin/skilled-loop-shell.sh:185-204, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:147-187
+- iteration 7 hermes_project_plugin_scope (ruled_out): The variable is scoped to the wrapped Hermes invocation in source and test evidence.; evidence=.skilled/bin/skilled-loop-shell.sh:187-203, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:189-203
+- iteration 8 linked_repo_root_resolution (ruled_out): The install-root behavior is documented and the loop record returns the project cwd for continuation.; evidence=.skilled/hooks/session-relaunch/lib/nudge.cjs:236-249, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:182-204, .skilled/bin/skilled-loop:282-298,423-436, .skilled/hooks/session-relaunch/README.md:184
+- iteration 9 plain_workflow_contract (ruled_out): The plain-command structure and router-contract scope match the reviewed authoring guidance.; evidence=.skilled/commands/speckit/handoff.md:1-162, .skilled/skills/sk-doc/sk-create-command/SKILL.md:262-269, .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:47-75, .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:4-10
+- iteration 9 devin_direct_file_entrypoint (ruled_out): The direct-file fallback is documented, though the shared matrix's slash-command shorthand is misleading.; evidence=.devin/SYNC.md:20, .skilled/hooks/session-relaunch/README.md:31,45
+- iteration 9 duplicate_review_finding (ruled_out): No prior report records either current finding, and the adjacent old handoff issues were rechecked as fixed.; evidence=.skilled/commands/speckit/handoff.md:105-107,135
 
 ### Clean Search Proof
-- iteration 1 state_transition (ruled_out): Both state transition functions check current record status before writing.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:319, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:348
-- iteration 1 timeout_cleanup (ruled_out): Current state is checked before timeout disarm and the transition has expected-value guards.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:480, .skilled/hooks/session-relaunch/lib/killer.cjs:496
-- iteration 1 process_target_identity (ruled_out): Ancestry is checked immediately before signaling; no actionable defect was established.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:579, .skilled/hooks/session-relaunch/lib/killer.cjs:582
-- iteration 1 event_durability (ruled_out): Byte count is checked before fsync and return.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:598, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:604
-- iteration 2 path_traversal (ruled_out): The reviewed existing-file and missing-file paths preserve containment beneath the canonical handoff directory.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:138, .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:168
-- iteration 2 filesystem_permissions (ruled_out): Ownership, directory type, and mode are checked before state use.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:49, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:56
-- iteration 2 command_injection (ruled_out): No executable interpolation sink was found in the inspected construction.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:540, .skilled/hooks/session-relaunch/lib/killer.cjs:513
-- iteration 2 gate_exemption_scope (ruled_out): Targeted test definitions cover lookalikes, traversal, and README boundaries.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1555, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1576
-- iteration 4 policy_duplication (ruled_out): No second exemption implementation or untested state-root condition was found in the reviewed files.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:71, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568, .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896
-- iteration 4 documentation_contract_drift (ruled_out): No conflicting state-path wording was found across the reviewed surfaces.; evidence=AGENTS.md:70, AGENTS.md:75, .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md:28
-- iteration 4 configuration_inconsistency (ruled_out): No model or variant mismatch was found.; evidence=opencode.json:3, opencode.json:6, opencode.json:10, specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md
-- iteration 4 evidence_link_drift (ruled_out): No stale or inconsistent run 10 pointer was found.; evidence=.skilled/skills/system-spec-kit/benchmark/reports/README.md:27, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:46, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:118, .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md:94
-- iteration 5 runtime_policy_integration (ruled_out): The implementation, boundary tests, guidance, and model configuration agree.; evidence=.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:1568, .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs:896, AGENTS.md:70, AGENTS.md:75, opencode.json:3
+- iteration 2 suppression_order (ruled_out): No divergence found in the shared guard order.; evidence=.skilled/hooks/session-relaunch/lib/nudge.cjs:394-420, .skilled/hooks/session-relaunch/lib/nudge.cjs:438-458, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:1012-1048
+- iteration 2 held_nudge_delivery (ruled_out): No lost or prematurely emitted held nudge was found in the current path.; evidence=.skilled/hooks/session-relaunch/pi/session-relaunch.ts:347-352, .skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-399
+- iteration 2 re_nudge_boundary (ruled_out): No lost first reminder or incorrect +5% boundary was identified.; evidence=.skilled/hooks/session-relaunch/opencode/session-relaunch.js:123-152, .skilled/hooks/session-relaunch/opencode/session-relaunch.js:335-345, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:655-658, .skilled/hooks/session-relaunch/tests/nudge.test.cjs:1051-1065
+- iteration 2 armed_record_freshness (ruled_out): The reviewed condition is fixed in current shouldRelaunch.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:485-503, .skilled/hooks/session-relaunch/lib/nudge.cjs:363-390, specs/hooks/023-session-relaunch-loop/review-archive/20261020T164213Z/review-report.md:24, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:492-501
+- iteration 3 path_containment_escape (ruled_out): No path escape was found in the reviewed branch.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:127-193
+- iteration 3 runtime_flag_conflict (ruled_out): No runtime mismatch path remained.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:331-350
+- iteration 4 arm_event_identity (ruled_out): No mismatched record was found in the reviewed event paths.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415, .skilled/hooks/session-relaunch/codex/stop-arm.mjs:89-102, .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:54-62, .skilled/hooks/session-relaunch/pi/session-relaunch.ts:374-382, .skilled/hooks/session-relaunch/opencode/session-relaunch.js:274-284
+- iteration 4 duplicate_live_killer (ruled_out): The current code rejects an already-armed record while a killer owns the lock.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:403-415, .skilled/hooks/session-relaunch/claude/stop-arm.mjs:93-102, specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/iterations/iteration-005.md:46-53
+- iteration 4 stale_rearm_timestamp (ruled_out): The stale timestamp/cwd failure fixed in phase 011 does not remain in current arm logic.; evidence=.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:368-384, .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:469-493, .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:891-896
+- iteration 5 idle_detection (ruled_out): No early-signal path was found in the reviewed branch.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:146-185
+- iteration 5 kill_target_and_grace (ruled_out): No signal/grace ordering defect was found.; evidence=.skilled/hooks/session-relaunch/lib/killer.cjs:547-634
+- iteration 6 wrapper_exit_decision (ruled_out): The inspected decision, cwd, note-state, and exit-130 paths preserve a claim route.; evidence=.skilled/bin/skilled-loop:423-514
+- iteration 6 runtime_argument_carry (ruled_out): No carry mismatch was found in the documented runtime matrix.; evidence=.skilled/bin/skilled-loop:169-239, .skilled/hooks/session-relaunch/README.md:23-33, .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:930-965,1049-1084,1251-1275,1596-1645
+- iteration 6 receiving_seed_claim (ruled_out): The prior finding omitted the live note-to-consume-to-seed source and is retracted.; evidence=.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:536-575, .skilled/bin/skilled-loop:93-105,507-510, .skilled/hooks/session-relaunch/lib/nudge.cjs:191-235
+- iteration 7 shell_wrapper_discovery (ruled_out): The inspected resolver and tests cover both link and nested-directory cases in Bash and zsh.; evidence=.skilled/bin/skilled-loop-shell.sh:166-179, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:53-58,85-98
+- iteration 7 runtime_invocation_classification (ruled_out): No classification mismatch was identified in the reviewed lists and cases.; evidence=.skilled/bin/skilled-loop-shell.sh:54-164, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:24-51,85-107
+- iteration 7 tty_gate (ruled_out): The checked gate matches the documented need for a terminal handoff.; evidence=.skilled/bin/skilled-loop-shell.sh:185-204, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:147-187
+- iteration 7 hermes_project_plugin_scope (ruled_out): The variable is scoped to the wrapped Hermes invocation in source and test evidence.; evidence=.skilled/bin/skilled-loop-shell.sh:187-203, .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:189-203
+- iteration 8 linked_repo_root_resolution (ruled_out): The install-root behavior is documented and the loop record returns the project cwd for continuation.; evidence=.skilled/hooks/session-relaunch/lib/nudge.cjs:236-249, .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:182-204, .skilled/bin/skilled-loop:282-298,423-436, .skilled/hooks/session-relaunch/README.md:184
+- iteration 9 plain_workflow_contract (ruled_out): The plain-command structure and router-contract scope match the reviewed authoring guidance.; evidence=.skilled/commands/speckit/handoff.md:1-162, .skilled/skills/sk-doc/sk-create-command/SKILL.md:262-269, .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:47-75, .skilled/skills/sk-doc/sk-create-command/assets/command-contract.json:4-10
+- iteration 9 devin_direct_file_entrypoint (ruled_out): The direct-file fallback is documented, though the shared matrix's slash-command shorthand is misleading.; evidence=.devin/SYNC.md:20, .skilled/hooks/session-relaunch/README.md:31,45
+- iteration 9 duplicate_review_finding (ruled_out): No prior report records either current finding, and the adjacent old handoff issues were rechecked as fixed.; evidence=.skilled/commands/speckit/handoff.md:105-107,135
 
 <!-- /ANCHOR:search-debt -->
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-[All dimensions covered]
+- Dimension: synthesis - Focus area: compile ten iterations, the active registry, checklist evidence, and the execution-mode limitation; emit the terminal max-iteration synthesis event. - Reason: the configured 10-iteration cap has been reached; only synthesis and final-state verification remain. - Rotation status: all four review dimensions were covered across the lineage. - Blocked/productive carry-forward: fix active findings and run provider-backed live hops in the owning implementation workflow. - Required evidence: reducer-owned registry/dashboard/strategy, all ten iteration and delta artifacts, final report, and gateway synthesis event. Review verdict: FAIL
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
 ## 12. ACTIVE RISKS
-- 1 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
+- 1 active P0 finding(s) blocking release.
+- 4 active P1 finding(s) — required before release; not a P0 but still blocks PASS.
 
 <!-- /ANCHOR:active-risks -->

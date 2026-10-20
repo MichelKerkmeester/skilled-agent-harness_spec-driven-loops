@@ -1,0 +1,3 @@
+FAIL: a tracked source newer than the output rebuilds it and says why (rc=1 exp=0)
+FAIL: a stale output builds exactly once (exp='4' got='3')
+worktree-naming tests: PASS=117 FAIL=2

@@ -8,7 +8,7 @@ trigger_phrases:
   - "argument hint patterns"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Command Template - OpenCode Slash Commands
@@ -460,7 +460,7 @@ For commands requiring multiple inputs before workflow execution:
 
 ### Violation Self-Detection
 
-Every workflow command MUST include:
+Every workflow command with blocking phases MUST include:
 
 ```markdown
 ## VIOLATION SELF-DETECTION (BLOCKING)

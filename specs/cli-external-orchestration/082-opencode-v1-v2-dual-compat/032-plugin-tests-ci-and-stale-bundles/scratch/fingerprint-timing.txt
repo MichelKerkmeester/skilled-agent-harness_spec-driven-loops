@@ -1,0 +1,5 @@
+.skilled/skills/sk-vision/vision-runtime tracked_paths=27 seconds=0.10 fingerprint=5ceec217fcb3
+.skilled/skills/system-spec-kit/runtime tracked_paths=1435 seconds=0.87 fingerprint=e0d090427b50
+.skilled/skills/system-spec-kit/runtime/cli tracked_paths=1435 seconds=0.42 fingerprint=e0d090427b50
+.skilled/skills/system-skill-advisor/runtime tracked_paths=507 seconds=0.31 fingerprint=6d50c83e0361
+.skilled/skills/sk-design/sk-design-md-generator/backend tracked_paths=60 seconds=0.11 fingerprint=31548670982a

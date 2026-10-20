@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "battery mcp prompt commands",
+      "phase 33 battery mcp prompt commands",
+      "mcp prompt command listed",
+      "code_mode utcp_codemode_usage",
+      "battery mcp prompt commands plan",
+      "battery mcp prompt commands tasks",
+      "battery mcp prompt commands implementation summary"
+    ],
+    "key_topics": [
+      "battery",
+      "mcp",
+      "prompt",
+      "commands",
+      "phase",
+      "command",
+      "listed",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+      ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+      ".skilled/command-support/doctor/scripts/README.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-version-battery.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/command-support/doctor/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Version Battery",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode 2 lists each prompt of a connected MCP server as a command named `<server>:<prompt>`",
+    "created_at": "2026-10-20T16:44:31Z",
+    "last_save_at": "2026-10-20T17:45:33.805Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:747e54251efd5b6bf2aefac73c1aec729afdd5187434cb86a826ee4e9778c7c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "98dbbbab64b76183079ae2f6d0e70b40d6ecff5eb094b4f81f94cc85443b4a6e",
+      "plan.md": "9141a60738bd98b15b4e971bd27a7b2f57a66507a7ee175d8c0f023ee929f7a7",
+      "tasks.md": "e344a139937dfb0be9ac8046ea0961681ad0d0b0719d0414dbb62710a89a7654",
+      "implementation-summary.md": "03b46f643034b26b45effefd60334fa409a8bd4bfcfb87fb2168dabe0cfe4d08"
+    },
+    "last_active_at": null
+  }
+}

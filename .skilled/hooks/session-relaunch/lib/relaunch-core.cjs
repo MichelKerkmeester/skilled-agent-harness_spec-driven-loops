@@ -424,14 +424,18 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
  * @param {string} options.reason - Why the record was disarmed.
  * @param {string} [options.expectedStatus] - Required current status for the transition.
  * @param {string} [options.expectedHandoff] - Required current handoff for the transition.
+ * @param {string} [options.expectedArmedAt] - Required current armedAt for the transition.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The disarmed record, or null when absent or conditions do not match.
  */
-function unarm({ loopId, env = process.env, reason, expectedStatus, expectedHandoff, now }) {
+function unarm({
+  loopId, env = process.env, reason, expectedStatus, expectedHandoff, expectedArmedAt, now,
+}) {
   const record = readRelaunchFile(loopId, env);
   if (record === null) return null;
   if (expectedStatus !== undefined && record.status !== expectedStatus) return null;
   if (expectedHandoff !== undefined && record.handoff !== expectedHandoff) return null;
+  if (expectedArmedAt !== undefined && record.armedAt !== expectedArmedAt) return null;
   const disarmed = {
     ...record,
     status: 'disarmed',

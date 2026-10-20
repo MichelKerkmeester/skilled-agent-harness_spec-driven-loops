@@ -1,0 +1,3 @@
+FAIL: a worktree subdirectory builds as its root does (exp='12' got='11')
+FAIL: a worktree subdirectory warns about no listed path (exp='' got='  WARNING: needs-build is listed but has no package.json; skipped')
+worktree-naming tests: PASS=155 FAIL=2

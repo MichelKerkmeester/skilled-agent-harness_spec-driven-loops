@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog",
+  "spec_folder": "hooks/023-session-relaunch-loop/015-v4-0-0-13-changelog",
+  "parent_id": "hooks/023-session-relaunch-loop",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 0 0 13 changelog",
+      "phase 15 v4 0 0 13 changelog",
+      "skilled v4.0.0.13 release notes",
+      "sessions that hand themselves over",
+      "v4 0 0 13 changelog plan",
+      "v4 0 0 13 changelog tasks",
+      "v4 0 0 13 changelog acceptance criteria",
+      "v4 0 0 13 changelog implementation summary"
+    ],
+    "key_topics": [
+      "changelog",
+      "phase",
+      "skilled",
+      "release",
+      "notes",
+      "sessions",
+      "hand",
+      "themselves",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/changelog/skilled/v4.0.0.13.md",
+      ".skilled/hooks/session-relaunch/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.13.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.13.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sessions That Hand Themselves Over",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why This Release",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Session Handover",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Framework Code Standards",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upgrade Notes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Main had moved well past the v4.0.0.12 release at commit `0ead854621`",
+    "created_at": "2026-10-20T16:32:06Z",
+    "last_save_at": "2026-10-20T16:44:22.775Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3ade9fe1bea0f3d2c0db28ba5639a62862c6b538c014658a7353cb2addf37f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2528b3781825c27ef6556aaf4613d845121466362c494f0dfe5cd4d533f6c2ad",
+      "plan.md": "dbead35be0c99da79ee5149463c8f094d3db1a2bcb7d0919fd965c0a63cd18bb",
+      "tasks.md": "b323bf076d1d3c2aca884088691253a791af627040232cc43c46a2a2fb302cdb",
+      "implementation-summary.md": "3bee24c9e976884c7ef9b347d57e72a2cb9d00a84a0423567a3ff70db782db33"
+    },
+    "last_active_at": null
+  }
+}
