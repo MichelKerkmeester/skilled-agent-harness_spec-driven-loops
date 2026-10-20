@@ -1,0 +1,3 @@
+$ SYSTEM_SPECKIT_COMPLETION_DISABLED=1 node -e <speckit-completion step 6 snippet as written>
+TypeError: mod.default is not a function
+exit=1

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli opencode docs and vision test cleanup",
+      "phase 36 cli opencode docs and vision test cleanup",
+      "confirm the provider prefix",
+      "plugin playbook snippet default server",
+      "cli opencode docs and vision test cleanup plan",
+      "cli opencode docs and vision test cleanup tasks",
+      "cli opencode docs and vision test cleanup implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "opencode",
+      "docs",
+      "vision",
+      "test",
+      "cleanup",
+      "phase",
+      "confirm",
+      "provider",
+      "prefix",
+      "plugin",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+      ".opencode/plugins/lib/v2-bridge.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode2-models-form.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 027 left three gaps",
+    "created_at": "2026-10-20T21:30:26Z",
+    "last_save_at": "2026-10-20T21:33:24.162Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:59954753faf906674efa6ba3e639e03c024dde8a9d1beae76918089e8ee5bc8f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "018eddc716d3819a99d93acc490f1fa17e1028d1626563a0000d96fe1c342a5f",
+      "plan.md": "1c1ed96ae0aac596c46ce7cf346f556b7205069c893175eabdb177476fa0c770",
+      "tasks.md": "595720b23e85e3b9337e0b270fd2082a3889b0ff72bfb9e4f606a2f82b663b4f",
+      "implementation-summary.md": "e96cf32a2e9a7728c92c9f28c554469cb6da5cb42efdf2f0e6b9999847810fe9"
+    },
+    "last_active_at": null
+  }
+}
