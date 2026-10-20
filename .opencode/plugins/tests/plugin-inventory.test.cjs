@@ -19,6 +19,7 @@ const {
   handledEventNames,
   readInventory,
   readManifest,
+  stripComments,
   unscannedEventChecks,
 } = require('./helpers/plugin-inventory.cjs');
 
@@ -226,21 +227,53 @@ test('every listed skipped hook names a bridged plugin', () => {
 // 6. EVENT SCAN CASES
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('handledEventNames reads both quote styles, both orders and case labels', () => {
-  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} switch (t) { case 'd.four': case "e.five": }`;
+test('stripComments keeps strings and drops comments', () => {
+  const source =
+    `const a = 'x // y'; // if (type === 'a.b') {}\n/* case 'c.d': */ const b = "e /* f */";\n` +
+    // A regex literal can hold quotes and slashes; read as a string, it swallows the lines after it.
+    `const r = /['"\`]/g; const q = a / b / c; // if (type === 'z.one') {}\nconst s = 'kept';`;
+  const stripped = stripComments(source);
 
-  assert.deepEqual(handledEventNames(source), ['a.one', 'b.two', 'c.three', 'd.four', 'e.five']);
+  assert.ok(stripped.includes("'x // y'"));
+  assert.ok(stripped.includes('"e /* f */"'));
+  assert.ok(stripped.includes(`/['"\`]/g`));
+  assert.ok(stripped.includes("'kept'"));
+  assert.ok(!stripped.includes('a.b'));
+  assert.ok(!stripped.includes('c.d'));
+  assert.ok(!stripped.includes('z.one'));
+});
+
+test('handledEventNames reads both quote styles, both orders and case labels', () => {
+  const source = `if (type === 'a.one') {} if (event.type !== "b.two") {} if ('c.three' === eventType) {} if (type === \`f.six\`) {} switch (t) { case 'd.four': case "e.five": } // if (type === 'g.seven') {}`;
+
+  assert.deepEqual(handledEventNames(source), [
+    'a.one',
+    'b.two',
+    'c.three',
+    'd.four',
+    'e.five',
+    'f.six',
+  ]);
+});
+
+test('handledEventNames reads names from a resolved collection', () => {
+  const source = `const KNOWN = new Set(['h.one', "h.two"]); if (KNOWN.has(eventType)) {}`;
+
+  assert.deepEqual(handledEventNames(source), ['h.one', 'h.two']);
+  assert.deepEqual(unscannedEventChecks(source), []);
 });
 
 test('unscannedEventChecks reports checks the scan cannot read', () => {
-  const source = `if (eventType === SESSION_IDLE) {} if (eventType === EVENTS.IDLE) {} if (eventType.endsWith('.x')) {} if (eventType.toLowerCase() === 'a.c') {} if (KNOWN.has(eventType)) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
+  const source = `if (eventType === SESSION_IDLE) {} if (eventType === EVENTS.IDLE) {} if (eventType.endsWith('.x')) {} if (eventType.toLowerCase() === 'a.c') {} if (KNOWN.has(eventType)) {} if (OTHER.has(eventType)) {} if (eventType === \`x.\${y}\`) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
 
   assert.deepEqual(unscannedEventChecks(source), [
-    '.has(eventType)',
+    'KNOWN.has(eventType)',
+    'OTHER.has(eventType)',
     'SESSION_IDLE === eventType',
     'case EVENTS.IDLE:',
     'eventType === EVENTS.IDLE',
     'eventType === SESSION_IDLE',
+    'eventType === `x.${y}`',
     "eventType.endsWith('.x')",
     "eventType.toLowerCase() === 'a.c'",
   ]);
