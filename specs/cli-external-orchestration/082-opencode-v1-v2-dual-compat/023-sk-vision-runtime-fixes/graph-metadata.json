@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The post-merge research fix list in `../014-post-merge-deep-research/research/research.md` §9 names nine sk-vision defects, two of them P1: setup disposal released only some of the handles it held, and a `ctx.session.get` that threw silently downgraded the automatic image check to the 2 s grace instead of waiting for the evidence",
     "created_at": "2026-10-20T07:11:21Z",
-    "last_save_at": "2026-10-20T07:46:32.251Z",
+    "last_save_at": "2026-10-20T08:29:00.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbfc06cfc25a244aa39ba22dc0a990b423d4cd1d6827905cee457045e7fd7368",
+    "source_fingerprint": "sha256:cc56dd938a2ccd78353b093c31b7916a7cd55536de96ece83f9edaf8a5e6d8ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "45b915971ac5d680981663e1c2fe0f2ab9a4d05331175d1a298eabdd35f7f409",
       "plan.md": "2d09d975719d90ee7a21e4a6026067c60488fc692baae7ec2ec2d9efdd3768c8",
-      "tasks.md": "9c23234232a7cb664baaed272ffd30dac233910231459675fbdaf824043e34e8",
-      "implementation-summary.md": "b38deef29d7128abbc99df6daf57e9a6bf42e27d5446cd8713624eb8ab64f47c"
+      "tasks.md": "dcb88407d8d8942ef3922b63601d2051206a851614e4a9ce0d56082781213e02",
+      "implementation-summary.md": "b9134c6600921afa5ea6c6e6c0547ff0b2b0f86e0a82e814c50eff784ba12c79"
     },
     "last_active_at": null
   }
