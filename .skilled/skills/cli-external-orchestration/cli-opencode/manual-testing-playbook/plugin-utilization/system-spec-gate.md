@@ -1,7 +1,7 @@
 ---
 title: "CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-spec-gate plugin for CO-055. It focuses on the deferred Gate 3 instruction and the enforced refusal of a write that has no bound spec folder."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-055` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 PROBE_DIR="gate-probe-$$"
 PROMPT="This is a test of the spec-gate plugin. Do not ask me any questions and do not answer a documentation question yourself. Use the write tool to create the file $PROBE_DIR/gate-probe.txt containing the word hello, then report exactly what the tool returned."
 

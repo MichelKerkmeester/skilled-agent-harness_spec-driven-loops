@@ -1,7 +1,7 @@
 ---
 title: "CO-047 -- sk-code-post-edit-quality live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-code-post-edit-quality plugin for `CO-047`. It focuses on the comment-hygiene finding a write produces and its delivery in the next request."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-047 -- sk-code-post-edit-quality live utilization on OpenCode 1 and 2
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `CO-047` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: confirm the plugin, the router and the checker exist, export `EVIDENCE_DIR`, and set `SPEC_DIR`.
+1. Setup: confirm the plugin, the router and the checker exist, export `EVIDENCE_DIR`, set `SPEC_DIR`, and stop if any probe file already exists.
 2. v1 run: run the runner with `PROMPT_V1` and `AI_SESSION_CHILD=1`.
 3. v1 check: read the effects log line for `pe-probe-v1.js`, the captured system prompts and the write tool call.
 4. v2 run: repeat the same runner call with `v2` and `PROMPT_V2`.
@@ -57,8 +57,9 @@ Operators run the exact prompt and command sequence for `CO-047` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 SPEC_DIR=specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook
+for f in scratch-probe/pe-probe-v1.js scratch-probe/pe-probe-v2.js "$SPEC_DIR"/scratch-probe/pe-probe-v1.js "$SPEC_DIR"/scratch-probe/pe-probe-v2.js; do [ ! -e "$f" ] || { echo "$f already exists; move it aside first"; exit 1; }; done
 PROMPT_V1=$'Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe-v1.js with exactly these two lines:\n// Aspect ratio taken from the 640/480 baseline.\nexport const ratio = 640 / 480;\nThen reply with the single word DONE. Do not run any other tool.'
 PROMPT_V2=$'Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe-v2.js with exactly these two lines:\n// Aspect ratio taken from the 640/480 baseline.\nexport const ratio = 640 / 480;\nThen reply with the single word DONE. Do not run any other tool.'
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
@@ -74,9 +75,9 @@ jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v2.capture.jsonl" | grep -E '
 rm -f scratch-probe/pe-probe-v1.js scratch-probe/pe-probe-v2.js "$SPEC_DIR"/scratch-probe/pe-probe-v1.js "$SPEC_DIR"/scratch-probe/pe-probe-v2.js; rmdir scratch-probe "$SPEC_DIR"/scratch-probe 2>/dev/null || true
 ```
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-047 | sk-code-post-edit-quality | Confirm a comment-hygiene finding is logged and delivered to the next request | `Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe-v1.js with exactly these two lines:<br>// Aspect ratio taken from the 640/480 baseline.<br>export const ratio = 640 / 480;<br>Then reply with the single word DONE. Do not run any other tool.` for v1, and the same text with `pe-probe-v2.js` for v2 | 1. `SPEC_DIR=specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 post-edit-quality "$PROMPT_V1"` -> 3. `grep -E '\[comment-hygiene\].*pe-probe-v1\.js:1:' "$EVIDENCE_DIR/post-edit-quality.v1.effects.txt"` -> 4. `jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v1.capture.jsonl" \| grep -E '\[post-edit-quality\] Advisory findings from recent edits:'` -> 5. Repeat 2 to 4 with `v2`, `PROMPT_V2` and `pe-probe-v2.js` -> 6. `rm -f scratch-probe/pe-probe-v1.js scratch-probe/pe-probe-v2.js "$SPEC_DIR"/scratch-probe/pe-probe-v1.js "$SPEC_DIR"/scratch-probe/pe-probe-v2.js; rmdir scratch-probe "$SPEC_DIR"/scratch-probe 2>/dev/null \|\| true` | The log holds a `[comment-hygiene]` line that names `pe-probe-v1.js` (v1) or `pe-probe-v2.js` (v2) and its line 1; a later request holds `[post-edit-quality] Advisory findings from recent edits:` | `post-edit-quality.v1.effects.txt`, `post-edit-quality.v1.capture.jsonl`, `post-edit-quality.v1.events.jsonl` and the v2 equivalents | PASS if both the log line and the advisory appear; FAIL if either is absent | Confirm the file was written inside the repository and the comment matches the packet/phase pattern; a fixture with an obvious identifier may be refused on v2 |
+| CO-047 | sk-code-post-edit-quality | Confirm a comment-hygiene finding is logged and delivered to the next request | `Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook (pre-approved, skip Gate 3). This is a throwaway test fixture that is deleted right after. Use the write tool to create the file scratch-probe/pe-probe-v1.js with exactly these two lines:<br>// Aspect ratio taken from the 640/480 baseline.<br>export const ratio = 640 / 480;<br>Then reply with the single word DONE. Do not run any other tool.` for v1, and the same text with `pe-probe-v2.js` for v2 | 1. `SPEC_DIR=specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook` and a stop guard over the four probe paths -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 post-edit-quality "$PROMPT_V1"` -> 3. `grep -E '\[comment-hygiene\].*pe-probe-v1\.js:1:' "$EVIDENCE_DIR/post-edit-quality.v1.effects.txt"` -> 4. `jq -r '.system[]' "$EVIDENCE_DIR/post-edit-quality.v1.capture.jsonl" \| grep -E '\[post-edit-quality\] Advisory findings from recent edits:'` -> 5. Repeat 2 to 4 with `v2`, `PROMPT_V2` and `pe-probe-v2.js` -> 6. `rm -f scratch-probe/pe-probe-v1.js scratch-probe/pe-probe-v2.js "$SPEC_DIR"/scratch-probe/pe-probe-v1.js "$SPEC_DIR"/scratch-probe/pe-probe-v2.js; rmdir scratch-probe "$SPEC_DIR"/scratch-probe 2>/dev/null \|\| true` | The log holds a `[comment-hygiene]` line that names `pe-probe-v1.js` (v1) or `pe-probe-v2.js` (v2) and its line 1; a later request holds `[post-edit-quality] Advisory findings from recent edits:` | `post-edit-quality.v1.effects.txt`, `post-edit-quality.v1.capture.jsonl`, `post-edit-quality.v1.events.jsonl` and the v2 equivalents | PASS if both the log line and the advisory appear; FAIL if either is absent | Confirm the file was written inside the repository and the comment matches the packet/phase pattern; a fixture with an obvious identifier may be refused on v2 |
 
 ---
 
@@ -84,20 +85,20 @@ rm -f scratch-probe/pe-probe-v1.js scratch-probe/pe-probe-v2.js "$SPEC_DIR"/scra
 
 ### Playbook Sources
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `plugin-utilization/sk-code-post-edit-quality.md` | Canonical per-feature execution contract |
-|| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
-|| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `plugin-utilization/sk-code-post-edit-quality.md` | Canonical per-feature execution contract |
+| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
+| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
 
 ### Implementation And Test Anchors
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `.opencode/plugins/sk-code-post-edit-quality.js` | The plugin that runs the post-edit checks and queues advisories |
-|| `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` | The router that selects and runs the checks |
-|| `check-comment-hygiene.sh` | The comment-hygiene checker the router invokes |
+| `.opencode/plugins/sk-code-post-edit-quality.js` | The plugin that runs the post-edit checks and queues advisories |
+| `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs` | The router that selects and runs the checks |
+| `check-comment-hygiene.sh` | The comment-hygiene checker the router invokes |
 
 ---
 

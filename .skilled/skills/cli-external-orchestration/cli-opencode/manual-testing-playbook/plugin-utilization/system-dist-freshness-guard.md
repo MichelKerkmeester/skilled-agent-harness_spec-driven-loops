@@ -1,7 +1,7 @@
 ---
 title: "CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-dist-freshness-guard plugin for CO-053. It focuses on the stale compiled dist warning that reaches the system prompt and the plugin log."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-053` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 export AI_SESSION_CHILD=1
 E=.opencode/skills/sk-design/sk-design-md-generator/backend/dist/cli.js
 BACKUP="$(mktemp)"

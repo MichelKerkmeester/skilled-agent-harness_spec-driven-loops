@@ -1,7 +1,7 @@
 ---
 title: "CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-speckit-completion plugin for CO-056. It focuses on the read-only completion tool that returns a spec folder's level and checklist evidence."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-056 -- system-speckit-completion live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-056` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 export AI_SESSION_CHILD=1
 
 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 speckit-completion "Call the system_speckit_completion tool with specFolder 'specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast'. Print the first 8 lines of the tool's raw output, then reply DONE."

@@ -1,7 +1,7 @@
 ---
 title: "CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-preflight-advisory plugin for `CO-049`. It focuses on the advisory for a git command that fails a warn rule and on its delivery in the next request."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2
@@ -45,9 +45,9 @@ Operators run the exact prompt and command sequence for `CO-049` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: confirm the plugin, the rule checks and the rules file exist, export `EVIDENCE_DIR`, assert the probe file does not exist and assert the index is clean.
+1. Setup: confirm the plugin, the rule checks and the rules file exist, export `EVIDENCE_DIR`, and stop if the probe file exists or the index has staged changes.
 2. v1 run: run the runner with `AI_SESSION_CHILD=1` and the command on its own line.
-3. v1 check: read the captured system prompts, assert the index is still clean and confirm nothing is staged.
+3. v1 check: read the captured system prompts, stop if the run staged a file, and confirm nothing is staged.
 4. v2 run: repeat the same runner call with `v2`.
 5. v2 check: repeat the same checks against the v2 evidence files.
 6. Cleanup: `git diff --cached --quiet` and `git status --short` show nothing staged.
@@ -55,28 +55,28 @@ Operators run the exact prompt and command sequence for `CO-049` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
-test ! -e no-such-path-preflight-probe.txt
-git diff --cached --quiet
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
+test ! -e no-such-path-preflight-probe.txt || { echo "remove no-such-path-preflight-probe.txt first"; exit 1; }
+git diff --cached --quiet || { echo "index has staged changes; unstage them first"; exit 1; }
 PROMPT=$'This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:\ngit add no-such-path-preflight-probe.txt\nThen reply with the single word DONE.'
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 git-preflight "$PROMPT"
 jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" | grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-preflight.v1.events.jsonl"
-git diff --cached --quiet
+git diff --cached --quiet || { echo "the run staged a file"; exit 1; }
 git status --short
 
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v2 git-preflight "$PROMPT"
 jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v2.capture.jsonl" | grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/git-preflight.v2.events.jsonl"
-git diff --cached --quiet
+git diff --cached --quiet || { echo "the run staged a file"; exit 1; }
 git status --short
 ```
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-049 | sk-git-preflight-advisory | Confirm the `add-pathspec-matches-nothing` advisory reaches the next request | `This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:<br>git add no-such-path-preflight-probe.txt<br>Then reply with the single word DONE.` | 1. `test ! -e no-such-path-preflight-probe.txt` and `git diff --cached --quiet` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-preflight "$PROMPT"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" \| grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'` -> 4. `git diff --cached --quiet`, then `git status --short` -> 5. Repeat 2 to 4 with `v2` | The next request holds `[add-pathspec-matches-nothing] This pathspec matches no files`; nothing is staged | `git-preflight.v1.capture.jsonl`, `git-preflight.v1.events.jsonl`, `git-preflight.v1.exit` and the v2 equivalents | PASS if the next request carries the advisory; FAIL if it does not | Put the command on its own line; a trailing ` .` is skipped by the rule; on v2 the tool is `shell`; an early exit means the probe file already exists or the index has staged changes |
+| CO-049 | sk-git-preflight-advisory | Confirm the `add-pathspec-matches-nothing` advisory reaches the next request | `This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:<br>git add no-such-path-preflight-probe.txt<br>Then reply with the single word DONE.` | 1. `test ! -e no-such-path-preflight-probe.txt \|\| { echo "remove no-such-path-preflight-probe.txt first"; exit 1; }` and `git diff --cached --quiet \|\| { echo "index has staged changes; unstage them first"; exit 1; }` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-preflight "$PROMPT"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" \| grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'` -> 4. `git diff --cached --quiet \|\| { echo "the run staged a file"; exit 1; }`, then `git status --short` -> 5. Repeat 2 to 4 with `v2` | The next request holds `[add-pathspec-matches-nothing] This pathspec matches no files`; nothing is staged | `git-preflight.v1.capture.jsonl`, `git-preflight.v1.events.jsonl`, `git-preflight.v1.exit` and the v2 equivalents | PASS if the next request carries the advisory; FAIL if it does not | Put the command on its own line; a trailing ` .` is skipped by the rule; on v2 the tool is `shell`; an early exit means the probe file already exists or the index has staged changes |
 
 ---
 
@@ -84,20 +84,20 @@ git status --short
 
 ### Playbook Sources
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `plugin-utilization/sk-git-preflight-advisory.md` | Canonical per-feature execution contract |
-|| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
-|| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `plugin-utilization/sk-git-preflight-advisory.md` | Canonical per-feature execution contract |
+| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
+| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
 
 ### Implementation And Test Anchors
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `.opencode/plugins/sk-git-preflight-advisory.js` | The plugin that adds the advisory to the next request and never blocks |
-|| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs` | The shared rule checks the plugin imports |
-|| `.opencode/skills/sk-git/hard-rules.json` | The rule set the checks evaluate |
+| `.opencode/plugins/sk-git-preflight-advisory.js` | The plugin that adds the advisory to the next request and never blocks |
+| `.opencode/skills/sk-git/scripts/lib/git-rule-checks.mjs` | The shared rule checks the plugin imports |
+| `.opencode/skills/sk-git/hard-rules.json` | The rule set the checks evaluate |
 
 ---
 

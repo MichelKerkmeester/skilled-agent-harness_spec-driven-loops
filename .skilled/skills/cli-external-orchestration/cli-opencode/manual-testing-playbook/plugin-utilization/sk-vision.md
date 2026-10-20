@@ -1,7 +1,7 @@
 ---
 title: "CO-050 -- sk-vision live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-vision plugin for `CO-050`. It focuses on the autoinspect tools registering and answering with the local photon runtime."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-050 -- sk-vision live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-050` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 ls -l .opencode/plugins/sk-vision.js
 AI_SESSION_CHILD=1 SK_VISION_AUTOINSPECT=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 sk-vision "Call the sk_vision_status tool with no arguments. Print the first 8 lines of its raw output, then reply DONE."
@@ -61,9 +61,9 @@ AI_SESSION_CHILD=1 SK_VISION_AUTOINSPECT=1 bash .opencode/skills/cli-external-or
 jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/sk-vision.v2.events.jsonl"
 ```
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-050 | sk-vision | Confirm the vision status tool answers with the local photon runtime | `Call the sk_vision_status tool with no arguments. Print the first 8 lines of its raw output, then reply DONE.` | 1. `ls -l .opencode/plugins/sk-vision.js` -> 2. `AI_SESSION_CHILD=1 SK_VISION_AUTOINSPECT=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 sk-vision "<prompt>"` -> 3. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/sk-vision.v1.events.jsonl"` -> 4. Repeat 2 and 3 with `v2` | The result starts `provider: photon` with `model:`, `device:` and `loaded:` lines; v1 calls `sk_vision_status`, v2 calls `execute` | `sk-vision.v1.events.jsonl`, `sk-vision.v1.exit` and the v2 equivalents, plus the resolved bundle target | PASS if the result starts `provider: photon` with the model, device and loaded lines; FAIL if the tool is missing or the runtime does not answer | Confirm the symlink resolves to an existing bundle; a missing target means the build step was skipped |
+| CO-050 | sk-vision | Confirm the vision status tool answers with the local photon runtime | `Call the sk_vision_status tool with no arguments. Print the first 8 lines of its raw output, then reply DONE.` | 1. `ls -l .opencode/plugins/sk-vision.js` -> 2. `AI_SESSION_CHILD=1 SK_VISION_AUTOINSPECT=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 sk-vision "<prompt>"` -> 3. `jq -c 'select(.type=="tool_use") \| [.part.tool, .part.state.status, (.part.state.error // .part.state.output)]' "$EVIDENCE_DIR/sk-vision.v1.events.jsonl"` -> 4. Repeat 2 and 3 with `v2` | The result starts `provider: photon` with `model:`, `device:` and `loaded:` lines; v1 calls `sk_vision_status`, v2 calls `execute` | `sk-vision.v1.events.jsonl`, `sk-vision.v1.exit` and the v2 equivalents, plus the resolved bundle target | PASS if the result starts `provider: photon` with the model, device and loaded lines; FAIL if the tool is missing or the runtime does not answer | Confirm the symlink resolves to an existing bundle; a missing target means the build step was skipped |
 
 ---
 
@@ -71,19 +71,19 @@ jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state
 
 ### Playbook Sources
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `plugin-utilization/sk-vision.md` | Canonical per-feature execution contract |
-|| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
-|| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `plugin-utilization/sk-vision.md` | Canonical per-feature execution contract |
+| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
+| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
 
 ### Implementation And Test Anchors
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `.opencode/plugins/sk-vision.js` | The plugin symlink that registers `/vision` and the autoinspect tools |
-|| `../skills/sk-vision/vision-runtime/dist/plugin.js` | The built bundle the symlink resolves to |
+| `.opencode/plugins/sk-vision.js` | The plugin symlink that registers `/vision` and the autoinspect tools |
+| `../skills/sk-vision/vision-runtime/dist/plugin.js` | The built bundle the symlink resolves to |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CO-046 -- session-relaunch live utilization on OpenCode 1 and 2"
 description: "This scenario validates the session-relaunch plugin for `CO-046`. It focuses on the handoff nudge injected into later requests once a skilled loop passes the configured context window."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-046 -- session-relaunch live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-046` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
   bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 session-relaunch "Run the shell command 'echo relaunch-probe' and then reply with the single word DONE."
@@ -66,9 +66,9 @@ jq -c 'select(.type=="tool_use") | [.part.tool, .part.state.status, (.part.state
 cat "$EVIDENCE_DIR/session-relaunch.v2.exit"
 ```
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-046 | session-relaunch | Confirm the handoff nudge reaches a later request inside a skilled loop | `Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.` | 1. `AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 session-relaunch "<prompt>"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" \| grep -E '\[session-relaunch\] Context is past the configured window'` -> 3. Repeat 1 and 2 with `v2` | A later request's system prompt holds `[session-relaunch] Context is past the configured window`; the `echo relaunch-probe` tool call completes | `session-relaunch.v1.capture.jsonl`, `session-relaunch.v1.events.jsonl`, `session-relaunch.v1.exit` and the v2 equivalents | PASS if a request after the first carries the marker; FAIL if no later request carries it | Inspect `message.updated` properties; on v2 the bridge sends `{ info }` only, so usage is never recorded |
+| CO-046 | session-relaunch | Confirm the handoff nudge reaches a later request inside a skilled loop | `Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.` | 1. `AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 session-relaunch "<prompt>"` -> 2. `jq -r '.system[]' "$EVIDENCE_DIR/session-relaunch.v1.capture.jsonl" \| grep -E '\[session-relaunch\] Context is past the configured window'` -> 3. Repeat 1 and 2 with `v2` | A later request's system prompt holds `[session-relaunch] Context is past the configured window`; the `echo relaunch-probe` tool call completes | `session-relaunch.v1.capture.jsonl`, `session-relaunch.v1.events.jsonl`, `session-relaunch.v1.exit` and the v2 equivalents | PASS if a request after the first carries the marker; FAIL if no later request carries it | Inspect `message.updated` properties; on v2 the bridge sends `{ info }` only, so usage is never recorded |
 
 ---
 
@@ -76,19 +76,19 @@ cat "$EVIDENCE_DIR/session-relaunch.v2.exit"
 
 ### Playbook Sources
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `plugin-utilization/session-relaunch.md` | Canonical per-feature execution contract |
-|| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
-|| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `plugin-utilization/session-relaunch.md` | Canonical per-feature execution contract |
+| `plugin-utilization/run-plugin-scenario.sh` | Runs one live session through the capture proxy and writes events, capture, effects and exit files |
+| `plugin-utilization/capture-proxy.mjs` | Records every model request's system prompt, tools and tool results |
 
 ### Implementation And Test Anchors
 
-|| File | Role |
+| File | Role |
 |---|---|
-|| `.opencode/plugins/session-relaunch.js` | The plugin that records usage and injects the handoff nudge |
-|| `.opencode/hooks/session-relaunch/` | The tool and helper modules the plugin drives |
+| `.opencode/plugins/session-relaunch.js` | The plugin that records usage and injects the handoff nudge |
+| `.opencode/hooks/session-relaunch/` | The tool and helper modules the plugin drives |
 
 ---
 

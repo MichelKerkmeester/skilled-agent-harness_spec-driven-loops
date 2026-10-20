@@ -1,7 +1,7 @@
 ---
 title: "CO-045 -- session-cleanup live utilization on OpenCode 1 and 2"
 description: "This scenario validates session-cleanup for `CO-045`. It focuses on confirming that startup safety warnings are injected and the dispose hook writes its log line on both OpenCode versions."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-045 -- session-cleanup live utilization on OpenCode 1 and 2
@@ -40,18 +40,19 @@ Operators run the exact prompt and command sequence for `CO-045` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: `export SESSION_CLEANUP_LOG_PATH=$(mktemp -d)/session-cleanup.log` so the log is new for this scenario.
+1. Setup: `LOG_DIR="$(mktemp -d)" || exit 1; [ -d "$LOG_DIR" ] || exit 1` and `export SESSION_CLEANUP_LOG_PATH="$LOG_DIR/session-cleanup.log"` so the log is new for this scenario.
 2. v1 run: run the exact prompt through the scenario runner on v1 with `AI_SESSION_CHILD=1` and the log path exported.
 3. v1 check: grep the capture file for the startup warning and read the log file for the dispose line.
 4. v2 run: run the same prompt through the scenario runner on v2 with the same environment.
 5. v2 check: repeat the capture grep and the log read against the v2 evidence.
-6. Cleanup: `rm -rf "$(dirname "$SESSION_CLEANUP_LOG_PATH")"`.
+6. Cleanup: `rm -rf "$LOG_DIR"`.
 
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
-export SESSION_CLEANUP_LOG_PATH=$(mktemp -d)/session-cleanup.log
+export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/skills/.state/plugin-utilization}"
+LOG_DIR="$(mktemp -d)" || exit 1; [ -d "$LOG_DIR" ] || exit 1
+export SESSION_CLEANUP_LOG_PATH="$LOG_DIR/session-cleanup.log"
 AI_SESSION_CHILD=1 SESSION_CLEANUP_LOG_PATH="$SESSION_CLEANUP_LOG_PATH" bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 baseline "Reply with the single word OK."
 jq -r '.system[]' "$EVIDENCE_DIR/baseline.v1.capture.jsonl" | grep -E '\[session-cleanup\] Startup safety warnings:'
 cat "$SESSION_CLEANUP_LOG_PATH"
@@ -60,7 +61,7 @@ jq -r '.system[]' "$EVIDENCE_DIR/baseline.v2.capture.jsonl" | grep -E '\[session
 cat "$SESSION_CLEANUP_LOG_PATH"
 cat "$EVIDENCE_DIR/baseline.v1.exit" "$EVIDENCE_DIR/baseline.v2.exit"
 
-rm -rf "$(dirname "$SESSION_CLEANUP_LOG_PATH")"
+rm -rf "$LOG_DIR"
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
