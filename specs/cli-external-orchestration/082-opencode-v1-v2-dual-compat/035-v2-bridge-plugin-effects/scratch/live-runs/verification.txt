@@ -1,0 +1,41 @@
+# verification run 2026-10-20T21:56:51Z in worktree 176, HEAD 0adb30d42a plus the uncommitted skill-advisor gate and citation edit
+## plugin suite
+ℹ tests 458
+ℹ pass 458
+ℹ fail 0
+## mutation: in-flight check moved after the announced check
+ℹ pass 49
+ℹ fail 2
+## mutation: no shell alias
+ℹ pass 48
+ℹ fail 3
+## mutation: no announcement from the stream
+1
+(the bridge suite did not finish; its 120-second alarm killed it, so this mutant is caught by a hang, not a clean failure)
+## restored bridge
+identical
+ℹ pass 51
+ℹ fail 0
+## purity vitest
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+## battery unit tests
+ℹ pass 50
+ℹ fail 0
+## battery v1
+PASS v1 family-present: a v1 binary is installed
+PASS v1 plugin-discovered: all 17 plugin files discovered
+PASS v1 plugin-load: all 17 plugin files loaded
+PASS v1 command-listed: all 40 command files listed
+## battery v2
+PASS v2 family-present: a v2 binary is installed
+PASS v2 plugin-active: all 17 plugin files active
+PASS v2 skill-visible: 60 skill entries visible
+PASS v2 command-listed: all 40 command files listed
+## runner evidence-folder checks
+EVIDENCE_DIR must be inside <wt>: /tmp/g035-outside
+EVIDENCE_DIR must not contain ..: <wt>/../g035-esc
+EVIDENCE_DIR resolves outside <wt>: <wt>/.skilled/skills/.state/evid-link3/sub
+entries created through the link: 0
+## playbook package validator
+PASS package=cli-external-orchestration/cli-opencode tier=FAIL_CLOSED scenarios=72 categories=14 operator=72 routing_gold_excluded=0 violations=0 warnings=2

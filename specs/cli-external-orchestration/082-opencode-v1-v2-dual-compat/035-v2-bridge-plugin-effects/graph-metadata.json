@@ -43,6 +43,7 @@
       ".opencode/plugins/ARCHITECTURE.md",
       ".opencode/plugins/README.md",
       "scratch/live-runs/baseline-tests.txt",
+      "scratch/live-runs/verification.txt",
       "scratch/live-runs/results-matrix.md",
       "scratch/live-runs/shell-legs.txt",
       "scratch/live-runs/raw-probe.txt"
@@ -100,6 +101,12 @@
         "name": "baseline-tests.txt",
         "kind": "file",
         "path": "scratch/live-runs/baseline-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/verification.txt",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "All 17 repository plugins register as `active` on OpenCode 2.0.32, but phase 034's live runs showed only 10 of them act",
     "created_at": "2026-10-20T20:32:45Z",
-    "last_save_at": "2026-10-20T21:32:31.722Z",
+    "last_save_at": "2026-10-20T22:00:18.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a762def7b7f212a18c8b3639894732280fa56cf47d3ba15d8aef9d8449bd2e2",
+    "source_fingerprint": "sha256:26fbf8763b1a4e3895f9b595018c945aa96e7fbd2dfa1077374e62b8656eca78",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a9f48fb024056ec5b512a0ecd79571a20f63ffe6824c2bf96091e5a3becbbf4",
       "plan.md": "94f5a248c082b1f4cd57cfa8cfa381071f9b714ffed0891d60b5c6de5626052c",
       "tasks.md": "bf1aa0cf8db47bbb9f10db711aae7c104280b156d2802d5b93ea9ba486887152",
-      "implementation-summary.md": "f6e7cdc52e18f0efbf7028e546718a187e263a54ab350095079d64590c3e5f15"
+      "implementation-summary.md": "5aac5ea3682650cf3d21b229c323f89cc73722ac09a2149b81a0edf330ae0e67"
     },
     "last_active_at": null
   }

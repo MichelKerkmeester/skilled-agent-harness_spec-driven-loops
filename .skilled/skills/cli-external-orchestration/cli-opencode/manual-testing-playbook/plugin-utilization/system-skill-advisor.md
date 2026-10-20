@@ -1,7 +1,7 @@
 ---
 title: "CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-skill-advisor plugin for CO-054. It focuses on the advisor brief that scores the user prompt against the skill graph and its kill switch."
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2
@@ -54,7 +54,7 @@ export EVIDENCE_DIR="${EVIDENCE_DIR:-$(git rev-parse --show-toplevel)/.skilled/s
 export AI_SESSION_CHILD=1
 
 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
-jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v1.capture.jsonl" | grep -E 'Advisor:'
+jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v1.capture.jsonl" | grep -E 'Advisor: live;.*sk-git' || { echo "FAIL: no live advisor line naming sk-git on v1"; exit 1; }
 
 SYSTEM_SKILL_ADVISOR_DISABLED=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 killswitch-skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
 F="$EVIDENCE_DIR/killswitch-skill-advisor.v1.capture.jsonl"; [ -s "$F" ] || { echo "FAIL: no capture at $F"; exit 1; }
@@ -62,7 +62,7 @@ SYS="$(jq -r '.system[]' "$F")" || { echo "FAIL: capture did not parse"; exit 1;
 n=$(printf '%s\n' "$SYS" | grep -c 'Advisor:' || true); echo "Advisor lines with the switch: $n"; [ "$n" -eq 0 ]
 
 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
-jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v2.capture.jsonl" | grep -E 'Advisor:'
+jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v2.capture.jsonl" | grep -E 'Advisor: live;.*sk-git' || { echo "FAIL: no live advisor line naming sk-git on v2"; exit 1; }
 
 SYSTEM_SKILL_ADVISOR_DISABLED=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 killswitch-skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
 F="$EVIDENCE_DIR/killswitch-skill-advisor.v2.capture.jsonl"; [ -s "$F" ] || { echo "FAIL: no capture at $F"; exit 1; }
@@ -72,7 +72,7 @@ n=$(printf '%s\n' "$SYS" | grep -c 'Advisor:' || true); echo "Advisor lines with
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-054 | system-skill-advisor | Confirm the advisor names `sk-git` and that the kill switch removes the brief on both versions | `Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?` | Runner as `skill-advisor` on v1 and v2, then the same on each version as `killswitch-skill-advisor` with `SYSTEM_SKILL_ADVISOR_DISABLED=1`, then for each kill-switch capture set `F`, require a non-empty capture with `[ -s "$F" ]`, parse `SYS` with `jq -r '.system[]'`, and count `Advisor:` lines with `printf`/`grep` | `Advisor: live;` naming `sk-git`; recorded line `Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.`; 0 lines with the switch | `skill-advisor.v1.capture.jsonl`, `killswitch-skill-advisor.v1.capture.jsonl`, `skill-advisor.v2.capture.jsonl`, `killswitch-skill-advisor.v2.capture.jsonl` | PASS only when the live line names `sk-git` and the switch run counts 0 on both versions | Rerun once if the first run shows `Advisor: outage (fail_open)`; count lines from the capture file, not the reply |
+| CO-054 | system-skill-advisor | Confirm the advisor names `sk-git` and that the kill switch removes the brief on both versions | `Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?` | Runner as `skill-advisor` on v1 and v2, each stopping with FAIL unless its capture holds an `Advisor: live;` line naming `sk-git`, then the same on each version as `killswitch-skill-advisor` with `SYSTEM_SKILL_ADVISOR_DISABLED=1`, then for each kill-switch capture set `F`, require a non-empty capture with `[ -s "$F" ]`, parse `SYS` with `jq -r '.system[]'`, and count `Advisor:` lines with `printf`/`grep` | `Advisor: live;` naming `sk-git`; recorded line `Advisor: live; ambiguous: sk-git 0.84/0.16 vs system-skill-advisor 0.82/0.16 pass.`; 0 lines with the switch | `skill-advisor.v1.capture.jsonl`, `killswitch-skill-advisor.v1.capture.jsonl`, `skill-advisor.v2.capture.jsonl`, `killswitch-skill-advisor.v2.capture.jsonl` | PASS only when the live line names `sk-git` and the switch run counts 0 on both versions | Rerun once if the first run shows `Advisor: outage (fail_open)`; count lines from the capture file, not the reply |
 
 ---
 

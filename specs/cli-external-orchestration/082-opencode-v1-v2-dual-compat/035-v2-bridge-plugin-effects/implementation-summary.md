@@ -103,16 +103,18 @@ A raw v2 probe plugin first logged the unbridged event envelopes, tool hook even
 
 | Check | Result |
 |-------|--------|
-| Plugin suite `node --test '.opencode/plugins/tests/*.test.cjs'` | PASS, 455 of 455 (436 before this phase, `scratch/live-runs/baseline-tests.txt`) |
-| Bridge suite mutation: in-flight check moved after the announced check | FAIL as expected, 1 test, then PASS restored |
-| Purity vitest `opencode-plugins-folder-purity.vitest.ts` | PASS, 1 of 1 |
-| Version battery in worktree 176 | PASS on v1 (4 legs) and v2 (4 legs, isolated read) |
-| Battery unit tests | PASS, 50 of 50 |
+| Plugin suite `node --test '.opencode/plugins/tests/*.test.cjs'` | PASS, 458 of 458 (436 before this phase, `scratch/live-runs/baseline-tests.txt`; after, `scratch/live-runs/verification.txt`) |
+| Bridge mutations (`scratch/live-runs/verification.txt`) | In-flight check moved after the announced check: 2 tests fail. No `shell` alias: 3 fail. No announcement from the stream: the suite hangs until its alarm. The restored file is identical and passes 51 of 51 |
+| Purity vitest `opencode-plugins-folder-purity.vitest.ts` | PASS, 1 of 1 (`verification.txt`) |
+| Version battery in worktree 176 | PASS on v1 (4 legs) and v2 (4 legs) (`verification.txt`) |
+| Battery unit tests | PASS, 50 of 50 (`verification.txt`) |
 | Live playbook, all 17 scenarios on v1 and v2 | 17 of 17 PASS on each version; every block exited 0 (`scratch/live-runs/results-matrix.md`) |
 | Shell legs of dist-freshness and spec-gate on v2 | dist-freshness logs `risky-bash:` on both; spec-gate behaves the same on both (`scratch/live-runs/shell-legs.txt`) |
-| Runner evidence-folder check | Refuses `/tmp/...`, a `..` path and an in-checkout symlink to an outside folder |
-| Playbook package validator | PASS, 72 scenarios, 14 categories, 0 violations |
+| Runner evidence-folder check | Refuses `/tmp/...`, a `..` path and a path through an in-checkout symlink to an outside folder, creating nothing through the link (`verification.txt`) |
+| Playbook package validator | PASS, 72 scenarios, 14 categories, 0 violations (`verification.txt`) |
 | Luna review round 1 | FAIL: 4 P1 and 1 P2. Three P1s and the P2 were fixed; one P1 was declined (see Key Decisions) |
+| Luna review round 2 | FAIL: 2 P1 and 5 P2, all fixed |
+| Luna review round 3 | FAIL: 2 P1 and 3 P2. The ungated live advisor check, the evidence rows and the reset citation were fixed. The temp-folder finding repeats round 1's and stays declined. The README's `session.deleted` observation comes from phase 034's probe, not this packet, and stays |
 <!-- /ANCHOR:verification -->
 
 ---
