@@ -1,7 +1,7 @@
 ---
 title: "CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-skill-advisor plugin for CO-054. It focuses on the advisor brief that scores the user prompt against the skill graph and its kill switch."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2
@@ -50,6 +50,7 @@ Operators run the exact prompt and command sequence for `CO-054` and confirm the
 ### Exact Command Sequence
 
 ```bash
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 export AI_SESSION_CHILD=1
 
 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"

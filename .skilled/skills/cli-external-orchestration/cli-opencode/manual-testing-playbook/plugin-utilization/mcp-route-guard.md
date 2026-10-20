@@ -1,7 +1,7 @@
 ---
 title: "CO-043 -- mcp-route-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates mcp-route-guard for `CO-043`. It focuses on confirming that a native MCP call to a server the Code Mode manifest covers logs a WARN advisory on both OpenCode versions."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-043 -- mcp-route-guard live utilization on OpenCode 1 and 2
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CO-043` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR=${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 export REPO_ROOT="$(git rev-parse --show-toplevel)"
 export STUB="$REPO_ROOT/.opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/mcp-stub.mjs"
 AI_SESSION_CHILD=1 CFG_EXTRA="{\"mcp\":{\"mobbin\":{\"type\":\"local\",\"command\":[\"node\",\"$STUB\"]}}}" bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 mcp-route-guard "Call the mobbin_ping tool and print its output, then reply DONE."

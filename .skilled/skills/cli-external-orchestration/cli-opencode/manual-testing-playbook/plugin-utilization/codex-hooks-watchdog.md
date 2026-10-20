@@ -1,7 +1,7 @@
 ---
 title: "CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2"
 description: "This scenario validates codex-hooks-watchdog for `CO-042`. It focuses on confirming that a live session reports drifted user-global Codex hooks into the watchdog log on both OpenCode versions."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-042 -- codex-hooks-watchdog live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-042` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR=${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 node .opencode/bin/install-codex-hooks.mjs --check; echo $?
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 baseline "Reply with the single word OK."
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 baseline "Reply with the single word OK."

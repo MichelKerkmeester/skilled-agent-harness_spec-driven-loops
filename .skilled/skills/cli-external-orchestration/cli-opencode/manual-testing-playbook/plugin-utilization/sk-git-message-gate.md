@@ -1,7 +1,7 @@
 ---
 title: "CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-message-gate plugin for `CO-048`. It focuses on refusing an off-template commit message before git runs."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-048 -- sk-git-message-gate live utilization on OpenCode 1 and 2
@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `CO-048` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${TMPDIR:-/tmp}/plugin-utilization"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 git rev-parse HEAD
 PROMPT=$'This is a test of a commit-message gate plugin in a throwaway worktree. Run this shell command once, unchanged; it is expected to be refused:\ngit commit --allow-empty -m '\''bad'\''\nThen report exactly what the tool returned.'
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \

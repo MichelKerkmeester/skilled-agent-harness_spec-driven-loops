@@ -1,7 +1,7 @@
 ---
 title: "CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-dist-freshness-guard plugin for CO-053. It focuses on the stale compiled dist warning that reaches the system prompt and the plugin log."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-053 -- system-dist-freshness-guard live utilization on OpenCode 1 and 2
@@ -45,14 +45,17 @@ Operators run the exact prompt and command sequence for `CO-053` and confirm the
 3. v1 check: read the captured system prompt for both markers and read the effects file for the log line.
 4. v2 run: restore the backup, make the file stale again, then run the runner with `v2`, the same name and prompt.
 5. v2 check: read the captured system prompt for both markers and read the effects file for the log line.
-6. Cleanup: restore the backup and rerun the confirm command until it prints `[]`.
+6. Cleanup: the `EXIT` trap restores `$E` from `BACKUP` even if the run is interrupted; the final line restores it explicitly, removes the temporary backup and clears the trap, then rerun the confirm command until it prints `[]`.
 
 ### Exact Command Sequence
 
 ```bash
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 export AI_SESSION_CHILD=1
 E=.opencode/skills/sk-design/sk-design-md-generator/backend/dist/cli.js
-cp -p $E /tmp/cli.js.bak
+BACKUP="$(mktemp)"
+cp -p "$E" "$BACKUP"
+trap 'cp -p "$BACKUP" "$E"; rm -f "$BACKUP"' EXIT
 printf '\n' >> $E
 touch -t 200001010000 $E
 node -e "const d=require('./.opencode/skills/system-spec-kit/runtime/cli/lib/dist-freshness.cjs'); console.log(d.checkAllFreshness({workspaceRoot:process.cwd()}).filter(r=>r.stale).map(r=>r.packageId))"
@@ -65,12 +68,12 @@ bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-pla
 jq -r '.system[]' "$EVIDENCE_DIR/dist-freshness.v2.capture.jsonl" | grep -E 'dist-freshness-guard|STALE DIST WARNING'
 grep -E 'session.created:|inject:' "$EVIDENCE_DIR/dist-freshness.v2.effects.txt"
 
-cp -p /tmp/cli.js.bak $E
+cp -p "$BACKUP" "$E"; rm -f "$BACKUP"; trap - EXIT
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-053 | system-dist-freshness-guard | Make a provisioned package stale and confirm the warning reaches the prompt and the log on both versions | `Reply with the single word OK.` | Stale setup and confirm command, then the runner on v1 and v2, then `jq` on each `.capture.jsonl` and `grep` on each `.effects.txt`, then restore | Prompt holds `[dist-freshness-guard] Local compiled dist is stale` and `STALE DIST WARNING: design-system-extractor`; log gains a line prefixed `session.created:` on v1 and `inject:` on v2 | `dist-freshness.v1.capture.jsonl`, `dist-freshness.v1.effects.txt`, `dist-freshness.v2.capture.jsonl`, `dist-freshness.v2.effects.txt` | PASS only when both markers and the log line appear on both versions | Run the confirm command first; an unprovisioned package reports `unprovisioned`, not `stale`, so use the provisioned backend sample |
+| CO-053 | system-dist-freshness-guard | Make a provisioned package stale and confirm the warning reaches the prompt and the log on both versions | `Reply with the single word OK.` | Stale setup and confirm command, then the runner on v1 and v2, then `jq` on each `.capture.jsonl` and `grep` on each `.effects.txt`, then restore from the `mktemp` backup and clear the `EXIT` trap | Prompt holds `[dist-freshness-guard] Local compiled dist is stale` and `STALE DIST WARNING: design-system-extractor`; log gains a line prefixed `session.created:` on v1 and `inject:` on v2 | `dist-freshness.v1.capture.jsonl`, `dist-freshness.v1.effects.txt`, `dist-freshness.v2.capture.jsonl`, `dist-freshness.v2.effects.txt` | PASS only when both markers and the log line appear on both versions | Run the confirm command first; an unprovisioned package reports `unprovisioned`, not `stale`, so use the provisioned backend sample |
 
 ---
 

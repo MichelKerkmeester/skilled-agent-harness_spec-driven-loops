@@ -1,7 +1,7 @@
 ---
 title: "CO-045 -- session-cleanup live utilization on OpenCode 1 and 2"
 description: "This scenario validates session-cleanup for `CO-045`. It focuses on confirming that startup safety warnings are injected and the dispose hook writes its log line on both OpenCode versions."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-045 -- session-cleanup live utilization on OpenCode 1 and 2
@@ -45,12 +45,12 @@ Operators run the exact prompt and command sequence for `CO-045` and confirm the
 3. v1 check: grep the capture file for the startup warning and read the log file for the dispose line.
 4. v2 run: run the same prompt through the scenario runner on v2 with the same environment.
 5. v2 check: repeat the capture grep and the log read against the v2 evidence.
-6. Cleanup: delete the temporary log directory.
+6. Cleanup: `rm -rf "$(dirname "$SESSION_CLEANUP_LOG_PATH")"`.
 
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR=${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 export SESSION_CLEANUP_LOG_PATH=$(mktemp -d)/session-cleanup.log
 AI_SESSION_CHILD=1 SESSION_CLEANUP_LOG_PATH="$SESSION_CLEANUP_LOG_PATH" bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 baseline "Reply with the single word OK."
 jq -r '.system[]' "$EVIDENCE_DIR/baseline.v1.capture.jsonl" | grep -E '\[session-cleanup\] Startup safety warnings:'
@@ -59,11 +59,13 @@ AI_SESSION_CHILD=1 SESSION_CLEANUP_LOG_PATH="$SESSION_CLEANUP_LOG_PATH" bash .op
 jq -r '.system[]' "$EVIDENCE_DIR/baseline.v2.capture.jsonl" | grep -E '\[session-cleanup\] Startup safety warnings:'
 cat "$SESSION_CLEANUP_LOG_PATH"
 cat "$EVIDENCE_DIR/baseline.v1.exit" "$EVIDENCE_DIR/baseline.v2.exit"
+
+rm -rf "$(dirname "$SESSION_CLEANUP_LOG_PATH")"
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-045 | session-cleanup live utilization on OpenCode 1 and 2 | Confirm the startup warning and the dispose log line on both versions | `Reply with the single word OK.` | 1. Export a fresh `SESSION_CLEANUP_LOG_PATH` -> 2. Run `baseline` on v1 -> 3. Grep the capture for the startup line and read the log -> 4. Run on v2 -> 5. Repeat both reads | System prompt holds `[session-cleanup] Startup safety warnings:`; the log gains a line such as `action=skip reason=no-session-pid` | `baseline.v1.txt`, `baseline.v2.txt` | PASS if both halves hold on that version; FAIL if the warning or the dispose line is missing | Confirm the log path is exported; a missing startup warning points at `session.created`, which the v2 run session does not receive |
+| CO-045 | session-cleanup live utilization on OpenCode 1 and 2 | Confirm the startup warning and the dispose log line on both versions | `Reply with the single word OK.` | 1. Export a fresh `SESSION_CLEANUP_LOG_PATH` -> 2. Run `baseline` on v1 -> 3. Grep the capture for the startup line and read the log -> 4. Run on v2 -> 5. Repeat both reads -> 6. Remove the temporary log directory | System prompt holds `[session-cleanup] Startup safety warnings:`; the log gains a line such as `action=skip reason=no-session-pid` | `baseline.v1.txt`, `baseline.v2.txt` | PASS if both halves hold on that version; FAIL if the warning or the dispose line is missing | Confirm the log path is exported; a missing startup warning points at `session.created`, which the v2 run session does not receive |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-deep-loop-guard plugin for CO-052. It focuses on the task-dispatch guard that refuses a deep-loop dispatch whose declared mode the target agent does not have."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-052 -- system-deep-loop-guard live utilization on OpenCode 1 and 2
@@ -51,6 +51,7 @@ Operators run the exact prompt and command sequence for `CO-052` and confirm the
 ### Exact Command Sequence
 
 ```bash
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 export AI_SESSION_CHILD=1
 export SYSTEM_DEEP_LOOP_GUARD_REJECT=1
 

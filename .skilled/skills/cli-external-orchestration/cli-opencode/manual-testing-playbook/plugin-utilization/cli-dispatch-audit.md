@@ -1,7 +1,7 @@
 ---
 title: "CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2"
 description: "This scenario validates cli-dispatch-audit for `CO-041`. It focuses on confirming that a blocked CLI dispatch is refused before it runs and that every allowed dispatch appends one audit record on both OpenCode versions."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2
@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CO-041` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR=${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 dispatch-guard "This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 dispatch-audit "Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 dispatch-guard "This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help"

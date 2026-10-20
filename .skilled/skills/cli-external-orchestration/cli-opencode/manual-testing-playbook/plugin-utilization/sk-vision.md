@@ -1,7 +1,7 @@
 ---
 title: "CO-050 -- sk-vision live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-vision plugin for `CO-050`. It focuses on the autoinspect tools registering and answering with the local photon runtime."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-050 -- sk-vision live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-050` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${TMPDIR:-/tmp}/plugin-utilization"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 ls -l .opencode/plugins/sk-vision.js
 AI_SESSION_CHILD=1 SK_VISION_AUTOINSPECT=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 sk-vision "Call the sk_vision_status tool with no arguments. Print the first 8 lines of its raw output, then reply DONE."

@@ -1,7 +1,7 @@
 ---
 title: "CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-completion-sentinel plugin for `CO-051`. It focuses on the advisory appended when a completion claim names a spec folder with an incomplete checklist."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-051` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${TMPDIR:-/tmp}/plugin-utilization"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 PROMPT='This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.'
 rm -f .skilled/skills/.state/completion-sentinel/advisory-dedup.json
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \

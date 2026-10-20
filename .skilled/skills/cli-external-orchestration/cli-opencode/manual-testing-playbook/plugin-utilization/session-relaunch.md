@@ -1,7 +1,7 @@
 ---
 title: "CO-046 -- session-relaunch live utilization on OpenCode 1 and 2"
 description: "This scenario validates the session-relaunch plugin for `CO-046`. It focuses on the handoff nudge injected into later requests once a skilled loop passes the configured context window."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-046 -- session-relaunch live utilization on OpenCode 1 and 2
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CO-046` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${TMPDIR:-/tmp}/plugin-utilization"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 AI_SESSION_CHILD=1 SKILLED_LOOP_ID=probe-loop SESSION_RELAUNCH_WINDOW_TOKENS=2000 \
   bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 session-relaunch "Run the shell command 'echo relaunch-probe' and then reply with the single word DONE."

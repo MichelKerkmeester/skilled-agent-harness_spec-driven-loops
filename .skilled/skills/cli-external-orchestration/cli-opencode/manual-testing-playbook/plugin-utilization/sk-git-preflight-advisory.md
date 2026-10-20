@@ -1,7 +1,7 @@
 ---
 title: "CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-preflight-advisory plugin for `CO-049`. It focuses on the advisory for a git command that fails a warn rule and on its delivery in the next request."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2
@@ -55,7 +55,7 @@ Operators run the exact prompt and command sequence for `CO-049` and confirm the
 ### Exact Command Sequence
 
 ```bash
-export EVIDENCE_DIR="${TMPDIR:-/tmp}/plugin-utilization"
+export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
 PROMPT=$'This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:\ngit add no-such-path-preflight-probe.txt\nThen reply with the single word DONE.'
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 git-preflight "$PROMPT"
