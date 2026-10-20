@@ -56,8 +56,8 @@ contextType: "general"
 - [x] T009 Lint the workflows (`scratch/after/workflow-lint.txt`) Done: `actionlint` exit 0 on the three changed workflows, and `check-gate-inputs.sh` RESULT: PASSED with 0 failures.
 - [x] T010 Run sk-doc's runner the way CI does (`scratch/after/sk-doc-script-tests.txt`) Done: 37 PASS, 1 SKIP, exit 0, the two newly listed tests among the passes.
 - [x] T011 Review the change read-only with Luna until PASS (`scratch/review/`) Done: round 1 FAIL (summary marked complete early; a wrong limitation about sk-doc triggers; the sk-git comment left out node), round 2 FAIL (the sk-git job ignored package manifests outside sk-git, which the suite reads), round 3 PASS with one P2, the hermetic-run claim lacking a record, now `scratch/baseline/hermetic.txt`.
-- [ ] T012 Validate this folder strict and 082 recursively, each RESULT: PASSED
-- [ ] T013 Item 6: prove each new job passes on CI at the pushed main commit
+- [x] T012 Validate this folder strict and 082 recursively, each RESULT: PASSED Done: after the main merge, this folder printed RESULT: PASSED, and the recursive strict run over 082 printed RESULT: PASSED for all 28 folders, 0 failed.
+- [x] T013 Item 6: prove each new job passes on CI at the pushed main commit Done: at main `97c9a1105f`, all 17 runs passed. Pi Extension Tests run 39423416909 passed both legs (pi-cache-optimizer 118 of 118, pi-fast-mode 81 of 81); sk-git Script Tests run 39423417067 printed `PASS=109 FAIL=0`; sk-doc Script Tests run 39423416961 printed `PASS test-cite-drift-scan.mjs` and `PASS install-guide-contract.test.cjs`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

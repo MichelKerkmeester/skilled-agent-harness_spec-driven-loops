@@ -8,17 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage"
-    last_updated_at: "2026-10-20T11:52:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-20T12:41:51Z"
+    last_updated_by: "generate-context"
+    recent_action: "CI green at main 97c9a1105f"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".github/workflows/pi-extension-tests.yml"
+      - ".github/workflows/sk-git-script-tests.yml"
+      - ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh"
+      - ".github/workflows/opencode-dual-version.yml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f82a0ba90c07e1825398f1662f56c1b58fc0d6baa3d650a4653f70400773d403"
       session_id: "scaffold-029-unrun-tests-ci-coverage"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-unrun-tests-ci-coverage |
-| **Completed** | Not yet: Luna review, strict validation and the CI proof on main are open |
+| **Completed** | 2026-10-20 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -99,6 +103,9 @@ Each suite's placement was confirmed by grepping every workflow and the runners 
 | `.pi` mutants | Each leg's `npm test` exit 1 (`scratch/mutation/pi-extensions.txt`) |
 | sk-doc runner as CI runs it | 37 PASS, 1 SKIP, exit 0 (`scratch/after/sk-doc-script-tests.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures (`scratch/after/workflow-lint.txt`) |
+| Luna review, read-only | Round 1 FAIL, round 2 FAIL, round 3 PASS with one P2, fixed (`scratch/review/`) |
+| Strict validation | This folder and all 28 folders of 082: RESULT: PASSED |
+| CI at main `97c9a1105f` | All 17 runs passed; Pi Extension Tests 39423416909 (118 and 81), sk-git Script Tests 39423417067 (109), sk-doc Script Tests 39423416961 |
 <!-- /ANCHOR:verification -->
 
 ---

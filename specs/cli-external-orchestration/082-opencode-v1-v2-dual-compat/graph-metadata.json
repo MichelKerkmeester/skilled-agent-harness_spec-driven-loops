@@ -235,7 +235,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T12:05:55.357Z",
+    "last_save_at": "2026-10-20T12:42:06.283Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -243,13 +243,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b64605ab0aae87abe1f38e8cc2994ee739d72a5988d4df57edf0ab84fae4fc98",
+    "source_fingerprint": "sha256:f37da780f9f50ad54f4dc756b947415096e556133b2337c7fe787d77a3ef1d6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43a579be0ac10f848eb5d67dc4c392a0b57532058d8d8d35b726a5f78eecca65",
+      "spec.md": "2021357f71a80c8e0439009c359e8069394fa15cf4222741d33c5f4ea95b8787",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
-    "last_active_at": "2026-10-20T10:25:00.545Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage",
+    "last_active_at": "2026-10-20T12:41:51.969Z"
   }
 }

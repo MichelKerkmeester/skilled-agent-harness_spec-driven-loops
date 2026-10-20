@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -178,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,12 +194,18 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A grep of every workflow and every runner they call, on `origin/main` at `7d55952975`, finds five suites that no blocking job runs, and clears a sixth suspect",
     "created_at": "2026-10-20T11:52:31Z",
-    "last_save_at": "2026-10-20T12:32:01.909Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-20T12:41:51.936Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeb913b3f2b128c1d3a53a3c375ad2c0723e16834e37c87580848cd437b383de",
+    "source_fingerprint": "sha256:a0c3053f86a847388b5f7422fa7cbdb9d49b28ea8552b4ce925667a6e757b829",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7de410f1382c406164489abc9cf07befd7ef28e5b5e5d22a6a19f860491a36ef",
-      "plan.md": "a99eb490c7357f35c8c4e88dc754859613aa3edd1cdba9096b33f91fe0df0f88",
-      "tasks.md": "1535e151b9b69d0cf4f35f6f4810a64796105d64a26c1c509e65f7c613e4107b",
-      "implementation-summary.md": "6669409094acf74c0ee07cdce8ca79c765f00f0895856343c7ca0bbf91c76975"
+      "spec.md": "20182858d87384d7b57c1e26688e5cbfac5ba5adaa9641e4b14091f1131d33e4",
+      "plan.md": "040142e2e5e95efb7eabf0f36f7079015cc96aad379312281b5f91f311dad8ba",
+      "tasks.md": "2e4a74eabe70c8d5e23c491647b3a4177efbdbd88a115f2a4955f48522a8bc3d",
+      "implementation-summary.md": "4c9d449e03974a048bacb39400e74ada27d2c3a6c19a89d1aaebb75cfb1b5dde"
     },
     "last_active_at": null
   }
