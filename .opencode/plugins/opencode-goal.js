@@ -8,8 +8,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { createHash, randomUUID } from 'node:crypto';
-import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink, writeFile } from 'node:fs/promises';
-import { join, resolve as resolvePath } from 'node:path';
+import {
+  appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink, writeFile,
+} from 'node:fs/promises';
+import { dirname, join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
@@ -1856,10 +1858,24 @@ async function bindGoal(sessionID, packetPath, rawOptions = {}) {
   const prior = await readGoal(sessionID, options);
   if (prior && prior.packetPath && prior.packetPath !== packet.packetPath) {
     const archiveDir = await ensureGoalArchiveDir(options);
-    const snapshotPath = join(archiveDir, `${sessionKeyForSession(sessionID)}.${normalizeGoalID(prior.goalId)}.json`);
-    await writeFile(snapshotPath, `${JSON.stringify(prior, null, 2)}\n`, { mode: 0o600 }).catch((error) => {
-      writeDebugStderr('bindGoal.archivePrior', error);
-    });
+    // The goal id is read from state any process on this machine can edit, and it
+    // keeps path separators and `..`, so the snapshot must land directly in the
+    // archive folder or not at all.
+    const snapshotPath = join(
+      archiveDir,
+      `${sessionKeyForSession(sessionID)}.${normalizeGoalID(prior.goalId)}.json`,
+    );
+    if (dirname(resolvePath(snapshotPath)) !== resolvePath(archiveDir)) {
+      writeDebugStderr(
+        'bindGoal.archivePrior',
+        new Error('archive target escapes its archive folder'),
+      );
+    } else {
+      await writeFile(snapshotPath, `${JSON.stringify(prior, null, 2)}\n`, { mode: 0o600 })
+        .catch((error) => {
+          writeDebugStderr('bindGoal.archivePrior', error);
+        });
+    }
   }
   const goal = await mutateGoal(sessionID, (current) => {
     const timestamp = nowMs(options);
@@ -2056,25 +2072,6 @@ async function accountUsage(sessionID, expectedGoalID, usage = {}, rawOptions = 
       usageSource,
       continuationSuppressed: nextStatus === 'budget_limited' ? true : current.continuationSuppressed,
       continuationSuppressedReason: nextStatus === 'budget_limited' ? 'token budget reached' : current.continuationSuppressedReason,
-      updatedAtMs: timestamp,
-      updatedAt: isoFromMs(timestamp),
-    };
-  }, options);
-}
-
-async function refreshGoalActivity(sessionID, event, rawOptions = {}) {
-  const options = normalizeOptions(rawOptions);
-  const messageID = extractEventMessageID(event);
-  const evidence = extractAssistantEvidence(event, options);
-
-  return mutateGoal(sessionID, (current) => {
-    if (!current) return null;
-    const timestamp = nowMs(options);
-    return {
-      ...current,
-      lastActivityAtMs: timestamp,
-      lastActivityMessageID: messageID || current.lastActivityMessageID,
-      lastEvidence: evidence || current.lastEvidence,
       updatedAtMs: timestamp,
       updatedAt: isoFromMs(timestamp),
     };
