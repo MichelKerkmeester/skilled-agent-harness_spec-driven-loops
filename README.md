@@ -163,105 +163,77 @@ From request to documented result:
 
 ## 4. 🚀 QUICK START
 
-### Installation
+### Install
 
-**Prerequisites**
-
-- Node.js 24.x for a full install. Code Mode's MCP server needs `>=24.0.0 <25.0.0`, the spec-kit runtime CLI needs 22.12+ and the advisor runtime needs 20.19+ or 22.12+, so Node 24 is the one line every part accepts
-- `npm`, `git` and a POSIX shell
-- No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs
-- OpenCode 1 or 2. Both load the framework's plugins, see [OpenCode Plugins](#opencode-plugins)
+You need Node.js 24, `npm`, `git` and a POSIX shell. Node 24 is the one version every part of the framework accepts.
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/MichelKerkmeester/skilled-agent-harness_spec-driven-loops.git
 cd skilled-agent-harness_spec-driven-loops
 
-# 2. Install the spec-kit workspace (TypeScript and the shared package the advisor builds against)
+# Spec Kit: the runtimes' session hooks load this build
 npm --prefix .skilled/skills/system-spec-kit install
-
-# 3. Build the spec-kit workspace. The runtimes' session hooks and the agent mirror check load this build
 npm --prefix .skilled/skills/system-spec-kit run build
 
-# 4. Build the advisor runtime and check its CLI front door. Run it after step 2: the advisor build compiles against the types step 2 installs
-# The CLI spawns the resident daemon on demand. Code Mode needs its own server build, see the mcp-code-mode install guide.
+# Skill Advisor: build it after the Spec Kit, then check its CLI
 npm --prefix .skilled/skills/system-skill-advisor/runtime install
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
 ```
 
-### Verify Installation
+### Check The Setup
 
-```bash
-# Confirm the active runtime's MCP config references the Code Mode launcher
-grep -l mcp-code-mode-launcher opencode.json .mcp.json .claude/mcp.json .codex/config.toml .cursor/mcp.json .devin/mcp_config.json .pi/mcp.json 2>/dev/null
+Open the repository in any of the seven runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes. Then run:
 
-# Confirm the advisor CLI enumerates all nine commands
-node .skilled/bin/skill-advisor.cjs list-tools --format json
-
-# In an AI session, /doctor:setup runs read-only setup checks and names a repair command per failure
+```
 /doctor:setup
 ```
 
-### Git Hooks
+It checks the install without changing anything and names one repair command for each failure. Code Mode builds separately, and `/doctor:mcp install` builds and registers it for you.
 
-The first AI session you open in your checkout installs the repository's git hooks. They then check each commit and push you make in that checkout and its worktrees.
-
-- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage
-- **commit-msg** holds each message to sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject, a prose body, `Spec:` and `Commit-Id:` trailers and no `Co-Authored-By` lines
-- **pre-push** blocks a push that deletes more than 100 tracked files. It asks for your approval before a push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist
-
-The hooks are installed for the whole machine, so another clone stays unchecked until you trust it with `git config --local skilled.trustRepoHooks true`. [Off Switches](#off-switches) covers switching a gate or all hooks off, and the [git hooks README](.skilled/scripts/git-hooks/README.md) describes every gate.
-
-### First Use
-
-Open your project directory in any of the seven supported runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes. The framework is active in each. Try:
+### First Task
 
 ```
 /speckit:complete Build a user authentication system
 ```
 
-That is the OpenCode and Claude Code spelling. Codex, Cursor and Pi name the same command `/speckit-complete`. Hermes runs it from the prompt template `.hermes/prompts/speckit-complete.md`, as [`.hermes/SYNC.md`](.hermes/SYNC.md) describes. Devin carries no command mirror and reaches the same workflow through its `/system-spec-kit` skill.
+This creates a spec folder, plans the work, builds it and saves the session context into the folder as it goes. Add `:with-research` to research before planning. In a later session, `/speckit:resume` picks up where the last one stopped.
 
-That one command does five things:
-
-- Creates a spec folder
-- Runs research first with `:with-research`, or when planning confidence falls below 60%
-- Builds a plan
-- Begins implementation
-- Writes the session context into the packet as it goes
-
-Come back tomorrow and `/speckit:resume` reads it back.
+Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Hermes runs them from `.hermes/prompts/`, and Devin reaches the same workflow through its `/system-spec-kit` skill.
 
 ### Turn On Endless Sessions
 
-Add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of your checkout:
+Add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, then open a new terminal:
 
 ```bash
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
 ```
 
-Open a new terminal. Every interactive `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` now starts under the nearest `.skilled/bin/skilled-loop`. The shim finds it by walking up from the current directory. A symlinked `.skilled` counts, so another repository that links this checkout's `.skilled` starts under the wrapper too. It hops on its own when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`, because each runtime reads its hooks from the project it starts in. Subcommands, print modes, version and help still run the binary directly.
+Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `devin` launches now run under the loop. At 80% of the context window the session writes a handoff note and ends, and a fresh session in the same terminal picks it up. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff`, which Cursor names `/speckit-handoff`.
 
-At 80% of the context window the session writes a handoff note, saves its spec packet if one is bound and ends. The wrapper then starts a fresh session in the same terminal, and that session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`, which Cursor names `/speckit-handoff`.
+- **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
+- **Another repository** that links this checkout's `.skilled` hops too when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`
+- **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
 
-- **Hermes:** the shim gives a wrapped launch `HERMES_ENABLE_PROJECT_PLUGINS=1`. List `repo-guards` under `plugins.enabled` in `~/.hermes/config.yaml` as well
-- **Threshold:** `SESSION_RELAUNCH_THRESHOLD` sets the trigger point, `0.80` by default
-- **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1` turns the nudge off. Without the shim nothing nudges either, and auto-compaction stays the fallback
-- **A stalled hop:** if the old session does not go idle and end in time, the record is disarmed and a macOS notice says why and carries the command to continue by hand
-- **Not `handover.md`:** the handoff note is gitignored runtime state under `.skilled/skills/.state/session-relaunch/handoffs/`. A spec packet's `handover.md` is a separate continuity doc that `/speckit:resume` reads
+The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
 
-The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, and its [Run every session under the loop](.skilled/hooks/session-relaunch/README.md#run-every-session-under-the-loop) section lists exactly when the shim wraps a launch.
+### Git Hooks
 
-### Adapting to Your Stack
+The first AI session installs the repository's git hooks. They check every commit and push in this checkout and its worktrees:
 
-This repo ships as a public template.
+- **pre-commit** blocks code comments that cite spec ids and keeps generated files in step with what you stage
+- **commit-msg** holds each message to the [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject, a body and no `Co-Authored-By` lines
+- **pre-push** blocks a push that deletes more than 100 tracked files, and asks before a push to a branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist
 
-- Only `sk-code` carries stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking
-- The other 13 shipped skills, such as `system-spec-kit`, `sk-doc`, `sk-git` and `system-deep-loop`, are codebase-agnostic out of the box
-- Most teams add their own skills on top. Drop them into `.skilled/skills/<your-skill>/` and the advisor picks them up automatically
+Another clone is checked only after `git config --local skilled.trustRepoHooks true`. `/doctor:git setup` checks the hooks and sk-git settings, `/doctor:git hooks` switches a gate on or off and `/doctor:git standards` changes the commit rules. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate.
 
-See the [customization guide](#customizing-for-your-stack) for the full map and step-by-step adaptation guide.
+### Make It Yours
+
+Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
+
+### Keep It Healthy
+
+The doctor commands check and repair one area each, and `/doctor:setup` lists them all. `/doctor:update` brings in a new release, `/doctor:runtime-mirrors` finds runtime copies that drifted from `.skilled/` and `/doctor:skill-advisor` rebuilds or tunes skill routing. The [Doctor](#doctor) commands section describes each one.
 
 &nbsp;
 
