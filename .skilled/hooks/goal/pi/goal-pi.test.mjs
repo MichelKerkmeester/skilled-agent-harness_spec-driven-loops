@@ -48,19 +48,19 @@ function opts(sessionId = 'test-session', runtime = 'pi') {
 
 test('renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi', async () => {
   const core = (await import(pathToFileURL(CORE_PATH).href)).default;
-  // The Role line is baked into goal.goalPrompt at setGoal()-time from the
-  // `runtime` label passed then -- renderGoalBrief's own `runtimeLabel`
-  // argument does not re-derive it, so this exercises the "Pi" label the
-  // way a goal actually set for a Pi session would carry it.
+  // Set the goal under a different runtime so the render proves the Role line
+  // is relabelled for the runtime reading it, not merely echoing the stored label.
   const { record } = core.setGoal(
-    { objective: 'Ship the Pi goal extension', runtimeLabel: 'Pi' },
+    { objective: 'Ship the Pi goal extension', runtimeLabel: 'OpenCode' },
     opts(),
   );
   const goal = core.readGoalRecord(opts());
+  assert.match(goal.goalPrompt, /Role: Focused OpenCode execution agent/);
   const brief = core.renderGoalBrief({ goal, runtimeLabel: 'Pi' });
   assert.match(brief, /^\[active_goal:/);
   assert.match(brief, /status: active/);
   assert.match(brief, /Role: Focused Pi execution agent/);
+  assert.doesNotMatch(brief, /Role: Focused OpenCode execution agent/);
   assert.match(brief, new RegExp(record.goalId));
 });
 
