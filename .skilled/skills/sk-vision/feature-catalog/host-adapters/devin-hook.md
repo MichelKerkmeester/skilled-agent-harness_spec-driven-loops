@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-vision devin hook"
   - "devin UserPromptSubmit vision"
   - "sk-vision injection adapter"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Devin prompt-time injection hook (sk-vision.mjs)
@@ -52,7 +52,7 @@ The core is loaded lazily, because `dist/` is gitignored and a fresh checkout re
 | File | Type | Role |
 |---|---|---|
 | `hooks/devin/sk-vision-devin.test.mjs` | Node test | Spawns the adapter and asserts every fail-open path, both kill-switches, silent stderr, and that the built core exports what the adapter calls |
-| `vision-runtime/src/evidence/prompt-evidence.test.ts` | Unit | Path detection against real files, including quoted paths, punctuation, non-images and last-match-wins |
+| `vision-runtime/tests/evidence/prompt-evidence.test.ts` | Unit | Path detection against real files, including quoted paths, punctuation, non-images and last-match-wins |
 | `manual-testing-playbook/host-adapters/devin-hook.md` | Manual playbook | Validates registration and live injection |
 
 ---

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi fast mode trusted flag",
+      "phase 21 pi fast mode trusted flag",
+      "pi fast mode trusted flag plan",
+      "pi fast mode trusted flag tasks",
+      "pi fast mode trusted flag implementation summary"
+    ],
+    "key_topics": [
+      "fast",
+      "mode",
+      "trusted",
+      "flag",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "plain",
+      "run",
+      "offline"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/README.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/src/README.md",
+      ".pi/extensions/pi-fast-mode-w-subagent-support/tests/README.md",
+      "scratch/mutation/baseline-vitest.txt",
+      "scratch/mutation/old-code-run.txt",
+      "scratch/mutation/new-code-run.txt",
+      "scratch/probe/probe.sh",
+      "scratch/probe/probe-4layout.txt",
+      "scratch/probe/print-after.txt",
+      "scratch/mutation/after-full-run.txt",
+      "tests/README.md",
+      "scratch/validate-strict.txt",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/spec.md",
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/src/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "extension.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-fast-mode-w-subagent-support/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-vitest.txt",
+        "kind": "file",
+        "path": "scratch/mutation/baseline-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "old-code-run.txt",
+        "kind": "file",
+        "path": "scratch/mutation/old-code-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "new-code-run.txt",
+        "kind": "file",
+        "path": "scratch/mutation/new-code-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "probe.sh",
+        "kind": "script",
+        "path": "scratch/probe/probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probe-4layout.txt",
+        "kind": "file",
+        "path": "scratch/probe/probe-4layout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "print-after.txt",
+        "kind": "file",
+        "path": "scratch/probe/print-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after-full-run.txt",
+        "kind": "file",
+        "path": "scratch/mutation/after-full-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-strict.txt",
+        "kind": "file",
+        "path": "scratch/validate-strict.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In a plain run (no `-a`) of `pi --offline --help` in the trusted main checkout, `--fast` was missing",
+    "created_at": "2026-10-20T07:08:55Z",
+    "last_save_at": "2026-10-20T07:32:28.418Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9bae56fba6a552f9da2821fab07324a698cee6f835c899185239d17283e162eb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "29d4a2d9c5881326f857f6b126800e8f3692d486e325d4b53bdb3591ff6a0283",
+      "plan.md": "ff49268eaeb6e4a0f522680ed4571645bd0d1b8f4915939b58124168d7f3642a",
+      "tasks.md": "d8b8181ebf877941014b7beb104b138e885504b7b95a053029bacd91d428de67",
+      "implementation-summary.md": "56d063e4ad692980f73cfeba6fd4fe24d3d7b6e76c5fc2858d2ed243c8a5f965"
+    },
+    "last_active_at": null
+  }
+}

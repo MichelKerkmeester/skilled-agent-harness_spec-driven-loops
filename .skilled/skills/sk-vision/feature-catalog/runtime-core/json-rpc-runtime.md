@@ -6,7 +6,7 @@ trigger_phrases:
   - "how does the vision runtime work"
   - "python/runtime.py"
   - "vision runtime protocol"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # JSON-RPC runtime (python/runtime.py)
@@ -50,7 +50,7 @@ The model (default moondream2) lazy-loads on first inference, stays warm between
 | File | Type | Role |
 |---|---|---|
 | `vision-runtime/python/runtime.test.ts` | Integration | Spawns the real runtime and asserts analysis handlers, bbox errors, and missing-file errors |
-| `vision-runtime/src/providers/photon.test.ts` | Unit | Covers the shared client-side helpers |
+| `vision-runtime/tests/providers/photon.test.ts` | Unit | Covers the shared client-side helpers |
 
 ---
 

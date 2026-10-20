@@ -1,0 +1,3 @@
+# new tests against the new script and list
+worktree-naming tests: PASS=109 FAIL=0
+exit=0

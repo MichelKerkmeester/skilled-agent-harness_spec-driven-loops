@@ -24,6 +24,10 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 // shared tree reaches the same files by following a link, which this walk does and the
 // independent glob the canary compares against does not, so the two disagree by exactly
 // the plugin tests.
+// `.pi/extensions` is left out on purpose. Every suite there is TypeScript
+// (`*.test.ts`) run by its own package script with its own dependencies, vitest
+// or node with a jiti loader, so this runner would discover nothing under it and
+// a listed root would only suggest those suites were gated here.
 const ROOTS = ['.skilled/skills', '.skilled/scripts', '.opencode/plugins', '.skilled/bin', '.skilled/hooks'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', 'external', '.worktrees', 'z_archive', 'z_future']);
 const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];

@@ -35,7 +35,7 @@ To install it into another Pi setup, run this from the repo root:
 pi install -l .pi/extensions/pi-fast-mode-w-subagent-support
 ```
 
-If Pi discovers this extension more than once, the first copy to load in a Pi session registers and every later copy loads as a no-op, so the `--fast` flag and `/fast` command never clash. That covers a worktree's own copy next to a global install that links another checkout, and the checkout the global install links to. A copy built before this change does not take part in the claim, so it can still register beside one that does until both copies carry it.
+If Pi discovers this extension more than once, the first copy to load claims the package. A copy at a different real path then loads as a no-op, so the `--fast` flag and `/fast` command never clash between a worktree's own copy and a global install that links another checkout. A copy at the same real path, such as the global link and the checkout it points to, registers too, because Pi folds copies at one real path into one. A copy built before this change does not take part in the claim, so it can still register beside one that does until both copies carry it.
 
 ---
 
@@ -121,7 +121,7 @@ Expected output:
 
 ```text
 Test Files  7 passed (7)
-     Tests  80 passed (80)
+     Tests  81 passed (81)
 ```
 
 Run the extension directly from source:

@@ -1,7 +1,7 @@
 ---
 title: "VSN-014 -- OpenCode plugin"
 description: "This scenario validates the OpenCode plugin load path, default tool silence, `/vision` activation and runtime teardown."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # VSN-014 -- OpenCode plugin
@@ -89,7 +89,7 @@ Load-path output, the default tool list, both command responses and the process 
 | `vision-runtime/src/plugin.ts` | Command hook and legacy activation path |
 | `vision-runtime/src/opencode/command.ts` | `/vision` image read and teardown |
 | `vision-runtime/src/opencode/attachments.ts` | Legacy auto-inspect injector |
-| `vision-runtime/src/providers/photon.test.ts` | Content-type and bbox parsing anchors |
+| `vision-runtime/tests/providers/photon.test.ts` | Content-type and bbox parsing anchors |
 
 ---
 

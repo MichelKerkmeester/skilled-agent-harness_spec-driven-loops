@@ -1,0 +1,11 @@
+# row20 against HEAD src/plugin.ts: keeps the command and skips inspection on a host without session.hook
+(fail) v2 tool registration > keeps the command and skips inspection on a host without session.hook [0.81ms]
+ 0 pass
+ 1 fail
+# row20 against src/plugin.ts with rows 4, 5, 24 but without the domain check
+(fail) v2 tool registration > keeps the command and skips inspection on a host without session.hook [0.58ms]
+ 0 pass
+ 1 fail
+# row20 against the fixed src/plugin.ts
+ 1 pass
+ 0 fail

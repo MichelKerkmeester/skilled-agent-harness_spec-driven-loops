@@ -1,0 +1,10 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/159-pi-fast-mode-trusted-flag/.pi/extensions/pi-fast-mode-w-subagent-support
+
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  09:11:21
+   Duration  558ms (import 88%, transform 7%, tests 5%)
+
+new-code vitest exit=0

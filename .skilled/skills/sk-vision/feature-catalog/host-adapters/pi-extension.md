@@ -6,7 +6,7 @@ trigger_phrases:
   - "how does sk-vision integrate with Pi"
   - "sk-vision.ts"
   - "pi vision extension"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Pi extension adapter (sk-vision.ts)
@@ -42,7 +42,7 @@ Bare `/vision` asks for a question in the conversation or returns a full read be
 
 | File | Type | Role |
 |---|---|---|
-| `vision-runtime/src/providers/photon.test.ts` | Unit | Covers the shared arg helpers the registered tools use |
+| `vision-runtime/tests/providers/photon.test.ts` | Unit | Covers the shared arg helpers the registered tools use |
 | `vision-runtime/python/runtime.test.ts` | Integration | Exercises the runtime the factory drives |
 
 ---

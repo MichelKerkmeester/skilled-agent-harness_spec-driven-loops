@@ -8,7 +8,7 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 2.2.1.0
+version: 2.2.2.0
 ---
 
 # Core Standards - Structure and Validation Rules
@@ -91,11 +91,11 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 | Generic | Flexible | Optional | Optional | ❌ Never | No |
 
 `validate_document.py --type` accepts `readme`, `code_folder`, `skill`, `reference`, `asset`,
-`agent`, `command`, `install_guide`, `spec`, `changelog`, `playbook`, `playbook_feature` and
+`agent`, `command`, `install_guide`, `security_policy`, `spec`, `changelog`, `playbook`, `playbook_feature` and
 `feature_catalog`. There is no `llmstxt` type and `template-rules.json` declares none, so an
 `llms.txt` is an authoring target governed by
 [llmstxt-templates.md](../assets/llmstxt-templates.md), not a validator-enforced document class.
-Authoring rules for it live in §7.
+Authoring rules for it live in §7. A file named exactly `SECURITY.md` auto-detects as `security_policy`, which requires an Overview first and a Reporting A Vulnerability section.
 
 **TOC Policy Summary**:
 - ❌ **NEVER** add a Table of Contents to any document type. Tables of Contents and `<!-- ANCHOR -->` navigation comments are not used in skill documentation.

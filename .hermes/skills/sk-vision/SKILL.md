@@ -243,6 +243,7 @@ OpenCode handles the command in a `command.execute.before` plugin hook. The hook
 | `SK_VISION_TEARDOWN` | `close` | Runtime teardown after each `/vision` call: `close` shuts down, `unload` frees the model and `keep` leaves the process running |
 | `SK_VISION_CACHE_DIR` | `~/.cache/sk-vision` | Cache root: `fetched/` downloads, `converted/` analysis copies |
 | `SK_VISION_VENV_DIR` | `~/.cache/sk-vision/venv` | Auto-provisioned runtime venv |
+| `SK_VISION_PROBE_TIMEOUT_MS` | `30000` | Timeout for the interpreter and `uv` probes. A probe that runs past it counts as present, so a slow cold import does not trigger a reinstall |
 
 ### GPU and first load
 

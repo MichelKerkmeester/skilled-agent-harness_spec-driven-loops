@@ -24,7 +24,7 @@ contextType: "general"
 | **Created** | 2026-10-19 |
 | **Branch** | `scaffold/012-ci-red-check-repairs` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 8 |
+| **Phase** | 12 of 12 |
 | **Predecessor** | 007-handoff-gate-exemptions |
 | **Successor** | None |
 | **Handoff Criteria** | Rule Canary Sync, sk-doc Script Tests and Spec-Kit Check all pass, with before and after evidence under scratch/. |

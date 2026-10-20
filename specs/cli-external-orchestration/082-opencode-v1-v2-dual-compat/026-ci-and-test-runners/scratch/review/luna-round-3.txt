@@ -1,0 +1,2 @@
+VERDICT: PASS
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/tasks.md:60 T013 claims 27 sk-code tests passed, but scratch/after has no matching run log -> record the command, output, and exit status in scratch/after/sk-code-script-tests.txt

@@ -535,6 +535,36 @@
       "h2EmojiRequired": false,
       "h2UppercaseRequired": false
     },
+    "security_policy": {
+      "description": "Repository security policy, SECURITY.md at the root or under .github/. Detected by filename. It opens with an Overview and must say how to report a vulnerability privately",
+      "requiredSections": [
+        "overview",
+        "reporting_a_vulnerability"
+      ],
+      "recommendedSections": [
+        "supported_versions",
+        "scope"
+      ],
+      "optionalSections": [
+        "related"
+      ],
+      "sectionEmojis": {},
+      "sectionAliases": {
+        "reporting a vulnerability": "reporting_a_vulnerability",
+        "reporting vulnerabilities": "reporting_a_vulnerability",
+        "supported versions": "supported_versions",
+        "related documents": "related",
+        "related resources": "related"
+      },
+      "tocRequired": false,
+      "tocForbidden": true,
+      "anchorNavigationForbidden": true,
+      "h2DividerRequired": true,
+      "h2EmojiRequired": false,
+      "h2UppercaseRequired": true,
+      "firstSectionName": "overview",
+      "lastSectionPattern": null
+    },
     "agent": {
       "description": "Agent definition files in .skilled/agents/",
       "requiredSections": [

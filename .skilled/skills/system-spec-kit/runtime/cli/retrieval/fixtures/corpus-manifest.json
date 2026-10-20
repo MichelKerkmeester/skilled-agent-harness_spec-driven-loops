@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cd44cabff0b9b56f28a93de44a456ec9877f071a61ffed75772d656219761f5b",
+  "corpusHash": "a410e6adebeca7dc62433d4bf0b680ce01b86d79aab8816bfd732056ca0ba083",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25317,
+  "includedPathCount": 25335,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6176,6 +6176,8 @@
     ".skilled/skills/sk-doc/scripts/tests/missing-emojis.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-sections.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-toc.md",
+    ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
+    ".skilled/skills/sk-doc/scripts/tests/security-policy/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/single-dash-anchors.md",
     ".skilled/skills/sk-doc/scripts/tests/specs/auto-detect-spec.md",
     ".skilled/skills/sk-doc/scripts/tests/structure/negative/missing-divider.md",
@@ -8912,6 +8914,22 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25348,7 +25366,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a5c3231e8603c2d880cbdf6621d53f9b1dde8028969026c4e6c9b4dc8f34a2be",
+  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26388,6 +26406,22 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners/scratch",
       "reason": "excluded directory"
     },
     {

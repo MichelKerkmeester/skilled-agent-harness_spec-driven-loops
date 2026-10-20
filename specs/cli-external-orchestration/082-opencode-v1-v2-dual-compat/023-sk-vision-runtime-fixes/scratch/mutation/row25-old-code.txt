@@ -1,0 +1,10 @@
+# row25 against HEAD src/runtime/client.ts: treats a probe that outlives its timeout
+error: expect(received).toBe(expected)
+Expected: true
+Received: false
+(fail) RuntimeClient probes and startup > treats a probe that outlives its timeout as present [1033.90ms]
+ 0 pass
+ 1 fail
+# row25 against fixed src/runtime/client.ts: treats a probe that outlives its timeout
+ 1 pass
+ 0 fail

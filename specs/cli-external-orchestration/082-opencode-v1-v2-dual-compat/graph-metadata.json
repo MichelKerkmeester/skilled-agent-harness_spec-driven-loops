@@ -24,6 +24,10 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards"
   ],
   "manual": {
@@ -63,6 +67,9 @@
       "spec.md",
       "goal.md",
       "research/research.md",
+      "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+      "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
+      "014-post-merge-deep-research/research/research.md",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
       "001-unknowns-and-baseline/goal.md",
       "002-pins-imports-dual-export/goal.md",
@@ -76,10 +83,7 @@
       "010-documentation-sweep/goal.md",
       "011-two-version-proof-and-closeout/goal.md",
       "012-sk-vision-v2-prompt-hook/goal.md",
-      "research/steering-log.md",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
-      ".opencode/package.json"
+      "research/steering-log.md"
     ],
     "entities": [
       {
@@ -101,6 +105,18 @@
         "source": "derived"
       },
       {
+        "name": "new-code-run.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fresh-clone.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
@@ -110,24 +126,6 @@
         "name": "steering-log.md",
         "kind": "doc",
         "path": "research/steering-log.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-version-battery.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -161,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Transition Rules",
+        "name": "Register Pi",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -225,11 +223,17 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Version Detection",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T09:02:36.182Z",
+    "last_save_at": "2026-10-20T09:04:35.399Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -237,13 +241,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:af557c60e02312fd3ed20b64a45f8db55bce5966d0afad028fa09092faa24292",
+    "source_fingerprint": "sha256:d11d90ced692d26272b34e43e9889f344c4eba71d8c7e64084e8f408736a24a7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "196a83ebab31c14886f22ee98a4cac855e72c89b20e4e449b68ac1461da9fe59",
+      "spec.md": "c769fd348bddd89f1d72102b679c105227f9b3af5d5523b2506ed12e81bd5b31",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
-    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards",
-    "last_active_at": "2026-10-20T09:00:54.996Z"
+    "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+    "last_active_at": "2026-10-20T08:12:19.954Z"
   }
 }

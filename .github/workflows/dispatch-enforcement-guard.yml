@@ -44,4 +44,24 @@ jobs:
           npm --prefix .skilled ci
           # The quarantined evidence tray (review/containment) freezes an older copy of
           # this suite that resolves no skills tree, so only the live copies enforce.
-          npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+          # Vitest is installed under .skilled, never at the repository root, so the
+          # runner is called by its path. npx resolves through any node_modules above
+          # it and has run a cached, unpinned vitest in place of the locked one.
+          .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+
+  hooks-vitest:
+    name: Every hook vitest suite passes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '20'
+      - name: Install the hooks test runner
+        run: npm --prefix .skilled ci
+      # The runtime adapter suites, Pi's preflight lint and directive dedup and the
+      # Codex shell-tool names, ran in no job, so a rename upstream broke them
+      # unseen. The hooks config collects every vitest suite in the tree and skips
+      # the node:test files, which run on their own.
+      - name: Run the hooks vitest tree
+        run: .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts

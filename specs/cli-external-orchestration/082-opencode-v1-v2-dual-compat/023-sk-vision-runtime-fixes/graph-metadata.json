@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk vision runtime fixes",
+      "sk vision runtime fixes from the post merge",
+      "sk vision fix list rows",
+      "sk vision runtime fixes plan",
+      "sk vision runtime fixes tasks",
+      "sk vision runtime fixes implementation summary"
+    ],
+    "key_topics": [
+      "vision",
+      "runtime",
+      "post",
+      "merge",
+      "list",
+      "rows",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "post-merge",
+      "research"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/mutation/row04-old-code.txt",
+      "scratch/mutation/row05-old-code.txt",
+      "scratch/mutation/row13-guard-old-layout.txt",
+      "scratch/mutation/row15-wiring-mutations.txt",
+      "scratch/final/ci-like.txt",
+      "scratch/mutation/row20-old-code.txt",
+      "scratch/mutation/row23-old-code.txt",
+      "scratch/mutation/row24-old-code.txt",
+      "scratch/mutation/row25-old-code.txt",
+      "scratch/mutation/row26-old-code.txt",
+      ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+      ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+      ".skilled/skills/sk-vision/vision-runtime/tests/runtime/client.test.ts",
+      ".skilled/skills/sk-vision/vision-runtime/tests/host-adapter.test.ts",
+      ".skilled/skills/sk-vision/vision-runtime/tests/layout.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "row04-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row04-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row05-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row05-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row13-guard-old-layout.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row13-guard-old-layout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row15-wiring-mutations.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row15-wiring-mutations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ci-like.txt",
+        "kind": "file",
+        "path": "scratch/final/ci-like.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row20-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row20-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row23-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row23-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row24-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row24-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row25-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row25-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row26-old-code.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row26-old-code.txt",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "client.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "client.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/runtime/client.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "host-adapter.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/host-adapter.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layout.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/layout.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The post-merge research fix list in `../014-post-merge-deep-research/research/research.md` §9 names nine sk-vision defects, two of them P1: setup disposal released only some of the handles it held, and a `ctx.session.get` that threw silently downgraded the automatic image check to the 2 s grace instead of waiting for the evidence",
+    "created_at": "2026-10-20T07:11:21Z",
+    "last_save_at": "2026-10-20T08:29:00.686Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cc56dd938a2ccd78353b093c31b7916a7cd55536de96ece83f9edaf8a5e6d8ec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45b915971ac5d680981663e1c2fe0f2ab9a4d05331175d1a298eabdd35f7f409",
+      "plan.md": "2d09d975719d90ee7a21e4a6026067c60488fc692baae7ec2ec2d9efdd3768c8",
+      "tasks.md": "dcb88407d8d8942ef3922b63601d2051206a851614e4a9ce0d56082781213e02",
+      "implementation-summary.md": "b9134c6600921afa5ea6c6e6c0547ff0b2b0f86e0a82e814c50eff784ba12c79"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,10 @@
+# row05 against HEAD src/plugin.ts: waits for the evidence when reading the session model fails
+error: expect(received).toBe(expected)
+Expected: true
+Received: false
+(fail) v2 grace for models off the text-only list > waits for the evidence when reading the session model fails [1.13ms]
+ 0 pass
+ 1 fail
+# row05 against the fixed src/plugin.ts
+ 1 pass
+ 0 fail

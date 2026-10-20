@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a5c3231e8603c2d880cbdf6621d53f9b1dde8028969026c4e6c9b4dc8f34a2be",
+  "manifestHash": "5947b5244eeba1c1bae9cab39ff720b1e55ce50b3d334568d0b6c1e562bb8932",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17597,6 +17597,18 @@
     ],
     "churn cumulative arm tasks": [
       "churn cumulative arm tasks"
+    ],
+    "ci and test runners": [
+      "ci and test runners"
+    ],
+    "ci and test runners implementation summary": [
+      "ci and test runners implementation summary"
+    ],
+    "ci and test runners plan": [
+      "ci and test runners plan"
+    ],
+    "ci and test runners tasks": [
+      "ci and test runners tasks"
     ],
     "ci canary verdict vocabulary": [
       "ci canary verdict vocabulary"
@@ -51808,6 +51820,9 @@
     "hooks v1 json session start path": [
       "hooks.v1.json session start path"
     ],
+    "hooks vitest blocking job": [
+      "hooks vitest blocking job"
+    ],
     "hooks vitest scope": [
       "hooks vitest scope"
     ],
@@ -71851,6 +71866,9 @@
     "phase 21 implementation summary": [
       "phase 21 implementation summary"
     ],
+    "phase 21 pi fast mode trusted flag": [
+      "phase 21 pi fast mode trusted flag"
+    ],
     "phase 21 plan": [
       "phase 21 plan"
     ],
@@ -71889,6 +71907,9 @@
     ],
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
+    ],
+    "phase 26 ci and test runners": [
+      "phase 26 ci and test runners"
     ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
@@ -73219,6 +73240,18 @@
     ],
     "pi fast mode subagent goal": [
       "pi fast mode subagent goal"
+    ],
+    "pi fast mode trusted flag": [
+      "pi fast mode trusted flag"
+    ],
+    "pi fast mode trusted flag implementation summary": [
+      "pi fast mode trusted flag implementation summary"
+    ],
+    "pi fast mode trusted flag plan": [
+      "pi fast mode trusted flag plan"
+    ],
+    "pi fast mode trusted flag tasks": [
+      "pi fast mode trusted flag tasks"
     ],
     "pi fast mode trusted project": [
       "pi fast mode trusted project"
@@ -88498,6 +88531,9 @@
     "security policy checklist": [
       "security policy checklist"
     ],
+    "security policy document type": [
+      "security_policy document type"
+    ],
     "security policy plan": [
       "security policy plan"
     ],
@@ -94646,6 +94682,9 @@
     "sk vision feature catalog": [
       "sk-vision feature catalog"
     ],
+    "sk vision fix list rows": [
+      "sk vision fix list rows"
+    ],
     "sk vision force auto inspect": [
       "sk-vision force auto-inspect"
     ],
@@ -94939,6 +94978,21 @@
     ],
     "sk vision run index": [
       "sk-vision run index"
+    ],
+    "sk vision runtime fixes": [
+      "sk vision runtime fixes"
+    ],
+    "sk vision runtime fixes from the post merge": [
+      "sk vision runtime fixes from the post merge"
+    ],
+    "sk vision runtime fixes implementation summary": [
+      "sk vision runtime fixes implementation summary"
+    ],
+    "sk vision runtime fixes plan": [
+      "sk vision runtime fixes plan"
+    ],
+    "sk vision runtime fixes tasks": [
+      "sk vision runtime fixes tasks"
     ],
     "sk vision runtime fork": [
       "sk-vision runtime fork"
@@ -111271,6 +111325,18 @@
     "worktree portability verification": [
       "worktree portability verification"
     ],
+    "worktree provision completeness": [
+      "worktree provision completeness"
+    ],
+    "worktree provision completeness implementation summary": [
+      "worktree provision completeness implementation summary"
+    ],
+    "worktree provision completeness plan": [
+      "worktree provision completeness plan"
+    ],
+    "worktree provision completeness tasks": [
+      "worktree provision completeness tasks"
+    ],
     "worktree provision paths missing packages": [
       "worktree provision paths missing packages"
     ],
@@ -111291,6 +111357,9 @@
     ],
     "worktree provisioning": [
       "worktree provisioning"
+    ],
+    "worktree provisioning completeness list every package tree guard": [
+      "worktree provisioning completeness list every package tree guard"
     ],
     "worktree provisioning drift": [
       "worktree provisioning drift"
