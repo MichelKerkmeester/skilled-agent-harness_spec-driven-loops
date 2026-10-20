@@ -99,7 +99,7 @@ jobs:
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # Packages that ship a bun.lock install and build with bun by name.
+          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
           export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
           source .skilled/skills/sk-git/scripts/worktree-naming.sh
           provision_worktree "$GITHUB_WORKSPACE"
@@ -182,7 +182,7 @@ jobs:
         run: |
           set -euo pipefail
           npm install --no-save --prefix "$RUNNER_TEMP/bun" bun@1.3.9
-          # Packages that ship a bun.lock install and build with bun by name.
+          # A package with a bun.lock or bun.lockb and no package-lock.json installs and builds with bun.
           export PATH="$RUNNER_TEMP/bun/node_modules/.bin:$PATH"
           source .skilled/skills/sk-git/scripts/worktree-naming.sh
           provision_worktree "$GITHUB_WORKSPACE"

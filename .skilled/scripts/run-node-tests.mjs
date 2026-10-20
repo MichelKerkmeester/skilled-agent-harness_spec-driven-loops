@@ -27,7 +27,8 @@ const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..
 // `.pi/extensions` is left out on purpose. Every suite there is TypeScript
 // (`*.test.ts`) run by its own package script with its own dependencies, vitest
 // or node with a jiti loader, so this runner would discover nothing under it and
-// a listed root would only suggest those suites were gated here.
+// a listed root would only suggest those suites were gated here. The Pi Extension
+// Tests workflow runs each extension's own test script instead.
 const ROOTS = ['.skilled/skills', '.skilled/scripts', '.opencode/plugins', '.skilled/bin', '.skilled/hooks'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', 'external', '.worktrees', 'z_archive', 'z_future']);
 const NODE_TEST_SUFFIXES = ['.test.mjs', '.test.cjs'];

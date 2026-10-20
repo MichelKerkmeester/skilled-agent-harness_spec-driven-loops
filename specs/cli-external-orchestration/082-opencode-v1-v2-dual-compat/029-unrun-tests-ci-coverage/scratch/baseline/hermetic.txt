@@ -1,0 +1,11 @@
+# git-using suites with an empty HOME, no git identity and a system-only PATH
+PATH=/Users/michelkerkmeester/.nvm/versions/node/v22.23.1/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin
+HOME=(fresh empty temp dir)
+node v22.23.1; git config user.name: []
+$ (cd .skilled/skills/sk-doc/scripts/tests && node test-cite-drift-scan.mjs)
+# pass 67
+# fail 0
+exit 0
+$ bash .skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh
+worktree-naming tests: PASS=109 FAIL=0
+exit 0

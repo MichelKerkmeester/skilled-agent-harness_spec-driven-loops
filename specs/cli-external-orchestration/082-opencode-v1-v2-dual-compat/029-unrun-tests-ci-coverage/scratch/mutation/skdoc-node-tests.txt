@@ -1,0 +1,14 @@
+# sk-doc node tests, node v22.23.1
+$ ONLY_TESTS="test-cite-drift-scan.mjs install-guide-contract.test.cjs" bash run-script-tests.sh   (new runner)
+FAIL test-cite-drift-scan.mjs (exit 1)
+FAIL install-guide-contract.test.cjs (exit 1)
+2 failing: test-cite-drift-scan.mjs install-guide-contract.test.cjs
+exit 1
+$ ONLY_TESTS="test-cite-drift-scan.mjs install-guide-contract.test.cjs" bash run-script-tests.base.sh   (runner at base)
+all sk-doc script tests passed
+exit 0
+$ same two files, unmutated, new runner
+PASS test-cite-drift-scan.mjs
+PASS install-guide-contract.test.cjs
+all sk-doc script tests passed
+exit 0

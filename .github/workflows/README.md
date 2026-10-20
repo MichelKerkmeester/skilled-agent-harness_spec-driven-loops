@@ -35,6 +35,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `gate-inputs.yml` | Checks that every hook and workflow input resolves and that every path filter names both `.opencode/` and `.skilled/`. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
+| `pi-extension-tests.yml` | Runs each `.pi` extension's own test script after installing it from its lockfile. |
 | `playbook-operator-contract.yml` | Checks the manual-testing-playbook operator-scenario contract. |
 | `prompt-card-sync.yml` | Checks prompt and knowledge-card synchronization. |
 | `repo-rules-corpus.yml` | Keeps the `.skilled/repo-rules/` corpus loadable. |
@@ -43,6 +44,7 @@ Section 2 lists what each workflow checks and which events it answers to. Sectio
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `sk-doc-rename-harness.yml` | Runs the ten-minute rename tooling fixture harness when sk-doc's scripts change. |
 | `sk-doc-script-tests.yml` | Runs the other sk-doc script tests, among them the durable-directory manifest and README verdict baseline, which walk the whole repository. |
+| `sk-git-script-tests.yml` | Runs the sk-git worktree naming, allocation and provisioning suite. |
 | `skill-advisor-stress.yml` | Runs the skill advisor's stress suite, which needs `SPECKIT_RUN_STRESS` and so ran nowhere else. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-kit-check.yml` | Typechecks and tests the spec-kit packages and checks that runtime mirrors agree with their sources. |

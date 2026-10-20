@@ -46,7 +46,7 @@ Commands are organized into six groups plus root-level utilities:
 | **doctor** | `commands/doctor/` | 10 | Setup overview, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and manual session handoff (handoff) |
+| **speckit** | `commands/speckit/` | 7 | Spec folder workflows (plan, implement, resume and complete), context save (save), lexical search (search) and the manual trigger for the session relaunch loop (handoff) |
 | **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
 Standalone commands live at the root level: `agent-router.md` routes requests to AI systems, `goal-opencode.md` manages the passive session goal via the `opencode-goal` plugin, and `vision.md` reads your most recent image on-device. The prompt-improvement surface lives in the `prompt` group as `prompt/improve.md` (invoked `/prompt:improve`).
@@ -119,6 +119,7 @@ command/
 │   └── assets/                # Auto/confirm/presentation workflow assets
 └── speckit/                  # Spec folder workflow, continuity write and retrieval commands
     ├── complete.md           # Full end-to-end workflow
+    ├── handoff.md            # Write the handoff note and prepare the session relaunch loop
     ├── implement.md          # Execute pre-planned work
     ├── plan.md               # Spec through plan only
     ├── resume.md             # Resume existing spec work

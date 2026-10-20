@@ -1,0 +1,5 @@
+VERDICT: PASS
+
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/029-unrun-tests-ci-coverage/spec.md:133 - The system-only PATH and empty HOME claim is repeated in tasks.md:35 and implementation-summary.md:73, but scratch/baseline/suites.txt records only Node version and test counts - add the environment and command evidence or narrow the claims.
+
+Verification: The Round 2 path-filter fix matches the manifest paths scanned by the sk-git suite. `actionlint`, `git diff --check 7d55952975 HEAD`, `bash -n`, the comment-hygiene check and the Node lockfile metadata check all exited 0. The current runner docs map `ubuntu-latest` to Ubuntu 24.04 and list Bash, Git, Node 22 and Python ([runner mapping](https://github.com/actions/runner-images/blob/main/README.md), [image software](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md)). I reviewed the mutation logs but did not rerun suites or GitHub CI, so the pushed-main proof in T013 remains pending. No files were edited, and the worktree is clean on the existing branch.
