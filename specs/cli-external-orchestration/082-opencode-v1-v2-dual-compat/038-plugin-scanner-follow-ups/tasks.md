@@ -56,7 +56,7 @@ contextType: "general"
 - [x] T009 Scan of every bridged plugin unchanged; plugin suite, battery unit and purity tests rerun (`scratch/after/`)
 - [x] T010 Remove the tree ordinals and rewrite the event-guard limit (`.opencode/plugins/ARCHITECTURE.md`)
 - [x] T011 Luna review until PASS (`scratch/luna-round-1.txt`, `scratch/luna-round-2.txt`)
-- [ ] T012 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
+- [x] T012 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,7 +64,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

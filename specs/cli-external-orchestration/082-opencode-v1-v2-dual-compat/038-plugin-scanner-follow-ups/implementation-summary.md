@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/038-plugin-scanner-follow-ups"
     last_updated_at: "2026-10-21T00:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Luna round 2 PASS; final tree gates rerun"
-    next_safe_action: "Merge main, push, record CI on the pushed commit"
+    recent_action: "Recorded the CI handoff at the pushed main commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".opencode/plugins/tests/helpers/plugin-inventory.cjs"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-038-plugin-scanner-follow-ups"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 038-plugin-scanner-follow-ups |
 | **Completed** | 2026-10-21 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -109,6 +109,8 @@ DeepSeek v4.1 flash at max effort through cli-pi wrote every change from six one
 | Purity test | 1 of 1 |
 | `npm ci` in `.skilled` | Exit 0; `node_modules/rolldown` is 1.2.12 |
 | Luna review | Round 1 FAIL, four P1s fixed; round 2 PASS, one P2 recorded (`scratch/luna-round-1.txt`, `scratch/luna-round-2.txt`) |
+| After merging main | Plugin suite 477 of 477, battery unit 51 of 51, old and new helper give the same scan on the merged plugins (`scratch/after/scan-merged-*.json`), recursive strict validation of 082 `RESULT: PASSED` for 39 folders |
+| CI handoff | At main `c818616abc` every repository workflow succeeded: OpenCode Plugin Tests 39515394440 (477 of 477), OpenCode Dual-Version Battery 39515394422, Spec-Kit Check 39515394496, sk-doc Script Tests 39515394410, sk-git Script Tests 39515394430, Advisory Checks 39515394491, Changed Packet Validation 39515394462, Command Tree Parity 39515394416, Dispatch Enforcement Guard 39515394520, Gate Inputs 39515394493, Message Contract 39515394537 and 39515397875, Playbook Operator Contract 39515394558, Rule Canary Sync 39515394447, Trigger Index Rebuild 39515394465. The one red run at that commit is Dependabot's own `uv` update job, not a repository workflow |
 <!-- /ANCHOR:verification -->
 
 ---

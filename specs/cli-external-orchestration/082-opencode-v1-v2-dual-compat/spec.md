@@ -148,7 +148,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 35 | 035-v2-bridge-plugin-effects/ | Make the v2 bridge hand plugins the v1 tool names, a once-per-session `session.created` and complete message events, then rerun the live playbook on both versions | Complete |
 | 36 | 036-cli-opencode-docs-and-vision-test-cleanup/ | Strip pre-flight comments by quote state, name the provider prefix in every v2 listing note and guard both, leave no sk-vision kill-switch temp directory, and make the in-process plugin playbook snippets call `default.server` | Complete |
 | 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | Complete |
-| 38 | 038-plugin-scanner-follow-ups/ | Make the plugin event scanner follow a helper's stored result into a later test, stop reading an unrelated `type` parameter as the event type, declare rolldown directly and date the plugin-tree ordinals | In Progress |
+| 38 | 038-plugin-scanner-follow-ups/ | Make the plugin event scanner follow a helper's stored result into a later test, stop reading an unrelated `type` parameter as the event type, declare rolldown directly and date the plugin-tree ordinals | Complete |
 
 ### Phase Transition Rules
 

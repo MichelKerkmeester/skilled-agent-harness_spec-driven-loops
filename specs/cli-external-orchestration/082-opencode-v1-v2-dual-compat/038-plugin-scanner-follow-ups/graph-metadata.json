@@ -35,7 +35,7 @@
       "positive"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -159,12 +159,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -189,6 +183,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The event guard in `plugin-inventory.cjs` reports a helper that receives the event type only when the call sits in a branch test, so `const ok = isKnown(eventType); if (ok) {}` decides a branch the scan never reports",
     "created_at": "2026-10-20T22:53:31Z",
-    "last_save_at": "2026-10-20T23:26:27.371Z",
+    "last_save_at": "2026-10-20T23:49:44.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1656886659dbf0dc47fa821c829ed8506495ee586083655f2b6a6d327fe1026d",
+    "source_fingerprint": "sha256:d3e8b1d49500acc52b24c76395544573386cd912839b85119820704c19d1d326",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2aa6fa99308d9f8eed9d8bfebf13d1828a0cda003c2c92960f81cd9336ff64ce",
+      "spec.md": "96f8d4cc5cf1c4d6e6fe342b8acab98906b3b20cc2d9a702f0e8ecd792a0db5f",
       "plan.md": "9f263ab334dd52e7f2fd7d6d60fa1c180fa58c682bc09865069b9f2402e5d513",
-      "tasks.md": "f53a4d05fd9c593e6803e8a9a521b52301b7a378ddb5fab725e36984dcc38710",
-      "implementation-summary.md": "85d643495f8e6bef001bf2beaca1a6d07b1097cecb5451a74101a77a44acf430"
+      "tasks.md": "a79c1df23c99148cd2381646d957470168a45d6552a1517382af47e00f444a68",
+      "implementation-summary.md": "0bdc18f220e1b6b892b2f72fd7cd3701108f5a31d1a61212d9b20c7cad00e72d"
     },
     "last_active_at": null
   }
