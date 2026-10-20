@@ -72,9 +72,9 @@ The plugin suites block a bad change on CI, a plugin-only change reruns the puri
 ## 3. SCOPE
 
 ### In Scope
-- Part 1: a blocking workflow that provisions every listed tree and runs `node --test '.opencode/plugins/tests/*.test.cjs'` on Node 22, triggered by any change under `.skilled/**`, `.opencode/**` or `.pi/**`.
+- Part 1: a blocking workflow that provisions every listed tree and runs `node --test '.opencode/plugins/tests/*.test.cjs'` on Node 22, triggered by any change under `.skilled/**`, `.opencode/**` or `.pi/**`, or to the runtime and spec files the goal checks read (`.claude`, `.codex`, `.cursor`, `.devin`, `.env.example` and one archived spec folder).
 - Part 2: `.opencode/plugins/**` and `.skilled/plugins/**` in both of Spec-Kit Check's trigger lists.
-- Part 3: `provision_worktree` rebuilds a listed output when a git-tracked file in its package is newer than the output, and says so; tests that fail on the old script.
+- Part 3: `provision_worktree` rebuilds a listed output when a git-tracked file in its package, or in a source path its list line names, is newer than the output, and says so; tests that fail on the old script.
 - The workflow README rows (the new workflow and the missing `sk-code-script-tests.yml`), the sk-git provisioning rule and the provision list's header comment.
 
 ### Out of Scope
@@ -89,8 +89,8 @@ The plugin suites block a bad change on CI, a plugin-only change reruns the puri
 | `.github/workflows/opencode-plugin-tests.yml` | Create | Provision, then run every plugin suite on Node 22 |
 | `.github/workflows/spec-kit-check.yml` | Modify | Both trigger lists name the plugins folder in both roots |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modify | `_wn_output_stale` and the missing-or-stale build rule |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Ten checks over a git-tracked fixture and a tree outside git |
-| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modify | Header comment states the new build rule |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modify | Fourteen checks over git-tracked fixtures and a tree outside git |
+| `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modify | Header states the new build rule and the extra-source fields; three lines name the sources their builds compile |
 | `.skilled/skills/sk-git/SKILL.md` | Modify | One sentence in the provisioning rule |
 | `.github/workflows/README.md` | Modify | Rows for the new workflow and `sk-code-script-tests.yml`, and the path-filtered coverage row |
 <!-- /ANCHOR:scope -->

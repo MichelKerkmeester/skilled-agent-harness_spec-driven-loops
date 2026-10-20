@@ -520,25 +520,28 @@ _wn_have_tool() {
   return 1
 }
 
-# _wn_output_stale <dir> <pkg> <artifact> -- succeed when a git-tracked file under the
-# package is newer than its built output. Only tracked files count: a build writes
-# untracked files of its own, such as nested dist folders and tsbuildinfo, which would
-# otherwise mark every output stale again. Outside a git work tree nothing is stale.
+# _wn_output_stale <dir> <pkg> <artifact> [source...] -- succeed when a git-tracked
+# file under the package, or under any extra source path the list names, is newer than
+# its built output. Only tracked files count: a build writes untracked files of its
+# own, such as nested dist folders and tsbuildinfo, which would otherwise mark every
+# output stale again. Outside a git work tree nothing is stale.
 _wn_output_stale() {
   local root="$1" pkg="$2" out="$1/$2/$3" f
+  shift 3
   git -C "$root" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
   while IFS= read -r -d '' f; do
     [ "$root/$f" -nt "$out" ] && return 0
-  done < <(git -C "$root" ls-files -z -- "$pkg")
+  done < <(git -C "$root" ls-files -z -- "$pkg" "$@")
   return 1
 }
 
 # provision_worktree [dir] -- install missing dependencies and build listed outputs.
 # Idempotent: existing dependencies are skipped, and a listed output is built when it
-# is missing or older than a tracked file in its package. Exits non-zero if
-# any install or build failed, so a half-provisioned tree is never reported ready.
+# is missing or older than a tracked file in its package or in a source path its
+# list line names. Exits non-zero if any install or build failed, so a
+# half-provisioned tree is never reported ready.
 provision_worktree() {
-  local dir="${1:-}" list pkg artifact _ installed=0 built=0 skipped=0 failed=0
+  local dir="${1:-}" list pkg artifact sources installed=0 built=0 skipped=0 failed=0
   local tool deps_root install_log build_reason
   local -a install_cmd build_cmd
   # Allocation scans the shared clone, but provisioning must use the current worktree.
@@ -550,7 +553,7 @@ provision_worktree() {
   list="$(_wn_provision_paths_file)" || return 1
   [ -f "$list" ] || { echo "missing provision path list: $list" >&2; return 1; }
 
-  while read -r pkg artifact _; do
+  while read -r pkg artifact sources; do
     case "$pkg" in ''|\#*) continue ;; esac
     # A listed path that lost its manifest is a stale list entry, so name it.
     if [ ! -f "$dir/$pkg/package.json" ]; then
@@ -606,7 +609,8 @@ provision_worktree() {
     if [ -n "$artifact" ]; then
       if [ ! -e "$dir/$pkg/$artifact" ]; then
         build_reason=missing
-      elif _wn_output_stale "$dir" "$pkg" "$artifact"; then
+      # The list's paths contain no spaces, so the unquoted split into arguments is safe.
+      elif _wn_output_stale "$dir" "$pkg" "$artifact" $sources; then
         build_reason=stale
       fi
     fi

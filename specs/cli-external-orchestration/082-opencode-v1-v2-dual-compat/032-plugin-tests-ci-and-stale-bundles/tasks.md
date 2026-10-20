@@ -59,9 +59,11 @@ contextType: "general"
 - [x] T012 Part 3: the rule on a real worktree (`scratch/real-reprovision-*.txt`) Done: after touching `src/plugin.ts`, provision prints `rebuilding .skilled/skills/sk-vision/vision-runtime (sources newer than dist/plugin.js)` and the bundle carries `visionHooksEnabled`; the next run builds nothing. A throwaway detached worktree outside the repository, provisioned fresh and then again, built nothing the second time.
 - [x] T013 Part 1: the workflow's command under Node 22 (`scratch/node22-plugin-tests.txt`, `scratch/mutation/broken-plugin-test.txt`) Done: 436 of 436 on Node 22.23.1, exit 0; with one broken test added, 436 pass and 1 fails, exit 1. Node 22 rejects the directory form `node --test .opencode/plugins/tests/`, so the workflow passes a glob.
 - [x] T014 Lint the workflows Done: `actionlint` exit 0; `check-gate-inputs.sh` RESULT: PASSED, 0 failures.
-- [ ] T015 Review the change read-only with Luna, five rounds at most (`scratch/review/`)
-- [ ] T016 Validate this folder strict and 082 recursively, each RESULT: PASSED
-- [ ] T017 Part 1: the plugin-test workflow passes on CI at the pushed main commit
+- [x] T015 Part 3, review round 1: count the sources a build compiles outside its package (`.skilled/skills/sk-git/scripts/worktree-naming.sh`, `worktree-provision-paths.txt`, `tests/worktree-naming.test.sh`) Done: a list line's fields after the output name extra source paths, and `_wn_output_stale` lists their tracked files with the package's. The spec-kit runtime names `shared`, the CLI names `shared` and `runtime`, and the advisor runtime names its `hooks` and spec-kit `shared`, each read from the build's tsconfig. Two new checks; on the package-only script one fails (`scratch/mutation/package-only-script-source-tests.txt`, PASS=122 FAIL=1); the suite passes 123 of 123, and the real worktree provisions with 0 built.
+- [x] T016 Part 1, review round 1: trigger on every input the suites read (`.github/workflows/opencode-plugin-tests.yml`) Done: a retrace that resolves relative paths (`scratch/trace/reads-outside-source-roots.txt`) found `.env.example`, two `.cursor` files, one `.devin` file and one archived spec's graph metadata; the goal-doc check also accepts cited `.claude` and `.codex` paths. Both trigger lists name `.claude/**`, `.codex/**`, `.cursor/**`, `.devin/**`, `.env.example` and that spec folder. `actionlint` exit 0; `check-gate-inputs.sh` RESULT: PASSED.
+- [ ] T017 Review the change read-only with Luna, five rounds at most (`scratch/review/`)
+- [ ] T018 Validate this folder strict and 082 recursively, each RESULT: PASSED
+- [ ] T019 Part 1: the plugin-test workflow passes on CI at the pushed main commit
 <!-- /ANCHOR:phase-3 -->
 
 ---

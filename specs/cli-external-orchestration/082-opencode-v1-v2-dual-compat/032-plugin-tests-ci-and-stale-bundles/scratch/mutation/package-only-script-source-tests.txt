@@ -1,0 +1,2 @@
+FAIL: a listed source outside the package newer than the output rebuilds it (exp='5' got='4')
+worktree-naming tests: PASS=122 FAIL=1

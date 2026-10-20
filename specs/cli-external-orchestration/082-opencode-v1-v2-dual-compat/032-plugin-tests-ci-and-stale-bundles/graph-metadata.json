@@ -51,7 +51,9 @@
       "scratch/mutation/old-script-new-tests.txt",
       "scratch/mutation/m1-untracked-counted.txt",
       "scratch/mutation/before-no-workflow-runs-plugin-tests.txt",
-      "scratch/node22-plugin-tests.txt"
+      "scratch/node22-plugin-tests.txt",
+      "scratch/mutation/package-only-script-source-tests.txt",
+      "scratch/trace/reads-outside-source-roots.txt"
     ],
     "entities": [
       {
@@ -151,6 +153,18 @@
         "source": "derived"
       },
       {
+        "name": "package-only-script-source-tests.txt",
+        "kind": "file",
+        "path": "scratch/mutation/package-only-script-source-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reads-outside-source-roots.txt",
+        "kind": "file",
+        "path": "scratch/trace/reads-outside-source-roots.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
     "created_at": "2026-10-20T15:30:08Z",
-    "last_save_at": "2026-10-20T15:48:16.902Z",
+    "last_save_at": "2026-10-20T16:01:25.341Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3f60aa6faa53eba11262e2da19201fb1452358f3a24f91ebbaed35a39437dc8",
+    "source_fingerprint": "sha256:5de04e2da0c7569a6d0b14cb5c2c2fe93d6a52cc2cd920c49b7a46f4c0b9add6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c01a02018a32cf6432c7fb53051eb4981e02d86f873d54ed67a81940d67e4164",
+      "spec.md": "7305575c050a2b6fee4f08ff30d2d36fe289c93668bfe474b89c48ceb18b48b1",
       "plan.md": "0e9ebb9f5c57d7ba0c02211956726a2473feddaf35f61e2045fdf683b9701d82",
-      "tasks.md": "a48b09087332f75e6b49f7443961c99e785c10ed0d504f65a65b0a5ab36c5b92",
-      "implementation-summary.md": "35a0ede0c1cc1a423f10fe75c533edd7a3891280e32b75db29e08a22d9831401"
+      "tasks.md": "532674a4ad07ff5cb2bb65e8c92d96ff033b31e164dc30217893dd433f5a5480",
+      "implementation-summary.md": "198624636fe1dab097a7159ee127f2401ed78c0a32eb273812d663609093ce40"
     },
     "last_active_at": null
   }

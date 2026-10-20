@@ -342,6 +342,32 @@ run_stale_provision() {
 expect_rc "a tracked source newer than the output rebuilds it and says why" 0 run_stale_provision
 expect_eq "a stale output builds exactly once" "$((STALE_BEFORE + 1))" "$(stale_build_lines)"
 
+# A source outside the package that the list names counts as well.
+DEP_PROV="$PROV/dep-prov"
+DEP_TREE="$DEP_PROV/tree"
+mkdir -p "$DEP_PROV/scripts" "$DEP_TREE/shared-lib" "$DEP_TREE/needs-build/dist"
+cp "$NAMING" "$DEP_PROV/scripts/worktree-naming.sh"
+printf 'needs-build  dist/index.js  shared-lib\n' > "$DEP_PROV/scripts/worktree-provision-paths.txt"
+printf '{}\n' > "$DEP_TREE/needs-build/package.json"
+printf 'export {};\n' > "$DEP_TREE/shared-lib/index.ts"
+: > "$DEP_TREE/needs-build/dist/index.js"
+git -C "$DEP_TREE" init -q
+git -C "$DEP_TREE" add needs-build/package.json shared-lib/index.ts
+touch -t 202001010000 "$DEP_TREE/needs-build/package.json" "$DEP_TREE/shared-lib/index.ts"
+touch -t 202101010000 "$DEP_TREE/needs-build/dist/index.js"
+run_dep_provision() {
+  (
+    source "$DEP_PROV/scripts/worktree-naming.sh"
+    PATH="$PROV/bin:$PATH" provision_worktree "$DEP_TREE"
+  )
+}
+DEP_BEFORE="$(stale_build_lines)"
+expect_rc "an output newer than its listed sources is not rebuilt" 0 run_dep_provision
+expect_eq "an output newer than its listed sources adds no build" "$DEP_BEFORE" "$(stale_build_lines)"
+touch -t 202201010000 "$DEP_TREE/shared-lib/index.ts"
+expect_rc "a listed source outside the package newer than the output provisions" 0 run_dep_provision
+expect_eq "a listed source outside the package newer than the output rebuilds it" "$((DEP_BEFORE + 1))" "$(stale_build_lines)"
+
 # Outside a git work tree only a missing output builds, as before.
 PLAIN_TREE="$PROV/plain-tree"
 mkdir -p "$PLAIN_TREE/needs-build/src" "$PLAIN_TREE/needs-build/dist"

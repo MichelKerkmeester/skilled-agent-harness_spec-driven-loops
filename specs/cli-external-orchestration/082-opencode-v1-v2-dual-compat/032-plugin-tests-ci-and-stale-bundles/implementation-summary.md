@@ -64,7 +64,7 @@ The new workflow provisions every tree the provision list names, the way the dua
 | `.github/workflows/opencode-plugin-tests.yml` | Created | Runs the plugin suites in a blocking job |
 | `.github/workflows/spec-kit-check.yml` | Modified | Reruns on a plugin-only change |
 | `.skilled/skills/sk-git/scripts/worktree-naming.sh` | Modified | Rebuilds a stale output and says why |
-| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Ten checks for the stale-output rule |
+| `.skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh` | Modified | Fourteen checks for the stale-output rule |
 | `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modified | Header states the rule |
 | `.skilled/skills/sk-git/SKILL.md` | Modified | The provisioning rule states it |
 | `.github/workflows/README.md` | Modified | Rows for the new workflow and `sk-code-script-tests.yml` |
@@ -89,6 +89,8 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 | Trigger on `.skilled/**`, `.opencode/**` and `.pi/**` | The read trace reaches all three roots; a narrower list would miss a change that breaks a suite |
 | Compare git-tracked files only | A build writes untracked files newer than its output; counting them would rebuild on every provision |
 | Outside a git work tree, only a missing output builds | Keeps the old behavior where there is no tracked set to compare |
+| List lines name the sources a build compiles outside its package | The spec-kit runtime, its CLI and the advisor runtime compile `shared`, `runtime` or the advisor's `hooks`; without these a change there would leave the output stale. Every other reader of the list ignores fields after the second |
+| Trigger on `.claude`, `.codex`, `.cursor`, `.devin`, `.env.example` and one archived spec folder | A retrace that resolved relative reads found the goal checks reading files there |
 | Pass a glob to `node --test` | Node 22, which CI runs, rejects a directory argument that Node 26 accepts |
 <!-- /ANCHOR:decisions -->
 
@@ -101,9 +103,10 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 |-------|--------|
 | Plugin suites, Node 22.23.1, workflow command | PASS, 436 of 436 |
 | Same command with one broken test | exit 1, 1 failing |
-| `worktree-naming.test.sh` | PASS=119 FAIL=0 (109 before) |
+| `worktree-naming.test.sh` | PASS=123 FAIL=0 (109 before) |
 | New checks on the old script | FAIL=2, exit 1 |
 | Mutant counting untracked files | FAIL=4, exit 1 |
+| Extra-source checks on the package-only script | FAIL=1, exit 1 |
 | Real worktree, touched source then two provisions | one rebuild with the message, then 0 built |
 | `actionlint`, `check-gate-inputs.sh` | exit 0, RESULT: PASSED |
 <!-- /ANCHOR:verification -->
@@ -115,7 +118,8 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 
 1. **Whole-second comparison on macOS.** `/bin/bash` 3.2 compares modification times in whole seconds, so a source edited in the same second as its build is not seen as newer. A real build takes longer than a second, and the tests use fixed timestamps.
 2. **Nested packages rebuild their parent.** A tracked file under `runtime/cli` also counts for `runtime`, so changing it rebuilds both. That is an extra build, never a missed one.
-3. **The main checkout's bundle.** Nothing here touches the operator's checkout; its stale sk-vision bundle refreshes the next time `worktree-naming.sh provision` runs there.
+3. **Root-file probes are not triggers.** The suites also check that `esbuild.config.mjs`, `manifest.json`, `wrangler.toml` and `src/2_javascript` do not exist at the repository root, to tell this repository from a project one. Adding one of those files would not start the workflow; the next change under a source root would.
+4. **The main checkout's bundle.** Nothing here touches the operator's checkout; its stale sk-vision bundle refreshes the next time `worktree-naming.sh provision` runs there.
 <!-- /ANCHOR:limitations -->
 
 ---
