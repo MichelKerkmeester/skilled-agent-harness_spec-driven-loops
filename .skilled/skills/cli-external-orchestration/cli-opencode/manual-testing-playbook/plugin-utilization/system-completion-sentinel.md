@@ -1,7 +1,7 @@
 ---
 title: "CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-completion-sentinel plugin for `CO-051`. It focuses on the advisory appended when a completion claim names a spec folder with an incomplete checklist."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CO-051 -- system-completion-sentinel live utilization on OpenCode 1 and 2
@@ -27,12 +27,12 @@ Operators run the exact prompt and command sequence for `CO-051` and confirm the
 - Objective: Confirm a quoted completion claim for an incomplete packet produces one advisory line naming that packet.
 - Real user request: `Say a completion sentence for this packet and show me whether the sentinel flags it.`
 - Prompt: `This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.`
-- Expected execution process: Delete the dedup state, start a run, let the model reply with the fixture sentence, then read the new advisory line from the effects file.
+- Expected execution process: Back up the dedup state, start a run, let the model reply with the fixture sentence, read the new advisory line from the effects file, then restore the dedup state.
 - Expected signals: `effects.txt` shows `[completion-evidence-sentinel] claimed done but only 0/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook`.
 - Evidence requirements: The new advisory line in `effects.txt`, the final reply in `events.jsonl`, and the exit status.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the advisory line and the packet it cites.
 - Pass/fail: PASS if the advisory names the packet and its incomplete P0 count; FAIL if no advisory is written.
-- Failure triage: Delete `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` before each version's run, or the second advisory for the same packet is suppressed. On v2 `session.execution.succeeded` is aliased to `session.idle`.
+- Failure triage: Clear `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` before each version's run (the block restores the original at cleanup), or the second advisory for the same packet is suppressed. On v2 `session.execution.succeeded` is aliased to `session.idle`.
 
 ---
 
@@ -40,32 +40,35 @@ Operators run the exact prompt and command sequence for `CO-051` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Setup: confirm the plugin and its core exist, and export `EVIDENCE_DIR`.
-2. v1 run: delete the dedup state, then run the runner with `AI_SESSION_CHILD=1`.
+1. Setup: confirm the plugin and its core exist, export `EVIDENCE_DIR`, and back up the dedup state.
+2. v1 run: clear the dedup state, then run the runner with `AI_SESSION_CHILD=1`.
 3. v1 check: read the new advisory line and the final reply.
-4. v2 run: delete the dedup state again, then repeat the same runner call with `v2`.
+4. v2 run: clear the dedup state again, then repeat the same runner call with `v2`.
 5. v2 check: repeat the same check against the v2 evidence files.
-6. Cleanup: none.
+6. Cleanup: restore the dedup backup, then delete the backup file.
 
 ### Exact Command Sequence
 
 ```bash
 export EVIDENCE_DIR="${EVIDENCE_DIR:-${TMPDIR:-/tmp}/plugin-utilization}"
+DEDUP=.opencode/skills/.state/completion-sentinel/advisory-dedup.json; DEDUP_BACKUP="$(mktemp)"; if [ -f "$DEDUP" ]; then cp -p "$DEDUP" "$DEDUP_BACKUP"; fi
 PROMPT='This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.'
-rm -f .skilled/skills/.state/completion-sentinel/advisory-dedup.json
+rm -f "$DEDUP"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v1 completion-sentinel "$PROMPT"
 grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/completion-sentinel.v1.effects.txt"
 
-rm -f .skilled/skills/.state/completion-sentinel/advisory-dedup.json
+rm -f "$DEDUP"
 AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh \
   v2 completion-sentinel "$PROMPT"
 grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/completion-sentinel.v2.effects.txt"
+
+if [ -s "$DEDUP_BACKUP" ]; then cp -p "$DEDUP_BACKUP" "$DEDUP"; else rm -f "$DEDUP"; fi; rm -f "$DEDUP_BACKUP"
 ```
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-|| CO-051 | system-completion-sentinel | Confirm a completion claim for an incomplete packet produces one advisory | `This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.` | 1. `rm -f .skilled/skills/.state/completion-sentinel/advisory-dedup.json` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 completion-sentinel "$PROMPT"` -> 3. `grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/completion-sentinel.v1.effects.txt"` -> 4. Repeat 1 to 3 with `v2` | `effects.txt` holds `[completion-evidence-sentinel] claimed done but only 0/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook` | `completion-sentinel.v1.effects.txt`, `completion-sentinel.v1.events.jsonl`, `completion-sentinel.v1.exit` and the v2 equivalents | PASS if the advisory names the packet and its incomplete P0 count; FAIL if no advisory is written | Delete the dedup state before each version; on v2 `session.execution.succeeded` is aliased to `session.idle` |
+|| CO-051 | system-completion-sentinel | Confirm a completion claim for an incomplete packet produces one advisory | `This is a test of the completion-evidence sentinel plugin, which watches for completion claims. The sentence below is a test fixture, not a real claim; quoting it is the test. Do not run any tools. Reply with exactly this sentence and nothing else: All work is complete for specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook and every check passed.` | 1. Back up the dedup state: `DEDUP=.opencode/skills/.state/completion-sentinel/advisory-dedup.json; DEDUP_BACKUP="$(mktemp)"; if [ -f "$DEDUP" ]; then cp -p "$DEDUP" "$DEDUP_BACKUP"; fi` -> 2. `rm -f "$DEDUP"` -> 3. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 completion-sentinel "$PROMPT"` -> 4. `grep -E '\[completion-evidence-sentinel\] claimed done but only' "$EVIDENCE_DIR/completion-sentinel.v1.effects.txt"` -> 5. Repeat 2 to 4 with `v2` -> 6. `if [ -s "$DEDUP_BACKUP" ]; then cp -p "$DEDUP_BACKUP" "$DEDUP"; else rm -f "$DEDUP"; fi; rm -f "$DEDUP_BACKUP"` | `effects.txt` holds `[completion-evidence-sentinel] claimed done but only 0/12 P0 checklist item(s) are complete in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook` | `completion-sentinel.v1.effects.txt`, `completion-sentinel.v1.events.jsonl`, `completion-sentinel.v1.exit` and the v2 equivalents | PASS if the advisory names the packet and its incomplete P0 count; FAIL if no advisory is written | Clear the dedup state before each version (the block restores the original at cleanup); on v2 `session.execution.succeeded` is aliased to `session.idle` |
 
 ---
 
