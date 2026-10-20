@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/034-live-plugin-playbook"
+    packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook"
     last_updated_at: "2026-10-20T16:42:45Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
