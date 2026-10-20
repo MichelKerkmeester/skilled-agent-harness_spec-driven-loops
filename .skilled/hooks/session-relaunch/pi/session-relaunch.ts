@@ -16,13 +16,13 @@ import {
 // 1. TYPES AND MODULES
 // ─────────────────────────────────────────────────────────────────────────────
 
-type RelaunchRecord = {
+interface RelaunchRecord {
   runtime?: string;
   sessionId?: string;
   status?: string;
-};
+}
 
-type CoreModule = {
+interface CoreModule {
   appendLog(
     event: string,
     fields?: Record<string, unknown>,
@@ -38,21 +38,25 @@ type CoreModule = {
     options: { loopId: string; sessionId: string; runtime: string; env: NodeJS.ProcessEnv },
   ): { armable: boolean; reason: string };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
-};
+}
 
 // CoreModule is a hand-written view of a CommonJS module no compiler checks it against,
 // so each function it names is checked once at load: a renamed or missing export then
 // fails the load instead of the first arm, which would otherwise fail in silence.
 const CORE_FUNCTIONS = ['appendLog', 'arm', 'armableRecord', 'readRelaunchFile'] as const;
 
-type ContextUsageModule = {
+interface ContextUsageModule {
   fillFromPiUsage(usage: unknown): number;
   fillRatio(fillTokens: number, windowTokens: number): number;
-};
+}
 
-type NudgeDecision = { level: number; nudge: boolean; reason: string };
+interface NudgeDecision {
+  level: number;
+  nudge: boolean;
+  reason: string;
+}
 
-type NudgeModule = {
+interface NudgeModule {
   CLI_COMMAND: string;
   handoffText(options: {
     notePath: string;
@@ -90,7 +94,7 @@ type NudgeModule = {
   }): NudgeDecision;
   validSessionId(sessionId: unknown): boolean;
   writeState(sessionId: string, level: number, env: NodeJS.ProcessEnv): void;
-};
+}
 
 type AdapterModules = {
   core: CoreModule;
@@ -310,6 +314,9 @@ async function armRelaunch(
 // 3. EXTENSION
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Register the message_end, before_agent_start and agent_end hooks on the Pi extension host.
+ */
 export default function sessionRelaunch(pi: ExtensionAPI): void {
   // Keyed by session id, so two sessions in one host process never swap a nudge.
   const heldNudges = new Map<string, string>();

@@ -2,6 +2,10 @@
 // MODULE: Hermes Session End Arm
 // ───────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -18,10 +22,18 @@ import {
   readRelaunchFile,
 } from '../lib/relaunch-core.cjs';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const CONCERN = 'session-relaunch';
 const KILLER_PATH = path.join(
   path.dirname(fileURLToPath(import.meta.url)), '..', 'lib', 'killer.cjs',
 );
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function done(armed = false) {
   process.stdout.write(`${JSON.stringify({ armed })}\n`, () => process.exit(0));
@@ -46,6 +58,22 @@ function logSpawnError(loopId, env, error) {
   }, env);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Arm this session's relaunch record at session end and detach the killer that ends it.
+ *
+ * @param {Object} payload - Parsed Hermes session-end payload.
+ * @param {Object} [dependencies] - Seams for tests.
+ * @param {NodeJS.ProcessEnv} [dependencies.env=process.env] - Runtime environment.
+ * @param {number} [dependencies.targetPid] - Target pid; the loop-child walk when omitted.
+ * @param {number} [dependencies.pid=process.pid] - Pid the loop-child walk climbs from.
+ * @param {string} [dependencies.processTable] - `pid ppid` pairs; the live table when omitted.
+ * @param {Function} [dependencies.spawn] - Spawns the killer; child_process.spawn when omitted.
+ * @returns {Object|null} The armed record, or null when nothing was armed.
+ */
 function armPendingRecord(payload, dependencies = {}) {
   const env = dependencies.env || process.env;
   try {
@@ -107,6 +135,10 @@ function armPendingRecord(payload, dependencies = {}) {
     return null;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   let enabled = false;

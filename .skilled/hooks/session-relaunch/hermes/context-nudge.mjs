@@ -2,6 +2,10 @@
 // MODULE: Hermes Session Context Nudge
 // ───────────────────────────────────────────────────────────────────
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
 import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
 import {
@@ -11,7 +15,18 @@ import {
 import { appendLog as appendRelaunchLog, isEntrypoint } from '../lib/relaunch-core.cjs';
 import nudge from '../lib/nudge.cjs';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const CONCERN = 'session-relaunch';
+// A provider that reports no window is measured against the standard size, which is the
+// same default the shared context-usage module applies.
+const DEFAULT_WINDOW_TOKENS = 200000;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function finish() {
   process.exit(0);
@@ -45,8 +60,12 @@ function resolveHermesWindow(payload, usage) {
     payload.model_context_window ?? usage?.model_context_window,
   );
   if (reported !== null) return { windowTokens: reported, windowSource: 'hermes' };
-  return { windowTokens: 200000, windowSource: 'default' };
+  return { windowTokens: DEFAULT_WINDOW_TOKENS, windowSource: 'default' };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const config = loadConfigFile(configPath());
@@ -105,5 +124,9 @@ async function main() {
   });
   return emit({ context, windowTokens, windowSource });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 if (isEntrypoint(import.meta.url)) main().catch(done);

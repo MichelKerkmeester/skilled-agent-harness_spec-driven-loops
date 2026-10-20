@@ -47,7 +47,8 @@ const SUBCOMMANDS = {
   },
   history: {
     syntax: 'history [--last <count>]',
-    summary: 'Print the latest hops from the hop history, 20 by default.',
+    summary: `Print the latest hops from the hop history, ${hopHistory.DEFAULT_HISTORY_LINES}`
+      + ' by default.',
   },
 };
 
@@ -157,7 +158,9 @@ function handoffPathWithinRepo(filePath) {
   // would pass a note stored anywhere. The directory must be the repository's own,
   // reached without a link below the repository root.
   const realRepository = fs.realpathSync(repository);
-  if (path.relative(realRepository, realDirectory) !== path.relative(repository, handoffDirectory)) {
+  const sameRelativePath = path.relative(realRepository, realDirectory)
+    === path.relative(repository, handoffDirectory);
+  if (!sameRelativePath) {
     throw new Error(
       'session-relaunch handoffs directory must be a real directory inside the repository',
     );
@@ -242,7 +245,11 @@ function runtimePidFromLoop(loopId, processes, preferredPid) {
   return core.resolveKillerTarget(loopId, { preferredPid, pid: process.pid, processTable });
 }
 
-function shellChildOfRuntime(runtimePid, runtime, processes = readProcessTableWithCommands(runtime)) {
+function shellChildOfRuntime(
+  runtimePid,
+  runtime,
+  processes = readProcessTableWithCommands(runtime),
+) {
   const cliAncestors = cliAncestorsOf(processes);
 
   return [...processes.values()].find((processInfo) => (
@@ -290,7 +297,9 @@ function printManualClaim(handoffPath, runtime, specFolder) {
         + ' so add any launch options back by hand\n',
     );
   }
-  process.stdout.write(`${core.manualClaimCommand(runtime, handoffPath, specFolder, process.env)}\n`);
+  process.stdout.write(
+    `${core.manualClaimCommand(runtime, handoffPath, specFolder, process.env)}\n`,
+  );
 }
 
 function supersedeClaimedNotes(handoffPath, { loopId, sessionId }) {
@@ -403,7 +412,7 @@ function prepare(args) {
   // note stays open for the operator's own claim and nothing is armed.
   const maxHops = numericSwitch(
     'SESSION_RELAUNCH_MAX_HOPS',
-    10,
+    core.DEFAULT_MAX_HOPS,
     resolvedSwitches(),
     { integer: true },
   );
@@ -460,8 +469,13 @@ function shouldRelaunch(args) {
   const switches = resolvedSwitches();
   const decision = core.shouldRelaunch(record, {
     now: Date.now(),
-    maxHops: numericSwitch('SESSION_RELAUNCH_MAX_HOPS', 10, switches, { integer: true }),
-    maxAgeMin: numericSwitch('SESSION_RELAUNCH_MAX_AGE_MIN', 10, switches),
+    maxHops: numericSwitch(
+      'SESSION_RELAUNCH_MAX_HOPS',
+      core.DEFAULT_MAX_HOPS,
+      switches,
+      { integer: true },
+    ),
+    maxAgeMin: numericSwitch('SESSION_RELAUNCH_MAX_AGE_MIN', core.DEFAULT_MAX_AGE_MIN, switches),
   });
   const result = {
     relaunch: decision.relaunch,
@@ -593,7 +607,7 @@ function consume(args) {
 
 function history(args) {
   const { options } = parseArgs(args, { flags: ['--last'] });
-  let last = 20;
+  let last = hopHistory.DEFAULT_HISTORY_LINES;
   if (options['--last'] !== undefined) {
     last = Number(options['--last']);
     if (!Number.isInteger(last) || last < 1) {

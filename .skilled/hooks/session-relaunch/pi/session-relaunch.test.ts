@@ -110,6 +110,7 @@ describe('session-relaunch Pi extension', () => {
     setupEnv();
     const { api, handlers } = makeExtensionApi();
     sessionRelaunch(api);
+    // setupEnv() sets HOOK_FLAGS_CONFIG, so the test env has it.
     writeFileSync(process.env.HOOK_FLAGS_CONFIG!, 'SYSTEM_SESSION_RELAUNCH_DISABLED=1\n');
 
     await emit(handlers, 'message_end', {
@@ -150,6 +151,7 @@ describe('session-relaunch Pi extension', () => {
     process.env.SKILLED_LOOP_ID = loopId;
     preparePending({
       loopId,
+      // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
       handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'handoff.md'),
       sessionId: 'pi-session-0001',
       runtime: 'pi',
@@ -383,6 +385,7 @@ describe('session-relaunch Pi extension', () => {
       expect(spawnMock.mock.results[0].value.unref).toHaveBeenCalledOnce();
 
       const expectedKiller = path.resolve(
+        // setupEnv() sets SESSION_RELAUNCH_REPO_ROOT, so the test env has it.
         process.env.SESSION_RELAUNCH_REPO_ROOT!,
         '.skilled',
         'hooks',
@@ -415,6 +418,7 @@ describe('session-relaunch Pi extension', () => {
       await emit(handlers, 'agent_end', {}, makeContext());
       expect(spawnMock).toHaveBeenCalledTimes(1);
 
+      // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
       const stateDir = path.join(process.env.XDG_RUNTIME_DIR!, 'skilled-relaunch');
       mkdirSync(stateDir, { recursive: true });
       writeFileSync(
@@ -482,6 +486,7 @@ describe('session-relaunch Pi extension', () => {
 
     expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
     const logPath = path.join(
+      // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
       process.env.XDG_RUNTIME_DIR!,
       'skilled-relaunch',
       'relaunch.log',
@@ -519,6 +524,7 @@ describe('session-relaunch Pi extension', () => {
 
       expect(readRelaunchFile(loopId, process.env)).toMatchObject({ status: 'armed' });
       const logPath = path.join(
+        // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
         process.env.XDG_RUNTIME_DIR!,
         'skilled-relaunch',
         'relaunch.log',
@@ -632,9 +638,11 @@ describe('session-relaunch Pi extension', () => {
     const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content: string };
     const match = nudgeMessage.content.match(/Write the handoff note at '([^']+)'/);
     expect(match).not.toBeNull();
+    // The expect() above pins match to a non-null array.
     const notePath = match![1];
     expect(path.dirname(notePath)).toBe(
       path.join(
+        // setupEnv() sets SESSION_RELAUNCH_REPO_ROOT, so the test env has it.
         process.env.SESSION_RELAUNCH_REPO_ROOT!,
         '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs',
       ),
@@ -656,6 +664,7 @@ describe('session-relaunch Pi extension', () => {
     const nudgeMessage = api.sendMessage.mock.calls[0][0] as { content: string };
     const match = nudgeMessage.content.match(/Write the handoff note at '([^']+)'/);
     expect(match).not.toBeNull();
+    // The expect() above pins match to a non-null array.
     const notePath = match![1];
     expect(path.isAbsolute(notePath)).toBe(true);
     expect(path.dirname(notePath)).toBe(
@@ -670,6 +679,7 @@ describe('session-relaunch Pi extension', () => {
   it('keeps the default threshold when the env switch is invalid', async () => {
     setupEnv();
     writeFileSync(
+      // setupEnv() sets HOOK_FLAGS_CONFIG, so the test env has it.
       process.env.HOOK_FLAGS_CONFIG!,
       'SESSION_RELAUNCH_THRESHOLD=0.5\n',
     );
@@ -821,6 +831,7 @@ describe('session-relaunch Pi extension conformance', () => {
       process.env.SKILLED_LOOP_ID = loopId;
       preparePending({
         loopId,
+        // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
         handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'note.md'),
         sessionId: SESSION_ID,
         runtime: 'pi',
@@ -847,6 +858,8 @@ describe('session-relaunch Pi extension conformance', () => {
   // The arm cases. Pi signals its own process, so the no-target case does not apply here.
   const ARM_LOOP_ID = 'pi-conformance-arm-0001';
   const LIVE_CWD = '/workspace/pi-live';
+  // Past the default max age, so only a fresh arm stamp keeps the record relaunchable.
+  const STALE_ARMED_AGE_MS = 20 * 60 * 1000;
 
   function prepareArmRecord({
     runtime = 'pi',
@@ -857,6 +870,7 @@ describe('session-relaunch Pi extension conformance', () => {
     process.env.SKILLED_LOOP_ID = ARM_LOOP_ID;
     preparePending({
       loopId: ARM_LOOP_ID,
+      // setupEnv() sets XDG_RUNTIME_DIR, so the test env has it.
       handoffPath: path.join(process.env.XDG_RUNTIME_DIR!, 'note.md'),
       sessionId,
       runtime,
@@ -864,7 +878,12 @@ describe('session-relaunch Pi extension conformance', () => {
       env: process.env,
     });
     if (armedAgoMs !== undefined) {
-      arm({ loopId: ARM_LOOP_ID, cwd: '/workspace/pi', env: process.env, now: Date.now() - armedAgoMs });
+      arm({
+        loopId: ARM_LOOP_ID,
+        cwd: '/workspace/pi',
+        env: process.env,
+        now: Date.now() - armedAgoMs,
+      });
     }
     return readRelaunchFile(ARM_LOOP_ID, process.env);
   }
@@ -875,7 +894,8 @@ describe('session-relaunch Pi extension conformance', () => {
     await emit(handlers, 'agent_end', {}, makeContext(SESSION_ID, LIVE_CWD));
   }
 
-  it("an arm turns this session's pending record armed from the live cwd and starts one killer", async () => {
+  it('an arm turns this session\'s pending record armed from the live cwd'
+    + ' and starts one killer', async () => {
     prepareArmRecord();
     await stopEvent();
     expect(readRelaunchFile(ARM_LOOP_ID, process.env)).toMatchObject({
@@ -888,8 +908,9 @@ describe('session-relaunch Pi extension conformance', () => {
     expect(args[args.indexOf('--target-pid') + 1]).toBe(String(process.pid));
   });
 
-  it('a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it', async () => {
-    prepareArmRecord({ armedAgoMs: 20 * 60 * 1000 });
+  it('a re-arm restamps an armed record whose killer is gone,'
+    + ' so the wrapper still relaunches it', async () => {
+    prepareArmRecord({ armedAgoMs: STALE_ARMED_AGE_MS });
     await stopEvent();
     const record = readRelaunchFile(ARM_LOOP_ID, process.env);
     expect(record).toMatchObject({ status: 'armed', cwd: LIVE_CWD });
