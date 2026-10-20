@@ -131,7 +131,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 node -e "import('./.skilled/plugins/system-dist-freshness-guard.js').then(m => console.log('ok', typeof m.default))"
 ```
 
-Expected result: `ok function`.
+Expected result: `ok object`, the dual plugin export.
 
 ```bash
 # Verify the shell check runs (all-packages mode) and always exits 0

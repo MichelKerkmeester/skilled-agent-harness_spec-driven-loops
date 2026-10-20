@@ -1,0 +1,2 @@
+$ bunx tsc --noEmit   (from .skilled/skills/sk-vision/vision-runtime)
+exit=0

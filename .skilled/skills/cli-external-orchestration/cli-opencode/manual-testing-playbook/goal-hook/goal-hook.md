@@ -1,7 +1,7 @@
 ---
 title: "CO-039 -- Goal hook native opencode-goal validation"
 description: "Validates OpenCode goal actions, session isolation, fixed opaque state keys, lazy legacy migration, native token accounting, and system-prompt injection."
-version: 1.5.0.0
+version: 1.5.1.0
 ---
 
 # CO-039 -- Goal hook native opencode-goal validation
@@ -68,9 +68,11 @@ import { pathToFileURL } from 'node:url';
 
 const pluginUrl = pathToFileURL('.skilled/plugins/opencode-goal.js').href;
 const stateDir = await mkdtemp(join(tmpdir(), 'co-039-goal-'));
+const coreUrl = pathToFileURL('.skilled/plugins/lib/opencode-goal-core.js').href;
 const { default: MkGoalPlugin } = await import(pluginUrl);
-const hooks = await MkGoalPlugin({}, { stateDir });
-const helpers = MkGoalPlugin.__test;
+const { getGoalCore } = await import(coreUrl);
+const hooks = await MkGoalPlugin.server({}, { stateDir });
+const helpers = getGoalCore(MkGoalPlugin.server);
 
 const A = { sessionID: 'sess-co-039-a' };
 const B = { sessionID: 'sess-co-039-b' };

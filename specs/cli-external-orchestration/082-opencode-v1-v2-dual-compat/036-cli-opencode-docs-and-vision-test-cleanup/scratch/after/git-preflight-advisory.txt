@@ -1,0 +1,5 @@
+--- step 3
+{"system":["⚠ sk-git advisory — this `git commit` may not do what it appears to:\n  • [commit-scope-drops-untracked] Untracked files inside this commit's scope are silently excluded (exit 0, no warning). Naming the file directly errors; naming its directory doesn't. Run `git status` or check `git show --name-only HEAD`.\n  Advisory only — the command still runs. Silence: SKGIT_ADVISORY_SKIP=<rule-id>"]}
+--- step 4 (SKGIT_ADVISORY=0)
+{"system":[]}
+exit=0

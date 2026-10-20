@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin model alias reference"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.4.0
 ---
 
 # cli-devin Providers, Models & Invocation
@@ -75,7 +75,7 @@ Alphabetical by family, then by model uid within each family.
 - Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias resolves to the SWE-2 family. Pin the exact uid in scripts for predictability.
 - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` (the Max thinking tier of the DeepSeek V4 Flash family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
 - **GPT-6 Luna Max joins (2026-09-24).** `gpt-6-luna-max` and `gpt-6-luna-max-priority` were confirmed verbatim in the live `devin models list` on devin 3000.11.1, which lists GPT-6 Luna and GPT-5.6 Luna as separate families, so the GPT-5.6 pair stays. `gpt-6-luna-max-priority` is dispatch-tested: a direct `devin -p` call returned a live reply at exit 0. `gpt-6-luna-max` is list-verified only.
-- **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max`. On devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking. cli-pi passes `--thinking max`. On OpenCode 1 the same pin is `--variant max`. On OpenCode 2 it rides on the model id instead (`-m provider/model#max`), so a v2 reader confirms the provider in `opencode2 models --standalone` first.
+- **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max`. On devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking. cli-pi passes `--thinking max`. On OpenCode 1 the same pin is `--variant max`. On OpenCode 2 it rides on the model id instead (`-m provider/model#max`), so a v2 reader confirms that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 **Gemini 3.8 Flash High retired from cli-devin (2026-09-06).** The uid `gemini-3-8-flash-high` was in scope from 2026-08-15 and is now rejected by the fan-out allowlist: Devin bills it at twice the 3.7 rate and a single two-iteration research pass exhausted the daily quota. Gemini 3.8 Flash High stays reachable through the cursor route. Do not dispatch it through Devin.
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled. `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
 - This is a curated subset. Devin's full 48-family roster (Claude, GPT, other Gemini, Kimi, older SWE, Fusion pairings, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.

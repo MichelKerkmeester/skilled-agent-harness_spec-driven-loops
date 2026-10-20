@@ -130,7 +130,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 node -e "import('./.skilled/plugins/session-cleanup.js').then(m => console.log('ok', typeof m.default))"
 ```
 
-Expected result: `ok function`.
+Expected result: `ok object`, the dual plugin export.
 
 ```bash
 # Verify the shell script is a no-op without a session PID (default orphan-sweep off)

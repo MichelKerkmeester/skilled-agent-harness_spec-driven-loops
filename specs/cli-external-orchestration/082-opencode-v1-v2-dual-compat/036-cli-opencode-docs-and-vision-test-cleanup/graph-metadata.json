@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli opencode docs and vision test cleanup",
+      "phase 36 cli opencode docs and vision test cleanup",
+      "confirm the provider prefix",
+      "plugin playbook snippet default server",
+      "cli opencode docs and vision test cleanup plan",
+      "cli opencode docs and vision test cleanup tasks",
+      "cli opencode docs and vision test cleanup implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "opencode",
+      "docs",
+      "vision",
+      "test",
+      "cleanup",
+      "phase",
+      "confirm",
+      "provider",
+      "prefix",
+      "plugin",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/hooks/codex-watchdog/README.md",
+      "scratch/after/sk-vision-tsc.txt",
+      "scratch/after/speckit-completion.txt",
+      "scratch/after/goal-and-hook-readmes.txt",
+      "scratch/after/readme-manifest.txt",
+      "scratch/after/sk-doc-script-tests.txt",
+      "scratch/after/rename-harness-rerun.txt",
+      "scratch/after/ci-d704b466da.txt",
+      ".opencode/plugins/tests/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+      ".opencode/plugins/lib/v2-bridge.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/codex-watchdog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision-tsc.txt",
+        "kind": "file",
+        "path": "scratch/after/sk-vision-tsc.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-completion.txt",
+        "kind": "file",
+        "path": "scratch/after/speckit-completion.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-and-hook-readmes.txt",
+        "kind": "file",
+        "path": "scratch/after/goal-and-hook-readmes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "readme-manifest.txt",
+        "kind": "file",
+        "path": "scratch/after/readme-manifest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.txt",
+        "kind": "file",
+        "path": "scratch/after/sk-doc-script-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rename-harness-rerun.txt",
+        "kind": "file",
+        "path": "scratch/after/rename-harness-rerun.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ci-d704b466da.txt",
+        "kind": "file",
+        "path": "scratch/after/ci-d704b466da.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode2-models-form.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/sk-vision/vision-runtime/tests/plugin.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 027 left three gaps",
+    "created_at": "2026-10-20T21:30:26Z",
+    "last_save_at": "2026-10-20T23:25:59.626Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:df02e822043080e81ab75863650e9f726c1afd7e3f99be13a15e397a9648434a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6c5483a1c923a7b858c761d17f72cf6e403963b85b75963b5b46e33ab37e8eb7",
+      "plan.md": "b0534bf7a9caba09561e965372771c495d50fec0673838e5db48570a8038e6ce",
+      "tasks.md": "d0d663ff9c4f8742c15d33affcaa7952284c7af7fd3f6b1af1d107f218583e8f",
+      "implementation-summary.md": "1e9dff4252a50005a732d62f77f8161af8aab1ca76bd1eda59c0fdbdb7181099"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup",
+  "description": "Close the cli-opencode provider-listing doc follow-ups and the sk-vision kill-switch test and plugin playbook snippet follow-ups",
+  "keywords": [
+    "close",
+    "cli-opencode",
+    "provider-listing",
+    "doc",
+    "follow-ups",
+    "sk-vision",
+    "kill-switch",
+    "test",
+    "plugin",
+    "playbook",
+    "snippet"
+  ],
+  "lastUpdated": "2026-10-20T21:30:26.814Z",
+  "specId": "036",
+  "folderSlug": "cli-opencode-docs-and-vision-test-cleanup",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

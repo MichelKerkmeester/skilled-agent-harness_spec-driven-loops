@@ -1,0 +1,2 @@
+== m8-first-assignment-wins
+ℹ fail 1

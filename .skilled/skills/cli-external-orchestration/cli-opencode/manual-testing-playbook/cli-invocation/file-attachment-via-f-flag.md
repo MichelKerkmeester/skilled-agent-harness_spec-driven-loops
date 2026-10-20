@@ -1,12 +1,12 @@
 ---
 title: "CO-004 -- File attachment via -f / --file flag"
 description: "This scenario validates the `-f` / `--file` flag for `CO-004`. It focuses on confirming the dispatched session can read attached file contents without manual @./path embedding in the prompt body."
-version: 1.4.3.0
+version: 1.4.5.0
 ---
 
 # CO-004 -- File attachment via -f / --file flag
 
-**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check `opencode2 models --standalone` for the provider first.
+**Version note.** These commands target OpenCode 1 (1.19.3). OpenCode 2 (2.0.32) has no `--dir` or `--variant`, so its twin starts in the directory and puts the effort on the model id: `cd <repo-root> && opencode2 run --standalone -m <provider>/<model>#<effort> --format json "<prompt>"` (see the [install reference](../../references/install-and-versions.md)). On OpenCode 2, check that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `CO-004`.
 

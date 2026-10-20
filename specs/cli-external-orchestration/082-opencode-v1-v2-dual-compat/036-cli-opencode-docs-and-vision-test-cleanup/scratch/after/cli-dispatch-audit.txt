@@ -1,0 +1,3 @@
+plugin hook invoked without throwing
+{"schema_version":1,"ts":"2026-10-20T21:41:42.121Z","runtime":"opencode","sessionID":"sess-oc-live-002","callID":"call-oc-live-002","skill":"cli-claude-code","command":"claude -p \"summarize this repo\" --model sonnet-5 Authorization: Bearer [REDACTED]","commandTruncated":false,"model":"sonnet-5","target":null,"durationMs":311,"exitCode":0,"outputBytes":16}
+exit=0

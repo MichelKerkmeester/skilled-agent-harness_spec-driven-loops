@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects"
     last_updated_at: "2026-10-20T21:35:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the live rerun and the first review round"
-    next_safe_action: "Finish the review rounds, merge main, push and record CI"
+    recent_action: "Recorded CI at the pushed main commit and closed the phase"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".opencode/plugins/lib/v2-bridge.js"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-035-v2-bridge-plugin-effects"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -116,6 +116,8 @@ A raw v2 probe plugin first logged the unbridged event envelopes, tool hook even
 | Luna review round 2 | FAIL: 2 P1 and 5 P2, all fixed |
 | Luna review round 3 | FAIL: 2 P1 and 3 P2. The ungated live advisor check, the evidence rows and the reset citation were fixed. The temp-folder finding repeats round 1's and stays declined. The README's `session.deleted` observation comes from phase 034's probe, not this packet, and stays |
 | Luna review round 4 (final) | PASS, no P1 findings; bridge suite 51 of 51 |
+| Recursive strict validation of 082 | 36 `RESULT: PASSED`, 0 failed, before the push |
+| CI at `86c9aba3f8` on main | 13 of 14 workflows passed, including OpenCode Plugin Tests 39506282540, OpenCode Dual-Version Battery 39506282632 and Spec-Kit Check 39506282668. sk-doc Script Tests 39506282412 failed only in `test_readme_manifest.py`, on `.skilled/hooks/session-relaunch/lib`, a folder main's merge `2aee29cd64` added; this phase touched neither |
 <!-- /ANCHOR:verification -->
 
 ---

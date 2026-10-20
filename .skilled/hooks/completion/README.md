@@ -150,13 +150,13 @@ Expected result: all tests pass (covers the core, the Claude/Codex/Devin Stop ad
 node -e "import('./.skilled/plugins/system-completion-sentinel.js').then(m => console.log('ok', typeof m.default))"
 ```
 
-Expected result: `ok function` (confirms the OpenCode adapter still resolves the core).
+Expected result: `ok object`, the dual plugin export (confirms the OpenCode adapter still resolves the core).
 
 ```bash
 node -e "import('./.skilled/plugins/system-speckit-completion.js').then(m => console.log('ok', typeof m.default))"
 ```
 
-Expected result: `ok function` (confirms the tool plugin loads).
+Expected result: `ok object`, the dual plugin export (confirms the tool plugin loads).
 
 ---
 

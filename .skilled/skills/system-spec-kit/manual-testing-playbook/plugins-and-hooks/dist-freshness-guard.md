@@ -6,7 +6,7 @@ trigger_phrases:
   - "dist freshness guard"
   - "session.created stale dist warning"
   - "stale compiled dist"
-version: 1.0.0.0
+version: 1.0.1.0
 id: plugins-and-hooks-dist-freshness-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -115,7 +115,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
      const path = require("node:path");
      const url = pathToFileURL(path.join(process.cwd(), ".skilled/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
-     const hooks = await mod.default({ directory: process.cwd() });
+     const hooks = await mod.default.server({ directory: process.cwd() });
      const output = { system: [] };
      await hooks.event({ event: { type: "session.created", sessionID: "manual-test-session" } });
      await hooks["experimental.chat.system.transform"]({}, output);
@@ -136,7 +136,7 @@ confirm the plugin (a) detects real stale/fresh dist state for every watched
      const path = require("node:path");
      const url = pathToFileURL(path.join(process.cwd(), ".skilled/plugins/system-dist-freshness-guard.js")).href;
      const mod = await import(url);
-     const hooks = await mod.default({ directory: process.cwd() });
+     const hooks = await mod.default.server({ directory: process.cwd() });
      const captured = [];
      const w = console.warn, e = console.error, l = console.log;
      console.warn = (m) => captured.push("warn:" + m);
