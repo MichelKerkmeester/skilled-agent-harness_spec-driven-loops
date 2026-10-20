@@ -114,6 +114,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 11 | 011-post-fix-remediation/ | Fix all twenty post-fix research findings, the two frontier items and the follow-ups, with failing-first tests and arm conformance cases. | complete |
 | 12 | 012-ci-red-check-repairs/ | AGENTS.md is back inside the 16 KB delivery prefix, and the session-relaunch example line no longer reads as a switch, so Rule Canary Sync and sk-doc Script Tests pass again locally. | complete |
 | 13 | 013-live-hop-and-notice-reason/ | The killer's notice names the timeout and an ignored template's reason, the nudge fires only inside `skilled-loop`, and a shell shim starts every interactive runtime under the loop, also in repositories that link `.skilled`. | complete |
+| 14 | 014-handover-docs-promotion/ | The root README introduces the in-session handover in plain words with a one-line setup section, the command library lists `/speckit:handoff`, and the other doc surfaces link the setup and keep the handoff note apart from `handover.md`. | complete |
 
 ### Phase Transition Rules
 
@@ -138,6 +139,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 010-post-fix-research | 011-post-fix-remediation | phase 010 is Complete with a verified report | `research/research.md` in 010 gives every finding a verdict |
 | 007-handoff-gate-exemptions | 012-ci-red-check-repairs | 007's AGENTS.md and hook-flags example changes are on main | The rule canary and the sk-doc script tests pass locally |
 | 011-post-fix-remediation | 013-live-hop-and-notice-reason | phase 011 is Complete and lists the notice reason and the live hop as Known Limitations | `validate.sh 011-post-fix-remediation --strict` RESULT: PASSED |
+| 013-live-hop-and-notice-reason | 014-handover-docs-promotion | phase 013 is Complete with live hops recorded for all five automatic runtimes | `validate.sh 013-live-hop-and-notice-reason --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

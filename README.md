@@ -19,6 +19,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 
 - **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
 - **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
+- **Endless Sessions** - near the context limit a session hands its work to a fresh session in the same terminal, with no copy-paste and no restart
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
@@ -36,7 +37,6 @@ Every file change gets a spec folder that records what changed, why and how. Lik
 - Mandatory gates run before file changes and after execution, so "done" needs fresh evidence, not the agent's say-so
 - Reviews rank findings P0/P1/P2 and re-challenge critical findings before they stick, and an open blocker forces another pass
 - Every packet is plain markdown in your repo, so the history is yours to read, diff and keep
-- `skilled-loop` in `.skilled/bin/` runs a CLI runtime so a session near its context limit writes a handoff note and continues in a fresh session in the same terminal, automatically on Claude Code, Pi, OpenCode, Codex and Hermes and through `/speckit:handoff` on Cursor and Devin, with auto-compaction kept as the fallback. Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every plain interactive runtime launch under the loop, also in a repository that links `.skilled` ([session-relaunch](.skilled/hooks/session-relaunch/README.md))
 
 ### 🧠 Spec Memory & Search
 
@@ -45,6 +45,15 @@ Your architecture, decisions and session history are written into the spec folde
 - `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
+
+### ♾️ Endless Sessions
+
+A long task keeps going when the context window fills. The session writes a handoff note and ends, then a fresh session starts in the same terminal and picks the note up. No copy-paste, no restart.
+
+- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff`
+- When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
+- One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
+- Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
 
 ### 🔄 Deep Loop
 
@@ -78,7 +87,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 14 on-demand skills, 39 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 40 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 &nbsp;
 
@@ -236,6 +245,26 @@ That one command does five things:
 - Writes the session context into the packet as it goes
 
 Come back tomorrow and `/speckit:resume` reads it back.
+
+### Turn On Endless Sessions
+
+Add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of your checkout:
+
+```bash
+source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
+```
+
+Open a new terminal. Every interactive `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` or `cursor-agent` now starts under the nearest `.skilled/bin/skilled-loop`. The shim finds it by walking up from the current directory. A symlinked `.skilled` counts, so another repository that links this checkout's `.skilled` hops the same way. Subcommands, print modes, version and help still run the binary directly.
+
+At 80% of the context window the session writes a handoff note, saves its spec packet if one is bound and ends. The wrapper then starts a fresh session in the same terminal, and that session claims the note and carries on. Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin run under the wrapper too, but they hop only after `/speckit:handoff`.
+
+- **Hermes:** the shim gives a wrapped launch `HERMES_ENABLE_PROJECT_PLUGINS=1`. List `repo-guards` under `plugins.enabled` in `~/.hermes/config.yaml` as well
+- **Threshold:** `SESSION_RELAUNCH_THRESHOLD` sets the trigger point, `0.80` by default
+- **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1` turns the nudge off. Without the shim nothing nudges either, and auto-compaction stays the fallback
+- **A stalled hop:** if the old session does not go idle and end in time, the record is disarmed and a macOS notice says why and carries the command to continue by hand
+- **Not `handover.md`:** the handoff note is gitignored runtime state under `.skilled/skills/.state/session-relaunch/handoffs/`. A spec packet's `handover.md` is a separate continuity doc that `/speckit:resume` reads
+
+The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, and its [Run every session under the loop](.skilled/hooks/session-relaunch/README.md#run-every-session-under-the-loop) section lists exactly when the shim wraps a launch.
 
 ### Adapting to Your Stack
 
@@ -1059,7 +1088,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 - **After a tool call, as advice on its result:** post-edit quality, the spec-folder notice, the git advisory, the MCP route advisory, on-device image reads and the web-page injection screen on `web_extract` results
 - **Each turn and at session start:** the skill advisor brief, the spec-folder gate, the session context, the named persona, the bound packet goal and the worktree, dist-freshness, git-hook and live-sync guards
 - **Before the final answer:** the completion-evidence nudge
-- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. See [`.hermes/SYNC.md`](.hermes/SYNC.md)
+- **Off by default.** It loads only when `HERMES_ENABLE_PROJECT_PLUGINS=1` is set and `repo-guards` is listed under `plugins.enabled` in `~/.hermes/config.yaml`. A `hermes` launch that the shell shim wraps gets the variable set for it, see [Turn On Endless Sessions](#turn-on-endless-sessions). See [`.hermes/SYNC.md`](.hermes/SYNC.md)
 
 &nbsp;
 #### Shared Hook Cores
@@ -1068,7 +1097,7 @@ Hermes keeps shell hooks in your user-level config, so a repository cannot ship 
 
 - `goal`, `dispatch`, `spec-gate`, `completion`, `mcp-route-guard`, `permission-policy`, `post-edit-quality`, `classifier-injection-screen`
 - `git`, `git-hooks-check`, `git-preflight`, `git-message-gate`, `git-live-follow`, `git-primary-reconcile`, `git-worktree-guard`, `hook-install`
-- `session-cleanup`, `session-lifecycle`, `sk-vision`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
+- `session-cleanup`, `session-lifecycle`, `session-relaunch`, `sk-vision`, `skill-advisor`, `task-dispatch`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, plus `shared` for the helpers they all use
 
 The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which runtime runs each hook, and why a runtime that skips one cannot carry it. Codex runs a repository hook only after you approve that entry, so open `/hooks` after an update and approve every entry it lists as needing review. Its shell matchers name both `exec` and `Bash`, the tool's name from Codex 0.160 on.
 
@@ -1076,7 +1105,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-39 command entry points: 36 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+40 command entry points: 37 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 #### SPEC KIT
 
@@ -1133,6 +1162,12 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 - Updates packet continuity and supporting generated context artifacts via `generate-context.js`
 - AI composes structured JSON with session summary, key decisions and findings
 - Writes continuity frontmatter and generated metadata in place. When the packet's `trigger_phrases` change, regenerating the trigger index is a separate step
+
+**`/speckit:handoff`** - hand the work to a fresh session now
+
+- Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note
+- The only trigger on Cursor and Devin. Claude Code, Codex, Pi, OpenCode and Hermes reach the same steps on their own near the context limit, see [Turn On Endless Sessions](#turn-on-endless-sessions)
+- Outside the wrapper it prints the command that continues the work in a new session
 
 **`/speckit:search`**
 
@@ -1591,6 +1626,16 @@ Gate 3 blocks file modifications until a spec folder answer is provided.
 
 &nbsp;
 
+**Q: What happens when a session runs out of context?**
+
+With the shell shim sourced, the session hands off before it runs out. It writes a handoff note, saves its spec packet if one is bound and ends, and a fresh session starts in the same terminal and picks up the remaining work.
+
+- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own. Cursor and Devin hop when you run `/speckit:handoff`
+- Without the shim or a hand-started `skilled-loop`, the runtime's own auto-compaction takes over, as it always did
+- [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup
+
+&nbsp;
+
 **Q: Can I use this framework without the continuity features?**
 
 Yes.
@@ -1647,6 +1692,7 @@ Everything is a file in your own repository.
 - **[→ AGENTS.md](AGENTS.md)** - agent routing, gate definitions, behavior rules
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
+- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - endless sessions: the handoff note, the `skilled-loop` wrapper and the shell shim
 - **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - dry-run orphan MCP sweeper, session cleanup and LaunchAgent template guidance
 - **[→ Skill Advisor README](.skilled/skills/system-skill-advisor/README.md)** - daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
 - **[→ Architecture](.skilled/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract

@@ -12,7 +12,7 @@ Manual entry point for the session relaunch loop. Writes this session's handoff 
 
 ## 1. PURPOSE
 
-The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. The automatic nudge fires only inside `skilled-loop`. Outside the loop, a session keeps working and runs this command only when the operator explicitly asks for a manual handoff. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
+The relaunch loop carries work into a fresh session near the end of this session's useful context. This session writes a standalone handoff note. The wrapper relaunches the runtime with a claim seed. The new session picks up the remaining work. This command is the manual trigger on runtimes wired with the session-relaunch hooks and the only trigger on runtimes without a hook. The automatic nudge fires only inside `skilled-loop`. Outside the loop, a session keeps working and runs this command only when the operator explicitly asks for a manual handoff. Sourcing `.skilled/bin/skilled-loop-shell.sh` from `~/.zshrc` or `~/.bashrc` starts every interactive runtime launch inside the loop, so nobody has to start the wrapper by hand. The note this command writes is gitignored runtime state for the next session, not a spec packet's `handover.md`. Section 5 covers a session seeded with `[session-relaunch] claim and continue handoff <path>`.
 
 ---
 
