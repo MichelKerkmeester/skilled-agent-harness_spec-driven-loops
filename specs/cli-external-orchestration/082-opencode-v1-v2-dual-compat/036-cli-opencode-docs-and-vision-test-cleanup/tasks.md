@@ -57,7 +57,7 @@ contextType: "general"
 - [x] T010 Run the cli-opencode script tests and each guard's mutant Done: 19/19; six mutants each fail 1 test.
 - [x] T011 Run `bun test tests` and count the temp directories it adds Done: 80/80; no `sk-vision-flags-*` entry added.
 - [x] T012 Run each changed playbook snippet Done: all run from the worktree root with the expected signal (`scratch/after/`).
-- [ ] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests Partial: validator and link integrity pass; sk-doc script tests running.
+- [x] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests Done: validator and link integrity pass; sk-doc script tests pass after the manifest refresh.
 - [ ] T014 Luna review, read-only
 - [ ] T015 Validate 082 strict and recursive
 - [ ] T016 Push to main and confirm CI
@@ -74,6 +74,9 @@ contextType: "general"
 - [x] T020 Load checks expect `ok object` (four hook READMEs) Done: all five checks print `ok object`.
 - [x] T021 Outside fix: refresh the durable-directory manifest (`sk-doc/scripts/tests/code-folder/durable-directory-manifest.json`) Done: adds `.skilled/hooks/session-relaunch/lib` only; `test_readme_manifest.py` passes.
 - [x] T022 Record the type-check output (`scratch/after/sk-vision-tsc.txt`) Done: exit 0.
+- [x] T023 Join continuations as bash does and require the bare listing (`opencode2-models-form.test.cjs`) Done: 21/21; three mutants each fail at least 1 test.
+- [x] T024 Record the full sk-doc rerun and the manifest test (`scratch/after/`) Done: all sk-doc script tests pass; `reproduced=True`.
+- [x] T025 Record why the v2 default-model examples stay (`implementation-summary.md`) Done: Known Limitation 5.
 <!-- /ANCHOR:phase-4 -->
 
 ---
