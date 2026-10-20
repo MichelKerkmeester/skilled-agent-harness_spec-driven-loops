@@ -1,0 +1,11 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/162-ci-and-test-runners
+
+{"timestamp":"2026-10-20T07:24:21.865Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+
+ Test Files  6 passed (6)
+      Tests  204 passed (204)
+   Start at  09:24:20
+   Duration  1.31s (tests 84%, transform 12%, import 3%, worker 1%)
+
+exit=0

@@ -1,0 +1,42 @@
+name: sk-code Script Tests
+
+# The sk-code script suites, the drift-guard orchestrator's among them, were
+# collected only by the shared node runner, whose run is advisory, so a broken
+# aggregation or guard reached main unseen. Every suite in the folder is
+# node:test and offline, and each builds its own throwaway tree.
+on:
+  pull_request:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/sk-code/**'
+      - '.opencode/skills/sk-code/**'
+      - '.github/workflows/sk-code-script-tests.yml'
+  push:
+    branches: [main, 'skilled/**']
+    paths:
+      - '.skilled/skills/sk-code/**'
+      - '.opencode/skills/sk-code/**'
+      - '.github/workflows/sk-code-script-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sk-code-scripts:
+    name: sk-code script tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+
+      - name: Run the sk-code script tests
+        run: node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/*.test.cjs

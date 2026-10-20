@@ -1,0 +1,6 @@
+## gate inputs
+files=41 inputs_resolved=226 dynamic_inputs=11 twin_pairs=283 failures=0
+RESULT: PASSED
+exit=0
+## actionlint (the three changed workflows)
+exit=0
