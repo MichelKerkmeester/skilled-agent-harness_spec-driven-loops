@@ -57,7 +57,7 @@ contextType: "general"
 
 - [x] T011 Run sk-doc script tests, the playbook operator contract and link integrity locally [EVIDENCE: `validate-playbook-package.cjs --strict` cli-opencode PASS 72/14 with 0 violations; `check-markdown-links.cjs` 0 broken of 14193; `run-script-tests.sh` first failed on `test_readme_manifest.py` because the new report folder was missing from the durable-directory manifest, then passed after the test's own `--write` refresh; `cite-drift-gate.mjs --base` the merge base exits 0 with no new broken citation. Outputs: `scratch/live-runs/local-checks.txt`]
 - [x] T012 Luna review, read-only [EVIDENCE: five rounds; rounds 1-4 fixed; round 5 false claims fixed, the rest listed as follow-ups in `implementation-summary.md`]
-- [ ] T013 Recursive strict validation of 082 prints `RESULT: PASSED`
+- [x] T013 Recursive strict validation of 082 prints `RESULT: PASSED` [EVIDENCE: `validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat --strict --recursive` at `edc47165e3`: 35 `RESULT: PASSED`, 0 failed, exit 0]
 - [ ] T014 Merge to main, push, and read every CI workflow's conclusion
 <!-- /ANCHOR:phase-3 -->
 
