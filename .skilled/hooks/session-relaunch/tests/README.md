@@ -30,6 +30,7 @@ tests/
 +-- codex-adapters.test.cjs        # Codex adapters: nudge, stop arm, spawn recorder
 +-- context-usage.test.cjs         # Context window readers for Claude, Codex, OpenCode and Pi
 +-- hermes-adapters.test.cjs       # Hermes session hooks, usage payloads and target lookup
++-- hop-history.test.cjs           # Hop history: hand-over, claim and complete lines
 +-- killer.test.cjs                # Killer process: locks, takeover, timeouts, state modes
 +-- nudge.test.cjs                 # Nudge text, seed detection, threshold and state round trip
 +-- relaunch-core.test.cjs         # Core state: arm, unarm, handoff validation, claim, complete
@@ -67,7 +68,7 @@ The `fixtures/` folder holds captured runtime data. The adapter tests read these
 | Group | Files | Used by |
 |---|---|---|
 | Claude hook payloads | `payload-user-prompt-submit.json`, `payload-stop.json`, `payload-post-tool-use.json` | `claude-adapters.test.cjs` |
-| Codex hook payloads | `codex-user-prompt-submit.json`, `codex-stop.json`, `codex-rollout-token-count.json` | `codex-adapters.test.cjs`, `context-usage.test.cjs` |
+| Codex hook payloads | `codex-user-prompt-submit.json`, `codex-stop.json`, `codex-rollout-token-count.json` | `adapter-conformance.test.cjs`, `codex-adapters.test.cjs`, `context-usage.test.cjs` |
 | Codex spawn recorder | `codex-spawn-recorder.cjs` | `codex-adapters.test.cjs` |
 | Hermes hook payloads | `hermes-on-session-start.json`, `hermes-on-session-end.json`, `hermes-on-session-finalize.json`, `hermes-pre-api-request.json`, `hermes-post-api-request.json`, `hermes-pre-verify.json` | `hermes-adapters.test.cjs` |
 | Hermes usage | `hermes-usage.json` | `hermes-adapters.test.cjs` |

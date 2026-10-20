@@ -22,6 +22,8 @@ const TRANSCRIPT_FIXTURE = path.join(__dirname, 'fixtures', 'transcript-usage.js
 const PI_CAPTURE = require('./fixtures/pi-assistant-message-end.json');
 const OPENCODE_CAPTURE = require('./fixtures/opencode-assistant-message-updated.json');
 const CODEX_ROLLOUT_CAPTURE = require('./fixtures/codex-rollout-token-count.json');
+// Third transcript fixture row is the sidechain entry: 100 + 899900 + 2.
+const SIDECHAIN_FILL_TOKENS = 900002;
 
 function createSandbox(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'session-relaunch-usage-'));
@@ -31,7 +33,12 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
+  const env = {
+    ...process.env,
+    HOME: home,
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    SESSION_RELAUNCH_REPO_ROOT: repoRoot,
+  };
   for (const key of [
     'SESSION_RELAUNCH_WINDOW_TOKENS',
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
@@ -60,7 +67,7 @@ test('readClaudeFill uses the last main-chain usage, not sidechain or cumulative
   const sandbox = createSandbox(t);
   const result = readClaudeFill(TRANSCRIPT_FIXTURE, { tailBytes: 262144, env: sandbox.env });
   assert.deepEqual(result, { fillTokens: 400843, model: 'claude-haiku-5-5' });
-  assert.notEqual(result.fillTokens, 900002);
+  assert.notEqual(result.fillTokens, SIDECHAIN_FILL_TOKENS);
 });
 
 test('resolveWindow gives SESSION_RELAUNCH_WINDOW_TOKENS precedence over settings', (t) => {
@@ -206,7 +213,10 @@ test('readClaudeFill widens the tail past a final row larger than the default ta
   });
   const transcriptPath = path.join(sandbox.repoRoot, 'oversized-transcript.jsonl');
   fs.writeFileSync(transcriptPath, `${targetLine}\n${oversizedRow}\n`);
-  assert.deepEqual(readClaudeFill(transcriptPath), { fillTokens: 400843, model: 'claude-haiku-5-5' });
+  assert.deepEqual(readClaudeFill(transcriptPath), {
+    fillTokens: 400843,
+    model: 'claude-haiku-5-5',
+  });
 });
 
 test('readClaudeFill treats transcript read errors as absent', (t) => {
@@ -229,7 +239,6 @@ test('readClaudeFill treats transcript read errors as absent', (t) => {
 });
 
 test('fillRatio divides plainly and returns zero for a zero window', (t) => {
-  createSandbox(t);
   assert.equal(fillRatio(400843, 500000), 400843 / 500000);
   assert.equal(fillRatio(400843, 0), 0);
 });
@@ -277,12 +286,24 @@ test('readCodexUsage widens the tail past a final row larger than the default ta
   const sandbox = createSandbox(t);
   const tokenCount = JSON.stringify({
     type: 'event_msg',
-    payload: { type: 'token_count', info: { last_token_usage: { input_tokens: 123456 }, model_context_window: 272000 } },
+    payload: {
+      type: 'token_count',
+      info: {
+        last_token_usage: { input_tokens: 123456 },
+        model_context_window: 272000,
+      },
+    },
   });
-  const oversizedRow = JSON.stringify({ type: 'response_item', payload: { output: 'x'.repeat(600000) } });
+  const oversizedRow = JSON.stringify({
+    type: 'response_item',
+    payload: { output: 'x'.repeat(600000) },
+  });
   const transcriptPath = path.join(sandbox.repoRoot, 'oversized-rollout.jsonl');
   fs.writeFileSync(transcriptPath, `${tokenCount}\n${oversizedRow}\n`);
-  assert.deepEqual(readCodexUsage(transcriptPath), { fillTokens: 123456, modelContextWindow: 272000 });
+  assert.deepEqual(readCodexUsage(transcriptPath), {
+    fillTokens: 123456,
+    modelContextWindow: 272000,
+  });
 });
 
 test('readCodexUsage treats missing rollout files as absent', (t) => {
@@ -308,13 +329,23 @@ test('resolveWindow reads the repository settings from a subdirectory cwd', (t) 
   const subdirectory = path.join(sandbox.repoRoot, 'packages', 'app');
   fs.mkdirSync(subdirectory, { recursive: true });
   assert.equal(
-    resolveWindow({ env: sandbox.env, cwd: subdirectory, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    resolveWindow({
+      env: sandbox.env,
+      cwd: subdirectory,
+      home: sandbox.home,
+      model: 'claude-haiku-5-5',
+    }),
     620000,
   );
   // A nearer settings file wins over the repository root's.
   writeSettings(path.join(sandbox.repoRoot, 'packages'), 'settings.local.json', 640000);
   assert.equal(
-    resolveWindow({ env: sandbox.env, cwd: subdirectory, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    resolveWindow({
+      env: sandbox.env,
+      cwd: subdirectory,
+      home: sandbox.home,
+      model: 'claude-haiku-5-5',
+    }),
     640000,
   );
 });
@@ -334,7 +365,12 @@ test('resolveWindow stops at the repository boundary and walks nowhere outside a
   const outside = path.join(sandbox.root, 'loose', 'dir');
   fs.mkdirSync(outside, { recursive: true });
   assert.equal(
-    resolveWindow({ env: sandbox.env, cwd: outside, home: sandbox.home, model: 'claude-haiku-5-5' }),
+    resolveWindow({
+      env: sandbox.env,
+      cwd: outside,
+      home: sandbox.home,
+      model: 'claude-haiku-5-5',
+    }),
     200000,
   );
 });

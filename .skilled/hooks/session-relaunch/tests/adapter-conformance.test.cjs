@@ -69,7 +69,11 @@ function createSandbox(t) {
 
 function runHook(scriptPath, env, payload, cwd) {
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [scriptPath], { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
+    const child = spawn(
+      process.execPath,
+      [scriptPath],
+      { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] },
+    );
     let stdout = '';
     let stderr = '';
     child.stdout.setEncoding('utf8');
@@ -96,7 +100,11 @@ function claudeTranscript(root) {
     isSidechain: false,
     message: {
       model: 'claude-haiku-5-5',
-      usage: { input_tokens: FILL_TOKENS, cache_read_input_tokens: 0, cache_creation_input_tokens: 0 },
+      usage: {
+        input_tokens: FILL_TOKENS,
+        cache_read_input_tokens: 0,
+        cache_creation_input_tokens: 0,
+      },
     },
   })}\n`);
   return transcriptPath;
@@ -225,7 +233,12 @@ const ADAPTERS = {
       const spawns = [];
       const { armPendingRecord } = await importAdapter('codex', 'stop-arm.mjs');
       await armPendingRecord(
-        { hook_event_name: 'Stop', session_id: SESSION_ID, cwd, transcript_path: codexRollout(root) },
+        {
+          hook_event_name: 'Stop',
+          session_id: SESSION_ID,
+          cwd,
+          transcript_path: codexRollout(root),
+        },
         { env, pid: ARM_HOOK_PID, processTable, spawn: recordSpawns(spawns) },
       );
       return spawns;
@@ -272,7 +285,10 @@ const ADAPTERS = {
       } });
       await hooks.event({ event: {
         type: 'message.part.updated',
-        properties: { sessionID: SESSION_ID, part: { messageID: 'user-1', type: 'text', text: prompt } },
+        properties: {
+          sessionID: SESSION_ID,
+          part: { messageID: 'user-1', type: 'text', text: prompt },
+        },
       } });
       return openCodeSystem(hooks);
     }),
@@ -282,7 +298,12 @@ const ADAPTERS = {
         type: 'message.updated',
         properties: {
           sessionID: SESSION_ID,
-          info: { id: 'assistant-1', role: 'assistant', time: { completed: 1 }, tokens: { input: FILL_TOKENS } },
+          info: {
+            id: 'assistant-1',
+            role: 'assistant',
+            time: { completed: 1 },
+            tokens: { input: FILL_TOKENS },
+          },
         },
       } });
       return openCodeSystem(hooks);
@@ -295,7 +316,9 @@ const ADAPTERS = {
       childProcess.spawn = recordSpawns(spawns);
       try {
         const hooks = await loadOpenCodePlugin(cwd);
-        await hooks.event({ event: { type: 'session.idle', properties: { sessionID: SESSION_ID } } });
+        await hooks.event({
+          event: { type: 'session.idle', properties: { sessionID: SESSION_ID } },
+        });
       } finally {
         childProcess.spawn = realSpawn;
       }
@@ -420,7 +443,10 @@ const ARM_CASES = [
   },
   {
     name: 'a re-arm restamps an armed record whose killer is gone, so the wrapper still relaunches it',
-    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime, armedAgoMs: STALE_ARM_AGE_MS }),
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, {
+      runtime,
+      armedAgoMs: STALE_ARM_AGE_MS,
+    }),
     check: ({ record, spawns, cwd }) => {
       assert.equal(record.status, 'armed');
       assert.equal(record.cwd, cwd);
@@ -430,7 +456,10 @@ const ARM_CASES = [
   },
   {
     name: 'an arm leaves a pending record from another session untouched',
-    setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime, sessionId: 'another-session-0001' }),
+    setup: (sandbox, runtime) => prepareArmRecord(sandbox, {
+      runtime,
+      sessionId: 'another-session-0001',
+    }),
     check: assertUntouched,
   },
   {

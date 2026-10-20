@@ -25,7 +25,13 @@ function createSandbox(t) {
   fs.mkdirSync(repoRoot, { recursive: true });
   fs.mkdirSync(xdgRuntimeDir, { recursive: true });
   fs.mkdirSync(home, { recursive: true });
-  const env = { ...process.env, HOME: home, XDG_RUNTIME_DIR: xdgRuntimeDir, SESSION_RELAUNCH_REPO_ROOT: repoRoot };
+  const env = {
+    ...process.env,
+    HOME: home,
+    XDG_RUNTIME_DIR: xdgRuntimeDir,
+    SESSION_RELAUNCH_REPO_ROOT: repoRoot,
+    HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env'),
+  };
   for (const key of [
     'SKILLED_LOOP_ID',
     'SKILLED_LOOP_HOPS',
@@ -33,6 +39,8 @@ function createSandbox(t) {
     'CLAUDE_PID',
     'CLAUDE_CODE_SESSION_ID',
     'SYSTEM_SESSION_RELAUNCH_DISABLED',
+    'SYSTEM_HOOKS_DISABLED',
+    'MK_HOOKS_DISABLED',
     'SESSION_RELAUNCH_THRESHOLD',
     'SESSION_RELAUNCH_WINDOW_TOKENS',
     'SESSION_RELAUNCH_MAX_HOPS',
@@ -49,7 +57,11 @@ function writeTranscript(sandbox, fillTokens) {
     isSidechain: false,
     message: {
       model: 'claude-haiku-5-5',
-      usage: { input_tokens: fillTokens, cache_read_input_tokens: 0, cache_creation_input_tokens: 0 },
+      usage: {
+        input_tokens: fillTokens,
+        cache_read_input_tokens: 0,
+        cache_creation_input_tokens: 0,
+      },
     },
   };
   fs.writeFileSync(transcriptPath, `${JSON.stringify(entry)}\n`);
@@ -127,12 +139,20 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 800);
-  const payload = { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot };
+  const payload = {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  };
   const first = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
   assert.equal(first.code, 0, first.stderr);
   const firstOutput = JSON.parse(first.stdout.trim());
   assert.equal(firstOutput.hookSpecificOutput.hookEventName, 'PostToolUse');
-  assert.match(firstOutput.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'claude'/);
+  assert.match(
+    firstOutput.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
   assert.ok(firstOutput.hookSpecificOutput.additionalContext.includes(`--session '${SESSION_ID}'`));
   const repeated = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
   assert.equal(repeated.code, 0, repeated.stderr);
@@ -142,7 +162,10 @@ test('context-nudge fires at 0.80, suppresses the same level, and fires again at
   assert.equal(nextLevel.code, 0, nextLevel.stderr);
   const nextOutput = JSON.parse(nextLevel.stdout.trim());
   assert.equal(nextOutput.hookSpecificOutput.hookEventName, 'PostToolUse');
-  assert.match(nextOutput.hookSpecificOutput.additionalContext, /prepare --handoff.*--runtime 'claude'/);
+  assert.match(
+    nextOutput.hookSpecificOutput.additionalContext,
+    /prepare --handoff.*--runtime 'claude'/,
+  );
 });
 
 test('context-nudge carries the payload spec_folder into the note frontmatter', async (t) => {
@@ -168,7 +191,12 @@ test('context-nudge emits nothing below the configured threshold', async (t) => 
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   const transcriptPath = writeTranscript(sandbox, 799);
-  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
 });
@@ -181,7 +209,12 @@ test('context-nudge emits nothing while this session already has a prepared hand
   sandbox.env.SKILLED_LOOP_ID = loopId;
   createPendingRecord(sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'));
   const transcriptPath = writeTranscript(sandbox, 900);
-  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
 });
@@ -195,7 +228,12 @@ test('context-nudge emits nothing at the hop limit', async (t) => {
   sandbox.env.SKILLED_LOOP_HOPS = '1';
   sandbox.env.SESSION_RELAUNCH_MAX_HOPS = '1';
   const transcriptPath = writeTranscript(sandbox, 900);
-  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
 });
@@ -206,7 +244,12 @@ test('context-nudge emits nothing when the relaunch concern is disabled', async 
   sandbox.env.SESSION_RELAUNCH_THRESHOLD = '0.80';
   sandbox.env.SYSTEM_SESSION_RELAUNCH_DISABLED = '1';
   const transcriptPath = writeTranscript(sandbox, 950);
-  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, { ...POST_TOOL_USE, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: sandbox.repoRoot });
+  const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, {
+    ...POST_TOOL_USE,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+  });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
 });
@@ -239,7 +282,12 @@ test('context-nudge emits nothing when session_id fails the charset gate', async
 
 test('UserPromptSubmit relaunch seed receives claim and completion instructions', async (t) => {
   const sandbox = createSandbox(t);
-  const payload = { ...USER_PROMPT_SUBMIT, session_id: SESSION_ID, cwd: sandbox.repoRoot, prompt: '[session-relaunch] claim and continue handoff /real/handoff.md' };
+  const payload = {
+    ...USER_PROMPT_SUBMIT,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    prompt: '[session-relaunch] claim and continue handoff /real/handoff.md',
+  };
   const result = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   const output = JSON.parse(result.stdout.trim());
@@ -318,7 +366,13 @@ test('stop-arm arms a matching pending record, starts the killer lock, and print
   sandbox.env.CLAUDE_PID = String(target.pid);
   const liveCwd = path.join(sandbox.root, 'live-cwd');
   fs.mkdirSync(liveCwd, { recursive: true });
-  const payload = { ...STOP_PAYLOAD, session_id: SESSION_ID, transcript_path: transcriptPath, cwd: liveCwd, background_tasks: [] };
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: liveCwd,
+    background_tasks: [],
+  };
   try {
     const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
     assert.equal(result.code, 0, result.stderr);
@@ -326,7 +380,10 @@ test('stop-arm arms a matching pending record, starts the killer lock, and print
     const armed = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
     assert.equal(armed.status, 'armed');
     assert.equal(armed.cwd, liveCwd);
-    assert.equal(await waitFor(() => fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`))), true);
+    assert.equal(
+      await waitFor(() => fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`))),
+      true,
+    );
   } finally {
     killChild(target);
     await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
@@ -338,14 +395,24 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
   const loopId = String(process.pid);
   const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
   fs.writeFileSync(handoffPath, 'handoff');
-  const { stateDir, recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const { stateDir, recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, handoffPath,
+  );
   sandbox.env.SKILLED_LOOP_ID = loopId;
-  const payload = { ...STOP_PAYLOAD, session_id: SESSION_ID, cwd: sandbox.repoRoot, background_tasks: [{ task_id: 'task-1' }] };
+  const payload = {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    background_tasks: [{ task_id: 'task-1' }],
+  };
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
   assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
-  assert.match(fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'), /deferred-background-tasks/);
+  assert.match(
+    fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
+    /deferred-background-tasks/,
+  );
 });
 
 test('stop-arm logs missing-transcript-path and leaves the record pending', async (t) => {
@@ -560,7 +627,12 @@ test('stop-arm makes no change without SKILLED_LOOP_ID and prints nothing', asyn
   fs.writeFileSync(handoffPath, 'handoff');
   const { recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
   const before = fs.readFileSync(recordPath, 'utf8');
-  const result = await runAdapter(sandbox, STOP_ARM_PATH, { ...STOP_PAYLOAD, session_id: SESSION_ID, cwd: sandbox.repoRoot, background_tasks: [] });
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
   assert.equal(fs.readFileSync(recordPath, 'utf8'), before);
@@ -573,30 +645,8 @@ test('stop-arm spawns exactly one killer across repeated Stop payloads on a pend
   fs.writeFileSync(handoffPath, 'handoff');
   createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
   const transcriptPath = writeTranscript(sandbox, 10);
-  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
-  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
-  fs.writeFileSync(recorderPath, [
-    "'use strict';",
-    "const fs = require('node:fs');",
-    "const childProcess = require('node:child_process');",
-    "const { syncBuiltinESMExports } = require('node:module');",
-    'const originalSpawn = childProcess.spawn;',
-    'childProcess.spawn = function (command, args = [], options = {}) {',
-    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
-    '    fs.appendFileSync(',
-    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
-    '      JSON.stringify({ command, args, options }) + "\\n",',
-    '    );',
-    '    return { unref() { return this; } };',
-    '  }',
-    '  return originalSpawn.call(this, command, args, options);',
-    '};',
-    'syncBuiltinESMExports();',
-    '',
-  ].join('\n'));
+  const spawnLog = installKillerSpawnRecorder(sandbox, '{ command, args, options }');
   sandbox.env.SKILLED_LOOP_ID = loopId;
-  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
-  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
   const payload = {
     ...STOP_PAYLOAD,
     session_id: SESSION_ID,
@@ -623,30 +673,8 @@ test('stop-arm respawns one killer for an armed record whose killer is gone', as
   fs.writeFileSync(handoffPath, 'handoff');
   createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath, 'armed');
   const transcriptPath = writeTranscript(sandbox, 10);
-  const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
-  const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
-  fs.writeFileSync(recorderPath, [
-    "'use strict';",
-    "const fs = require('node:fs');",
-    "const childProcess = require('node:child_process');",
-    "const { syncBuiltinESMExports } = require('node:module');",
-    'const originalSpawn = childProcess.spawn;',
-    'childProcess.spawn = function (command, args = [], options = {}) {',
-    "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
-    '    fs.appendFileSync(',
-    '      process.env.CLAUDE_KILLER_ARGS_FILE,',
-    '      JSON.stringify({ command, args, options }) + "\\n",',
-    '    );',
-    '    return { unref() { return this; } };',
-    '  }',
-    '  return originalSpawn.call(this, command, args, options);',
-    '};',
-    'syncBuiltinESMExports();',
-    '',
-  ].join('\n'));
+  const spawnLog = installKillerSpawnRecorder(sandbox, '{ command, args, options }');
   sandbox.env.SKILLED_LOOP_ID = loopId;
-  sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
-  sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
   const payload = {
     ...STOP_PAYLOAD,
     session_id: SESSION_ID,
@@ -667,7 +695,7 @@ test('stop-arm respawns one killer for an armed record whose killer is gone', as
   assert.equal(fs.readFileSync(spawnLog, 'utf8').trim().split('\n').length, 1);
 });
 
-function installKillerRecorder(sandbox) {
+function installKillerSpawnRecorder(sandbox, recordExpression) {
   const recorderPath = path.join(sandbox.root, 'killer-spawn-recorder.cjs');
   const spawnLog = path.join(sandbox.root, 'killer-spawns.jsonl');
   fs.writeFileSync(recorderPath, [
@@ -680,7 +708,7 @@ function installKillerRecorder(sandbox) {
     "  if (typeof args[0] === 'string' && args[0].endsWith('killer.cjs')) {",
     '    fs.appendFileSync(',
     '      process.env.CLAUDE_KILLER_ARGS_FILE,',
-    '      JSON.stringify({ args, hookPid: process.pid, hookParent: process.ppid }) + "\\n",',
+    '      JSON.stringify(' + recordExpression + ') + "\\n",',
     '    );',
     '    return { unref() { return this; } };',
     '  }',
@@ -691,6 +719,14 @@ function installKillerRecorder(sandbox) {
   ].join('\n'));
   sandbox.env.CLAUDE_KILLER_ARGS_FILE = spawnLog;
   sandbox.env.NODE_OPTIONS = `--require=${recorderPath}`;
+  return spawnLog;
+}
+
+function installKillerRecorder(sandbox) {
+  const spawnLog = installKillerSpawnRecorder(
+    sandbox,
+    '{ args, hookPid: process.pid, hookParent: process.ppid }',
+  );
   return () => (fs.existsSync(spawnLog)
     ? fs.readFileSync(spawnLog, 'utf8').trim().split('\n').map((line) => JSON.parse(line))
     : []);
@@ -718,7 +754,7 @@ test('stop-arm without CLAUDE_PID targets the loop child, never the hook parent'
   assert.equal(result.code, 0, result.stderr);
   const [spawned] = spawns();
   // The hook here runs directly under the loop, so the loop child is the hook itself;
-  // the old fallback named its parent, which is the loop.
+  // The old fallback named its parent, which is the loop.
   assert.equal(targetPidOf(spawned), String(spawned.hookPid));
   assert.notEqual(targetPidOf(spawned), loopId);
 });
@@ -773,7 +809,10 @@ test('stop-arm leaves the record pending when no process below the loop can be f
   assert.equal(result.code, 0, result.stderr);
   assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
   assert.deepEqual(spawns(), []);
-  const log = fs.readFileSync(path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8');
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
   assert.match(log, /stop-arm-error stage=target-pid/);
 });
 
@@ -796,7 +835,10 @@ test('stop-arm defers an armed record with a dead killer while background tasks 
 
   assert.equal(result.code, 0, result.stderr);
   assert.deepEqual(spawns(), []);
-  assert.match(fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'), /deferred-background-tasks/);
+  assert.match(
+    fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
+    /deferred-background-tasks/,
+  );
 });
 
 test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none', async (t) => {
