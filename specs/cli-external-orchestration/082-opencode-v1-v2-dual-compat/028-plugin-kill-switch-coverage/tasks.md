@@ -54,7 +54,7 @@ contextType: "general"
 - [x] T007 Mutation runs: each new test against the old code, recorded under `scratch/mutation/` (item 5)
 - [x] T008 Rebuild the sk-vision bundle locally and check the built `dist/plugin.js` honors the switch through the `.opencode/plugins/sk-vision.js` link (item 5b)
 - [x] T009 Drop the two gaps from `.opencode/plugins/ARCHITECTURE.md` and any README line that repeats them (item 5)
-- [ ] T010 Luna review until PASS (item 5)
+- [x] T010 Luna review until PASS (item 5)
 - [ ] T011 Strict validation of this child and recursive validation of 082 print `RESULT: PASSED` (item 5)
 - [ ] T012 Push to main and confirm every CI run, the two-version battery included (item 5)
 <!-- /ANCHOR:phase-3 -->

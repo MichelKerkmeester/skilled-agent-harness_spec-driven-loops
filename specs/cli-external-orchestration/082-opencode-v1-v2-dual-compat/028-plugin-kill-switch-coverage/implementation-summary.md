@@ -8,17 +8,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage"
-    last_updated_at: "2026-10-20T11:53:36Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-20T13:11:31Z"
+    last_updated_by: "generate-context"
+    recent_action: "Luna round 5 passed; merging origin/main before the push"
+    next_safe_action: "Run the push to main and watch every CI run"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/plugins/system-speckit-completion.js"
+      - ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts"
+      - ".opencode/plugins/ARCHITECTURE.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-028-plugin-kill-switch-coverage"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -100,6 +103,7 @@ DeepSeek v4.1 flash wrote the code, tests and doc edits from short literal brief
 | Built bundle through the symlink | No switch: v1 `command.execute.before`, v2 command and prompt hook. Either switch: v1 `dispose` only, v2 nothing |
 | v1 battery, local | PASS: discovered, loaded, command-listed |
 | sk-doc `validate_document.py` on the five changed docs | PASS, 0 issues |
+| Luna review (read-only) | Round 1 FAIL: fixtures missed switch aliases. Round 2 FAIL: an earlier setup could cache the real switch file. Round 3 FAIL: the spec miscounted switchless plugins. Round 4 FAIL: three wording claims. Round 5 PASS with two P2s |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -110,6 +114,8 @@ DeepSeek v4.1 flash wrote the code, tests and doc edits from short literal brief
 1. **The switch is read once, at load.** Changing it needs a host restart, as for every plugin that checks at construction.
 2. **One switch for two completion surfaces.** The `completion` concern also answers to `SYSTEM_COMPLETION_SENTINEL_DISABLED`, so switching off the sentinel drops the tool too. That grouping is the resolver's existing alias design.
 3. **The v2 battery's `plugin-active` leg fails in a nested worktree**, a separate known issue, so CI on a plain checkout is the proof for that leg.
+4. **Follow-up, from the round 5 review.** Each sk-vision kill-switch case creates an empty temp directory for its absent switch-file path and never removes it. Harmless, but repeated runs leave them behind.
+5. **Follow-up.** `sk-git-message-gate.js` has no switch by design; the hooks README and the plugins docs say so.
 <!-- /ANCHOR:limitations -->
 
 ---
