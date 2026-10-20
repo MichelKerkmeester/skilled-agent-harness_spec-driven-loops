@@ -200,9 +200,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin, except two",
+    "causal_summary": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin except three",
     "created_at": "2026-10-20T11:53:35Z",
-    "last_save_at": "2026-10-20T12:06:01.708Z",
+    "last_save_at": "2026-10-20T12:40:35.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +211,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6b87f2655c76bd9f46197dd9f47133ad82732d13f7d71ccc550d4d6175cf331",
+    "source_fingerprint": "sha256:53ab26c2083c8e623e7b1a3f4aee117661970af47853fad6abd6fdad4fd3955b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "472f029b810f79d49a3712af20d0d97150d4a06d71fd342bcea2683835b81d5b",
+      "spec.md": "28c3a0899a63e088303b7bdff5996c4216e68914313d8e79b095a28212ecb190",
       "plan.md": "bc26a6d287f1aec96828e124744489a3025b615333e22e9d5e3612595a6da710",
       "tasks.md": "9e058ac9da001470397e8b307b265c9978cd4629bf1b4d9676ddbed38cc6545e",
       "implementation-summary.md": "d177b74d3b74bb5a59885570c15f624080627287e723a6ae41cb8c6ca9beb028"

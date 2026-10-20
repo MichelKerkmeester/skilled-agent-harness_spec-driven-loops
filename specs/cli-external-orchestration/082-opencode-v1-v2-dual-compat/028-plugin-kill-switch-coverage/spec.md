@@ -61,10 +61,10 @@ This is **Phase 28** of the OpenCode v1 and v2 dual-compatibility packet. It clo
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The repo's master switch `SYSTEM_HOOKS_DISABLED` silences every hook and plugin, except two. `system-speckit-completion.js` checks only `SYSTEM_SPECKIT_COMPLETION_DISABLED === '1'`, so the master switch, the older `MK_HOOKS_DISABLED`, values such as `true`, and the switch file `hook-flags.env` all leave its tool registered. The sk-vision plugin reads no switch at all, so on OpenCode 2 its `/vision` command and prompt hook register even with every hook switched off, and on OpenCode 1 only the plugin option `enabled: false` stops it.
+The repo's master switch `SYSTEM_HOOKS_DISABLED` silences every hook and plugin except three. `sk-git-message-gate.js` is switchless by design, because the commit and push rules carry no bypass. The other two are gaps. `system-speckit-completion.js` checks only `SYSTEM_SPECKIT_COMPLETION_DISABLED === '1'`, so the master switch, the older `MK_HOOKS_DISABLED`, values such as `true`, and the switch file `hook-flags.env` all leave its tool registered. The sk-vision plugin reads no switch at all, so on OpenCode 2 its `/vision` command and prompt hook register even with every hook switched off, and on OpenCode 1 only the plugin option `enabled: false` stops it.
 
 ### Purpose
-An operator who sets the master switch, or a plugin's own concern switch, gets a plugin that registers nothing, the same way for all seventeen plugins and on both OpenCode lines.
+An operator who sets the master switch, or a plugin's own concern switch, gets a plugin that registers nothing, the same way for sixteen of the seventeen plugins and on both OpenCode lines. `sk-git-message-gate.js` stays switchless.
 <!-- /ANCHOR:problem -->
 
 ---
