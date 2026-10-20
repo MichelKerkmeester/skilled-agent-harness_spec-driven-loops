@@ -205,7 +205,7 @@
     ],
     "causal_summary": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
     "created_at": "2026-10-20T15:30:08Z",
-    "last_save_at": "2026-10-20T16:21:59.187Z",
+    "last_save_at": "2026-10-20T16:32:35.723Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbd0f6a445a679accba0eb9223977ad22428ea4b78ff8014c70a5f87d11e6d66",
+    "source_fingerprint": "sha256:3e59cc82ba06b27b8af616db9f31da2120e58386d907b585822f6cf632848a49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0fc4969852092cf52e4af928ec5189566a3c5def99f3019b3ef49d9ddbb9b4ab",
-      "plan.md": "5bdfdc38742baab00951b5fe85f3a76528e993954376eacff3a33c76675557e8",
-      "tasks.md": "9119468cf804a348d50a4eb58ecc7423f930386103a219c60bf1eb5ec0a7efa4",
-      "implementation-summary.md": "a0f4a789eeb54a01811aa7c2ef0f205e8cfadd18ce402950b53377e8f12c9b98"
+      "spec.md": "890fbf7c53bcdc50798f91047e7dccfb8b2447f553f999e5cee9ce03903b598a",
+      "plan.md": "c3ad6475512d2510d801356933beb84d600d6478e59091c30392fe043f296ceb",
+      "tasks.md": "7496a12e3c141b04f39d780743436719986a836fcfb94bdd2431bb43dc67bf3c",
+      "implementation-summary.md": "40b969133e4993681ed4cdcb780e1cf45033cd2ebd8b70e616d893baa7d709b6"
     },
     "last_active_at": null
   }

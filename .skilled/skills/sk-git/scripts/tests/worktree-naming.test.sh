@@ -307,8 +307,8 @@ cp "$TREE/needs-build/package.json" "$FAILED_TREE/needs-build/package.json"
 NPM_STUB_BUILD_FAIL=1 expect_rc "failed build fails provisioning" 1 run_fixture_provision "$FAILED_TREE"
 
 # ── the build stamp decides staleness; untracked newer files do not ──
-# Fixed timestamps keep the checks independent of the clock and of how finely the
-# shell compares modification times.
+# Fixed timestamps keep the checks independent of the clock; staleness itself must
+# depend on content, not on modification times.
 STALE_TREE="$PROV/stale-tree"
 rm -rf "$STALE_TREE"
 mkdir -p "$STALE_TREE/needs-build/src" "$STALE_TREE/needs-build/dist"
@@ -365,30 +365,49 @@ expect_eq "a staged source change rebuilds once" "$((STALE_BEFORE + 2))" "$(stal
 expect_rc "the recorded staged change provisions" 0 run_stale_provision
 expect_eq "the recorded staged change adds no build" "$((STALE_BEFORE + 2))" "$(stale_build_lines)"
 
-# An edit nobody staged leaves the fingerprint alone, so only the stamp's own
-# time can catch it; the rebuild rewrites the stamp, which settles it again.
-touch -t 203001010000 "$STALE_TREE/needs-build/src/index.ts"
+# An edit nobody staged changes what is on disk, so the work-tree fingerprint
+# moves and the rebuild settles it again.
+printf 'export const y = 2;\n' > "$STALE_TREE/needs-build/src/index.ts"
 expect_rc "an unstaged edit provisions" 0 run_stale_provision
-expect_eq "an unstaged edit newer than the stamp rebuilds once" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
-touch -t 202001010000 "$STALE_TREE/needs-build/src/index.ts"
-expect_rc "a settled stamp provisions" 0 run_stale_provision
-expect_eq "an input older than the rewritten stamp adds no build" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
+expect_rc "an unstaged edit says why it rebuilt" 0 \
+  grep -q 'rebuilding needs-build (sources changed since its last build)' "$STALE_OUT_FILE"
+expect_eq "an unstaged edit rebuilds once" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
+expect_rc "the recorded unstaged edit provisions" 0 run_stale_provision
+expect_eq "the recorded unstaged edit adds no build" "$((STALE_BEFORE + 3))" "$(stale_build_lines)"
 
-# A deletion stops the file being listed at all, so only the fingerprint sees it.
-git -C "$STALE_TREE" rm -q needs-build/README.md
-expect_rc "a deleted tracked input provisions" 0 run_stale_provision
-expect_eq "a deleted tracked input rebuilds once" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
-expect_rc "the recorded deletion provisions" 0 run_stale_provision
-expect_eq "the recorded deletion adds no build" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+# A deletion nobody staged removes the path from the work-tree description even
+# though the index still lists it.
+rm "$STALE_TREE/needs-build/README.md"
+expect_rc "an unstaged deletion provisions" 0 run_stale_provision
+expect_eq "an unstaged deletion rebuilds once" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+expect_rc "the recorded unstaged deletion provisions" 0 run_stale_provision
+expect_eq "the recorded unstaged deletion adds no build" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+
+# A future modification time on an unchanged source must not force a rebuild.
+touch -t 203001010000 "$STALE_TREE/needs-build/package.json"
+expect_rc "a future modification time provisions" 0 run_stale_provision
+expect_eq "a future modification time adds no build" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+expect_rc "a future modification time provisions again" 0 run_stale_provision
+expect_eq "a future modification time still adds no build" "$((STALE_BEFORE + 4))" "$(stale_build_lines)"
+
+# A deletion that reaches the index drops the path from the tracked list, so the
+# fingerprint still moves even though the work-tree description already said D.
+git -C "$STALE_TREE" rm -q --cached needs-build/README.md
+expect_rc "a staged deletion provisions" 0 run_stale_provision
+expect_rc "a staged deletion says why it rebuilt" 0 \
+  grep -q 'rebuilding needs-build (sources changed since its last build)' "$STALE_OUT_FILE"
+expect_eq "a staged deletion rebuilds once" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
+expect_rc "the recorded staged deletion provisions" 0 run_stale_provision
+expect_eq "the recorded staged deletion adds no build" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
 
 # A build that emits nothing still consumed the changed sources, so recording the
 # fingerprint ends the rebuild loop instead of repeating it on every provision.
 printf 'export const y = 1;\n' > "$STALE_TREE/needs-build/src/index.ts"
 git -C "$STALE_TREE" add needs-build/src/index.ts
 expect_rc "a staged change before a build that writes nothing provisions" 0 run_stale_noop_provision
-expect_eq "a build that writes nothing still counts as the rebuild" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
+expect_eq "a build that writes nothing still counts as the rebuild" "$((STALE_BEFORE + 6))" "$(stale_build_lines)"
 expect_rc "the recorded no-emission build provisions" 0 run_stale_provision
-expect_eq "a build that wrote nothing ends the rebuild loop" "$((STALE_BEFORE + 5))" "$(stale_build_lines)"
+expect_eq "a build that wrote nothing ends the rebuild loop" "$((STALE_BEFORE + 6))" "$(stale_build_lines)"
 
 # The stamp lives in the git directory, never in the work tree.
 expect_eq "the stamp is not inside the work tree" "" \

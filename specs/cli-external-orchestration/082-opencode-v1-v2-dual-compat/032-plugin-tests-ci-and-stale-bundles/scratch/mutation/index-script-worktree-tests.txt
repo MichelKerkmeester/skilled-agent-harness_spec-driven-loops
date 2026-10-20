@@ -1,0 +1,8 @@
+FAIL: an unstaged deletion rebuilds once (exp='7' got='6')
+FAIL: the recorded unstaged deletion adds no build (exp='7' got='6')
+FAIL: a future modification time still adds no build (exp='7' got='8')
+FAIL: a staged deletion rebuilds once (exp='8' got='9')
+FAIL: the recorded staged deletion adds no build (exp='8' got='10')
+FAIL: a build that writes nothing still counts as the rebuild (exp='9' got='11')
+FAIL: a build that wrote nothing ends the rebuild loop (exp='9' got='12')
+worktree-naming tests: PASS=147 FAIL=7

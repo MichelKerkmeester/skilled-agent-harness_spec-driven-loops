@@ -5,8 +5,9 @@ name: OpenCode Plugin Tests
 # unseen. The suites import the plugins, the shared hook libraries, compiled
 # spec-kit and advisor runtimes and the sk-vision bundle, and read skill, command
 # and Pi files to check what the plugins cite, so the job provisions every listed
-# tree and runs on any change under the three source roots or the runtime and
-# spec files the goal checks read.
+# tree and runs on any change under the three source roots, the runtime and spec
+# files the goal checks read, or the root files that tell a project checkout from
+# this repository.
 on:
   pull_request:
     branches: [main, 'skilled/**']
@@ -20,6 +21,10 @@ on:
       - '.devin/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
+      - 'esbuild.config.mjs'
+      - 'manifest.json'
+      - 'wrangler.toml'
+      - 'src/**'
       - '.github/workflows/opencode-plugin-tests.yml'
   push:
     branches: [main, 'skilled/**']
@@ -33,6 +38,10 @@ on:
       - '.devin/**'
       - '.env.example'
       - 'specs/system-deep-loop/z_archive/026-goal-opencode-plugin/**'
+      - 'esbuild.config.mjs'
+      - 'manifest.json'
+      - 'wrangler.toml'
+      - 'src/**'
       - '.github/workflows/opencode-plugin-tests.yml'
 
 permissions:
