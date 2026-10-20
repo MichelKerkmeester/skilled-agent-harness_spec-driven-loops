@@ -13,7 +13,7 @@ An assistant framework that gives your AI coding agent a memory, a paper trail a
 
 All of it lives inside your own repository, as files you can read and diff.
 
-Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
+Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 
 **What's inside**
 
@@ -170,6 +170,7 @@ From request to documented result:
 - Node.js 24.x for a full install. Code Mode's MCP server needs `>=24.0.0 <25.0.0`, the spec-kit runtime CLI needs 22.12+ and the advisor runtime needs 20.19+ or 22.12+, so Node 24 is the one line every part accepts
 - `npm`, `git` and a POSIX shell
 - No global TypeScript needed. The builds use the TypeScript the spec-kit workspace installs
+- OpenCode 1 or 2. Both load the framework's plugins, see [OpenCode Plugins](#opencode-plugins)
 
 ```bash
 # 1. Clone the repository
@@ -187,9 +188,6 @@ npm --prefix .skilled/skills/system-spec-kit run build
 npm --prefix .skilled/skills/system-skill-advisor/runtime install
 npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 node .skilled/bin/skill-advisor.cjs list-tools --format json
-
-# 5. Let the git hooks run their checks in this clone. Without it, a second clone on the same machine skips the pre-commit checks
-git config --local skilled.trustRepoHooks true
 ```
 
 ### Verify Installation
@@ -207,24 +205,13 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Git Hooks
 
-The first AI session you open in the main checkout installs this repository's git hooks. From then on git checks every commit and push you make there.
+The first AI session you open in your checkout installs the repository's git hooks. They then check each commit and push you make in that checkout and its worktrees.
 
-- **pre-commit** blocks code comments that cite spec packets or task ids, blocks a staged phrase that carries a template default or editor fallback, and keeps generated mirrors and metadata in step with the files you stage. A staged file whose content git cannot read blocks the commit instead of going in unchecked
-- **commit-msg** holds each message to the rules block in sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject of at most 100 characters, a prose body, `Spec:` and `Commit-Id:` trailers that search can find, and no `Co-Authored-By` or `Claude-Session` lines
-- **pre-push** blocks a push that deletes more than 100 tracked files, and warns about out-of-date generated metadata, which CI then blocks. It checks the commits the push adds against the same commit rules, so a `--no-verify` commit is caught here, and checks a new branch's name against the [worktree checklist](.skilled/skills/sk-git/assets/worktree-checklist.md). A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push, and creating such a branch needs an approval that names it
+- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage
+- **commit-msg** holds each message to sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject, a prose body, `Spec:` and `Commit-Id:` trailers and no `Co-Authored-By` lines
+- **pre-push** blocks a push that deletes more than 100 tracked files. It asks for your approval before a push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist
 
-The hooks are installed for every repository on the machine, but they run this toolchain's scripts only in checkouts that share this repository's git directory, such as its worktrees. Another clone runs its own copies only after `git config --local skilled.trustRepoHooks true`. A `git -c` flag or a `GIT_CONFIG_*` variable does not grant that trust.
-
-The commit, PR and branch rules have no bypass variable. To change them, edit the rules block in the template, and every gate follows it: both hooks, the agent gate that checks `git commit` and `gh pr create` before they run, and the `message-contract` CI check. `/doctor:git standards` makes that edit in the repository's own `.sk-git/` copies of the templates and refuses a change the gates would reject. A repository whose templates carry no rules block is not checked. The other gates' block messages name the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. To keep one of those gates off without the prefix, set `speckit.hooks.<key>` to `off` in local or global git config, or let `/doctor:git hooks` do it. Only a repository the hooks trust reads that setting. The two per-push approvals cannot be saved. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, and `SYSTEM_HOOKS_DISABLED=1` also turns off the post-commit live sync, from the environment or from `.skilled/hooks/hook-flags.env`. A gate whose checker crashes blocks and reports the crash, so a broken check never passes as a clean one.
-
-To stop using the hooks, remove them and switch off the session check that would put them back:
-
-```bash
-bash .skilled/scripts/install-git-hooks.sh --uninstall
-echo 'SYSTEM_GIT_HOOKS_CHECK_DISABLED=1' >> .skilled/hooks/hook-flags.env
-```
-
-[Off Switches](#off-switches) lists the other switches, and the [git hooks README](.skilled/scripts/git-hooks/README.md) covers each gate.
+The hooks are installed for the whole machine, so another clone stays unchecked until you trust it with `git config --local skilled.trustRepoHooks true`. [Off Switches](#off-switches) covers switching a gate or all hooks off, and the [git hooks README](.skilled/scripts/git-hooks/README.md) describes every gate.
 
 ### First Use
 
@@ -1039,7 +1026,9 @@ The framework extends each runtime through plugins and hooks rather than asking 
 
 Gives a session a durable completion objective that survives across turns, instead of losing intent to context resets.
 
-The packet's `goal.md` is the goal. A session binds to a spec packet, and the runtime injects the objective slice built from that file (a pointer to it, the binding rule when the packet is phased and the completion criteria as their own `criteria:` list, one per line) on every turn where that runtime injects at all: OpenCode, Pi and Devin inject per turn, Cursor injects at session start. The agent resends the file's chat slice whenever a decision or criterion changes, reminding you to set it, and never stops working while it waits. What that chat slice contains is section 4 of `sk-create-goal`'s `references/budget-and-handoff.md`, and `/create:goal` authors the file.
+The packet's `goal.md` is the goal, and `/create:goal` writes it. A session binds to a spec packet, and the runtime then injects a short slice of that file: a pointer to it, the binding rule for a phased packet and the completion criteria, one per line.
+
+OpenCode, Pi and Devin inject the slice on every turn, and Cursor injects it at session start. When a decision or criterion changes, the agent resends the slice and reminds you to set it, and it keeps working while it waits.
 
 - **Claude Code and Codex:** use the built-in native `/goal <condition>`. The speckit workflows hand you the parent `goal.md`'s chat slice to paste. Do not route through `opencode_goal` (that tool does not exist in those sessions)
 - **OpenCode:** `/goal-opencode bind <packet-path>` makes the packet goal the session goal. `resent` clears the reminder, `packet <path>` reads a packet, and `set <condition>` still sets a plain text goal. Show, pause, clear and complete run through the `opencode_goal` tools
@@ -1050,13 +1039,14 @@ The packet's `goal.md` is the goal. A session binds to a spec packet, and the ru
 &nbsp;
 #### OpenCode Plugins
 
-JavaScript entrypoints under `.skilled/plugins/`, discovered by a flat glob over `.opencode/plugins/`. Each is a thin transport adapter that translates OpenCode events into the shared policy cores owned by the skills.
+Seventeen JavaScript plugins live in `.skilled/plugins/`, and OpenCode finds them through `.opencode/plugins/`. Each one translates OpenCode events into the same shared policy cores the other runtimes call. They load on OpenCode 1 and OpenCode 2 alike. When both are installed, `OPENCODE_BIN=opencode` keeps CLI dispatches on OpenCode 1.
 
-- **Gate enforcement:** `system-spec-gate.js`, `system-completion-sentinel.js`, `system-speckit-completion.js`
-- **Advisor and routing:** `system-skill-advisor.js` for the prompt-time brief, `mcp-route-guard.js` (advises when a native MCP call should use Code Mode)
-- **Quality and guards:** `sk-code-post-edit-quality.js`, `sk-git-preflight-advisory.js`, `sk-git-message-gate.js`, `system-deep-loop-guard.js`, `system-dist-freshness-guard.js`, `codex-hooks-watchdog.js`, `cli-dispatch-audit.js`, `classifier-injection-screen.js`
-- **Lifecycle and surfaces:** `opencode-goal.js`, `session-cleanup.js`, `sk-vision.js`
-- Thirteen plugins honor a per-concern kill-switch via `hook-flags.cjs` plus the master `SYSTEM_HOOKS_DISABLED`. The Spec Kit completion and sk-vision plugins carry their own switch, and the git message gate has none. None writes to stdout, and the goal and vision plugins write to stderr only when their debug variable is set
+- **Gates:** the spec-folder gate and two completion checks that ask for evidence before a task is called done
+- **Routing:** the skill advisor's prompt-time brief, and a guard that suggests Code Mode when a native MCP call should go through it
+- **Quality and safety:** post-edit code checks, git commit advisories and the commit message gate, deep-loop and build-freshness guards, a Codex hook watchdog, a CLI dispatch audit and a screen for instructions hidden in fetched web pages
+- **Sessions:** the goal plugin, session cleanup, the endless-session relaunch and on-device image reads
+
+Every plugin except the git message gate has an off switch, listed in the [hooks README](.skilled/hooks/README.md). `SYSTEM_HOOKS_DISABLED=1` turns them all off at once.
 
 &nbsp;
 #### Pi Extensions
@@ -1076,7 +1066,7 @@ Our custom extension, vendored in `.pi/extensions/` as the live runtime source. 
 Other entries in `.pi/extensions/`:
 
 - **`pi-fast-mode-w-subagent-support`** - fast mode with subagent support
-- **Symlinked guard bridges:** `spec-gate-classify.ts` / `spec-gate-enforce.ts`, `session-start-context.ts` / `session-stop-context.ts` / `session-compact-context.ts`, `prompt-advisor.ts`, `mcp-route-guard.ts`, `post-edit-quality.ts`, `dispatch-preflight-lint.ts` / `dispatch-audit.ts`, `goal-context.ts`, `sk-vision.ts`, `task-dispatch-guard.ts`, `completion-evidence.ts`, `git-preflight-advisory.ts`, `git-message-gate.ts`, `classifier-injection-screen.ts`, `session-start-advisories.ts`
+- **Guard bridges:** symlinked entries that run the same shared cores as the OpenCode plugins, from the spec gate and session context to the advisor brief, goal, git checks and the endless-session relaunch
 - **Community packages** via `.pi/settings.json`: `rpiv-ask-user-question`, `rpiv-todo`, `pi-blackhole`, `pi-statusline`, `pi-web-access`, `pi-btw`, `pi-plan-build`
 
 &nbsp;
@@ -1426,7 +1416,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 **`sk-code`** - 🎨 stack-specific, the customization point
 
 - Surface-aware code-quality patterns
-- Keep the native OpenCode surface, and remove or replace the optional example Webflow and Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
+- Keep the native Skilled surface, and remove or replace the optional example Webflow and Obsidian surfaces with your own (Next.js + Tailwind + Postgres, React Native + Reanimated, Go + sqlc, etc.)
 - Motion.dev is an animation overlay inside the Webflow surface, not a surface of its own
 - Includes the findings-first `code-review` mode that reuses these surfaces as review evidence
 
@@ -1489,49 +1479,13 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 &nbsp;
 #### What Adapting `sk-code` Looks Like
 
-`sk-code` ships one native surface and two optional examples. OpenCode, at `.skilled/skills/sk-code/sk-code-skilled/`, is native: it holds the standards for this framework's own code, so keep it. Webflow, at `.skilled/skills/sk-code/sk-code-webflow/`, and Obsidian, at `.skilled/skills/sk-code/sk-code-obsidian/`, are optional examples. You can remove them or keep them as models, and a surface you add for your own stack ranks ahead of OpenCode. Run every command from the repository root.
+`sk-code` ships one native surface and two optional examples. The Skilled surface holds the standards for this framework's own code, so keep it. The Webflow and Obsidian surfaces are examples you can remove, keep as models or replace with your own stack.
 
-**Before you start**
+- **Remove an example surface** by deleting its folder and its entries in the hub's registry, router and generated files
+- **Add your own surface** with `/create:skill-parent update --surfaces <name>`, which scaffolds and registers it ahead of the Skilled surface
+- **Check the result** with `/doctor:sk-code setup`, which runs every check read-only and names one repair command for each failure
 
-1. In a fresh clone, run `bash .skilled/skills/sk-git/scripts/worktree-naming.sh provision .` first. It installs the dependencies and builds the spec-kit outputs the checks below load. Without it, `parent-skill-check.cjs` and `ci-skill-root-metadata.cjs` fail on a missing `@spec-kit/shared` build.
-2. In a clone, run `git config --local skilled.trustRepoHooks true` before you install the hooks. The hooks run this repository's scripts only in a trusted clone, so without it the commit-time re-mint never fires.
-3. Install the git hooks with `bash .skilled/scripts/install-git-hooks.sh`. A commit that stages the hub's routing files then re-mints its activation manifest and copies the manifest to its authored path. Without the hooks, do both by hand after each routing change: run `node .skilled/bin/compiled-route-manifest.cjs refresh --hub sk-code --skill-root .skilled/skills/sk-code`, then copy `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json` over `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json`.
-4. If you prune `specs/`, keep `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/`, the authored source of compiled routing, and keep the `.opencode/skills` link. Without either one the guard and sync checks fail.
-
-**Remove an example surface.** Repeat these steps for each surface you drop. `<mode>` is `sk-code-webflow` or `sk-code-obsidian`.
-
-1. Delete the folder `.skilled/skills/sk-code/<mode>/`.
-2. In `.skilled/skills/sk-code/mode-registry.json`, delete the mode's `modes` entry and its name in `extensions.surface-axis.surfaces`. In `.skilled/skills/sk-code/hub-router.json`, delete it from `routerPolicy.tieBreak`, delete its `routerSignals` entry and delete the two `vocabularyClasses` that entry names.
-3. Regenerate the leaf manifest with `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write .skilled/skills/sk-code`.
-4. Edit section 11 of `.skilled/skills/sk-code/ROUTER.md` by hand, because no command writes it. Delete every `RESOURCE_MAP` path under `<mode>/`, then delete each key left with no paths from both `RESOURCE_MAP` and `INTENT_SIGNALS`. Trim the prose map rows and sections above section 11 that point at the removed packet.
-5. Update the surface table and the surface list sentence in `.skilled/skills/sk-code/SKILL.md`, the surface markers in `.skilled/skills/sk-code/shared/references/stack-detection.md` and the surface lines in this `README.md`.
-6. Delete or adjust the files written for the example. These are its scenarios under `.skilled/skills/sk-code/manual-testing-playbook/`, with their rows in `manual-testing-playbook.md`, the Obsidian and Webflow checklist pointers in `.skilled/skills/sk-code/sk-code-quality/`, the entries in `.skilled/skills/sk-code/feature-catalog/feature-catalog.md` and `.skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which present the examples as live surfaces, the cases in `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` and the canary cases that name the mode in `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`. After a canary edit, copy that fixture over its authored twin at `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json`.
-7. Run `node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-doc-claims.cjs` and fix every dead path and stale surface count it lists, including those in the hub's `README.md`. Then run `node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root .skilled/skills/sk-code --write`, which prunes the dead `key_files`, `source_docs` and entities from the hub's `graph-metadata.json`. The only hand edit left in that file is its `causal_summary`, which still names the examples.
-8. Refresh the README manifest with `python3 .skilled/skills/sk-doc/scripts/tests/test_readme_manifest.py --write`, and the Hermes skill copies with `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs`, which drops the removed packet's copy.
-9. Commit with the hooks installed, or refresh and copy the manifest by hand as above.
-
-**Add your own surface**
-
-1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of OpenCode in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l fails a surface placed after it.
-2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to `../../shared/references/`.
-3. Add the packet's paths to the `ROUTER.md` maps and section 11, and its markers to `stack-detection.md`. Update the surface-count lines `verify-doc-claims.cjs` checks: the count in `.skilled/skills/sk-code/shared/references/phase-detection.md`, and the counts in the hub's `README.md` and `SKILL.md`. A packet copied from an example has the same leaf set as that example, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in `.skilled/skills/sk-code/leaf-scopes.json` (the format is the array in `.skilled/skills/sk-doc/leaf-scopes.json`), or change the copy until its files differ.
-4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
-5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
-
-**Verify.** Each of these must exit 0. Then route a prompt that names your stack, and check that your surface comes first.
-
-```bash
-node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
-node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
-node .skilled/bin/compiled-route-guard.cjs
-node .skilled/bin/compiled-route-sync.cjs --check
-bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
-node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
-```
-
-`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs and a provisioning precheck, fails the route probe when it returns the legacy stub, and prints one repair command for each failing leg. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`.
-
-The other shipped skills keep working unchanged: `sk-doc` still validates your markdown, `sk-git` still manages your branches, `system-spec-kit` still specs your work. `sk-code`'s `code-review` mode auto-adapts to your customized surfaces at review time.
+The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces at review time.
 
 &nbsp;
 #### What Adapting `sk-git` Looks Like
@@ -1540,11 +1494,11 @@ The other shipped skills keep working unchanged: `sk-doc` still validates your m
 
 - **Commit, PR and branch rules.** Run `/doctor:git standards` to copy the shipped templates into `.sk-git/` and change a rule there. `git config skgit.contractDir <dir>` points at another folder.
 - **Hook gates.** Run `/doctor:git hooks` to switch an optional pre-commit or pre-push check on or off. It saves `speckit.hooks.<key>` in local or global git config.
-- **Hook trust and install.** In a clone, run `bash .skilled/scripts/install-git-hooks.sh`, which links the hooks into the clone's own tree so they run its own scripts. Set `git config --local skilled.trustRepoHooks true` only when the hooks come from another checkout, such as a global `core.hooksPath`.
+- **Hook trust.** The hooks are installed for the whole machine, so a clone other than the one that installed them runs their checks only after `git config --local skilled.trustRepoHooks true`.
 - **Worktrees and Commit-Id.** `git config speckit.worktreeBase <dir>` moves the worktree folder. `git config --local skilled.commitId true` or `false` decides whether commits carry an id.
 - **Shared files.** Each repository reads its remote branch allowlist and `hard-rules.json` from its own `.skilled/skills/sk-git/` folder. The worktree provision list comes from beside the shared helper, so it applies to every repository that shares the install.
 
-**Verify.** Run `/doctor:git setup`, or outside an AI runtime `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <claude|codex|devin|cursor|opencode|pi|hermes>`. It checks eleven settings in one read-only pass, prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and exits 0 when every check passes or skips, 3 when none fails but a check is UNKNOWN or DEGRADED, 1 when a check fails and 2 on a usage error, and its last line is the status with its counters: `STATUS=OK checks=<n>`, `STATUS=DEGRADED degraded=<n> skipped=<n> unknown=<n>` or `STATUS=FAIL failed=<n> degraded=<n> skipped=<n> unknown=<n>`.
+**Verify.** Run `/doctor:git setup`, or `node .skilled/commands/doctor/scripts/git-setup-check.cjs --tool <runtime>` outside an AI runtime. It checks eleven settings without changing anything and names one repair command for each check that fails.
 
 &nbsp;
 ### Core Configuration Files
@@ -1566,8 +1520,17 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 
 - **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
-- **Git hooks.** The per-gate bypasses such as `SPECKIT_SKIP_COMMENT_HYGIENE=1` are read from the environment only and cover one command. `speckit.hooks.<key>` set to `off` in git config keeps one gate off for good, and `/doctor:git hooks` lists the keys. [Git Hooks](#git-hooks) covers turning the hooks off entirely
+- **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
+- **Git hooks, for good.** `/doctor:git hooks` lists the optional gates and switches one off in git config as `speckit.hooks.<key>`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once
+- **Commit, PR and branch rules.** These have no bypass. `/doctor:git standards` changes a rule in the repository's own `.sk-git/` copy of the templates, and every gate follows the change
 - **The full list.** [`.env.example`](.env.example) lists the switches with their defaults. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
+
+To stop using the git hooks, remove them and switch off the session check that would put them back:
+
+```bash
+bash .skilled/scripts/install-git-hooks.sh --uninstall
+echo 'SYSTEM_GIT_HOOKS_CHECK_DISABLED=1' >> .skilled/hooks/hook-flags.env
+```
 
 &nbsp;
 ### Retrieval and Continuity Configuration
@@ -1693,6 +1656,9 @@ Everything is a file in your own repository.
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
 - **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - endless sessions: the handoff note, the `skilled-loop` wrapper and the shell shim
+- **[→ Hooks README](.skilled/hooks/README.md)** - every runtime hook and plugin, which runtimes run each one and its off switch
+- **[→ Git Hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate, what it blocks and how to bypass it
+- **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack
 - **[→ Repo Scripts Runbook](.skilled/scripts/README.md)** - dry-run orphan MCP sweeper, session cleanup and LaunchAgent template guidance
 - **[→ Skill Advisor README](.skilled/skills/system-skill-advisor/README.md)** - daemon-backed CLI front door, nine advisor/skill-graph commands and routing docs
 - **[→ Architecture](.skilled/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
