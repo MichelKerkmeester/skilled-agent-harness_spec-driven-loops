@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
-import { AttachmentInjector } from "./attachments.js";
-import type { PhotonProvider } from "../providers/photon.js";
-import type { ChatMessageInput, ChatMessageOutput } from "./attachments.js";
+import { AttachmentInjector } from "../../src/opencode/attachments.js";
+import type { PhotonProvider } from "../../src/providers/photon.js";
+import type { ChatMessageInput, ChatMessageOutput } from "../../src/opencode/attachments.js";
 
 // A provider whose analysis resolves only after `delayMs`, so a test can distinguish an
 // awaited run (guaranteed) from one dropped by the grace race.

@@ -133,6 +133,8 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 20 | 020-plugins-purity-dual-export/ | Let the plugins purity test load the dual OpenCode export, the last red Spec-Kit Check step | complete |
 | 21 | 021-pi-fast-mode-trusted-flag/ | Register Pi's --fast flag in the trusted main checkout and correct the copy-claim comment and test counts | complete |
 | 22 | 022-worktree-provision-completeness/ | List every tracked package tree for worktree provisioning, guard the list, and report drift and missing manifests | complete |
+| 23 | 023-sk-vision-runtime-fixes/ | sk-vision runtime fixes from the post-merge research fix list, rows 4, 5, 13, 15, 20, 23, 24, 25 and 26 | Complete |
+| 26 | 026-ci-and-test-runners/ | Run the orphaned suites where a failure blocks, the hooks vitest tree in its own job, and give SECURITY.md a document type | complete |
 
 ### Phase Transition Rules
 
@@ -163,4 +165,6 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 019-plugins-compat-docs | 020-plugins-purity-dual-export | 019's docs are on main | The purity test and the Runtime vitest project pass locally; 019's README.md, ARCHITECTURE.md and spec.md are on main at 22f563b032 |
 | 020-plugins-purity-dual-export | 021-pi-fast-mode-trusted-flag | 020 is on main | The extension vitest run passes 81 tests and the help probe lists --fast once in all six runs |
 | 021-pi-fast-mode-trusted-flag | 022-worktree-provision-completeness | 021 is on main | The naming suite passes 109 tests and a fresh clone provisions 14 trees with 0 failed (`022-worktree-provision-completeness/scratch/mutation/new-code-run.txt`, `022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt`) |
+| 014-post-merge-deep-research | 023-sk-vision-runtime-fixes | The fix list in 014's research.md names rows 4, 5, 13, 15, 20, 23-26 for sk-vision | 014 research.md §9 and 023 scratch/mutation/ |
+| 020-plugins-purity-dual-export | 026-ci-and-test-runners | 020's purity fix is on main and the post-merge fix list assigns rows 14, 16, 17, 28, 32, 33 and 34 to this group | `014-post-merge-deep-research/research/research.md` §6 rows; the `hooks-vitest` job passes on CI at the pushed commit |
 <!-- /ANCHOR:phase-map -->

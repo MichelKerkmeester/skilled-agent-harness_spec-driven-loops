@@ -1,7 +1,7 @@
 ---
 title: "Shared Scripts: cross-command sk-doc validators and naming guards"
 description: "Python and Node utilities shared across every /create:* command: the document template validator, naming guards, frontmatter versioning and the semantic rename/reference toolchain."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Shared Scripts
@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 | File | Purpose |
 |------|---------|
-| `validate_document.py` | Validates a markdown document against its type template (readme, skill, reference, asset, agent, command, install_guide, spec, changelog), with `--fix` and `--json` modes. Its human report ends with any `cite-drift advisory:` lines from `cite-drift-scan.mjs --advise`, which never change the exit code; `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips them. |
+| `validate_document.py` | Validates a markdown document against its type template (readme, skill, reference, asset, agent, command, install_guide, security_policy, spec, changelog), with `--fix` and `--json` modes. Its human report ends with any `cite-drift advisory:` lines from `cite-drift-scan.mjs --advise`, which never change the exit code; `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips them. |
 | `extract_structure.py` | Extracts frontmatter, headings, code blocks and metrics from a markdown document as JSON for AI-assisted analysis. |
 | `quick_validate.py` | Validates a `SKILL.md`'s frontmatter: required fields, name format, description budget and no placeholders. |
 | `frontmatter-version.mjs` | Computes, applies or verifies the 4-part `version` frontmatter field across in-scope skill docs. |

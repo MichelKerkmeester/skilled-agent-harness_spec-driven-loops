@@ -1,0 +1,16 @@
+# row 14: the runner reaches the two self-running node tests and fails on a broken engine
+## mutant: shared/scripts/frontmatter-version.mjs line 331, patch bump +1 -> +2, loaded through FMV_ENGINE
+## new runner, mutant engine
+PASS test-frontmatter-version.mjs
+FAIL test-frontmatter-version-bump.mjs (exit 1)
+FAIL - 26 passed, 4 failed
+1 failing: test-frontmatter-version-bump.mjs
+exit=1
+## old runner (HEAD), mutant engine
+all sk-doc script tests passed
+exit=0
+## new runner, real engine
+PASS test-frontmatter-version.mjs
+PASS test-frontmatter-version-bump.mjs
+all sk-doc script tests passed
+exit=0

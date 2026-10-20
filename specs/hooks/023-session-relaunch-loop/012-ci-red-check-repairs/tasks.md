@@ -55,6 +55,7 @@ contextType: "general"
 - [x] T007 Run the full sk-doc script suite and record the result (scratch/after/sk-doc-script-tests.txt)
 - [x] T008 Run the playbook provenance and workflow invariance vitest tests and record 5 of 5 passed with exit 0 (scratch/after/spec-kit-check-vitest.txt)
 - [x] T009 Run the whole CLI vitest project and record 180 files passed with 3 skipped, 2059 tests passed and 20 skipped, exit 0 (scratch/after/spec-kit-cli-project-summary.txt)
+- [x] T010 Correct the spec metadata Phase label from `8 of 8`, written before this child was renumbered to 012, to `12 of 12`, the number the parent `spec.md` phase map gives it; phases 008 to 011 are held by unmerged sibling work (spec.md §1 METADATA)
 <!-- /ANCHOR:phase-3 -->
 
 ---

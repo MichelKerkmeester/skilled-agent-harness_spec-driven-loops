@@ -1,0 +1,25 @@
+# row 28: the guard's vitest with an ancestor node_modules holding a different vitest
+## state: <root>/node_modules/.bin/vitest -> a stub reporting 9.9.9 and exiting 3; .skilled/node_modules has the locked 5.0.3
+## root-level npx vitest --version (the hazard hooks/024 records)
+ANCESTOR vitest 9.9.9 ran
+exit=3
+## old step, installed: npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+ RUN  v5.0.3 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/ci-sim
+      Tests  114 passed (114)
+exit=0
+## new step, installed: .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+ RUN  v5.0.3 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/ci-sim
+      Tests  114 passed (114)
+exit=0
+## new hooks job, installed: .skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts
+ RUN  v5.0.3 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/ci-sim
+      Tests  204 passed (204)
+exit=0
+
+## same ancestor stub, .skilled/node_modules missing (an install that did not land); exact step commands
+## old step: npx --prefix .skilled vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+ANCESTOR vitest 9.9.9 ran
+exit=3
+## new step: .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+bash: line 18: .skilled/node_modules/.bin/vitest: No such file or directory
+exit=127

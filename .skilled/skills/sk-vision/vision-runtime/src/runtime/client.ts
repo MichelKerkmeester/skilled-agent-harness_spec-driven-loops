@@ -5,7 +5,7 @@
 import { spawn, execFile, type ChildProcess } from "node:child_process";
 import { once } from "node:events";
 import { statSync } from "node:fs";
-import { mkdir as mkdirAsync } from "node:fs/promises";
+import { mkdir as mkdirAsync, rmdir as rmdirAsync } from "node:fs/promises";
 import { homedir } from "node:os";
 import { resolve as resolvePath } from "node:path";
 import { promisify } from "node:util";
@@ -18,6 +18,12 @@ function venvPython(venv: string): string {
   return process.platform === "win32"
     ? resolvePath(venv, "Scripts", "python.exe")
     : resolvePath(venv, "bin", "python");
+}
+
+/** Probe timeout. A cold import can be slow, so the default is generous and SK_VISION_PROBE_TIMEOUT_MS overrides it. */
+function probeTimeoutMs(): number {
+  const value = Number(process.env.SK_VISION_PROBE_TIMEOUT_MS);
+  return Number.isFinite(value) && value > 0 ? value : 30_000;
 }
 
 interface RpcRequest {
@@ -141,7 +147,11 @@ export class RuntimeClient {
       message: "Installing the vision runtime (first run, one-time).",
       variant: "info",
     });
-    await mkdirAsync(venv, { recursive: true });
+    const created = await mkdirAsync(venv, { recursive: true });
+    if (this.closed && created !== undefined) {
+      // A close() during mkdir must not leave a hollow venv for the next start to probe.
+      await rmdirAsync(venv).catch(() => undefined);
+    }
     this.throwIfClosed();
 
     const base = process.env.PYTHON ?? "python3";
@@ -209,28 +219,29 @@ export class RuntimeClient {
     if (this.closed) throw new SkVisionError("SHUTDOWN", "sk-vision runtime closed");
   }
 
-  /** True if the given interpreter can import moondream. */
-  private async hasMoondream(python: string): Promise<boolean> {
+  /** True when the command exits 0. A probe that outlives its timeout answers too slowly to count as missing. */
+  private async probe(cmd: string, args: string[]): Promise<boolean> {
     try {
-      await execFileAsync(
-        python,
-        ["-c", "import moondream; del moondream"],
-        { timeout: 5_000, signal: this.probes.signal },
-      );
+      await execFileAsync(cmd, args, { timeout: probeTimeoutMs(), signal: this.probes.signal });
       return true;
-    } catch {
+    } catch (err) {
+      const failure = err as { killed?: boolean };
+      if (failure.killed === true && !this.probes.signal.aborted) {
+        log(`probe '${cmd}' timed out; treating it as present`);
+        return true;
+      }
       return false;
     }
   }
 
+  /** True if the given interpreter can import moondream. */
+  private async hasMoondream(python: string): Promise<boolean> {
+    return this.probe(python, ["-c", "import moondream; del moondream"]);
+  }
+
   /** Whether the uv binary is usable (overridable with SK_VISION_UV). */
   private async hasUv(): Promise<boolean> {
-    try {
-      await execFileAsync(this.uv, ["--version"], { timeout: 5_000, signal: this.probes.signal });
-      return true;
-    } catch {
-      return false;
-    }
+    return this.probe(this.uv, ["--version"]);
   }
 
   /** Run a provisioning subprocess, streaming its output lines for visibility. */
@@ -346,15 +357,22 @@ export class RuntimeClient {
 
     // Wait for the first response so startup failures surface before use.
     let pingOK = false;
+    let pingTimer: ReturnType<typeof setTimeout> | undefined;
     try {
       await Promise.race([
         this.requestOnce("ping", {}).then(() => {
           pingOK = true;
         }),
-        new Promise((resolve) => setTimeout(resolve, 15_000)),
+        new Promise((resolve) => {
+          pingTimer = setTimeout(resolve, 15_000);
+          pingTimer.unref?.();
+        }),
       ]);
     } catch (err) {
       log(`startup ping failed: ${(err as Error).message}`);
+    } finally {
+      // A fast ping must not leave the 15 s timer holding the host's event loop.
+      clearTimeout(pingTimer);
     }
     if (this.child && !this.broken && pingOK) {
       log("runtime ready");

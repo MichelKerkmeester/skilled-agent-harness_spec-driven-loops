@@ -106,6 +106,8 @@ interface V2AutoInspect {
   dispose(): Promise<void>;
 }
 
+// Kept by hand: the published v2 context type declares no `session` or `tool` domain,
+// so setup checks the members it calls at run time. Re-check this at each OpenCode 2 bump.
 interface V2PluginContext {
   readonly location: { readonly directory: string };
   readonly command: {
@@ -350,40 +352,56 @@ export function createSetup({
   createAutoInspect,
 }: VisionSetupDeps): (ctx: V2PluginContext) => Promise<() => Promise<void>> {
   return async (ctx) => {
-    const registration = await ctx.command.transform((editor) => {
-      editor.add({
-        name: 'vision',
-        description: VISION_COMMAND_DESCRIPTION,
-        execute: async ({ sessionID, prompt, delivery }) => {
-          const output = { parts: [] as Part[] };
-          await handle(
-            createV2CommandInput(ctx, prompt.files ?? []),
-            { command: 'vision', sessionID, arguments: prompt.text },
-            output,
-          );
+    let registration: V2Registration | null = null;
+    try {
+      registration = await ctx.command.transform((editor) => {
+        editor.add({
+          name: 'vision',
+          description: VISION_COMMAND_DESCRIPTION,
+          execute: async ({ sessionID, prompt, delivery }) => {
+            const output = { parts: [] as Part[] };
+            await handle(
+              createV2CommandInput(ctx, prompt.files ?? []),
+              { command: 'vision', sessionID, arguments: prompt.text },
+              output,
+            );
 
-          const commandText = output.parts
-            .map((part) => (part.type === 'text' ? part.text : ''))
-            .filter((text) => text.length > 0)
-            .join('\n');
-          await ctx.session.prompt({
-            sessionID,
-            text: [prompt.text, commandText]
+            const commandText = output.parts
+              .map((part) => (part.type === 'text' ? part.text : ''))
               .filter((text) => text.length > 0)
-              .join('\n\n'),
-            files: prompt.files,
-            agents: prompt.agents,
-            skills: prompt.skills,
-            delivery,
-          });
-        },
+              .join('\n');
+            await ctx.session.prompt({
+              sessionID,
+              text: [prompt.text, commandText]
+                .filter((text) => text.length > 0)
+                .join('\n\n'),
+              files: prompt.files,
+              agents: prompt.agents,
+              skills: prompt.skills,
+              delivery,
+            });
+          },
+        });
+        return editor;
       });
-      return editor;
-    });
+    } catch (error: unknown) {
+      // Fail open: image inspection and the tools still work without the command.
+      if (process.env.SK_VISION_DEBUG === '1') {
+        const message = error instanceof Error ? error.message : String(error);
+        process.stderr.write(`[sk-vision] command registration failed: ${message}\n`);
+      }
+    }
 
     const template = readTemplate(ctx.location.directory);
+    if (typeof ctx.session?.hook !== 'function') {
+      // A host without the prompt hook keeps the command instead of failing setup.
+      if (process.env.SK_VISION_DEBUG === '1') {
+        process.stderr.write('[sk-vision] host has no session.hook; template evidence and image inspection are off\n');
+      }
+      return async () => { await registration?.dispose(); };
+    }
     const auto = createAutoInspect?.(ctx.location.directory) ?? null;
-    if (template === null && auto === null) return () => registration.dispose();
+    if (template === null && auto === null) return async () => { await registration?.dispose(); };
 
     // Deferred so a host that throws synchronously still reaches the cleanup below.
     const promptRegistration = await Promise.resolve().then(() => ctx.session.hook('prompt', async (input) => {
@@ -414,14 +432,19 @@ export function createSetup({
         if (images.length === 0) return;
 
         let model: { readonly id: string; readonly providerID: string } | undefined;
+        let unreadable = false;
         try {
           model = (await ctx.session.get?.({ sessionID: input.sessionID }))?.model;
         } catch {
+          // An unknown model may be text-only, so take the safe side and wait for the evidence.
+          unreadable = true;
           model = undefined;
         }
-        const guaranteed = isTextOnlyModel(
-          model ? { providerID: model.providerID, modelID: model.id } : undefined,
-        );
+        const guaranteed =
+          unreadable ||
+          isTextOnlyModel(
+            model ? { providerID: model.providerID, modelID: model.id } : undefined,
+          );
         const evidence = await auto.evidence(images, guaranteed);
         if (evidence !== null) {
           input.prompt.text = [input.prompt.text, evidence]
@@ -461,10 +484,12 @@ export function createSetup({
     }
 
     return async () => {
-      await promptRegistration.dispose();
-      await toolRegistration?.dispose();
-      await registration.dispose();
-      await auto?.dispose();
+      // Release every handle even when one fails, then surface the first failure.
+      const results = await Promise.allSettled(
+        [promptRegistration, toolRegistration, registration, auto].map(async (held) => held?.dispose()),
+      );
+      const failure = results.find((result): result is PromiseRejectedResult => result.status === 'rejected');
+      if (failure) throw failure.reason;
     };
   };
 }

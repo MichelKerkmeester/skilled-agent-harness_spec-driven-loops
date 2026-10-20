@@ -1,0 +1,16 @@
+# row15: the adapter is unchanged code, so the mutation breaks its wiring by hand
+## mutation: s/^    tool: tools,$/    \/\/ tool removed/
+(fail) OpenCode host adapter > registers the event, chat.message, tool and dispose hooks [12.55ms]
+ 1 pass
+ 1 fail
+## mutation: s/^    "chat.message": async/    "chat.messages": async/
+(fail) OpenCode host adapter > registers the event, chat.message, tool and dispose hooks [4.85ms]
+ 1 pass
+ 1 fail
+## mutation: s/^  if (opts.enabled === false) {$/  if (opts.enabled === true) {/
+(fail) OpenCode host adapter > returns only dispose when disabled [1.91ms]
+ 1 pass
+ 1 fail
+## unmodified adapter
+ 2 pass
+ 0 fail

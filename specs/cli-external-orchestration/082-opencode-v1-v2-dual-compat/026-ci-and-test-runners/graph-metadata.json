@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci and test runners",
+      "phase 26 ci and test runners",
+      "hooks vitest blocking job",
+      "security_policy document type",
+      "ci and test runners plan",
+      "ci and test runners tasks",
+      "ci and test runners implementation summary"
+    ],
+    "key_topics": [
+      "test",
+      "runners",
+      "phase",
+      "hooks",
+      "vitest",
+      "blocking",
+      "job",
+      "document",
+      "type",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/dispatch-enforcement-guard.yml",
+      ".github/workflows/opencode-dual-version.yml",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+      ".skilled/scripts/run-node-tests.mjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/run-all-drift-guards.test.cjs",
+      ".github/workflows/sk-code-script-tests.yml",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/scripts/tests/test_validator.py",
+      ".skilled/skills/sk-doc/shared/references/core-standards.md",
+      ".skilled/skills/sk-doc/shared/scripts/README.md",
+      "scratch/mutation/row14-runner.txt",
+      "scratch/mutation/row16-trigger-steps.txt",
+      "scratch/mutation/row17-hermetic-path.txt",
+      "scratch/mutation/row28-ancestor-node-modules.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-enforcement-guard.yml",
+        "kind": "config",
+        "path": ".github/workflows/dispatch-enforcement-guard.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-script-tests.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/run-all-drift-guards.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-code-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "test_validator.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_validator.py",
+        "source": "derived"
+      },
+      {
+        "name": "core-standards.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/references/core-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "row14-runner.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row14-runner.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row16-trigger-steps.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row16-trigger-steps.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row17-hermetic-path.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row17-hermetic-path.txt",
+        "source": "derived"
+      },
+      {
+        "name": "row28-ancestor-node-modules.txt",
+        "kind": "file",
+        "path": "scratch/mutation/row28-ancestor-node-modules.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Several suites passed locally but blocked nothing",
+    "created_at": "2026-10-20T07:10:02Z",
+    "last_save_at": "2026-10-20T08:12:19.928Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75b67e7a4653b528a7d21c3ad76711a5974c9e5a329923b3b05a07fda7fe2fa0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bc6d99280f861834c7735bd7647e3a933f61270b70e8fdaa9eebe2ff3a9ca522",
+      "plan.md": "c7b53f45cbe398e9bed19dd0b7a1cd7211f5100973d5be32b0399bb1ad9a9139",
+      "tasks.md": "efa2a8ed5414dddc62579da015a82c7cd897a76b37d7640f698f92b84b4907b8",
+      "implementation-summary.md": "890181b83f9675357f6c2dcdae51219e4225f4058f2ddd004eaaf17044381dcb"
+    },
+    "last_active_at": null
+  }
+}

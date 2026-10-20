@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 786,
+  "derived_count": 785,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -524,7 +524,6 @@
     ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind",
     ".skilled/skills/sk-vision/benchmark/reports/2026-08-17--manual-testing-playbook--vsn-020-devin-vision-blind-pass",
     ".skilled/skills/sk-vision/hooks",
-    ".skilled/skills/sk-vision/vision-runtime/src/opencode",
     ".skilled/skills/system-deep-loop",
     ".skilled/skills/system-deep-loop/benchmark",
     ".skilled/skills/system-deep-loop/benchmark/reports",

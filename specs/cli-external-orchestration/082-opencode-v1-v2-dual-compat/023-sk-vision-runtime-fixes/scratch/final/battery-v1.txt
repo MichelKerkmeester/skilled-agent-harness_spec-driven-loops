@@ -1,0 +1,66 @@
+{
+  "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/160-sk-vision-runtime-fixes",
+  "family": "v1",
+  "results": [
+    {
+      "leg": "family-present",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "a v1 binary is installed",
+      "details": [
+        "/Users/michelkerkmeester/.local/bin/opencode"
+      ]
+    },
+    {
+      "leg": "plugin-discovered",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "all 17 plugin files discovered",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "session-relaunch.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    },
+    {
+      "leg": "plugin-load",
+      "family": "v1",
+      "status": "PASS",
+      "reason": "all 17 plugin files loaded",
+      "details": [
+        "classifier-injection-screen.js",
+        "cli-dispatch-audit.js",
+        "codex-hooks-watchdog.js",
+        "mcp-route-guard.js",
+        "opencode-goal.js",
+        "session-cleanup.js",
+        "session-relaunch.js",
+        "sk-code-post-edit-quality.js",
+        "sk-git-message-gate.js",
+        "sk-git-preflight-advisory.js",
+        "sk-vision.js",
+        "system-completion-sentinel.js",
+        "system-deep-loop-guard.js",
+        "system-dist-freshness-guard.js",
+        "system-skill-advisor.js",
+        "system-spec-gate.js",
+        "system-speckit-completion.js"
+      ]
+    }
+  ],
+  "exit": 0
+}

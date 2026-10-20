@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a823f39c5f2d59199b68cb351a3ee6eb62cbf05640e4265531f3a6f11a2c5b91",
+  "manifestHash": "c44c4d9ac22f399a3c44b205146f4e1ea7f960331be36007b6ddad01ad1f5a5e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17597,6 +17597,18 @@
     ],
     "churn cumulative arm tasks": [
       "churn cumulative arm tasks"
+    ],
+    "ci and test runners": [
+      "ci and test runners"
+    ],
+    "ci and test runners implementation summary": [
+      "ci and test runners implementation summary"
+    ],
+    "ci and test runners plan": [
+      "ci and test runners plan"
+    ],
+    "ci and test runners tasks": [
+      "ci and test runners tasks"
     ],
     "ci canary verdict vocabulary": [
       "ci canary verdict vocabulary"
@@ -51808,6 +51820,9 @@
     "hooks v1 json session start path": [
       "hooks.v1.json session start path"
     ],
+    "hooks vitest blocking job": [
+      "hooks vitest blocking job"
+    ],
     "hooks vitest scope": [
       "hooks vitest scope"
     ],
@@ -71893,6 +71908,9 @@
     "phase 25 external surface priority research": [
       "phase 25 external surface priority research"
     ],
+    "phase 26 ci and test runners": [
+      "phase 26 ci and test runners"
+    ],
     "phase 28 surface setup hardening research": [
       "phase 28 surface setup hardening research"
     ],
@@ -88513,6 +88531,9 @@
     "security policy checklist": [
       "security policy checklist"
     ],
+    "security policy document type": [
+      "security_policy document type"
+    ],
     "security policy plan": [
       "security policy plan"
     ],
@@ -94661,6 +94682,9 @@
     "sk vision feature catalog": [
       "sk-vision feature catalog"
     ],
+    "sk vision fix list rows": [
+      "sk vision fix list rows"
+    ],
     "sk vision force auto inspect": [
       "sk-vision force auto-inspect"
     ],
@@ -94954,6 +94978,21 @@
     ],
     "sk vision run index": [
       "sk-vision run index"
+    ],
+    "sk vision runtime fixes": [
+      "sk vision runtime fixes"
+    ],
+    "sk vision runtime fixes from the post merge": [
+      "sk vision runtime fixes from the post merge"
+    ],
+    "sk vision runtime fixes implementation summary": [
+      "sk vision runtime fixes implementation summary"
+    ],
+    "sk vision runtime fixes plan": [
+      "sk vision runtime fixes plan"
+    ],
+    "sk vision runtime fixes tasks": [
+      "sk vision runtime fixes tasks"
     ],
     "sk vision runtime fork": [
       "sk-vision runtime fork"

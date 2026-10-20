@@ -3,8 +3,8 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from "bun:test";
-import type { PhotonProvider } from "../providers/photon.js";
-import { skVisionTools, toV2Tools } from "./tools.js";
+import type { PhotonProvider } from "../../src/providers/photon.js";
+import { skVisionTools, toV2Tools } from "../../src/opencode/tools.js";
 
 type ZodLike = { safeParse(value: unknown): { success: boolean } };
 
