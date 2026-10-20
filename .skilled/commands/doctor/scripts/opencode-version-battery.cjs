@@ -229,7 +229,16 @@ function allowedCommandSources(root, family, env) {
 // copies fail as duplicate IDs.
 function ancestorPluginDirs(root) {
   const found = [];
-  let current = path.dirname(root);
+  // OpenCode 2 walks the real directory tree, so a symlinked root is resolved
+  // first; a root that is the filesystem root has no ancestor to walk.
+  let real;
+  try {
+    real = fs.realpathSync(root);
+  } catch {
+    real = path.resolve(root);
+  }
+  let current = path.dirname(real);
+  if (current === real) return found;
   while (true) {
     const dir = path.join(current, ...PLUGIN_DIR_PARTS);
     try {

@@ -1,0 +1,136 @@
+✔ R1: v1 every plugin file discovered and loaded passes both legs (1.808208ms)
+✔ R2: v1 a file missing from the debug config fails plugin-discovered naming it (0.364875ms)
+✔ R3: v1 a harness failure fails plugin-load naming the plugin and its detail (0.119416ms)
+✔ R4: v1 a non-zero debug config or unparseable stdout fails plugin-discovered (0.0945ms)
+✔ R5: v1 a plugin with no harness line degrades plugin-load naming it (0.074375ms)
+✔ R6: v2 every plugin active on a stable read passes plugin-active (0.239708ms)
+✔ R7: v2 an entry with a failed status fails plugin-active naming plugin and status (0.0945ms)
+✔ R8: v2 counts that never stabilise degrade plugin-active with the counts (0.148583ms)
+✔ R9: v2 a server that never started degrades plugin-active, skill-visible and command-listed (3.26175ms)
+✔ R10: family v2 requested with only a v1 candidate skips and exits 3 (1.566709ms)
+✔ R11: family both with only v1 installed skips v2 and exits 3 while the v1 legs pass (2.342125ms)
+✔ R12: zero plugin files fails (1.949083ms)
+✔ R13: --out to an unwritable path exits 2 (2.447416ms)
+✔ R14: an unknown argument exits 2 with usage on stderr (0.434875ms)
+✔ R15: v2 a plugin file with no entry under the root fails naming the file (0.117708ms)
+✔ R16: --out <file> and --root <dir> parse the same as the = forms (0.377709ms)
+✔ R17: --out as the last argument is a usage error (0.180583ms)
+✔ R18: a spaced value that is itself a flag is a usage error, the = form is kept (0.160042ms)
+✔ C1: v2 lists a nested project and allows the ancestor folder and the built-ins (6.58025ms)
+✔ C2: v2 without the ancestor folder fails naming the ancestor command, then passes (4.1275ms)
+✔ C3: v1 does not walk up, so an ancestor command and a built-in are both strays (4.381417ms)
+✔ C4: v2 fails when a project command file is missing from the listing (4.081209ms)
+✔ C5: a listing that did not parse fails command-listed on either family (2.627417ms)
+✔ C6: a command file in the global config folder is allowed on both families (3.98975ms)
+✔ C7: both command folder spellings are read, with slashed names and a followed link (1.804167ms)
+✔ C8: v2 a command listing that never settles degrades command-listed (2.340292ms)
+✔ parity: the battery parser and the deep-loop resolver agree on one shared list (0.296ms)
+✔ parity: every shared corpus entry keeps its expected family (0.088209ms)
+✔ adversarial: path-qualified, prerelease and joined output answer the pinned families (0.04975ms)
+✔ adversarial: CRLF and joined version output read as v1, empty and garbage as unknown (0.029625ms)
+✔ adversarial: empty version output is skipped and the family reports SKIP (2.012708ms)
+✔ adversarial: a probe error skips the candidate instead of assuming it (0.094375ms)
+✔ adversarial: a root without .opencode/plugins fails naming the root (0.901041ms)
+✔ adversarial: a root with spaces and $(id) reaches the collectors as one string (3.892333ms)
+✔ probe count: three candidates sharing one path probe each distinct path once (2.697708ms)
+✔ a broken symlink in the plugin folder fails plugin-discovered naming it (1.789541ms)
+✖ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4354.354958ms)
+✖ nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root (4.554792ms)
+✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (3.700459ms)
+✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (4379.36675ms)
+✖ nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root (4.120834ms)
+✖ nested: a caller switch survives on a plain root and is overridden on a nested root (0.683458ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 36
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10846.041166
+
+✖ failing tests:
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:808:1
+✖ real readV2: the password reaches no result, stream or leftover file and the fake server is gone (4354.354958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  
+  undefined !== []
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:847:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:854:1
+✖ nested: ancestorPluginDirs names the outer plugin folder and nothing for a plain root (4.554792ms)
+  TypeError: ancestorPluginDirs is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:859:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:863:1
+✖ nested: v2ServerEnv isolates a nested root and leaves a plain root alone (3.700459ms)
+  TypeError: v2ServerEnv is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:869:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:882:1
+✖ nested: real readV2 under an outer checkout passes plugin-active with an isolated line (4379.36675ms)
+  AssertionError [ERR_ASSERTION]: [{"leg":"family-present","family":"v2","status":"PASS","reason":"a v2 binary is installed","details":["/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode-battery-iXl96v/fake-opencode.cjs"]},{"leg":"plugin-active","family":"v2","status":"FAIL","reason":"the stable read shows missing or inactive plugins","details":["alpha.js: status failed"]},{"leg":"skill-visible","family":"v2","status":"PASS","reason":"1 skill entries visible","details":["entries: 1","visible: 1"]},{"leg":"command-listed","family":"v2","status":"PASS","reason":"all 1 command files listed","details":["listed: 1","required: 1"]}]
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:899:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:916:1
+✖ nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root (4.120834ms)
+  TypeError: ancestorPluginDirs is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:924:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at .skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:928:1
+✖ nested: a caller switch survives on a plain root and is overridden on a nested root (0.683458ms)
+  TypeError: v2ServerEnv is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/169-nested-worktree-battery/.skilled/commands/doctor/scripts/tests/opencode-version-battery.test.cjs:930:17)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

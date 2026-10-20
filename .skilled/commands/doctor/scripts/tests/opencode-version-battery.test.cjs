@@ -116,6 +116,16 @@ function emptyEnv(t) {
   return { HOME: tempRoot(t), XDG_CONFIG_HOME: tempRoot(t) };
 }
 
+// The caller environment minus the two OpenCode 2 config switches, so a test of
+// normal discovery never inherits a switch from whoever runs the suite.
+function envWithoutSwitches() {
+  const env = { ...process.env };
+  delete env.OPENCODE_CONFIG_PROJECT_DISABLE;
+  delete env.OPENCODE_DISABLE_PROJECT_CONFIG;
+  delete env.OPENCODE_CONFIG_DIR;
+  return env;
+}
+
 // Writes an executable stand-in for the v2 binary into a temporary folder: it
 // answers the serve banner and every API read, and records its pid and private
 // folder so the test can judge them once the battery has finished.
@@ -154,11 +164,12 @@ if (args[0] === 'serve') {
   setInterval(() => {}, 1000);
 } else if (args[0] === 'api') {
   const apiPath = args[4];
+  const configOk = process.env.OPENCODE_CONFIG_PROJECT_DISABLE !== '1' || process.env.OPENCODE_CONFIG_DIR === path.join(root, '.opencode');
   const data = apiPath.startsWith('/api/plugin')
     ? pluginData()
     : apiPath.startsWith('/api/command')
-      ? [{ name: 'battery', description: 'fixture command' }]
-      : [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }];
+      ? (configOk ? [{ name: 'battery', description: 'fixture command' }] : [])
+      : (configOk ? [{ id: 'battery', path: path.join(root, '.opencode', 'skills', 'battery', 'SKILL.md') }] : []);
   console.log(JSON.stringify({ data }));
 }
 `;
@@ -803,7 +814,7 @@ test('real readV2: the password reaches no result, stream or leftover file and t
     env: { OPENCODE_BIN: server.script },
     probeVersion: () => ({ output: '2.0.32', error: null }),
     readV2: async (bin, dir) => {
-      collected = await readV2(bin, dir, process.env);
+      collected = await readV2(bin, dir, envWithoutSwitches());
       return collected;
     },
   });
@@ -880,17 +891,50 @@ test('nested: real readV2 under an outer checkout passes plugin-active with an i
   const { calls, deps } = makeDeps({
     env: { OPENCODE_BIN: server.script },
     probeVersion: () => ({ output: '2.0.32', error: null }),
-    readV2: (bin, dir) => readV2(bin, dir, process.env),
+    readV2: (bin, dir) => readV2(bin, dir, { ...envWithoutSwitches(), OPENCODE_CONFIG_DIR: '/fixture/caller-config' }),
   });
 
-  await main(['--family=v2', '--root=' + root, '--json'], deps);
+  const code = await main(['--family=v2', '--root=' + root, '--json'], deps);
   const summary = summaryOf(calls);
+  assert.equal(code, 0, JSON.stringify(summary.results));
   const active = summary.results.find((result) => result.leg === 'plugin-active');
   assert.ok(active);
   assert.equal(active.status, 'PASS', resultText(active));
   assert.match(active.details[0], /^isolated: OpenCode 2 also loads /);
   assert.ok(active.details[0].includes(path.join(outer, '.opencode', 'plugins')));
+  const skill = summary.results.find((result) => result.leg === 'skill-visible');
+  assert.ok(skill);
+  assert.equal(skill.status, 'PASS', resultText(skill));
+  const listed = summary.results.find((result) => result.leg === 'command-listed');
+  assert.ok(listed);
+  assert.equal(listed.status, 'PASS', resultText(listed));
   const record = JSON.parse(fs.readFileSync(server.record, 'utf8'));
   assert.equal(record.projectDisable, '1');
   assert.equal(record.configDir, path.join(root, '.opencode'));
+});
+
+test('nested: ancestorPluginDirs follows a symlinked root to its real parents and walks nothing from the filesystem root', (t) => {
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  const real = path.join(outer, 'wt');
+  fs.mkdirSync(path.join(real, '.opencode', 'plugins'), { recursive: true });
+  const elsewhere = tempRoot(t);
+  const alias = path.join(elsewhere, 'alias');
+  fs.symlinkSync(real, alias);
+  assert.deepEqual(ancestorPluginDirs(alias), [path.join(outer, '.opencode', 'plugins')]);
+  assert.deepEqual(ancestorPluginDirs(path.parse(process.cwd()).root), []);
+});
+
+test('nested: a caller switch survives on a plain root and is overridden on a nested root', (t) => {
+  const temp = tempRoot(t);
+  const plain = v2ServerEnv({ OPENCODE_CONFIG_PROJECT_DISABLE: '1', OPENCODE_CONFIG_DIR: '/caller' }, tempRoot(t), temp);
+  assert.equal(plain.childEnv.OPENCODE_CONFIG_PROJECT_DISABLE, '1');
+  assert.equal(plain.childEnv.OPENCODE_CONFIG_DIR, '/caller');
+  const outer = tempRoot(t);
+  fs.mkdirSync(path.join(outer, '.opencode', 'plugins'), { recursive: true });
+  const root = path.join(outer, 'wt');
+  fs.mkdirSync(root, { recursive: true });
+  const nested = v2ServerEnv({ OPENCODE_CONFIG_PROJECT_DISABLE: '0', OPENCODE_CONFIG_DIR: '/caller' }, root, temp);
+  assert.equal(nested.childEnv.OPENCODE_CONFIG_PROJECT_DISABLE, '1');
+  assert.equal(nested.childEnv.OPENCODE_CONFIG_DIR, path.join(root, '.opencode'));
 });
