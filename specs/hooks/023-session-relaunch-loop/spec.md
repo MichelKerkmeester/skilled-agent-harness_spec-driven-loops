@@ -112,6 +112,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 9 | 009-research-fixes-and-core-consolidation/ | Fix the verified research findings with a failing-first test each, move the decisions every adapter repeats into the core, add an adapter conformance suite and correct the doc drift. | complete |
 | 10 | 010-post-fix-research/ | Five more research iterations after phase 009, DeepSeek V4.1 Flash max through cli-pi on LLM Gateway, with each finding verified. | complete |
 | 11 | 011-post-fix-remediation/ | Fix all twenty post-fix research findings, the two frontier items and the follow-ups, with failing-first tests and arm conformance cases. | complete |
+| 12 | 012-ci-red-check-repairs/ | AGENTS.md is back inside the 16 KB delivery prefix, and the session-relaunch example line no longer reads as a switch, so Rule Canary Sync and sk-doc Script Tests pass again locally. | complete |
 
 ### Phase Transition Rules
 
@@ -134,6 +135,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 008-review-3-remediation | 009-research-fixes-and-core-consolidation | phase 008 is Complete and the research run after it has a merged report with a verification table | `validate.sh 008-review-3-remediation --strict` RESULT: PASSED, and `research/research.md` exists with its verified findings |
 | 009-research-fixes-and-core-consolidation | 010-post-fix-research | phase 009 is Complete and merged to main | `validate.sh 009-research-fixes-and-core-consolidation --strict` RESULT: PASSED |
 | 010-post-fix-research | 011-post-fix-remediation | phase 010 is Complete with a verified report | `research/research.md` in 010 gives every finding a verdict |
+| 007-handoff-gate-exemptions | 012-ci-red-check-repairs | 007's AGENTS.md and hook-flags example changes are on main | The rule canary and the sk-doc script tests pass locally |
 <!-- /ANCHOR:phase-map -->
 
 ---

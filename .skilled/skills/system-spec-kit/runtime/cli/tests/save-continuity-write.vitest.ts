@@ -109,6 +109,40 @@ function summaryDoc(relativeFolder: string, fingerprint = `sha256:${'0'.repeat(6
   ].join('\n');
 }
 
+// A research record keeps its continuity block in spec.md and never gets an
+// implementation summary.
+function researchSpecDoc(relativeFolder: string): string {
+  return [
+    '---',
+    'title: "Research Record: Fixture"',
+    '_memory:',
+    '  continuity:',
+    `    packet_pointer: "${packetId(relativeFolder)}"`,
+    '    last_updated_at: "2026-09-01T00:00:00Z"',
+    '    last_updated_by: "tester"',
+    '    recent_action: "Initialize continuity block"',
+    '    next_safe_action: "Replace template defaults on first save"',
+    '    blockers: []',
+    '    key_files: []',
+    '    session_dedup:',
+    `      fingerprint: "sha256:${'0'.repeat(64)}"`,
+    '      session_id: "fixture-research"',
+    '      parent_session_id: null',
+    '    completion_pct: 0',
+    '    open_questions: []',
+    '    answered_questions: []',
+    '---',
+    '# Research Record: Fixture',
+    '',
+    '<!-- SPECKIT_LEVEL: research -->',
+    '',
+    '| Field | Value |',
+    '|-------|-------|',
+    '| **Status** | In Progress |',
+    '',
+  ].join('\n');
+}
+
 function writeFile(relativePath: string, content: string): void {
   const absolute = path.join(root, relativePath);
   fs.mkdirSync(path.dirname(absolute), { recursive: true });
@@ -363,6 +397,34 @@ describe('save writer continuity write', () => {
     expect([LEAF, OTHER, FLAT_CHILD].map((folder) => read(`${folder}/implementation-summary.md`))).toEqual(summaries);
     expect([MID, TRACK, FLAT_PARENT].map((folder) => read(`${folder}/graph-metadata.json`))).toEqual(pointersBefore);
     expect(stderr).toContain('it has no usable pointer');
+  });
+
+  it('writes a research record continuity into its spec.md', async () => {
+    const research = `${TRACK}/300-research`;
+    writeFile(`${research}/spec.md`, researchSpecDoc(research));
+    writeFile(`${research}/graph-metadata.json`, graphMetadata(research));
+
+    await save(research, { recent_action: 'Closed the fixture research', next_safe_action: 'Verify the research findings' });
+
+    const spec = read(`${research}/spec.md`);
+    const block = continuityBlock(spec);
+    expect(block).toContain('recent_action: "Closed the fixture research"');
+    expect(block).toContain('next_safe_action: "Verify the research findings"');
+    expect(block).not.toContain('Initialize continuity block');
+    expect(spec).toContain('<!-- SPECKIT_LEVEL: research -->');
+    expect(fs.existsSync(path.join(root, research, 'implementation-summary.md'))).toBe(false);
+  });
+
+  it('still writes no continuity into a non-research leaf without an implementation summary', async () => {
+    const plain = `${TRACK}/301-plain`;
+    writeFile(`${plain}/spec.md`, specDoc('Plain'));
+    writeFile(`${plain}/graph-metadata.json`, graphMetadata(plain));
+    const before = read(`${plain}/spec.md`);
+
+    await save(plain, { recent_action: 'Refused without a summary' });
+
+    expect(read(`${plain}/spec.md`)).toBe(before);
+    expect(stderr).toContain('has no implementation-summary.md yet');
   });
 
   it('stops the pointer walk below the specs root', async () => {

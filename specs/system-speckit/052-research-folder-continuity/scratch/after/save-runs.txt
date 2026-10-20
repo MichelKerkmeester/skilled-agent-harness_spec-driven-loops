@@ -1,0 +1,6 @@
+# Continuity not written warnings per research-child save, after the fix (all exit 0)
+014-post-merge-deep-research 0
+015-post-merge-research-sk-vision 0
+016-post-merge-research-cli-opencode-ci 0
+017-post-merge-research-provisioning 0
+018-post-merge-research-conformance 0

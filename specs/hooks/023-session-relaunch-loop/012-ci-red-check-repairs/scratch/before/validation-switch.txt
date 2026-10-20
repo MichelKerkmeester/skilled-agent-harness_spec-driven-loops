@@ -1,0 +1,40 @@
+..F.....                                                                 [100%]
+=================================== FAILURES ===================================
+________________ test_every_example_line_works_once_uncommented ________________
+
+tmp_path = PosixPath('/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/pytest-of-michelkerkmeester/pytest-447/test_every_example_line_works_0')
+
+    def test_every_example_line_works_once_uncommented(tmp_path):
+        example = REPO_ROOT / ".skilled" / "hooks" / "hook-flags.env.example"
+        switch_line = re.compile(r"^# ([A-Z][A-Z0-9_]*)=(\S+)")
+        written, lines = {}, []
+        for line in example.read_text(encoding="utf-8").splitlines():
+            match = switch_line.match(line)
+            if match:
+                written[match.group(1)] = match.group(2)
+                line = line[2:]
+            lines.append(line)
+        assert {"SPECKIT_SKIP_VALIDATION", "SKDOC_SKIP_VALIDATION", "SYSTEM_HOOKS_DISABLED"} <= set(written)
+        flags = tmp_path / "hook-flags.env"
+        flags.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        assert validation_switch.skip_source({"HOOK_FLAGS_CONFIG": str(flags)}) == str(flags)
+        node = subprocess.run(
+            ["node", "-e",
+             "const h = require(process.argv[1]); const c = h.loadConfigFile(process.argv[2]);"
+             " const w = JSON.parse(process.argv[3]);"
+             " process.stdout.write(JSON.stringify(Object.keys(w).filter((n) => c[n] !== w[n]"
+             " || (w[n] !== '0' && !h.isFlagOn(n, {}, c)))))",
+             str(HOOK_FLAGS_CJS), str(flags), json.dumps(written)],
+            capture_output=True, text=True, check=True,
+        )
+>       assert json.loads(node.stdout) == [], "these example lines do not take effect as written once uncommented"
+E       AssertionError: these example lines do not take effect as written once uncommented
+E       assert ['SESSION_RELAUNCH_REPO_ROOT'] == []
+E         
+E         Left contains one more item: 'SESSION_RELAUNCH_REPO_ROOT'
+E         Use -v to get more diff
+
+test_validation_switch.py:106: AssertionError
+=========================== short test summary info ============================
+FAILED test_validation_switch.py::test_every_example_line_works_once_uncommented
+1 failed, 7 passed in 1.59s

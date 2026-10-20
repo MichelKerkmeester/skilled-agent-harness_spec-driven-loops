@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aea4e7d7c32a330b75c8b57f84867937f3321f8509c996b07824fa1c9f3cfd26",
+  "corpusHash": "5f590425d210709439236780975956eb009d3311ffda1279bb3f07c24353fac3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25230,
+  "includedPathCount": 25309,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8833,6 +8833,77 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/013-sk-vision-v2-tools-and-loose-ends/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/iterations/iteration-003.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/iterations/iteration-004.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/prompts/iteration-3.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/prompts/iteration-4.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research_archive/20261019T190857Z/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research_archive/20261019T190857Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research_archive/20261019T190857Z/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/research_archive/20261019T190857Z/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research_archive/20261019T190902Z/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research_archive/20261019T190902Z/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research_archive/20261019T190902Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research_archive/20261019T190902Z/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/research_archive/20261019T190902Z/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research_archive/20261019T190906Z/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research_archive/20261019T190906Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research_archive/20261019T190906Z/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/research_archive/20261019T190906Z/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research_archive/20261019T190911Z/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research_archive/20261019T190911Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research_archive/20261019T190911Z/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/research_archive/20261019T190911Z/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/deep-research-dashboard.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/iterations/iteration-001.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/iterations/iteration-002.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/prompts/iteration-2.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/resource-map.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/deep-research-strategy.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/prompts/iteration-1.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/research.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/research_archive/20261019T190915Z/steering-log.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -10157,6 +10228,10 @@
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/plan.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/spec.md",
     "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/plan.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/spec.md",
+    "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-dashboard.md",
     "specs/hooks/023-session-relaunch-loop/review-archive/20261018T184826Z/deep-review-strategy.md",
@@ -25258,10 +25333,14 @@
     "specs/system-speckit/051-symlinked-runtime-root/implementation-summary.md",
     "specs/system-speckit/051-symlinked-runtime-root/plan.md",
     "specs/system-speckit/051-symlinked-runtime-root/spec.md",
-    "specs/system-speckit/051-symlinked-runtime-root/tasks.md"
+    "specs/system-speckit/051-symlinked-runtime-root/tasks.md",
+    "specs/system-speckit/052-research-folder-continuity/implementation-summary.md",
+    "specs/system-speckit/052-research-folder-continuity/plan.md",
+    "specs/system-speckit/052-research-folder-continuity/spec.md",
+    "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e6ed7c23bb7cfa476e91d0207e32fd6b68f7c0e2d067ad13b6c669211a364e40",
+  "manifestHash": "445b993356ad84c8cb49cd45919a591da83f836c8ad64fdc86ba56c00eeb8a39",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26276,6 +26355,26 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/014-post-merge-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/015-post-merge-research-sk-vision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/016-post-merge-research-cli-opencode-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/017-post-merge-research-provisioning/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/018-post-merge-research-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/scratch",
       "reason": "excluded directory"
     },
@@ -27017,6 +27116,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/007-handoff-gate-exemptions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/012-ci-red-check-repairs/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31857,6 +31960,10 @@
     },
     {
       "path": "specs/system-speckit/051-symlinked-runtime-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/052-research-folder-continuity/scratch",
       "reason": "excluded directory"
     },
     {

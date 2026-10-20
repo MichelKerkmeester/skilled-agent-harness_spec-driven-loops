@@ -1,0 +1,11 @@
+# Blast-Radius Management section end byte and AGENTS.md size per commit (git show <commit>:AGENTS.md)
+9f433e6530 end=16373 size=26880 docs(root): trim Gate 3 back inside Devin's 16 KB AGENTS.md prefix
+b830fd0276 end=16377 size=27256 feat(hooks): add a self-relaunching session loop near the context limit
+b3655ed3de end=16626 size=27505 fix(system-spec-kit): exempt runtime-state writes from the Gate 3 prompt
+3aec8f742a end=16626 size=27505 chore(system-spec-kit): rebuild the trigger index
+working tree end=16323 size=27202
+# commit that added the switch-form example line: git log -S SESSION_RELAUNCH_REPO_ROOT -- .skilled/hooks/hook-flags.env.example
+d001d69fee fix(hooks): harden the session relaunch loop from reviews and live runs
+# ~/.claude/CLAUDE.md (read only, never edited) compared with AGENTS.md
+identical to HEAD AGENTS.md before this change
+differs from the trimmed AGENTS.md

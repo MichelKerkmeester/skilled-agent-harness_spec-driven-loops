@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/052-research-folder-continuity",
+  "description": "A full-auto save with continuity fields refused every research record and left its continuity block scaffolded",
+  "keywords": [
+    "let",
+    "continuity",
+    "writer",
+    "save",
+    "research-level",
+    "folder"
+  ],
+  "lastUpdated": "2026-10-19T22:06:11.036Z",
+  "specId": "052",
+  "folderSlug": "research-folder-continuity",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "19-10-26_23-00__let-the-continuity-writer-save-into-a-research.md",
+    "19-10-26_23-06__let-the-continuity-writer-save-into-a-research.md"
+  ]
+}
