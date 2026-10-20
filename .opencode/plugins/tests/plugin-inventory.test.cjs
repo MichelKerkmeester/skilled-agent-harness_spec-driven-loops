@@ -257,14 +257,14 @@ test('handledEventNames reads both quote styles, both orders and case labels', (
 });
 
 test('handledEventNames reads names from a resolved collection', () => {
-  const source = `const KNOWN = new Set(['h.one', "h.two"]); if (KNOWN.has(eventType)) {}`;
+  const source = `const KNOWN = new Set(['h.one', "h.two"]); if (KNOWN.has(eventType)) {} if (['i.one'].includes(eventType)) {} if (new Set(["i.two"]).has(eventType)) {}`;
 
-  assert.deepEqual(handledEventNames(source), ['h.one', 'h.two']);
+  assert.deepEqual(handledEventNames(source), ['h.one', 'h.two', 'i.one', 'i.two']);
   assert.deepEqual(unscannedEventChecks(source), []);
 });
 
 test('unscannedEventChecks reports checks the scan cannot read', () => {
-  const source = `if (eventType === SESSION_IDLE) {} if (eventType === EVENTS.IDLE) {} if (eventType.endsWith('.x')) {} if (eventType.toLowerCase() === 'a.c') {} if (KNOWN.has(eventType)) {} if (OTHER.has(eventType)) {} if (eventType === \`x.\${y}\`) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
+  const source = `if (eventType === SESSION_IDLE) {} if (eventType === EVENTS.IDLE) {} if (eventType.endsWith('.x')) {} if (eventType.toLowerCase() === 'a.c') {} if (KNOWN.has(eventType)) {} if (OTHER.has(eventType)) {} if (getKnown().has(eventType)) {} if (eventType === \`x.\${y}\`) {} if (type === 'a.b') {} if (type === undefined) {} if (SESSION_IDLE === eventType) {} switch (eventType) { case EVENTS.IDLE: }`;
 
   assert.deepEqual(unscannedEventChecks(source), [
     'KNOWN.has(eventType)',
@@ -276,7 +276,24 @@ test('unscannedEventChecks reports checks the scan cannot read', () => {
     'eventType === `x.${y}`',
     "eventType.endsWith('.x')",
     "eventType.toLowerCase() === 'a.c'",
+    'getKnown().has(eventType)',
   ]);
+});
+
+test('unscannedEventChecks fails closed on forms it cannot resolve', () => {
+  const source =
+    `if (eventType === (x ? 'z.c' : 'z.d')) {}      // comparison whose operand is not a single literal\n` +
+    `switch (eventType) { case getName(): }          // case label that is not a literal\n` +
+    `if (eventType in HANDLERS) {}                   // \`in\` test\n` +
+    `HANDLERS[eventType]?.()                         // index lookup`;
+
+  assert.deepEqual(unscannedEventChecks(source), [
+    'HANDLERS[eventType]',
+    'case getName():',
+    "eventType === (x ? 'z.c' : 'z.d')",
+    'eventType in HANDLERS',
+  ]);
+  assert.deepEqual(handledEventNames(source), []);
 });
 
 test('every unscanned event check is listed', () => {

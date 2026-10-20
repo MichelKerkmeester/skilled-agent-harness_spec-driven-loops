@@ -200,7 +200,7 @@ node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v1
 node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=v2
 ```
 
-**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main on 2026-10-19, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds.
+**Plugin suite.** The first command runs every suite under `tests/`, including the three v2 suites and the inventory test. It passed 397 of 397 on main at `8c9a14bd59` on 2026-10-20, before the inventory test was added, and the v2 suites cover every plugin file the inventory finds.
 
 **Doctor battery.** The next two commands check both versions, and the v2 run starts a private server on its own port. On the tested date the battery discovered all 17 plugin files on OpenCode 1.19.3 and reported all 17 active on OpenCode 2.0.32.
 

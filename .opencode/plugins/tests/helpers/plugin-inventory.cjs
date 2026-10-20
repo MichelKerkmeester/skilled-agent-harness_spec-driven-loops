@@ -22,7 +22,31 @@ const EVENT_NAME_SOURCE = String.raw`[a-z]+(?:\.[a-z_]+)+`;
 const COMPARISON_SOURCE = String.raw`(?:===|!==|==|!=)`;
 const OPERAND_SOURCE = String.raw`(?:'[^'\n]*'|"[^"\n]*"|${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`;
 const BACKTICK = '`';
-const MEMBERSHIP_SOURCE = String.raw`(${IDENTIFIER_SOURCE})\.(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`;
+const COLLECTION_ELEMENT_SOURCE = String.raw`'(?:${EVENT_NAME_SOURCE})'|"(?:${EVENT_NAME_SOURCE})"|${BACKTICK}(?:${EVENT_NAME_SOURCE})${BACKTICK}`;
+const COLLECTION_ELEMENT_PATTERN = new RegExp(String.raw`^(?:${COLLECTION_ELEMENT_SOURCE})$`);
+const MEMBERSHIP_CALL_SOURCE = String.raw`\.\s*(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`;
+// An interpolated template literal is built at runtime, so a dollar sign only reads as static
+// when no brace follows it.
+const STATIC_LITERAL_SOURCE = String.raw`'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|${BACKTICK}(?:[^${BACKTICK}\\\n$]|\\.|\$(?!\{))*${BACKTICK}`;
+const STATIC_LITERAL_PATTERN = new RegExp(String.raw`^(?:${STATIC_LITERAL_SOURCE})$`);
+// A comparison against these says nothing about which event arrived.
+const SKIPPED_OPERAND_PATTERN = /^(?:undefined|null)(?![A-Za-z0-9_$])/;
+// A separator or a line break ends an operand at bracket depth zero; inside brackets it is part of it.
+const OPERAND_TERMINATORS = new Set([',', '?', ':', ';', '&', '|', '{', '\n']);
+const KEY_MEMBERSHIP_SOURCE = String.raw`${EVENT_TYPE_SOURCE}\s+in\s+${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*`;
+const KEYED_LOOKUP_SOURCE = String.raw`${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*\s*(?:\?\.)?\s*\[\s*${EVENT_TYPE_SOURCE}\s*\]`;
+// An inline receiver has no declaration to resolve, so its array body is read where it stands.
+// Event names cannot contain brackets, so a bracket-free body keeps one array from matching through the next.
+const INLINE_COLLECTION_AT_END = [
+  new RegExp(String.raw`new\s+Set\s*\(\s*\[([^\[\]]*)\]\s*\)\s*$`),
+  new RegExp(String.raw`Object\.freeze\s*\(\s*\[([^\[\]]*)\]\s*\)\s*$`),
+  new RegExp(String.raw`\[([^\[\]]*)\]\s*$`),
+];
+const OPERAND_TAIL_PATTERN = /[A-Za-z0-9_$\])'".`]/;
+const IDENTIFIER_AT_END = new RegExp(String.raw`(?:^|[^A-Za-z0-9_$.])(${IDENTIFIER_SOURCE})\s*$`);
+const RECEIVER_AT_END = new RegExp(
+  String.raw`((?:\s*(?:${IDENTIFIER_SOURCE}(?:\s*\.\s*${IDENTIFIER_SOURCE})*|\([^()]*\)|\[[^\[\]]*\]))+)\s*$`,
+);
 
 // A slash opens a regex literal only where an expression may begin: after an operator, an
 // opener, or one of the keywords that expects an expression next.
@@ -191,6 +215,18 @@ function stripComments(source) {
   return result.join('');
 }
 
+function literalEventNames(body) {
+  const trimmed = body.trim();
+  if (trimmed === '') return [];
+
+  const elements = trimmed
+    .split(',')
+    .map((element) => element.trim())
+    .filter(Boolean);
+  if (!elements.every((element) => COLLECTION_ELEMENT_PATTERN.test(element))) return null;
+  return elements.map((element) => element.slice(1, -1));
+}
+
 function collectionEventNames(source, identifier) {
   const escaped = identifier.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const wrappers = [
@@ -198,26 +234,167 @@ function collectionEventNames(source, identifier) {
     String.raw`Object\.freeze\s*\(\s*\[([\s\S]*?)\]\s*\)`,
     String.raw`\[([\s\S]*?)\]`,
   ];
-  const elementSource = String.raw`'(?:${EVENT_NAME_SOURCE})'|"(?:${EVENT_NAME_SOURCE})"|${BACKTICK}(?:${EVENT_NAME_SOURCE})${BACKTICK}`;
-  const elementPattern = new RegExp(String.raw`^(?:${elementSource})$`);
 
   for (const wrapper of wrappers) {
     const pattern = new RegExp(String.raw`(?:const|let|var)\s+${escaped}\s*=\s*${wrapper}`);
     const declaration = pattern.exec(source);
     if (declaration === null) continue;
 
-    const body = declaration[1].trim();
-    if (body === '') return [];
-
-    const elements = body
-      .split(',')
-      .map((element) => element.trim())
-      .filter(Boolean);
-    if (!elements.every((element) => elementPattern.test(element))) return null;
-    return elements.map((element) => element.slice(1, -1));
+    return literalEventNames(declaration[1]);
   }
 
   return null;
+}
+
+function inlineCollectionAtEnd(prefix) {
+  for (const pattern of INLINE_COLLECTION_AT_END) {
+    const match = pattern.exec(prefix);
+    if (match === null) continue;
+    // A bracket that follows an operand is an index or property access, not a collection literal.
+    if (match.index > 0 && OPERAND_TAIL_PATTERN.test(prefix[match.index - 1])) continue;
+
+    return {
+      receiver: match[0].trim(),
+      names: literalEventNames(match[1]),
+    };
+  }
+
+  return null;
+}
+
+// Reads forward to the first terminator outside brackets, so a nested expression stays whole
+// while the delimiter of the enclosing statement ends the operand.
+function rightOperandEnd(source, start) {
+  let depth = 0;
+  let quote = null;
+
+  for (let index = start; index < source.length; index += 1) {
+    const character = source[index];
+
+    if (quote !== null) {
+      if (character === '\\') index += 1;
+      else if (character === quote) quote = null;
+      continue;
+    }
+
+    if (character === "'" || character === '"' || character === BACKTICK) {
+      quote = character;
+      continue;
+    }
+
+    if (character === '(' || character === '[') {
+      depth += 1;
+      continue;
+    }
+
+    if (character === ')' || character === ']') {
+      if (depth === 0) return index;
+      depth -= 1;
+      continue;
+    }
+
+    if (depth === 0 && (character === '}' || OPERAND_TERMINATORS.has(character))) return index;
+  }
+
+  return source.length;
+}
+
+// The mirror of rightOperandEnd: a closing bracket nests backwards, so it reads back to the
+// delimiter that opens the operand.
+function leftOperandStart(source, end) {
+  let depth = 0;
+
+  for (let index = end - 1; index >= 0; index -= 1) {
+    const character = source[index];
+
+    if (character === ')' || character === ']' || character === '}') {
+      depth += 1;
+      continue;
+    }
+
+    if (character === '(' || character === '[' || (character === '{' && depth > 0)) {
+      if (depth === 0) return index + 1;
+      depth -= 1;
+      continue;
+    }
+
+    if (depth === 0 && OPERAND_TERMINATORS.has(character)) return index + 1;
+  }
+
+  return 0;
+}
+
+// Only a static literal on the far side names an event, so anything else is reported as written
+// in either operand order.
+function comparisonChecks(source) {
+  const afterType = new RegExp(String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}`, 'g');
+  const beforeType = new RegExp(String.raw`${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`, 'g');
+  const checks = [];
+
+  for (const match of source.matchAll(afterType)) {
+    const start = match.index + match[0].length;
+    const operand = source.slice(start, rightOperandEnd(source, start)).trim();
+    if (operand === '' || SKIPPED_OPERAND_PATTERN.test(operand)) continue;
+    if (STATIC_LITERAL_PATTERN.test(operand)) continue;
+    checks.push(`${match[0].trim()} ${operand}`);
+  }
+
+  for (const match of source.matchAll(beforeType)) {
+    const operand = source.slice(leftOperandStart(source, match.index), match.index).trim();
+    if (operand === '' || SKIPPED_OPERAND_PATTERN.test(operand)) continue;
+    if (STATIC_LITERAL_PATTERN.test(operand)) continue;
+    checks.push(`${operand} ${match[0].trim()}`);
+  }
+
+  return checks;
+}
+
+// A case label names events only when it is a static literal; every other label is read at runtime.
+function caseChecks(source) {
+  const checks = [];
+
+  for (const match of source.matchAll(/\bcase\s+/g)) {
+    const start = match.index + match[0].length;
+    const label = source.slice(start, rightOperandEnd(source, start)).trim();
+    if (label === '' || STATIC_LITERAL_PATTERN.test(label)) continue;
+    checks.push(`case ${label}:`);
+  }
+
+  return checks;
+}
+
+// A membership call is handled only when its receiver resolves, so every call is read and
+// an unresolved receiver is reported rather than dropped.
+function membershipChecks(source) {
+  const pattern = new RegExp(MEMBERSHIP_CALL_SOURCE, 'g');
+  const checks = [];
+
+  for (const match of source.matchAll(pattern)) {
+    const prefix = source.slice(0, match.index);
+    const inline = inlineCollectionAtEnd(prefix);
+    if (inline !== null) {
+      checks.push({
+        names: inline.names,
+        check: inline.names === null ? `${inline.receiver}${match[0]}` : null,
+      });
+      continue;
+    }
+
+    const identifier = IDENTIFIER_AT_END.exec(prefix);
+    if (identifier !== null) {
+      const resolved = collectionEventNames(source, identifier[1]);
+      if (resolved !== null) {
+        checks.push({ names: resolved, check: null });
+        continue;
+      }
+    }
+
+    const receiver = RECEIVER_AT_END.exec(prefix);
+    const text = receiver === null ? '' : receiver[1].trim();
+    checks.push({ names: null, check: `${text}${match[0]}` });
+  }
+
+  return checks;
 }
 
 function handledEventNames(source) {
@@ -241,10 +418,8 @@ function handledEventNames(source) {
   }
 
   // A membership check names events only when its receiver resolves to a literal collection.
-  const membership = new RegExp(MEMBERSHIP_SOURCE, 'g');
-  for (const match of scanned.matchAll(membership)) {
-    const resolved = collectionEventNames(scanned, match[1]);
-    if (resolved !== null) for (const name of resolved) names.add(name);
+  for (const check of membershipChecks(scanned)) {
+    if (check.names !== null) for (const name of check.names) names.add(name);
   }
 
   return [...names].sort();
@@ -252,63 +427,23 @@ function handledEventNames(source) {
 
 function unscannedEventChecks(source) {
   const scanned = stripComments(source);
-  const checks = new Set();
-  // Either operand order names no literal event, so both are reported.
-  const comparisons = [
-    new RegExp(
-      String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`,
-      'g',
-    ),
-    new RegExp(
-      String.raw`(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`,
-      'g',
-    ),
-  ];
-  // A method call on the type can select events the scan does not read, and a case label
-  // holding an identifier or member expression is resolved at runtime.
+  const checks = new Set([...comparisonChecks(scanned), ...caseChecks(scanned)]);
   const unreadablePatterns = [
+    // A method call on the type can select events the scan does not read.
     new RegExp(
       String.raw`${EVENT_TYPE_SOURCE}\.([A-Za-z_$][\w$]*)\(([^()]*)\)(?:\s*${COMPARISON_SOURCE}\s*${OPERAND_SOURCE})?`,
       'g',
     ),
-    new RegExp(
-      String.raw`case\s+(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*:`,
-      'g',
-    ),
+    new RegExp(KEY_MEMBERSHIP_SOURCE, 'g'),
+    new RegExp(KEYED_LOOKUP_SOURCE, 'g'),
   ];
-  // A template literal with an interpolation is built at runtime, so the scan cannot read it.
-  const dynamicTemplates = [
-    new RegExp(
-      String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*${BACKTICK}[^${BACKTICK}]*${BACKTICK}`,
-      'g',
-    ),
-    new RegExp(
-      String.raw`${BACKTICK}[^${BACKTICK}]*${BACKTICK}\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`,
-      'g',
-    ),
-    new RegExp(String.raw`case\s+${BACKTICK}[^${BACKTICK}]*${BACKTICK}\s*:`, 'g'),
-  ];
-
-  let match;
-  for (const pattern of comparisons) {
-    while ((match = pattern.exec(scanned)) !== null) {
-      if (match[1] !== 'undefined' && match[1] !== 'null') checks.add(match[0].trim());
-    }
-  }
 
   for (const pattern of unreadablePatterns) {
-    while ((match = pattern.exec(scanned)) !== null) checks.add(match[0].trim());
+    for (const match of scanned.matchAll(pattern)) checks.add(match[0].trim());
   }
 
-  for (const pattern of dynamicTemplates) {
-    while ((match = pattern.exec(scanned)) !== null) {
-      if (match[0].includes('${')) checks.add(match[0].trim());
-    }
-  }
-
-  const membership = new RegExp(MEMBERSHIP_SOURCE, 'g');
-  for (const match of scanned.matchAll(membership)) {
-    if (collectionEventNames(scanned, match[1]) === null) checks.add(match[0].trim());
+  for (const check of membershipChecks(scanned)) {
+    if (check.names === null) checks.add(check.check);
   }
 
   return [...checks].sort();
