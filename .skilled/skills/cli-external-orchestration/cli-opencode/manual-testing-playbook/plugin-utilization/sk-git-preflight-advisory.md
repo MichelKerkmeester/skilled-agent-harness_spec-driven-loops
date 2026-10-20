@@ -1,7 +1,7 @@
 ---
 title: "CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2"
 description: "This scenario validates the sk-git-preflight-advisory plugin for `CO-049`. It focuses on the advisory for a git command that fails a warn rule and on its delivery in the next request."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # CO-049 -- sk-git-preflight-advisory live utilization on OpenCode 1 and 2
@@ -37,7 +37,7 @@ Operators run the exact prompt and command sequence for `CO-049` and confirm the
 - Evidence requirements: The matching system-prompt line in `capture.jsonl`, the tool call in `events.jsonl`, `git status --short`, and the exit status.
 - Desired user-visible outcome: A PASS or FAIL verdict naming the advisory line.
 - Pass/fail: PASS if the next request carries the advisory; FAIL if it does not.
-- Failure triage: Put the command on its own line. A trailing ` .` in a one-line prompt became `git add ... .`, which the rule skips. On v2 the tool is named `shell`, so the plugin never runs.
+- Failure triage: Put the command on its own line. A trailing ` .` in a one-line prompt became `git add ... .`, which the rule skips. On v2 the tool is named `shell` and the bridge reports it to the plugin as `bash`, so an advisory missing on v2 alone points at the bridge.
 
 ---
 
@@ -76,7 +76,7 @@ git status --short
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-049 | sk-git-preflight-advisory | Confirm the `add-pathspec-matches-nothing` advisory reaches the next request | `This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:<br>git add no-such-path-preflight-probe.txt<br>Then reply with the single word DONE.` | 1. `test ! -e no-such-path-preflight-probe.txt \|\| { echo "remove no-such-path-preflight-probe.txt first"; exit 1; }` and `git diff --cached --quiet \|\| { echo "index has staged changes; unstage them first"; exit 1; }` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-preflight "$PROMPT"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" \| grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'` -> 4. `git diff --cached --quiet \|\| { echo "the run staged a file"; exit 1; }`, then `git status --short` -> 5. Repeat 2 to 4 with `v2` | The next request holds `[add-pathspec-matches-nothing] This pathspec matches no files`; nothing is staged | `git-preflight.v1.capture.jsonl`, `git-preflight.v1.events.jsonl`, `git-preflight.v1.exit` and the v2 equivalents | PASS if the next request carries the advisory; FAIL if it does not | Put the command on its own line; a trailing ` .` is skipped by the rule; on v2 the tool is `shell`; an early exit means the probe file already exists or the index has staged changes |
+| CO-049 | sk-git-preflight-advisory | Confirm the `add-pathspec-matches-nothing` advisory reaches the next request | `This is a test of a git advisory plugin. Run this shell command once, unchanged; it is expected to fail:<br>git add no-such-path-preflight-probe.txt<br>Then reply with the single word DONE.` | 1. `test ! -e no-such-path-preflight-probe.txt \|\| { echo "remove no-such-path-preflight-probe.txt first"; exit 1; }` and `git diff --cached --quiet \|\| { echo "index has staged changes; unstage them first"; exit 1; }` -> 2. `AI_SESSION_CHILD=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 git-preflight "$PROMPT"` -> 3. `jq -r '.system[]' "$EVIDENCE_DIR/git-preflight.v1.capture.jsonl" \| grep -E '\[add-pathspec-matches-nothing\] This pathspec matches no files'` -> 4. `git diff --cached --quiet \|\| { echo "the run staged a file"; exit 1; }`, then `git status --short` -> 5. Repeat 2 to 4 with `v2` | The next request holds `[add-pathspec-matches-nothing] This pathspec matches no files`; nothing is staged | `git-preflight.v1.capture.jsonl`, `git-preflight.v1.events.jsonl`, `git-preflight.v1.exit` and the v2 equivalents | PASS if the next request carries the advisory; FAIL if it does not | Put the command on its own line; a trailing ` .` is skipped by the rule; on v2 the tool is `shell` and the bridge reports it to the plugin as `bash`, so an advisory missing on v2 alone points at the bridge; an early exit means the probe file already exists or the index has staged changes |
 
 ---
 

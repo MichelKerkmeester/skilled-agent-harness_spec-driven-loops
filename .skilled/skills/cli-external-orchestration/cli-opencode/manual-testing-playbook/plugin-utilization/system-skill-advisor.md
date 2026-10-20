@@ -1,7 +1,7 @@
 ---
 title: "CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-skill-advisor plugin for CO-054. It focuses on the advisor brief that scores the user prompt against the skill graph and its kill switch."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-054 -- system-skill-advisor live utilization on OpenCode 1 and 2
@@ -57,13 +57,13 @@ bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-pla
 jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v1.capture.jsonl" | grep -E 'Advisor:'
 
 SYSTEM_SKILL_ADVISOR_DISABLED=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v1 killswitch-skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
-jq -r '.system[]' "$EVIDENCE_DIR/killswitch-skill-advisor.v1.capture.jsonl" | grep -c 'Advisor:'
+n=$(jq -r '.system[]' "$EVIDENCE_DIR/killswitch-skill-advisor.v1.capture.jsonl" | grep -c 'Advisor:' || true); echo "Advisor lines with the switch: $n"; [ "$n" -eq 0 ]
 
 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
 jq -r '.system[]' "$EVIDENCE_DIR/skill-advisor.v2.capture.jsonl" | grep -E 'Advisor:'
 
 SYSTEM_SKILL_ADVISOR_DISABLED=1 bash .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/run-plugin-scenario.sh v2 killswitch-skill-advisor "Without running any tools, answer in one line: which skill in this repository should handle the request 'commit my staged changes with a conventional commit message'?"
-jq -r '.system[]' "$EVIDENCE_DIR/killswitch-skill-advisor.v2.capture.jsonl" | grep -c 'Advisor:'
+n=$(jq -r '.system[]' "$EVIDENCE_DIR/killswitch-skill-advisor.v2.capture.jsonl" | grep -c 'Advisor:' || true); echo "Advisor lines with the switch: $n"; [ "$n" -eq 0 ]
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |

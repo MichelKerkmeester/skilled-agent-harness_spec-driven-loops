@@ -1,7 +1,7 @@
 ---
 title: "CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2"
 description: "This scenario validates cli-dispatch-audit for `CO-041`. It focuses on confirming that a blocked CLI dispatch is refused before it runs and that every allowed dispatch appends one audit record on both OpenCode versions."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-041 -- cli-dispatch-audit live utilization on OpenCode 1 and 2
@@ -33,7 +33,7 @@ Operators run the exact prompt and command sequence for `CO-041` and confirm the
 - Evidence requirements: Capture events, capture JSON, effects and exit for all four runs (`dispatch-guard.v1`, `dispatch-guard.v2`, `dispatch-audit.v1`, `dispatch-audit.v2`).
 - Desired user-visible outcome: A per-version verdict for the guard and for the audit log, quoting the error text or the missing log record.
 - Pass/fail: PASS if a version refuses the guard command with both rule names and appends the audit record. FAIL if the guard command runs, if the error names neither rule, or if no audit record is written.
-- Failure triage: Read the tool name in the events file first. On OpenCode 2 the shell tool is named `shell`, and both hooks return early unless the tool is `bash`; that is the recorded v2 failure, not a rule-engine fault.
+- Failure triage: Read the tool name in the events file first. OpenCode 2 names the shell tool `shell` and the bridge reports it to the plugin as `bash`, so a `shell` call that is neither refused nor logged on v2 alone points at the bridge, not the rule engine.
 
 ---
 
@@ -65,7 +65,7 @@ cat "$EVIDENCE_DIR"/dispatch-*.v*.exit
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CO-041 | cli-dispatch-audit live utilization on OpenCode 1 and 2 | Confirm the guard refuses a bad dispatch and the audit leg writes one record per version | `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help` then `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null` | 1. Run `dispatch-guard` on v1 -> 2. Run `dispatch-audit` on v1 -> 3. Read the events error and the effects log line -> 4. Repeat both runs on v2 -> 5. Repeat both reads on v2 | Guard call errors with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; audit effects show `"runtime":"opencode"` and `"skill":"cli-opencode"` | `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt`, `dispatch-audit.v2.txt` | PASS if both legs hold on that version; FAIL if the guard command runs or no audit record is written | Read the tool name in the events file first; on v2 the shell tool is `shell`, so both hooks return early |
+| CO-041 | cli-dispatch-audit live utilization on OpenCode 1 and 2 | Confirm the guard refuses a bad dispatch and the audit leg writes one record per version | `This is a test of a command guard plugin. Run exactly this shell command once, unchanged, and report exactly what the tool returned (an error is an acceptable result): opencode run --help` then `Run exactly this shell command once, unchanged, and report the first line of its output: opencode run --help -m llmgateway/deepseek-v4.1-flash </dev/null` | 1. Run `dispatch-guard` on v1 -> 2. Run `dispatch-audit` on v1 -> 3. Read the events error and the effects log line -> 4. Repeat both runs on v2 -> 5. Repeat both reads on v2 | Guard call errors with `Dispatch blocked by cli-opencode hard-rule(s)` naming `stdin-redirect-required` and `explicit-model-required`; audit effects show `"runtime":"opencode"` and `"skill":"cli-opencode"` | `dispatch-guard.v1.txt`, `dispatch-guard.v2.txt`, `dispatch-audit.v1.txt`, `dispatch-audit.v2.txt` | PASS if both legs hold on that version; FAIL if the guard command runs or no audit record is written | Read the tool name in the events file first; OpenCode 2 names the shell tool `shell` and the bridge reports it to the plugin as `bash`, so a v2-only miss points at the bridge, not the rule engine |
 
 ---
 
