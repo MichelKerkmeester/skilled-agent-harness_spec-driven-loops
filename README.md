@@ -19,8 +19,8 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 
 - **Spec Kit Framework** - structured plans, task tracking, validation gates and handover docs
 - **Spec Memory & Search** - session context saved into each spec folder and recovered through instant keyword search, surviving resets and compactions
-- **Endless Sessions** - near the context limit a session hands its work to a fresh session in the same terminal, with no copy-paste and no restart
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
+- **Endless Sessions** - near the context limit a session hands its work to a fresh session in the same terminal, with no copy-paste and no restart
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
 - **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
@@ -46,15 +46,6 @@ Your architecture, decisions and session history are written into the spec folde
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
 
-### ♾️ Endless Sessions
-
-A long task keeps going when the context window fills. The session writes a handoff note and ends, then a fresh session starts in the same terminal and picks the note up. No copy-paste, no restart.
-
-- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
-- When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
-- One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
-- Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
-
 ### 🔄 Deep Loop
 
 Research and review loops run unattended and stop only when their own evidence says done.
@@ -70,6 +61,15 @@ Type a prompt and the matching expertise loads before any tool runs. No memorizi
 - A resident daemon scores your prompt across five signal lanes and renders its pick as a one-line route
 - A live skill graph tracks what each skill depends on, enhances and conflicts with
 - Daemon down? A local scorer answers instead and marks itself stale rather than pretending to be live
+
+### ♾️ Endless Sessions
+
+A long task keeps going when the context window fills. The session writes a handoff note and ends, then a fresh session starts in the same terminal and picks the note up. No copy-paste, no restart.
+
+- Claude Code, Codex, Pi, OpenCode and Hermes hop on their own at 80% of the context window. Cursor and Devin hop when you run `/speckit:handoff` (`/speckit-handoff` in Cursor)
+- When a spec packet is bound, the old session saves its continuity first and the new session resumes that packet
+- One line in your shell profile turns it on for every runtime launch, see [Turn On Endless Sessions](#turn-on-endless-sessions)
+- Without that line no session is nudged, so nothing stalls and auto-compaction stays the fallback
 
 ### 🤖 Agent Library
 
