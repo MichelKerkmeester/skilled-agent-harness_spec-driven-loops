@@ -33,10 +33,20 @@ const DEFAULT_RUNTIME = 'claude';
 // `ps` has to fail into each caller's refusal path instead of stalling it.
 const PROCESS_TABLE_TIMEOUT_MS = 2000;
 const MANUAL_TEMPLATE_TOKEN = '@@HANDOFF@@';
+const SPEC_FOLDER_MARKER = ' | Spec folder: ';
+const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
+const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+// Defaults for a record that names no limits; the wrapper reads the same values.
+const DEFAULT_MAX_HOPS = 10;
+const DEFAULT_MAX_AGE_MIN = 10;
 // How each hook runtime reads a payload that names no event. Claude infers it from the
 // payload's shape; Hermes takes it as its own event, because its plugin bridge can omit
 // the name; Codex refuses it, because every Codex payload names its event.
-const MISSING_EVENT_POLICIES = Object.freeze({ claude: 'infer', hermes: 'accept', codex: 'refuse' });
+const MISSING_EVENT_POLICIES = Object.freeze({
+  claude: 'infer',
+  hermes: 'accept',
+  codex: 'refuse',
+});
 const RUNTIME_SEED_OPTIONS = Object.freeze({
   opencode: '--prompt',
   hermes: 'chat -q',
@@ -53,6 +63,23 @@ function validSpecFolder(value) {
     && SPEC_FOLDER_PATTERN.test(value)
     && !value.split('/').includes('..')
     && !/[\r\n]/.test(value);
+}
+
+/** Build the seed suffix that carries a spec folder, or '' when there is no answer. */
+function specFolderSuffix(specFolder) {
+  if (specFolder === 'none') return `${SPEC_FOLDER_MARKER}none${SPEC_FOLDER_SKIP_SUFFIX}`;
+  if (!validSpecFolder(specFolder)) return '';
+  return `${SPEC_FOLDER_MARKER}${specFolder}${SPEC_FOLDER_SUFFIX}`;
+}
+
+/** Parse a `pid ppid` process table into a child-to-parent map. */
+function parentMapFromTable(table) {
+  const parents = new Map();
+  for (const line of table.split(/\r?\n/)) {
+    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
+    if (match) parents.set(Number(match[1]), Number(match[2]));
+  }
+  return parents;
 }
 
 function ensureStateDir(env) {
@@ -486,7 +513,10 @@ function readRelaunchFile(loopId, env = process.env) {
  * @param {number} [options.maxAgeMin=10] - Maximum record age in minutes.
  * @returns {{relaunch: true}|{relaunch: false, reason: string}} Decision.
  */
-function shouldRelaunch(record, { now = Date.now(), maxHops = 10, maxAgeMin = 10 } = {}) {
+function shouldRelaunch(
+  record,
+  { now = Date.now(), maxHops = DEFAULT_MAX_HOPS, maxAgeMin = DEFAULT_MAX_AGE_MIN } = {},
+) {
   if (!record || typeof record !== 'object') return { relaunch: false, reason: 'no-file' };
   if (record.status !== 'armed') return { relaunch: false, reason: 'not-armed' };
 
@@ -640,14 +670,8 @@ function manualClaimCommand(runtime, handoffPath, specFolder = '', env = process
   const escapedPath = handoffPath
     .replace(/[\\"$`]/g, '\\$&')
     .replace(/!/g, "\"'!'\"");
-  let specFolderSuffix = '';
-  if (specFolder === 'none') {
-    specFolderSuffix = ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)';
-  } else if (validSpecFolder(specFolder)) {
-    specFolderSuffix = ` | Spec folder: ${specFolder}`
-      + ' (carried from the handoff; Gate 3 answered in the sending session)';
-  }
-  const handoffSeed = `${escapedPath}${specFolderSuffix}`;
+  const suffix = specFolderSuffix(specFolder);
+  const handoffSeed = `${escapedPath}${suffix}`;
   const manualTemplate = env?.SKILLED_LOOP_MANUAL_TEMPLATE;
   if (nonEmptyString(manualTemplate) && manualTemplateProblem(env) === null) {
     return manualTemplate.replace(MANUAL_TEMPLATE_TOKEN, () => handoffSeed);
@@ -933,11 +957,7 @@ function findLoopChildPid(loopId, { pid = process.pid, processTable } = {}) {
   const table = typeof processTable === 'string' ? processTable : readProcessTable();
   if (typeof table !== 'string') return null;
 
-  const parents = new Map();
-  for (const line of table.split(/\r?\n/)) {
-    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
-    if (match) parents.set(Number(match[1]), Number(match[2]));
-  }
+  const parents = parentMapFromTable(table);
 
   let current = Number(pid);
   const visited = new Set();
@@ -992,7 +1012,14 @@ module.exports = {
   HANDOFF_SECTIONS,
   RUNTIMES,
   PROCESS_TABLE_TIMEOUT_MS,
+  DEFAULT_MAX_HOPS,
+  DEFAULT_MAX_AGE_MIN,
+  SPEC_FOLDER_MARKER,
+  SPEC_FOLDER_SUFFIX,
+  SPEC_FOLDER_SKIP_SUFFIX,
   validSpecFolder,
+  specFolderSuffix,
+  parentMapFromTable,
   stateDir,
   ensureStateDir,
   relaunchFilePath,

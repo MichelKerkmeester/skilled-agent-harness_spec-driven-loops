@@ -3,6 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
@@ -11,10 +15,16 @@ const core = require('./relaunch-core.cjs');
 const nudge = require('./nudge.cjs');
 const hopHistory = require('./hop-history.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const POLL_INTERVAL_MS = 100;
 const TRANSCRIPT_MISSING_GRACE_MS = 1000;
 const SIGNAL_WAIT_MS = 5000;
 const NOTIFICATION_TIMEOUT_MS = 3000;
+const DEFAULT_IDLE_MS = 3000;
+const DEFAULT_TIMEOUT_MS = 30000;
 const LOCK_CREATING_WINDOW_MS = 5000;
 // The lock outlives the killer's own worst-case lifetime so that a holder killed
 // with SIGKILL cannot pin the loop once its pid is reused by another process.
@@ -25,6 +35,10 @@ const LOCK_TAKEOVER_STALE_MS = 30000;
 // unrelated process and must not pin the mutex forever.
 const LOCK_TAKEOVER_MAX_HOLD_MS = 10 * 60 * 1000;
 const TERMINATION_SIGNALS = ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT'];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseInteger(value, optionName, minimum = 1) {
   if (typeof value !== 'string' || !/^\d+$/.test(value)) {
@@ -43,8 +57,8 @@ function parseArguments(argv) {
     loopId: null,
     targetPid: null,
     transcriptPath: null,
-    idleMs: 3000,
-    timeoutMs: 30000,
+    idleMs: DEFAULT_IDLE_MS,
+    timeoutMs: DEFAULT_TIMEOUT_MS,
     noNotify: false,
   };
 
@@ -189,11 +203,7 @@ function isLoopAncestor(targetPid, loopId) {
   // A failed read throws, so the killer refuses to signal rather than guess at ancestry.
   const table = core.readProcessTable({ throwOnFailure: true });
 
-  const parents = new Map();
-  for (const line of table.split(/\r?\n/)) {
-    const match = line.trim().match(/^(\d+)\s+(\d+)$/);
-    if (match) parents.set(Number(match[1]), Number(match[2]));
-  }
+  const parents = core.parentMapFromTable(table);
 
   return hasAncestor(parents, targetPid, loopId);
 }
@@ -344,6 +354,10 @@ function mutexExceededHoldBound(mutexPath) {
     throw error;
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 function acquireLock(lockPath, loopId, environment, timeoutMs) {
   try {
@@ -682,5 +696,9 @@ if (require.main === module) {
     process.exitCode = 1;
   });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { main, parseArguments, isLoopAncestor, hasAncestor };

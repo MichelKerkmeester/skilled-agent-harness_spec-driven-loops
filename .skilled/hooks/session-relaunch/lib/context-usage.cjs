@@ -19,6 +19,11 @@ const DEFAULT_TAIL_BYTES = 262144;
 // A single tool result or image row can outgrow the default tail, so a miss widens the
 // read up to this bound before the usage counts as absent.
 const MAX_TAIL_BYTES = 16 * 1024 * 1024;
+// Provider model names announce the million-token window with this marker; a model
+// that omits it reports against the standard window.
+const LARGE_WINDOW_MARKER = '[1m]';
+const LARGE_WINDOW_TOKENS = 1000000;
+const DEFAULT_WINDOW_TOKENS = 200000;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -202,7 +207,9 @@ function resolveWindow({
     if (windowTokens !== null) return windowTokens;
   }
 
-  return String(model).includes('[1m]') ? 1000000 : 200000;
+  return String(model).includes(LARGE_WINDOW_MARKER)
+    ? LARGE_WINDOW_TOKENS
+    : DEFAULT_WINDOW_TOKENS;
 }
 
 /**

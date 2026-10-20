@@ -3,16 +3,24 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const core = require('./relaunch-core.cjs');
 const hookFlags = require('../../shared/hook-flags.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SEED_PREFIX = '[session-relaunch]';
 const SEED_COMMAND = SEED_PREFIX + ' claim and continue handoff ';
-const SPEC_FOLDER_MARKER = ' | Spec folder: ';
-const SPEC_FOLDER_SUFFIX = ' (carried from the handoff; Gate 3 answered in the sending session)';
-const SPEC_FOLDER_SKIP_SUFFIX = ' (Gate 3 answered D, Skip, in the sending session)';
+const SPEC_FOLDER_MARKER = core.SPEC_FOLDER_MARKER;
+const SPEC_FOLDER_SUFFIX = core.SPEC_FOLDER_SUFFIX;
+const SPEC_FOLDER_SKIP_SUFFIX = core.SPEC_FOLDER_SKIP_SUFFIX;
 // Seeds printed by the first printers carry an unbalanced suffix; they still parse.
 const SPEC_FOLDER_SKIP_SUFFIX_LEGACY = ' (Gate 3 answered D) Skip in the sending session)';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
@@ -25,12 +33,17 @@ const NUDGE_STEP = 0.05;
 const LAST_NUDGE_LEVEL = 1;
 const DEFAULT_THRESHOLD = 0.8;
 // The wrapper's own ceiling on completed hops, used when no cap is configured.
-const DEFAULT_MAX_HOPS = 10;
+const DEFAULT_MAX_HOPS = core.DEFAULT_MAX_HOPS;
 const SESSION_ID_PATTERN = /^[A-Za-z0-9_-]{1,128}$/;
+const SESSION_ID_PREFIX_LENGTH = 8;
 const FINISH_INSTEAD_INSTRUCTION = ' If the remaining work fits in a few more steps, finish it instead'
   + ' and skip these steps.'
   + ' Otherwise do these steps now, before any other work,'
   + ' so a fresh session continues before auto-compaction has to:';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function shellQuote(value) {
   const quote = String.fromCharCode(39);
@@ -58,6 +71,10 @@ function contextSentence(ratio) {
     ? `${SEED_PREFIX} Context is past the configured window (over 100% full).`
     : `${SEED_PREFIX} Context is about ${Math.round(ratio * 100)}% full.`;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Reduce a spec-folder answer to one prepare accepts: empty when unanswered, `none` for a
@@ -276,7 +293,7 @@ function openNotePathFor({ repoRoot, sessionId }) {
   }
 
   // Note names start with a UTC stamp, so a reverse sort puts the newest note first.
-  const suffix = `-${sessionId.slice(0, 8)}.md`;
+  const suffix = `-${sessionId.slice(0, SESSION_ID_PREFIX_LENGTH)}.md`;
   for (const filename of filenames.sort().reverse()) {
     if (!filename.endsWith(suffix)) continue;
     const notePath = path.join(directory, filename);
@@ -307,7 +324,10 @@ function plannedNotePath({
   if (openNotePath !== null) return openNotePath;
 
   const stamp = now.toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
-  return path.join(handoffDir(repoRoot), `${stamp}-${sessionId.slice(0, 8)}.md`);
+  return path.join(
+    handoffDir(repoRoot),
+    `${stamp}-${sessionId.slice(0, SESSION_ID_PREFIX_LENGTH)}.md`,
+  );
 }
 
 // The wrapper accepts the same switch values it accepts everywhere, and reads them
@@ -498,6 +518,10 @@ function writeState(sessionId, level, env = process.env) {
     { mode: 0o600 },
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   CLI_COMMAND,

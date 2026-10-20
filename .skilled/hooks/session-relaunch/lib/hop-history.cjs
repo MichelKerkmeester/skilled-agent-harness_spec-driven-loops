@@ -22,6 +22,7 @@ const nudge = require('./nudge.cjs');
 const HISTORY_FILE = 'hop-history.log';
 const EVENTS = Object.freeze(['handed-over', 'claimed', 'done', 'timed-out']);
 const GOAL_MAX_CHARS = 120;
+const DEFAULT_HISTORY_LINES = 20;
 const NOTIFY_SWITCH = 'SESSION_RELAUNCH_NOTIFY_HOPS';
 const NOTIFY_TIMEOUT_MS = 3000;
 
@@ -108,7 +109,8 @@ function notifyHandOver(handoffPath, { switches = process.env, runtime } = {}) {
   if (!isTruthy(switches[NOTIFY_SWITCH])) return false;
   const summary = noteSummary(handoffPath);
   const where = path.basename(summary.cwd || '') || 'session';
-  const message = `${runtime || summary.runtime || 'session'} in ${where}: ${summary.goal || 'handoff note'}`;
+  const runtimeLabel = runtime || summary.runtime || 'session';
+  const message = `${runtimeLabel} in ${where}: ${summary.goal || 'handoff note'}`;
   try {
     spawnSync('osascript', [
       '-e',
@@ -126,7 +128,7 @@ function notifyHandOver(handoffPath, { switches = process.env, runtime } = {}) {
  * @param {{env?: NodeJS.ProcessEnv, last?: number}} [options] - Environment and line count.
  * @returns {string[]} Formatted lines, empty when nothing is recorded.
  */
-function readHistory({ env = process.env, last = 20 } = {}) {
+function readHistory({ env = process.env, last = DEFAULT_HISTORY_LINES } = {}) {
   let text;
   try {
     text = fs.readFileSync(historyPath(env), 'utf8');
@@ -138,7 +140,8 @@ function readHistory({ env = process.env, last = 20 } = {}) {
     const [time, event, runtime, hop, cwd, goal, note] = line.split('\t');
     const where = cwd ? path.basename(cwd) : '-';
     const hopLabel = hop && hop !== '-' ? ` (${hop})` : '';
-    return `${time}  ${(event || '').padEnd(11)}  ${(runtime || '').padEnd(8)}  ${where}${hopLabel}  ${goal || ''}  [${note || ''}]`;
+    return `${time}  ${(event || '').padEnd(11)}  ${(runtime || '').padEnd(8)}`
+      + `  ${where}${hopLabel}  ${goal || ''}  [${note || ''}]`;
   });
 }
 
@@ -149,6 +152,7 @@ function readHistory({ env = process.env, last = 20 } = {}) {
 module.exports = {
   EVENTS,
   NOTIFY_SWITCH,
+  DEFAULT_HISTORY_LINES,
   historyPath,
   recordHop,
   notifyHandOver,
