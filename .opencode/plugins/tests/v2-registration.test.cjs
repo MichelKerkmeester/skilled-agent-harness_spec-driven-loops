@@ -8,28 +8,25 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
-const { test } = require('node:test');
+const { after, test } = require('node:test');
+
+const { readInventory } = require('./helpers/plugin-inventory.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. FIXTURE
 // ─────────────────────────────────────────────────────────────────────────────
 
-const PLUGIN_NAMES = [
-  'classifier-injection-screen',
-  'cli-dispatch-audit',
-  'codex-hooks-watchdog',
-  'mcp-route-guard',
-  'session-cleanup',
-  'session-relaunch',
-  'sk-code-post-edit-quality',
-  'sk-git-message-gate',
-  'sk-git-preflight-advisory',
-  'system-deep-loop-guard',
-  'system-dist-freshness-guard',
-  'system-speckit-completion',
-];
+const TEST_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'v2-registration-'));
+const GOAL_STATE_DIR = path.join(TEST_ROOT, 'goal-state');
+const ORIGINAL_GOAL_STATE_DIR = process.env.OPENCODE_GOAL_STATE_DIR;
+
+process.env.OPENCODE_GOAL_STATE_DIR = GOAL_STATE_DIR;
+
+const PLUGIN_NAMES = readInventory().bridged;
 
 const PLUGIN_DIR = path.resolve(__dirname, '..');
 const WORKTREE_ROOT = path.resolve(__dirname, '..', '..', '..');
@@ -61,9 +58,22 @@ function createStubContext() {
   };
 }
 
+after(() => {
+  if (ORIGINAL_GOAL_STATE_DIR === undefined) {
+    delete process.env.OPENCODE_GOAL_STATE_DIR;
+  } else {
+    process.env.OPENCODE_GOAL_STATE_DIR = ORIGINAL_GOAL_STATE_DIR;
+  }
+  fs.rmSync(TEST_ROOT, { recursive: true, force: true });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. REGISTRATION CASES
 // ─────────────────────────────────────────────────────────────────────────────
+
+test('the inventory names at least one bridged plugin', () => {
+  assert.ok(PLUGIN_NAMES.length > 0);
+});
 
 for (const pluginName of PLUGIN_NAMES) {
   test(`${pluginName} registers v2 hooks`, async () => {

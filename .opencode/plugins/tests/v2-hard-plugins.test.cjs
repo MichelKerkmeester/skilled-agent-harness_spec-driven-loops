@@ -14,6 +14,8 @@ const path = require('node:path');
 const { after, test } = require('node:test');
 const { pathToFileURL } = require('node:url');
 
+const { readInventory } = require('./helpers/plugin-inventory.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -341,6 +343,26 @@ for (const pluginCase of PLUGINS) {
     }
   });
 }
+
+test('every native-dual exception has a hard-plugin case', () => {
+  for (const stem of readInventory().nativeDual) {
+    assert.ok(
+      PLUGINS.some((pluginCase) => pluginCase.name === stem),
+      stem + ' is a native-dual exception without a v2 registration case',
+    );
+  }
+});
+
+test('every hard-plugin case names a plugin in the inventory', () => {
+  const inventory = readInventory();
+  const knownPlugins = [...inventory.bridged, ...inventory.nativeDual];
+  for (const pluginCase of PLUGINS) {
+    assert.ok(
+      knownPlugins.includes(pluginCase.name),
+      pluginCase.name + ' has a case but no plugin file',
+    );
+  }
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. BEHAVIOUR CASES

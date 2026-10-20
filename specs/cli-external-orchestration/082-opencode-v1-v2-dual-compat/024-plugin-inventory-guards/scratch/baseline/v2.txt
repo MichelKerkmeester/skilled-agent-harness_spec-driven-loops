@@ -1,0 +1,30 @@
+✔ system-completion-sentinel exports and registers v2 hooks (34.886625ms)
+✔ system-spec-gate exports and registers v2 hooks (7.165625ms)
+✔ system-skill-advisor exports and registers v2 hooks (5.037375ms)
+✔ opencode-goal exports and registers v2 hooks (7.002458ms)
+✔ sk-vision exports and registers v2 hooks (6.569708ms)
+✔ system-completion-sentinel records an advisory after a completed session event (5.873166ms)
+✔ system-spec-gate rejects a denied write through execute.before (5.619167ms)
+✔ opencode-goal queues its continuation through session.prompt (45.786167ms)
+✔ opencode-goal records v2 assistant evidence and token usage from session events (29.775ms)
+✔ system-skill-advisor clears session transform dedup after compaction (1.948833ms)
+✔ classifier-injection-screen registers v2 hooks (34.0575ms)
+✔ cli-dispatch-audit registers v2 hooks (3.228875ms)
+✔ codex-hooks-watchdog registers v2 hooks (1.025ms)
+✔ mcp-route-guard registers v2 hooks (1.11325ms)
+✔ session-cleanup registers v2 hooks (0.965ms)
+✔ session-relaunch registers v2 hooks (2.305958ms)
+✔ sk-code-post-edit-quality registers v2 hooks (1.481375ms)
+✔ sk-git-message-gate registers v2 hooks (5.068333ms)
+✔ sk-git-preflight-advisory registers v2 hooks (1.79625ms)
+✔ system-deep-loop-guard registers v2 hooks (1.301542ms)
+✔ system-dist-freshness-guard registers v2 hooks (1.798041ms)
+✔ system-speckit-completion registers v2 hooks (1.606584ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 190.809917

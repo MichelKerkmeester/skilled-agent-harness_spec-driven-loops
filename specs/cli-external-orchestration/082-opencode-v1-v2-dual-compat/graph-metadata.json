@@ -25,7 +25,9 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/019-plugins-compat-docs",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/021-pi-fast-mode-trusted-flag",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/022-worktree-provision-completeness",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/023-sk-vision-runtime-fixes",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/024-plugin-inventory-guards",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners"
   ],
@@ -66,6 +68,8 @@
       "spec.md",
       "goal.md",
       "research/research.md",
+      "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+      "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
       "014-post-merge-deep-research/research/research.md",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
       "001-unknowns-and-baseline/goal.md",
@@ -80,9 +84,7 @@
       "010-documentation-sweep/goal.md",
       "011-two-version-proof-and-closeout/goal.md",
       "012-sk-vision-v2-prompt-hook/goal.md",
-      "research/steering-log.md",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
+      "research/steering-log.md"
     ],
     "entities": [
       {
@@ -104,6 +106,18 @@
         "source": "derived"
       },
       {
+        "name": "new-code-run.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/new-code-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fresh-clone.txt",
+        "kind": "file",
+        "path": "022-worktree-provision-completeness/scratch/mutation/fresh-clone.txt",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
@@ -113,18 +127,6 @@
         "name": "steering-log.md",
         "kind": "doc",
         "path": "research/steering-log.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-version-battery.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/opencode-version-battery.cjs",
         "source": "derived"
       },
       {
@@ -232,7 +234,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T09:07:51.342Z",
+    "last_save_at": "2026-10-20T09:59:01.883Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -240,10 +242,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:7f97e1061d95438284c533a2f0972d12cb392e9a245e700b956beb07324b4d92",
+    "source_fingerprint": "sha256:073a2f921ec839044521a163707d4aa383db7d8baa72f1e4f4f9cc64a2eda323",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36e415c804b2360ba1bc5eb5a8d2307adc63efd3b4b2a706b914793560395077",
+      "spec.md": "a4d496cc7db7d9e7901ca311d67fa994662d621a23d62664b35b2abc29cbab0e",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners",

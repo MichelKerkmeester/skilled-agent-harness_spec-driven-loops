@@ -43,10 +43,12 @@ No count is below its baseline.
 
 `node .skilled/commands/doctor/scripts/opencode-version-battery.cjs --family=<v1|v2> --json --out=<file>`, run three times on each version (`scratch/proof/battery-*.json`, exits in `battery-exits.txt`):
 
-| Version | Legs | Run 1 | Run 2 | Final run |
+| Version (runs of 2026-10-19) | Legs | Run 1 | Run 2 | Final run |
 |---------|------|-------|-------|-----------|
 | 1.19.3 | family present, 16 of 16 plugin files discovered, 16 of 16 loaded | exit 0 | exit 0 | exit 0 |
 | 2.0.32 | family present, 16 of 16 plugin files active, 57 skill entries visible | exit 0 | exit 0 | exit 0 |
+
+These counts are from the proof runs of 2026-10-19, before main added `session-relaunch.js`. After that merge, on the same day, the battery found all 17 plugin files on both versions (`scratch/main-merge/battery-v1.txt`, `scratch/main-merge/battery-v2.txt`).
 
 The count was stable across the three runs. The OpenCode 2 legs run against a private server the battery starts on its own port. The shared service, PID 46220, kept its start time (Sun Oct 18 12:18:22 2026) in every snapshot. One after-snapshot caught a short-lived `opencode --version` probe, and a second snapshot matched the before list (`scratch/proof/process-final-note.txt`). The verification date in the claim is 2026-10-19, the day these runs passed.
 

@@ -369,6 +369,70 @@ else
     "$(awk '$1 == "bun-pkg" { c++ } END { print c + 0 }' "$NPM_LOG")"
 fi
 
+# A binary bun.lockb marks a bun package just as a text bun.lock does.
+LOCKB_TREE="$PROV/lockb-tree"
+mkdir -p "$LOCKB_TREE/bun-pkg"
+cp "$BUN_TREE/bun-pkg/package.json" "$LOCKB_TREE/bun-pkg/"
+: > "$LOCKB_TREE/bun-pkg/bun.lockb"
+: > "$BUN_LOG"; : > "$NPM_LOG"
+expect_rc "bun.lockb package provisions" 0 run_fixture_provision "$LOCKB_TREE"
+expect_eq "bun.lockb package installs with bun" "1" \
+  "$(awk '$1 == "bun-pkg" && $2 == "install" { c++ } END { print c + 0 }' "$BUN_LOG")"
+expect_eq "bun.lockb package never reaches npm" "0" \
+  "$(awk '$1 == "bun-pkg" { c++ } END { print c + 0 }' "$NPM_LOG")"
+
+# A lockfile out of step with package.json fails the frozen install, and
+# provisioning names the drift instead of printing a bare failure.
+DRIFT_TREE="$PROV/drift-tree"
+mkdir -p "$DRIFT_TREE/needs-install" "$PROV/drift-bin"
+cp "$TREE/needs-install/package.json" "$DRIFT_TREE/needs-install/"
+printf '{}\n' > "$DRIFT_TREE/needs-install/package-lock.json"
+cat > "$PROV/drift-bin/npm" <<'STUB'
+#!/usr/bin/env bash
+echo "npm error \`npm ci\` can only install packages when your package.json and package-lock.json are in sync." >&2
+exit 1
+STUB
+chmod +x "$PROV/drift-bin/npm"
+run_drift_provision() {
+  (
+    source "$PROV/scripts/worktree-naming.sh"
+    PATH="$PROV/drift-bin:$PATH" provision_worktree "$DRIFT_TREE"
+  ) 2> "$PROV/drift.err"
+}
+expect_rc "lockfile drift fails provisioning" 1 run_drift_provision
+expect_rc "lockfile drift shows the installer's error" 0 grep -q "are in sync" "$PROV/drift.err"
+expect_rc "lockfile drift names the repair" 0 \
+  grep -q "lockfile drift: .*run npm install in needs-install" "$PROV/drift.err"
+
+# A listed path whose package.json is gone is a stale entry, so provisioning names it.
+MISSING_TREE="$PROV/missing-tree"
+mkdir -p "$MISSING_TREE/needs-install"
+run_missing_provision() {
+  (
+    source "$PROV/scripts/worktree-naming.sh"
+    PATH="$PROV/bin:$PATH" provision_worktree "$MISSING_TREE"
+  ) 2> "$PROV/missing.err"
+}
+expect_rc "a listed path without package.json does not fail provisioning" 0 run_missing_provision
+expect_rc "a listed path without package.json is warned about" 0 \
+  grep -q "needs-install is listed but has no package.json" "$PROV/missing.err"
+
+# CI sources the script under set -euo pipefail, so a failed install whose log
+# holds no error line must still reach the summary instead of ending the shell.
+QUIET_FAIL_TREE="$PROV/quiet-fail-tree"
+mkdir -p "$QUIET_FAIL_TREE/needs-install" "$PROV/quiet-fail-bin"
+cp "$TREE/needs-install/package.json" "$QUIET_FAIL_TREE/needs-install/"
+printf '#!/usr/bin/env bash\nexit 1\n' > "$PROV/quiet-fail-bin/npm"
+chmod +x "$PROV/quiet-fail-bin/npm"
+run_strict_quiet_fail_provision() {
+  bash -c 'set -euo pipefail; source "$1/scripts/worktree-naming.sh"
+    PATH="$1/quiet-fail-bin:$PATH" provision_worktree "$2"' \
+    _ "$PROV" "$QUIET_FAIL_TREE" > "$PROV/quiet-fail.out" 2>&1
+}
+expect_rc "a silent install failure under set -e still fails the run" 1 run_strict_quiet_fail_provision
+expect_rc "a silent install failure under set -e reaches the summary" 0 \
+  grep -q "provisioned: 0 installed, 0 built, 0 already present, 1 failed" "$PROV/quiet-fail.out"
+
 # ── no-argument provision uses the linked worktree ───────────────
 LINKED="$PROV/linked"
 if git -C "$TMP" worktree add --detach "$LINKED" HEAD >/dev/null 2>&1; then
@@ -418,6 +482,31 @@ UNNAMED_LIST="$TMP/unnamed-output-paths.txt"
 printf '.skilled/skills/system-spec-kit/runtime\n' > "$UNNAMED_LIST"
 expect_eq "a buildable package listed without its output is reported" \
   ".skilled/skills/system-spec-kit/runtime" "$(unnamed_build_outputs "$UNNAMED_LIST")"
+
+# ── every tracked package tree is listed or excluded ─────────────
+# A tracked package.json under .skilled, .opencode or .pi that the list neither
+# names nor excludes is a tree a fresh worktree never installs, and a listed or
+# excluded path with no package.json is a stale entry.
+provision_list_gaps() { # provision_list_gaps <list> -- print stale entries, then unlisted trees
+  local list="$1" known pkg
+  known="$(awk '$1 !~ /^#/ && NF { print $1 }' "$list"; sed -n 's/^# excluded: *\([^ ]*\).*/\1/p' "$list")"
+  while read -r pkg; do
+    [ -n "$pkg" ] || continue
+    [ -f "$REPO_ROOT/$pkg/package.json" ] || echo "stale: $pkg"
+  done <<< "$known"
+  git -C "$REPO_ROOT" ls-files -- .skilled .opencode .pi | grep -E '(^|/)package\.json$' |
+    sed 's#/package\.json$##' | while read -r pkg; do
+      printf '%s\n' "$known" | grep -Fxq -- "$pkg" || echo "unlisted: $pkg"
+    done
+}
+expect_eq "every tracked package tree is listed or excluded" "" \
+  "$(provision_list_gaps "$SCRIPT_DIR/worktree-provision-paths.txt")"
+GAP_LIST="$TMP/gap-paths.txt"
+awk '$1 != ".pi/extensions/pi-cache-optimizer"' "$SCRIPT_DIR/worktree-provision-paths.txt" > "$GAP_LIST"
+printf 'no/such/pkg\n' >> "$GAP_LIST"
+expect_eq "an unlisted tree and a stale entry are both reported" \
+  "stale: no/such/pkg
+unlisted: .pi/extensions/pi-cache-optimizer" "$(provision_list_gaps "$GAP_LIST")"
 
 # ── create reports a failed provision as a non-zero exit ────────
 # A worktree whose dependency install failed is not ready to use. The creator
