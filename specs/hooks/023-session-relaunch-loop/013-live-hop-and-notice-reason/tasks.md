@@ -45,12 +45,12 @@ contextType: "general"
 - [x] T003 [P] Timeout title and template-problem subtitle in the notice (`lib/killer.cjs`)
 - [x] T004 Notice title and subtitle in the concern README (`.skilled/hooks/session-relaunch/README.md`)
 - [x] T005 Timeout scenario title match and evidence (`manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md`)
-- [ ] T006 [P] Run one live Claude relaunch hop under `skilled-loop` in tmux and record the evidence (orchestrator runs the live hop)
+- [x] T006 [P] Run one live Claude relaunch hop under `skilled-loop` in tmux and record the evidence (loop 26027, note done)
 - [x] T012 Stop the nudge outside the loop in the shared decision (`lib/nudge.cjs`)
 - [x] T013 Give the tests that relied on a nudge outside the loop a loop id, and rewrite the two OpenCode cases that tested the old outside-loop branch (`tests/*.test.cjs`, `.opencode/plugins/tests/session-relaunch.test.cjs`, `pi/session-relaunch.test.ts`)
 - [x] T014 Build the shell shim from each runtime's `--help` (`.skilled/bin/skilled-loop-shell.sh`)
 - [x] T015 Update every doc that describes starting the loop or the nudge (READMEs, feature catalog, playbooks, env reference, `/speckit:handoff`)
-- [ ] T016 [P] Run live hops through the shim in a repository that links `.skilled` (orchestrator runs the live hops)
+- [x] T016 [P] Run live hops through the shim in a repository that links `.skilled` (Claude, Codex, Pi, OpenCode and Hermes from AI Systems)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -60,7 +60,7 @@ contextType: "general"
 
 - [x] T007 Run the gate from the final state (node 566/566, rc 0)
 - [x] T008 Swap in the pre-phase killer and prove the notice tests red, then restore (2 of 2 failing; `cmp` clean)
-- [ ] T009 Run strict validation on this folder and the parent once the live hop is recorded
+- [x] T009 Run strict validation on this folder and the parent once the live hop is recorded
 - [x] T017 Rerun the gate from the final state (node 584/584 rc 0, Pi 40/40 rc 0, `tsc` rc 0, shellcheck rc 0, drift guards 4/4)
 - [x] T018 Swap in HEAD's `nudge.cjs` and plugin with the shim moved aside, prove the new tests red, then restore (5/5, 1/1 and 14/14 failing, `cmp` clean)
 <!-- /ANCHOR:phase-3 -->
@@ -70,9 +70,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed (the live hops)
+- [x] Manual verification passed (the live hops)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -105,7 +105,7 @@ contextType: "general"
 
 - [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001 to REQ-004)
 - [x] CHK-002 [P0] Technical approach defined in plan.md (affected-surfaces table)
-- [x] CHK-003 [P1] Dependencies identified and available (`manualTemplateProblem`; the live hop's login and tmux are pending)
+- [x] CHK-003 [P1] Dependencies identified and available (`manualTemplateProblem`; the live hop's login and tmux were available)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -124,8 +124,8 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met (AC 6/8, the two live-hop rows wait on the orchestrator)
-- [ ] CHK-021 [P0] Manual testing complete (the live hops)
+- [x] CHK-020 [P0] All acceptance criteria met (AC 8/8)
+- [x] CHK-021 [P0] Manual testing complete (live hops for five runtimes plus the forced timeout)
 - [x] CHK-022 [P1] Edge cases tested (usable template without a subtitle, template with no placeholder carrying one, an empty `SKILLED_LOOP_ID`, a nested directory, a directory with no `.skilled`, a set loop id, `--` before a dash prompt)
 - [x] CHK-023 [P1] Error scenarios validated (`osacompile` accepts the title and subtitle line)
 <!-- /ANCHOR:testing -->
@@ -141,7 +141,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. The subtitle text passes through `JSON.stringify`; the no-op case is the test without a subtitle.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Two rows: template usable or unset, template unusable.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Both notice tests delete the process-wide template before running.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Pinned once the phase commit exists on `worktrees/158-open-items-live-hop-and-legacy-rows`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Pinned to `a4a4b25115` on `worktrees/158-open-items-live-hop-and-legacy-rows`; the live hops ran on main at `25bc7896fe`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -180,8 +180,8 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 10/12 |
-| P1 Items | 13 | 12/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-10-20

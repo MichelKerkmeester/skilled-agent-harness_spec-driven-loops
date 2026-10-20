@@ -113,7 +113,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 10 | 010-post-fix-research/ | Five more research iterations after phase 009, DeepSeek V4.1 Flash max through cli-pi on LLM Gateway, with each finding verified. | complete |
 | 11 | 011-post-fix-remediation/ | Fix all twenty post-fix research findings, the two frontier items and the follow-ups, with failing-first tests and arm conformance cases. | complete |
 | 12 | 012-ci-red-check-repairs/ | AGENTS.md is back inside the 16 KB delivery prefix, and the session-relaunch example line no longer reads as a switch, so Rule Canary Sync and sk-doc Script Tests pass again locally. | complete |
-| 13 | 013-live-hop-and-notice-reason/ | The killer's timeout notice names the timeout and, in a subtitle, why the manual template was ignored; one live Claude hop runs in tmux. | in progress |
+| 13 | 013-live-hop-and-notice-reason/ | The killer's notice names the timeout and an ignored template's reason, the nudge fires only inside `skilled-loop`, and a shell shim starts every interactive runtime under the loop, also in repositories that link `.skilled`. | complete |
 
 ### Phase Transition Rules
 

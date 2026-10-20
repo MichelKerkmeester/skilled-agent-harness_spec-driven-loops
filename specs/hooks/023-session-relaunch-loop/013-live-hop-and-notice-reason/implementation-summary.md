@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-20T05:00:00Z"
     last_updated_by: "worker"
     recent_action: "Added the shell shim and stopped the nudge outside the loop"
-    next_safe_action: "Orchestrator runs the live hops and records AC-004 and AC-008"
+    next_safe_action: "Merge worktree 158 to main"
     blockers: []
     key_files:
       - ".skilled/hooks/session-relaunch/lib/killer.cjs"
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-live-hop-and-notice-reason |
-| **Completed** | In progress (live hop pending) |
+| **Completed** | 2026-10-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -115,13 +115,13 @@ A second worker wrote the outside-loop conformance case and the Pi mirror first 
 | Comment hygiene on the changed code and test | PASS: rc 0; a planted spec path in a scratch file gives rc 1 |
 | Claude playbook timeout scenario | PASS |
 | `validate_document.py` on the README and the playbook scenario | PASS: rc 0 each |
-| Live Claude hop in tmux | Pending: orchestrator runs the live hop |
+| Live Claude hop in tmux | PASS: loop 26027, prepare to relaunch in 7 s, note done. Forced timeout: `killer-timeout` after 33 s, record disarmed |
 | Final gate after the shim and nudge changes | PASS: node 584/584 rc 0 (566 plus 4 conformance plus 14 shim), Pi vitest 40/40 rc 0, `tsc -p tsconfig.pi.json --noEmit` rc 0 |
 | Red swap of HEAD's `nudge.cjs` and plugin, shim moved aside | FAIL as intended: 5 of 5 node cases, 1 of 1 Pi case, 14 of 14 shim tests. Restored, `cmp` rc 0 on all three |
 | `shellcheck` on the wrapper and the shim, and `shellcheck -s bash` on the shim | PASS: rc 0 |
 | Drift guards | PASS: 4 of 4, no warning in a changed file |
 | Doc validators | PASS: `validate_document.py` rc 0 on every touched doc, playbook package 0 violations, catalog checker rc 0, mirror check rc 0 |
-| Live hops through the shim in a repository that links `.skilled` | Pending: orchestrator runs the live hops |
+| Live hops through the shim in a repository that links `.skilled` | PASS from `AI Systems`: Claude, OpenCode, Hermes, Pi and Codex each relaunched and reached a done note. A plain `claude` outside the loop got no nudge |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -130,7 +130,7 @@ A second worker wrote the outside-loop conformance case and the Pi mirror first 
 ## Known Limitations
 
 1. **macOS may truncate a long subtitle.** The full reason stays in `relaunch.log` under `killer-manual-template`.
-2. **No live hop has run yet.** AC-004 and AC-008 stay Unmet until the orchestrator records them.
+2. **A one-request first turn carries no nudge on OpenCode and Hermes.** Both add the nudge to the next request, so a session that crosses the threshold on its only request hands off on the following one. One Pi run claimed nothing before it was closed, and the rerun passed. Codex in a repository asks once to trust changed hooks before they run.
 3. **The pass-through lists are a snapshot.** They come from each runtime's `--help` on 2026-10-20. A new subcommand passes into the wrapper until its list is updated, where it runs once and exits with its own code.
 4. **An alias wins over the shim.** A `claude` alias in the shell profile keeps taking precedence, so remove it for the shim to apply.
 <!-- /ANCHOR:limitations -->

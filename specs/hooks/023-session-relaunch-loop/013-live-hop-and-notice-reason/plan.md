@@ -40,7 +40,7 @@ Two lanes. A worker extends the two existing notice tests, sees them fail, then 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] Tests passing (if applicable)
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -119,7 +119,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `core.manualTemplateProblem` | Internal | Green | The subtitle would have no reason to show |
-| Claude Code login and tmux | External | Pending | The live-hop row stays Unmet |
+| Claude Code login and tmux | External | Green | The live-hop row would stay Unmet |
 <!-- /ANCHOR:dependencies -->
 
 ---

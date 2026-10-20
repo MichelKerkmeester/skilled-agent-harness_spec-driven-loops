@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-10-20T04:22:51.009Z",
+    "last_save_at": "2026-10-20T07:57:19.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:428c834813883edfa587ec1b25ceaa5dbe6523cb01cc0252d97137e89506da33",
+    "source_fingerprint": "sha256:c5a85f2b0306905515c85de8a6c76247beac96ee9f1ae34014d000417c300150",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bc8b87b3a679a27925434478df4983dd4b3ae38e2cdc6a73c0d04e87c9c56610",
+      "spec.md": "ca770004d967a685f86510c6d5d8006676ace723e79af1f8459abc04909f2aba",
       "research/research.md": "b185a9e16dadcac000c53aa74ed9678ff7950eba7a91ddaabd6dd493d55627ab"
     },
     "last_active_child_id": "hooks/023-session-relaunch-loop/012-ci-red-check-repairs",

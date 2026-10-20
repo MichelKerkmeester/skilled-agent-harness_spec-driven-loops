@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-20 |
 | **Branch** | `worktrees/158-open-items-live-hop-and-legacy-rows` |
 | **Parent Spec** | ../spec.md |

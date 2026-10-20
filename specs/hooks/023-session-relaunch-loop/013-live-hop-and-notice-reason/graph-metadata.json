@@ -36,7 +36,7 @@
       "outside"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -160,12 +160,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,6 +184,12 @@
         "source": "derived"
       },
       {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "When `SKILLEDLOOPMANUALTEMPLATE` held no note placeholder or more than one, the killer logged `killer-manual-template` but its macOS notice showed only the plain command",
     "created_at": "2026-10-20T04:14:54Z",
-    "last_save_at": "2026-10-20T04:53:39.267Z",
+    "last_save_at": "2026-10-20T07:57:14.310Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:632d0bc9a1582fdc1d1041e563ab5b03a71f362523852af9be7b9d4c3996f79f",
+    "source_fingerprint": "sha256:d7c3ed3250474248b52fe6e35403a881a4f4eb6a15e447ff975ab59b00bcbacc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89b0bd5be55990e2e1098f768d6d10b06d6144f3e728a8e14e6bcfa82c539266",
-      "plan.md": "f2be9ec0225aff0a237d59f0e78369461e089cff7164ce8a0db606c256af2e60",
-      "tasks.md": "cfdf5de2b1a75c583b60f03b68e90d33f5e44ba08e0240af20a2622d616f99d3",
-      "implementation-summary.md": "44e72a31ef0169444dee3b8b566bc30b495518e5c31b1a0763645f71de2eeec2"
+      "spec.md": "7e3b70341d3ce9fde234e7cdc3653f78cf68647c36ffc9cbf13b457aa41777b5",
+      "plan.md": "790cf773a06576106725da06914908cd6c9b638904374bdad3586ed184fbaa3a",
+      "tasks.md": "1e72a8624e7c4c02fd92d895ee74428f5ffc16212035479e6dadd88ceb653678",
+      "implementation-summary.md": "121d022f80f4a7cd114e680ebf6eaa9602b9e2883c65276282b252fa91e13d58"
     },
     "last_active_at": null
   }
