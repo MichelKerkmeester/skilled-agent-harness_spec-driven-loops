@@ -818,9 +818,9 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
 - Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
-- One native surface and two optional examples: OPENCODE, the native surface (`.skilled/` system code across JS/TS/Python/Shell/JSON, MCP servers, agents, commands, skills), plus the optional example surfaces WEBFLOW (Webflow and vanilla HTML/CSS/JS animation, CDN deploy, Lighthouse/TBT/INP targets) and OBSIDIAN (read-only design-system and source-convention evidence for the Note Database Obsidian plugin)
+- One native surface and two optional examples. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The Webflow example covers Webflow and vanilla HTML, CSS and JavaScript sites, and the Obsidian example covers an Obsidian plugin
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
-- Reviews before you ship (`code-review` mode): a stack-agnostic findings-first review baseline that reuses the surface evidence above. The security, correctness, SOLID and threat-model checklists always run first and their minimums are never relaxed, and findings come ranked P0/P1/P2
+- Reviews before you ship (`code-review` mode): security, correctness and design checklists always run first, then the surface evidence above, and findings come ranked P0, P1 or P2
 
 **`sk-git`** - one clean path from change to PR
 
@@ -844,32 +844,17 @@ Use `@context` separately for one-shot retrieval. This parent-nested-skill patte
 
 #### CROSS-AI CLI
 
-Run **cross-CLI agent teams from supported runtimes**. OpenCode and Claude Code are the primary runtimes. Codex, Cursor, Devin, Pi and Hermes join through their own CLI bridges.
+Run **cross-CLI agent teams from supported runtimes**. Claude Code, OpenCode or a plain shell can dispatch another AI CLI as a one-shot sub-tool that streams its result back. The conducting AI stays in charge, and the dispatched CLI handles the part it is best at.
 
-Claude Code, OpenCode or a raw shell can dispatch supported AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns.
-
-Every bridge shares the same foundation:
-
-- **Any model the native CLI supports.** The shipped lists are starting points you can edit. Point a bridge at a different provider or model and the next dispatch uses it. Each skill's provider pre-flight lists the live set
-- **Built for deep-loop fan-out.** Every bridge is a deep-loop executor: bind several on one research, review or council run and each becomes its own lineage, with per-lineage state, budget caps and a stall watchdog, then the strongest-restriction merge picks the safest verdict. The shared runner makes a new model a list edit rather than new plumbing
-- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config surface as far as that runtime allows. Hermes, for example, rebuilds each shared agent as a preloadable skill because it has no agent flag
-- **Mirrors stay in sync on their own.** Commit-time mirror hooks and a CI parity job keep every mirror aligned with `.skilled/`, so a dispatched runtime never reads a stale copy
-- **Native extensibility included.** Each runtime also gets hooks, plugins or extensions where its platform allows, so much of the skilled feature set arrives with the dispatch
-- **Checks before it runs.** A bridge confirms its CLI is installed and usable before it starts, so a missing tool stops the route up front instead of failing mid-task
-- **Self-invocation guard:** every bridge but `cli-pi` refuses to dispatch the runtime it runs in. A Claude Code session never dispatches `cli-claude-code` and an OpenCode session never dispatches `cli-opencode`. `cli-pi` may dispatch Pi from inside Pi, and no mode dispatches itself inside a fan-out lineage or a repeated dispatch stack.
+- **Any model the CLI supports.** Point a bridge at another provider or model and the next dispatch uses it
+- **Built for deep-loop fan-out.** Bind several bridges to one research, review or council run, and each becomes its own lineage with its own state, budget and stall watchdog. The safest verdict wins the merge
+- **Skills, agents and commands travel with the dispatch.** Each bridge mirrors them into the runtime's own config, and commit hooks plus a CI check keep those mirrors in step with `.skilled/`
+- **Checks before it runs.** A bridge confirms its CLI is installed and usable, so a missing tool stops the route up front
+- **No self-dispatch.** Every bridge but `cli-pi` refuses to dispatch the runtime it runs in, so delegation never loops
 
 **`cli-external-orchestration`** - parent hub for external CLI dispatch
 
-One skill, seven bridges: 
-- `cli-opencode`
-- `cli-claude-code`
-- `cli-codex`
-- `cli-cursor`
-- `cli-devin`
-- `cli-pi`
-- `cli-hermes`
-
-Describe the job and it hands the dispatch to the right one.
+One skill with seven bridges: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes`. Describe the job and it hands the dispatch to the right one.
 
 &nbsp;
 
@@ -877,14 +862,11 @@ Describe the job and it hands the dispatch to the right one.
 
 **`cli-classifier`** - typed judgments from Typesafe's Jev classifier
 
-When a decision needs a number rather than prose, this hub asks a classifier for one: the hosted Jev service (mode `cli-jev`). It returns a probability, a choice between options, a score position or a batch of keyed answers, and changes nothing else. Yes-or-no and choice questions go to Pi's native classifier first and fall back to the `jev` CLI. Scores and batches go straight to the CLI, and every answer records which route gave it.
+When a decision needs a number rather than prose, this hub asks the hosted Jev classifier (mode `cli-jev`) for one. It returns a probability, a choice between options, a score or a batch of keyed answers, and changes nothing else.
 
 - **A value you can act on.** Structured JSON or a bare number, never a paragraph
-- **Two features run on their own once a key is stored.** Each won a measured comparison against the best rule without a model, and each asks the exact question it was measured with:
-  - Citation drift advisory in `validate_document.py`: flags a `file:line` citation whose code no longer shows the claim (35 of 40 right against 13)
-  - Injection screen on fetched web text (Claude Code, Devin, OpenCode, Pi, Hermes): one advisory line when a page section reads as instructions aimed at an AI agent (84 of 90 right against 68)
-- **Off with one line.** `JEV_FEATURES=0` stops both, and `JEV_FEATURE_<NAME>=0` stops one. Without a stored key nothing calls Jev. `JEV_PROVIDER` picks the provider whose key counts and `JEV_TRANSPORT=jev` keeps every call on the CLI. See `.env.example` section 17
-- **Pairs with the workflow skills.** The judgment stays read-only, so hand the follow-up edit to a workflow skill
+- **Two features run on their own once a key is stored.** `validate_document.py` flags a `file:line` citation whose code no longer shows the claim, and fetched web pages get one advisory line when a section reads as instructions aimed at an AI agent
+- **Off with one line.** `JEV_FEATURES=0` stops both features, and without a stored key nothing calls Jev
 
 &nbsp;
 #### MCP INTEGRATION
@@ -898,10 +880,14 @@ When a decision needs a number rather than prose, this hub asks a classifier for
 
 One advisor identity routing to nine modes through `mode-registry.json`: five workflow modes (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`) and four design transports (`mcp-figma`, `mcp-refero`, `mcp-mobbin`, `mcp-magicpath`).
 
-- **`mcp-chrome-devtools`: drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing: CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
-- **`mcp-click-up`: manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (task creation, documents, search, chat and reminders) with operation-based routing. Agent-safe by design: per-list status resolution, dry-run before batch completion, `--json` output, empty-queue handling. Embedded install via `mcp-servers/` directory. 111-feature catalog + 35-scenario playbook included
-- **`mcp-obsidian`: manage Obsidian notes from the assistant.** Dual CLI + MCP mode using `notesmd-cli` for headless vault operations, the official `obsidian` CLI for app-backed control, and cyanheads `obsidian-mcp-server` through the Local REST API
-- **`mcp-figma` _(transport)_: drive Figma Desktop from the terminal.** Reads, authors, modifies and exports designs, tokens and components through the silships `figma-ds-cli`, with an optional Figma MCP via Code Mode for pulling design context. CLI-primary and gated: a local daemon brokers every command, read-only inspection and exports are free, authoring or destructive verbs are gated. Needs Figma Desktop open and uses no API key. Never decides design taste on its own: pairs with `sk-design-md-generator` for the measured design reference
+- **`mcp-chrome-devtools`:** drive a real Chrome browser, through the `bdg` CLI in the terminal or through MCP for multi-tool flows
+- **`mcp-click-up`:** manage ClickUp tasks through the `cupt` CLI for daily work and the official MCP for documents, search and chat
+- **`mcp-obsidian`:** manage Obsidian notes through `notesmd-cli`, the official `obsidian` CLI or an Obsidian MCP server
+- **`mcp-aside-devtools`:** drive the Aside AI browser through its CLI or its MCP
+- **`mcp-notion`:** work in a Notion workspace through the official Notion MCP, with direct API calls where the MCP falls short
+- **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated
+- **`mcp-refero` and `mcp-mobbin` _(transports)_:** read-only search of UI references and app screens and flows
+- **`mcp-magicpath` _(transport)_:** read-only lookup of components, projects and design systems through the `magicpath-ai` CLI
 
 &nbsp;
 #### DESIGN
@@ -910,8 +896,8 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 
 - The hub carries no procedure of its own. It decides which mode owns the question in front of you and hands over
 - **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen
-- **`sk-design-md-generator`** behind `/design:extract`. Crawls a live URL across five viewports and emits a v3 Style Reference `DESIGN.md`: named tokens, Type Scale, Components, Surfaces, Elevation, Agent Prompt Guide, Quick Start CSS/Tailwind, with every value copied verbatim from the running page and script-validated against `tokens.json`. Carries a condensed general design-knowledge layer (Brand-vs-Product register, anti-slop principles, cognitive and numeric design laws, token vocabulary) so it reads design intent, not only CSS. Its style corpus and SQLite/FTS5 style database resolve self-relatively under `styles/`
-- **`sk-design-chart`** behind `/design:chart`. Turns the comparison a reader needs into one of 29 catalog forms and ships it as a standalone HTML file, no build step and no remote dependency. A corpus checker holds the visual contract across 49 named check families, five of them browser-backed. Ships pre-1.0 and its number says so
+- **`sk-design-md-generator`** behind `/design:extract`. Crawls a live URL across five viewports and writes a Style Reference `DESIGN.md` of named tokens, type scale, components and surfaces. Every value is copied from the running page and checked by script
+- **`sk-design-chart`** behind `/design:chart`. Turns the comparison a reader needs into one of 29 chart forms and ships it as a standalone HTML file with no build step and no remote dependency
 - **`sk-design-diagram`** behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws
 - **Pairs with `sk-code`:** the hub supplies the measured reference, `sk-code` builds and verifies against it
 
@@ -1095,28 +1081,26 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-40 command entry points: 37 across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+40 commands: 37 in six groups plus three utilities. Each one is a Markdown file under `.skilled/commands/`, and most hand their steps to a YAML workflow beside it.
 
 #### SPEC KIT
 
 **`/speckit:plan --intake-only`** - intake-only mode
 
-- A mode of `/speckit:plan`, not a separate command
-- Standalone intake workflow that publishes `spec.md`, `description.json` and `graph-metadata.json`
-- Used directly for new packet setup and paired with `/speckit:plan` or `/speckit:complete` when `folder_state` is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
+- A mode of `/speckit:plan`, not a separate command. It sets up a new spec folder with its `spec.md` and metadata and stops there
+- `/speckit:plan` and `/speckit:complete` run the same intake on their own when a folder is missing or incomplete
 - Modes: `:auto`, `:confirm`
 
 **`/speckit:complete`** - build a feature end to end
 
 - End-to-end workflow: intake/delegate → research → plan → implement → verify → save continuity
-- Smart-detects missing or unhealthy packet state and reuses the shared intake contract from `/speckit:plan --intake-only`. Healthy folders continue without extra setup prompts
+- Sets up a missing or incomplete spec folder first, and goes straight on when the folder is healthy
 - Modes: `:auto` (fully autonomous), `:confirm` (pause at each step), `:autopilot` or `:unattended` (unattended autopilot). Modifiers: `:with-research` (runs a research pass before planning), `:with-context` (loads a context package), `:with-phases` (decomposes into phase children)
 - After 3 failed implementation attempts, surface diagnostics and let the user dispatch `@debug` via the Task tool
 
 **`/speckit:plan`** - planning only
 
 - Authors `spec.md`, `plan.md` and `tasks.md` without implementing
-- Reuses the shared intake contract from `/speckit:plan --intake-only` when the packet is `no-spec`, `partial-folder`, `repair-mode` or `placeholder-upgrade`
 - Dispatches up to 4 parallel context agents for codebase exploration during planning
 - Use when you need stakeholder review before coding. Modes: `:auto`, `:confirm`, `:autopilot`. Modifiers: `:with-context`, `:with-phases`
 
@@ -1142,7 +1126,7 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
        └─► reuses the shared intake contract from /speckit:plan --intake-only when folder_state still needs intake
 ```
 
-`/deep:research` only enters that chain after a real `spec.md` exists. It follows `spec-check-protocol.md` for advisory-lock handling, `folder_state` classification and bounded generated-fence sync.
+`/deep:research` joins that chain only after a real `spec.md` exists.
 
 &nbsp;
 #### CONTINUITY
@@ -1258,18 +1242,38 @@ The active autonomous loop families. See [Deep Loop](#6--deep-loop) for how they
 - Iterative code audit until convergence, ending in a PASS/CONDITIONAL/FAIL verdict. Modes: `:auto`, `:confirm`
 
 &nbsp;
+#### DESIGN
+
+**`/design:extract`** - measure a live site's design
+
+- Crawls a live URL and writes a Style Reference `DESIGN.md` of measured tokens through `sk-design-md-generator`
+- Modes: `:auto`, `:confirm`
+
+**`/design:chart`** - build a chart that answers one question
+
+- Picks one of 29 chart forms for what the reader compares and writes a standalone HTML file
+- Modes: `:auto`, `:confirm`
+
+**`/design:diagram`** - draw a diagram
+
+- Writes an HTML and SVG diagram in one of 27 types, an ASCII or Markdown flowchart, or a redraw of a draw.io or Mermaid source
+- Modes: `:auto`, `:confirm`
+
+&nbsp;
 #### DOCTOR
 
-Ten commands cover the diagnostic surface, one per owner. The seven routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Ten commands check and repair the setup, one per area.
 
-**`/doctor:setup`** - read-only onboarding and health check: lists every doctor command and target, runs the sk-code setup, sk-git setup, trigger index, runtime mirror and skill advisor status checks, prints PASS, FAIL, SKIP, DEGRADED or ERROR for each with one repair command per failure, and writes nothing in the repository. The skill advisor also suggests it when a prompt about setting up or checking skilled matches no skill
+**`/doctor:setup`** - read-only onboarding and health check
+
+- Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure
+- Lists every other doctor command, and writes nothing
 
 **`/doctor:speckit`** - spec-kit retrieval
 
 - Checks that the generated trigger index is fresh, that its lookup runs and that the ripgrep recipes return results, then names the regeneration command when the index is stale
 - Reports `OK`, `STALE`, `ATTENTION` or `MISSING`. Weak trigger phrases are listed as advisories and never change the status
 - Offers the citation-drift census over all docs or skill docs only, read-only and with no model call, and summarises moved, gone and past-end citations per doc family with each moved citation's new path
-- An old target name such as `/doctor:speckit deep-loop` gets a notice naming the command that owns it now
 
 **`/doctor:skill-advisor <target>`** - skill advisor tuning, rebuild and audits
 
@@ -1287,10 +1291,10 @@ Ten commands cover the diagnostic surface, one per owner. The seven routed ones 
 
 **`/doctor:git <hooks|standards|setup>`** - your own settings for the shipped git hooks and sk-git rules, and a check of which ones are live
 
-- `hooks` lists every optional pre-commit, prepare-commit-msg and pre-push gate with its saved setting, and switches one on or off in local or global git config (`speckit.hooks.<key>`) after showing the exact command. The per-push approvals are never saved, and the whole-hook kill switches stay with `/doctor:env`
-- `standards` shows which commit, PR and branch rules are enforced and where they come from, copies the shipped sk-git templates into `.sk-git/` once, then changes a setting, removes one or stops enforcing a kind in those copies, refusing any edit the sk-git validator would reject. The sk-git skill itself is never edited
-- `setup` checks eleven sk-git settings in one read-only pass: the install, hook links, trust, saved gates, commit, PR and branch rules, the push allowlist, the worktree base, Commit-Id, the advisory rules, suppression switches and each AI tool's advisory registration. It prints PASS, FAIL, SKIP, UNKNOWN or DEGRADED for each with the source it read and one repair command for each failing or degraded check, and writes nothing
-- Each change waits for an approval. `--dry-run` shows the plans and writes nothing
+- `hooks` lists the optional git hook gates with their saved settings and switches one on or off
+- `standards` shows which commit, PR and branch rules are enforced, and changes them in the repository's own `.sk-git/` copy of the templates
+- `setup` checks eleven sk-git settings read-only and names one repair command for each failure
+- Each change waits for your approval, and `--dry-run` shows the plan without writing
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
@@ -1298,19 +1302,17 @@ Ten commands cover the diagnostic surface, one per owner. The seven routed ones 
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 - A flag the chosen sub-action does not accept is refused before any workflow loads, with the flag it does accept
 
-**`/doctor:update [check|align|apply|rollback|record-base|compat]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery, approved base recording and the v3 to v4 layout move.
+**`/doctor:update [check|align|apply|rollback|record-base|compat]`** - update the framework from a new release
 
-- A release file below a folder the checkout keeps as a symlink is reported as a `symlink-parent` conflict that only keep-local can answer, so the updater never writes through the link
-- `compat` moves a v3 checkout to the v4 `specs/` layout and then upgrades its legacy packets, with a separate approval for each. A dirty spec root stops the move, and `--dry-run` previews it without writing.
+- Checks what a release changes, applies it after your approval and can roll it back
+
+- `compat` moves a v3 checkout to the v4 `specs/` layout, and `--dry-run` previews the move
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 
-- Reads the switch list from `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` at run time, so a newly documented switch shows up without a command change
-- Shows each switch's default, type, description and source, and reports whether it is set in the process, `hook-flags.env`, `.env` or Claude settings, by name only, never by value
-- Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
-- Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
-
-The 23 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+- Shows each switch's default and purpose, and where it is set, by name only and never by value
+- Saves a preference only after showing the exact line and getting your yes
+- Never asks for or saves a secret
 
 &nbsp;
 #### UTILITY
@@ -1467,7 +1469,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 
-- Parent hub for MCP tool bridges, nine modes: `mcp-chrome-devtools` (browser tooling), `mcp-click-up` (ClickUp task management via cupt CLI + official MCP, cupt signs in with `cupt auth` or a `pk_` token, the MCP with one OAuth approval), `mcp-obsidian` (Obsidian notes via notesmd-cli, the official obsidian CLI and cyanheads obsidian-mcp-server), `mcp-aside-devtools` and `mcp-notion`, plus the design transports `mcp-figma` (Figma Desktop via the silships `figma-ds-cli`, requires Figma Desktop open), `mcp-refero`, `mcp-mobbin` and `mcp-magicpath`. Stack-independent
+- Parent hub for nine MCP tool bridges, each described under [MCP Integration](#mcp-integration). Stack-independent
 
 &nbsp;
 #### Adding Your Own Skills
