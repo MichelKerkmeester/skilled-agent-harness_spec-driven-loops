@@ -1,0 +1,15 @@
+# final test against this branch after the round-1 fixes
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.590458ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.278583ms)
+✔ a command continued with a backslash is read as one command (0.098459ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (53.882791ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.500416ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.550625
+exit 0

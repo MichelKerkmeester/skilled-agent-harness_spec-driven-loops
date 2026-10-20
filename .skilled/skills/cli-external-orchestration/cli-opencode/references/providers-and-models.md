@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -34,7 +34,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 ### Authority pointers
 - Full CLI flags, subcommands, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
 - Dispatch envelope + failure-mode matrix → [integration-patterns.md](./integration-patterns.md)
-- Live model ids on a given install → `opencode models <provider>`
+- Live model ids on a given install → `opencode models <provider>` on OpenCode 1, or `opencode2 models --standalone` filtered for the `<provider>/` prefix on OpenCode 2
 
 **Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
@@ -44,7 +44,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 > **CLOSED ROSTER: non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** (`--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids), so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first. Never dispatch an unlisted id ad hoc. **A provider's live catalog is not a roster.** Every gateway below fronts far more ids than this file lists, and those extra ids are forbidden exactly as an unknown provider would be: the roster is per provider, and a model allowed on one route is not thereby allowed on another.
 
-OpenCode resolves models through configured providers. The model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install, but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
+OpenCode resolves models through configured providers. The model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` on OpenCode 1 (on OpenCode 2, `opencode2 models --standalone` filtered for the `<provider>/` prefix) for the live list on a given install, but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
 ### minimax
 
@@ -187,7 +187,7 @@ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outsi
 ## 6. ENFORCEMENT & PROFILES (authoritative elsewhere, do not duplicate here)
 
 - **Fan-out dispatcher** → `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`
-- **Live model ids** → `opencode models <provider>` on the target install
+- **Live model ids** → `opencode models <provider>` on OpenCode 1, or `opencode2 models --standalone` filtered for the `<provider>/` prefix on OpenCode 2
 
 ---
 

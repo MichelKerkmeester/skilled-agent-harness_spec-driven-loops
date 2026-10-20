@@ -57,13 +57,14 @@ If you follow the pre-flight in `cli-reference.md` on OpenCode 2 now, it reports
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph and its v2 script line, plus three inline spans |
+| `cli-opencode/references/cli-reference.md` | Modified | The pre-flight paragraph and its v2 script line, three inline spans, and the v1 label and v2 form on the subcommand row and the MiMo row |
 | `cli-opencode/SKILL.md`, `cli-opencode/README.md` | Modified | The provider-argument sentences, plus one inline span in the README |
 | `cli-opencode/references/install-and-versions.md` | Modified | The listing table row, its citation and the v2 layout sentence |
-| `cli-opencode/assets/`, `cli-opencode/references/` (four more), `cli-opencode/manual-testing-playbook/` (19 files) | Modified | `--standalone` on each inline span |
+| `cli-opencode/references/providers-and-models.md` | Modified | One inline span, and the v1 label and v2 form on its three `opencode models <provider>` sites |
+| `cli-opencode/assets/`, `cli-opencode/references/` (three more), `cli-opencode/manual-testing-playbook/` (19 files) | Modified | `--standalone` on each inline span |
 | `cli-devin/references/providers-and-models.md` | Modified | The same inline span |
 | `.hermes/skills/cli-opencode/SKILL.md` | Regenerated | `sync-skills-hermes.cjs` from the edited `SKILL.md` |
-| `cli-opencode/scripts/tests/opencode2-models-form.test.cjs` | Created | The form classifier, the redirect case, the doc scan and the pre-flight block check |
+| `cli-opencode/scripts/tests/opencode2-models-form.test.cjs` | Created | The form classifier (positional arguments, `--server` without a URL), the redirect and continuation cases, the doc scan and the anchored pre-flight filter check |
 | `.github/workflows/opencode-dual-version.yml` | Modified | The unit-test step runs the new test |
 <!-- /ANCHOR:what-built -->
 
@@ -96,9 +97,9 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 | Check | Result |
 |-------|--------|
 | Baseline cli-opencode tests | 5 of 5 pass (`scratch/baseline-cli-opencode-tests.txt`) |
-| cli-opencode tests after | 9 of 9 pass |
+| cli-opencode tests after | 10 of 10 pass |
 | New test against main's docs | 2 of 4 fail, naming 49 sites, the 49 the baseline listed (`scratch/mutation/m0-old-docs.txt`) |
-| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2 (`scratch/mutation/m1-*`, `m2-*`, `m3-*`) |
+| Mutants | Dropping the positional rule fails 1 test, dropping the `--standalone` rule fails 1, reverting the remainder pattern fails 2, an unanchored pre-flight grep fails 1, accepting `--server` without a URL fails 1, and not joining backslash continuations fails 1 (`scratch/mutation/m1-*` to `m6-*`) |
 | Pre-flight line live | `llmgateway` OK=1, `opencode-go` OK=0, unknown OK=0 under `pipefail`; the old form exits 1 for `llmgateway` too (`scratch/preflight-live.txt`) |
 | `sync-skills-hermes.cjs --check` | PASS: 68 copies in sync |
 | `check-gate-inputs.sh`, `actionlint` | Both exit 0 |
@@ -110,7 +111,8 @@ The target came from live probes before any edit: v2 `models --help`, the positi
 ## Known Limitations
 
 1. **A cli-devin-only edit does not start the battery job.** The test scans cli-devin's docs, but the workflow's path filter lists cli-opencode and the Hermes copy only, so a change confined to cli-devin is checked on the next run that does trigger. Adding cli-devin to the filter would run the whole two-version battery on every cli-devin edit.
-2. **The test reads quoted commands, not prose.** A sentence that describes the bare form without quoting it in backticks or a code block is not checked.
+2. **`opencode models` is read as OpenCode 1.** In a v2-only layout the v2 binary is named `opencode`, and no scan can tell from one line which layout a reader has. The docs label every `opencode models <provider>` site as the OpenCode 1 form and give the v2 form beside it, and `install-and-versions.md` covers the v2-only layout; the test checks only the `opencode2` name.
+3. **The test reads quoted commands, not prose.** A sentence that describes the bare form without quoting it in backticks or a code block is not checked.
 <!-- /ANCHOR:limitations -->
 
 ---

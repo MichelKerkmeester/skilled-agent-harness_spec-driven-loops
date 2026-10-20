@@ -76,21 +76,51 @@ function commandsIn(markdown) {
 // talks to the shared background service instead of a private one.
 function problemsWith(args) {
   const problems = [];
+  let serverForm = false;
 
   for (let index = 0; index < args.length; index += 1) {
     const token = args[index];
     if (token.startsWith('-')) {
-      if (token === '--server') index += 1;
+      if (token === '--server') {
+        const url = args[index + 1];
+        // A flag in the URL slot means the server was named without an address, so
+        // the command cannot reach a private server at all.
+        if (url === undefined || url.startsWith('-')) {
+          problems.push('--server without a URL');
+        } else {
+          serverForm = true;
+          index += 1;
+        }
+      }
       continue;
     }
     problems.push(`positional argument "${token}"`);
   }
 
-  if (!args.includes('--standalone') && !args.includes('--server')) {
+  if (!args.includes('--standalone') && !serverForm) {
     problems.push('no --standalone or --server, so it reaches the shared service');
   }
 
   return problems;
+}
+
+// A trailing backslash continues the same shell command on the next physical line, so
+// the scan joins those lines into one command and carries the first line's number,
+// which is where a reader has to go to fix the offender.
+function joinContinuations(lines) {
+  const joined = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const lineNumber = index + 1;
+    let text = lines[index];
+    while (/\\\s*$/.test(text) && index + 1 < lines.length) {
+      index += 1;
+      text = `${text.replace(/\\\s*$/, ' ')}${lines[index]}`;
+    }
+    joined.push({ text, lineNumber });
+  }
+
+  return joined;
 }
 
 // Every document the skill tree ships, minus the historical and installed trees.
@@ -125,6 +155,17 @@ test('problemsWith classifies the forms OpenCode 2 accepts and rejects', () => {
     problemsWith(['--standalone', 'opencode-go']).length > 0,
     'a positional provider must report a problem even beside --standalone',
   );
+
+  assert.ok(
+    problemsWith(['--server']).some((problem) => problem.includes('--server without a URL')),
+    '--server must report a problem when no URL follows it',
+  );
+  assert.ok(
+    problemsWith(['--server', '--standalone']).some((problem) =>
+      problem.includes('--server without a URL'),
+    ),
+    '--server must report a problem when another flag takes the URL slot',
+  );
 });
 
 test("commandsIn keeps a redirect's file descriptor out of the arguments", () => {
@@ -139,6 +180,21 @@ test("commandsIn keeps a redirect's file descriptor out of the arguments", () =>
   assert.deepEqual(positional[0].args, ['opencode-go']);
 });
 
+test('a command continued with a backslash is read as one command', () => {
+  const joined = joinContinuations(['opencode2 models \\', '  opencode-go']);
+  assert.equal(joined.length, 1, 'the continuation must read as one line');
+  assert.equal(joined[0].lineNumber, 1, 'the joined line reports its first physical line');
+
+  const commands = commandsIn(joined[0].text);
+  assert.equal(commands.length, 1, 'the continued command must read as one command');
+  assert.deepEqual(commands[0].args, ['opencode-go']);
+
+  assert.ok(
+    problemsWith(commands[0].args).some((problem) => problem.startsWith('positional argument')),
+    'a provider passed as a continued argument must still report a problem',
+  );
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. NO DOCUMENT QUOTES A FORM THE V2 BINARY REJECTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -147,17 +203,15 @@ test('no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches
   const offenders = [];
 
   const scan = (file) => {
-    read(file)
-      .split('\n')
-      .forEach((line, index) => {
-        for (const command of commandsIn(line)) {
-          const problems = problemsWith(command.args);
-          if (problems.length === 0) continue;
-          offenders.push(
-            `${relativeToRepoRoot(file)}:${index + 1}: ${command.text} (${problems.join('; ')})`,
-          );
-        }
-      });
+    for (const line of joinContinuations(read(file).split('\n'))) {
+      for (const command of commandsIn(line.text)) {
+        const problems = problemsWith(command.args);
+        if (problems.length === 0) continue;
+        offenders.push(
+          `${relativeToRepoRoot(file)}:${line.lineNumber}: ${command.text} (${problems.join('; ')})`,
+        );
+      }
+    }
   };
 
   for (const file of documents(CLI_ROOT)) scan(file);
@@ -197,10 +251,10 @@ test('the provider pre-flight block checks OpenCode 2 through a standalone listi
   assert.ok(block.length > 0, 'the provider pre-flight section has no fenced bash block');
 
   const standaloneListing = block.some((line) =>
-    /opencode2 models --standalone\b.*\|\s*grep\b/.test(line),
+    /opencode2 models --standalone\b.*\|\s*grep\s+(['"])\^[\w.-]+\/\1/.test(line),
   );
   assert.ok(
     standaloneListing,
-    `the provider pre-flight block must filter a standalone listing, but it does not:\n${block.join('\n')}`,
+    `the provider pre-flight block must filter a standalone listing for an anchored ^<provider>/ prefix, but it does not:\n${block.join('\n')}`,
   );
 });

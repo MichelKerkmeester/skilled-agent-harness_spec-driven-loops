@@ -1,0 +1,38 @@
+# mutant: backslash continuations not joined
+✔ problemsWith classifies the forms OpenCode 2 accepts and rejects (0.754ms)
+✔ commandsIn keeps a redirect's file descriptor out of the arguments (0.327875ms)
+✖ a command continued with a backslash is read as one command (0.398167ms)
+✔ no doc quotes an opencode2 models form that 2.0.32 rejects or that reaches the shared service (52.867708ms)
+✔ the provider pre-flight block checks OpenCode 2 through a standalone listing (0.546875ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.055833
+
+✖ failing tests:
+
+test at ../../../../../..mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:183:1
+✖ a command continued with a backslash is read as one command (0.398167ms)
+  AssertionError [ERR_ASSERTION]: the continuation must read as one line
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (mut/.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs:185:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit 1

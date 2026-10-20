@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -81,7 +81,7 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `opencode debug` | Debugging and troubleshooting tools | YES (for `debug skill` and `debug agent` listings) |
 | `opencode mcp` | Manage MCP server registrations | No |
 | `opencode providers` (alias `auth`) | Manage AI providers and credentials | No (operator-driven setup) |
-| `opencode models [provider]` | List available models | YES (for capability discovery) |
+| `opencode models [provider]` | List available models (OpenCode 1; on OpenCode 2 `opencode2 models --standalone`, which takes no provider argument) | YES (for capability discovery) |
 | `opencode session` | Manage sessions | No (state inspection only) |
 | `opencode export [sessionID]` | Export session data as JSON | YES (for memory handback flows) |
 | `opencode stats` | Token and cost statistics | No |
@@ -219,7 +219,7 @@ echo "default=$OPENCODE_GO_OK minimax_token=$MINIMAX_TOKEN_OK minimax_direct=$MI
 
 | State | Condition | Action |
 |-------|-----------|--------|
-| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2. **Omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` |
+| MiMo requested | `LLMGATEWAY_OK=1` | Proceed with `--model llmgateway/mimo-v2.6-pro --variant high` on OpenCode 1 or `-m llmgateway/mimo-v2.6-pro#high` on OpenCode 2. **Omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13). Confirm the live id via `opencode models llmgateway` on OpenCode 1 or `opencode2 models --standalone` filtered for `llmgateway/` on OpenCode 2 |
 | LLM Gateway not configured | `LLMGATEWAY_OK=0` | **ASK user** to run `opencode auth login` → DevPass (LLM Gateway). Never substitute silently |
 
 **Login / setup command shapes** (the AI surfaces these to the user, who runs them in their own terminal):
