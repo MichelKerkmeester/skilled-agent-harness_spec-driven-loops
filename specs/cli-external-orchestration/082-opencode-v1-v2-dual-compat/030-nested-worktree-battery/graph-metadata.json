@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -150,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -175,6 +169,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Run inside `.worktrees/NNN-slug`, the battery's v2 leg reported all 17 plugin files failed, while the same battery passed in a plain clone and on CI",
     "created_at": "2026-10-20T12:43:27Z",
-    "last_save_at": "2026-10-20T13:35:08.941Z",
+    "last_save_at": "2026-10-20T14:02:30.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5d53cb6aec6b0b625bd475cc80436ece40444b9c0f01ef80754ab47866b87c0",
+    "source_fingerprint": "sha256:e2ed924d789e3054d0d6f2e6c8ad0a2ec1d6a10e0d91875420bdabbd1a47f8bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d18603471ec59275e607cccc0e6ad87f33f78fb98471c0a21167e1627d69513c",
-      "plan.md": "a078d696cd4cad131c6dc135b328ea42e559d2f5f3e845136a5ba9caf52c2537",
-      "tasks.md": "b2ddecf81829516cbc6071669937dffe5c6161ebb6ca38af37f1aeafb205870a",
-      "implementation-summary.md": "7bc1067ecdbe7b15829ca013f404a406de2c325dc3ca3d530d2dad44e77b703b"
+      "spec.md": "95924236f8803bdd6c48f4c978697574b459e9e1787796f2f90e2d44e390d8b1",
+      "plan.md": "6046d894017587df4be1370853b4b850d2a5ddc55eeaa82d650e0dc8063c1374",
+      "tasks.md": "43aca9c7546847e36cde06f4c19b9f559f91c39287eb3ee29af9f76a97e73a8d",
+      "implementation-summary.md": "00506f435f6b240d1f12b2832ced29abaccc383295e6de51a377b770dbc55341"
     },
     "last_active_at": null
   }

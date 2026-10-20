@@ -238,7 +238,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-20T13:40:30.466Z",
+    "last_save_at": "2026-10-20T14:02:34.379Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -246,10 +246,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8221767e05cc84a642d685121849a96459d1b5949f6ed84d4942ded957134ecc",
+    "source_fingerprint": "sha256:968e926534ac3f97b391dd584e756bc9a9580ac699ae7628ae5e6145aa7bded7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9c9b466c045c26ad6338acbbc91e4595136b4f1ad6e47d46d3be6fedeac55f07",
+      "spec.md": "9a973762049da41f459768ca9bf0e7ba213100f1d36650272c2f662054ece196",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_child_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",

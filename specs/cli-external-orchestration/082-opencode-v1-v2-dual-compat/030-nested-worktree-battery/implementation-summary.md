@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/030-nested-worktree-battery"
     last_updated_at: "2026-10-20T16:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Fixed the nested-worktree battery; Luna round 5 passed with P2s recorded"
-    next_safe_action: "Merge origin/main, push to main and confirm the Dual-Version Battery on CI"
+    recent_action: "Closed the phase: on main at c492e020ff, Dual-Version Battery green on CI"
+    next_safe_action: "None; the open follow-ups are under Known Limitations"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/opencode-version-battery.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "g030-nested-worktree-battery"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 030-nested-worktree-battery |
-| **Completed** | Implementation 2026-10-20; review, validation and CI closure pending |
+| **Completed** | 2026-10-20 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -96,6 +96,8 @@ I reproduced the failure in worktree 169 and read the private server's plugin li
 | Battery test suite | PASS, 45 of 45 (37 at baseline), `scratch/mutation/after-r4.txt` |
 | Mutation runs m1 to m8 | Each fails at least one test, `scratch/mutation/` |
 | Live battery, worktree 169, both families | PASS, exit 0, v2 with an `isolated:` line (`scratch/rootcause/after-r4-both.json`) |
+| Recursive strict validation of 082 | PASS, 31 folders, 0 failed, after both merges of main |
+| CI at main `c492e020ff` | All 16 workflows success, including the OpenCode Dual-Version Battery on all three jobs (run 39432681929) and Spec-Kit Check (run 39432681640) |
 | Live battery, plain clone, both families | PASS, exit 0, no `isolated:` line (`scratch/rootcause/after-r2-plain-both.json`) |
 | OpenCode 1 origins in worktree 169 | 17 from the worktree, 0 from the outer checkout (`scratch/rootcause/v1-origins.json`) |
 | Luna review | Rounds 1 to 4 FAIL, each finding fixed; round 5 PASS with four P2s, three fixed and one recorded below |

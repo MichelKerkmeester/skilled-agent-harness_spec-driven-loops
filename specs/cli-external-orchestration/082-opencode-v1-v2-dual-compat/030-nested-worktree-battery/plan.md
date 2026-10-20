@@ -40,9 +40,9 @@ OpenCode 2.0.32 merges the `.opencode` folder of every ancestor directory, so in
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing, with each new test failing on a mutant
-- [ ] Docs updated (spec/plan/tasks, ARCHITECTURE.md, the worktree reference)
+- [x] All acceptance criteria met
+- [x] Tests passing, with each new test failing on a mutant
+- [x] Docs updated (spec/plan/tasks, ARCHITECTURE.md, the worktree reference)
 <!-- /ANCHOR:quality-gates -->
 
 ---
