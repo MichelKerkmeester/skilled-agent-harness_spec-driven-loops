@@ -88,7 +88,7 @@ The diagram shows the bridged plugins, every entry file except sk-vision. `sk-vi
 │   ├── v2-bridge.test.cjs     # covers the bridge itself
 │   ├── plugin-inventory.test.cjs   # inventory, unmapped-hook and event-name guards
 │   ├── plugin-inventory.json       # native-dual exceptions and event-name lists
-│   ├── v2-hard-plugins.test.cjs    # v2 registration for five plugins, behavior cases for four
+│   ├── v2-hard-plugins.test.cjs    # selected hard cases: expected registrations and behavior
 │   ├── v2-registration.test.cjs    # checks the dual export shape for every bridged plugin
 │   └── ...                    # the remaining v1 behavior suites
 ├── README.md                  # folder index with the per-file inventory

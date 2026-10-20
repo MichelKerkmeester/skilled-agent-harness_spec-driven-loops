@@ -20,6 +20,7 @@ const IDENTIFIER_SOURCE = String.raw`[A-Za-z_$][A-Za-z0-9_$]*`;
 const EVENT_TYPE_SOURCE = String.raw`(?:${IDENTIFIER_SOURCE}(?:\?\.|\.))*(?:${IDENTIFIER_SOURCE})?[tT]ype(?![A-Za-z0-9_$])`;
 const EVENT_NAME_SOURCE = String.raw`[a-z]+(?:\.[a-z_]+)+`;
 const COMPARISON_SOURCE = String.raw`(?:===|!==|==|!=)`;
+const OPERAND_SOURCE = String.raw`(?:'[^'\n]*'|"[^"\n]*"|${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. MANIFEST READERS
@@ -108,18 +109,21 @@ function unscannedEventChecks(source) {
   // Either operand order names no literal event, so both are reported.
   const comparisons = [
     new RegExp(
-      String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*(${IDENTIFIER_SOURCE})`,
+      String.raw`${EVENT_TYPE_SOURCE}\s*${COMPARISON_SOURCE}\s*(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)`,
       'g',
     ),
     new RegExp(
-      String.raw`(${IDENTIFIER_SOURCE})\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`,
+      String.raw`(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*${COMPARISON_SOURCE}\s*${EVENT_TYPE_SOURCE}`,
       'g',
     ),
   ];
   // A method call on the type can select events the scan does not read, and a case label
   // holding an identifier or member expression is resolved at runtime.
   const unreadablePatterns = [
-    new RegExp(String.raw`${EVENT_TYPE_SOURCE}\.([A-Za-z_$][\w$]*)\(([^()]*)\)`, 'g'),
+    new RegExp(
+      String.raw`${EVENT_TYPE_SOURCE}\.([A-Za-z_$][\w$]*)\(([^()]*)\)(?:\s*${COMPARISON_SOURCE}\s*${OPERAND_SOURCE})?`,
+      'g',
+    ),
     new RegExp(String.raw`\.(?:has|includes)\(\s*${EVENT_TYPE_SOURCE}\s*\)`, 'g'),
     new RegExp(
       String.raw`case\s+(${IDENTIFIER_SOURCE}(?:\.${IDENTIFIER_SOURCE})*)\s*:`,
