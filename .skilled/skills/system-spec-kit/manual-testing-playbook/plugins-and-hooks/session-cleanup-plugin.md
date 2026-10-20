@@ -8,7 +8,7 @@ trigger_phrases:
   - "opencode plugin dispose"
   - "startup guard warnings"
   - "session teardown sweep"
-version: 1.0.0.1
+version: 1.0.1.0
 id: plugins-and-hooks-session-cleanup-plugin
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -36,7 +36,7 @@ the exact same `.skilled/scripts/session-cleanup.sh` script that Claude Code's `
 invokes directly (see `.claude/settings.json`).
 
 This scenario validates: (a) the plugin's own Node unit test suite passes for real against the
-live source files, (b) a live invocation of the plugin factory reproduces the documented
+live source files, (b) a live invocation of the plugin's `server` entry reproduces the documented
 startup-guard injection and dispose behavior end-to-end against the real repo scripts (not
 mocked stand-ins), and (c) the Claude Code `SessionEnd` hook wiring in `.claude/settings.json`
 targets the same underlying cleanup script the plugin's `dispose()` calls.
@@ -111,7 +111,7 @@ node --test .skilled/plugins/tests/session-cleanup.test.cjs
 
 Expected: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0`.
 
-2. Exercise the real plugin factory end-to-end (`session.created` -> injection preview ->
+2. Exercise the real plugin's `server` entry end-to-end (`session.created` -> injection preview ->
    `session.deleted` -> `dispose()` -> repeat `dispose()`), scoping the cleanup log to a scratch
    path and never supplying a real session PID. To make the git-state-driven `worktree-guard.sh`
    emit deterministically regardless of whether this harness itself runs inside an isolated
@@ -141,7 +141,7 @@ const plugin = (await import(pathToFileURL(PLUGIN_PATH).href)).default;
 // emits its warning even if this harness runs inside a git worktree. The guard SCRIPTS
 // stay the real repo scripts; only their working directory moves -- no bypass, no mock.
 const GUARD_CWD = process.env.GUARD_CWD || REPO_ROOT;
-const hooks = await plugin({ directory: GUARD_CWD });
+const hooks = await plugin.server({ directory: GUARD_CWD });
 
 console.log('--- session.created event (real worktree-guard.sh + check-git-hooks.sh) ---');
 await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'live-demo-session' } } } });

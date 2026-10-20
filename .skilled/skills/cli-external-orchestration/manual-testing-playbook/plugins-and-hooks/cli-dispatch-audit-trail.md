@@ -11,7 +11,7 @@ stage: routing
 expected_intent: UNKNOWN
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 1.4.0.10
+version: 1.4.1.0
 ---
 
 # CLI Dispatch Audit Trail
@@ -75,7 +75,7 @@ SCRATCH_DIR2="$(mktemp -d)/opencode-sim"
 mkdir -p "$SCRATCH_DIR2"
 SCRATCH_PROJECT_DIR="$SCRATCH_DIR2" node --input-type=module -e '
 import plugin from "./.skilled/plugins/cli-dispatch-audit.js";
-const hooks = await plugin({ directory: process.env.SCRATCH_PROJECT_DIR });
+const hooks = await plugin.server({ directory: process.env.SCRATCH_PROJECT_DIR });
 const input = {
   tool: "bash",
   sessionID: "sess-oc-live-002",

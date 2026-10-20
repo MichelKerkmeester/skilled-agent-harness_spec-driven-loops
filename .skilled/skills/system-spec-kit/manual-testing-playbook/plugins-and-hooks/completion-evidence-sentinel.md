@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion sentinel plugin"
   - "completion-evidence-sentinel"
   - "stop hook advisory"
-version: 1.0.0.1
+version: 1.0.1.0
 id: plugins-and-hooks-completion-evidence-sentinel
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -243,7 +243,7 @@ try {
       },
     },
   };
-  const hooks = await MkCompletionSentinelPlugin({ directory: projectDir, client: fakeClient });
+  const hooks = await MkCompletionSentinelPlugin.server({ directory: projectDir, client: fakeClient });
 
   console.log('\n--- dispatching session.idle through the OpenCode adapter ---');
   await hooks.event({ event: { type: 'session.idle', sessionID: 'sess-live-adapter-test' } });
