@@ -54,7 +54,7 @@ The inventory guard stopped guessing at JavaScript with regular expressions. It 
 
 ### Phase 31: plugin-scanner-ast
 
-You get an event-name guard that fails closed by construction. It reads comparisons, switches on the event type and `has` or `includes` calls on a literal collection; every other check on the event type is reported for `unscannedEventChecks`, and a file the parser cannot read fails the test. A collection only counts as literal while nothing changes it or passes it on, which closes the last of the four recorded gaps. On the 16 real plugins the new guard reports exactly what the old one did, so the manifest needed no change.
+You get an event-name guard that fails closed by construction. It reads comparisons, switches on the event type and `has` or `includes` calls on a literal collection, resolving every name through its lexical scope; every other check on the event type is reported for `unscannedEventChecks`, and a file the parser cannot read fails the test. A collection only counts as literal while nothing changes it or passes it on, which closes the last of the four recorded gaps. On the 16 real plugins the new guard reports exactly what the old one did, so the manifest needed no change.
 
 The purity test now lists symlinks too. For `sk-vision.js` it checks that the link is relative, stays inside the repository and resolves to a built bundle, then imports it and applies the dual-export contract. Spec-Kit Check builds that bundle with bun first, because it is a gitignored build output.
 
@@ -101,13 +101,13 @@ DeepSeek v4.1 flash at max thinking wrote every code and doc edit through short 
 | Check | Result |
 |-------|--------|
 | Plugin suite baseline | 417 of 417 (`scratch/baseline/plugin-suite.txt`) |
-| Plugin suite after | 426 of 426: one test removed, ten added (`scratch/after/plugin-suite.txt`) |
+| Plugin suite after | 431 of 431: one test removed, fifteen added (`scratch/after/plugin-suite.txt`) |
 | Old vs new helper on 16 bridged plugins | Identical (`scratch/mutation/scan-parity.txt`) |
-| New fixtures on the old helper | Exit 1, 9 of the 10 new tests fail; the shadowed-alias test fails on the first parser commit instead (`scratch/mutation/scanner-old-helper.txt`, `round1-fixtures-on-prior-helper.txt`) |
+| New fixtures on the old helper | Exit 1, 13 of the 15 new tests fail; the two alias-cancelling tests fail on an intermediate parser commit instead (`scratch/mutation/scanner-old-helper.txt`, `round1-` and `round2-fixtures-on-prior-helper.txt`) |
 | Mutants m1 and m2 of the new helper | m1 fails 1 test, m2 fails 2 |
 | Purity test, three broken links | Old exit 0, new exit 1, restored link exit 0 (`scratch/mutation/purity-symlink.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | Exit 0; RESULT: PASSED, 0 failures |
-| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 pending |
+| Luna review | Round 1 FAIL: four P1s (writes through allowed members, aliases by spelling, parameter and default destructuring, shadowed `Set` and `Object`) and one P2 (no full-suite record); all fixed. Round 2 FAIL: five P1s (references and aliases by spelling, `for-of` writes, method and collection kind, a helper receiving the event type in a test) and two P2s (fixture count, a truncated capture); fixed with lexical scope resolution. Round 3 pending |
 | Strict validation, CI | Pending |
 <!-- /ANCHOR:verification -->
 

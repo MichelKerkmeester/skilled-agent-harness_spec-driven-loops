@@ -1,0 +1,10 @@
+# Round-2 fixtures against the round-1 helper (commit 90392a73a6), node v26.8.2
+exit 1
+ℹ tests 27
+ℹ pass 22
+ℹ fail 5
+✖ a for-of loop that writes an alias cancels it (0.109375ms)
+✖ a helper that receives the event type inside a test is reported (0.110417ms)
+✖ a membership method that does not fit the collection is reported (0.105708ms)
+✖ a same-named parameter does not stand in for an outer collection (0.699834ms)
+✖ an unrelated same-named parameter does not cancel an outer alias (0.181ms)

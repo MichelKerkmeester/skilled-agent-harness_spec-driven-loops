@@ -1,4 +1,4 @@
-# Old (HEAD text scan) vs new (parser) helper on every bridged plugin, node v26.8.2
+# Old (text scan, 3303bfb38e) vs new (parser, working tree) helper on every bridged plugin, node v26.8.2
 plugins: 16
 RESULT: identical handled and unscanned lists for every plugin
 

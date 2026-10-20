@@ -315,6 +315,38 @@ test('a local Set or Object is not trusted to build a literal collection', () =>
   assert.deepEqual(unscannedEventChecks(source), ['F.includes(eventType)', 'S.has(eventType)']);
 });
 
+// A parameter binding hides the outer collection at the check, so its receiver is unresolved.
+test('a same-named parameter does not stand in for an outer collection', () => {
+  const source = `const KNOWN = new Set(['o.outer']); function f(KNOWN) { if (KNOWN.has(eventType)) {} }`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ['KNOWN.has(eventType)']);
+});
+
+// A parameter elsewhere is a different binding, so the outer alias still reads true.
+test('an unrelated same-named parameter does not cancel an outer alias', () => {
+  const source = `const t = event.type; if (t === 'o.alias') {} function f(t) { return t; }`;
+  assert.deepEqual(handledEventNames(source), ['o.alias']);
+});
+
+// Writing the alias in a loop means it no longer holds the event type at the check.
+test('a for-of loop that writes an alias cancels it', () => {
+  const source = `let kind = event.type; for (kind of others) {} if (kind === 'o.loop') {}`;
+  assert.deepEqual(handledEventNames(source), []);
+});
+
+// A member the collection kind does not have cannot cover the events it lists.
+test('a membership method that does not fit the collection is reported', () => {
+  const source = `const A = ['m.array']; if (A.has(eventType)) {} const S = new Set(['m.set']); if (S.includes(eventType)) {}`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ['A.has(eventType)', 'S.includes(eventType)']);
+});
+
+// A helper that receives the type inside a test decides a branch the scan cannot read.
+test('a helper that receives the event type inside a test is reported', () => {
+  const source = `if (isKnown(eventType)) {} const ok = !matches(event.type) ? 1 : 2; log(eventType);`;
+  assert.deepEqual(unscannedEventChecks(source), ['isKnown(eventType)', 'matches(event.type)']);
+});
+
 // A source the parser cannot read fails loudly instead of passing empty.
 test('a source the parser cannot read fails instead of passing empty', () => {
   assert.throws(() => handledEventNames('if (type === '));

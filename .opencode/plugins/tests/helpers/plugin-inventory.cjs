@@ -160,14 +160,16 @@ function isNothing(node) {
   );
 }
 
-function isEventType(node, aliases) {
+function isEventType(node, context) {
   if (node === null || node === undefined) return false;
 
   // The parser wraps an optional chain around its member expression, which is still the field.
-  if (node.type === 'ChainExpression') return isEventType(node.expression, aliases);
+  if (node.type === 'ChainExpression') return isEventType(node.expression, context);
 
   if (node.type === 'Identifier') {
-    return node.name === 'type' || node.name.endsWith('Type') || aliases.has(node.name);
+    if (node.name === 'type' || node.name.endsWith('Type')) return true;
+    const binding = context.resolve(node);
+    return binding !== null && context.aliases.has(binding);
   }
 
   // A bracket key reaches the same field as a dot, so both spellings count alike.
@@ -186,7 +188,7 @@ function forEachPatternName(pattern, visit) {
   if (pattern === null || pattern === undefined) return;
 
   if (pattern.type === 'Identifier') {
-    visit(pattern.name);
+    visit(pattern);
     return;
   }
   if (pattern.type === 'ObjectPattern') {
@@ -207,106 +209,242 @@ function forEachPatternName(pattern, visit) {
   if (pattern.type === 'RestElement') forEachPatternName(pattern.argument, visit);
 }
 
-// A name bound in more than one place can mean something else at the check, so aliases need a count.
-function collectBindings(nodes) {
-  const bindings = new Map();
-  const bind = (pattern) =>
-    forEachPatternName(pattern, (name) => {
-      bindings.set(name, (bindings.get(name) ?? 0) + 1);
-    });
+// The tree has no parent links, so the scope builder walks it once and records which scope holds
+// each node before any name is resolved.
+function childNodes(node) {
+  const children = [];
 
-  for (const { node } of nodes) {
-    if (node.type === 'VariableDeclarator') {
-      bind(node.id);
+  for (const key of Object.keys(node)) {
+    const value = node[key];
+    if (Array.isArray(value)) {
+      for (const child of value) {
+        if (child !== null && typeof child === 'object' && typeof child.type === 'string') {
+          children.push(child);
+        }
+      }
+    } else if (value !== null && typeof value === 'object' && typeof value.type === 'string') {
+      children.push(value);
+    }
+  }
+
+  return children;
+}
+
+const FUNCTION_SCOPE_TYPES = new Set([
+  'Program',
+  'FunctionDeclaration',
+  'FunctionExpression',
+  'ArrowFunctionExpression',
+]);
+const FUNCTION_TYPES = new Set([
+  'FunctionDeclaration',
+  'FunctionExpression',
+  'ArrowFunctionExpression',
+]);
+const BLOCK_SCOPE_TYPES = new Set([
+  'BlockStatement',
+  'ForStatement',
+  'ForInStatement',
+  'ForOfStatement',
+  'SwitchStatement',
+  'CatchClause',
+]);
+
+function isScopeNode(node) {
+  return FUNCTION_SCOPE_TYPES.has(node.type) || BLOCK_SCOPE_TYPES.has(node.type);
+}
+
+// A var or a function declaration belongs to the function, so the walk skips every block above.
+function nearestFunctionScope(scope) {
+  let current = scope;
+  while (current !== null && !FUNCTION_SCOPE_TYPES.has(current.node.type)) {
+    current = current.parent;
+  }
+  return current;
+}
+
+// A name means whatever its own scope says it means, so every identifier is resolved against the
+// scope that contains it instead of being compared by spelling across the whole file.
+function buildScopes(program, parents) {
+  const scopeOf = new Map();
+  const bindings = [];
+  const typeBindings = new Set();
+  const root = { node: program, parent: null, names: new Map() };
+  const pending = [program];
+  scopeOf.set(program, root);
+
+  while (pending.length > 0) {
+    const node = pending.pop();
+    const scope = scopeOf.get(node);
+
+    for (const child of childNodes(node)) {
+      let childScope = scope;
+      if (isScopeNode(child)) {
+        const owner = parents.get(child);
+        // A function body block is the function's own scope, not a second one below it.
+        const sharesFunctionBody =
+          child.type === 'BlockStatement' &&
+          owner !== undefined &&
+          FUNCTION_TYPES.has(owner.type) &&
+          owner.body === child;
+        if (!sharesFunctionBody) {
+          childScope = { node: child, parent: scope, names: new Map() };
+        }
+      }
+      scopeOf.set(child, childScope);
+      pending.push(child);
+    }
+  }
+
+  const addBinding = (scope, identifier, kind, declarator, fromTypeProperty) => {
+    const binding = { name: identifier.name, kind, declarator, node: identifier };
+    scope.names.set(identifier.name, binding);
+    bindings.push(binding);
+    if (fromTypeProperty) typeBindings.add(binding);
+  };
+
+  // Every pattern form hides its names at a different depth, so one walk binds them all.
+  const bindPattern = (pattern, scope, kind, declarator, fromTypeProperty) => {
+    if (pattern === null || pattern === undefined) return;
+
+    if (pattern.type === 'Identifier') {
+      addBinding(scope, pattern, kind, declarator, fromTypeProperty);
+      return;
+    }
+    if (pattern.type === 'ObjectPattern') {
+      for (const property of pattern.properties) {
+        if (property.type === 'RestElement') {
+          bindPattern(property.argument, scope, kind, declarator, false);
+          continue;
+        }
+        const namesType =
+          !property.computed &&
+          ((property.key.type === 'Identifier' && property.key.name === 'type') ||
+            (property.key.type === 'Literal' && property.key.value === 'type'));
+        // The value of a `type` property carries the type field, including a defaulted binding.
+        bindPattern(property.value, scope, kind, declarator, namesType);
+      }
+      return;
+    }
+    if (pattern.type === 'ArrayPattern') {
+      for (const element of pattern.elements) {
+        bindPattern(element, scope, kind, declarator, false);
+      }
+      return;
+    }
+    if (pattern.type === 'AssignmentPattern') {
+      bindPattern(pattern.left, scope, kind, declarator, fromTypeProperty);
+      return;
+    }
+    if (pattern.type === 'RestElement') {
+      bindPattern(pattern.argument, scope, kind, declarator, false);
+    }
+  };
+
+  for (const node of scopeOf.keys()) {
+    const scope = scopeOf.get(node);
+
+    if (node.type === 'VariableDeclaration') {
+      const target = node.kind === 'var' ? nearestFunctionScope(scope) : scope;
+      for (const declarator of node.declarations) {
+        bindPattern(declarator.id, target, node.kind, declarator, false);
+      }
+    } else if (node.type === 'FunctionDeclaration') {
+      if (node.id !== null) {
+        addBinding(nearestFunctionScope(scope.parent), node.id, 'function', null, false);
+      }
+      for (const param of node.params) bindPattern(param, scope, 'param', null, false);
     } else if (
-      node.type === 'FunctionDeclaration' ||
       node.type === 'FunctionExpression' ||
       node.type === 'ArrowFunctionExpression'
     ) {
-      bind(node.id);
-      for (const param of node.params) bind(param);
+      if (node.id !== null) addBinding(scope, node.id, 'function', null, false);
+      for (const param of node.params) bindPattern(param, scope, 'param', null, false);
+    } else if (node.type === 'ClassDeclaration') {
+      if (node.id !== null) addBinding(scope, node.id, 'class', null, false);
+    } else if (node.type === 'ClassExpression') {
+      // A class expression has no scope of its own here, so its name binds beside it where its
+      // own methods can still resolve it.
+      if (node.id !== null) addBinding(scope, node.id, 'class', null, false);
     } else if (node.type === 'CatchClause') {
-      bind(node.param);
-    } else if (node.type === 'ClassDeclaration' || node.type === 'ClassExpression') {
-      bind(node.id);
+      bindPattern(node.param, scope, 'catch', null, false);
     } else if (
       node.type === 'ImportSpecifier' ||
       node.type === 'ImportDefaultSpecifier' ||
       node.type === 'ImportNamespaceSpecifier'
     ) {
-      bind(node.local);
+      addBinding(root, node.local, 'import', null, false);
     }
   }
 
-  return bindings;
+  // Outward from the innermost scope is the language's own lookup order.
+  const resolve = (identifier) => {
+    if (identifier === null || identifier === undefined || identifier.type !== 'Identifier') {
+      return null;
+    }
+
+    let scope = scopeOf.get(identifier);
+    while (scope !== null && scope !== undefined) {
+      const binding = scope.names.get(identifier.name);
+      if (binding !== undefined) return binding;
+      scope = scope.parent;
+    }
+    return null;
+  };
+
+  return { resolve, bindings, typeBindings };
 }
 
-// A name written after it is bound no longer holds the value the check was written for.
-function collectAssignedNames(nodes) {
-  const assigned = new Set();
+// A binding written after it is declared no longer holds the value the check was written for.
+function collectWrittenBindings(context) {
+  const written = new Set();
+  const mark = (identifier) => {
+    const binding = context.resolve(identifier);
+    if (binding !== null) written.add(binding);
+  };
 
-  for (const { node } of nodes) {
+  for (const { node } of context.nodes) {
     if (node.type === 'AssignmentExpression') {
-      forEachPatternName(node.left, (name) => assigned.add(name));
-    } else if (node.type === 'UpdateExpression' && node.argument.type === 'Identifier') {
-      assigned.add(node.argument.name);
+      forEachPatternName(node.left, mark);
+    } else if (node.type === 'UpdateExpression') {
+      forEachPatternName(node.argument, mark);
+    } else if (
+      (node.type === 'ForInStatement' || node.type === 'ForOfStatement') &&
+      node.left.type !== 'VariableDeclaration'
+    ) {
+      // A loop that assigns an existing binding rewrites it on every pass.
+      forEachPatternName(node.left, mark);
     }
   }
 
-  return assigned;
+  return written;
 }
 
-// A local name can carry the type field too, including one destructured out of it, but only while
-// that name means one thing and is never rewritten.
-function collectEventTypeAliases(nodes, context) {
+// A local binding can carry the type field too, including one destructured out of it, but only
+// while that binding is never rewritten; an alias can also be built from another alias.
+function collectEventTypeAliases(context) {
   const aliases = new Set();
-  const mayAlias = (name) => context.bindings.get(name) === 1 && !context.assignedNames.has(name);
+  context.aliases = aliases;
   let changed = true;
 
   while (changed) {
     changed = false;
-    for (const { node } of nodes) {
-      if (node.type === 'VariableDeclarator') {
-        if (node.id.type !== 'Identifier' || !isEventType(node.init, aliases)) continue;
-        if (aliases.has(node.id.name) || !mayAlias(node.id.name)) continue;
-        aliases.add(node.id.name);
-        changed = true;
-      }
+    for (const binding of context.bindings) {
+      if (aliases.has(binding) || context.written.has(binding)) continue;
 
-      if (node.type !== 'ObjectPattern') continue;
-      for (const property of node.properties) {
-        if (property.type !== 'Property' || property.computed) continue;
-        const key = property.key;
-        const namesType =
-          (key.type === 'Identifier' && key.name === 'type') ||
-          (key.type === 'Literal' && key.value === 'type');
-        if (!namesType) continue;
-        const value =
-          property.value.type === 'AssignmentPattern' ? property.value.left : property.value;
-        if (value.type !== 'Identifier' || aliases.has(value.name) || !mayAlias(value.name)) {
-          continue;
-        }
-        aliases.add(value.name);
-        changed = true;
-      }
+      const declarator = binding.declarator;
+      const fromInit =
+        declarator !== null &&
+        binding.node === declarator.id &&
+        isEventType(declarator.init, context);
+      if (!fromInit && !context.typeBindings.has(binding)) continue;
+
+      aliases.add(binding);
+      changed = true;
     }
   }
 
   return aliases;
-}
-
-function collectDeclarators(nodes) {
-  const declarators = new Map();
-
-  for (const { node, parent } of nodes) {
-    if (node.type !== 'VariableDeclarator' || node.id.type !== 'Identifier') continue;
-    const entries = declarators.get(node.id.name);
-    const entry = { declarator: node, declaration: parent };
-    if (entries === undefined) declarators.set(node.id.name, [entry]);
-    else entries.push(entry);
-  }
-
-  return declarators;
 }
 
 // Names in binding positions and object keys do not use the value, so they cannot make a
@@ -360,12 +498,15 @@ function isBindingIdentifier(node, parent) {
   return false;
 }
 
-// A collection whose name is read any other way can be changed or exported, which makes its
+// A collection whose binding is read any other way can be changed or exported, which makes its
 // literal contents unable to describe what the check actually sees.
-function isCollectionReferenceOnly(name, declarationId, context) {
+function isCollectionReferenceOnly(binding, context) {
   for (const { node, parent } of context.nodes) {
-    if (node.type !== 'Identifier' || node.name !== name) continue;
-    if (node === declarationId || isBindingIdentifier(node, parent)) continue;
+    if (node.type !== 'Identifier') continue;
+    if (node === binding.node) continue;
+    // A same-named identifier that resolves elsewhere is a different variable, not a use.
+    if (context.resolve(node) !== binding) continue;
+    if (isBindingIdentifier(node, parent)) continue;
     if (
       parent !== null &&
       parent.type === 'MemberExpression' &&
@@ -391,7 +532,7 @@ function isCollectionReferenceOnly(name, declarationId, context) {
   return true;
 }
 
-// A receiver resolves only when its whole contents are literal event names and its name never
+// A receiver resolves only when its whole contents are literal event names and its binding never
 // leaves the file; every other receiver is reported instead of guessed.
 function resolveCollection(node, context, resolving = new Set()) {
   if (node === null || node === undefined) return null;
@@ -404,15 +545,16 @@ function resolveCollection(node, context, resolving = new Set()) {
       if (value === undefined || !EVENT_NAME.test(value)) return null;
       names.push(value);
     }
-    return names;
+    return { kind: 'array', names };
   }
 
   if (node.type === 'NewExpression') {
     // A local Set shadows the built-in, so its constructor cannot build a trusted literal collection.
-    if (context.bindings.has('Set')) return null;
     if (node.callee.type !== 'Identifier' || node.callee.name !== 'Set') return null;
+    if (context.resolve(node.callee) !== null) return null;
     if (node.arguments.length !== 1 || node.arguments[0].type !== 'ArrayExpression') return null;
-    return resolveCollection(node.arguments[0], context, resolving);
+    const inner = resolveCollection(node.arguments[0], context, resolving);
+    return inner === null ? null : { kind: 'set', names: inner.names };
   }
 
   if (node.type === 'CallExpression') {
@@ -428,7 +570,7 @@ function resolveCollection(node, context, resolving = new Set()) {
       node.arguments[0].type === 'ArrayExpression'
     ) {
       // A local Object shadows the built-in, so freeze cannot make a trusted literal collection.
-      if (context.bindings.has('Object')) return null;
+      if (context.resolve(callee.object) !== null) return null;
       return resolveCollection(node.arguments[0], context, resolving);
     }
     return null;
@@ -436,37 +578,28 @@ function resolveCollection(node, context, resolving = new Set()) {
 
   if (node.type !== 'Identifier') return null;
 
-  const name = node.name;
-  const entries = context.declarators.get(name);
-  if (entries === undefined || entries.length !== 1) return null;
-
-  const { declarator, declaration } = entries[0];
-  if (
-    declaration === null ||
-    declaration === undefined ||
-    declaration.type !== 'VariableDeclaration' ||
-    declaration.kind !== 'const'
-  ) {
-    return null;
-  }
+  const binding = context.resolve(node);
+  if (binding === null || binding.kind !== 'const' || binding.declarator === null) return null;
+  // Only the declared name receives the whole initial value; a destructured name receives a part.
+  if (binding.node !== binding.declarator.id) return null;
   // A cycle never settles on a value, so it stays unresolved rather than recursing forever.
-  if (resolving.has(name)) return null;
+  if (resolving.has(binding)) return null;
 
-  resolving.add(name);
+  resolving.add(binding);
   try {
-    const names = resolveCollection(declarator.init, context, resolving);
-    if (names === null) return null;
-    return isCollectionReferenceOnly(name, declarator.id, context) ? names : null;
+    const resolved = resolveCollection(binding.declarator.init, context, resolving);
+    if (resolved === null) return null;
+    return isCollectionReferenceOnly(binding, context) ? resolved : null;
   } finally {
-    resolving.delete(name);
+    resolving.delete(binding);
   }
 }
 
 // Only a literal on the other side names an event; every other operand is reported because it
 // could select any event at runtime.
-function readComparison(node, source, aliases, handled, unscanned) {
-  const leftIsType = isEventType(node.left, aliases);
-  const rightIsType = isEventType(node.right, aliases);
+function readComparison(node, source, context, handled, unscanned) {
+  const leftIsType = isEventType(node.left, context);
+  const rightIsType = isEventType(node.right, context);
 
   if (leftIsType && rightIsType) {
     unscanned.add(text(source, node));
@@ -484,8 +617,8 @@ function readComparison(node, source, aliases, handled, unscanned) {
 }
 
 // A case label names an event only when it is a literal; every other label is read at runtime.
-function readSwitch(node, source, aliases, handled, unscanned) {
-  if (!isEventType(node.discriminant, aliases)) return;
+function readSwitch(node, source, context, handled, unscanned) {
+  if (!isEventType(node.discriminant, context)) return;
 
   for (const switchCase of node.cases) {
     if (switchCase.test === null) continue;
@@ -498,74 +631,124 @@ function readSwitch(node, source, aliases, handled, unscanned) {
   }
 }
 
-// A membership call on the type reads the receiver's contents; an unresolved receiver is reported
-// because the events it covers are otherwise invisible.
-function readCall(node, parent, source, aliases, context, handled, unscanned) {
+// The type only matters in a branch condition, so a call is followed upward through the
+// operators that only reshape a condition until it either feeds a test or does not.
+function isInTestPosition(node, parents) {
+  let current = node;
+
+  while (true) {
+    const parent = parents.get(current);
+    if (parent === null || parent === undefined) return false;
+
+    if (
+      parent.type === 'LogicalExpression' ||
+      (parent.type === 'UnaryExpression' && parent.operator === '!') ||
+      parent.type === 'ChainExpression' ||
+      parent.type === 'AwaitExpression' ||
+      parent.type === 'ParenthesizedExpression'
+    ) {
+      current = parent;
+      continue;
+    }
+
+    if (
+      parent.type === 'IfStatement' ||
+      parent.type === 'ConditionalExpression' ||
+      parent.type === 'WhileStatement' ||
+      parent.type === 'DoWhileStatement' ||
+      parent.type === 'ForStatement'
+    ) {
+      return parent.test === current;
+    }
+
+    return false;
+  }
+}
+
+// A membership call on the type reads the receiver's contents; an unresolved receiver or a member
+// the collection kind does not have is reported because those events are otherwise invisible. A
+// helper handed the type inside a test decides a branch the scan cannot follow, so that is reported
+// too, while a call elsewhere is only logging or passing the value along.
+function readCall(node, parent, source, context, handled, unscanned) {
   const callee = node.callee;
-  if (callee.type !== 'MemberExpression') return;
 
-  const property =
-    !callee.computed && callee.property.type === 'Identifier' ? callee.property.name : null;
-  const firstArgument = node.arguments[0];
+  if (callee.type === 'MemberExpression') {
+    const property =
+      !callee.computed && callee.property.type === 'Identifier' ? callee.property.name : null;
+    const firstArgument = node.arguments[0];
 
-  if (
-    (property === 'has' || property === 'includes') &&
-    firstArgument !== undefined &&
-    isEventType(firstArgument, aliases)
-  ) {
-    const names = resolveCollection(callee.object, context);
-    if (names === null) unscanned.add(text(source, node));
-    else for (const name of names) handled.add(name);
-    return;
+    if (
+      (property === 'has' || property === 'includes') &&
+      firstArgument !== undefined &&
+      isEventType(firstArgument, context)
+    ) {
+      const collection = resolveCollection(callee.object, context);
+      const expectedKind = property === 'has' ? 'set' : 'array';
+      if (collection === null || collection.kind !== expectedKind) {
+        unscanned.add(text(source, node));
+      } else {
+        for (const name of collection.names) handled.add(name);
+      }
+      return;
+    }
+
+    // A method on the type can select events the scan cannot read, so a comparison is reported
+    // with its method call and a bare call is reported alone.
+    if (isEventType(callee.object, context)) {
+      const parentIsComparison =
+        parent !== null &&
+        parent.type === 'BinaryExpression' &&
+        COMPARISON_OPERATORS.has(parent.operator);
+      unscanned.add(text(source, parentIsComparison ? parent : node));
+      return;
+    }
   }
 
-  // A method on the type can select events the scan cannot read, so a comparison is reported with
-  // its method call and a bare call is reported alone.
-  if (!isEventType(callee.object, aliases)) return;
-
-  const parentIsComparison =
-    parent !== null &&
-    parent.type === 'BinaryExpression' &&
-    COMPARISON_OPERATORS.has(parent.operator);
-  unscanned.add(text(source, parentIsComparison ? parent : node));
+  if (!node.arguments.some((argument) => isEventType(argument, context))) return;
+  if (!isInTestPosition(node, context.nodeParents)) return;
+  unscanned.add(text(source, node));
 }
 
 function scanEvents(source) {
-  const nodes = walkAst(parseAst(source, { lang: 'js' }));
+  const program = parseAst(source, { lang: 'js' });
+  const nodes = walkAst(program);
   // Member parent links let a read be told apart from a write through the same member.
   const nodeParents = new Map(nodes.map(({ node, parent }) => [node, parent]));
+  const scopes = buildScopes(program, nodeParents);
   const context = {
     nodes,
     nodeParents,
-    declarators: collectDeclarators(nodes),
-    bindings: collectBindings(nodes),
-    assignedNames: collectAssignedNames(nodes),
+    resolve: scopes.resolve,
+    bindings: scopes.bindings,
+    typeBindings: scopes.typeBindings,
+    aliases: new Set(),
   };
-  const aliases = collectEventTypeAliases(nodes, context);
+  context.written = collectWrittenBindings(context);
+  const aliases = collectEventTypeAliases(context);
   const handled = new Set();
   const unscanned = new Set();
 
   for (const { node, parent } of nodes) {
     if (node.type === 'BinaryExpression') {
       if (COMPARISON_OPERATORS.has(node.operator)) {
-        readComparison(node, source, aliases, handled, unscanned);
-      } else if (node.operator === 'in' && isEventType(node.left, aliases)) {
+        readComparison(node, source, context, handled, unscanned);
+      } else if (node.operator === 'in' && isEventType(node.left, context)) {
         unscanned.add(text(source, node));
       }
       continue;
     }
 
     if (node.type === 'SwitchStatement') {
-      readSwitch(node, source, aliases, handled, unscanned);
+      readSwitch(node, source, context, handled, unscanned);
       continue;
     }
 
     if (node.type === 'CallExpression') {
-      readCall(node, parent, source, aliases, context, handled, unscanned);
+      readCall(node, parent, source, context, handled, unscanned);
       continue;
     }
 
-    if (node.type === 'MemberExpression' && node.computed && isEventType(node.property, aliases)) {
+    if (node.type === 'MemberExpression' && node.computed && isEventType(node.property, context)) {
       unscanned.add(text(source, node));
     }
   }

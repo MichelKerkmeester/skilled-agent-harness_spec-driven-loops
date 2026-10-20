@@ -72,7 +72,7 @@ The scanner reads plugin source as a syntax tree, the sk-vision link meets the p
 
 ### In Scope
 - Item 8: section 4 of the inventory helper parses each plugin with `rolldown/parseAst`, which `.skilled/node_modules` already holds at 1.2.12 through vite; no dependency is added.
-- Item 8: a fixture in `plugin-inventory.test.cjs` per recorded limit, plus aliases of the event type and a parse failure.
+- Item 8: a fixture in `plugin-inventory.test.cjs` per recorded limit and per review finding, plus aliases of the event type and a parse failure.
 - Item 9: the purity test checks a symlinked entry (relative link, inside the repository, resolves to a built file with a plugin extension) and then applies the same export contract.
 - Item 9: Spec-Kit Check builds the sk-vision bundle with bun before the runtime vitest project, because the link's target is a gitignored build output.
 - Item 9: `.opencode/plugins/tests/README.md` lists every suite and the full tree.
@@ -88,7 +88,7 @@ The scanner reads plugin source as a syntax tree, the sk-vision link meets the p
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/plugins/tests/helpers/plugin-inventory.cjs` | Modify | Section 4 reads a syntax tree instead of matching text; `stripComments` is no longer exported |
-| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modify | Drops the `stripComments` test, puts the case-label fixture under a switch on the event type, adds six fixtures |
+| `.opencode/plugins/tests/plugin-inventory.test.cjs` | Modify | Drops the `stripComments` test, puts the case-label fixture under a switch on the event type, adds fifteen fixtures, one per closed gap or review finding |
 | `.skilled/skills/system-spec-kit/runtime/tests/opencode-plugins-folder-purity.vitest.ts` | Modify | Lists and checks symlinked entries; keeps sk-vision's GPU flag off while it runs |
 | `.github/workflows/spec-kit-check.yml` | Modify | Builds the sk-vision bundle before the vitest projects |
 | `.opencode/plugins/tests/README.md` | Modify | Five missing rows and the full directory tree |

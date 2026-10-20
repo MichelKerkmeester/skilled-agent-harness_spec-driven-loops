@@ -1,11 +1,11 @@
-# node --test .opencode/plugins/tests/ after the change, b9ecf48c09 plus working tree, node v26.8.2
-✔ system-speckit-completion registers v2 hooks (0.941875ms)
-ℹ tests 426
+# node --test .opencode/plugins/tests/ after the change, 90392a73a6 plus working tree, node v26.8.2
+✔ system-speckit-completion registers v2 hooks (1.959333ms)
+ℹ tests 431
 ℹ suites 3
-ℹ pass 426
+ℹ pass 431
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 24617.806542
+ℹ duration_ms 24667.818709
 exit 0
