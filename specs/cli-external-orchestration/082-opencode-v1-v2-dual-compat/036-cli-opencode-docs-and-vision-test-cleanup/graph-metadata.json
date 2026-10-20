@@ -34,7 +34,7 @@
       "playbook"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,7 @@
       "scratch/after/readme-manifest.txt",
       "scratch/after/sk-doc-script-tests.txt",
       "scratch/after/rename-harness-rerun.txt",
+      "scratch/after/ci-d704b466da.txt",
       ".opencode/plugins/tests/README.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
       ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
@@ -121,6 +122,12 @@
         "source": "derived"
       },
       {
+        "name": "ci-d704b466da.txt",
+        "kind": "file",
+        "path": "scratch/after/ci-d704b466da.txt",
+        "source": "derived"
+      },
+      {
         "name": "opencode2-models-form.test.cjs",
         "kind": "file",
         "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs",
@@ -151,12 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,6 +182,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Five",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 027 left three gaps",
     "created_at": "2026-10-20T21:30:26Z",
-    "last_save_at": "2026-10-20T23:01:11.306Z",
+    "last_save_at": "2026-10-20T23:25:59.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:184ae5f5f08825bba979c13209516f95ffa9e52b38de31f436a7d5a1eeaa980f",
+    "source_fingerprint": "sha256:df02e822043080e81ab75863650e9f726c1afd7e3f99be13a15e397a9648434a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "018eddc716d3819a99d93acc490f1fa17e1028d1626563a0000d96fe1c342a5f",
-      "plan.md": "1c1ed96ae0aac596c46ce7cf346f556b7205069c893175eabdb177476fa0c770",
-      "tasks.md": "56c732c892b9a685773b258fdaf3529f5d8863acfb32da325fb67b39c82310ea",
-      "implementation-summary.md": "8b64a8e25724313f3b8a15bb240e23f47ace5b35a5ee83164cc60d9489dd0cc4"
+      "spec.md": "6c5483a1c923a7b858c761d17f72cf6e403963b85b75963b5b46e33ab37e8eb7",
+      "plan.md": "b0534bf7a9caba09561e965372771c495d50fec0673838e5db48570a8038e6ce",
+      "tasks.md": "d0d663ff9c4f8742c15d33affcaa7952284c7af7fd3f6b1af1d107f218583e8f",
+      "implementation-summary.md": "1e9dff4252a50005a732d62f77f8161af8aab1ca76bd1eda59c0fdbdb7181099"
     },
     "last_active_at": null
   }

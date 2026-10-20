@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/036-cli-opencode-docs-and-vision-test-cleanup"
     last_updated_at: "2026-10-20T22:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Recorded the local verification and sent the change to review"
-    next_safe_action: "Apply the review verdict, then push to main and confirm CI"
+    recent_action: "Recorded the CI handoff at the pushed main commit"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-036-cli-opencode-docs-and-vision-test-cleanup"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,8 +39,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 036-cli-opencode-docs-and-vision-test-cleanup |
-| **Completed** | In progress |
-| **Status** | In Progress |
+| **Completed** | 2026-10-21 |
+| **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -125,6 +125,8 @@ DeepSeek v4.1 flash at max thinking, through cli-pi on llmgateway, wrote every c
 | CO-038 steps 2 to 4 | Step 3 prints `[commit-scope-drops-untracked]`; step 4 with `SKGIT_ADVISORY=0` prints `{"system":[]}` |
 | Playbook validator `--strict` | PASS, exit 0; cli-opencode 72 scenarios, 0 violations |
 | Markdown link integrity | PASS, 0 broken links |
+| `validate.sh 082 --strict --recursive` after the last merge | `RESULT: PASSED` for 38 folders, Errors 0, Warnings 0 |
+| CI at main `d704b466da` (`scratch/after/ci-d704b466da.txt`) | All 17 workflows succeeded, including OpenCode Dual-Version Battery 39512563079, OpenCode Plugin Tests 39512563115, sk-doc Script Tests 39512562987, Playbook Operator Contract 39512563068, Markdown Link Integrity 39512563107 and Spec-Kit Check 39512563024 |
 <!-- /ANCHOR:verification -->
 
 ---

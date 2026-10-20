@@ -58,9 +58,9 @@ contextType: "general"
 - [x] T011 Run `bun test tests` and count the temp directories it adds Done: 80/80; no `sk-vision-flags-*` entry added.
 - [x] T012 Run each changed playbook snippet Done: all run from the worktree root (`scratch/after/`) and print their expected signal, except the speckit-completion step 3 "Level-2 EVIDENCE_MISSING" fixture, which now reports `level: 1` and `P0_INCOMPLETE` because the fixture packet moved (Known Limitation 2).
 - [x] T013 Run the doc checks: cli-opencode playbook validator, link integrity, sk-doc script tests Done: validator and link integrity pass; sk-doc script tests pass after the manifest refresh.
-- [ ] T014 Luna review, read-only
-- [ ] T015 Validate 082 strict and recursive
-- [ ] T016 Push to main and confirm CI
+- [x] T014 Luna review, read-only Done: three rounds; every round 1 and 2 finding fixed except the v2 default-model examples (Known Limitation 5); round 3's shell spellings recorded under the stop rule (Known Limitation 7), its P2 fixed.
+- [x] T015 Validate 082 strict and recursive Done: `RESULT: PASSED`, 38 folders.
+- [x] T016 Push to main and confirm CI Done: main `d704b466da`, all 17 workflows succeeded.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -84,9 +84,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

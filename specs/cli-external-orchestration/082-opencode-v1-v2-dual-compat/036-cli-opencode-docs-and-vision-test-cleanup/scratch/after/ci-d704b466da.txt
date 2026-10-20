@@ -1,0 +1,18 @@
+success Advisory Checks 39512563216
+success Changed Packet Validation 39512563149
+success Command Tree Parity 39512563186
+success Dispatch Enforcement Guard 39512563096
+success Gate Inputs 39512562996
+success Markdown Link Integrity 39512563107
+success Message Contract 39512563129
+success OpenCode Dual-Version Battery 39512563079
+success OpenCode Plugin Tests 39512563115
+success Playbook Operator Contract 39512563068
+success Routing Registry Drift Guard 39512563084
+success Rule Canary Sync 39512563033
+success sk-code Script Tests 39512563089
+success sk-doc Script Tests 39512562987
+success Skill Doc Frontmatter 39512563146
+success Spec-Kit Check 39512563024
+success Trigger Index Rebuild 39512563164
+
