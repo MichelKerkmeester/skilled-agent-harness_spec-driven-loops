@@ -17,6 +17,7 @@ import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
+import { MUTATING_TOOLS } from './lib/sk-code-post-edit-quality-core.js';
 import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
@@ -47,7 +48,6 @@ function logPathFor(projectDir, name) {
 const MAX_GUARD_LOG_BYTES = 256 * 1024;
 const MAX_SESSION_IDS = 1_000;
 const MAX_DIAGNOSTIC_LINES = 8;
-const MUTATING_TOOLS = new Set(['write', 'edit', 'patch', 'multiedit', 'apply_patch', 'apply-patch']);
 // Re-hashing every watched package's sources is far too costly to run on every
 // chat turn, so the per-turn system-context injection reuses a short-lived cache
 // that the bounded bash/session triggers force-refresh.

@@ -1421,6 +1421,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (eventType === 'session.deleted') {
         const identity = advanceOpenCodeDirectiveBoundary(state, eventPayload);
         const sessionID = identity.sessionID;
+        // A deleted session never returns, so its epoch entry would otherwise
+        // accumulate one leak per deleted session on a long-lived host.
+        state.directiveEpochBySession.delete(sessionID);
         if (options.enabled) {
           await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
         }
