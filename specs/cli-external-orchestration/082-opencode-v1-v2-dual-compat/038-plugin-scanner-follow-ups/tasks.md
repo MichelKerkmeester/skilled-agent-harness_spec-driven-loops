@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Phase 38: plugin-scanner-follow-ups"
-description: "Task Format: T### [P?] Description (file path)"
+description: "Ordered tasks for the scanner follow-ups: baseline the scan, add the stored-result and type-parameter rules, declare rolldown, align the docs, review and ship."
 trigger_phrases:
   - "plugin scanner follow ups tasks"
 importance_tier: "normal"
@@ -31,9 +31,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Scaffold the phase and fill the parent phase-map rows (`../spec.md`)
+- [x] T002 Record the scan of every bridged plugin and the plugin suite before any edit (`scratch/baseline/`)
+- [x] T003 [P] Check the four 024 limits against the current scanner; all four already have closing fixtures (`.opencode/plugins/tests/plugin-inventory.test.cjs`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +41,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Report a helper call whose stored result decides a branch (`.opencode/plugins/tests/helpers/plugin-inventory.cjs`)
+- [x] T005 Trace type-named parameters through their calls, failing closed (`.opencode/plugins/tests/helpers/plugin-inventory.cjs`)
+- [x] T006 Stop counting object keys and member properties as values (`.opencode/plugins/tests/helpers/plugin-inventory.cjs`)
+- [x] T007 [P] Declare rolldown 1.2.12 and refresh the lockfile (`.skilled/package.json`, `.skilled/package-lock.json`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +52,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T008 Fixtures for each rule, each failing on the old helper or under a mutation probe (`scratch/mutation-probes.txt`)
+- [x] T009 Scan of every bridged plugin unchanged; plugin suite, battery unit and purity tests rerun (`scratch/after/`)
+- [x] T010 Remove the tree ordinals and rewrite the event-guard limit (`.opencode/plugins/ARCHITECTURE.md`)
+- [x] T011 Luna review until PASS (`scratch/luna-round-1.txt`, `scratch/luna-round-2.txt`)
+- [ ] T012 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,8 +65,8 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

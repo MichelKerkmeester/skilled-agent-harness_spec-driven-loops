@@ -1,0 +1,11 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/opencode-plugins-folder-purity.vitest.ts (1 test) 512ms
+     ✓ contains only importable plugin entrypoints with valid hook objects  511ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  01:24:56
+   Duration  629ms (transform 339ms, setup 17ms, import 13ms, tests 512ms, environment 0ms)
+

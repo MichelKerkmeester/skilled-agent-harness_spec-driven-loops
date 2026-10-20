@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 38: plugin-scanner-follow-ups"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Extend the AST event scanner in the plugin tests with a stored-result rule and call-site tracing for type-named parameters, declare its parser directly, and bring the plugin docs in line. Every change is checked against a scan of all bridged plugins taken before any edit."
 trigger_phrases:
   - "plugin scanner follow ups plan"
 importance_tier: "normal"
@@ -20,13 +20,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | JavaScript (CommonJS), Node 22 and 26 |
+| **Framework** | rolldown `parseAst` |
+| **Storage** | None |
+| **Testing** | `node --test` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The scanner already resolves names by lexical scope. This phase adds a derived-binding map for stored helper results, call-site tracing for type-named parameters, and a rule that object keys and member properties are not values. A scan of every bridged plugin taken before the first edit is the regression oracle.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -51,14 +51,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Static analysis over one parsed file
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **`collectDerivedBindings`, `collectReportedCalls`**: carry each stored helper call to the bindings its value reaches and mark the calls whose binding decides a branch
+- **`isEventTypeParameter`**: reads every call of a parameter's function to decide whether the parameter can hold the event type
 
 ### Data Flow
-[Brief description of how data moves through the system]
+`scanEvents` parses the source, builds scopes, written bindings and aliases, then the derived map and reported calls, and finally walks every node to collect handled names and unscanned checks.
 <!-- /ANCHOR:architecture -->
 
 

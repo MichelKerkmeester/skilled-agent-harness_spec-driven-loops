@@ -1,0 +1,13 @@
+PASS
+
+P0: none. P1: none.
+
+P2:
+
+- [plugin-inventory.cjs:992](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/180-plugin-scanner-follow-ups/.opencode/plugins/tests/helpers/plugin-inventory.cjs:992) — If `let hit = check(event.type); hit = false; if (hit) {}`, the scan retains the original call and reports it. Clear or replace a binding’s recorded origins when an assignment overwrites it with a non-derived value.
+
+The round-one P1 fixes and the explicit-`undefined` argument fix are present. The after-scan and baseline files are byte-equal; the mutation record contains m1–m9. The read-only assertions passed, and both diff whitespace checks exited 0.
+
+The plugin inventory test runner could not start: the read-only sandbox denied its `mkdtemp` call with `EPERM`. The recorded full-suite log reports 472 passed and 0 failed. The worktree is clean; no files were changed.
+
+SKILL ROUTING: `sk-code` → `sk-code-review` (SKILLED surface). `sk-git` was not used; its contract does not cover code review. Nothing is needed from you.

@@ -41,12 +41,18 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".skilled/package.json",
       ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
       ".opencode/plugins/tests/plugin-inventory.test.cjs",
       ".opencode/plugins/ARCHITECTURE.md",
-      ".opencode/plugins/tests/README.md",
-      ".skilled/package.json",
       ".skilled/package-lock.json",
+      "scratch/baseline/scan-before.json",
+      "scratch/after/scan-after.json",
+      "scratch/mutation-new-tests-on-old-helper.txt",
+      "scratch/mutation-probes.txt",
+      "scratch/luna-round-1.txt",
+      "scratch/luna-round-2.txt",
+      ".opencode/plugins/tests/README.md",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
     ],
     "entities": [
@@ -75,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/package.json",
+        "source": "derived"
+      },
+      {
         "name": "plugin-inventory.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
@@ -93,21 +105,51 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/plugins/tests/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".skilled/package.json",
-        "source": "derived"
-      },
-      {
         "name": "package-lock.json",
         "kind": "config",
         "path": ".skilled/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "scan-before.json",
+        "kind": "config",
+        "path": "scratch/baseline/scan-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "scan-after.json",
+        "kind": "config",
+        "path": "scratch/after/scan-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-new-tests-on-old-helper.txt",
+        "kind": "file",
+        "path": "scratch/mutation-new-tests-on-old-helper.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mutation-probes.txt",
+        "kind": "file",
+        "path": "scratch/mutation-probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-round-1.txt",
+        "kind": "file",
+        "path": "scratch/luna-round-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "luna-round-2.txt",
+        "kind": "file",
+        "path": "scratch/luna-round-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/tests/README.md",
         "source": "derived"
       },
       {
@@ -157,47 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The event guard in `plugin-inventory.cjs` reports a helper that receives the event type only when the call sits in a branch test, so `const ok = isKnown(eventType); if (ok) {}` decides a branch the scan never reports",
     "created_at": "2026-10-20T22:53:31Z",
-    "last_save_at": "2026-10-20T22:56:14.732Z",
+    "last_save_at": "2026-10-20T23:26:27.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3717c5322a5c7a3b9da637c0559f4ab6abac2aad17b29721496efc8dbb5d419b",
+    "source_fingerprint": "sha256:1656886659dbf0dc47fa821c829ed8506495ee586083655f2b6a6d327fe1026d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2aa6fa99308d9f8eed9d8bfebf13d1828a0cda003c2c92960f81cd9336ff64ce",
-      "plan.md": "6bbbc9d738f223ca12149f868cf6f3af69973caab652ee64da45dda8a2f87d87",
-      "tasks.md": "741e984218024447f5718612cea73399bfac6207545d6e5ccf01226e9fbccf61",
-      "implementation-summary.md": "a832eaad9c6dd6f813f0a42f29b6cd8ffb2825e27b451bce8459835e65e37f91"
+      "plan.md": "9f263ab334dd52e7f2fd7d6d60fa1c180fa58c682bc09865069b9f2402e5d513",
+      "tasks.md": "f53a4d05fd9c593e6803e8a9a521b52301b7a378ddb5fab725e36984dcc38710",
+      "implementation-summary.md": "85d643495f8e6bef001bf2beaca1a6d07b1097cecb5451a74101a77a44acf430"
     },
     "last_active_at": null
   }
