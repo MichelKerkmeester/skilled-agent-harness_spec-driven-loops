@@ -8,20 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage"
-    last_updated_at: "2026-10-20T13:11:31Z"
+    last_updated_at: "2026-10-20T13:37:01Z"
     last_updated_by: "generate-context"
-    recent_action: "Luna round 5 passed; merging origin/main before the push"
-    next_safe_action: "Run the push to main and watch every CI run"
+    recent_action: "Pushed to main at 50b9c5af92; all 15 CI workflows passed"
+    next_safe_action: "Verify CI on the closure commit"
     blockers: []
     key_files:
       - ".opencode/plugins/system-speckit-completion.js"
       - ".skilled/skills/sk-vision/vision-runtime/src/plugin.ts"
-      - ".opencode/plugins/ARCHITECTURE.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8a7330e9f64d708de217056a91832aba882e21c8dc20da987b2ff09bc88147fc"
       session_id: "scaffold-028-plugin-kill-switch-coverage"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -103,6 +102,8 @@ DeepSeek v4.1 flash wrote the code, tests and doc edits from short literal brief
 | Built bundle through the symlink | No switch: v1 `command.execute.before`, v2 command and prompt hook. Either switch: v1 `dispose` only, v2 nothing |
 | v1 battery, local | PASS: discovered, loaded, command-listed |
 | sk-doc `validate_document.py` on the five changed docs | PASS, 0 issues |
+| CI on main at `50b9c5af92` | 15 workflows passed, including the OpenCode Dual-Version Battery (run 39428751340): v1, v2 and both-installed jobs green, v2 `plugin-active` PASS |
+| Strict validation | This child and recursive 082 (29 folders) print `RESULT: PASSED` |
 | Luna review (read-only) | Round 1 FAIL: fixtures missed switch aliases. Round 2 FAIL: an earlier setup could cache the real switch file. Round 3 FAIL: the spec miscounted switchless plugins. Round 4 FAIL: three wording claims. Round 5 PASS with two P2s |
 <!-- /ANCHOR:verification -->
 
