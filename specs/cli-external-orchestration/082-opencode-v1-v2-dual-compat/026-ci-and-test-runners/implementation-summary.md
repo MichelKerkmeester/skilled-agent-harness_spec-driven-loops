@@ -8,22 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/026-ci-and-test-runners"
-    last_updated_at: "2026-10-20T07:28:17Z"
+    last_updated_at: "2026-10-20T08:12:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Rows 14 16 17 28 32 33 34 fixed locally with mutation evidence"
-    next_safe_action: "Run the Luna review, then push and prove hooks-vitest on CI"
+    recent_action: "hooks-vitest passed on CI at main bb0680d9bb, run 39389716576"
+    next_safe_action: "None; every row is closed and its checks pass on main"
     blockers: []
     key_files:
       - ".github/workflows/dispatch-enforcement-guard.yml"
+      - ".github/workflows/sk-code-script-tests.yml"
       - ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
-      - ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh"
       - ".skilled/skills/sk-doc/shared/scripts/validate_document.py"
-      - ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/run-all-drift-guards.test.cjs"
+      - ".skilled/skills/sk-doc/scripts/tests/run-script-tests.sh"
     session_dedup:
-      fingerprint: "sha256:36d883636c17873837efabf11ec74d03badb7568ff1be5d9c6693d0434ca4a12"
+      fingerprint: "sha256:616c65441b6f82150e2dd2074472209bdf303560fe8845d432e709ef434a1a1a"
       session_id: "scaffold-026-ci-and-test-runners"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -43,7 +43,7 @@ _memory:
 | **Spec Folder** | 026-ci-and-test-runners |
 | **Completed** | 2026-10-20 |
 | **Level** | 1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -116,6 +116,7 @@ Baselines came first. Every edit was then written by DeepSeek v4.1 flash through
 | sk-doc script tests | 35 passed, 1 skipped as in CI, exit 0 (`scratch/after/sk-doc-script-tests.txt`) |
 | Workflow lint | `check-gate-inputs.sh` RESULT: PASSED, `actionlint` exit 0 on all three workflows (`scratch/after/workflow-lint.txt`) |
 | Hooks tree, worktree | 6 files, 204 of 204, exit 0 (`scratch/after/hooks-vitest.txt`) |
+| CI at main `bb0680d9bb` | Dispatch Enforcement Guard 39389716576 passed both jobs, `hooks-vitest` 204 of 204; sk-code Script Tests 39389716546, sk-doc Script Tests 39389716415, OpenCode Dual-Version Battery 39389716463 (unit tests 35 of 35 on each family) and Spec-Kit Check 39389716535 all passed |
 <!-- /ANCHOR:verification -->
 
 ---
