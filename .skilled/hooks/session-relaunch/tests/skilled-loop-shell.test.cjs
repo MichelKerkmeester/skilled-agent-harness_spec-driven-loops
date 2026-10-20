@@ -134,7 +134,7 @@ function stubBin(root) {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
   const stubs = {
-    bash: 'printf "WRAPPED %s\\n" "$*"',
+    bash: 'printf "WRAPPED %s\\n" "$*"; if [ -n "${HERMES_ENABLE_PROJECT_PLUGINS:-}" ]; then printf "PLUGINS %s\\n" "$HERMES_ENABLE_PROJECT_PLUGINS"; fi',
     claude: 'printf "DIRECT claude %s\\n" "$*"',
     'cursor-agent': 'printf "DIRECT cursor-agent %s\\n" "$*"',
   };
@@ -184,5 +184,21 @@ for (const shell of SHELLS) {
     assert.match(output, /^DIRECT claude -p hi$/m);
     assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} cursor --model gpt-5$`, 'm'));
     assert.match(output, /^DIRECT cursor-agent login$/m);
+  });
+
+  // Hermes loads the relaunch bridge only as a project plugin, so a wrapped Hermes launch
+  // needs the switch while every other launch and the caller's shell stay without it.
+  test(`${shell.name}: a wrapped hermes launch alone enables project plugins`, { skip: !HAS_SCRIPT && 'script(1) is unavailable' }, (t) => {
+    const box = sandbox(t);
+    const bin = stubBin(box.root);
+    const output = launch(
+      shell,
+      box,
+      bin,
+      'hermes chat; claude --model opus; printf "AFTER %s\\n" "${HERMES_ENABLE_PROJECT_PLUGINS:-unset}"',
+      { tty: true },
+    );
+    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} hermes chat\\nPLUGINS 1$`, 'm'));
+    assert.match(output, new RegExp(`^WRAPPED ${box.wrapper} claude --model opus\\nAFTER unset$`, 'm'));
   });
 }

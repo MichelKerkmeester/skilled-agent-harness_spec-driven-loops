@@ -9,7 +9,7 @@ trigger_phrases:
   - "session-relaunch-command-runtimes"
   - "skilled-loop codex"
   - "skilled-loop hermes"
-version: 1.0.5.0
+version: 1.0.6.0
 id: session-relaunch-command-runtimes
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -91,7 +91,7 @@ Evidence: the suite installs stub executables for `claude`, `pi`, `opencode`, `c
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 14 tests pass under bash and zsh. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
+Evidence: all 16 tests pass under bash and zsh, including the case where only a wrapped `hermes` launch gets `HERMES_ENABLE_PROJECT_PLUGINS=1`. Plain `codex`, `codex resume --last`, `hermes`, `hermes chat -q <prompt>`, `cursor-agent`, `cursor-agent agent <prompt>`, `devin` and `devin -- <prompt>` resolve the wrapper through a symlinked `.skilled`. `codex exec`, `codex review`, `hermes -z`, `hermes chat --oneshot`, `hermes setup`, `cursor-agent -p`, `cursor-agent login`, `devin -p`, `devin doctor` and `devin <path>` resolve nothing. `cursor-agent` resolves to the wrapper's `cursor` arm. PASS when the run reports 0 failures.
 
 ### Live Checks
 
@@ -181,7 +181,7 @@ tmux new-session -d -s shim-codex "zsh -c 'source \"$repo_root/.skilled/bin/skil
 tmux attach -t shim-codex
 ~~~
 
-Repeat with `HERMES_ENABLE_PROJECT_PLUGINS=1 hermes chat --provider llmgateway -m gpt-6-luna`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
+Repeat with `hermes chat --provider llmgateway -m gpt-6-luna`, which the shim starts with `HERMES_ENABLE_PROJECT_PLUGINS=1`, `cursor-agent` and `devin --model swe-2-max` in place of the Codex command. Codex and Hermes hop on their own: the nudge arrives, the record arms and the wrapper restarts the runtime with the claim seed in the same pane. Cursor and Devin are command-only: run `/speckit:handoff`, end the session and confirm the wrapper prints the manual claim command when the runtime exits, which proves the plain command started under the wrapper. In every case the first session's shell tool prints a loop id for `echo $SKILLED_LOOP_ID`. PASS when Codex and Hermes reach a done note and Cursor and Devin print the wrapper's manual claim command at exit. FAIL when `SKILLED_LOOP_ID` is empty or prepare exits 3. Record a runtime as SKIP when its credentials block the launch.
 
 ---
 

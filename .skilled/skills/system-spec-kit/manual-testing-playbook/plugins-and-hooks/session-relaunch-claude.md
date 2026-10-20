@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.3.0
+version: 1.0.4.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -368,7 +368,7 @@ Run the shell shim suite. It sources `.skilled/bin/skilled-loop-shell.sh` under 
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 14 tests pass. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
+Evidence: all 16 tests pass. PASS when the run reports 0 failures. FAIL when an interactive form resolves nothing, a pass-through form resolves the wrapper or the terminal test runs the binary directly.
 
 #### Symlinked repository through the shell shim (Live)
 

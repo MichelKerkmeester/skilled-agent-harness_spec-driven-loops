@@ -192,7 +192,11 @@ _skilled_loop_launch() {
   if [ -t 0 ] && [ -t 1 ]; then
     wrapper=$(skilled_loop_resolve "$runtime" "$@")
   fi
-  if [ -n "$wrapper" ]; then
+  if [ -n "$wrapper" ] && [ "$runtime" = 'hermes' ]; then
+    # Hermes reaches the relaunch bridge only through a project plugin, which it loads
+    # behind this switch; the prefix scopes it to the wrapped launch alone.
+    HERMES_ENABLE_PROJECT_PLUGINS=1 bash "$wrapper" "$runtime" "$@"
+  elif [ -n "$wrapper" ]; then
     bash "$wrapper" "$runtime" "$@"
   else
     command "$binary" "$@"

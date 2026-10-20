@@ -122,6 +122,7 @@ A second worker wrote the outside-loop conformance case and the Pi mirror first 
 | Drift guards | PASS: 4 of 4, no warning in a changed file |
 | Doc validators | PASS: `validate_document.py` rc 0 on every touched doc, playbook package 0 violations, catalog checker rc 0, mirror check rc 0 |
 | Live hops through the shim in a repository that links `.skilled` | PASS from `AI Systems`: Claude, OpenCode, Hermes, Pi and Codex each relaunched and reached a done note. A plain `claude` outside the loop got no nudge |
+| Hermes switch in the shim | PASS: the new bash and zsh case failed first without the switch, then shim 16/16 and relaunch suite 586/586 rc 0, `shellcheck` rc 0. Only a wrapped `hermes` launch gets `HERMES_ENABLE_PROJECT_PLUGINS=1`; the caller's shell stays unset |
 <!-- /ANCHOR:verification -->
 
 ---

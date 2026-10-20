@@ -51,6 +51,7 @@ contextType: "general"
 - [x] T014 Build the shell shim from each runtime's `--help` (`.skilled/bin/skilled-loop-shell.sh`)
 - [x] T015 Update every doc that describes starting the loop or the nudge (READMEs, feature catalog, playbooks, env reference, `/speckit:handoff`)
 - [x] T016 [P] Run live hops through the shim in a repository that links `.skilled` (Claude, Codex, Pi, OpenCode and Hermes from AI Systems)
+- [x] T017 Give a wrapped `hermes` launch `HERMES_ENABLE_PROJECT_PLUGINS=1`, scoped to that launch, so Hermes loads the relaunch bridge from a plain terminal (`.skilled/bin/skilled-loop-shell.sh`)
 <!-- /ANCHOR:phase-2 -->
 
 ---

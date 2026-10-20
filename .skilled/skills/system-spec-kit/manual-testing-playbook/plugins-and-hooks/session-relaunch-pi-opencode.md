@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.4.0
+version: 1.0.5.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -102,7 +102,7 @@ Evidence: the wrapper suite records `SKILLED_LOOP_RUNTIME`, Pi `--name` before t
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
 ~~~
 
-Evidence: all 14 tests pass under bash and zsh. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop silence for both adapters is the `a nudge stays silent outside skilled-loop at a fill above the threshold` case in `.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
+Evidence: all 16 tests pass under bash and zsh. Plain `pi`, `pi --model <m> "<prompt>"`, `opencode` and `opencode -m <model>` resolve the wrapper through a symlinked `.skilled`. `pi -p`, `pi install`, `pi --mode rpc`, `opencode run` and `opencode serve` resolve nothing. The outside-loop silence for both adapters is the `a nudge stays silent outside skilled-loop at a fill above the threshold` case in `.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` for OpenCode and in the Pi suite's conformance block.
 
 ### Live Checks
 

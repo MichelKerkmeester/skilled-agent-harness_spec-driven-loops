@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -62,7 +62,7 @@ A matching armed record is consumed only when it is fresh and below the hop cap.
 
 ### Shell Shim And Symlinked Repositories
 
-`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, Cursor `agent`, `ls` and `resume`, and `hermes chat` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
+`.skilled/bin/skilled-loop-shell.sh` is sourced from `~/.zshrc` or `~/.bashrc` and reads the same in bash 3.2 and zsh. It defines `claude`, `pi`, `opencode`, `codex`, `hermes`, `devin` and `cursor-agent` as shell functions. A function runs `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when `SKILLED_LOOP_ID` is unset, stdin and stdout are a terminal, the arguments open an interactive session and a wrapper exists at or above the current directory. A `.skilled` that is a symlink counts, so a repository that links this checkout's `.skilled` starts under the loop too. Subcommands, print and one-shot modes, version and help run the binary directly. Each runtime's list comes from its own `--help`. Codex `resume` and `fork`, Cursor `agent`, `ls` and `resume`, and `hermes chat` stay wrapped because they open a session. `cursor-agent` maps to the wrapper's `cursor` arm. A wrapped `hermes` launch alone gets `HERMES_ENABLE_PROJECT_PLUGINS=1`, the switch Hermes needs to load the relaunch bridge. `skilled_loop_resolve <runtime> [args...]` prints the wrapper the shim would use, or nothing, without the terminal check.
 
 ### Pi And OpenCode Adapters
 

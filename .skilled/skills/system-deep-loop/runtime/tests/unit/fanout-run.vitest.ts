@@ -3819,7 +3819,8 @@ describe('fanout-run.cjs — containment mode is an explicit opt-in', () => {
     );
     expect(invalid.exitCode).toBe(3);
     expect(invalid.stdout).toContain('containmentMode must be preserve or restore');
-  });
+    // Three full fan-out runs, each appending through the gateway, sit near the 30 s default.
+  }, 90_000);
 });
 
 describe('fanout-run.cjs — containment runs for failed lanes', () => {
