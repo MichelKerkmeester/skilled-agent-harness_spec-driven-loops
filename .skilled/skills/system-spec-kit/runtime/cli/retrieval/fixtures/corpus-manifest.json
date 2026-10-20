@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1fc0f768713b8c24b43fad45c5839f9ab69c420cc94a6cddd0ffa3756e88d635",
+  "corpusHash": "478fcede8e785336112328d2c9d1707d5014f0da13f379025b4b0f63af03bdba",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25430,
+  "includedPathCount": 25434,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8959,6 +8959,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25461,7 +25465,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6f113b7eb613a6562e23da81d91afcff341a4c36677f2a27b299c89cea8bd94d",
+  "manifestHash": "7d26ae367f53eed7014ed74a24ec76a422bd82ea7239f9e43a3aed4d3d79d6c5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26545,6 +26549,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/031-plugin-scanner-ast/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles/scratch",
       "reason": "excluded directory"
     },
     {

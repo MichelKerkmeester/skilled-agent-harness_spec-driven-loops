@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6f113b7eb613a6562e23da81d91afcff341a4c36677f2a27b299c89cea8bd94d",
+  "manifestHash": "7d26ae367f53eed7014ed74a24ec76a422bd82ea7239f9e43a3aed4d3d79d6c5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -68186,6 +68186,9 @@
     "opencode plugin symlinks": [
       "opencode plugin symlinks"
     ],
+    "opencode plugin tests workflow": [
+      "opencode plugin tests workflow"
+    ],
     "opencode plugin transport diagnostic": [
       "opencode plugin transport diagnostic"
     ],
@@ -72208,6 +72211,9 @@
     "phase 32 epic follow up review": [
       "phase 32 epic follow up review"
     ],
+    "phase 32 plugin tests ci and stale bundles": [
+      "phase 32 plugin tests ci and stale bundles"
+    ],
     "phase 33 follow up review fixes": [
       "phase 33 follow up review fixes"
     ],
@@ -74790,6 +74796,18 @@
     ],
     "plugin scanner readiness tasks": [
       "plugin scanner readiness tasks"
+    ],
+    "plugin tests ci and stale bundles": [
+      "plugin tests ci and stale bundles"
+    ],
+    "plugin tests ci and stale bundles implementation summary": [
+      "plugin tests ci and stale bundles implementation summary"
+    ],
+    "plugin tests ci and stale bundles plan": [
+      "plugin tests ci and stale bundles plan"
+    ],
+    "plugin tests ci and stale bundles tasks": [
+      "plugin tests ci and stale bundles tasks"
     ],
     "plugin transform dedup lifecycle": [
       "plugin transform dedup lifecycle"
@@ -100700,6 +100718,9 @@
     ],
     "stale build daemon recycle tasks": [
       "stale build daemon recycle tasks"
+    ],
+    "stale bundle provisioning": [
+      "stale bundle provisioning"
     ],
     "stale card references removed": [
       "stale card references removed"
