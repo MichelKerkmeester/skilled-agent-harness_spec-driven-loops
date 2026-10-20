@@ -202,6 +202,20 @@ This creates a spec folder, plans the work, builds it and saves the session cont
 
 Codex, Cursor and Pi spell commands with a hyphen, as in `/speckit-complete`. Hermes runs them from `.hermes/prompts/`, and Devin reaches the same workflow through its `/system-spec-kit` skill.
 
+### Git Hooks
+
+The first AI session installs the repository's git hooks. They check every commit and push in this checkout and its worktrees:
+
+- **pre-commit** blocks code comments that cite spec ids and keeps generated files in step with what you stage
+- **commit-msg** holds each message to the [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject, a body and no `Co-Authored-By` lines
+- **pre-push** blocks a push that deletes more than 100 tracked files, and asks before a push to a branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist
+
+Another clone is checked only after `git config --local skilled.trustRepoHooks true`. `/doctor:git setup` checks the hooks and sk-git settings, `/doctor:git hooks` switches a gate on or off and `/doctor:git standards` changes the commit rules. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate.
+
+### Make It Yours
+
+Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
+
 ### Turn On Endless Sessions
 
 Add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path, then open a new terminal:
@@ -217,20 +231,6 @@ Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `d
 - **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
 
 The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
-
-### Git Hooks
-
-The first AI session installs the repository's git hooks. They check every commit and push in this checkout and its worktrees:
-
-- **pre-commit** blocks code comments that cite spec ids and keeps generated files in step with what you stage
-- **commit-msg** holds each message to the [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject, a body and no `Co-Authored-By` lines
-- **pre-push** blocks a push that deletes more than 100 tracked files, and asks before a push to a branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist
-
-Another clone is checked only after `git config --local skilled.trustRepoHooks true`. `/doctor:git setup` checks the hooks and sk-git settings, `/doctor:git hooks` switches a gate on or off and `/doctor:git standards` changes the commit rules. The [git hooks README](.skilled/scripts/git-hooks/README.md) describes each gate.
-
-### Make It Yours
-
-Only `sk-code` carries stack-specific patterns, so start there when you fork. The other 13 skills work in any codebase, and the [customization guide](#customizing-for-your-stack) walks through adapting it. `/doctor:sk-code setup` then checks the result.
 
 ### Keep It Healthy
 
