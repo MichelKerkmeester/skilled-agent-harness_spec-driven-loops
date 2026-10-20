@@ -6,15 +6,16 @@
     "phase",
     "plugin-tests-ci-and-stale-bundles"
   ],
-  "lastUpdated": "2026-10-20T15:48:16.902Z",
+  "lastUpdated": "2026-10-20T17:15:51.809Z",
   "specId": "032",
   "folderSlug": "plugin-tests-ci-and-stale-bundles",
   "parentChain": [
     "cli-external-orchestration",
     "082-opencode-v1-v2-dual-compat"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "20-10-26_16-48__added-the-opencode-plugin-test-workflow-the-spec.md"
+    "20-10-26_16-48__added-the-opencode-plugin-test-workflow-the-spec.md",
+    "20-10-26_18-15__closed-the-plugin-tests-ci-and-stale-bundle-phase.md"
   ]
 }

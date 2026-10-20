@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/032-plugin-tests-ci-and-stale-bundles"
-    last_updated_at: "2026-10-20T15:48:16Z"
+    last_updated_at: "2026-10-20T17:15:51Z"
     last_updated_by: "generate-context"
-    recent_action: "Implemented the three parts and recorded local verification"
-    next_safe_action: "Run Luna review round 1 on the worktree diff"
+    recent_action: "Closed the phase with main green on CI"
+    next_safe_action: "Run the pre-build fingerprint follow-up when approved"
     blockers: []
     key_files:
       - ".github/workflows/opencode-plugin-tests.yml"
@@ -19,10 +19,10 @@ _memory:
       - ".skilled/skills/sk-git/scripts/worktree-naming.sh"
       - ".skilled/skills/sk-git/scripts/tests/worktree-naming.test.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ffa8c21e9ba4fa74418fd1d6d071ba61705a51deb3cdc418376475827d36e39c"
       session_id: "scaffold-032-plugin-tests-ci-and-stale-bundles"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 032-plugin-tests-ci-and-stale-bundles |
-| **Completed** | In progress |
+| **Completed** | 2026-10-20 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -114,6 +114,7 @@ DeepSeek v4.1 flash at max thinking wrote the code, tests, workflow and doc edit
 | Work-tree checks on the index-plus-time script | FAIL=7, exit 1: unstaged deletion and a future modification time among them |
 | Real worktree, provision with stamps recorded | 0 built (`scratch/real-stamp-provision-1.txt`) |
 | `actionlint`, `check-gate-inputs.sh` | exit 0, RESULT: PASSED |
+| CI at main `4fcc6afd45` | OpenCode Plugin Tests run 39461581742: 436 of 436; all 16 runs success |
 <!-- /ANCHOR:verification -->
 
 ---

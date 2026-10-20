@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,13 +191,13 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Spec",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "No workflow ran `.opencode/plugins/tests/`: a grep of every workflow at `origin/main` finds no reference to the folder",
     "created_at": "2026-10-20T15:30:08Z",
-    "last_save_at": "2026-10-20T16:51:57.720Z",
+    "last_save_at": "2026-10-20T17:15:51.809Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfcb5641e530fe6ca9c5cc73155e7053899a6d24df6f0fe13c96c7f784ba51a7",
+    "source_fingerprint": "sha256:9ec7cca86bb370c36aabc0082338a58dce6d70fa4bbccbc51341cde42661430c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "545906dc019426e0ee85cdade7d36b0945cb990f011e38b875ff4c8afc1d2db7",
-      "plan.md": "bb110011a349611e922bef7c5bc40a9b7e9ead70501b532592428016dd365594",
-      "tasks.md": "4c816a5ab054bfd2edf7df62fb1c13cc658b218513b256b901722f9e418224c3",
-      "implementation-summary.md": "cb4afb06e137b8a6158887979bd7eaef386755711427e7313405c9f974f5c5dc"
+      "spec.md": "643a224b74f2d823fa53efd87ccfcb5a18998ae44218c02d0dd78dbd8c474c21",
+      "plan.md": "b472f63cbeb296ba1c89ba18644fe68be6c2cae3639c61f4eda7eec578004291",
+      "tasks.md": "6bb7bcce4fc24f3e46e6b4de3f416419ef024cad3735331b285df7ac311ce3fc",
+      "implementation-summary.md": "554ee20386c7579d1bb6450c285d767aee6e635bf064dc5c883dbb60a4ac05d4"
     },
     "last_active_at": null
   }

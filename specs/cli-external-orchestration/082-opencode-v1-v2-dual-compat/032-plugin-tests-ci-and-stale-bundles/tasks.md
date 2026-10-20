@@ -67,8 +67,8 @@ contextType: "general"
 - [x] T020 Part 1, review round 3: trigger on the root project markers (`.github/workflows/opencode-plugin-tests.yml`) Done: both lists add `esbuild.config.mjs`, `manifest.json`, `wrangler.toml` and `src/**`; `actionlint` exit 0, `check-gate-inputs.sh` RESULT: PASSED.
 - [x] T024 Part 3, review round 4: provision a subdirectory as its worktree (`.skilled/skills/sk-git/scripts/worktree-naming.sh`, `tests/worktree-naming.test.sh`) Done: round 4 found that `provision <worktree>/<subdirectory>` skipped every list entry and exited 0. Inside a git work tree the argument now resolves to its top level. Suite PASS=157 FAIL=0 (`scratch/naming-tests-subdir.txt`); the previous script fails the two new checks (`scratch/mutation/no-toplevel-script-subdir-tests.txt`, PASS=155 FAIL=2); the real worktree provisioned from `.skilled` reports 0 built, 14 already present and no skip warning (`scratch/real-subdir-provision.txt`). The frontmatter descriptions now describe the fingerprint rule, and the hashing time is saved (`scratch/fingerprint-timing.txt`: 1,435 tracked paths in 0.87 s).
 - [x] T021 Review the change read-only with Luna, five rounds at most (`scratch/review/`) Done: rounds 1 to 4 FAIL, each fixed (T015 to T020, T024); round 5 PASS with one P2, recorded as Known Limitation 4.
-- [ ] T022 Validate this folder strict and 082 recursively, each RESULT: PASSED
-- [ ] T023 Part 1: the plugin-test workflow passes on CI at the pushed main commit
+- [x] T022 Validate this folder strict and 082 recursively, each RESULT: PASSED Done: both printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` after the merge with main.
+- [x] T023 Part 1: the plugin-test workflow passes on CI at the pushed main commit Done: main `4fcc6afd45`, OpenCode Plugin Tests run 39461581742 success with 436 tests, 436 pass, 0 fail; Spec-Kit Check run 39461581737 success; all 16 runs on that commit success.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -76,9 +76,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
