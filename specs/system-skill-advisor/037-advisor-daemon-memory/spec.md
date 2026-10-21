@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -107,7 +107,7 @@ The files each phase expects to touch. Each child's plan owns the detailed list.
 |-------|--------|-------|--------|
 | 1 | 001-hf-model-server-idle-default/ | Give the resident model server a default idle timeout so it unloads when nothing embeds | Complete |
 | 2 | 002-lighter-advisor-launcher/ | Measure the launcher, then fold its job into the advisor server or record a no-go | Complete (no-go) |
-| 3 | 003-reap-orphaned-model-server/ | Reap a model server whose launcher died when the next supervisor starts | Pending |
+| 3 | 003-reap-orphaned-model-server/ | Reap a model server whose launcher died when the next supervisor starts | Complete |
 
 ### Phase Transition Rules
 

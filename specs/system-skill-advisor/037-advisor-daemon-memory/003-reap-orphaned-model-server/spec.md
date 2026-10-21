@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` (planning only) |
 | **Parent Spec** | ../spec.md |
@@ -79,6 +79,8 @@ A model server is never left without an owner for longer than it takes the next 
 - A model server owned by a live launcher (any parent other than 1).
 - Adopting the orphan instead of reaping it: a process cannot receive exit events for a non-child.
 - A periodic sweep; the check runs when a supervisor starts its demand listener.
+- A `tcp://` model server address. That branch takes the respawn lock without probing, so it never sees a live orphan; the doctor orphan check still reports one.
+- Telling a launcher-orphaned server from one an init system runs on the shared socket. Only the launcher writes the pid file, so this needs PID reuse; `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` turns the reap off for such a setup.
 
 ### Files to Change
 

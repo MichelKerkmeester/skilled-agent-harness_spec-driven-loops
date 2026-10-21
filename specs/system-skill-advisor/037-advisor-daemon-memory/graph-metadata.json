@@ -67,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,20 +89,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Hugging Face",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185",
     "created_at": "2026-10-21T09:51:14Z",
-    "last_save_at": "2026-10-21T14:19:03.082Z",
+    "last_save_at": "2026-10-21T14:50:07.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:27a29ae687751a42515947a8cbb68e35465b2a8a2fafd6f1a8f460836c20b84a",
+    "source_fingerprint": "sha256:48312d7be30878cbcbcdd798c912768bf2dad1d133efbc7b4dcbf52b1086361d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67c4a13988d1fcbf265dcb5d70c7f88b8f6b34ff53a5b01c22ebedfdfadf3570"
+      "spec.md": "71b19ea60d9b85a40d7b2937edf82112521a759b182663c8cfc79c4b7f15e4d7"
     },
     "last_active_at": null
   }

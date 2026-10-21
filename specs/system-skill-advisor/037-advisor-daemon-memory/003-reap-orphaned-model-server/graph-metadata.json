@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "When the launcher dies by SIGKILL or an uncaught exception, its model server keeps running: the launcher's `uncaughtException` handler clears only the leases (`system-skill-advisor-launcher.cjs:1489-1496`)",
     "created_at": "2026-10-21T14:17:13Z",
-    "last_save_at": "2026-10-21T14:19:03.077Z",
+    "last_save_at": "2026-10-21T14:50:07.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f89099d14b1e26f9f4698cab226d539a20a61862e8ac79b62bc612a498dece5",
+    "source_fingerprint": "sha256:8f3671f03a1a15c1b746315c9aec44250588670d5169cf37201b875351262e47",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dfbd5c0eb26a2e3f2ef053a32bbe026cc4c76d274cb7d11e0f79d4e5670af06c",
+      "spec.md": "d963879aa93120f4fd147065a8a79eac394dd33e6e665c7c0cccf3c555955b98",
       "plan.md": "a633dcbdee7b1b4cf70a0f1925b6fefa9f65f6f048e027f42808cbbe8db3d38d",
-      "tasks.md": "7468774d7f35a78ea2f24fee43474650248f2ce57bdd3fa93329fcbdba428422",
-      "implementation-summary.md": "11d7213a1c062872edcdfd0f01f9e5c77d4a69da193d1b54fd6adad7fea6044c"
+      "tasks.md": "12d4d4f26b63cad5af7b570e066f3e225fcb6b62ae2815793d8b07da057486fd",
+      "implementation-summary.md": "e9e2b27e1d7406c8555e924eb52a08cada2ddc791dd33c69f2204965dafb4ec6"
     },
     "last_active_at": null
   }

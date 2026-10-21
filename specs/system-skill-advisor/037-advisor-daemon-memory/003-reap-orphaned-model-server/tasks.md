@@ -31,7 +31,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the demand preflight and reap path (`model-server-supervision.cjs`)
+- [x] T001 Read the demand preflight and reap path (`model-server-supervision.cjs`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -39,9 +39,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Orphan branch with parent and command checks (`prepareModelServerDemandTarget`)
-- [ ] T003 Injectable lookups and no give-up cooldown for this reap
-- [ ] T004 Tests: orphaned, supervised, reused PID, unreadable parent
+- [x] T002 Orphan branch with parent and command checks (`prepareModelServerDemandTarget`)
+- [x] T003 Injectable lookups and no give-up cooldown for this reap
+- [x] T004 Tests: orphaned, supervised, reused PID, unreadable parent
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -49,9 +49,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run the supervision suites
-- [ ] T006 Live run: `kill -9` a launcher, start the advisor again, check `ps`
-- [ ] T007 Strict validation of this folder
+- [x] T005 Run the supervision suites
+- [x] T006 Live run: `kill -9` a launcher, start the advisor again, check `ps`
+- [x] T007 Strict validation of this folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -59,9 +59,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

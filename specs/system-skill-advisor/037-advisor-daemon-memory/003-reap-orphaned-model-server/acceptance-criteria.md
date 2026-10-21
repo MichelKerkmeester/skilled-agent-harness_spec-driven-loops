@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/003-reap-orphaned-model-server"
+    packet_pointer: "system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server"
     last_updated_at: "2026-10-21T14:17:16Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    last_updated_by: "orchestrator"
+    recent_action: "Marked AC-001 to AC-004 Met with tests and a live reap"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "scaffold-003-reap-orphaned-model-server"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 003-reap-orphaned-model-server
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-21
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given an alive recorded model server with parent PID 1 running `hf-model-server.cjs`, When a supervisor starts its demand listener, Then it reaps that server and listens | vitest orphan case | Unmet | - |
-| AC-002 | REQ-002 | Given a recorded server whose parent is a live launcher, or a recorded pid running another command, or an unreadable parent, When the listener starts, Then nothing is signalled and it backs off | vitest negative cases | Unmet | - |
-| AC-003 | REQ-003 | Given the orphan reap, When it completes, Then no give-up cooldown is armed | vitest assertion | Unmet | - |
-| AC-004 | REQ-004 | Given a launcher killed with `kill -9`, When the advisor starts again, Then no model server has parent PID 1 and the next embedding is served | live run, `ps` before and after | Unmet | - |
+| AC-001 | REQ-001 | Given an alive recorded model server with parent PID 1 running `hf-model-server.cjs`, When a supervisor starts its demand listener, Then it reaps that server and listens | `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:320`; live 2026-10-21: a real `hf-model-server.cjs` with parent PID 1 (581 MB) was reaped by the real preflight, which then listened | Met | - |
+| AC-002 | REQ-002 | Given a recorded server whose parent is a live launcher, or a recorded pid running another command, or an unreadable parent, When the listener starts, Then nothing is signalled and it backs off | `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:427` (live launcher parent), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:440` (other command), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:454` and `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:468` (unreadable parent or command), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:345` (pid changed before the reap), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:369` (pid already dead), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:387` (pid survives SIGKILL, socket kept), `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:409` (kill switch); removing any guard fails a test | Met | - |
+| AC-003 | REQ-003 | Given the orphan reap, When it completes, Then no give-up cooldown is armed | `.skilled/skills/system-spec-kit/runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts:320` asserts no cooldown is armed; a confirmed reap clears an old cooldown and the pid file | Met | - |
+| AC-004 | REQ-004 | Given a launcher killed with `kill -9`, When the advisor starts again, Then no model server has parent PID 1 and the next embedding is served | live 2026-10-21 with the real preflight, probe, `ps` reads and signal: default reaps the orphan (no model server left after), `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` leaves it running; the full launcher run with `kill -9` was not driven, because a launcher spawns its model server only on embed demand (see phase 001 ADR-002) | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Not started. Every criterion is Unmet until the phase is built and verified.
+The guard tests and a live reap of a real orphaned model server carried the phase. The reap was driven through the real preflight rather than a killed launcher, which spawns a model server only on embed demand.
 <!-- /ANCHOR:closure -->
