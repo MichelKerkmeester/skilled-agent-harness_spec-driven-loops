@@ -157,6 +157,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | Complete |
 | 45 | 045-relaunch-takeover-lock-identity/ | Prove takeover mutex ownership with an owner token as well as the inode, rename before removing and keep a contender's directory, so Hook Node Tests passes on Linux | Complete |
 | 46 | 046-final-two-version-proof/ | Run the live plugin playbook for all 17 plugins on OpenCode 1.19.3 and 2.0.32, rerun every tracked suite, validate the packet and record CI on the final main commit | In Progress |
+| 47 | 047-diagram-corpus-ci/ | [Phase 47 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -210,4 +211,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 042-hooks-and-plugins-held-fixes | 043-v2-default-model-and-follow-ups | The operator chose `llmgateway` as the OpenCode 2 default on 2026-10-21, and 035, 037 and 042 recorded doc, comment and CI follow-ups | `043/implementation-summary.md`; the default-model tests and the new hooks workflow pass on CI |
 | 042-hooks-and-plugins-held-fixes | 044-skill-advisor-stress-ci | The Skill Advisor Stress Tests workflow has failed every run since 2026-10-19, and the open-work goal needs every workflow green | `044/implementation-summary.md`; the stress suite passes 64 of 64 locally and on CI at the pushed commit |
 | 045-relaunch-takeover-lock-identity | 046-final-two-version-proof | Every fix group is on main and Hook Node Tests passes, so the open-work goal needs its final proof from main | `046/implementation-summary.md`; the 17 by 2 live matrix, the suite table, recursive validation and the CI table |
+| 046-final-two-version-proof | 047-diagram-corpus-ci | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
