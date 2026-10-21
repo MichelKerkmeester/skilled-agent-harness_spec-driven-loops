@@ -51,7 +51,8 @@
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof",
     "cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci",
-    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter"
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter",
+    "cli-external-orchestration/082-opencode-v1-v2-dual-compat/049-review-rows-reconciliation"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -258,7 +259,7 @@
     ],
     "causal_summary": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
     "created_at": "2026-10-18T09:21:48Z",
-    "last_save_at": "2026-10-21T14:53:35.617Z",
+    "last_save_at": "2026-10-21T15:25:26.814Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -266,10 +267,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ebaf961d2c24cb1510e5538a6aff0ea2792a0da58b5b0e827ade35208f34e657",
+    "source_fingerprint": "sha256:b4e09bcfa1bad7e7b85054acf67396401f1e98cc9f8d8ed19d8cfdee24e78b66",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4f60a731674980faad010a1a1929d1cc60d4f43e5ada1542912d2f38c0183789",
+      "spec.md": "1c7de325dca502e28ee4c3a48cb0fd3d22d6d58012d2fcd45932c7886b1c65a6",
       "research/research.md": "d98a79b9f7b739b2ec1048e9bd48e083a8164b43ab63c6c54ca78b48202962a9"
     },
     "last_active_at": null

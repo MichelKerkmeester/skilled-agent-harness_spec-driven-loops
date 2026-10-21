@@ -159,6 +159,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 46 | 046-final-two-version-proof/ | Run the live plugin playbook for all 17 plugins on OpenCode 1.19.3 and 2.0.32, rerun every tracked suite, validate the packet and record CI on the final main commit | Complete |
 | 47 | 047-diagram-corpus-ci/ | Bring the Diagram Corpus workflow back to green by moving the diagram scripts README into the 1.2 version era the metadata family requires and telling the next reader to set the major.minor by hand | Complete |
 | 48 | 048-skilled-loop-shared-nudge-formatter/ | Build the relaunch seed's spec-folder suffix through the shared core formatter, warn on stderr when that call fails, and prove the ownership with a test that fails on the old hand-written function | Complete |
+| 49 | 049-review-rows-reconciliation/ | [Phase 49 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -214,4 +215,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 045-relaunch-takeover-lock-identity | 046-final-two-version-proof | Every fix group is on main and Hook Node Tests passes, so the open-work goal needs its final proof from main | `046/implementation-summary.md`; the 17 by 2 live matrix, the suite table, recursive validation and the CI table |
 | 046-final-two-version-proof | 047-diagram-corpus-ci | The operator asked on 2026-10-21 to fix Diagram Corpus, red on main since 2026-10-18 | `047/implementation-summary.md`; Diagram Corpus passes on CI at the pushed commit |
 | 047-diagram-corpus-ci | 048-skilled-loop-shared-nudge-formatter | The operator approved closing 039's last open P1 on 2026-10-21 | `048/implementation-summary.md`; suffix compare 8/8, skilled-loop 111/111, Hook Node 872/872 |
+| 048-skilled-loop-shared-nudge-formatter | 049-review-rows-reconciliation | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
