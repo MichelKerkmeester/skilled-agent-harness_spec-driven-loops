@@ -1,5 +1,5 @@
 {
-  "corpusHash": "59ac50ccae5e42049b0a6e2f6f7ce775efdf654d6a2eeb277d5a507344e13aa9",
+  "corpusHash": "80af78551bafe76c16c8521cbf4efbf381a0c3225adc9104aeac93af31788cad",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25510,
+  "includedPathCount": 25514,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9025,6 +9025,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/spec.md",
@@ -25541,7 +25545,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7345befc2f08f8fa816ce2b30b4bc8d99c9418ced71fdf17d27e45b7a38f109e",
+  "manifestHash": "f0451c9a06541856bfd175eb5e8e01c975d0b16ebe246835d27e7f0344f2d93e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26665,6 +26669,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
