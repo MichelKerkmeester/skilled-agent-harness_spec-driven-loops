@@ -152,6 +152,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 39 | 039-sk-code-opencode-alignment-audit/ | Review every tracked file under `.opencode/plugins` and the hook tree `.opencode/hooks` links to against sk-code's SKILLED surface, fix each confirmed finding or record why it stays, and leave one review row per file | Complete; 21 behaviour-change P0/P1 findings wait on the operator |
 | 41 | 041-goal-held-fixes/ | Fix the goal plugin and goal core findings 039 held for the operator: explicit delete, archive on replace and clear, unique archive names, the continuation objective, status code parsing, the core read and archive listing, and a required `--workspace` | Complete |
 | 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
+| 43 | 043-v2-default-model-and-follow-ups/ | Make `llmgateway/deepseek-v4.1-flash` the OpenCode 2 default model, put the hook node:test suites in a blocking CI job, and close the 035, 037 and 042 doc and comment follow-ups | In Progress |
 
 ### Phase Transition Rules
 
@@ -201,4 +202,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 037-ci-pi-and-provisioning-follow-ups | 039-sk-code-opencode-alignment-audit | The open-work goal of 2026-10-20 asks that every OpenCode plugin and hook file align with sk-code, and nothing has reviewed both trees whole since 009 | `039/review.md`; no row has an open P0 or P1 and every covering suite passes on CI |
 | 039-sk-code-opencode-alignment-audit | 041-goal-held-fixes | 039 held nine goal plugin and goal core findings because each fix changes behaviour; the operator approved all held findings on 2026-10-21 | `041/implementation-summary.md`; each finding has a test that fails without its fix, and the suites pass on CI |
 | 039-sk-code-opencode-alignment-audit | 042-hooks-and-plugins-held-fixes | 039 held the session-relaunch, post-edit-quality, task-dispatch, git, mcp-route-guard, shared-adapter and plugin findings that change behaviour, and the operator chose to fix all of them | `042/implementation-summary.md`; every held finding outside the dispatch lint and goal files is fixed with a test that fails without it, and CI passes at the pushed commit |
+| 042-hooks-and-plugins-held-fixes | 043-v2-default-model-and-follow-ups | The operator chose `llmgateway` as the OpenCode 2 default on 2026-10-21, and 035, 037 and 042 recorded doc, comment and CI follow-ups | `043/implementation-summary.md`; the default-model tests and the new hooks workflow pass on CI |
 <!-- /ANCHOR:phase-map -->

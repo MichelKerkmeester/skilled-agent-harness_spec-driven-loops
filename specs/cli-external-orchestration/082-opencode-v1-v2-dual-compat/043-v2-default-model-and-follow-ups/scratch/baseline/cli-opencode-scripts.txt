@@ -1,0 +1,3 @@
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs # pass 3 # fail 0 
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode-setup-classify.test.cjs # pass 2 # fail 0 
+.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/opencode2-models-form.test.cjs # pass 16 # fail 0 
