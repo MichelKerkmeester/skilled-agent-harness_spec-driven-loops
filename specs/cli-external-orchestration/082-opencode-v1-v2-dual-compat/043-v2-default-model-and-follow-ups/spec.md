@@ -60,7 +60,7 @@ This is **Phase 43** of the OpenCode v1 and v2 dual compatibility specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written. The 29 hook node:test files and the hook installer test run in no CI job, and 035, 037 and 042 left doc and comment claims that overstate or lack evidence.
+cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written. Of the 29 hook node:test files only `dispatch-rule-checks.test.mjs` had a blocking CI job (`dispatch-enforcement-guard.yml`); the other 28 and the hook installer test gated no merge, and 035, 037 and 042 left doc and comment claims that overstate or lack evidence.
 
 ### Purpose
 OpenCode 2 defaults to `llmgateway/deepseek-v4.1-flash#max` while OpenCode 1 keeps `opencode-go/deepseek-v4.1-flash --variant max`, the hook suites gate merges, and each recorded follow-up is fixed or recorded with a reason.

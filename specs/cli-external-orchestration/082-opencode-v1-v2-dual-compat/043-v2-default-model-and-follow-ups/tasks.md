@@ -62,7 +62,7 @@ contextType: "general"
 - [x] T015 Prove the v2-bridge timeout with the stream-announcement mutation (`scratch/after/v2-bridge-timeout-mutation.txt`)
 - [x] T016 Rerun the plugin, hook node:test, installer, default-model, models-form and runner suites (`scratch/after/`)
 - [B] T017 Run one unpinned live dispatch on each version (`scratch/live/`) (OpenCode 2 passed; OpenCode 1 blocked by the opencode-go usage limit)
-- [ ] T018 Luna review of every change (`scratch/luna/`)
+- [x] T018 Luna review of every change (four rounds; results in `implementation-summary.md`)
 - [ ] T019 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
