@@ -156,6 +156,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 30 | 030-cursor-reconcile-test-exemption/ | Exempt the backgrounded reconcile hook in the Cursor parity assertion so Spec-Kit Check passes | Complete |
 | 31 | 031-changelog-v4003-reality-check/ | Check every v4.0.0.3 changelog claim against the code and cover the specs shipped since v4.0.0.2 | Complete |
 | 32 | 032-orphan-process-check/ | Read-only doctor scan for orphaned helper processes, with a guarded opt-in reap | Complete |
+| 33 | 033-orphan-check-unsupervised-model-server/ | Report a model server whose launcher died as unsupervised | Pending |
 
 ### Phase Transition Rules
 
@@ -199,6 +200,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 029-main-ci-regenerations | 030-cursor-reconcile-test-exemption | Three red checks cleared | Spec-Kit Check passes on main |
 | 030-cursor-reconcile-test-exemption | 031-changelog-v4003-reality-check | Main CI is green | The changelog validates with 0 issues and no claim contradicts the code |
 | 031-changelog-v4003-reality-check | 032-orphan-process-check | phase 031 is closed; 032 is independent of its content | `validate.sh 031-changelog-v4003-reality-check --strict` RESULT: PASSED |
+| 032-orphan-process-check | 033-orphan-check-unsupervised-model-server | phase 032 shipped the orphan check | `validate.sh 032-orphan-process-check --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

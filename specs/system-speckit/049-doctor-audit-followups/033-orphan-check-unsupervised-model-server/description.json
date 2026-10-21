@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server",
+  "description": "Phase 33: orphan-check-unsupervised-model-server",
+  "keywords": [
+    "phase",
+    "orphan-check-unsupervised-model-server"
+  ],
+  "lastUpdated": "2026-10-21T14:17:19.290Z",
+  "specId": "033",
+  "folderSlug": "orphan-check-unsupervised-model-server",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

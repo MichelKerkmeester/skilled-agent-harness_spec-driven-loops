@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "unsupervised model server",
+      "orphan check model server",
+      "hf model server parent pid 1",
+      "unsupervised model server plan",
+      "unsupervised model server tasks",
+      "orphan check unsupervised model server acceptance criteria",
+      "orphan check unsupervised model server implementation summary"
+    ],
+    "key_topics": [
+      "unsupervised",
+      "model",
+      "server",
+      "orphan",
+      "check",
+      "parent",
+      "pid",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/orphan-process-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-process-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/orphan-process-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-process-check.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/orphan-process-check.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A model server is a child of its launcher",
+    "created_at": "2026-10-21T14:17:17Z",
+    "last_save_at": "2026-10-21T14:19:03.077Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:25d7f2bf24878bcb3901685fd547103974a05370227203f8ccb090fa579df49d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5469328fb31087615f03a6b2eaa1d5c0ca553217edec63573661d1823cf9eb3e",
+      "plan.md": "88af863c2f7b38105464d3a6bef2a9b2260f439a20bb63d78cf03dec0ba296c2",
+      "tasks.md": "f672f113054d540eec3cddcacb24b44cd841d11177295a242d638294a57bc854",
+      "implementation-summary.md": "6fdce857001150a8685ff95595680bba4370ed1790c52ef80396b3073aaad17f"
+    },
+    "last_active_at": null
+  }
+}

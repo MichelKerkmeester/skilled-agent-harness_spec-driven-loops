@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-skill-advisor/037-advisor-daemon-memory/001-hf-model-server-idle-default",
-    "system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher"
+    "system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher",
+    "system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server"
   ],
   "manual": {
     "depends_on": [],
@@ -66,6 +67,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -88,26 +95,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Hugging Face",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-10-21 three advisor daemons ran at once, one each for main and worktrees 182 and 185",
     "created_at": "2026-10-21T09:51:14Z",
-    "last_save_at": "2026-10-21T12:39:40.490Z",
+    "last_save_at": "2026-10-21T14:19:03.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1120fb81818729268afa57a1953b26bb382e352aa84307625dd1e34228608fa1",
+    "source_fingerprint": "sha256:27a29ae687751a42515947a8cbb68e35465b2a8a2fafd6f1a8f460836c20b84a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1783514940bf9de335d28ea779a120d4c78870cf23c5c61077bc257cfabbfc76"
+      "spec.md": "67c4a13988d1fcbf265dcb5d70c7f88b8f6b34ff53a5b01c22ebedfdfadf3570"
     },
     "last_active_at": null
   }
