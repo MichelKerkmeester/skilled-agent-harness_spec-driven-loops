@@ -60,7 +60,7 @@ contextType: "general"
 
 - [x] T014 Each new test fails on the pre-change engine (`scratch/mutation/`) [EVIDENCE: every `scratch/mutation/*.txt` ends `exit 1 against the base sources`]
 - [x] T015 Corpus comparison moves only commands a finding names (`scratch/corpus-diff.txt`) [EVIDENCE: `scratch/corpus-diff.txt`: 18 of 260 commands move, each from N06 (audit), N03 (packets) or N04 (four corpus strings whose escapes the extractor dropped); the real escaped commands keep their verdicts]
-- [x] T016 Suites at or above baseline (`scratch/suites/final/`), Luna verdicts (`scratch/luna/`) [EVIDENCE: `scratch/suites/final/`: hooks node 840 (836), hooks vitest 329 (217), plugins 481 (481), battery 51 (51), rule-checks 42 (38), audit vitest 123 (114); Luna rounds 1-7 in `scratch/luna/`, round 7 FAIL with three P1s recorded in implementation-summary.md]
+- [x] T016 Suites at or above baseline (`scratch/suites/final/`), Luna verdicts (`scratch/luna/`) [EVIDENCE: `scratch/suites/final/`: hooks node 840 (836), hooks vitest 332 (217), plugins 481 (481), battery 51 (51), rule-checks 42 (38), audit vitest 123 (114); Luna rounds 1-8 in `scratch/luna/`, round 8 FAIL with five P1s, none a regression against the base, recorded in implementation-summary.md]
 - [x] T017 README and playbook lines that describe the changed behaviour [EVIDENCE: 1da140c77f]
 <!-- /ANCHOR:phase-3 -->
 

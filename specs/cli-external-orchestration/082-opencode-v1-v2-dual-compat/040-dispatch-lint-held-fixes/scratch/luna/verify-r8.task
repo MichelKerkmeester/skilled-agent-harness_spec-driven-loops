@@ -1,0 +1,19 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a read-only code reviewer. You verify; you edit nothing. This is the final, eighth round.
+
+The user replaced the layered negation reading with one policy: in the Pi extension, a sentence that names the executor authorizes only when it carries no negation or refusal word anywhere, before or after the mention (`REFUSAL_PATTERN` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`). The only exceptions are the whole sentences `not <other executor>, use <executor>` and `not <other executor> but <executor>`. Commit: `git show HEAD -- .skilled/hooks/dispatch/`.
+
+Severity, by the user's policy: a fail-closed false deny (a positive request that the policy refuses, such as `use cli-devin, it is not forbidden`) is P2 at most. Only an authorization that leaks through (a refusal or negation of the dispatched executor that still authorizes it), or a regression elsewhere (a test, another runtime's behaviour, a previously authorized plain request such as `use cli-devin`, `dispatch via cli-devin` or `/deep:review --executor cli-devin` that is now denied), is P1 or P0.
+
+Your round-7 verdict is `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch/luna/verify-r7.txt`. Judge its three items, then look for leaks: refusals the word set misses, sentence splitting a refusal can escape (a refusal in an adjacent clause that is not split by the terminators, abbreviations, line breaks), the reset-form match (can a sentence that refuses the dispatched executor pass as `not X, use Y` or `not X but Y`?), the quote and expansion handling, and the `hasExplicitModeOverride` index change. Trace by reading, or copy logic into a `node --input-type=module -e` probe. Do not run vitest or node:test.
+
+BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+
+Output exactly this format:
+VERDICTS
+<round-7 phrasing> | CLOSED|OPEN|POLICY-P2 | <one-line evidence with file:line>
+NEW
+<file:line> | P0|P1|P2 | <exact phrasing> | <defect> | <remedy>
+VERDICT: PASS (no P0 or P1 open) or FAIL
