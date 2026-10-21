@@ -1,0 +1,6 @@
+8fd6199a68 | FAIL
+P2 | .opencode/plugins/opencode-goal.js:1010 | `{ statusCode: false, status: 429 }` still converts `false` to 0 and hides the 429 | Reject nonnumeric candidate types and add a regression case
+P2 | .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:200 | The added cases on lines 200–201 exceed 100 characters | Wrap the cases across lines
+23a69afbd7 | PASS
+P2 | .skilled/hooks/goal/lib/goal-core.test.cjs:264 | Added test lines 264, 267, 270, and 273 exceed 100 characters | Wrap the setup, fixture, and assertions
+VERDICT: PASS

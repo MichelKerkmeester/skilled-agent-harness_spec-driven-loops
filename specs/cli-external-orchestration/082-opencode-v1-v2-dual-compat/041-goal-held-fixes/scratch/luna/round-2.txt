@@ -1,0 +1,19 @@
+92e6379de5 | FAIL  
+6676301298 | PASS  
+ae7a4ce68f | FAIL  
+39a3259022 | PASS  
+b5864d8818 | PASS  
+
+P1 | .opencode/plugins/opencode-goal.js:1851 | `setGoal` and `clearGoal` archive a snapshot, then replace or unlink the active path. The queue is process-local, so another process can write a new goal in between and have it lost without an archive or staging copy. | Serialize each session’s read/archive/write/delete across processes, or stage and verify the exact active record before mutation.  
+P1 | .opencode/plugins/opencode-goal.js:1348 | Legacy active-state migration still links the legacy path and then unlinks it at line 1355. A concurrent writer can replace the path between those calls, causing the new goal to be removed while the canonical path retains the old bytes. | Rename the source to staging before migration, with conflict-safe restoration.  
+P2 | .opencode/plugins/opencode-goal.js:2095 | The archived `cleared` record does not increment `revision`, unlike the shared core’s `clearGoal`. | Increment `revision` before archiving.  
+P2 | .opencode/plugins/opencode-goal.js:1481 | Pruning includes `.tmp-*` staging files. A staged copy left after a failed restore can eventually be deleted, and history cannot list it. | Preserve or recover staging files before pruning them.  
+P2 | .opencode/plugins/opencode-goal.js:1733 | Legacy archive migration also links the old path and then unlinks it at line 1738, leaving a concurrent archive replacement vulnerable to loss. | Migrate the exact source safely and preserve any replacement written during migration.  
+
+TESTS: `node --test .opencode/plugins/tests/*.test.cjs` reported 408 tests, 143 pass and 265 fail; exit 1.  
+TESTS: `node --test .skilled/hooks/goal/bin/goal.test.cjs .skilled/hooks/goal/lib/goal-core.test.cjs` reported 96 tests, 0 pass and 96 fail; exit 1. Both runs hit `EPERM` creating scratch directories under `/var/folders/...`, so they do not verify the code. Rerun them where `os.tmpdir()` is writable.  
+OLD-CODE CHECK: The tests added in 92e6379de5, 6676301298, ae7a4ce68f and 39a3259022 appear to reject their parent behavior by their assertions and source diffs. I did not execute them against parent commits.  
+CHECKS: The A-to-B-to-C history snapshots are retained; cleared records are accepted in history but are not transition targets; continuation falls back to the stored copy if a packet is moved or unreadable. No ephemeral artifact labels appear in added code comments, and added code/test lines are within 100 characters. The b5864d8818 runtime diff is formatting-only; it also updates the documentation count.  
+STATE: HEAD is b5864d881803d37af5d2e96d42b301cc0f087206 on `worktrees/183-goal-held-fixes`; the worktree is clean and unchanged.
+
+VERDICT: FAIL
