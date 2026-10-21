@@ -48,6 +48,9 @@ export function readHardRules(skillMdPath) {
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
 
+// Claude's print-mode shape, shared by the headless list below and the permission-mode check.
+const CLAUDE_PRINT = /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/;
+
 // Every headless CLI here inherits the parent terminal's stdin and can hang
 // indefinitely with no output, which reads as a slow model rather than a deadlock.
 // Five packets declared the stdin rule while the check only recognised `opencode run`,
@@ -55,7 +58,7 @@ const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; //
 const HEADLESS_DISPATCH_SHAPES = [
   /\bopencode\d*\s+run\b/,
   /\bpi\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
-  /\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/,
+  CLAUDE_PRINT,
   /\bcodex\s+exec\b/,
   /\bdevin\s+(?:[^|;&]*\s)?-p\b/,
   /\bcursor-agent\s+(?:[^|;&]*\s)?-p\b/,
@@ -284,7 +287,7 @@ export const CHECKS = {
   'command-v-jev-required': binaryOnPathCheck('jev', /\bjev\s+/),
   // Non-interactive claude -p with a Bash-heavy prompt and no permission bypass can deadlock.
   'non-interactive-permission-mode-risk': (cmd) => {
-    if (!/\bclaude\s+-p\b|\bclaude\s+--print\b/.test(cmd)) return true;
+    if (!CLAUDE_PRINT.test(cmd)) return true;
     return /--dangerously-skip-permissions|--permission-mode\s+bypassPermissions/.test(cmd);
   },
 };

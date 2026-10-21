@@ -137,6 +137,20 @@ test('other checks discriminate correctly', () => {
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
 
+test('permission-mode check sees claude print mode behind other flags', () => {
+  const check = CHECKS['non-interactive-permission-mode-risk'];
+
+  // Flags before the print flag are still a print-mode dispatch, so the bypass rule applies.
+  assert.equal(check('claude --model sonnet -p "x"'), false);
+  assert.equal(check('claude --model sonnet --print "x"'), false);
+  assert.equal(check('claude --model sonnet -p --dangerously-skip-permissions "x"'), true);
+  assert.equal(check('claude --model sonnet --permission-mode bypassPermissions -p "x"'), true);
+
+  // The plain shapes and non-print commands keep their old answers.
+  assert.equal(check('claude -p "x"'), false);
+  assert.equal(check('claude --version'), true);
+});
+
 test('appliesTo evaluates only rules for the resolved version', () => {
   const rules = [
     { id: 'v1-only', check: 'always-fail', message: 'v1', severity: 'error', appliesTo: ['v1'] },

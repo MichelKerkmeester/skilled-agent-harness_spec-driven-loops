@@ -1,0 +1,28 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make exactly one change, plus its test.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, the check `non-interactive-permission-mode-risk` (near the end of `CHECKS`) applies only when the command matches `/\bclaude\s+-p\b|\bclaude\s+--print\b/`, so the print flag must come straight after `claude`. `claude --model sonnet -p "x"` is still a Claude print-mode dispatch (`inspectDispatch` and the `HEADLESS_DISPATCH_SHAPES` Claude entry both accept flags before `-p`), yet the check returns `true` and the packet's warning never fires.
+
+Fix: make the check's applicability test use the same Claude print-mode shape `HEADLESS_DISPATCH_SHAPES` already uses, `/\bclaude\s+(?:[^|;&]*\s)?(?:-p|--print)\b/`. Define it once as a named constant beside `PI_PRINT` (for example `CLAUDE_PRINT`), with a one-line comment, and use it in both places: the `HEADLESS_DISPATCH_SHAPES` entry and the check. Keep the bypass test (`--dangerously-skip-permissions` or `--permission-mode bypassPermissions`) as it is.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, add one `test(...)` near 'other checks discriminate correctly' that asserts, through `CHECKS['non-interactive-permission-mode-risk']`:
+- `claude --model sonnet -p "x"` returns `false`;
+- `claude --model sonnet --print "x"` returns `false`;
+- `claude --model sonnet -p --dangerously-skip-permissions "x"` returns `true`;
+- `claude --model sonnet --permission-mode bypassPermissions -p "x"` returns `true`;
+- `claude -p "x"` still returns `false`, and `claude --version` returns `true`.
+Import `CHECKS` only if the file does not already.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.
