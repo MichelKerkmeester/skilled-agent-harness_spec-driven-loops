@@ -1,0 +1,82 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change: widen how `isUsableMention` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts` reads a refusal of the executor, plus test rows. The guiding rule: when a phrasing cannot be read safely as a request, the mention does NOT authorize (fail closed).
+
+Current behaviour: the sentence starts after newline/;/./!/? or a contrast word (but, instead, rather); `negationReachesMention` finds the last `NEGATION_PATTERN` match and lets a comma end it when an executor is named between the negation and the comma and an imperative (use, run, ...) follows the comma.
+
+Changes:
+1. Curly apostrophes: at the start of `isUsableMention`, read a normalized copy of the text in which `’` and `‘` are replaced by `'` (same length, so indexes hold), and use it for every check below and for the existing contraction handling.
+2. `NEGATION_PATTERN` also matches, as whole words, case-insensitive: `cannot`, `can't`, `can not`, `mustn't`, `must not`, `shouldn't`, `should not`, `won't`, `will not`, `no`, `nor`, `neither`. Keep the existing words.
+3. Lists: in `negationReachesMention`, a comma may end the negation only when, in addition to the two existing conditions, the text from just after that comma to the mention contains no further comma and no whole word `and` or `or`. So `do not use opencode, use codex, or use cli-devin` stays negated, while `not opencode, use cli-devin` still ends it.
+4. Exclusion phrases right before the mention: before applying the contrast-word sentence start, if the text before the mention, with trailing spaces removed, ends with one of these whole phrases (case-insensitive), the mention is negated: `instead of`, `rather than`, `except`, `except for`, `other than`, `apart from`, `aside from`, `besides`, `excluding`, `anything but`, `everything but`, `all but`, `but not`, `not even`, `no`, `without`.
+5. Refusals after the mention: take the text from the end of the mention's token (the run of non-space characters starting at the mention index; for a `/deep:` mention, continue to the end of its `--executor cli-X` value) to the next newline, `;`, `.`, `!` or `?`. The mention is negated if that text contains, as whole words or phrases (case-insensitive): `forbidden`, `banned`, `disallowed`, `prohibited`, `off-limits`, `off limits`, `not allowed`, `not permitted`, `is not`, `isn't`, `are not`, `aren't`, `must not`, `mustn't`, `should not`, `shouldn't`, `cannot`, `can't`, `can not`, `won't`, `will not`. A plain `, not opencode` after the mention does not count.
+Keep the quote and expansion checks. Put each new word list in a named constant beside `NEGATION_PATTERN`, and update the function comments so they stay accurate and short.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add one new `it.each` block right after the `Pi dispatch deny matrix` block, named 'Pi refusal phrasings', with rows [raw text, denied] and the command `devin -p "task"` for every row, asserting `shouldDenyPiDispatch` the same way the deny matrix does (read how that block calls it and do the same). Rows:
+Denied (true):
+  'do not use opencode, use codex, or use cli-devin'
+  'do not use opencode, use codex, and use cli-devin'
+  'never run codex, run opencode, or run cli-devin'
+  'you cannot use opencode, codex, or cli-devin'
+  'cannot use cli-devin'
+  "can't use cli-devin"
+  'can not use cli-devin'
+  "mustn't use cli-devin"
+  'must not use cli-devin'
+  "shouldn't use cli-devin"
+  'should not use cli-devin'
+  "won't use cli-devin"
+  'will not use cli-devin'
+  'don’t use cli-devin'
+  'can’t use cli-devin'
+  'mustn’t use cli-devin'
+  'shouldn’t use cli-devin'
+  'won’t use cli-devin'
+  'you cannot, under any circumstances, use cli-devin'
+  "you mustn't, ever, run /deep:review --executor cli-devin"
+  'cannot run /deep:review --executor cli-devin'
+  'no, no, no, use cli-devin'
+  'cli-devin is not allowed'
+  'cli-devin is forbidden'
+  'cli-devin is banned here'
+  'cli-devin must not be used'
+  "cli-devin isn't allowed"
+  'using cli-devin is prohibited'
+  'cli-devin is off-limits'
+  'cli-devin is disallowed'
+  '/deep:review --executor cli-devin is forbidden'
+  'use anything instead of cli-devin'
+  'rather than cli-devin, do it by hand'
+  'instead of /deep:review --executor cli-devin, do it by hand'
+  'use any executor except cli-devin'
+  'use all executors except for cli-devin'
+  'no cli-devin'
+  'no cli-devin please'
+  'anything but cli-devin'
+  'use something other than cli-devin'
+  'use any tool apart from cli-devin'
+  'run it with everything excluding cli-devin'
+  'not even cli-devin'
+Allowed (false):
+  'not opencode, use cli-devin'
+  'not opencode but cli-devin'
+  'use cli-devin, not opencode'
+  'use cli-devin instead of opencode'
+  'use cli-devin rather than codex'
+  'dispatch via cli-devin please'
+  'cli-devin is allowed here'
+  'do not use opencode, use cli-devin'
+  'never use codex. use cli-devin'
+  "it's fine to use cli-devin"
+Keep every existing test and keep it passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: what you changed (file and line), then the verification command with its pass and fail counts. If a listed row cannot pass under these rules, say which and why instead of changing the row.

@@ -40,12 +40,25 @@ const SPEC_GATE_MARKER = 'SPEC FOLDER QUESTION:';
 const RAW_INPUT_STORE_KEY = Symbol.for('mk.pi.dispatch.raw-input');
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
-const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without|not)\b/i;
-// A comma ends a negation's clause only when an executor is named before it and a new
+const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without|not|cannot|can't|can not|mustn't|must not|shouldn't|should not|won't|will not|stop|skip|refuse|ban|drop|forget|exclude|nobody|no one|none|no|nor|neither)\b/i;
+// A comma ends a negation's clause only when an executor is named before it and a single new
 // imperative follows it; otherwise the comma belongs to a parenthetical or a list.
 const NEGATION_CLAUSE_EXECUTOR_PATTERN = /(?:\bcli-[\w-]+|\/deep:|\b(?:opencode|claude|codex|devin|cursor-agent|cursor|pi|hermes|jev)\b)/i;
 const NEGATION_CLAUSE_IMPERATIVE_PATTERN = /^(?:use|run|try|pick|choose|call|dispatch|launch|prefer|switch|go)\b/i;
+// A comma followed by a further list item joins nouns, so a trailing `and` or `or` keeps the
+// negation open instead of ending its clause.
+const NEGATION_CLAUSE_LIST_JOINER_PATTERN = /\b(?:and|or)\b/i;
+// A phrase that names the mention only as something to avoid, such as `instead of cli-devin`.
+const EXCLUSION_PHRASE_PATTERN = /\b(?:instead of|rather than|except for|except|other than|apart from|aside from|besides|excluding|anything but|everything but|all but|but not|not even|no|without)$/i;
+// A statement after the mention that it is refused, such as `cli-devin is forbidden`. A bare
+// `, not opencode` names a contrast, not a refusal, so it is absent here.
+const POST_MENTION_REFUSAL_PATTERN = /\b(?:forbidden|banned|disallowed|prohibited|off-limits|off limits|not allowed|not permitted|must never|should never|can never|will never|is never|is not|isn't|are not|aren't|must not|mustn't|should not|shouldn't|cannot|can't|can not|won't|will not)\b/i;
+const MENTION_CLAUSE_TERMINATOR_PATTERN = /[;\n.!?]/;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
+// The end of a `/deep:` mention is the end of its executor value, not the end of `/deep:`.
+const DEEP_LOOP_PHRASE_END_PATTERN = /^\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(?:cli-[\w-]+)/i;
+// A prefix ending at a `/deep:` executor value has already entered that phrase.
+const DEEP_LOOP_PREFIX_PATTERN = /\/deep:\S+[^\n]*?\s--executor(?:=|\s+)$/i;
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -169,38 +182,67 @@ function negationReachesMention(preceding: string): boolean {
   for (let comma = preceding.indexOf(',', negationEnd); comma !== -1; comma = preceding.indexOf(',', comma + 1)) {
     const beforeComma = preceding.slice(negationEnd, comma);
     if (!NEGATION_CLAUSE_EXECUTOR_PATTERN.test(beforeComma)) continue;
-    const afterComma = preceding.slice(comma + 1).replace(/^\s+/, '');
-    if (NEGATION_CLAUSE_IMPERATIVE_PATTERN.test(afterComma)) return false;
+    const afterComma = preceding.slice(comma + 1);
+    if (!NEGATION_CLAUSE_IMPERATIVE_PATTERN.test(afterComma.replace(/^\s+/, ''))) continue;
+    if (afterComma.includes(',') || NEGATION_CLAUSE_LIST_JOINER_PATTERN.test(afterComma)) continue;
+    return false;
   }
   return true;
 }
 
-/** A mention authorizes only where the user states it literally: quoted text, expansions and
- * negations in the mention's own clause describe an executor without requesting it. The
- * sentence starts after punctuation or a contrast word (`but`, `instead`, `rather`), and the
- * last negation reaches the mention unless a comma closes its clause by naming an executor
- * before it and starting a new imperative after it. So `do not, under any circumstances, use
- * cli-devin` and `do not use opencode, codex, or cli-devin` stay negated, while `not opencode,
- * use cli-devin` ends the negation at the comma. */
+function exclusionPhraseBeforeMention(text: string, mentionIndex: number): boolean {
+  const prefix = text.slice(0, mentionIndex);
+  // A `/deep:` phrase is one mention through its executor value, so an executor named inside
+  // one answers to the phrase's own prefix: `instead of /deep:review --executor cli-devin`.
+  const deepPhrase = DEEP_LOOP_PREFIX_PATTERN.exec(prefix);
+  const before = (deepPhrase ? prefix.slice(0, deepPhrase.index) : prefix).replace(/\s+$/, '');
+  return EXCLUSION_PHRASE_PATTERN.test(before);
+}
+
+function mentionTokenEnd(text: string, mentionIndex: number): number {
+  const deepPhrase = DEEP_LOOP_PHRASE_END_PATTERN.exec(text.slice(mentionIndex));
+  if (deepPhrase) return mentionIndex + deepPhrase[0].length;
+  let end = mentionIndex;
+  while (end < text.length && !/\s/.test(text[end])) end += 1;
+  return end;
+}
+
+function refusalAfterMention(text: string, mentionIndex: number): boolean {
+  const rest = text.slice(mentionTokenEnd(text, mentionIndex));
+  const terminator = rest.search(MENTION_CLAUSE_TERMINATOR_PATTERN);
+  const clause = terminator === -1 ? rest : rest.slice(0, terminator);
+  return POST_MENTION_REFUSAL_PATTERN.test(clause);
+}
+
+/** A mention authorizes only where the user states it literally: quoted text, expansions,
+ * negations and refusals describe an executor without requesting it. The sentence starts after
+ * punctuation, a contrast word (`but`, `instead`, `rather`) or an exclusion phrase such as
+ * `instead of`. The last negation reaches the mention unless a comma closes its clause by
+ * naming an executor before it and starting a single new imperative after it. A refusal after
+ * the mention (`is forbidden`, `must not`) withholds authority too. Curly apostrophes are read
+ * as straight ones so a contraction stays a negation and never opens a quote. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
+  const text = userText.replace(/[’‘]/g, "'");
   let sentenceStart = Math.max(
-    userText.lastIndexOf('\n', mentionIndex),
-    userText.lastIndexOf(';', mentionIndex),
-    userText.lastIndexOf('.', mentionIndex),
-    userText.lastIndexOf('!', mentionIndex),
-    userText.lastIndexOf('?', mentionIndex),
+    text.lastIndexOf('\n', mentionIndex),
+    text.lastIndexOf(';', mentionIndex),
+    text.lastIndexOf('.', mentionIndex),
+    text.lastIndexOf('!', mentionIndex),
+    text.lastIndexOf('?', mentionIndex),
   ) + 1;
-  const beforeMention = userText.slice(0, mentionIndex);
+  const beforeMention = text.slice(0, mentionIndex);
   const contrastWordPattern = /\b(?:but|instead|rather)\b/gi;
   for (let match = contrastWordPattern.exec(beforeMention); match; match = contrastWordPattern.exec(beforeMention)) {
     sentenceStart = Math.max(sentenceStart, match.index + match[0].length);
   }
-  const preceding = userText.slice(sentenceStart, mentionIndex);
+  const preceding = text.slice(sentenceStart, mentionIndex);
   // An apostrophe inside a word (`don't`) is a contraction, not a quote delimiter.
-  const quoteProbe = userText.replace(/(?<=\w)'(?=\w)/g, '_');
+  const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
   return !isInsideQuote(quoteProbe, mentionIndex) &&
-    !isInsideExpansion(userText, mentionIndex) &&
-    !negationReachesMention(preceding);
+    !isInsideExpansion(text, mentionIndex) &&
+    !exclusionPhraseBeforeMention(text, mentionIndex) &&
+    !negationReachesMention(preceding) &&
+    !refusalAfterMention(text, mentionIndex);
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {

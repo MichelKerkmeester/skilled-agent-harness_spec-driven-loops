@@ -1,0 +1,39 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to the uncommitted refusal reading in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, plus test rows. Rule: when a phrasing cannot be read safely as a request, it does not authorize.
+
+Problem: a sweep found clear refusals that still authorize cli-devin: `stop using cli-devin`, `skip cli-devin`, `refuse to use cli-devin`, `ban cli-devin`, `drop cli-devin`, `forget cli-devin`, `exclude cli-devin`, `nobody should use cli-devin`, `cli-devin must never be used`, `cli-devin should never run`.
+
+Fix:
+1. Add to `NEGATION_PATTERN`, as whole words, case-insensitive: `stop`, `skip`, `refuse`, `ban`, `drop`, `forget`, `exclude`, `nobody`, `no one`, `none`.
+2. Add to `POST_MENTION_REFUSAL_PATTERN`: `must never`, `should never`, `can never`, `will never`, `is never`.
+Change nothing else, and keep the comments accurate.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add these denied rows (true) to the 'Pi refusal phrasings' table, in the same [raw text, denied] form:
+  'stop using cli-devin'
+  'skip cli-devin'
+  'refuse to use cli-devin'
+  'ban cli-devin'
+  'drop cli-devin'
+  'forget cli-devin'
+  'exclude cli-devin'
+  'nobody should use cli-devin'
+  'no one may run cli-devin'
+  'cli-devin must never be used'
+  'cli-devin should never run'
+and these allowed rows (false):
+  "don't use codex, use cli-devin and opencode"
+  'not opencode, use cli-devin, not codex'
+  'go with cli-devin'
+Every existing test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: the changed lines, then the verification command with its pass and fail counts.

@@ -172,6 +172,89 @@ describe('Pi dispatch deny matrix', () => {
   });
 });
 
+describe('Pi refusal phrasings', () => {
+  it.each([
+    // A list joined past the comma keeps the negation open instead of reading the last item
+    // as a fresh imperative.
+    ['do not use opencode, use codex, or use cli-devin', true],
+    ['do not use opencode, use codex, and use cli-devin', true],
+    ['never run codex, run opencode, or run cli-devin', true],
+    ['you cannot use opencode, codex, or cli-devin', true],
+    // Every refusal word reads as a negation.
+    ['cannot use cli-devin', true],
+    ["can't use cli-devin", true],
+    ['can not use cli-devin', true],
+    ["mustn't use cli-devin", true],
+    ['must not use cli-devin', true],
+    ["shouldn't use cli-devin", true],
+    ['should not use cli-devin', true],
+    ["won't use cli-devin", true],
+    ['will not use cli-devin', true],
+    // A directive refusal before the mention withdraws authority just as a negated verb does.
+    ['stop using cli-devin', true],
+    ['skip cli-devin', true],
+    ['refuse to use cli-devin', true],
+    ['ban cli-devin', true],
+    ['drop cli-devin', true],
+    ['forget cli-devin', true],
+    ['exclude cli-devin', true],
+    ['nobody should use cli-devin', true],
+    ['no one may run cli-devin', true],
+    // A curly apostrophe spells the same contraction, so it negates the same way.
+    ['don’t use cli-devin', true],
+    ['can’t use cli-devin', true],
+    ['mustn’t use cli-devin', true],
+    ['shouldn’t use cli-devin', true],
+    ['won’t use cli-devin', true],
+    ['you cannot, under any circumstances, use cli-devin', true],
+    ["you mustn't, ever, run /deep:review --executor cli-devin", true],
+    ['cannot run /deep:review --executor cli-devin', true],
+    ['no, no, no, use cli-devin', true],
+    // A refusal stated after the mention withholds authority as well.
+    ['cli-devin is not allowed', true],
+    ['cli-devin is forbidden', true],
+    ['cli-devin is banned here', true],
+    ['cli-devin must not be used', true],
+    ['cli-devin must never be used', true],
+    ['cli-devin should never run', true],
+    ["cli-devin isn't allowed", true],
+    ['using cli-devin is prohibited', true],
+    ['cli-devin is off-limits', true],
+    ['cli-devin is disallowed', true],
+    ['/deep:review --executor cli-devin is forbidden', true],
+    // An exclusion phrase right before the mention names it as the thing to avoid.
+    ['use anything instead of cli-devin', true],
+    ['rather than cli-devin, do it by hand', true],
+    ['instead of /deep:review --executor cli-devin, do it by hand', true],
+    ['use any executor except cli-devin', true],
+    ['use all executors except for cli-devin', true],
+    ['no cli-devin', true],
+    ['no cli-devin please', true],
+    ['anything but cli-devin', true],
+    ['use something other than cli-devin', true],
+    ['use any tool apart from cli-devin', true],
+    ['run it with everything excluding cli-devin', true],
+    ['not even cli-devin', true],
+    // A comma that closes the negated clause, a later sentence, or a contrast leaves the
+    // mention as a request.
+    ['not opencode, use cli-devin', false],
+    ["don't use codex, use cli-devin and opencode", false],
+    ['not opencode, use cli-devin, not codex', false],
+    ['go with cli-devin', false],
+    ['not opencode but cli-devin', false],
+    ['use cli-devin, not opencode', false],
+    ['use cli-devin instead of opencode', false],
+    ['use cli-devin rather than codex', false],
+    ['dispatch via cli-devin please', false],
+    ['cli-devin is allowed here', false],
+    ['do not use opencode, use cli-devin', false],
+    ['never use codex. use cli-devin', false],
+    ["it's fine to use cli-devin", false],
+  ])('%s', (userText, expected) => {
+    expect(denied('devin -p "task"', userText)).toBe(expected);
+  });
+});
+
 describe('registered Pi extension boundary', () => {
   // The tool_call path runs every hard rule, the binary availability checks included, and
   // those read PATH. A CI runner has no devin or pi, so a dispatch these tests allow would
