@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity"
     last_updated_at: "2026-10-21T11:12:52Z"
     last_updated_by: "deepseek-v4.1-flash"
-    recent_action: "Recorded the owner-token takeover fix and its tests"
-    next_safe_action: "Push to main and confirm Hook Node Tests green"
+    recent_action: "Pushed to main; Hook Node Tests passed on Linux CI"
+    next_safe_action: "None; the three-killer window stays a documented limit"
     blockers:
       - "Hook Node Tests has not run at a commit that carries this fix"
     key_files:
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-045-relaunch-takeover-lock-identity"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -115,7 +115,7 @@ Luna reviewed the change in three rounds. Round 1 failed on two P1s, the path sw
 | Hook Node Tests suites, run as the CI step runs them | PASS 870 of 870 across 29 files; installer test 4 of 4 |
 | Plugin suite | PASS 516 of 516 |
 | Live session-relaunch scenario | PASS on OpenCode 1 and 2 with `llmgateway/deepseek-v4.1-flash`: the window marker reaches a later request, the shell call completes, exit 0 (`scratch/live-runs/`) |
-| Hook Node Tests on CI | PENDING: no run at a commit that carries this fix |
+| Hook Node Tests on CI | PASS: run 39593960806 at `84cbe7494c` on Linux, 29 files, 862 tests, 860 passed, 0 failed, installer 4 of 4; the test that failed in run 39577580180 passes. All 12 workflows on that commit succeeded |
 <!-- /ANCHOR:verification -->
 
 ---

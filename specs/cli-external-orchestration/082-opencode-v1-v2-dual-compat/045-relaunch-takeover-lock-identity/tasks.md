@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T013 Run each new test against the code before its fix and record the failure (`scratch/mutation/`)
 - [x] T014 Run `killer.test.cjs` 20 consecutive times at 59 passed of 59 (`scratch/killer-20x-r3.txt`)
 - [x] T015 Luna review of every change in three rounds, with round findings fixed or recorded (`scratch/luna/`)
-- [ ] T016 Push to main and confirm Hook Node Tests green on CI (`implementation-summary.md`)
+- [x] T016 Push to main and confirm Hook Node Tests green on CI: run 39593960806 at `84cbe7494c`, 862 tests, 0 failed (`implementation-summary.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -68,7 +68,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` - T016 waits on the push to main
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

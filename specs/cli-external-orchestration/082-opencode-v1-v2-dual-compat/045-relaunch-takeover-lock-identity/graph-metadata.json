@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -156,12 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -175,6 +169,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`.github/workflows/hooks-node-tests.yml` failed `killer leaves a takeover directory a contender replaced while it was held` in `killer.test.cjs` on every Linux run of run 39577580180, and the same suite passed on macOS",
     "created_at": "2026-10-21T10:04:06Z",
-    "last_save_at": "2026-10-21T11:40:05.816Z",
+    "last_save_at": "2026-10-21T11:46:33.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74b925358cd31fba3a6ce9cd1c33ab3da8e0cbc89e577032f2a6c9d0f9909ac4",
+    "source_fingerprint": "sha256:3b920bbb0e3b9c6cb2f1e612da257d7bd9580ea443008545ba85debbe0abae51",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ae2de2646ef50a11c23b891139c2cddc6bec13df17b23ca9f10b6f99f92ba42",
+      "spec.md": "be9fe4a9b1aa9043d42b4b335ec5b9f843e6b0dc9a70bc75bae282a7fbc60b39",
       "plan.md": "41d0512d39689970e9363c0616a8e854989a9b22d4b885105047e7747acb5034",
-      "tasks.md": "0e70a1f4d7027104191c7789a1ab790ba5891037ee610002eb0a5038ff07e395",
-      "implementation-summary.md": "65e1e04f9cfc61ecb908e67b95ef25816c2088a34f482b4daa3e5c4a7c2ef91c"
+      "tasks.md": "b63e7e0454d978ccf4f94bec521db283d89442b15aa0d23a5677e420c9b704ba",
+      "implementation-summary.md": "f4888edb0201a9a877fa4fdc89d8a0e6ec999f0e98a40c55540985ea30c793aa"
     },
     "last_active_at": null
   }
