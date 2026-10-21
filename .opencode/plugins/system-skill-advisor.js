@@ -1007,7 +1007,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     return new Promise((resolve) => {
       const waiter = {
         sessionID,
-        deadline: Date.now() + timeoutMs,
+        // A wall-clock step can move a deadline backwards, so elapsed queue time
+        // must come from a monotonic clock.
+        deadline: performance.now() + timeoutMs,
         settled: false,
         timer: null,
         grant() {
@@ -1045,7 +1047,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   function releaseAdvisorRunSlot() {
     while (state.advisorRunWaiters.length > 0) {
       const next = state.advisorRunWaiters.shift();
-      if (next.deadline > Date.now()) {
+      if (next.deadline > performance.now()) {
         // Hand the slot to the oldest waiter still in time so the live count never dips.
         next.grant();
         return;

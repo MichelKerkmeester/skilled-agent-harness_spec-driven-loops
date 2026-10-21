@@ -897,10 +897,10 @@ test('a slot freed past a waiter deadline fails the lookup open without spawning
   await flush();
   assert.equal(calls.length, 2, 'a queued lookup holds no slot and spawns no child');
 
-  // Move the clock past the waiter's deadline without letting its timer run, then
-  // free a slot: a late grant must fail the waiter open instead of starting it.
-  const realNow = Date.now;
-  Date.now = () => realNow() + 60_001;
+  // Move the monotonic clock past the waiter's deadline without letting its timer
+  // run, then free a slot: a late grant must fail the waiter open instead of starting it.
+  const realNow = performance.now;
+  performance.now = () => realNow.call(performance) + 60_001;
   try {
     complete(0);
     await flush();
@@ -910,7 +910,7 @@ test('a slot freed past a waiter deadline fails the lookup open without spawning
     assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
     assert.match(await status(hooks), /last_error_code=QUEUE_TIMEOUT/);
   } finally {
-    Date.now = realNow;
+    performance.now = realNow;
   }
 
   complete(1);
