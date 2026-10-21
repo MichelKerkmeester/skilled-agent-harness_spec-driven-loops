@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T016 Rerun the plugin, hook node:test, installer, default-model, models-form and runner suites (`scratch/after/`)
 - [B] T017 Run one unpinned live dispatch on each version (`scratch/live/`) (OpenCode 2 passed; OpenCode 1 blocked by the opencode-go usage limit)
 - [x] T018 Luna review of every change (four rounds; results in `implementation-summary.md`)
-- [ ] T019 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`)
+- [x] T019 Merge main, push, and record CI on the pushed commit (`implementation-summary.md`) (pushed `db82fdfd62`; CI recorded)
 <!-- /ANCHOR:phase-3 -->
 
 ---
