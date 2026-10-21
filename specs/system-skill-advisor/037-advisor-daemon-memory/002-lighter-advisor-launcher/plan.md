@@ -40,9 +40,9 @@ The phase is a decision first. The launcher holds the owner lease, sends the hea
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met (Met or superseded by ADR-002)
+- [x] Tests passing (no code changed after the no-go)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -105,7 +105,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 001 | Internal | Pending | Measurements include model memory |
+| Phase 001 | Internal | Complete | Measurements include model memory |
 <!-- /ANCHOR:dependencies -->
 
 ---

@@ -17,6 +17,8 @@
       "lighter advisor launcher plan",
       "lighter advisor launcher tasks",
       "lighter advisor launcher acceptance criteria",
+      "lighter advisor launcher decision",
+      "advisor launcher no-go",
       "lighter advisor launcher implementation summary"
     ],
     "key_topics": [
@@ -30,16 +32,17 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation",
-      "summary"
+      "decision",
+      "no-go"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/bin/system-skill-advisor-launcher.cjs"
     ],
@@ -66,6 +69,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -181,17 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB for each checkout, with one pair per checkout and worktree that ran an advisor query",
+    "causal_summary": "The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB (66 and 103 MB when measured again that afternoon) for each checkout, with one pair per checkout and worktree that ran an advisor query",
     "created_at": "2026-10-21T09:51:15Z",
-    "last_save_at": "2026-10-21T09:56:27.816Z",
+    "last_save_at": "2026-10-21T12:45:31.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,15 +202,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94acf56148e9903222b3cd71346b1899a4d0785e04ea22237f1699165dad538e",
+    "source_fingerprint": "sha256:8685ce0196c3066ea636e186b79822ffd38a7455fd585087ce8fc514735f21b7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8e61bbd3e238a47728d9149cdd5eba8a38a22799fffc9392f8216de79072bc62",
-      "plan.md": "243cd9314d2c6e9f29cf1498a7272dc3718ead31ac9c05c1f660ae91224eb161",
-      "tasks.md": "14dd4b2a39dfd72f27d2ce0b3f29a4dded0d3fd4eb590b8a37cf19d6c2f1679d",
-      "implementation-summary.md": "d5d0ab230b845d331b7520180577cb3d1af99fd537a56e1bfc3d577a2f30f5db"
+      "spec.md": "0659cf6e4cc345f8aa4d5671b6da8402e8e331eddbad0f389415ada0a0783a37",
+      "plan.md": "963750b9bd8d297c891b7fc1ac714be6d3a775c1944dc8a75ae27d1b0352d13c",
+      "tasks.md": "8db757bc2bf234720b59b5f85bc971cd30d866fd6d4b8f5aecdafb7866254625",
+      "decision-record.md": "51cac2770b90ff3710b903645f0540458f4a7fcedb86479017a8b23caf9d4cfa",
+      "implementation-summary.md": "212f925fc0669c7a7acdafaa1b4864499c8cbe078a6834669c1eeef22ab2e68c"
     },
     "last_active_at": null
   }

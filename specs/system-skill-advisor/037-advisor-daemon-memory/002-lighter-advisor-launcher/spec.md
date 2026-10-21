@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` (planning only) |
 | **Parent Spec** | ../spec.md |
@@ -58,7 +58,7 @@ This is **Phase 2** of the Advisor daemon memory specification.
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB for each checkout, with one pair per checkout and worktree that ran an advisor query. A bare `node -e` process measures 47 MB on the same machine, so the launcher's own logic is about 6 MB. Trimming its code cannot save much; only removing the process saves about 50 MB per checkout.
+The 2026-10-21 audit measured the launcher at about 53 MB and the advisor server at 62 to 100 MB (66 and 103 MB when measured again that afternoon) for each checkout, with one pair per checkout and worktree that ran an advisor query. A bare `node -e` process measures 47 MB on the same machine, so the launcher's own logic is about 6 MB. Trimming its code cannot save much; only removing the process saves about 50 MB per checkout.
 
 ### Purpose
 Decide on evidence whether the launcher process can go, and either fold its job into the advisor server or record why it stays.
@@ -185,8 +185,7 @@ Decide on evidence whether the launcher process can go, and either fold its job 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Which recovery path, if any, needs a separate parent process?
-- Do other tools exec the launcher path directly, so it must stay as an entry point?
+- None. The crash and out-of-memory cleanup needs a separate parent (ADR-001). The advisor CLI (`skill-advisor-cli.ts`) is the only production code that spawns the launcher automatically; the launcher path is also a manual entry point and a test target, so a go would have to keep it.
 <!-- /ANCHOR:questions -->
 
 ---

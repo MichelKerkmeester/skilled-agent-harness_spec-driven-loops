@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Map every job the launcher does, with file:line (`.skilled/bin/system-skill-advisor-launcher.cjs`)
-- [ ] T002 Measure launcher, advisor server and bare Node RSS on this machine, after phase 001
-- [ ] T003 Write the go or no-go in `decision-record.md`
+- [x] T001 Map every job the launcher does, with file:line (`.skilled/bin/system-skill-advisor-launcher.cjs`)
+- [x] T002 Measure launcher, advisor server and bare Node RSS on this machine, after phase 001
+- [x] T003 Write the go or no-go in `decision-record.md` (no-go, ADR-001)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,9 +41,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 On a go: move the lease and heartbeat into the advisor server
-- [ ] T005 On a go: move model server supervision into the advisor server
-- [ ] T006 On a go: turn the launcher into a thin exec for existing callers
+- [x] T004 On a go: move the lease and heartbeat into the advisor server (not built: no-go)
+- [x] T005 On a go: move model server supervision into the advisor server (not built: no-go)
+- [x] T006 On a go: turn the launcher into a thin exec for existing callers (not built: no-go)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,9 +51,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run the launcher and lease suites
-- [ ] T008 Live check: one advisor process per checkout and a working query
-- [ ] T009 Strict validation of this folder
+- [x] T007 Run the launcher and lease suites (not run: no code changed after the no-go)
+- [x] T008 Live check: one advisor process per checkout and a working query (not applicable: no-go)
+- [x] T009 Strict validation of this folder (RESULT: PASSED)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -61,9 +61,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

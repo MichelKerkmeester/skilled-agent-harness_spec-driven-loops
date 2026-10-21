@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -106,7 +106,7 @@ The files each phase expects to touch. Each child's plan owns the detailed list.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-hf-model-server-idle-default/ | Give the resident model server a default idle timeout so it unloads when nothing embeds | Complete |
-| 2 | 002-lighter-advisor-launcher/ | Measure the launcher, then fold its job into the advisor server or record a no-go | Pending |
+| 2 | 002-lighter-advisor-launcher/ | Measure the launcher, then fold its job into the advisor server or record a no-go | Complete (no-go) |
 
 ### Phase Transition Rules
 
