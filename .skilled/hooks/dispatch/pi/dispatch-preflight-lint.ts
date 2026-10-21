@@ -40,25 +40,22 @@ const SPEC_GATE_MARKER = 'SPEC FOLDER QUESTION:';
 const RAW_INPUT_STORE_KEY = Symbol.for('mk.pi.dispatch.raw-input');
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
-const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without|not|cannot|can't|can not|mustn't|must not|shouldn't|should not|won't|will not|stop|skip|refuse|ban|drop|forget|exclude|nobody|no one|none|no|nor|neither)\b/i;
-// A comma ends a negation's clause only when an executor is named before it and a single new
-// imperative follows it; otherwise the comma belongs to a parenthetical or a list.
-const NEGATION_CLAUSE_EXECUTOR_PATTERN = /(?:\bcli-[\w-]+|\/deep:|\b(?:opencode|claude|codex|devin|cursor-agent|cursor|pi|hermes|jev)\b)/i;
-const NEGATION_CLAUSE_IMPERATIVE_PATTERN = /^(?:use|run|try|pick|choose|call|dispatch|launch|prefer|switch|go)\b/i;
-// A comma followed by a further list item joins nouns, so a trailing `and` or `or` keeps the
-// negation open instead of ending its clause.
-const NEGATION_CLAUSE_LIST_JOINER_PATTERN = /\b(?:and|or)\b/i;
-// A phrase that names the mention only as something to avoid, such as `instead of cli-devin`.
-const EXCLUSION_PHRASE_PATTERN = /\b(?:instead of|rather than|except for|except|other than|apart from|aside from|besides|excluding|anything but|everything but|all but|but not|not even|no|without)$/i;
-// A statement after the mention that it is refused, such as `cli-devin is forbidden`. A bare
-// `, not opencode` names a contrast, not a refusal, so it is absent here.
-const POST_MENTION_REFUSAL_PATTERN = /\b(?:forbidden|banned|disallowed|prohibited|off-limits|off limits|not allowed|not permitted|must never|should never|can never|will never|is never|is not|isn't|are not|aren't|must not|mustn't|should not|shouldn't|cannot|can't|can not|won't|will not)\b/i;
-const MENTION_CLAUSE_TERMINATOR_PATTERN = /[;\n.!?]/;
+// A mention authorizes only inside a sentence that carries no negation or refusal word, before
+// or after it. `anything but`, `everything but` and `all but` name the mention only as the thing
+// to avoid, so they refuse in the same way a negation word does.
+const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|skip|refuse|ban|drop|forget|exclude|excluding|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|forbidden|banned|disallowed|prohibited|off-limits|off limits|anything but|everything but|all but)\b/i;
+const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|hermes|jev)';
+// The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
+// `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
+const RESET_FORM_PATTERN = new RegExp(`^not\\s+(${EXECUTOR_NAME_SOURCE})\\s*(?:,\\s*use\\s+|but\\s+)(\\S.*)$`, 'i');
+// A mention authorizes the name its token ends with: a `/deep:` phrase ends with the `cli-*`
+// its `--executor` value names.
+const MENTION_EXECUTOR_PATTERN = new RegExp(`(${EXECUTOR_NAME_SOURCE})$`, 'i');
+// A mention's sentence runs between the terminators around it.
+const SENTENCE_TERMINATOR_PATTERN = /[;\n.!?]/;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 // The end of a `/deep:` mention is the end of its executor value, not the end of `/deep:`.
 const DEEP_LOOP_PHRASE_END_PATTERN = /^\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(?:cli-[\w-]+)/i;
-// A prefix ending at a `/deep:` executor value has already entered that phrase.
-const DEEP_LOOP_PREFIX_PATTERN = /\/deep:\S+[^\n]*?\s--executor(?:=|\s+)$/i;
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -173,32 +170,6 @@ function tokenStart(text: string, index: number): number {
   return cursor;
 }
 
-function negationReachesMention(preceding: string): boolean {
-  const scan = new RegExp(NEGATION_PATTERN.source, 'gi');
-  let lastNegation: RegExpExecArray | null = null;
-  for (let match = scan.exec(preceding); match; match = scan.exec(preceding)) lastNegation = match;
-  if (!lastNegation) return false;
-  const negationEnd = lastNegation.index + lastNegation[0].length;
-  for (let comma = preceding.indexOf(',', negationEnd); comma !== -1; comma = preceding.indexOf(',', comma + 1)) {
-    const beforeComma = preceding.slice(negationEnd, comma);
-    if (!NEGATION_CLAUSE_EXECUTOR_PATTERN.test(beforeComma)) continue;
-    const afterComma = preceding.slice(comma + 1);
-    if (!NEGATION_CLAUSE_IMPERATIVE_PATTERN.test(afterComma.replace(/^\s+/, ''))) continue;
-    if (afterComma.includes(',') || NEGATION_CLAUSE_LIST_JOINER_PATTERN.test(afterComma)) continue;
-    return false;
-  }
-  return true;
-}
-
-function exclusionPhraseBeforeMention(text: string, mentionIndex: number): boolean {
-  const prefix = text.slice(0, mentionIndex);
-  // A `/deep:` phrase is one mention through its executor value, so an executor named inside
-  // one answers to the phrase's own prefix: `instead of /deep:review --executor cli-devin`.
-  const deepPhrase = DEEP_LOOP_PREFIX_PATTERN.exec(prefix);
-  const before = (deepPhrase ? prefix.slice(0, deepPhrase.index) : prefix).replace(/\s+$/, '');
-  return EXCLUSION_PHRASE_PATTERN.test(before);
-}
-
 function mentionTokenEnd(text: string, mentionIndex: number): number {
   const deepPhrase = DEEP_LOOP_PHRASE_END_PATTERN.exec(text.slice(mentionIndex));
   if (deepPhrase) return mentionIndex + deepPhrase[0].length;
@@ -207,42 +178,48 @@ function mentionTokenEnd(text: string, mentionIndex: number): number {
   return end;
 }
 
-function refusalAfterMention(text: string, mentionIndex: number): boolean {
-  const rest = text.slice(mentionTokenEnd(text, mentionIndex));
-  const terminator = rest.search(MENTION_CLAUSE_TERMINATOR_PATTERN);
-  const clause = terminator === -1 ? rest : rest.slice(0, terminator);
-  return POST_MENTION_REFUSAL_PATTERN.test(clause);
+/** The sentence a mention sits in, running between the terminators around it. */
+function mentionSentence(text: string, mentionIndex: number): string {
+  const terminators = new RegExp(SENTENCE_TERMINATOR_PATTERN.source, 'g');
+  let start = 0;
+  let end = text.length;
+  for (let match = terminators.exec(text); match; match = terminators.exec(text)) {
+    if (match.index < mentionIndex) {
+      start = match.index + 1;
+      continue;
+    }
+    end = match.index;
+    break;
+  }
+  return text.slice(start, end);
 }
 
-/** A mention authorizes only where the user states it literally: quoted text, expansions,
- * negations and refusals describe an executor without requesting it. The sentence starts after
- * punctuation, a contrast word (`but`, `instead`, `rather`) or an exclusion phrase such as
- * `instead of`. The last negation reaches the mention unless a comma closes its clause by
- * naming an executor before it and starting a single new imperative after it. A refusal after
- * the mention (`is forbidden`, `must not`) withholds authority too. Curly apostrophes are read
- * as straight ones so a contraction stays a negation and never opens a quote. */
+/** `cli-devin` and `devin` name one executor, so a reset never crosses between the two forms. */
+function normalizedExecutor(name: string): string {
+  return name.trim().toLowerCase().replace(/^cli-/, '');
+}
+
+/** True only for a whole sentence that is `not <other>, use <mention>` or `not <other> but <mention>`. */
+function isResetForm(sentence: string, mentionToken: string): boolean {
+  const match = RESET_FORM_PATTERN.exec(sentence);
+  if (!match) return false;
+  if (match[2].trim().toLowerCase() !== mentionToken.trim().toLowerCase()) return false;
+  const mentioned = MENTION_EXECUTOR_PATTERN.exec(mentionToken)?.[1] ?? mentionToken;
+  return normalizedExecutor(match[1]) !== normalizedExecutor(mentioned);
+}
+
+/** A mention authorizes only inside a sentence that carries no negation or refusal word, before
+ * or after it; `not <other>, use <executor>` and `not <other> but <executor>` are the only
+ * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
+ * the operator writes the request as its own sentence. Curly apostrophes read as straight ones,
+ * and an apostrophe inside a word is a contraction rather than a quote delimiter. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[’‘]/g, "'");
-  let sentenceStart = Math.max(
-    text.lastIndexOf('\n', mentionIndex),
-    text.lastIndexOf(';', mentionIndex),
-    text.lastIndexOf('.', mentionIndex),
-    text.lastIndexOf('!', mentionIndex),
-    text.lastIndexOf('?', mentionIndex),
-  ) + 1;
-  const beforeMention = text.slice(0, mentionIndex);
-  const contrastWordPattern = /\b(?:but|instead|rather)\b/gi;
-  for (let match = contrastWordPattern.exec(beforeMention); match; match = contrastWordPattern.exec(beforeMention)) {
-    sentenceStart = Math.max(sentenceStart, match.index + match[0].length);
-  }
-  const preceding = text.slice(sentenceStart, mentionIndex);
-  // An apostrophe inside a word (`don't`) is a contraction, not a quote delimiter.
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
-  return !isInsideQuote(quoteProbe, mentionIndex) &&
-    !isInsideExpansion(text, mentionIndex) &&
-    !exclusionPhraseBeforeMention(text, mentionIndex) &&
-    !negationReachesMention(preceding) &&
-    !refusalAfterMention(text, mentionIndex);
+  if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(text, mentionIndex)) return false;
+  const sentence = mentionSentence(text, mentionIndex).trim();
+  if (!REFUSAL_PATTERN.test(sentence)) return true;
+  return isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)));
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {
@@ -253,7 +230,9 @@ function hasExplicitModeOverride(userText: string, skill: string): boolean {
     pattern.lastIndex = cursor;
     const match = pattern.exec(userText);
     if (!match) return false;
-    const mentionIndex = match.index + (match[0].startsWith(skill) ? 0 : match[0].length - skill.length - 1);
+    // The match spans one separator plus the skill, and the trailing separator is absent at the
+    // end of the text, so the skill's own offset is the only stable way to its first character.
+    const mentionIndex = match.index + match[0].indexOf(skill);
     const start = tokenStart(userText, mentionIndex);
     const token = userText.slice(start, mentionIndex + skill.length);
     const usable = isUsableMention(userText, mentionIndex) &&

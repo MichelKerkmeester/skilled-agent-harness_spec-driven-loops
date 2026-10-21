@@ -1,0 +1,79 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T08:16:12.087Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (140 tests | 13 failed) 2040ms
+   ❯ Pi dispatch deny matrix (43)
+     × negated executor then a new imperative (policy deny) 4ms
+     × never one executor then run another (policy deny) 0ms
+     × don't one executor then try another (policy deny) 0ms
+     × never one executor then launch another (policy deny) 0ms
+     × avoid one executor then prefer another (policy deny) 0ms
+   ❯ Pi refusal phrasings (70)
+     × You are forbidden from using cli-devin 0ms
+     × cli-devin, do not use it 0ms
+     × don't use codex, use cli-devin and opencode 0ms
+     × not opencode, use cli-devin, not codex 0ms
+     × use cli-devin, not opencode 0ms
+     × use cli-devin instead of opencode 0ms
+     × use cli-devin rather than codex 0ms
+     × do not use opencode, use cli-devin 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negated executor then a new imperative (policy deny)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > never one executor then run another (policy deny)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > don't one executor then try another (policy deny)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > never one executor then launch another (policy deny)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > avoid one executor then prefer another (policy deny)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:171:48
+    169|         ? { runtime: 'claude' }
+    170|         : {};
+    171|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    172|   });
+    173| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > You are forbidden from using cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin, do not use it
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > don't use codex, use cli-devin and opencode
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode, use cli-devin, not codex
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin, not opencode
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin instead of opencode
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use cli-devin rather than codex
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > do not use opencode, use cli-devin
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:264:49
+    262|     ["it's fine to use cli-devin", false],
+    263|   ])('%s', (userText, expected) => {
+    264|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    265|   });
+    266| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 127 passed (140)
+   Start at  10:16:09
+   Duration  2.21s (tests 97%, transform 2%, import 1%)
+
+b22-policy-vs-head: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

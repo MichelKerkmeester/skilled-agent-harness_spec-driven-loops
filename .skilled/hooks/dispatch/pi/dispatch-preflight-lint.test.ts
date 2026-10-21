@@ -141,11 +141,11 @@ describe('Pi dispatch deny matrix', () => {
     ['negated list of executors', 'devin -p "task"', 'do not use opencode, codex, or cli-devin', true],
     ['negated list of cli names', 'devin -p "task"', 'never use cli-opencode, cli-codex, cli-devin', true],
     ['negation across a parenthetical into a list', 'devin -p "task"', 'do not, please, use opencode or cli-devin', true],
-    ['negated executor then a new imperative', 'devin -p "task"', 'do not use opencode, use cli-devin', false],
-    ['never one executor then run another', 'devin -p "task"', 'never use codex, run cli-devin', false],
-    ["don't one executor then try another", 'devin -p "task"', "don't use cli-opencode, try cli-devin", false],
-    ['never one executor then launch another', 'devin -p "task"', 'never use codex, launch cli-devin', false],
-    ['avoid one executor then prefer another', 'devin -p "task"', 'avoid opencode, prefer cli-devin', false],
+    ['negated executor then a new imperative (policy deny)', 'devin -p "task"', 'do not use opencode, use cli-devin', true],
+    ['never one executor then run another (policy deny)', 'devin -p "task"', 'never use codex, run cli-devin', true],
+    ["don't one executor then try another (policy deny)", 'devin -p "task"', "don't use cli-opencode, try cli-devin", true],
+    ['never one executor then launch another (policy deny)', 'devin -p "task"', 'never use codex, launch cli-devin', true],
+    ['avoid one executor then prefer another (policy deny)', 'devin -p "task"', 'avoid opencode, prefer cli-devin', true],
     ['quoted deep-loop executor', 'devin -p "task"', 'say "run /deep:review --executor cli-devin"', true],
     ['backtick deep-loop executor', 'devin -p "task"', 'the form is `run /deep:review --executor cli-devin`', true],
     ['negation in an earlier sentence', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', false],
@@ -222,6 +222,11 @@ describe('Pi refusal phrasings', () => {
     ['cli-devin is off-limits', true],
     ['cli-devin is disallowed', true],
     ['/deep:review --executor cli-devin is forbidden', true],
+    // A refusal on either side of the mention refuses the sentence it sits in.
+    ['You are forbidden from using cli-devin', true],
+    ['cli-devin, do not use it', true],
+    // Fail-closed deny accepted by policy: the operator states the request in its own sentence.
+    ['Use cli-devin, it is not forbidden', true],
     // An exclusion phrase right before the mention names it as the thing to avoid.
     ['use anything instead of cli-devin', true],
     ['rather than cli-devin, do it by hand', true],
@@ -235,19 +240,24 @@ describe('Pi refusal phrasings', () => {
     ['use any tool apart from cli-devin', true],
     ['run it with everything excluding cli-devin', true],
     ['not even cli-devin', true],
-    // A comma that closes the negated clause, a later sentence, or a contrast leaves the
-    // mention as a request.
+    // A later sentence, or a sentence with no refusal word in it, still leaves the mention a request.
     ['not opencode, use cli-devin', false],
-    ["don't use codex, use cli-devin and opencode", false],
-    ['not opencode, use cli-devin, not codex', false],
+    // Policy deny: a refusal anywhere in the sentence refuses it, list item or not.
+    ["don't use codex, use cli-devin and opencode", true],
+    // Policy deny: a second refusal after the mention refuses the whole sentence.
+    ['not opencode, use cli-devin, not codex', true],
     ['go with cli-devin', false],
     ['not opencode but cli-devin', false],
-    ['use cli-devin, not opencode', false],
-    ['use cli-devin instead of opencode', false],
-    ['use cli-devin rather than codex', false],
+    // Policy deny: the refusal after the mention refuses the sentence with it.
+    ['use cli-devin, not opencode', true],
+    // Policy deny: an exclusion phrase refuses the mention, before or after it.
+    ['use cli-devin instead of opencode', true],
+    // Policy deny: an exclusion phrase refuses the mention, before or after it.
+    ['use cli-devin rather than codex', true],
     ['dispatch via cli-devin please', false],
     ['cli-devin is allowed here', false],
-    ['do not use opencode, use cli-devin', false],
+    // Policy deny: `do not` opens the sentence, so the sentence is not a reset form.
+    ['do not use opencode, use cli-devin', true],
     ['never use codex. use cli-devin', false],
     ["it's fine to use cli-devin", false],
   ])('%s', (userText, expected) => {
