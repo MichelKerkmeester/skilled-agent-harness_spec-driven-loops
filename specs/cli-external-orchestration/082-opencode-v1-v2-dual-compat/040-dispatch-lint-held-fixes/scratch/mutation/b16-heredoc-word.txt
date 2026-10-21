@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: a dispatch is resolved from the command, not from text that merely contains one
+not ok 1 - a dispatch is resolved from the command, not from text that merely contains one
+  ---
+  duration_ms: 3.710958
+  type: 'test'
+  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:872:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    should not govern (heredoc with a hyphenated word written to a file): cat > notes.md <<END-MARK
+    hermes chat -Q --oneshot --query-file p.md --source tool --ignore-rules -t file,todo </dev/null
+    END-MARK
+    + actual - expected
+    
+    + {
+    +   packetPath: 'cli-external-orchestration/cli-hermes',
+    +   skill: 'cli-hermes',
+    +   test: /\bhermes\s+chat\b[^\n;&|]*\s(-q|--query|--query-file|--oneshot)\b|\bhermes\b[^\n;&|]*\s(-z)\b/
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    test:
+    skill: 'cli-hermes'
+    packetPath: 'cli-external-orchestration/cli-hermes'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes/.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:928:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 50.009292
+b16-heredoc-word: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)
+before ["cli-codex","cli-codex"] audit cli-codex
+after  ["-","cli-codex"] audit null

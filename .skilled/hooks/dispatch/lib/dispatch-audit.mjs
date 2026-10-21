@@ -500,7 +500,22 @@ const MAX_UNWRAP_DEPTH = 4;
 // executedHeredocBodies recovers the run one.
 //
 // A herestring (`<<<"x"`) is not a heredoc, so `<<` must not be adjacent to another `<`.
-const HEREDOC_INTRODUCER = /(?<!<)<<(?!<)-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g;
+// A delimiter is any word bash accepts, not just an identifier: `END-MARK`, `'END MARK'` and
+// `"END MARK"` all close their body, and missing that closing line read the written text as
+// commands, which audited an `exec` line inside a notes file as a dispatch that never ran.
+const HEREDOC_INTRODUCER_PATTERN = String.raw`(?<!<)<<(?!<)-?\s*(?:'([^'\n]+)'|"([^"\n]+)"|([^\s'"<>;&|()]+))`;
+const HEREDOC_INTRODUCER = new RegExp(HEREDOC_INTRODUCER_PATTERN, 'g');
+
+// The delimiter is whichever alternative matched: single-quoted, double-quoted or bare.
+function heredocDelimiter(match) {
+  return match[1] ?? match[2] ?? match[3];
+}
+
+// The closing-line match is built from the delimiter, so a delimiter carrying regex
+// metacharacters (`END.MARK`) must be escaped or it would close on a line bash would not.
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 // The introducers on one line share the bodies that follow it: each body ends at its own
 // closing line, so they are read together and the scan resumes after the last one.
@@ -525,7 +540,7 @@ function heredocGroups(command) {
     const bodies = [];
     let missing = null;
     for (const candidate of introducers) {
-      const closing = new RegExp(`^[ \\t]*${candidate[2]}[ \\t]*$`, 'm')
+      const closing = new RegExp(`^[ \\t]*${escapeRegExp(heredocDelimiter(candidate))}[ \\t]*$`, 'm')
         .exec(command.slice(bodySearchFrom));
       if (!closing) {
         // No closing line: drop this introducer and keep scanning after it.
@@ -602,7 +617,7 @@ function heredocFeedsShell(prefix, restOfLine) {
 // The file the introducing line writes the body to, or null when it writes no file.
 function heredocWriteTarget(introducingLine) {
   const withoutIntroducers = introducingLine
-    .replace(/(?<!<)<<(?!<)-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g, '');
+    .replace(new RegExp(HEREDOC_INTRODUCER_PATTERN, 'g'), '');
   for (const pattern of HEREDOC_WRITE_PATTERNS) {
     const match = withoutIntroducers.match(pattern);
     const target = match && (match[1] ?? match[2] ?? match[3]);

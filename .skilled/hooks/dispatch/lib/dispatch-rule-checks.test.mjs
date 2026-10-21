@@ -899,6 +899,7 @@ test('a dispatch is resolved from the command, not from text that merely contain
     ['heredoc fed to bash', `bash <<'EOF'\n${dispatch} </dev/null\nEOF`],
     ['heredoc piped to sh', `cat <<'EOF' | sh\n${dispatch} </dev/null\nEOF`],
     ['heredoc script made executable and run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nchmod +x run.sh && ./run.sh`],
+    ['hyphenated heredoc fed to bash', `bash <<'END-MARK'\n${dispatch} </dev/null\nEND-MARK`],
     ['heredoc teed then sourced', `tee run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nsource run.sh`],
     ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
     ['heredoc after a herestring', `cat <<<"x"\nbash <<'EOF'\n${dispatch} </dev/null\nEOF`],
@@ -913,6 +914,7 @@ test('a dispatch is resolved from the command, not from text that merely contain
     // the call runs the file it was written to.
     ['first heredoc on a line is replaced', `bash <<'ONE' <<'TWO'\n${dispatch} </dev/null\nONE\ntrue\nTWO`],
     ['heredoc writing a script', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['heredoc with a hyphenated word written to a file', `cat > notes.md <<END-MARK\n${dispatch} </dev/null\nEND-MARK`],
     ['heredoc script written, another script run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nbash other.sh`],
     ['heredoc fed to node', `node <<'EOF'\nconsole.log("${dispatch}")\nEOF`],
     ['heredoc documenting it', `python3 - <<'PY'\nshape = "${dispatch}"\nPY`],
