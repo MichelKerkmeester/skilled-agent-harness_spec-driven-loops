@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f0451c9a06541856bfd175eb5e8e01c975d0b16ebe246835d27e7f0344f2d93e",
+  "manifestHash": "3ceef2a78307dfb519c00e335a2b9b8b284177d0653ebfcdc7286a3b950cd09b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36751,6 +36751,18 @@
     "dispatch inspector classification": [
       "dispatch inspector classification"
     ],
+    "dispatch lint held fixes": [
+      "dispatch lint held fixes"
+    ],
+    "dispatch lint held fixes implementation summary": [
+      "dispatch lint held fixes implementation summary"
+    ],
+    "dispatch lint held fixes plan": [
+      "dispatch lint held fixes plan"
+    ],
+    "dispatch lint held fixes tasks": [
+      "dispatch lint held fixes tasks"
+    ],
     "dispatch mandate removal closure": [
       "dispatch mandate removal closure"
     ],
@@ -36807,6 +36819,9 @@
     ],
     "dispatch research iteration": [
       "dispatch research iteration"
+    ],
+    "dispatch resolver every executor": [
+      "dispatch resolver every executor"
     ],
     "dispatch result envelopes": [
       "dispatch result envelopes"
@@ -50885,6 +50900,9 @@
     ],
     "help printer test": [
       "help printer test"
+    ],
+    "heredoc script dispatch": [
+      "heredoc script dispatch"
     ],
     "hermes agent": [
       "hermes agent"
@@ -72466,6 +72484,9 @@
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
     ],
+    "phase 40 dispatch lint held fixes": [
+      "phase 40 dispatch lint held fixes"
+    ],
     "phase 41 goal held fixes": [
       "phase 41 goal held fixes"
     ],
@@ -73582,6 +73603,9 @@
     ],
     "pi dispatch authorization": [
       "Pi dispatch authorization"
+    ],
+    "pi dispatch authorization bypass": [
+      "pi dispatch authorization bypass"
     ],
     "pi dispatch cli pi": [
       "pi dispatch cli-pi"

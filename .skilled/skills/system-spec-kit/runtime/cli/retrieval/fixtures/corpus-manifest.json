@@ -1,5 +1,5 @@
 {
-  "corpusHash": "80af78551bafe76c16c8521cbf4efbf381a0c3225adc9104aeac93af31788cad",
+  "corpusHash": "d398704adbb34f7a4e3498b1044fd24729f1a8b1f947f6da65b339c34463c261",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25514,
+  "includedPathCount": 25518,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9017,6 +9017,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/spec.md",
@@ -25545,7 +25549,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f0451c9a06541856bfd175eb5e8e01c975d0b16ebe246835d27e7f0344f2d93e",
+  "manifestHash": "3ceef2a78307dfb519c00e335a2b9b8b284177d0653ebfcdc7286a3b950cd09b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26661,6 +26665,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes/scratch",
       "reason": "excluded directory"
     },
     {
