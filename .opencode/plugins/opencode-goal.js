@@ -2582,8 +2582,20 @@ async function maybeVerifyGoal(sessionID, rawOptions = {}) {
 function renderContinuationPrompt(goal, rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const objectivePreviewLimit = calculateObjectivePreviewChars(options.maxInjectionChars);
-  const objective = sanitizeInlineText(goal?.objective, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
-  const goalPrompt = sanitizePromptText(goal?.goalPrompt || goal?.objective, options.maxGoalPromptChars);
+  let objectiveSource = goal?.objective;
+  let promptSource = goal?.goalPrompt || goal?.objective;
+  // A bound goal continues the packet as it is now, so criteria edited after
+  // the bind reach the next turn. An unreadable packet falls back to the
+  // stored copy, because a continuation must still say what it continues.
+  if (typeof goal?.packetPath === 'string' && goal.packetPath) {
+    const packet = resolvePacketGoalForRecord(goal, rawOptions);
+    if (packet) {
+      objectiveSource = packet.objectiveSlice;
+      promptSource = buildEnhancedGoalPrompt(packet.objectiveSlice, options).goalPrompt;
+    }
+  }
+  const objective = sanitizeInlineText(objectiveSource, Math.min(options.maxObjectiveChars, objectivePreviewLimit));
+  const goalPrompt = sanitizePromptText(promptSource, options.maxGoalPromptChars);
   const reason = sanitizeInlineText(goal?.lastVerifierReason || 'not verified complete', DEFAULT_MAX_REASON_CHARS);
   return clampText([
     '[active_goal_continuation]',

@@ -204,6 +204,53 @@ test('smoke mode logs would-fire continuations and event metadata', async () => 
   assert.match(eventEntries[0].ts, /^\d{4}-\d{2}-\d{2}T/);
 }));
 
+async function writePacketGoal(root, rel, criterion) {
+  const dir = join(root, rel);
+  await mkdir(dir, { recursive: true });
+  await mkdir(join(root, '.git'), { recursive: true });
+  await writeFile(join(dir, 'goal.md'), [
+    '---', 'title: "Goal: fixture"', '---',
+    '<!-- ANCHOR:directive -->', '**Objective:** Ship it.', '<!-- /ANCHOR:directive -->',
+    '<!-- ANCHOR:completion -->', `- [ ] ${criterion}`, '<!-- /ANCHOR:completion -->',
+    '<!-- ANCHOR:log -->', '| Item | State | Evidence |', '|---|---|---|', '<!-- /ANCHOR:log -->', '',
+  ].join('\n'), 'utf8');
+}
+
+test('continuation prompt carries the current packet criteria, not the bind-time copy', async () => withState(async ({ helpers, stateDir }) => {
+  process.env.OPENCODE_GOAL_AUTONOMY = 'active';
+  const packetPath = 'specs/t/001-fixture';
+  const sessionID = 'session-packet-continuation';
+  await writePacketGoal(stateDir, packetPath, 'CONTINUATION_OLD_CRITERION');
+  const bindOpts = { stateDir, directory: stateDir, nowMs: 1000 };
+  await helpers.executeGoalAction({ action: 'bind', packetPath }, { sessionID }, bindOpts);
+
+  await writePacketGoal(stateDir, packetPath, 'CONTINUATION_NEW_CRITERION');
+
+  const promptRequests = [];
+  const result = await helpers.maybeContinueGoal(sessionID, {
+    stateDir,
+    nowMs: 5000,
+    directory: stateDir,
+    client: {
+      session: {
+        async promptAsync(request) {
+          promptRequests.push(request);
+        },
+      },
+    },
+    runtimeState: {
+      inFlightContinuations: new Set(),
+      blockedByPromptSessions: new Set(),
+      sessionStatuses: new Map([[sessionID, 'idle']]),
+    },
+  });
+  assert.equal(result.decision, 'fired');
+  assert.equal(promptRequests.length, 1);
+  const text = promptRequests[0].body.parts[0].text;
+  assert.match(text, /CONTINUATION_NEW_CRITERION/);
+  assert.doesNotMatch(text, /CONTINUATION_OLD_CRITERION/);
+}));
+
 test('active autonomy dispatches promptAsync with the requested directory', async () => withState(async ({ helpers, stateDir }) => {
   process.env.OPENCODE_GOAL_AUTONOMY = 'active';
   const promptRequests = [];
