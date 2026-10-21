@@ -26,13 +26,13 @@
       "tasks",
       "implementation",
       "summary",
-      "packet",
-      "fifth",
+      "session",
       "goal",
-      "criterion"
+      "requires",
+      "green"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -40,6 +40,7 @@
       "implementation-summary.md",
       ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/feature-catalog.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py",
+      "scratch/.gitkeep",
       ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
       ".skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py"
     ],
@@ -81,6 +82,12 @@
         "source": "derived"
       },
       {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
+        "source": "derived"
+      },
+      {
         "name": "test_create_skill_contract.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
@@ -105,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,6 +125,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -181,17 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "CI",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The packet's fifth goal criterion asks for green CI on the final main commit, and sk-doc Script Tests was red on main",
+    "causal_summary": "The session's `/goal` requires green CI on the final main commit, and sk-doc Script Tests was red on main",
     "created_at": "2026-10-21T17:36:21Z",
-    "last_save_at": "2026-10-21T17:52:34.983Z",
+    "last_save_at": "2026-10-21T18:24:35.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:337294a7f6ff5abe64a7d9a513ae06a6c2be819c7558e48c60b409f22ea8a752",
+    "source_fingerprint": "sha256:688711a2c1b875454e719c66bb9bf5e009cb18f99747b77fc4cfff2290153c73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9257667d5bbda9938fa107f69b8945e0d93635242029eff303672e2962ce37b",
-      "plan.md": "24bf725052295de64974e17b83bd31656955e73dee313a53829a49633f13d31f",
-      "tasks.md": "bcdfeb20d749aaeee9f3975bfc75ce54dc2a2bb95c5cd36571bb19c9e5ac9f59",
-      "implementation-summary.md": "3be56c6c55f8b3bc609c45733ee42c7d41ab8143b735b6a97b71cbcf959a6f66"
+      "spec.md": "4532acb0347b2dcc8a6771cf423da5c9b9e30e8ba07ebc8bca9c082b4c86c421",
+      "plan.md": "e2e2898265f61b908b33cebab56bc2cdbd6381aa84d3b9763656e95f59ecf608",
+      "tasks.md": "e1879f687b12fc35b35658fb7f3756afabebed92b5c452b92364337dceea5ff9",
+      "implementation-summary.md": "d3410b89aeec1a71c60a41bdad99fadff118a272fa84f3e41ee6c1eb145636d4"
     },
     "last_active_at": null
   }

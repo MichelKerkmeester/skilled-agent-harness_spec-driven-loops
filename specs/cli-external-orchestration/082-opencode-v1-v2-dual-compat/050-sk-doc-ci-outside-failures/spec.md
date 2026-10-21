@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 50: sk-doc-ci-outside-failures"
-description: "sk-doc Script Tests was red on main, so the packet could not meet its green-CI criterion. Two one-line defects from other sessions' commits caused it: a validator imported a module its own folder never put on sys.path, and a feature catalog row named AGENTS.md as plain text where the catalog validator requires a markdown link."
+description: "sk-doc Script Tests was red on main, so the session's goal of green CI on the final main commit could not close, and the operator approved fixing it in this phase on 2026-10-21. Two one-line defects from other sessions' commits caused it: a validator imported a module its own folder never put on sys.path, and a feature catalog row named AGENTS.md as plain text where the catalog validator requires a markdown link."
 trigger_phrases:
   - "sk doc ci outside failures"
   - "phase 50 sk doc ci outside failures"
@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/194-sk-doc-ci-outside-failures` |
 | **Parent Spec** | ../spec.md |
@@ -59,7 +59,7 @@ This is **Phase 50** of the OpenCode v1 and v2 dual compatibility packet. It clo
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The packet's fifth goal criterion asks for green CI on the final main commit, and sk-doc Script Tests was red on main. Both causes came from other sessions' commits. `validate_skill_package.py` imports `package_skill` by bare module name, and the test loads the validator with importlib, so the script's own folder is not on `sys.path`: `ModuleNotFoundError: No module named 'package_skill'`, 5 failures in `test_create_skill_contract.py`, CI run 39637734898 at `c2550f5451`. The init-agent row of the mcp-figma feature catalog names `AGENTS.md` as plain text, and the catalog validator's `phantom_root_row` rule rejects any `*.md` name in a root-table row that is not a markdown link.
+The session's `/goal` requires green CI on the final main commit, and sk-doc Script Tests was red on main. The operator approved fixing main's red sk-doc Script Tests in this phase on 2026-10-21. Both causes came from other sessions' commits. `validate_skill_package.py` imports `package_skill` by bare module name, and the test loads the validator with importlib, so the script's own folder is not on `sys.path`: `ModuleNotFoundError: No module named 'package_skill'`, 5 failures in `test_create_skill_contract.py`, CI run 39637734898 at `c2550f5451`. The init-agent row of the mcp-figma feature catalog names `AGENTS.md` as plain text, and the catalog validator's `phantom_root_row` rule rejects any `*.md` name in a root-table row that is not a markdown link.
 
 ### Purpose
 sk-doc Script Tests passes on main, with the other sessions' features intact.
@@ -118,7 +118,7 @@ sk-doc Script Tests passes on main, with the other sessions' features intact.
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Both local checks pass: 29 tests in `test_create_skill_contract.py`, and exit 0 from `validate_catalog_package.py`.
-- **SC-002**: The CI run for the pushed commit has sk-doc Script Tests green, so the goal's green-CI criterion can close.
+- **SC-002**: The CI run for the pushed commit has sk-doc Script Tests green, so the session's goal of green CI on the final main commit can close. The operator approved fixing main's red sk-doc Script Tests in this phase on 2026-10-21.
 <!-- /ANCHOR:success-criteria -->
 
 ---

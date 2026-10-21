@@ -160,7 +160,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 47 | 047-diagram-corpus-ci/ | Bring the Diagram Corpus workflow back to green by moving the diagram scripts README into the 1.2 version era the metadata family requires and telling the next reader to set the major.minor by hand | Complete |
 | 48 | 048-skilled-loop-shared-nudge-formatter/ | Build the relaunch seed's spec-folder suffix through the shared core formatter, warn on stderr when that call fails, and prove the ownership with a test that fails on the old hand-written function | Complete |
 | 49 | 049-review-rows-reconciliation/ | Reconcile the 039 review with the fixes from phases 040 to 042, add rows for the four hook files added after the audit, and recompute the totals from the rows | Pending |
-| 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | In Progress |
+| 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | Complete |
 
 ### Phase Transition Rules
 

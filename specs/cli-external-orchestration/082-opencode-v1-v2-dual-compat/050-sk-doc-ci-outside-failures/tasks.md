@@ -55,8 +55,8 @@ contextType: "general"
 
 - [x] T009 Run strict validation of this folder: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures --strict` - `RESULT: PASSED`
 - [x] T010 Run the full sk-doc runner with CI's skip list - 37 passed, 1 skipped, exit 0
-- [ ] T011 Push the two fixes and this packet to main
-- [ ] T012 Confirm sk-doc Script Tests is green on CI at the pushed commit
+- [x] T011 Push the two fixes and this packet to main - commit `96b3395920`, pushed as `c2550f5451..96b3395920`; the tip afterwards is `e9193b07f1`, a CI bot trigger-index rebuild
+- [x] T012 Confirm sk-doc Script Tests is green on CI at the pushed commit - run 39648027339 on `96b3395920` and run 39648353041 on tip `e9193b07f1`, both success
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
