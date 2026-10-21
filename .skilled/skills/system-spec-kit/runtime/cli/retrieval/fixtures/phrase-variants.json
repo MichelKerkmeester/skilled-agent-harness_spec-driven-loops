@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ccfa259a5fc3820e43ac434efbce1a74b2edfb24b4970a45d99b04b0190588d1",
+  "manifestHash": "f0f21cb3958902d07c857126bff460f1a84d41d41cd3cbbe0bb9e63a69c4271d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -48174,6 +48174,9 @@
     "goal anatomy contract": [
       "goal anatomy contract"
     ],
+    "goal archive on replace and clear": [
+      "goal archive on replace and clear"
+    ],
     "goal asset templates": [
       "goal asset templates"
     ],
@@ -48260,6 +48263,9 @@
     ],
     "goal cjs packet": [
       "goal.cjs packet"
+    ],
+    "goal cli workspace required": [
+      "goal cli workspace required"
     ],
     "goal closure plan": [
       "goal closure plan"
@@ -48350,6 +48356,9 @@
     ],
     "goal core packet backed tasks": [
       "goal core packet backed tasks"
+    ],
+    "goal core parse error fallback": [
+      "goal core parse error fallback"
     ],
     "goal core plan": [
       "goal core plan"
@@ -48557,6 +48566,18 @@
     ],
     "goal hardening research": [
       "goal hardening research"
+    ],
+    "goal held fixes": [
+      "goal held fixes"
+    ],
+    "goal held fixes implementation summary": [
+      "goal held fixes implementation summary"
+    ],
+    "goal held fixes plan": [
+      "goal held fixes plan"
+    ],
+    "goal held fixes tasks": [
+      "goal held fixes tasks"
     ],
     "goal hook capability matrix": [
       "goal hook capability matrix"
@@ -72414,6 +72435,9 @@
     ],
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
+    ],
+    "phase 41 goal held fixes": [
+      "phase 41 goal held fixes"
     ],
     "phase 42 hooks and plugins held fixes": [
       "phase 42 hooks and plugins held fixes"

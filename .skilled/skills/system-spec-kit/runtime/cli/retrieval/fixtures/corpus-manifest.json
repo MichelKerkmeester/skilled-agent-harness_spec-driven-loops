@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b3aee552412fc0ab6ec62a78634ef9aa3bc4fa7989df69b888f2826b8b64283f",
+  "corpusHash": "8f78221c26af295c59cfdaa8834f21f6ad80de9285c2d277143aee0421ec4fd9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25496,
+  "includedPathCount": 25500,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9016,6 +9016,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/implementation-summary.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/spec.md",
@@ -25527,7 +25531,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ccfa259a5fc3820e43ac434efbce1a74b2edfb24b4970a45d99b04b0190588d1",
+  "manifestHash": "f0f21cb3958902d07c857126bff460f1a84d41d41cd3cbbe0bb9e63a69c4271d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26643,6 +26647,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/041-goal-held-fixes/scratch",
       "reason": "excluded directory"
     },
     {
