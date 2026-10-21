@@ -1,0 +1,76 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T07:37:33.424Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (70 tests | 12 failed) 430ms
+   ❯ Pi dispatch deny matrix (43)
+     × negation across a parenthetical 3ms
+     × negation across a parenthetical before a deep-loop executor 0ms
+     × never, ever before the mention 0ms
+     × negation across nested parentheticals 0ms
+     × dont across a parenthetical 0ms
+     × upper-case NOT across a parenthetical 0ms
+     × avoid across a parenthetical 0ms
+     × without across a parenthetical 0ms
+     × negated list of executors 0ms
+     × negated list of cli names 0ms
+     × negation across a parenthetical into a list 0ms
+     × don't one executor then try another 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation across a parenthetical
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation across a parenthetical before a deep-loop executor
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > never, ever before the mention
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation across nested parentheticals
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > dont across a parenthetical
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > upper-case NOT across a parenthetical
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > avoid across a parenthetical
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > without across a parenthetical
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negated list of executors
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negated list of cli names
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation across a parenthetical into a list
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:171:48
+    169|         ? { runtime: 'claude' }
+    170|         : {};
+    171|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    172|   });
+    173| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > don't one executor then try another
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:171:48
+    169|         ? { runtime: 'claude' }
+    170|         : {};
+    171|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    172|   });
+    173| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed | 58 passed (70)
+   Start at  09:37:32
+   Duration  534ms (tests 89%, transform 7%, import 3%)
+
+b20-negation-carries: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

@@ -1,0 +1,44 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to one function, `isUsableMention` in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, plus test rows.
+
+Problem: every comma now starts a new clause, so `do not, under any circumstances, use cli-devin` authorizes cli-devin: the comma drops the `do not`. A comma must reset a negation only when it ends the negation's own clause, as in `not opencode, use cli-devin`.
+
+Fix, replacing the clause logic in `isUsableMention` (keep the quote and expansion checks):
+1. The sentence starts after the last newline, `;`, `.`, `!` or `?` before the mention, or after the last whole word `but`, `instead` or `rather` (case-insensitive) before the mention, whichever is later. Commas no longer start it.
+2. In the text from the sentence start to the mention, find the LAST match of `NEGATION_PATTERN`. If there is none, the mention is not negated.
+3. Otherwise the negation reaches the mention unless one of the commas between the negation and the mention closes the negation's clause. A comma closes it only when BOTH hold:
+   a. the text from the end of the negation word to that comma names an executor: a `cli-` name, `/deep:`, or one of the words `opencode`, `claude`, `codex`, `devin`, `cursor`, `cursor-agent`, `pi`, `hermes`, `jev` (whole words, case-insensitive); and
+   b. the text right after that comma, ignoring spaces, starts a new imperative: one of the whole words `use`, `run`, `try`, `pick`, `choose`, `call`, `dispatch`, `launch`, `prefer`, `switch`, `go` (case-insensitive).
+   So a parenthetical (`do not, under any circumstances, use ...`) and a list (`do not use opencode, codex, or cli-devin`) keep the negation, while `not opencode, use cli-devin` and `never use codex, use cli-devin` end it.
+Put the executor words and the imperative words in two named constants near `NEGATION_PATTERN`. Update the function's comment so it says this, briefly.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add these rows to the `Pi dispatch deny matrix` table, after the row 'negation in the same clause as a deep-loop executor' (command `devin -p "task"` in every row; last value is whether it is denied):
+  ['negation across a parenthetical', 'do not, under any circumstances, use cli-devin', true],
+  ['negation across a parenthetical before a deep-loop executor', 'do not, under any circumstances, run /deep:review --executor cli-devin', true],
+  ['never, ever before the mention', 'never, ever, use cli-devin', true],
+  ['negation across nested parentheticals', 'do not, for any reason, at any point, use cli-devin', true],
+  ["don't across a parenthetical", "don't, whatever happens, use cli-devin", true],
+  ['upper-case NOT across a parenthetical', 'do NOT, even once, use cli-devin', true],
+  ['avoid across a parenthetical', 'avoid, if possible, cli-devin', true],
+  ['without across a parenthetical', 'run it without, of course, cli-devin', true],
+  ['negated list of executors', 'do not use opencode, codex, or cli-devin', true],
+  ['negated list of cli names', 'never use cli-opencode, cli-codex, cli-devin', true],
+  ['negation across a parenthetical into a list', 'do not, please, use opencode or cli-devin', true],
+  ['negated executor then a new imperative', 'do not use opencode, use cli-devin', false],
+  ['never one executor then run another', 'never use codex, run cli-devin', false],
+  ["don't one executor then try another", "don't use cli-opencode, try cli-devin", false],
+  ['negation after the mention', 'use cli-devin, not opencode', false],
+  ['negation ended by a sentence', 'do not use opencode. use cli-devin', false],
+Each row is [name, 'devin -p "task"', raw text, denied]. Keep every existing row and keep it passing, including 'negation of a different executor before a comma', 'negation of a different executor before but', 'bare not before a deep-loop executor' and 'negated mode mention'.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+Return report: the changed lines, then the verification command with its pass and fail counts.

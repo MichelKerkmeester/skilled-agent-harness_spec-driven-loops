@@ -41,6 +41,10 @@ const RAW_INPUT_STORE_KEY = Symbol.for('mk.pi.dispatch.raw-input');
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
 const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without|not)\b/i;
+// A comma ends a negation's clause only when an executor is named before it and a new
+// imperative follows it; otherwise the comma belongs to a parenthetical or a list.
+const NEGATION_CLAUSE_EXECUTOR_PATTERN = /(?:\bcli-[\w-]+|\/deep:|\b(?:opencode|claude|codex|devin|cursor-agent|cursor|pi|hermes|jev)\b)/i;
+const NEGATION_CLAUSE_IMPERATIVE_PATTERN = /^(?:use|run|try|pick|choose|call|dispatch|launch|prefer|switch|go)\b/i;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 
 // ───────────────────────────────────────────────────────────────────
@@ -156,28 +160,47 @@ function tokenStart(text: string, index: number): number {
   return cursor;
 }
 
+function negationReachesMention(preceding: string): boolean {
+  const scan = new RegExp(NEGATION_PATTERN.source, 'gi');
+  let lastNegation: RegExpExecArray | null = null;
+  for (let match = scan.exec(preceding); match; match = scan.exec(preceding)) lastNegation = match;
+  if (!lastNegation) return false;
+  const negationEnd = lastNegation.index + lastNegation[0].length;
+  for (let comma = preceding.indexOf(',', negationEnd); comma !== -1; comma = preceding.indexOf(',', comma + 1)) {
+    const beforeComma = preceding.slice(negationEnd, comma);
+    if (!NEGATION_CLAUSE_EXECUTOR_PATTERN.test(beforeComma)) continue;
+    const afterComma = preceding.slice(comma + 1).replace(/^\s+/, '');
+    if (NEGATION_CLAUSE_IMPERATIVE_PATTERN.test(afterComma)) return false;
+  }
+  return true;
+}
+
 /** A mention authorizes only where the user states it literally: quoted text, expansions and
- * negations in the mention's own clause describe an executor without requesting it. A comma
- * or a contrast word (`but`, `instead`, `rather`) begins a new clause, so a negation that
- * belongs to a different executor does not reach this mention. */
+ * negations in the mention's own clause describe an executor without requesting it. The
+ * sentence starts after punctuation or a contrast word (`but`, `instead`, `rather`), and the
+ * last negation reaches the mention unless a comma closes its clause by naming an executor
+ * before it and starting a new imperative after it. So `do not, under any circumstances, use
+ * cli-devin` and `do not use opencode, codex, or cli-devin` stay negated, while `not opencode,
+ * use cli-devin` ends the negation at the comma. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
-  let clauseStart = Math.max(
+  let sentenceStart = Math.max(
     userText.lastIndexOf('\n', mentionIndex),
     userText.lastIndexOf(';', mentionIndex),
     userText.lastIndexOf('.', mentionIndex),
     userText.lastIndexOf('!', mentionIndex),
     userText.lastIndexOf('?', mentionIndex),
-    userText.lastIndexOf(',', mentionIndex),
   ) + 1;
   const beforeMention = userText.slice(0, mentionIndex);
   const contrastWordPattern = /\b(?:but|instead|rather)\b/gi;
   for (let match = contrastWordPattern.exec(beforeMention); match; match = contrastWordPattern.exec(beforeMention)) {
-    clauseStart = Math.max(clauseStart, match.index + match[0].length);
+    sentenceStart = Math.max(sentenceStart, match.index + match[0].length);
   }
-  const preceding = userText.slice(clauseStart, mentionIndex);
-  return !isInsideQuote(userText, mentionIndex) &&
+  const preceding = userText.slice(sentenceStart, mentionIndex);
+  // An apostrophe inside a word (`don't`) is a contraction, not a quote delimiter.
+  const quoteProbe = userText.replace(/(?<=\w)'(?=\w)/g, '_');
+  return !isInsideQuote(quoteProbe, mentionIndex) &&
     !isInsideExpansion(userText, mentionIndex) &&
-    !NEGATION_PATTERN.test(preceding);
+    !negationReachesMention(preceding);
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {
