@@ -143,6 +143,10 @@ test('each repeated dispatch is held to the stdin and model checks on its own', 
   // with no redirect and no pipe still fails, and redirecting it leaves the pipe to cover the fed run.
   assert.equal(stdin('opencode run -m p/m "a" && printf x | opencode run -m p/m "b"'), false);
   assert.equal(stdin('opencode run -m p/m "a" </dev/null && printf x | opencode run -m p/m "b"'), true);
+  // A pipe into a command that is not a headless dispatch (`pi --version`) closes no stdin, so
+  // it must not cover the unredirected run later in the chain.
+  assert.equal(CHECKS['stdin-redirect-required']('printf x | pi --version; opencode run -m p/m "b"'), false);
+  assert.equal(CHECKS['stdin-redirect-required']('printf x | pi --offline -m p/m -p "a"; opencode run -m p/m "b" </dev/null'), true);
   // The second run has a redirect but no model; the first run's -m cannot stand in for it.
   assert.equal(model('opencode run -m p/m "a" </dev/null && opencode run "b" </dev/null'), false);
 

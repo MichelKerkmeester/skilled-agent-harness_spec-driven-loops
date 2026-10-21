@@ -50,8 +50,10 @@ export function readHardRules(skillMdPath) {
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
 // A pipe feeding a headless CLI (`... | opencode run`) closes inherited stdin for the run it
 // feeds, not for the whole chain. The pipe is shell syntax around the dispatch, so it is read
-// from the whole command, unquoted, and its matches are counted with this global copy: one pipe
-// closes stdin for one run, so each run that closes no stdin of its own must be covered by one.
+// from the whole command, unquoted, with this global copy. The CLI-name prefix also matches
+// commands that are not dispatches (`pi --version`), so a match counts only when the command
+// it feeds is itself a headless dispatch: one pipe closes stdin for one run, so each run that
+// closes no stdin of its own must be covered by one.
 const PIPE_FED_DISPATCH = /\|\s*(?:[A-Z_]+=\S+\s+)*(?:opencode\d*\s+run|pi|claude|codex|devin|cursor-agent|hermes)\b/g;
 
 // A prompt is an argument, not syntax: a quoted span is text the CLI receives, so a flag or
@@ -256,7 +258,13 @@ export const CHECKS = {
     if (!HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(cmd))) return true; // not a dispatch shape → n/a
     // The pipe count is the budget of runs whose stdin the shell closes for them; it is counted
     // on the whole blanked command because the pipe is syntax around the dispatch, not part of it.
-    const pipeFed = (blankQuotedSpans(cmd).match(PIPE_FED_DISPATCH) || []).length;
+    // Only a pipe whose fed command is itself a headless dispatch closes stdin: `| pi --version`
+    // matches the pipe pattern but leaves the later `opencode run`'s inherited stdin open.
+    const blanked = blankQuotedSpans(cmd);
+    const pipeFed = [...blanked.matchAll(PIPE_FED_DISPATCH)].filter((match) => {
+      const fed = blanked.slice(match.index + 1).match(/^[^;|&\n]*/)[0];
+      return HEADLESS_DISPATCH_SHAPES.some((shape) => shape.test(fed));
+    }).length;
     // Every dispatch answers for its own stdin: a redirect on one run cannot close stdin on
     // a later run that has none. When no resolved text carries a headless shape, the whole
     // command is the one text, so a shape the resolver did not name is still checked.
