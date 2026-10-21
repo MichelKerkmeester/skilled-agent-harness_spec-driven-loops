@@ -245,3 +245,38 @@ test('a killer timeout records a timed-out line', async (t) => {
   assert.equal(fields[1], 'timed-out');
   assert.equal(fields[5], GOAL);
 });
+
+test('keep outside the loop records a note-kept line and prints the claim command', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox);
+
+  const kept = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(kept.status, 0, kept.stderr);
+  assert.match(kept.stdout, /note kept; this session cannot relaunch, so keep working/);
+  assert.ok(kept.stdout.includes(`claim '${handoffPath}' --session '${SESSION_ID}'`), kept.stdout);
+  assert.deepEqual(historyLines(sandbox).map((line) => line.split('\t')[1]), ['note-kept']);
+
+  const inside = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(inside.status, 0, inside.stderr);
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  const refused = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+  assert.equal(refused.status, 2);
+  assert.match(refused.stderr, /runs under skilled-loop; run prepare instead/);
+  assert.equal(historyLines(sandbox).length, 2);
+});
+
+test('history adds an open-notes line until the note is claimed', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeNote(sandbox, '20261020T040936Z-session-.md');
+
+  const open = runCli(sandbox, ['history']);
+  assert.equal(open.status, 0, open.stderr);
+  assert.match(open.stdout, /no hop recorded yet/);
+  assert.match(
+    open.stdout,
+    /^open notes: 1 handoff note not claimed yet, oldest 20261020T040936Z-session-\.md$/m,
+  );
+
+  runCli(sandbox, ['claim', handoffPath, '--session', 'receiver-0001']);
+  assert.equal(runCli(sandbox, ['history']).stdout.includes('open notes:'), false);
+});

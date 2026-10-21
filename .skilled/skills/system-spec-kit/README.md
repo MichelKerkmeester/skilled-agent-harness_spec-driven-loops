@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.7.0
+version: 2.7.8.0
 ---
 
 # System Spec Kit
@@ -69,7 +69,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running |
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
-| **Session relaunch** | `skilled-loop` (`.skilled/bin/`) relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi, OpenCode and Hermes and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer. The nudge fires only inside the loop, and sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under it, also in a repository that links `.skilled`. Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show. Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)) |
+| **Session relaunch** | `skilled-loop` (`.skilled/bin/`) relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi, OpenCode and Hermes and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer. Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction. Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under it, also in a repository that links `.skilled`. Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show. Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)) |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
 
 The retrieval contract is `references/retrieval/retrieval-conventions.md`, and the corpus convention those recipes depend on is `references/structure/grep-convention.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.

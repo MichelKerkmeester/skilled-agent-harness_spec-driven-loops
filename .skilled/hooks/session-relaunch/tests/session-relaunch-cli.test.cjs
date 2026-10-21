@@ -1258,7 +1258,7 @@ test('an unknown subcommand exits two and lists the commands on stderr', (t) => 
   assert.equal(result.status, 2);
   assert.match(
     result.stderr,
-    /command must be one of prepare, should-relaunch, claim, complete, consume, history\n/,
+    /command must be one of prepare, should-relaunch, keep, claim, complete, consume, history\n/,
   );
   assert.match(result.stderr, /claim <handoff-path>/);
   assert.equal(result.stdout, '');

@@ -232,7 +232,7 @@ Interactive `claude`, `codex`, `pi`, `opencode`, `hermes`, `cursor-agent` and `d
 - **Another repository** that links this checkout's `.skilled` hops too when it also links `.claude`, `.codex`, `.opencode`, `.pi` and `.hermes`
 - **To switch it off**, set `SYSTEM_SESSION_RELAUNCH_DISABLED=1` or leave the line out. `/doctor:env` shows and saves switches like this one, and auto-compaction stays the fallback
 
-`/doctor:setup` shows the last hop, so you can confirm it works without watching the terminal. The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
+`/doctor:setup` shows the last hop and any note nobody claimed, so you can confirm it works without watching the terminal. The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the threshold, stalled hops and the full protocol.
 
 ### Keep It Healthy
 
@@ -1010,8 +1010,9 @@ Each runtime's hook reads how full its context window is. Near 80% it asks the s
 - **OpenCode:** reads each message's token counts and arms at `session.idle` through its plugin, on OpenCode 1 and 2
 - **Hermes:** reads usage after each model call and arms at session end through the `repo-guards` plugin
 - **Cursor and Devin:** have no event the loop can trust, so they hand over when you run `/speckit:handoff`
-- **Safe by design:** the nudge fires only inside `skilled-loop`, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, and the watcher only ever signals a process the loop started
-- **Hop history:** every hand-over, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
+- **Sessions outside the loop:** one started before the shell line was added cannot relaunch. At 80% it writes the same note and runs `keep`, then carries on. After auto-compaction, Claude Code points the session back at the note, so decisions the summary dropped are not lost
+- **Safe by design:** only a session inside `skilled-loop` is asked to hop, a hop cap of ten and a ten-minute freshness limit stop a runaway chain, and the watcher only ever signals a process the loop started
+- **Hop history:** every hand-over, kept note, claim, completion and timeout is logged in `.skilled/skills/.state/session-relaunch/hop-history.log`. Run `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history` to read it, along with any note nobody claimed, and set `SESSION_RELAUNCH_NOTIFY_HOPS=1` for a macOS notice on each hand-over
 - **Off switch:** `SYSTEM_SESSION_RELAUNCH_DISABLED=1`, and auto-compaction stays the fallback
 
 [Turn On Endless Sessions](#turn-on-endless-sessions) has the one-line setup, and the [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the protocol, the per-runtime adapters and troubleshooting.

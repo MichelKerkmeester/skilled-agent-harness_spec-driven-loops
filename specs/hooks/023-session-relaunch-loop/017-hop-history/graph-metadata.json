@@ -42,7 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/hooks/hook-flags.env",
+      ".skilled/skills/.state/session-relaunch/hop-history.log",
       ".skilled/hooks/session-relaunch/lib/hop-history.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/lib/killer.cjs",
@@ -84,9 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "hook-flags.env",
+        "name": "hop-history.log",
         "kind": "file",
-        "path": ".skilled/hooks/hook-flags.env",
+        "path": ".skilled/skills/.state/session-relaunch/hop-history.log",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The operator has never seen an automatic hop happen, because they do not watch every terminal",
     "created_at": "2026-10-20T20:08:29Z",
-    "last_save_at": "2026-10-20T21:45:46.721Z",
+    "last_save_at": "2026-10-21T08:15:19.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,10 +210,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aff2ab7814749e9e0117afdf8dcf43436e6bc611a88b51eb27e28f5bb47c4adb",
+    "source_fingerprint": "sha256:563377feed577fd92d90a77bfe8b0f2139c060c3c317675641ee3a757224a2f7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0079ea8d345793d0062fa61e0015ea183ed4befd3241299f4591680d87451598",
+      "spec.md": "790c26607e548761d093bdbc8972d3b6b3f2aecb7a8f236f74598e3b8b46e966",
       "plan.md": "26a82e28d609f59e2d2c911ee4340fae01bc4f1292b0e6f277a164b3c0f32f39",
       "tasks.md": "bb92a605fa0f38a978713dd9ec28211595279d35d3e7661219e7e1a14dbeada4",
       "implementation-summary.md": "247ef6537c25ead7348c0c269632bca2fe819e26cd72b0067b1915c49d930738"
