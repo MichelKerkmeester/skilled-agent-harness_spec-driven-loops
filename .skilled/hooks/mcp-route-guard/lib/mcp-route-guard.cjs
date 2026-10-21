@@ -21,6 +21,10 @@
 
 const { readFileSync, statSync } = require('node:fs');
 const { join } = require('node:path');
+// Every adapter gates this hook through isHookEnabled, which reads the same
+// kill-switch through the shared truthiness helper. Sharing the helper keeps the
+// core and the adapters from disagreeing on which spellings mean "on".
+const { isTruthy } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -31,7 +35,8 @@ const MAX_MANIFEST_BYTES = 1_048_576;
 const CLAUDE_MCP_PREFIX = 'mcp__';
 const CLAUDE_AI_PREFIX = 'claude_ai_';
 
-// Kill-switch: set to '1' to make the guard a full no-op on every call.
+// Kill-switch: any on-spelling ('1', 'true', 'yes', 'on') makes the guard a
+// full no-op on every call.
 const DISABLED_ENV = 'MCP_ROUTE_GUARD_DISABLED';
 // Opt-in, default-off: also advise on external servers the manifest cannot
 // route yet, nudging the operator to register a manual for them. Manifest-
@@ -223,7 +228,7 @@ function evaluateNativeMcpCall(request = {}) {
   const audits = [];
 
   try {
-    if (environment[DISABLED_ENV] === '1') {
+    if (isTruthy(environment[DISABLED_ENV])) {
       return { decision: 'allow', detail: null, warnings, audits };
     }
     if (typeof toolName !== 'string' || toolName.length === 0) {

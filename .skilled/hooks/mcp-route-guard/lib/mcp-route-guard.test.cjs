@@ -257,6 +257,30 @@ function testKillSwitchDisablesEveryDecision() {
   assert.equal(result.warnings.length, 0, 'kill-switch suppresses every warning');
 }
 
+// The adapters gate through isHookEnabled, so every on-spelling it accepts has to
+// silence the core too -- otherwise the same flag value means two different
+// things depending on which layer read it.
+function testKillSwitchHonorsEveryOnSpelling() {
+  const projectDir = trackedProjectDir(['clickup_official']);
+  for (const value of ['true', 'yes', 'TRUE', 'Yes', 'on']) {
+    const result = guardCore.evaluateNativeMcpCall({
+      toolName: 'mcp__claude_ai_ClickUp__clickup_create_task',
+      projectDir,
+      env: { [guardCore.DISABLED_ENV]: value },
+    });
+    assert.equal(result.decision, 'allow', `kill-switch "${value}" forces allow on a routable match`);
+    assert.equal(result.warnings.length, 0, `kill-switch "${value}" suppresses every warning`);
+  }
+
+  const offResult = guardCore.evaluateNativeMcpCall({
+    toolName: 'mcp__claude_ai_ClickUp__clickup_create_task',
+    projectDir,
+    env: { [guardCore.DISABLED_ENV]: '0' },
+  });
+  assert.equal(offResult.decision, 'warn', 'kill-switch "0" leaves the advisory in place');
+  assert.equal(offResult.warnings.length, 1, 'kill-switch "0" still emits the advisory');
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // (f) Claude-hook integration: additionalContext, exit 0, no permissionDecision
 // ─────────────────────────────────────────────────────────────────────────────
@@ -372,6 +396,7 @@ const tests = [
   ['mtime cache expands warn-set on manifest edit', testMtimeCacheExpandsWarnSetOnManifestEdit],
   ['broad-mode env flag warns on unrouteable family', testBroadModeEnvFlagWarnsOnUnrouteableFamily],
   ['kill-switch disables every decision', testKillSwitchDisablesEveryDecision],
+  ['kill-switch honors every on-spelling', testKillSwitchHonorsEveryOnSpelling],
   ['Claude hook emits additionalContext for routable connector', testClaudeHookEmitsAdditionalContextForRoutableConnector],
   ['Claude hook silent for unrouteable family', testClaudeHookSilentForUnrouteableFamily],
   ['Claude hook fails open on malformed stdin', testClaudeHookFailsOpenOnMalformedStdin],
