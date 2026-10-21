@@ -128,7 +128,7 @@ Worktree 190 was created from origin/main with sk-git's `create` and provisioned
 | cli-opencode models-form | 8 | 16 of 16 |
 | Live matrix | v2 10 of 17 | v1 17 of 17, v2 17 of 17 |
 | OpenCode 1 default dispatch (`opencode-go/deepseek-v4.1-flash --variant max`) | none | Stopped by the 180 s alarm, exit 142; the OpenCode log shows `Go usage limit exceeded` (`scratch/v1-default/`) |
-| Recursive strict validation of 082 | none | See the validation line below |
+| Recursive strict validation of 082 | none | 47 of 47 folders print `RESULT: PASSED`, exit 0, at commit `81566567ed` |
 <!-- /ANCHOR:verification -->
 
 ---
