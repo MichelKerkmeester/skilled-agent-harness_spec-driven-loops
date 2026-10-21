@@ -55,8 +55,10 @@ contextType: "general"
 - [x] T008 Confirm every v2 run used `--standalone` and PID 46220 was never stopped, started or attached to (`scratch/live-runs/summary.txt`)
 - [x] T009 Fill this phase's four docs and add the parent map and handoff rows for 053 (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `../spec.md`)
 - [x] T010 Run strict validation of this folder: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof --strict` - `RESULT: PASSED`
-- [ ] T011 Push to main
-- [ ] T012 Record CI on the pushed commit (`implementation-summary.md`)
+- [x] T011 Push to main
+  - `8defbc7543` on main
+- [x] T012 Record CI on the pushed commit (`implementation-summary.md`)
+  - CI green on main `79a173af82`, Spec-Kit Check 39679887416
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -64,10 +66,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [ ] T011 and T012 stay open for the orchestrator: push to main, then record CI on the pushed commit
+- [x] T011 and T012 closed: pushed to main as `8defbc7543`, CI green on main `79a173af82` (Spec-Kit Check 39679887416)
 <!-- /ANCHOR:completion -->
 
 ---

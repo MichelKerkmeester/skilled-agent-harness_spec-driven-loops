@@ -32,7 +32,7 @@
       "opencode"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -178,21 +178,21 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Kit Check",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 046 proved all 17 plugins live on OpenCode 1.19.3 and 2.0.32, but it did so at `eb0c18f7e9`",
     "created_at": "2026-10-21T21:14:40Z",
-    "last_save_at": "2026-10-21T21:29:09.437Z",
+    "last_save_at": "2026-10-21T21:49:06.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99659fd2401e4ce8981b9c33d0bcdd6ef0d1c3875b8ac9c0d586d9f391ff7fc0",
+    "source_fingerprint": "sha256:12a5e15e7f66cb381b7779a758c024c84d3ca22cc27a3cfb92f6b0fdddd314c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dceb57970e30400e056839ebc6407e3c3d2be5a0583d05e9e2c8b44cc01a4e4e",
+      "spec.md": "8afecd4eefafb0d09e229bb10107dbe0c566693d64c11a60363224f17ff79492",
       "plan.md": "7c9ed31528f2c206b01c6fac0673a0c91ca75672d53af3b1c78aacdcd88f7164",
-      "tasks.md": "b33eb076c269ae9968d7db4439eab9aa15abf7390fccc7b983f58a71a03637a0",
-      "implementation-summary.md": "676907cb5359fc913bfe84795cb9afa8c6ea2c004318fdaaf3c7a9035f60b2f6"
+      "tasks.md": "a1ba5a5ae4faa62511f8e24ea8970a793d75aa1ad493f7126ea89d2083ce2dae",
+      "implementation-summary.md": "3ebe24951a54d59100456c1fc1ffca244b89fc97a1a782e1b78a01c99b263f2e"
     },
     "last_active_at": null
   }

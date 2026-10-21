@@ -139,7 +139,7 @@ Rerun the unchanged playbook at the final main commit `dfdc523af5` and record 17
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- None for this phase. The run, the verdicts and the rerun are recorded, and pushing to main with its CI is tracked as a task.
+- None for this phase. The run, the verdicts and the rerun are recorded, the record is pushed to main as `8defbc7543`, and CI is green on it and on the trigger-index rebuild `79a173af82`.
 <!-- /ANCHOR:questions -->
 
 ---

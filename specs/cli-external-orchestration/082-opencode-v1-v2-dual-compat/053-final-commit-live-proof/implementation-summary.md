@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-21T21:30:00Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Ran the 17-plugin playbook at dfdc523af5: 17 of 17 on both versions, plus one sentinel rerun"
-    next_safe_action: "Push to main and record CI"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/scratch/live-runs/results-matrix.md"
@@ -102,7 +102,7 @@ A driver read the 17 scenario files, pulled each one's own command block out unm
 
 The verdicts were read afterwards, per version, from the evidence rather than from `summary.txt`. That is how the silent sentinel pass surfaced, and it is also why the totals are trustworthy: an exit 0 with no plugin effect would have looked clean in the exit-code file alone. One rerun followed, on the same unchanged block, and both logs were kept.
 
-Every v2 run used `--standalone`, so the shared OpenCode 2 service was never touched: PID 46220 was not stopped, started or attached to. A scan of the evidence for the llmgateway key returned 0 matches, so no credential reached a recorded file. Pushing to main and recording CI are the two tasks left to the orchestrator.
+Every v2 run used `--standalone`, so the shared OpenCode 2 service was never touched: PID 46220 was not stopped, started or attached to. A scan of the evidence for the llmgateway key returned 0 matches, so no credential reached a recorded file. The record was pushed to main as `8defbc7543`, and CI passed on it and on the trigger-index rebuild `79a173af82` that followed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -134,7 +134,7 @@ Every v2 run used `--standalone`, so the shared OpenCode 2 service was never tou
 | llmgateway key scan over the evidence | PASS: 0 matches |
 | Shared OpenCode 2 service | PASS: every v2 run used `--standalone`, and PID 46220 was never stopped, started or attached to |
 | Strict validation of this folder | `validate.sh 053-final-commit-live-proof --strict` - `RESULT: PASSED` |
-| CI at the pushed commit | PENDING: the push is task T011 and the CI record is T012, both left to the orchestrator |
+| CI at the pushed commit | PASS: `8defbc7543` (10 workflows success) and `79a173af82` (Spec-Kit Check 39679887416 success) |
 <!-- /ANCHOR:verification -->
 
 ---
