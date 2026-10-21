@@ -2,18 +2,19 @@
 // MODULE: Pi Extension - Dispatch Preflight Lint
 // ───────────────────────────────────────────────────────────────────
 
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { join } from "node:path";
-import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.mjs";
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
-const PI_RUNTIME = "pi";
-const CAPSULE_MARKER = "\n\nAdvisor:";
-const SPEC_GATE_MARKER = "SPEC FOLDER QUESTION:";
-const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
-const MAX_CAPTURED_USER_TEXT = 32_768;
-const MAX_CAPTURED_SESSIONS = 64;
-const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without)\b/i;
-const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
+import { join } from 'node:path';
+
+import { isHookEnabled } from '../../.skilled/hooks/shared/hook-flags.mjs';
+
+import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface RawInputStore {
   readonly bySession: Map<string, string>;
@@ -25,9 +26,26 @@ export interface PiDispatchGuardInput {
   readonly command?: unknown;
   readonly dispatchSkill?: string | null;
   readonly inspectedExecutor?: string | null;
-  readonly inspectionKind?: "direct" | "ambiguous" | "none";
+  readonly inspectionKind?: 'direct' | 'ambiguous' | 'none';
   readonly userText?: unknown;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
+const PI_RUNTIME = 'pi';
+const CAPSULE_MARKER = '\n\nAdvisor:';
+const SPEC_GATE_MARKER = 'SPEC FOLDER QUESTION:';
+const RAW_INPUT_STORE_KEY = Symbol.for('mk.pi.dispatch.raw-input');
+const MAX_CAPTURED_USER_TEXT = 32_768;
+const MAX_CAPTURED_SESSIONS = 64;
+const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without)\b/i;
+const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function rawInputStore(): RawInputStore {
   const globalState = globalThis as typeof globalThis & { [key: symbol]: RawInputStore | undefined };
@@ -41,14 +59,14 @@ function rawInputStore(): RawInputStore {
 function trimSessionStore(store: RawInputStore): void {
   while (store.bySession.size >= MAX_CAPTURED_SESSIONS) {
     const oldest = store.bySession.keys().next().value;
-    if (typeof oldest !== "string") return;
+    if (typeof oldest !== 'string') return;
     store.bySession.delete(oldest);
   }
 }
 
 /** Capture the untouched text for a session before any sibling transform runs. */
 export function captureRawPiUserInput(text: unknown, sessionId: unknown): void {
-  if (typeof text !== "string" || typeof sessionId !== "string" || sessionId.length === 0) return;
+  if (typeof text !== 'string' || typeof sessionId !== 'string' || sessionId.length === 0) return;
   const bounded = text.length > MAX_CAPTURED_USER_TEXT ? text.slice(0, MAX_CAPTURED_USER_TEXT) : text;
   const store = rawInputStore();
   if (!store.bySession.has(sessionId)) trimSessionStore(store);
@@ -62,7 +80,7 @@ export function resetRawPiUserInputCapture(): void {
 function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unknown } }): string | undefined {
   try {
     const sessionId = ctx.sessionManager?.getSessionId?.();
-    return typeof sessionId === "string" && sessionId.length > 0 ? sessionId : undefined;
+    return typeof sessionId === 'string' && sessionId.length > 0 ? sessionId : undefined;
   } catch {
     return undefined;
   }
@@ -75,7 +93,7 @@ function isKnownTransform(text: string, previous: string): boolean {
 }
 
 function captureInitialPiUserInput(text: unknown, sessionId: unknown): void {
-  if (typeof text !== "string" || typeof sessionId !== "string" || sessionId.length === 0) return;
+  if (typeof text !== 'string' || typeof sessionId !== 'string' || sessionId.length === 0) return;
   const previous = rawInputStore().bySession.get(sessionId);
   if (previous !== undefined && isKnownTransform(text, previous)) return;
   captureRawPiUserInput(text, sessionId);
@@ -83,8 +101,8 @@ function captureInitialPiUserInput(text: unknown, sessionId: unknown): void {
 
 function currentUserText(ctx: { sessionManager?: { getSessionId?: () => unknown } }): string {
   const sessionId = sessionIdFromContext(ctx);
-  if (!sessionId) return "";
-  return rawInputStore().bySession.get(sessionId) ?? "";
+  if (!sessionId) return '';
+  return rawInputStore().bySession.get(sessionId) ?? '';
 }
 
 function stripInjectedContent(text: string): string {
@@ -93,16 +111,16 @@ function stripInjectedContent(text: string): string {
   if (capsuleStart !== -1) cleaned = cleaned.slice(0, capsuleStart);
   const specGateStart = cleaned.lastIndexOf(SPEC_GATE_MARKER);
   if (specGateStart !== -1) cleaned = cleaned.slice(0, specGateStart);
-  const lastUserTurn = cleaned.lastIndexOf("[user]");
+  const lastUserTurn = cleaned.lastIndexOf('[user]');
   if (lastUserTurn !== -1) {
-    const suffix = cleaned.slice(lastUserTurn + "[user]".length);
+    const suffix = cleaned.slice(lastUserTurn + '[user]'.length);
     if (suffix.trim()) cleaned = suffix;
   }
   return cleaned;
 }
 
 function isInsideQuote(text: string, index: number): boolean {
-  let quote: "'" | '"' | undefined;
+  let quote: '\'' | '"' | undefined;
   let escaped = false;
   for (let cursor = 0; cursor < index; cursor += 1) {
     const character = text[cursor];
@@ -110,13 +128,13 @@ function isInsideQuote(text: string, index: number): boolean {
       escaped = false;
       continue;
     }
-    if (character === "\\" && quote !== "'") {
+    if (character === '\\' && quote !== '\'') {
       escaped = true;
       continue;
     }
     if (quote) {
       if (character === quote) quote = undefined;
-    } else if (character === "'" || character === '"') {
+    } else if (character === '\'' || character === '"') {
       quote = character;
     }
   }
@@ -125,8 +143,8 @@ function isInsideQuote(text: string, index: number): boolean {
 
 function isInsideExpansion(text: string, index: number): boolean {
   const prefix = text.slice(0, index);
-  const lastOpen = prefix.lastIndexOf("$(");
-  const lastClose = prefix.lastIndexOf(")");
+  const lastOpen = prefix.lastIndexOf('$(');
+  const lastClose = prefix.lastIndexOf(')');
   if (lastOpen > lastClose) return true;
   const backticks = (prefix.match(/`/g) ?? []).length;
   return backticks % 2 === 1;
@@ -139,8 +157,8 @@ function tokenStart(text: string, index: number): number {
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {
-  const escapedSkill = skill.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const pattern = new RegExp(`(?:^|[^A-Za-z0-9_-])${escapedSkill}(?:$|[^A-Za-z0-9_-])`, "g");
+  const escapedSkill = skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`(?:^|[^A-Za-z0-9_-])${escapedSkill}(?:$|[^A-Za-z0-9_-])`, 'g');
   let cursor = 0;
   while (cursor < userText.length) {
     pattern.lastIndex = cursor;
@@ -150,17 +168,17 @@ function hasExplicitModeOverride(userText: string, skill: string): boolean {
     const start = tokenStart(userText, mentionIndex);
     const token = userText.slice(start, mentionIndex + skill.length);
     const sentenceStart = Math.max(
-      userText.lastIndexOf("\n", mentionIndex),
-      userText.lastIndexOf(";", mentionIndex),
-      userText.lastIndexOf(".", mentionIndex),
-      userText.lastIndexOf("!", mentionIndex),
-      userText.lastIndexOf("?", mentionIndex),
+      userText.lastIndexOf('\n', mentionIndex),
+      userText.lastIndexOf(';', mentionIndex),
+      userText.lastIndexOf('.', mentionIndex),
+      userText.lastIndexOf('!', mentionIndex),
+      userText.lastIndexOf('?', mentionIndex),
     ) + 1;
     const preceding = userText.slice(sentenceStart, mentionIndex);
     const usable = !isInsideQuote(userText, mentionIndex) &&
       !isInsideExpansion(userText, mentionIndex) &&
-      !token.includes("=") &&
-      !token.startsWith("$") &&
+      !token.includes('=') &&
+      !token.startsWith('$') &&
       !NEGATION_PATTERN.test(preceding);
     if (usable) return true;
     cursor = match.index + match[0].length;
@@ -178,15 +196,19 @@ function deepLoopExecutors(userText: string): string[] {
   return executors;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /** Returns true only for a Pi bash dispatch that has no explicit user-level exemption. */
 export function shouldDenyPiDispatch(input: PiDispatchGuardInput = {}): boolean {
-  if (input.runtime !== PI_RUNTIME || input.toolName !== "bash" || typeof input.command !== "string") return false;
-  if (input.inspectionKind === "none") return false;
-  if (input.inspectionKind === "ambiguous") return true;
-  if (typeof input.dispatchSkill !== "string" || !input.dispatchSkill) return input.inspectionKind === "direct";
-  if (input.inspectionKind === "direct" && input.inspectedExecutor !== input.dispatchSkill) return true;
+  if (input.runtime !== PI_RUNTIME || input.toolName !== 'bash' || typeof input.command !== 'string') return false;
+  if (input.inspectionKind === 'none') return false;
+  if (input.inspectionKind === 'ambiguous') return true;
+  if (typeof input.dispatchSkill !== 'string' || !input.dispatchSkill) return input.inspectionKind === 'direct';
+  if (input.inspectionKind === 'direct' && input.inspectedExecutor !== input.dispatchSkill) return true;
 
-  const userText = stripInjectedContent(typeof input.userText === "string" ? input.userText.slice(0, MAX_CAPTURED_USER_TEXT) : "");
+  const userText = stripInjectedContent(typeof input.userText === 'string' ? input.userText.slice(0, MAX_CAPTURED_USER_TEXT) : '');
   if (userText.length === 0) return true;
 
   const deepExecutors = deepLoopExecutors(userText);
@@ -195,47 +217,51 @@ export function shouldDenyPiDispatch(input: PiDispatchGuardInput = {}): boolean 
 }
 
 async function loadDispatchModules(): Promise<{
-  lint: typeof import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs");
-  audit: typeof import("../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs");
+  lint: typeof import('../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs');
+  audit: typeof import('../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs');
 }> {
   try {
     const [lint, audit] = await Promise.all([
-      import("../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs"),
-      import("../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs"),
+      import('../../.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs'),
+      import('../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs'),
     ]);
     return { lint, audit };
   } catch {
     const [lint, audit] = await Promise.all([
-      import("../lib/dispatch-rule-checks.mjs"),
-      import("../lib/dispatch-audit.mjs"),
+      import('../lib/dispatch-rule-checks.mjs'),
+      import('../lib/dispatch-audit.mjs'),
     ]);
     return { lint, audit };
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
 /** Blocks or warns on a bash dispatch command that violates a target skill's hard rules. */
 export default function dispatchPreflightLint(pi: ExtensionAPI): void {
-  if (!isHookEnabled("dispatch-guard")) return undefined;
-  pi.on("input", (event, ctx) => {
+  if (!isHookEnabled('dispatch-guard')) return undefined;
+  pi.on('input', (event, ctx) => {
     try {
-      if (event.source === "interactive" || event.source === "rpc") {
+      if (event.source === 'interactive' || event.source === 'rpc') {
         captureInitialPiUserInput(event.text, sessionIdFromContext(ctx));
       }
     } catch {
       // A failed capture cannot authorize a dispatch and must not alter the turn.
     }
-    return { action: "continue" };
+    return { action: 'continue' };
   });
 
-  pi.on("tool_call", async (event, ctx) => {
+  pi.on('tool_call', async (event, ctx) => {
     try {
-      if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
+      if (event.toolName !== 'bash' || typeof event.input.command !== 'string') return;
 
       const { lint, audit } = await loadDispatchModules();
       const inspection = audit.inspectDispatch(event.input.command);
-      if (inspection.kind === "none") return;
+      if (inspection.kind === 'none') return;
 
-      const dispatchSkill = inspection.kind === "direct" ? inspection.executor : null;
+      const dispatchSkill = inspection.kind === 'direct' ? inspection.executor : null;
       const denied = shouldDenyPiDispatch({
         runtime: PI_RUNTIME,
         toolName: event.toolName,
@@ -246,10 +272,10 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
         userText: currentUserText(ctx),
       });
       if (denied) {
-        if (inspection.kind !== "direct") {
+        if (inspection.kind !== 'direct') {
           return {
             block: true,
-            reason: "Pi dispatch denied: the command does not prove one direct executor. Call one executor by its literal name, such as `pi -p` or `codex exec`, not through a variable or alias, and name that executor in the user request.",
+            reason: 'Pi dispatch denied: the command does not prove one direct executor. Call one executor by its literal name, such as `pi -p` or `codex exec`, not through a variable or alias, and name that executor in the user request.',
           };
         }
         return {
@@ -261,24 +287,24 @@ export default function dispatchPreflightLint(pi: ExtensionAPI): void {
       const shape = audit.DISPATCH_SHAPES.find((candidate) => candidate.skill === dispatchSkill);
       if (!shape) return;
 
-      const skillMd = join(ctx.cwd, ".skilled", "skills", shape.packetPath, "SKILL.md");
+      const skillMd = join(ctx.cwd, '.skilled', 'skills', shape.packetPath, 'SKILL.md');
       const rules = lint.readHardRules(skillMd);
       if (rules.length === 0) return;
 
       const violations = lint.evaluate(event.input.command, rules);
-      const blocking = violations.filter((violation) => violation.severity === "block");
-      const warnings = violations.filter((violation) => violation.severity === "warn");
+      const blocking = violations.filter((violation) => violation.severity === 'block');
+      const warnings = violations.filter((violation) => violation.severity === 'warn');
       if (blocking.length > 0) {
         return {
           block: true,
           reason: `Dispatch blocked by ${dispatchSkill} hard-rule(s):\n` +
-            blocking.map((violation) => `  • [${violation.id}] ${violation.message}`).join("\n"),
+            blocking.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'),
         };
       }
       if (warnings.length > 0) {
         return {
           reason: `Dispatch advisory for ${dispatchSkill}:\n` +
-            warnings.map((violation) => `  • [${violation.id}] ${violation.message}`).join("\n"),
+            warnings.map((violation) => `  • [${violation.id}] ${violation.message}`).join('\n'),
         };
       }
     } catch {

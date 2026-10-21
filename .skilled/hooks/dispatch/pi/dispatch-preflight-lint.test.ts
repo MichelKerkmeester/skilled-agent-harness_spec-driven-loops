@@ -1,16 +1,21 @@
-import { chmodSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
-import { delimiter, join } from "node:path";
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Pi Dispatch Preflight Tests
+// ───────────────────────────────────────────────────────────────────
 
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { inspectDispatch } from "../lib/dispatch-audit.mjs";
-import promptAdvisor from "../../../skills/system-skill-advisor/hooks/pi/prompt-advisor";
+import { chmodSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { delimiter, join } from 'node:path';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
+
+import { inspectDispatch } from '../lib/dispatch-audit.mjs';
+import promptAdvisor from '../../../skills/system-skill-advisor/hooks/pi/prompt-advisor';
 import dispatchPreflightLint, {
   captureRawPiUserInput,
   resetRawPiUserInputCapture,
   shouldDenyPiDispatch,
-} from "./dispatch-preflight-lint";
+} from './dispatch-preflight-lint';
+
+import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
 
 type Handler = (event: any, ctx: any) => unknown;
 
@@ -26,16 +31,16 @@ type FakeContext = {
   };
 };
 
-const REPO_ROOT = new URL("../../../../", import.meta.url).pathname;
+const REPO_ROOT = new URL('../../../../', import.meta.url).pathname;
 
 function denied(command: string, userText: string, options: Record<string, unknown> = {}): boolean {
   const inspection = inspectDispatch(command);
   return shouldDenyPiDispatch({
-    runtime: options.runtime ?? "pi",
-    toolName: options.toolName ?? "bash",
+    runtime: options.runtime ?? 'pi',
+    toolName: options.toolName ?? 'bash',
     command,
-    dispatchSkill: inspection.kind === "direct" ? inspection.executor : null,
-    inspectedExecutor: inspection.kind === "direct" ? inspection.executor : null,
+    dispatchSkill: inspection.kind === 'direct' ? inspection.executor : null,
+    inspectedExecutor: inspection.kind === 'direct' ? inspection.executor : null,
     inspectionKind: inspection.kind,
     userText,
   });
@@ -56,18 +61,18 @@ function makeExtensionApi(): {
   return { api, handlers };
 }
 
-function context(sessionId = "session-a"): FakeContext {
+function context(sessionId = 'session-a'): FakeContext {
   return {
     cwd: REPO_ROOT,
     sessionManager: { getSessionId: () => sessionId },
   };
 }
 
-function registerInjectedInput(api: ExtensionAPI, suffix = "Advisor: injected cli-devin example") {
-  api.on("input", ((event: any, ctx: FakeContext) => {
+function registerInjectedInput(api: ExtensionAPI, suffix = 'Advisor: injected cli-devin example') {
+  api.on('input', ((event: any, ctx: FakeContext) => {
     captureRawPiUserInput(event.text, ctx.sessionManager.getSessionId());
     return {
-      action: "transform",
+      action: 'transform',
       text: `${event.text}\n\n${suffix}`,
     };
   }) as any);
@@ -89,76 +94,76 @@ async function invokeFactory(
   }
 
   const transformedTexts: string[] = [];
-  const inputHandlers = handlers.get("input") ?? [];
-  const inputContext = context(options.inputSession ?? "session-a");
-  let inputEvent: any = { type: "input", source: "interactive", text: rawText };
+  const inputHandlers = handlers.get('input') ?? [];
+  const inputContext = context(options.inputSession ?? 'session-a');
+  let inputEvent: any = { type: 'input', source: 'interactive', text: rawText };
   for (const handler of inputHandlers) {
     const output = await handler(inputEvent, inputContext);
     const transformed = output as { action?: unknown; text?: unknown };
-    if (transformed?.action === "transform" && typeof transformed.text === "string") {
+    if (transformed?.action === 'transform' && typeof transformed.text === 'string') {
       transformedTexts.push(transformed.text);
       inputEvent = { ...inputEvent, text: transformed.text };
     }
   }
 
-  const toolHandler = handlers.get("tool_call")?.[0];
-  if (!toolHandler) throw new Error("tool_call handler was not registered");
+  const toolHandler = handlers.get('tool_call')?.[0];
+  if (!toolHandler) throw new Error('tool_call handler was not registered');
   const result = await toolHandler({
-    type: "tool_call",
-    toolCallId: "call-1",
-    toolName: "bash",
+    type: 'tool_call',
+    toolCallId: 'call-1',
+    toolName: 'bash',
     input: { command },
-  }, context(options.toolSession ?? options.inputSession ?? "session-a"));
+  }, context(options.toolSession ?? options.inputSession ?? 'session-a'));
   return { result, transformedTexts };
 }
 
-describe("Pi dispatch deny matrix", () => {
+describe('Pi dispatch deny matrix', () => {
   it.each([
-    ["devin -p shape", 'devin -p "task"', "run the task", true],
-    ["cursor-agent -p shape", 'cursor-agent -p "task"', "run the task", true],
-    ["matching cli mode override", 'devin -p "task"', "dispatch via cli-devin", false],
-    ["deep-loop executor", 'opencode run "task"', "/deep:review --executor cli-opencode", false],
-    ["deep-loop executor mismatch", 'devin -p "task"', "/deep:review --executor cli-opencode", true],
-    ["deep-loop executor equals", 'devin -p "task"', "/deep:review --executor cli-devin", false],
-    ["cli-pi named by the user", 'pi -p "task"', "use cli-pi", false],
-    ["cli-pi without an override", 'pi -p "task"', "run the task", true],
-    ["negated mode mention", 'devin -p "task"', "do not use cli-devin", true],
-    ["quoted mode mention", 'devin -p "task"', 'use "cli-devin"', true],
-    ["history mode mention is not current authorization", 'devin -p "task"', '[user] dispatch via cli-devin [assistant] done [user] run the task', true],
-    ["history deep-loop mention is not current authorization", 'devin -p "task"', '[user] /deep:review --executor cli-devin [assistant] done [user] run the task', true],
-    ["spec-gate question is not authorization", 'devin -p "task"', 'run the task\n\nSPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:\nA) Use an existing spec folder', true],
-    ["injected capsule is not an override", 'devin -p "task"', 'run the task\n\nAdvisor: live; use cli-devin 0.95/0.20 pass.', true],
-    ["printf payload is not a dispatch", 'printf "devin -p task"', "run the task", false],
-    ["ambiguous variable command", "$CLI -p task", "use cli-devin", true],
-    ["non-bash tool is not a dispatch", 'devin -p "task"', "run the task", false],
-    ["non-dispatch bash", "npm test", "run the tests", false],
-    ["non-Pi runtime", 'devin -p "task"', "run the task", false],
-  ])("%s", (name, command, userText, expected) => {
-    const options = name === "non-bash tool is not a dispatch"
-      ? { toolName: "read" }
-      : name === "non-Pi runtime"
-        ? { runtime: "claude" }
+    ['devin -p shape', 'devin -p "task"', 'run the task', true],
+    ['cursor-agent -p shape', 'cursor-agent -p "task"', 'run the task', true],
+    ['matching cli mode override', 'devin -p "task"', 'dispatch via cli-devin', false],
+    ['deep-loop executor', 'opencode run "task"', '/deep:review --executor cli-opencode', false],
+    ['deep-loop executor mismatch', 'devin -p "task"', '/deep:review --executor cli-opencode', true],
+    ['deep-loop executor equals', 'devin -p "task"', '/deep:review --executor cli-devin', false],
+    ['cli-pi named by the user', 'pi -p "task"', 'use cli-pi', false],
+    ['cli-pi without an override', 'pi -p "task"', 'run the task', true],
+    ['negated mode mention', 'devin -p "task"', 'do not use cli-devin', true],
+    ['quoted mode mention', 'devin -p "task"', 'use "cli-devin"', true],
+    ['history mode mention is not current authorization', 'devin -p "task"', '[user] dispatch via cli-devin [assistant] done [user] run the task', true],
+    ['history deep-loop mention is not current authorization', 'devin -p "task"', '[user] /deep:review --executor cli-devin [assistant] done [user] run the task', true],
+    ['spec-gate question is not authorization', 'devin -p "task"', 'run the task\n\nSPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:\nA) Use an existing spec folder', true],
+    ['injected capsule is not an override', 'devin -p "task"', 'run the task\n\nAdvisor: live; use cli-devin 0.95/0.20 pass.', true],
+    ['printf payload is not a dispatch', 'printf "devin -p task"', 'run the task', false],
+    ['ambiguous variable command', '$CLI -p task', 'use cli-devin', true],
+    ['non-bash tool is not a dispatch', 'devin -p "task"', 'run the task', false],
+    ['non-dispatch bash', 'npm test', 'run the tests', false],
+    ['non-Pi runtime', 'devin -p "task"', 'run the task', false],
+  ])('%s', (name, command, userText, expected) => {
+    const options = name === 'non-bash tool is not a dispatch'
+      ? { toolName: 'read' }
+      : name === 'non-Pi runtime'
+        ? { runtime: 'claude' }
         : {};
     expect(denied(command, userText, options)).toBe(expected);
   });
 });
 
-describe("registered Pi extension boundary", () => {
+describe('registered Pi extension boundary', () => {
   // The tool_call path runs every hard rule, the binary availability checks included, and
   // those read PATH. A CI runner has no devin or pi, so a dispatch these tests allow would
   // be refused for the machine instead of the command. Stub binaries keep the verdict about
   // the command alone.
-  let stubDir = "";
+  let stubDir = '';
   let savedPath: string | undefined;
   beforeAll(() => {
-    stubDir = mkdtempSync(join(tmpdir(), "pi-preflight-bin-"));
-    for (const name of ["devin", "pi"]) {
+    stubDir = mkdtempSync(join(tmpdir(), 'pi-preflight-bin-'));
+    for (const name of ['devin', 'pi']) {
       const file = join(stubDir, name);
-      writeFileSync(file, "#!/bin/sh\nexit 0\n");
+      writeFileSync(file, '#!/bin/sh\nexit 0\n');
       chmodSync(file, 0o755);
     }
     savedPath = process.env.PATH;
-    process.env.PATH = `${stubDir}${delimiter}${savedPath ?? ""}`;
+    process.env.PATH = `${stubDir}${delimiter}${savedPath ?? ''}`;
   });
   afterAll(() => {
     if (savedPath === undefined) delete process.env.PATH;
@@ -166,29 +171,29 @@ describe("registered Pi extension boundary", () => {
     rmSync(stubDir, { recursive: true, force: true });
   });
 
-  it("registers input and tool_call callbacks on the default factory", () => {
+  it('registers input and tool_call callbacks on the default factory', () => {
     const { api, handlers } = makeExtensionApi();
     dispatchPreflightLint(api);
-    expect(handlers.get("input")).toHaveLength(1);
-    expect(handlers.get("tool_call")).toHaveLength(1);
+    expect(handlers.get('input')).toHaveLength(1);
+    expect(handlers.get('tool_call')).toHaveLength(1);
   });
 
-  it.each([false, true])("keeps raw authorization stable across transform order: %s", async (transformFirst) => {
-    const { result, transformedTexts } = await invokeFactory("run the task", 'devin -p "task"', { transformFirst });
-    expect(transformedTexts[0]).toContain("Advisor: injected cli-devin example");
+  it.each([false, true])('keeps raw authorization stable across transform order: %s', async (transformFirst) => {
+    const { result, transformedTexts } = await invokeFactory('run the task', 'devin -p "task"', { transformFirst });
+    expect(transformedTexts[0]).toContain('Advisor: injected cli-devin example');
     expect(result?.block).toBe(true);
   });
 
-  it("allows a positive raw user override for the inspected executor", async () => {
-    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task" </dev/null');
+  it('allows a positive raw user override for the inspected executor', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "task" </dev/null');
     expect(result).toBeUndefined();
   });
 
   // A wrapped payload with escaped quotes is read whole, so a named dispatch is allowed
   // rather than cut at the first escaped quote and denied as ambiguous.
-  it("allows a named dispatch wrapped in bash -c with escaped quotes", async () => {
+  it('allows a named dispatch wrapped in bash -c with escaped quotes', async () => {
     const { result } = await invokeFactory(
-      "dispatch via cli-devin",
+      'dispatch via cli-devin',
       String.raw`bash -c "devin -p \"task\" </dev/null"`,
     );
     expect(result).toBeUndefined();
@@ -196,126 +201,126 @@ describe("registered Pi extension boundary", () => {
 
   // An authorized executor is still bound by its skill's hard rules: a dispatch
   // without `</dev/null` can hang on inherited stdin, so the rule blocks it.
-  it("blocks a permitted dispatch that omits the stdin redirect", async () => {
-    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task"');
+  it('blocks a permitted dispatch that omits the stdin redirect', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "task"');
     expect(result?.block).toBe(true);
-    expect(result?.reason).toContain("[stdin-redirect-required]");
+    expect(result?.reason).toContain('[stdin-redirect-required]');
   });
 
   // Allowed is not the same as silent: a warn-severity rule earns an advisory,
   // and an advisory must never read as a denial.
-  it("advises without blocking when a permitted dispatch trips a warn-severity rule", async () => {
+  it('advises without blocking when a permitted dispatch trips a warn-severity rule', async () => {
     const { result } = await invokeFactory(
-      "dispatch via cli-opencode",
+      'dispatch via cli-opencode',
       'opencode run --model openai/gpt-5.5 --share "task" </dev/null',
     );
     expect(result?.block).not.toBe(true);
-    expect(result?.reason).toContain("Dispatch advisory for cli-opencode");
-    expect(result?.reason).toContain("[share-requires-confirmation]");
+    expect(result?.reason).toContain('Dispatch advisory for cli-opencode');
+    expect(result?.reason).toContain('[share-requires-confirmation]');
   });
 
   it.each([
-    ["negated mention", 'devin -p "task"', "do not use cli-devin"],
-    ["quoted mention", 'devin -p "task"', 'use "cli-devin"'],
-    ["variable executor", "$CLI -p task", "dispatch via cli-devin"],
-    ["alias executor", "alias d=devin; d -p task", "dispatch via cli-devin"],
-    ["bash -c wrapped executor", "bash -c 'devin -p task'", "run the task"],
-  ])("denies %s through the registered tool_call boundary", async (_name, command, rawText) => {
+    ['negated mention', 'devin -p "task"', 'do not use cli-devin'],
+    ['quoted mention', 'devin -p "task"', 'use "cli-devin"'],
+    ['variable executor', '$CLI -p task', 'dispatch via cli-devin'],
+    ['alias executor', 'alias d=devin; d -p task', 'dispatch via cli-devin'],
+    ['bash -c wrapped executor', 'bash -c \'devin -p task\'', 'run the task'],
+  ])('denies %s through the registered tool_call boundary', async (_name, command, rawText) => {
     const { result } = await invokeFactory(rawText, command);
     expect(result?.block).toBe(true);
   });
 
-  it("tells the caller what an ambiguous command must look like", async () => {
-    const { result } = await invokeFactory("dispatch via cli-devin", "$CLI -p task");
+  it('tells the caller what an ambiguous command must look like', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', '$CLI -p task');
     expect(result?.block).toBe(true);
-    expect(result?.reason).toContain("Call one executor by its literal name");
+    expect(result?.reason).toContain('Call one executor by its literal name');
     // A path-qualified executor such as `~/bin/pi -p` is direct, so the advice must not forbid paths.
-    expect(result?.reason).not.toContain("path");
+    expect(result?.reason).not.toContain('path');
   });
 
   // Pi has no in-process delegation of its own, so a named cli-pi dispatch is judged by the
   // same override rule as any sibling executor rather than refused for being Pi.
-  it("allows a named cli-pi dispatch and still denies an unnamed one", async () => {
-    const { result: named } = await invokeFactory("use cli-pi", 'pi --offline -p "task" </dev/null');
+  it('allows a named cli-pi dispatch and still denies an unnamed one', async () => {
+    const { result: named } = await invokeFactory('use cli-pi', 'pi --offline -p "task" </dev/null');
     expect(named).toBeUndefined();
 
-    const { result: unnamed } = await invokeFactory("run the task", 'pi --offline -p "task" </dev/null');
+    const { result: unnamed } = await invokeFactory('run the task', 'pi --offline -p "task" </dev/null');
     expect(unnamed?.block).toBe(true);
   });
 
-  it("denies an executor mismatch and a mismatched deep-loop executor", async () => {
-    const { result: directMismatch } = await invokeFactory("dispatch via cli-cursor", 'devin -p "task"');
-    const { result: deepMismatch } = await invokeFactory("/deep:review --executor cli-opencode", 'devin -p "task"');
+  it('denies an executor mismatch and a mismatched deep-loop executor', async () => {
+    const { result: directMismatch } = await invokeFactory('dispatch via cli-cursor', 'devin -p "task"');
+    const { result: deepMismatch } = await invokeFactory('/deep:review --executor cli-opencode', 'devin -p "task"');
     expect(directMismatch?.block).toBe(true);
     expect(deepMismatch?.block).toBe(true);
   });
 
-  it("denies a missing or mismatched session capture", async () => {
-    const { result } = await invokeFactory("dispatch via cli-devin", 'devin -p "task"', {
-      inputSession: "session-a",
-      toolSession: "session-b",
+  it('denies a missing or mismatched session capture', async () => {
+    const { result } = await invokeFactory('dispatch via cli-devin', 'devin -p "task"', {
+      inputSession: 'session-a',
+      toolSession: 'session-b',
     });
     expect(result?.block).toBe(true);
   });
 
-  it("replaces the raw capture for each new turn", async () => {
+  it('replaces the raw capture for each new turn', async () => {
     resetRawPiUserInputCapture();
     const { api, handlers } = makeExtensionApi();
     dispatchPreflightLint(api);
-    const inputHandler = handlers.get("input")?.[0];
-    const toolHandler = handlers.get("tool_call")?.[0];
-    if (!inputHandler || !toolHandler) throw new Error("factory handlers missing");
-    const ctx = context("session-a");
-    await inputHandler({ type: "input", source: "interactive", text: "dispatch via cli-devin" }, ctx);
-    await inputHandler({ type: "input", source: "interactive", text: "run the task" }, ctx);
+    const inputHandler = handlers.get('input')?.[0];
+    const toolHandler = handlers.get('tool_call')?.[0];
+    if (!inputHandler || !toolHandler) throw new Error('factory handlers missing');
+    const ctx = context('session-a');
+    await inputHandler({ type: 'input', source: 'interactive', text: 'dispatch via cli-devin' }, ctx);
+    await inputHandler({ type: 'input', source: 'interactive', text: 'run the task' }, ctx);
     const result = await toolHandler({
-      type: "tool_call",
-      toolCallId: "call-2",
-      toolName: "bash",
+      type: 'tool_call',
+      toolCallId: 'call-2',
+      toolName: 'bash',
       input: { command: 'devin -p "task"' },
     }, ctx);
     expect(result?.block).toBe(true);
   });
 
-  it("captures before the real advisor transform when the advisor is registered first", async () => {
+  it('captures before the real advisor transform when the advisor is registered first', async () => {
     resetRawPiUserInputCapture();
     const { api, handlers } = makeExtensionApi();
     promptAdvisor(api);
     dispatchPreflightLint(api);
     const ctx = context();
     const transformedTexts: string[] = [];
-    let inputEvent: any = { type: "input", source: "interactive", text: "run the task" };
-    for (const handler of handlers.get("input") ?? []) {
+    let inputEvent: any = { type: 'input', source: 'interactive', text: 'run the task' };
+    for (const handler of handlers.get('input') ?? []) {
       const output = await handler(inputEvent, ctx);
       const transformed = output as { action?: unknown; text?: unknown };
-      if (transformed?.action === "transform" && typeof transformed.text === "string") {
+      if (transformed?.action === 'transform' && typeof transformed.text === 'string') {
         transformedTexts.push(transformed.text);
         inputEvent = { ...inputEvent, text: transformed.text };
       }
     }
     // The visible prompt must no longer carry the removed dispatch directive.
-    expect(transformedTexts.at(-1) ?? "").not.toContain("Pi subagent dispatch");
-    const toolHandler = handlers.get("tool_call")?.[0];
-    if (!toolHandler) throw new Error("factory handler missing");
+    expect(transformedTexts.at(-1) ?? '').not.toContain('Pi subagent dispatch');
+    const toolHandler = handlers.get('tool_call')?.[0];
+    if (!toolHandler) throw new Error('factory handler missing');
     const result = await toolHandler({
-      type: "tool_call",
-      toolCallId: "call-advisor",
-      toolName: "bash",
+      type: 'tool_call',
+      toolCallId: 'call-advisor',
+      toolName: 'bash',
       input: { command: 'devin -p "task"' },
     }, ctx);
     expect(result?.block).toBe(true);
   });
 
-  it("does not evaluate non-bash tools", async () => {
+  it('does not evaluate non-bash tools', async () => {
     resetRawPiUserInputCapture();
     const { api, handlers } = makeExtensionApi();
     dispatchPreflightLint(api);
-    const toolHandler = handlers.get("tool_call")?.[0];
-    if (!toolHandler) throw new Error("factory handler missing");
+    const toolHandler = handlers.get('tool_call')?.[0];
+    if (!toolHandler) throw new Error('factory handler missing');
     const result = await toolHandler({
-      type: "tool_call",
-      toolCallId: "call-3",
-      toolName: "read",
+      type: 'tool_call',
+      toolCallId: 'call-3',
+      toolName: 'read',
       input: { command: 'devin -p "task"' },
     }, context());
     expect(result).toBeUndefined();

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Hard-Rule Engine Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Dependency-free tests for the dispatch hard-rule engine. Run: node --test <this file>
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -5,6 +9,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 import {
@@ -892,7 +897,8 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
 test('ENFORCEMENT GUARD: every cli packet declares at least one rule', () => {
   const packets = packetSkillDocs().map((md) => [path.basename(path.dirname(md)), md]);
   assert.ok(packets.length >= 8, `expected every cli packet, saw ${packets.length}`);
-  for (const [name, md] of packets) {    const rules = readHardRules(md);
+  for (const [name, md] of packets) {
+    const rules = readHardRules(md);
     assert.ok(rules.length > 0, `${name} declares no hard rules, so its preflight enforces nothing`);
     for (const rule of rules) {
       assert.ok(rule.message && rule.message.length > 20, `${name}/${rule.id} has no usable message`);
