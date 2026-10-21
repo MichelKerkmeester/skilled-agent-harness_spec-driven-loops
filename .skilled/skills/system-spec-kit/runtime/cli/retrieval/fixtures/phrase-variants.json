@@ -1,5 +1,5 @@
 {
-  "manifestHash": "08c864f66c5174b5f4123b3cf6c53efe6c2036ef6bbb4032430c7325747e9d62",
+  "manifestHash": "f6fc87205704a2682bfb0e37e3b779bbe152d334d9238a348db30a5a7b7f0fc6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -58757,6 +58757,9 @@
     "make branch protection less strict": [
       "make branch protection less strict"
     ],
+    "make llmgateway the opencode 1 cli opencode default": [
+      "make llmgateway the opencode 1 cli opencode default"
+    ],
     "make md plugin reference": [
       "make-md plugin reference"
     ],
@@ -68242,8 +68245,8 @@
     "opencode deep loop dispatch safety": [
       "opencode deep-loop dispatch safety"
     ],
-    "opencode default model opencode go flash": [
-      "opencode default model opencode-go flash"
+    "opencode default model llmgateway flash": [
+      "opencode default model llmgateway flash"
     ],
     "opencode destructive scope violation": [
       "opencode destructive scope violation"
@@ -72765,6 +72768,9 @@
     ],
     "phase 50 sk doc ci outside failures": [
       "phase 50 sk doc ci outside failures"
+    ],
+    "phase 52 v1 default llmgateway": [
+      "phase 52 v1 default llmgateway"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"
@@ -109149,6 +109155,18 @@
     ],
     "v1 2 5 0 release notes": [
       "v1.2.5.0 release notes"
+    ],
+    "v1 default llmgateway": [
+      "v1 default llmgateway"
+    ],
+    "v1 default llmgateway implementation summary": [
+      "v1 default llmgateway implementation summary"
+    ],
+    "v1 default llmgateway plan": [
+      "v1 default llmgateway plan"
+    ],
+    "v1 default llmgateway tasks": [
+      "v1 default llmgateway tasks"
     ],
     "v1 search pipeline": [
       "v1 search pipeline"

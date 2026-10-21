@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6c52c151cbca448bfb3fafae8658b352408fad64a79567f45ce6b34dfd75ba45",
+  "corpusHash": "99c51b1867472afe50204676df7cda69581defcb0e61c5904972a2e769640c16",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25595,
+  "includedPathCount": 25599,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9064,6 +9064,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25626,7 +25630,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "08c864f66c5174b5f4123b3cf6c53efe6c2036ef6bbb4032430c7325747e9d62",
+  "manifestHash": "f6fc87205704a2682bfb0e37e3b779bbe152d334d9238a348db30a5a7b7f0fc6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26786,6 +26790,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/050-sk-doc-ci-outside-failures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/scratch",
       "reason": "excluded directory"
     },
     {
