@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a91c71020c6fb515d84f6612b0183db68b41b509557bddfb2016ef9852c87e01",
+  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72613,6 +72613,9 @@
     "phase 47 diagram corpus ci": [
       "phase 47 diagram corpus ci"
     ],
+    "phase 48 skilled loop shared nudge formatter": [
+      "phase 48 skilled loop shared nudge formatter"
+    ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
     ],
@@ -97632,6 +97635,18 @@
     ],
     "skilled loop relaunch": [
       "skilled-loop relaunch"
+    ],
+    "skilled loop shared nudge formatter": [
+      "skilled loop shared nudge formatter"
+    ],
+    "skilled loop shared nudge formatter implementation summary": [
+      "skilled loop shared nudge formatter implementation summary"
+    ],
+    "skilled loop shared nudge formatter plan": [
+      "skilled loop shared nudge formatter plan"
+    ],
+    "skilled loop shared nudge formatter tasks": [
+      "skilled loop shared nudge formatter tasks"
     ],
     "skilled loop shell shim": [
       "skilled-loop shell shim"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "698da18dc19573928448c83e3186e3341a4b49b595f82977fd948f8d3f42cd18",
+  "corpusHash": "5fa81c8ffce8e85d290e528922a410bde4a7c1ffae1b84c153669cb2405beec7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25549,
+  "includedPathCount": 25553,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9049,6 +9049,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25580,7 +25584,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a91c71020c6fb515d84f6612b0183db68b41b509557bddfb2016ef9852c87e01",
+  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26728,6 +26732,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/048-skilled-loop-shared-nudge-formatter/scratch",
       "reason": "excluded directory"
     },
     {
