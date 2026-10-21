@@ -1,5 +1,5 @@
 {
-  "manifestHash": "97286fdd14976e0c4bcd0728da210b271d72e3533d8ca6169272627db1b74448",
+  "manifestHash": "6ee69320ab6cd0a1f2a6c190163cb0d121db14ffc5048c95578e27ad423752db",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44503,6 +44503,18 @@
     "filters jsonc": [
       "filters.jsonc"
     ],
+    "final commit live proof": [
+      "final commit live proof"
+    ],
+    "final commit live proof implementation summary": [
+      "final commit live proof implementation summary"
+    ],
+    "final commit live proof plan": [
+      "final commit live proof plan"
+    ],
+    "final commit live proof tasks": [
+      "final commit live proof tasks"
+    ],
     "final deep review": [
       "final deep review"
     ],
@@ -72786,6 +72798,9 @@
     ],
     "phase 52 v1 default llmgateway": [
       "phase 52 v1 default llmgateway"
+    ],
+    "phase 53 final commit live proof": [
+      "phase 53 final commit live proof"
     ],
     "phase 6 ci truth checks": [
       "phase 6 ci truth checks"

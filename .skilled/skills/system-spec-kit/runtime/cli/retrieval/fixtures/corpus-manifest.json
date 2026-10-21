@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7e09c3285fa1f70677a27f2573384034ddb02c2ee99cef1bd4b362b8d30ec344",
+  "corpusHash": "649c48855e7ddd78c8d9c462cef44014a4b693c712617940650a2effe3f3648c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25603,
+  "includedPathCount": 25607,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9072,6 +9072,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25634,7 +25638,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "97286fdd14976e0c4bcd0728da210b271d72e3533d8ca6169272627db1b74448",
+  "manifestHash": "6ee69320ab6cd0a1f2a6c190163cb0d121db14ffc5048c95578e27ad423752db",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26802,6 +26806,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/053-final-commit-live-proof/scratch",
       "reason": "excluded directory"
     },
     {
