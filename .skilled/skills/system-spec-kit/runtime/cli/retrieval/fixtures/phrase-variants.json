@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8ed6a1ebb234584367a680a0fd630095901f3b23ecf90536cdb2b70294ac2647",
+  "manifestHash": "193d83486a92927706c6478bcc7f51fa01abf28c058ed47e75b3659f26590d1c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24973,6 +24973,9 @@
     ],
     "compact pi arbitration tasks": [
       "compact pi arbitration tasks"
+    ],
+    "compact pointer": [
+      "compact pointer"
     ],
     "compact wrapper coordination plan": [
       "compact wrapper coordination plan"
@@ -69533,6 +69536,24 @@
     "outranked routing phrases": [
       "outranked routing phrases"
     ],
+    "outside loop handoff": [
+      "outside loop handoff"
+    ],
+    "outside loop handoff acceptance criteria": [
+      "outside loop handoff acceptance criteria"
+    ],
+    "outside loop handoff implementation summary": [
+      "outside loop handoff implementation summary"
+    ],
+    "outside loop handoff note": [
+      "outside loop handoff note"
+    ],
+    "outside loop handoff plan": [
+      "outside loop handoff plan"
+    ],
+    "outside loop handoff tasks": [
+      "outside loop handoff tasks"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -72045,6 +72066,9 @@
     ],
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
+    ],
+    "phase 18 outside loop handoff": [
+      "phase 18 outside loop handoff"
     ],
     "phase 18 plan": [
       "phase 18 plan"
@@ -89776,6 +89800,9 @@
     "session relaunch hook": [
       "session relaunch hook"
     ],
+    "session relaunch keep command": [
+      "session relaunch keep command"
+    ],
     "session relaunch lanes": [
       "session relaunch lanes"
     ],
@@ -104031,6 +104058,9 @@
     "system spec kit 2 8 4 0": [
       "system-spec-kit 2.8.4.0"
     ],
+    "system spec kit 2 8 5 0": [
+      "system-spec-kit 2.8.5.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -104462,6 +104492,9 @@
     ],
     "system spec kit v2 8 4 0": [
       "system-spec-kit v2.8.4.0"
+    ],
+    "system spec kit v2 8 5 0": [
+      "system-spec-kit v2.8.5.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

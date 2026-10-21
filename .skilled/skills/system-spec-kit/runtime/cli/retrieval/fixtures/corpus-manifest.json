@@ -1,5 +1,5 @@
 {
-  "corpusHash": "51dd3a22236b1439d11f69a44d4610356498dcafd73561103cf47356a04f1f84",
+  "corpusHash": "7c77c41089c2b6c5ff06738b7fd6c55a5e35a64037d86d421022d4f66351faf8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25504,
+  "includedPathCount": 25510,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8067,6 +8067,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.8.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.8.4.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.8.5.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
@@ -10408,6 +10409,11 @@
     "specs/hooks/023-session-relaunch-loop/017-hop-history/plan.md",
     "specs/hooks/023-session-relaunch-loop/017-hop-history/spec.md",
     "specs/hooks/023-session-relaunch-loop/017-hop-history/tasks.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/acceptance-criteria.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/implementation-summary.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/plan.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/spec.md",
+    "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/tasks.md",
     "specs/hooks/023-session-relaunch-loop/goal.md",
     "specs/hooks/023-session-relaunch-loop/research/fanout-attribution.md",
     "specs/hooks/023-session-relaunch-loop/research/research.md",
@@ -25535,7 +25541,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8ed6a1ebb234584367a680a0fd630095901f3b23ecf90536cdb2b70294ac2647",
+  "manifestHash": "193d83486a92927706c6478bcc7f51fa01abf28c058ed47e75b3659f26590d1c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27451,6 +27457,10 @@
     },
     {
       "path": "specs/hooks/023-session-relaunch-loop/017-hop-history/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks/023-session-relaunch-loop/018-outside-loop-handoff/scratch",
       "reason": "excluded directory"
     },
     {
