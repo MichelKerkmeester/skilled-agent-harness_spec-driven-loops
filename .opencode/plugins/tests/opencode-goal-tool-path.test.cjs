@@ -11,9 +11,9 @@
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { mkdir, mkdtemp, readFile, rm, writeFile } = require('node:fs/promises');
+const { access, mkdir, mkdtemp, readFile, readdir, rm, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
-const { join } = require('node:path');
+const { dirname, join, resolve } = require('node:path');
 const { pathToFileURL } = require('node:url');
 
 const pluginUrl = pathToFileURL(join(__dirname, '..', 'opencode-goal.js')).href;
@@ -281,4 +281,50 @@ test('a rebind to a different packet leaves the prior record in history', async 
   assert.match(String(second), /mutation=rebound/);
   const history = await helpers.executeGoalAction({ action: 'history' }, ctx, bindOpts);
   assert.ok(String(history).includes(firstId), 'prior record archived on rebind');
+}));
+
+test('a rebind never writes the prior snapshot outside the archive folder', async () => withState(async ({ helpers, ctx, opts, stateDir }) => {
+  await writePacketGoal(stateDir, 'specs/t/001-fixture');
+  await writePacketGoal(stateDir, 'specs/t/002-other');
+  const bindOpts = { ...opts, directory: stateDir };
+  await helpers.executeGoalAction({ action: 'bind', packetPath: 'specs/t/001-fixture' }, ctx, bindOpts);
+
+  // The snapshot name is `<session key>.<goal id>.json`. The leading `x`
+  // gives the id a path segment of its own; the three `..` segments then
+  // climb out of .archive and the temp root into its parent.
+  const hostileGoalId = 'x/../../../escaped-goal';
+  const activeGoalPath = helpers.goalPathForSession(ctx.sessionID, opts);
+  const activeGoal = JSON.parse(await readFile(activeGoalPath, 'utf8'));
+  await writeFile(activeGoalPath, `${JSON.stringify({ ...activeGoal, goalId: hostileGoalId }, null, 2)}\n`, 'utf8');
+
+  const archiveDir = join(stateDir, '.archive');
+  const sessionKey = helpers.sessionKeyForSession(ctx.sessionID);
+  const escapedSnapshotPath = resolve(archiveDir, `${sessionKey}.${hostileGoalId}.json`);
+  assert.equal(
+    escapedSnapshotPath,
+    join(dirname(stateDir), 'escaped-goal.json'),
+    'the hostile id resolves to the temp root parent, two folders above the archive folder',
+  );
+
+  async function pathExists(path) {
+    try {
+      await access(path);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  assert.equal(await pathExists(escapedSnapshotPath), false, 'the escaped snapshot does not exist before the rebind');
+  const beforeEntries = (await readdir(stateDir)).sort();
+
+  const second = await helpers.executeGoalAction({ action: 'bind', packetPath: 'specs/t/002-other' }, ctx, bindOpts);
+  assert.match(String(second), /mutation=rebound/);
+
+  assert.equal(await pathExists(escapedSnapshotPath), false, 'the rebind wrote no prior snapshot outside the archive folder');
+  assert.equal(await pathExists(join(stateDir, 'escaped-goal.json')), false, 'the rebind wrote nothing into the state root');
+  assert.equal(await pathExists(join(dirname(stateDir), 'escaped-goal.json')), false, 'the rebind wrote nothing into the temp root parent');
+  assert.deepEqual(await readdir(archiveDir), [], 'the rejected snapshot is not written inside the archive folder either');
+  const afterEntries = (await readdir(stateDir)).sort();
+  assert.deepEqual(afterEntries, [...beforeEntries, '.archive'].sort(), 'the rebind added only the archive folder under the state root');
 }));
