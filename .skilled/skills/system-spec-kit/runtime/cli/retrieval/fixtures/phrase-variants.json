@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dbcca7eea0b8161a14d1f6aaa4751af1015d98f651a198115ce8e10f8ce27265",
+  "manifestHash": "852b05103393280cf5352fab8eb518a28a56e1243d9d8f6c7c83ecd30e324691",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -52345,6 +52345,21 @@
     "hub registration": [
       "hub registration"
     ],
+    "hub repo folder exemption": [
+      "hub repo folder exemption"
+    ],
+    "hub repo folder exemption acceptance criteria": [
+      "hub repo folder exemption acceptance criteria"
+    ],
+    "hub repo folder exemption implementation summary": [
+      "hub repo folder exemption implementation summary"
+    ],
+    "hub repo folder exemption plan": [
+      "hub repo folder exemption plan"
+    ],
+    "hub repo folder exemption tasks": [
+      "hub repo folder exemption tasks"
+    ],
     "hub router json contract": [
       "hub-router json contract"
     ],
@@ -70548,6 +70563,9 @@
     "parent hub": [
       "parent hub"
     ],
+    "parent hub at a repository root": [
+      "parent hub at a repository root"
+    ],
     "parent hub canon alignment": [
       "Parent-Hub Canon Alignment"
     ],
@@ -73478,6 +73496,21 @@
     ],
     "pi 017 allowlist scenario": [
       "pi-017 allowlist scenario"
+    ],
+    "pi advisor diagnostic on stderr": [
+      "pi advisor diagnostic on stderr"
+    ],
+    "pi advisor diagnostic stderr": [
+      "pi advisor diagnostic stderr"
+    ],
+    "pi advisor diagnostic stderr implementation summary": [
+      "pi advisor diagnostic stderr implementation summary"
+    ],
+    "pi advisor diagnostic stderr plan": [
+      "pi advisor diagnostic stderr plan"
+    ],
+    "pi advisor diagnostic stderr tasks": [
+      "pi advisor diagnostic stderr tasks"
     ],
     "pi advisor dist path test": [
       "pi advisor dist path test"
@@ -82071,6 +82104,9 @@
     ],
     "repo readme cleanup phase": [
       "repo README cleanup phase"
+    ],
+    "repo root hub extension": [
+      "repo-root-hub extension"
     ],
     "repo root sentinel": [
       "repo root sentinel"

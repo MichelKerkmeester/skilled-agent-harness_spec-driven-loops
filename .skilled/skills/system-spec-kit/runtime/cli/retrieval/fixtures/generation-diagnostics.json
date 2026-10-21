@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7205,
-    "ok": 14829,
+    "ok": 14838,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 25582,
+  "documentsScanned": 25591,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "dbcca7eea0b8161a14d1f6aaa4751af1015d98f651a198115ce8e10f8ce27265",
+  "manifestHash": "852b05103393280cf5352fab8eb518a28a56e1243d9d8f6c7c83ecd30e324691",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 33,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 37329,
+      "ok": 37341,
       "prose-sentence": 19,
       "single-token": 162,
       "stop-word-only": 1,
@@ -71374,6 +71374,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -72427,6 +72431,10 @@
     },
     {
       "path": "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/scratch",
       "reason": "excluded directory"
     },
     {

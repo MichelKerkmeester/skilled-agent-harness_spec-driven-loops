@@ -1,5 +1,5 @@
 {
-  "corpusHash": "799daffa73c29ac03a937a48a853cdc53790e44a6cac0091a564d0e17900f175",
+  "corpusHash": "663238f06a56dc93d5f85b3029a22155209dd94e23344cdbdb2d412734942f67",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25582,
+  "includedPathCount": 25591,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12981,6 +12981,11 @@
     "specs/sk-doc/067-root-readme-section-spacing/plan.md",
     "specs/sk-doc/067-root-readme-section-spacing/spec.md",
     "specs/sk-doc/067-root-readme-section-spacing/tasks.md",
+    "specs/sk-doc/068-hub-repo-folder-exemption/acceptance-criteria.md",
+    "specs/sk-doc/068-hub-repo-folder-exemption/implementation-summary.md",
+    "specs/sk-doc/068-hub-repo-folder-exemption/plan.md",
+    "specs/sk-doc/068-hub-repo-folder-exemption/spec.md",
+    "specs/sk-doc/068-hub-repo-folder-exemption/tasks.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -15862,6 +15867,10 @@
     "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/spec.md",
     "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/tasks.md",
     "specs/system-skill-advisor/037-advisor-daemon-memory/spec.md",
+    "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/implementation-summary.md",
+    "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/plan.md",
+    "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/spec.md",
+    "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/plan.md",
@@ -25613,7 +25622,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dbcca7eea0b8161a14d1f6aaa4751af1015d98f651a198115ce8e10f8ce27265",
+  "manifestHash": "852b05103393280cf5352fab8eb518a28a56e1243d9d8f6c7c83ecd30e324691",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28876,6 +28885,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/068-hub-repo-folder-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -29929,6 +29942,10 @@
     },
     {
       "path": "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/038-pi-advisor-diagnostic-stderr/scratch",
       "reason": "excluded directory"
     },
     {
