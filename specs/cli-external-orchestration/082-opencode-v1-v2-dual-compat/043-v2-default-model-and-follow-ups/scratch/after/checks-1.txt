@@ -1,7 +1,7 @@
 ## cli-opencode script tests
-default-model-id.test.cjs # pass 5 # fail 0 
-opencode-setup-classify.test.cjs # pass 2 # fail 0 
-opencode2-models-form.test.cjs # pass 15 # fail 1 
+default-model-id.test.cjs # pass 5 # fail 0
+opencode-setup-classify.test.cjs # pass 2 # fail 0
+opencode2-models-form.test.cjs # pass 15 # fail 1
 ## plugin suite
 # tests 516
 # pass 516

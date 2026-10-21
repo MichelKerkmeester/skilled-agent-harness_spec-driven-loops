@@ -89,7 +89,7 @@ OpenCode 2 defaults to `llmgateway/deepseek-v4.1-flash#max` while OpenCode 1 kee
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Pick the OpenCode 2 default model by version |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Cover both defaults and their packet line |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts`, `opencode-dual-dispatch.vitest.ts` | Modify | Cover both defaults and their packet line |
 | `.skilled/skills/cli-external-orchestration/cli-opencode/**` | Modify | The v2 default in SKILL.md, README, references and playbook; the default-model test |
 | `.hermes/skills/cli-opencode/SKILL.md` | Regenerate | From the edited SKILL.md |
 | `.opencode/plugins/tests/v2-bridge.test.cjs`, `.opencode/plugins/README.md` | Modify | Test timeout; probe claim |
@@ -97,6 +97,7 @@ OpenCode 2 defaults to `llmgateway/deepseek-v4.1-flash#max` while OpenCode 1 kee
 | `.github/workflows/trigger-index-rebuild.yml` | Modify | Concurrency comment |
 | `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`, `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` | Modify | The three comments |
 | `.github/workflows/hooks-node-tests.yml`, `.github/workflows/README.md` | Create, Modify | The hook node:test job and its README rows |
+| `../006-cli-opencode-dual-dispatch/implementation-summary.md`, `../036-cli-opencode-docs-and-vision-test-cleanup/implementation-summary.md`, `../goal.md` | Modify | Mark the v2 default-model notes resolved (036 Known Limitation 5, the 006 note and the two goal rows) |
 | `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups/` | Create | This packet |
 | `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md`, `graph-metadata.json` | Modify | Phase map, handoff row and child list for 043 |
 <!-- /ANCHOR:scope -->

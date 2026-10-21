@@ -205,7 +205,7 @@
     ],
     "causal_summary": "cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written",
     "created_at": "2026-10-21T07:17:06Z",
-    "last_save_at": "2026-10-21T08:56:25.452Z",
+    "last_save_at": "2026-10-21T09:08:29.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db5fd7fb3b29d0f97c9baa304bcf9c828f6335b586acc4b4a0fde5b2d1c0b54e",
+    "source_fingerprint": "sha256:9e788fe394bd899c03193cfebc1887acf8ebe76fffead72eba9e325a333e013d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b1704e4903024c71e382b0d680a3e2ddc614d88f4e1455eef0c45c8d3af26ea",
+      "spec.md": "4078dd7a26775ed5e3b0609a705869b95348e5146f1fb6a598e773207d39683b",
       "plan.md": "384d6e44f9817f8906b86a7a38961ff87414ea3eddfff8da6ce35032abdd8bb8",
       "tasks.md": "86bb3d97a44b8a0c10dee0444791a64a4999bef4d33e3b7cfdedef21d4af860d",
-      "implementation-summary.md": "df3ae165a6db0ca7728f24eb164093996d731e971c54f6b6098bd7e8b51c592f"
+      "implementation-summary.md": "2b74ed3e50a12776d533be0a3eacfe14118b5cd89bbf89d5493f62b166752960"
     },
     "last_active_at": null
   }
