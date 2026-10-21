@@ -492,16 +492,26 @@ function specFolderFromHandoff(handoffPath) {
   }
 }
 
+// A record armed before arm identity existed has no armId, so armedAt remains its only
+// guard. A re-arm always records a fresh armId, even when its clock stamp is unchanged.
+function recordArmId(record) {
+  return typeof record?.armId === 'string' ? record.armId : undefined;
+}
+
 function recordTimeout(options, environment, record) {
   const handoffPath = typeof record?.handoff === 'string' ? record.handoff : '';
   // A later prepare can arm a different note, or re-arm the same one, while this killer
   // waits. That record still needs its own killer, so the stale snapshot must not disarm
-  // or notify for it. A re-arm keeps the path but always stamps a new armedAt.
+  // or notify for it. A re-arm keeps the path and stamps a new armedAt, and its fresh
+  // armId still separates it when the clock lands on the same millisecond.
   const current = core.readRelaunchFile(options.loopId, environment);
   const currentHandoff = typeof current?.handoff === 'string' ? current.handoff : '';
+  const watchedArmId = recordArmId(record);
+  const currentArmId = recordArmId(current);
   if (
     currentHandoff !== handoffPath
     || (current?.status === 'armed' && current.armedAt !== record?.armedAt)
+    || (current?.status === 'armed' && watchedArmId !== undefined && currentArmId !== watchedArmId)
   ) {
     log('killer-timeout-superseded', environment, {
       watched: handoffPath,
@@ -519,6 +529,7 @@ function recordTimeout(options, environment, record) {
       expectedStatus: 'armed',
       expectedHandoff: handoffPath,
       expectedArmedAt: record.armedAt,
+      expectedArmId: watchedArmId,
       env: environment,
     });
   }
@@ -586,7 +597,7 @@ async function supervise(options, environment, signalTracker) {
     // that no relaunch follows. The record is unarmed and its note left for the operator's
     // own claim instead; the handoff guard keeps this from disarming a note a later prepare
     // armed, because that note still needs its own killer. A re-arm of the same note keeps
-    // the path and only stamps a new armedAt, so the arm time is part of that guard too. No
+    // the path and can keep its arm time, so the arm identity is part of that guard too. No
     // notification is raised: with no relaunch pending, the manual claim is already what the
     // session was told to do.
     if (recordReachedHopLimit(record, environment)) {
@@ -598,6 +609,7 @@ async function supervise(options, environment, signalTracker) {
           expectedStatus: 'armed',
           expectedHandoff: handoffPath,
           expectedArmedAt: record.armedAt,
+          expectedArmId: recordArmId(record),
           env: environment,
         });
       }
@@ -613,7 +625,7 @@ async function supervise(options, environment, signalTracker) {
     // Freshness is therefore judged at the end of that period, with the wrapper's own rule,
     // so a session is never ended for a relaunch the wrapper will refuse as stale. The note
     // stays open for a fresh prepare or the operator's own claim; a re-arm of the same note
-    // keeps the path and only stamps a new armedAt, so the guard includes the arm time.
+    // keeps the path and can keep its arm time, so the guard includes the arm identity.
     if (!nudge.armedRecordStillCurrent(record, environment, Date.now() + SIGNAL_WAIT_MS)) {
       const handoffPath = typeof record.handoff === 'string' ? record.handoff : '';
       if (handoffPath) {
@@ -623,6 +635,7 @@ async function supervise(options, environment, signalTracker) {
           expectedStatus: 'armed',
           expectedHandoff: handoffPath,
           expectedArmedAt: record.armedAt,
+          expectedArmId: recordArmId(record),
           env: environment,
         });
       }

@@ -1457,9 +1457,87 @@ test('killer timeout leaves a re-armed record for the same handoff alone', async
   }
 });
 
-// A re-armed handoff keeps the path of the record the killer read, so only the arm time
-// tells the newer record from the watched one. The hop cap must leave that record for its
-// own killer instead of disarming it on the way out.
+// A re-arm can keep the watched arm time, so the timeout branch needs the arm identity to
+// tell the newer record from the one this killer read.
+test('killer timeout supersedes a re-arm that keeps the watched arm time', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff-a.md');
+  writeSpecFolderNote(handoffPath, SPEC_FOLDER);
+  const target = startPersistentProcess(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
+  const watchedRecord = core.readRelaunchFile(loopId, sandbox.env);
+  const transcriptPath = createTranscript(sandbox);
+  const touchTimer = setInterval(() => {
+    const now = new Date();
+    fs.utimesSync(transcriptPath, now, now);
+  }, 50);
+
+  const realSpawnSync = childProcess.spawnSync;
+  const notifications = [];
+  childProcess.spawnSync = (command, args, options) => {
+    if (command === 'osascript') {
+      notifications.push(args.join(' '));
+      return { status: 0, stdout: '', stderr: '' };
+    }
+    return realSpawnSync(command, args, options);
+  };
+
+  try {
+    const killerModulePath = require.resolve('../lib/killer.cjs');
+    delete require.cache[killerModulePath];
+    const { main } = require(killerModulePath);
+    const timeout = main([
+      '--loop-id', loopId,
+      '--target-pid', String(target.pid),
+      '--transcript', transcriptPath,
+      '--idle-ms', '200',
+      '--timeout-ms', '700',
+    ], sandbox.env);
+
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    core.preparePending({
+      loopId,
+      handoffPath,
+      sessionId: 'session-killer-0001',
+      runtime: 'claude',
+      name: null,
+      cwd: sandbox.repoRoot,
+      hops: 0,
+      env: sandbox.env,
+    });
+    core.arm({
+      loopId,
+      cwd: sandbox.repoRoot,
+      env: sandbox.env,
+      now: watchedRecord.armedAt,
+    });
+    const rearmed = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(rearmed.armedAt, watchedRecord.armedAt);
+    assert.notEqual(rearmed.armId, watchedRecord.armId);
+    await timeout;
+
+    const record = core.readRelaunchFile(loopId, sandbox.env);
+    assert.equal(record.status, 'armed', 'the re-armed record must outlive the stale timeout');
+    assert.equal(record.armedAt, rearmed.armedAt);
+    assert.equal(record.armId, rearmed.armId);
+    const killerLog = readKillerLog(sandbox);
+    assert.match(killerLog, /killer-timeout-superseded/);
+    assert.doesNotMatch(killerLog, /^\S+ killer-timeout /m);
+    assert.equal(notifications.length, 0);
+  } finally {
+    clearInterval(touchTimer);
+    childProcess.spawnSync = realSpawnSync;
+    killChild(target);
+  }
+});
+
+// A re-armed handoff keeps the path of the record the killer read, and it can keep that
+// record's arm time too, so only the arm identity tells the newer record from the watched
+// one. The hop cap must leave that record for its own killer instead of disarming it on
+// the way out.
 test('killer hop cap leaves a re-armed record for the same handoff alone', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
@@ -1469,13 +1547,15 @@ test('killer hop cap leaves a re-armed record for the same handoff alone', async
   await new Promise((resolve) => target.once('spawn', resolve));
   sandbox.env.SKILLED_LOOP_ID = loopId;
   createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
-  const watchedArmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+  const watchedRecord = core.readRelaunchFile(loopId, sandbox.env);
+  const watchedArmedAt = watchedRecord.armedAt;
   const transcriptPath = createTranscript(sandbox);
 
   // The re-arm has to land between the killer's own read and its unarm, so it rides the
   // last module call the branch makes before disarming.
   const originalHopLimitReached = nudge.hopLimitReached;
   let rearmedAt = null;
+  let rearmedArmId = null;
   nudge.hopLimitReached = () => {
     core.preparePending({
       loopId,
@@ -1487,8 +1567,10 @@ test('killer hop cap leaves a re-armed record for the same handoff alone', async
       hops: 0,
       env: sandbox.env,
     });
-    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env });
-    rearmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env, now: watchedArmedAt });
+    const rearmed = core.readRelaunchFile(loopId, sandbox.env);
+    rearmedAt = rearmed.armedAt;
+    rearmedArmId = rearmed.armId;
     return true;
   };
 
@@ -1504,10 +1586,12 @@ test('killer hop cap leaves a re-armed record for the same handoff alone', async
       '--timeout-ms', '700',
     ], sandbox.env);
 
-    assert.notEqual(rearmedAt, watchedArmedAt);
+    assert.equal(rearmedAt, watchedArmedAt, 'the re-arm must reuse the watched arm time');
+    assert.notEqual(rearmedArmId, watchedRecord.armId);
     const record = core.readRelaunchFile(loopId, sandbox.env);
     assert.equal(record.status, 'armed', 'the re-armed record must outlive the hop cap');
     assert.equal(record.armedAt, rearmedAt);
+    assert.equal(record.armId, rearmedArmId);
     const killerLog = readKillerLog(sandbox);
     assert.match(killerLog, /killer-hop-cap/);
     assert.doesNotMatch(killerLog, /killer-signal/);
@@ -1520,7 +1604,7 @@ test('killer hop cap leaves a re-armed record for the same handoff alone', async
 });
 
 // The stale branch clears a record the wrapper would decline, and it must not clear one a
-// later prepare re-armed under the same handoff path.
+// later prepare re-armed under the same handoff path with the same arm time.
 test('killer stale branch leaves a re-armed record for the same handoff alone', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
@@ -1530,13 +1614,15 @@ test('killer stale branch leaves a re-armed record for the same handoff alone', 
   await new Promise((resolve) => target.once('spawn', resolve));
   sandbox.env.SKILLED_LOOP_ID = loopId;
   createRelaunchRecord(sandbox, loopId, 'claude', handoffPath);
-  const watchedArmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+  const watchedRecord = core.readRelaunchFile(loopId, sandbox.env);
+  const watchedArmedAt = watchedRecord.armedAt;
   const transcriptPath = createTranscript(sandbox);
 
   // The re-arm has to land between the killer's own read and its unarm, so it rides the
   // last module call the branch makes before disarming.
   const originalArmedRecordStillCurrent = nudge.armedRecordStillCurrent;
   let rearmedAt = null;
+  let rearmedArmId = null;
   nudge.armedRecordStillCurrent = () => {
     core.preparePending({
       loopId,
@@ -1548,8 +1634,10 @@ test('killer stale branch leaves a re-armed record for the same handoff alone', 
       hops: 0,
       env: sandbox.env,
     });
-    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env });
-    rearmedAt = core.readRelaunchFile(loopId, sandbox.env).armedAt;
+    core.arm({ loopId, cwd: sandbox.repoRoot, env: sandbox.env, now: watchedArmedAt });
+    const rearmed = core.readRelaunchFile(loopId, sandbox.env);
+    rearmedAt = rearmed.armedAt;
+    rearmedArmId = rearmed.armId;
     return false;
   };
 
@@ -1565,10 +1653,12 @@ test('killer stale branch leaves a re-armed record for the same handoff alone', 
       '--timeout-ms', '700',
     ], sandbox.env);
 
-    assert.notEqual(rearmedAt, watchedArmedAt);
+    assert.equal(rearmedAt, watchedArmedAt, 'the re-arm must reuse the watched arm time');
+    assert.notEqual(rearmedArmId, watchedRecord.armId);
     const record = core.readRelaunchFile(loopId, sandbox.env);
     assert.equal(record.status, 'armed', 'the re-armed record must outlive the stale disarm');
     assert.equal(record.armedAt, rearmedAt);
+    assert.equal(record.armId, rearmedArmId);
     const killerLog = readKillerLog(sandbox);
     assert.match(killerLog, /killer-stale/);
     assert.doesNotMatch(killerLog, /killer-signal/);
