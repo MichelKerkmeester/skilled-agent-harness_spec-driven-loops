@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.8.0
+version: 2.7.9.0
 ---
 
 # System Spec Kit
@@ -556,7 +556,7 @@ Five doctor commands wrap the checks this skill owns:
 | `/doctor:runtime-mirrors` | Checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled` and names the repair command |
 | `/doctor:env` | Shows the switches documented in [ENV-REFERENCE.md](./runtime/ENV-REFERENCE.md), plus every other setting in the root `.env.example`, and where each is set, and saves a preference after you approve the exact line |
 | `/doctor:update` | Moves a checkout to a newer spec-kit release: `check`, `align`, a gated `apply`, `rollback`, `record-base` and `compat`, which moves a v3 spec layout to v4 behind two approvals |
-| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop |
+| `/doctor:setup` | Lists every doctor command and target, runs five read-only setup checks, names the repair command for each failing one and shows the last session hop and any unclaimed handoff note |
 
 ---
 

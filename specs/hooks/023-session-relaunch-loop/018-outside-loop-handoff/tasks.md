@@ -60,6 +60,7 @@ contextType: "implementation"
 - [x] T013 Docs: concern, tests, hooks, OpenCode plugins, system-spec-kit and root READMEs; `/speckit:handoff`; feature catalog entry and index; Claude and Pi/OpenCode playbooks; `/doctor:setup` scenario
 - [x] T014 Release notes: v4.0.0.13 and system-spec-kit v2.8.5.0, version bump and Hermes mirror
 - [x] T015 Correct the AI Systems memory that said every session is nudged
+- [x] T016 Doc audit follow-up: the hooks README overview, the `SKILLED_LOOP_ID` and kill-switch rows in ENV-REFERENCE, the `.env.example` relaunch header and kill-switch comment, `hook-flags.env.example`, and the `/doctor:setup` descriptions in the root README, system-spec-kit README and `setup.md`
 <!-- /ANCHOR:phase-3 -->
 
 ---

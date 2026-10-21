@@ -95,7 +95,7 @@ Flags can be set as environment variables **or** in a config file: copy `.skille
 | `SYSTEM_LIVE_SYNC_DISABLED` | unset (enabled) | truthy disable flag | Master switch for the whole live-sync loop: post-commit autosync publish, SessionStart primary reconcile, IDE follower auto-start, and self-heal hook auto-install. No aliases. | `.skilled/scripts/git-hooks/post-commit`, `.skilled/bin/check-git-hooks.sh`, `.skilled/bin/git-primary-reconcile.sh`, `.skilled/bin/git-live-follow.sh` |
 | `SYSTEM_PRIMARY_RECONCILE_DISABLED` | unset (enabled) | truthy disable flag | Disables SessionStart reconciliation of the clean primary live checkout only. Publish, follower, and self-heal legs keep running. No aliases. | `.skilled/bin/git-primary-reconcile.sh` |
 | `SYSTEM_LIVE_FOLLOW_DISABLED` | unset (enabled) | truthy disable flag | Disables the IDE checkout follower auto-start only. The publish and self-heal legs keep running. No aliases. | `.skilled/bin/git-live-follow.sh` |
-| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset (enabled) | truthy disable flag | Disables the session-relaunch hooks: context nudge and stop arm. No aliases. | `.skilled/hooks/session-relaunch/` |
+| `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset (enabled) | truthy disable flag | Disables the session-relaunch hooks: context nudge, stop arm and the Claude compact pointer. No aliases. | `.skilled/hooks/session-relaunch/` |
 | `SPECKIT_AUTOSYNC` | unset (defaults to 1 in wrapper sessions) | truthy flag | Per-launch publish opt-out for the live-sync loop. Wrapper sessions export 1 unless a pre-set 0 overrides it. With `SPECKIT_LIVE_BRANCH` it also lets pre-push update that exact branch without approval. Creating it still needs approval. | `.skilled/bin/worktree-session.sh`, `.skilled/scripts/git-hooks/post-commit` |
 | `SPECKIT_LIVE_BRANCH` | (unset) | string | The live branch a wrapper session publishes its commits to, resolved from the primary checkout. Pre-push lets an update to exactly this branch through the remote gate when `SPECKIT_AUTOSYNC=1`. | `.skilled/bin/worktree-session.sh` |
 
@@ -119,7 +119,7 @@ The session-relaunch concern's tuning variables are read directly by `.skilled/h
 
 | Variable | Set to | Read by |
 |----------|--------|---------|
-| `SKILLED_LOOP_ID` | The wrapper's process id. Its presence marks a session as inside the loop. Unset or empty, no adapter nudges, because only the wrapper can relaunch | Every adapter, the CLI, the killer, which signals only descendants of this process, and the shell shim, which leaves a launch alone once a loop runs |
+| `SKILLED_LOOP_ID` | The wrapper's process id. Its presence marks a session as inside the loop. Unset or empty, the nudge asks only for a note the session keeps with `session-relaunch.cjs keep`, never for `prepare`, because only the wrapper can relaunch | Every adapter, the CLI, the killer, which signals only descendants of this process, and the shell shim, which leaves a launch alone once a loop runs |
 | `SKILLED_LOOP_RUNTIME` | The runtime the wrapper started | The CLI, which records it in the relaunch record, and the Hermes arm path |
 | `SKILLED_LOOP_HOPS` | Relaunches so far in this loop, starting at `0` | The CLI, the nudge and the killer, against `SESSION_RELAUNCH_MAX_HOPS` |
 | `SKILLED_LOOP_MODEL`, `SKILLED_LOOP_PROVIDER` | The first launch's model and provider flags | The wrapper itself, which carries them into the relaunch and the manual command |
