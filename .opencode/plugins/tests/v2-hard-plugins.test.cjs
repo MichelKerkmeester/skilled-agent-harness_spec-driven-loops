@@ -324,7 +324,13 @@ for (const pluginCase of PLUGINS) {
       const plugin = await loadPlugin(pluginCase.file);
       assertPluginDefinition(plugin, pluginCase.name);
 
-      cleanup = await plugin.setup(fixture.context);
+      // An inherited kill switch would turn the registration this case asserts
+      // into a no-op, so neutralise both master switches and the shared flags file.
+      cleanup = await withEnvironment({
+        SYSTEM_HOOKS_DISABLED: undefined,
+        MK_HOOKS_DISABLED: undefined,
+        HOOK_FLAGS_CONFIG: path.join(TEST_ROOT, 'no-such-hook-flags.env'),
+      }, () => plugin.setup(fixture.context));
 
       assert.equal(typeof cleanup, 'function', pluginCase.name + ' setup must return cleanup');
       assert.ok(fixture.registrations.length > 0, pluginCase.name + ' must register v2 hooks');

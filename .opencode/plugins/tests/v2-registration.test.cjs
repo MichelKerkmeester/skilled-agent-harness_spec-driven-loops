@@ -23,6 +23,15 @@ const { readInventory } = require('./helpers/plugin-inventory.cjs');
 const TEST_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'v2-registration-'));
 const GOAL_STATE_DIR = path.join(TEST_ROOT, 'goal-state');
 const ORIGINAL_GOAL_STATE_DIR = process.env.OPENCODE_GOAL_STATE_DIR;
+const HOOK_FLAGS_CONFIG = 'HOOK_FLAGS_CONFIG';
+
+// An inherited kill switch or a hook-flags file would silence every setup this
+// suite asserts on, so clear both before the first setup and restore them after.
+const SAVED_HOOK_ENV = Object.fromEntries(
+  Object.entries(process.env).filter(([key]) => key.endsWith('_DISABLED') || key === HOOK_FLAGS_CONFIG),
+);
+for (const name of Object.keys(SAVED_HOOK_ENV)) delete process.env[name];
+process.env[HOOK_FLAGS_CONFIG] = path.join(TEST_ROOT, 'no-such-hook-flags.env');
 
 process.env.OPENCODE_GOAL_STATE_DIR = GOAL_STATE_DIR;
 
@@ -59,6 +68,10 @@ function createStubContext() {
 }
 
 after(() => {
+  for (const name of Object.keys(process.env)) {
+    if (name.endsWith('_DISABLED') || name === HOOK_FLAGS_CONFIG) delete process.env[name];
+  }
+  Object.assign(process.env, SAVED_HOOK_ENV);
   if (ORIGINAL_GOAL_STATE_DIR === undefined) {
     delete process.env.OPENCODE_GOAL_STATE_DIR;
   } else {
