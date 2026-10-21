@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fe17c805e0c7d4df221393cf2b3b0f16dba9baaaf31372487c6c0e117f83bfc0",
+  "corpusHash": "6bc2f74d1a17756cdf601d2b09a9ced1de63b0f3db57482bf0b217133b67e1b5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25545,
+  "includedPathCount": 25549,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9045,6 +9045,10 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25576,7 +25580,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8d01eb4c92b4a7860e9341709d646cf27cd868d53b9a138d09f8910e17b59cdb",
+  "manifestHash": "2f3c03bc652ba135a9369ec96eebe1605265c8b37236b81737e4f68cb412bc89",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26720,6 +26724,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/047-diagram-corpus-ci/scratch",
       "reason": "excluded directory"
     },
     {

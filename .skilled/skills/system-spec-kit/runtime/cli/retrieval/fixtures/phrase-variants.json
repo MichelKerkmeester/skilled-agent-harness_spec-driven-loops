@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8d01eb4c92b4a7860e9341709d646cf27cd868d53b9a138d09f8910e17b59cdb",
+  "manifestHash": "2f3c03bc652ba135a9369ec96eebe1605265c8b37236b81737e4f68cb412bc89",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -36301,6 +36301,21 @@
     "diagram command router": [
       "diagram command router"
     ],
+    "diagram corpus ci": [
+      "diagram corpus ci"
+    ],
+    "diagram corpus ci implementation summary": [
+      "diagram corpus ci implementation summary"
+    ],
+    "diagram corpus ci plan": [
+      "diagram corpus ci plan"
+    ],
+    "diagram corpus ci tasks": [
+      "diagram corpus ci tasks"
+    ],
+    "diagram corpus version era": [
+      "diagram corpus version era"
+    ],
     "diagram design system": [
       "diagram design system"
     ],
@@ -72594,6 +72609,9 @@
     ],
     "phase 46 final two version proof": [
       "phase 46 final two version proof"
+    ],
+    "phase 47 diagram corpus ci": [
+      "phase 47 diagram corpus ci"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
