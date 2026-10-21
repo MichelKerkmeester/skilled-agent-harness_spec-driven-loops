@@ -29,6 +29,9 @@ const { readStdin } = require('../../shared/hook-adapter-shared.cjs');
 // Codex file-write tools that produce a file worth checking.
 const CODEX_EDIT_TOOLS = new Set(['apply_patch', 'edit']);
 
+// The file-path aliases a payload may use, in the order they are trusted.
+const FILE_PATH_FIELDS = ['file_path', 'filePath', 'path'];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,8 +60,13 @@ function patchPaths(patchText) {
 
 function filePathsFrom(toolInput) {
   if (!toolInput || typeof toolInput !== 'object') return [];
-  const candidate = toolInput.file_path || toolInput.filePath || toolInput.path;
-  if (typeof candidate === 'string' && candidate) return [candidate];
+  // The first string alias wins, not the first truthy one: a non-string
+  // file_path (a number, an object) is not a path at all, and letting it
+  // shadow the alias order would silently drop a valid filePath or path.
+  for (const field of FILE_PATH_FIELDS) {
+    const candidate = toolInput[field];
+    if (typeof candidate === 'string' && candidate) return [candidate];
+  }
   return patchPaths(toolInput.command || toolInput.input || toolInput.patch);
 }
 
