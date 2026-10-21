@@ -127,12 +127,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -152,6 +146,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Since Fixed",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "On main, `039-sk-code-opencode-alignment-audit/review.md` still marked the 35 findings fixed by phases 040, 041 and 042 as \"held: behaviour change awaiting the operator\", in §3, in §2 Totals and in the §5 rows, and 039's implementation summary still said 35 wait on the operator",
     "created_at": "2026-10-21T15:24:01Z",
-    "last_save_at": "2026-10-21T16:17:33.247Z",
+    "last_save_at": "2026-10-21T20:49:00.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50b09897aa45fe8a248035fde9e1378adb2fce9c069d9d58263af5b48dac706b",
+    "source_fingerprint": "sha256:74cb372d5745a84cc421237a52aae1182278460fdc3c982d1fa4fd051c617b3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e5fcbfb59d79ecea3d9ea872f1ec5da60932f8ac1379b95e7fdf25bb16479bf",
+      "spec.md": "8c76387926e6e27b35278b65b4f9a2cea1c5a9a4b206ff2884bfd168642f76fb",
       "plan.md": "4eb8a348b3bb2403e22d5a257623cb0da50b0363700c55b0a1440518c1d761b9",
-      "tasks.md": "bd330371d8d2da9231825e6b56db748308807a47b805ec0b50a6437001e55824",
-      "implementation-summary.md": "d45b9e9caed2c1926ad48e3a97a53863a3c4663ab46dc5005ccbf42c09f041fb"
+      "tasks.md": "f431b88d88261dc8c64164670506c436a300c9deb9972a6e2e9eb8db5270f062",
+      "implementation-summary.md": "b1ce6fe4c0f70f773d8e6ee4e8da5b2be0d7ff134e000206839fe54513a30c9d"
     },
     "last_active_at": null
   }

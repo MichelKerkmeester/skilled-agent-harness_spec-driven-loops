@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-21T17:45:00Z"
     last_updated_by: "orchestrator"
     recent_action: "Reconciled 039's review rows with the 040 to 042 fixes"
-    next_safe_action: "Run recursive strict validation of 082, then push and watch CI"
+    next_safe_action: "None: phase complete"
     blockers: []
     key_files:
       - "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/039-sk-code-opencode-alignment-audit/review.md"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 049-review-rows-reconciliation |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-21 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -73,6 +73,8 @@ The four hook files added after the audit now have rows of their own in batch `b
 | `../graph-metadata.json` | Modified (re-derived) | Re-derived after the parent `spec.md` map and handoff rows changed |
 | `graph-metadata.json` | Modified (re-derived) | Re-derived from this phase's edited docs |
 | `description.json` | Created | This phase's canonical save description, which the scaffold did not include |
+
+The one P1 this phase recorded, `b09-hooks-dispatch-R01`, was later fixed by phase 051, so the review now reads P1 47 confirmed and 47 fixed with none recorded, and the checker reports 323 of 323 rows and 0 open P0/P1.
 <!-- /ANCHOR:what-built -->
 
 ---
