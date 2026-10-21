@@ -323,6 +323,71 @@ function main() {
   }
   assert.match(readGuardLog(cwd), /loop-like repeated dispatch/, 'an iteration marker with a Config: path pointing at a nonexistent file must not bypass loop-repeat counting');
 
+  // --- Config scope: only a config the project owns backs the exemption ---
+
+  // Accepted: a valid deep-loop config that lives inside the project root, named
+  // by an absolute path that still lands inside it.
+  const sessionConfigInside = 'claude-loop-config-inside';
+  const scopedConfigDir = path.join(cwd, 'specs', 'scope', 'review');
+  fs.mkdirSync(scopedConfigDir, { recursive: true });
+  const scopedConfigPath = path.join(scopedConfigDir, 'deep-review-config.json');
+  fs.writeFileSync(scopedConfigPath, JSON.stringify({ mode: 'review', maxIterations: 10 }));
+  clearGuardLog(cwd);
+  for (let i = 1; i <= 5; i += 1) {
+    runHook({
+      tool_name: 'Task',
+      session_id: sessionConfigInside,
+      tool_input: {
+        subagent_type: 'general',
+        prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: ${scopedConfigPath}\nmode=review do it`,
+      },
+      cwd,
+    });
+  }
+  assert.doesNotMatch(readGuardLog(cwd), /loop-like/, 'a valid config inside the project must keep the dispatch command-driven');
+
+  // Rejected: the same config shape at an absolute path outside the project.
+  // Without a project-scope check any JSON file on the machine would exempt a
+  // dispatch, so this path has to keep counting toward the threshold.
+  const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), 'claude-task-guard-outside-'));
+  process.on('exit', () => fs.rmSync(outsideDir, { recursive: true, force: true }));
+  const outsideConfigPath = path.join(outsideDir, 'deep-review-config.json');
+  fs.writeFileSync(outsideConfigPath, JSON.stringify({ mode: 'review', maxIterations: 10 }));
+  const sessionConfigOutside = 'claude-loop-config-outside';
+  clearGuardLog(cwd);
+  for (let i = 1; i <= 3; i += 1) {
+    runHook({
+      tool_name: 'Task',
+      session_id: sessionConfigOutside,
+      tool_input: {
+        subagent_type: 'general',
+        prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: ${outsideConfigPath}\nmode=review do it`,
+      },
+      cwd,
+    });
+  }
+  assert.match(readGuardLog(cwd), /loop-like repeated dispatch/, 'a config at an absolute path outside the project must not exempt the dispatch');
+
+  // Rejected: a symlink inside the project that resolves to that outside config,
+  // so a link cannot launder an outside path into a project-relative one.
+  const symlinkConfigDir = path.join(cwd, 'specs', 'scope', 'symlinked');
+  fs.mkdirSync(symlinkConfigDir, { recursive: true });
+  fs.symlinkSync(outsideConfigPath, path.join(symlinkConfigDir, 'deep-review-config.json'));
+  const sessionConfigSymlinked = 'claude-loop-config-symlinked';
+  clearGuardLog(cwd);
+  for (let i = 1; i <= 3; i += 1) {
+    runHook({
+      tool_name: 'Task',
+      session_id: sessionConfigSymlinked,
+      tool_input: {
+        subagent_type: 'general',
+        prompt: `Agent: @deep-review\nIteration: ${i} of 10\n- Config: specs/scope/symlinked/deep-review-config.json\nmode=review do it`,
+      },
+      cwd,
+    });
+  }
+  assert.match(readGuardLog(cwd), /loop-like repeated dispatch/, 'a symlink inside the project pointing outside it must not exempt the dispatch');
+
   // Prose collisions and impossible bounds do not bypass repeat counting.
   const nearMisses = [
     'This prose mentions STATE SUMMARY but is not an iteration envelope.',

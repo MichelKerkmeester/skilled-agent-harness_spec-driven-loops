@@ -26,13 +26,14 @@ const {
   mkdirSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   renameSync,
   rmdirSync,
   statSync,
   unlinkSync,
   writeFileSync,
 } = require('node:fs');
-const { isAbsolute, join } = require('node:path');
+const { isAbsolute, join, relative, sep } = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -155,24 +156,57 @@ function mismatchDetail(subagentType, registryModes, declaredMode) {
 const STATE_CONFIG_PATH_REGEX = /(?:^|\n)\s*-?\s*Config:\s*(\S+)/i;
 
 /**
+ * Test whether one real path is a descendant of another.
+ *
+ * @param {string} realPath - fully resolved candidate path
+ * @param {string} realRoot - fully resolved root path
+ * @returns {boolean} true when the candidate sits inside the root
+ */
+function isWithinRoot(realPath, realRoot) {
+  const relativePath = relative(realRoot, realPath);
+  return relativePath !== ''
+    && !isAbsolute(relativePath)
+    && relativePath !== '..'
+    && !relativePath.startsWith(`..${sep}`);
+}
+
+/**
  * Resolve the deep-loop config artifact a prompt's "Config:" line names.
  *
+ * Rejecting a literal '..' only blocks the naive escape: any absolute path
+ * would still pass, so a prompt could borrow the command-driven exemption with
+ * any JSON file on the machine carrying a `mode` string and a numeric
+ * `maxIterations`. The config therefore has to live inside the project, and
+ * both sides are resolved through their real paths so a symlink planted inside
+ * the project cannot back the exemption with a file that lives outside it.
+ *
  * @param {string} promptText - raw args.prompt value
- * @param {string} projectDir - project root used to resolve relative paths
- * @returns {string|null} absolute config path, or null when absent or traversing
+ * @param {string} projectDir - project root; relative config paths resolve against it
+ * @returns {string|null} real config path inside the project, or null when the
+ *   project root or the file is missing, or the file resolves outside the project
  */
 function resolveCommandConfigPath(promptText, projectDir) {
   const match = STATE_CONFIG_PATH_REGEX.exec(promptText || '');
   if (!match) return null;
   const rawPath = match[1].trim();
-  if (!rawPath || rawPath.includes('..')) return null;
-  return isAbsolute(rawPath) ? rawPath : join(projectDir || '.', rawPath);
+  if (!rawPath || !projectDir || rawPath.includes('..')) return null;
+
+  try {
+    const realProjectDir = realpathSync(projectDir);
+    const candidatePath = isAbsolute(rawPath) ? rawPath : join(realProjectDir, rawPath);
+    const realConfigPath = realpathSync(candidatePath);
+    return isWithinRoot(realConfigPath, realProjectDir) ? realConfigPath : null;
+  } catch (_) {
+    // A missing project root or config file cannot back an iteration exemption.
+    return null;
+  }
 }
 
 /**
  * Decide whether a prompt looks like a command-owned iteration pack: an
- * in-bounds iteration marker plus a Config: path whose JSON has the deep-loop
- * config shape. It checks shape only, not where the file came from.
+ * in-bounds iteration marker plus a Config: path resolving to a real deep-loop
+ * config that lives inside the project. It checks shape and project ownership,
+ * not who wrote the file.
  *
  * @param {string} promptText - raw args.prompt value
  * @param {string} projectDir - project root used to resolve relative paths
