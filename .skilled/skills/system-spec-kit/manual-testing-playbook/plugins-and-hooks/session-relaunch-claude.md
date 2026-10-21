@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.5.0
+version: 1.0.6.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -49,7 +49,7 @@ Three 2026-10-19 benchmark reports hold the outcomes, operator inputs and eviden
 
 #### Nudge at threshold (Live)
 
-Start a Claude session through `skilled-loop` with a small context window in a repository where the Claude hooks are installed. The nudge fires only inside the loop. Continue turns until the latest assistant usage reaches the configured threshold. Confirm that Claude receives a context nudge with a handoff path and that the nudge level is recorded once in nudge-<session-id>.json. Exit without preparing a note so this check does not request a wrapper hop.
+Start a Claude session through `skilled-loop` with a small context window in a repository where the Claude hooks are installed. Inside the loop the nudge asks for a hop. Continue turns until the latest assistant usage reaches the configured threshold. Confirm that Claude receives a context nudge with a handoff path and that the nudge level is recorded once in nudge-<session-id>.json. Exit without preparing a note so this check does not request a wrapper hop.
 
 ~~~bash
 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 bash .skilled/bin/skilled-loop claude "Tell me when the handoff nudge arrives, then wait."
@@ -369,15 +369,35 @@ node --test .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs
 
 Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
 
-#### No nudge outside skilled-loop (Automatable)
+#### Note-only nudge outside skilled-loop (Automatable)
 
-Run the adapter conformance cases for a session that has no `SKILLED_LOOP_ID`. Each adapter runs a turn at 90% fill with a 0.80 threshold and must add nothing, because only the wrapper can relaunch the session.
+Run the adapter conformance cases for a session that has no `SKILLED_LOOP_ID`. Each adapter runs a turn at 90% fill with a 0.80 threshold. Only the wrapper can relaunch the session, so the nudge must ask for the note and `keep`, never for `prepare`.
 
 ~~~bash
 node --test --test-name-pattern="outside skilled-loop" .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
 ~~~
 
-Evidence: the Claude, Codex, Hermes and OpenCode cases named `a nudge stays silent outside skilled-loop at a fill above the threshold` pass. PASS when all four pass. FAIL when any adapter emits handoff text without a loop id.
+Evidence: the Claude, Codex, Hermes and OpenCode cases named `a nudge outside skilled-loop asks for keep and never prepare` pass. PASS when all four pass. FAIL when any adapter emits a `prepare` command without a loop id, or emits nothing.
+
+#### Keep and the open-notes line (Automatable)
+
+Run the two hop-history cases for a session outside the loop. `keep` must write a `note-kept` line, print the claim command and refuse inside the loop, and `history` must name an open note until it is claimed.
+
+~~~bash
+node --test --test-name-pattern="keep outside the loop|open-notes line" .skilled/hooks/session-relaunch/tests/hop-history.test.cjs
+~~~
+
+Evidence: `keep outside the loop records a note-kept line and prints the claim command` and `history adds an open-notes line until the note is claimed` pass. PASS when both pass. FAIL when `keep` exits 0 inside the loop, writes no `note-kept` line, or `history` omits an open note.
+
+#### Compaction points at the open note (Automatable)
+
+Run the compact-pointer cases. A `SessionStart` payload whose `source` is `compact` must reset the session's nudge level to 0 and add claim instructions for its open note. A fresh start, a session with no open note and a session whose hop is prepared must add nothing.
+
+~~~bash
+node --test --test-name-pattern="compact-pointer" .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+~~~
+
+Evidence: the three tests whose names start with `compact-pointer` pass. PASS when all three pass. FAIL when the pointer claims a note a prepared hop owns, fires on a fresh start, or leaves the nudge level spent.
 
 #### Shell shim resolution (Automatable)
 
@@ -443,12 +463,13 @@ Capture each command exit code. Save the tmux pane, handoff note path and status
 |---|---|
 | .skilled/hooks/session-relaunch/claude/context-nudge.mjs | Reads context usage and emits the threshold and claim-seed context. |
 | .skilled/hooks/session-relaunch/claude/stop-arm.mjs | Arms a matching pending record on Stop. |
+| .skilled/hooks/session-relaunch/claude/compact-pointer.mjs | After a compaction, resets the nudge level and points the session at its open note. |
 | .skilled/hooks/session-relaunch/lib/killer.cjs | Waits for idle or timeout and signals the Claude process. |
 | .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Prepares and updates handoff state, and prints the hop history. |
 | .skilled/hooks/session-relaunch/lib/hop-history.cjs | Records each hop event and sends the opt-in hand-over notice. |
 | .skilled/bin/skilled-loop | Checks relaunch eligibility and starts Claude with a handoff seed. |
 | .skilled/bin/skilled-loop-shell.sh | Starts a plain `claude` launch under the nearest wrapper, a symlinked `.skilled` included. |
-| .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs | Automates the outside-loop silence check for every Node adapter. |
+| .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs | Automates the outside-loop note-only check for every Node adapter. |
 | .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs | Automates the shell shim's resolution and terminal hand-off. |
 | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs | Covers transcript usage reads, settings fallback and I/O handling. |
 | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs | Automates threshold, seed and adapter checks. |

@@ -19,7 +19,7 @@ trigger_phrases:
   - "context handoff to a fresh session"
   - "skilled-loop shell shim"
   - "symlinked .skilled relaunch"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Session relaunch loop (skilled-loop)
@@ -40,7 +40,7 @@ An automatic adapter asks for a note near its context threshold, validates and p
 
 Claude's context-nudge handles PostToolUse and UserPromptSubmit. It reads the latest main-chain assistant usage and compares it with the configured threshold. The default is 0.80. One additional nudge fires 0.05 above that level. Each level fires once. The text opens with the measured fill as `Context is about N% full`. Once the ratio passes 1 it names the overflow as `past the configured window (over 100% full)` instead, so an over-wide window reads as overflow rather than as a percentage above 100. It then offers the shortcut before the steps: `If the remaining work fits in a few more steps, finish it instead and skip these steps.` Otherwise the handoff steps come first, before any other work. It accepts session ids matching [A-Za-z0-9_-]{1,128}. Transcript read errors produce no usage. Failed Claude settings reads are treated as absent while the resolver checks its next source or model default. If the operator says not to hand off, the nudge yields and the session keeps working. Auto-compaction remains the fallback.
 
-Every adapter asks the same questions before it nudges. Outside skilled-loop, with `SKILLED_LOOP_ID` unset or empty, no adapter nudges. Prepare could only print a manual claim command there, so a nudged session would stop and wait for a hand-off nobody runs. It keeps working instead, and auto-compaction stays the fallback. A pending record for this session silences the nudge. So does an armed one, until it passes its age limit, because the handoff work is already done. The limit is `SESSION_RELAUNCH_MAX_AGE_MIN`, read from the hook config file and then the environment, as the wrapper reads it. Past that limit the wrapper would decline the record as stale, so the nudge resumes instead of waiting on a relaunch that cannot happen. At the hop cap no adapter nudges, because a prepare there can only decline. A re-nudge also keeps the note path the session already has open: the shared planner returns that session's existing `status: open` note and only otherwise builds a timestamped path.
+Every adapter asks the same questions before it nudges. Outside skilled-loop, with `SKILLED_LOOP_ID` unset or empty, the nudge never asks for prepare, because prepare could only print a manual claim command there and a session that stopped would wait for a hand-off nobody runs. It says the session cannot relaunch and asks for the same note, a continuity save when a packet is bound, and `session-relaunch.cjs keep`. `keep` validates the note, appends a `note-kept` line to the hop history, prints the claim and complete commands and exits 0, so the session keeps working with its exact decisions on disk. Outside the loop, an open note this session wrote silences further nudges until the note is claimed. Inside the loop `keep` exits 2. On Claude Code a `SessionStart` hook, `compact-pointer.mjs`, runs after each compaction: it resets the session's nudge level so the next fill nudges again, and it adds claim instructions for the session's open note unless a prepared hop owns it. Inside the loop a pending record for this session silences the nudge. So does an armed one, until it passes its age limit, because the handoff work is already done. The limit is `SESSION_RELAUNCH_MAX_AGE_MIN`, read from the hook config file and then the environment, as the wrapper reads it. Past that limit the wrapper would decline the record as stale, so the nudge resumes instead of waiting on a relaunch that cannot happen. Inside the loop, at the hop cap no adapter nudges, because a prepare there can only decline. A re-nudge also keeps the note path the session already has open: the shared planner returns that session's existing `status: open` note and only otherwise builds a timestamped path.
 
 Both `prepare` and `claim` require `--session <id>`. Only Claude can use `CLAUDE_CODE_SESSION_ID` instead. `CLAUDE_PID` supplies the runtime process id for the shell-child check, and the Claude Stop hook keeps it as the killer target while it descends from the loop. Runtimes without a session-id variable generate an id with `uuidgen` and reuse it for the session.
 
@@ -92,7 +92,7 @@ Cursor ships on the command trigger because its evidence is source-only and `sto
 
 ### Hop History
 
-Each hop appends one tab-separated line to `.skilled/skills/.state/session-relaunch/hop-history.log`, a gitignored file that persists, unlike the temporary `relaunch.log`. The wrapper's relaunch decision writes `handed-over` with the hop number, the receiving session's claim and completion write `claimed` and `done`, and a killer timeout writes `timed-out`. Each line carries the runtime, the session folder and the first line of the note's Goal. `session-relaunch.cjs history [--last <count>]` prints the latest lines, and `/doctor:setup` shows the last one without changing its status. `SESSION_RELAUNCH_NOTIFY_HOPS=1` adds a macOS notice for each hand-over and is off by default.
+Each hop appends one tab-separated line to `.skilled/skills/.state/session-relaunch/hop-history.log`, a gitignored file that persists, unlike the temporary `relaunch.log`. The wrapper's relaunch decision writes `handed-over` with the hop number, the receiving session's claim and completion write `claimed` and `done`, and a killer timeout writes `timed-out`. Each line carries the runtime, the session folder and the first line of the note's Goal. A session outside the loop that keeps its note writes `note-kept`. `session-relaunch.cjs history [--last <count>]` prints the latest lines, and `/doctor:setup` shows the last one without changing its status. Both add an `open notes:` line while any handoff note is still open, naming the count and the oldest note. `SESSION_RELAUNCH_NOTIFY_HOPS=1` adds a macOS notice for each hand-over and is off by default.
 
 ---
 ## 3. SOURCE FILES
@@ -104,6 +104,7 @@ Each hop appends one tab-separated line to `.skilled/skills/.state/session-relau
 | .skilled/hooks/session-relaunch/lib/hop-history.cjs | Lib | Appends hop events to the persistent hop history, reads it back and shows the optional hand-over notice. |
 | .skilled/hooks/session-relaunch/claude/context-nudge.mjs | Handler | Reads hook input and returns threshold or claim-seed context. |
 | .skilled/hooks/session-relaunch/claude/stop-arm.mjs | Handler | Arms a matching prepared record on Stop and starts the killer. |
+| .skilled/hooks/session-relaunch/claude/compact-pointer.mjs | Handler | After a compaction, resets the nudge level and adds claim instructions for the session's open note. |
 | .skilled/hooks/session-relaunch/codex/prompt-seed.mjs | Handler | Answers `[session-relaunch]` seeds and runs the nudge check on UserPromptSubmit. |
 | .skilled/hooks/session-relaunch/codex/context-nudge.mjs | Handler | Runs the rollout-usage threshold check on PostToolUse. |
 | .skilled/hooks/session-relaunch/codex/shared.mjs | Shared | Shared payload, threshold and emit logic for the Codex entry points. |
@@ -113,7 +114,7 @@ Each hop appends one tab-separated line to `.skilled/skills/.state/session-relau
 | .hermes/plugins/repo-guards/__init__.py | Handler | Bridges Hermes plugin hooks to the adapters and keeps per-session usage. |
 | .skilled/hooks/session-relaunch/pi/session-relaunch.ts | Handler | Sends context nudges, injects a relaunch seed, arms Pi records and resolves the killer path from repository subdirectories. |
 | .opencode/plugins/session-relaunch.js | Handler | Queues OpenCode nudge or seed text for a system transform and arms a matching record on idle. |
-| .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Script | Validates notes, prepares records and updates note status. |
+| .skilled/hooks/session-relaunch/bin/session-relaunch.cjs | Script | Validates notes, prepares records, keeps a note outside the loop and updates note status. |
 | .skilled/hooks/session-relaunch/lib/context-usage.cjs | Shared | Reads Claude and Codex transcript usage, calculates Pi, OpenCode and Hermes token fills and resolves context windows. |
 | .skilled/hooks/session-relaunch/lib/nudge.cjs | Shared | Builds the nudge and seed text, parses the note path, threshold and Gate 3 seed suffix. It also owns per-session level state. |
 | .skilled/hooks/session-relaunch/lib/relaunch-core.cjs | Shared | Validates handoffs and handles relaunch and note state. |
@@ -127,8 +128,8 @@ Each hop appends one tab-separated line to `.skilled/skills/.state/session-relau
 
 | File | Type | Role |
 |---|---|---|
-| .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Node test | Checks hop history lines, the history command and the off-by-default notice. |
-| .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs | Node test | Checks Claude nudge and Stop adapter behavior. |
+| .skilled/hooks/session-relaunch/tests/hop-history.test.cjs | Node test | Checks hop history lines, `keep`, the open-notes line, the history command and the off-by-default notice. |
+| .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs | Node test | Checks Claude nudge, Stop and compact-pointer adapter behavior. |
 | .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs | Node test | Checks Codex seed, threshold, arming and registration behavior. |
 | .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs | Node test | Checks Hermes usage, seed, window sources, arming and pid lookup. |
 | .skilled/hooks/session-relaunch/tests/nudge.test.cjs | Node test | Checks the shared nudge text, levels and seed parsing. |

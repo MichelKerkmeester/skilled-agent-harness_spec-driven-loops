@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 17 of 17 |
 | **Predecessor** | 016-handover-trigger-review |
-| **Successor** | None |
+| **Successor** | 018-outside-loop-handoff |
 | **Handoff Criteria** | Every row in `acceptance-criteria.md` is Met, the session-relaunch suite passes and strict validation of this folder prints `RESULT: PASSED`. |
 <!-- /ANCHOR:metadata -->
 

@@ -842,8 +842,11 @@ describe('session-relaunch Pi extension conformance', () => {
     expect(text).toBe('');
   });
 
-  it('a nudge stays silent outside skilled-loop at a fill above the threshold', async () => {
-    expect(await nudgeAtNinety(() => { delete process.env.SKILLED_LOOP_ID; })).toBe('');
+  it('a nudge outside skilled-loop asks for keep and never prepare', async () => {
+    const text = await nudgeAtNinety(() => { delete process.env.SKILLED_LOOP_ID; });
+    expect(text).toContain(' keep --handoff ');
+    expect(text).toContain("--runtime 'pi'");
+    expect(text).not.toContain(' prepare --handoff');
   });
 
   it('a nudge stays silent at the hop cap', async () => {
