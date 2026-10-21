@@ -4,6 +4,6 @@
 
  Test Files  1 passed (1)
       Tests  124 passed (124)
-   Start at  10:45:16
-   Duration  362ms (tests 51%, transform 28%, import 19%, worker 2%)
+   Start at  11:31:55
+   Duration  213ms (tests 53%, transform 26%, import 19%, worker 2%)
 

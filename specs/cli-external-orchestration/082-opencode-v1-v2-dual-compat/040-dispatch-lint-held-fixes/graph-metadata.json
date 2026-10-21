@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -180,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +196,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Pi preflight decides with `inspectDispatch`, which returns `none` for `echo \"$(codex exec task)\"` (its expansion check wants a print flag Codex does not have) and for wrapped calls such as `nohup opencode run ...` or `command codex exec task`, so those dispatches skip authorization and every hard rule",
     "created_at": "2026-10-21T04:55:14Z",
-    "last_save_at": "2026-10-21T08:49:09.418Z",
+    "last_save_at": "2026-10-21T09:38:22.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe6813fd7fdb4fbdeae9cc4bad0ac124af112739b1ee8de9d1cd1945702c47de",
+    "source_fingerprint": "sha256:f53ff6c0949b6ea7d7e60fd736bac789d93d3e968e46c3ff1e5c1645f6ba80c5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6e3c0ff239767a1b63bd9e30dc617960d667371d7d4471f4cc90fea6766c775",
+      "spec.md": "2a75bff37234d619c81b9f0d065b1de56ca81d666fc8bcc1384179f6a65b4260",
       "plan.md": "c6f41077336c2ca7b0d34250609d1384f1c680ddd22e02749ce8979e097db120",
-      "tasks.md": "6c12ac93ce62ad897ef9fc416279873170e8f0d407ed7f4d0901f4cfae99041e",
-      "implementation-summary.md": "edd92d031494ae136d5456edbf332a22f5ac7d2159118750ed35c4375f290123"
+      "tasks.md": "44059d76d8606d7ffcd542251daac4184817828ff344f0c1ed95c617d2a5c701",
+      "implementation-summary.md": "98859f8faa529dcee47681d541ca36365b1ae9b4f471cd0c4f97e559afd29edd"
     },
     "last_active_at": null
   }

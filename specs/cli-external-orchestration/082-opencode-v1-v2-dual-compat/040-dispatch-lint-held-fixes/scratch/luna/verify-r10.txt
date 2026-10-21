@@ -1,0 +1,6 @@
+VERDICTS
+Use cli-devin. Never use devin. | CLOSED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:351-354` matches the refusal to the executor identity; the Node probe returns `deny=true`.
+$(echo ")" cli-devin) | CLOSED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:199-235` ignores the quoted `)`; the Node probe returns `deny=true`.
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:199-207 | P1 | $(echo "`printf ")"`" cli-devin) | The quote inside the backtick clears the outer quote state, so `)` closes the substitution depth before `cli-devin`; the guard returns `deny=false` for shell syntax accepted by `bash -n`. | Track and restore the enclosing quote state around backtick content, then cover this phrasing with a regression case.
+VERDICT: FAIL
