@@ -813,16 +813,25 @@ test('a dispatch is resolved from the command, not from text that merely contain
     // A redirect whose target is a quoted variable is what every capture in the playbook
     // uses, and it made the tokenizer lose the command.
     ['output captured to a variable path', `OUT=/tmp/o.txt\n${dispatch} > "$OUT"`],
+    // Writing a heredoc is data, but a body the same call runs is that call's command list.
+    // Two shapes run it: fed to a shell, and written to a script the call then runs. Reading
+    // neither let a dispatch inside them skip every hard rule.
+    ['heredoc fed to bash', `bash <<'EOF'\n${dispatch} </dev/null\nEOF`],
+    ['heredoc piped to sh', `cat <<'EOF' | sh\n${dispatch} </dev/null\nEOF`],
+    ['heredoc script made executable and run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nchmod +x run.sh && ./run.sh`],
+    ['heredoc teed then sourced', `tee run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nsource run.sh`],
+    ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
   ];
   for (const [label, cmd] of govern) {
     assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-hermes', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [
-    // A heredoc body is data the call writes, never commands it runs. Writing a script that
-    // dispatches is not dispatching, and refusing it blocked real work.
+    // A heredoc body the call only writes is data: no shell is fed it, and no later part of
+    // the call runs the file it was written to.
     ['heredoc writing a script', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF`],
-    ['heredoc then running the script', `cat > run.sh <<'EOF'\n${dispatch}\nEOF\nbash run.sh`],
+    ['heredoc script written, another script run', `cat > run.sh <<'EOF'\n${dispatch} </dev/null\nEOF\nbash other.sh`],
+    ['heredoc fed to node', `node <<'EOF'\nconsole.log("${dispatch}")\nEOF`],
     ['heredoc documenting it', `python3 - <<'PY'\nshape = "${dispatch}"\nPY`],
     ['prose quoting it', `echo "the ${dispatch} form is auditable"`],
     ['grep for the text', `grep -rn "${dispatch}" docs/`],

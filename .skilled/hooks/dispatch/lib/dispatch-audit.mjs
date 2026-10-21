@@ -465,11 +465,108 @@ const MAX_UNWRAP_DEPTH = 4;
  * @param {string} command - raw command text.
  * @returns {{skill: string, packetPath: string} | null}
  */
-// A heredoc body is data the call WRITES, never commands the call runs, so a dispatch
-// inside one must not be read as a dispatch. Stripping it first is what separates
-// "write a script that dispatches" from "dispatch".
+// A heredoc body is usually data the call WRITES, so a dispatch inside one must not be read
+// as a dispatch: stripping it first is what separates "write a script that dispatches" from
+// "dispatch". The body is commands the call RUNS when the same call also feeds it to a shell
+// (`bash <<EOF`, `cat <<EOF | sh`) or writes it to a script it then runs
+// (`cat > run.sh <<EOF` ... `bash run.sh`). Those two shapes resolved to nothing, so a
+// dispatch inside them skipped every hard rule. Stripping keeps the written case;
+// executedHeredocBodies recovers the run one.
 function stripHeredocBodies(command) {
   return command.replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1[\s\S]*?^\s*\2\s*$/gm, '<<HEREDOC');
+}
+
+// The `<<EOF`, `<<-EOF`, `<<'EOF'` and `<<"EOF"` grammar stripHeredocBodies matches, read one
+// heredoc at a time so the introducing line, the body and the lines after it stay available.
+const HEREDOC_INTRODUCER = /<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/g;
+const HEREDOC_SHELLS = new Set(['bash', 'sh', 'zsh', 'dash']);
+// The introducing line writes the body to a file with either `cat > PATH` (also `>>`, and the
+// `cat <<EOF > PATH` order once the introducer is removed) or `tee PATH` (also `tee -a`).
+const HEREDOC_WRITE_PATTERNS = [
+  /(?:^|[\s;&|()])(?:[^\s;&|()]*\/)?cat\s+(?:-[A-Za-z-]+\s+)*(?:>>?)\s*(?:"([^"]+)"|'([^']+)'|([^\s;&|()<>]+))/,
+  /(?:^|[\s;&|()])(?:[^\s;&|()]*\/)?tee\s+(?:-[A-Za-z-]+\s+)*(?:"([^"]+)"|'([^']+)'|([^\s;&|()<>]+))/,
+];
+
+// `./run.sh` and `run.sh` are the same file, and a quoted path is the same path.
+function comparablePath(value) {
+  return value.replace(/^(['"])([\s\S]*)\1$/, '$2').replace(/^\.\//, '');
+}
+
+function commandWords(text) {
+  return tokenizeShell(text).segments.flat();
+}
+
+// `bash <<EOF` and `sh -s <<EOF` read the body from stdin, so every argument before the `<<`
+// is a flag: `bash script.sh <<EOF` feeds the body to the SCRIPT, not to the shell.
+// `cat <<EOF | sh` reaches a shell through a pipe instead.
+function heredocFeedsShell(prefix, restOfLine) {
+  const words = commandWords(prefix);
+  let index = 0;
+  while (index < words.length && isAssignmentToken(words[index])) index += 1;
+  const commandWord = words[index];
+  if (commandWord && HEREDOC_SHELLS.has(basename(commandWord.value))
+    && words.slice(index + 1).every((word) => word.value.startsWith('-'))) {
+    return true;
+  }
+  return /\|\s*(?:\/[^\s;&|]*\/)?(?:bash|sh|zsh|dash)\b/.test(restOfLine);
+}
+
+// The file the introducing line writes the body to, or null when it writes no file.
+function heredocWriteTarget(introducingLine) {
+  const withoutIntroducer = introducingLine
+    .replace(/<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\1/, '');
+  for (const pattern of HEREDOC_WRITE_PATTERNS) {
+    const match = withoutIntroducer.match(pattern);
+    const target = match && (match[1] ?? match[2] ?? match[3]);
+    if (target) return comparablePath(target);
+  }
+  return null;
+}
+
+// `bash run.sh`, `source run.sh`, `. run.sh`, `./run.sh` and a bare `run.sh` all run the file.
+function heredocRunsPath(tail, target) {
+  return shellSegments(tail).some((segment) => {
+    const words = commandWords(segment);
+    if (words.length === 0) return false;
+    if (words.length >= 2 && HEREDOC_SHELLS.has(basename(words[0].value))) {
+      if (comparablePath(words[1].value) === target) return true;
+    }
+    if (words.length >= 2 && (words[0].value === 'source' || words[0].value === '.')) {
+      if (comparablePath(words[1].value) === target) return true;
+    }
+    return comparablePath(words[0].value) === target;
+  });
+}
+
+// Every heredoc body the same call runs, in command order. A body that is only written stays
+// out: no shell is fed it, and no later part of the call runs the file it was written to.
+function executedHeredocBodies(command) {
+  const bodies = [];
+  let searchFrom = 0;
+  for (;;) {
+    HEREDOC_INTRODUCER.lastIndex = searchFrom;
+    const introducer = HEREDOC_INTRODUCER.exec(command);
+    if (!introducer) return bodies;
+    const lineStart = command.lastIndexOf('\n', introducer.index) + 1;
+    const introducerEnd = introducer.index + introducer[0].length;
+    const lineBreak = command.indexOf('\n', introducerEnd);
+    if (lineBreak === -1) return bodies;
+    const closing = new RegExp(`^[ \\t]*${introducer[2]}[ \\t]*$`, 'm')
+      .exec(command.slice(lineBreak + 1));
+    if (!closing) return bodies;
+    const bodyStart = lineBreak + 1;
+    const bodyEnd = bodyStart + closing.index;
+    const regionEnd = bodyEnd + closing[0].length;
+    const introducingLine = command.slice(lineStart, lineBreak);
+    const writeTarget = heredocWriteTarget(introducingLine);
+    const feedsShell = heredocFeedsShell(
+      command.slice(lineStart, introducer.index),
+      command.slice(introducerEnd, lineBreak),
+    );
+    const runsWritten = writeTarget !== null && heredocRunsPath(command.slice(regionEnd), writeTarget);
+    if (feedsShell || runsWritten) bodies.push(command.slice(bodyStart, bodyEnd));
+    searchFrom = regionEnd;
+  }
 }
 
 // Split on shell separators that sit outside quotes. A wrapper unwrap is anchored to the
@@ -562,17 +659,31 @@ function resolveSegment(segment, redirectionsStripped = false) {
  * @returns {Array<{skill: string, packetPath: string}>} one entry per distinct dispatch, in command order.
  */
 export function resolveDispatchPackets(command) {
+  return resolvePacketList(command, true);
+}
+
+// An executed heredoc body is resolved one level down: a heredoc inside that body is data the
+// inner call writes unless that inner call runs it too, and reading it there would need the
+// same evidence this level already refuses to assume.
+function resolvePacketList(command, readExecutedHeredocs) {
   const raw = typeof command === 'string' ? command : '';
   if (!raw) return [];
   const packets = [];
   const seen = new Set();
-  for (const segment of shellSegments(stripHeredocBodies(raw))) {
-    const skill = resolveSegment(segment);
-    if (!skill || seen.has(skill)) continue;
+  const add = (skill) => {
+    if (!skill || seen.has(skill)) return;
     const entry = DISPATCH_SHAPES.find((d) => d.skill === skill);
-    if (!entry) continue;
+    if (!entry) return;
     seen.add(skill);
     packets.push(entry);
+  };
+  for (const segment of shellSegments(stripHeredocBodies(raw))) {
+    add(resolveSegment(segment));
+  }
+  if (readExecutedHeredocs) {
+    for (const body of executedHeredocBodies(raw)) {
+      for (const entry of resolvePacketList(body, false)) add(entry.skill);
+    }
   }
   return packets;
 }
