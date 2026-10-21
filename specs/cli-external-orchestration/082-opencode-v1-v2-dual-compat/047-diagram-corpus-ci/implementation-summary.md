@@ -107,6 +107,8 @@ The diff went to a read-only DeepSeek v4.1 flash max review, which returned PASS
 | Recursive strict validation of 082 before the push | 48 of 48 folders print `RESULT: PASSED` |
 | Diagram Corpus on CI at the pushed commit | success, run `39611546340` on `bfa19a5b9f` |
 
+The review was a separate read-only DeepSeek v4.1 flash session run through `cli-pi` on `llmgateway`, and Luna was not used, because the operator moved review to DeepSeek on 2026-10-21 and kept Luna as a fallback only.
+
 ### CI
 
 The fix reached main at `bfa19a5b9f`, and every workflow below succeeded on that commit.

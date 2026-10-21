@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Phase 046 proved all 17 plugins live on OpenCode 1.19.3 and 2.0.32, but it did so at `eb0c18f7e9`",
     "created_at": "2026-10-21T21:14:40Z",
-    "last_save_at": "2026-10-21T21:49:06.598Z",
+    "last_save_at": "2026-10-21T22:16:56.660Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12a5e15e7f66cb381b7779a758c024c84d3ca22cc27a3cfb92f6b0fdddd314c4",
+    "source_fingerprint": "sha256:b0e65db19458b44d2efeb705ac49fea1b49e381f2daae596b4f2354859990ab4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8afecd4eefafb0d09e229bb10107dbe0c566693d64c11a60363224f17ff79492",
       "plan.md": "7c9ed31528f2c206b01c6fac0673a0c91ca75672d53af3b1c78aacdcd88f7164",
       "tasks.md": "a1ba5a5ae4faa62511f8e24ea8970a793d75aa1ad493f7126ea89d2083ce2dae",
-      "implementation-summary.md": "3ebe24951a54d59100456c1fc1ffca244b89fc97a1a782e1b78a01c99b263f2e"
+      "implementation-summary.md": "8abc27526d1061976fbd4daa0d40117a3643a7e7d401dac25e0644dbe6a1ef32"
     },
     "last_active_at": null
   }

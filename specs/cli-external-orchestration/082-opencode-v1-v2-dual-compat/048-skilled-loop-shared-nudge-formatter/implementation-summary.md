@@ -109,6 +109,8 @@ Verification moved from 4 same and 4 DIFF to 8 same and 0 DIFF. The wrapper suit
 | Shared v2 service | PID 46220, unchanged - `scratch/after/pid46220-before.txt` |
 | DeepSeek v4.1 flash max read-only review | PASS, no P0 or P1, 2 P2; both fixed in `1159acb5c5` |
 | Strict validation of this packet | PASSED - `validate.sh 048-skilled-loop-shared-nudge-formatter --strict` |
+
+The review was a separate read-only DeepSeek v4.1 flash session run through `cli-pi` on `llmgateway`, and Luna was not used, because the operator moved review to DeepSeek on 2026-10-21 and kept Luna as a fallback only.
 <!-- /ANCHOR:verification -->
 
 ---

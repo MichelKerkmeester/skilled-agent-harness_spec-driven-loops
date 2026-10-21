@@ -135,6 +135,14 @@ Every v2 run used `--standalone`, so the shared OpenCode 2 service was never tou
 | Shared OpenCode 2 service | PASS: every v2 run used `--standalone`, and PID 46220 was never stopped, started or attached to |
 | Strict validation of this folder | `validate.sh 053-final-commit-live-proof --strict` - `RESULT: PASSED` |
 | CI at the pushed commit | PASS: `8defbc7543` (10 workflows success) and `79a173af82` (Spec-Kit Check 39679887416 success) |
+
+This phase was checked by orchestrator reruns only: the sentinel block was rerun once and every verdict was read from the evidence in the same session, with no separate read-only review. Luna was not used, because the operator moved review to DeepSeek v4.1 flash on 2026-10-21 and kept Luna as a fallback only.
+
+### Final-commit CI
+
+On the final main commit `4c335d99c5`, all 13 workflows that ran passed, among them Spec-Kit Check `39682370804`, OpenCode Plugin Tests `39682370814` and Hook Node Tests `39682370700`, and Trigger Index Rebuild was skipped on its own rebuild commit.
+
+This is a recorded deviation from the goal's "every workflow succeeds on the final main commit", because the path-filtered workflows do not run on a docs-only commit at all. OpenCode Dual-Version Battery, which has no `workflow_dispatch` trigger, last ran and passed on `48efc4f6cc`, the last commit that changed files on its paths.
 <!-- /ANCHOR:verification -->
 
 ---
