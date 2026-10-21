@@ -43,8 +43,10 @@ const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
 // A mention authorizes only inside a sentence that carries no negation or refusal word, before
 // or after it. `anything but`, `everything but` and `all but` name the mention only as the thing
-// to avoid, so they refuse in the same way a negation word does.
-const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|avoids|avoided|avoiding|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|stops|stopped|stopping|skip|skips|skipped|skipping|refuse|refuses|refused|refusing|ban|bans|banned|banning|drop|drops|dropped|dropping|forget|forgets|forgot|forgetting|exclude|excludes|excluded|excluding|forbid|forbids|forbade|forbidding|forbidden|prohibit|prohibits|prohibited|prohibiting|disallow|disallows|disallowed|disallowing|block|blocks|blocked|blocking|prevent|prevents|prevented|preventing|reject|rejects|rejected|rejecting|deny|denies|denied|denying|veto|vetoes|vetoed|vetoing|cease|ceases|ceased|ceasing|quit|quits|quitting|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|off-limits|off limits|anything but|everything but|all but)\b/i;
+// to avoid, so they refuse in the same way a negation word does. The list nouns (`prohibition`,
+// `blocklist`, `denylist`) refuse without any verb, and `w/o` refuses because a reader expands
+// it to `without`; it is matched as a token, so the slash is never read as a word boundary.
+const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|avoids|avoided|avoiding|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|stops|stopped|stopping|skip|skips|skipped|skipping|refuse|refuses|refused|refusing|ban|bans|banned|banning|drop|drops|dropped|dropping|forget|forgets|forgot|forgetting|exclude|excludes|excluded|excluding|forbid|forbids|forbade|forbidding|forbidden|prohibit|prohibits|prohibited|prohibiting|disallow|disallows|disallowed|disallowing|block|blocks|blocked|blocking|prevent|prevents|prevented|preventing|reject|rejects|rejected|rejecting|deny|denies|denied|denying|veto|vetoes|vetoed|vetoing|cease|ceases|ceased|ceasing|quit|quits|quitting|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|off-limits|off limits|anything but|everything but|all but|prohibition|prohibitions|blocklist|blocklisted|blacklist|blacklisted|denylist|denylisted|w\/o|nope|nah|scratch that|never mind|cancel|cancelled|canceled)\b/i;
 const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|hermes|jev)';
 // The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
 // `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
@@ -218,6 +220,35 @@ function mentionSentence(text: string, mentionIndex: number): string {
   return text.slice(start, end);
 }
 
+/** The sentence after the mention's own sentence, or `''` when the mention's sentence is the last
+ * one. It reads the same terminator `mentionSentence` does, so only a refusal in the sentence that
+ * follows the mention can retract it and a refusal further away cannot. */
+function followingSentence(text: string, mentionIndex: number): string {
+  const terminators = new RegExp(SENTENCE_TERMINATOR_PATTERN.source, 'g');
+  let start = -1;
+  for (let match = terminators.exec(text); match; match = terminators.exec(text)) {
+    if (match.index < mentionIndex) continue;
+    start = match.index + 1;
+    break;
+  }
+  if (start === -1) return '';
+  let end = text.length;
+  for (let match = terminators.exec(text); match; match = terminators.exec(text)) {
+    end = match.index;
+    break;
+  }
+  return text.slice(start, end);
+}
+
+/** True when a sentence names an executor: a `cli-` word, or any word the registry maps to a skill.
+ * A refusal that names an executor governs that name rather than the sentence before it, so
+ * `Use cli-devin. Never use codex.` still asks for `cli-devin`. Every alias spelling decides it,
+ * because `executorSkill` resolves them all to one skill. */
+function namesExecutor(sentence: string): boolean {
+  if (/\bcli-/i.test(sentence)) return true;
+  return sentence.split(/[^\w-]+/).some((word) => word !== '' && executorSkill(word) !== null);
+}
+
 /** True only for a whole sentence that is `not <other>, use <mention>` or `not <other> but <mention>`
  * where the two names resolve to different executors. Every spelling of one executor (`claude`,
  * `claude-code`, `cli-claude-code`) resolves to one skill, so refusing any spelling refuses the
@@ -236,18 +267,25 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
 /** A mention authorizes only inside a sentence that carries no negation or refusal word, before
  * or after it; `not <other>, use <executor>` and `not <other> but <executor>` are the only
  * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
- * the operator writes the request as its own sentence. Every curly and low quote reads as the
- * straight quote it stands in for, so a mention the operator quoted is refused whichever form
- * the pair mixes, and an apostrophe inside a word is a contraction rather than a delimiter.
- * The substitution swaps one character for one character, so indexes into the original text
- * still address the same characters. */
+ * the operator writes the request as its own sentence. The operator can also withdraw a request
+ * one sentence later, so the one sentence that follows the mention's own is read too: when it
+ * carries a refusal and names no executor, the mention is not usable. Only that one sentence is
+ * read, and a refusal there that names an executor governs that name instead, so
+ * `Use cli-devin. Never use codex.` stays a request for `cli-devin`. Every curly and low quote
+ * reads as the straight quote it stands in for, so a mention the operator quoted is refused
+ * whichever form the pair mixes, and an apostrophe inside a word is a contraction rather than a
+ * delimiter. The substitution swaps one character for one character, so indexes into the
+ * original text still address the same characters. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
   if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(text, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();
-  if (!REFUSAL_PATTERN.test(sentence)) return true;
-  return isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)));
+  if (REFUSAL_PATTERN.test(sentence)) {
+    if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
+  }
+  const retraction = followingSentence(text, mentionIndex).trim();
+  return retraction === '' || !REFUSAL_PATTERN.test(retraction) || namesExecutor(retraction);
 }
 
 function hasExplicitModeOverride(userText: string, skill: string): boolean {

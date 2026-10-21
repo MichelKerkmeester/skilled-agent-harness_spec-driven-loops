@@ -1,0 +1,49 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (192 tests | 8 failed | 82 skipped) 13ms
+   ❯ Pi refusal phrasings (110)
+     × prohibition on cli-devin 3ms
+     × blocklist cli-devin 0ms
+     × w/o cli-devin 0ms
+     × cli-devin: nope 0ms
+     × cli-devin? No. 0ms
+     × Use cli-devin. Actually, no. 0ms
+     × Use cli-devin. Never mind. 0ms
+     × Run cli-devin! Scratch that. 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prohibition on cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > blocklist cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > w/o cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin: nope
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > cli-devin? No.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Actually, no.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Use cli-devin. Never mind.
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > Run cli-devin! Scratch that.
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:320:49
+    318|     ['Use cli-devin. Then report back.', false],
+    319|   ])('%s', (userText, expected) => {
+    320|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    321|   });
+    322| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 102 passed | 82 skipped (192)
+   Start at  10:42:17
+   Duration  177ms (transform 54%, import 28%, tests 16%, worker 3%)
+
+b27-retraction: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

@@ -300,6 +300,22 @@ describe('Pi refusal phrasings', () => {
     ['Never use codex. Use cli-devin', false],
     ['Skip the tests! Run cli-devin', false],
     ["it's fine to use cli-devin", false],
+    // A list noun refuses without a verb next to the mention.
+    ['prohibition on cli-devin', true],
+    ['blocklist cli-devin', true],
+    // `w/o` expands to `without`, so the token refuses the way the full word does.
+    ['w/o cli-devin', true],
+    // A bare refusal after the mention reads as its answer.
+    ['cli-devin: nope', true],
+    // The one sentence after the mention can withdraw the request the mention's sentence made.
+    ['cli-devin? No.', true],
+    ['Use cli-devin. Actually, no.', true],
+    ['Use cli-devin. Never mind.', true],
+    ['Run cli-devin! Scratch that.', true],
+    // A refusal in that sentence that names an executor governs that name instead, and a
+    // sentence with no refusal word leaves the request standing.
+    ['Use cli-devin. Never use codex.', false],
+    ['Use cli-devin. Then report back.', false],
   ])('%s', (userText, expected) => {
     expect(denied('devin -p "task"', userText)).toBe(expected);
   });
