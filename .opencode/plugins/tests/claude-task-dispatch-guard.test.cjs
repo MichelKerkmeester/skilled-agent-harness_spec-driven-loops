@@ -110,29 +110,88 @@ function decisionOf(hook) {
     : null;
 }
 
-// Wake every child at one shared wall-clock instant so their read-modify-write
-// windows really overlap; sequential spawning alone would hide the lost update.
+// Each child announces readiness before the parent releases all of them at
+// once, so their read-modify-write windows overlap without depending on a shared
+// wall-clock instant.
 const CONCURRENT_RECORD_SCRIPT = `
+const fs = require('node:fs');
 const { recordLoopDispatch } = require(process.env.GUARD_CORE_PATH);
-const waitMs = Number(process.env.RECORD_START_AT) - Date.now();
-if (waitMs > 0) {
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, waitMs);
+fs.writeFileSync(process.env.RECORD_READY_PATH, 'ready');
+while (!fs.existsSync(process.env.RECORD_GO_PATH)) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 5);
 }
 recordLoopDispatch(process.env.RECORD_STATE_DIR, process.env.RECORD_SESSION_ID, 'deep-review', false);
 `;
 
-function recordConcurrently({ childCount, stateDir, sessionID }) {
-  const startAt = Date.now() + 1500;
+async function waitForPaths(paths, timeoutMs = 10000) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    if (paths.every((candidatePath) => fs.existsSync(candidatePath))) return;
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+  throw new Error('concurrent recorders did not become ready');
+}
+
+function writeRecordDelayPreload(dir) {
+  const preloadPath = path.join(dir, 'record-delay-preload.cjs');
+  fs.writeFileSync(preloadPath, [
+    "'use strict';",
+    'const fs = require("node:fs");',
+    'function pause(milliseconds) {',
+    '  if (milliseconds > 0) {',
+    '    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, milliseconds);',
+    '  }',
+    '}',
+    'const delayMs = Number(process.env.RECORD_LOCK_DELAY_MS || 0);',
+    'const writeDelayMs = Number(process.env.RECORD_STATE_WRITE_DELAY_MS || 0);',
+    'const originalRenameSync = fs.renameSync;',
+    'fs.renameSync = function (sourcePath, targetPath, ...args) {',
+    '  if (typeof sourcePath === "string" && /\\.json\\.lock$/.test(sourcePath)) pause(delayMs);',
+    '  return originalRenameSync.call(this, sourcePath, targetPath, ...args);',
+    '};',
+    'const originalUnlinkSync = fs.unlinkSync;',
+    'fs.unlinkSync = function (targetPath, ...args) {',
+    '  if (typeof targetPath === "string" && /\\.json\\.lock$/.test(targetPath)) pause(delayMs);',
+    '  return originalUnlinkSync.call(this, targetPath, ...args);',
+    '};',
+    'const originalWriteFileSync = fs.writeFileSync;',
+    'fs.writeFileSync = function (targetPath, ...args) {',
+    '  if (typeof targetPath === "string" && /\\.json\\.\\d+\\.\\d+\\.tmp$/.test(targetPath)) {',
+    '    pause(writeDelayMs);',
+    '  }',
+    '  return originalWriteFileSync.call(this, targetPath, ...args);',
+    '};',
+    '',
+  ].join('\n'));
+  return preloadPath;
+}
+
+async function recordConcurrently({
+  childCount,
+  stateDir,
+  sessionID,
+  barrierDir,
+  envForChild,
+}) {
+  fs.mkdirSync(barrierDir, { recursive: true });
+  const goPath = path.join(barrierDir, 'go');
+  fs.rmSync(goPath, { force: true });
+  const readyPaths = [];
   const children = [];
   for (let index = 0; index < childCount; index += 1) {
+    const readyPath = path.join(barrierDir, `ready-${index}`);
+    fs.rmSync(readyPath, { force: true });
+    readyPaths.push(readyPath);
     children.push(new Promise((resolve, reject) => {
       const child = spawn(process.execPath, ['-e', CONCURRENT_RECORD_SCRIPT], {
         env: {
           ...process.env,
+          ...(envForChild ? envForChild(index) : {}),
           GUARD_CORE_PATH,
           RECORD_STATE_DIR: stateDir,
           RECORD_SESSION_ID: sessionID,
-          RECORD_START_AT: String(startAt),
+          RECORD_READY_PATH: readyPath,
+          RECORD_GO_PATH: goPath,
         },
         stdio: ['ignore', 'ignore', 'pipe'],
       });
@@ -145,7 +204,19 @@ function recordConcurrently({ childCount, stateDir, sessionID }) {
       });
     }));
   }
+  await waitForPaths(readyPaths);
+  fs.writeFileSync(goPath, 'go');
   return Promise.all(children);
+}
+
+function deadProcessPid() {
+  const result = spawnSync(process.execPath, ['-e', 'process.exit(0);']);
+  assert.equal(result.status, 0, 'the dead-owner fixture process must exit');
+  return result.pid;
+}
+
+function preloadNodeOptions(preloadPath) {
+  return `${process.env.NODE_OPTIONS || ''} --require=${preloadPath}`.trim();
 }
 
 function contextOf(hook) {
@@ -499,6 +570,7 @@ async function main() {
     childCount: concurrentCount,
     stateDir: concurrentStateDir,
     sessionID: concurrentSession,
+    barrierDir: path.join(tmpDir, 'concurrent-barrier'),
   });
   assert.equal(
     guardCore.readLoopState(concurrentStateDir, concurrentSession).dispatches['deep-review'].count,
@@ -511,16 +583,13 @@ async function main() {
     'the per-session lock must be released after the update',
   );
 
-  // A lock whose owner died must be taken over instead of waiting out the whole
-  // retry window or falling back to an unlocked update.
+  // A lock whose owner died is stale immediately, even when its file is fresh;
+  // waiting for the age window would block a live session for no reason.
   const staleLockStateDir = path.join(tmpDir, 'stale-lock-state');
   const staleLockSession = 'claude-loop-stale-lock';
   fs.mkdirSync(staleLockStateDir, { recursive: true });
   const staleLockPath = `${guardCore.loopStatePath(staleLockStateDir, staleLockSession)}.lock`;
-  fs.writeFileSync(staleLockPath, '999999\n');
-  const staleLockTime = new Date(Date.now() - 60 * 1000);
-  fs.utimesSync(staleLockPath, staleLockTime, staleLockTime);
-  const staleLockStartedAt = Date.now();
+  fs.writeFileSync(staleLockPath, `${deadProcessPid()} abandoned-lock\n`);
   const staleLockResult = guardCore.recordLoopDispatch(
     staleLockStateDir,
     staleLockSession,
@@ -530,10 +599,114 @@ async function main() {
   assert.equal(staleLockResult.count, 1, 'a takeover must record on the current count');
   assert.equal(staleLockResult.persisted, true, 'a takeover must persist the updated state');
   assert.equal(fs.existsSync(staleLockPath), false, 'a stale lock must be removed after takeover');
-  assert.ok(
-    Date.now() - staleLockStartedAt < 1000,
-    'a stale lock must be taken over without waiting out the retry window',
+  assert.deepEqual(
+    fs.readdirSync(staleLockStateDir).filter((name) => name.includes('.lock.stale-')),
+    [],
+    'a completed takeover must leave no claim file behind',
   );
+
+  // Two contenders that both judge the same stale lock abandoned must not both
+  // replace it: the loser waits for the winner's lock instead of deleting it.
+  const takeoverRaceDir = path.join(tmpDir, 'takeover-race-state');
+  const takeoverRaceSession = 'claude-loop-takeover-race';
+  fs.mkdirSync(takeoverRaceDir, { recursive: true });
+  const takeoverRaceLockPath = `${guardCore.loopStatePath(takeoverRaceDir, takeoverRaceSession)}.lock`;
+  fs.writeFileSync(takeoverRaceLockPath, `${deadProcessPid()} abandoned-race\n`);
+  const takeoverRaceLockTime = new Date(Date.now() - 60 * 1000);
+  fs.utimesSync(takeoverRaceLockPath, takeoverRaceLockTime, takeoverRaceLockTime);
+  const delayPreload = writeRecordDelayPreload(tmpDir);
+  await recordConcurrently({
+    childCount: 2,
+    stateDir: takeoverRaceDir,
+    sessionID: takeoverRaceSession,
+    barrierDir: path.join(tmpDir, 'takeover-race-barrier'),
+    envForChild: (index) => ({
+      NODE_OPTIONS: preloadNodeOptions(delayPreload),
+      RECORD_LOCK_DELAY_MS: index === 0 ? '50' : '300',
+      RECORD_STATE_WRITE_DELAY_MS: index === 0 ? '800' : '0',
+    }),
+  });
+  assert.equal(
+    guardCore.readLoopState(takeoverRaceDir, takeoverRaceSession).dispatches['deep-review'].count,
+    2,
+    'one contender must take the stale lock over and the other must wait for it',
+  );
+  assert.equal(fs.existsSync(takeoverRaceLockPath), false, 'the winning lock must be released');
+  assert.deepEqual(
+    fs.readdirSync(takeoverRaceDir).filter((name) => name.includes('.lock.stale-')),
+    [],
+    'a rejected takeover claim must not survive',
+  );
+
+  // A live owner keeps its lock however old the file is; age alone is not proof
+  // that the owner died.
+  const liveLockStateDir = path.join(tmpDir, 'live-lock-state');
+  const liveLockSession = 'claude-loop-live-lock';
+  fs.mkdirSync(liveLockStateDir, { recursive: true });
+  const liveLockPath = `${guardCore.loopStatePath(liveLockStateDir, liveLockSession)}.lock`;
+  const liveLockContents = `${process.pid} live-owner\n`;
+  fs.writeFileSync(liveLockPath, liveLockContents);
+  const liveLockTime = new Date(Date.now() - 60 * 1000);
+  fs.utimesSync(liveLockPath, liveLockTime, liveLockTime);
+  const liveLockResult = guardCore.recordLoopDispatch(
+    liveLockStateDir,
+    liveLockSession,
+    'deep-review',
+    false,
+  );
+  assert.equal(liveLockResult.persisted, false, 'a live lock must time out instead of being taken over');
+  assert.equal(fs.existsSync(liveLockPath), true, 'a live owner must keep its lock');
+  assert.equal(fs.readFileSync(liveLockPath, 'utf8'), liveLockContents, 'a live lock must not be rewritten');
+  assert.equal(
+    fs.existsSync(guardCore.loopStatePath(liveLockStateDir, liveLockSession)),
+    false,
+    'a timed-out acquisition must not create the state file',
+  );
+
+  // A timed-out acquisition reports the count already on disk without rewriting it.
+  const timeoutStateDir = path.join(tmpDir, 'timeout-state');
+  const timeoutSession = 'claude-loop-timeout';
+  const timeoutStatePath = guardCore.loopStatePath(timeoutStateDir, timeoutSession);
+  guardCore.writeLoopStateAtomic(timeoutStateDir, timeoutSession, {
+    sessionId: timeoutSession,
+    dispatches: { 'deep-review': { count: 7 } },
+  });
+  const timeoutLockPath = `${timeoutStatePath}.lock`;
+  fs.writeFileSync(timeoutLockPath, `${process.pid} timeout-owner\n`);
+  const stateBeforeTimeout = fs.readFileSync(timeoutStatePath, 'utf8');
+  const timeoutResult = guardCore.recordLoopDispatch(
+    timeoutStateDir,
+    timeoutSession,
+    'deep-review',
+    false,
+  );
+  assert.deepEqual(
+    timeoutResult,
+    { count: 8, persisted: false },
+    'a timed-out acquisition must report the current count without persisting',
+  );
+  assert.equal(
+    fs.readFileSync(timeoutStatePath, 'utf8'),
+    stateBeforeTimeout,
+    'a timed-out acquisition must leave the state file untouched',
+  );
+  assert.equal(fs.existsSync(timeoutLockPath), true, 'a timed-out acquisition must keep the live lock');
+
+  // The sweep owns abandoned locks and takeover claims, not only temp and state files.
+  const sweepStateDir = path.join(tmpDir, 'sweep-lock-state');
+  const sweepSession = 'claude-loop-sweep-lock';
+  fs.mkdirSync(sweepStateDir, { recursive: true });
+  const sweepDeadPid = deadProcessPid();
+  const sweepLockPath = `${guardCore.loopStatePath(sweepStateDir, sweepSession)}.lock`;
+  fs.writeFileSync(sweepLockPath, `${sweepDeadPid} abandoned-sweep\n`);
+  const sweepClaimPath = `${sweepLockPath}.stale-${sweepDeadPid}-claim`;
+  fs.writeFileSync(sweepClaimPath, `${sweepDeadPid} abandoned-claim\n`);
+  const sweepLiveLockPath = `${guardCore.loopStatePath(sweepStateDir, 'claude-loop-sweep-live')}.lock`;
+  fs.writeFileSync(sweepLiveLockPath, `${process.pid} live-sweep\n`);
+  guardCore.sweepStaleLoopGuardStates(sweepStateDir, {});
+  assert.equal(fs.existsSync(sweepLockPath), false, 'the sweep must remove a dead owner\'s lock');
+  assert.equal(fs.existsSync(sweepClaimPath), false, 'the sweep must remove an abandoned takeover claim');
+  assert.equal(fs.existsSync(sweepLiveLockPath), true, 'the sweep must keep a live owner\'s lock');
 
   // --- A missing projectDir resolves relative Config: paths against cwd ---
 

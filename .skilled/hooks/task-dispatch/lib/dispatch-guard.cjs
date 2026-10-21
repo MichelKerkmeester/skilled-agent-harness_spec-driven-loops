@@ -24,6 +24,7 @@
 const {
   appendFileSync,
   closeSync,
+  linkSync,
   mkdirSync,
   openSync,
   readdirSync,
@@ -35,6 +36,7 @@ const {
   unlinkSync,
   writeFileSync,
 } = require('node:fs');
+const { randomUUID } = require('node:crypto');
 const { isAbsolute, join, relative, sep } = require('node:path');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -51,6 +53,7 @@ const REJECT_MODE_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const SWEEP_LOCK_DIR_NAME = '.sweep.lock';
 const LOOP_STATE_LOCK_SUFFIX = '.lock';
+const LOOP_STATE_LOCK_CLAIM_INFIX = `${LOOP_STATE_LOCK_SUFFIX}.stale-`;
 const LOOP_STATE_LOCK_RETRY_MS = 10;
 const LOOP_STATE_LOCK_TIMEOUT_MS = 2000;
 const LOOP_STATE_LOCK_STALE_MS = 10000;
@@ -358,70 +361,217 @@ function sleepSync(milliseconds) {
 }
 
 /**
+ * Read a loop-state lock's recorded owner. Content without both a pid and a
+ * token is unreadable, so its age, not an owner probe, has to decide staleness.
+ *
+ * @param {string} lockPath - per-session lock or takeover-claim path
+ * @returns {{ pid: number|null, token: string|null }} recorded owner, or nulls
+ */
+function readLoopStateLock(lockPath) {
+  try {
+    const match = /^(\d+)\s+(\S+)\s*$/.exec(readFileSync(lockPath, 'utf8').trim());
+    if (!match) return { pid: null, token: null };
+    const pid = Number(match[1]);
+    if (!Number.isSafeInteger(pid) || pid <= 0) return { pid: null, token: null };
+    return { pid, token: match[2] };
+  } catch (_) {
+    return { pid: null, token: null };
+  }
+}
+
+/**
+ * Probe whether a lock owner's pid still refers to a running process.
+ *
+ * @param {number|null} pid - recorded owner pid
+ * @returns {boolean} true unless the kernel reports the pid gone
+ */
+function processIsAlive(pid) {
+  if (!Number.isSafeInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    // EPERM names a live process owned by another user; only ESRCH proves death.
+    return error.code !== 'ESRCH';
+  }
+}
+
+/**
+ * Decide whether a lock may be taken over. A readable owner is authoritative
+ * and only its death makes the lock stale; unreadable content (an owner killed
+ * between create and write) falls back to the stale window.
+ *
+ * @param {{ pid: number|null, token: string|null }} owner - recorded owner
+ * @param {number} ageMs - lock file age
+ * @returns {boolean} true when the lock is abandoned
+ */
+function loopStateLockIsStale(owner, ageMs) {
+  if (owner.pid !== null) return !processIsAlive(owner.pid);
+  return ageMs > LOOP_STATE_LOCK_STALE_MS;
+}
+
+/**
+ * Create the per-session lock with this process's pid and a fresh token.
+ *
+ * @param {string} lockPath - per-session lock path
+ * @returns {string|null} this process's token, or null when the path is already held
+ */
+function createLoopStateLock(lockPath) {
+  const token = randomUUID();
+  let descriptor;
+  try {
+    descriptor = openSync(lockPath, 'wx', 0o600);
+  } catch (error) {
+    if (error && error.code === 'EEXIST') return null;
+    throw error;
+  }
+  try {
+    writeFileSync(descriptor, `${process.pid} ${token}\n`, 'utf8');
+  } catch (error) {
+    closeSync(descriptor);
+    try { unlinkSync(lockPath); } catch (_ignored) { /* best-effort cleanup */ }
+    throw error;
+  }
+  closeSync(descriptor);
+  return token;
+}
+
+/**
+ * Put a lock back after a takeover claim caught a replacement it never judged
+ * stale. A hard link restores it only while the path is free; overwriting a
+ * live replacement would delete a lock another process now owns.
+ *
+ * @param {string} claimPath - path holding the claimed lock
+ * @param {string} lockPath - per-session lock path
+ * @returns {void}
+ */
+function restoreClaimedLoopStateLock(claimPath, lockPath) {
+  try {
+    linkSync(claimPath, lockPath);
+  } catch (_) {
+    // The path gained a replacement while the claim was held; the sweep owns it.
+    return;
+  }
+  try { unlinkSync(claimPath); } catch (_ignored) { /* best-effort cleanup */ }
+}
+
+/**
+ * Claim a stale lock by renaming it to a unique path, then verify the claim
+ * still names the owner that was judged stale before creating a replacement.
+ * Only one contender's rename can succeed, so a second contender cannot remove
+ * the fresh lock the first one creates in its place.
+ *
+ * @param {string} lockPath - per-session lock path
+ * @param {{ pid: number|null, token: string|null }} staleOwner - owner judged abandoned
+ * @returns {string|null} this process's new token, or null when another contender won
+ */
+function takeOverStaleLoopStateLock(lockPath, staleOwner) {
+  const claimPath = `${lockPath}.stale-${process.pid}-${randomUUID()}`;
+  try {
+    renameSync(lockPath, claimPath);
+  } catch (_) {
+    // Another contender claimed the same stale lock, or its owner released it.
+    return null;
+  }
+
+  const claimedOwner = readLoopStateLock(claimPath);
+  if (claimedOwner.pid !== staleOwner.pid || claimedOwner.token !== staleOwner.token) {
+    // A live owner replaced the lock after the staleness read; it was never abandoned.
+    restoreClaimedLoopStateLock(claimPath, lockPath);
+    return null;
+  }
+
+  try {
+    return createLoopStateLock(lockPath);
+  } catch (_) {
+    return null;
+  } finally {
+    try { unlinkSync(claimPath); } catch (_ignored) { /* best-effort cleanup */ }
+  }
+}
+
+/**
  * Take the per-session loop-state lock, waiting briefly when another hook
- * process holds it. A lock older than the stale window belongs to a process
- * that died before releasing it, so takeover is safe.
+ * process holds it. Takeover is a rename claim, so two contenders that both see
+ * one stale lock cannot both replace it and then update the state.
  *
  * @param {string} stateDir - loop-guard state directory
  * @param {string} lockPath - per-session lock path
- * @returns {boolean} true when this process holds the lock
+ * @returns {string|null} this process's lock token, or null when acquisition timed out
  */
 function acquireLoopStateLock(stateDir, lockPath) {
   try {
     mkdirSync(stateDir, { recursive: true });
   } catch (_) {
-    return false;
+    return null;
   }
 
   const deadline = Date.now() + LOOP_STATE_LOCK_TIMEOUT_MS;
   for (;;) {
-    if (Date.now() >= deadline) return false;
+    if (Date.now() >= deadline) return null;
 
+    let token;
     try {
-      const fd = openSync(lockPath, 'wx');
-      try {
-        writeFileSync(fd, `${process.pid}\n`, 'utf8');
-      } finally {
-        closeSync(fd);
-      }
-      return true;
-    } catch (error) {
-      if (!error || error.code !== 'EEXIST') return false;
+      token = createLoopStateLock(lockPath);
+    } catch (_) {
+      return null;
     }
+    if (token) return token;
 
-    let stale = false;
+    let lockStats;
     try {
-      stale = Date.now() - statSync(lockPath).mtimeMs > LOOP_STATE_LOCK_STALE_MS;
+      lockStats = statSync(lockPath);
     } catch (_) {
       // The prior holder released it between attempts; retry the create now.
       continue;
     }
 
-    if (stale) {
-      try {
-        unlinkSync(lockPath);
-      } catch (_) {
-        // Another contender already took the stale lock over.
-      }
-      continue;
+    const owner = readLoopStateLock(lockPath);
+    if (loopStateLockIsStale(owner, Date.now() - lockStats.mtimeMs)) {
+      const claimedToken = takeOverStaleLoopStateLock(lockPath, owner);
+      if (claimedToken) return claimedToken;
     }
 
+    if (Date.now() >= deadline) return null;
     sleepSync(LOOP_STATE_LOCK_RETRY_MS);
   }
 }
 
 /**
- * Remove the per-session loop-state lock after a completed update.
+ * Remove the per-session loop-state lock after a completed update. Only the
+ * owner whose token still sits in the file may remove it, so a stalled process
+ * that lost the lock to a contender cannot delete the contender's lock.
  *
  * @param {string} lockPath - per-session lock path
+ * @param {string} token - token returned by acquisition
  * @returns {void}
  */
-function releaseLoopStateLock(lockPath) {
+function releaseLoopStateLock(lockPath, token) {
+  const owner = readLoopStateLock(lockPath);
+  if (owner.pid !== process.pid || owner.token !== token) return;
   try {
     unlinkSync(lockPath);
   } catch (_) {
-    // Fail open: a lost lock is recovered through the stale-takeover window.
+    // Fail open: a lost lock is recovered through the dead-owner takeover.
   }
+}
+
+/**
+ * Extract one target's dispatch entry, defaulting a missing session or target
+ * to a zero count so the locked and unlocked paths report counts alike.
+ *
+ * @param {object} state - parsed session state
+ * @param {string} targetAgent - resolved loop-executor identity
+ * @returns {{ dispatches: object, entry: { count?: number } }} dispatches map and target entry
+ */
+function readDispatchEntry(state, targetAgent) {
+  const dispatches = state.dispatches && typeof state.dispatches === 'object'
+    ? state.dispatches
+    : {};
+  const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
+    ? dispatches[targetAgent]
+    : { count: 0 };
+  return { dispatches, entry };
 }
 
 /**
@@ -438,15 +588,22 @@ function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
   // Concurrent hook processes share one state file, so the read-modify-write
   // needs mutual exclusion or one hand-off overwrites another's increment.
   const lockPath = `${loopStatePath(stateDir, sessionID)}${LOOP_STATE_LOCK_SUFFIX}`;
-  const lockHeld = acquireLoopStateLock(stateDir, lockPath);
+  const lockToken = acquireLoopStateLock(stateDir, lockPath);
+  if (!lockToken) {
+    // An unlocked update would race the lock holder and can lose an increment,
+    // so report the count already on disk and leave persistence to a later hook.
+    const { entry } = readDispatchEntry(readLoopState(stateDir, sessionID), targetAgent);
+    return {
+      count: (entry.count || 0) + (commandDriven ? 0 : 1),
+      persisted: false,
+    };
+  }
+
   try {
-    const state = readLoopState(stateDir, sessionID);
-    const dispatches = state.dispatches && typeof state.dispatches === 'object'
-      ? state.dispatches
-      : {};
-    const entry = dispatches[targetAgent] && typeof dispatches[targetAgent] === 'object'
-      ? dispatches[targetAgent]
-      : { count: 0 };
+    const { dispatches, entry } = readDispatchEntry(
+      readLoopState(stateDir, sessionID),
+      targetAgent,
+    );
 
     if (!commandDriven) entry.count = (entry.count || 0) + 1;
     entry.lastCommandDriven = commandDriven;
@@ -460,8 +617,7 @@ function recordLoopDispatch(stateDir, sessionID, targetAgent, commandDriven) {
 
     return { count: entry.count, persisted };
   } finally {
-    // Fail open: an unavailable lock still records the dispatch unlocked above.
-    if (lockHeld) releaseLoopStateLock(lockPath);
+    releaseLoopStateLock(lockPath, lockToken);
   }
 }
 
@@ -644,6 +800,33 @@ function acquireSweepLock(stateDir, intervalMs, now) {
 }
 
 /**
+ * Remove one lock or takeover-claim file whose owner is dead or whose age has
+ * outlived the stale window. An abandoned lock otherwise blocks every later
+ * hook process for the same session until a takeover happens to claim it.
+ *
+ * @param {string} lockPath - lock or takeover-claim path
+ * @param {number} now - sweep clock
+ * @returns {void}
+ */
+function sweepAbandonedLoopStateLock(lockPath, now) {
+  let lockStats;
+  try {
+    lockStats = statSync(lockPath);
+  } catch (_) {
+    return;
+  }
+
+  const expired = now - lockStats.mtimeMs > LOOP_STATE_LOCK_STALE_MS;
+  const owner = readLoopStateLock(lockPath);
+  if (!expired && (owner.pid === null || processIsAlive(owner.pid))) return;
+  try {
+    unlinkSync(lockPath);
+  } catch (_) {
+    // Fail open on a single entry; the rest of the sweep pass still runs.
+  }
+}
+
+/**
  * Archive per-session loop-guard state files that have gone untouched past the
  * active-retention window, then prune the archive itself. Throttled to once
  * per sweep interval via runtimeState, mirroring opencode-goal.js's
@@ -695,6 +878,14 @@ function sweepStaleLoopGuardStates(stateDir, runtimeState) {
         } catch (_) {
           // Fail open on a single entry; the rest of the sweep pass still runs.
         }
+        continue;
+      }
+
+      if (
+        entry.name.endsWith(LOOP_STATE_LOCK_SUFFIX)
+        || entry.name.includes(LOOP_STATE_LOCK_CLAIM_INFIX)
+      ) {
+        sweepAbandonedLoopStateLock(sourcePath, now);
         continue;
       }
 
