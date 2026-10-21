@@ -63,6 +63,16 @@ describe('Codex dispatch preflight lint', () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toBe('');
   });
+
+  it('lints the second dispatch in a chain against its own packet', () => {
+    const result = runHook(LINT, {
+      tool_name: 'exec',
+      cwd: REPO_ROOT,
+      tool_input: { command: 'opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null' },
+    });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('pi-offline-required');
+  });
 });
 
 describe('Codex dispatch audit', () => {

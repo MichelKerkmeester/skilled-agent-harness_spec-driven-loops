@@ -18,7 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
-import { resolveDispatchCommands } from './dispatch-audit.mjs';
+import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audit.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. RULE LOADING
@@ -434,4 +434,30 @@ export function evaluate(command, rules, options = {}) {
     }
   }
   return violations;
+}
+
+/**
+ * Evaluate every dispatch in a command chain against its own packet's hard rules.
+ *
+ * A chain such as `opencode run ... && pi -p ...` is two dispatches governed by two packets,
+ * and reading only the first packet held the second executor to the wrong rule set: cli-opencode
+ * declares nothing about `--offline`, so the pi half of that chain was never checked at all.
+ * Each resolved dispatch is therefore measured against the rules beside the SKILL.md of the
+ * packet that governs it, and a packet that declares no rules contributes nothing.
+ *
+ * @param {string} command - raw command text.
+ * @param {string} skillsRoot - directory holding the `cli-*` packets.
+ * @param {Object} [options] - forwarded to `evaluate` (checks, context, version).
+ * @returns {Array<{skill: string, violations: Array<object>}>} one item per packet with at
+ *   least one violation, in command order; empty when nothing resolves or nothing is violated.
+ */
+export function evaluateDispatch(command, skillsRoot, options = {}) {
+  const verdicts = [];
+  for (const { skill, packetPath } of resolveDispatchPackets(command)) {
+    const rules = readHardRules(path.join(skillsRoot, packetPath, 'SKILL.md'));
+    if (rules.length === 0) continue; // packet declares nothing → nothing to enforce here
+    const violations = evaluate(command, rules, options);
+    if (violations.length > 0) verdicts.push({ skill, violations });
+  }
+  return verdicts;
 }

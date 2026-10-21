@@ -18,7 +18,7 @@ For each finding: FIXED / PARTIAL / NOT FIXED with file:line evidence, and wheth
 
 Standards: sk-code's review baseline (`.skilled/skills/sk-code/` code-review mode: P0 blocker = exploitable bypass or data loss; P1 = correctness bug, spec mismatch, must-fix gate; P2 = everything else). Comment hygiene: comments must not carry spec paths, phase numbers or task, review or finding ids.
 
-Your sandbox cannot create the temp directories vitest and node:test need, so do not run the suites; the operator runs them. You may run small `node -e` probes that import `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` or `dispatch-rule-checks.mjs` and print results, with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin.
+Judge the committed code only; the working tree may hold an uncommitted change from the next fix. Your sandbox cannot create the temp directories vitest and node:test need, so do not run the suites; the operator runs them. You may run small `node -e` probes that import `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` or `dispatch-rule-checks.mjs` and print results, with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin.
 
 BANNED OPERATIONS: editing, creating or deleting any file in the worktree; git commit, push, stash, checkout, reset, restore, branch; installs; network access.
 

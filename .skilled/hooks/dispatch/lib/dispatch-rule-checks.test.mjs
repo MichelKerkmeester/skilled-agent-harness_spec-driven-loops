@@ -10,7 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
+import { readHardRules, evaluate, evaluateDispatch, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 import {
   clearOpencodeVersionCache,
@@ -532,6 +532,24 @@ test('pi dispatches need --offline and a provider-qualified model', () => {
   // No --model at all is the model rule's silence, not a qualification failure.
   assert.deepEqual(ids('pi -p --offline "task" </dev/null'), []);
   assert.deepEqual(ids('git status'), []); // not a pi dispatch
+});
+
+// One command line can hold two dispatches, and each answers to its own packet. Reading only
+// the first one held the pi half of this chain to cli-opencode's rules, which say nothing about
+// `--offline`, so the second executor's own rule never ran.
+test('evaluateDispatch holds every dispatch in a chain to its own packet', () => {
+  const skillsRoot = path.resolve(HERE, '../../../skills');
+  const chain = 'opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null';
+
+  const verdicts = evaluateDispatch(chain, skillsRoot);
+  const pi = verdicts.find((verdict) => verdict.skill === 'cli-pi');
+  assert.ok(pi, `no cli-pi verdict for the chain: ${JSON.stringify(verdicts)}`);
+  assert.ok(
+    pi.violations.some((violation) => violation.id === 'pi-offline-required'),
+    `pi-offline-required absent from ${JSON.stringify(pi.violations.map((v) => v.id))}`,
+  );
+  // A command that dispatches nothing resolves to nothing, which is how the callers fast-exit.
+  assert.deepEqual(evaluateDispatch('git status', skillsRoot), []);
 });
 
 // Each of these spellings reached the runtime unflagged while its sibling was caught, so the

@@ -29,7 +29,7 @@ import { findRepoRoot, findSourceRoot } from '../skills/system-spec-kit/runtime/
 import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
 // The same engine the Claude PreToolUse adapter runs, so a rule enforced there is enforced
 // here without a second copy of the severity model or the rule parser.
-import { readHardRules, evaluate } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { evaluateDispatch } from '../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { dualPlugin } from './lib/v2-bridge.js';
 
 const require = createRequire(import.meta.url);
@@ -69,7 +69,7 @@ async function MkCliDispatchAuditPlugin(ctx) {
     // the audit below runs after the command has already done whatever it was going to do.
     // Scope limit by construction: this sees only commands run inside an OpenCode session.
     async 'tool.execute.before'(input, output) {
-      let blocking;
+      let reason;
       try {
         if (!isHookEnabled('dispatch-guard')) return;
         if (!input || String(input.tool).toLowerCase() !== 'bash') return;
@@ -78,23 +78,24 @@ async function MkCliDispatchAuditPlugin(ctx) {
         const command = args && typeof args === 'object' ? args.command : undefined;
         if (typeof command !== 'string' || command.length === 0) return;
 
-        const match = dispatchAuditCore.resolveDispatchPacket(command);
-        if (!match) return; // not a dispatch shape → nothing this hook governs
-
         if (!sourceRoot) return;
-        const rules = readHardRules(join(sourceRoot, 'skills', match.packetPath, 'SKILL.md'));
-        if (rules.length === 0) return; // nothing declared → nothing to enforce
-
-        const violations = evaluate(command, rules).filter((v) => v.severity === 'block');
-        if (violations.length === 0) return;
-        blocking = `Dispatch blocked by ${match.skill} hard-rule(s):\n`
-          + violations.map((v) => `  • [${v.id}] ${v.message}`).join('\n');
+        // Every dispatch in the command is held to its own packet: a chain can carry two, and
+        // the second one's rules are not the first one's.
+        reason = evaluateDispatch(command, join(sourceRoot, 'skills'))
+          .flatMap(({ skill, violations }) => {
+            const denied = violations.filter((v) => v.severity === 'block');
+            return denied.length === 0
+              ? []
+              : [`Dispatch blocked by ${skill} hard-rule(s):\n`
+                + denied.map((v) => `  • [${v.id}] ${v.message}`).join('\n')];
+          })
+          .join('\n');
       } catch (_) {
         return; // Fail open: a bug in the guard must never block an unrelated bash call.
       }
       // Thrown outside the catch so the refusal reaches OpenCode instead of being
       // swallowed by this hook's own fail-open handler.
-      if (blocking) throw new Error(blocking);
+      if (reason) throw new Error(reason);
     },
 
     async 'tool.execute.after'(input, output) {

@@ -1,0 +1,34 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change: one shared helper and its four callers, plus tests.
+
+Problem: each preflight adapter calls `resolveDispatchPacket(command)`, reads that ONE packet's hard rules and evaluates them. In `opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null` the second dispatch's own packet rules (cli-pi's `--offline` rule, for one) are never evaluated. `resolveDispatchPackets(command)` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` already returns every dispatch in order.
+
+Fix:
+1. In `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, add and export `evaluateDispatch(command, skillsRoot, options = {})`. For each entry `resolveDispatchPackets(command)` returns, it reads `readHardRules(path.join(skillsRoot, entry.packetPath, 'SKILL.md'))`, skips a packet with no rules, runs `evaluate(command, rules, options)`, and collects `{ skill: entry.skill, violations }` for each packet with at least one violation, in command order. It returns that array (empty when nothing resolves or nothing is violated). JSDoc it in the file's style: every dispatch in a chain is held to its own packet's rules.
+2. Use it in the four callers, keeping each one's own project-root and skills-root logic, its tool-name checks and its output format:
+   - `.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs`
+   - `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs`
+   - `.opencode/plugins/cli-dispatch-audit.js` (the `tool.execute.before` hook only; it uses only blocking violations)
+   Build the deny reason as one `Dispatch blocked by ${skill} hard-rule(s):` block per packet that has a blocking violation, joined by a newline, and the advisory as one `⚠ ${skill} dispatch hard-rule advisory:` block per packet that has warnings (the Claude, Codex and Devin adapters keep their existing advisory prefix). With one packet the output must be byte-for-byte what it is today. Remove imports that become unused.
+
+Tests:
+- In `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, one `test(...)`: with `skillsRoot` the repository's `.skilled/skills` (resolve it from the test file's location the way the file already locates SKILL.md files), `evaluateDispatch('opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null', skillsRoot)` returns an item for `cli-pi` whose violations include `pi-offline-required`; `evaluateDispatch('git status', skillsRoot)` returns `[]`.
+- In `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs`, inside `describe('Codex dispatch preflight lint', ...)`, one `it` that sends `opencode run -m p/m "a" </dev/null && pi -p "b" </dev/null` through the lint hook with `cwd: REPO_ROOT` and asserts stdout contains `pi-offline-required`.
+- Run the existing OpenCode plugin tests; if any asserts the old single-packet behaviour of `cli-dispatch-audit.js`, report it rather than weakening it.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --check .opencode/plugins/cli-dispatch-audit.js
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+node --test .opencode/plugins/tests/*.test.cjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs, .skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs, .skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs, .opencode/plugins/cli-dispatch-audit.js, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs, .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.
