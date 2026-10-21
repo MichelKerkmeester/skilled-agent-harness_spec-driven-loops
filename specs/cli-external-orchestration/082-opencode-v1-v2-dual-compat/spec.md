@@ -150,7 +150,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | Complete |
 | 38 | 038-plugin-scanner-follow-ups/ | Make the plugin event scanner follow a helper's stored result into a later test, stop reading an unrelated `type` parameter as the event type, declare rolldown directly and date the plugin-tree ordinals | Complete |
 | 39 | 039-sk-code-opencode-alignment-audit/ | Review every tracked file under `.opencode/plugins` and the hook tree `.opencode/hooks` links to against sk-code's SKILLED surface, fix each confirmed finding or record why it stays, and leave one review row per file | Complete; 21 behaviour-change P0/P1 findings wait on the operator |
-| 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | In Progress |
+| 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
 
 ### Phase Transition Rules
 

@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/184-hooks-and-plugins-held-fixes` |
 | **Parent Spec** | ../spec.md |
