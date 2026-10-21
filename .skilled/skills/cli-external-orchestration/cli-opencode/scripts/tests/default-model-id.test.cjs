@@ -4,10 +4,12 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// The roster, the skill's default invocation and every scenario document name the
-// opencode-go default, and they drifted apart when the gateway retired an id: the
-// roster moved to the live slug while the docs kept dispatching the dead one. The
-// roster is the single source, and these tests hold the rest of the tree to it.
+// Each version has its own default: OpenCode 1 dispatches the opencode-go route and
+// OpenCode 2 the llmgateway one, marked with a `✓` row in each provider table of the
+// roster. The roster, the skill's default invocation and every scenario document name
+// those defaults, and they drifted apart when the gateway retired an id: the roster
+// moved to the live slug while the docs kept dispatching the dead one. The roster is
+// the single source, and these tests hold the rest of the tree to it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -27,8 +29,12 @@ const SKILL = path.join(SKILL_ROOT, 'SKILL.md');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
 const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
 
-// The opencode-go default, as `opencode models opencode-go` lists it.
-const DEFAULT_ID = 'opencode-go/deepseek-v4.1-flash';
+// The OpenCode 1 default, the `✓` row of the roster's `### opencode-go` table, as
+// `opencode models opencode-go` lists it.
+const V1_DEFAULT_ID = 'opencode-go/deepseek-v4.1-flash';
+
+// The OpenCode 2 default, the `✓` row of the roster's `### llmgateway` table.
+const V2_DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash';
 
 // The id the gateway retired, assembled from fragments so this file does not itself
 // spell the dead slug: a search for it across the skill should return the dated
@@ -104,6 +110,24 @@ function rosterRows(markdown, provider) {
   return rows;
 }
 
+// The `✓` in a provider table's "Default?" column is the roster's only claim about
+// that provider's version default, so the table must make it exactly once, and against
+// the id the skill dispatches.
+function assertSingleRosterDefault(provider, expectedId) {
+  const rows = rosterRows(read(ROSTER), provider);
+  assert.ok(rows.length > 0, `the ${provider} table lists no rows`);
+
+  const defaults = rows.filter((cells) => cells[1] === '✓');
+  assert.equal(
+    defaults.length,
+    1,
+    `the ${provider} table marks ${defaults.length} rows as the default`,
+  );
+
+  const id = defaults[0][0].replace(/^`|`$/g, '');
+  assert.equal(id, expectedId, `the ${provider} table marks ${id} as its default`);
+}
+
 // Every document the skill ships, minus the historical trees.
 function documents(dir) {
   const found = [];
@@ -131,21 +155,33 @@ function relativeToRepoRoot(file) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('the roster names one opencode-go default', () => {
-  const rows = rosterRows(read(ROSTER), 'opencode-go');
-  assert.ok(rows.length > 0, 'the opencode-go table lists no rows');
-
-  const defaults = rows.filter((cells) => cells[1] === '✓');
-  assert.equal(
-    defaults.length,
-    1,
-    `the opencode-go table marks ${defaults.length} rows as the default`,
-  );
-
-  const id = defaults[0][0].replace(/^`|`$/g, '');
-  assert.equal(id, DEFAULT_ID);
+  assertSingleRosterDefault('opencode-go', V1_DEFAULT_ID);
 });
 
-test("SKILL.md's default invocation names the roster default", () => {
+test('the roster names one llmgateway default', () => {
+  assertSingleRosterDefault('llmgateway', V2_DEFAULT_ID);
+});
+
+test('the two version defaults differ only in the provider', () => {
+  const [v1Provider, ...v1Slug] = V1_DEFAULT_ID.split('/');
+  const [v2Provider, ...v2Slug] = V2_DEFAULT_ID.split('/');
+
+  assert.deepEqual(
+    [v1Provider, v2Provider],
+    ['opencode-go', 'llmgateway'],
+    `the version defaults name the providers ${v1Provider} and ${v2Provider}`,
+  );
+
+  // Same model behind two gateways: a default that moves one version to another model
+  // family, or gains a path segment, is a second difference and not this pair.
+  assert.equal(
+    v1Slug.join('/'),
+    v2Slug.join('/'),
+    `the version defaults name different model slugs: ${v1Slug.join('/')} and ${v2Slug.join('/')}`,
+  );
+});
+
+test("SKILL.md's default invocation names each version's roster default", () => {
   const lines = read(SKILL).split('\n');
   const start = lines.findIndex((line) => line.startsWith('### Default Invocation'));
   assert.notEqual(start, -1, 'SKILL.md has no "### Default Invocation" section');
@@ -158,24 +194,27 @@ test("SKILL.md's default invocation names the roster default", () => {
 
   // Both dispatch forms ship there as copyable commands, so every selector is a
   // dispatch an operator may run: one that pins another model is drift, however the
-  // surrounding prose reads.
+  // surrounding prose reads. The flag spells the version, so it also fixes the default.
   const selectors = modelSelectors(section.join('\n'));
 
-  for (const flag of ['--model', '-m']) {
+  for (const [flag, id] of [
+    ['--model', V1_DEFAULT_ID],
+    ['-m', V2_DEFAULT_ID],
+  ]) {
     assert.ok(
       selectors.some((selector) => selector.flag === flag),
-      `the Default Invocation section has no "${flag} <id>" selector`,
+      `the Default Invocation section has no "${flag} ${id}" selector`,
+    );
+
+    const differing = selectors
+      .filter((selector) => selector.flag === flag && selector.id !== id)
+      .map((selector) => selector.text);
+    assert.equal(
+      differing.join('\n'),
+      '',
+      `every "${flag} <id>" selector in the Default Invocation section must pin ${id}, but these do not:\n${differing.join('\n')}`,
     );
   }
-
-  const differing = selectors
-    .filter((selector) => selector.id !== DEFAULT_ID)
-    .map((selector) => selector.text);
-  assert.equal(
-    differing.join('\n'),
-    '',
-    `every model selector in the Default Invocation section must pin ${DEFAULT_ID}, but these do not:\n${differing.join('\n')}`,
-  );
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
