@@ -432,7 +432,12 @@ function deepLoopExecutors(userText: string): string[] {
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   for (let match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText); match; match = DEEP_LOOP_EXECUTOR_PATTERN.exec(userText)) {
     const deepIndex = match.index + match[0].indexOf('/deep:');
-    if (isUsableMention(userText, deepIndex)) executors.push(match[1]);
+    // A quote or substitution can open between `/deep:` and its executor value, so the value's
+    // own position must be plain text as well.
+    const executorIndex = match.index + match[0].lastIndexOf(match[1]);
+    if (isUsableMention(userText, deepIndex) && !isEnclosedInAnyReading(userText, executorIndex)) {
+      executors.push(match[1]);
+    }
   }
   DEEP_LOOP_EXECUTOR_PATTERN.lastIndex = 0;
   return executors;

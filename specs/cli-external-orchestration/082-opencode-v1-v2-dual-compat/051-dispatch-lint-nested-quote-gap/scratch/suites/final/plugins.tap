@@ -1,0 +1,3130 @@
+TAP version 13
+# Subtest: OpenCode plugin exports only the default plugin factory
+ok 1 - OpenCode plugin exports only the default plugin factory
+  ---
+  duration_ms: 67.263792
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: a webfetch advisory is buffered and drained once by the next transform
+ok 2 - OpenCode plugin: a webfetch advisory is buffered and drained once by the next transform
+  ---
+  duration_ms: 0.948667
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: non-webfetch tools are never screened
+ok 3 - OpenCode plugin: non-webfetch tools are never screened
+  ---
+  duration_ms: 0.162625
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: buffered advisories stay with their session and never leak
+ok 4 - OpenCode plugin: buffered advisories stay with their session and never leak
+  ---
+  duration_ms: 0.176125
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: a transform without a sessionID drains the only pending session
+ok 5 - OpenCode plugin: a transform without a sessionID drains the only pending session
+  ---
+  duration_ms: 0.197292
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: a sessionless transform drains nothing while several sessions wait
+ok 6 - OpenCode plugin: a sessionless transform drains nothing while several sessions wait
+  ---
+  duration_ms: 0.142833
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: the per-session buffer stays bounded and keeps the newest advisories
+ok 7 - OpenCode plugin: the per-session buffer stays bounded and keeps the newest advisories
+  ---
+  duration_ms: 0.312375
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: a null screen verdict buffers nothing
+ok 8 - OpenCode plugin: a null screen verdict buffers nothing
+  ---
+  duration_ms: 0.1125
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: a failing screen is silent and fails open
+ok 9 - OpenCode plugin: a failing screen is silent and fails open
+  ---
+  duration_ms: 0.157458
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: the kill switch makes both hooks full no-ops
+ok 10 - OpenCode plugin: the kill switch makes both hooks full no-ops
+  ---
+  duration_ms: 0.161375
+  type: 'test'
+  ...
+# Subtest: a Fable main loop cannot reach Fable through any of the three inheriting shapes
+ok 11 - a Fable main loop cannot reach Fable through any of the three inheriting shapes
+  ---
+  duration_ms: 193.973833
+  type: 'test'
+  ...
+# Subtest: a Fable main loop may dispatch an explicit Opus or Sonnet subagent
+ok 12 - a Fable main loop may dispatch an explicit Opus or Sonnet subagent
+  ---
+  duration_ms: 79.926541
+  type: 'test'
+  ...
+# Subtest: a subagent entry never stands in for the main loop model
+ok 13 - a subagent entry never stands in for the main loop model
+  ---
+  duration_ms: 46.767458
+  type: 'test'
+  ...
+# Subtest: a non-Fable main loop is left alone
+ok 14 - a non-Fable main loop is left alone
+  ---
+  duration_ms: 63.657625
+  type: 'test'
+  ...
+# Subtest: unreadable input fails open rather than blocking legitimate work
+ok 15 - unreadable input fails open rather than blocking legitimate work
+  ---
+  duration_ms: 143.762958
+  type: 'test'
+  ...
+# claude-task-dispatch-guard.test.cjs: all assertions passed
+# Subtest: .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+ok 3 - .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+  ---
+  duration_ms: 11937.545166
+  type: 'test'
+  ...
+# Subtest: every repository path a goal document cites still exists
+ok 17 - every repository path a goal document cites still exists
+  ---
+  duration_ms: 29.752416
+  type: 'test'
+  ...
+# Subtest: the plugin suite count a playbook states matches the suite it names
+ok 18 - the plugin suite count a playbook states matches the suite it names
+  ---
+  duration_ms: 7437.56725
+  type: 'test'
+  ...
+# Subtest: the disable variable a goal surface names is the concern its canonical name
+ok 19 - the disable variable a goal surface names is the concern its canonical name
+  ---
+  duration_ms: 1.748792
+  type: 'test'
+  ...
+# Subtest: every goal environment variable the code reads is documented
+ok 20 - every goal environment variable the code reads is documented
+  ---
+  duration_ms: 30.221333
+  type: 'test'
+  ...
+# Subtest: every goal kill-switch name a document teaches actually disables something
+ok 21 - every goal kill-switch name a document teaches actually disables something
+  ---
+  duration_ms: 22.456709
+  type: 'test'
+  ...
+# Subtest: logs under the .skilled source root
+ok 22 - logs under the .skilled source root
+  ---
+  duration_ms: 107.14675
+  type: 'test'
+  ...
+# Subtest: logs under .opencode when that is the only source root
+ok 23 - logs under .opencode when that is the only source root
+  ---
+  duration_ms: 67.444417
+  type: 'test'
+  ...
+# Subtest: logs under the checkout root when the project is a directory below it
+ok 24 - logs under the checkout root when the project is a directory below it
+  ---
+  duration_ms: 142.729083
+  type: 'test'
+  ...
+# Subtest: history lists archived goals and leaves active state untouched
+ok 25 - history lists archived goals and leaves active state untouched
+  ---
+  duration_ms: 213.128666
+  type: 'test'
+  ...
+# Subtest: replacing and clearing a goal leaves both records in history
+ok 26 - replacing and clearing a goal leaves both records in history
+  ---
+  duration_ms: 313.070084
+  type: 'test'
+  ...
+# Subtest: doctor and health report counts, log sizes, last sweep, and orphan candidates read-only
+ok 27 - doctor and health report counts, log sizes, last sweep, and orphan candidates read-only
+  ---
+  duration_ms: 196.1945
+  type: 'test'
+  ...
+# Subtest: resume reactivates paused and usage-limited goals but rejects terminal resurrection
+ok 28 - resume reactivates paused and usage-limited goals but rejects terminal resurrection
+  ---
+  duration_ms: 433.395209
+  type: 'test'
+  ...
+# Subtest: token budget appears in status and invalid set budgets fail closed
+ok 29 - token budget appears in status and invalid set budgets fail closed
+  ---
+  duration_ms: 105.423958
+  type: 'test'
+  ...
+# Subtest: env caps configure new goals and status exposes remaining budgets
+ok 30 - env caps configure new goals and status exposes remaining budgets
+  ---
+  duration_ms: 198.445292
+  type: 'test'
+  ...
+# Subtest: provider-limit detection accepts 429 variants and quota patterns only
+ok 31 - provider-limit detection accepts 429 variants and quota patterns only
+  ---
+  duration_ms: 1236.28975
+  type: 'test'
+  ...
+# Subtest: retry-after deadline recovers lazily and malformed payloads stay suppressed
+ok 32 - retry-after deadline recovers lazily and malformed payloads stay suppressed
+  ---
+  duration_ms: 438.292125
+  type: 'test'
+  ...
+# Subtest: goal command documentation routes new verbs and budget validation
+ok 33 - goal command documentation routes new verbs and budget validation
+  ---
+  duration_ms: 0.497458
+  type: 'test'
+  ...
+# Subtest: default autonomy suppresses continuation without logging
+ok 34 - default autonomy suppresses continuation without logging
+  ---
+  duration_ms: 122.331042
+  type: 'test'
+  ...
+# Subtest: passive autonomy remains a kill switch without logging
+ok 35 - passive autonomy remains a kill switch without logging
+  ---
+  duration_ms: 52.494
+  type: 'test'
+  ...
+# Subtest: smoke mode logs would-fire continuations and event metadata
+ok 36 - smoke mode logs would-fire continuations and event metadata
+  ---
+  duration_ms: 330.340583
+  type: 'test'
+  ...
+# Subtest: continuation prompt carries the current packet criteria, not the bind-time copy
+ok 37 - continuation prompt carries the current packet criteria, not the bind-time copy
+  ---
+  duration_ms: 333.176667
+  type: 'test'
+  ...
+# Subtest: active autonomy dispatches promptAsync with the requested directory
+ok 38 - active autonomy dispatches promptAsync with the requested directory
+  ---
+  duration_ms: 201.743333
+  type: 'test'
+  ...
+# Subtest: definite prompt rejection restores the prior continuation reservation
+ok 39 - definite prompt rejection restores the prior continuation reservation
+  ---
+  duration_ms: 289.894959
+  type: 'test'
+  ...
+# Subtest: prompt timeout retains the reserved turn because delivery is indeterminate
+ok 40 - prompt timeout retains the reserved turn because delivery is indeterminate
+  ---
+  duration_ms: 237.246375
+  type: 'test'
+  ...
+# Subtest: verifier timeout suppresses the idle continuation cycle without prompting
+ok 41 - verifier timeout suppresses the idle continuation cycle without prompting
+  ---
+  duration_ms: 103.593375
+  type: 'test'
+  ...
+# Subtest: continuously active continuation logs rotate at the configured byte bound
+ok 42 - continuously active continuation logs rotate at the configured byte bound
+  ---
+  duration_ms: 1068.674125
+  type: 'test'
+  ...
+# Subtest: path-like continuation directory is preserved unchanged
+ok 43 - path-like continuation directory is preserved unchanged
+  ---
+  duration_ms: 186.201292
+  type: 'test'
+  ...
+# Subtest: concurrent idle continuation attempts acquire only one prompt reservation
+ok 44 - concurrent idle continuation attempts acquire only one prompt reservation
+  ---
+  duration_ms: 296.706709
+  type: 'test'
+  ...
+# Subtest: stale verifier results suppress the old continuation without prompting
+ok 45 - stale verifier results suppress the old continuation without prompting
+  ---
+  duration_ms: 218.673125
+  type: 'test'
+  ...
+# Subtest: auto-turn cap suppresses further continuation and preserves usage count
+ok 46 - auto-turn cap suppresses further continuation and preserves usage count
+  ---
+  duration_ms: 198.509666
+  type: 'test'
+  ...
+# Subtest: failed continuation write releases the in-flight reservation
+ok 47 - failed continuation write releases the in-flight reservation
+  ---
+  duration_ms: 73.558875
+  type: 'test'
+  ...
+# Subtest: auto-turn cap remains unchanged on repeated suppression
+ok 48 - auto-turn cap remains unchanged on repeated suppression
+  ---
+  duration_ms: 187.824583
+  type: 'test'
+  ...
+# Subtest: missing session id suppresses continuation
+ok 49 - missing session id suppresses continuation
+  ---
+  duration_ms: 50.86325
+  type: 'test'
+  ...
+# Subtest: missing promptAsync suppresses and records the reason
+ok 50 - missing promptAsync suppresses and records the reason
+  ---
+  duration_ms: 140.603
+  type: 'test'
+  ...
+# Subtest: in-flight runtime state suppresses duplicate continuation attempts
+ok 51 - in-flight runtime state suppresses duplicate continuation attempts
+  ---
+  duration_ms: 90.220875
+  type: 'test'
+  ...
+# Subtest: blocked-by-prompt state suppresses continuation
+ok 52 - blocked-by-prompt state suppresses continuation
+  ---
+  duration_ms: 191.843291
+  type: 'test'
+  ...
+# Subtest: busy session status suppresses continuation
+ok 53 - busy session status suppresses continuation
+  ---
+  duration_ms: 124.047459
+  type: 'test'
+  ...
+# Subtest: continuation cooldown suppresses too-soon retries
+ok 54 - continuation cooldown suppresses too-soon retries
+  ---
+  duration_ms: 174.736125
+  type: 'test'
+  ...
+# Subtest: wall-clock cap suppresses continuation and records durable state
+ok 55 - wall-clock cap suppresses continuation and records durable state
+  ---
+  duration_ms: 163.495
+  type: 'test'
+  ...
+# Subtest: paused wall-clock time is not charged after resume
+ok 56 - paused wall-clock time is not charged after resume
+  ---
+  duration_ms: 176.454875
+  type: 'test'
+  ...
+# Subtest: token budget exhaustion suppresses continuation and logs the reason
+ok 57 - token budget exhaustion suppresses continuation and logs the reason
+  ---
+  duration_ms: 87.49225
+  type: 'test'
+  ...
+# Subtest: debug mode surfaces swallowed append and orphan sweep errors without throwing
+ok 58 - debug mode surfaces swallowed append and orphan sweep errors without throwing
+  ---
+  duration_ms: 31.331083
+  type: 'test'
+  ...
+# Subtest: module exports only the default plugin entrypoint
+ok 59 - module exports only the default plugin entrypoint
+  ---
+  duration_ms: 77.628833
+  type: 'test'
+  ...
+# Subtest: default export is a dual-version plugin object
+ok 60 - default export is a dual-version plugin object
+  ---
+  duration_ms: 0.269875
+  type: 'test'
+  ...
+# Subtest: core exposes the complete pinned helper list
+ok 61 - core exposes the complete pinned helper list
+  ---
+  duration_ms: 0.34725
+  type: 'test'
+  ...
+# Subtest: session.created keeps an active goal intact
+ok 62 - session.created keeps an active goal intact
+  ---
+  duration_ms: 132.066833
+  type: 'test'
+  ...
+# Subtest: native message headers charge tokens while only explicit assistant text parts become evidence
+ok 63 - native message headers charge tokens while only explicit assistant text parts become evidence
+  ---
+  duration_ms: 294.118708
+  type: 'test'
+  ...
+# Subtest: usage ledger retains old message totals beyond 64 message ids
+ok 64 - usage ledger retains old message totals beyond 64 message ids
+  ---
+  duration_ms: 4232.827917
+  type: 'test'
+  ...
+# Subtest: message.updated accounts assistant usage once per message id
+ok 65 - message.updated accounts assistant usage once per message id
+  ---
+  duration_ms: 173.068
+  type: 'test'
+  ...
+# Subtest: message.updated performs one write cycle for one event
+ok 66 - message.updated performs one write cycle for one event
+  ---
+  duration_ms: 98.098291
+  type: 'test'
+  ...
+# Subtest: message.updated crosses the token budget and suppresses continuation
+ok 67 - message.updated crosses the token budget and suppresses continuation
+  ---
+  duration_ms: 113.403959
+  type: 'test'
+  ...
+# Subtest: interleaved message totals are charged by delta
+ok 68 - interleaved message totals are charged by delta
+  ---
+  duration_ms: 105.364
+  type: 'test'
+  ...
+# Subtest: budget-limited goals do not charge later usage updates
+ok 69 - budget-limited goals do not charge later usage updates
+  ---
+  duration_ms: 82.1065
+  type: 'test'
+  ...
+# Subtest: budget-limited goals resume only after the budget is raised
+ok 70 - budget-limited goals resume only after the budget is raised
+  ---
+  duration_ms: 65.596584
+  type: 'test'
+  ...
+# Subtest: same objective after a terminal state creates a reset goal
+ok 71 - same objective after a terminal state creates a reset goal
+  ---
+  duration_ms: 80.535125
+  type: 'test'
+  ...
+# Subtest: missing usage payload leaves tokens unchanged and records unavailable source
+ok 72 - missing usage payload leaves tokens unchanged and records unavailable source
+  ---
+  duration_ms: 38.233459
+  type: 'test'
+  ...
+# Subtest: retryable provider usage errors mark the goal usage-limited
+ok 73 - retryable provider usage errors mark the goal usage-limited
+  ---
+  duration_ms: 29.120208
+  type: 'test'
+  ...
+# Subtest: retry-after parsing honors explicit units before epoch heuristics
+ok 74 - retry-after parsing honors explicit units before epoch heuristics
+  ---
+  duration_ms: 65.776417
+  type: 'test'
+  ...
+# Subtest: non-usage provider errors do not suppress an active goal
+ok 75 - non-usage provider errors do not suppress an active goal
+  ---
+  duration_ms: 35.865167
+  type: 'test'
+  ...
+# Subtest: permission.asked marks the goal blocked by prompt
+ok 76 - permission.asked marks the goal blocked by prompt
+  ---
+  duration_ms: 33.004541
+  type: 'test'
+  ...
+# Subtest: permission.replied clears blocked-by-prompt state
+ok 77 - permission.replied clears blocked-by-prompt state
+  ---
+  duration_ms: 44.813
+  type: 'test'
+  ...
+# Subtest: question.asked marks the goal blocked by prompt
+ok 78 - question.asked marks the goal blocked by prompt
+  ---
+  duration_ms: 33.882666
+  type: 'test'
+  ...
+# Subtest: question.rejected clears blocked-by-prompt state
+ok 79 - question.rejected clears blocked-by-prompt state
+  ---
+  duration_ms: 45.929125
+  type: 'test'
+  ...
+# Subtest: session.deleted flushes volatile session status before later idle handling
+ok 80 - session.deleted flushes volatile session status before later idle handling
+  ---
+  duration_ms: 73.341584
+  type: 'test'
+  ...
+# Subtest: malformed session deletion preserves another session verifier lock
+ok 81 - malformed session deletion preserves another session verifier lock
+  ---
+  duration_ms: 39.64375
+  type: 'test'
+  ...
+# Subtest: verifier timeout releases the session lock for a later idle event
+ok 82 - verifier timeout releases the session lock for a later idle event
+  ---
+  duration_ms: 86.947125
+  type: 'test'
+  ...
+# Subtest: app.disposed flushes volatile state before later idle handling
+ok 83 - app.disposed flushes volatile state before later idle handling
+  ---
+  duration_ms: 27.776625
+  type: 'test'
+  ...
+# Subtest: event errors are written to the goal events log without debug enabled
+ok 84 - event errors are written to the goal events log without debug enabled
+  ---
+  duration_ms: 1.760583
+  type: 'test'
+  ...
+# Subtest: session.deleted archives an existing goal file exactly
+ok 85 - session.deleted archives an existing goal file exactly
+  ---
+  duration_ms: 27.376667
+  type: 'test'
+  ...
+# Subtest: session.deleted archives a second goal for the same session without overwriting
+ok 86 - session.deleted archives a second goal for the same session without overwriting
+  ---
+  duration_ms: 46.215625
+  type: 'test'
+  ...
+# Subtest: session.deleted archives a long session id without probing an impossible legacy filename
+ok 87 - session.deleted archives a long session id without probing an impossible legacy filename
+  ---
+  duration_ms: 30.6425
+  type: 'test'
+  ...
+# Subtest: history lists every distinct snapshot of a goal rebound through three packets
+ok 88 - history lists every distinct snapshot of a goal rebound through three packets
+  ---
+  duration_ms: 60.318833
+  type: 'test'
+  ...
+# Subtest: a rebind archives the goal another process wrote just before the lock
+ok 89 - a rebind archives the goal another process wrote just before the lock
+  ---
+  duration_ms: 41.779084
+  type: 'test'
+  ...
+# Subtest: the archive moves the active file so the record there at that instant is archived
+ok 90 - the archive moves the active file so the record there at that instant is archived
+  ---
+  duration_ms: 25.911584
+  type: 'test'
+  ...
+# Subtest: a goal written while the archive restore runs survives with the moved copy
+ok 91 - a goal written while the archive restore runs survives with the moved copy
+  ---
+  duration_ms: 18.577959
+  type: 'test'
+  ...
+# Subtest: history migrates a legacy archive and reports an occupied duplicate exactly once
+ok 92 - history migrates a legacy archive and reports an occupied duplicate exactly once
+  ---
+  duration_ms: 40.137667
+  type: 'test'
+  ...
+# Subtest: session deletion archive failures preserve active state and write an event error
+ok 93 - session deletion archive failures preserve active state and write an event error
+  ---
+  duration_ms: 20.139709
+  type: 'test'
+  ...
+# Subtest: session.deleted does not reject when the active goal file is missing
+ok 94 - session.deleted does not reject when the active goal file is missing
+  ---
+  duration_ms: 0.942167
+  type: 'test'
+  ...
+# Subtest: disabled plugin events leave the state directory unchanged
+ok 95 - disabled plugin events leave the state directory unchanged
+  ---
+  duration_ms: 0.809
+  type: 'test'
+  ...
+# Subtest: disabled env flips apply per call to transform and tools
+ok 96 - disabled env flips apply per call to transform and tools
+  ---
+  duration_ms: 18.166333
+  type: 'test'
+  ...
+# Subtest: archive operations serialize with queued usage updates
+ok 97 - archive operations serialize with queued usage updates
+  ---
+  duration_ms: 908.419125
+  type: 'test'
+  ...
+# Subtest: archive pruning removes old archived files and keeps recent files
+ok 98 - archive pruning removes old archived files and keeps recent files
+  ---
+  duration_ms: 38.509875
+  type: 'test'
+  ...
+# Subtest: archive pruning skips staged files
+ok 99 - archive pruning skips staged files
+  ---
+  duration_ms: 45.981916
+  type: 'test'
+  ...
+# Subtest: archive prune throttling runs pruning once in a throttle window
+ok 100 - archive prune throttling runs pruning once in a throttle window
+  ---
+  duration_ms: 64.593875
+  type: 'test'
+  ...
+# Subtest: orphan sweep archives stale active files and keeps recent files
+ok 101 - orphan sweep archives stale active files and keeps recent files
+  ---
+  duration_ms: 25.434583
+  type: 'test'
+  ...
+# Subtest: orphan sweep archives only when the live goal is stale too
+ok 102 - orphan sweep archives only when the live goal is stale too
+  ---
+  duration_ms: 13.844417
+  type: 'test'
+  ...
+# Subtest: orphan sweep prefilter avoids parsing fresh active files
+ok 103 - orphan sweep prefilter avoids parsing fresh active files
+  ---
+  duration_ms: 9.834166
+  type: 'test'
+  ...
+# Subtest: orphan sweep throttle leaves later stale active files in place
+ok 104 - orphan sweep throttle leaves later stale active files in place
+  ---
+  duration_ms: 20.422666
+  type: 'test'
+  ...
+# Subtest: both renderers emit the same ordered labels and blocks, differing only where a runtime names itself
+ok 105 - both renderers emit the same ordered labels and blocks, differing only where a runtime names itself
+  ---
+  duration_ms: 167.482042
+  type: 'test'
+  ...
+# Subtest: the brief cache key changes when a same-length write lands in the same millisecond
+ok 106 - the brief cache key changes when a same-length write lands in the same millisecond
+  ---
+  duration_ms: 150.5575
+  type: 'test'
+  ...
+# Subtest: both renderers emit the same criteria field for a bound packet
+ok 107 - both renderers emit the same criteria field for a bound packet
+  ---
+  duration_ms: 258.773709
+  type: 'test'
+  ...
+# Subtest: setGoal rejects missing session id without creating files
+ok 108 - setGoal rejects missing session id without creating files
+  ---
+  duration_ms: 68.991125
+  type: 'test'
+  ...
+# Subtest: setGoal creates an active enhanced goal
+ok 109 - setGoal creates an active enhanced goal
+  ---
+  duration_ms: 57.824583
+  type: 'test'
+  ...
+# Subtest: same objective refreshes an active goal without replacing it
+ok 110 - same objective refreshes an active goal without replacing it
+  ---
+  duration_ms: 104.882333
+  type: 'test'
+  ...
+# Subtest: different sessions persist to isolated state paths
+ok 111 - different sessions persist to isolated state paths
+  ---
+  duration_ms: 150.336708
+  type: 'test'
+  ...
+# Subtest: session keys are fixed-length opaque digests and long ids remain persistable
+ok 112 - session keys are fixed-length opaque digests and long ids remain persistable
+  ---
+  duration_ms: 83.355042
+  type: 'test'
+  ...
+# Subtest: long session ids clear without probing an impossible legacy filename
+ok 113 - long session ids clear without probing an impossible legacy filename
+  ---
+  duration_ms: 170.39475
+  type: 'test'
+  ...
+# Subtest: accountUsage keeps a goal another process wrote after the read
+ok 114 - accountUsage keeps a goal another process wrote after the read
+  ---
+  duration_ms: 249.795
+  type: 'test'
+  ...
+# Subtest: a lock held by another process makes a mutation wait for it
+ok 115 - a lock held by another process makes a mutation wait for it
+  ---
+  duration_ms: 224.456958
+  type: 'test'
+  ...
+# Subtest: a stale lock is broken instead of blocking the mutation
+ok 116 - a stale lock is broken instead of blocking the mutation
+  ---
+  duration_ms: 156.573167
+  type: 'test'
+  ...
+# Subtest: a lock left by a dead owner is broken without waiting for it to age
+ok 117 - a lock left by a dead owner is broken without waiting for it to age
+  ---
+  duration_ms: 120.89325
+  type: 'test'
+  ...
+# Subtest: a finished mutation leaves no lock entry in the state directory
+ok 118 - a finished mutation leaves no lock entry in the state directory
+  ---
+  duration_ms: 153.958916
+  type: 'test'
+  ...
+# Subtest: valid legacy active state migrates byte-for-byte to the digest path
+ok 119 - valid legacy active state migrates byte-for-byte to the digest path
+  ---
+  duration_ms: 132.27
+  type: 'test'
+  ...
+# Subtest: occupied digest targets win without deleting conflicting legacy state
+ok 120 - occupied digest targets win without deleting conflicting legacy state
+  ---
+  duration_ms: 123.631833
+  type: 'test'
+  ...
+# Subtest: malformed and mismatched legacy state fail closed without deleting the source
+ok 121 - malformed and mismatched legacy state fail closed without deleting the source
+  ---
+  duration_ms: 51.54825
+  type: 'test'
+  ...
+# Subtest: legacy adoption requires a present embedded session identity
+ok 122 - legacy adoption requires a present embedded session identity
+  ---
+  duration_ms: 52.880125
+  type: 'test'
+  ...
+# Subtest: stored goals drop unknown fields and reject non-numeric token budgets
+ok 123 - stored goals drop unknown fields and reject non-numeric token budgets
+  ---
+  duration_ms: 195.417292
+  type: 'test'
+  ...
+# Subtest: active state rejects an embedded session id that differs from its file path
+ok 124 - active state rejects an embedded session id that differs from its file path
+  ---
+  duration_ms: 118.675625
+  type: 'test'
+  ...
+# Subtest: fsyncDirectory failure logs to the state root
+ok 125 - fsyncDirectory failure logs to the state root
+  ---
+  duration_ms: 71.444584
+  type: 'test'
+  ...
+# Subtest: tool calls without session id fail closed without writing new goals
+ok 126 - tool calls without session id fail closed without writing new goals
+  ---
+  duration_ms: 139.87925
+  type: 'test'
+  ...
+# Subtest: tool set, status, and transform expose the active goal injection
+ok 127 - tool set, status, and transform expose the active goal injection
+  ---
+  duration_ms: 115.122041
+  type: 'test'
+  ...
+# Subtest: appendGoalBrief caches present and missing goal lookups
+ok 128 - appendGoalBrief caches present and missing goal lookups
+  ---
+  duration_ms: 119.178833
+  type: 'test'
+  ...
+# Subtest: system transform adopts legacy active state before caching the goal brief
+ok 129 - system transform adopts legacy active state before caching the goal brief
+  ---
+  duration_ms: 126.68125
+  type: 'test'
+  ...
+# Subtest: goal brief cache bounds missing sessions and clears on disposal
+ok 130 - goal brief cache bounds missing sessions and clears on disposal
+  ---
+  duration_ms: 51.49875
+  type: 'test'
+  ...
+# Subtest: system transform failures remain fail-open and write a durable diagnostic
+ok 131 - system transform failures remain fail-open and write a durable diagnostic
+  ---
+  duration_ms: 78.436708
+  type: 'test'
+  ...
+# Subtest: ensureGoalStateDir is memoized per state directory
+ok 132 - ensureGoalStateDir is memoized per state directory
+  ---
+  duration_ms: 195.696375
+  type: 'test'
+  ...
+# Subtest: setGoal normalizes options once per call chain
+ok 133 - setGoal normalizes options once per call chain
+  ---
+  duration_ms: 67.932
+  type: 'test'
+  ...
+# Subtest: stored prompt fields avoid rebuilding prompt enhancement
+ok 134 - stored prompt fields avoid rebuilding prompt enhancement
+  ---
+  duration_ms: 54.872208
+  type: 'test'
+  ...
+# Subtest: goal status can omit injection preview without rendering it
+ok 135 - goal status can omit injection preview without rendering it
+  ---
+  duration_ms: 72.447917
+  type: 'test'
+  ...
+# Subtest: same-objective refresh resumes paused timing without charging the pause
+ok 136 - same-objective refresh resumes paused timing without charging the pause
+  ---
+  duration_ms: 157.057917
+  type: 'test'
+  ...
+# Subtest: transform appends active goal injection after existing system context
+ok 137 - transform appends active goal injection after existing system context
+  ---
+  duration_ms: 54.890792
+  type: 'test'
+  ...
+# Subtest: long goal injection preserves structural lines while clipping content
+ok 138 - long goal injection preserves structural lines while clipping content
+  ---
+  duration_ms: 87.566
+  type: 'test'
+  ...
+# Subtest: adversarial role markers are sanitized from rendered goal injection
+ok 139 - adversarial role markers are sanitized from rendered goal injection
+  ---
+  duration_ms: 55.828459
+  type: 'test'
+  ...
+# Subtest: unicode role-marker bypass attempts are normalized and sanitized
+ok 140 - unicode role-marker bypass attempts are normalized and sanitized
+  ---
+  duration_ms: 73.179292
+  type: 'test'
+  ...
+# Subtest: punctuation and homoglyph role-marker cases are sanitized
+ok 141 - punctuation and homoglyph role-marker cases are sanitized
+  ---
+  duration_ms: 353.299292
+  type: 'test'
+  ...
+# Subtest: non-colon role delimiters are sanitized without changing ordinary operators
+ok 142 - non-colon role delimiters are sanitized without changing ordinary operators
+  ---
+  duration_ms: 288.7665
+  type: 'test'
+  ...
+# Subtest: verifier exception details are redacted from results, state, and status
+ok 143 - verifier exception details are redacted from results, state, and status
+  ---
+  duration_ms: 161.968875
+  type: 'test'
+  ...
+# Subtest: long enhanced goal prompt respects the configured cap
+ok 144 - long enhanced goal prompt respects the configured cap
+  ---
+  duration_ms: 12.015209
+  type: 'test'
+  ...
+# Subtest: tool clear removes an active tool-managed goal
+ok 145 - tool clear removes an active tool-managed goal
+  ---
+  duration_ms: 134.74325
+  type: 'test'
+  ...
+# Subtest: met verifier verdict completes the goal and redacts evidence
+ok 146 - met verifier verdict completes the goal and redacts evidence
+  ---
+  duration_ms: 248.857958
+  type: 'test'
+  ...
+# Subtest: verifier evidence redacts common key blocks and high-entropy secrets conservatively
+ok 147 - verifier evidence redacts common key blocks and high-entropy secrets conservatively
+  ---
+  duration_ms: 797.421209
+  type: 'test'
+  ...
+# Subtest: blocked verifier verdict marks the goal blocked without completion source
+ok 148 - blocked verifier verdict marks the goal blocked without completion source
+  ---
+  duration_ms: 238.763333
+  type: 'test'
+  ...
+# Subtest: ambiguous verifier verdict keeps the goal active and increments iterations
+ok 149 - ambiguous verifier verdict keeps the goal active and increments iterations
+  ---
+  duration_ms: 191.985083
+  type: 'test'
+  ...
+# Subtest: absent evidence defaults to not_met without calling the verifier
+ok 150 - absent evidence defaults to not_met without calling the verifier
+  ---
+  duration_ms: 156.249292
+  type: 'test'
+  ...
+# Subtest: default heuristic verifier completes only explicit objective-specific evidence
+ok 151 - default heuristic verifier completes only explicit objective-specific evidence
+  ---
+  duration_ms: 263.34875
+  type: 'test'
+  ...
+# Subtest: default heuristic verifier rejects adversarial weak and mixed evidence
+ok 152 - default heuristic verifier rejects adversarial weak and mixed evidence
+  ---
+  duration_ms: 1441.249542
+  type: 'test'
+  ...
+# Subtest: llm verifier mode blocks when isolated session APIs are unavailable
+ok 153 - llm verifier mode blocks when isolated session APIs are unavailable
+  ---
+  duration_ms: 146.009792
+  type: 'test'
+  ...
+# Subtest: llm verifier uses a response-returning isolated session and deletes it
+ok 154 - llm verifier uses a response-returning isolated session and deletes it
+  ---
+  duration_ms: 174.345125
+  type: 'test'
+  ...
+# Subtest: same-millisecond goal mutation makes a pending verifier result stale
+ok 155 - same-millisecond goal mutation makes a pending verifier result stale
+  ---
+  duration_ms: 209.418
+  type: 'test'
+  ...
+# Subtest: verifier timeout returns promptly, keeps the goal active, and ignores late settlement
+ok 156 - verifier timeout returns promptly, keeps the goal active, and ignores late settlement
+  ---
+  duration_ms: 178.763083
+  type: 'test'
+  ...
+# Subtest: verifier is called exactly for the three evidence-backed sessions
+ok 157 - verifier is called exactly for the three evidence-backed sessions
+  ---
+  duration_ms: 525.134459
+  type: 'test'
+  ...
+# Subtest: verifier result envelopes use one key set for early and applied paths
+ok 158 - verifier result envelopes use one key set for early and applied paths
+  ---
+  duration_ms: 152.573666
+  type: 'test'
+  ...
+# Subtest: status transitions reject terminal resurrection and preserve known valid transitions
+ok 159 - status transitions reject terminal resurrection and preserve known valid transitions
+  ---
+  duration_ms: 217.761917
+  type: 'test'
+  ...
+# Subtest: executeGoalAction set persists an enhanced goal via ToolContext
+ok 160 - executeGoalAction set persists an enhanced goal via ToolContext
+  ---
+  duration_ms: 135.00875
+  type: 'test'
+  ...
+# Subtest: executeGoalStatus reflects the active tool-path goal
+ok 161 - executeGoalStatus reflects the active tool-path goal
+  ---
+  duration_ms: 62.648792
+  type: 'test'
+  ...
+# Subtest: executeGoalAction clear removes the tool-path goal
+ok 162 - executeGoalAction clear removes the tool-path goal
+  ---
+  duration_ms: 199.942667
+  type: 'test'
+  ...
+# Subtest: invalid set action returns the documented failure envelope
+ok 163 - invalid set action returns the documented failure envelope
+  ---
+  duration_ms: 28.289625
+  type: 'test'
+  ...
+# Subtest: registered opencode_goal reports created, refreshed, and replaced mutations
+ok 164 - registered opencode_goal reports created, refreshed, and replaced mutations
+  ---
+  duration_ms: 252.731417
+  type: 'test'
+  ...
+# Subtest: terminal same-objective set reports replacement and resets counters
+ok 165 - terminal same-objective set reports replacement and resets counters
+  ---
+  duration_ms: 275.840834
+  type: 'test'
+  ...
+# Subtest: goal command documentation exposes the registered command contract
+ok 166 - goal command documentation exposes the registered command contract
+  ---
+  duration_ms: 0.339583
+  type: 'test'
+  ...
+# Subtest: goal plugin reference links the OpenCode command document
+ok 167 - goal plugin reference links the OpenCode command document
+  ---
+  duration_ms: 0.232084
+  type: 'test'
+  ...
+# Subtest: regression graph key files exclude non-deliverable legacy basenames
+ok 168 - regression graph key files exclude non-deliverable legacy basenames
+  ---
+  duration_ms: 1.050041
+  type: 'test'
+  ...
+# Subtest: executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter
+ok 169 - executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter
+  ---
+  duration_ms: 318.034875
+  type: 'test'
+  ...
+# Subtest: executeGoalAction packet reads a packet without binding, and bind refuses a missing document
+ok 170 - executeGoalAction packet reads a packet without binding, and bind refuses a missing document
+  ---
+  duration_ms: 99.157708
+  type: 'test'
+  ...
+# Subtest: executeGoalAction bind keeps a line break in the packet and workspace paths so the binding resolves
+ok 171 - executeGoalAction bind keeps a line break in the packet and workspace paths so the binding resolves
+  ---
+  duration_ms: 167.821125
+  type: 'test'
+  ...
+# Subtest: the system transform carries the resend reminder while the bound packet is unresent
+ok 172 - the system transform carries the resend reminder while the bound packet is unresent
+  ---
+  duration_ms: 299.080166
+  type: 'test'
+  ...
+# Subtest: executeGoalAction unbind, log, packet budget and an unknown action
+ok 173 - executeGoalAction unbind, log, packet budget and an unknown action
+  ---
+  duration_ms: 361.585084
+  type: 'test'
+  ...
+# Subtest: executeGoalAction set reports a truncated text objective
+ok 174 - executeGoalAction set reports a truncated text objective
+  ---
+  duration_ms: 106.807167
+  type: 'test'
+  ...
+# Subtest: a rebind to a different packet leaves the prior record in history
+ok 175 - a rebind to a different packet leaves the prior record in history
+  ---
+  duration_ms: 417.672208
+  type: 'test'
+  ...
+# Subtest: a rebind never writes the prior snapshot outside the archive folder
+ok 176 - a rebind never writes the prior snapshot outside the archive folder
+  ---
+  duration_ms: 333.899667
+  type: 'test'
+  ...
+# Subtest: the plugin folder matches the inventory manifest
+ok 177 - the plugin folder matches the inventory manifest
+  ---
+  duration_ms: 32.25175
+  type: 'test'
+  ...
+# Subtest: readInventory reports an unlisted file, a missing manifest file and a bridged exception
+ok 178 - readInventory reports an unlisted file, a missing manifest file and a bridged exception
+  ---
+  duration_ms: 3.679709
+  type: 'test'
+  ...
+# Subtest: every bridged plugin maps all of its hooks
+ok 179 - every bridged plugin maps all of its hooks
+  ---
+  duration_ms: 301.045125
+  type: 'test'
+  ...
+# Subtest: every handled event name reaches v2 plugins or is listed
+ok 180 - every handled event name reaches v2 plugins or is listed
+  ---
+  duration_ms: 65.572333
+  type: 'test'
+  ...
+# Subtest: every event an unscanned check covers reaches v2 plugins or is listed
+ok 181 - every event an unscanned check covers reaches v2 plugins or is listed
+  ---
+  duration_ms: 0.345334
+  type: 'test'
+  ...
+# Subtest: every listed event is still handled by a plugin
+ok 182 - every listed event is still handled by a plugin
+  ---
+  duration_ms: 49.113459
+  type: 'test'
+  ...
+# Subtest: every listed skipped hook names a bridged plugin
+ok 183 - every listed skipped hook names a bridged plugin
+  ---
+  duration_ms: 2.1605
+  type: 'test'
+  ...
+# Subtest: handledEventNames reads both quote styles, both orders and case labels
+ok 184 - handledEventNames reads both quote styles, both orders and case labels
+  ---
+  duration_ms: 0.283792
+  type: 'test'
+  ...
+# Subtest: handledEventNames reads an escaped event name as the name it spells
+ok 185 - handledEventNames reads an escaped event name as the name it spells
+  ---
+  duration_ms: 0.08075
+  type: 'test'
+  ...
+# Subtest: comment and string text is never read as an event check
+ok 186 - comment and string text is never read as an event check
+  ---
+  duration_ms: 0.108458
+  type: 'test'
+  ...
+# Subtest: a case label counts only under a switch on the event type
+ok 187 - a case label counts only under a switch on the event type
+  ---
+  duration_ms: 0.065416
+  type: 'test'
+  ...
+# Subtest: a collection that is changed after it is built is reported, not trusted
+ok 188 - a collection that is changed after it is built is reported, not trusted
+  ---
+  duration_ms: 0.278917
+  type: 'test'
+  ...
+# Subtest: an alias of the event type is read like the type itself
+ok 189 - an alias of the event type is read like the type itself
+  ---
+  duration_ms: 0.069959
+  type: 'test'
+  ...
+# Subtest: a write through a collection member makes the collection untrusted
+ok 190 - a write through a collection member makes the collection untrusted
+  ---
+  duration_ms: 0.27725
+  type: 'test'
+  ...
+# Subtest: an alias that is shadowed or reassigned is not an alias
+ok 191 - an alias that is shadowed or reassigned is not an alias
+  ---
+  duration_ms: 0.154458
+  type: 'test'
+  ...
+# Subtest: a comparison on a reassigned alias is reported as unscanned
+ok 192 - a comparison on a reassigned alias is reported as unscanned
+  ---
+  duration_ms: 0.086333
+  type: 'test'
+  ...
+# Subtest: a comparison on a name built from a reassigned alias is reported as unscanned
+ok 193 - a comparison on a name built from a reassigned alias is reported as unscanned
+  ---
+  duration_ms: 0.150667
+  type: 'test'
+  ...
+# Subtest: a possibly-undefined argument keeps an event-type parameter default in play
+ok 194 - a possibly-undefined argument keeps an event-type parameter default in play
+  ---
+  duration_ms: 0.147
+  type: 'test'
+  ...
+# Subtest: a destructured type field is read in parameters and with defaults
+ok 195 - a destructured type field is read in parameters and with defaults
+  ---
+  duration_ms: 0.063541
+  type: 'test'
+  ...
+# Subtest: a local Set or Object is not trusted to build a literal collection
+ok 196 - a local Set or Object is not trusted to build a literal collection
+  ---
+  duration_ms: 0.174833
+  type: 'test'
+  ...
+# Subtest: a same-named parameter does not stand in for an outer collection
+ok 197 - a same-named parameter does not stand in for an outer collection
+  ---
+  duration_ms: 0.068041
+  type: 'test'
+  ...
+# Subtest: an unrelated same-named parameter does not cancel an outer alias
+ok 198 - an unrelated same-named parameter does not cancel an outer alias
+  ---
+  duration_ms: 0.044917
+  type: 'test'
+  ...
+# Subtest: a for-of loop that writes an alias cancels it
+ok 199 - a for-of loop that writes an alias cancels it
+  ---
+  duration_ms: 0.052375
+  type: 'test'
+  ...
+# Subtest: a membership method that does not fit the collection is reported
+ok 200 - a membership method that does not fit the collection is reported
+  ---
+  duration_ms: 0.096209
+  type: 'test'
+  ...
+# Subtest: a helper that receives the event type inside a test is reported
+ok 201 - a helper that receives the event type inside a test is reported
+  ---
+  duration_ms: 0.158875
+  type: 'test'
+  ...
+# Subtest: a wrapped event type is reported in comparisons, switches and membership checks
+ok 202 - a wrapped event type is reported in comparisons, switches and membership checks
+  ---
+  duration_ms: 0.517208
+  type: 'test'
+  ...
+# Subtest: a shadowed undefined is not read as the no-event sentinel
+ok 203 - a shadowed undefined is not read as the no-event sentinel
+  ---
+  duration_ms: 0.252791
+  type: 'test'
+  ...
+# Subtest: a helper that receives a wrapped event type inside a test is reported
+ok 204 - a helper that receives a wrapped event type inside a test is reported
+  ---
+  duration_ms: 0.056458
+  type: 'test'
+  ...
+# Subtest: a stored helper result that decides an if is reported
+ok 205 - a stored helper result that decides an if is reported
+  ---
+  duration_ms: 0.123666
+  type: 'test'
+  ...
+# Subtest: a stored helper result behind a logical expression that decides a loop is reported
+ok 206 - a stored helper result behind a logical expression that decides a loop is reported
+  ---
+  duration_ms: 0.0885
+  type: 'test'
+  ...
+# Subtest: a stored helper result that never decides a branch is not reported
+ok 207 - a stored helper result that never decides a branch is not reported
+  ---
+  duration_ms: 0.059084
+  type: 'test'
+  ...
+# Subtest: a stored helper result read inside a nested function is reported
+ok 208 - a stored helper result read inside a nested function is reported
+  ---
+  duration_ms: 0.042666
+  type: 'test'
+  ...
+# Subtest: a stored helper result that decides a switch is reported
+ok 209 - a stored helper result that decides a switch is reported
+  ---
+  duration_ms: 0.047083
+  type: 'test'
+  ...
+# Subtest: a callback method that can reach the collection makes it untrusted
+ok 210 - a callback method that can reach the collection makes it untrusted
+  ---
+  duration_ms: 0.099458
+  type: 'test'
+  ...
+# Subtest: a computed static type key is read as the type field
+ok 211 - a computed static type key is read as the type field
+  ---
+  duration_ms: 0.048792
+  type: 'test'
+  ...
+# Subtest: a type-named parameter is not the event type when its calls pass no event type
+ok 212 - a type-named parameter is not the event type when its calls pass no event type
+  ---
+  duration_ms: 0.070334
+  type: 'test'
+  ...
+# Subtest: a type-named parameter that receives the event type reads as the type
+ok 213 - a type-named parameter that receives the event type reads as the type
+  ---
+  duration_ms: 0.067166
+  type: 'test'
+  ...
+# Subtest: a type-named parameter of an uncalled function still reads as the type
+ok 214 - a type-named parameter of an uncalled function still reads as the type
+  ---
+  duration_ms: 0.037791
+  type: 'test'
+  ...
+# Subtest: a type-named parameter of an escaping function still reads as the type
+ok 215 - a type-named parameter of an escaping function still reads as the type
+  ---
+  duration_ms: 0.046875
+  type: 'test'
+  ...
+# Subtest: a defaulted type-named parameter is not the event type when its call omits it
+ok 216 - a defaulted type-named parameter is not the event type when its call omits it
+  ---
+  duration_ms: 0.066625
+  type: 'test'
+  ...
+# Subtest: a type-named parameter passed to another type-named parameter is resolved
+ok 217 - a type-named parameter passed to another type-named parameter is resolved
+  ---
+  duration_ms: 0.069375
+  type: 'test'
+  ...
+# Subtest: a type-named parameter that only reaches itself still reads as the type
+ok 218 - a type-named parameter that only reaches itself still reads as the type
+  ---
+  duration_ms: 0.040209
+  type: 'test'
+  ...
+# Subtest: a type-named parameter defaulted from the event type reads as the type
+ok 219 - a type-named parameter defaulted from the event type reads as the type
+  ---
+  duration_ms: 0.051666
+  type: 'test'
+  ...
+# Subtest: a type-named parameter written inside its function reads as the type
+ok 220 - a type-named parameter written inside its function reads as the type
+  ---
+  duration_ms: 0.044208
+  type: 'test'
+  ...
+# Subtest: a type-named parameter of an exported function reads as the type
+ok 221 - a type-named parameter of an exported function reads as the type
+  ---
+  duration_ms: 0.046209
+  type: 'test'
+  ...
+# Subtest: a type-named parameter reads past an argument before its own position
+ok 222 - a type-named parameter reads past an argument before its own position
+  ---
+  duration_ms: 0.079083
+  type: 'test'
+  ...
+# Subtest: a type-named parameter of a function exported by name reads as the type
+ok 223 - a type-named parameter of a function exported by name reads as the type
+  ---
+  duration_ms: 0.056292
+  type: 'test'
+  ...
+# Subtest: a type-named object key and member property are not event values
+ok 224 - a type-named object key and member property are not event values
+  ---
+  duration_ms: 0.109542
+  type: 'test'
+  ...
+# Subtest: a shorthand type-named property passes the event type
+ok 225 - a shorthand type-named property passes the event type
+  ---
+  duration_ms: 0.04675
+  type: 'test'
+  ...
+# Subtest: a source the parser cannot read fails instead of passing empty
+ok 226 - a source the parser cannot read fails instead of passing empty
+  ---
+  duration_ms: 0.389167
+  type: 'test'
+  ...
+# Subtest: handledEventNames reads names from a resolved collection
+ok 227 - handledEventNames reads names from a resolved collection
+  ---
+  duration_ms: 0.103375
+  type: 'test'
+  ...
+# Subtest: unscannedEventChecks reports checks the scan cannot read
+ok 228 - unscannedEventChecks reports checks the scan cannot read
+  ---
+  duration_ms: 0.109875
+  type: 'test'
+  ...
+# Subtest: unscannedEventChecks fails closed on forms it cannot resolve
+ok 229 - unscannedEventChecks fails closed on forms it cannot resolve
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: every unscanned event check is listed
+ok 230 - every unscanned event check is listed
+  ---
+  duration_ms: 73.291375
+  type: 'test'
+  ...
+# Subtest: session-cleanup plugin lifecycle
+    # Subtest: uses canonical dispose once and keeps process signaling disabled
+    ok 1 - uses canonical dispose once and keeps process signaling disabled
+      ---
+      duration_ms: 60.950459
+      type: 'test'
+      ...
+    # Subtest: runs captured startup guards and injects warnings once per session
+    ok 2 - runs captured startup guards and injects warnings once per session
+      ---
+      duration_ms: 4.11825
+      type: 'test'
+      ...
+    # Subtest: session.created resolves before a slow startup guard finishes
+    ok 3 - session.created resolves before a slow startup guard finishes
+      ---
+      duration_ms: 3.770709
+      type: 'test'
+      ...
+    # Subtest: the first transform still receives a delayed guard warning
+    ok 4 - the first transform still receives a delayed guard warning
+      ---
+      duration_ms: 103.603917
+      type: 'test'
+      ...
+    # Subtest: starts startup guards concurrently
+    ok 5 - starts startup guards concurrently
+      ---
+      duration_ms: 1.54925
+      type: 'test'
+      ...
+    # Subtest: caps overflowing startup output and escalates when SIGTERM is ignored
+    ok 6 - caps overflowing startup output and escalates when SIGTERM is ignored
+      ---
+      duration_ms: 23.785292
+      type: 'test'
+      ...
+    # Subtest: keeps the timeout kill armed after an early process error
+    ok 7 - keeps the timeout kill armed after an early process error
+      ---
+      duration_ms: 53.641125
+      type: 'test'
+      ...
+    # Subtest: records one bounded diagnostic for nonzero exit
+    ok 8 - records one bounded diagnostic for nonzero exit
+      ---
+      duration_ms: 1.28475
+      type: 'test'
+      ...
+    # Subtest: records one bounded diagnostic for launch error
+    ok 9 - records one bounded diagnostic for launch error
+      ---
+      duration_ms: 0.812375
+      type: 'test'
+      ...
+    # Subtest: records one bounded diagnostic for signal exit
+    ok 10 - records one bounded diagnostic for signal exit
+      ---
+      duration_ms: 0.873708
+      type: 'test'
+      ...
+    1..10
+ok 231 - session-cleanup plugin lifecycle
+  ---
+  duration_ms: 255.273458
+  type: 'suite'
+  ...
+# Subtest: session-cleanup shell contracts
+    # Subtest: prefers neutral configuration and terminates descendants deepest-first
+    ok 1 - prefers neutral configuration and terminates descendants deepest-first
+      ---
+      duration_ms: 0.079541
+      type: 'test'
+      ...
+    # Subtest: does not claim the workspace-scoped server pid as session ownership
+    ok 2 - does not claim the workspace-scoped server pid as session ownership
+      ---
+      duration_ms: 0.04675
+      type: 'test'
+      ...
+    # Subtest: warns for every shared-checkout branch
+    ok 3 - warns for every shared-checkout branch
+      ---
+      duration_ms: 0.026875
+      type: 'test'
+      ...
+    # Subtest: resolves the effective hooks path and rejects invalid symlinks
+    ok 4 - resolves the effective hooks path and rejects invalid symlinks
+      ---
+      duration_ms: 0.037375
+      type: 'test'
+      ...
+    # Subtest: all modified shell scripts pass bash syntax validation
+    ok 5 - all modified shell scripts pass bash syntax validation
+      ---
+      duration_ms: 11.382708
+      type: 'test'
+      ...
+    1..5
+ok 232 - session-cleanup shell contracts
+  ---
+  duration_ms: 11.672125
+  type: 'suite'
+  ...
+# Subtest: session-cleanup live process tree
+    # Subtest: collects the live descendant tree and terminates it deepest-first
+    ok 1 - collects the live descendant tree and terminates it deepest-first
+      ---
+      duration_ms: 727.048583
+      type: 'test'
+      ...
+    # Subtest: never signals a reparented matched process outside the session subtree
+    ok 2 - never signals a reparented matched process outside the session subtree
+      ---
+      duration_ms: 331.888666
+      type: 'test'
+      ...
+    1..2
+ok 233 - session-cleanup live process tree
+  ---
+  duration_ms: 1059.297458
+  type: 'suite'
+  ...
+# Subtest: kill switch stops an active OpenCode nudge
+ok 234 - kill switch stops an active OpenCode nudge
+  ---
+  duration_ms: 72.210125
+  type: 'test'
+  ...
+# Subtest: hook flags written after plugin load silence the next event
+ok 235 - hook flags written after plugin load silence the next event
+  ---
+  duration_ms: 23.241375
+  type: 'test'
+  ...
+# Subtest: an unchanged flags file is read once across many events
+ok 236 - an unchanged flags file is read once across many events
+  ---
+  duration_ms: 32.093333
+  type: 'test'
+  ...
+# Subtest: editing the flags file after a cached read disables the next event
+ok 237 - editing the flags file after a cached read disables the next event
+  ---
+  duration_ms: 100.379667
+  type: 'test'
+  ...
+# Subtest: a same-size flags rewrite with its mtime restored is read again
+ok 238 - a same-size flags rewrite with its mtime restored is read again
+  ---
+  duration_ms: 177.1105
+  type: 'test'
+  ...
+# Subtest: active nudge appears on three consecutive system transforms
+ok 239 - active nudge appears on three consecutive system transforms
+  ---
+  duration_ms: 109.385292
+  type: 'test'
+  ...
+# Subtest: a five-point re-nudge replaces active text and keeps its note path
+ok 240 - a five-point re-nudge replaces active text and keeps its note path
+  ---
+  duration_ms: 129.606875
+  type: 'test'
+  ...
+# Subtest: OpenCode nudge includes the save step when SYSTEM_SPEC_FOLDER is unset
+ok 241 - OpenCode nudge includes the save step when SYSTEM_SPEC_FOLDER is unset
+  ---
+  duration_ms: 148.245958
+  type: 'test'
+  ...
+# Subtest: with a loop id that names no record, the nudge stops after its planned note file appears
+ok 242 - with a loop id that names no record, the nudge stops after its planned note file appears
+  ---
+  duration_ms: 158.65925
+  type: 'test'
+  ...
+# Subtest: loop nudge continues after its handoff file exists without a relaunch record
+ok 243 - loop nudge continues after its handoff file exists without a relaunch record
+  ---
+  duration_ms: 154.269667
+  type: 'test'
+  ...
+# Subtest: loop nudge stops for matching pending and armed records
+ok 244 - loop nudge stops for matching pending and armed records
+  ---
+  duration_ms: 229.690334
+  type: 'test'
+  ...
+# Subtest: a usage above threshold queues no nudge while this session has a prepared handoff
+ok 245 - a usage above threshold queues no nudge while this session has a prepared handoff
+  ---
+  duration_ms: 65.938708
+  type: 'test'
+  ...
+# Subtest: a hop count at the cap queues no nudge
+ok 246 - a hop count at the cap queues no nudge
+  ---
+  duration_ms: 13.649334
+  type: 'test'
+  ...
+# Subtest: a stale armed record no longer suppresses the loop nudge
+ok 247 - a stale armed record no longer suppresses the loop nudge
+  ---
+  duration_ms: 223.127959
+  type: 'test'
+  ...
+# Subtest: a zero max age makes any armed record stale for the nudge check
+ok 248 - a zero max age makes any armed record stale for the nudge check
+  ---
+  duration_ms: 222.75675
+  type: 'test'
+  ...
+# Subtest: loop nudge continues for a record owned by another session
+ok 249 - loop nudge continues for a record owned by another session
+  ---
+  duration_ms: 162.752792
+  type: 'test'
+  ...
+# Subtest: kill switch suppresses an in-loop nudge before handoff preparation
+ok 250 - kill switch suppresses an in-loop nudge before handoff preparation
+  ---
+  duration_ms: 124.211167
+  type: 'test'
+  ...
+# Subtest: an active nudge is not injected into another session
+ok 251 - an active nudge is not injected into another session
+  ---
+  duration_ms: 94.823375
+  type: 'test'
+  ...
+# Subtest: a restarted plugin repeats its persisted nudge at the threshold
+ok 252 - a restarted plugin repeats its persisted nudge at the threshold
+  ---
+  duration_ms: 154.799125
+  type: 'test'
+  ...
+# Subtest: a restarted nudge reuses a matching handoff note
+ok 253 - a restarted nudge reuses a matching handoff note
+  ---
+  duration_ms: 240.444083
+  type: 'test'
+  ...
+# Subtest: a restarted nudge ignores a closed handoff note and plans a fresh path
+ok 254 - a restarted nudge ignores a closed handoff note and plans a fresh path
+  ---
+  duration_ms: 168.648792
+  type: 'test'
+  ...
+# Subtest: SESSION_RELAUNCH_WINDOW_TOKENS overrides the model window
+ok 255 - SESSION_RELAUNCH_WINDOW_TOKENS overrides the model window
+  ---
+  duration_ms: 15.852542
+  type: 'test'
+  ...
+# Subtest: seed stays pending across later text parts
+ok 256 - seed stays pending across later text parts
+  ---
+  duration_ms: 22.616917
+  type: 'test'
+  ...
+# Subtest: OpenCode uses the carried spec folder and keeps the suffixed note path intact
+ok 257 - OpenCode uses the carried spec folder and keeps the suffixed note path intact
+  ---
+  duration_ms: 14.26625
+  type: 'test'
+  ...
+# Subtest: the seed repeats on every transform until the note is closed
+ok 258 - the seed repeats on every transform until the note is closed
+  ---
+  duration_ms: 72.878083
+  type: 'test'
+  ...
+# Subtest: a claimed note pushes one completion reminder instead of the claim text
+ok 259 - a claimed note pushes one completion reminder instead of the claim text
+  ---
+  duration_ms: 67.066667
+  type: 'test'
+  ...
+# Subtest: a done note clears the seed and pushes nothing
+ok 260 - a done note clears the seed and pushes nothing
+  ---
+  duration_ms: 69.618875
+  type: 'test'
+  ...
+# Subtest: a repeated seed message update keeps the seed while a new user message clears it
+ok 261 - a repeated seed message update keeps the seed while a new user message clears it
+  ---
+  duration_ms: 41.79825
+  type: 'test'
+  ...
+# Subtest: a different user message clears the pending seed
+ok 262 - a different user message clears the pending seed
+  ---
+  duration_ms: 31.34625
+  type: 'test'
+  ...
+# Subtest: interleaved sessions keep their own seed and nudge text
+ok 263 - interleaved sessions keep their own seed and nudge text
+  ---
+  duration_ms: 152.211875
+  type: 'test'
+  ...
+# Subtest: recently active session survives the session-state cap
+ok 264 - recently active session survives the session-state cap
+  ---
+  duration_ms: 86.643792
+  type: 'test'
+  ...
+# Subtest: session.idle arms a matching record and spawns the killer without a transcript
+ok 265 - session.idle arms a matching record and spawns the killer without a transcript
+  ---
+  duration_ms: 86.09125
+  type: 'test'
+  ...
+# Subtest: session.idle respawns one killer for an armed record whose killer is gone
+ok 266 - session.idle respawns one killer for an armed record whose killer is gone
+  ---
+  duration_ms: 135.285083
+  type: 'test'
+  ...
+# Subtest: session.idle uses node under Bun and ignores killer spawn errors
+ok 267 - session.idle uses node under Bun and ignores killer spawn errors
+  ---
+  duration_ms: 96.591125
+  type: 'test'
+  ...
+# Subtest: session.idle logs a killer spawn error and leaves the record armed
+ok 268 - session.idle logs a killer spawn error and leaves the record armed
+  ---
+  duration_ms: 121.944833
+  type: 'test'
+  ...
+# Subtest: session.idle logs a synchronous killer spawn throw and leaves the record armed
+ok 269 - session.idle logs a synchronous killer spawn throw and leaves the record armed
+  ---
+  duration_ms: 98.592709
+  type: 'test'
+  ...
+# Subtest: the planned note path lands under the env repo root, not the session directory
+ok 270 - the planned note path lands under the env repo root, not the session directory
+  ---
+  duration_ms: 90.326583
+  type: 'test'
+  ...
+# Subtest: a relative SESSION_RELAUNCH_REPO_ROOT still yields an absolute planned note path
+ok 271 - a relative SESSION_RELAUNCH_REPO_ROOT still yields an absolute planned note path
+  ---
+  duration_ms: 39.650959
+  type: 'test'
+  ...
+# Subtest: an invalid env threshold never falls through to the config file
+ok 272 - an invalid env threshold never falls through to the config file
+  ---
+  duration_ms: 33.761417
+  type: 'test'
+  ...
+# Subtest: a seed path with a literal backslash round-trips unchanged
+ok 273 - a seed path with a literal backslash round-trips unchanged
+  ---
+  duration_ms: 25.900959
+  type: 'test'
+  ...
+# Subtest: a relative or untrimmed seed path adds nothing to the system prompt
+ok 274 - a relative or untrimmed seed path adds nothing to the system prompt
+  ---
+  duration_ms: 21.274666
+  type: 'test'
+  ...
+# Subtest: malformed plugin events and transforms never throw
+ok 275 - malformed plugin events and transforms never throw
+  ---
+  duration_ms: 13.665292
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: comment-hygiene fires for a plain source-file edit
+ok 276 - resolveDispatch: comment-hygiene fires for a plain source-file edit
+  ---
+  duration_ms: 0.999833
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: frontmatter-versions fires for a skill SKILL.md with --skill scope
+ok 277 - resolveDispatch: frontmatter-versions fires for a skill SKILL.md with --skill scope
+  ---
+  duration_ms: 0.474917
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: frontmatter-versions fires for a skill SKILL.md under a .skilled source root
+ok 278 - resolveDispatch: frontmatter-versions fires for a skill SKILL.md under a .skilled source root
+  ---
+  duration_ms: 0.13425
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: wikilinks scopes to the skill directory under the source root the edit names
+ok 279 - resolveDispatch: wikilinks scopes to the skill directory under the source root the edit names
+  ---
+  duration_ms: 0.084709
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: placeholders fires for a spec-folder doc, scoped to the folder
+ok 280 - resolveDispatch: placeholders fires for a spec-folder doc, scoped to the folder
+  ---
+  duration_ms: 0.081458
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: legacy top-level specs/ folder also matches placeholders
+ok 281 - resolveDispatch: legacy top-level specs/ folder also matches placeholders
+  ---
+  duration_ms: 0.062875
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: flowchart fires for a create-flowchart asset by path
+ok 282 - resolveDispatch: flowchart fires for a create-flowchart asset by path
+  ---
+  duration_ms: 0.055833
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: flowchart fires for any filename containing "flowchart"
+ok 283 - resolveDispatch: flowchart fires for any filename containing "flowchart"
+  ---
+  duration_ms: 0.057708
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: repo-root README.md matches nothing
+ok 284 - resolveDispatch: repo-root README.md matches nothing
+  ---
+  duration_ms: 0.076291
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: wikilinks stays off by default and turns on only via its env flag
+ok 285 - resolveDispatch: wikilinks stays off by default and turns on only via its env flag
+  ---
+  duration_ms: 0.167083
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: a SKILL.md never fires wikilinks even when the env flag is on (frontmatter wins priority)
+ok 286 - resolveDispatch: a SKILL.md never fires wikilinks even when the env flag is on (frontmatter wins priority)
+  ---
+  duration_ms: 0.067083
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: adversarial -- a doc under a skill's references/ dir named spec.md resolves to frontmatter, not placeholders
+ok 287 - resolveDispatch: adversarial -- a doc under a skill's references/ dir named spec.md resolves to frontmatter, not placeholders
+  ---
+  duration_ms: 0.063667
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: frontmatter-versions fires for every in-scope skill doc, never for test input or generated output
+ok 288 - resolveDispatch: frontmatter-versions fires for every in-scope skill doc, never for test input or generated output
+  ---
+  duration_ms: 0.211709
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: a runtime state concern README keeps the version gate, deeper state stays out
+ok 289 - resolveDispatch: a runtime state concern README keeps the version gate, deeper state stays out
+  ---
+  duration_ms: 0.139792
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: adversarial -- box-drawing glyphs in a non-flowchart doc do not trigger the flowchart checker
+ok 290 - resolveDispatch: adversarial -- box-drawing glyphs in a non-flowchart doc do not trigger the flowchart checker
+  ---
+  duration_ms: 4.211917
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: adversarial -- a path outside the project root resolves to no match
+ok 291 - resolveDispatch: adversarial -- a path outside the project root resolves to no match
+  ---
+  duration_ms: 0.063666
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: README.md matches frontmatter-versions with or without a sibling SKILL.md
+ok 292 - resolveDispatch: README.md matches frontmatter-versions with or without a sibling SKILL.md
+  ---
+  duration_ms: 4.091791
+  type: 'test'
+  ...
+# Subtest: resolveDispatch: dist/node_modules/.git segments are excluded from comment-hygiene
+ok 293 - resolveDispatch: dist/node_modules/.git segments are excluded from comment-hygiene
+  ---
+  duration_ms: 0.07575
+  type: 'test'
+  ...
+# Subtest: runChecks: a missing checker path yields no finding (fail-open)
+ok 294 - runChecks: a missing checker path yields no finding (fail-open)
+  ---
+  duration_ms: 0.113458
+  type: 'test'
+  ...
+# Subtest: runChecks: an exit-2 (unavailable) checker yields no finding, only exit 0/1 are meaningful
+ok 295 - runChecks: an exit-2 (unavailable) checker yields no finding, only exit 0/1 are meaningful
+  ---
+  duration_ms: 155.256042
+  type: 'test'
+  ...
+# Subtest: runChecks: spawn throwing synchronously yields no finding (fail-open)
+ok 296 - runChecks: spawn throwing synchronously yields no finding (fail-open)
+  ---
+  duration_ms: 18.052667
+  type: 'test'
+  ...
+# Subtest: runChecks: comment-hygiene surfaceRule requires exit 1 AND non-empty stdout
+ok 297 - runChecks: comment-hygiene surfaceRule requires exit 1 AND non-empty stdout
+  ---
+  duration_ms: 299.172583
+  type: 'test'
+  ...
+# Subtest: runChecks: exit1 surfaceRule surfaces even with empty stdout
+ok 298 - runChecks: exit1 surfaceRule surfaces even with empty stdout
+  ---
+  duration_ms: 132.518708
+  type: 'test'
+  ...
+# Subtest: runChecks: a clean exit-0 checker never surfaces
+ok 299 - runChecks: a clean exit-0 checker never surfaces
+  ---
+  duration_ms: 192.151667
+  type: 'test'
+  ...
+# Subtest: runChecks: skips remaining entries once the shared deadline is exhausted
+ok 300 - runChecks: skips remaining entries once the shared deadline is exhausted
+  ---
+  duration_ms: 782.967167
+  type: 'test'
+  ...
+# Subtest: runChecks: a non-positive deadlineMs (exhausted budget) returns no findings without spawning any checker
+ok 301 - runChecks: a non-positive deadlineMs (exhausted budget) returns no findings without spawning any checker
+  ---
+  duration_ms: 89.453084
+  type: 'test'
+  ...
+# Subtest: runChecks: dedupeTracker suppresses a repeat dedupeKey without re-running the checker
+ok 302 - runChecks: dedupeTracker suppresses a repeat dedupeKey without re-running the checker
+  ---
+  duration_ms: 238.447584
+  type: 'test'
+  ...
+# Subtest: runChecks: redacts keyworded secret-shaped assignments in finding stdout
+ok 303 - runChecks: redacts keyworded secret-shaped assignments in finding stdout
+  ---
+  duration_ms: 245.575583
+  type: 'test'
+  ...
+# Subtest: redactSecrets: redacts the token carried by an Authorization bearer scheme
+ok 304 - redactSecrets: redacts the token carried by an Authorization bearer scheme
+  ---
+  duration_ms: 0.080459
+  type: 'test'
+  ...
+# Subtest: redactSecrets: redacts the token after a bare bearer scheme, keeps the scheme word, and leaves a short word alone
+ok 305 - redactSecrets: redacts the token after a bare bearer scheme, keeps the scheme word, and leaves a short word alone
+  ---
+  duration_ms: 0.033625
+  type: 'test'
+  ...
+# Subtest: redactSecrets: leaves ordinary prose after a bearer scheme alone
+ok 306 - redactSecrets: leaves ordinary prose after a bearer scheme alone
+  ---
+  duration_ms: 0.02625
+  type: 'test'
+  ...
+# Subtest: redactSecrets: redacts an alphabet-only mixed-case base64 token after a bearer scheme
+ok 307 - redactSecrets: redacts an alphabet-only mixed-case base64 token after a bearer scheme
+  ---
+  duration_ms: 0.021208
+  type: 'test'
+  ...
+# Subtest: redactSecrets: a capitalised prose word after a bearer scheme stays readable
+ok 308 - redactSecrets: a capitalised prose word after a bearer scheme stays readable
+  ---
+  duration_ms: 0.018416
+  type: 'test'
+  ...
+# Subtest: redactSecrets: still redacts a JWT-shaped token and a hex token after a bearer scheme
+ok 309 - redactSecrets: still redacts a JWT-shaped token and a hex token after a bearer scheme
+  ---
+  duration_ms: 0.028708
+  type: 'test'
+  ...
+# Subtest: redactSecrets: still redacts a keyworded secret-shaped assignment
+ok 310 - redactSecrets: still redacts a keyworded secret-shaped assignment
+  ---
+  duration_ms: 0.035292
+  type: 'test'
+  ...
+# Subtest: runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-root integration)
+ok 311 - runChecks: real check-comment-hygiene.sh flags a live ADR reference (repo-root integration)
+  ---
+  duration_ms: 76.317166
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin exports only the default plugin factory
+ok 312 - OpenCode plugin exports only the default plugin factory
+  ---
+  duration_ms: 20.674041
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin correlation map: stash -> retrieve+evict, unmatched take is a no-op
+ok 313 - OpenCode plugin correlation map: stash -> retrieve+evict, unmatched take is a no-op
+  ---
+  duration_ms: 0.149875
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: before/after correlation runs the dispatch table and surfaces via chat.system.transform, with zero terminal writes
+ok 314 - OpenCode plugin: before/after correlation runs the dispatch table and surfaces via chat.system.transform, with zero terminal writes
+  ---
+  duration_ms: 341.548375
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: logs under .opencode when that is the only source root
+ok 315 - OpenCode plugin: logs under .opencode when that is the only source root
+  ---
+  duration_ms: 380.408208
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: tool.execute.after resolves a relative stashed filePath against projectDir before existsSync/resolveDispatch
+ok 316 - OpenCode plugin: tool.execute.after resolves a relative stashed filePath against projectDir before existsSync/resolveDispatch
+  ---
+  duration_ms: 320.906709
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: tool.execute.after threads cwd:projectDir through to runChecks/spawnSync for cwd-sensitive checkers
+ok 317 - OpenCode plugin: tool.execute.after threads cwd:projectDir through to runChecks/spawnSync for cwd-sensitive checkers
+  ---
+  duration_ms: 283.038125
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: an after-hook with no matching callID is a no-op
+ok 318 - OpenCode plugin: an after-hook with no matching callID is a no-op
+  ---
+  duration_ms: 64.941125
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: non-mutating tools are ignored by tool.execute.before
+ok 319 - OpenCode plugin: non-mutating tools are ignored by tool.execute.before
+  ---
+  duration_ms: 64.999209
+  type: 'test'
+  ...
+# Subtest: OpenCode plugin: kill-switch env makes every hook a full no-op
+ok 320 - OpenCode plugin: kill-switch env makes every hook a full no-op
+  ---
+  duration_ms: 159.743584
+  type: 'test'
+  ...
+# Subtest: Claude hook rejects malformed envelopes without a traceback and always exits 0
+ok 321 - Claude hook rejects malformed envelopes without a traceback and always exits 0
+  ---
+  duration_ms: 248.575417
+  type: 'test'
+  ...
+# Subtest: Claude hook prints a bounded comment-hygiene advisory and preserves dist-staleness coverage
+ok 322 - Claude hook prints a bounded comment-hygiene advisory and preserves dist-staleness coverage
+  ---
+  duration_ms: 452.551333
+  type: 'test'
+  ...
+# Subtest: Claude hook is a full no-op under its kill-switch env
+ok 323 - Claude hook is a full no-op under its kill-switch env
+  ---
+  duration_ms: 163.8345
+  type: 'test'
+  ...
+# Subtest: Codex hook checks every file named in a multi-file apply_patch, not only the first
+ok 324 - Codex hook checks every file named in a multi-file apply_patch, not only the first
+  ---
+  duration_ms: 263.551958
+  type: 'test'
+  ...
+# Subtest: Claude hook is a no-op for a missing file (never crashes on a stale path)
+ok 325 - Claude hook is a no-op for a missing file (never crashes on a stale path)
+  ---
+  duration_ms: 36.558
+  type: 'test'
+  ...
+# Subtest: Claude hook honors its shared budget across sequential checks
+ok 326 - Claude hook honors its shared budget across sequential checks
+  ---
+  duration_ms: 8211.089333
+  type: 'test'
+  ...
+# Subtest: the module exports only the plugin factory
+ok 327 - the module exports only the plugin factory
+  ---
+  duration_ms: 47.006333
+  type: 'test'
+  ...
+# Subtest: a commit message that breaks the template is refused with its rule ids
+ok 328 - a commit message that breaks the template is refused with its rule ids
+  ---
+  duration_ms: 848.36375
+  type: 'test'
+  ...
+# Subtest: a conforming commit and a non-bash tool pass untouched
+ok 329 - a conforming commit and a non-bash tool pass untouched
+  ---
+  duration_ms: 776.359875
+  type: 'test'
+  ...
+# Subtest: a repository without a contract is not checked
+ok 330 - a repository without a contract is not checked
+  ---
+  duration_ms: 863.080291
+  type: 'test'
+  ...
+# Subtest: a broken rules block is refused rather than passed
+ok 331 - a broken rules block is refused rather than passed
+  ---
+  duration_ms: 852.791791
+  type: 'test'
+  ...
+# Subtest: dispatch guard blocks by the packet's rules when the project carries only .skilled
+ok 332 - dispatch guard blocks by the packet's rules when the project carries only .skilled
+  ---
+  duration_ms: 1026.18725
+  type: 'test'
+  ...
+# Subtest: git preflight reads sk-git's rules when the project carries only .skilled
+ok 333 - git preflight reads sk-git's rules when the project carries only .skilled
+  ---
+  duration_ms: 1129.769
+  type: 'test'
+  ...
+# Subtest: Codex watchdog runs the installer when the project carries only .skilled
+ok 334 - Codex watchdog runs the installer when the project carries only .skilled
+  ---
+  duration_ms: 1007.75425
+  type: 'test'
+  ...
+# Subtest: dispatch guard blocks by the packet's rules when the project carries only .opencode
+ok 335 - dispatch guard blocks by the packet's rules when the project carries only .opencode
+  ---
+  duration_ms: 728.020083
+  type: 'test'
+  ...
+# Subtest: git preflight reads sk-git's rules when the project carries only .opencode
+ok 336 - git preflight reads sk-git's rules when the project carries only .opencode
+  ---
+  duration_ms: 862.815792
+  type: 'test'
+  ...
+# Subtest: Codex watchdog runs the installer when the project carries only .opencode
+ok 337 - Codex watchdog runs the installer when the project carries only .opencode
+  ---
+  duration_ms: 328.83675
+  type: 'test'
+  ...
+# Subtest: dispatch guard reads the command from the hook output args
+ok 338 - dispatch guard reads the command from the hook output args
+  ---
+  duration_ms: 174.9915
+  type: 'test'
+  ...
+# Subtest: the audit-log switch leaves the preflight guard blocking
+ok 339 - the audit-log switch leaves the preflight guard blocking
+  ---
+  duration_ms: 114.956417
+  type: 'test'
+  ...
+# Subtest: without a source root the guard stays open and the watchdog reports no drift
+ok 340 - without a source root the guard stays open and the watchdog reports no drift
+  ---
+  duration_ms: 91.53525
+  type: 'test'
+  ...
+# Subtest: goal offer text is present in all presentation contracts
+ok 341 - goal offer text is present in all presentation contracts
+  ---
+  duration_ms: 4.463166
+  type: 'test'
+  ...
+# Subtest: goal_prompt_choice is confined to the five workflow YAML assets
+ok 342 - goal_prompt_choice is confined to the five workflow YAML assets
+  ---
+  duration_ms: 23.467958
+  type: 'test'
+  ...
+# Subtest: router allowed-tools expose the expected goal tools only
+ok 343 - router allowed-tools expose the expected goal tools only
+  ---
+  duration_ms: 0.999
+  type: 'test'
+  ...
+# Subtest: touched command files do not contain the stale goal command filename
+ok 344 - touched command files do not contain the stale goal command filename
+  ---
+  duration_ms: 1.340042
+  type: 'test'
+  ...
+# Subtest: the three lifecycle workflows carry a byte-identical packet_goal block
+ok 345 - the three lifecycle workflows carry a byte-identical packet_goal block
+  ---
+  duration_ms: 0.393292
+  type: 'test'
+  ...
+# Subtest: session.created invokes the throttled state sweep, pruning a stale dedup entry
+ok 346 - session.created invokes the throttled state sweep, pruning a stale dedup entry
+  ---
+  duration_ms: 158.461959
+  type: 'test'
+  ...
+# Subtest: kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
+ok 347 - kill switch (SYSTEM_COMPLETION_SENTINEL_DISABLED=1) makes session.created a full no-op, sweep included
+  ---
+  duration_ms: 94.439333
+  type: 'test'
+  ...
+# Subtest: a second session.created on the same plugin instance within the sweep interval is throttled (no re-sweep)
+ok 348 - a second session.created on the same plugin instance within the sweep interval is throttled (no re-sweep)
+  ---
+  duration_ms: 176.894666
+  type: 'test'
+  ...
+# Subtest: an unrelated event type never triggers the sweep
+ok 349 - an unrelated event type never triggers the sweep
+  ---
+  duration_ms: 100.685625
+  type: 'test'
+  ...
+# system-deep-loop-guard.test.cjs: all assertions passed
+# Subtest: .opencode/plugins/tests/system-deep-loop-guard.test.cjs
+ok 22 - .opencode/plugins/tests/system-deep-loop-guard.test.cjs
+  ---
+  duration_ms: 3178.606125
+  type: 'test'
+  ...
+# Subtest: exports only the OpenCode plugin factory
+ok 351 - exports only the OpenCode plugin factory
+  ---
+  duration_ms: 24.53325
+  type: 'test'
+  ...
+# Subtest: injects stale and check-error diagnostics without terminal output
+ok 352 - injects stale and check-error diagnostics without terminal output
+  ---
+  duration_ms: 291.843583
+  type: 'test'
+  ...
+# Subtest: treats an opencode2 run as a risky bash dispatch and opencode2 serve as safe
+ok 353 - treats an opencode2 run as a risky bash dispatch and opencode2 serve as safe
+  ---
+  duration_ms: 252.585042
+  type: 'test'
+  ...
+# Subtest: invalidates a warm cache for watched source mutations
+ok 354 - invalidates a warm cache for watched source mutations
+  ---
+  duration_ms: 3895.592125
+  type: 'test'
+  ...
+# Subtest: bounds session state and rotates the audit log
+ok 355 - bounds session state and rotates the audit log
+  ---
+  duration_ms: 86.799833
+  type: 'test'
+  ...
+# Subtest: logs under .opencode when that is the only source root
+ok 356 - logs under .opencode when that is the only source root
+  ---
+  duration_ms: 32.365084
+  type: 'test'
+  ...
+# Subtest: evicts the oldest session ID when the deduplication cap is reached
+ok 357 - evicts the oldest session ID when the deduplication cap is reached
+  ---
+  duration_ms: 6470.785959
+  type: 'test'
+  ...
+# Subtest: requires staged build provenance and verifies source and dist content
+ok 358 - requires staged build provenance and verifies source and dist content
+  ---
+  duration_ms: 6.305166
+  type: 'test'
+  ...
+# Subtest: refuses promotion when watched input changes during a build
+ok 359 - refuses promotion when watched input changes during a build
+  ---
+  duration_ms: 4.102292
+  type: 'test'
+  ...
+# Subtest: keeps JSON build inputs watched and preserves checker mtime fallback
+ok 360 - keeps JSON build inputs watched and preserves checker mtime fallback
+  ---
+  duration_ms: 24.694416
+  type: 'test'
+  ...
+# Subtest: prunes only old matching cache temporaries
+ok 361 - prunes only old matching cache temporaries
+  ---
+  duration_ms: 5.055
+  type: 'test'
+  ...
+# Subtest: reports aggregate checker errors as degraded with exit zero
+ok 362 - reports aggregate checker errors as degraded with exit zero
+  ---
+  duration_ms: 30.246959
+  type: 'test'
+  ...
+# Subtest: Claude hook rejects malformed envelopes without traceback
+ok 363 - Claude hook rejects malformed envelopes without traceback
+  ---
+  duration_ms: 275.56575
+  type: 'test'
+  ...
+# Subtest: Claude hook shares one deadline across sequential checkers
+ok 364 - Claude hook shares one deadline across sequential checkers
+  ---
+  duration_ms: 8206.224375
+  type: 'test'
+  ...
+# Subtest: standalone wrapper resolves the shared checker from a non-repo-root cwd
+ok 365 - standalone wrapper resolves the shared checker from a non-repo-root cwd
+  ---
+  duration_ms: 78.7225
+  type: 'test'
+  ...
+# Subtest: standalone wrapper surfaces checker errors and stale results distinctly
+ok 366 - standalone wrapper surfaces checker errors and stale results distinctly
+  ---
+  duration_ms: 344.249125
+  type: 'test'
+  ...
+# Subtest: standalone wrapper still prints the stale banner for a stale package
+ok 367 - standalone wrapper still prints the stale banner for a stale package
+  ---
+  duration_ms: 69.94625
+  type: 'test'
+  ...
+# Subtest: malformed optional configuration is reported with a prompt-safe code
+ok 368 - malformed optional configuration is reported with a prompt-safe code
+  ---
+  duration_ms: 276.931417
+  type: 'test'
+  ...
+# Subtest: plugin module exports a loader-compatible dual-plugin object as its default
+ok 369 - plugin module exports a loader-compatible dual-plugin object as its default
+  ---
+  duration_ms: 0.417458
+  type: 'test'
+  ...
+# Subtest: bounded route rendering caps targets and exposes a complete reveal path
+ok 370 - bounded route rendering caps targets and exposes a complete reveal path
+  ---
+  duration_ms: 0.404375
+  type: 'test'
+  ...
+# Subtest: flag-off route rendering and plugin delivery remain byte-identical to the baseline
+ok 371 - flag-off route rendering and plugin delivery remain byte-identical to the baseline
+  ---
+  duration_ms: 8.036959
+  type: 'test'
+  ...
+# Subtest: bounded flag selects the bounded line in the OpenCode transform
+ok 372 - bounded flag selects the bounded line in the OpenCode transform
+  ---
+  duration_ms: 2.733625
+  type: 'test'
+  ...
+# Subtest: target digest is stable for the same membership and changes for a changed omitted set
+ok 373 - target digest is stable for the same membership and changes for a changed omitted set
+  ---
+  duration_ms: 0.167417
+  type: 'test'
+  ...
+# Subtest: bounded rendering preserves the cap boundary and handles empty or malformed summaries
+ok 374 - bounded rendering preserves the cap boundary and handles empty or malformed summaries
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: no-brief turns render the no-match head and hygiene context
+ok 375 - no-brief turns render the no-match head and hygiene context
+  ---
+  duration_ms: 3.261625
+  type: 'test'
+  ...
+# Subtest: the stdin request stays inside the byte budget when the prompt needs escaping
+ok 376 - the stdin request stays inside the byte budget when the prompt needs escaping
+  ---
+  duration_ms: 3.239417
+  type: 'test'
+  ...
+# Subtest: a prompt over 10,000 characters is sent as its first 10,000
+ok 377 - a prompt over 10,000 characters is sent as its first 10,000
+  ---
+  duration_ms: 3.34625
+  type: 'test'
+  ...
+# Subtest: a byte budget too small for any prompt fails open without spawning
+ok 378 - a byte budget too small for any prompt fails open without spawning
+  ---
+  duration_ms: 5.105542
+  type: 'test'
+  ...
+# Subtest: a missing advisor binary fails open as a spawn error
+ok 379 - a missing advisor binary fails open as a spawn error
+  ---
+  duration_ms: 6.052542
+  type: 'test'
+  ...
+# Subtest: the advisor CLI the plugin spawns exists on disk
+ok 380 - the advisor CLI the plugin spawns exists on disk
+  ---
+  duration_ms: 2.067625
+  type: 'test'
+  ...
+# Subtest: missing prompts render the skipped head while disabled mode stays silent
+ok 381 - missing prompts render the skipped head while disabled mode stays silent
+  ---
+  duration_ms: 0.196209
+  type: 'test'
+  ...
+# Subtest: CLI output is bounded and overflow terminates immediately
+ok 382 - CLI output is bounded and overflow terminates immediately
+  ---
+  duration_ms: 4.832
+  type: 'test'
+  ...
+# Subtest: termination grace stays inside the configured timeout budget
+ok 383 - termination grace stays inside the configured timeout budget
+  ---
+  duration_ms: 50.135792
+  type: 'test'
+  ...
+# Subtest: multi-file freshness invalidates cache and ignores WAL-only mtime changes
+ok 384 - multi-file freshness invalidates cache and ignores WAL-only mtime changes
+  ---
+  duration_ms: 358.856584
+  type: 'test'
+  ...
+# Subtest: unavailable freshness bypasses completed cache entries
+ok 385 - unavailable freshness bypasses completed cache entries
+  ---
+  duration_ms: 7.52275
+  type: 'test'
+  ...
+# Subtest: the signature follows skills held only under the legacy source-root name
+ok 386 - the signature follows skills held only under the legacy source-root name
+  ---
+  duration_ms: 271.9405
+  type: 'test'
+  ...
+# Subtest: a workspace without a source root is never served from cache
+ok 387 - a workspace without a source root is never served from cache
+  ---
+  duration_ms: 24.055458
+  type: 'test'
+  ...
+# Subtest: session deletion prevents an in-flight completion from repopulating cache
+ok 388 - session deletion prevents an in-flight completion from repopulating cache
+  ---
+  duration_ms: 5.030375
+  type: 'test'
+  ...
+# Subtest: concurrent unique advisor lookups keep at most two CLI children live
+ok 389 - concurrent unique advisor lookups keep at most two CLI children live
+  ---
+  duration_ms: 12.017458
+  type: 'test'
+  ...
+# Subtest: a queued lookup fails open at its queue deadline while the granted runs stay live
+ok 390 - a queued lookup fails open at its queue deadline while the granted runs stay live
+  ---
+  duration_ms: 414.046166
+  type: 'test'
+  ...
+# Subtest: a queued lookup for a deleted session fails open on deletion
+ok 391 - a queued lookup for a deleted session fails open on deletion
+  ---
+  duration_ms: 8.948959
+  type: 'test'
+  ...
+# Subtest: a queue deadline leaves both slots free for later lookups
+ok 392 - a queue deadline leaves both slots free for later lookups
+  ---
+  duration_ms: 417.5455
+  type: 'test'
+  ...
+# Subtest: a slot freed past a waiter deadline fails the lookup open without spawning
+ok 393 - a slot freed past a waiter deadline fails the lookup open without spawning
+  ---
+  duration_ms: 8.168125
+  type: 'test'
+  ...
+# Subtest: cache TTL starts when CLI work completes
+ok 394 - cache TTL starts when CLI work completes
+  ---
+  duration_ms: 77.369542
+  type: 'test'
+  ...
+# Subtest: unexpected spawn failures fail open without escaping the transform
+ok 395 - unexpected spawn failures fail open without escaping the transform
+  ---
+  duration_ms: 3.156916
+  type: 'test'
+  ...
+# Subtest: hostile output containers cannot make the transform fail closed
+ok 396 - hostile output containers cannot make the transform fail closed
+  ---
+  duration_ms: 2.601542
+  type: 'test'
+  ...
+# Subtest: Claude source clamps prompts, keeps fallback parity, and flushes fail-open output
+ok 397 - Claude source clamps prompts, keeps fallback parity, and flushes fail-open output
+  ---
+  duration_ms: 0.5155
+  type: 'test'
+  ...
+# Subtest: status exposes prompt-safe configuration health
+ok 398 - status exposes prompt-safe configuration health
+  ---
+  duration_ms: 2.151333
+  type: 'test'
+  ...
+# Subtest: same-message advisor contributions are suppressed only after the first delivery
+ok 399 - same-message advisor contributions are suppressed only after the first delivery
+  ---
+  duration_ms: 3.897167
+  type: 'test'
+  ...
+# Subtest: distinct advisor messages with identical text both receive full delivery
+ok 400 - distinct advisor messages with identical text both receive full delivery
+  ---
+  duration_ms: 3.524208
+  type: 'test'
+  ...
+# Subtest: flag-off advisor delivery preserves repeated output byte-for-byte
+ok 401 - flag-off advisor delivery preserves repeated output byte-for-byte
+  ---
+  duration_ms: 3.553584
+  type: 'test'
+  ...
+# Subtest: unresolvable advisor identity fails open with full delivery
+ok 402 - unresolvable advisor identity fails open with full delivery
+  ---
+  duration_ms: 2.992416
+  type: 'test'
+  ...
+# Subtest: malformed advisor identity fields resolve to no identity without throwing
+ok 403 - malformed advisor identity fields resolve to no identity without throwing
+  ---
+  duration_ms: 0.182
+  type: 'test'
+  ...
+# Subtest: identity parts carrying the key separator resolve to no identity (no ambiguous-key collision)
+ok 404 - identity parts carrying the key separator resolve to no identity (no ambiguous-key collision)
+  ---
+  duration_ms: 0.095416
+  type: 'test'
+  ...
+# Subtest: multi-transform receipts record both transform fires and their outcomes
+ok 405 - multi-transform receipts record both transform fires and their outcomes
+  ---
+  duration_ms: 0.114458
+  type: 'test'
+  ...
+# Subtest: a hostile pre-populated shared dedup state cannot falsely suppress a fresh identity
+ok 406 - a hostile pre-populated shared dedup state cannot falsely suppress a fresh identity
+  ---
+  duration_ms: 0.074542
+  type: 'test'
+  ...
+# Subtest: concurrent transforms reserve delivery before commit so only one may deliver
+ok 407 - concurrent transforms reserve delivery before commit so only one may deliver
+  ---
+  duration_ms: 0.070125
+  type: 'test'
+  ...
+# Subtest: consecutive signatures over unchanged files hash each source file once
+ok 408 - consecutive signatures over unchanged files hash each source file once
+  ---
+  duration_ms: 252.203792
+  type: 'test'
+  ...
+# Subtest: changing one source file changes the signature without rehashing unchanged files
+ok 409 - changing one source file changes the signature without rehashing unchanged files
+  ---
+  duration_ms: 279.748959
+  type: 'test'
+  ...
+# Subtest: kill switch is a full no-op: chat.system.transform never reads or mutates output before checking SYSTEM_SPEC_GATE_DISABLED
+ok 410 - kill switch is a full no-op: chat.system.transform never reads or mutates output before checking SYSTEM_SPEC_GATE_DISABLED
+  ---
+  duration_ms: 46.96925
+  type: 'test'
+  ...
+# Subtest: kill switch is a full no-op even when output is missing/malformed
+ok 411 - kill switch is a full no-op even when output is missing/malformed
+  ---
+  duration_ms: 43.228917
+  type: 'test'
+  ...
+# Subtest: kill switch off: chat.system.transform still normalizes output.system and relays the one-shot deferral
+ok 412 - kill switch off: chat.system.transform still normalizes output.system and relays the one-shot deferral
+  ---
+  duration_ms: 188.626458
+  type: 'test'
+  ...
+# Subtest: P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens the gate on the OpenCode classify surface
+ok 413 - P1 fix: a ctx.client stub returning a Gate-3-triggering user message opens the gate on the OpenCode classify surface
+  ---
+  duration_ms: 77.58625
+  type: 'test'
+  ...
+# Subtest: P1 fix: a ctx.client throw fails OPEN -- no question injected, no throw propagates
+ok 414 - P1 fix: a ctx.client throw fails OPEN -- no question injected, no throw propagates
+  ---
+  duration_ms: 35.199583
+  type: 'test'
+  ...
+# Subtest: P1 fix: no real session (no sessionID on input) never attempts the ctx.client fetch and stays closed
+ok 415 - P1 fix: no real session (no sessionID on input) never attempts the ctx.client fetch and stays closed
+  ---
+  duration_ms: 35.189833
+  type: 'test'
+  ...
+# Subtest: P2 fix: classify and enforce key an absent sessionID under the same fallback -- enforce sees what classify opened
+ok 416 - P2 fix: classify and enforce key an absent sessionID under the same fallback -- enforce sees what classify opened
+  ---
+  duration_ms: 177.718125
+  type: 'test'
+  ...
+# Subtest: session.deleted without a session id evicts the unknown-session gate state classify wrote
+ok 417 - session.deleted without a session id evicts the unknown-session gate state classify wrote
+  ---
+  duration_ms: 259.942042
+  type: 'test'
+  ...
+# Subtest: SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the OpenCode adapter, even after classify opens the gate
+ok 418 - SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the OpenCode adapter, even after classify opens the gate
+  ---
+  duration_ms: 209.075333
+  type: 'test'
+  ...
+# Subtest: WS1 telemetry: a source-file Write with an open gate writes exactly one parseable session|tool|path|decision line
+ok 419 - WS1 telemetry: a source-file Write with an open gate writes exactly one parseable session|tool|path|decision line
+  ---
+  duration_ms: 221.967417
+  type: 'test'
+  ...
+# Subtest: WS1 telemetry: SYSTEM_SPEC_GATE_DISABLED=1 writes no telemetry line at all
+ok 420 - WS1 telemetry: SYSTEM_SPEC_GATE_DISABLED=1 writes no telemetry line at all
+  ---
+  duration_ms: 78.278041
+  type: 'test'
+  ...
+# Subtest: WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the OpenCode adapter
+ok 421 - WS4: AI_SESSION_CHILD=1 never opens, advises, logs, or denies through the OpenCode adapter
+  ---
+  duration_ms: 125.510083
+  type: 'test'
+  ...
+# system-speckit-completion.test.cjs: all assertions passed
+# Subtest: .opencode/plugins/tests/system-speckit-completion.test.cjs
+ok 26 - .opencode/plugins/tests/system-speckit-completion.test.cjs
+  ---
+  duration_ms: 52.263542
+  type: 'test'
+  ...
+# Subtest: session.created adds v1 session info while preserving v2 event data
+ok 423 - session.created adds v1 session info while preserving v2 event data
+  ---
+  duration_ms: 22.062125
+  type: 'test'
+  ...
+# Subtest: session events keep an existing info payload unchanged
+ok 424 - session events keep an existing info payload unchanged
+  ---
+  duration_ms: 0.174
+  type: 'test'
+  ...
+# Subtest: message events do not gain session info
+ok 425 - message events do not gain session info
+  ---
+  duration_ms: 0.09825
+  type: 'test'
+  ...
+# Subtest: session.messages adapts v2 context entries to the v1 data envelope
+ok 426 - session.messages adapts v2 context entries to the v1 data envelope
+  ---
+  duration_ms: 0.174584
+  type: 'test'
+  ...
+# Subtest: session.promptAsync queues v1 text through v2 session.prompt
+ok 427 - session.promptAsync queues v1 text through v2 session.prompt
+  ---
+  duration_ms: 0.107209
+  type: 'test'
+  ...
+# Subtest: session create, prompt, and delete map to v2 session methods
+ok 428 - session create, prompt, and delete map to v2 session methods
+  ---
+  duration_ms: 0.15
+  type: 'test'
+  ...
+# Subtest: session client methods reject when their v2 session member is missing
+ok 429 - session client methods reject when their v2 session member is missing
+  ---
+  duration_ms: 0.2515
+  type: 'test'
+  ...
+# Subtest: execution and compaction events emit their v1 aliases once
+ok 430 - execution and compaction events emit their v1 aliases once
+  ---
+  duration_ms: 0.244416
+  type: 'test'
+  ...
+# Subtest: session.idle alias then native event delivers one idle event
+ok 431 - session.idle alias then native event delivers one idle event
+  ---
+  duration_ms: 0.27175
+  type: 'test'
+  ...
+# Subtest: native session.idle then alias delivers one idle event
+ok 432 - native session.idle then alias delivers one idle event
+  ---
+  duration_ms: 0.257917
+  type: 'test'
+  ...
+# Subtest: session.idle alias state resets for each execution turn and remains session-scoped
+ok 433 - session.idle alias state resets for each execution turn and remains session-scoped
+  ---
+  duration_ms: 0.510583
+  type: 'test'
+  ...
+# Subtest: session.compacted aliases deduplicate and reset for each compaction
+ok 434 - session.compacted aliases deduplicate and reset for each compaction
+  ---
+  duration_ms: 0.268417
+  type: 'test'
+  ...
+# Subtest: session.deleted clears the session event alias state
+ok 435 - session.deleted clears the session event alias state
+  ---
+  duration_ms: 0.154083
+  type: 'test'
+  ...
+# Subtest: a session event before session.created announces the session first
+ok 436 - a session event before session.created announces the session first
+  ---
+  duration_ms: 0.180333
+  type: 'test'
+  ...
+# Subtest: a later session.created does not announce an already announced session
+ok 437 - a later session.created does not announce an already announced session
+  ---
+  duration_ms: 0.128833
+  type: 'test'
+  ...
+# Subtest: a leading session.created is delivered once without a synthesized duplicate
+ok 438 - a leading session.created is delivered once without a synthesized duplicate
+  ---
+  duration_ms: 0.097167
+  type: 'test'
+  ...
+# Subtest: a system transform before the stream announces its session once
+ok 439 - a system transform before the stream announces its session once
+  ---
+  duration_ms: 0.651291
+  type: 'test'
+  ...
+# Subtest: a system transform waits for an announcement the stream already started
+ok 440 - a system transform waits for an announcement the stream already started
+  ---
+  duration_ms: 2.9
+  type: 'test'
+  ...
+# Subtest: a system transform waits for a real session.created already being delivered
+ok 441 - a system transform waits for a real session.created already being delivered
+  ---
+  duration_ms: 0.348042
+  type: 'test'
+  ...
+# Subtest: session.deleted waits for an in-flight announcement of the same session
+ok 442 - session.deleted waits for an in-flight announcement of the same session
+  ---
+  duration_ms: 0.35925
+  type: 'test'
+  ...
+# Subtest: an event failure during context announcement is reported at cleanup
+ok 443 - an event failure during context announcement is reported at cleanup
+  ---
+  duration_ms: 0.172917
+  type: 'test'
+  ...
+# Subtest: a tool named constructor reaches the plugin as a plain string
+ok 444 - a tool named constructor reaches the plugin as a plain string
+  ---
+  duration_ms: 0.139833
+  type: 'test'
+  ...
+# Subtest: a transform without an event hook does not synthesize an event
+ok 445 - a transform without an event hook does not synthesize an event
+  ---
+  duration_ms: 0.079917
+  type: 'test'
+  ...
+# Subtest: session.deleted allows the same session to be announced again
+ok 446 - session.deleted allows the same session to be announced again
+  ---
+  duration_ms: 0.083542
+  type: 'test'
+  ...
+# Subtest: session.text.ended maps to a v1 assistant text-part event
+ok 447 - session.text.ended maps to a v1 assistant text-part event
+  ---
+  duration_ms: 0.092542
+  type: 'test'
+  ...
+# Subtest: session.step.ended maps to a v1 message update with token usage fields
+ok 448 - session.step.ended maps to a v1 message update with token usage fields
+  ---
+  duration_ms: 0.113458
+  type: 'test'
+  ...
+# Subtest: session.step.ended carries created as the completed time
+ok 449 - session.step.ended carries created as the completed time
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: session.step.ended without a created time omits info.time
+ok 450 - session.step.ended without a created time omits info.time
+  ---
+  duration_ms: 0.063334
+  type: 'test'
+  ...
+# Subtest: a user inbox item emits the user message then its text part in order
+ok 451 - a user inbox item emits the user message then its text part in order
+  ---
+  duration_ms: 0.112916
+  type: 'test'
+  ...
+# Subtest: a non-user inbox item maps to nothing beyond the original event
+ok 452 - a non-user inbox item maps to nothing beyond the original event
+  ---
+  duration_ms: 0.062209
+  type: 'test'
+  ...
+# Subtest: setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events
+ok 453 - setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events
+  ---
+  duration_ms: 2.386958
+  type: 'test'
+  ...
+# Subtest: the v2 handler rejects when the v1 hook throws so the host denies the tool call
+ok 454 - the v2 handler rejects when the v1 hook throws so the host denies the tool call
+  ---
+  duration_ms: 0.101875
+  type: 'test'
+  ...
+# Subtest: execute.after maps a v2 error result to v1 output
+ok 455 - execute.after maps a v2 error result to v1 output
+  ---
+  duration_ms: 0.077708
+  type: 'test'
+  ...
+# Subtest: execute.after maps title, output, and metadata from a v2 result
+ok 456 - execute.after maps title, output, and metadata from a v2 result
+  ---
+  duration_ms: 0.055375
+  type: 'test'
+  ...
+# Subtest: execute.after defaults output fields when the v2 result is absent
+ok 457 - execute.after defaults output fields when the v2 result is absent
+  ---
+  duration_ms: 0.051334
+  type: 'test'
+  ...
+# Subtest: v1 tool string results convert to v2 content results
+ok 458 - v1 tool string results convert to v2 content results
+  ---
+  duration_ms: 0.12825
+  type: 'test'
+  ...
+# Subtest: v1 tool object results convert output and title metadata to v2 results
+ok 459 - v1 tool object results convert output and title metadata to v2 results
+  ---
+  duration_ms: 0.153083
+  type: 'test'
+  ...
+# Subtest: v1 tool execute receives adapted context fields and preserved v2 fields
+ok 460 - v1 tool execute receives adapted context fields and preserved v2 fields
+  ---
+  duration_ms: 0.17275
+  type: 'test'
+  ...
+# Subtest: system transform receives the model when the v2 context event includes one
+ok 461 - system transform receives the model when the v2 context event includes one
+  ---
+  duration_ms: 0.057584
+  type: 'test'
+  ...
+# Subtest: cleanup returns the same promise when called more than once
+ok 462 - cleanup returns the same promise when called more than once
+  ---
+  duration_ms: 0.052791
+  type: 'test'
+  ...
+# Subtest: cleanup rejects when a registered dispose rejects
+ok 463 - cleanup rejects when a registered dispose rejects
+  ---
+  duration_ms: 0.061916
+  type: 'test'
+  ...
+# Subtest: setup failure cleans registered hooks and rethrows the original error
+ok 464 - setup failure cleans registered hooks and rethrows the original error
+  ---
+  duration_ms: 0.060584
+  type: 'test'
+  ...
+# Subtest: execute.before leaves the original args untouched when the v1 hook does not change them
+ok 465 - execute.before leaves the original args untouched when the v1 hook does not change them
+  ---
+  duration_ms: 0.051083
+  type: 'test'
+  ...
+# Subtest: tool identity preserves the v1 helper contract
+ok 466 - tool identity preserves the v1 helper contract
+  ---
+  duration_ms: 0.510167
+  type: 'test'
+  ...
+# Subtest: execute.before presents a v2 shell call to the plugin as bash
+ok 467 - execute.before presents a v2 shell call to the plugin as bash
+  ---
+  duration_ms: 0.103375
+  type: 'test'
+  ...
+# Subtest: execute.before leaves a non-aliased tool and its args unchanged
+ok 468 - execute.before leaves a non-aliased tool and its args unchanged
+  ---
+  duration_ms: 0.069959
+  type: 'test'
+  ...
+# Subtest: execute.before presents a v2 subagent call as task with subagent_type
+ok 469 - execute.before presents a v2 subagent call as task with subagent_type
+  ---
+  duration_ms: 0.0685
+  type: 'test'
+  ...
+# Subtest: execute.before writes a changed subagent_type back to agent
+ok 470 - execute.before writes a changed subagent_type back to agent
+  ---
+  duration_ms: 0.065833
+  type: 'test'
+  ...
+# Subtest: execute.after gives a v2 shell call the v1 string output
+ok 471 - execute.after gives a v2 shell call the v1 string output
+  ---
+  duration_ms: 0.07275
+  type: 'test'
+  ...
+# Subtest: execute.after presents a v2 subagent call as task with subagent_type
+ok 472 - execute.after presents a v2 subagent call as task with subagent_type
+  ---
+  duration_ms: 0.056667
+  type: 'test'
+  ...
+# Subtest: a v1 hook refusal for bash reaches the host for a v2 shell call
+ok 473 - a v1 hook refusal for bash reaches the host for a v2 shell call
+  ---
+  duration_ms: 0.081
+  type: 'test'
+  ...
+# Subtest: system-completion-sentinel exports and registers v2 hooks
+ok 474 - system-completion-sentinel exports and registers v2 hooks
+  ---
+  duration_ms: 44.147
+  type: 'test'
+  ...
+# Subtest: system-spec-gate exports and registers v2 hooks
+ok 475 - system-spec-gate exports and registers v2 hooks
+  ---
+  duration_ms: 34.35125
+  type: 'test'
+  ...
+# Subtest: system-skill-advisor exports and registers v2 hooks
+ok 476 - system-skill-advisor exports and registers v2 hooks
+  ---
+  duration_ms: 18.355791
+  type: 'test'
+  ...
+# Subtest: opencode-goal exports and registers v2 hooks
+ok 477 - opencode-goal exports and registers v2 hooks
+  ---
+  duration_ms: 14.333625
+  type: 'test'
+  ...
+# Subtest: sk-vision exports and registers v2 hooks
+ok 478 - sk-vision exports and registers v2 hooks
+  ---
+  duration_ms: 21.7695
+  type: 'test'
+  ...
+# Subtest: every native-dual exception has a hard-plugin case
+ok 479 - every native-dual exception has a hard-plugin case
+  ---
+  duration_ms: 1.676542
+  type: 'test'
+  ...
+# Subtest: every hard-plugin case names a plugin in the inventory
+ok 480 - every hard-plugin case names a plugin in the inventory
+  ---
+  duration_ms: 1.02175
+  type: 'test'
+  ...
+# Subtest: system-completion-sentinel records an advisory after a completed session event
+ok 481 - system-completion-sentinel records an advisory after a completed session event
+  ---
+  duration_ms: 199.328042
+  type: 'test'
+  ...
+# Subtest: system-spec-gate rejects a denied write through execute.before
+ok 482 - system-spec-gate rejects a denied write through execute.before
+  ---
+  duration_ms: 231.549125
+  type: 'test'
+  ...
+# Subtest: opencode-goal queues its continuation through session.prompt
+ok 483 - opencode-goal queues its continuation through session.prompt
+  ---
+  duration_ms: 272.656958
+  type: 'test'
+  ...
+# Subtest: opencode-goal records v2 assistant evidence and token usage from session events
+ok 484 - opencode-goal records v2 assistant evidence and token usage from session events
+  ---
+  duration_ms: 269.490458
+  type: 'test'
+  ...
+# Subtest: system-skill-advisor clears session transform dedup after compaction
+ok 485 - system-skill-advisor clears session transform dedup after compaction
+  ---
+  duration_ms: 22.763416
+  type: 'test'
+  ...
+# Subtest: the inventory names at least one bridged plugin
+ok 486 - the inventory names at least one bridged plugin
+  ---
+  duration_ms: 0.359916
+  type: 'test'
+  ...
+# Subtest: classifier-injection-screen registers v2 hooks
+ok 487 - classifier-injection-screen registers v2 hooks
+  ---
+  duration_ms: 24.746792
+  type: 'test'
+  ...
+# Subtest: cli-dispatch-audit registers v2 hooks
+ok 488 - cli-dispatch-audit registers v2 hooks
+  ---
+  duration_ms: 2.314917
+  type: 'test'
+  ...
+# Subtest: codex-hooks-watchdog registers v2 hooks
+ok 489 - codex-hooks-watchdog registers v2 hooks
+  ---
+  duration_ms: 1.143459
+  type: 'test'
+  ...
+# Subtest: mcp-route-guard registers v2 hooks
+ok 490 - mcp-route-guard registers v2 hooks
+  ---
+  duration_ms: 0.691834
+  type: 'test'
+  ...
+# Subtest: opencode-goal registers v2 hooks
+ok 491 - opencode-goal registers v2 hooks
+  ---
+  duration_ms: 6.16725
+  type: 'test'
+  ...
+# Subtest: session-cleanup registers v2 hooks
+ok 492 - session-cleanup registers v2 hooks
+  ---
+  duration_ms: 1.242291
+  type: 'test'
+  ...
+# Subtest: session-relaunch registers v2 hooks
+ok 493 - session-relaunch registers v2 hooks
+  ---
+  duration_ms: 1.943667
+  type: 'test'
+  ...
+# Subtest: sk-code-post-edit-quality registers v2 hooks
+ok 494 - sk-code-post-edit-quality registers v2 hooks
+  ---
+  duration_ms: 1.346458
+  type: 'test'
+  ...
+# Subtest: sk-git-message-gate registers v2 hooks
+ok 495 - sk-git-message-gate registers v2 hooks
+  ---
+  duration_ms: 2.637375
+  type: 'test'
+  ...
+# Subtest: sk-git-preflight-advisory registers v2 hooks
+ok 496 - sk-git-preflight-advisory registers v2 hooks
+  ---
+  duration_ms: 0.682084
+  type: 'test'
+  ...
+# Subtest: system-completion-sentinel registers v2 hooks
+ok 497 - system-completion-sentinel registers v2 hooks
+  ---
+  duration_ms: 1.168541
+  type: 'test'
+  ...
+# Subtest: system-deep-loop-guard registers v2 hooks
+ok 498 - system-deep-loop-guard registers v2 hooks
+  ---
+  duration_ms: 1.00375
+  type: 'test'
+  ...
+# Subtest: system-dist-freshness-guard registers v2 hooks
+ok 499 - system-dist-freshness-guard registers v2 hooks
+  ---
+  duration_ms: 1.776042
+  type: 'test'
+  ...
+# Subtest: system-skill-advisor registers v2 hooks
+ok 500 - system-skill-advisor registers v2 hooks
+  ---
+  duration_ms: 5.330083
+  type: 'test'
+  ...
+# Subtest: system-spec-gate registers v2 hooks
+ok 501 - system-spec-gate registers v2 hooks
+  ---
+  duration_ms: 2.668459
+  type: 'test'
+  ...
+# Subtest: system-speckit-completion registers v2 hooks
+ok 502 - system-speckit-completion registers v2 hooks
+  ---
+  duration_ms: 0.637042
+  type: 'test'
+  ...
+1..502
+# tests 516
+# suites 3
+# pass 516
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 20810.308125
