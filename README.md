@@ -1263,6 +1263,7 @@ Ten commands check and repair the setup, one per area.
 
 - Runs the sk-code, sk-git, trigger index, runtime mirror and skill advisor checks, and names one repair command for each failure
 - Shows the last session hop from the hop history, and any handoff note nobody claimed
+- Counts orphaned helper processes, including a model server whose launcher died, and prints the command that lists them
 - Lists every other doctor command, and writes nothing
 
 **`/doctor:speckit`** - spec-kit retrieval

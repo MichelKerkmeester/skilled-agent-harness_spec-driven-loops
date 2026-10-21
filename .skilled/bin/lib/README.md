@@ -83,7 +83,7 @@ lib/
 
 | File | Responsibility |
 |---|---|
-| `model-server-supervision.cjs` | Builds the model-server supervisor: process-tree RSS sampling, crash-loop backoff, RSS watchdog, respawn-lock liveness, descendant snapshotting, give-up cooldown, socket-dir ownership and SUN_PATH limit assertions, and reaping the process tree root on idle eviction. |
+| `model-server-supervision.cjs` | Builds the model-server supervisor: process-tree RSS sampling, crash-loop backoff, RSS watchdog, respawn-lock liveness, descendant snapshotting, give-up cooldown, socket-dir ownership and SUN_PATH limit assertions, reaping the process tree root on idle eviction (after 10 idle minutes by default), and reaping an orphaned model server whose parent is PID 1 when a supervisor starts. |
 | `launcher-ipc-bridge.cjs` | Resolves the per-service IPC socket path, probes daemon and model-server health over JSON-RPC and HTTP, retries the lease-holder probe (`probeLeaseHolderWithRetries` / `resolveLeaseProbeAttempts`) so a slow-but-alive owner is not false-reaped, and bridges launcher stdio to the socket so a non-owning launcher defers to the lease holder. |
 | `launcher-session-proxy.cjs` | Fronts the daemon with a reconnecting stdin/stdout bridge that reattaches across a daemon recycle and replays in-flight read frames, and exports the `createClassifyFrame({ replayableToolNames, unsafeToolNames })` factory each launcher passes its own replay set to. |
 | `sidecar-env-allowlist.cjs` | Exports `SIDECAR_ENV_ALLOWLIST` and `isAllowedSidecarEnvKey`. only exact keys (`HOME`, `LANG`, `PATH`, `PYTORCH_ENABLE_MPS_FALLBACK`, `TEMP`, `TMP`, `TMPDIR`, `TRANSFORMERS_OFFLINE`) and prefixes (`HF_`, `LC_`, `SPECKIT_`) cross into the sidecar. |
