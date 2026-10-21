@@ -161,6 +161,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 48 | 048-skilled-loop-shared-nudge-formatter/ | Build the relaunch seed's spec-folder suffix through the shared core formatter, warn on stderr when that call fails, and prove the ownership with a test that fails on the old hand-written function | Complete |
 | 49 | 049-review-rows-reconciliation/ | Reconcile the 039 review with the fixes from phases 040 to 042, add rows for the four hook files added after the audit, and recompute the totals from the rows | Pending |
 | 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | Complete |
+| 51 | 051-dispatch-lint-nested-quote-gap/ | Replace the Pi dispatch lint's expansion depth count with one POSIX context-stack scanner, so a backtick quoted inside a substitution no longer lets a nested executor mention authorize, and unresolvable structure denies | In Progress |
 
 ### Phase Transition Rules
 
@@ -218,4 +219,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 047-diagram-corpus-ci | 048-skilled-loop-shared-nudge-formatter | The operator approved closing 039's last open P1 on 2026-10-21 | `048/implementation-summary.md`; suffix compare 8/8, skilled-loop 111/111, Hook Node 872/872 |
 | 048-skilled-loop-shared-nudge-formatter | 049-review-rows-reconciliation | 048's P1 fix is on main and its review row names the commit | `check-review-rows.mjs` exits 0 against review.md |
 | 049-review-rows-reconciliation | 050-sk-doc-ci-outside-failures | The operator approved fixing main's red sk-doc Script Tests on 2026-10-21 | `050/implementation-summary.md`; sk-doc Script Tests passes on CI at the pushed commit |
+| 040-dispatch-lint-held-fixes | 051-dispatch-lint-nested-quote-gap | 040 recorded one P1 open: a backtick quoted inside `$(` let a nested mention authorize cli-devin, and the goal allows no open P1 | `051/implementation-summary.md`; each deny row fails on the old scanner and CI passes at the pushed commit |
 <!-- /ANCHOR:phase-map -->
