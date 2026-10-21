@@ -110,8 +110,11 @@ Luna reviewed the change in three rounds. Round 1 failed on two P1s, the path sw
 | `killer.test.cjs` before the ownerless cleanup fix | FAIL 58 passed of 59: the `EACCES` cleanup test (`scratch/mutation/r2-killer.tap`) |
 | `killer.test.cjs` after the ownerless cleanup fix | PASS 59 of 59 (`scratch/after-killer-r3.tap`) |
 | 20 consecutive `killer.test.cjs` runs | PASS 59 of 59 each, 20 of 20 (`scratch/killer-20x-r3.txt`) |
-| Luna review, 3 rounds | P1s fixed in `f0cb18991e`, `b61416d25c` and `32cf4119fe`. The three-killer window recorded as a known limit (`scratch/luna/`) |
-| Strict spec validation | FAILED, 2 enforced errors: `GENERATED_METADATA_INTEGRITY` reports the `graph-metadata.json` source fingerprint, and `GENERATED_METADATA_DRIFT` reports the scaffold's description and causal summary. Re-deriving them is a save step outside this writer's file scope |
+| Luna review, 4 rounds | Rounds 1 to 3 failed and their P1s were fixed in `f0cb18991e`, `b61416d25c` and `32cf4119fe`; the three-killer window is recorded as a known limit. Round 4 found only this table's stale validation row, fixed here (`scratch/luna/`) |
+| Strict spec validation | PASSED: `validate.sh 082 --strict --recursive` prints `RESULT: PASSED` for all 46 folders, exit 0, after `repair-derived.cjs --apply` re-derived the packet and parent metadata |
+| Hook Node Tests suites, run as the CI step runs them | PASS 870 of 870 across 29 files; installer test 4 of 4 |
+| Plugin suite | PASS 516 of 516 |
+| Live session-relaunch scenario | PASS on OpenCode 1 and 2 with `llmgateway/deepseek-v4.1-flash`: the window marker reaches a later request, the shell call completes, exit 0 (`scratch/live-runs/`) |
 | Hook Node Tests on CI | PENDING: no run at a commit that carries this fix |
 <!-- /ANCHOR:verification -->
 
