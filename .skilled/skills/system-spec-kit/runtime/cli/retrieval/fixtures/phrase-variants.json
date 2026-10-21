@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d96947a7408f34c6dcaeaa60eef3e2b34ff692d5da70acc3e813dd4be6665614",
+  "manifestHash": "d6125da0160e5560054703ed2096094eda2cc46cb7b8a5c5019da1f5b000bfbf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6779,6 +6779,9 @@
     "038 review and cli lineage number map": [
       "038-review-and-cli-lineage number map"
     ],
+    "039 held findings": [
+      "039 held findings"
+    ],
     "039 token aware chunking": [
       "039 token-aware chunking"
     ],
@@ -13172,6 +13175,9 @@
     ],
     "beancount removal": [
       "beancount removal"
+    ],
+    "bearer token redaction": [
+      "bearer token redaction"
     ],
     "before after doc patterns": [
       "before after doc patterns"
@@ -51922,6 +51928,18 @@
     "hooks": [
       "hooks"
     ],
+    "hooks and plugins held fixes": [
+      "hooks and plugins held fixes"
+    ],
+    "hooks and plugins held fixes implementation summary": [
+      "hooks and plugins held fixes implementation summary"
+    ],
+    "hooks and plugins held fixes plan": [
+      "hooks and plugins held fixes plan"
+    ],
+    "hooks and plugins held fixes tasks": [
+      "hooks and plugins held fixes tasks"
+    ],
     "hooks before after injection bloat": [
       "hooks before after injection bloat"
     ],
@@ -72396,6 +72414,9 @@
     ],
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
+    ],
+    "phase 42 hooks and plugins held fixes": [
+      "phase 42 hooks and plugins held fixes"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
@@ -101574,6 +101595,9 @@
     ],
     "stderr tag tasks": [
       "stderr tag tasks"
+    ],
+    "stdin byte cap": [
+      "stdin byte cap"
     ],
     "stdin close shutdown handler": [
       "stdin close shutdown handler"
