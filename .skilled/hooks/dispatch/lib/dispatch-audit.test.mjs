@@ -353,6 +353,13 @@ describe('matchDispatchShape', () => {
     expect(matchDispatchShape('ls -la && echo done')).toBeNull();
   });
 
+  it('resolves an exec-wrapped dispatch and still refuses text the call only writes', () => {
+    expect(matchDispatchShape('nohup opencode run -m p/m "hi" </dev/null')).toEqual({ skill: 'cli-opencode' });
+    expect(matchDispatchShape("perl -e 'alarm 300; exec @ARGV' -- codex exec task </dev/null")).toEqual({ skill: 'cli-codex' });
+    expect(matchDispatchShape("cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF")).toBeNull();
+    expect(matchDispatchShape('command -v opencode')).toBeNull();
+  });
+
   it('fast-exits non-string or empty input without throwing', () => {
     expect(matchDispatchShape(undefined)).toBeNull();
     expect(matchDispatchShape(null)).toBeNull();

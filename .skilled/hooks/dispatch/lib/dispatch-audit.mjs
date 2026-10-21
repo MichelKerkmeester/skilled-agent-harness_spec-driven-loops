@@ -377,12 +377,19 @@ export function inspectDispatch(command) {
 
 /**
  * Recognize a completed Bash command as a CLI dispatch, or fast-exit on anything else.
+ *
+ * Resolution runs through the same resolver the preflight decides with, so a dispatch
+ * behind an exec wrapper (`nohup`, `command`, `env`, `timeout`, `perl -e ... --`, a
+ * subshell) or a shell `-c` payload is recorded as well as one at the head of the command.
+ * Matching only the direct shape left such a dispatch linted before it ran and absent from
+ * the audit trail afterwards, because the preflight unwraps and this walk did not.
+ *
  * @param {unknown} command - raw command text from the tool call.
  * @returns {{ skill: string } | null} the matched dispatch shape's skill name, or null.
  */
 export function matchDispatchShape(command) {
-  const inspected = inspectDispatch(command);
-  return inspected.kind === 'direct' ? { skill: inspected.executor } : null;
+  const [first] = resolveDispatchPackets(command);
+  return first ? { skill: first.skill } : null;
 }
 
 // A shell wrapper hides a real dispatch inside a quoted argument, where the tokenizer

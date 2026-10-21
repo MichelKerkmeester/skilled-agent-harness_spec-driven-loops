@@ -1,0 +1,37 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (120 tests | 1 failed | 113 skipped) 6ms
+   ❯ matchDispatchShape (7)
+     × resolves an exec-wrapped dispatch and still refuses text the call only writes 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs > matchDispatchShape > resolves an exec-wrapped dispatch and still refuses text the call only writes
+AssertionError: expected null to deeply equal { skill: 'cli-opencode' }
+
+- Expected:
+{
+  "skill": "cli-opencode",
+}
+
++ Received:
+null
+
+ ❯ .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:357:77
+    355|
+    356|   it('resolves an exec-wrapped dispatch and still refuses text the cal…
+    357|     expect(matchDispatchShape('nohup opencode run -m p/m "hi" </dev/nu…
+       |                                                                             ^
+    358|     expect(matchDispatchShape("perl -e 'alarm 300; exec @ARGV' -- code…
+    359|     expect(matchDispatchShape("cat > run.sh <<'EOF'\nopencode run -m p…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed | 113 skipped (120)
+   Start at  07:13:01
+   Duration  125ms (transform 54%, import 33%, tests 10%, worker 3%)
+
+b4-audit-match: exit 1 against the base sources (.skilled/hooks/dispatch/lib/dispatch-audit.mjs)
