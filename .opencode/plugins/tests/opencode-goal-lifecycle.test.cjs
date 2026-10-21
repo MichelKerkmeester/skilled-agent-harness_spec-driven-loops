@@ -1301,6 +1301,32 @@ test('archive pruning removes old archived files and keeps recent files', async 
   assert.equal(await fileExists(recentArchivePath), true);
 }));
 
+test('archive pruning skips staged files', async () => withState(async ({ helpers, stateDir }) => {
+  const archiveDir = join(stateDir, '.archive');
+  await mkdir(archiveDir, { recursive: true, mode: 0o700 });
+  const stagedPath = join(archiveDir, '.tmp-staged-goal');
+  const oldArchivePath = join(archiveDir, 'old-archive-with-stage.json');
+  await writeFile(stagedPath, '{"goalId":"staged"}\n', 'utf8');
+  await writeFile(oldArchivePath, '{"goalId":"old"}\n', 'utf8');
+  const oldArchiveDate = new Date(Date.now() - (120 * 24 * 60 * 60 * 1000));
+  await utimes(stagedPath, oldArchiveDate, oldArchiveDate);
+  await utimes(oldArchivePath, oldArchiveDate, oldArchiveDate);
+  await helpers.setGoal('session-archive-prune-stage', 'Trigger staged prune', {
+    stateDir,
+    goalIdFactory: () => 'archive-prune-stage-goal',
+  });
+  const pruneStageModule = await importFreshPlugin('archive-prune-stage');
+  const pruneStagePlugin = await pruneStageModule.default.server({}, { stateDir });
+  await pruneStagePlugin.event({
+    event: {
+      type: 'session.deleted',
+      properties: { sessionID: 'session-archive-prune-stage' },
+    },
+  });
+  assert.equal(await fileExists(oldArchivePath), false);
+  assert.equal(await fileExists(stagedPath), true);
+}));
+
 test('archive prune throttling runs pruning once in a throttle window', async () => {
   const pruneStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-prune-spy-'));
   try {

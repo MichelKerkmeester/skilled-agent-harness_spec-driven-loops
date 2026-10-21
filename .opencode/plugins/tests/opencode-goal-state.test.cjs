@@ -8,7 +8,8 @@
 const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { test } = require('node:test');
-const { access, mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
+const { access, mkdir, mkdtemp, readFile, readdir, rename, rm, rmdir, utimes, writeFile } =
+  require('node:fs/promises');
 // The wrapped readFile below mutates the live builtin, so it needs the module
 // object itself plus the call that re-points the ESM named exports at it.
 const fsp = require('node:fs/promises');
@@ -243,6 +244,75 @@ test(
     assert.equal(await fileExists(goalPath), false);
   }),
 );
+
+test('a lock held by another process makes a mutation wait for it', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-held';
+    const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession(sessionID)}`);
+    const goalPath = helpers.goalPathForSession(sessionID, { stateDir });
+    await mkdir(lockPath, { mode: 0o700 });
+
+    const pending = helpers.setGoal(sessionID, 'Wait for the other process to release the lock', {
+      stateDir,
+    });
+    // The assertion below is the real check, but a rejection landing during the
+    // wait would otherwise surface as an unhandled rejection first.
+    pending.catch(() => undefined);
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    assert.equal(
+      await fileExists(goalPath),
+      false,
+      'the mutation waited while another holder owned the lock',
+    );
+
+    await rmdir(lockPath);
+    const goal = await pending;
+    assert.equal(goal.objective, 'Wait for the other process to release the lock');
+    assert.equal(
+      await fileExists(goalPath),
+      true,
+      'the mutation wrote its goal once the lock was free',
+    );
+  })
+));
+
+test('a stale lock is broken instead of blocking the mutation', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-stale';
+    const lockPath = join(stateDir, `.lock-${helpers.sessionKeyForSession(sessionID)}`);
+    await mkdir(lockPath, { mode: 0o700 });
+    const abandonedSeconds = (Date.now() - 200_000) / 1000;
+    await utimes(lockPath, abandonedSeconds, abandonedSeconds);
+
+    const startedAtMs = Date.now();
+    const goal = await helpers.setGoal(sessionID, 'Break a lock its holder abandoned', {
+      stateDir,
+    });
+    const elapsedMs = Date.now() - startedAtMs;
+
+    assert.equal(goal.sessionId, sessionID);
+    assert.ok(
+      elapsedMs < 5_000,
+      `the stale lock was broken after ${elapsedMs}ms, under the timeout`,
+    );
+    assert.equal(await fileExists(lockPath), false, 'the broken lock directory is gone');
+  })
+));
+
+test('a finished mutation leaves no lock entry in the state directory', async () => (
+  withState(async ({ helpers, stateDir }) => {
+    const sessionID = 'session-lock-release';
+    await helpers.setGoal(sessionID, 'Release the lock when the mutation ends', { stateDir });
+    await helpers.clearGoal(sessionID, { stateDir });
+
+    const entries = await readdir(stateDir);
+    assert.deepEqual(
+      entries.filter((name) => name.startsWith('.lock-')),
+      [],
+      'the released lock left nothing in the state directory',
+    );
+  })
+));
 
 test('valid legacy active state migrates byte-for-byte to the digest path', async () => withState(async ({ helpers, stateDir }) => {
   const sessionID = 'session-legacy-active';

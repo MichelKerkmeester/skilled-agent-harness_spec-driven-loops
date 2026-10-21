@@ -94,6 +94,9 @@ test(
     assert.match(second, /STATUS=OK ACTION=set/);
     assert.match(second, /mutation=replaced/);
 
+    const beforeClear = await helpers.readGoal(ctx.sessionID, { stateDir });
+    assert.ok(beforeClear);
+
     const cleared = await plugin.tool.opencode_goal.execute({ action: 'clear' }, ctx);
     assert.match(cleared, /STATUS=OK ACTION=clear/);
     assert.equal(await helpers.readGoal(ctx.sessionID, { stateDir }), null);
@@ -104,7 +107,7 @@ test(
 
     const recordsByIndex = new Map();
     for (const line of history.split('\n')) {
-      const match = /^archive_(\d+)_(goal_id|status|objective)=(.*)$/.exec(line);
+      const match = /^archive_(\d+)_(goal_id|status|objective|file)=(.*)$/.exec(line);
       if (!match) continue;
       const record = recordsByIndex.get(match[1]) || {};
       record[match[2]] = JSON.parse(match[3]);
@@ -119,6 +122,10 @@ test(
     assert.equal(replaceRecord?.status, 'active');
     assert.equal(clearedRecord?.status, 'cleared');
     assert.notEqual(replaceRecord?.goal_id, clearedRecord?.goal_id);
+    const clearedArchive = JSON.parse(
+      await readFile(join(stateDir, '.archive', clearedRecord.file), 'utf8'),
+    );
+    assert.equal(clearedArchive.revision, beforeClear.revision + 1);
   }),
 );
 

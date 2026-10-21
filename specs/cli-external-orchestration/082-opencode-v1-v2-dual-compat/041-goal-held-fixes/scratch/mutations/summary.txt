@@ -10,3 +10,6 @@ m-b08-007 # pass 85 # fail 1
 m-b08-N01 # pass 9 # fail 1 
 m-dedupe # pass 40 # fail 1 
 m-race # pass 39 # fail 2 
+m-lock # pass 35 # fail 2 
+m-prune # pass 41 # fail 1 
+m-revision # pass 8 # fail 1 

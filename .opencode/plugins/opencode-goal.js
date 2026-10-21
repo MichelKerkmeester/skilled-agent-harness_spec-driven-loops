@@ -9,7 +9,7 @@
 
 import { createHash, randomUUID } from 'node:crypto';
 import {
-  appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink, writeFile,
+  appendFile, link, mkdir, open, readFile, readdir, rename, rmdir, stat, unlink, writeFile,
 } from 'node:fs/promises';
 import { dirname, join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -71,6 +71,15 @@ const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
 // process wrote after the read in place.
 const DELETE_GOAL = Symbol('delete-goal');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+// A mutation lock is a directory in the state root, so `mkdir` is the atomic
+// test-and-set. The timeout and stale age copy the shared core's lock so both
+// behave alike.
+const GOAL_LOCK_TIMEOUT_MS = 10_000;
+const GOAL_LOCK_STALE_MS = 120_000;
+const GOAL_LOCK_RETRY_MS = 25;
+// A state root that refuses a lock directory refuses every write too, so these
+// keep the error the write itself would have raised.
+const UNLOCKABLE_GOAL_STATE_CODES = new Set(['EACCES', 'EPERM', 'EROFS']);
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
 const DISABLED_ENV = 'OPENCODE_GOAL_DISABLED';
@@ -1480,6 +1489,8 @@ async function pruneArchive(rawOptions = {}) {
     const entries = await readdir(archiveDir, { withFileTypes: true });
     await Promise.all(entries.map(async (entry) => {
       if (!entry.isFile()) return;
+      // A staged goal keeps its old mtime, so pruning here would delete it.
+      if (entry.name.startsWith('.tmp-')) return;
       const path = join(archiveDir, entry.name);
       try {
         const fileStats = await stat(path);
@@ -1818,12 +1829,71 @@ async function inspectGoalHealth(rawOptions = {}) {
 }
 
 /**
- * Mutate a session goal through the in-process write queue.
+ * Run a session mutation while holding that session's cross-process lock.
  *
- * The queue only serializes writers inside this process, so the read and the
- * write are not atomic against another process. A mutator therefore removes a
- * record by returning the DELETE_GOAL sentinel; null and undefined both mean
- * "no change" and write nothing.
+ * The in-process queue cannot serialize two OpenCode processes, so a read and
+ * a write interleaved across them could lose whichever goal was written last
+ * before it was archived. The lock directory is created and removed here, so
+ * nothing outlives the mutation.
+ *
+ * @param {string} sessionID - Normalized OpenCode session id
+ * @param {Object} options - Normalized state helper options
+ * @param {Function} operation - Mutation to run while the lock is held
+ * @returns {Promise<*>} The operation's result
+ */
+async function withGoalMutationLock(sessionID, options, operation) {
+  await ensureGoalStateDir(options);
+  const lockPath = join(options.stateDir, `.lock-${sessionKeyForSession(sessionID)}`);
+  const deadlineMs = Date.now() + GOAL_LOCK_TIMEOUT_MS;
+  let locked = false;
+  while (true) {
+    try {
+      await mkdir(lockPath, { mode: 0o700 });
+      locked = true;
+      break;
+    } catch (error) {
+      if (error?.code !== 'EEXIST') {
+        // Let the operation fail on its own terms instead of reporting a lock
+        // error its caller never had a chance to avoid.
+        if (UNLOCKABLE_GOAL_STATE_CODES.has(error?.code)) break;
+        const message = `Failed to acquire goal-state mutation lock: ${error.message}`;
+        throw new GoalError('GOAL_LOCK_FAILED', message);
+      }
+    }
+    try {
+      if (Date.now() - (await stat(lockPath)).mtimeMs > GOAL_LOCK_STALE_MS) {
+        await rmdir(lockPath);
+        continue;
+      }
+    } catch (error) {
+      if (error?.code === 'ENOENT') continue;
+    }
+    if (Date.now() >= deadlineMs) {
+      throw new GoalError('GOAL_LOCK_TIMEOUT', 'Timed out waiting for a goal-state mutation lock');
+    }
+    await new Promise((resolve) => setTimeout(resolve, GOAL_LOCK_RETRY_MS));
+  }
+  try {
+    return await operation();
+  } finally {
+    if (locked) {
+      try {
+        await rmdir(lockPath);
+      } catch (error) {
+        // A reaper may have removed a lock this process already considers stale.
+        if (error?.code !== 'ENOENT') writeDebugStderr('withGoalMutationLock.release', error);
+      }
+    }
+  }
+}
+
+/**
+ * Mutate a session goal under the in-process queue and a cross-process lock.
+ *
+ * The queue serializes writers inside this process and the lock covers the
+ * others, so the read and the write stay atomic across processes. A mutator
+ * therefore removes a record by returning the DELETE_GOAL sentinel; null and
+ * undefined both mean "no change" and write nothing.
  *
  * @param {string} sessionID - OpenCode session id
  * @param {Function} mutator - Function receiving the current goal
@@ -1836,7 +1906,10 @@ async function enqueueGoalMutation(sessionID, rawOptions = {}, operation) {
   const normalizedSessionID = requireSessionID(sessionID);
   const queueKey = `${options.stateDir}:${sessionKeyForSession(normalizedSessionID)}`;
   const previous = mutationQueues.get(queueKey) || Promise.resolve();
-  const run = previous.catch(() => undefined).then(() => operation(normalizedSessionID, options));
+  const runOperation = () => operation(normalizedSessionID, options);
+  const run = previous.catch(() => undefined).then(
+    () => withGoalMutationLock(normalizedSessionID, options, runOperation),
+  );
 
   mutationQueues.set(queueKey, run);
   try {
@@ -2094,6 +2167,7 @@ async function clearGoal(sessionID, rawOptions = {}) {
       const timestamp = nowMs(options);
       const clearedRecord = {
         ...current,
+        revision: (Number.isFinite(current.revision) ? current.revision : 0) + 1,
         status: 'cleared',
         updatedAtMs: timestamp,
         updatedAt: isoFromMs(timestamp),
