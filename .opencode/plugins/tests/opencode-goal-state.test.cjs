@@ -9,6 +9,10 @@ const assert = require('node:assert/strict');
 const { createHash } = require('node:crypto');
 const { test } = require('node:test');
 const { access, mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
+// The wrapped readFile below mutates the live builtin, so it needs the module
+// object itself plus the call that re-points the ESM named exports at it.
+const fsp = require('node:fs/promises');
+const { syncBuiltinESMExports } = require('node:module');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -182,6 +186,54 @@ test('long session ids clear without probing an impossible legacy filename', asy
   });
   await assert.doesNotReject(() => helpers.clearGoal(longSessionID, { stateDir }));
   assert.equal(await helpers.readGoal(longSessionID, { stateDir }), null);
+}));
+
+test('accountUsage keeps a goal another process wrote after the read', async () => withState(async ({ helpers, stateDir }) => {
+  const sessionID = 'session-concurrent-writer';
+  const scratchStateDir = await mkdtemp(join(tmpdir(), 'opencode-goal-other-process-'));
+  let writtenGoal;
+  try {
+    writtenGoal = await helpers.setGoal(sessionID, 'Survive a goal written mid-mutation', {
+      stateDir: scratchStateDir,
+      nowMs: 5100,
+      goalIdFactory: () => 'concurrent-writer-goal',
+    });
+  } finally {
+    await rm(scratchStateDir, { recursive: true, force: true });
+  }
+
+  const goalPath = helpers.goalPathForSession(sessionID, { stateDir });
+  const realReadFile = fsp.readFile;
+  let injected = false;
+  fsp.readFile = async (path, ...rest) => {
+    if (!injected && path === goalPath) {
+      injected = true;
+      // Another process lands a goal between the mutation's read and its write.
+      await fsp.writeFile(goalPath, `${JSON.stringify(writtenGoal, null, 2)}\n`, { mode: 0o600 });
+      const error = new Error(`ENOENT: no such file or directory, open '${goalPath}'`);
+      error.code = 'ENOENT';
+      error.path = goalPath;
+      throw error;
+    }
+    return realReadFile.call(fsp, path, ...rest);
+  };
+  syncBuiltinESMExports();
+
+  try {
+    const usageResult = await helpers.accountUsage(sessionID, 'any-goal-id', { tokenDelta: 5 }, { stateDir });
+    assert.equal(usageResult, null);
+  } finally {
+    fsp.readFile = realReadFile;
+    syncBuiltinESMExports();
+  }
+
+  assert.equal(injected, true);
+  assert.equal(await fileExists(goalPath), true);
+  const storedGoal = await helpers.readGoal(sessionID, { stateDir });
+  assert.equal(storedGoal.goalId, 'concurrent-writer-goal');
+
+  await helpers.clearGoal(sessionID, { stateDir });
+  assert.equal(await fileExists(goalPath), false);
 }));
 
 test('valid legacy active state migrates byte-for-byte to the digest path', async () => withState(async ({ helpers, stateDir }) => {

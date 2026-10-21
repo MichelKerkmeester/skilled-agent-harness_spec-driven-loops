@@ -66,6 +66,10 @@ const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 const MIN_PROMPT_BUDGET_CHARS = 3;
 const NORMALIZED_OPTIONS_MARKER = Symbol('mkGoalNormalizedOptions');
+// Removing a record is a mutator's explicit choice, never a side effect of it
+// finding nothing: a mutator that reports "no goal" must leave whatever another
+// process wrote after the read in place.
+const DELETE_GOAL = Symbol('delete-goal');
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 // The name an error prints is the name an operator will go and set, so it is
 // the concern's canonical variable rather than one of its accepted aliases.
@@ -1698,10 +1702,15 @@ async function inspectGoalHealth(rawOptions = {}) {
 /**
  * Mutate a session goal through the in-process write queue.
  *
+ * The queue only serializes writers inside this process, so the read and the
+ * write are not atomic against another process. A mutator therefore removes a
+ * record by returning the DELETE_GOAL sentinel; null and undefined both mean
+ * "no change" and write nothing.
+ *
  * @param {string} sessionID - OpenCode session id
  * @param {Function} mutator - Function receiving the current goal
  * @param {Object} [rawOptions] - State helper options
- * @returns {Promise<Object|null>} Mutated goal, or null after delete
+ * @returns {Promise<Object|null>} Mutated goal, the current goal when unchanged, or null after a delete
  */
 async function enqueueGoalMutation(sessionID, rawOptions = {}, operation) {
   const options = normalizeOptions(rawOptions);
@@ -1722,8 +1731,8 @@ async function mutateGoal(sessionID, mutator, rawOptions = {}) {
   return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
     const current = await readGoal(normalizedSessionID, options);
     const next = await mutator(current);
-    if (next === null) return deleteGoalFile(normalizedSessionID, options);
-    if (next === undefined) return current;
+    if (next === DELETE_GOAL) return deleteGoalFile(normalizedSessionID, options);
+    if (next === null || next === undefined) return current;
     const revision = Math.max(current?.revision || 0, next?.revision || 0) + 1;
     return writeGoalAtomic({ ...next, revision }, options);
   });
@@ -1940,7 +1949,7 @@ function resendPending(goal, rawOptions = {}) {
  * @returns {Promise<null>} Null after deletion
  */
 async function clearGoal(sessionID, rawOptions = {}) {
-  return mutateGoal(sessionID, () => null, rawOptions);
+  return mutateGoal(sessionID, () => DELETE_GOAL, rawOptions);
 }
 
 async function markGoalStatus(sessionID, status, rawOptions = {}) {
