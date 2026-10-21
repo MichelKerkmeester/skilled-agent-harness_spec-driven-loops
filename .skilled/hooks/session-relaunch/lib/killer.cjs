@@ -328,9 +328,10 @@ function sweepStaleTakeovers(lockPath) {
 }
 
 // A stalled takeover can lose its mutex name to a contender that creates a
-// fresh directory at the same path; the inode recorded at creation keeps the
-// release from removing a mutex this killer does not own.
-function removeOwnMutex(mutexPath, mutexInode) {
+// fresh directory at the same path, and an inode alone cannot prove ownership
+// once a directory is deleted because the filesystem can hand that inode back
+// to the replacement; the token written at creation is what proves ownership.
+function removeOwnMutex(mutexPath, mutexInode, token) {
   let stats;
   try {
     stats = fs.statSync(mutexPath);
@@ -339,6 +340,16 @@ function removeOwnMutex(mutexPath, mutexInode) {
     throw error;
   }
   if (stats.ino !== mutexInode) return;
+  if (token !== null) {
+    let owner;
+    try {
+      owner = fs.readFileSync(path.join(mutexPath, 'owner'), 'utf8');
+    } catch (error) {
+      if (error.code === 'ENOENT') return;
+      throw error;
+    }
+    if (owner.trim().split(/\s+/)[1] !== token) return;
+  }
   fs.rmSync(mutexPath, { recursive: true, force: true });
 }
 
@@ -385,6 +396,7 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
   const mutexOwnerPath = path.join(mutexPath, 'owner');
   let mutexHeld = false;
   let mutexInode;
+  let mutexToken = null;
   for (let attempt = 0; attempt < 2 && !mutexHeld; attempt += 1) {
     let created = false;
     try {
@@ -396,10 +408,11 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
     }
 
     if (created) {
+      mutexToken = randomUUID();
       try {
-        fs.writeFileSync(mutexOwnerPath, `${process.pid}\n`, { flag: 'wx' });
+        fs.writeFileSync(mutexOwnerPath, `${process.pid} ${mutexToken}\n`, { flag: 'wx' });
       } catch (error) {
-        removeOwnMutex(mutexPath, mutexInode);
+        removeOwnMutex(mutexPath, mutexInode, null);
         throw error;
       }
       mutexHeld = true;
@@ -468,7 +481,7 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
     }
   } finally {
     try {
-      removeOwnMutex(mutexPath, mutexInode);
+      removeOwnMutex(mutexPath, mutexInode, mutexToken);
     } catch (error) {
       // A release failure cannot undo the takeover's result; the lock already
       // returned and throwing here would strand it.
