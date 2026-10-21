@@ -89,12 +89,28 @@ const SECRET_PATTERN = /((?:api[_-]?key|access[_-]?key|secret|token|password|pas
 // `Bearer <token>`: the span after the keyword is the scheme word, and the
 // token sits one space further on, so the requirement for an unbroken value is
 // never met. Anchor on the scheme instead and keep it readable while only the
-// token is replaced, so a finding still says which scheme it carried. The
-// length floor alone cannot tell a token from prose, since "Bearer
-// authentication" clears it: the run must also carry a character a word would
-// not -- a digit or one of -._~+/= -- so a purely alphabetic word after the
-// scheme stays readable while a JWT, base64 or hex token still redacts.
-const BEARER_SCHEME_PATTERN = /\b(bearer\s+['"]?)(?=[A-Za-z0-9\-._~+/=]*[0-9\-._~+/=])([A-Za-z0-9\-._~+/=]{8,})/gi;
+// token is replaced, so a finding still says which scheme it carried.
+//
+// The length floor alone cannot tell a token from prose, since "Bearer
+// authentication" clears it, so the run after the scheme also has to look
+// unlike a word in one of two ways: it carries a character the ordinary word
+// alphabet lacks -- a digit or one of -._~+/= -- or it reaches 16 characters
+// and mixes case past its first letter, which is what random base64 and opaque
+// tokens do and what a merely capitalised word does not. A run matching
+// neither shape is prose and stays readable, while a JWT, a base64 token and a
+// hex token all redact. The scheme word is spelled out rather than matched
+// under the `i` flag, because folding would also make the uppercase test true
+// of a lowercase run.
+const BEARER_SCHEME_WORD = '[Bb][Ee][Aa][Rr][Ee][Rr]';
+const BEARER_RUN_CHARS = 'A-Za-z0-9\\-._~+/=';
+const BEARER_RUN = `[${BEARER_RUN_CHARS}]`;
+const BEARER_TOKEN_SHAPE = `[0-9\\-._~+/=]|(?=${BEARER_RUN}{16})${BEARER_RUN}{1,}[A-Z]`;
+const BEARER_SCHEME_PATTERN = new RegExp(
+  `\\b(${BEARER_SCHEME_WORD}\\s+['"]?)`
+  + `(?=${BEARER_RUN}*(?:${BEARER_TOKEN_SHAPE}))`
+  + `(${BEARER_RUN}{8,})`,
+  'g',
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- path + scope resolution
