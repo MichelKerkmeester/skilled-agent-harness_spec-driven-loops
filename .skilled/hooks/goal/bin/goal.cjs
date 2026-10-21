@@ -405,6 +405,10 @@ function main(argv) {
   // Reads of a packet file and the record-free append need a workspace, not a session.
   const actionsWithoutScope = new Set(['doctor', 'health', 'legacy-inspect', 'legacy-archive', 'packet', 'packet-log']);
   if (!actionsWithoutScope.has(action)) {
+    // A session action must never inherit the caller's directory as its workspace.
+    if (!parsedScope.binding.workspace) {
+      return printFail(normalizedAction, new core.GoalError('MISSING_WORKSPACE', 'workspace is required for a session action; pass --workspace <repo root>'));
+    }
     try {
       core.resolveGoalScope(options);
     } catch (error) {

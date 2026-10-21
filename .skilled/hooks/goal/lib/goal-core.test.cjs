@@ -58,10 +58,13 @@ function scopedOpts(runtime, sessionId, workspace = stateDir) {
 }
 
 function runCli(args, envOverrides = {}) {
+  // Session actions require an explicit workspace. The repository root is the
+  // scope these tests used before the flag became mandatory.
+  const scopedArgs = args.includes('--workspace') ? args : [...args, '--workspace', process.cwd()];
   try {
     const stdout = execFileSync(
       'node',
-      [CLI_PATH, '--runtime', 'cli', '--session', 'default-session', ...args],
+      [CLI_PATH, '--runtime', 'cli', '--session', 'default-session', ...scopedArgs],
       {
         env: { ...process.env, OPENCODE_GOAL_STATE_DIR: stateDir, OPENCODE_GOAL_PLUGIN_DISABLED: undefined, ...envOverrides },
         encoding: 'utf8',

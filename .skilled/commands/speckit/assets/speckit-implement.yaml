@@ -151,7 +151,7 @@ goal_prompting:
         status_tool: opencode_goal_status
       pi:
         command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
-        note: "Scope flags carry the native session identity."
+        note: "Scope flags --runtime, --session and --workspace carry the native session identity and the repository root."
       cursor:
         surface: "injection-only; no management surface"
         handoff: "Report the objective for the operator to set; do not fabricate a call."
