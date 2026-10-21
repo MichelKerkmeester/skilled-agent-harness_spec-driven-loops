@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5fa81c8ffce8e85d290e528922a410bde4a7c1ffae1b84c153669cb2405beec7",
+  "corpusHash": "615f3ec5dbf82cec31d35b8383cbf3a97cd75cecd523395aba49f4e465dbb87f",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25553,
+  "includedPathCount": 25578,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1834,6 +1834,7 @@
     ".skilled/skills/mcp-code-mode/changelog/v1.0.0.31.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.1.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.10.0.md",
+    ".skilled/skills/mcp-code-mode/changelog/v1.0.11.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.2.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.3.0.md",
     ".skilled/skills/mcp-code-mode/changelog/v1.0.4.0.md",
@@ -2105,6 +2106,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/FEATURE-CATALOG.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/feature-catalog/cupt-attachments/download-file.md",
@@ -2278,6 +2280,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.1.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.3.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.4.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -10506,6 +10509,18 @@
     "specs/mcp-tooling/022-clickup-hosted-route-fix/plan.md",
     "specs/mcp-tooling/022-clickup-hosted-route-fix/spec.md",
     "specs/mcp-tooling/022-clickup-hosted-route-fix/tasks.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/acceptance-criteria.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/goal.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/implementation-summary.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/plan.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/spec.md",
+    "specs/mcp-tooling/023-vendored-copy-review-fixes/tasks.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/acceptance-criteria.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/goal.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/implementation-summary.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/plan.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/spec.md",
+    "specs/mcp-tooling/024-code-mode-js-yaml-override/tasks.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
@@ -15837,6 +15852,11 @@
     "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/plan.md",
     "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/spec.md",
     "specs/system-skill-advisor/037-advisor-daemon-memory/002-lighter-advisor-launcher/tasks.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/acceptance-criteria.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/implementation-summary.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/plan.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/spec.md",
+    "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/tasks.md",
     "specs/system-skill-advisor/037-advisor-daemon-memory/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/__tier2-h-deferred.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/001-fix-additional-release-readiness-findings/implementation-summary.md",
@@ -25482,6 +25502,11 @@
     "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/acceptance-criteria.md",
     "specs/system-speckit/050-open-knowledge-format-adoption/001-okf-deep-research/goal.md",
@@ -25584,7 +25609,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
+  "manifestHash": "2ac57a8190ffde1aca313d91a5e4cc03aa1c5cbb620b9ea5d015832950512721",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29895,6 +29920,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/z_archive",
       "reason": "excluded directory"
     },
@@ -32352,6 +32381,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/032-orphan-process-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/033-orphan-check-unsupervised-model-server/scratch",
       "reason": "excluded directory"
     },
     {

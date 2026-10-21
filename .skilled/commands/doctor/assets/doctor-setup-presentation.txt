@@ -68,7 +68,7 @@ STATUS=[status]
 ```
 
 The last session hop line is informational. It shows when a session last handed over, kept, claimed or finished a handoff, and it never changes the status. The open notes line appears only while a handoff note is still open, so a hand-over nobody finished stays visible.
-The orphan line is informational only and never changes the doctor status. With no orphan processes, print `orphans: none`. Run the listed `--reap` command to see each process, then use its confirmation command with `--yes` only when those are the processes to stop.
+The orphan line is informational only and never changes the doctor status. A model server kept on purpose with `SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP=0` also shows as unsupervised, so do not reap it. With no orphan processes, print `orphans: none`. Run the listed `--reap` command to see each process, then use its confirmation command with `--yes` only when those are the processes to stop.
 
 ### Failure Summary
 

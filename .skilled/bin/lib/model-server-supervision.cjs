@@ -364,6 +364,19 @@ function readProcessParentPid(pid) {
   return Number.isInteger(parentPid) && parentPid > 0 ? parentPid : null;
 }
 
+function readProcessCommand(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  const result = spawnSync('ps', ['-o', 'command=', '-p', String(pid)], {
+    encoding: 'utf8',
+    env: { ...process.env, LC_ALL: 'C' },
+    stdio: ['ignore', 'pipe', 'pipe'],
+    timeout: parsePositiveInteger(process.env.SPECKIT_PS_PROBE_TIMEOUT_MS, 2000),
+  });
+  if (result.error || result.status !== 0) return null;
+  const command = String(result.stdout || '').trim();
+  return command || null;
+}
+
 function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner, options = {}) {
   const snapshot = Array.isArray(options.snapshotPids) ? options.snapshotPids : [];
   const rows = resolveProcessTreeRows(childPid, runner);
@@ -930,16 +943,22 @@ function createModelServerSupervisor(options = {}) {
     });
   }
 
-  async function reapBeforeRespawn(childPid) {
+  async function reapBeforeRespawn(childPid, options = {}) {
+    const label = typeof options.label === 'string' ? options.label.trim() : '';
+    const logAbort = (reason) => {
+      if (label) logger(`reaping ${label} aborted: ${reason}`);
+    };
     const pidState = liveness(childPid);
     if (pidState === 'unknown-eperm') {
+      logAbort('process liveness is unknown');
       return { allowed: false, reason: 'model-server-liveness-unknown-eperm' };
     }
     if (pidState === 'dead') {
+      logAbort('process is already dead');
       return { allowed: true, reaped: false, reason: 'model-server-already-dead' };
     }
 
-    logger(`confirmed-dead hf-embed socket; reaping recorded hf-model-server pid ${childPid} before respawn`);
+    logger(label ? `reaping ${label}` : `confirmed-dead hf-embed socket; reaping recorded hf-model-server pid ${childPid} before respawn`);
     signal(childPid, 'SIGTERM');
     reapProcessTree(childPid);
     const exitedAfterTerm = await waitForExit(childPid, RESPAWN_REAP_GRACE_MS);
@@ -1062,6 +1081,9 @@ function createModelServerControl(deps = {}) {
   const signal = deps.signal || signalProcess;
   const processRowsRunner = deps.processRowsRunner || defaultProcessRowsRunner;
   const liveness = deps.liveness || processLiveness;
+  const getParentPid = typeof deps.getParentPid === 'function' ? deps.getParentPid : readProcessParentPid;
+  const getCommand = typeof deps.getCommand === 'function' ? deps.getCommand : readProcessCommand;
+  const orphanReapEnabled = String(env.SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP ?? '').trim() !== '0';
   const nowMs = typeof deps.nowMs === 'function' ? deps.nowMs : () => Date.now();
   const giveUpCooldownMs = parsePositiveInteger(deps.giveUpCooldownMs, getModelServerGiveUpCooldownMs(env));
   const idleConfig = deps.idleConfig || getModelServerIdleConfig(env);
@@ -1291,10 +1313,14 @@ function createModelServerControl(deps = {}) {
     }
     try {
       const modelServerPid = readModelServerPid();
+      if (options.expectedPid !== undefined && modelServerPid !== options.expectedPid) {
+        logger(`hf-model-server orphan reap aborted: recorded pid changed from ${options.expectedPid} to ${modelServerPid ?? 'missing'}`);
+        return { allowed: false, reason: 'model-server-pid-changed' };
+      }
       if (!Number.isInteger(modelServerPid) || modelServerPid <= 0) {
         return { allowed: true, reaped: false, reason: 'missing-model-server-pid' };
       }
-      return await getSupervisor().reapBeforeRespawn(modelServerPid);
+      return await getSupervisor().reapBeforeRespawn(modelServerPid, { label: options.label });
     } finally {
       if (!options.lock) releaseRespawnLockFile(lock);
     }
@@ -1311,15 +1337,36 @@ function createModelServerControl(deps = {}) {
     assertSocketDirOwnership(socketPath, { statApi, getuid, logger });
     fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
     let deadProbeReason = null;
+    let orphanedModelServerPid = null;
     if (fs.existsSync(socketPath)) {
       const probeModelServer = deps.bridge && deps.bridge.probeModelServer;
       if (typeof probeModelServer === 'function') {
         const probe = await probeModelServer(socketPath, { timeoutMs: 1000 });
         if (probe.status === 'alive') {
           if (probe.reason === 'health-ready') clearRecoveredGiveUpCooldown();
-          return { shouldListen: false, reason: 'model-server-alive' };
+          if (!orphanReapEnabled) {
+            return { shouldListen: false, reason: 'model-server-alive' };
+          }
+          try {
+            const recordedPid = readModelServerPid();
+            if (Number.isInteger(recordedPid) && recordedPid > 0 && liveness(recordedPid) !== 'dead'
+              && getParentPid(recordedPid) === 1) {
+              const command = getCommand(recordedPid);
+              if (typeof command === 'string' && command.includes('/hf-model-server.cjs')) {
+                orphanedModelServerPid = recordedPid;
+              }
+            }
+          } catch {
+            orphanedModelServerPid = null;
+          }
+          if (orphanedModelServerPid === null) {
+            logger('hf-model-server orphan reap skipped: recorded pid did not pass the liveness, parent, and command checks');
+            return { shouldListen: false, reason: 'model-server-alive' };
+          }
+          deadProbeReason = 'orphaned';
+        } else {
+          deadProbeReason = probe.reason;
         }
-        deadProbeReason = probe.reason;
       }
     }
 
@@ -1331,7 +1378,35 @@ function createModelServerControl(deps = {}) {
     if (!lock.acquired) return { shouldListen: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
     let reapResult;
     if (fs.existsSync(socketPath)) {
-      reapResult = await reapRecordedModelServerBeforeRespawn(socketPath, { lock });
+      if (orphanedModelServerPid !== null) {
+        let commandMatches = false;
+        let recheckFailure = 'recorded pid or command no longer matches';
+        try {
+          const recordedPid = readModelServerPid();
+          if (recordedPid === orphanedModelServerPid) {
+            const command = getCommand(recordedPid);
+            commandMatches = typeof command === 'string' && command.includes('/hf-model-server.cjs');
+          } else {
+            recheckFailure = `recorded pid changed from ${orphanedModelServerPid} to ${recordedPid ?? 'missing'}`;
+          }
+        } catch {
+          commandMatches = false;
+        }
+        if (!commandMatches) {
+          logger(`hf-model-server orphan reap aborted: ${recheckFailure}`);
+          releaseDemandRespawnLock();
+          return { shouldListen: false, reason: 'model-server-alive' };
+        }
+        logger('hf-model-server orphaned model server (parent PID 1) is being reaped so a supervised one replaces it');
+      }
+      const reapOptions = orphanedModelServerPid === null
+        ? { lock }
+        : {
+          lock,
+          expectedPid: orphanedModelServerPid,
+          label: `orphaned hf-model-server pid ${orphanedModelServerPid} (parent PID 1)`,
+        };
+      reapResult = await reapRecordedModelServerBeforeRespawn(socketPath, reapOptions);
     } else {
       // No socket file yet — but a sibling launcher may have JUST spawned the server: launch() writes the
       // shared hf-embed.pid synchronously before the child binds, so during the spawn->bind window the pid
@@ -1346,7 +1421,20 @@ function createModelServerControl(deps = {}) {
     }
     if (!reapResult.allowed) {
       releaseDemandRespawnLock();
-      return { shouldListen: false, reason: reapResult.reason, lockPath: reapResult.lockPath };
+      return {
+        shouldListen: false,
+        reason: orphanedModelServerPid === null ? reapResult.reason : 'model-server-alive',
+        lockPath: reapResult.lockPath,
+      };
+    }
+    if (orphanedModelServerPid !== null) {
+      if (reapResult.reaped !== true || liveness(orphanedModelServerPid) !== 'dead') {
+        logger(`hf-model-server orphan reap aborted: pid ${orphanedModelServerPid} was not confirmed dead`);
+        releaseDemandRespawnLock();
+        return { shouldListen: false, reason: 'model-server-alive' };
+      }
+      writeModelServerPid(null);
+      clearRecoveredGiveUpCooldown();
     }
     if (reapResult.reaped && (deadProbeReason === 'loading-wedged' || deadProbeReason === 'health-error')) {
       armGiveUpCooldown();
@@ -1521,6 +1609,7 @@ module.exports = {
   MODEL_SERVER_DEMAND_STATUS,
   maintenanceMarkerPath,
   readMaintenanceMarker,
+  readProcessCommand,
   readProcessParentPid,
   shouldAdoptDespiteProbe,
   acquireModelServerRespawnLockFile,

@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # mcp-figma
@@ -83,7 +83,7 @@ The status verb reports healthy or points at the problem. "Unauthorized" means r
 **Step 4: Inspect or export, the safe default.**
 
 ```bash
-figma-ds-cli extract --out DESIGN.md   # read-only, writes to an explicit path
+OUT="design-$(date +%Y%m%d-%H%M%S).md"; [ -e "$OUT" ] || figma-ds-cli extract "$OUT"   # read-only, writes a new file and never overwrites one
 ```
 
 This verb is read-only and never changes the document. Local exports still write files, so always give an explicit path and never overwrite silently.
@@ -200,4 +200,4 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 | [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating and destructive command taxonomy, the destructive set, the `eval/raw/run` rule and the export no-overwrite rule |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts and the Code Mode env-var prefix |
-| [Skills Library](../../README.txt) | The skill catalog and routing front door |
+| Skills Library, `.skilled/skills/README.txt` in the skills repository | The skill catalog and routing front door |

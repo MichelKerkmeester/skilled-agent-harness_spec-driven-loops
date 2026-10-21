@@ -1,0 +1,19 @@
+{
+  "specFolder": "mcp-tooling/023-vendored-copy-review-fixes",
+  "description": "Vendored copy review fixes for mcp-click-up and mcp-figma",
+  "keywords": [
+    "vendored",
+    "copy",
+    "review",
+    "fixes"
+  ],
+  "lastUpdated": "2026-10-21T14:00:00.000Z",
+  "specId": "023",
+  "folderSlug": "vendored-copy-review-fixes",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

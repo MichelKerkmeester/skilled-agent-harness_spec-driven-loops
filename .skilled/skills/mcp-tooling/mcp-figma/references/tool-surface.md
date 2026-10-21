@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma eval raw run rule"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # Figma CLI Tool Surface
@@ -95,7 +95,7 @@ Source-verified against repo `main` `src/commands/*.js`, `REFERENCE.md`, and `CL
 | Creation | `render <jsx> ...` / `render-batch <jsxArray> ...` | MUTATING | Renders JSX to Figma. Preferred over `eval` for visual nodes. |
 | Creation | `undo` | **DESTRUCTIVE** | Removes the node(s) created by the latest render / render-batch. |
 | Creation | `create frame\|icon\|image ...` | MUTATING | Creates a frame / Iconify icon / image-from-URL node. |
-| Creation | `rect\|ellipse\|text\|line\|component\|group\|autolayout\|al` | MUTATING | Top-level primitive aliases (source-proven; `REFERENCE.md` `create rect/...` form is drift, so verify with `--help`). |
+| Creation | `create rect\|ellipse\|text\|line\|component\|group\|autolayout\|al ...` | MUTATING | Shape, text and group primitives. They are `create` subcommands, and `figma-ds-cli 1.2.0 create --help` lists all eight while the top-level help lists none. |
 | Layout | `sizing hug\|fill\|fixed ...` | MUTATING | Sets auto-layout sizing. |
 | Layout | `padding\|pad` / `gap` / `align` | MUTATING | Sets padding / gap / alignment. |
 | Layout | `set autolayout\|al ...` / `set pin <edge> ...` | MUTATING | Applies auto-layout / constraints. |
@@ -243,7 +243,7 @@ Rollback preference order, always: **(1) duplicate-first**, then **(2) Figma Und
 
 ## 8. THE HARD RULE: VERIFY LIVE, GATE MUTATIONS
 
-The command surface drifts between `REFERENCE.md`, `CLAUDE.md`, and the actual `src/commands/*.js`. The investigation found documented-but-unregistered commands (`voice`, `chat`, `prop combine`) and primitive-name drift (`REFERENCE.md` shows `create rect/circle/...`; source proves `create frame/icon/image` plus top-level `rect|ellipse|text|line|component|group|autolayout`). All of it must be hedged.
+The command surface drifts between `REFERENCE.md`, `CLAUDE.md`, and the actual `src/commands/*.js`. The investigation found documented-but-unregistered commands (`voice`, `chat`, `prop combine`) and an earlier misreading of the primitives as top-level commands, which `figma-ds-cli 1.2.0 create --help` settles: `rect`, `ellipse`, `text`, `line`, `component`, `group` and `autolayout` are `create` subcommands beside `frame`, `icon` and `image`. All of it must be hedged.
 
 1. **Verify with `<bin> <command> --help` before relying on a command.** A command in `REFERENCE.md`/`CLAUDE.md` may not exist in the installed binary, and flags differ between the npm `latest` (`1.0.0`) and repo `main` (`1.2.0`) builds. Examples in this skill are **illustrative, so verify with `--help`.**
 2. **Verify the binary identity first.** Prefer `figma-ds-cli`, and only trust `figma-cli` after `--version`/`--help` confirms it is the silships tool (the npm `figma-cli` package is unrelated). **Never `npm i -g figma-cli`.**

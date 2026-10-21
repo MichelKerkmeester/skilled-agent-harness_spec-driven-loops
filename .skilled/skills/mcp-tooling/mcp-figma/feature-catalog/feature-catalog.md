@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma-ds-cli"
   - "feature catalog"
 last_updated: "2026-06-14"
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # mcp-figma: Feature Catalog
@@ -15,7 +15,7 @@ This document is the canonical capability inventory for the `mcp-figma` skill. T
 
 > **Naming trap (read first).** The canonical binary is **`figma-ds-cli`** (silships, npm, MIT). The npm package literally named **`figma-cli` is an UNRELATED tool** (unic/figma-cli, bin `figma`), so **NEVER `npm i -g figma-cli`**. The `figma-cli` command exists only when installed from the silships repo. This catalog uses `figma-ds-cli` as the canonical command throughout.
 
-> **Verification note.** Commands below are illustrative and sourced from the figma-cli capability research digest, so verify any exact verb, flag, or output with `figma-ds-cli <command> --help` before relying on it. The research flags known doc drift (REFERENCE shows `create rect/circle`, source proves `create frame/icon/image` plus top-level aliases; `voice`/`chat`/`prop combine` appear in docs but were not found in source). Do NOT run `figma-ds-cli` against a live document without verifying the command and its gating class first.
+> **Verification note.** Commands below are illustrative and sourced from the figma-cli capability research digest, so verify any exact verb, flag, or output with `figma-ds-cli <command> --help` before relying on it. The installed `figma-ds-cli 1.2.0 create --help` lists the shape, text and group primitives as `create` subcommands, and `voice`, `chat` and `prop combine` appear in docs but were not found in source. Do NOT run `figma-ds-cli` against a live document without verifying the command and its gating class first.
 
 ---
 
@@ -68,7 +68,7 @@ Bring up and maintain the link between the terminal and Figma Desktop. Safe plug
 | Daemon diagnose | Diagnoses daemon/token issues (e.g. "Unauthorized") | READ-ONLY | `figma-ds-cli daemon diagnose` |
 | Daemon start / stop / restart | Brings the local daemon up, down, or recycles it | MUTATING (app-level) | `figma-ds-cli daemon start [--force] \| stop \| restart` |
 | Daemon reconnect | Re-establishes the Desktop link without a full restart | MUTATING (app-level) | `figma-ds-cli daemon reconnect` |
-| init-agent (off by default) | Writes [`AGENTS.md`](../../../../../AGENTS.md) + `.cursor/rules/figma-cli.mdc` into the repo; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
+| init-agent (off by default) | Writes `AGENTS.md` + `.cursor/rules/figma-cli.mdc` into the repo root; never run by default | MUTATING (app-level) | `figma-ds-cli init-agent [--tool claude\|cursor\|both] [--force]` |
 
 See [`connect-and-daemon/connect-and-daemon.md`](../feature-catalog/connect-and-daemon/connect-and-daemon.md) for the safe-vs-yolo gate, the daemon model, and the token-handling rules.
 
@@ -117,7 +117,7 @@ Author content in the document: render JSX-described nodes, create frames/icons/
 | Render JSX | Renders a JSX-described node into the document | MUTATING | `figma-ds-cli render <jsx>` |
 | Render batch | Renders multiple nodes in one pass | MUTATING | `figma-ds-cli render-batch <source>` |
 | Create frame / icon / image | Creates a frame, icon, or image node (source-verified primitives) | MUTATING | `figma-ds-cli create frame\|icon\|image ...` |
-| Create primitives (aliases) | Top-level shape/text/group aliases | MUTATING | `figma-ds-cli rect\|ellipse\|text\|line\|component\|group\|autolayout ...` |
+| Create primitives | Shape, text and group primitives | MUTATING | `figma-ds-cli create rect\|ellipse\|text\|line\|component\|group\|autolayout ...` |
 | Set property | Sets a property (fill, etc.; supports `var:name`) | MUTATING | `figma-ds-cli set <prop> <value>` |
 | Layout verbs | Sizing, padding, gap, align on a node | MUTATING | `figma-ds-cli sizing\|padding\|gap\|align <node> ...` |
 | Unstack | Spreads overlapping nodes (preview with `--dry-run`) | MUTATING | `figma-ds-cli unstack [-g] [--dry-run]` |

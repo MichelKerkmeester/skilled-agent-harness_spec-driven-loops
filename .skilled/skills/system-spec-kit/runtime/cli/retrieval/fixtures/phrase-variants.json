@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f7e821b6a0bc720170ad0bf04ed97c34019f166b25f92269cacca2d5886ddd6c",
+  "manifestHash": "2ac57a8190ffde1aca313d91a5e4cc03aa1c5cbb620b9ea5d015832950512721",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23334,6 +23334,24 @@
     ],
     "code mode fresh clone build tasks": [
       "code mode fresh clone build tasks"
+    ],
+    "code mode js yaml override": [
+      "code mode js yaml override"
+    ],
+    "code mode js yaml override acceptance criteria": [
+      "code mode js yaml override acceptance criteria"
+    ],
+    "code mode js yaml override goal": [
+      "code mode js yaml override goal"
+    ],
+    "code mode js yaml override implementation summary": [
+      "code mode js yaml override implementation summary"
+    ],
+    "code mode js yaml override plan": [
+      "code mode js yaml override plan"
+    ],
+    "code mode js yaml override tasks": [
+      "code mode js yaml override tasks"
     ],
     "code mode mcp server configuration": [
       "code mode mcp server configuration"
@@ -51538,6 +51556,9 @@
     "hf model server implementation plan": [
       "hf model server implementation plan"
     ],
+    "hf model server parent pid 1": [
+      "hf model server parent pid 1"
+    ],
     "hf model server plan": [
       "hf-model-server plan"
     ],
@@ -55107,6 +55128,9 @@
     ],
     "js yaml declaration gitignored": [
       "js-yaml declaration gitignored"
+    ],
+    "js yaml override": [
+      "js-yaml override"
     ],
     "jsdoc template pattern": [
       "jsdoc template pattern"
@@ -59459,6 +59483,9 @@
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
+    "mcp click up 1 2 3 0": [
+      "mcp-click-up 1.2.3.0"
+    ],
     "mcp click up frontmatter alignment": [
       "mcp-click-up frontmatter alignment"
     ],
@@ -59491,6 +59518,9 @@
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
+    ],
+    "mcp click up v1 2 3 0": [
+      "mcp-click-up v1.2.3.0"
     ],
     "mcp client reconnect": [
       "mcp client reconnect"
@@ -59551,6 +59581,9 @@
     ],
     "mcp code mode 1 0 10 0": [
       "mcp-code-mode 1.0.10.0"
+    ],
+    "mcp code mode 1 0 11 0": [
+      "mcp-code-mode 1.0.11.0"
     ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
@@ -59620,6 +59653,9 @@
     ],
     "mcp code mode v1 0 10 0": [
       "mcp-code-mode v1.0.10.0"
+    ],
+    "mcp code mode v1 0 11 0": [
+      "mcp-code-mode v1.0.11.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -59887,6 +59923,9 @@
     "mcp figma 1 1 3 0": [
       "mcp-figma 1.1.3.0"
     ],
+    "mcp figma 1 1 4 0": [
+      "mcp-figma 1.1.4.0"
+    ],
     "mcp figma v1 0 0 0": [
       "mcp-figma v1.0.0.0"
     ],
@@ -59904,6 +59943,9 @@
     ],
     "mcp figma v1 1 3 0": [
       "mcp-figma v1.1.3.0"
+    ],
+    "mcp figma v1 1 4 0": [
+      "mcp-figma v1.1.4.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -64988,6 +65030,9 @@
     "model server idle timeout": [
       "model server idle timeout"
     ],
+    "model server parent pid 1": [
+      "model server parent pid 1"
+    ],
     "model server spawn plan": [
       "model server spawn plan"
     ],
@@ -69344,6 +69389,15 @@
     "orphan census zero": [
       "orphan census zero"
     ],
+    "orphan check model server": [
+      "orphan check model server"
+    ],
+    "orphan check unsupervised model server acceptance criteria": [
+      "orphan check unsupervised model server acceptance criteria"
+    ],
+    "orphan check unsupervised model server implementation summary": [
+      "orphan check unsupervised model server implementation summary"
+    ],
     "orphan daemon reaping": [
       "orphan daemon reaping"
     ],
@@ -69538,6 +69592,9 @@
     ],
     "orphaned files diagnosis": [
       "orphaned files diagnosis"
+    ],
+    "orphaned hf model server": [
+      "orphaned hf model server"
     ],
     "orphaned launcher respawn lock": [
       "orphaned launcher respawn lock"
@@ -78815,6 +78872,21 @@
     ],
     "reap only proven inactive worktrees": [
       "reap only proven inactive worktrees"
+    ],
+    "reap orphaned model server": [
+      "reap orphaned model server"
+    ],
+    "reap orphaned model server acceptance criteria": [
+      "reap orphaned model server acceptance criteria"
+    ],
+    "reap orphaned model server implementation summary": [
+      "reap orphaned model server implementation summary"
+    ],
+    "reap orphaned model server plan": [
+      "reap orphaned model server plan"
+    ],
+    "reap orphaned model server tasks": [
+      "reap orphaned model server tasks"
     ],
     "reap zombie processes": [
       "reap zombie processes"
@@ -108499,6 +108571,15 @@
     "unsolicited warnings": [
       "unsolicited warnings"
     ],
+    "unsupervised model server": [
+      "unsupervised model server"
+    ],
+    "unsupervised model server plan": [
+      "unsupervised model server plan"
+    ],
+    "unsupervised model server tasks": [
+      "unsupervised model server tasks"
+    ],
     "unsynced prompt fields fix": [
       "unsynced prompt fields fix"
     ],
@@ -110047,6 +110128,24 @@
     ],
     "vendor prompting sources": [
       "vendor prompting sources"
+    ],
+    "vendored copy review fixes": [
+      "vendored copy review fixes"
+    ],
+    "vendored copy review fixes acceptance criteria": [
+      "vendored copy review fixes acceptance criteria"
+    ],
+    "vendored copy review fixes goal": [
+      "vendored copy review fixes goal"
+    ],
+    "vendored copy review fixes implementation summary": [
+      "vendored copy review fixes implementation summary"
+    ],
+    "vendored copy review fixes plan": [
+      "vendored copy review fixes plan"
+    ],
+    "vendored copy review fixes tasks": [
+      "vendored copy review fixes tasks"
     ],
     "vendored fitstate port": [
       "vendored fitState port"

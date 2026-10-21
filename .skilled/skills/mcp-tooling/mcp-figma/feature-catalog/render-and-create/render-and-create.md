@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma variants"
   - "figma eval raw run"
 importance_tier: "important"
-version: 1.0.0.1
+version: 1.0.1.0
 ---
 
 # Render and create (figma-ds-cli render / create / set)
@@ -25,7 +25,7 @@ Every verb in this area changes the Figma document and is MUTATING (with an ARBI
 
 ### Render and create primitives
 
-`figma-ds-cli render <jsx>` renders a JSX-described node into the document and `figma-ds-cli render-batch <source>` renders multiple nodes in one pass. The source-verified create primitives are `figma-ds-cli create frame|icon|image ...`; top-level shape, text, and group aliases are `figma-ds-cli rect|ellipse|text|line|component|group|autolayout ...`. (Note the doc drift: REFERENCE shows `create rect/circle`, but source proves `create frame/icon/image` plus the top-level aliases.) Prefer `render`/`render-batch` over `eval` for visual nodes, because `eval` bypasses positioning.
+`figma-ds-cli render <jsx>` renders a JSX-described node into the document and `figma-ds-cli render-batch <source>` renders multiple nodes in one pass. The create primitives are `figma-ds-cli create frame|icon|image|rect|ellipse|text|line|component|group|autolayout ...`, all subcommands of `create`, as the installed `figma-ds-cli 1.2.0 create --help` lists them. Prefer `render`/`render-batch` over `eval` for visual nodes, because `eval` bypasses positioning.
 
 ### Layout, transform, and generation
 

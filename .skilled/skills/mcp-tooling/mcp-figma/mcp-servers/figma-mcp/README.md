@@ -5,7 +5,7 @@ trigger_phrases:
   - "figma mcp code mode"
   - "figma-developer-mcp"
   - "framelink figma"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # figma-mcp
@@ -41,7 +41,7 @@ Expected result: `list_tools()` includes the `figma` manual, and `tool_info()` r
 | Option | Value | Notes |
 |---|---|---|
 | Manual name | `figma` | Set in `.utcp_config.json` |
-| Transport | stdio, `npx -y figma-developer-mcp --stdio` | No local vendoring |
+| Transport | stdio, `npx -y figma-developer-mcp@latest --stdio` | No local vendoring |
 | `.env` key | `figma_FIGMA_API_KEY` | Code Mode prefixes every manual's env vars with the manual name |
 | Call syntax | `figma.figma_<tool>` | Single dot plus underscore, not `figma.figma.<tool>` |
 

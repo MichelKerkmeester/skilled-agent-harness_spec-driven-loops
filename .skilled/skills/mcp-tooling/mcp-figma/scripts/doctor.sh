@@ -31,7 +31,11 @@ if pgrep -x Figma >/dev/null 2>&1; then ok "Figma Desktop: running"; else info "
 # Daemon
 log "-- Daemon --"
 if [ -f "$DAEMON_TOKEN_FILE" ]; then ok "Token file present: $DAEMON_TOKEN_FILE (contents NOT shown)"; else info "No token file ($DAEMON_TOKEN_FILE), daemon not initialized yet"; fi
-if [ -f "$DAEMON_PID_FILE" ]; then info "PID file: $DAEMON_PID_FILE ($(cat "$DAEMON_PID_FILE" 2>/dev/null||echo '?'))"; else info "No PID file ($DAEMON_PID_FILE)"; fi
+if [ -f "$DAEMON_PID_FILE" ]; then
+  pid="$(tr -cd '0-9' < "$DAEMON_PID_FILE" 2>/dev/null || true)"
+  if [ -n "$pid" ] && ps -p "$pid" -o command= 2>/dev/null | grep -qi 'figma'; then ok "Daemon process $pid is running ($DAEMON_PID_FILE)"
+  else info "PID file $DAEMON_PID_FILE names no running figma process (stale)"; fi
+else info "No PID file ($DAEMON_PID_FILE)"; fi
 case "$(port_listening "$DAEMON_PORT"; echo $?)" in
   0) ok "Daemon port $DAEMON_PORT: LISTENING";;
   1) info "Daemon port $DAEMON_PORT: not listening";;
@@ -45,10 +49,21 @@ esac
 
 # Optional MCP (Code Mode, Framelink figma manual)
 log "-- Optional Figma MCP via Code Mode (Framelink) --"
-UTCP="$HERE/../../../../../.utcp_config.json"
-if [ -f "$UTCP" ]; then
+# The packet runs both from .skilled and vendored into other repositories at a
+# different depth, so the nearest .utcp_config.json above the script is the one
+# Code Mode reads, not one a fixed number of levels up.
+find_utcp() {
+  local dir="$HERE"
+  while [ "$dir" != "/" ]; do
+    [ -f "$dir/.utcp_config.json" ] && { printf '%s' "$dir/.utcp_config.json"; return 0; }
+    dir="$(dirname "$dir")"
+  done
+  return 1
+}
+UTCP="$(find_utcp || true)"
+if [ -n "$UTCP" ]; then
   if grep -q '"figma"' "$UTCP" 2>/dev/null; then ok "Code Mode 'figma' manual registered in .utcp_config.json"; else info "No 'figma' manual in .utcp_config.json"; fi
-else info ".utcp_config.json not found at expected repo root (optional MCP is opt-in)"; fi
+else info "No .utcp_config.json in any folder above the packet (optional MCP is opt-in)"; fi
 info "Token must be in .env as: figma_FIGMA_API_KEY=figd_... (Code Mode prefixes the manual name)"
 
 log ""

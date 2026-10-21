@@ -21,6 +21,10 @@ const MAX_PS_BUFFER = 4 * 1024 * 1024;
 const MAX_REAP_WAIT_MS = 3000;
 const REAP_POLL_INTERVAL_MS = 100;
 const SCRIPT_PATH_MARKERS = ['/.skilled/', '/.opencode/'];
+const MODEL_SERVER_SCRIPT_SUFFIXES = [
+  '/.skilled/bin/hf-model-server.cjs',
+  '.skilled/bin/hf-model-server.cjs',
+];
 const SETUP_COMMAND = 'node .skilled/commands/doctor/scripts/orphan-process-check.cjs';
 const SHELL_EXECUTABLES = new Set(['bash', 'csh', 'dash', 'fish', 'ksh', 'sh', 'tcsh', 'zsh']);
 
@@ -206,7 +210,8 @@ function hasGrepSearch(tokens) {
  *
  * @param {string} command - The process command column.
  * @param {(candidatePath: string) => boolean} [pathExists] - Checkout existence check.
- * @returns {string|null} Helper kind, or null for daemons and unrelated commands.
+ * @returns {string|null} Helper kind, or null for advisor/live-follow daemons with existing
+ * checkouts and unrelated commands.
  */
 function classify(command, pathExists = () => false) {
   const tokens = commandTokens(command);
@@ -221,13 +226,24 @@ function classify(command, pathExists = () => false) {
   ) : null;
   if (advisorKind) return advisorKind;
 
-  const modelKind = isNodeExecutable ? staleCheckoutKind(
-    command,
-    ['/.skilled/bin/hf-model-server.cjs'],
-    'stale-model-server',
-    pathExists,
-  ) : null;
-  if (modelKind) return modelKind;
+  const scriptIndex = isNodeExecutable
+    ? tokens.findIndex((token, index) => index > 0 && /\.(?:js|cjs|mjs|sh)$/.test(token))
+    : -1;
+  const modelScriptPath = scriptIndex > 0
+    ? tokens.slice(1, scriptIndex + 1).join(' ').replace(/\\/g, '/')
+    : '';
+  const isModelServerScript = MODEL_SERVER_SCRIPT_SUFFIXES.some(
+    (suffix) => modelScriptPath.endsWith(suffix),
+  );
+  if (isModelServerScript) {
+    const modelKind = staleCheckoutKind(
+      command,
+      MODEL_SERVER_SCRIPT_SUFFIXES,
+      'stale-model-server',
+      pathExists,
+    );
+    return modelKind || 'unsupervised-model-server';
+  }
 
   const followExecutable = ['git-live-follow', 'git-live-follow.sh'].includes(executableName);
   const followScriptSuffixes = [
@@ -337,10 +353,11 @@ function truncateCommand(command) {
 }
 
 function renderTable(orphans) {
-  const lines = ['PID    KIND                     AGE          RSS MB  COMMAND'];
+  const kindWidth = Math.max('KIND'.length, ...orphans.map((row) => row.kind.length));
+  const lines = [`PID    ${'KIND'.padEnd(kindWidth)} AGE          RSS MB  COMMAND`];
   for (const row of orphans) {
     lines.push(
-      `${String(row.pid).padEnd(6)} ${row.kind.padEnd(24)} ${formatAge(row.ageSeconds).padEnd(12)} `
+      `${String(row.pid).padEnd(6)} ${row.kind.padEnd(kindWidth)} ${formatAge(row.ageSeconds).padEnd(12)} `
         + `${row.rssMb.toFixed(1).padStart(6)}  ${truncateCommand(row.command)}`,
     );
   }

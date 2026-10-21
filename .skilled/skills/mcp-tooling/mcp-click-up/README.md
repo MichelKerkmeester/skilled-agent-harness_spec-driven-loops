@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # mcp-click-up
@@ -55,7 +55,7 @@ The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as 
 **Step 1: Install cupt and authenticate.**
 
 ```bash
-bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh
+bash scripts/install.sh   # from the mcp-click-up folder
 # Expected: [mcp-click-up] ✓ cupt X.Y.Z installed
 # Also prints the MCP config snippet for Step 3 below
 
@@ -180,7 +180,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
 
 | What you see | Why | Fix |
 |---|---|---|
-| `command not found: cupt` | cupt not installed or PATH missing | Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh` then `pipx ensurepath && source ~/.zshrc` |
+| `command not found: cupt` | cupt not installed or PATH missing | Run `bash scripts/install.sh` from the mcp-click-up folder, then `pipx ensurepath && source ~/.zshrc` |
 | `AuthError: No credentials` | Not authenticated | Run `cupt auth` or `cupt config --api-token pk_YOUR_TOKEN` |
 | `cupt status` shows 401 | Expired or revoked token | Run `cupt logout && cupt auth` to refresh credentials |
 | `cupt done` wrote the wrong status | The list's closed status differs from the default | Run `cupt statuses <id>` before every completion to discover the schema |
@@ -202,7 +202,7 @@ A: Every ClickUp list defines its own status schema. "Done" in one list may not 
 
 **Q: How do I set up the MCP for ClickUp tasks and documents?**
 
-A: Run `bash .skilled/skills/mcp-tooling/mcp-click-up/scripts/install.sh`. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` with OAuth. Paste the snippet in, approve the OAuth prompt and restart your AI client. Full instructions are in `INSTALL-GUIDE.md`.
+A: Run `bash scripts/install.sh` from the mcp-click-up folder. It prints a manual for `.utcp_config.json` (Code Mode's config, not `opencode.json`) with server key `"clickup_official"`, launched via `npx -y mcp-remote https://mcp.clickup.com/mcp` with OAuth. Paste the snippet in, approve the OAuth prompt and restart your AI client. Full instructions are in `INSTALL-GUIDE.md`.
 
 **Q: What is the difference between `@krodak/clickup-cli` (`cu`) and cupt?**
 
