@@ -252,6 +252,22 @@ describe('Pi refusal phrasings', () => {
     ["\"'\" $(echo \"'\" cli-devin)", true],
     ["use 'cli-devin", true],
     ["use 'cli-devin now", true],
+    // Comments, curly quotes and in-word apostrophes are read every way a shell or the operator
+    // could mean them, and a mention any reading encloses is refused.
+    ['echo # "\n" cli-devin "\n# "', true],
+    ['echo # `\n` cli-devin `\n# `', true],
+    ['$(echo hi # ignored )\ncli-devin)', true],
+    ['$(case x in x) cli-devin;; esac)', true],
+    ["foo'cli-devin'", true],
+    ['use “x" cli-devin "”', true],
+    ["use ‘x' cli-devin '’", true],
+    ['"${x:-"} cli-devin', true],
+    // Plain prose with a hash, a contraction, the word case or a closed brace still authorizes.
+    ['use cli-devin # fast', false],
+    ['see #12 and use cli-devin', false],
+    ["it's fine, use cli-devin", false],
+    ['in case it fails, use cli-devin', false],
+    ['${HOME} is set, use cli-devin', false],
     // Every level closed, so the mention stands in plain text again.
     ['$(echo ")") use cli-devin', false],
     // A substitution that closed before the mention leaves it in plain text.

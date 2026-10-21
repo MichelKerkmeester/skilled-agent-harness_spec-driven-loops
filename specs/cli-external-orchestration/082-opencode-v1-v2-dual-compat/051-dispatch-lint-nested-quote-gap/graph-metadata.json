@@ -40,7 +40,11 @@
       "tasks.md",
       "implementation-summary.md",
       ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
-      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".skilled/hooks/dispatch/README.md",
+      "scratch/mutation.sh",
+      "scratch/pi-corpus-diff.mjs",
+      "scratch/suites.sh"
     ],
     "entities": [
       {
@@ -77,6 +81,30 @@
         "name": "dispatch-preflight-lint.test.ts",
         "kind": "test",
         "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation.sh",
+        "kind": "script",
+        "path": "scratch/mutation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pi-corpus-diff.mjs",
+        "kind": "file",
+        "path": "scratch/pi-corpus-diff.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "suites.sh",
+        "kind": "script",
+        "path": "scratch/suites.sh",
         "source": "derived"
       },
       {
@@ -128,7 +156,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -140,14 +174,8 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "a POSIX",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -162,35 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Pi lint refuses an executor mention that sits inside a quote or a command substitution, because text there is shell syntax the operator quoted, not a request",
     "created_at": "2026-10-21T18:53:35Z",
-    "last_save_at": "2026-10-21T19:00:10.545Z",
+    "last_save_at": "2026-10-21T19:15:17.545Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c29477e0c2e524aaba75ce181035ef1ff84d764dedda3c0004844612c9de2227",
+    "source_fingerprint": "sha256:53e239f989fa5738cae43c2a563e697d0064070e9cf309438fbc5b9656fd8961",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f50138e9f8c99c5ccb04fb6742df27d7de38c3b7202d58a6dddf36161d638246",
-      "plan.md": "06a40d3f6f44af9392e3e487b5bb96f3b2b4df73f4049ef2334cde4d5f70817d",
+      "spec.md": "159fcfb8816bc1f8b75546f96dbf3a26cfe963280e728019e96c65d5e16ea2b8",
+      "plan.md": "f73593edbacc8d7870aacfed3ca3ead4d478402d7fb8179cd7920029d155ee9d",
       "tasks.md": "3f3065933998f5b98878f087360ece16d40669054fd9b534b96dfea02e5dcbaf",
       "implementation-summary.md": "037f33737e7f0ac975324fbcc68593fb3ffbea66ce1e62a4f4e7a4144ead8b3a"
     },

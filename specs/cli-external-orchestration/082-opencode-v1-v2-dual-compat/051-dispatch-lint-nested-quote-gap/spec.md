@@ -38,7 +38,7 @@ contextType: "general"
 
 This is **Phase 51** of the OpenCode v1 and v2 dual compatibility packet. It closes the one P1 that phase 040 shipped as recorded, so 039's review holds no open P1.
 
-**Scope Boundary**: The scan helpers in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, their rows in `dispatch-preflight-lint.test.ts`, the lint's row and totals in 039's `review.md`, the known-gaps list in 040's `implementation-summary.md`, this phase's docs and two rows of `../spec.md`. The refusal policy, the reset forms and the retraction rule are unchanged.
+**Scope Boundary**: The scan helpers in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, their rows in `dispatch-preflight-lint.test.ts`, the lint's row and totals in 039's `review.md`, the known-gaps list in 040's `implementation-summary.md`, the lint's row in the dispatch README, this phase's docs and two rows of `../spec.md`. The refusal policy, the reset forms and the retraction rule are unchanged.
 
 **Dependencies**:
 - Commit `6ff94ffe21`, which added quote and escape state to the depth scan and still leaked on a quoted backtick inside `$(`.
@@ -68,14 +68,16 @@ A mention inside any quote, backtick or substitution never authorizes, and text 
 ## 3. SCOPE
 
 ### In Scope
-- One scanner that walks the text once with a stack of contexts (`$(`, a bare `(` inside it, backtick, `"`, `'`) and the POSIX rules of each, including backslash escapes.
+- One scanner that walks the text once with a stack of contexts (`$(`, a bare `(` inside it, `${`, backtick, `"`, `'`) and the POSIX rules of each, including backslash escapes.
+- Every reading the text could have: with and without shell comments, and with curly quotes as quotes and as literals. A mention any reading encloses is refused.
+- A `case` inside a substitution is unresolvable, and only contraction endings count as in-word apostrophes.
 - Fail closed when the stack goes deeper than 32, or when the text ends with a context still open, except one prose apostrophe that never closes.
 - Deny rows for the known gap and its neighbours, allow rows for plain text after closed contexts.
 
 ### Out of Scope
 - The refusal words, reset forms and next-sentence retraction - they read the sentence, not its quoting.
 - The audit and rule-check engines in `dispatch/lib` - their recorded gaps stay recorded in 040.
-- Parameter expansion `${…}` and here-documents in operator text - the lint never read them as enclosures.
+- Here-documents in operator text - the lint never read them as enclosures, and a heredoc body in prose is not a dispatch request.
 
 ### Files to Change
 
@@ -85,6 +87,7 @@ A mention inside any quote, backtick or substitution never authorizes, and text 
 | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts` | Modify | Deny and allow rows in the refusal phrasings table |
 | `../039-sk-code-opencode-alignment-audit/review.md` | Modify | The lint's row and the §2 totals record the P1 fixed |
 | `../040-dispatch-lint-held-fixes/implementation-summary.md` | Modify | The known-gaps list drops the closed gap |
+| `.skilled/hooks/dispatch/README.md` | Modify | The lint's row states the enclosure rule instead of the closed gap |
 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `scratch/` | Modify | This phase's packet and its evidence |
 | `../spec.md` | Modify | The phase map row for 051 and its handoff row |
 <!-- /ANCHOR:scope -->
