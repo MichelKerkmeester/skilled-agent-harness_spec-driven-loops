@@ -175,6 +175,8 @@ const VALID_STATUSES = new Set([
   'usage_limited',
   'budget_limited',
   'complete',
+  // `cleared` exists only on archived records; no live goal transitions to it.
+  'cleared',
 ]);
 const STATUS_TRANSITIONS = Object.freeze({
   active: new Set(['active', 'paused', 'complete']),
@@ -1867,13 +1869,32 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
   const requestedBudget = normalizeTokenBudget(rawOptions.tokenBudget);
   let mutation = 'created';
 
-  const goal = await mutateGoal(sessionID, (current) => {
+  // A replaced record stays in the archive, as the runtime-neutral core keeps
+  // it, so history holds every goal this session ever had. Archiving is
+  // best-effort: a failed write never blocks the replacement itself.
+  const archiveReplaced = async (current) => {
+    if (!current) return;
+    try {
+      const archivedPath = await placeArchiveRecord(sessionID, current, options);
+      if (!archivedPath) {
+        writeDebugStderr(
+          'setGoal.archiveReplaced',
+          new Error('archive target escapes its archive folder'),
+        );
+      }
+    } catch (error) {
+      writeDebugStderr('setGoal.archiveReplaced', error);
+    }
+  };
+
+  const goal = await mutateGoal(sessionID, async (current) => {
     const timestamp = nowMs(options);
     const tokenBudget = requestedBudget === undefined ? current?.tokenBudget ?? null : requestedBudget;
     const promptFields = buildEnhancedGoalPrompt(sanitizedObjective, options);
     if (current && current.objective === sanitizedObjective) {
       if (current.status !== 'active' && current.status !== 'paused') {
         mutation = 'replaced';
+        await archiveReplaced(current);
         return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
       }
       mutation = 'refreshed';
@@ -1895,6 +1916,7 @@ async function setGoal(sessionID, objective, rawOptions = {}) {
       };
     }
     mutation = current ? 'replaced' : 'created';
+    if (current) await archiveReplaced(current);
     return buildNewGoal(sessionID, sanitizedObjective, tokenBudget, options);
   }, options);
   if (goal && typeof goal === 'object') {
@@ -2007,7 +2029,33 @@ function resendPending(goal, rawOptions = {}) {
  * @returns {Promise<null>} Null after deletion
  */
 async function clearGoal(sessionID, rawOptions = {}) {
-  return mutateGoal(sessionID, () => DELETE_GOAL, rawOptions);
+  const options = normalizeOptions(rawOptions);
+  return mutateGoal(sessionID, async (current) => {
+    if (current) {
+      const timestamp = nowMs(options);
+      const clearedRecord = {
+        ...current,
+        status: 'cleared',
+        updatedAtMs: timestamp,
+        updatedAt: isoFromMs(timestamp),
+      };
+      // Same best-effort contract as the replace path: the record is archived
+      // as cleared so history keeps it, and a failed write never blocks the
+      // delete that follows.
+      try {
+        const archivedPath = await placeArchiveRecord(sessionID, clearedRecord, options);
+        if (!archivedPath) {
+          writeDebugStderr(
+            'clearGoal.archiveCleared',
+            new Error('archive target escapes its archive folder'),
+          );
+        }
+      } catch (error) {
+        writeDebugStderr('clearGoal.archiveCleared', error);
+      }
+    }
+    return DELETE_GOAL;
+  }, options);
 }
 
 async function markGoalStatus(sessionID, status, rawOptions = {}) {
