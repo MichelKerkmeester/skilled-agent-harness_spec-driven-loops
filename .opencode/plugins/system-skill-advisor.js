@@ -1007,6 +1007,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     return new Promise((resolve) => {
       const waiter = {
         sessionID,
+        deadline: Date.now() + timeoutMs,
         settled: false,
         timer: null,
         grant() {
@@ -1042,11 +1043,16 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   }
 
   function releaseAdvisorRunSlot() {
-    const next = state.advisorRunWaiters.shift();
-    if (next) {
-      // Hand the slot straight to the oldest waiter so the live count never dips.
-      next.grant();
-      return;
+    while (state.advisorRunWaiters.length > 0) {
+      const next = state.advisorRunWaiters.shift();
+      if (next.deadline > Date.now()) {
+        // Hand the slot to the oldest waiter still in time so the live count never dips.
+        next.grant();
+        return;
+      }
+      // A slot can free after a waiter's deadline but before its timer fires, and
+      // granting then would run the overdue lookup with a fresh timeout.
+      next.deny('QUEUE_TIMEOUT');
     }
     state.activeAdvisorRuns = Math.max(0, state.activeAdvisorRuns - 1);
   }

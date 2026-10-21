@@ -880,6 +880,43 @@ test('a queue deadline leaves both slots free for later lookups', async () => {
   await Promise.all(after);
 });
 
+test('a slot freed past a waiter deadline fails the lookup open without spawning', async () => {
+  const { hooks, calls, flush, complete } = await holdAdvisorChildren(60_000);
+
+  const held = [0, 1].map((index) => runPrompt(hooks, {
+    sessionID: 'overdue-held',
+    prompt: `overdue held prompt ${index}`,
+  }));
+  await flush();
+  assert.equal(calls.length, 2);
+
+  const queued = runPrompt(hooks, {
+    sessionID: 'overdue-queued',
+    prompt: 'overdue queued prompt',
+  });
+  await flush();
+  assert.equal(calls.length, 2, 'a queued lookup holds no slot and spawns no child');
+
+  // Move the clock past the waiter's deadline without letting its timer run, then
+  // free a slot: a late grant must fail the waiter open instead of starting it.
+  const realNow = Date.now;
+  Date.now = () => realNow() + 60_001;
+  try {
+    complete(0);
+    await flush();
+    assert.equal(calls.length, 2, 'the overdue waiter never starts');
+
+    const output = await settleWithin(queued, 'overdue queued lookup');
+    assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
+    assert.match(await status(hooks), /last_error_code=QUEUE_TIMEOUT/);
+  } finally {
+    Date.now = realNow;
+  }
+
+  complete(1);
+  await Promise.all(held);
+});
+
 test('cache TTL starts when CLI work completes', async () => {
   const calls = [];
   const children = [
