@@ -40,7 +40,7 @@ const SPEC_GATE_MARKER = 'SPEC FOLDER QUESTION:';
 const RAW_INPUT_STORE_KEY = Symbol.for('mk.pi.dispatch.raw-input');
 const MAX_CAPTURED_USER_TEXT = 32_768;
 const MAX_CAPTURED_SESSIONS = 64;
-const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without)\b/i;
+const NEGATION_PATTERN = /\b(?:don'?t|do not|never|avoid|without|not)\b/i;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 
 // ───────────────────────────────────────────────────────────────────

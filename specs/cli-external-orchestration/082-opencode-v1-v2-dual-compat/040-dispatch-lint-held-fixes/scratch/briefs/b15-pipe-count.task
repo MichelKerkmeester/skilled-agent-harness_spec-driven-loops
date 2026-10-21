@@ -1,0 +1,24 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to one check plus one test.
+
+Problem: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`, `stdin-redirect-required` returns true as soon as the whole command has a pipe into any CLI. So in `opencode run -m p/m "a" && printf x | opencode run -m p/m "b"` the first run, which has no redirect and no pipe, passes.
+
+Fix: keep the pipe pattern, but count its matches on the blanked command instead of returning early (make a global copy of the regex for counting). After computing `held` (the per-dispatch texts), count the texts that have neither `STDIN_REDIRECT` nor the Hermes `--query-file` handling. The check passes when that count is not larger than the number of pipe matches: each run that closes no stdin of its own must be one a pipe feeds. With no resolved dispatch the behaviour must stay what it is today for a single command. Update the comments so they stay accurate.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, in the test 'each repeated dispatch is held to the stdin and model checks on its own', add:
+  assert.equal(CHECKS['stdin-redirect-required']('opencode run -m p/m "a" && printf x | opencode run -m p/m "b"'), false);
+  assert.equal(CHECKS['stdin-redirect-required']('opencode run -m p/m "a" </dev/null && printf x | opencode run -m p/m "b"'), true);
+Every other test must keep passing, including `cat p.md | opencode run -m p/m`.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

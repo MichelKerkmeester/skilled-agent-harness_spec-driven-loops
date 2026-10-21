@@ -1,0 +1,28 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change: the heredoc delimiter grammar in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, plus tests.
+
+Problem: `HEREDOC_INTRODUCER` and the matching pattern in `heredocWriteTarget` accept only an identifier delimiter (`[A-Za-z_][A-Za-z0-9_]*`). Bash accepts any word: `<<END-MARK`, `<<'END-MARK'`, `<<"END MARK"`. With `cat > notes.md <<END-MARK` followed by a body holding `codex exec task </dev/null` and `END-MARK`, the body is not recognized as heredoc data, so the dispatch text inside it resolves as a dispatch and the audit logs a dispatch that never ran.
+
+Fix:
+1. Change the delimiter part of both patterns to: a single-quoted word `'([^'\n]+)'`, or a double-quoted word `"([^"\n]+)"`, or an unquoted word `([^\s'"<>;&|()]+)`. Keep the `(?<!<)<<(?!<)-?\s*` prefix. The delimiter is whichever of the three groups matched; update every place that reads the delimiter from the match (today `[2]`) to use it.
+2. The closing-line regex is built from the delimiter, so escape regex metacharacters in it first (a small local helper).
+Update the comments so they stay accurate.
+
+Tests, in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs`, in the test 'a dispatch is resolved from the command, not from text that merely contains one':
+- add to `doNotGovern`: `['heredoc with a hyphenated word written to a file', \`cat > notes.md <<END-MARK\n${dispatch} </dev/null\nEND-MARK\`]`
+- add to `govern`: `['hyphenated heredoc fed to bash', \`bash <<'END-MARK'\n${dispatch} </dev/null\nEND-MARK\`]`
+Every other row must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

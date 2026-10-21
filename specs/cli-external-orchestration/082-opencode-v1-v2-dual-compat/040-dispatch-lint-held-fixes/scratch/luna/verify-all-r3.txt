@@ -1,0 +1,15 @@
+VERDICTS
+b09-hooks-dispatch-006 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:286,333` now classifies Codex command substitutions as ambiguous, and `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:283` keeps ambiguous commands denied.
+N01 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:278,283` gates a `none` reading with one resolved packet as direct, while multiple resolutions remain ambiguous.
+N02 | PARTIAL | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:43,170` misses bare `not`, so `not /deep:review --executor cli-devin` still authorizes `devin -p task`. A newly allowed request with one positive matching directive and a separate negated mismatch still has valid authorization.
+012 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:143,392` recognizes Claude print mode when flags precede `-p` or `--print`.
+N03 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:254` returns true for any pipe to a CLI before checking each run. `opencode run -m p/m "a" && printf x | opencode run -m p/m "b"` yields no violations although the first run inherits stdin. One-packet message templates remain unchanged at the Claude adapter’s lines 66 and 70.
+N04 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:62` preserves only literal single- or double-quoted heredoc delimiters. A valid Bash delimiter `<<$'END-MARK'` is blanked, and the stdin check rejects the command.
+N05 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:599,646` misses a heredoc fed through `env bash`. `cat <<'EOF' | env bash` with a Pi dispatch in the body resolves no packet, skipping its hard rules.
+N06 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:715` still misses `echo "$(codex exec task)"`: inspection is ambiguous, but the resolver and audit matcher return no packet.
+N07 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:503` accepts only identifier delimiters, so a Codex command in a write-only `END-MARK` heredoc still resolves as a dispatch.
+N08 | PARTIAL | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:503` has the same delimiter gap, so a Devin command in a write-only `END-MARK` heredoc still resolves as a dispatch.
+
+NEW
+`.skilled/hooks/dispatch/lib/dispatch-audit.mjs:503` | P2 | heredoc data classification | A write-only `END-MARK` heredoc containing `echo claude -p task </dev/null --dangerously-skip-permissions` passes `evaluateDispatch` but now matches as `cli-claude-code`; the base matcher returned null, creating a false OpenCode audit record | Parse valid shell heredoc delimiters before splitting bodies.
+VERDICT: FAIL

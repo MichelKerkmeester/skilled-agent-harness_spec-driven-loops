@@ -126,6 +126,7 @@ describe('Pi dispatch deny matrix', () => {
     ['deep-loop executor mismatch', 'devin -p "task"', '/deep:review --executor cli-opencode', true],
     ['deep-loop executor equals', 'devin -p "task"', '/deep:review --executor cli-devin', false],
     ['negated deep-loop executor', 'devin -p "task"', 'do not run /deep:review --executor cli-devin', true],
+    ['bare not before a deep-loop executor', 'devin -p "task"', 'not /deep:review --executor cli-devin', true],
     ['quoted deep-loop executor', 'devin -p "task"', 'say "run /deep:review --executor cli-devin"', true],
     ['backtick deep-loop executor', 'devin -p "task"', 'the form is `run /deep:review --executor cli-devin`', true],
     ['negation in an earlier sentence', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', false],
