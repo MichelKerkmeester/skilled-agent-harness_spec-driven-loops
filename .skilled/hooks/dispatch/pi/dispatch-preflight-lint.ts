@@ -43,7 +43,7 @@ const MAX_CAPTURED_SESSIONS = 64;
 // A mention authorizes only inside a sentence that carries no negation or refusal word, before
 // or after it. `anything but`, `everything but` and `all but` name the mention only as the thing
 // to avoid, so they refuse in the same way a negation word does.
-const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|skip|refuse|ban|drop|forget|exclude|excluding|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|forbidden|banned|disallowed|prohibited|off-limits|off limits|anything but|everything but|all but)\b/i;
+const REFUSAL_PATTERN = /\b(?:\w*n't|do not|don'?t|dont|never|avoid|avoids|avoided|avoiding|without|not|cannot|can not|must not|mustn't|should not|shouldn't|will not|won't|stop|stops|stopped|stopping|skip|skips|skipped|skipping|refuse|refuses|refused|refusing|ban|bans|banned|banning|drop|drops|dropped|dropping|forget|forgets|forgot|forgetting|exclude|excludes|excluded|excluding|forbid|forbids|forbade|forbidding|forbidden|prohibit|prohibits|prohibited|prohibiting|disallow|disallows|disallowed|disallowing|block|blocks|blocked|blocking|prevent|prevents|prevented|preventing|reject|rejects|rejected|rejecting|deny|denies|denied|denying|veto|vetoes|vetoed|vetoing|cease|ceases|ceased|ceasing|quit|quits|quitting|nobody|no one|none|no|nor|neither|instead of|rather than|except|other than|apart from|aside from|besides|off-limits|off limits|anything but|everything but|all but)\b/i;
 const EXECUTOR_NAME_SOURCE = '(?:cli-[\\w-]+|cursor-agent|opencode|claude|codex|devin|cursor|pi|hermes|jev)';
 // The only sentences that both refuse and still authorize: `not <other>, use <executor>` and
 // `not <other> but <executor>`, matched whole so a further clause or list item refuses again.
@@ -51,8 +51,10 @@ const RESET_FORM_PATTERN = new RegExp(`^not\\s+(${EXECUTOR_NAME_SOURCE})\\s*(?:,
 // A mention authorizes the name its token ends with: a `/deep:` phrase ends with the `cli-*`
 // its `--executor` value names.
 const MENTION_EXECUTOR_PATTERN = new RegExp(`(${EXECUTOR_NAME_SOURCE})$`, 'i');
-// A mention's sentence runs between the terminators around it.
-const SENTENCE_TERMINATOR_PATTERN = /[;\n.!?]/;
+// A sentence ends only at `.`, `!` or `?` followed by whitespace and an upper-case letter, so an
+// abbreviation (`i.e.`, `e.g.`, `etc.`), a semicolon or a line break cannot cut a refusal off
+// from the mention it governs.
+const SENTENCE_TERMINATOR_PATTERN = /[.!?](?=\s+[A-Z])/;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 // The end of a `/deep:` mention is the end of its executor value, not the end of `/deep:`.
 const DEEP_LOOP_PHRASE_END_PATTERN = /^\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(?:cli-[\w-]+)/i;
@@ -178,7 +180,9 @@ function mentionTokenEnd(text: string, mentionIndex: number): number {
   return end;
 }
 
-/** The sentence a mention sits in, running between the terminators around it. */
+/** The sentence a mention sits in. Only a terminator followed by whitespace and an upper-case
+ * letter starts a new sentence, so abbreviations, semicolons and line breaks keep the mention in
+ * the sentence that carries its refusal. */
 function mentionSentence(text: string, mentionIndex: number): string {
   const terminators = new RegExp(SENTENCE_TERMINATOR_PATTERN.source, 'g');
   let start = 0;

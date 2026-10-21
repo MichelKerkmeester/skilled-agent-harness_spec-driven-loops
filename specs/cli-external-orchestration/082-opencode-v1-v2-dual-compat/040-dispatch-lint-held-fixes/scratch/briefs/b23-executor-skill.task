@@ -1,0 +1,22 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`: export the executor-name-to-skill mapping the registry already uses, plus a test.
+
+Today `directExecutor` maps a binary to its skill inline (`opencode\d*` → cli-opencode, codex → cli-codex, claude → cli-claude-code, devin → cli-devin, cursor-agent → cli-cursor, pi → cli-pi, hermes → cli-hermes, jev / jev-mcp → cli-classifier). Other code needs the same mapping to tell whether two names are one executor.
+
+Fix: add and export `executorSkill(name)`. It trims and lower-cases the name, then returns the skill for: any `skill` value in `DISPATCH_SHAPES` (itself); the last path segment of any `packetPath` in `DISPATCH_SHAPES` (so `cli-jev` → cli-classifier); `cli-cursor-agent` → cli-cursor; and each binary basename the registry recognizes, mapped as `directExecutor` maps it (also `cursor` → cli-cursor and `claude-code` → cli-claude-code). It returns null for anything else. Build the binary part as one small map and have `directExecutor` use the same map for its skill names, so the two cannot drift. Behaviour of `directExecutor` must not change. JSDoc it in the file's style.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, one `describe('executorSkill', ...)` with one `it` asserting: claude, CLI-CLAUDE-CODE and claude-code → 'cli-claude-code'; codex and cli-codex → 'cli-codex'; opencode, opencode2 and cli-opencode → 'cli-opencode'; devin → 'cli-devin'; pi → 'cli-pi'; cursor-agent, cursor and cli-cursor → 'cli-cursor'; hermes → 'cli-hermes'; jev, jev-mcp, cli-jev and cli-classifier → 'cli-classifier'; 'git' and '' → null. Import it beside the file's other imports.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/lib/
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

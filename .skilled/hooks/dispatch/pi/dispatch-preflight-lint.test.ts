@@ -148,7 +148,7 @@ describe('Pi dispatch deny matrix', () => {
     ['avoid one executor then prefer another (policy deny)', 'devin -p "task"', 'avoid opencode, prefer cli-devin', true],
     ['quoted deep-loop executor', 'devin -p "task"', 'say "run /deep:review --executor cli-devin"', true],
     ['backtick deep-loop executor', 'devin -p "task"', 'the form is `run /deep:review --executor cli-devin`', true],
-    ['negation in an earlier sentence', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', false],
+    ['negation in an earlier sentence (policy deny)', 'devin -p "task"', 'never mind. /deep:review --executor cli-devin', true],
     ['cli-pi named by the user', 'pi -p "task"', 'use cli-pi', false],
     ['cli-pi without an override', 'pi -p "task"', 'run the task', true],
     ['negated mode mention', 'devin -p "task"', 'do not use cli-devin', true],
@@ -240,6 +240,24 @@ describe('Pi refusal phrasings', () => {
     ['use any tool apart from cli-devin', true],
     ['run it with everything excluding cli-devin', true],
     ['not even cli-devin', true],
+    // Every inflection of each refusal verb refuses the sentence, as a whole word.
+    ['forbid cli-devin', true],
+    ['we forbid cli-devin here', true],
+    ['prohibit cli-devin', true],
+    ['disallow cli-devin', true],
+    ['block cli-devin', true],
+    ['prevent cli-devin from running', true],
+    ['reject cli-devin', true],
+    ['veto cli-devin', true],
+    ['quit using cli-devin', true],
+    // A semicolon, a line break or an abbreviation period leaves the refusal sentence open.
+    ['not opencode; use cli-devin', true],
+    ['never use codex; use cli-devin', true],
+    ['do not use cli-devin\nuse cli-devin', true],
+    ['not opencode\r\nuse cli-devin', true],
+    ['never use it, e.g. cli-devin', true],
+    ['avoid these, etc. cli-devin', true],
+    ['skip the rest, i.e. cli-devin', true],
     // A later sentence, or a sentence with no refusal word in it, still leaves the mention a request.
     ['not opencode, use cli-devin', false],
     // Policy deny: a refusal anywhere in the sentence refuses it, list item or not.
@@ -258,7 +276,11 @@ describe('Pi refusal phrasings', () => {
     ['cli-devin is allowed here', false],
     // Policy deny: `do not` opens the sentence, so the sentence is not a reset form.
     ['do not use opencode, use cli-devin', true],
-    ['never use codex. use cli-devin', false],
+    // Policy deny: a lowercase follow-on phrase stays inside the refusal sentence.
+    ['never use codex. use cli-devin', true],
+    // A terminator followed by a capital starts a new sentence, so the earlier refusal no longer applies.
+    ['Never use codex. Use cli-devin', false],
+    ['Skip the tests! Run cli-devin', false],
     ["it's fine to use cli-devin", false],
   ])('%s', (userText, expected) => {
     expect(denied('devin -p "task"', userText)).toBe(expected);

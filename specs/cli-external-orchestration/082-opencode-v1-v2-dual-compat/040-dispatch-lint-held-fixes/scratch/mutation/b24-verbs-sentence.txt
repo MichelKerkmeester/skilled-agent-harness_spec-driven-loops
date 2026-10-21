@@ -1,0 +1,93 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T08:34:35.191Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":2,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (158 tests | 18 failed) 607ms
+   ❯ Pi dispatch deny matrix (43)
+     × negation in an earlier sentence (policy deny) 3ms
+   ❯ Pi refusal phrasings (88)
+     × forbid cli-devin 0ms
+     × we forbid cli-devin here 0ms
+     × prohibit cli-devin 0ms
+     × disallow cli-devin 0ms
+     × block cli-devin 0ms
+     × prevent cli-devin from running 0ms
+     × reject cli-devin 0ms
+     × veto cli-devin 0ms
+     × quit using cli-devin 0ms
+     × not opencode; use cli-devin 0ms
+     × never use codex; use cli-devin 0ms
+     × do not use cli-devin
+use cli-devin 0ms
+     × not opencode
+use cli-devin 0ms
+     × never use it, e.g. cli-devin 0ms
+     × avoid these, etc. cli-devin 0ms
+     × skip the rest, i.e. cli-devin 0ms
+     × never use codex. use cli-devin 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 18 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation in an earlier sentence (policy deny)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:171:48
+    169|         ? { runtime: 'claude' }
+    170|         : {};
+    171|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    172|   });
+    173| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/18]⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > forbid cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > we forbid cli-devin here
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prohibit cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > disallow cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > block cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > prevent cli-devin from running
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > reject cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > veto cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > quit using cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode; use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use codex; use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > do not use cli-devin
+use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > not opencode
+use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use it, e.g. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > avoid these, etc. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > skip the rest, i.e. cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > never use codex. use cli-devin
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:286:49
+    284|     ["it's fine to use cli-devin", false],
+    285|   ])('%s', (userText, expected) => {
+    286|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    287|   });
+    288| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/18]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  18 failed | 140 passed (158)
+   Start at  10:34:34
+   Duration  763ms (tests 89%, transform 7%, import 3%, worker 1%)
+
+b24-verbs-sentence: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

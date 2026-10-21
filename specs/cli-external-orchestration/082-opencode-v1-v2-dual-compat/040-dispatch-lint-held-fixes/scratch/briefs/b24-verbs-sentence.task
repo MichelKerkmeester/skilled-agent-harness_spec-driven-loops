@@ -1,0 +1,26 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to the Pi refusal sentence in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`: widen the refusal verbs and stop splitting the sentence early, plus test rows. Rule: when unsure, the refusal stays in scope (fail closed).
+
+Problems: `forbid cli-devin` authorizes (the set has `forbidden` but not `forbid`); `not opencode; use cli-devin`, a line break, or an abbreviation period (`i.e.`, `e.g.`, `etc.`) ends the sentence, so a refusal before it stops reaching the mention.
+
+Fix:
+1. `REFUSAL_PATTERN`: cover every inflection of each refusal verb, as whole words, case-insensitive: forbid/forbids/forbade/forbidding/forbidden, prohibit/prohibits/prohibited/prohibiting, disallow/disallows/disallowed/disallowing, block/blocks/blocked/blocking, prevent/prevents/prevented/preventing, refuse/refuses/refused/refusing, ban/bans/banned/banning, stop/stops/stopped/stopping, skip/skips/skipped/skipping, drop/drops/dropped/dropping, avoid/avoids/avoided/avoiding, exclude/excludes/excluded/excluding, forget/forgets/forgot/forgetting, reject/rejects/rejected/rejecting, deny/denies/denied/denying, veto/vetoes/vetoed/vetoing, cease/ceases/ceased/ceasing, quit/quits/quitting. Keep every current word and phrase.
+2. `mentionSentence`: a sentence ends only at `.`, `!` or `?` that is followed by whitespace and then an upper-case letter, or at the end of the text. A `;`, a newline (`\n` or `\r\n`), and a period not followed by whitespace plus a capital (so `i.e.`, `e.g.`, `etc. cli-devin`, `codex. use`) do not end it. Update the comment on the terminator constant and on `mentionSentence`.
+
+Tests in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`:
+- Existing rows this flips from allowed to denied: change `false` to `true` and append ` (policy deny)` to the name; in 'Pi refusal phrasings' put a short comment above such a row instead. Expected flips: 'negation in an earlier sentence' (`never mind. /deep:review ...`) and 'never use codex. use cli-devin'. Report any other row that flips, and do not flip it yourself.
+- Add to 'Pi refusal phrasings' as denied (true): 'forbid cli-devin', 'we forbid cli-devin here', 'prohibit cli-devin', 'disallow cli-devin', 'block cli-devin', 'prevent cli-devin from running', 'reject cli-devin', 'veto cli-devin', 'quit using cli-devin', 'not opencode; use cli-devin', 'never use codex; use cli-devin', 'do not use cli-devin\nuse cli-devin', 'not opencode\r\nuse cli-devin', 'never use it, e.g. cli-devin', 'avoid these, etc. cli-devin', 'skip the rest, i.e. cli-devin'.
+- Add as allowed (false): 'Never use codex. Use cli-devin', 'Skip the tests! Run cli-devin'.
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: what you changed (file and line), every row whose expected value you changed, then the verification command with its pass and fail counts.

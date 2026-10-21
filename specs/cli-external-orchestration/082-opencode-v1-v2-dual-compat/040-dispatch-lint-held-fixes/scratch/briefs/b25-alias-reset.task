@@ -1,0 +1,34 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change to the reset-form check in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts`, plus tests.
+
+Problem: `isResetForm` decides whether `not <other>, use <executor>` names two different executors with `normalizedExecutor`, which only strips `cli-`. So `not claude, use cli-claude-code` reads `claude` and `claude-code` as different, and the refusal of claude authorizes cli-claude-code.
+
+Fix: import `executorSkill` from the dispatch registry statically, with the same path style the file already uses for `hook-flags.mjs` (`../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs`). In `isResetForm`, compare `executorSkill(other)` with `executorSkill(mentioned)`; the reset holds only when both are non-null and differ. If either is null, the reset does not hold (fail closed). Remove `normalizedExecutor` if nothing else uses it, and widen the other-executor word the reset form accepts to any single word that `executorSkill` maps (so `opencode2` and `cli-jev` count). Update the comments.
+
+Tests: in `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts`, add one `describe('Pi reset forms across executor aliases', ...)` with an `it.each` of [command, raw text, denied] that uses the file's `denied(command, userText)` helper:
+  ['claude -p "task"', 'not claude, use cli-claude-code', true]
+  ['codex exec "task"', 'not codex, use cli-codex', true]
+  ['opencode run "task"', 'not opencode, use cli-opencode', true]
+  ['opencode run "task"', 'not opencode2, use cli-opencode', true]
+  ['devin -p "task"', 'not devin, use cli-devin', true]
+  ['devin -p "task"', 'not Devin, use cli-devin', true]
+  ['pi -p "task"', 'not pi, use cli-pi', true]
+  ['cursor-agent -p "task"', 'not cursor-agent, use cli-cursor', true]
+  ['cursor-agent -p "task"', 'not cursor but cli-cursor', true]
+  ['devin -p "task"', 'not cli-devin but cli-devin', true]
+  ['devin -p "task"', 'not opencode, use cli-devin', false]
+  ['claude -p "task"', 'not codex, use cli-claude-code', false]
+Every other test must keep passing.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts
+
+VERIFICATION (from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; it must pass):
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/pi/
+
+Return report: what you changed (file and line), then the verification command with its pass and fail counts.
