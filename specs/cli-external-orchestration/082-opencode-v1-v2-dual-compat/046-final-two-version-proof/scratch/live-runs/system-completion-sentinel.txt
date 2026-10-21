@@ -1,0 +1,8 @@
+# scenario system-completion-sentinel, run 2026-10-21T12:22:44Z in worktree 190, HEAD eb0c18f7e9
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+completion-sentinel v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+completion-sentinel-advisories.log (new): 2026-10-21T12:23:04.971Z [completion-evidence-sentinel] claimed done but 4 completed P0/P1 checklist item(s) in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook lack an evidence marker
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+completion-sentinel v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+completion-sentinel-advisories.log: 2026-10-21T12:23:18.449Z [completion-evidence-sentinel] claimed done but 4 completed P0/P1 checklist item(s) in specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/034-live-plugin-playbook lack an evidence marker
+# block exit 0

@@ -1,0 +1,364 @@
+TAP version 13
+# Subtest: ancestor walk stops when the process table repeats a pid
+ok 1 - ancestor walk stops when the process table repeats a pid
+  ---
+  duration_ms: 1.010375
+  type: 'test'
+  ...
+# Subtest: killer signals an idle target and releases its lock
+ok 2 - killer signals an idle target and releases its lock
+  ---
+  duration_ms: 492.455125
+  type: 'test'
+  ...
+# Subtest: killer signals an idle armed target after --idle-ms without a transcript
+ok 3 - killer signals an idle armed target after --idle-ms without a transcript
+  ---
+  duration_ms: 293.58225
+  type: 'test'
+  ...
+# Subtest: killer never signals a target that is not a descendant of SKILLED_LOOP_ID
+ok 4 - killer never signals a target that is not a descendant of SKILLED_LOOP_ID
+  ---
+  duration_ms: 223.42975
+  type: 'test'
+  ...
+# Subtest: killer does not signal when the relaunch record is missing
+ok 5 - killer does not signal when the relaunch record is missing
+  ---
+  duration_ms: 366.751958
+  type: 'test'
+  ...
+# Subtest: killer refuses loop id 1 and leaves the target alive
+ok 6 - killer refuses loop id 1 and leaves the target alive
+  ---
+  duration_ms: 59.885208
+  type: 'test'
+  ...
+# Subtest: killer keeps the record armed when the target exits during its grace period
+ok 7 - killer keeps the record armed when the target exits during its grace period
+  ---
+  duration_ms: 1318.012875
+  type: 'test'
+  ...
+# Subtest: killer treats an EPERM liveness probe as a target that is already gone
+ok 8 - killer treats an EPERM liveness probe as a target that is already gone
+  ---
+  duration_ms: 67.8225
+  type: 'test'
+  ...
+# Subtest: killer times out on an active transcript, unarms and releases its lock
+ok 9 - killer times out on an active transcript, unarms and releases its lock
+  ---
+  duration_ms: 3086.803792
+  type: 'test'
+  ...
+# Subtest: a second killer respects the lock held by the first killer
+ok 10 - a second killer respects the lock held by the first killer
+  ---
+  duration_ms: 3085.038542
+  type: 'test'
+  ...
+# Subtest: killer logs and respects a lock held by a live owner
+ok 11 - killer logs and respects a lock held by a live owner
+  ---
+  duration_ms: 79.520541
+  type: 'test'
+  ...
+# Subtest: killer takes over a lock whose live owner recorded a past expiry
+ok 12 - killer takes over a lock whose live owner recorded a past expiry
+  ---
+  duration_ms: 430.339292
+  type: 'test'
+  ...
+# Subtest: killer leaves a lock that a contender claimed while it supervised
+ok 13 - killer leaves a lock that a contender claimed while it supervised
+  ---
+  duration_ms: 1603.088875
+  type: 'test'
+  ...
+# Subtest: killer removes its own lock when no contender claimed it
+ok 14 - killer removes its own lock when no contender claimed it
+  ---
+  duration_ms: 492.7765
+  type: 'test'
+  ...
+# Subtest: killer holds an empty lock younger than five seconds
+ok 15 - killer holds an empty lock younger than five seconds
+  ---
+  duration_ms: 78.91425
+  type: 'test'
+  ...
+# Subtest: killer holds a fresh directory at the lock path
+ok 16 - killer holds a fresh directory at the lock path
+  ---
+  duration_ms: 76.676208
+  type: 'test'
+  ...
+# Subtest: killer takes over a stale directory at the lock path
+ok 17 - killer takes over a stale directory at the lock path
+  ---
+  duration_ms: 432.141417
+  type: 'test'
+  ...
+# Subtest: killer logs target-gone when SIGTERM races with target exit
+ok 18 - killer logs target-gone when SIGTERM races with target exit
+  ---
+  duration_ms: 411.181792
+  type: 'test'
+  ...
+# Subtest: killer refuses to signal a disarmed record
+ok 19 - killer refuses to signal a disarmed record
+  ---
+  duration_ms: 388.310542
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record at the hop limit without signalling
+ok 20 - killer unarms an armed record at the hop limit without signalling
+  ---
+  duration_ms: 499.104792
+  type: 'test'
+  ...
+# Subtest: killer still signals an armed record below the hop limit
+ok 21 - killer still signals an armed record below the hop limit
+  ---
+  duration_ms: 430.934125
+  type: 'test'
+  ...
+# Subtest: killer logs a disarmed record before refusing a non-descendant target
+ok 22 - killer logs a disarmed record before refusing a non-descendant target
+  ---
+  duration_ms: 197.738667
+  type: 'test'
+  ...
+# Subtest: killer breaks a stale lock and proceeds
+ok 23 - killer breaks a stale lock and proceeds
+  ---
+  duration_ms: 467.140584
+  type: 'test'
+  ...
+# Subtest: killer timeout notification escapes a quoted handoff path
+ok 24 - killer timeout notification escapes a quoted handoff path
+  ---
+  duration_ms: 84.803625
+  type: 'test'
+  ...
+# Subtest: killer timeout notification uses the runtime seed form
+ok 25 - killer timeout notification uses the runtime seed form
+  ---
+  duration_ms: 80.756875
+  type: 'test'
+  ...
+# Subtest: killer timeout notice carries the none spec-folder answer
+ok 26 - killer timeout notice carries the none spec-folder answer
+  ---
+  duration_ms: 83.043083
+  type: 'test'
+  ...
+# Subtest: killer timeout notice carries the empty spec-folder answer
+ok 27 - killer timeout notice carries the empty spec-folder answer
+  ---
+  duration_ms: 79.042125
+  type: 'test'
+  ...
+# Subtest: killer timeout notice omits an invalid hand-edited folder
+ok 28 - killer timeout notice omits an invalid hand-edited folder
+  ---
+  duration_ms: 80.248625
+  type: 'test'
+  ...
+# Subtest: killer timeout logs without notice when its record is missing
+ok 29 - killer timeout logs without notice when its record is missing
+  ---
+  duration_ms: 72.788791
+  type: 'test'
+  ...
+# Subtest: killer timeout keeps a re-prepared pending record and still logs and notifies
+ok 30 - killer timeout keeps a re-prepared pending record and still logs and notifies
+  ---
+  duration_ms: 129.615042
+  type: 'test'
+  ...
+# Subtest: killer timeout leaves a newer armed handoff to the killer that owns it
+ok 31 - killer timeout leaves a newer armed handoff to the killer that owns it
+  ---
+  duration_ms: 729.1555
+  type: 'test'
+  ...
+# Subtest: killer timeout leaves a re-armed record for the same handoff alone
+ok 32 - killer timeout leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 725.802292
+  type: 'test'
+  ...
+# Subtest: killer timeout supersedes a re-arm that keeps the watched arm time
+ok 33 - killer timeout supersedes a re-arm that keeps the watched arm time
+  ---
+  duration_ms: 726.2585
+  type: 'test'
+  ...
+# Subtest: killer hop cap leaves a re-armed record for the same handoff alone
+ok 34 - killer hop cap leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 236.974416
+  type: 'test'
+  ...
+# Subtest: killer stale branch leaves a re-armed record for the same handoff alone
+ok 35 - killer stale branch leaves a re-armed record for the same handoff alone
+  ---
+  duration_ms: 240.972
+  type: 'test'
+  ...
+# Subtest: killer records a timeout when the transcript vanishes while it waits
+ok 36 - killer records a timeout when the transcript vanishes while it waits
+  ---
+  duration_ms: 1208.216917
+  type: 'test'
+  ...
+# Subtest: killer survives one transient transcript stat failure and still signals
+ok 37 - killer survives one transient transcript stat failure and still signals
+  ---
+  duration_ms: 387.174
+  type: 'test'
+  ...
+# Subtest: killer gives up when the transcript stays missing past the stat grace window
+ok 38 - killer gives up when the transcript stays missing past the stat grace window
+  ---
+  duration_ms: 1044.001083
+  type: 'test'
+  ...
+# Subtest: two killers cannot both claim the same stale lock
+ok 39 - two killers cannot both claim the same stale lock
+  ---
+  duration_ms: 2799.023583
+  type: 'test'
+  ...
+# Subtest: killer reclaims a takeover mutex whose recorded owner is dead
+ok 40 - killer reclaims a takeover mutex whose recorded owner is dead
+  ---
+  duration_ms: 465.186584
+  type: 'test'
+  ...
+# Subtest: killer leaves a takeover mutex to its live owner even when the directory is old
+ok 41 - killer leaves a takeover mutex to its live owner even when the directory is old
+  ---
+  duration_ms: 117.255125
+  type: 'test'
+  ...
+# Subtest: killer reclaims a takeover mutex whose live owner outlived the hold bound
+ok 42 - killer reclaims a takeover mutex whose live owner outlived the hold bound
+  ---
+  duration_ms: 526.0415
+  type: 'test'
+  ...
+# Subtest: killer sweeps old takeover and stale-lock leftovers but keeps a fresh one
+ok 43 - killer sweeps old takeover and stale-lock leftovers but keeps a fresh one
+  ---
+  duration_ms: 470.686167
+  type: 'test'
+  ...
+# Subtest: killer reclaims a stale takeover directory that holds extra files
+ok 44 - killer reclaims a stale takeover directory that holds extra files
+  ---
+  duration_ms: 474.736334
+  type: 'test'
+  ...
+# Subtest: killer reclaims a stale takeover directory while its rename waits
+ok 45 - killer reclaims a stale takeover directory while its rename waits
+  ---
+  duration_ms: 1272.271167
+  type: 'test'
+  ...
+# Subtest: killer releases a takeover directory that gained a stray file
+ok 46 - killer releases a takeover directory that gained a stray file
+  ---
+  duration_ms: 467.237292
+  type: 'test'
+  ...
+# Subtest: killer leaves a takeover directory a contender replaced while it was held
+ok 47 - killer leaves a takeover directory a contender replaced while it was held
+  ---
+  duration_ms: 556.378208
+  type: 'test'
+  ...
+# Subtest: killer leaves a replaced takeover directory even when its inode is reused
+ok 48 - killer leaves a replaced takeover directory even when its inode is reused
+  ---
+  duration_ms: 445.120292
+  type: 'test'
+  ...
+# Subtest: killer does not remove a takeover directory whose owner write lost the race
+ok 49 - killer does not remove a takeover directory whose owner write lost the race
+  ---
+  duration_ms: 114.28525
+  type: 'test'
+  ...
+# Subtest: killer keeps a takeover directory a contender took over during an owner-write failure cleanup
+ok 50 - killer keeps a takeover directory a contender took over during an owner-write failure cleanup
+  ---
+  duration_ms: 110.608708
+  type: 'test'
+  ...
+# Subtest: killer restores a takeover directory swapped in after its ownership check
+ok 51 - killer restores a takeover directory swapped in after its ownership check
+  ---
+  duration_ms: 561.540417
+  type: 'test'
+  ...
+# Subtest: killer exits non-zero when the takeover owner cannot be read
+ok 52 - killer exits non-zero when the takeover owner cannot be read
+  ---
+  duration_ms: 105.09425
+  type: 'test'
+  ...
+# Subtest: killer keeps its result when the takeover removal throws
+ok 53 - killer keeps its result when the takeover removal throws
+  ---
+  duration_ms: 446.352792
+  type: 'test'
+  ...
+# Subtest: killer restores a permissive state directory to private mode
+ok 54 - killer restores a permissive state directory to private mode
+  ---
+  duration_ms: 158.716375
+  type: 'test'
+  ...
+# Subtest: the killer reads its ancestry through the core process-table reader
+ok 55 - the killer reads its ancestry through the core process-table reader
+  ---
+  duration_ms: 1.098167
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record past the age limit without signalling
+ok 56 - killer unarms an armed record past the age limit without signalling
+  ---
+  duration_ms: 405.85125
+  type: 'test'
+  ...
+# Subtest: killer unarms an armed record that will pass the age limit before the wrapper reads it without signalling
+ok 57 - killer unarms an armed record that will pass the age limit before the wrapper reads it without signalling
+  ---
+  duration_ms: 393.5145
+  type: 'test'
+  ...
+# Subtest: killer timeout notification fills the manual template from the environment it was given
+ok 58 - killer timeout notification fills the manual template from the environment it was given
+  ---
+  duration_ms: 74.6285
+  type: 'test'
+  ...
+# Subtest: killer timeout logs an unusable manual template before its plain notice
+ok 59 - killer timeout logs an unusable manual template before its plain notice
+  ---
+  duration_ms: 82.483833
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30623.851625

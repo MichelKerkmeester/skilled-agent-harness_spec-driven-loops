@@ -1,0 +1,15 @@
+# scenario system-dist-freshness-guard, run 2026-10-21T12:24:14Z in worktree 190, HEAD eb0c18f7e9
+[ 'sk-design-md-generator/backend' ]
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+dist-freshness v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log (new): 2026-10-21T12:24:21.358Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+dist-freshness v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:
+- STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+dist-freshness-guard.log: 2026-10-21T12:24:43.575Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm run build
+# block exit 0

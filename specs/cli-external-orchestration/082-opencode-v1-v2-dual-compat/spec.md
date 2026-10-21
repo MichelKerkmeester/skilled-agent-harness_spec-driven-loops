@@ -155,6 +155,8 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 42 | 042-hooks-and-plugins-held-fixes/ | Fix the held session-relaunch, post-edit-quality, task-dispatch, git installer, mcp-route-guard, shared stdin and plugin findings from 039 that change behaviour | Complete |
 | 43 | 043-v2-default-model-and-follow-ups/ | Make `llmgateway/deepseek-v4.1-flash` the OpenCode 2 default model, put the hook node:test suites in a blocking CI job, and close the 035, 037 and 042 doc and comment follow-ups | In Progress |
 | 44 | 044-skill-advisor-stress-ci/ | Make the Skill Advisor Stress Tests workflow pass again: its OpenCode plugin stress test still calls the plugin's default export as a function, which the dual-export object no longer is | Complete |
+| 45 | 045-relaunch-takeover-lock-identity/ | Prove takeover mutex ownership with an owner token as well as the inode, rename before removing and keep a contender's directory, so Hook Node Tests passes on Linux | Complete |
+| 46 | 046-final-two-version-proof/ | Run the live plugin playbook for all 17 plugins on OpenCode 1.19.3 and 2.0.32, rerun every tracked suite, validate the packet and record CI on the final main commit | In Progress |
 
 ### Phase Transition Rules
 
@@ -207,4 +209,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 039-sk-code-opencode-alignment-audit | 042-hooks-and-plugins-held-fixes | 039 held the session-relaunch, post-edit-quality, task-dispatch, git, mcp-route-guard, shared-adapter and plugin findings that change behaviour, and the operator chose to fix all of them | `042/implementation-summary.md`; every held finding outside the dispatch lint and goal files is fixed with a test that fails without it, and CI passes at the pushed commit |
 | 042-hooks-and-plugins-held-fixes | 043-v2-default-model-and-follow-ups | The operator chose `llmgateway` as the OpenCode 2 default on 2026-10-21, and 035, 037 and 042 recorded doc, comment and CI follow-ups | `043/implementation-summary.md`; the default-model tests and the new hooks workflow pass on CI |
 | 042-hooks-and-plugins-held-fixes | 044-skill-advisor-stress-ci | The Skill Advisor Stress Tests workflow has failed every run since 2026-10-19, and the open-work goal needs every workflow green | `044/implementation-summary.md`; the stress suite passes 64 of 64 locally and on CI at the pushed commit |
+| 045-relaunch-takeover-lock-identity | 046-final-two-version-proof | Every fix group is on main and Hook Node Tests passes, so the open-work goal needs its final proof from main | `046/implementation-summary.md`; the 17 by 2 live matrix, the suite table, recursive validation and the CI table |
 <!-- /ANCHOR:phase-map -->

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "223d1eb7cfaf0ecfc7ca7f678be2a6f521c56f0aaa73fb54fccde36a04ccb745",
+  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44518,6 +44518,18 @@
     "final state sweep tasks": [
       "final state sweep tasks"
     ],
+    "final two version proof": [
+      "final two version proof"
+    ],
+    "final two version proof implementation summary": [
+      "final two version proof implementation summary"
+    ],
+    "final two version proof plan": [
+      "final two version proof plan"
+    ],
+    "final two version proof tasks": [
+      "final two version proof tasks"
+    ],
     "finalization log md": [
       "finalization-log.md"
     ],
@@ -57516,6 +57528,9 @@
     ],
     "live owner skip": [
       "live owner skip"
+    ],
+    "live plugin matrix 17 of 17": [
+      "live plugin matrix 17 of 17"
     ],
     "live plugin playbook": [
       "live plugin playbook"
@@ -72499,6 +72514,9 @@
     "phase 44 skill advisor stress ci": [
       "phase 44 skill advisor stress ci"
     ],
+    "phase 46 final two version proof": [
+      "phase 46 final two version proof"
+    ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
     ],
@@ -80098,6 +80116,21 @@
     ],
     "relaunch loop test suite": [
       "relaunch loop test suite"
+    ],
+    "relaunch takeover lock identity": [
+      "relaunch takeover lock identity"
+    ],
+    "relaunch takeover lock identity implementation summary": [
+      "relaunch takeover lock identity implementation summary"
+    ],
+    "relaunch takeover lock identity owner token instead": [
+      "relaunch takeover lock identity owner token instead"
+    ],
+    "relaunch takeover lock identity plan": [
+      "relaunch takeover lock identity plan"
+    ],
+    "relaunch takeover lock identity tasks": [
+      "relaunch takeover lock identity tasks"
     ],
     "release alignment proposal": [
       "release alignment proposal"
@@ -104675,6 +104708,12 @@
     ],
     "tail signal or noise": [
       "tail signal or noise"
+    ],
+    "takeover mutex inode reuse": [
+      "takeover mutex inode reuse"
+    ],
+    "takeover mutex owner token": [
+      "takeover mutex owner token"
     ],
     "tanstack mini shai hulud audit": [
       "TanStack Mini Shai-Hulud audit",

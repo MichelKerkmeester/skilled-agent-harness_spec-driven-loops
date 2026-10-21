@@ -1,0 +1,7 @@
+VERDICT: FAIL
+
+P1 .skilled/hooks/session-relaunch/README.md:130 — Exclusive lock-file creation does not guarantee only one active killer after the documented mutex race — Two contenders can pass the stale-lock recheck; `removeStaleLock` can then unlink a fresh lock created by the other, while the displaced killer continues supervising (`killer.cjs:223-248, 548-565, 792-800`; `killer.test.cjs:880-925`). No cheap safe fix follows from `wx` alone.
+
+P2 .skilled/hooks/session-relaunch/README.md:130 — The specific third-killer rename-back limit is accurately described, with no cheap atomic directory compare-and-delete fix — A token mismatch restores the renamed directory when no third contender occupies the path (`killer.cjs:359-381`). The owner-write cleanup finding is closed by the rename-and-check path (`killer.cjs:390-437`); the recorded R3 capture reports 59/59 tests across 20 runs. In a two-killer interleaving, a mismatched owned directory is restored if the path remains free.
+
+P2 specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/scratch/mutation/base-killer.tap:293 — Added TAP captures make `git diff --check cbd88d8f96..b61416d25c` exit 2 — It reports trailing whitespace at eight added lines across the base, r1, and r2 captures. Both `node --check` commands passed; the R3 test capture was not rerun.

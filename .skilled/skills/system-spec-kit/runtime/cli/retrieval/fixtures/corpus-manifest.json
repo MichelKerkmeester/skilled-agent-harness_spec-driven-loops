@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f87d35fcdc80a563198738fa1714a1c32ff11003c1b989fe1c47613b4d842c32",
+  "corpusHash": "78e889c9e9e8cf431a5b09f194a0cf9ed4bbc14bf3315afda4dae9efb7fa3998",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 25518,
+  "includedPathCount": 25526,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9037,6 +9037,14 @@
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/plan.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/spec.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/tasks.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/implementation-summary.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/plan.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/spec.md",
+    "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/tasks.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/goal.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-dashboard.md",
     "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/research/deep-research-strategy.md",
@@ -25549,7 +25557,7 @@
     "specs/system-speckit/052-research-folder-continuity/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "223d1eb7cfaf0ecfc7ca7f678be2a6f521c56f0aaa73fb54fccde36a04ccb745",
+  "manifestHash": "16425c266484b6d9538ae98d839e1c2dc54c06b128a8091baa638b3f7e7cdeee",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26685,6 +26693,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof/scratch",
       "reason": "excluded directory"
     },
     {

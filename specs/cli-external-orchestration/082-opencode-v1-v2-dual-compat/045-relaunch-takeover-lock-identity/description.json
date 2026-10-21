@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity",
+  "description": "Relaunch takeover lock identity: owner token instead of inode alone",
+  "keywords": [
+    "relaunch",
+    "takeover",
+    "lock",
+    "identity",
+    "owner",
+    "token",
+    "instead",
+    "inode",
+    "alone"
+  ],
+  "lastUpdated": "2026-10-21T10:04:06.555Z",
+  "specId": "045",
+  "folderSlug": "relaunch-takeover-lock-identity",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

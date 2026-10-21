@@ -1,0 +1,12 @@
+# scenario codex-hooks-watchdog, run 2026-10-21T12:16:08Z in worktree 190, HEAD eb0c18f7e9
+install-codex-hooks: Refusing to anchor hooks at linked worktree /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof. Primary checkout: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public. Pass --allow-worktree to override.
+1
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+baseline v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+baseline v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+codex-hooks-watchdog.log: 2026-10-21T12:16:12.609Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/bin/install-codex-hooks.mjs --check
+codex-hooks-watchdog.log: 2026-10-21T12:16:31.934Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/bin/install-codex-hooks.mjs --check
+0
+0
+# block exit 0

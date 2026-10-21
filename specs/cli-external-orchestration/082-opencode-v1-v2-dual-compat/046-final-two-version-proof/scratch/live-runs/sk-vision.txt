@@ -1,0 +1,9 @@
+# scenario sk-vision, run 2026-10-21T12:21:57Z in worktree 190, HEAD eb0c18f7e9
+lrwxr-xr-x@ 1 michelkerkmeester  staff  49 Oct 21 14:04 .opencode/plugins/sk-vision.js -> ../skills/sk-vision/vision-runtime/dist/plugin.js
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+sk-vision v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+["sk_vision_status","completed","provider: photon\nmodel: not loaded\ndevice: mps\nloaded: false\nvram: 0.00 / 0.00 GB\nrequests: 0"]
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof
+sk-vision v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/190-final-two-version-proof/.skilled/skills/.state/plugin-utilization
+["execute","completed","provider: photon\nmodel: not loaded\ndevice: mps\nloaded: false\nvram: 0.00 / 0.00 GB\nrequests: 0"]
+# block exit 0

@@ -1,0 +1,2 @@
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/188-relaunch-takeover-lock-identity
+session-relaunch v2 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/188-relaunch-takeover-lock-identity/specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity/scratch/live-runs

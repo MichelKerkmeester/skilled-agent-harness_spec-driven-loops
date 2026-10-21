@@ -1,0 +1,4 @@
+timestamp=2026-10-21T12:09:35.673Z level=INFO run=d4d7aae6 message=stream providerID=opencode-go modelID=deepseek-v4.1-flash session.id=ses_ea1a217abffeY7LTx7XYAMRSoM small=true agent=title mode=primary
+timestamp=2026-10-21T12:09:36.582Z level=INFO run=d4d7aae6 message=stream providerID=opencode-go modelID=deepseek-v4.1-flash session.id=ses_ea1a217abffeY7LTx7XYAMRSoM small=false agent=build mode=primary
+timestamp=2026-10-21T12:09:36.772Z level=ERROR run=d4d7aae6 message="stream error" providerID=opencode-go modelID=deepseek-v4.1-flash session.id=ses_ea1a217abffeY7LTx7XYAMRSoM small=false agent=build mode=primary error.error="AI_APICallError: Go usage limit exceeded"
+timestamp=2026-10-21T12:09:42.609Z level=ERROR run=d4d7aae6 message="stream error" providerID=opencode-go modelID=deepseek-v4.1-flash session.id=ses_ea1a217abffeY7LTx7XYAMRSoM small=true agent=title mode=primary error.error="AI_RetryError: Failed after 3 attempts. Last error: Go usage limit exceeded"

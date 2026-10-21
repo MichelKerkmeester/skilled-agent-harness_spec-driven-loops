@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/046-final-two-version-proof",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "final two version proof",
+      "phase 46 final two version proof",
+      "final two version proof plan",
+      "final two version proof tasks",
+      "final two version proof implementation summary",
+      "live plugin matrix 17 of 17"
+    ],
+    "key_topics": [
+      "final",
+      "two",
+      "version",
+      "proof",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "live",
+      "plugin",
+      "matrix"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/live-runs/results-matrix.md",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      "scratch/suites/suites.txt",
+      "scratch/live-runs/summary.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "results-matrix.md",
+        "kind": "doc",
+        "path": "scratch/live-runs/results-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "suites.txt",
+        "kind": "file",
+        "path": "scratch/suites/suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/live-runs/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Each group proved its own change, but the goal's criteria 3 to 6 are about the final tree: all 17 plugins working live on both versions, every touched suite at or above its starting count, a clean recursive validation and green CI on the last main commit",
+    "created_at": "2026-10-21T12:08:37Z",
+    "last_save_at": "2026-10-21T12:38:02.081Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80ab72004478defbef97628dc232ea688d6a6f4ad2dda669d6b77d3da4c7b0f2",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8b94649f9533aec4abee2284fc35a96cd44b5d4c2c4ed07c0e4761166cccbd75",
+      "plan.md": "838b5666d2b09f69a1fedc6d7ee005003ed16e52fe989c130e73251624215a36",
+      "tasks.md": "5a0e2ca723addb923e73654458a00e761e39a4065601701860cd30b3fb9b114c",
+      "implementation-summary.md": "8f83e4ef54b37f6aac1da8f890523d133039cf24c331104e32ff67331253937a"
+    },
+    "last_active_at": null
+  }
+}

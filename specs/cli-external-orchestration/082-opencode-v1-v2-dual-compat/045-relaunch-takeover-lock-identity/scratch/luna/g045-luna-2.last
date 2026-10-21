@@ -1,0 +1,11 @@
+VERDICT: FAIL
+
+P1 .skilled/hooks/session-relaunch/lib/killer.cjs:405 — owner-write failure cleanup can delete a contender’s mutex — After checking the inode and finding no owner file, cleanup removes the path recursively. A contender can replace the directory and write its owner between those checks and the removal. The EEXIST test does not cover this non-EEXIST cleanup path.
+
+P1 .skilled/hooks/session-relaunch/lib/killer.cjs:374 — restoration can leave an active replacement hidden under `.stale-*` — If a third contender recreates the mutex path after the mismatched directory is renamed, restoration can fail with `ENOTEMPTY` or `EEXIST`. The displaced holder may continue while its mutex is outside the canonical path, where the stale sweep can later remove it. The Round 2 test covers restoration only while the path is empty.
+
+P2 .skilled/hooks/session-relaunch/README.md:130 — the mutex ownership description omits the token — The implementation writes a PID and token and checks both during release; the README describes release using only the inode and owner as only the PID.
+
+The supplied evidence confirms the inode-pinning test fails on the base (55/56) and passes after the fix (56/56). Both Round 2 tests pass in the saved 58/58 TAP run, and the 20-run evidence is green. `core.lockOwnerPid` reads the first field as the PID; no other code reads or writes the mutex owner. The token does not break that reader. Added comments contain no ephemeral labels.
+
+My focused rerun exited before exercising the tests because the sandbox denied the harness’s temporary `mkdtemp` with `EPERM` at `killer.test.cjs:25`. No repository files changed; the worktree remains three commits ahead of `origin/main`. No operator action is needed.

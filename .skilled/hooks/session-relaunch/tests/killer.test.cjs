@@ -266,6 +266,173 @@ function installTakeoverReplaceStub(sandbox) {
   sandbox.env.NODE_OPTIONS = (currentOptions + ' --require=' + preloadPath).trim();
 }
 
+function installTakeoverReplaceSameInodeStub(sandbox) {
+  const preloadPath = path.join(sandbox.root, 'takeover-replace-same-inode-preload.cjs');
+  const source = [
+    "'use strict';",
+    'const fs = require("node:fs");',
+    'const path = require("node:path");',
+    'const originalWriteFileSync = fs.writeFileSync;',
+    'const originalStatSync = fs.statSync;',
+    'let pinnedInode;',
+    'fs.statSync = function (targetPath, ...args) {',
+    '  const stats = originalStatSync.call(this, targetPath, ...args);',
+    '  if (typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover$/.test(targetPath)) {',
+    '    if (pinnedInode === undefined) pinnedInode = stats.ino;',
+    '    const pinnedStats = Object.create(stats);',
+    '    Object.defineProperty(pinnedStats, "ino", {',
+    '      value: pinnedInode,',
+    '      enumerable: true,',
+    '    });',
+    '    return pinnedStats;',
+    '  }',
+    '  return stats;',
+    '};',
+    'fs.writeFileSync = function (targetPath, ...args) {',
+    '  const result = originalWriteFileSync.call(this, targetPath, ...args);',
+    '  if (typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover\\/owner$/.test(targetPath)) {',
+    '    const mutexPath = path.dirname(targetPath);',
+    '    fs.rmSync(mutexPath, { recursive: true, force: true });',
+    '    fs.mkdirSync(mutexPath);',
+    '  }',
+    '  return result;',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(preloadPath, source);
+  const currentOptions = sandbox.env.NODE_OPTIONS || '';
+  sandbox.env.NODE_OPTIONS = (currentOptions + ' --require=' + preloadPath).trim();
+}
+
+function installTakeoverOwnerEexistStub(sandbox) {
+  const preloadPath = path.join(sandbox.root, 'takeover-owner-eexist-preload.cjs');
+  const source = [
+    "'use strict';",
+    'const fs = require("node:fs");',
+    'const path = require("node:path");',
+    'const originalWriteFileSync = fs.writeFileSync;',
+    'const originalStatSync = fs.statSync;',
+    'let pinnedInode;',
+    'let replaced = false;',
+    'fs.statSync = function (targetPath, ...args) {',
+    '  const stats = originalStatSync.call(this, targetPath, ...args);',
+    '  if (typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover$/.test(targetPath)) {',
+    '    if (pinnedInode === undefined) pinnedInode = stats.ino;',
+    '    const pinnedStats = Object.create(stats);',
+    '    Object.defineProperty(pinnedStats, "ino", {',
+    '      value: pinnedInode,',
+    '      enumerable: true,',
+    '    });',
+    '    return pinnedStats;',
+    '  }',
+    '  return stats;',
+    '};',
+    'fs.writeFileSync = function (targetPath, ...args) {',
+    '  if (!replaced && typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover\\/owner$/.test(targetPath)) {',
+    '    replaced = true;',
+    '    const mutexPath = path.dirname(targetPath);',
+    '    fs.rmSync(mutexPath, { recursive: true, force: true });',
+    '    fs.mkdirSync(mutexPath);',
+    '    originalWriteFileSync.call(this, path.join(mutexPath, "owner"),',
+    '      "999999 contender-token\\n");',
+    '    const error = new Error("owner write lost the race");',
+    '    error.code = "EEXIST";',
+    '    throw error;',
+    '  }',
+    '  return originalWriteFileSync.call(this, targetPath, ...args);',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(preloadPath, source);
+  const currentOptions = sandbox.env.NODE_OPTIONS || '';
+  sandbox.env.NODE_OPTIONS = (currentOptions + ' --require=' + preloadPath).trim();
+}
+
+function installTakeoverOwnerEaccesStub(sandbox) {
+  const preloadPath = path.join(sandbox.root, 'takeover-owner-eacces-preload.cjs');
+  const source = [
+    "'use strict';",
+    'const fs = require("node:fs");',
+    'const path = require("node:path");',
+    'const originalWriteFileSync = fs.writeFileSync;',
+    'const originalStatSync = fs.statSync;',
+    'const originalRenameSync = fs.renameSync;',
+    'let pinnedInode;',
+    'let failedWrite = false;',
+    'let replaced = false;',
+    'fs.statSync = function (targetPath, ...args) {',
+    '  const stats = originalStatSync.call(this, targetPath, ...args);',
+    '  if (typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover(?:\\.stale-.*)?$/.test(targetPath)) {',
+    '    if (pinnedInode === undefined) pinnedInode = stats.ino;',
+    '    const pinnedStats = Object.create(stats);',
+    '    Object.defineProperty(pinnedStats, "ino", {',
+    '      value: pinnedInode,',
+    '      enumerable: true,',
+    '    });',
+    '    return pinnedStats;',
+    '  }',
+    '  return stats;',
+    '};',
+    'fs.writeFileSync = function (targetPath, ...args) {',
+    '  if (!failedWrite && typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover\\/owner$/.test(targetPath)) {',
+    '    failedWrite = true;',
+    '    const error = new Error("owner write denied");',
+    '    error.code = "EACCES";',
+    '    throw error;',
+    '  }',
+    '  return originalWriteFileSync.call(this, targetPath, ...args);',
+    '};',
+    'fs.renameSync = function (sourcePath, targetPath, ...args) {',
+    '  if (!replaced && typeof sourcePath === "string" && typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover$/.test(sourcePath)',
+    '      && targetPath.includes(".takeover.stale-")) {',
+    '    replaced = true;',
+    '    fs.rmSync(sourcePath, { recursive: true, force: true });',
+    '    fs.mkdirSync(sourcePath);',
+    '    originalWriteFileSync.call(this, path.join(sourcePath, "owner"),',
+    '      "999999 contender-token\\n");',
+    '  }',
+    '  return originalRenameSync.call(this, sourcePath, targetPath, ...args);',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(preloadPath, source);
+  const currentOptions = sandbox.env.NODE_OPTIONS || '';
+  sandbox.env.NODE_OPTIONS = (currentOptions + ' --require=' + preloadPath).trim();
+}
+
+function installTakeoverSwapStub(sandbox) {
+  const preloadPath = path.join(sandbox.root, 'takeover-swap-preload.cjs');
+  const source = [
+    "'use strict';",
+    'const fs = require("node:fs");',
+    'const path = require("node:path");',
+    'const originalRenameSync = fs.renameSync;',
+    'let swapped = false;',
+    'fs.renameSync = function (sourcePath, targetPath, ...args) {',
+    '  if (!swapped && typeof sourcePath === "string" && typeof targetPath === "string"',
+    '      && /killer-.*\\.lock\\.takeover$/.test(sourcePath)',
+    '      && targetPath.includes(".takeover.stale-")) {',
+    '    swapped = true;',
+    '    fs.rmSync(sourcePath, { recursive: true, force: true });',
+    '    fs.mkdirSync(sourcePath);',
+    '    fs.writeFileSync(path.join(sourcePath, "owner"), "999999 contender-token\\n");',
+    '  }',
+    '  return originalRenameSync.call(this, sourcePath, targetPath, ...args);',
+    '};',
+    '',
+  ].join('\n');
+  fs.writeFileSync(preloadPath, source);
+  const currentOptions = sandbox.env.NODE_OPTIONS || '';
+  sandbox.env.NODE_OPTIONS = (currentOptions + ' --require=' + preloadPath).trim();
+}
+
 function installTakeoverRemovalFailureStub(sandbox) {
   const preloadPath = path.join(sandbox.root, 'takeover-removal-failure-preload.cjs');
   const source = [
@@ -274,7 +441,7 @@ function installTakeoverRemovalFailureStub(sandbox) {
     'const originalRmSync = fs.rmSync;',
     'fs.rmSync = function (targetPath, ...args) {',
     '  if (typeof targetPath === "string"',
-    '      && /killer-.*\\.lock\\.takeover$/.test(targetPath)) {',
+    '      && /killer-.*\\.lock\\.takeover(?:\\.stale-.*)?$/.test(targetPath)) {',
     '    const error = new Error("mutex removal failed");',
     '    error.code = "EPERM";',
     '    throw error;',
@@ -2086,6 +2253,136 @@ test('killer leaves a takeover directory a contender replaced while it was held'
       fs.existsSync(mutexPath),
       true,
       'a takeover directory the killer did not create should survive the release',
+    );
+  } finally {
+    killChild(killer);
+    killChild(target);
+    killChild(deadOwner);
+  }
+});
+
+test('killer leaves a replaced takeover directory even when its inode is reused', async (t) => {
+  const sandbox = createSandbox(t);
+  installTakeoverReplaceSameInodeStub(sandbox);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const transcriptPath = createTranscript(sandbox);
+  const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
+  await new Promise((resolve) => deadOwner.once('exit', resolve));
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
+  const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
+  try {
+    const result = await waitForExit(killer, 2000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
+    assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+    assert.equal(
+      fs.existsSync(mutexPath),
+      true,
+      'a takeover directory the killer did not create should survive the release',
+    );
+  } finally {
+    killChild(killer);
+    killChild(target);
+    killChild(deadOwner);
+  }
+});
+
+test('killer does not remove a takeover directory whose owner write lost the race', async (t) => {
+  const sandbox = createSandbox(t);
+  installTakeoverOwnerEexistStub(sandbox);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const transcriptPath = createTranscript(sandbox);
+  const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
+  await new Promise((resolve) => deadOwner.once('exit', resolve));
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
+  const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
+  try {
+    const result = await waitForExit(killer, 2000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 1);
+    assert.equal(fs.existsSync(signalPath), false);
+    assert.equal(process.kill(target.pid, 0), true);
+    assert.equal(fs.existsSync(mutexPath), true);
+    assert.equal(
+      fs.readFileSync(path.join(mutexPath, 'owner'), 'utf8').trim(),
+      '999999 contender-token',
+    );
+    assert.match(readKillerLog(sandbox), /killer-error/);
+  } finally {
+    killChild(killer);
+    killChild(target);
+    killChild(deadOwner);
+  }
+});
+
+test('killer keeps a takeover directory a contender took over during an owner-write failure cleanup', async (t) => {
+  const sandbox = createSandbox(t);
+  installTakeoverOwnerEaccesStub(sandbox);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const transcriptPath = createTranscript(sandbox);
+  const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
+  await new Promise((resolve) => deadOwner.once('exit', resolve));
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
+  const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
+  try {
+    const result = await waitForExit(killer, 2000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 1);
+    assert.equal(fs.existsSync(signalPath), false);
+    assert.equal(process.kill(target.pid, 0), true);
+    assert.equal(fs.existsSync(mutexPath), true);
+    assert.equal(
+      fs.readFileSync(path.join(mutexPath, 'owner'), 'utf8').trim(),
+      '999999 contender-token',
+    );
+    assert.match(readKillerLog(sandbox), /killer-error/);
+  } finally {
+    killChild(killer);
+    killChild(target);
+    killChild(deadOwner);
+  }
+});
+
+test('killer restores a takeover directory swapped in after its ownership check', async (t) => {
+  const sandbox = createSandbox(t);
+  installTakeoverSwapStub(sandbox);
+  const loopId = String(process.pid);
+  const signalPath = path.join(sandbox.root, 'target-signal');
+  const transcriptPath = createTranscript(sandbox);
+  const deadOwner = spawn(process.execPath, ['-e', 'process.exit(0);'], { stdio: 'ignore' });
+  await new Promise((resolve) => deadOwner.once('exit', resolve));
+  const target = startTarget(sandbox, signalPath);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  createRelaunchRecord(sandbox, loopId);
+  fs.writeFileSync(lockPath(sandbox, loopId), `${deadOwner.pid} ${new Date().toISOString()}\n`);
+  const mutexPath = `${lockPath(sandbox, loopId)}.takeover`;
+  const killer = runKiller(sandbox, { loopId, targetPid: target.pid, transcriptPath });
+  try {
+    const result = await waitForExit(killer, 2000);
+    assert.equal(result.timedOut, undefined);
+    assert.equal(result.code, 0);
+    assert.equal(fs.readFileSync(signalPath, 'utf8'), 'SIGTERM');
+    assert.equal(fs.existsSync(lockPath(sandbox, loopId)), false);
+    assert.equal(fs.existsSync(mutexPath), true);
+    assert.equal(
+      fs.readFileSync(path.join(mutexPath, 'owner'), 'utf8').trim(),
+      '999999 contender-token',
     );
   } finally {
     killChild(killer);

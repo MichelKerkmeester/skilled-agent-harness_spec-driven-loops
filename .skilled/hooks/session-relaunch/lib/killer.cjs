@@ -328,9 +328,10 @@ function sweepStaleTakeovers(lockPath) {
 }
 
 // A stalled takeover can lose its mutex name to a contender that creates a
-// fresh directory at the same path; the inode recorded at creation keeps the
-// release from removing a mutex this killer does not own.
-function removeOwnMutex(mutexPath, mutexInode) {
+// fresh directory at the same path, and an inode alone cannot prove ownership
+// once a directory is deleted because the filesystem can hand that inode back
+// to the replacement; the token written at creation is what proves ownership.
+function removeOwnMutex(mutexPath, mutexInode, token) {
   let stats;
   try {
     stats = fs.statSync(mutexPath);
@@ -339,7 +340,101 @@ function removeOwnMutex(mutexPath, mutexInode) {
     throw error;
   }
   if (stats.ino !== mutexInode) return;
-  fs.rmSync(mutexPath, { recursive: true, force: true });
+  if (token !== null) {
+    let owner;
+    try {
+      owner = fs.readFileSync(path.join(mutexPath, 'owner'), 'utf8');
+    } catch (error) {
+      if (error.code === 'ENOENT') return;
+      throw error;
+    }
+    if (owner.trim().split(/\s+/)[1] !== token) return;
+  }
+
+  // Removing by path lets a contender swap its own mutex under this name after
+  // the ownership check. Renaming first keeps the path from naming the directory
+  // about to be removed, and the token is read again from the renamed directory.
+  const stalePath = `${mutexPath}.stale-${process.pid}-${randomUUID()}`;
+  try {
+    fs.renameSync(mutexPath, stalePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+
+  if (token !== null) {
+    let renamedOwner = '';
+    try {
+      renamedOwner = fs.readFileSync(path.join(stalePath, 'owner'), 'utf8');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    if (renamedOwner.trim().split(/\s+/)[1] !== token) {
+      try {
+        fs.renameSync(stalePath, mutexPath);
+      } catch (error) {
+        // A path a contender has taken again leaves the rename for the stale sweep.
+        if (error.code !== 'EEXIST' && error.code !== 'ENOTEMPTY' && error.code !== 'ENOENT') {
+          throw error;
+        }
+      }
+      return;
+    }
+  }
+
+  fs.rmSync(stalePath, { recursive: true, force: true });
+}
+
+// An owner write can fail while the directory is still ours, so removal waits
+// for a matching inode and no owner file.
+function removeOwnerlessMutex(mutexPath, mutexInode) {
+  let stats;
+  try {
+    stats = fs.statSync(mutexPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+  if (stats.ino !== mutexInode) return;
+
+  // Renaming first keeps a contender from replacing the directory under this
+  // path between the checks and the removal.
+  const stalePath = `${mutexPath}.stale-${process.pid}-${randomUUID()}`;
+  try {
+    fs.renameSync(mutexPath, stalePath);
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+
+  let renamedInode;
+  try {
+    renamedInode = fs.statSync(stalePath).ino;
+  } catch (error) {
+    if (error.code === 'ENOENT') return;
+    throw error;
+  }
+  let ownerExists = false;
+  try {
+    fs.statSync(path.join(stalePath, 'owner'));
+    ownerExists = true;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+
+  if (renamedInode === mutexInode && !ownerExists) {
+    fs.rmSync(stalePath, { recursive: true, force: true });
+    return;
+  }
+
+  try {
+    fs.renameSync(stalePath, mutexPath);
+  } catch (error) {
+    // A path a contender has taken again leaves the rename for the stale sweep.
+    if (error.code !== 'EEXIST' && error.code !== 'ENOTEMPTY' && error.code !== 'ENOENT') {
+      throw error;
+    }
+  }
 }
 
 // A mutex whose owner pid is alive is still stale once the directory outlives
@@ -385,6 +480,7 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
   const mutexOwnerPath = path.join(mutexPath, 'owner');
   let mutexHeld = false;
   let mutexInode;
+  let mutexToken = null;
   for (let attempt = 0; attempt < 2 && !mutexHeld; attempt += 1) {
     let created = false;
     try {
@@ -396,10 +492,13 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
     }
 
     if (created) {
+      mutexToken = randomUUID();
       try {
-        fs.writeFileSync(mutexOwnerPath, `${process.pid}\n`, { flag: 'wx' });
+        fs.writeFileSync(mutexOwnerPath, `${process.pid} ${mutexToken}\n`, { flag: 'wx' });
       } catch (error) {
-        removeOwnMutex(mutexPath, mutexInode);
+        // An EEXIST owner write means the directory is no longer ours; any other
+        // failure still needs the inode and owner checks before removal.
+        if (error.code !== 'EEXIST') removeOwnerlessMutex(mutexPath, mutexInode);
         throw error;
       }
       mutexHeld = true;
@@ -468,7 +567,7 @@ function acquireLock(lockPath, loopId, environment, timeoutMs) {
     }
   } finally {
     try {
-      removeOwnMutex(mutexPath, mutexInode);
+      removeOwnMutex(mutexPath, mutexInode, mutexToken);
     } catch (error) {
       // A release failure cannot undo the takeover's result; the lock already
       // returned and throwing here would strand it.

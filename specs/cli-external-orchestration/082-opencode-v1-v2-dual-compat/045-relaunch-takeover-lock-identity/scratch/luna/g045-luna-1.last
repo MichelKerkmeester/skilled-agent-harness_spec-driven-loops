@@ -1,0 +1,9 @@
+VERDICT: FAIL
+
+P1 .skilled/hooks/session-relaunch/lib/killer.cjs:415 — If a creator pauses after `mkdir` for over 30 seconds, another killer can reclaim the ownerless mutex and create a replacement. The resumed creator can get `EEXIST` writing `owner`, then delete the replacement through inode-only cleanup if the inode was reused. — Inferred from the ownerless stale check and rename at lines 434–453 and the `null` token cleanup here. A deterministic write-failure/replacement test would confirm it.
+
+P1 .skilled/hooks/session-relaunch/lib/killer.cjs:353 — Normal release checks the inode and token, then recursively deletes by path. If another killer stale-renames and replaces that path after the matching owner read but before `rmSync`, this release can delete the contender’s mutex. — Inferred from the check sequence at lines 337–351 and stale rename at lines 442–453. A deterministic path swap between the owner read and removal would confirm it.
+
+`readLockState` still parses the first field as PID. Its second field is treated as a legacy creation timestamp only when no expiry field exists; `lockOwnerPid` uses only the PID. Search found no other production reader or writer of `<lock>.takeover/owner`. The changed comment explains durable behavior and contains no ephemeral IDs or spec paths.
+
+The committed evidence shows the inode-reuse test failing against the baseline and passing after the change; `killer-20x.txt` records 20 successful 56/56 runs. My focused rerun exited 1 before reaching the test because `mkdtemp` returned `EPERM` for both the default temp directory and `/tmp`. `git diff --check` exited 0 and the worktree remained clean. Nothing is blocked on you.
