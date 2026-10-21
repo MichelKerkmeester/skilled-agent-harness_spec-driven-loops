@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Hard-Rule Engine
+// ───────────────────────────────────────────────────────────────────
 // Dependency-free dispatch hard-rule engine.
 //
 // Reads the `hard-rules.json` sidecar beside a dispatch skill's SKILL.md and evaluates each rule
@@ -5,11 +8,20 @@
 // (manual/ad-hoc dispatch) and available to the fan-out in-process guard.
 // No external deps and no daemon: the enforcement path must survive even when the advisor is
 // down, so the rules live in plain JSON a built-in parse reads without a YAML dependency.
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
 import path from 'node:path';
 
 import { resolveOpencodeVersionSync, SUPPORTED_FAMILIES } from './opencode-version.mjs';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. RULE LOADING
+// ─────────────────────────────────────────────────────────────────────────────
 
 const HARD_RULES_FILENAME = 'hard-rules.json';
 const QUOTED_OPENCODE_RUN_BINARY = /(?:^|[\s;&|])["']((?:[^"']*[\\/])?opencode\d*)["']\s+run\b/;
@@ -27,7 +39,11 @@ export function readHardRules(skillMdPath) {
   }
 }
 
-// ── Check functions (pure; each returns true when the command SATISFIES the rule) ───────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CHECK FUNCTIONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Each check is pure and returns true when the command SATISFIES the rule.
 // A check returning false means the rule is VIOLATED and should be surfaced.
 
 const STDIN_REDIRECT = /<\s*\/dev\/null|0<\s*\/dev\/null|<<-?\s*['"]?\w|<<</; // </dev/null, heredoc, herestring
@@ -128,6 +144,10 @@ function binaryOnPathCheck(binary, shape) {
     return false;
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CHECK REGISTRY
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const CHECKS = {
   // A headless dispatch must close/redirect stdin or it can inherit an open stdin
@@ -270,6 +290,10 @@ export const CHECKS = {
 };
 
 export const KNOWN_CHECKS = Object.keys(CHECKS);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EVALUATION
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Evaluate a skill's hard rules against a command string. Those are the rules `readHardRules`

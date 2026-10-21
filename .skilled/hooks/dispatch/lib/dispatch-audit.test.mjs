@@ -1,11 +1,15 @@
-// Tests for the CLI dispatch audit trail core. Run: npx vitest run <this file>
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Audit Core Tests
+// ───────────────────────────────────────────────────────────────────
+// Run with the pinned binary, because `npx vitest` resolves a different copy:
+// .skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
 import { describe, it, expect, vi } from 'vitest';
+
 import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
-const HERE = dirname(fileURLToPath(import.meta.url));
 
 import {
   DISPATCH_SHAPES,
@@ -27,6 +31,8 @@ import {
   resolveOpencodeVersionSync,
   PROBE_TIMEOUT_MS,
 } from './opencode-version.mjs';
+
+const HERE = dirname(fileURLToPath(import.meta.url));
 
 // Resolver API: export function parseOpencodeVersion(text) and export function
 // resolveOpencodeVersion(binary, { probe, stat, realpath }).

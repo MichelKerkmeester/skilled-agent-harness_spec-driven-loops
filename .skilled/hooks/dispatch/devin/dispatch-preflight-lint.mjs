@@ -17,9 +17,10 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import path from 'node:path';
+
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { resolveDispatchPacket } from '../lib/dispatch-audit.mjs';
-import path from 'node:path';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 

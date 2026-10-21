@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dispatch Audit Core
+// ───────────────────────────────────────────────────────────────────
 // Runtime-neutral core for the CLI dispatch audit trail.
 //
 // After a Bash tool call completes under either runtime, an adapter (the OpenCode
@@ -8,9 +11,18 @@
 // and appending it to a size-rotated log. Nothing here writes to stdout/stderr or throws past
 // its own boundary — every exported function fails open, because a telemetry bug must never
 // affect the dispatch it observes.
-//
+// ───────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 import { appendFileSync, copyFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { dirname } from 'node:path';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // A single env var name, owned here so both runtime adapters read the exact same string
 // rather than each hard-coding their own copy. Set to '1' to turn the whole surface into a
@@ -22,8 +34,11 @@ export function isAuditDisabled(env = process.env) {
   return env?.[KILL_SWITCH_ENV] === '1';
 }
 
-// ── Dispatch-shape registry (kept for adapter compatibility) ───────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. DISPATCH CLASSIFICATION
+// ─────────────────────────────────────────────────────────────────────────────
 
+// Dispatch-shape registry (kept for adapter compatibility)
 export const DISPATCH_SHAPES = [
   {
     test: /\bopencode\d*\s+run\b/,
@@ -519,7 +534,9 @@ export function resolveDispatchPacket(command) {
   return null;
 }
 
-// ── Metadata extraction ──────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. METADATA EXTRACTION
+// ─────────────────────────────────────────────────────────────────────────────
 
 const MODEL_FLAG_REGEX = /--model[=\s]+("([^"]+)"|'([^']+)'|(\S+))/;
 const AGENT_FLAG_REGEX = /--agent[=\s]+("([^"]+)"|'([^']+)'|(\S+))/;
@@ -573,7 +590,9 @@ export function extractDispatchMeta(command, meta = {}) {
   }
 }
 
-// ── Redaction + line formatting ──────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. REDACTION AND LINE FORMATTING
+// ─────────────────────────────────────────────────────────────────────────────
 
 const MAX_COMMAND_CHARS = 500;
 const TRUNCATION_SUFFIX = '…[truncated]';
@@ -670,7 +689,9 @@ export function buildAuditLine(record = {}) {
   }
 }
 
-// ── Size-rotated append ──────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. LOG APPEND
+// ─────────────────────────────────────────────────────────────────────────────
 
 export const DEFAULT_LOG_RELATIVE_PATH = '.skilled/logs/cli-dispatch-audit.log';
 const DEFAULT_MAX_LOG_BYTES = 512 * 1024;
@@ -706,7 +727,9 @@ export function appendAuditLog(logPath, line) {
   }
 }
 
-// ── Full pipeline (convenience entrypoint for adapters) ──────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. FULL PIPELINE
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Run the whole match -> extract -> build -> append pipeline for one completed Bash call.

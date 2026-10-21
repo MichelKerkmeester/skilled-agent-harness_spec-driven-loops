@@ -18,6 +18,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
+
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 import {
