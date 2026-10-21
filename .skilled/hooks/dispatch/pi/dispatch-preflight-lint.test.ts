@@ -268,6 +268,24 @@ describe('Pi refusal phrasings', () => {
     ["it's fine, use cli-devin", false],
     ['in case it fails, use cli-devin', false],
     ['${HOME} is set, use cli-devin', false],
+    // A comment can follow a closing parenthesis, a case can follow one, a turn marker inside an
+    // open quote is the operator's own text, and a possessive apostrophe is a shell quote.
+    ['echo $( (echo hi)# )\ncli-devin\n)', true],
+    ['use $( (echo hi)# )\nand then cli-devin\n)', true],
+    ['echo $( f()case y in y) cli-devin;; esac; f )', true],
+    ['say "please [user] cli-devin', true],
+    ['say `please [user] cli-devin', true],
+    ['say $(please [user] cli-devin', true],
+    ["the file's data and cli-devin's settings", true],
+    ["echo a's cli-devin'", true],
+    ["use the file's cli-devin'", true],
+    // A backtick still ends a comment inside it, a hash inside a brace is literal, and plain
+    // contractions, a possessive after the mention and a closed quote before a marker still pass.
+    ['echo `echo hi #` and use cli-devin', false],
+    ['echo ${x:- #} and use cli-devin', false],
+    ["we'll see; use cli-devin", false],
+    ["use cli-devin for the user's task", false],
+    ['earlier "quoted" text [user] use cli-devin', false],
     // Every level closed, so the mention stands in plain text again.
     ['$(echo ")") use cli-devin', false],
     // A substitution that closed before the mention leaves it in plain text.

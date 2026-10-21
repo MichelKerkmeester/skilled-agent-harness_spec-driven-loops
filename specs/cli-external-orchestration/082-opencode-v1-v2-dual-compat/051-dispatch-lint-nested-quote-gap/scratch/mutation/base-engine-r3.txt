@@ -1,0 +1,107 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/195-dispatch-lint-nested-quote-gap
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (253 tests | 28 failed) 460ms
+   ❯ Pi refusal phrasings (166)
+     × $(echo "`printf ")"`" cli-devin) 3ms
+     × $(echo "`printf ")"`" "x" cli-devin) 0ms
+     × $(echo "`printf ")" "x"`" cli-devin) 0ms
+     × $(echo "\"`printf ")"`" cli-devin) 0ms
+     × $(echo '"' "`printf ")"`" cli-devin) 0ms
+     × $(echo "`printf ")"`" `true` cli-devin) 0ms
+     × $(echo "`a`" ")" "`printf ")"`" cli-devin) 0ms
+     × `echo "`" cli-devin` 0ms
+     × `echo "$(printf "`")" cli-devin` 0ms
+     × $(echo "`printf ")"`" cli-devin 0ms
+     × $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin 0ms
+     × echo # "
+" cli-devin "
+# " 0ms
+     × echo # `
+` cli-devin `
+# ` 0ms
+     × $(echo hi # ignored )
+cli-devin) 0ms
+     × $(case x in x) cli-devin;; esac) 0ms
+     × foo'cli-devin' 0ms
+     × use “x" cli-devin "” 0ms
+     × use ‘x' cli-devin '’ 0ms
+     × "${x:-"} cli-devin 0ms
+     × echo $( (echo hi)# )
+cli-devin
+) 0ms
+     × use $( (echo hi)# )
+and then cli-devin
+) 0ms
+     × echo $( f()case y in y) cli-devin;; esac; f ) 0ms
+     × say "please [user] cli-devin 0ms
+     × say `please [user] cli-devin 0ms
+     × say $(please [user] cli-devin 0ms
+     × the file's data and cli-devin's settings 0ms
+     × echo a's cli-devin' 0ms
+     × use the file's cli-devin' 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 28 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" "x" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")" "x"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "\"`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo '"' "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" `true` cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`a`" ")" "`printf ")"`" cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "`" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > `echo "$(printf "`")" cli-devin`
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo "`printf ")"`" cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x $(x ))))))))))))))))))))))))))))))))) use cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo # "
+" cli-devin "
+# "
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo # `
+` cli-devin `
+# `
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo hi # ignored )
+cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(case x in x) cli-devin;; esac)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > foo'cli-devin'
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “x" cli-devin "”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use ‘x' cli-devin '’
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > "${x:-"} cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo $( (echo hi)# )
+cli-devin
+)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use $( (echo hi)# )
+and then cli-devin
+)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo $( f()case y in y) cli-devin;; esac; f )
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > say "please [user] cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > say `please [user] cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > say $(please [user] cli-devin
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > the file's data and cli-devin's settings
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > echo a's cli-devin'
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use the file's cli-devin'
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:393:49
+    391|     ['Use cli-devin. Then report back.', false],
+    392|   ])('%s', (userText, expected) => {
+    393|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    394|   });
+    395| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/28]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  28 failed | 225 passed (253)
+   Start at  21:29:13
+   Duration  571ms (tests 89%, transform 7%, import 4%)
+
+base-engine-r3: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

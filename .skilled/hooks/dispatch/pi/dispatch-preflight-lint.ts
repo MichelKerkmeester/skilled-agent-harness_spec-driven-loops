@@ -63,6 +63,11 @@ const SENTENCE_TERMINATOR_PATTERN = /[.!?](?=\s+[A-Z])/;
 const DEEP_LOOP_EXECUTOR_PATTERN = /(?:^|\s)\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(cli-[\w-]+)/gi;
 // The end of a `/deep:` mention is the end of its executor value, not the end of `/deep:`.
 const DEEP_LOOP_PHRASE_END_PATTERN = /^\/deep:\S+[^\n]*?\s--executor(?:=|\s+)(?:cli-[\w-]+)/i;
+// Only these contraction words are prose; any other in-word apostrophe is a shell quote.
+const CONTRACTION_PATTERNS = [
+  /(?<=\b(?:i|you|we|they|he|she|it|that|there|here|what|who|where|how|when|let))'(?=(?:s|re|ve|ll|d|m)\b)/gi,
+  /(?<=\b(?:don|doesn|didn|isn|aren|wasn|weren|hasn|haven|hadn|won|can|couldn|shouldn|wouldn|mustn|mightn|needn|ain|shan))'(?=t\b)/gi,
+];
 
 // ───────────────────────────────────────────────────────────────────
 // 4. HELPERS
@@ -133,8 +138,11 @@ function stripInjectedContent(text: string): string {
   const specGateStart = cleaned.lastIndexOf(SPEC_GATE_MARKER);
   if (specGateStart !== -1) cleaned = cleaned.slice(0, specGateStart);
   const lastUserTurn = cleaned.lastIndexOf('[user]');
+  // A marker inside an open quote or substitution is the operator's own text, not a turn
+  // boundary, so the text is refused rather than cut there.
   if (lastUserTurn !== -1) {
     const suffix = cleaned.slice(lastUserTurn + '[user]'.length);
+    if (isEnclosedInAnyReading(cleaned, lastUserTurn)) return '';
     if (suffix.trim()) cleaned = suffix;
   }
   return cleaned;
@@ -153,14 +161,17 @@ function stripInjectedContent(text: string): string {
  * instead lets a quoted `)` inside the inner context close the outer span, and a mention the
  * shell still reads inside a substitution is then wrongly allowed. A `case` word at a word start
  * inside a substitution or a parenthesised span makes the structure unresolvable, because its
- * pattern's `)` cannot be told from the closer that ends the span, and that reading fails closed.
- * When `comments` is true, a `#` at a word start outside quotes opens a comment that runs to the
- * next newline; the comment is not a frame, so a mention the shell drops as a comment is not
- * enclosed, while one the comment line leaves inside an open span still is. Structure the scan
- * cannot resolve fails closed: an unclosed context, or a nesting no real command line reaches,
- * counts as enclosing so a mention is refused rather than guessed. The one exception is a single
- * trailing `'` opened after the mention, because a prose apostrophe such as `users'` opens a span
- * nothing ever closes; a mention that apostrophe already encloses is still refused. */
+ * pattern's `)` cannot be told from the closer that ends the span, and that reading fails closed;
+ * a `)` ends a word, so a word start follows one just as it follows whitespace or an operator.
+ * When `comments` is true, a `#` at a word start opens a comment that runs to the next newline,
+ * and inside a backtick context to the nearer of that newline and the closing backtick, while a
+ * `#` inside `${...}` is literal; the comment is not a frame, so a mention the shell drops as a
+ * comment is not enclosed, while one the comment line leaves inside an open span still is.
+ * Structure the scan cannot resolve fails closed: an unclosed context, or a nesting no real
+ * command line reaches, counts as enclosing so a mention is refused rather than guessed. The one
+ * exception is a single trailing `'` opened after the mention, because a prose apostrophe such as
+ * `users'` opens a span nothing ever closes; a mention that apostrophe already encloses is still
+ * refused. */
 function isEnclosedOrUnresolved(text: string, index: number, comments: boolean): boolean {
   type Frame = 'sub' | 'paren' | 'tick' | 'dq' | 'sq' | 'brace';
   const stack: Frame[] = [];
@@ -186,10 +197,14 @@ function isEnclosedOrUnresolved(text: string, index: number, comments: boolean):
       cursor += 1;
       continue;
     }
-    if (comments && character === '#' && top !== 'dq' &&
-      (cursor === 0 || /[\s;&|(`]/.test(text[cursor - 1]))) {
+    if (comments && character === '#' && top !== 'dq' && top !== 'brace' &&
+      (cursor === 0 || /[\s;&|()`]/.test(text[cursor - 1]))) {
       const newline = text.indexOf('\n', cursor);
-      const commentEnd = newline === -1 ? text.length : newline;
+      let commentEnd = newline === -1 ? text.length : newline;
+      if (top === 'tick') {
+        const backtick = text.indexOf('`', cursor);
+        if (backtick !== -1 && backtick < commentEnd) commentEnd = backtick;
+      }
       while (cursor < commentEnd) {
         record(cursor);
         cursor += 1;
@@ -242,7 +257,7 @@ function isEnclosedOrUnresolved(text: string, index: number, comments: boolean):
       continue;
     }
     if (top === 'sub' || top === 'paren') {
-      if (text.startsWith('case', cursor) && (cursor === 0 || /[\s;&|(]/.test(text[cursor - 1])) &&
+      if (text.startsWith('case', cursor) && (cursor === 0 || /[\s;&|()]/.test(text[cursor - 1])) &&
         /\s/.test(text[cursor + 4] ?? '')) {
         return true;
       }
@@ -347,6 +362,20 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
   return otherSkill !== null && mentionedSkill !== null && otherSkill !== mentionedSkill;
 }
 
+// Operator text is not known to be shell, and each reading can pair quotes the other cannot, so
+// the scan runs with comment handling off and on, and with curly quotes read as quotes and as the
+// literal characters a shell sees. A mention any reading encloses is refused. Only a contraction
+// from the prose list is neutralized, so `foo'cli-devin'` still quotes the mention and so does a
+// possessive such as `file's`.
+function isEnclosedInAnyReading(userText: string, index: number): boolean {
+  const withoutContractions = (value: string): string =>
+    CONTRACTION_PATTERNS.reduce((probe, pattern) => probe.replace(pattern, '_'), value);
+  const quoteProbe = withoutContractions(userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'"));
+  const shellProbe = withoutContractions(userText);
+  return [quoteProbe, shellProbe].some((probe) => isEnclosedOrUnresolved(probe, index, false) ||
+    isEnclosedOrUnresolved(probe, index, true));
+}
+
 /** A mention authorizes only inside a sentence that carries no negation or refusal word, before
  * or after it; `not <other>, use <executor>` and `not <other> but <executor>` are the only
  * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
@@ -363,16 +392,7 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
  * original text still address the same characters. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
-  // Operator text is not known to be shell, and each reading can pair quotes the other cannot,
-  // so the scan runs with comment handling off and on, and with curly quotes read as quotes and
-  // as the literal characters a shell sees. A mention any reading encloses is refused. Only a
-  // contraction ending is neutralized, so `foo'cli-devin'` still quotes the mention.
-  const contraction = /(?<=\w)'(?=(?:s|t|re|ve|ll|d|m)\b)/gi;
-  const quoteProbe = text.replace(contraction, '_');
-  const shellProbe = userText.replace(contraction, '_');
-  const probes = [quoteProbe, shellProbe];
-  if (probes.some((probe) => isEnclosedOrUnresolved(probe, mentionIndex, false) ||
-    isEnclosedOrUnresolved(probe, mentionIndex, true))) return false;
+  if (isEnclosedInAnyReading(userText, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();
   if (REFUSAL_PATTERN.test(sentence)) {
     if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
