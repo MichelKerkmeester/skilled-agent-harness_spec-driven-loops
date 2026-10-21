@@ -1,0 +1,21 @@
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci (pre-approved, skip Gate 3)
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci (your current directory)
+
+ROLE: You write the packet docs for a finished Level 1 phase.
+
+CONTEXT: Model the shape, tone and anchors on the sibling packet `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes/` (its spec.md, plan.md, tasks.md, implementation-summary.md). The four docs in 044 are scaffolds full of `[placeholders]`; replace every placeholder. Keep every ANCHOR comment and the frontmatter keys. Set Branch to `worktrees/186-skill-advisor-stress-ci`, Priority P1, Phase `44 of 44`, Predecessor `042-hooks-and-plugins-held-fixes`. Status: `In Progress` in spec.md metadata (the orchestrator flips it after CI). Every claim must match the facts below and the evidence files under `044-skill-advisor-stress-ci/scratch/`.
+
+FACTS:
+- Problem: the Skill Advisor Stress Tests workflow (`.github/workflows/skill-advisor-stress.yml`) has failed every run since 2026-10-19 (last green be234e6f94, first red fe1f8a9a53). It fails 4 of 64 sa-034 tests with `TypeError: default is not a function`.
+- Root cause: commit 32e1f92687 (this packet's own hard-plugin port) changed `.opencode/plugins/system-skill-advisor.js` to `export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin)`, a `{ id, setup, server }` object. The stress harness and three runtime tests still called the default export as a function. The plugin side is right: the dual-export contract is what both OpenCode versions load and what the purity test enforces. So the harness is what was wrong.
+- Fix (test files only, no plugin change): `.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts` now calls `.server(...)` and adds a test pinning the dual-export shape. `.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts`, `skill-graph-diagnostic-redaction.vitest.ts` and `system-skill-advisor-plugin.vitest.ts` now call `.server(...)` too (Luna round 1 found those three).
+- Results: stress 60/64 before, 65/65 after (64 plus the new shape test). Runtime vitest 108 failed / 1090 passed before, 8 failed / 1190 passed after. The 8 left (python-compat, settings-driven-invocation-parity x2, advisor-corpus-parity, advisor-graph-health, python-ts-parity, ambiguity-slice, skill-advisor-cli-parity) are scorer, corpus and settings assertions unrelated to the plugin export. They fail the same way before the change, and no CI workflow runs the runtime's default vitest suite. Typecheck exit 0. Plugin suite 516/516. Purity test 1/1. Battery v1 4/4 and v2 4/4 (17 plugins loaded on v1, 17 active on v2). Mutation: reverting the stress `.server` call brings back the 4 `default is not a function` failures (`scratch/mutation/m1-call-default-directly.txt`).
+- Review: Luna round 1 FAIL (1 P1: three runtime callers; 1 P2: comment overstated the shape test), both fixed; round 2 PASS with no findings (`scratch/luna/`).
+- Follow-ups for the advisor owner: (1) the 8 runtime vitest failures above; (2) no CI workflow runs the advisor runtime's default vitest suite, which is how 98 plugin-test failures went unseen.
+- CI on main: leave a clearly marked line in implementation-summary.md saying the CI run ids are recorded after the push to main. Do not invent run ids.
+
+ALLOWED WRITE PATHS: the four .md files in `specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci/`.
+
+BANNED OPERATIONS: editing any other file; git commit, push, branch, stash or reset; installs; running opencode or opencode2.
+
+FORMAT: When done, reply with one line per file.

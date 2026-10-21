@@ -20,7 +20,8 @@ const nudge = require('./nudge.cjs');
 // The relaunch log lives in a temporary directory the system clears, so the operator's
 // record of hops sits beside the handoff notes, which persist and stay out of git.
 const HISTORY_FILE = 'hop-history.log';
-const EVENTS = Object.freeze(['handed-over', 'claimed', 'done', 'timed-out']);
+// `note-kept` marks a session outside the wrapper that kept a note instead of hopping.
+const EVENTS = Object.freeze(['handed-over', 'claimed', 'done', 'timed-out', 'note-kept']);
 const GOAL_MAX_CHARS = 120;
 const DEFAULT_HISTORY_LINES = 20;
 const NOTIFY_SWITCH = 'SESSION_RELAUNCH_NOTIFY_HOPS';
@@ -156,6 +157,45 @@ function readHistory({ env = process.env, last = DEFAULT_HISTORY_LINES } = {}) {
   });
 }
 
+// A note nobody claimed is a hand-over that never finished, and nothing else reports it.
+/**
+ * List the handoff notes still open, oldest first.
+ *
+ * @param {{env?: NodeJS.ProcessEnv}} [options] - Environment that locates the notes.
+ * @returns {{name: string, createdAt: string}[]} One entry per open note.
+ */
+function openNotes({ env = process.env } = {}) {
+  const directory = nudge.handoffDir(nudge.resolveRepoRoot(env));
+  let filenames;
+  try {
+    filenames = fs.readdirSync(directory);
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+  const open = [];
+  for (const name of filenames.filter((filename) => filename.endsWith('.md')).sort()) {
+    try {
+      const { frontmatter } = core.parseHandoff(fs.readFileSync(path.join(directory, name), 'utf8'));
+      if (frontmatter.status === 'open') open.push({ name, createdAt: frontmatter.created_at || '' });
+    } catch {}
+  }
+  return open;
+}
+
+/**
+ * Summarize the open notes in one line, or return null when there are none.
+ *
+ * @param {{env?: NodeJS.ProcessEnv}} [options] - Environment that locates the notes.
+ * @returns {string|null} The summary line.
+ */
+function openNotesLine({ env = process.env } = {}) {
+  const open = openNotes({ env });
+  if (open.length === 0) return null;
+  const noun = open.length === 1 ? 'note' : 'notes';
+  return `open notes: ${open.length} handoff ${noun} not claimed yet, oldest ${open[0].name}`;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -168,4 +208,6 @@ module.exports = {
   recordHop,
   notifyHandOver,
   readHistory,
+  openNotes,
+  openNotesLine,
 };

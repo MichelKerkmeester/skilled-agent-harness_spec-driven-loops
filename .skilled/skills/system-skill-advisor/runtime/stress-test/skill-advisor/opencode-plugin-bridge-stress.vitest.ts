@@ -17,7 +17,7 @@ vi.mock('node:child_process', () => ({
   spawn: mockedBridge.spawn,
 }));
 
-import MkSkillAdvisorPlugin from '../../../../../plugins/system-skill-advisor.js';
+import skillAdvisorPlugin from '../../../../../plugins/system-skill-advisor.js';
 
 function cliResponse(recommendations: ReadonlyArray<Record<string, unknown>> = [
   { skillId: 'system-spec-kit', confidence: 0.91, uncertainty: 0.18 },
@@ -46,7 +46,7 @@ function makeChild(stdout: string, closeCode = 0) {
 }
 
 async function makePlugin(options: Record<string, unknown> = {}) {
-  return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
+  return skillAdvisorPlugin.server({ directory: process.cwd() }, options);
 }
 
 async function runTransform(hooks: Awaited<ReturnType<typeof makePlugin>>, prompt: string, sessionID = 'sa-034') {
@@ -94,6 +94,14 @@ describe('sa-034 — OpenCode plugin stress', () => {
       restoreEnv();
       restoreEnv = null;
     }
+  });
+
+  // The default export keeps the dual-export id, setup and server fields that
+  // both OpenCode versions load.
+  it('keeps the dual-export object shape on the default export', () => {
+    expect(skillAdvisorPlugin.id).toBe('system-skill-advisor');
+    expect(skillAdvisorPlugin.setup).toBeTypeOf('function');
+    expect(skillAdvisorPlugin.server).toBeTypeOf('function');
   });
 
   it('exposes the canonical plugin surface and status tool only', async () => {

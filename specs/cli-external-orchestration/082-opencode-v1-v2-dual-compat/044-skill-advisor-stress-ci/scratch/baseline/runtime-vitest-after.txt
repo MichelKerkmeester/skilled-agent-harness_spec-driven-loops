@@ -1,0 +1,9 @@
+   1       Tests  8 failed | 1190 passed | 6 skipped (1204)
+   1  FAIL  tests/compat/python-compat.vitest.ts
+   2  FAIL  tests/hooks/settings-driven-invocation-parity.vitest.ts
+   1  FAIL  tests/legacy/advisor-corpus-parity.vitest.ts
+   1  FAIL  tests/legacy/advisor-graph-health.vitest.ts
+   1  FAIL  tests/parity/python-ts-parity.vitest.ts
+   1  FAIL  tests/scorer/ambiguity-slice.vitest.ts
+   1  FAIL  tests/skill-advisor-cli-parity.vitest.ts
+   1  Test Files  7 failed | 138 passed (145)

@@ -1,0 +1,73 @@
+
+> test:stress
+> SPECKIT_RUN_STRESS=true vitest run --config vitest.stress.config.ts
+
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/186-skill-advisor-stress-ci/.skilled/skills/system-skill-advisor/runtime
+
+ ❯ stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts (4 tests | 4 failed) 3ms
+     × exposes the canonical plugin surface and status tool only 2ms
+     × deduplicates concurrent prompt transforms through one advisor process 0ms
+     × sends prompt-safe bounded CLI requests and clamps long returned briefs 0ms
+     × honors disabled env aliases without invoking the advisor 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts > sa-034 — OpenCode plugin stress > exposes the canonical plugin surface and status tool only
+TypeError: default is not a function
+ ❯ makePlugin stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:49:10
+     47|
+     48| async function makePlugin(options: Record<string, unknown> = {}) {
+     49|   return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
+       |          ^
+     50| }
+     51|
+ ❯ stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:100:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts > sa-034 — OpenCode plugin stress > deduplicates concurrent prompt transforms through one advisor process
+TypeError: default is not a function
+ ❯ makePlugin stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:49:10
+     47|
+     48| async function makePlugin(options: Record<string, unknown> = {}) {
+     49|   return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
+       |          ^
+     50| }
+     51|
+ ❯ stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:127:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts > sa-034 — OpenCode plugin stress > sends prompt-safe bounded CLI requests and clamps long returned briefs
+TypeError: default is not a function
+ ❯ makePlugin stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:49:10
+     47|
+     48| async function makePlugin(options: Record<string, unknown> = {}) {
+     49|   return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
+       |          ^
+     50| }
+     51|
+ ❯ stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:151:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts > sa-034 — OpenCode plugin stress > honors disabled env aliases without invoking the advisor
+TypeError: default is not a function
+ ❯ makePlugin stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:49:10
+     47|
+     48| async function makePlugin(options: Record<string, unknown> = {}) {
+     49|   return MkSkillAdvisorPlugin({ directory: process.cwd() }, options);
+       |          ^
+     50| }
+     51|
+ ❯ stress-test/skill-advisor/opencode-plugin-bridge-stress.vitest.ts:174:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 20 passed (21)
+      Tests  4 failed | 60 passed (64)
+   Start at  09:16:48
+   Duration  25.40s (transform 502ms, setup 79ms, import 1.63s, tests 22.14s, environment 1ms)
+

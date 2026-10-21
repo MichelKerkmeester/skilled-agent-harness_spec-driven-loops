@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/044-skill-advisor-stress-ci",
+  "description": "Phase 44: skill-advisor-stress-ci",
+  "keywords": [
+    "phase",
+    "skill-advisor-stress-ci"
+  ],
+  "lastUpdated": "2026-10-21T07:18:04.907Z",
+  "specId": "044",
+  "folderSlug": "skill-advisor-stress-ci",
+  "parentChain": [
+    "cli-external-orchestration",
+    "082-opencode-v1-v2-dual-compat"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

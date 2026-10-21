@@ -857,3 +857,66 @@ test('context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload car
   const context = JSON.parse(result.stdout.trim()).hookSpecificOutput.additionalContext;
   assert.match(context, /^ +spec_folder: specs\/hooks\/001-session-relaunch$/m);
 });
+
+const COMPACT_POINTER = path.resolve(__dirname, '../claude/compact-pointer.mjs');
+
+function writeOpenNote(sandbox, sessionId = SESSION_ID) {
+  const directory = path.join(sandbox.repoRoot, '.skilled', 'skills', '.state', 'session-relaunch', 'handoffs');
+  fs.mkdirSync(directory, { recursive: true });
+  const notePath = path.join(directory, `20261021T080000Z-${sessionId.slice(0, 8)}.md`);
+  fs.writeFileSync(notePath, [
+    '---',
+    'status: open',
+    `session_id: ${sessionId}`,
+    'loop_id: ',
+    'runtime: claude',
+    `cwd: ${sandbox.repoRoot}`,
+    'spec_folder: ',
+    `created_at: ${new Date().toISOString()}`,
+    '---',
+    '## Goal', 'g', '## Done', 'd', '## Remaining work', 'r', '## In-flight state', 'i',
+  ].join('\n'));
+  return notePath;
+}
+
+function compactPayload(source = 'compact') {
+  return { hook_event_name: 'SessionStart', source, session_id: SESSION_ID };
+}
+
+test('compact-pointer points a compacted session at its open note and resets the nudge level', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  const stateFile = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', `nudge-${SESSION_ID}.json`);
+  fs.mkdirSync(path.dirname(stateFile), { recursive: true });
+  fs.writeFileSync(stateFile, '{"level":2}\n');
+
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload());
+  assert.equal(result.code, 0, result.stderr);
+  const context = JSON.parse(result.stdout).hookSpecificOutput.additionalContext;
+  assert.match(context, /^\[session-relaunch\] This session was compacted after it wrote a handoff note/);
+  assert.ok(context.includes(`claim '${notePath}' --session '${SESSION_ID}'`), context);
+  assert.deepEqual(JSON.parse(fs.readFileSync(stateFile, 'utf8')), { level: 0 });
+});
+
+test('compact-pointer adds nothing on a fresh start or when no note is open', async (t) => {
+  const sandbox = createSandbox(t);
+  writeOpenNote(sandbox);
+  const startup = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
+  assert.equal(startup.code, 0, startup.stderr);
+  assert.equal(startup.stdout, '');
+
+  const empty = createSandbox(t);
+  const compacted = await runAdapter(empty, COMPACT_POINTER, compactPayload());
+  assert.equal(compacted.code, 0, compacted.stderr);
+  assert.equal(compacted.stdout, '');
+});
+
+test('compact-pointer leaves a note alone while its hop is prepared', async (t) => {
+  const sandbox = createSandbox(t);
+  const notePath = writeOpenNote(sandbox);
+  createPendingRecord(sandbox, '7001', SESSION_ID, notePath);
+  sandbox.env.SKILLED_LOOP_ID = '7001';
+  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload());
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+});

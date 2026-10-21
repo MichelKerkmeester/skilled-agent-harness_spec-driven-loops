@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ce5fb8199f43c8a117368ec802eb99f3730f9795c3b5652646b637185b3f4e42",
+  "manifestHash": "7345befc2f08f8fa816ce2b30b4bc8d99c9418ced71fdf17d27e45b7a38f109e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -24973,6 +24973,9 @@
     ],
     "compact pi arbitration tasks": [
       "compact pi arbitration tasks"
+    ],
+    "compact pointer": [
+      "compact pointer"
     ],
     "compact wrapper coordination plan": [
       "compact wrapper coordination plan"
@@ -69533,6 +69536,24 @@
     "outranked routing phrases": [
       "outranked routing phrases"
     ],
+    "outside loop handoff": [
+      "outside loop handoff"
+    ],
+    "outside loop handoff acceptance criteria": [
+      "outside loop handoff acceptance criteria"
+    ],
+    "outside loop handoff implementation summary": [
+      "outside loop handoff implementation summary"
+    ],
+    "outside loop handoff note": [
+      "outside loop handoff note"
+    ],
+    "outside loop handoff plan": [
+      "outside loop handoff plan"
+    ],
+    "outside loop handoff tasks": [
+      "outside loop handoff tasks"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -72046,6 +72067,9 @@
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
     ],
+    "phase 18 outside loop handoff": [
+      "phase 18 outside loop handoff"
+    ],
     "phase 18 plan": [
       "phase 18 plan"
     ],
@@ -72441,6 +72465,9 @@
     ],
     "phase 42 hooks and plugins held fixes": [
       "phase 42 hooks and plugins held fixes"
+    ],
+    "phase 44 skill advisor stress ci": [
+      "phase 44 skill advisor stress ci"
     ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
@@ -87271,6 +87298,9 @@
     "sa 011 idempotent derived sync": [
       "sa-011 idempotent derived sync"
     ],
+    "sa 034 default is not a function": [
+      "sa-034 default is not a function"
+    ],
     "safe code removal plan": [
       "safe code removal plan"
     ],
@@ -89769,6 +89799,9 @@
     ],
     "session relaunch hook": [
       "session relaunch hook"
+    ],
+    "session relaunch keep command": [
+      "session relaunch keep command"
     ],
     "session relaunch lanes": [
       "session relaunch lanes"
@@ -96247,6 +96280,15 @@
     ],
     "skill advisor stress ci": [
       "skill advisor stress ci"
+    ],
+    "skill advisor stress ci implementation summary": [
+      "skill advisor stress ci implementation summary"
+    ],
+    "skill advisor stress ci plan": [
+      "skill advisor stress ci plan"
+    ],
+    "skill advisor stress ci tasks": [
+      "skill advisor stress ci tasks"
     ],
     "skill advisor stress coverage": [
       "skill_advisor stress coverage"
@@ -104016,6 +104058,9 @@
     "system spec kit 2 8 4 0": [
       "system-spec-kit 2.8.4.0"
     ],
+    "system spec kit 2 8 5 0": [
+      "system-spec-kit 2.8.5.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -104447,6 +104492,9 @@
     ],
     "system spec kit v2 8 4 0": [
       "system-spec-kit v2.8.4.0"
+    ],
+    "system spec kit v2 8 5 0": [
+      "system-spec-kit v2.8.5.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
