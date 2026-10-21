@@ -1,0 +1,38 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+{"timestamp":"2026-10-21T07:16:58.822Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":3,"cacheHit":false,"errorDetails":"below_prompt_policy_threshold","emittedBytes":242,"directivesSuppressed":false}
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (54 tests | 2 failed) 1343ms
+   ❯ Pi dispatch deny matrix (27)
+     × negation of a different executor before a comma 3ms
+     × negation of a different executor before but 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation of a different executor before a comma
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi dispatch deny matrix > negation of a different executor before but
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:155:48
+    153|         ? { runtime: 'claude' }
+    154|         : {};
+    155|     expect(denied(command, userText, options)).toBe(expected);
+       |                                                ^
+    156|   });
+    157| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 52 passed (54)
+   Start at  09:16:57
+   Duration  1.50s (tests 95%, transform 3%, import 2%)
+
+b17-negation-clause: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

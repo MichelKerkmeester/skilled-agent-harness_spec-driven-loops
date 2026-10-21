@@ -157,16 +157,24 @@ function tokenStart(text: string, index: number): number {
 }
 
 /** A mention authorizes only where the user states it literally: quoted text, expansions and
- * negated sentences describe an executor without requesting it. */
+ * negations in the mention's own clause describe an executor without requesting it. A comma
+ * or a contrast word (`but`, `instead`, `rather`) begins a new clause, so a negation that
+ * belongs to a different executor does not reach this mention. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
-  const sentenceStart = Math.max(
+  let clauseStart = Math.max(
     userText.lastIndexOf('\n', mentionIndex),
     userText.lastIndexOf(';', mentionIndex),
     userText.lastIndexOf('.', mentionIndex),
     userText.lastIndexOf('!', mentionIndex),
     userText.lastIndexOf('?', mentionIndex),
+    userText.lastIndexOf(',', mentionIndex),
   ) + 1;
-  const preceding = userText.slice(sentenceStart, mentionIndex);
+  const beforeMention = userText.slice(0, mentionIndex);
+  const contrastWordPattern = /\b(?:but|instead|rather)\b/gi;
+  for (let match = contrastWordPattern.exec(beforeMention); match; match = contrastWordPattern.exec(beforeMention)) {
+    clauseStart = Math.max(clauseStart, match.index + match[0].length);
+  }
+  const preceding = userText.slice(clauseStart, mentionIndex);
   return !isInsideQuote(userText, mentionIndex) &&
     !isInsideExpansion(userText, mentionIndex) &&
     !NEGATION_PATTERN.test(preceding);
