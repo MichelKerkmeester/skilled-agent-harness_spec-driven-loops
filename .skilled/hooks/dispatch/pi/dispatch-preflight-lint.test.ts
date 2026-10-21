@@ -220,6 +220,16 @@ describe('Pi refusal phrasings', () => {
     ['$(echo $(echo $(true)) cli-devin)', true],
     ['$(a $(b) $(c) cli-devin)', true],
     ['$(echo (1) cli-devin)', true],
+    // A quoted or escaped bracket is a literal to the shell, so it cannot close the level the
+    // mention sits in, and a quoted backtick cannot open a span that is already closed.
+    ['$(echo ")" cli-devin)', true],
+    ["$(echo '\\)' cli-devin)", true],
+    ['$(echo \\) cli-devin)', true],
+    ['$(echo "a)b" `true` cli-devin)', true],
+    ['$(echo "$(true)" ")" cli-devin)', true],
+    ['$(echo "`" "`" ")" cli-devin)', true],
+    // Every level closed, so the mention stands in plain text again.
+    ['$(echo ")") use cli-devin', false],
     // A substitution that closed before the mention leaves it in plain text.
     ['$(true) and then use cli-devin', false],
     // A quoted word that closes before the mention is a quotation, not an enclosure.

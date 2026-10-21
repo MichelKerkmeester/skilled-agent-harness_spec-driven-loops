@@ -166,24 +166,71 @@ function isInsideQuote(text: string, index: number): boolean {
  * opener with the last closer: a closed inner substitution leaves its still-open outer one
  * visible. `$(` opens a level, a bare `(` only nests inside an open level, and a `)` only
  * closes an open level, so a parenthesis in ordinary prose never starts an expansion. A
- * backtick is tracked as its own open span because it nests nothing. */
+ * backtick is tracked as its own open span because it nests nothing.
+ *
+ * The shell decides what each character means, so the scan carries the quote and escape state
+ * too: a quoted or escaped bracket or backtick is a literal, and counting it would move the
+ * depth on text the shell never reads as syntax. A backslash outside single quotes escapes the
+ * next character; inside single quotes nothing but the closing `'` is special; inside double
+ * quotes only `$(`, a backtick and a backslash are, and a `$(` there opens a level whose own
+ * quotes are tracked from scratch, with the enclosing double quote resumed when that level
+ * closes. The caller passes text whose in-word apostrophes are neutralized, so a contraction
+ * like `don't` cannot open a quote and hide the rest of the scan. */
 function isInsideExpansion(text: string, index: number): boolean {
   let depth = 0;
   let inBacktick = false;
+  let quote: '\'' | '"' | undefined;
+  const suspendedQuotes: Array<'\'' | '"' | undefined> = [];
+  let escaped = false;
   for (let cursor = 0; cursor < index; cursor += 1) {
     const character = text[cursor];
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (character === '\\' && quote !== '\'') {
+      escaped = true;
+      continue;
+    }
+    if (quote === '\'') {
+      if (character === '\'') quote = undefined;
+      continue;
+    }
+    if (quote === '"') {
+      if (character === '"') quote = undefined;
+      else if (character === '`') inBacktick = !inBacktick;
+      else if (character === '$' && text[cursor + 1] === '(') {
+        suspendedQuotes.push(quote);
+        quote = undefined;
+        depth += 1;
+        cursor += 1;
+      }
+      continue;
+    }
+    if (character === '\'' || character === '"') {
+      quote = character;
+      continue;
+    }
     if (character === '`') {
       inBacktick = !inBacktick;
       continue;
     }
     if (character === '$' && text[cursor + 1] === '(') {
+      suspendedQuotes.push(undefined);
       depth += 1;
       cursor += 1;
       continue;
     }
     if (depth === 0) continue;
-    if (character === '(') depth += 1;
-    else if (character === ')') depth -= 1;
+    if (character === '(') {
+      suspendedQuotes.push(undefined);
+      depth += 1;
+      continue;
+    }
+    if (character === ')') {
+      depth -= 1;
+      quote = suspendedQuotes.pop();
+    }
   }
   return depth > 0 || inBacktick;
 }
@@ -294,7 +341,7 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
 function isUsableMention(userText: string, mentionIndex: number): boolean {
   const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
-  if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(text, mentionIndex)) return false;
+  if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(quoteProbe, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();
   if (REFUSAL_PATTERN.test(sentence)) {
     if (!isResetForm(sentence, text.slice(mentionIndex, mentionTokenEnd(text, mentionIndex)))) return false;
