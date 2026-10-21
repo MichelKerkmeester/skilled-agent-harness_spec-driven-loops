@@ -97,10 +97,13 @@ const SECRET_PATTERN = /((?:api[_-]?key|access[_-]?key|secret|token|password|pas
 // alphabet lacks -- a digit or one of -._~+/= -- or it reaches 16 characters
 // and mixes case past its first letter, which is what random base64 and opaque
 // tokens do and what a merely capitalised word does not. A run matching
-// neither shape is prose and stays readable, while a JWT, a base64 token and a
-// hex token all redact. The scheme word is spelled out rather than matched
-// under the `i` flag, because folding would also make the uppercase test true
-// of a lowercase run.
+// neither shape is prose and stays readable. So redaction is narrower than the
+// scheme suggests: a base64 or opaque token redacts when it carries a digit or
+// symbol or mixes case past its first letter, while an all-lowercase run
+// without either, such as `Bearer abcdefghijklmnop`, or a merely capitalised
+// word, stays readable by design. A JWT still redacts on its dots alone. The
+// scheme word is spelled out rather than matched under the `i` flag, because
+// folding would also make the uppercase test true of a lowercase run.
 const BEARER_SCHEME_WORD = '[Bb][Ee][Aa][Rr][Ee][Rr]';
 const BEARER_RUN_CHARS = 'A-Za-z0-9\\-._~+/=';
 const BEARER_RUN = `[${BEARER_RUN_CHARS}]`;

@@ -452,7 +452,7 @@ test('redactSecrets: redacts an alphabet-only mixed-case base64 token after a be
   assert.equal(
     router.redactSecrets('Authorization: Bearer YWFhYWFhYWFhYWFh'),
     'Authorization: Bearer [REDACTED]',
-    'a 16-character base64 token carries no digit and no symbol, so its mixed case is the only token signal',
+    'a 16-character base64 token carries no digit or symbol, so its case is the only signal',
   );
 });
 
