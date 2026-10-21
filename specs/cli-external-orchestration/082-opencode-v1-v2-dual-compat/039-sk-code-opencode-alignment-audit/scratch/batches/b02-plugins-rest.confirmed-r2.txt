@@ -1,0 +1,64 @@
+[b02-plugins-rest-001] P2 .opencode/plugins/README.md:179 | EXPECTED-FIXED
+  finding: §8 says "caches, pending-event buffers and workspace logs are all bounded", but `workspaceSurfaceCache` (`system-skill-advisor.js:697`) is a module-level `Map` that only gains entries; neither that file nor the bridge clears or evicts it. The claim is therefore false for at least one cache.
+  fix: Bound `workspaceSurfaceCache` (cap it and evict the oldest entry, or clear it in `resetRuntimeState`) so the §8 sentence is true, or narrow the sentence to the caches that do have limits.
+
+[b02-plugins-rest-002] P2 .opencode/plugins/lib/skill-advisor-render.js:80 | EXPECTED-FIXED
+  finding: The comment block at lines 80-84 says it renders "one additive, human-legible line" and "Returns null when no compiled decision is served", which describes `renderCompiledRouteSummaryLine`, but it sits above `revealCompiledRouteSummaryTargets` (line 85), a function that returns a filtered string array. A reader following the comment lands on the wrong function.
+  fix: Move the block to line 104, immediately above `renderCompiledRouteSummaryLine`, and keep `revealCompiledRouteSummaryTargets` with its own one-line purpose comment.
+
+[b02-plugins-rest-003] P2 .opencode/plugins/lib/skill-advisor-render.js:85 | EXPECTED-FIXED
+  finding: `revealCompiledRouteSummaryTargets` (line 85), `compiledRouteSummaryTargetDigest` (line 100) and `renderCompiledRouteSummaryLine` (line 104) are exported without JSDoc; only `renderPluginFallbackDirective` documents its parameters and return.
+  fix: Add JSDoc to all three exports naming the summary shape, the returned array, digest or line, and the null return when no compiled decision is served.
+
+[b02-plugins-rest-004] P2 .opencode/plugins/lib/v2-bridge.js:1 | EXPECTED-FIXED
+  finding: The file is 547 lines and has no numbered dividers, so the imports, event and tool mapping tables, client adapters, registration code and export statement are one undivided block; this is the verifier's `[SECTIONS-MISSING]` error.
+  fix: Add `// ─── 1. IMPORTS`, `2. CONSTANTS`, `3. HELPERS`, `4. CORE LOGIC` and `5. EXPORTS` dividers in the standard order at the existing boundaries.
+
+[b02-plugins-rest-005] P2 .opencode/plugins/mcp-route-guard.js:57 | EXPECTED-FIXED
+  finding: `appendGuardLog` repeats the same rotate-at-max block (`statSync`, `copyFileSync` to `.1`, `truncateSync`, `appendFileSync`) that is copied into `sk-code-post-edit-quality.js:57-73`, `system-dist-freshness-guard.js:104-120` and `session-cleanup.js:73-91`; the four copies already differ in rotation depth and rotation errors are silently swallowed in each.
+  fix: Extract one bounded-append helper in `lib/` that takes the path, max bytes and rotation depth, and use it from all four plugins so the rotation policy has one implementation.
+
+[b02-plugins-rest-006] P2 .opencode/plugins/session-cleanup.js:139 | EXPECTED-FIXED
+  finding: `runScript` (lines 139-162) and `runProcess` (lines 164-187) are identical apart from the first line, `runSync('bash', [scriptPath, ...args], ...)` versus `runSync(command, args, ...)`; the launch-error handling, timeout, maxBuffer and result-status reporting are duplicated verbatim in both.
+  fix: Keep one runner that accepts `(command, args, operation, env)` and make `runScript(scriptPath, operation, args, env)` delegate with `'bash'` and `[scriptPath, ...args]`.
+
+[b02-plugins-rest-007] P2 .opencode/plugins/session-relaunch.js:196 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `isEnabled()` reads the hook-flags file with `hookFlags.loadConfigFile(hookFlags.configPath())` on every `event` and every `experimental.chat.system.transform` call. `message.part.updated` fires for each streamed part, so a synchronous `readFileSync` of `.skilled/hooks/hook-flags.env` runs per part; `queueNudge` at line 118 reads the same file again for every assistant message. `hook-flags.cjs` already caches this file in `fileConfig()` for callers of `isHookEnabled(concern)`.
+  fix: Call `hookFlags.isHookEnabled(CONCERN)` (which uses the resolver's cached config) or load the config once per plugin instance, and reuse that value in `queueNudge`.
+
+[b02-plugins-rest-008] P1 .opencode/plugins/system-deep-loop-guard.js:44 | EXPECTED-FIXED
+  finding: The hard-limits block says runtime identity "remains host/FIX-5 territory"; `FIX-5` is an ephemeral review finding id that will dangle once the packet is archived and says nothing to a future reader about who owns identity.
+  fix: Replace `host/FIX-5` with the durable ownership statement, for example "remains the host's responsibility".
+
+[b02-plugins-rest-009] P2 .opencode/plugins/system-dist-freshness-guard.js:50 | EXPECTED-FIXED
+  finding: `MUTATING_TOOLS` is re-declared here with the same six tool names that `lib/sk-code-post-edit-quality-core.js:22` already exports; that core's comment says the set is shared because both plugins need the identical before-args signal, but this file does not import it. A new mutating tool name has to be added in two places.
+  fix: Import `MUTATING_TOOLS` from `./lib/sk-code-post-edit-quality-core.js`, or move the set to a shared constants module imported by both plugins.
+
+[b02-plugins-rest-010] P2 .opencode/plugins/system-skill-advisor.js:952 | EXPECTED-FIXED
+  finding: `state.directiveEpochBySession` gains an entry for every session in `advanceOpenCodeDirectiveBoundary` (lines 421-422), but the `session.deleted` branch only calls `advanceOpenCodeDirectiveBoundary` and `clearTransformDedupSession`; it never removes the epoch entry. The map is cleared only by `resetRuntimeState` on `server.instance.disposed`/`global.disposed`, and OpenCode 2 delivers neither event, so a long-lived host accumulates one entry per deleted session.
+  fix: Delete `state.directiveEpochBySession.delete(identity.sessionID)` in the `session.deleted` branch, or bound the map the way `directiveDedupBySession` is bounded.
+
+[b02-plugins-rest-012] P2 .opencode/plugins/system-spec-gate.js:138 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The comment at lines 61-66 says classify and enforce must resolve a missing sessionID to the same core token, and `sessionIdFrom` uses `guardCore.UNKNOWN_SESSION_ID` (`'__unknown-session__'`). `sessionIdFromEvent` instead falls back to `'__global__'` at line 138, so a `session.deleted` or `session.resumed` event without an id advances or evicts state under a different key than classify/enforce wrote.
+  fix: Use `guardCore.UNKNOWN_SESSION_ID` as the fallback at line 138 so every path keys the no-session case identically.
+
+[b02-plugins-rest-N02a] P2 .opencode/plugins/system-deep-loop-guard.js:31 | EXPECTED-FIXED
+  finding: Both files import the Node built-in `createRequire` after local modules.
+  fix: Move built-in imports before local imports and retain the blank-separated groups.
+
+[b02-plugins-rest-N02b] P2 .opencode/plugins/system-spec-gate.js:30 | EXPECTED-FIXED
+  finding: Both files import the Node built-in `createRequire` after local modules.
+  fix: Move built-in imports before local imports and retain the blank-separated groups.
+
+[b02-plugins-rest-N03] P2 .opencode/plugins/system-skill-advisor.js:1108 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Each advisor lookup synchronously stats, reads and hashes 36 files (about 821 KB); a local measurement took 22.86 ms before cache lookup.
+  fix: Cache the per-workspace signature and invalidate it when source inputs change.
+
+[b02-plugins-rest-N04] P2 .opencode/plugins/system-skill-advisor.js:945,1149 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The in-flight map has no concurrency cap; simultaneous unique prompts can each spawn a child process.
+  fix: Cap or queue concurrent misses and return the existing fail-open fallback when saturated.
+
+[b02-plugins-rest-N05] P2 .opencode/plugins/session-cleanup.js:208-220 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: On session creation, three synchronous guards and an optional sweep run serially with 8-second timeouts; the bridge awaits this event handler, so the enabled sweep path can block event processing for up to 32 seconds.
+  fix: Run guards under an asynchronous overall deadline and report diagnostics after completion.
+

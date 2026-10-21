@@ -1,0 +1,23 @@
+VERDICTS
+b08-hooks-goal-001 | REJECTED | — | README §2 limits byte-for-byte parity to markers and labels and documents the differing `usage:` value; no contract mismatch is established.
+b08-hooks-goal-002 | REJECTED | — | The JavaScript checklist says existing `╔═╗` headers stay until rewrite; the shebang is allowed.
+b08-hooks-goal-003 | CONFIRMED | P2 | The core renderer is tested, but the Cursor adapter test does not assert its output uses the Cursor role label.
+b08-hooks-goal-004 | REJECTED | — | The JavaScript checklist allows this existing legacy header until rewrite.
+b08-hooks-goal-005 | REJECTED | — | The JavaScript checklist allows this existing legacy header until rewrite.
+b08-hooks-goal-006 | CONFIRMED | P1 | At `goal-core.cjs:789`, malformed current state falls through to legacy state, contradicting the documented fail-open behavior.
+b08-hooks-goal-007 | CONFIRMED | P1 | A parsed `null` archive reaches the sort at `goal-core.cjs:1553`; with other entries it throws and hides the entire history.
+b08-hooks-goal-008 | CONFIRMED | P2 | The comment at `goal-core.cjs:156` describes an `.opencode` marker, while the resolver checks `.git` and `.skilled/skills`.
+b08-hooks-goal-009 | REJECTED | — | The JavaScript checklist allows this existing legacy header until rewrite.
+b08-hooks-goal-010 | CONFIRMED | P2 | `goal-slice.cjs` is 474 lines and lacks the numbered section dividers required by JavaScript style guide §4.
+b08-hooks-goal-011 | CONFIRMED | P0 | `goal-slice.cjs:433` follows a `goal.md` symlink outside the workspace, allowing an external file to enter the model injection.
+b08-hooks-goal-012 | REJECTED | — | The JavaScript checklist allows this existing legacy header until rewrite.
+b08-hooks-goal-013 | CONFIRMED | P2 | The `<250ms` assertion at `goal-slice.test.cjs:204` can fail from CI scheduling rather than a performance regression.
+b08-hooks-goal-014 | CONFIRMED | P2 | `goal-context.ts:5` uses double-quoted imports despite the TypeScript single-quote rule.
+b08-hooks-goal-015 | CONFIRMED | P2 | `goal-context.ts:132` is 114 characters, exceeding the 100-character limit outside the long-type-signature exception.
+b08-hooks-goal-016 | CONFIRMED | P2 | Core relabeling is tested, but the Pi hook test stores and reads a Pi-labeled goal and never asserts the adapter’s rendered role.
+
+NEW
+.skilled/hooks/goal/bin/goal.cjs:73 | P1 | `.skilled/skills/sk-code/sk-code-review/references/review-core.md` §6 (“Correctness minimums: regression risk, contract safety, spec mismatch…”) | Current-session CLI actions accept an omitted `--workspace` and silently use `process.cwd()`, contrary to README §2’s required scope and risking state under the wrong workspace. | Require explicit `--workspace` for current-session actions and cover omission in a CLI test. | behaviour-change: yes
+.skilled/hooks/goal/devin/goal-devin.test.mjs:72 | P2 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §2 (“Changed behavior that lacks a corresponding test update or addition.”) | The Devin hook test checks the block prefix but not the runtime-specific role label passed by the adapter. | Assert that `additionalContext` contains the Devin role line. | behaviour-change: no
+
+SUMMARY: confirmed=10 rejected=6 new=2 P0=1 P1=3 P2=8

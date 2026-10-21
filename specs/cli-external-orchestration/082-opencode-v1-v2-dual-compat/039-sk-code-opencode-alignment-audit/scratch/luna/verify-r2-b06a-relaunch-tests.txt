@@ -1,0 +1,18 @@
+VERDICTS
+b06a-relaunch-tests-002 | FIXED | .skilled/hooks/session-relaunch/tests/README.md:71 now lists adapter-conformance as a Codex fixture consumer.
+b06a-relaunch-tests-003 | FIXED | .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:301 wraps the cited info object across lines.
+b06a-relaunch-tests-004 | FIXED | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:33 pins hook flags and clears both master switches at lines 42-43.
+b06a-relaunch-tests-005 | FIXED | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:648 and :698 reuse one local recorder while preserving each recorded shape.
+b06a-relaunch-tests-006 | FIXED | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:757 capitalizes the continuing comment.
+b06a-relaunch-tests-007 | FIXED | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:177-183 wraps the cited payload call; other cited non-exempt calls are also wrapped.
+b06a-relaunch-tests-008 | FIXED | .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs:74 clears the documented alias.
+b06a-relaunch-tests-010 | FIXED | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:241-243 tests fillRatio without creating an unused sandbox.
+b06a-relaunch-tests-011 | FIXED | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:25-26 names the sidechain value and its fixture source; line 70 uses the constant.
+b06a-relaunch-tests-012 | FIXED | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:287-307 wraps the payload and oversized row objects; the resolveWindow arguments are wrapped too.
+b06a-relaunch-tests-N01 | FIXED | .skilled/hooks/session-relaunch/tests/README.md:33 adds hop-history in the requested position.
+b06a-relaunch-tests-N02 | FIXED | .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:28-48 and :812-815 wrap the cited non-exempt expressions.
+b06a-relaunch-tests-N03 | FIXED | .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:36-41 wraps the environment object; the cited object and assertion expressions are also wrapped.
+
+NEW
+
+SUMMARY: fixed=13 partial=0 not_fixed=0 wrong=0 held=0 changed=0 new_p0=0 new_p1=0

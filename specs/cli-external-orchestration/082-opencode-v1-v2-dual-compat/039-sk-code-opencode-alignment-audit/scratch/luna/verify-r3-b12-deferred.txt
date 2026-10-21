@@ -1,0 +1,16 @@
+VERDICTS
+b12-deferred-001 | FIXED | The stale bridge and hook-flag line references now use symbols present in the source (.opencode/plugins/ARCHITECTURE.md:126,156).
+b12-deferred-002 | FIXED | The load-path sentence now separates location-derived values from fields set to undefined (.opencode/plugins/ARCHITECTURE.md:113).
+b12-deferred-003 | FIXED | The README says eight suites and includes render parity; the directory contains eight matching files (.opencode/plugins/tests/README.md:110).
+b12-deferred-004 | FIXED | The false `.__test` claims are removed and the documented seam matches the test (.opencode/plugins/tests/README.md:18; .opencode/plugins/tests/opencode-goal-export-contract.test.cjs:21).
+b12-deferred-005 | FIXED | The helper README lists the scanner, its consumers, its syntax check and its rolldown dependency (.opencode/plugins/tests/helpers/README.md:17,26,69,93).
+b12-deferred-006 | PARTIAL | A directly rewritten alias is reported, but a derived alias still disappears when its upstream alias is rewritten later (.opencode/plugins/tests/helpers/plugin-inventory.cjs:401,662).
+b12-deferred-007 | FIXED | JSDoc now covers all four exports, their inputs and outputs, and parse failures (.opencode/plugins/tests/helpers/plugin-inventory.cjs:29,52,1224,1235).
+b12-deferred-008 | FIXED | `scanEvents` no longer retains the unused alias binding (.opencode/plugins/tests/helpers/plugin-inventory.cjs:1187).
+b12-deferred-009 | FIXED | Registration setup clears both master switches and isolates the flags file within environment restoration (.opencode/plugins/tests/v2-hard-plugins.test.cjs:329).
+b12-deferred-010 | FIXED | The suite clears and restores all `_DISABLED` variables and isolates `HOOK_FLAGS_CONFIG`; full test execution was blocked before assertions by sandbox `EPERM` during temp setup (.opencode/plugins/tests/v2-registration.test.cjs:30,70; .opencode/plugins/tests/plugin-inventory.test.cjs:29).
+
+NEW
+.opencode/plugins/tests/helpers/plugin-inventory.cjs:338 | P1 | Fail-closed event inventory gate | A call argument can evaluate to `undefined` and activate an event-backed parameter default, but the scanner classifies it as non-event; for example, `let maybe; const pick=(kindType=event.type)=>{if(kindType==='r.event'){}}; pick(maybe)` returns no handled or unscanned event | Treat possibly undefined arguments as indeterminate for event-backed defaults or report the comparison as unscanned
+
+SUMMARY: fixed=9 partial=1 not_fixed=0 wrong=0 held=0 changed=0 new_p0=0 new_p1=1

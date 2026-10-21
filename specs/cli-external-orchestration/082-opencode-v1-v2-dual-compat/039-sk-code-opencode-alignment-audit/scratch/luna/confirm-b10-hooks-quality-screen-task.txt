@@ -1,0 +1,41 @@
+VERDICTS
+b10-hooks-quality-screen-task-001 | REJECTED | n/a | The fetched content remains unchanged; the separate advisory block does not contradict that claim.
+b10-hooks-quality-screen-task-002 | CONFIRMED | P2 | The suite creates temporary directories without cleanup, matching test-quality-checklist.md §4.
+b10-hooks-quality-screen-task-003 | CONFIRMED | P2 | The suite creates temporary directories without cleanup, matching test-quality-checklist.md §4.
+b10-hooks-quality-screen-task-004 | CONFIRMED | P2 | The TypeScript test uses double-quoted strings, contrary to the single-quote rule.
+b10-hooks-quality-screen-task-005 | CONFIRMED | P1 | Inherited hook-disable variables or the hook-flags file can prevent registration, making the test outcome environment-dependent; Jev flags are bypassed by the stub.
+b10-hooks-quality-screen-task-006 | CONFIRMED | P2 | The TypeScript adapter uses double-quoted strings, contrary to the single-quote rule.
+b10-hooks-quality-screen-task-007 | CONFIRMED | P2 | Claude and Devin deliver findings through `additionalContext`; this is a documentation error, not a runtime defect.
+b10-hooks-quality-screen-task-008 | CONFIRMED | P2 | The boundary statement omits `hook-adapter-shared.cjs`, which the CommonJS adapters import.
+b10-hooks-quality-screen-task-009 | CONFIRMED | P2 | A truthy non-string alias can mask a valid path or patch field and skip checking.
+b10-hooks-quality-screen-task-010 | CONFIRMED | P2 | A truthy non-string `file_path` can mask a valid later alias and skip checking.
+b10-hooks-quality-screen-task-011 | CONFIRMED | P2 | The test file has no required `MODULE:` or `COMPONENT:` header.
+b10-hooks-quality-screen-task-012 | CONFIRMED | P1 | The secret pattern misses `Authorization: Bearer …`, allowing tokens in checker output to reach logs or stdout.
+b10-hooks-quality-screen-task-013 | CONFIRMED | P2 | The TypeScript adapter uses double-quoted strings, contrary to the single-quote rule.
+b10-hooks-quality-screen-task-014 | CONFIRMED | P1 | Claude and Devin log only `result.warnings`; reject details can be absent from the shared audit log despite the documented contract.
+b10-hooks-quality-screen-task-015 | CONFIRMED | P2 | The Fable guard file has no required `MODULE:` or `COMPONENT:` header.
+b10-hooks-quality-screen-task-016 | CONFIRMED | P1 | An unrelated absolute-path config with the expected fields can make a dispatch command-driven and bypass loop counting.
+b10-hooks-quality-screen-task-017 | CONFIRMED | P1 | Atomic rename protects each write, but the unlocked read-increment-write can lose concurrent dispatch counts.
+b10-hooks-quality-screen-task-018 | CONFIRMED | P2 | The TypeScript adapter uses double-quoted strings, contrary to the single-quote rule.
+
+NEW
+.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts:37 | P1 | typescript-checklist.md §3 P1 REQUIRED, TSDoc on Public API: “Exported functions, classes, and interfaces have TSDoc comments.” | The exported default function has no TSDoc. | Add a short TSDoc comment describing the registered guard. | behaviour-change: no
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:259 | P2 | javascript-checklist.md §4 P2 RECOMMENDED, JSDoc Comments: “Public functions have JSDoc documentation.” | Exported `redactSecrets` and `truncateAndRedact` lack JSDoc. | Document both exported helpers. | behaviour-change: no
+.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:87 | P2 | javascript-checklist.md §4 P2 RECOMMENDED, JSDoc Comments: “Public functions have JSDoc documentation.” | Exported helpers including `loadRegistryAgents` and `resolveCommandConfigPath` lack JSDoc. | Add concise JSDoc for the exported helpers. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:91 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The function declaration exceeds 100 characters. | Wrap the parameter list. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:133 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | Executable lines including this object push exceed 100 characters. | Break the expressions across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:51 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The assertion exceeds 100 characters. | Wrap the assertion across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.test.mjs:89 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The call exceeds 100 characters. | Wrap the call across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs:45 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The environment-key loop exceeds 100 characters. | Wrap the key list across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs:45 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The environment-key loop exceeds 100 characters. | Wrap the key list across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts:28 | P2 | formatting-imports-and-coexistence.md §2 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The conditional assignment exceeds 100 characters. | Wrap the expression across lines. | behaviour-change: no
+.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:83 | P2 | formatting-imports-and-coexistence.md §2 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The handler call exceeds 100 characters. | Wrap the call across lines. | behaviour-change: no
+.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:162 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | Executable expressions including this path-resolution conditional exceed 100 characters. | Break the expressions across lines. | behaviour-change: no
+.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:108 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The tool-input conditional exceeds 100 characters. | Wrap the conditional across lines. | behaviour-change: no
+.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:114 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The tool-input conditional exceeds 100 characters. | Wrap the conditional across lines. | behaviour-change: no
+.skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs:106 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The tool-input conditional exceeds 100 characters. | Wrap the conditional across lines. | behaviour-change: no
+.skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs:93 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The context extraction expression exceeds 100 characters. | Wrap the expression across lines. | behaviour-change: no
+.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:377 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | Several executable expressions, including this retention calculation, exceed 100 characters. | Break the expressions across lines. | behaviour-change: no
+.skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs:67 | P2 | javascript/style-guide.md §6 FORMATTING RULES, Line Length: “Maximum: 100 characters.” | The `firstNonBlankString` call exceeds 100 characters. | Wrap the arguments across lines. | behaviour-change: no
+
+SUMMARY: confirmed=17 rejected=1 new=18 P0=0 P1=6 P2=29

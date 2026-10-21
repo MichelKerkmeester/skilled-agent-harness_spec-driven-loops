@@ -1,0 +1,17 @@
+VERDICTS
+b08-hooks-goal-003 | FIXED | Cursor test asserts the exact role line; runtime behavior is unchanged (`.skilled/hooks/goal/cursor/goal-cursor.test.mjs:73`).
+b08-hooks-goal-006 | HELD | Malformed scoped records still fall through to the legacy path, and arrays still pass the object check (`.skilled/hooks/goal/lib/goal-core.cjs:780`).
+b08-hooks-goal-007 | HELD | Archive entries still accept parsed `null`, which can make sorting throw and hide valid entries (`.skilled/hooks/goal/lib/goal-core.cjs:1551`).
+b08-hooks-goal-008 | FIXED | The single JSDoc now names `.git` and `.skilled/skills` as root markers (`.skilled/hooks/goal/lib/goal-core.cjs:158`).
+b08-hooks-goal-010 | FIXED | Numbered sections now cover imports through exports; no runtime behavior changed (`.skilled/hooks/goal/lib/goal-slice.cjs:14`).
+b08-hooks-goal-011 | CHANGED | A realpath check rejects static targets outside the workspace; targets elsewhere inside it still pass (`.skilled/hooks/goal/lib/goal-slice.cjs:454`).
+b08-hooks-goal-013 | FIXED | The 2,000-comment test now has a 10-second ceiling to absorb CI scheduling stalls (`.skilled/hooks/goal/lib/goal-slice.test.cjs:228`).
+b08-hooks-goal-014 | FIXED | String literals now use single quotes; the change is formatting-only (`.skilled/hooks/goal/pi/goal-context.ts:18`).
+b08-hooks-goal-015 | FIXED | Long type and call lines were wrapped; no non-comment code line exceeds 100 characters (`.skilled/hooks/goal/pi/goal-context.ts:48`).
+b08-hooks-goal-016 | FIXED | The Pi test sets an OpenCode label and verifies rendering relabels it to Pi (`.skilled/hooks/goal/pi/goal-pi.test.mjs:54`).
+b08-hooks-goal-N01 | HELD | Current-session CLI actions still default an omitted workspace to `process.cwd()` (`.skilled/hooks/goal/bin/goal.cjs:73`).
+b08-hooks-goal-N02 | FIXED | Devin test asserts its runtime-specific role line; runtime behavior is unchanged (`.skilled/hooks/goal/devin/goal-devin.test.mjs:73`).
+
+NEW
+
+SUMMARY: fixed=8 partial=0 not_fixed=0 wrong=0 held=3 changed=1 new_p0=0 new_p1=0

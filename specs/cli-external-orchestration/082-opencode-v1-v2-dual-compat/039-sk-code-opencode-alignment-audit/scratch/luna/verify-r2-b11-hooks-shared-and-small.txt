@@ -1,0 +1,41 @@
+VERDICTS
+b11-hooks-shared-and-small-001 | FIXED | `.skilled/hooks/README.md:28,239` now describes the independent hooks and checks the real `COMMENT_CHECKER` line.
+b11-hooks-shared-and-small-006 | FIXED | `.skilled/hooks/git-live-follow/README.md:21` matches the script’s three exit-1 paths.
+b11-hooks-shared-and-small-011 | HELD | `.skilled/hooks/git/install-hooks.sh:17-18` still hardcodes `.git/hooks` and does not create or resolve the destination.
+b11-hooks-shared-and-small-016 | HELD | `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:38,88` still joins the hardcoded `.skilled` path to the workspace root.
+b11-hooks-shared-and-small-002 | FIXED | `.skilled/hooks/README.md:47` lists the canonical watchdog flag and its legacy alias.
+b11-hooks-shared-and-small-003 | FIXED | `.skilled/hooks/README.md:266-279` removes the stray leading commas from the coverage markers.
+b11-hooks-shared-and-small-004 | FIXED | `.skilled/hooks/README.md:290-291` now includes the OpenCode plugin runtime.
+b11-hooks-shared-and-small-005 | FIXED | `.skilled/hooks/git-hooks-check/README.md:61` names the `session-cleanup` plugin and its `session.created` event.
+b11-hooks-shared-and-small-007 | FIXED | `.skilled/hooks/git-worktree-guard/README.md:51` names the `session-cleanup` plugin and its `session.created` event.
+b11-hooks-shared-and-small-008 | FIXED | `.skilled/hooks/git/README.md:16` accurately names the installer’s `.git/hooks` destination.
+b11-hooks-shared-and-small-009 | FIXED | `.skilled/hooks/git/README.md:36` now quotes the hook’s actual block message.
+b11-hooks-shared-and-small-010 | FIXED | `.skilled/hooks/git/README.md:29,44` lists all four agent roots and matches the hook’s mirror message.
+b11-hooks-shared-and-small-012 | FIXED | `.skilled/hooks/git/pre-commit:1-4` has the required component divider above its existing description.
+b11-hooks-shared-and-small-017 | FIXED | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:106-110` completes and moves the comment to the parser.
+b11-hooks-shared-and-small-018 | HELD | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:226` still recognizes only the value `'1'`.
+b11-hooks-shared-and-small-019 | FIXED | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:43-47,75` uses one token list with equivalent runtime behavior.
+b11-hooks-shared-and-small-020 | FIXED | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:1-4` has the module divider.
+b11-hooks-shared-and-small-021 | FIXED | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:154-159` now tests the `mk_` prefix alongside the exact tokens.
+b11-hooks-shared-and-small-022 | FIXED | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:263-275` scrubs disable flags and points the adapter at the absent-flags temp path.
+b11-hooks-shared-and-small-023 | FIXED | `.skilled/hooks/session-lifecycle/README.md:3,23` names the current OpenCode plugins.
+b11-hooks-shared-and-small-024 | FIXED | `.skilled/hooks/session-lifecycle/README.md:60` removes the stray commas from the OpenCode row.
+b11-hooks-shared-and-small-025 | FIXED | `.skilled/hooks/shared/README.md:48` lists all 26 resolver concerns, including the four omitted consumers.
+b11-hooks-shared-and-small-026 | FIXED | `.skilled/hooks/shared/README.md:63` includes the existing adapter test in the directory tree.
+b11-hooks-shared-and-small-027 | FIXED | `.skilled/hooks/shared/env-aliases.cjs:1-4` adds the module divider.
+b11-hooks-shared-and-small-028 | FIXED | `.skilled/hooks/shared/env-aliases.cjs:33-38,54` removes the empty skip list; no remaining consumers were found.
+b11-hooks-shared-and-small-029 | FIXED | `.skilled/hooks/shared/hook-adapter-shared.test.cjs:1-4` adds the module divider.
+b11-hooks-shared-and-small-030 | FIXED | `.skilled/hooks/shared/hook-adapter-shared.test.cjs:45` raises the test’s upper bound to 8000 ms.
+b11-hooks-shared-and-small-031 | FIXED | `.skilled/hooks/shared/hook-flags.cjs:1-4` adds the module divider.
+b11-hooks-shared-and-small-032 | FIXED | `.skilled/hooks/shared/hook-flags.cjs:19-20,32-33,97-98,164-165,227-228` adds the five section dividers.
+b11-hooks-shared-and-small-033 | FIXED | `.skilled/hooks/shared/hook-flags.mjs:1-4` adds the ESM facade divider.
+b11-hooks-shared-and-small-034 | FIXED | `.skilled/hooks/shared/hook-flags.sh:1-4` adds the component divider under the shebang.
+b11-hooks-shared-and-small-035 | FIXED | `.skilled/hooks/shared/hook-flags.test.cjs:1-4` adds the module divider.
+b11-hooks-shared-and-small-036 | FIXED | `.skilled/hooks/shared/hook-flags.test.cjs:98-123` tests file-based versus explicit-env behavior and restores temporary state.
+b11-hooks-shared-and-small-037 | FIXED | `.skilled/hooks/vitest.config.ts:11,32` renames the root without changing its resolved path.
+b11-hooks-shared-and-small-N01 | HELD | `.skilled/hooks/shared/hook-adapter-shared.cjs:26,31` still retains unbounded chunks and concatenates them.
+
+NEW
+(none)
+
+SUMMARY: fixed=31 partial=0 not_fixed=0 wrong=0 held=4 changed=0 new_p0=0 new_p1=0

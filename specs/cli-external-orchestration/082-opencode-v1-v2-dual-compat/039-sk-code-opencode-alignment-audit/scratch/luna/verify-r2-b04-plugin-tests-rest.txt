@@ -1,0 +1,23 @@
+VERDICTS
+b04-plugin-tests-rest-001 | FIXED | `test.after` removes the shared temp directory after the suite, including failed runs: .opencode/plugins/tests/claude-fable-subagent-guard.test.cjs:39
+b04-plugin-tests-rest-002 | FIXED | The forgery comment no longer contains the review finding ID: .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:300
+b04-plugin-tests-rest-003 | FIXED | The module header now precedes strict mode: .opencode/plugins/tests/helpers/continuation-log.cjs:1
+b04-plugin-tests-rest-004 | FIXED | Both exports have JSDoc for parameters, return values, and behavior: .opencode/plugins/tests/helpers/continuation-log.cjs:10
+b04-plugin-tests-rest-005 | FIXED | Both divider lines now use the required 67 box-drawing characters: .opencode/plugins/tests/mcp-route-guard.test.cjs:1
+b04-plugin-tests-rest-006 | FIXED | Both callback bodies use the correct indentation and closing alignment: .opencode/plugins/tests/session-relaunch.test.cjs:900
+b04-plugin-tests-rest-007 | FIXED | Each repository registers teardown before setup or assertions: .opencode/plugins/tests/sk-git-message-gate.test.cjs:23
+b04-plugin-tests-rest-008 | FIXED | The module header now precedes strict mode: .opencode/plugins/tests/source-root-consumers.test.cjs:1
+b04-plugin-tests-rest-009 | FIXED | Stale ages use the exported retention default and a documented margin: .opencode/plugins/tests/system-completion-sentinel.test.cjs:76
+b04-plugin-tests-rest-010 | FIXED | Both forgery comments retain the behavioral reason without the finding ID: .opencode/plugins/tests/system-deep-loop-guard.test.cjs:258
+b04-plugin-tests-rest-011 | FIXED | The helper traps stdout and stderr and restores both streams in `finally`: .opencode/plugins/tests/system-dist-freshness-guard.test.cjs:137
+b04-plugin-tests-rest-012 | FIXED | Fixture teardown restores both saved database-directory variables: .opencode/plugins/tests/system-skill-advisor.test.cjs:212
+b04-plugin-tests-rest-013 | FIXED | The section comments describe behavior without the finding or workstream IDs: .opencode/plugins/tests/system-spec-gate.test.cjs:126
+b04-plugin-tests-rest-014 | FIXED | The test clears `AI_SESSION_CHILD` while exercising the enforce-unset path: .opencode/plugins/tests/system-spec-gate.test.cjs:282
+b04-plugin-tests-rest-N01 | FIXED | Process-exit cleanup covers normal completion and assertion failures: .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:117
+b04-plugin-tests-rest-N02 | FIXED | The `finally` finalizer removes the fixture after success or failure: .opencode/plugins/tests/system-deep-loop-guard.test.cjs:458
+b04-plugin-tests-rest-N03 | FIXED | The test restores the kill-switch value captured before it runs: .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:616
+
+NEW
+none
+
+SUMMARY: fixed=17 partial=0 not_fixed=0 wrong=0 held=0 changed=0 new_p0=0 new_p1=0 | `node --test` exited 1 with fixture setup `EPERM` errors creating temp directories under `/var/folders`; all `node --check` commands passed.

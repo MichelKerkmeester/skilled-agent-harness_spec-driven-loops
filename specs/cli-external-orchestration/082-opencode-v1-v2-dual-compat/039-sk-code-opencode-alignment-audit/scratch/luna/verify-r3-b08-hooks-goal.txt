@@ -1,0 +1,18 @@
+VERDICTS
+b08-hooks-goal-003 | FIXED | Exact Cursor role assertion is present at .skilled/hooks/goal/cursor/goal-cursor.test.mjs:73; node --check passed, but node --test exited 1 because fixture setup hit EPERM creating temp directories.
+b08-hooks-goal-006 | HELD | Read and parse errors still fall through to the legacy path at .skilled/hooks/goal/lib/goal-core.cjs:789.
+b08-hooks-goal-007 | HELD | Archive entries still accept unvalidated JSON at .skilled/hooks/goal/lib/goal-core.cjs:1542 and dereference it during sorting at line 1552.
+b08-hooks-goal-008 | FIXED | The single JSDoc now names `.git` and `.skilled/skills` as root markers at .skilled/hooks/goal/lib/goal-core.cjs:160.
+b08-hooks-goal-010 | FIXED | Numbered section dividers now organize the module, beginning at .skilled/hooks/goal/lib/goal-slice.cjs:15.
+b08-hooks-goal-011 | CHANGED | A real-path containment check now rejects goal files resolving outside the workspace at .skilled/hooks/goal/lib/goal-slice.cjs:455.
+b08-hooks-goal-013 | FIXED | The timing ceiling is widened to 10 seconds while retaining deterministic assertions at .skilled/hooks/goal/lib/goal-slice.test.cjs:229.
+b08-hooks-goal-014 | FIXED | String literals use single quotes, including the import at .skilled/hooks/goal/pi/goal-context.ts:5.
+b08-hooks-goal-015 | FIXED | The long type declarations and calls are wrapped; the former long declaration now spans .skilled/hooks/goal/pi/goal-context.ts:48.
+b08-hooks-goal-016 | FIXED | The test sets an OpenCode label and verifies Pi relabeling at .skilled/hooks/goal/pi/goal-pi.test.mjs:53.
+b08-hooks-goal-N01 | HELD | Omitted workspace still falls back to `process.cwd()` at .skilled/hooks/goal/bin/goal.cjs:74.
+b08-hooks-goal-N02 | FIXED | The Devin role assertion is present at .skilled/hooks/goal/devin/goal-devin.test.mjs:74.
+
+NEW
+None
+
+SUMMARY: fixed=8 partial=0 not_fixed=0 wrong=0 held=3 changed=1 new_p0=0 new_p1=0

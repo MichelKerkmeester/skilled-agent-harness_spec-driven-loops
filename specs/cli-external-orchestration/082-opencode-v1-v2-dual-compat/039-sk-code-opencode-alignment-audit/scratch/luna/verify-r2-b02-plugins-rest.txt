@@ -1,0 +1,22 @@
+VERDICTS
+b02-plugins-rest-001 | FIXED | The README identifies the uncapped workspace-surface cache explicitly. .opencode/plugins/README.md:179
+b02-plugins-rest-002 | FIXED | The renderer comment now sits above renderCompiledRouteSummaryLine, and reveal has its own purpose documentation. .opencode/plugins/lib/skill-advisor-render.js:115
+b02-plugins-rest-003 | FIXED | All three exported summary helpers now have JSDoc. .opencode/plugins/lib/skill-advisor-render.js:80
+b02-plugins-rest-004 | FIXED | The bridge has all five section dividers in the requested order; the helper move preserves function behavior. .opencode/plugins/lib/v2-bridge.js:6
+b02-plugins-rest-005 | NOT-FIXED | appendGuardLog still contains its own rotation and append logic; no shared helper was introduced. .opencode/plugins/mcp-route-guard.js:57
+b02-plugins-rest-006 | FIXED | runScript delegates to runProcess with the same command, arguments and options. .opencode/plugins/session-cleanup.js:139
+b02-plugins-rest-007 | HELD | isEnabled and queueNudge still load the hook-flags config on their call paths. .opencode/plugins/session-relaunch.js:196
+b02-plugins-rest-008 | FIXED | The ephemeral review ID is replaced with durable ownership wording. .opencode/plugins/system-deep-loop-guard.js:44
+b02-plugins-rest-009 | FIXED | The guard imports the shared mutating-tool set, whose values match the former local set. .opencode/plugins/system-dist-freshness-guard.js:20
+b02-plugins-rest-010 | FIXED | The deleted-session branch removes that session’s directive epoch entry. .opencode/plugins/system-skill-advisor.js:1426
+b02-plugins-rest-012 | HELD | The missing-session event fallback remains `__global__`. .opencode/plugins/system-spec-gate.js:138
+b02-plugins-rest-N02a | FIXED | The Node built-in import now precedes local imports. .opencode/plugins/system-deep-loop-guard.js:25
+b02-plugins-rest-N02b | FIXED | The Node built-in import now precedes local imports. .opencode/plugins/system-spec-gate.js:25
+b02-plugins-rest-N03 | HELD | Advisor lookups still call the source-signature provider before checking the prompt cache. .opencode/plugins/system-skill-advisor.js:1108
+b02-plugins-rest-N04 | HELD | Unique misses still enter the in-flight map without a concurrency cap. .opencode/plugins/system-skill-advisor.js:1149
+b02-plugins-rest-N05 | HELD | Startup guards still run synchronously in sequence from the session-created handler. .opencode/plugins/session-cleanup.js:187
+
+NEW
+(none)
+
+SUMMARY: fixed=10 partial=0 not_fixed=1 wrong=0 held=5 changed=0 new_p0=0 new_p1=0

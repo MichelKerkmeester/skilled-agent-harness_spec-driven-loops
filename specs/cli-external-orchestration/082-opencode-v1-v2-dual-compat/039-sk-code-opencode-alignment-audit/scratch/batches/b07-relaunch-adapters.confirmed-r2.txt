@@ -1,0 +1,60 @@
+[b07-relaunch-adapters-004] P2 .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:160, 245, 293 | EXPECTED-FIXED
+  finding: Three lines exceed the stated maximum: 160 is 101 characters (`if (path.relative(realRepository, realDirectory) !== path.relative(repository, handoffDirectory)) {`), 245 is 102 (the `shellChildOfRuntime(runtimePid, runtime, processes = readProcessTableWithCommands(runtime))` signature) and 293 is 102 (the `process.stdout.write(`${core.manualClaimCommand(…)}`)` call). Every other code line in the 655-line file stays inside the limit.
+  fix: Split the line 160 comparison into a named `sameRelativePath` value (or wrap the condition), put the `shellChildOfRuntime` default parameter on its own line, and break the line 293 write argument the way the neighbouring `process.stdout.write` calls already are.
+
+[b07-relaunch-adapters-005] P2 .skilled/hooks/session-relaunch/codex/stop-arm.mjs:38 | EXPECTED-FIXED
+  finding: `done`, `logEvent` and `spawnKiller` (lines 38-70) carry the same code as `claude/stop-arm.mjs:37-71` (claude adds two explanatory comments), and `armPendingRecord` (87-136) repeats the same read → `armableRecord` → transcript check → `arm` → spawn → return flow as `claude/stop-arm.mjs:88-156`; the only differences are the runtime string, the payload-event check and `findLoopChildPid` versus `resolveKillerTarget`. `hermes/session-end-arm.mjs:82-99` is a third copy of the spawn block. Three copies of a process-spawning path mean a fix to the spawn, log or unref contract has to land three times.
+  fix: Extract the common stop/session-end arm flow into one shared module (runtime id, target resolver and an optional deferral predicate as parameters) and leave each adapter as the event-to-core wiring.
+
+[b07-relaunch-adapters-006] P2 .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:5 | EXPECTED-FIXED
+  finding: The 109-line adapter runs imports (5-12) → constants (14) → helpers (16-49) → `main` (51-107) → entrypoint (109) with no numbered divider, while every sibling adapter carries numbered dividers (`claude/context-nudge.mjs` sections 1-5, `codex/shared.mjs` 1-5, `pi/session-relaunch.ts` 1-3). The verifier reports nothing only because `SECTION_REQUIRED_MIN_LINES = 150` (`verify_alignment_drift.py:141`), not because a hook path is exempt.
+  fix: Insert `1. IMPORTS` (line 5), `2. CONSTANTS` (14), `3. HELPERS` (16), `4. CORE LOGIC` (51) and `5. ENTRYPOINT` (109) in the same 77-character line-divider form the sibling files use.
+
+[b07-relaunch-adapters-007] P2 .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:5 | EXPECTED-FIXED
+  finding: The 125-line adapter runs imports (5-19) → constants (21-24) → helpers (26-47) → `armPendingRecord` (49-109) → `main` (111-123) → export (125) with no numbered divider, while the sibling stop/session-end adapters carry the five-section form; the `armPendingRecord`/`main` boundary is exactly where this module's two responsibilities (arm-and-spawn, bridge entry) meet, so the missing sections are also a missing seam. The verifier's 150-line threshold (`verify_alignment_drift.py:141`) is why it reports nothing.
+  fix: Insert `1. IMPORTS` (line 5), `2. CONSTANTS` (21), `3. HELPERS` (26), `4. CORE LOGIC` (49) and `5. ENTRYPOINT` (111) in the sibling adapters' line-divider form.
+
+[b07-relaunch-adapters-008] P2 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1 | EXPECTED-FIXED
+  finding: `pi/session-relaunch.test.ts` sits beside `pi/session-relaunch.ts`. The package's other twelve suites live in `tests/` (`tests/*.test.cjs`, `tests/adapter-conformance.test.cjs`, `tests/fixtures/`), and the sibling Pi package keeps its extension test at `.pi/extensions/pi-fast-mode-w-subagent-support/tests/extension.test.ts`. README §8 codifies the current location, so the placement is deliberate but still outside the recorded convention and outside the folder the README's §7 command sweeps.
+  fix: Move it to `.skilled/hooks/session-relaunch/tests/pi-extension.test.ts`, change the `./session-relaunch` import to `../pi/session-relaunch`, and update the README §8 tree. The hooks Vitest `include` already covers `tests/**`.
+
+[b07-relaunch-adapters-009] P1 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:635, 659 | EXPECTED-FIXED
+  finding: `match![1]` is used twice, guarded by `expect(match).not.toBeNull()` on the line above. The runtime check exists, but the required justification comment does not; `tsconfig.pi.json` does not include this test file, so no compiler check backs the `!` either — the assertion and the `!` are the only guarantees.
+  fix: Add one justification line above each use (`// The expect() above pins match to a non-null array.`), or replace the pair with an explicit `if (match === null) throw new Error(...)` before indexing.
+
+[b07-relaunch-adapters-010] P2 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:867, 878, 891 | EXPECTED-FIXED
+  finding: Three lines exceed the stated maximum: 867 is 105 characters (`arm({ loopId: ARM_LOOP_ID, cwd: '/workspace/pi', env: process.env, now: Date.now() - armedAgoMs });`), 878 is 110 and 891 is 112 (the `it('an arm …')` and `it('a re-arm …')` description lines). The section's exception list covers URLs, long type signatures and import paths, not test names, and the same file wraps its other long object arguments.
+  fix: Break the `arm({ … })` object across lines the way the `preparePending({ … })` calls in the file already are, and split the two `it(...)` names with string concatenation as the `CONTINUITY_WRITER` constant at lines 40-41 already does.
+
+[b07-relaunch-adapters-011] P1 .skilled/hooks/session-relaunch/pi/session-relaunch.ts:313 | EXPECTED-FIXED
+  finding: The extension's only export, `export default function sessionRelaunch(pi: ExtensionAPI): void`, carries no TSDoc, while the sibling Pi extension documents its default export (`.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts:18`) and this file documents its internal helpers closely (`checkedCore`, `resolveKillerPath`). The public entry is the one undocumented function.
+  fix: Add a one-line TSDoc above line 313, for example `/** Register the message_end, before_agent_start and agent_end hooks on the Pi extension host. */`.
+
+[b07-relaunch-adapters-N01] P1 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:113 | EXPECTED-FIXED
+  finding: Nine further unannotated assertions occur at lines 153, 386, 418, 485, 522, 638, 673, 824 and 860.
+  fix: Add preceding-line justifications or replace assertions with explicit guards.
+
+[b07-relaunch-adapters-N02] P1 .skilled/hooks/session-relaunch/pi/session-relaunch.ts:19 | EXPECTED-FIXED
+  finding: `RelaunchRecord`, `CoreModule`, `ContextUsageModule`, `NudgeDecision` and `NudgeModule` use type aliases for shapes crossing the dynamic CommonJS module boundary.
+  fix: Declare these shapes as interfaces.
+
+[b07-relaunch-adapters-N03] P1 .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:406 | EXPECTED-FIXED
+  finding: Unnamed defaults `10` at lines 406, 463 and 464 and `20` at lines 50 and 596 can drift between behavior and help text.
+  fix: Define named constants for max hops, max age and history count; use them at each site.
+
+[b07-relaunch-adapters-N04] P1 .skilled/hooks/session-relaunch/hermes/context-nudge.mjs:48 | EXPECTED-FIXED
+  finding: The 200,000-token fallback is an unnamed default.
+  fix: Extract a named default-window constant.
+
+[b07-relaunch-adapters-N05] P2 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:878 | EXPECTED-FIXED
+  finding: This test title uses double quotes.
+  fix: Use single quotes, escaping the apostrophe.
+
+[b07-relaunch-adapters-N06] P2 .skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:49 | EXPECTED-FIXED
+  finding: Exported `armPendingRecord` has no JSDoc.
+  fix: Add JSDoc above the function.
+
+[b07-relaunch-adapters-N07] P2 .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:892 | EXPECTED-FIXED
+  finding: `20 * 60 * 1000` sets the record age without explaining that it exceeds the default age limit.
+  fix: Name the stale-age value or add a comment explaining the 20-minute case.
+

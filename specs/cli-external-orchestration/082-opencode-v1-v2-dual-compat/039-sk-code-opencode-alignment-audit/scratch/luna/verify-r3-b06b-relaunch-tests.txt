@@ -1,0 +1,27 @@
+VERDICTS
+b06b-relaunch-tests-001 | FIXED | `.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:78` maps fixtures by filename and checks their applicable shapes and redactions.
+b06b-relaunch-tests-002 | FIXED | `.skilled/hooks/session-relaunch/tests/hop-history.test.cjs:13` moves the import into the top-level import block.
+b06b-relaunch-tests-003 | FIXED | `.skilled/hooks/session-relaunch/tests/killer.test.cjs:45` pins hook config locally and clears the inherited age limit.
+b06b-relaunch-tests-004 | FIXED | `.skilled/hooks/session-relaunch/tests/killer.test.cjs:1792` renames the test to the stale-takeover behavior it exercises.
+b06b-relaunch-tests-006 | FIXED | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs:65` shortens the test name and formats the call across lines.
+b06b-relaunch-tests-007 | FIXED | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs:11` imports the module once at the top.
+b06b-relaunch-tests-008 | FIXED | `.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:12` imports the module once at the top.
+b06b-relaunch-tests-009 | FIXED | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:285` uses a numeric loop PID and asserts the skipped-check log is absent.
+b06b-relaunch-tests-010 | FIXED | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:482` asserts the specific invalid-PID error and exit code.
+b06b-relaunch-tests-011 | FIXED | `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:173` moves the skip options into a multiline argument list.
+b06b-relaunch-tests-012 | FIXED | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:572` iterates the core runtime list, including Devin.
+b06b-relaunch-tests-013 | FIXED | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1471` names the decline-without-warning behavior asserted below.
+b06b-relaunch-tests-N01 | FIXED | `.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:26` points hook config at the sandbox.
+b06b-relaunch-tests-N02 | FIXED | `.skilled/hooks/session-relaunch/tests/nudge.test.cjs:700` pins hook config and removes the inherited age limit from the test environment.
+b06b-relaunch-tests-N03 | FIXED | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:68` pins hook config to the test home.
+b06b-relaunch-tests-N04 | FIXED | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:213` pins hook config inside the sandbox.
+b06b-relaunch-tests-N05 | FIXED | `.skilled/hooks/session-relaunch/tests/killer.test.cjs:16` moves the import to the top-level block.
+b06b-relaunch-tests-N06 | FIXED | `.skilled/hooks/session-relaunch/tests/killer.test.cjs:723` reflows the cited long statements.
+b06b-relaunch-tests-N07 | FIXED | `.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1203` reflows the cited long statements.
+b06b-relaunch-tests-N08 | FIXED | `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:566` reflows the cited long statements.
+b06b-relaunch-tests-N09 | FIXED | `.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:206` reflows the sandbox environment object.
+
+NEW
+none
+
+SUMMARY: fixed=21 partial=0 not_fixed=0 wrong=0 held=0 changed=0 new_p0=0 new_p1=0. `node --check` passed for all 8 files and 4 targeted tests passed. The full test run was attempted but hit `EPERM` creating temporary directories in the read-only sandbox.

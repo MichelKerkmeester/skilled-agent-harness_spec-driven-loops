@@ -1,0 +1,40 @@
+[b01-plugins-goal-002] P0 .opencode/plugins/opencode-goal.js:1859 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `normalizeGoalID` at line 443 sanitizes text and whitespace but does not remove path separators, so `/`, `\`, and `..` survive. `bindGoal` interpolates the normalized goal id into `snapshotPath` here. With a stored goal id of `../../../escaped`, my test wrote `stateDir/escaped.json` outside `.archive`. The id is read from a state file and can also come from `goalIdFactory`, so a malformed id becomes a filesystem write target.
+  fix: Constrain goal ids to a safe filename segment such as `[A-Za-z0-9._-]`, as the core's `SAFE_GOAL_ID_SEGMENT_PATTERN` does, or use a hash for the archive filename and keep the readable id only in the record.
+
+[b01-plugins-goal-003] P1 .opencode/plugins/opencode-goal.js:1721 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `mutateGoal` treats every `null` returned by a mutator as "delete". Several event mutators return `null` when no current goal exists: `accountUsage` line 2027, `recordMessageUpdated` line 2114, `recordMessagePartUpdated` line 2091, and `setBlockedByPrompt` line 2175. An event that reaches one of those mutators for a session with no goal therefore runs `deleteGoalFile` (two unlinks and a directory fsync), and a goal created by another process between the read and the delete is removed.
+  fix: Make the delete conditional on a goal existing: `if (next === null) return current === null ? null : deleteGoalFile(...)`, or change the no-op mutators to return `undefined` so only `clearGoal` maps to delete.
+
+[b01-plugins-goal-004] P1 .opencode/plugins/opencode-goal.js:2471 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `renderContinuationPrompt` uses the stored `goal.objective`, which `bindGoal` built from the packet at bind time. `renderGoalInjection` re-reads the packet at lines 2794-2798, so after a packet criteria edit the system injection carries the new criteria while an autonomous continuation sends the old ones. I reproduced this with an old and a new criterion: the continuation prompt contained `OLD CRITERION` and not `NEW CRITERION`.
+  fix: Resolve the packet first in `renderContinuationPrompt` and render the objective and criteria from `packet.objectiveSlice`, falling back to the stored fields only when the record is unbound.
+
+[b01-plugins-goal-005] P1 .opencode/plugins/opencode-goal.js:1821 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: A different objective in `setGoal` returns `buildNewGoal` without archiving the current record, so a `mutation=replaced` goal disappears from `history`. `bindGoal` archives a prior different packet and the runtime-neutral core archives on replacement, so the two goal engines keep different histories.
+  fix: Archive `current` before returning the replacement, or make replacement explicitly non-archiving in both engines and document that history excludes replaced text goals.
+
+[b01-plugins-goal-001] P2 .opencode/plugins/opencode-goal.js:1508 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `archiveGoalStateFile` builds `archivePath` from the session hash alone, then `rename`s the active record onto it. A second archived goal for the same session replaces the first file; I reproduced two `session.deleted` cycles and `history` reported one record containing only the second goal. The first archived goal is lost.
+  fix: Put the goal id or a unique suffix in the archive filename, for example `${sessionKey}.${normalizeGoalID(currentGoal.goalId)}.json`, and update `listArchivedGoalRecords` so its canonical and legacy matching still works.
+
+[b01-plugins-goal-008] P2 .opencode/plugins/opencode-goal.js:1005 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `Number(null)` and `Number('')` are both `0`, and `0` is finite, so a null or empty first candidate in `statusCodeFromError` returns `0` and prevents the loop from checking a later `429`. An error shaped with `statusCode: null` and `status: 429` is therefore not classified as a provider usage limit.
+  fix: Skip `null`, `undefined`, and empty-string candidates before calling `Number`, or use the existing `numericField` helper with the same candidate list.
+
+[b01-plugins-goal-N01] P1 .opencode/plugins/opencode-goal.js:1925 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `clearGoal` deletes the record without archiving it as cleared; the shared core archives cleared goals, so plugin history loses them
+  fix: Archive the cleared record before deleting active state
+
+[b01-plugins-goal-N02] P2 .opencode/plugins/opencode-goal.js:3383 | EXPECTED-FIXED
+  finding: The 3,383-line plugin entry point exceeds the recommended limit
+  fix: Extract state, verifier, continuation, rendering and tool logic into modules
+
+[b01-plugins-goal-N03] P2 .opencode/plugins/opencode-goal.js:11 | EXPECTED-FIXED
+  finding: The import line is 117 characters
+  fix: Wrap the named imports across lines
+
+[b01-plugins-goal-N04] P2 .opencode/plugins/opencode-goal.js:2065 | EXPECTED-FIXED
+  finding: `refreshGoalActivity` has no callers
+  fix: Remove the unused helper
+

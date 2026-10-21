@@ -1,0 +1,19 @@
+VERDICTS
+b05-relaunch-lib-001 | FIXED | `.skilled/hooks/session-relaunch/lib/context-usage.cjs:24` names the same marker and window values; resolution is unchanged.
+b05-relaunch-lib-002 | HELD | `.skilled/hooks/session-relaunch/lib/hop-history.cjs:139` still passes `last` directly to `slice(-last)`, as requested.
+b05-relaunch-lib-003 | FIXED | `.skilled/hooks/session-relaunch/lib/killer.cjs:6` now has all five section dividers; executable code is unchanged.
+b05-relaunch-lib-004 | FIXED | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:76` extracts the existing parser, now shared by both callers.
+b05-relaunch-lib-005 | FIXED | `.skilled/hooks/session-relaunch/lib/nudge.cjs:6` now has all five section dividers; executable code is unchanged.
+b05-relaunch-lib-006 | PARTIAL | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:69` centralizes the JavaScript formatter and parser, but `.skilled/bin/skilled-loop:115` still formats the suffix separately.
+b05-relaunch-lib-008 | FIXED | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:45` only reflows the policy object; its entries are unchanged.
+b05-relaunch-lib-N01 | HELD | `.skilled/hooks/session-relaunch/lib/killer.cjs:593` and `:616` still omit `expectedArmedAt`, as requested.
+b05-relaunch-lib-N02 | FIXED | `.skilled/hooks/session-relaunch/lib/killer.cjs:26` names the existing defaults and `parseArguments` uses them.
+b05-relaunch-lib-N03 | FIXED | `.skilled/hooks/session-relaunch/lib/hop-history.cjs:25` defines the default used by both the function and CLI.
+b05-relaunch-lib-N04 | FIXED | `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:40` defines the existing limits; nudge and CLI reuse them.
+b05-relaunch-lib-N05 | FIXED | `.skilled/hooks/session-relaunch/lib/nudge.cjs:38` supplies the same prefix length to both filename uses.
+b05-relaunch-lib-N06 | FIXED | `.skilled/hooks/session-relaunch/lib/hop-history.cjs:112` and `:143` reflow expressions while preserving their output strings.
+
+NEW
+none
+
+SUMMARY: fixed=10 partial=1 not_fixed=0 wrong=0 held=2 changed=0 new_p0=0 new_p1=0; verification: full test suite exited 1 because sandbox temp-directory creation returned EPERM; syntax checks and no-write smoke assertions passed.

@@ -1,0 +1,48 @@
+[b08-hooks-goal-003] P2 .skilled/hooks/goal/cursor/goal-cursor.test.mjs:73 | EXPECTED-FIXED
+  finding: The comment says the Role line is "not re-derived" and that `renderGoalBrief`'s `runtimeLabel` parameter is "currently unused", but the core relabels the Role line from that parameter at `lib/goal-core.cjs:523-527`. The test only asserts the generic phrase "execution agent operating under the active session goal", so the Cursor relabel behavior is neither verified nor guarded.
+  fix: Delete the stale comment and assert `Role: Focused Cursor execution agent operating under the active session goal.` in the returned `agent_message`.
+
+[b08-hooks-goal-006] P1 .skilled/hooks/goal/lib/goal-core.cjs:789 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `readGoalRecordForScope` catches every error, including `JSON.parse` failures and unreadable files, and `continue`s to `legacyScopedStatePath`. If the current scoped record is malformed but a valid old runtime-plus-session-digest record exists, the session silently selects that legacy goal, contradicting the README's malformed-JSON rule and the function's own "parse error returns null" JSDoc. The shape test also accepts arrays (`typeof [] === 'object'`).
+  fix: Continue to the legacy path only on `ENOENT`; return `null` on parse, read or shape failure, and reject arrays/objects without a usable status/goal id. Add a regression test with a malformed current record plus a valid legacy-scoped record.
+
+[b08-hooks-goal-007] P1 .skilled/hooks/goal/lib/goal-core.cjs:1553 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The archive mapper stores any `JSON.parse` result as `entry.goal`, then the sort dereferences `b.goal.updatedAtMs`. A file containing valid JSON `null` throws in the comparator; the outer catch converts that into `[]`, so one corrupt archive silently hides every valid archive in `history`.
+  fix: Filter mapped entries with `parsed && typeof parsed === 'object' && !Array.isArray(parsed)`, or use `b.goal?.updatedAtMs`, and keep a corrupt file from emptying the result.
+
+[b08-hooks-goal-008] P2 .skilled/hooks/goal/lib/goal-core.cjs:156 | EXPECTED-FIXED
+  finding: Two JSDoc blocks are stacked before `resolveRepoRoot`; the first says the root marker is the "`.opencode` skills tree", while `goalSlice.resolveWorkspaceRoot` actually checks `.skilled/skills` (`goal-slice.cjs:238`). The stale block misstates the marker and obscures which comment documents the function.
+  fix: Remove the first, stale block and keep one JSDoc that names `.git` and `.skilled/skills` as the markers.
+
+[b08-hooks-goal-010] P2 .skilled/hooks/goal/lib/goal-slice.cjs:1 | EXPECTED-FIXED
+  finding: The file is 474 lines and has no numbered section dividers, so the verifier reports `SECTIONS-MISSING`; imports, constants, regex construction, packet resolution, phase classification, budget logic and exports all read as one block.
+  fix: Add numbered dividers in the standard order, for example `1. IMPORTS`, `2. CONSTANTS`, `3. HELPERS`, `4. PACKET PROJECTION`, `5. EXPORTS`.
+
+[b08-hooks-goal-011] P0 .skilled/hooks/goal/lib/goal-slice.cjs:429 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `resolvePacketDir` checks the real path of the directory and its existing ancestors, but `readPacketGoal` reads `join(dir.absolute, 'goal.md')`; a `goal.md` symlink inside an otherwise contained packet is followed to any file on disk, and its contents become the objective slice and model injection. This contradicts README.md § 5 line 115: "reads a packet's goal inside the workspace and nowhere else."
+  fix: Resolve the goal file itself (`realpathSync`/`lstat`) and require its real path to stay under `dir.real` (or reject a symlinked goal file) before reading; add a fixture whose `goal.md` is a symlink outside the workspace.
+
+[b08-hooks-goal-013] P2 .skilled/hooks/goal/lib/goal-slice.test.cjs:204 | EXPECTED-FIXED
+  finding: The linear-time regression test asserts `elapsedMs < 250`; a loaded CI worker can exceed that while `splitFrontmatter` is still linear, so the test can fail for scheduling rather than a regression.
+  fix: Drop the elapsed-time assertion and keep the deterministic output assertions, or enforce a much larger CI-safe ceiling with an explicit performance budget.
+
+[b08-hooks-goal-014] P2 .skilled/hooks/goal/pi/goal-context.ts:5 | EXPECTED-FIXED
+  finding: The file uses double-quoted strings throughout (`"node:path"`, `"@earendil-works/pi-coding-agent"`, `"pi"`, `"Pi"`, the command description, and the CLI literals), deviating from the TypeScript quote rule.
+  fix: Convert string literals to single quotes, using double quotes only where escaping would otherwise be required.
+
+[b08-hooks-goal-015] P2 .skilled/hooks/goal/pi/goal-context.ts:132 | EXPECTED-FIXED
+  finding: Line 132 is 114 characters, and the same over-limit pattern appears at lines 48, 49, 50, 150, 157, 197, 207, 212 and 213, mostly in long type declarations and call sites.
+  fix: Break the long type/call lines at parameter or argument boundaries so each stays within the 100-character maximum.
+
+[b08-hooks-goal-016] P2 .skilled/hooks/goal/pi/goal-pi.test.mjs:51 | EXPECTED-FIXED
+  finding: The comment says `renderGoalBrief`'s `runtimeLabel` argument "does not re-derive" the Role line, but the core relabels it at `lib/goal-core.cjs:523-527`. Because the test sets the goal with `runtimeLabel: 'Pi'` and reads it with `runtimeLabel: 'Pi'`, it cannot distinguish a relabel from the stored label and does not guard the Pi adapter's relabel behavior.
+  fix: Set the goal with a different runtime label (for example `OpenCode`) and assert the Pi-rendered brief contains `Role: Focused Pi …`; remove the false comment.
+
+[b08-hooks-goal-N01] P1 .skilled/hooks/goal/bin/goal.cjs:73 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Current-session CLI actions accept an omitted `--workspace` and silently use `process.cwd()`, contrary to README §2’s required scope and risking state under the wrong workspace.
+  fix: Require explicit `--workspace` for current-session actions and cover omission in a CLI test.
+
+[b08-hooks-goal-N02] P2 .skilled/hooks/goal/devin/goal-devin.test.mjs:72 | EXPECTED-FIXED
+  finding: The Devin hook test checks the block prefix but not the runtime-specific role label passed by the adapter.
+  fix: Assert that `additionalContext` contains the Devin role line.
+

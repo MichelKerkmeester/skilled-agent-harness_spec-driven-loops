@@ -1,0 +1,140 @@
+[b11-hooks-shared-and-small-001] P1 .skilled/hooks/README.md:28 | EXPECTED-FIXED
+  finding: The claim "the repo's real, installed `.git/hooks/pre-commit` is `.skilled/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate" is false. `.skilled/scripts/git-hooks/pre-commit` carries its own inline gate (`COMMENT_CHECKER="${SOURCE_ROOT}/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"`, line 100) and never references this folder's hook: `rg -n HYGIENE_HOOK .skilled/scripts/git-hooks/pre-commit` returns no matches (exit 1). `.skilled/hooks/git/README.md:16` states the opposite, which matches the code. Line 239 repeats the same wrong model as a validation command whose expected `HYGIENE_HOOK=...` line can never print, so the documented check proves nothing.
+  fix: Replace the sentence with the standalone contract (this folder's `pre-commit` is opt-in and independent; the primary hook has its own gate), and delete or replace the `grep -n HYGIENE_HOOK` validation block at 238-241 with a check that exists (e.g. `grep -n COMMENT_CHECKER .skilled/scripts/git-hooks/pre-commit`).
+
+[b11-hooks-shared-and-small-006] P1 .skilled/hooks/git-live-follow/README.md:21 | EXPECTED-FIXED
+  finding: Three places say the script always exits 0: line 21 "every internal failure is non-fatal (exit 0)", line 46 "always exits 0", line 107 "Missing git, a non-repo checkout ... exits 0". The code exits 1 in exactly those two cases: `.skilled/bin/git-live-follow.sh:63` (`git not found` -> `exit 1`) and `:64` (`not a git repository` -> `exit 1`). Observed: `cd /tmp && bash .skilled/bin/git-live-follow.sh --once` prints `[live-follow] not a git repository` and exits 1. The sibling `.skilled/bin/git-primary-reconcile.sh:142-143` treats the same two conditions as `exit 0`, which is what this doc's contract describes.
+  fix: Change only README.md: describe the exit codes the script actually returns (read .skilled/bin/git-live-follow.sh to confirm each path) at lines 21, 46 and 107. Do not change the script.
+
+[b11-hooks-shared-and-small-011] P1 .skilled/hooks/git/install-hooks.sh:17 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `HOOKS_DEST="$REPO_ROOT/.git/hooks"` assumes `.git` is a directory. In a linked worktree it is a file (verified in this checkout), so line 18's `ln -sf` fails with "Not a directory" and `set -euo pipefail` (line 16) aborts the installer; with `core.hooksPath` set it writes a symlink git never reads. The script never creates the destination either.
+  fix: Resolve the destination the way the sibling hooks do: `HOOKS_DEST="$(git rev-parse --git-path hooks)"` and `mkdir -p "$HOOKS_DEST"` before the `ln`.
+
+[b11-hooks-shared-and-small-016] P1 .skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs:38 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The child path is hardcoded as `.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs` and joined onto the workspace root at line 88. Every shell entrypoint in this tree resolves the source root first, accepting `.skilled` or `.opencode` (`.skilled/hooks/git/pre-commit:9-19` "source-root selection: The source tree sits under .skilled or .opencode"). On a checkout that carries only `.opencode`, `spawnSync` fails, `rawOutput` stays null and line 103 returns `approve()` silently, so the guard never advises while looking healthy.
+  fix: Resolve the base before spawning (test `<root>/.skilled/hooks/...` then `<root>/.opencode/hooks/...`, same sentinel test the shell hooks use) and keep the current path as the first candidate.
+
+[b11-hooks-shared-and-small-002] P2 .skilled/hooks/README.md:47 | EXPECTED-FIXED
+  finding: The kill-switch index column is headed "Canonical flag (`SYSTEM_<CONCERN>_DISABLED`)" but its `codex-watchdog` row names `CODEX_WATCHDOG_DISABLED`. `hook-flags.cjs:36` sets `CONCERN_CANONICAL["codex-watchdog"] = "CODEX_HOOKS_WATCHDOG_DISABLED"` and lists `CODEX_WATCHDOG_DISABLED` under `LEGACY_ALIASES` (line 78); `.skilled/hooks/codex-watchdog/README.md:97-98` documents the same split. Both values disable the hook, so only the "canonical" label is wrong.
+  fix: Change the row's Canonical cell to `CODEX_HOOKS_WATCHDOG_DISABLED` and move `CODEX_WATCHDOG_DISABLED` into a Legacy-alias cell, matching the codex-watchdog README.
+
+[b11-hooks-shared-and-small-003] P2 .skilled/hooks/README.md:266 | EXPECTED-FIXED
+  finding: In the coverage matrix (declared "the coverage authority"), every `by-design` cell in rows `codex-watchdog`, `directive-lifecycle`, `goal`, `permission-policy`, `session-lifecycle` and `session-relaunch` opens with a stray comma, e.g. the cell reading `, by-design: OpenCode plugin audits Codex hook installation`. The legend at 258-262 defines the allowed markers (`✓ covered`, `by-design`, `n/a`, `~ partial`, `unverified`), so a reader cannot tell what the cell's status is.
+  fix: Drop the leading comma in each affected cell (lines 265-278) so the cell starts with its marker.
+
+[b11-hooks-shared-and-small-004] P2 .skilled/hooks/README.md:290 | EXPECTED-FIXED
+  finding: The "Additional centralized hooks" table gives the runtimes for `git-worktree-guard` (290) and `git-hooks-check` (291) as "claude, codex, cursor, devin + hermes plugin", omitting OpenCode. `.skilled/plugins/session-cleanup.js:32-34` runs both scripts (`GUARD_SCRIPTS` = `worktree-guard.sh`, `check-git-hooks.sh`, `git-live-follow.sh --start`) on `session.created`, and `coverage-rationale.md:47` and `session-cleanup/README.md:31` both say so.
+  fix: Append "+ opencode plugin" to both Runtimes cells.
+
+[b11-hooks-shared-and-small-005] P2 .skilled/hooks/git-hooks-check/README.md:61 | EXPECTED-FIXED
+  finding: The OpenCode row says "Not applicable. OpenCode session guards run inside the owning `mk-*` plugins; this check is wired into the editor runtimes' SessionStart chains." OpenCode does run this check: `.skilled/plugins/session-cleanup.js:33` lists `check-git-hooks.sh` in `GUARD_SCRIPTS` and executes it on `session.created` (lines 78-96), and `session-cleanup/README.md:31` documents it. The `mk-*` name is also the retired prefix; every live plugin is `.skilled/plugins/system-*` (`env-aliases.cjs:1-10` describes that rename).
+  fix: Replace the row with the OpenCode delivery actually implemented (plugin `event` on `session.created`, via the session-cleanup startup guards) and name the plugin, as `session-cleanup/README.md` does.
+
+[b11-hooks-shared-and-small-007] P2 .skilled/hooks/git-worktree-guard/README.md:51 | EXPECTED-FIXED
+  finding: Same false "Not applicable" as finding 005: OpenCode runs `worktree-guard.sh` from `.skilled/plugins/session-cleanup.js:32` on `session.created`, and `coverage-rationale.md:45-47` states it explicitly ("OpenCode's `session-cleanup` plugin executes `worktree-guard.sh`"). The cell also calls the plugins `mk-*`, a prefix no live plugin carries.
+  fix: Replace the OpenCode row with the session-cleanup plugin delivery and name the real plugin.
+
+[b11-hooks-shared-and-small-008] P2 .skilled/hooks/git/README.md:16 | EXPECTED-FIXED
+  finding: "`install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory" is not what the script does. `install-hooks.sh:17` hardcodes `HOOKS_DEST="$REPO_ROOT/.git/hooks"`, so it never asks git for the effective path (`git rev-parse --git-path hooks`) and ignores `core.hooksPath`. In a linked worktree `.git` is a file (this checkout: `.git` is a 126-byte file), so the symlink target does not exist.
+  fix: After fixing finding 011, either keep the claim and make the script resolve the path, or word it as "the repo's `.git/hooks` directory".
+
+[b11-hooks-shared-and-small-009] P2 .skilled/hooks/git/README.md:36 | EXPECTED-FIXED
+  finding: The documented block output `BLOCKED: <N> file(s) contain ephemeral-artifact pointers in code comments.` does not match the hook, which prints `BLOCKED: staged files contain ephemeral-artifact pointers in code comments.` (`.skilled/hooks/git/pre-commit:71`) with no count and different wording. A reader grepping for the real line finds nothing.
+  fix: Paste the hook's actual line into the example.
+
+[b11-hooks-shared-and-small-010] P2 .skilled/hooks/git/README.md:29 | EXPECTED-FIXED
+  finding: The mirror-gate scope is stated as "Staged agent files under `.skilled/agents/` or `.claude/agents/`", but the hook matches four roots: the `grep -E` alternation over `opencode`, `skilled`, `claude` and `codex` followed by `/agents/` at `.skilled/hooks/git/pre-commit:85`. The documented block text at line 44 (".skilled / .claude mirrors") also differs from the hook's `.opencode / .claude mirrors` (pre-commit:94).
+  fix: State all four matched roots and quote the hook's actual block text.
+
+[b11-hooks-shared-and-small-012] P2 .skilled/hooks/git/pre-commit:1 | EXPECTED-FIXED
+  finding: The file opens with `#!/usr/bin/env bash` and five prose comment lines, with no `COMPONENT:` divider block. `verify_alignment_drift.py` supports `.sh` and named hook files but skipped this extensionless hook, so the verifier's silence here is a coverage gap, not a pass.
+  fix: Insert the standard divider header (`# ─────` / `# COMPONENT: GIT COMMENT-HYGIENE PRECOMMIT` / `# ─────`) directly under the shebang, above the existing description, and keep `set -euo pipefail` where it is.
+
+[b11-hooks-shared-and-small-017] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:101 | EXPECTED-FIXED
+  finding: The comment above `candidateServerTokens` stops mid-sentence: "Longest-token-first avoids a short" with no object, and it describes the split-point rule of `parseOpenCodeShape` (line 112) rather than the token list it sits over.
+  fix: Complete the sentence (e.g. "... avoids a short server token swallowing a longer one") and move it directly above `parseOpenCodeShape`.
+
+[b11-hooks-shared-and-small-018] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:226 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The core's own kill-switch test is `environment[DISABLED_ENV] === '1'`, narrower than the documented truthy set. Every live adapter pre-checks with `isHookEnabled`, which accepts `true`/`yes`/`on`, so the two layers disagree for any caller that reaches `evaluateNativeMcpCall` directly (the tests do, and an OpenCode-side caller could). `MCP_ROUTE_GUARD_DISABLED=true` therefore disables the hook through the adapters but not through the core.
+  fix: Reuse one truthy test in the core (import `isTruthy` from `../../shared/hook-flags.cjs`, matching how the adapters already reach that file) or document the single-value contract on the constant.
+
+[b11-hooks-shared-and-small-019] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs:43 | EXPECTED-FIXED
+  finding: `INTERNAL_EXACT_TOKENS` repeats two of the three `INTERNAL_RAW_TOKENS` entries (`code_mode`, `sequential_thinking`), and the third (`system_skill_advisor`) is already covered by the `system_` prefix test at line 74. Two lists must now stay in sync, and only one is exported.
+  fix: Build the Set from `INTERNAL_RAW_TOKENS`, or drop the Set and test `INTERNAL_RAW_TOKENS.includes(normalized)` in `isInternalServerToken`.
+
+[b11-hooks-shared-and-small-020] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with a prose test map and `'use strict';` at line 22, with no `MODULE:` divider block. The prose header describes the suite well, so only the marker is missing.
+  fix: Add the `// ─── MODULE: MCP Route Guard Core Tests ───` divider above the existing prose map, keeping `'use strict'` after it.
+
+[b11-hooks-shared-and-small-021] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:149 | EXPECTED-FIXED
+  finding: Lines 149 and 150 are the same assertion twice (`isInternalServerToken('system_skill_advisor')` with the same message). The `mk_` pre-rename branch at `mcp-route-guard.cjs:74`, and the fact that a bare `code_mode` is internal by exact token rather than prefix, are the cases the second line would have covered; both stay untested.
+  fix: Change line 150 to a distinct case, e.g. `assert.ok(guardCore.isInternalServerToken('mk_code_graph'), 'mk_ prefix is internal')`.
+
+[b11-hooks-shared-and-small-022] P2 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs:259 | EXPECTED-FIXED
+  finding: `runClaudeHook` builds `env: { ...process.env, ...extraEnv }`, so the suite inherits the developer's kill switches, and the adapter separately reads the on-disk `.skilled/hooks/hook-flags.env` when no env is passed. With `MCP_ROUTE_GUARD_DISABLED=1` (or `true`/`yes`/`on`) exported, or that flag saved in the gitignored config file, the three integration tests at 263-311 that assert `additionalContext` fail for a reason unrelated to the code. `hook-stdin-deadline.test.mjs:76-83` already scrubs `*_DISABLED` names and points `HOOK_FLAGS_CONFIG` at an absent path for exactly this reason.
+  fix: Reuse that `hookEnv()` pattern here: delete every `*_DISABLED` key and set `HOOK_FLAGS_CONFIG` to a non-existent temp path before spawning.
+
+[b11-hooks-shared-and-small-023] P2 .skilled/hooks/session-lifecycle/README.md:23 | EXPECTED-FIXED
+  finding: "its session events run inside the owning `mk-*` plugins" names a plugin family that no longer exists. Every live OpenCode plugin is `.skilled/plugins/system-*` (`system-skill-advisor.js`, `opencode-goal.js`, `session-cleanup.js`, ...), and `mk_` is the retired prefix documented in `env-aliases.cjs:1-10`. The same phrase appears in the frontmatter description (line 3) and the §3 table (line 60).
+  fix: Name the actual plugins, as `coverage-rationale.md:32` does ("distributed across `system-skill-advisor`, `opencode-goal`, etc."), in all three places.
+
+[b11-hooks-shared-and-small-024] P2 .skilled/hooks/session-lifecycle/README.md:60 | EXPECTED-FIXED
+  finding: The OpenCode row's cells open with stray commas: the row reads `**OpenCode**`, then `, (by-design)`, `—`, `, by-design: session events run inside ...`, `, by-design`. The rest of the table uses plain markers, so the status of this row is unreadable and the table renders with empty-looking cells.
+  fix: Drop the leading comma in each cell of that row, matching the `by-design` spelling used in `permission-policy/README.md:52-56`.
+
+[b11-hooks-shared-and-small-025] P2 .skilled/hooks/shared/README.md:48 | EXPECTED-FIXED
+  finding: "The resolver family currently gates 22 concerns" lists 22 names and omits four live consumers of the same resolver: `injection-screen` (`.skilled/plugins/classifier-injection-screen.js:60`), `session-relaunch` (`.skilled/plugins/session-relaunch.js:197`), `sk-vision` (`.skilled/hooks/sk-vision/devin/sk-vision.mjs:68`) and `primary-reconcile` (`.skilled/bin/git-primary-reconcile.sh:178`). hooks/README.md's index lists all four, so the two docs give different totals.
+  fix: Say "22 Node-resolver concerns plus the shell-only legs" or add the four names and change the count to 26.
+
+[b11-hooks-shared-and-small-026] P2 .skilled/hooks/shared/README.md:59 | EXPECTED-FIXED
+  finding: The §4 directory tree lists `hook-flags.test.cjs` but not `hook-adapter-shared.test.cjs`, which exists on disk and is referenced twice by this same file (§5 line 78 "KEY FILES" and §8 line 140 validation command). The tree is presented as the folder's inventory.
+  fix: Add `+-- hook-adapter-shared.test.cjs   # node --test suite: stdin deadline and whole-input read` before the `hook-stdin-deadline` line.
+
+[b11-hooks-shared-and-small-027] P2 .skilled/hooks/shared/env-aliases.cjs:1 | EXPECTED-FIXED
+  finding: The file begins with `"use strict";` and a 10-line comment, with no `MODULE:` divider block. `shared/hook-adapter-shared.cjs:1-4` in the same folder shows the required form.
+  fix: Add `// ─── MODULE: Hook Env Aliases ───` above the existing explanation and keep `'use strict'` first.
+
+[b11-hooks-shared-and-small-028] P2 .skilled/hooks/shared/env-aliases.cjs:31 | EXPECTED-FIXED
+  finding: `SKIP_PREFIXES` is permanently empty and exists only as scaffolding: the constant (31), the skip loop it drives (35-37), the comment explaining that nothing is skipped any more (30), and the export (57). The loop can never skip a key, so the branch is dead.
+  fix: Delete the constant, the loop, the comment and the export; `newNameFor` then reads as one prefix walk.
+
+[b11-hooks-shared-and-small-029] P2 .skilled/hooks/shared/hook-adapter-shared.test.cjs:1 | EXPECTED-FIXED
+  finding: The file opens with `"use strict";` at line 1 and has no `MODULE:` divider block. Its sibling `hook-stdin-deadline.test.mjs:1-5` carries the header form this tree expects.
+  fix: Add `// ─── MODULE: Shared Hook Adapter Tests ───` above the requires.
+
+[b11-hooks-shared-and-small-030] P2 .skilled/hooks/shared/hook-adapter-shared.test.cjs:42 | EXPECTED-FIXED
+  finding: `elapsedMs >= 2950 && elapsedMs < 4500` leaves 1.5 s for a cold `node` start plus the 3 s deadline. On a loaded CI box or under coverage instrumentation the child's start-up alone can exceed that, so the test flakes while the reader is correct; the killer timer above it already permits 13 s.
+  fix: Raise the upper bound to the suite's own margin (e.g. `< 8000`, as `hook-stdin-deadline.test.mjs:38` uses `LATEST_EXIT_MS = 8000`) and keep the 2950 ms lower bound.
+
+[b11-hooks-shared-and-small-031] P2 .skilled/hooks/shared/hook-flags.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with `"use strict";` and a 15-line comment, with no `MODULE:` divider block. This is the canonical module every other resolver flavour facades over, so it is the one file in `shared/` where the missing identity marker is most visible.
+  fix: Add `// ─── MODULE: Hook Kill-Switch Resolver ───` above the existing explanation; keep `'use strict'` as the first statement.
+
+[b11-hooks-shared-and-small-032] P2 .skilled/hooks/shared/hook-flags.cjs:1 | EXPECTED-FIXED
+  finding: At 220 lines the file crosses the numbered-divider threshold with zero `// N. SECTION NAME` rules, while its own dependency `env-aliases.cjs` and the sibling hooks use them. The logical sections (constants, config file, truthy/resolve, exported API) are only implied by comments.
+  fix: Add the standard dividers in the guide's order: `1. IMPORTS`, `2. CONSTANTS`, `3. HELPERS` (truthy, config parse/cache), `4. CORE LOGIC` (`isHookEnabled`, `isFlagOn`, `concernFlag`), `5. EXPORTS`.
+
+[b11-hooks-shared-and-small-033] P2 .skilled/hooks/shared/hook-flags.mjs:1 | EXPECTED-FIXED
+  finding: The file opens with a three-line prose comment; there is no `MODULE:` divider block, though its TypeScript twin `hook-flags.ts:1-3` has one for the same facade.
+  fix: Add `// ─── MODULE: Hook Flags ESM Facade ───` above the existing comment, matching `hook-flags.ts`.
+
+[b11-hooks-shared-and-small-034] P2 .skilled/hooks/shared/hook-flags.sh:1 | EXPECTED-FIXED
+  finding: The file has the portable shebang and a usage/description comment block, but no `COMPONENT:` divider block, unlike every other shell entrypoint in this tree (`.skilled/hooks/git/install-hooks.sh:2-4`, `.skilled/bin/worktree-guard.sh:2-4`).
+  fix: Insert the divider header directly under the shebang, before the `# Usage:` line, and keep the existing description below it.
+
+[b11-hooks-shared-and-small-035] P2 .skilled/hooks/shared/hook-flags.test.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with `"use strict";` and no `MODULE:` divider block, so the suite that every resolver flavour is verified by is the only one under `shared/` without the marker.
+  fix: Add `// ─── MODULE: Hook Kill-Switch Resolver Tests ───` above the requires.
+
+[b11-hooks-shared-and-small-036] P2 .skilled/hooks/shared/hook-flags.test.cjs:94 | EXPECTED-FIXED
+  finding: The case named "explicit env without a config arg ignores the config file (test isolation)" asserts only `isHookEnabled("skill-advisor", {}) === true`. With an explicit `{}` env the correct implementation and a config-reading regression both return `true` unless the developer's gitignored `.skilled/hooks/hook-flags.env` happens to disable `skill-advisor`, so the test passes today without exercising the behaviour it names, and its outcome depends on local untracked state.
+  fix: Point `HOOK_FLAGS_CONFIG` at a temp file that sets `SYSTEM_SKILL_ADVISOR_DISABLED=1`, reload with `_resetConfigCache()`, then assert the explicit-env call is still enabled and the no-arg call is disabled.
+
+[b11-hooks-shared-and-small-037] P2 .skilled/hooks/vitest.config.ts:11 | EXPECTED-FIXED
+  finding: `OPENCODE_ROOT` holds `path.join(REPO_ROOT, '.skilled')`, and the alias at line 32 rewrites both `.skilled/` and `.opencode/` prefixes onto it. The name says the opposite tree from the one it points at, which is exactly the confusion the two-root convention creates.
+  fix: Rename to `SOURCE_ROOT` (or `SKILLED_ROOT`) and update the two uses at lines 12 and 32.
+
+[b11-hooks-shared-and-small-N01] P1 .skilled/hooks/shared/hook-adapter-shared.cjs:26 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `readStdin` retains every chunk until its 3-second deadline, then concatenates without a byte cap; a large stream can exhaust memory across adapters
+  fix: Cap bytes read and fail open on overflow
+

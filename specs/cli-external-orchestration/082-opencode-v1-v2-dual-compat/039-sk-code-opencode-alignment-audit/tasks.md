@@ -32,8 +32,8 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Create the worktree and this packet, register 039 in the parent
-- [ ] T002 Record the file list, symlinks and the verifier baseline (scratch/)
-- [ ] T003 Record the suite baselines (scratch/)
+- [x] T002 Record the file list, symlinks and the verifier baseline (scratch/)
+- [x] T003 Record the suite baselines (scratch/)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,10 +41,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P] Review each batch and record candidate findings (scratch/batches/)
-- [ ] T005 Confirm each finding with the independent reviewer
-- [ ] T006 Fix each confirmed finding in one-change briefs
-- [ ] T007 Review the scanner helper after phase 038 lands
+- [x] T004 [P] Review each batch and record candidate findings (scratch/batches/)
+- [x] T005 Confirm each finding with the independent reviewer
+- [x] T006 Fix each confirmed finding in one-change briefs
+- [x] T007 Review the scanner helper after phase 038 lands
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,9 +52,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Rerun the plugin, battery, purity and hook suites and the verifier
-- [ ] T009 Write review.md with one row per file and check it against git ls-files
-- [ ] T010 Validate the packet, merge main, push and record CI
+- [x] T008 Rerun the plugin, battery, purity and hook suites and the verifier
+- [x] T009 Write review.md with one row per file and check it against git ls-files
+- [x] T010 Validate the packet, merge main, push and record CI
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -62,9 +62,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -1,0 +1,47 @@
+VERDICTS
+b09-hooks-dispatch-001 | FIXED | README.md:40,44-71,127 lists all 28 checks and covers the headless shapes.
+b09-hooks-dispatch-002 | FIXED | README.md:87,94,96 documents Cursor and OpenCode preflights; `.cursor/hooks.json:82` and `cli-dispatch-audit.js:71` confirm their wiring.
+b09-hooks-dispatch-003 | FIXED | README.md:16 and the Codex/Devin adapter headers now use `codex exec` without `-p`.
+b09-hooks-dispatch-004 | FIXED | `.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:27` points to the shared `DISPATCH_SHAPES` registry.
+b09-hooks-dispatch-005 | FIXED | `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:24-32` clears all documented dispatch switches.
+b09-hooks-dispatch-006 | HELD | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:250,286` still recognizes bare `codex exec` directly but requires `-p` in text detection.
+b09-hooks-dispatch-008 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:1-14` has the module header.
+b09-hooks-dispatch-009 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:16,37,537,730` has numbered Format A sections.
+b09-hooks-dispatch-010 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:1-5` has the module header.
+b09-hooks-dispatch-011 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:4-5` names the pinned Vitest command.
+b09-hooks-dispatch-012 | HELD | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:287-288` still requires `-p` or `--print` immediately after `claude`.
+b09-hooks-dispatch-013 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:1-11` has the module header.
+b09-hooks-dispatch-014 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:13,22,42,148,294` has numbered Format A sections.
+b09-hooks-dispatch-015 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:1-3` has the module header.
+b09-hooks-dispatch-016 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:900-901` places the loop body on its own line with two-space indentation.
+b09-hooks-dispatch-017 | FIXED | `.skilled/hooks/dispatch/pi/directive-dedup.test.ts:1-5` has the module header above imports.
+b09-hooks-dispatch-018 | FIXED | `.skilled/hooks/dispatch/pi/directive-dedup.test.ts:5,22-34` uses single-quoted string literals.
+b09-hooks-dispatch-019 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-audit.ts:5-18` orders imports and uses single-quoted literals.
+b09-hooks-dispatch-020 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:1-8` has the module header above imports.
+b09-hooks-dispatch-021 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:5-18` uses single-quoted string literals.
+b09-hooks-dispatch-022 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:5-17,33-48,199-240` has numbered sections in order.
+b09-hooks-dispatch-023 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:9-13` orders imports and uses single-quoted literals.
+b09-hooks-dispatch-N01 | HELD | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:261-263` still returns on `inspection.kind === 'none'` before authorization.
+b09-hooks-dispatch-N02 | HELD | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:44,214-216` still accepts matching deep-loop executor mentions without quote or negation checks.
+b09-hooks-dispatch-N03 | HELD | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:530-533` still returns the first resolved dispatch in a command.
+b09-hooks-dispatch-N04 | HELD | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:49,197-201` still checks stdin redirects and model flags with raw command regexes.
+b09-hooks-dispatch-N05 | HELD | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:446,530` still strips heredoc bodies before resolving dispatches.
+b09-hooks-dispatch-N06 | HELD | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs:358-360` still matches only direct inspections.
+b09-hooks-dispatch-N07 | HELD | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:66` still matches the raw registry against the command.
+b09-hooks-dispatch-N08 | HELD | `.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:62` still matches the raw registry against the command.
+b09-hooks-dispatch-N09 | FIXED | `.skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:20-25` puts the Node import before local imports.
+b09-hooks-dispatch-N10 | FIXED | `.skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs:21-26` puts the Node import before local imports.
+b09-hooks-dispatch-N11 | FIXED | `.skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs:20-25` puts the Node import before local imports.
+b09-hooks-dispatch-N12 | FIXED | `.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:21-25` separates Node and local import groups.
+b09-hooks-dispatch-N13 | FIXED | `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:21-32` separates Node and local import groups.
+b09-hooks-dispatch-N14 | FIXED | `.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:20-31` separates Node and local import groups.
+b09-hooks-dispatch-N15 | FIXED | `.skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:18-22` separates Node and local import groups.
+b09-hooks-dispatch-N16 | FIXED | `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:8-14` puts Node imports before Vitest.
+b09-hooks-dispatch-N17 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:7-26` groups Node, Vitest and local imports at the top.
+b09-hooks-dispatch-N18 | FIXED | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:6-22` separates Node and local import groups.
+b09-hooks-dispatch-N19 | FIXED | `.skilled/hooks/dispatch/pi/directive-dedup.test.ts:5-18` puts the type-only import after value imports.
+b09-hooks-dispatch-N20 | FIXED | `.skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:5-18` puts the type-only import after value imports.
+
+NEW
+
+SUMMARY: fixed=32 partial=0 not_fixed=0 wrong=0 held=10 changed=0 new_p0=0 new_p1=0

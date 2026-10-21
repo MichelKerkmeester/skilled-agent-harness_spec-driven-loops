@@ -1,0 +1,18 @@
+VERDICTS
+b01-plugins-goal-002 | CONFIRMED | P0 | opencode-goal.js:443,1217,1859-60 lets a persisted ID containing `../` reach `writeFile`; universal-checklist.md §2 says “Reject traversal/symlink escape attempts before create/move/delete.” A tampered ID can write outside `.archive`. behaviour-change: yes
+b01-plugins-goal-003 | CONFIRMED | P1 | opencode-goal.js:1705,1719-22 serializes mutations only in-process, then deletes on `null`; concurrent goal creation can be removed. security-checklist.md §6 flags “Check-then-act without atomicity.” behaviour-change: yes
+b01-plugins-goal-004 | CONFIRMED | P1 | opencode-goal.js:2471-72 sends stored prompt fields while 2790-98 re-reads the bound packet for injection, so continuation can use stale criteria. review-core.md §6 lists “spec mismatch.” behaviour-change: yes
+b01-plugins-goal-005 | CONFIRMED | P1 | opencode-goal.js:1821-22 replaces the record without archiving it; the shared core archives replacements, so history loses the prior goal. review-core.md §6 lists “contract safety” and “spec mismatch.” behaviour-change: yes
+b01-plugins-goal-001 | CONFIRMED | P2 | opencode-goal.js:1508 uses one archive path per session, so `rename` replaces an earlier archive if an ID is reused; review-core.md §6 flags “destructive side effects.” P2 fits this conditional lifecycle case. behaviour-change: yes
+b01-plugins-goal-008 | CONFIRMED | P2 | opencode-goal.js:1005 converts `null` and `''` to `0`, masking a later 429 value. code-quality-checklist.md §4 flags “Null/undefined handling.” behaviour-change: yes
+b01-plugins-goal-006 | REJECTED | none | The cited overview-and-module-organization.md has no §2 file-length rule; the matching guideline is in another file. behaviour-change: no
+b01-plugins-goal-007 | REJECTED | none | code-quality-checklist.md §6 says “Repeated logic with inconsistent behavior,” but no inconsistent runtime behavior is shown. The unused helper is reported separately under the JavaScript style rule. behaviour-change: no
+JS-USE-STRICT | REJECTED | none | The core file is ESM under `.opencode/package.json`; javascript/style-guide.md §3 exempts plugin ESM from `'use strict'`. behaviour-change: no
+
+NEW
+.opencode/plugins/opencode-goal.js:1925 | P1 | review-core.md §6, “spec mismatch” | `clearGoal` deletes the record without archiving it as cleared; the shared core archives cleared goals, so plugin history loses them | Archive the cleared record before deleting active state | behaviour-change: yes
+.opencode/plugins/opencode-goal.js:3383 | P2 | organization-security-and-examples.md §2 FILE ORGANIZATION, File Length Guidelines, “Main entry point,” “400 lines,” “Extract modules” | The 3,383-line plugin entry point exceeds the recommended limit | Extract state, verifier, continuation, rendering and tool logic into modules | behaviour-change: no
+.opencode/plugins/opencode-goal.js:11 | P2 | javascript/style-guide.md §6 LINE LENGTH, “Maximum: 100 characters” | The import line is 117 characters | Wrap the named imports across lines | behaviour-change: no
+.opencode/plugins/opencode-goal.js:2065 | P2 | javascript/style-guide.md §7 COMMENTING RULES, “Delete unused code (git preserves history)” | `refreshGoalActivity` has no callers | Remove the unused helper | behaviour-change: no
+
+SUMMARY: confirmed=6 rejected=3 new=4 P0=1 P1=4 P2=5

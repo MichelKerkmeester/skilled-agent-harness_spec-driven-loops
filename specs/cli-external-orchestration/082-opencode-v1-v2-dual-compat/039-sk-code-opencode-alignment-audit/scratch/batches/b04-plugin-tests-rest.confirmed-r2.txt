@@ -1,0 +1,68 @@
+[b04-plugin-tests-rest-001] P2 .opencode/plugins/tests/claude-fable-subagent-guard.test.cjs:33 | EXPECTED-FIXED
+  finding: `transcript()` creates a module-level temp directory with `mkdtempSync` and no test or `after()` hook removes it; every run leaves `fable-guard-*.jsonl` under the OS temp directory.
+  fix: Create the directory once per test with `t.after` cleanup, or add an `after()` hook that removes the directory.
+
+[b04-plugin-tests-rest-002] P1 .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:298 | EXPECTED-FIXED
+  finding: The comment names review finding `R3-P1-001`; the id dangles once the review packet is archived. The durable reason is that a bare iteration marker must not act as an envelope.
+  fix: Drop the id and keep the durable WHY.
+
+[b04-plugin-tests-rest-003] P1 .opencode/plugins/tests/helpers/continuation-log.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with `'use strict';` and has no module header identifying the component.
+  fix: Add the `// ─── MODULE: ... ───` divider header above the strict-mode directive.
+
+[b04-plugin-tests-rest-004] P2 .opencode/plugins/tests/helpers/continuation-log.cjs:6 | EXPECTED-FIXED
+  finding: `readContinuationEntries` and `restoreEnv` are exported at lines 24-27 but carry no JSDoc.
+  fix: Add JSDoc with the state-dir parameter, return value, and behavior for both exports.
+
+[b04-plugin-tests-rest-005] P2 .opencode/plugins/tests/mcp-route-guard.test.cjs:1 | EXPECTED-FIXED
+  finding: The module divider on lines 1 and 3 has 63 box-drawing characters, not the required 67; this is not one of the accepted legacy header shapes.
+  fix: Extend both divider lines to 67 box-drawing characters.
+
+[b04-plugin-tests-rest-006] P2 .opencode/plugins/tests/session-relaunch.test.cjs:900 | EXPECTED-FIXED
+  finding: In the two multi-line `test()` calls, the callback body starts at the same two-space indent as the `async (t) =>` parameter (lines 900-928 and 934-962), while lines 926-927 jump to four spaces; the block does not follow the guide's two-space-per-level indentation.
+  fix: Indent each callback body one level (four spaces) and align the closing `},` with the `async` parameter.
+
+[b04-plugin-tests-rest-007] P2 .opencode/plugins/tests/sk-git-message-gate.test.cjs:52 | EXPECTED-FIXED
+  finding: Each test removes its temp repository only after its assertions, so a failing assertion leaves the repository behind; the first cleanup is line 52 and the pattern repeats at lines 60, 67, and 77.
+  fix: Register `t.after(() => fs.rmSync(dir, { recursive: true, force: true }))` in `makeRepo`, or wrap each test body in `try/finally`.
+
+[b04-plugin-tests-rest-008] P1 .opencode/plugins/tests/source-root-consumers.test.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with `'use strict';` and has no module header identifying the component.
+  fix: Add the `// ─── MODULE: ... ───` divider header above the strict-mode directive.
+
+[b04-plugin-tests-rest-009] P2 .opencode/plugins/tests/system-completion-sentinel.test.cjs:74 | EXPECTED-FIXED
+  finding: The stale-entry ages `isoDaysAgo(40)` at line 74 and `isoDaysAgo(400)` at line 98 are bare magic numbers; the core default retention is 30 days, but the test does not tie the values to that constant or explain the margin.
+  fix: Use `sentinelCore.DEFAULT_RETENTION_DAYS` plus a documented margin, or name and comment the 40-day and 400-day ages as beyond the retention window.
+
+[b04-plugin-tests-rest-010] P1 .opencode/plugins/tests/system-deep-loop-guard.test.cjs:223 | EXPECTED-FIXED
+  finding: The review id `R3-P1-001` appears in comments at lines 223 and 253; both will dangle. The durable reason is the bare-marker and ghost-config forgery behavior described below them.
+  fix: Remove the id from both comments and keep the behavioral WHY.
+
+[b04-plugin-tests-rest-011] P2 .opencode/plugins/tests/system-dist-freshness-guard.test.cjs:131 | EXPECTED-FIXED
+  finding: `runTrapped()` replaces only `console.warn`, `console.error`, and `console.log`; it does not trap `process.stdout.write` or `process.stderr.write`, so the test named "without terminal output" cannot detect a plugin that writes directly to those streams.
+  fix: Trap `process.stdout.write` and `process.stderr.write` in `runTrapped()`, as the classifier-injection-screen test already does, and restore them in `finally`.
+
+[b04-plugin-tests-rest-012] P2 .opencode/plugins/tests/system-skill-advisor.test.cjs:210 | EXPECTED-FIXED
+  finding: `makeAdvisorFixture()` deletes `SYSTEM_SKILL_ADVISOR_DB_DIR` and `MK_SKILL_ADVISOR_DB_DIR` from the shared `process.env` and never restores them; later tests in the same process inherit the mutation.
+  fix: Save the prior values and restore them in the fixture teardown, or pass an explicit environment object into the fixture.
+
+[b04-plugin-tests-rest-013] P1 .opencode/plugins/tests/system-spec-gate.test.cjs:126 | EXPECTED-FIXED
+  finding: Section comments label work with `P1 fix`, `P2 fix`, `WS1`, and `WS4`; these are ephemeral finding and workstream ids. The durable contract is the context behavior described below each label.
+  fix: Remove the ids and keep the behavioral WHY; apply the same cleanup at lines 226, 272-273, 315, and 386.
+
+[b04-plugin-tests-rest-014] P2 .opencode/plugins/tests/system-spec-gate.test.cjs:277 | EXPECTED-FIXED
+  finding: This test never clears `AI_SESSION_CHILD`; when it is `1` (the dispatched-child environment), `classifyIntent` returns closed before opening the gate and `tool.execute.before` returns allow before reading gate state, so the assertions pass without exercising the enforce-unset non-denial path the test name claims. Sibling tests at lines 132, 230, and 323 wrap `withEnv('AI_SESSION_CHILD', undefined, ...)`.
+  fix: Wrap the test body in `withEnv('AI_SESSION_CHILD', undefined, ...)` so the gate is actually opened.
+
+[b04-plugin-tests-rest-N01] P2 .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:117 | EXPECTED-FIXED
+  finding: The temp directory is removed only after the assertions, so a failure leaves it behind.
+  fix: Register teardown with `t.after` or use `finally`.
+
+[b04-plugin-tests-rest-N02] P2 .opencode/plugins/tests/system-deep-loop-guard.test.cjs:79 | EXPECTED-FIXED
+  finding: The temp directory is removed only after the assertions, so a failure leaves it behind.
+  fix: Use `finally` or register teardown.
+
+[b04-plugin-tests-rest-N03] P2 .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:616 | EXPECTED-FIXED
+  finding: The test deletes the kill-switch variable instead of restoring its prior value, affecting later tests when it was set in the environment.
+  fix: Save and restore the previous value.
+

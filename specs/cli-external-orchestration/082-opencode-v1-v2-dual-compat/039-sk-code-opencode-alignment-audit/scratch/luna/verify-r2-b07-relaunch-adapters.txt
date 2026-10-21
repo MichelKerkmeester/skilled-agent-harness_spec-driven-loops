@@ -1,0 +1,20 @@
+VERDICTS
+b07-relaunch-adapters-004 | FIXED | The comparison, function parameters and output call are wrapped without changing behavior at `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:161,248,300`.
+b07-relaunch-adapters-005 | NOT-FIXED | The arm and spawn flow remains duplicated across adapters at `.skilled/hooks/session-relaunch/codex/stop-arm.mjs:38`.
+b07-relaunch-adapters-006 | FIXED | Numbered sections were added, and the fallback remains 200000 tokens, at `.skilled/hooks/session-relaunch/hermes/context-nudge.mjs:5,25`.
+b07-relaunch-adapters-007 | FIXED | Numbered sections and JSDoc were added at `.skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:5,74`.
+b07-relaunch-adapters-008 | NOT-FIXED | The test remains under `pi/`, and the README still lists it there at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:1` and `.skilled/hooks/session-relaunch/README.md:259`.
+b07-relaunch-adapters-009 | FIXED | Both `match!` uses now have justifications at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:641,667`.
+b07-relaunch-adapters-010 | FIXED | The arm call and test titles are split across lines at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:881,897,911`.
+b07-relaunch-adapters-011 | FIXED | The exported extension function now has TSDoc at `.skilled/hooks/session-relaunch/pi/session-relaunch.ts:317`.
+b07-relaunch-adapters-N01 | FIXED | The test environment and match assertions have justifications at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:113`.
+b07-relaunch-adapters-N02 | FIXED | The five module-boundary shapes are interfaces at `.skilled/hooks/session-relaunch/pi/session-relaunch.ts:19`.
+b07-relaunch-adapters-N03 | FIXED | Named defaults retain the prior values of 10, 10 and 20 at `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:415`.
+b07-relaunch-adapters-N04 | FIXED | The named fallback retains 200000 tokens at `.skilled/hooks/session-relaunch/hermes/context-nudge.mjs:25`.
+b07-relaunch-adapters-N05 | FIXED | The test title now uses single quotes at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:897`.
+b07-relaunch-adapters-N06 | FIXED | `armPendingRecord` now has JSDoc at `.skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:74`.
+b07-relaunch-adapters-N07 | FIXED | The stale age is named and explained at `.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:861`.
+
+NEW
+
+SUMMARY: fixed=13 partial=0 not_fixed=2 wrong=0 held=0 changed=0 new_p0=0 new_p1=0

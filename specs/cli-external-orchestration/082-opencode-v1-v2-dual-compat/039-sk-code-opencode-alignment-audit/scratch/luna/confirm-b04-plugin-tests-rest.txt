@@ -1,0 +1,22 @@
+VERDICTS
+b04-plugin-tests-rest-001 | CONFIRMED | P2 | The module-level temp directory has no teardown, contrary to test-quality-checklist.md §4.
+b04-plugin-tests-rest-002 | CONFIRMED | P1 | The comment includes ephemeral review ID `R3-P1-001`; raised from P2 because the no-pointer checklist rule is a must-fix gate, while review-core §2 reserves P0 for security or destructive data-loss blockers.
+b04-plugin-tests-rest-003 | CONFIRMED | P1 | The helper lacks the required module header; raised from P2 because the header checklist marks this a hard gate, while review-core §2 reserves P0 for security or destructive data-loss blockers.
+b04-plugin-tests-rest-004 | CONFIRMED | P2 | Both exported helpers lack the JSDoc required by javascript/style-guide.md §7.
+b04-plugin-tests-rest-005 | CONFIRMED | P2 | The divider has 63 characters where javascript/style-guide.md §2 requires 67.
+b04-plugin-tests-rest-006 | CONFIRMED | P2 | Both callback bodies are inconsistently indented, contrary to javascript/style-guide.md §6.
+b04-plugin-tests-rest-007 | CONFIRMED | P2 | Temp repositories are removed only after assertions, so a failure skips cleanup under test-quality-checklist.md §4.
+b04-plugin-tests-rest-008 | CONFIRMED | P1 | The file lacks the required module header; raised from P2 because the header checklist marks this a hard gate, while review-core §2 reserves P0 for security or destructive data-loss blockers.
+b04-plugin-tests-rest-009 | CONFIRMED | P2 | The 40- and 400-day ages are unexplained magic values under test-quality-checklist.md §3.
+b04-plugin-tests-rest-010 | CONFIRMED | P1 | Comments include ephemeral review ID `R3-P1-001`; raised from P2 because the no-pointer checklist rule is a must-fix gate, while review-core §2 reserves P0 for security or destructive data-loss blockers.
+b04-plugin-tests-rest-011 | CONFIRMED | P2 | The helper traps console calls but not direct stream writes, leaving the “without terminal output” boundary untested under test-quality-checklist.md §2.
+b04-plugin-tests-rest-012 | CONFIRMED | P2 | The fixture deletes shared environment variables without restoring them, contrary to test-quality-checklist.md §4.
+b04-plugin-tests-rest-013 | CONFIRMED | P1 | Section comments contain ephemeral workstream and priority labels; raised from P2 because the no-pointer checklist rule is a must-fix gate, while review-core §2 reserves P0 for security or destructive data-loss blockers.
+b04-plugin-tests-rest-014 | CONFIRMED | P2 | Ambient `AI_SESSION_CHILD` can bypass the path this test claims to exercise, contrary to test-quality-checklist.md §4.
+
+NEW
+.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs:117 | P2 | .skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md §4 — “Missing cleanup or teardown for resources created during test setup.” | The temp directory is removed only after the assertions, so a failure leaves it behind. | Register teardown with `t.after` or use `finally`. | behaviour-change: no
+.opencode/plugins/tests/system-deep-loop-guard.test.cjs:79 | P2 | .skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md §4 — “Missing cleanup or teardown for resources created during test setup.” | The temp directory is removed only after the assertions, so a failure leaves it behind. | Use `finally` or register teardown. | behaviour-change: no
+.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs:616 | P2 | .skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md §4 — “Shared mutable state between test functions without proper reset.” | The test deletes the kill-switch variable instead of restoring its prior value, affecting later tests when it was set in the environment. | Save and restore the previous value. | behaviour-change: no
+
+SUMMARY: confirmed=14 rejected=0 new=3 P0=0 P1=5 P2=12

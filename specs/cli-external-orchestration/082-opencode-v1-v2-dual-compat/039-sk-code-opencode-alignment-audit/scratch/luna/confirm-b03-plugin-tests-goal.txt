@@ -1,0 +1,22 @@
+VERDICTS
+b03-plugin-tests-goal-001 | CONFIRMED | P2 | goal-doc-contract.test.cjs:39,131 silently skips unreadable contract files, so a missing document can pass unchecked.
+b03-plugin-tests-goal-002 | CONFIRMED | P2 | lifecycle.test.cjs:95, duplicated at state.test.cjs:58, reads whole files for presence checks; callers only pass file paths.
+b03-plugin-tests-goal-003 | CONFIRMED | P2 | lifecycle.test.cjs:773 can spin forever if the verifier never starts, hanging the test instead of failing.
+b03-plugin-tests-goal-004 | CONFIRMED | P2 | lifecycle.test.cjs:998 cannot distinguish a missing state directory from a newly created empty one.
+b03-plugin-tests-goal-005 | CONFIRMED | P2 | lifecycle.test.cjs:1152-1165 couples race scheduling to the internal `sweepJsonParse` metric assignment.
+b03-plugin-tests-goal-006 | CONFIRMED | P2 | render-parity.test.cjs:8,43 claims only usage differs, but the Pi/OpenCode role text also differs inside the unasserted `goal_prompt`.
+b03-plugin-tests-goal-007 | CONFIRMED | P2 | render-parity.test.cjs:90,109 requires imports inside test bodies despite the existing top-level fs import.
+b03-plugin-tests-goal-008 | CONFIRMED | P2 | state.test.cjs:504-525 patches global `RegExp.prototype.test` and counts implementation-specific patterns already covered by the metric assertion.
+b03-plugin-tests-goal-009 | CONFIRMED | P2 | supervisor.test.cjs:491 can fail a correct timeout if event-loop delay pushes elapsed time past 500 ms.
+b03-plugin-tests-goal-010 | CONFIRMED | P2 | tool-path.test.cjs:121 compares a default-generated ID to a literal, so it does not detect reuse of the prior goal ID.
+b03-plugin-tests-goal-011 | CONFIRMED | P2 | tool-path.test.cjs:157 defaults missing `key_files` to an empty list, making the regression check vacuous.
+b03-plugin-tests-goal-012 | CONFIRMED | P2 | tool-path.test.cjs:172 places an fs import after the test cases instead of in the import group.
+
+NEW
+.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:14 | P2 | .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md § 8 IMPORT ORDER | Local helper import shares the Node built-in group without a blank separator. | Add a blank line before the local require. | behaviour-change: no
+.opencode/plugins/tests/opencode-goal-continuation.test.cjs:14 | P2 | .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md § 8 IMPORT ORDER | Local helper import shares the Node built-in group without a blank separator. | Add a blank line before the local require. | behaviour-change: no
+.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:14 | P2 | .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md § 8 IMPORT ORDER | Local helper import shares the Node built-in group without a blank separator. | Add a blank line before the local require. | behaviour-change: no
+.opencode/plugins/tests/opencode-goal-state.test.cjs:15 | P2 | .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md § 8 IMPORT ORDER | Local helper import shares the Node built-in group without a blank separator. | Add a blank line before the local require. | behaviour-change: no
+.opencode/plugins/tests/opencode-goal-tool-path.test.cjs:169 | P2 | .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md § 4 SECTION ORGANIZATION | The explicit section divider is unnumbered. | Add a section number to the divider. | behaviour-change: no
+
+SUMMARY: confirmed=12 rejected=0 new=5 P0=0 P1=0 P2=17

@@ -1,0 +1,140 @@
+[b10-hooks-quality-screen-task-002] P2 .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs:19 | EXPECTED-FIXED
+  finding: `tempDir` and `stubJev` create `mkdtempSync` directories for every case (the fixture root, the stub `bin`, and the absent-config directory), and no test removes them. Each run leaves twelve `injection-screen-*` trees in the OS temp directory (a `bin` and a `cfg` directory per case).
+  fix: Track the roots created by `tempDir` and remove them with `rmSync(..., { recursive: true, force: true })` in an `after` hook.
+
+[b10-hooks-quality-screen-task-003] P2 .skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs:19 | EXPECTED-FIXED
+  finding: `tempDir` and `stubJev` create `mkdtempSync` directories for every case, including the stub `bin` and the absent-config directory, and the suite never removes them.
+  fix: Track the fixture roots and remove them in an `after` hook with `rmSync(..., { recursive: true, force: true })`.
+
+[b10-hooks-quality-screen-task-004] P2 .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:15 | EXPECTED-FIXED
+  finding: The file uses double-quoted string literals throughout the imports, the `ADVISORY` constant, the handler type, the fixture objects, and the assertions.
+  fix: Convert string literals to single quotes, using double quotes only where escaping would otherwise be required.
+
+[b10-hooks-quality-screen-task-005] P1 .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:39 | EXPECTED-FIXED
+  finding: The `afterEach` clears only `SYSTEM_INJECTION_SCREEN_DISABLED`. The factory also honors `SYSTEM_HOOKS_DISABLED`, `JEV_FEATURES`, `JEV_FEATURE_INJECTION_SCREEN`, and the persisted hook-flags file, so a developer or CI shell with `SYSTEM_HOOKS_DISABLED=1` makes the "appends the advisory" case fail because `injectionScreen` registers nothing. The node adapter tests explicitly delete every disable name for this reason.
+  fix: Save and delete all hook/Jev disable names in `beforeEach`, restore them in `afterEach`, and point `HOOK_FLAGS_CONFIG` at a missing file.
+
+[b10-hooks-quality-screen-task-006] P2 .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts:15 | EXPECTED-FIXED
+  finding: The file uses double-quoted literals for the package import, the hook-flags import, `FETCH_TOOL`, the option type keys, and every string comparison and callback return.
+  fix: Convert string literals to single quotes, using double quotes only where escaping would otherwise be required.
+
+[b10-hooks-quality-screen-task-007] P2 .skilled/hooks/post-edit-quality/README.md:66 | EXPECTED-FIXED
+  finding: Both adapters deliver findings through the PostToolUse envelope, not plain stdout: `claude/claude-posttooluse.cjs:150-156` writes `hookSpecificOutput: { hookEventName: 'PostToolUse', additionalContext: advisory }`, and `devin/post-edit-quality.cjs:149-155` writes the same shape. Only the Codex adapter prints plain stdout. The table tells operators Claude/Devin findings are transcript-only when the model actually receives them.
+  fix: Change the Claude and Devin delivery cells to "PostToolUse `hookSpecificOutput.additionalContext`" and keep plain stdout for Codex.
+
+[b10-hooks-quality-screen-task-008] P2 .skilled/hooks/post-edit-quality/README.md:127 | EXPECTED-FIXED
+  finding: The three CommonJS adapters also import `../../shared/hook-adapter-shared.cjs` (`claude/claude-posttooluse.cjs:34`, `codex/post-edit-quality.cjs:23`, `devin/post-edit-quality.cjs:24`), so the boundary list omits a shared dependency that every one of them uses to read stdin.
+  fix: Add `../../shared/hook-adapter-shared.cjs` to the CommonJS adapter import list, or say the adapters may import the shared stdin/flags helpers.
+
+[b10-hooks-quality-screen-task-009] P2 .skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:60 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The `const candidate =` OR-chain over `toolInput.file_path`, `toolInput.filePath` and `toolInput.path` selects the first truthy value, not the first string. A truthy non-string `file_path` (for example `123` or `{}`) masks a valid `filePath` or `path`, and `filePathsFrom` then falls through to `patchPaths` with the same OR-chain over `command`, `input` and `patch`, which also stops at a truthy non-string and returns `[]`, so no checker runs for the edited file. The task-dispatch adapters already use a first-non-blank-string helper for the same alias problem.
+  fix: Add a first-non-blank-string helper and use it for `file_path`/`filePath`/`path` and for `command`/`input`/`patch`, so a malformed earlier field cannot mask a later valid one.
+
+[b10-hooks-quality-screen-task-010] P2 .skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs:43 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `filePathFrom` uses an OR-chain over `toolInput.file_path`, `toolInput.filePath` and `toolInput.path` and then rejects a non-string. A truthy non-string `file_path` masks a valid `filePath` or `path`, the function returns `undefined`, and the adapter exits without checking the edit.
+  fix: Use a first-non-blank-string helper for the three aliases, as the task-dispatch adapters do.
+
+[b10-hooks-quality-screen-task-011] P2 .skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs:1 | EXPECTED-FIXED
+  finding: The file starts with `// Tests for the Devin ...` and carries no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add the standard `MODULE:` divider header naming the Devin post-edit-quality tests.
+
+[b10-hooks-quality-screen-task-012] P1 .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:85 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `SECRET_PATTERN` requires a keyword followed by `:` or `=` and an unbroken 8+ character value. `Authorization: Bearer <token>` and bare `Bearer <token>` do not match because the value starts with the six-character scheme and a space, so the token is left intact. Observed: `redactSecrets('authorization: Bearer eyJhbGciOiJIUzI1NiJ9.payload.sig')` returns the input unchanged, while `token: abcdefgh` is redacted. The README §2 line 56 says bearer and authorization assignments are redacted, and checker stdout is printed or logged through `truncateAndRedact`.
+  fix: Add a header branch that redacts the `authorization` keyword, an optional `bearer` or `basic` scheme, and the following value, plus a bare `bearer` scheme value, or redact the scheme plus value together.
+
+[b10-hooks-quality-screen-task-013] P2 .skilled/hooks/post-edit-quality/pi/post-edit-quality.ts:5 | EXPECTED-FIXED
+  finding: The file uses double-quoted literals for the package import, the Node builtins, the hook-flags import, the fallback label, and the tool-name comparisons.
+  fix: Convert string literals to single quotes, using double quotes only where escaping would otherwise be required.
+
+[b10-hooks-quality-screen-task-014] P1 .skilled/hooks/task-dispatch/README.md:38 | EXPECTED-FIXED
+  finding: On a reject, `evaluateDispatch` returns at `lib/dispatch-guard.cjs:547-549` (mode mismatch under the reject env) or `:567-569` (loop count under the reject-loop env) before pushing `detail` into `warnings`. The Claude and Devin adapters append only `result.warnings` (`claude/task-dispatch-guard.cjs:75-76`, `devin/task-dispatch-guard.cjs:76`), and the OpenCode plugin does the same, so a deny writes no WARN line; on a Check 1 reject, Check 2 never runs either. Only the Pi adapter logs `result.detail` on reject (`pi/task-dispatch-guard.ts:61`).
+  fix: Change only README.md: state what the code does today. A reject returns before its detail is added to warnings, so the Claude, Devin and OpenCode adapters write no WARN line for a reject and only the Pi adapter logs the reject detail; and Check 2 runs only when Check 1 does not reject. Do not change any code.
+
+[b10-hooks-quality-screen-task-015] P2 .skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs:1 | EXPECTED-FIXED
+  finding: The top comment is `// FABLE SUBAGENT GUARD (Claude PreToolUse, matcher: Task/Agent)` between dividers and carries no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Fable Subagent Guard` between the existing dividers, or replace the box with the standard `MODULE:` divider.
+
+[b10-hooks-quality-screen-task-016] P1 .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:138 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `resolveCommandConfigPath` rejects only a literal `..` and then accepts any absolute path, and `isCommandDrivenIteration` checks only that the file has a string `mode` and a finite `maxIterations`; it never requires the config to live under the project or to match the resolved target. Observed: a `Config:` path in an unrelated temp directory with `{"mode":"review","maxIterations":10}` makes `isCommandDrivenIteration` return true. A prompt can therefore cite an existing deep-review config for a deep-research dispatch, or a file it created, and avoid the non-command-driven count entirely.
+  fix: Resolve the config with `realpathSync`, require it to stay under `projectDir` (or the dispatch's own spec folder), and require `config.mode` to match the target agent's registered workflow mode before treating the dispatch as command-driven.
+
+[b10-hooks-quality-screen-task-017] P1 .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:251 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `recordLoopDispatch` reads the session file, increments `entry.count`, and writes the whole file. Two hook processes for concurrent Task calls can both read count N and both write N+1, losing one hand-off, while `writeLoopStateAtomic` only makes each file write atomic, not the counter update. The Claude regression test spawns hook processes sequentially, so cross-process concurrency is not covered.
+  fix: Serialize the read-modify-write with a state lock (including stale-lock handling), or append one immutable dispatch event per call and derive the count from the log.
+
+[b10-hooks-quality-screen-task-018] P2 .skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts:7 | EXPECTED-FIXED
+  finding: The file uses double-quoted literals for the package import, the hook-flags import, the fallback module specifier, the string comparisons, and the joined advisory.
+  fix: Convert string literals to single quotes, using double quotes only where escaping would otherwise be required.
+
+[b10-hooks-quality-screen-task-N01] P1 .skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts:37 | EXPECTED-FIXED
+  finding: The exported default function has no TSDoc.
+  fix: Add a short TSDoc comment describing the registered guard.
+
+[b10-hooks-quality-screen-task-N02] P2 .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:259 | EXPECTED-FIXED
+  finding: Exported `redactSecrets` and `truncateAndRedact` lack JSDoc.
+  fix: Document both exported helpers.
+
+[b10-hooks-quality-screen-task-N03] P2 .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:87 | EXPECTED-FIXED
+  finding: Exported helpers including `loadRegistryAgents` and `resolveCommandConfigPath` lack JSDoc.
+  fix: Add concise JSDoc for the exported helpers.
+
+[b10-hooks-quality-screen-task-N04] P2 .skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:91 | EXPECTED-FIXED
+  finding: The function declaration exceeds 100 characters.
+  fix: Wrap the parameter list.
+
+[b10-hooks-quality-screen-task-N05] P2 .skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:133 | EXPECTED-FIXED
+  finding: Executable lines including this object push exceed 100 characters.
+  fix: Break the expressions across lines.
+
+[b10-hooks-quality-screen-task-N06] P2 .skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:51 | EXPECTED-FIXED
+  finding: The assertion exceeds 100 characters.
+  fix: Wrap the assertion across lines.
+
+[b10-hooks-quality-screen-task-N07] P2 .skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.test.mjs:89 | EXPECTED-FIXED
+  finding: The call exceeds 100 characters.
+  fix: Wrap the call across lines.
+
+[b10-hooks-quality-screen-task-N08] P2 .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs:45 | EXPECTED-FIXED
+  finding: The environment-key loop exceeds 100 characters.
+  fix: Wrap the key list across lines.
+
+[b10-hooks-quality-screen-task-N09] P2 .skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs:45 | EXPECTED-FIXED
+  finding: The environment-key loop exceeds 100 characters.
+  fix: Wrap the key list across lines.
+
+[b10-hooks-quality-screen-task-N10] P2 .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts:28 | EXPECTED-FIXED
+  finding: The conditional assignment exceeds 100 characters.
+  fix: Wrap the expression across lines.
+
+[b10-hooks-quality-screen-task-N11] P2 .skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:83 | EXPECTED-FIXED
+  finding: The handler call exceeds 100 characters.
+  fix: Wrap the call across lines.
+
+[b10-hooks-quality-screen-task-N12] P2 .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:162 | EXPECTED-FIXED
+  finding: Executable expressions including this path-resolution conditional exceed 100 characters.
+  fix: Break the expressions across lines.
+
+[b10-hooks-quality-screen-task-N13] P2 .skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:108 | EXPECTED-FIXED
+  finding: The tool-input conditional exceeds 100 characters.
+  fix: Wrap the conditional across lines.
+
+[b10-hooks-quality-screen-task-N14] P2 .skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:114 | EXPECTED-FIXED
+  finding: The tool-input conditional exceeds 100 characters.
+  fix: Wrap the conditional across lines.
+
+[b10-hooks-quality-screen-task-N15] P2 .skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs:106 | EXPECTED-FIXED
+  finding: The tool-input conditional exceeds 100 characters.
+  fix: Wrap the conditional across lines.
+
+[b10-hooks-quality-screen-task-N16] P2 .skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs:93 | EXPECTED-FIXED
+  finding: The context extraction expression exceeds 100 characters.
+  fix: Wrap the expression across lines.
+
+[b10-hooks-quality-screen-task-N17] P2 .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:377 | EXPECTED-FIXED
+  finding: Several executable expressions, including this retention calculation, exceed 100 characters.
+  fix: Break the expressions across lines.
+
+[b10-hooks-quality-screen-task-N18] P2 .skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs:67 | EXPECTED-FIXED
+  finding: The `firstNonBlankString` call exceeds 100 characters.
+  fix: Wrap the arguments across lines.
+

@@ -40,7 +40,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/lib/goal-slice.cjs",
       ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
+      "scratch/suites/battery-v1-v2.txt",
       "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
     ],
     "entities": [
@@ -69,19 +72,31 @@
         "source": "derived"
       },
       {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.cjs",
+        "source": "derived"
+      },
+      {
         "name": "plugin-inventory.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/helpers/plugin-inventory.cjs",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "battery-v1-v2.txt",
+        "kind": "file",
+        "path": "scratch/suites/battery-v1-v2.txt",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -106,6 +121,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -169,29 +190,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 reviewed 75 changed files",
     "created_at": "2026-10-20T23:08:25Z",
-    "last_save_at": "2026-10-20T23:09:41.669Z",
+    "last_save_at": "2026-10-21T00:52:52.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7f382d9c15eda6bca3fdec020666e2c46a1276dde2faa1619cc56bb87c78d27",
+    "source_fingerprint": "sha256:1f0e529d2dbbac777e0cbe970563d1be794846822d10d15cec852c64376ed0f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7099006b466eb4100eb4fd9e5b62400d1984f1927280bf8e40b1cfe860554605",
+      "spec.md": "264afd24f588b0dc08516e7bc46a0eb573fa361da72defe3e48d8e1010e84eff",
       "plan.md": "685864cac31979a4ed2a07118fd2144da932f4e7eaa24106fd3c243a1a3f9e52",
-      "tasks.md": "57690f26b4f67779f807ad1369a60eff8ced6976ff14ad9a856489cba1d51b95",
-      "implementation-summary.md": "15a2a03ec2e207bd4bb6cecebcb0fdf896a61133e0d9411638b9f67e751f603c"
+      "tasks.md": "f5ddba40daf88a3bf3924815f239f720ae8f1874e209966c82fb91a8047465be",
+      "implementation-summary.md": "046fed23eff798ef57db29bfdbfe7ceeb4000c825e6c3f6b53c9977aa0e2f94d"
     },
     "last_active_at": null
   }

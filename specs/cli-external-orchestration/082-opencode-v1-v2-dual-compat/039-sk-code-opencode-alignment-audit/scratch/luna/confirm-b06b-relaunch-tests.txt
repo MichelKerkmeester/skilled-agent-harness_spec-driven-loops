@@ -1,0 +1,27 @@
+VERDICTS
+b06b-relaunch-tests-001 | CONFIRMED | P2 | `fixtures[4]` and `[6]` depend on array order and leave most fixture shapes unchecked; behaviour-change: no
+b06b-relaunch-tests-002 | CONFIRMED | P2 | A late `require` splits the import block, contrary to style-guide §8; behaviour-change: no
+b06b-relaunch-tests-003 | CONFIRMED | P1 | Inherited age and hook-flags settings can make positive signal tests skip their intended path; severity is P1 because results depend on external state; behaviour-change: no
+b06b-relaunch-tests-004 | CONFIRMED | P2 | The test’s collision path omits the UUID used by the production rename target; behaviour-change: no
+b06b-relaunch-tests-005 | REJECTED | N/A | These are related handoff-text variants, so the checklist’s rule against unrelated assertions does not fit; behaviour-change: no
+b06b-relaunch-tests-006 | CONFIRMED | P2 | The call at line 116 exceeds the 100-character limit; behaviour-change: no
+b06b-relaunch-tests-007 | CONFIRMED | P2 | A late duplicate `require` splits the import block, contrary to style-guide §8; behaviour-change: no
+b06b-relaunch-tests-008 | CONFIRMED | P2 | A second late `require` of the already imported module splits the import block, contrary to style-guide §8; behaviour-change: no
+b06b-relaunch-tests-009 | CONFIRMED | P2 | The nonnumeric loop ID skips process ancestry detection, so the test does not exercise its named scenario; behaviour-change: no
+b06b-relaunch-tests-010 | CONFIRMED | P2 | The invalid-PID case lacks a valid open note and named-error assertion, so another refusal can satisfy it; behaviour-change: no
+b06b-relaunch-tests-011 | CONFIRMED | P2 | Test declarations at lines 173 and 191 exceed the 100-character limit; behaviour-change: no
+b06b-relaunch-tests-012 | CONFIRMED | P2 | The test claims all supported runtimes but omits Devin from its identity loop; behaviour-change: no
+b06b-relaunch-tests-013 | CONFIRMED | P2 | The test title says “warns,” while its assertions require empty stderr and check only the decline log; behaviour-change: no
+
+NEW
+.skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:23 | P1 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §4 | The sandbox inherits `HOOK_FLAGS_CONFIG`, allowing external settings to change test outcomes | Clear the inherited setting and pin a sandbox-local config | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/nudge.test.cjs:690 | P1 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §4 | The record sandbox inherits max-age and hook-config settings that can change stale-record results | Clear the inherited settings and pin a sandbox-local config | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:62 | P1 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §4 | The sandbox leaves `HOOK_FLAGS_CONFIG` inherited, so operator config can change default-switch test outcomes | Pin a sandbox-local config | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:206 | P1 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §4 | The sandbox leaves `HOOK_FLAGS_CONFIG` inherited, so stale-record results can depend on operator config | Pin a sandbox-local config | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/killer.test.cjs:387 | P2 | `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` §8 | A `require` inside a test splits the import block; the same pattern recurs at line 1951 | Move the module import to the top-level import block | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/killer.test.cjs:351 | P2 | `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` §6 | Executable lines 351, 719, 767, 1286 and 2102 exceed 100 characters | Reflow the statements across lines | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1201 | P2 | `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` §6 | Multiple executable lines in the file exceed 100 characters | Reflow the long statements | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:545 | P2 | `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` §6 | Multiple executable lines in the file exceed 100 characters | Reflow the long statements | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:206 | P2 | `.skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md` §6 | The environment object line exceeds 100 characters | Reflow the object across lines | behaviour-change: no
+
+SUMMARY: confirmed=12 rejected=1 new=9 P0=0 P1=5 P2=16

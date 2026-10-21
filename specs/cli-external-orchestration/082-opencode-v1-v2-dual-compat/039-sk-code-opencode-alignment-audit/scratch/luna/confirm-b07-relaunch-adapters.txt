@@ -1,0 +1,26 @@
+VERDICTS
+
+b07-relaunch-adapters-001 | REJECTED | N/A | Cites a task-brief Markdown rule, not an sk-code rule; behaviour-change: no
+b07-relaunch-adapters-002 | REJECTED | N/A | Cites a task-brief Markdown rule; the checkout has one `registerFlag("fast")` site, and any machine-wide registration is unverified; behaviour-change: no
+b07-relaunch-adapters-003 | REJECTED | N/A | Cites a task-brief Markdown rule; the README command covers Node `.test.cjs` files, and no cited sk-code rule requires it to run the separate Vitest suite; behaviour-change: yes
+b07-relaunch-adapters-004 | CONFIRMED | P2 | JavaScript style guide §6 caps lines at 100 characters; lines 160, 245 and 293 exceed it; behaviour-change: no
+b07-relaunch-adapters-005 | CONFIRMED | P2 | Code-quality checklist §7 flags copied spawn and arm flows; keep runtime-specific gates intact in any extraction; behaviour-change: no
+b07-relaunch-adapters-006 | CONFIRMED | P2 | Module organization §2 says significant files should have numbered sections; this 109-line adapter contains its own helper and core flow; behaviour-change: no
+b07-relaunch-adapters-007 | CONFIRMED | P2 | Module organization §2 says significant files should have numbered sections; this 125-line adapter contains separate arm, spawn and entry flows; behaviour-change: no
+b07-relaunch-adapters-008 | CONFIRMED | P2 | Directory and test conventions §3 says tests live under top-level `tests/` and never beside source; behaviour-change: no
+b07-relaunch-adapters-009 | CONFIRMED | P1 | TypeScript checklist §3 marks the missing preceding-line justification for `match!` as required; promoted from P2; behaviour-change: no
+b07-relaunch-adapters-010 | CONFIRMED | P2 | TypeScript formatting §2 caps lines at 100 characters; lines 867, 878 and 891 exceed it; behaviour-change: no
+b07-relaunch-adapters-011 | CONFIRMED | P1 | TypeScript checklist §3 marks TSDoc on exported APIs as required; promoted from P2; behaviour-change: no
+b07-relaunch-adapters-012 | REJECTED | N/A | Dropping `asModule` also changes normalization for the dynamic CommonJS core, usage and nudge imports, which can break adapter loading; behaviour-change: yes
+
+NEW
+
+.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:113 | P1 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md` §3 No Non-Null Assertions Without Justification, “Non-null assertions (!) have a justification comment on the preceding line” | Nine further unannotated assertions occur at lines 153, 386, 418, 485, 522, 638, 673, 824 and 860. | Add preceding-line justifications or replace assertions with explicit guards. | behaviour-change: no
+.skilled/hooks/session-relaunch/pi/session-relaunch.ts:19 | P1 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md` §3 Interfaces for Data Shapes, “Object shapes passed across module boundaries use named interfaces” | `RelaunchRecord`, `CoreModule`, `ContextUsageModule`, `NudgeDecision` and `NudgeModule` use type aliases for shapes crossing the dynamic CommonJS module boundary. | Declare these shapes as interfaces. | behaviour-change: no
+.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:406 | P1 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md` §3 No Magic Numbers/Strings, “Magic values are extracted to named constants” | Unnamed defaults `10` at lines 406, 463 and 464 and `20` at lines 50 and 596 can drift between behavior and help text. | Define named constants for max hops, max age and history count; use them at each site. | behaviour-change: no
+.skilled/hooks/session-relaunch/hermes/context-nudge.mjs:48 | P1 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md` §3 No Magic Numbers/Strings, “Magic values are extracted to named constants” | The 200,000-token fallback is an unnamed default. | Extract a named default-window constant. | behaviour-change: no
+.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:878 | P2 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md` §4 Consistent String Quotes, “Strings use single quotes consistently” | This test title uses double quotes. | Use single quotes, escaping the apostrophe. | behaviour-change: no
+.skilled/hooks/session-relaunch/hermes/session-end-arm.mjs:49 | P2 | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md` §4 JSDoc Comments, “Public functions have JSDoc documentation” | Exported `armPendingRecord` has no JSDoc. | Add JSDoc above the function. | behaviour-change: no
+.skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:892 | P2 | `.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md` §3 Test Structure and Clarity, “Magic values in test data without comments explaining their significance” | `20 * 60 * 1000` sets the record age without explaining that it exceeds the default age limit. | Name the stale-age value or add a comment explaining the 20-minute case. | behaviour-change: no
+
+SUMMARY: confirmed=8 rejected=4 new=7 P0=0 P1=6 P2=9

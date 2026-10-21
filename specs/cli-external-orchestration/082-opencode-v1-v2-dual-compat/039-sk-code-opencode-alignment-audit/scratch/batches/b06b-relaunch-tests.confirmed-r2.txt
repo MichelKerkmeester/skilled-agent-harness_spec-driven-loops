@@ -1,0 +1,84 @@
+[b06b-relaunch-tests-001] P2 .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:83 | EXPECTED-FIXED
+  finding: The test builds seven named fixtures, then asserts `fixtures[4]` and `fixtures[6]`; inserting or reordering a fixture silently retargets the assertions. The name also promises that shapes are retained and identifiers redacted, but the test checks only two fixed records and only the literal `/Users/` path prefix.
+  fix: Build a filename-to-fixture map and assert the common Hermes keys on every entry plus rejection of absolute home/temp paths, or narrow the test name to the two values it really checks.
+
+[b06b-relaunch-tests-002] P2 .skilled/hooks/session-relaunch/tests/hop-history.test.cjs:197 | EXPECTED-FIXED
+  finding: `require('../lib/hop-history.cjs')` is inside the last test, after the constants and helper functions, splitting the import block from the top-level `node:` requires at lines 7-11.
+  fix: Move the require to the top import block and use the module reference from the test.
+
+[b06b-relaunch-tests-003] P1 .skilled/hooks/session-relaunch/tests/killer.test.cjs:47 | EXPECTED-FIXED
+  finding: `createSandbox` strips `SESSION_RELAUNCH_MAX_HOPS` but leaves `SESSION_RELAUNCH_MAX_AGE_MIN` and `HOOK_FLAGS_CONFIG` inherited. `killer.cjs` calls `nudge.armedRecordStillCurrent` before signalling, and that helper reads the max age from the environment and the configured hook-flags file (`nudge.cjs:maxAgeMinutes`); an operator with a short age or a config file makes the positive signal tests unarm the record as stale instead of exercising the signal path.
+  fix: Add `SESSION_RELAUNCH_MAX_AGE_MIN` to the delete list and pin `HOOK_FLAGS_CONFIG` to a file under `sandbox.root`, as the other relaunch test files do.
+
+[b06b-relaunch-tests-004] P2 .skilled/hooks/session-relaunch/tests/killer.test.cjs:1789 | EXPECTED-FIXED
+  finding: The test claims to collide with a stale leftover at its pid, but `killer.cjs:419` names the stale mutex `${mutexPath}.stale-${process.pid}-${randomUUID()}` while the test creates `${mutexPath}.stale-${killer.pid}`. The extra UUID means the rename target can never equal the setup path; `assert.exists(collision)` only proves the test's own directory survived, not that the killer handled a collision.
+  fix: Inject a deterministic `randomUUID`/rename seam and create the collision at the actual target path, or remove the obsolete collision setup and rename the test to the stale-takeover reclaim it really covers.
+
+[b06b-relaunch-tests-006] P2 .skilled/hooks/session-relaunch/tests/nudge.test.cjs:116 | EXPECTED-FIXED
+  finding: The `handoffText` call is 134 characters, and the test name at line 64 is 122; both exceed the file's 100-character maximum.
+  fix: Break the object argument across lines and shorten the test name at line 64.
+
+[b06b-relaunch-tests-007] P2 .skilled/hooks/session-relaunch/tests/nudge.test.cjs:925 | EXPECTED-FIXED
+  finding: `const nudgeModule = require('../lib/nudge.cjs')` appears after dozens of tests, after the file already imported the same module at lines 11-27. The namespace is only introduced late to reach exports the top-level destructure omitted.
+  fix: Import the namespace once at the top and destructure from it, or add the missing exports to the existing top-level destructure.
+
+[b06b-relaunch-tests-008] P2 .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1140 | EXPECTED-FIXED
+  finding: The file already destructures `../lib/relaunch-core.cjs` at lines 12-34, then requires the same module again at line 1140, after the test bodies, solely to reach later exports. This is a second import block in the middle of the file.
+  fix: Import the namespace once at the top and destructure from it, or add `noteState`, `resolveKillerTarget`, `armableRecord`, the frozen exports and the other late names to the existing top-level destructure.
+
+[b06b-relaunch-tests-009] P2 .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:283 | EXPECTED-FIXED
+  finding: The test says it runs under the loop with a Claude process that has no children, but `SKILLED_LOOP_ID` is the non-numeric `LOOP_ID` string. `refuseForShellChild` turns it into `Number(loopId)`, gets `NaN`, resolves no runtime and logs `running-work-check-skipped`; the test would still pass if child detection were broken.
+  fix: Use a real numeric loop ancestor and a process table, or assert that the skipped log is absent; otherwise rename the test to the skipped-path case it actually exercises.
+
+[b06b-relaunch-tests-010] P2 .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:463 | EXPECTED-FIXED
+  finding: The under-loop invalid-`CLAUDE_PID` cases never assert the named error: line 463 fails on a claimed handoff before `refuseForShellChild`, and line 991 reaches the `CLAUDE_PID must be a positive process id` throw at `bin/session-relaunch.cjs:257-261` but only asserts exit 2 and that the old note was untouched, so a generic error or a different refusal still passes.
+  fix: Add an under-loop test with a valid open note and an invalid `CLAUDE_PID`, asserting the named error and exit 2.
+
+[b06b-relaunch-tests-011] P2 .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:173 | EXPECTED-FIXED
+  finding: The two `test()` declarations at lines 173 and 191 are 153 and 140 characters because the skip expression and callback are kept on one line.
+  fix: Move the options object to a multi-line argument list.
+
+[b06b-relaunch-tests-012] P2 .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:564 | EXPECTED-FIXED
+  finding: The test says it covers each supported runtime, but the loop lists only Claude, Pi, OpenCode, Codex, Cursor and Hermes. `core.RUNTIMES` also contains `devin`, and the separate Devin test checks dispatch rather than this identity loop, so the name overstates the coverage and a future runtime is not picked up.
+  fix: Iterate `core.RUNTIMES` or add `devin` to this loop.
+
+[b06b-relaunch-tests-013] P2 .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:1463 | EXPECTED-FIXED
+  finding: The test says the wrapper "warns and consumes" an empty-handoff record, but the assertions at lines 1479-1480 require empty stderr and only check the decline log; no warning is expected or produced.
+  fix: Rename the test to the decline-without-warning behavior it verifies, or add the warning assertion and implement the warning.
+
+[b06b-relaunch-tests-N01] P1 .skilled/hooks/session-relaunch/tests/hermes-adapters.test.cjs:23 | EXPECTED-FIXED
+  finding: The sandbox inherits `HOOK_FLAGS_CONFIG`, allowing external settings to change test outcomes
+  fix: Clear the inherited setting and pin a sandbox-local config
+
+[b06b-relaunch-tests-N02] P1 .skilled/hooks/session-relaunch/tests/nudge.test.cjs:690 | EXPECTED-FIXED
+  finding: The record sandbox inherits max-age and hook-config settings that can change stale-record results
+  fix: Clear the inherited settings and pin a sandbox-local config
+
+[b06b-relaunch-tests-N03] P1 .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:62 | EXPECTED-FIXED
+  finding: The sandbox leaves `HOOK_FLAGS_CONFIG` inherited, so operator config can change default-switch test outcomes
+  fix: Pin a sandbox-local config
+
+[b06b-relaunch-tests-N04] P1 .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:206 | EXPECTED-FIXED
+  finding: The sandbox leaves `HOOK_FLAGS_CONFIG` inherited, so stale-record results can depend on operator config
+  fix: Pin a sandbox-local config
+
+[b06b-relaunch-tests-N05] P2 .skilled/hooks/session-relaunch/tests/killer.test.cjs:387 | EXPECTED-FIXED
+  finding: A `require` inside a test splits the import block; the same pattern recurs at line 1951
+  fix: Move the module import to the top-level import block
+
+[b06b-relaunch-tests-N06] P2 .skilled/hooks/session-relaunch/tests/killer.test.cjs:351 | EXPECTED-FIXED
+  finding: Executable lines 351, 719, 767, 1286 and 2102 exceed 100 characters
+  fix: Reflow the statements across lines
+
+[b06b-relaunch-tests-N07] P2 .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1201 | EXPECTED-FIXED
+  finding: Multiple executable lines in the file exceed 100 characters
+  fix: Reflow the long statements
+
+[b06b-relaunch-tests-N08] P2 .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:545 | EXPECTED-FIXED
+  finding: Multiple executable lines in the file exceed 100 characters
+  fix: Reflow the long statements
+
+[b06b-relaunch-tests-N09] P2 .skilled/hooks/session-relaunch/tests/skilled-loop.test.cjs:206 | EXPECTED-FIXED
+  finding: The environment object line exceeds 100 characters
+  fix: Reflow the object across lines
+

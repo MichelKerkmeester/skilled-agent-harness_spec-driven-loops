@@ -1,0 +1,17 @@
+VERDICTS
+b12-deferred-001 | REJECTED | N/A | The stale citations are visible, but the cited “task brief § Markdown files” rule is not an sk-code rule.
+b12-deferred-002 | REJECTED | N/A | The wording is ambiguous, but the cited “task brief § Markdown files” rule is not an sk-code rule.
+b12-deferred-003 | REJECTED | N/A | The count is stale, but the cited “task brief § Markdown files” rule is not an sk-code rule.
+b12-deferred-004 | REJECTED | N/A | The `.__test` claims are inaccurate, but the cited “task brief § Markdown files” rule is not an sk-code rule.
+b12-deferred-005 | REJECTED | N/A | The helper README omits the scanner, but the cited “task brief § Markdown files” rule is not an sk-code rule.
+b12-deferred-006 | CONFIRMED | P1 | `code-quality-checklist.md` §5 flags silent data loss; the repro returns `handled=[]` and `unscanned=[]` for a comparison before reassignment, leaving the inventory gate blind. `node --check` and JSON parsing passed; `node --test` could not start because the read-only sandbox denied `mkdtemp` with EPERM. behaviour-change: yes
+b12-deferred-007 | CONFIRMED | P2 | `javascript/style-guide.md` §7 says “Required for all exported functions”; all four exported functions lack JSDoc.
+b12-deferred-008 | CONFIRMED | P2 | The helper is 1,186 lines against the 200-line recommended max, and `buildScopes` is 130 lines; these meet the file-length and function-length maintainability signals. The unused `aliases` local at line 1135 is also present.
+b12-deferred-009 | CONFIRMED | P2 | `test-quality-checklist.md` §4 flags external-state dependence; the unguarded registration loop gets zero registrations for sk-vision under `SYSTEM_HOOKS_DISABLED=1`. Test execution was blocked by sandbox EPERM at `mkdtemp`. behaviour-change: yes
+b12-deferred-010 | CONFIRMED | P2 | The unguarded setup at line 97 depends on kill-switch state; an in-memory check found two of 16 bridged plugins register nothing under the master switch, not “most.” Test execution was blocked by sandbox EPERM at `mkdtemp`. behaviour-change: yes
+b12-deferred-011 | REJECTED | N/A | The stub records registrations in memory and returns an empty event stream; no live resource needs teardown in this test.
+
+NEW
+None
+
+SUMMARY: confirmed=5 rejected=6 new=0 P0=0 P1=1 P2=4

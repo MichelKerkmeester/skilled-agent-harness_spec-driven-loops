@@ -1,0 +1,21 @@
+VERDICTS
+b06a-relaunch-tests-001 | REJECTED | P2 | The omission is real, but the cited lines and insertion boundary are off by one; the cited baseline does not require a complete README tree. behaviour-change: no
+b06a-relaunch-tests-002 | CONFIRMED | P2 | The “Used by” cell omits the consumer at adapter-conformance.test.cjs:22, which could cause maintainers to skip a regression test. behaviour-change: no
+b06a-relaunch-tests-003 | CONFIRMED | P2 | Line 285 exceeds the JavaScript style guide’s 100-character limit and is not a long string. behaviour-change: no
+b06a-relaunch-tests-004 | CONFIRMED | P2 | The sandbox inherits master switches and does not pin HOOK_FLAGS_CONFIG, so external settings can silence positive tests. behaviour-change: no
+b06a-relaunch-tests-005 | CONFIRMED | P2 | The identical recorder preload is duplicated at lines 578–596 and 628–646; test-quality-checklist.md §5 flags this. behaviour-change: no
+b06a-relaunch-tests-006 | CONFIRMED | P2 | Line 721 begins with lowercase comment text, contrary to javascript/style-guide.md §7. behaviour-change: no
+b06a-relaunch-tests-007 | CONFIRMED | P2 | The cited call exceeds the style guide’s 100-character limit; additional missed lines are listed under NEW. behaviour-change: no
+b06a-relaunch-tests-008 | CONFIRMED | P2 | The sandbox clears SYSTEM_HOOKS_DISABLED but leaves its documented MK_HOOKS_DISABLED alias, so inherited settings can silence positive tests. behaviour-change: no
+b06a-relaunch-tests-009 | REJECTED | P2 | The process IDs use named environment fields, and the separate assertion at line 529 has an explanatory comment at line 520; the cited magic-value concern does not hold. behaviour-change: no
+b06a-relaunch-tests-010 | CONFIRMED | P2 | fillRatio is tested without using the sandbox; the unnecessary setup obscures a pure calculation. behaviour-change: no
+b06a-relaunch-tests-011 | CONFIRMED | P2 | The unexplained 900002 sentinel is the sidechain total, matching test-quality-checklist.md §3. behaviour-change: no
+b06a-relaunch-tests-012 | CONFIRMED | P2 | The cited payload and resolveWindow calls exceed the style guide’s 100-character limit; additional missed lines are listed under NEW. behaviour-change: no
+b06a-relaunch-tests-013 | REJECTED | P2 | The fixture’s actual Codex test consumers provide CODEX_KILLER_ARGS_FILE; a missing value is unsupported misuse, not an observed boundary defect. behaviour-change: no
+
+NEW
+.skilled/hooks/session-relaunch/tests/README.md:32 | P2 | review-core.md §2. SEVERITY DEFINITIONS — “P2 Suggestion: non-blocking improvement, documentation polish.” | The directory tree omits hop-history.test.cjs although README §3 lists it and the file exists. | Add its row after hermes-adapters.test.cjs and before killer.test.cjs. | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:52 | P2 | javascript/style-guide.md §6. FORMATTING RULES — “Maximum: 100 characters.” | Additional non-exempt long lines occur at 52, 135, 145, 329, 341, 348, 776 and 799. | Wrap these object, assertion, call and path expressions. | behaviour-change: no
+.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:34 | P2 | javascript/style-guide.md §6. FORMATTING RULES — “Maximum: 100 characters.” | Additional non-exempt long lines occur at 34, 209, 282 and 285. | Wrap these environment, object and assertion expressions. | behaviour-change: no
+
+SUMMARY: confirmed=10 rejected=3 new=3 P0=0 P1=0 P2=13; verification command exited 1 because the read-only sandbox denied test temporary-directory creation (`EPERM` at `mkdtemp`).

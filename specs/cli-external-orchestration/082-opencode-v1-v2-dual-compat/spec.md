@@ -149,7 +149,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 36 | 036-cli-opencode-docs-and-vision-test-cleanup/ | Strip pre-flight comments by quote state, name the provider prefix in every v2 listing note and guard both, leave no sk-vision kill-switch temp directory, and make the in-process plugin playbook snippets call `default.server` | Complete |
 | 37 | 037-ci-pi-and-provisioning-follow-ups/ | Discover Pi extensions and run their type and pack checks in CI, take the provisioning fingerprint before the build, test the battery through a symlinked nested root, bound the cite-drift flake and list every workflow in the workflows README | Complete |
 | 38 | 038-plugin-scanner-follow-ups/ | Make the plugin event scanner follow a helper's stored result into a later test, stop reading an unrelated `type` parameter as the event type, declare rolldown directly and date the plugin-tree ordinals | Complete |
-| 39 | 039-sk-code-opencode-alignment-audit/ | Review every tracked file under `.opencode/plugins` and the hook tree `.opencode/hooks` links to against sk-code's SKILLED surface, fix each confirmed finding or record why it stays, and leave one review row per file | In Progress |
+| 39 | 039-sk-code-opencode-alignment-audit/ | Review every tracked file under `.opencode/plugins` and the hook tree `.opencode/hooks` links to against sk-code's SKILLED surface, fix each confirmed finding or record why it stays, and leave one review row per file | Complete; 21 behaviour-change P0/P1 findings wait on the operator |
 
 ### Phase Transition Rules
 

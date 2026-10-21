@@ -1,0 +1,52 @@
+[b05-relaunch-lib-001] P1 .skilled/hooks/session-relaunch/lib/context-usage.cjs:205 | EXPECTED-FIXED
+  finding: `resolveWindow` ends with `String(model).includes('[1m]') ? 1000000 : 200000`, so both window sizes and the model marker are inline literals, even though the same file already hoists `DEFAULT_TAIL_BYTES` and `MAX_TAIL_BYTES` in section 2. A window-size change has to be hunted in a ternary instead of the constants block.
+  fix: Hoist `LARGE_WINDOW_TOKENS = 1000000`, `DEFAULT_WINDOW_TOKENS = 200000`, and the `'[1m]'` marker into section 2 and return them from `resolveWindow`.
+
+[b05-relaunch-lib-002] P2 .skilled/hooks/session-relaunch/lib/hop-history.cjs:137 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `readHistory` ends with `text.split('\n').filter(Boolean).slice(-last)`, and `last` is only documented as a number. `last: 0` evaluates `slice(-0)`, which returns every recorded line instead of none; `last: -5` evaluates `slice(5)`, which drops the five oldest lines and returns the rest. The CLI's `history` command rejects `last < 1` (session-relaunch.cjs:597-601), but the exported function has no such guard, so the next caller inherits an inverted slice with no error.
+  fix: Clamp before slicing, for example `const count = Number.isInteger(last) && last > 0 ? last : 20;` and then `slice(-count)`.
+
+[b05-relaunch-lib-003] P2 .skilled/hooks/session-relaunch/lib/killer.cjs:1 | EXPECTED-FIXED
+  finding: Confirms the verifier line for this file. The 686-line file carries only the `MODULE:` header; there is no `1. IMPORTS` or any later numbered divider, while its sibling modules in the same directory use all five. The file is navigable only by scrolling, and the verifier gate fails on it.
+  fix: Insert the five standard dividers in the sibling files' box-drawing form: `1. IMPORTS` before line 6, `2. CONSTANTS` before line 14, `3. HELPERS` before line 29, `4. CORE LOGIC` before line 348 (`acquireLock`), and `5. EXPORTS` before line 686.
+
+[b05-relaunch-lib-004] P2 .skilled/hooks/session-relaunch/lib/killer.cjs:192 | EXPECTED-FIXED
+  finding: `isLoopAncestor` rebuilds the `ps` parent map inline at lines 192-195 with the same `^(\d+)\s+(\d+)$` parse and `parents.set(Number(...), Number(...))` that `relaunch-core.findLoopChildPid` owns at relaunch-core.cjs:936-939. If the table format or column selection changes on one side, the killer's ancestry check sees an empty map and refuses every target (logging `killer-refused-target`) while the wrapper's own target walk still works, so the relaunch silently stops.
+  fix: Export a `parentMapFromTable(table)` helper from relaunch-core and call it from both `findLoopChildPid` and `isLoopAncestor`.
+
+[b05-relaunch-lib-005] P2 .skilled/hooks/session-relaunch/lib/nudge.cjs:1 | EXPECTED-FIXED
+  finding: Confirms the verifier line for this file. The 525-line file has no numbered dividers at all, while `context-usage.cjs`, `hop-history.cjs`, and `relaunch-core.cjs` each have the five-section form; constants, helpers, decision logic, and the export block run together.
+  fix: Insert `1. IMPORTS` before line 6, `2. CONSTANTS` before line 11, `3. HELPERS` before line 35 (`shellQuote`), `4. CORE LOGIC` before line 62 (`normalizeSpecFolder`), and `5. EXPORTS` before line 502.
+
+[b05-relaunch-lib-006] P1 .skilled/hooks/session-relaunch/lib/nudge.cjs:14 | EXPECTED-FIXED
+  finding: The carried-folder suffix literals (`SPEC_FOLDER_SUFFIX` line 14, `SPEC_FOLDER_SKIP_SUFFIX` line 15) are declared here for parsing, re-declared in `relaunch-core.manualClaimCommand` (relaunch-core.cjs:645-648) for printing, and a third time in `.skilled/bin/skilled-loop:115-118`. A change to the printed suffix that misses this parser makes `specFolderFromSeed` return empty, so the relaunched session is not told to resume its packet; the `SPEC_FOLDER_SKIP_SUFFIX_LEGACY` constant at line 17 shows that drift already happened once.
+  fix: Build the suffix in one exported helper in relaunch-core, which already owns the seed form, and have `manualClaimCommand` and nudge's constants/parser consume it; align the shell copy or have the loop call the JS formatter.
+
+[b05-relaunch-lib-008] P2 .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:39 | EXPECTED-FIXED
+  finding: Line 39 is 101 characters: `const MISSING_EVENT_POLICIES = Object.freeze({ claude: 'infer', hermes: 'accept', codex: 'refuse' });`. Every other code line in the file stays within the stated maximum, and this one is an object literal that has no reason to stay on one line.
+  fix: Break the literal after `Object.freeze(` with one entry per line, as the module does elsewhere for multi-entry constants.
+
+[b05-relaunch-lib-N01] P1 .skilled/hooks/session-relaunch/lib/killer.cjs:579 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The hop-cap and stale branches at lines 579 and 602 unarm by status and handoff only. If a later prepare re-arms the same note after the record is read, either branch can disarm the newer record because it omits `expectedArmedAt`.
+  fix: Pass `expectedArmedAt: record.armedAt` to both calls, as the timeout path does.
+
+[b05-relaunch-lib-N02] P1 .skilled/hooks/session-relaunch/lib/killer.cjs:46 | EXPECTED-FIXED
+  finding: The default idle and timeout values, 3000 and 30000, are inline despite the other timing values being named constants.
+  fix: Extract named defaults and use them in `parseArguments`.
+
+[b05-relaunch-lib-N03] P1 .skilled/hooks/session-relaunch/lib/hop-history.cjs:129 | EXPECTED-FIXED
+  finding: The default history count of 20 is inline and duplicated by the CLI default at session-relaunch.cjs:596.
+  fix: Define a named default and share it with the CLI.
+
+[b05-relaunch-lib-N04] P1 .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:489 | EXPECTED-FIXED
+  finding: The default hop and age limits are inline, and the hop limit is repeated in nudge.cjs:28 and the CLI.
+  fix: Extract named defaults and reuse them across the callers.
+
+[b05-relaunch-lib-N05] P2 .skilled/hooks/session-relaunch/lib/nudge.cjs:279 | EXPECTED-FIXED
+  finding: The filename prefix length `8` is repeated at lines 279 and 310, so changing one use can prevent the code from finding a note.
+  fix: Use one named prefix-length constant in both places.
+
+[b05-relaunch-lib-N06] P2 .skilled/hooks/session-relaunch/lib/hop-history.cjs:141 | EXPECTED-FIXED
+  finding: The interpolated expressions at lines 111 and 141 exceed 100 characters.
+  fix: Reflow both source expressions while preserving their output strings.
+

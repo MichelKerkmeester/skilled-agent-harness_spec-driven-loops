@@ -1,0 +1,23 @@
+VERDICTS
+b03-plugin-tests-goal-001 | FIXED | Reads now fail loudly and the citation roster must be non-empty at `.opencode/plugins/tests/goal-doc-contract.test.cjs:41`
+b03-plugin-tests-goal-002 | PARTIAL | `access` avoids file reads, but the helper remains duplicated at `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:96` and `.opencode/plugins/tests/opencode-goal-state.test.cjs:59`
+b03-plugin-tests-goal-003 | FIXED | The poll has a deadline and asserts one verifier call at `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:778`
+b03-plugin-tests-goal-004 | FIXED | The test now asserts the disabled state directory remains absent at `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1010`
+b03-plugin-tests-goal-005 | FIXED | Metrics are observation-only, and the stale-copy/fresh-live-state setup tests the archive guard at `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1194`
+b03-plugin-tests-goal-006 | WRONG | The comment says two lines differ, but the comparison also masks independently generated goal IDs at `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs:44`
+b03-plugin-tests-goal-007 | FIXED | `stat`, `mkdir` and `writeFile` are in the top-level import at `.opencode/plugins/tests/opencode-goal-render-parity.test.cjs:16`
+b03-plugin-tests-goal-008 | FIXED | The global regex patch is gone and the scoring metric is asserted at `.opencode/plugins/tests/opencode-goal-state.test.cjs:511`
+b03-plugin-tests-goal-009 | FIXED | The wall-clock assertion is removed while timeout and state assertions remain at `.opencode/plugins/tests/opencode-goal-supervisor.test.cjs:490`
+b03-plugin-tests-goal-010 | FIXED | The test captures the completed ID and compares the replacement against it at `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs:114`
+b03-plugin-tests-goal-011 | FIXED | The test asserts `key_files` is an array with entries before iterating at `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs:158`
+b03-plugin-tests-goal-012 | FIXED | The imports are grouped and the section divider is numbered at `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs:14`
+b03-plugin-tests-goal-N01 | FIXED | The helper import is separated from built-ins at `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:15`
+b03-plugin-tests-goal-N02 | FIXED | The helper import is separated from built-ins at `.opencode/plugins/tests/opencode-goal-continuation.test.cjs:15`
+b03-plugin-tests-goal-N03 | FIXED | The helper import is separated from built-ins at `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:15`
+b03-plugin-tests-goal-N04 | FIXED | The helper import is separated from built-ins at `.opencode/plugins/tests/opencode-goal-state.test.cjs:16`
+b03-plugin-tests-goal-N05 | FIXED | The section divider now has a number at `.opencode/plugins/tests/opencode-goal-tool-path.test.cjs:172`
+
+NEW
+(none)
+
+SUMMARY: fixed=15 partial=1 not_fixed=0 wrong=1 held=0 changed=0 new_p0=0 new_p1=0

@@ -1,0 +1,16 @@
+VERDICTS
+b01-plugins-goal-002 | CHANGED | The guard skips snapshots whose resolved parent escapes the archive folder, blocking the reported traversal write (.opencode/plugins/opencode-goal.js:1868).
+b01-plugins-goal-003 | HELD | `mutateGoal` still deletes state for every `null` result (.opencode/plugins/opencode-goal.js:1723).
+b01-plugins-goal-004 | HELD | Continuation prompts still use the stored objective while injection rereads the packet (.opencode/plugins/opencode-goal.js:2468, 2792).
+b01-plugins-goal-005 | HELD | Replacing a goal still returns a new record without archiving the current one (.opencode/plugins/opencode-goal.js:1823).
+b01-plugins-goal-001 | HELD | Archive filenames still use only the session key (.opencode/plugins/opencode-goal.js:1510).
+b01-plugins-goal-008 | HELD | `Number(candidate)` still converts null or empty values to zero (.opencode/plugins/opencode-goal.js:1007).
+b01-plugins-goal-N01 | HELD | `clearGoal` still deletes through `mutateGoal` without archiving (.opencode/plugins/opencode-goal.js:1941).
+b01-plugins-goal-N02 | NOT-FIXED | The file remains 3,380 lines and no modules were extracted (.opencode/plugins/opencode-goal.js:3380).
+b01-plugins-goal-N03 | FIXED | The named imports are wrapped across lines with no runtime change (.opencode/plugins/opencode-goal.js:11).
+b01-plugins-goal-N04 | FIXED | `refreshGoalActivity` was removed and has no remaining references (.opencode/plugins/opencode-goal.js:2081).
+
+NEW
+(none)
+
+SUMMARY: fixed=2 partial=0 not_fixed=1 wrong=0 held=6 changed=1 new_p0=0 new_p1=0

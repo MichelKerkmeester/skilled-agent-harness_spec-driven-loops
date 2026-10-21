@@ -1,0 +1,41 @@
+VERDICTS
+b10-hooks-quality-screen-task-002 | FIXED | The after hook removes tracked fixture roots: `.skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs:28`
+b10-hooks-quality-screen-task-003 | FIXED | The after hook removes tracked fixture roots: `.skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs:28`
+b10-hooks-quality-screen-task-004 | FIXED | Test imports and string literals use single quotes: `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:8`
+b10-hooks-quality-screen-task-005 | FIXED | The test clears and restores hook flags and redirects config to an absent file: `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:49`
+b10-hooks-quality-screen-task-006 | FIXED | Imports, constants, comparisons and returns use single quotes: `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts:15`
+b10-hooks-quality-screen-task-007 | PARTIAL | The table is corrected, but prose and the Output row still say Claude and Devin print to stdout: `.skilled/hooks/post-edit-quality/README.md:73`
+b10-hooks-quality-screen-task-008 | FIXED | The boundary list now includes the shared stdin helper: `.skilled/hooks/post-edit-quality/README.md:127`
+b10-hooks-quality-screen-task-009 | HELD | The first-truthy alias chains still let a malformed earlier value mask a valid later one: `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:60`
+b10-hooks-quality-screen-task-010 | HELD | The alias chain still lets a malformed earlier value mask a valid later one: `.skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs:43`
+b10-hooks-quality-screen-task-011 | FIXED | The test now starts with the standard MODULE header: `.skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs:1`
+b10-hooks-quality-screen-task-012 | HELD | The regex still misses Authorization or bare Bearer values with a scheme and space: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:85`
+b10-hooks-quality-screen-task-013 | FIXED | The Pi adapter string literals use single quotes: `.skilled/hooks/post-edit-quality/pi/post-edit-quality.ts:5`
+b10-hooks-quality-screen-task-014 | FIXED | The README now describes reject short-circuiting, warning logs and Check 2 gating: `.skilled/hooks/task-dispatch/README.md:24`
+b10-hooks-quality-screen-task-015 | FIXED | The file now has a MODULE marker in its header: `.skilled/hooks/task-dispatch/claude/fable-subagent-guard.mjs:2`
+b10-hooks-quality-screen-task-016 | HELD | Absolute config paths remain accepted and only JSON shape is checked: `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:164`
+b10-hooks-quality-screen-task-017 | HELD | The count remains a read-modify-write without serialization: `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:321`
+b10-hooks-quality-screen-task-018 | FIXED | Imports and string literals use single quotes: `.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts:7`
+b10-hooks-quality-screen-task-N01 | FIXED | The exported guard now has TSDoc: `.skilled/hooks/task-dispatch/pi/task-dispatch-guard.ts:37`
+b10-hooks-quality-screen-task-N02 | FIXED | Both exported redaction helpers now have JSDoc: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:261`
+b10-hooks-quality-screen-task-N03 | FIXED | The exported helpers now have documentation, including registry and config-path helpers: `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:87`
+b10-hooks-quality-screen-task-N04 | FIXED | The parameter list is wrapped: `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs:91`
+b10-hooks-quality-screen-task-N05 | FIXED | The object push is split across lines: `.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.mjs:133`
+b10-hooks-quality-screen-task-N06 | FIXED | The assertion is wrapped across lines: `.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs:51`
+b10-hooks-quality-screen-task-N07 | FIXED | The call is wrapped across lines: `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.test.mjs:89`
+b10-hooks-quality-screen-task-N08 | FIXED | The environment-key list is wrapped: `.skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs:54`
+b10-hooks-quality-screen-task-N09 | FIXED | The environment-key list is wrapped: `.skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs:54`
+b10-hooks-quality-screen-task-N10 | FIXED | The conditional assignment is wrapped: `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.ts:28`
+b10-hooks-quality-screen-task-N11 | FIXED | The handler call is wrapped: `.skilled/hooks/classifier-injection-screen/pi/classifier-injection-screen.test.ts:105`
+b10-hooks-quality-screen-task-N12 | FIXED | The path-resolution conditional is wrapped: `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs:162`
+b10-hooks-quality-screen-task-N13 | FIXED | The tool-input conditional is wrapped: `.skilled/hooks/post-edit-quality/claude/claude-posttooluse.cjs:108`
+b10-hooks-quality-screen-task-N14 | FIXED | The tool-input conditional is wrapped: `.skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs:114`
+b10-hooks-quality-screen-task-N15 | FIXED | The tool-input conditional is wrapped: `.skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs:106`
+b10-hooks-quality-screen-task-N16 | FIXED | The context extraction expression is wrapped: `.skilled/hooks/post-edit-quality/devin/post-edit-quality.test.cjs:96`
+b10-hooks-quality-screen-task-N17 | FIXED | The long executable expressions are wrapped; no executable line remains over 100 characters: `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs:477`
+b10-hooks-quality-screen-task-N18 | FIXED | The arguments are wrapped across lines: `.skilled/hooks/task-dispatch/devin/task-dispatch-guard.cjs:67`
+
+NEW
+none
+
+SUMMARY: fixed=29 partial=1 not_fixed=0 wrong=0 held=5 changed=0 new_p0=0 new_p1=0

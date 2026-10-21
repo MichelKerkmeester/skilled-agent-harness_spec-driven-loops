@@ -1,0 +1,52 @@
+[b06a-relaunch-tests-002] P2 .skilled/hooks/session-relaunch/tests/README.md:70 | EXPECTED-FIXED
+  finding: The Codex hook payloads `Used by` cell names `codex-adapters.test.cjs` and `context-usage.test.cjs`, but `adapter-conformance.test.cjs:22` also requires `codex-rollout-token-count.json`; a fixture edit that follows this table would not rerun the conformance file.
+  fix: Add `adapter-conformance.test.cjs` to the `Used by` cell.
+
+[b06a-relaunch-tests-003] P2 .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:285 | EXPECTED-FIXED
+  finding: The `info` object literal on this line is 113 characters; other over-limit object and call lines are at 72 (103), 99 (103), 228 (102), 275 (105), 298 (102), 423 (102) and 433 (107). Twelve lines in the file exceed the maximum in total; the rest are test names and string literals covered by the guide's long-string exception.
+  fix: Break the cited object and call lines across multiple lines so each stays within 100 characters.
+
+[b06a-relaunch-tests-004] P2 .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:29 | EXPECTED-FIXED
+  finding: `createSandbox` strips `SYSTEM_SESSION_RELAUNCH_DISABLED` and the threshold switches but leaves the master switches `SYSTEM_HOOKS_DISABLED` and `MK_HOOKS_DISABLED` inherited, and it does not pin `HOOK_FLAGS_CONFIG`. `hook-flags.cjs:90-91` then resolves the repo file `.skilled/hooks/hook-flags.env`, so a developer who disabled the concern there, or exported the documented alias, fails every positive nudge and arm test in this file while the silence tests pass without exercising the hook. Two tests already pin the file ad hoc at lines 193 and 517, which shows the gap.
+  fix: Add `HOOK_FLAGS_CONFIG: path.join(home, 'hook-flags.env')` to the env object and add `SYSTEM_HOOKS_DISABLED` and `MK_HOOKS_DISABLED` to the delete list, as `adapter-conformance.test.cjs:51-63` does.
+
+[b06a-relaunch-tests-005] P2 .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:576 | EXPECTED-FIXED
+  finding: The same `killer-spawn-recorder.cjs` preload is written from a string array three times in this file: lines 576-596 and 626-646 are byte-identical (both record `command`, `args`, `options`), and `installKillerRecorder` at 671-696 records a slightly different payload. A fix to the interception, such as the `syncBuiltinESMExports` call or the `killer.cjs` match, has to land three times. README §5 already puts a fixture read by more than one test in `fixtures/`, and `fixtures/codex-spawn-recorder.cjs` is the existing precedent.
+  fix: Keep one local helper that takes the fields it records, or reuse `fixtures/codex-spawn-recorder.cjs` with a configurable output shape, and delete the two inline copies.
+
+[b06a-relaunch-tests-006] P2 .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:721 | EXPECTED-FIXED
+  finding: The comment continues the sentence on the previous line but starts with lowercase `the`.
+  fix: Capitalize it, for example `// The old fallback named its parent, which is the loop.`
+
+[b06a-relaunch-tests-007] P2 .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:171 | EXPECTED-FIXED
+  finding: The `runAdapter` call is 165 characters, and the same object-in-call pattern repeats at 184, 198, 209, 242 and 563 (148); 26 lines in the file exceed the maximum in total, with other non-string cases at 28 (115), 130 (119), 321 (131) and 343 (128).
+  fix: Spread the payload object onto its own lines in each call, as the multi-line tests in this file already do.
+
+[b06a-relaunch-tests-008] P2 .skilled/hooks/session-relaunch/tests/codex-adapters.test.cjs:73 | EXPECTED-FIXED
+  finding: The delete list removes the canonical master switch `SYSTEM_HOOKS_DISABLED` but not its documented alias `MK_HOOKS_DISABLED` (`hook-flags.cjs:28`), so a developer or worker that exports the alias still silences every Codex prompt and stop adapter and the positive tests fail. `HOOK_FLAGS_CONFIG` is already pinned at line 65, so only the alias is missing.
+  fix: Add `MK_HOOKS_DISABLED` next to `SYSTEM_HOOKS_DISABLED` in the delete list.
+
+[b06a-relaunch-tests-010] P2 .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:232 | EXPECTED-FIXED
+  finding: `fillRatio` is a pure division, but the test calls `createSandbox(t)` and discards the result, so it creates a temp root and registers cleanup for a dependency the function does not have.
+  fix: Delete the call.
+
+[b06a-relaunch-tests-011] P2 .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:63 | EXPECTED-FIXED
+  finding: `900002` is the sidechain entry's total (`transcript-usage.jsonl:3`: 100 + 899900 + 2) and the assertion guards against reading it, but the bare number does not say which fixture row it comes from, and the `deepEqual` above already separates the main-chain value. A reader cannot tell whether it is a second expected value or the sidechain guard.
+  fix: Name it, for example `const SIDECHAIN_FILL_TOKENS = 900002;` with a comment pointing at the third fixture row, or drop the redundant assertion.
+
+[b06a-relaunch-tests-012] P2 .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:280 | EXPECTED-FIXED
+  finding: The `payload` object literal is 121 characters, over the maximum; the `resolveWindow` call lines at 311 and 317 (106) and 337 (101) repeat the over-limit pattern.
+  fix: Break the `payload` object and the three `resolveWindow` argument objects across lines.
+
+[b06a-relaunch-tests-N01] P2 .skilled/hooks/session-relaunch/tests/README.md:32 | EXPECTED-FIXED
+  finding: The directory tree omits hop-history.test.cjs although README §3 lists it and the file exists.
+  fix: Add its row after hermes-adapters.test.cjs and before killer.test.cjs.
+
+[b06a-relaunch-tests-N02] P2 .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:52 | EXPECTED-FIXED
+  finding: Additional non-exempt long lines occur at 52, 135, 145, 329, 341, 348, 776 and 799.
+  fix: Wrap these object, assertion, call and path expressions.
+
+[b06a-relaunch-tests-N03] P2 .skilled/hooks/session-relaunch/tests/context-usage.test.cjs:34 | EXPECTED-FIXED
+  finding: Additional non-exempt long lines occur at 34, 209, 282 and 285.
+  fix: Wrap these environment, object and assertion expressions.
+

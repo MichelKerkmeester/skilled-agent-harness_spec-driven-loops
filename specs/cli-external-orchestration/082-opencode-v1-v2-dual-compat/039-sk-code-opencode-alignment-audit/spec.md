@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete except REQ-002: 22 P0 and P1 findings stay open, 21 waiting on the operator |
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/181-sk-code-opencode-alignment-audit` |
 | **Parent Spec** | ../spec.md |

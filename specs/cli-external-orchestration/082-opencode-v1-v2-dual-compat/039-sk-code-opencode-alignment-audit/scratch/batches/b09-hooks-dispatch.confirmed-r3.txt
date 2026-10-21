@@ -1,0 +1,168 @@
+[b09-hooks-dispatch-001] P2 .skilled/hooks/dispatch/README.md:40, 104 | EXPECTED-FIXED
+  finding: § 2 says "The five checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`)" and lists five rows (44-48); § 5 repeats that `CHECKS` "holds the five pure check functions". `KNOWN_CHECKS` exports 28 checks, and the table omits `explicit-model-required`, `v2-slash-prompt-route`, the `pi-*`, `hermes-*`, `jev-*` and `command-v-*` families. The `stdin-redirect-required` row also still says only "An `opencode run` command" although the check now covers every headless shape.
+  fix: Replace "five" with "28" (or "the checks in `CHECKS`") and regenerate the table from `KNOWN_CHECKS`, including the headless shapes the stdin check covers.
+
+[b09-hooks-dispatch-002] P2 .skilled/hooks/dispatch/README.md:64, 71, 93 | EXPECTED-FIXED
+  finding: § 3 says "Cursor and OpenCode carry audit only", the Cursor row says "Audit only (no preflight)", and the § 4 tree lists only `cursor/post-tool-use.mjs`. `cursor/dispatch-preflight-lint.mjs` exists and is registered in `.cursor/hooks.json:82` (`preToolUse`, matcher `Shell`), and `.skilled/plugins/cli-dispatch-audit.js:71` implements `tool.execute.before` for OpenCode, so both runtimes now preflight. The delivery matrix would lead an operator to skip both preflights when diagnosing a blocked dispatch.
+  fix: Add the Cursor preflight to the § 3 row, prose and § 4 tree, and state that OpenCode preflights in-process via `tool.execute.before`; narrow the audit-only claim to the post-execution halves.
+
+[b09-hooks-dispatch-003] P2 .skilled/hooks/dispatch/README.md:16 | EXPECTED-FIXED
+  finding: The overview gives `codex exec -p` as a dispatch example, but `lib/dispatch-audit.mjs:37` says "Codex has no print flag: `exec` IS its headless subcommand" and the registry matches only `codex exec`. The same stale example is in `codex/dispatch-audit-posttooluse.mjs:9` and `devin/dispatch-audit-posttooluse.mjs:10`.
+  fix: Change the example to `codex exec` in the README and both adapter headers.
+
+[b09-hooks-dispatch-004] P2 .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:26 | EXPECTED-FIXED
+  finding: The block at 26-33 describes a "Dispatch-shape registry: command pattern → the skill" with `skill`/`packetPath` fields "in this file", but the file imports `resolveDispatchPacket` from `../lib/dispatch-audit.mjs`; the registry is `DISPATCH_SHAPES` there. The comment explains a structure that is not present and says "extend by adding an entry there" without naming the owning file.
+  fix: Replace the block with one line: the shapes live in `lib/dispatch-audit.mjs` `DISPATCH_SHAPES`; add new `cli-*` entries there.
+
+[b09-hooks-dispatch-005] P2 .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:23 | EXPECTED-FIXED
+  finding: `hookEnv()` clears `SYSTEM_HOOKS_DISABLED`, `MK_HOOKS_DISABLED` and `CLI_DISPATCH_AUDIT_DISABLED` but not `SYSTEM_DISPATCH_DISABLED` or `SYSTEM_DISPATCH_GUARD_DISABLED`, which the adapters read through `isHookEnabled('dispatch')` and `isHookEnabled('dispatch-guard')` (`codex/dispatch-audit-posttooluse.mjs:50`, `codex/dispatch-preflight-lint.mjs:44`) and README § 6 documents. With either exported, the lint case at line 46 sees no `no-bare-agent-general` advisory and fails, so the suite's verdict depends on the developer's shell.
+  fix: Add `SYSTEM_DISPATCH_DISABLED`, `SYSTEM_DISPATCH_GUARD_DISABLED` and `MK_DISPATCH_DISABLED` to the delete loop.
+
+[b09-hooks-dispatch-006] P0 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:271 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `hasDispatchText` requires a `-p`/`--print` after `codex exec`, but `directExecutor` (line 217) and `DISPATCH_SHAPES` treat `codex exec` alone as the dispatch, and line 37 says codex has no print flag. `inspectDispatch('echo "$(codex exec task)"')` therefore returns `{kind:'none'}` while the same shape with `devin -p` returns `{kind:'ambiguous'}`; the Pi authorization gate (`pi/dispatch-preflight-lint.ts:185`) allows a wrapped codex dispatch it denies for every sibling executor.
+  fix: Drop the print-flag requirement from the codex branch so it matches `codex exec` the way `directExecutor` does.
+
+[b09-hooks-dispatch-008] P2 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:1 | EXPECTED-FIXED
+  finding: The file starts with a prose comment and has no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Dispatch Audit Core` inside a 67-character `MODULE:` divider above the existing prose block.
+
+[b09-hooks-dispatch-009] P2 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:25, 522, 576, 673, 709 | EXPECTED-FIXED
+  finding: The 749-line file has no numbered dividers; it uses unnumbered one-line labels such as `// ── Dispatch-shape registry …` at 25, 522, 576, 673 and 709, so the verifier reports `SECTIONS-MISSING` and `SECTIONS-DIVIDER-SHAPE` at line 25.
+  fix: Replace the labels with numbered Format A dividers (`1. IMPORTS`, `2. CONSTANTS`, `3. HELPERS`, `4. CORE LOGIC`, `5. EXPORTS`), keeping the existing grouping.
+
+[b09-hooks-dispatch-010] P2 .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:1 | EXPECTED-FIXED
+  finding: The file starts with a run instruction comment and has no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Dispatch Audit Core Tests` inside a 67-character `MODULE:` divider.
+
+[b09-hooks-dispatch-011] P2 .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:1 | EXPECTED-FIXED
+  finding: The header tells the reader to run `npx vitest run <this file>`, while README § 8 (line 154) says vitest lives under `.skilled/node_modules`, "so `npx vitest` run from the root does not find it and fetches or reuses a different copy", and gives the pinned `.skilled/node_modules/.bin/vitest` command. Following the test's own instruction runs a different vitest than the suite documents.
+  fix: Change the comment to `.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, or point at README § 8.
+
+[b09-hooks-dispatch-012] P1 .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:267 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `non-interactive-permission-mode-risk` only tests `\bclaude\s+-p\b` or `\bclaude\s+--print\b`, so `claude --model sonnet -p "x"` returns satisfied (`true`) and the packet's warn rule never fires. The command is still recognized as a dispatch: `inspectDispatch`/`resolveDispatchPacket` return `cli-claude-code` because the tokenizer sees the `-p`, so the guard evaluates the claude rules and this one silently passes a non-interactive run with no permission bypass.
+  fix: Allow intervening flags, mirroring the sibling shapes, so the test accepts `claude` followed by any non-separator characters and then `-p` or `--print`.
+
+[b09-hooks-dispatch-013] P2 .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:1 | EXPECTED-FIXED
+  finding: The file starts with a prose comment and has no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Dispatch Hard-Rule Engine` inside a 67-character `MODULE:` divider.
+
+[b09-hooks-dispatch-014] P2 .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:30 | EXPECTED-FIXED
+  finding: The 341-line file has no numbered dividers; it uses one unnumbered label, `// ── Check functions …`, at line 30, so the verifier reports `SECTIONS-MISSING` and `SECTIONS-DIVIDER-SHAPE`.
+  fix: Replace the label with numbered Format A dividers (`1. IMPORTS`, `2. CONSTANTS`, `3. HELPERS`, `4. CORE LOGIC`, `5. EXPORTS`), keeping the existing grouping.
+
+[b09-hooks-dispatch-015] P2 .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:1 | EXPECTED-FIXED
+  finding: The file starts with a run instruction comment and has no `MODULE:` or `COMPONENT:` marker, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Dispatch Hard-Rule Engine Tests` inside a 67-character `MODULE:` divider.
+
+[b09-hooks-dispatch-016] P2 .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:895 | EXPECTED-FIXED
+  finding: The `for (const [name, md] of packets)` body opens and then places `const rules = readHardRules(md);` on the same line after four spaces, unlike every sibling loop in the suite.
+  fix: Split the body onto the next line at two-space indentation.
+
+[b09-hooks-dispatch-017] P2 .skilled/hooks/dispatch/pi/directive-dedup.test.ts:1 | EXPECTED-FIXED
+  finding: The file starts with imports and has no `MODULE:` header, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Pi Directive Dedup Tests` inside a 67-character `MODULE:` divider above the imports.
+
+[b09-hooks-dispatch-018] P2 .skilled/hooks/dispatch/pi/directive-dedup.test.ts:17 | EXPECTED-FIXED
+  finding: The file uses double-quoted strings throughout, for example `const HEAD = "Advisor: live; use sk-code 0.91/0.23 pass."` at line 17 and the import specifiers at lines 1 and 3.
+  fix: Convert the string literals and import specifiers to single quotes.
+
+[b09-hooks-dispatch-019] P2 .skilled/hooks/dispatch/pi/dispatch-audit.ts:5 | EXPECTED-FIXED
+  finding: The third-party type import at line 5 precedes the `node:path` import at line 6, so the file violates the four-group order that puts Node built-ins first. Its string literals are also double-quoted throughout, for example `item.type === "text"` at line 12.
+  fix: Move `import { join } from 'node:path';` first, keep the third-party type import in a separate `import type` group, and use single quotes for string literals.
+
+[b09-hooks-dispatch-020] P2 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:1 | EXPECTED-FIXED
+  finding: The file starts with imports and has no `MODULE:` header, so the verifier reports `EXACT-HEADER` at line 1.
+  fix: Add `// MODULE: Pi Dispatch Preflight Tests` inside a 67-character `MODULE:` divider above the imports.
+
+[b09-hooks-dispatch-021] P2 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:4 | EXPECTED-FIXED
+  finding: The file uses double-quoted strings for its imports and assertions, for example `from "vitest"` at line 4 and `"use cli-pi"` at line 239.
+  fix: Convert the string literals and import specifiers to single quotes.
+
+[b09-hooks-dispatch-022] P2 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:1 | EXPECTED-FIXED
+  finding: The 290-line file has no numbered section dividers, so the verifier reports `SECTIONS-MISSING` at line 1.
+  fix: Add Format A numbered dividers (`1. IMPORTS`, `2. TYPE DEFINITIONS`, `3. CONSTANTS`, `4. HELPERS`, `5. CORE LOGIC`, `6. EXPORTS`) in the TypeScript order.
+
+[b09-hooks-dispatch-023] P2 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:5 | EXPECTED-FIXED
+  finding: The third-party type import at line 5 precedes the `node:path` import at line 6, violating the four-group order. The file also uses double-quoted strings throughout, for example `const PI_RUNTIME = "pi";` at line 9.
+  fix: Move `import { join } from 'node:path';` first, keep the third-party type import in a separate `import type` group, and use single quotes for string literals.
+
+[b09-hooks-dispatch-N01] P0 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:235 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `inspectDispatch` returns `none` for wrappers such as `command codex exec task` and `nohup opencode run ...`; the handler returns before authorization and lint, although the resolver recognizes them.
+  fix: Use wrapper-aware inspection in Pi and deny unsupported shapes.
+
+[b09-hooks-dispatch-N02] P0 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:193 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: A negated or quoted `/deep:... --executor cli-X` mention can count as authorization for a matching dispatch.
+  fix: Require a positive, unquoted directive before granting the executor exemption.
+
+[b09-hooks-dispatch-N03] P1 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:517 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: The resolver returns only the first executor in a command chain; later dispatches can escape their own hard-rule checks.
+  fix: Validate every dispatch in the chain or reject multi-dispatch commands.
+
+[b09-hooks-dispatch-N04] P1 .skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:137,149 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Raw regexes treat quoted prompt text such as `--model p/m` and `</dev/null` as actual flags and redirects, allowing both checks to pass.
+  fix: Parse shell tokens and check only actual arguments and redirects.
+
+[b09-hooks-dispatch-N05] P1 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:515 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Stripping heredoc bodies makes `resolveDispatchPacket` miss a script written and run in the same call, so preflight rules are skipped.
+  fix: Detect execution of a heredoc-written script or reject that pattern.
+
+[b09-hooks-dispatch-N06] P2 .skilled/hooks/dispatch/lib/dispatch-audit.mjs:343 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: `matchDispatchShape` accepts only direct inspection, while the resolver recognizes wrapped dispatches; audit calls can be missed.
+  fix: Use wrapper-aware resolution for audit matching.
+
+[b09-hooks-dispatch-N07] P2 .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:65 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Raw registry matching can log a Codex dispatch found only inside heredoc data.
+  fix: Use the central command classifier before writing an audit row.
+
+[b09-hooks-dispatch-N08] P2 .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:61 | HELD-FOR-OPERATOR (behaviour change, must stay unfixed)
+  finding: Raw registry matching can log a Devin dispatch found only inside heredoc data.
+  fix: Use the central command classifier before writing an audit row.
+
+[b09-hooks-dispatch-N09] P2 .skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs:20 | EXPECTED-FIXED
+  finding: Local imports precede the Node built-in import.
+  fix: Put the Node import first and separate import groups.
+
+[b09-hooks-dispatch-N10] P2 .skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs:21 | EXPECTED-FIXED
+  finding: Local imports precede the Node built-in import.
+  fix: Put the Node import first and separate import groups.
+
+[b09-hooks-dispatch-N11] P2 .skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs:20 | EXPECTED-FIXED
+  finding: Local imports precede the Node built-in import.
+  fix: Put the Node import first and separate import groups.
+
+[b09-hooks-dispatch-N12] P2 .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs:22 | EXPECTED-FIXED
+  finding: Node and local imports are not separated into groups.
+  fix: Add a blank line between the built-in and local import groups.
+
+[b09-hooks-dispatch-N13] P2 .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs:22 | EXPECTED-FIXED
+  finding: Node and local imports are not separated into groups.
+  fix: Add a blank line between the built-in and local import groups.
+
+[b09-hooks-dispatch-N14] P2 .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs:21 | EXPECTED-FIXED
+  finding: Node and local imports are not separated into groups.
+  fix: Add a blank line between the built-in and local import groups.
+
+[b09-hooks-dispatch-N15] P2 .skilled/hooks/dispatch/cursor/dispatch-preflight-lint.mjs:20 | EXPECTED-FIXED
+  finding: Node and local imports are not separated into groups.
+  fix: Add a blank line between the built-in and local import groups.
+
+[b09-hooks-dispatch-N16] P2 .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs:8 | EXPECTED-FIXED
+  finding: The third-party Vitest import precedes Node built-ins.
+  fix: Order Node built-ins before third-party imports and separate the groups.
+
+[b09-hooks-dispatch-N17] P2 .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs:2 | EXPECTED-FIXED
+  finding: The third-party import precedes Node built-ins, and local imports appear after executable code.
+  fix: Group imports by category at the top of the file.
+
+[b09-hooks-dispatch-N18] P2 .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:8 | EXPECTED-FIXED
+  finding: Local imports follow the built-in group without a separating blank line.
+  fix: Separate the built-in and local import groups.
+
+[b09-hooks-dispatch-N19] P2 .skilled/hooks/dispatch/pi/directive-dedup.test.ts:3 | EXPECTED-FIXED
+  finding: The type-only import appears before local value imports instead of in the final group.
+  fix: Move type-only imports after the local import group.
+
+[b09-hooks-dispatch-N20] P2 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:6 | EXPECTED-FIXED
+  finding: The type-only import appears before local value imports instead of in the final group.
+  fix: Move type-only imports after the local import group.
+
