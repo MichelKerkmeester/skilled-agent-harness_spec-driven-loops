@@ -776,7 +776,7 @@ function writeJsonAtomic(targetPath, record) {
   }
 }
 
-/** Fail-open read: any missing file, invalid scope, or parse error returns null. */
+/** Fail-open read: only a missing file falls through; any other read or parse error returns null. */
 function readGoalRecordForScope(goalScope) {
   for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
     try {
@@ -785,8 +785,9 @@ function readGoalRecordForScope(goalScope) {
       if (!parsed || typeof parsed !== 'object') return null;
       parsed.status = upgradeStatus(parsed.status);
       return parsed;
-    } catch {
-      continue;
+    } catch (error) {
+      if (error?.code === 'ENOENT') continue;
+      return null;
     }
   }
   return null;
