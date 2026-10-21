@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2ac57a8190ffde1aca313d91a5e4cc03aa1c5cbb620b9ea5d015832950512721",
+  "manifestHash": "dbcca7eea0b8161a14d1f6aaa4751af1015d98f651a198115ce8e10f8ce27265",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -72673,6 +72673,9 @@
     "phase 48 skilled loop shared nudge formatter": [
       "phase 48 skilled loop shared nudge formatter"
     ],
+    "phase 49 review rows reconciliation": [
+      "phase 49 review rows reconciliation"
+    ],
     "phase 5 changelog single bump": [
       "phase 5 changelog single bump"
     ],
@@ -85082,6 +85085,18 @@
     ],
     "review rollback followup": [
       "review rollback followup"
+    ],
+    "review rows reconciliation": [
+      "review rows reconciliation"
+    ],
+    "review rows reconciliation implementation summary": [
+      "review rows reconciliation implementation summary"
+    ],
+    "review rows reconciliation plan": [
+      "review rows reconciliation plan"
+    ],
+    "review rows reconciliation tasks": [
+      "review rows reconciliation tasks"
     ],
     "review run open plan": [
       "review run open plan"
