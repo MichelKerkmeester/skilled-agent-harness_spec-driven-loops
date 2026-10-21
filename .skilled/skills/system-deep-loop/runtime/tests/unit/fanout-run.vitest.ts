@@ -1788,6 +1788,7 @@ describe('fanout-run.cjs — unpinned lineage fallbacks match their packets', ()
     ['CODEX_DEFAULT_MODEL', 'cli-codex', 'GPT Luna', /gpt-[\d.]+-luna/],
     ['CLAUDE_DEFAULT_MODEL', 'cli-claude-code', 'Opus', /claude-opus-/],
     ['OPENCODE_DEFAULT_MODEL', 'cli-opencode', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],
+    ['OPENCODE_V2_DEFAULT_MODEL', 'cli-opencode', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],
     ['CURSOR_DEFAULT_MODEL', 'cli-cursor', 'Composer', /composer-/],
     ['DEVIN_DEFAULT_MODEL', 'cli-devin', 'SWE 2 Max', /swe-2-max/],
     ['PI_DEFAULT_MODEL', 'cli-pi', 'DeepSeek V4.1 Flash', /deepseek-v4\.1-flash/],

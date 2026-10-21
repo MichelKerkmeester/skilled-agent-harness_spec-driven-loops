@@ -2425,7 +2425,8 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
     throw inputError(`cli-opencode executor unavailable: ${error.message}`);
   }
 
-  const model = lineage.model || OPENCODE_DEFAULT_MODEL;
+  const model = lineage.model
+    || (opencode.version === 'v1' ? OPENCODE_DEFAULT_MODEL : OPENCODE_V2_DEFAULT_MODEL);
   const opencodeEffort = pinReasoningEffortForModel(model, lineage.reasoningEffort);
   const useDangerousBypass = resolvedSandbox === 'danger-full-access';
   const dangerousBypassFlag = opencode.version === 'v1'
@@ -2549,9 +2550,14 @@ const CURSOR_ALLOWED_MODELS = new Set([
 // operator choosing a model, while these keep an existing fan-out reproducible. A test
 // asserts each one matches the fallback its packet documents, so the two cannot drift
 // apart again in silence.
+//
+// The OpenCode fallback splits by major: OpenCode 2 lists no opencode-go provider unless
+// it is logged in separately, so an unpinned v2 lineage routes through llmgateway while
+// v1 keeps the opencode-go literal.
 const CODEX_DEFAULT_MODEL = 'gpt-6-luna';
 const CLAUDE_DEFAULT_MODEL = 'claude-opus-4-8';
 const OPENCODE_DEFAULT_MODEL = 'opencode-go/deepseek-v4.1-flash';
+const OPENCODE_V2_DEFAULT_MODEL = 'llmgateway/deepseek-v4.1-flash';
 const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 
 // Mirrors PI_SUPPORTED_MODELS in executor-config.ts. Pi is a provider
@@ -4204,6 +4210,7 @@ module.exports = {
   CODEX_DEFAULT_MODEL,
   CLAUDE_DEFAULT_MODEL,
   OPENCODE_DEFAULT_MODEL,
+  OPENCODE_V2_DEFAULT_MODEL,
   PI_ALLOWED_MODELS,
   PI_DEFAULT_MODEL,
   HERMES_ALLOWED_MODELS,
