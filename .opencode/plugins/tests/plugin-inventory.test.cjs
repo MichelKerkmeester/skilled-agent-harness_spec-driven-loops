@@ -298,6 +298,13 @@ test('an alias that is shadowed or reassigned is not an alias', () => {
   assert.deepEqual(handledEventNames(source), []);
 });
 
+// A rewritten alias still reads the type at the check, so its comparison is reported, not dropped.
+test('a comparison on a reassigned alias is reported as unscanned', () => {
+  const source = `let t = event.type; if (t === 'a.before') {} t = 0;`;
+  assert.deepEqual(handledEventNames(source), []);
+  assert.deepEqual(unscannedEventChecks(source), ["t === 'a.before'"]);
+});
+
 // Destructuring binds the type field in parameters and in defaults too.
 test('a destructured type field is read in parameters and with defaults', () => {
   const source =

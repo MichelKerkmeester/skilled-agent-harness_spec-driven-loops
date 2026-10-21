@@ -26,6 +26,16 @@ const { parseAst } = createRequire(path.join(REPO_ROOT, '.skilled', 'package.jso
 // 3. MANIFEST READERS
 // ─────────────────────────────────────────────────────────────────────────────
 
+/**
+ * Read the inventory manifest that lists the plugin exceptions and known events.
+ *
+ * @param {string} [pluginDir] - Folder holding the plugins and their
+ *   `tests/plugin-inventory.json`; defaults to this helper's plugin folder.
+ * @returns {object} The parsed manifest, with `nativeDual`, `skippedHooks`,
+ *   `unscannedEventChecks` and `events`.
+ * @throws {Error} When the manifest file cannot be read.
+ * @throws {SyntaxError} When the manifest is not valid JSON.
+ */
 function readManifest(pluginDir = PLUGIN_DIR) {
   const manifestPath = path.join(pluginDir, 'tests', 'plugin-inventory.json');
   return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
@@ -39,6 +49,19 @@ function listPluginFiles(pluginDir) {
     .sort();
 }
 
+/**
+ * Compare the plugin folder against the manifest and report every difference.
+ *
+ * @param {string} [pluginDir] - Folder holding the plugin files and the manifest;
+ *   defaults to this helper's plugin folder.
+ * @param {object} [manifest] - Manifest to compare against; defaults to
+ *   `readManifest(pluginDir)`.
+ * @returns {{ bridged: string[], nativeDual: string[], problems: string[] }}
+ *   Sorted stems (file names without `.js`) of the bridged plugins, sorted stems of
+ *   the native-dual exceptions, and one message per mismatch found.
+ * @throws {Error} When the manifest or a plugin file cannot be read.
+ * @throws {SyntaxError} When the manifest is not valid JSON.
+ */
 function readInventory(pluginDir = PLUGIN_DIR, manifest = readManifest(pluginDir)) {
   const files = listPluginFiles(pluginDir);
   const existingFiles = new Set(files);
@@ -361,6 +384,25 @@ function containsEventType(node, context) {
   });
 }
 
+// A binding declared from the type and then rewritten no longer holds it, so a comparison that
+// reads that name may have selected any event. The operand is reported rather than dropped.
+function containsRewrittenAlias(node, context) {
+  if (node === null || node === undefined) return false;
+
+  return walkAst(
+    node,
+    (current) =>
+      !FUNCTION_TYPES.has(current.type) &&
+      !(current.type === 'UnaryExpression' && current.operator === 'typeof'),
+  ).some(({ node: current, parent }) => {
+    return (
+      current.type === 'Identifier' &&
+      !isBindingIdentifier(current, parent) &&
+      context.rewrittenAliases.has(context.resolve(current))
+    );
+  });
+}
+
 // Every pattern form hides its names at a different depth, so one walk flattens them all.
 function forEachPatternName(pattern, visit) {
   if (pattern === null || pattern === undefined) return;
@@ -599,16 +641,19 @@ function collectWrittenBindings(context) {
 }
 
 // A local binding can carry the type field too, including one destructured out of it, but only
-// while that binding is never rewritten; an alias can also be built from another alias.
+// while that binding is never rewritten; an alias can also be built from another alias. A binding
+// that is rewritten cannot name an event, so it is kept apart for the comparison reader to report.
 function collectEventTypeAliases(context) {
   const aliases = new Set();
+  const rewritten = new Set();
   context.aliases = aliases;
+  context.rewrittenAliases = rewritten;
   let changed = true;
 
   while (changed) {
     changed = false;
     for (const binding of context.bindings) {
-      if (aliases.has(binding) || context.written.has(binding)) continue;
+      if (aliases.has(binding) || rewritten.has(binding)) continue;
 
       const declarator = binding.declarator;
       const fromInit =
@@ -617,7 +662,8 @@ function collectEventTypeAliases(context) {
         isEventType(declarator.init, context);
       if (!fromInit && !context.typeBindings.has(binding)) continue;
 
-      aliases.add(binding);
+      if (context.written.has(binding)) rewritten.add(binding);
+      else aliases.add(binding);
       changed = true;
     }
   }
@@ -784,8 +830,14 @@ function readComparison(node, source, context, handled, unscanned) {
     return;
   }
   if (!leftIsType && !rightIsType) {
-    // A type hidden inside an operand is reported rather than silently dropped.
-    if (containsEventType(node.left, context) || containsEventType(node.right, context)) {
+    // A type hidden inside an operand is reported rather than silently dropped, and so is a name
+    // that held the type only until a later write replaced it.
+    if (
+      containsEventType(node.left, context) ||
+      containsEventType(node.right, context) ||
+      containsRewrittenAlias(node.left, context) ||
+      containsRewrittenAlias(node.right, context)
+    ) {
       unscanned.add(text(source, node));
     }
     return;
@@ -1132,7 +1184,7 @@ function scanEvents(source) {
     resolvingParams: new Set(),
   };
   context.written = collectWrittenBindings(context);
-  const aliases = collectEventTypeAliases(context);
+  collectEventTypeAliases(context);
   context.derived = collectDerivedBindings(context);
   context.reportedCalls = collectReportedCalls(context);
   const handled = new Set();
@@ -1169,10 +1221,24 @@ function scanEvents(source) {
   };
 }
 
+/**
+ * Read the event names a plugin source handles in a comparison or case label.
+ *
+ * @param {string} source - JavaScript source to scan.
+ * @returns {string[]} Sorted, de-duplicated event names the scan can read.
+ * @throws {Error} When the source cannot be parsed.
+ */
 function handledEventNames(source) {
   return scanEvents(source).handled;
 }
 
+/**
+ * Read the checks whose event the scan cannot resolve, so a caller can fail closed on them.
+ *
+ * @param {string} source - JavaScript source to scan.
+ * @returns {string[]} Sorted, de-duplicated source text of every check the scan cannot read.
+ * @throws {Error} When the source cannot be parsed.
+ */
 function unscannedEventChecks(source) {
   return scanEvents(source).unscanned;
 }
