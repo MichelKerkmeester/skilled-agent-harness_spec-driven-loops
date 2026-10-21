@@ -272,8 +272,9 @@ function disabledEnvName() {
 }
 
 // The signature runs on every advisor lookup, so the digest of a file whose
-// identity is unchanged is reused instead of read and hashed again. Any stat
-// difference falls back to the read, and a stat or read failure stays missing.
+// identity is unchanged is reused instead of read and hashed again. A difference
+// in mtimeMs, ctimeMs, size or ino falls back to the read, and a stat or read
+// failure stays missing.
 const fileDigestCache = new Map();
 
 function fileDigest(sourcePath, stat) {
