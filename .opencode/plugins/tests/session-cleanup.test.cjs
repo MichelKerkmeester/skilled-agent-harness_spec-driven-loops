@@ -7,6 +7,7 @@
 
 const assert = require('node:assert/strict');
 const { spawn, spawnSync } = require('node:child_process');
+const { EventEmitter } = require('node:events');
 const {
   chmodSync,
   mkdtempSync,
@@ -25,6 +26,8 @@ const CLEANUP_PATH = join(REPO_ROOT, '.skilled/scripts/session-cleanup.sh');
 const WORKTREE_GUARD_PATH = join(REPO_ROOT, '.skilled/bin/worktree-guard.sh');
 const HOOK_GUARD_PATH = join(REPO_ROOT, '.skilled/bin/check-git-hooks.sh');
 const LIVE_FOLLOW_PATH = join(REPO_ROOT, '.skilled/bin/git-live-follow.sh');
+const PRIMARY_RECONCILE_PATH = join(REPO_ROOT, '.skilled/bin/git-primary-reconcile.sh');
+const GUARD_PATHS = [WORKTREE_GUARD_PATH, HOOK_GUARD_PATH, LIVE_FOLLOW_PATH];
 
 async function loadPlugin() {
   const moduleUrl = `${pathToFileURL(PLUGIN_PATH).href}?test=${Date.now()}-${Math.random()}`;
@@ -40,6 +43,20 @@ function successfulResult(overrides = {}) {
     stdout: '',
     ...overrides,
   };
+}
+
+function fakeChild() {
+  const child = new EventEmitter();
+  child.stdout = new EventEmitter();
+  child.stderr = new EventEmitter();
+  child.kill = () => {};
+  return child;
+}
+
+function finishChild(child, { status = 0, signal = null, stdout = '', stderr = '' } = {}) {
+  if (stdout) child.stdout.emit('data', stdout);
+  if (stderr) child.stderr.emit('data', stderr);
+  child.emit('close', status, signal);
 }
 
 describe('session-cleanup plugin lifecycle', () => {
@@ -76,11 +93,19 @@ describe('session-cleanup plugin lifecycle', () => {
     const calls = [];
     const plugin = await loadPlugin();
     const hooks = await plugin({ directory: '/workspace', worktree: '/isolated' }, {
-      spawnSync(command, args, options) {
+      spawn(command, args, options) {
         calls.push({ command, args, options });
-        if (args[0] === WORKTREE_GUARD_PATH) {
-          return successfulResult({ stderr: '[worktree-guard] use an isolated worktree\n' });
-        }
+        const child = fakeChild();
+        setImmediate(() => {
+          finishChild(child, {
+            stderr: args[0] === WORKTREE_GUARD_PATH
+              ? '[worktree-guard] use an isolated worktree\n'
+              : '',
+          });
+        });
+        return child;
+      },
+      spawnSync() {
         return successfulResult();
       },
       writeDiagnostic() {},
@@ -90,11 +115,15 @@ describe('session-cleanup plugin lifecycle', () => {
     assert.equal(calls.length, 0, 'raw events are not part of the Hooks.event contract');
 
     await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'session-a' } } } });
-    assert.equal(calls.length, 3);
-    assert.deepEqual(calls.map((call) => call.args[0]), [WORKTREE_GUARD_PATH, HOOK_GUARD_PATH, LIVE_FOLLOW_PATH]);
-    assert.deepEqual(calls[2].args.slice(1), ['--start']);
-    assert.ok(calls.every((call) => call.options.cwd === '/isolated'));
-    assert.ok(calls.every((call) => call.options.stdio === 'pipe'));
+
+    const guardCalls = calls.filter((call) => GUARD_PATHS.includes(call.args[0]));
+    assert.equal(guardCalls.length, 3);
+    assert.deepEqual(guardCalls.map((call) => call.args[0]), GUARD_PATHS);
+    assert.deepEqual(guardCalls[2].args.slice(1), ['--start']);
+    assert.ok(guardCalls.every((call) => call.options.cwd === '/isolated'));
+    assert.ok(guardCalls.every((call) => call.options.stdio === 'pipe'));
+    assert.ok(guardCalls.every((call) => call.options.timeout === 8000));
+    assert.ok(calls.some((call) => call.args[0] === PRIMARY_RECONCILE_PATH));
 
     const unrelated = { system: [] };
     await hooks['experimental.chat.system.transform']({ sessionID: 'session-b' }, unrelated);
@@ -110,11 +139,112 @@ describe('session-cleanup plugin lifecycle', () => {
     assert.deepEqual(second.system, []);
   });
 
+  test('session.created resolves before a slow startup guard finishes', async () => {
+    let releaseGuards;
+    const guardsReleased = new Promise((resolve) => { releaseGuards = resolve; });
+    const plugin = await loadPlugin();
+    const hooks = await plugin({ directory: '/workspace' }, {
+      spawn(command, args) {
+        const child = fakeChild();
+        if (GUARD_PATHS.includes(args[0])) {
+          guardsReleased.then(() => finishChild(child, { stderr: 'slow guard warning\n' }));
+        } else {
+          setImmediate(() => finishChild(child));
+        }
+        return child;
+      },
+      spawnSync() {
+        return successfulResult();
+      },
+      writeDiagnostic() {},
+    });
+
+    let resolved = false;
+    const created = hooks.event({
+      event: { type: 'session.created', properties: { info: { id: 'slow-session' } } },
+    }).then(() => { resolved = true; });
+    await Promise.race([
+      created,
+      new Promise((resolve) => setTimeout(resolve, 250)),
+    ]);
+    assert.equal(resolved, true, 'session.created must not wait for slow guards');
+
+    releaseGuards();
+    const output = { system: [] };
+    await hooks['experimental.chat.system.transform']({ sessionID: 'slow-session' }, output);
+    assert.match(output.system[0] || '', /slow guard warning/);
+  });
+
+  test('the first transform still receives a delayed guard warning', async () => {
+    const plugin = await loadPlugin();
+    const hooks = await plugin({ directory: '/workspace' }, {
+      spawn(command, args) {
+        const child = fakeChild();
+        if (args[0] === WORKTREE_GUARD_PATH) {
+          setTimeout(() => finishChild(child, { stderr: 'delayed guard warning\n' }), 100);
+        } else {
+          setImmediate(() => finishChild(child));
+        }
+        return child;
+      },
+      spawnSync() {
+        return successfulResult();
+      },
+      writeDiagnostic() {},
+    });
+
+    await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'delayed-session' } } } });
+    const output = { system: [] };
+    await hooks['experimental.chat.system.transform']({ sessionID: 'delayed-session' }, output);
+
+    assert.equal(output.system.length, 1);
+    assert.match(output.system[0], /delayed guard warning/);
+  });
+
+  test('starts startup guards concurrently', async () => {
+    const guardChildren = [];
+    let activeGuards = 0;
+    let peakActiveGuards = 0;
+    const plugin = await loadPlugin();
+    const hooks = await plugin({ directory: '/workspace' }, {
+      spawn(command, args) {
+        const child = fakeChild();
+        if (GUARD_PATHS.includes(args[0])) {
+          activeGuards += 1;
+          peakActiveGuards = Math.max(peakActiveGuards, activeGuards);
+          guardChildren.push(child);
+        } else {
+          setImmediate(() => finishChild(child));
+        }
+        return child;
+      },
+      spawnSync() {
+        return successfulResult();
+      },
+      writeDiagnostic() {},
+    });
+
+    await hooks.event({ event: { type: 'session.created', properties: { info: { id: 'concurrent-session' } } } });
+    assert.ok(peakActiveGuards >= 2, `guards overlapped: peak ${peakActiveGuards}`);
+
+    for (const child of guardChildren) {
+      activeGuards -= 1;
+      finishChild(child);
+    }
+    const output = { system: [] };
+    await hooks['experimental.chat.system.transform']({ sessionID: 'concurrent-session' }, output);
+  });
+
   test('caps startup warning output before system-context injection', async () => {
     const plugin = await loadPlugin();
     const hooks = await plugin({}, {
+      spawn() {
+        const child = fakeChild();
+        setImmediate(() => finishChild(child, { stderr: 'x'.repeat(20_000) }));
+        return child;
+      },
       spawnSync() {
-        return successfulResult({ stderr: 'x'.repeat(20_000) });
+        return successfulResult();
       },
       writeDiagnostic() {},
     });
