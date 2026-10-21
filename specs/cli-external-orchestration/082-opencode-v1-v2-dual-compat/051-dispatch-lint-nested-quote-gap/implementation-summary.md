@@ -104,7 +104,7 @@ Round 1 found seven leaks (comments, `case`, in-word apostrophes, curly and stra
 | Audit and rule-check engines | Unchanged since base, so the 260-command corpus cannot move |
 | Suites, baseline to after | Hooks node 872 to 872, hooks vitest 401 to 452, plugins 516, battery 51, rule-checks 42, audit 124 |
 | Review rows checker | 0 open P0/P1; §2 P1 table 47/47/18/0 matches the rows |
-| Read-only reviews | Round 1 FAIL (7 P1), round 2 FAIL (5 P1), round 3 FAIL (1 P1, fixed after) |
+| Read-only reviews | Round 1 FAIL (7 P1), round 2 FAIL (5 P1), round 3 FAIL (1 P1, fixed after); a focused check of that fix PASS with two P2s that base shares |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,7 +113,7 @@ Round 1 found seven leaks (comments, `case`, in-word apostrophes, curly and stra
 ## Known Limitations
 
 1. **The listed contractions are a carve-out.** `it's cli-devin'` reads as prose though a shell would quote the mention.
-2. **The final deep-loop fix had no fourth review.** Its eight round-3 texts deny and its rows fail on base.
+2. **The final deep-loop fix had a focused check, not a full fourth review.** The check passed, its eight round-3 texts deny and its rows fail on base.
 3. **P2 false denies and P3 notes are recorded in 040's known gaps.**
 4. **The baseline audit count printed 620.** That run collected the test file five times through temporary symlinks; 124 is the real count, and `dispatch/lib` is unchanged.
 <!-- /ANCHOR:limitations -->
