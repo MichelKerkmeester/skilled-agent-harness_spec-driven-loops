@@ -1539,6 +1539,7 @@ function listArchivedGoals(rawOptions = {}) {
             const filePath = join(dir, entry.name);
             try {
               const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+              if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
               const sizeBytes = statSync(filePath).size;
               return { filename: entry.name, goal: parsed, sizeBytes };
             } catch {

@@ -543,6 +543,20 @@ test('clearGoal with no active goal is a no-op that does not throw', () => {
   assert.equal(core.showGoal(opts()), null);
 });
 
+test('listArchivedGoals skips archive files whose JSON is not a plain object', () => {
+  const options = scopedOpts('pi', 'archive-non-object');
+  const { record } = core.setGoal({ objective: 'Ship the widget', runtime: 'pi' }, options);
+  core.clearGoal(options);
+  const { archiveDir } = core.resolveGoalScope(options);
+  writeFileSync(join(archiveDir, 'non-object-null.json'), 'null', { mode: 0o600 });
+  writeFileSync(join(archiveDir, 'non-object-array.json'), '[]', { mode: 0o600 });
+
+  const archived = core.listArchivedGoals(options);
+  assert.equal(archived.length, 1);
+  assert.equal(archived[0].goal.goalId, record.goalId);
+  assert.equal(archived[0].goal.status, 'cleared');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // RENDER BYTE-COMPATIBILITY (fixture goal)
 // ─────────────────────────────────────────────────────────────────────────────
