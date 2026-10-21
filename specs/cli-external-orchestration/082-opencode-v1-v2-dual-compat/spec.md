@@ -163,6 +163,7 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 50 | 050-sk-doc-ci-outside-failures/ | Clear the two defects another session's commits left in sk-doc's checks - a validator import that fails under importlib and a catalog row that names AGENTS.md as plain text - so sk-doc Script Tests is green on main | Complete |
 | 51 | 051-dispatch-lint-nested-quote-gap/ | Replace the Pi dispatch lint's expansion depth count with one POSIX context-stack scanner, so a backtick quoted inside a substitution no longer lets a nested executor mention authorize, and unresolvable structure denies | Complete |
 | 52 | 052-v1-default-llmgateway/ | Make llmgateway/deepseek-v4.1-flash the OpenCode 1 default too, so both versions share one default, prove an unpinned dispatch live on each version and close 043 | Complete |
+| 53 | 053-final-commit-live-proof/ | Rerun the live 17-plugin playbook on OpenCode 1.19.3 and 2.0.32 at the final main commit | Complete |
 
 ### Phase Transition Rules
 
@@ -222,4 +223,5 @@ Still open: `allowed-tools` semantics, `-m provider/model#variant` on v1, live v
 | 049-review-rows-reconciliation | 050-sk-doc-ci-outside-failures | The operator approved fixing main's red sk-doc Script Tests on 2026-10-21 | `050/implementation-summary.md`; sk-doc Script Tests passes on CI at the pushed commit |
 | 040-dispatch-lint-held-fixes | 051-dispatch-lint-nested-quote-gap | 040 recorded one P1 open: a backtick quoted inside `$(` let a nested mention authorize cli-devin, and the goal allows no open P1 | `051/implementation-summary.md`; each deny row fails on the old scanner and CI passes at the pushed commit |
 | 050-sk-doc-ci-outside-failures | 052-v1-default-llmgateway | The operator chose llmgateway for the OpenCode 1 default on 2026-10-21 because the opencode-go quota is spent | `052/implementation-summary.md`; both unpinned live dispatches exit 0 and reply |
+| 052-v1-default-llmgateway | 053-final-commit-live-proof | 052 is on main with CI green | `053/scratch/live-runs/results-matrix.md` shows 17/17 on both versions |
 <!-- /ANCHOR:phase-map -->

@@ -1,0 +1,13 @@
+# scenario session-cleanup, run 2026-10-21T21:17:22Z in worktree 196, HEAD dfdc523af5
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+baseline v1 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-21T23:17:33+0200 action=skip reason=no-session-pid
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+baseline v2 exit=0 requests=2 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+[session-cleanup] Startup safety warnings:
+2026-10-21T23:17:33+0200 action=skip reason=no-session-pid
+2026-10-21T23:17:40+0200 action=skip reason=no-session-pid
+0
+0
+# block exit 0

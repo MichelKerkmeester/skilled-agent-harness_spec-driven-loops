@@ -1,0 +1,13 @@
+# scenario mcp-route-guard, run 2026-10-21T21:16:16Z in worktree 196, HEAD dfdc523af5
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+mcp-route-guard v1 exit=0 requests=3 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+running in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway
+mcp-route-guard v2 exit=0 requests=4 evidence=/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/skills/.state/plugin-utilization
+["mobbin_ping","completed","pong-stub"]
+mcp-route-guard.log (new): 2026-10-21T21:16:24.212Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+["execute","completed","Invalid input for tool 'search': SchemaError(Expected object)"]
+["execute","completed","pong-stub"]
+mcp-route-guard.log: 2026-10-21T21:16:42.152Z [mcp-route-guard] WARN: mcp-route-guard: native call to "mobbin" -- Code Mode can route this family via the "mobbin" manual (call_tool_chain); route through Code Mode for the ~98% context reduction the mcp-code-mode SKILL mandates.
+0
+0
+# block exit 0

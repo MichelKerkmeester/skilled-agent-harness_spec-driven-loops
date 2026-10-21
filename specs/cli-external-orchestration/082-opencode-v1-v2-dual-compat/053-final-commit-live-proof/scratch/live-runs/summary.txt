@@ -1,0 +1,19 @@
+classifier-injection-screen 0
+cli-dispatch-audit 0
+codex-hooks-watchdog 0
+mcp-route-guard 0
+opencode-goal 0
+session-cleanup 0
+session-relaunch 0
+sk-code-post-edit-quality 0
+sk-git-message-gate 0
+sk-git-preflight-advisory 0
+sk-vision 0
+system-completion-sentinel 0
+system-deep-loop-guard 0
+system-dist-freshness-guard 0
+system-skill-advisor 0
+system-spec-gate 0
+system-speckit-completion 0
+system-completion-sentinel rerun1 0
+DONE

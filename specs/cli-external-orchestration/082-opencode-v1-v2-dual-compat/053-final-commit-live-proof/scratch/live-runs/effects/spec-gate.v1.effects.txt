@@ -1,0 +1,7 @@
+# new log lines
+codex-hooks-watchdog.log: 2026-10-21T21:21:50.700Z codex hook drift detected; run: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/.skilled/bin/install-codex-hooks.mjs --check
+spec-gate-warnings.log: 2026-10-21T21:21:55.980Z [system-spec-gate] opencode | ses_e9fa87c39ffeeaU746RCcuBdt0 | write | /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway/gate-probe-19077/gate-probe.txt | would-deny
+# files changed during the run
+.skilled/logs/codex-hooks-watchdog.log
+.skilled/skills/.state/spec-gate/spec-gate-warnings.log
+.skilled/skills/.state/spec-gate/7365735f6539666138376333396666656561553734365243637542647430.json
