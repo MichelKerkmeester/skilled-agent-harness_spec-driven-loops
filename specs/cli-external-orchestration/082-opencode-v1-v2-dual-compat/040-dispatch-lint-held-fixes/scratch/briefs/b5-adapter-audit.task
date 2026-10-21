@@ -1,0 +1,27 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Make one change in two sibling adapters, plus their tests.
+
+Problem: `.skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs` and `.skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs` decide whether to log a command with `DISPATCH_SHAPES.find((candidate) => candidate.test.test(command))`, a raw regex over the whole text. So a command that only writes a dispatch into heredoc data, such as `cat > run.sh <<'EOF'` / `opencode run -m p/m x` / `EOF`, is logged as a dispatch, while the Claude, OpenCode and Pi adapters, which call `recordDispatch` from `../lib/dispatch-audit.mjs`, resolve the command first and do not log it.
+
+Fix, in each of the two files:
+1. Replace the raw `DISPATCH_SHAPES.find(...)` match and the hand-built `extractDispatchMeta` / `buildAuditLine` / `appendAuditLog` sequence with one `recordDispatch({ command, logPath, runtime, sessionID, callID, outputText, metadataObj, env: process.env })` call, the way `.skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs` does. Keep each adapter's own `runtime` tag (`'codex'`, `'devin'`), its own tool-name check, its own project-directory and log-path logic, its own `outputText` and `metadataObj` derivation, and `sessionID: payload?.session_id ?? null`, `callID: payload?.tool_use_id ?? null`.
+2. Remove the imports that become unused. Keep the import grouping the files already use.
+3. Update each header comment so it no longer says the adapter matches the shape list itself.
+
+Tests:
+- In `.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs`, inside `describe('Codex dispatch audit', ...)`, add one `it` that runs the audit hook with `tool_name: 'Bash'`, a fresh temporary `cwd`, and `tool_input.command` set to `"cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF"`, then asserts exit status 0 and that `.skilled/logs/cli-dispatch-audit.log` under that `cwd` does NOT exist. Clean up the temporary directory in `finally`, as the existing test does.
+- Create `.skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs` (vitest, same header style and the same `hookEnv` / `runHook` helpers as the Codex test file) with two tests: a dispatch `opencode run -m p/m "x" </dev/null` sent with `tool_name: 'exec'` and a temporary `cwd` writes one log line whose `runtime` is `'devin'`; the heredoc-only command above writes no log.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs
+node --check .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs
+.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch/
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs, .skilled/hooks/dispatch/devin/dispatch-audit-posttooluse.mjs, .skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs, .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

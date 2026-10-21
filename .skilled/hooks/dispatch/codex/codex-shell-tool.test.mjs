@@ -89,4 +89,20 @@ describe('Codex dispatch audit', () => {
       rmSync(projectDir, { recursive: true, force: true });
     }
   });
+
+  it('ignores a dispatch that is only heredoc data', () => {
+    const projectDir = mkdtempSync(join(tmpdir(), 'codex-dispatch-audit-'));
+    try {
+      const result = runHook(AUDIT, {
+        tool_name: 'Bash',
+        cwd: projectDir,
+        session_id: 'heredoc-session',
+        tool_input: { command: "cat > run.sh <<'EOF'\nopencode run -m p/m x\nEOF" },
+      });
+      expect(result.status).toBe(0);
+      expect(existsSync(join(projectDir, '.skilled', 'logs', 'cli-dispatch-audit.log'))).toBe(false);
+    } finally {
+      rmSync(projectDir, { recursive: true, force: true });
+    }
+  });
 });
