@@ -89,6 +89,13 @@ test('Hermes captured payload fixtures retain shapes and redact identifiers', ()
     assert.equal(fixture.session_id, 'session-redacted', name);
     const serialized = JSON.stringify(fixture);
     assert.equal(/\/(?:Users|home)\/|\/tmp\//.test(serialized), false, name);
+    // Identity fields nested one level down are redacted the same way, so a
+    // capture cannot leak a task or turn id through `extra`.
+    const extra = fixture.extra ?? {};
+    for (const [field, redacted] of [['task_id', 'task-redacted'], ['turn_id', 'turn-redacted']]) {
+      if (field in fixture) assert.equal(fixture[field], redacted, name);
+      if (field in extra) assert.equal(extra[field], redacted, name);
+    }
     if (event === null) continue;
     assert.equal(fixture.hook_event_name, event, name);
     assert.equal(fixture.cwd, '<repo>', name);
