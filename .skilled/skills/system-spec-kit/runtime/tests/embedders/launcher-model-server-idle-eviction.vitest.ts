@@ -17,12 +17,15 @@ const TMP_ROOT = realpathSync(process.platform === 'win32' ? tmpdir() : '/tmp');
 const require = createRequire(import.meta.url);
 const mss = require('../../../../../bin/lib/model-server-supervision.cjs') as {
   HF_MODEL_SERVER_PID_FILE_NAME: string;
+  HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME: string;
   createModelServerControl: (deps?: Record<string, unknown>) => {
     startDemandListener: (options?: Record<string, unknown>) => Promise<Record<string, unknown>>;
     stopDemandListener: () => Promise<void>;
     clearTimers: () => void;
+    reapRecordedBeforeRespawn: (socketPath: string, options?: Record<string, unknown>) => Promise<Record<string, unknown>>;
   };
   getModelServerIdleConfig: (env?: Record<string, string | undefined>) => { enabled: boolean; timeoutMs: number };
+  readProcessCommand: (pid: number) => string | null;
 };
 
 class FakeChild extends EventEmitter {
@@ -139,6 +142,53 @@ describe('hf model server idle eviction', () => {
     return dir;
   }
 
+  function createOrphanDemandHarness(options: {
+    parentPid?: number | null;
+    command?: string | null;
+    commandSequence?: Array<string | null>;
+    env?: Record<string, string | undefined>;
+    liveness?: (pid: number) => 'alive' | 'dead' | 'unknown-eperm';
+    probeReason?: string;
+    waitForExit?: (pid: number, timeoutMs: number) => Promise<boolean>;
+  } = {}) {
+    const socketDir = tempDir('hf-orphan-reap-');
+    const socketPath = join(socketDir, 'hf-embed.sock');
+    const pid = 8301;
+    const pidAccessors = createPidAccessors(socketPath);
+    pidAccessors.write(pid);
+    writeFileSync(socketPath, 'existing model server socket', 'utf8');
+    const serverHarness = createFakeHttpServerHarness();
+    const commandSequence = [...(options.commandSequence || [])];
+    const getCommand = vi.fn(() => {
+      if (commandSequence.length > 0) return commandSequence.shift() ?? null;
+      return options.command === undefined ? '/usr/bin/node /tmp/hf-model-server.cjs' : options.command;
+    });
+    const getParentPid = vi.fn(() => (options.parentPid === undefined ? 1 : options.parentPid));
+    const signal = vi.fn(() => true);
+    const writeGiveUpUntil = vi.fn();
+    const log = vi.fn();
+    const control = mss.createModelServerControl({
+      log,
+      env: options.env || {},
+      dbDir: () => socketDir,
+      bridge: {
+        probeModelServer: vi.fn(async () => ({ status: 'alive', reason: options.probeReason || 'health-ready' })),
+      },
+      writeModelServerPid: pidAccessors.write,
+      readModelServerPid: pidAccessors.read,
+      writeGiveUpUntil,
+      getParentPid,
+      getCommand,
+      liveness: options.liveness || (() => 'alive'),
+      signal,
+      processRowsRunner: () => '',
+      waitForExit: options.waitForExit || (async () => true),
+      httpCreateServer: serverHarness.createServer,
+    });
+
+    return { control, getCommand, getParentPid, log, pid, pidAccessors, signal, socketDir, socketPath, serverHarness, writeGiveUpUntil };
+  }
+
   it('defaults to ten minutes and handles invalid or disabled idle timeout values', () => {
     expect(mss.getModelServerIdleConfig({})).toMatchObject({ enabled: true, timeoutMs: 600000 });
     expect(mss.getModelServerIdleConfig({ SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN: '' })).toMatchObject({
@@ -161,6 +211,13 @@ describe('hf model server idle eviction', () => {
       enabled: false,
       timeoutMs: 0,
     });
+  });
+
+  it('reads a command string for the current Node process', () => {
+    const command = mss.readProcessCommand(process.pid);
+
+    expect(typeof command).toBe('string');
+    expect(command?.toLowerCase()).toContain('node');
   });
 
   it('evicts only after a successful idle embed and re-arms the lazy demand listener', async () => {
@@ -258,5 +315,188 @@ describe('hf model server idle eviction', () => {
     expect(existsSync(pidAccessors.path)).toBe(true);
     control.clearTimers();
     await control.stopDemandListener();
+  });
+
+  it('reaps an orphaned model server, listens for demand, and does not arm give-up cooldown', async () => {
+    const liveness = vi.fn()
+      .mockReturnValueOnce('alive')
+      .mockReturnValueOnce('alive')
+      .mockReturnValue('dead');
+    const harness = createOrphanDemandHarness({ probeReason: 'socket-alive', liveness });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: true,
+      socketPath: harness.socketPath,
+    });
+
+    expect(harness.getParentPid).toHaveBeenCalledWith(harness.pid);
+    expect(harness.getCommand).toHaveBeenCalledTimes(2);
+    expect(harness.signal).toHaveBeenCalledWith(harness.pid, 'SIGTERM');
+    expect(harness.serverHarness.listenCalls).toEqual([harness.socketPath]);
+    expect(harness.log).toHaveBeenCalledWith(expect.stringContaining('orphaned model server (parent PID 1) is being reaped'));
+    expect(harness.log).toHaveBeenCalledWith(expect.stringContaining(`reaping orphaned hf-model-server pid ${harness.pid} (parent PID 1)`));
+    expect(harness.pidAccessors.write).toHaveBeenLastCalledWith(null);
+    expect(harness.pidAccessors.read()).toBeNull();
+    expect(harness.writeGiveUpUntil).toHaveBeenCalledWith(null, expect.any(String));
+    expect(harness.writeGiveUpUntil).not.toHaveBeenCalledWith(expect.any(Number));
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not signal when the recorded pid changes after the command re-check', async () => {
+    const harness = createOrphanDemandHarness({ probeReason: 'socket-alive' });
+    harness.getCommand.mockImplementation(() => {
+      if (harness.getCommand.mock.calls.length === 2) harness.pidAccessors.write(harness.pid + 1);
+      return '/usr/bin/node /tmp/hf-model-server.cjs';
+    });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.pidAccessors.read()).toBe(harness.pid + 1);
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(existsSync(harness.socketPath)).toBe(true);
+    expect(harness.log).toHaveBeenCalledWith(expect.stringContaining('recorded pid changed'));
+    await expect(harness.control.reapRecordedBeforeRespawn(harness.socketPath, { expectedPid: harness.pid })).resolves.toMatchObject({
+      allowed: false,
+      reason: 'model-server-pid-changed',
+    });
+    expect(harness.signal).not.toHaveBeenCalled();
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not reap an orphan candidate whose recorded pid is already dead', async () => {
+    const harness = createOrphanDemandHarness({
+      liveness: () => 'dead',
+      probeReason: 'socket-alive',
+    });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.getParentPid).not.toHaveBeenCalled();
+    expect(harness.getCommand).not.toHaveBeenCalled();
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(existsSync(harness.socketPath)).toBe(true);
+    await harness.control.stopDemandListener();
+  });
+
+  it('keeps the socket when the pid stays alive after SIGKILL', async () => {
+    const harness = createOrphanDemandHarness({
+      liveness: () => 'alive',
+      probeReason: 'socket-alive',
+      waitForExit: async () => false,
+    });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.signal).toHaveBeenNthCalledWith(1, harness.pid, 'SIGTERM');
+    expect(harness.signal).toHaveBeenNthCalledWith(2, harness.pid, 'SIGKILL');
+    expect(existsSync(harness.socketPath)).toBe(true);
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    expect(harness.pidAccessors.write).not.toHaveBeenCalledWith(null);
+    expect(harness.writeGiveUpUntil).not.toHaveBeenCalledWith(null, expect.any(String));
+    expect(existsSync(join(harness.socketDir, mss.HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME))).toBe(false);
+    await harness.control.stopDemandListener();
+  });
+
+  it('backs off without signalling when orphan reaping is disabled', async () => {
+    const harness = createOrphanDemandHarness({
+      env: { SPECKIT_HF_MODEL_SERVER_ORPHAN_REAP: '0' },
+      probeReason: 'socket-alive',
+    });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.getParentPid).not.toHaveBeenCalled();
+    expect(harness.getCommand).not.toHaveBeenCalled();
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(existsSync(harness.socketPath)).toBe(true);
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not reap a model server owned by a live launcher', async () => {
+    const harness = createOrphanDemandHarness({ parentPid: 8200 });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not reap a recorded pid running a different command', async () => {
+    const harness = createOrphanDemandHarness({ command: '/usr/bin/node /tmp/other-server.cjs' });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.getCommand).toHaveBeenCalledTimes(1);
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not reap when the recorded pid parent cannot be read', async () => {
+    const harness = createOrphanDemandHarness({ parentPid: null });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.getCommand).not.toHaveBeenCalled();
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    await harness.control.stopDemandListener();
+  });
+
+  it('does not reap when the recorded pid command cannot be read', async () => {
+    const harness = createOrphanDemandHarness({ command: null });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    await harness.control.stopDemandListener();
+  });
+
+  it('re-checks the recorded pid command before reaping and releases the lock on mismatch', async () => {
+    const harness = createOrphanDemandHarness({
+      commandSequence: [
+        '/usr/bin/node /tmp/hf-model-server.cjs',
+        '/usr/bin/node /tmp/other-server.cjs',
+      ],
+    });
+
+    await expect(harness.control.startDemandListener({ socketPath: harness.socketPath })).resolves.toMatchObject({
+      started: false,
+      reason: 'model-server-alive',
+    });
+
+    expect(harness.getCommand).toHaveBeenCalledTimes(2);
+    expect(harness.signal).not.toHaveBeenCalled();
+    expect(harness.serverHarness.listenCalls).toEqual([]);
+    expect(existsSync(harness.socketPath)).toBe(true);
+    expect(harness.log).toHaveBeenCalledWith(expect.stringContaining('orphan reap aborted'));
+    expect(existsSync(join(harness.socketDir, mss.HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME))).toBe(false);
+    await harness.control.stopDemandListener();
   });
 });

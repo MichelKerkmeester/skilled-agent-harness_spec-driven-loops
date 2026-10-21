@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/037-advisor-daemon-memory/003-reap-orphaned-model-server",
+  "description": "Phase 3: reap-orphaned-model-server",
+  "keywords": [
+    "phase",
+    "reap-orphaned-model-server"
+  ],
+  "lastUpdated": "2026-10-21T14:17:16.386Z",
+  "specId": "003",
+  "folderSlug": "reap-orphaned-model-server",
+  "parentChain": [
+    "system-skill-advisor",
+    "037-advisor-daemon-memory"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
