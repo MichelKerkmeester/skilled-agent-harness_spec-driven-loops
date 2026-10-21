@@ -7,7 +7,9 @@
     "mcp-tooling/019-official-obsidian-cli",
     "mcp-tooling/020-obsidian-plugin-reduction",
     "mcp-tooling/021-code-mode-fresh-clone-build",
-    "mcp-tooling/022-clickup-hosted-route-fix"
+    "mcp-tooling/022-clickup-hosted-route-fix",
+    "mcp-tooling/023-vendored-copy-review-fixes",
+    "mcp-tooling/024-code-mode-js-yaml-override"
   ],
   "manual": {
     "depends_on": [],
