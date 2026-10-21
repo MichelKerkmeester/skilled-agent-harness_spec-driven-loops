@@ -1,0 +1,22 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes (your current directory).
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/040-dispatch-lint-held-fixes (pre-approved, skip Gate 3)
+
+ROLE: Act as a code agent. Narrow one change you made earlier, plus one test row.
+
+Context: in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs`, `hasDispatchEvidence` now reads an expanded token together with EVERY later token in its segment (`tokens.slice(index)`), so a bare `$(codex exec task)`, which the tokenizer splits into `$(codex`, `exec`, `task)`, is seen. That is right, but it also makes `echo $X codex exec` ambiguous: `$X` is a plain variable and the words after it are ordinary arguments, not part of any substitution.
+
+Fix: join only the tokens that belong to the same unquoted command substitution. Start at an expanded token whose value contains `$(` or a backtick, and stop at the first token (that one included) whose value closes it (contains `)` for `$(`, or a second backtick). An expanded token that opens no substitution (a plain `$X` or `${X}`) is read on its own, exactly as before. Keep the comment above the line accurate.
+
+Test: in `.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs`, add one row to the `inspectDispatch` `it.each` table next to the codex substitution rows: `['variable then executor words', 'echo $X codex exec', { kind: 'none' }]`. The three codex substitution rows you added must still pass.
+
+Comments keep the durable WHY and never name spec paths, phases, or task, review or finding ids.
+
+VERIFICATION (run each from the worktree root with node from /Users/michelkerkmeester/.nvm/versions/node/v26.8.2/bin on PATH; all must pass):
+node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs
+.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs --exclude "**/review/containment/**"
+node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+
+BANNED OPERATIONS: editing any other file; git commit, push, stash, checkout, reset, restore, branch; installs; network access; starting OpenCode or any server.
+ALLOWED WRITE PATHS: .skilled/hooks/dispatch/lib/dispatch-audit.mjs, .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+
+Return report: what you changed (file and line), then each verification command with its pass and fail counts.

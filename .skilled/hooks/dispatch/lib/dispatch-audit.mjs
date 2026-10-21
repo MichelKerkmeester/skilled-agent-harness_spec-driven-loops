@@ -283,11 +283,30 @@ function hasDispatchText(value) {
   return (
     /\bopencode\d*\s+run\b/.test(value)
     || /\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
-    || /\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value)
+    || /\bcodex\s+exec\b/.test(value)
     || /\bhermes\s+chat\b[^\n;&|]*\s(?:-q|--query|--query-file|--oneshot)\b/.test(value)
     || /\bhermes\b[^\n;&|]*\s-z\b/.test(value)
     || /\bjev\s+(?:noul|choice|score|run)\b/.test(value)
   );
+}
+
+// The text one expansion token stands for: a command substitution split across words runs
+// from its opening token to the token that closes it (`$(codex`, `exec`, `task)`), while a
+// plain `$X` or `${X}` opens nothing and stands alone.
+function expansionText(tokens, index) {
+  const opening = tokens[index].value;
+  const dollarAt = opening.indexOf('$(');
+  const backtickAt = opening.indexOf('`');
+  if (dollarAt === -1 && backtickAt === -1) return opening;
+  const closesOnDollar = dollarAt !== -1 && (backtickAt === -1 || dollarAt < backtickAt);
+  const isClosed = (text) => (closesOnDollar
+    ? text.includes(')')
+    : text.split('`').length > 2);
+  let text = opening;
+  for (let cursor = index + 1; cursor < tokens.length && !isClosed(text); cursor += 1) {
+    text += ` ${tokens[cursor].value}`;
+  }
+  return text;
 }
 
 function hasDispatchEvidence(tokens, commandHasPrintFlag) {
@@ -306,7 +325,13 @@ function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   // carries a print-shaped flag and a variable but runs mkdir, not a dispatch.
   const start = commandStart(tokens);
   const variableExecutor = hasPrintFlag && !start.opaque && Boolean(tokens[start.index]?.expanded);
-  const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
+  // An unquoted expansion is split on its spaces, so the token carries only its first word
+  // (`$(codex`); read that substitution through its closing token with it, or a bare
+  // `$(codex exec task)` stays invisible while its quoted form is caught. Stop at the close
+  // rather than taking the rest of the segment, because a plain `$X` opens no substitution
+  // and the words after it are ordinary arguments (`echo $X codex exec` dispatches nothing).
+  const expandedDispatch = tokens.some((token, index) => token.expanded
+    && hasDispatchText(expansionText(tokens, index)));
   return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
 }
 
