@@ -395,9 +395,10 @@ describe('OpenCode lineage builders', () => {
     );
 
     expect(result.args).toContain('--model');
-    expect(result.args).toContain('opencode-go/deepseek-v4.1-flash');
+    expect(result.args).toContain('llmgateway/deepseek-v4.1-flash');
     expect(result.args).toContain('--variant');
     expect(result.args).toContain('max');
+    expect(result.args).not.toContain('opencode-go/deepseek-v4.1-flash');
   });
 
   it('applies the OpenCode 2 default model to an unpinned lineage', () => {
