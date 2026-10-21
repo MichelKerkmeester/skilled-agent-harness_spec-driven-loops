@@ -90,8 +90,11 @@ const SECRET_PATTERN = /((?:api[_-]?key|access[_-]?key|secret|token|password|pas
 // token sits one space further on, so the requirement for an unbroken value is
 // never met. Anchor on the scheme instead and keep it readable while only the
 // token is replaced, so a finding still says which scheme it carried. The
-// 8-character floor is what leaves ordinary prose after the word "bearer" alone.
-const BEARER_SCHEME_PATTERN = /\b(bearer\s+['"]?)([A-Za-z0-9\-._~+/=]{8,})/gi;
+// length floor alone cannot tell a token from prose, since "Bearer
+// authentication" clears it: the run must also carry a character a word would
+// not -- a digit or one of -._~+/= -- so a purely alphabetic word after the
+// scheme stays readable while a JWT, base64 or hex token still redacts.
+const BEARER_SCHEME_PATTERN = /\b(bearer\s+['"]?)(?=[A-Za-z0-9\-._~+/=]*[0-9\-._~+/=])([A-Za-z0-9\-._~+/=]{8,})/gi;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS -- path + scope resolution

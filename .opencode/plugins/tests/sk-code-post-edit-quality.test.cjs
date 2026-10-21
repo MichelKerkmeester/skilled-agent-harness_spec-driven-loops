@@ -439,6 +439,24 @@ test('redactSecrets: redacts the token after a bare bearer scheme, keeps the sch
   assert.equal(router.redactSecrets('Bearer token'), 'Bearer token', 'a word shorter than 8 characters after the scheme is not a token');
 });
 
+test('redactSecrets: leaves ordinary prose after a bearer scheme alone', () => {
+  assert.equal(
+    router.redactSecrets('Bearer authentication is required'),
+    'Bearer authentication is required',
+    'a run with no digit and no -._~+/= is a word, not a token',
+  );
+  assert.equal(router.redactSecrets('bearer credentials'), 'bearer credentials');
+});
+
+test('redactSecrets: still redacts a JWT-shaped token and a hex token after a bearer scheme', () => {
+  const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dBjftJeZ4CVPmB92K27uhbUJU1p1r_wW1gFWFOEjXk';
+  assert.equal(router.redactSecrets(`Authorization: Bearer ${jwt}`), 'Authorization: Bearer [REDACTED]');
+
+  const hex = '9f86d081884c7d659a2feaa0c55ad015';
+  assert.equal(hex.length, 32);
+  assert.equal(router.redactSecrets(`Bearer ${hex}`), 'Bearer [REDACTED]');
+});
+
 test('redactSecrets: still redacts a keyworded secret-shaped assignment', () => {
   assert.equal(router.redactSecrets('api_key: sk-thisisalonglivetoken123456'), 'api_key: [REDACTED]');
 });
