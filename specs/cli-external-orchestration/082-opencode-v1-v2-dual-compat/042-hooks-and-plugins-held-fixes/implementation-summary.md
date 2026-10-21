@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-10-21T04:53:46Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All sixteen findings fixed and verified; suites and live scenarios green"
-    next_safe_action: "Merge main, push to main, record CI"
+    next_safe_action: "None; fix the stress-suite plugin import separately"
     blockers: []
     key_files: []
     session_dedup:
@@ -123,6 +123,7 @@ A DeepSeek v4.1 flash writer made each change from a one-change brief in the wor
 | Advisor signature timing | median 2.181 ms before, 0.235 ms after (`scratch/perf/advisor-signature.txt`) |
 | Relaunch flags timing | median 87.765 ms before, 7.753 ms after, per 2000 calls (`scratch/perf/relaunch-flags.txt`) |
 | Live scenarios v1 and v2 | session-cleanup, session-relaunch, system-skill-advisor (with killswitch) and system-spec-gate all exit 0 (`scratch/live-runs/`) |
+| CI at `05eeddb70c` on main | 13 of 14 workflows pass: Trigger Index Rebuild 39554313888, OpenCode Plugin Tests 39554313893, Changed Packet Validation 39554313934, Command Tree Parity 39554313846, OpenCode Dual-Version Battery 39554314019, Gate Inputs 39554313914, sk-doc Script Tests 39554313838, Spec-Kit Check 39554313885, Playbook Operator Contract 39554313876, Advisory Checks 39554313909, Message Contract 39554313897, Dispatch Enforcement Guard 39554313898, Rule Canary Sync 39554313828. Skill Advisor Stress Tests 39554313820 fails with the same 4 of 64 `default is not a function` failures as the previous main commit (`f6f3e254e1`, run 39524217211), so it predates this phase |
 | Luna review (gpt-6-luna max, read-only) | Six rounds; final round PASS on every change, no open P0 or P1 (`scratch/luna/`) |
 <!-- /ANCHOR:verification -->
 
