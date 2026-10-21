@@ -41,13 +41,22 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "scratch/corpus-diff.mjs",
-      "scratch/suites.sh",
       ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
       ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/plugins/cli-dispatch-audit.js",
       ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      "scratch/corpus-diff.txt",
       ".skilled/hooks/dispatch/README.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md",
+      "scratch/corpus-diff.mjs",
+      "scratch/mutation/b1-codex-expansion.txt",
+      "scratch/mutation/b2-every-dispatch.txt",
+      "scratch/mutation/b3-heredoc-run.txt",
+      "scratch/mutation/b4-audit-match.txt",
+      "scratch/mutation/b5-adapter-audit.txt",
+      "scratch/mutation/b6-claude-permission.txt",
+      "scratch/mutation/b7-quoted-args.txt",
+      "scratch/mutation/b8-lint-every-dispatch.txt"
     ],
     "entities": [
       {
@@ -75,18 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "corpus-diff.mjs",
-        "kind": "file",
-        "path": "scratch/corpus-diff.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "suites.sh",
-        "kind": "script",
-        "path": "scratch/suites.sh",
-        "source": "derived"
-      },
-      {
         "name": "dispatch-audit.mjs",
         "kind": "file",
         "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
@@ -99,15 +96,81 @@
         "source": "derived"
       },
       {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
         "name": "dispatch-preflight-lint.ts",
         "kind": "code",
         "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
         "source": "derived"
       },
       {
+        "name": "corpus-diff.txt",
+        "kind": "file",
+        "path": "scratch/corpus-diff.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-diff.mjs",
+        "kind": "file",
+        "path": "scratch/corpus-diff.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "b1-codex-expansion.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b1-codex-expansion.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b2-every-dispatch.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b2-every-dispatch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b3-heredoc-run.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b3-heredoc-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b4-audit-match.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b4-audit-match.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b5-adapter-audit.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b5-adapter-audit.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b6-claude-permission.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b6-claude-permission.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b7-quoted-args.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b7-quoted-args.txt",
+        "source": "derived"
+      },
+      {
+        "name": "b8-lint-every-dispatch.txt",
+        "kind": "file",
+        "path": "scratch/mutation/b8-lint-every-dispatch.txt",
         "source": "derived"
       },
       {
@@ -139,65 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Adapter",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Pi preflight decides with `inspectDispatch`, which returns `none` for `echo \"$(codex exec task)\"` (its expansion check wants a print flag Codex does not have) and for wrapped calls such as `nohup opencode run ...` or `command codex exec task`, so those dispatches skip authorization and every hard rule",
     "created_at": "2026-10-21T04:55:14Z",
-    "last_save_at": "2026-10-21T05:01:02.251Z",
+    "last_save_at": "2026-10-21T06:17:20.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +215,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02a92fe7643677fefe552c087377ba5d50344f31e38ac51bed216e1b9f72bb2d",
+    "source_fingerprint": "sha256:9fcb3ca0d502b5da55720a8ee75c6906c6c7bcdfce2271013c1c9ebcd9b5d0ac",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f6e3c0ff239767a1b63bd9e30dc617960d667371d7d4471f4cc90fea6766c775",
       "plan.md": "c6f41077336c2ca7b0d34250609d1384f1c680ddd22e02749ce8979e097db120",
-      "tasks.md": "72d09f86c57e3384ac9650f19374eabe63de5b2393428719fb688eb95f5cfd88",
-      "implementation-summary.md": "7ce9e2d70d0987a962c8d6146cf0d0e611d033944b5651897bf1c60f74eae966"
+      "tasks.md": "bc906ecd02021fcb8d8808fc9c898670b62a2c003e7425083e8069e2280caeee",
+      "implementation-summary.md": "261a2b176856a7baf3d3b843434302634b6366fa165ebc123b2f6cbbd686f750"
     },
     "last_active_at": null
   }

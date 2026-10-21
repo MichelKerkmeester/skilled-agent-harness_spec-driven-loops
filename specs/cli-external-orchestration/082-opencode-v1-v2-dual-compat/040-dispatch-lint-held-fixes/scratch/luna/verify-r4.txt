@@ -1,0 +1,10 @@
+VERDICTS
+N02 | CLOSED | The guard now denies `not /deep:review --executor cli-devin`, which the prior matcher allowed (`dispatch-preflight-lint.ts:43`).
+N03 | CLOSED | The probe rejects an unclosed first run when only the second is piped, and passes when the first run redirects stdin (`dispatch-rule-checks.mjs:271`).
+N07 | CLOSED | A write-only `END-MARK` heredoc containing `codex exec` resolves to no packet (`dispatch-audit.mjs:506`).
+N08 | CLOSED | A write-only `END-MARK` heredoc containing `devin -p` resolves to no packet (`dispatch-audit.mjs:506`).
+NEW
+.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts:43 | P1 | The guard now denies the positive request “not opencode, use cli-devin”; the probe allowed it with the prior matcher and denies it now because `not` also negates the later mention. | Scope negation to the executor it modifies and preserve positive mentions after contrast clauses.
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:55 | P1 | A pipe feeding `pi --version` counts toward the stdin budget, so an unredirected OpenCode run afterward passes the check despite inheriting terminal stdin. | Count pipes only when they feed a resolved headless dispatch.
+.skilled/hooks/dispatch/lib/dispatch-audit.mjs:506 | P1 | A quoted literal `<<'END-MARK'` followed by a real `codex exec` line resolves to no packet; the new regex treats the quoted text as a heredoc and strips the dispatch, bypassing its hard rules. | Recognize heredoc operators with quote-aware shell tokenization.
+VERDICT: FAIL
