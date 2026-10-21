@@ -1,0 +1,25 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change): in `.opencode/plugins/README.md` line 73, replace the clause
+
+; a session started by `opencode2 run` receives no `session.created` from OpenCode 2 itself, so the bridge announces each session with a synthesized one (
+
+with
+
+. The probe did not start a session with `opencode2 run`, and v2 can deliver session traffic before `session.created`, so the bridge synthesizes a `session.created` the first time it sees traffic for a session and drops a later duplicate (
+
+Leave the rest of the line, including the path in parentheses, unchanged. Do not reflow other lines.
+
+ALLOWED WRITE PATHS:
+- .opencode/plugins/README.md
+
+BANNED OPERATIONS:
+- any git write (commit, push, stash, checkout, reset, branch, rebase)
+- any package install or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify: sed -n 73p .opencode/plugins/README.md ; node .skilled/skills/system-spec-kit/runtime/cli/check-markdown-links.cjs .opencode/plugins/README.md
+
+Return report: the new line 73 and the verify output.

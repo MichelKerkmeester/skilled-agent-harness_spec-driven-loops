@@ -1,0 +1,14 @@
+test_boundary_and_flag_guards_fail_before_fixture_mutation (__main__.RenameToolingFixtureHarnessTests)
+Protected roots, outside roots, and rollback-only requests should be rejected. ... ok
+test_corpus_declares_a_non_zero_explicit_scenario_matrix (__main__.RenameToolingFixtureHarnessTests)
+The corpus validator should accept the complete explicit coverage contract. ... ok
+test_default_cli_is_dry_run_deterministic_and_non_mutating (__main__.RenameToolingFixtureHarnessTests)
+The default CLI should execute no rename apply or rollback operation. ... ok
+test_explicit_apply_and_rollback_remain_inside_disposable_repositories (__main__.RenameToolingFixtureHarnessTests)
+Opt-in mutation should prove apply, idempotency, rollback, and stale-plan aborts. ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1113.265s
+
+OK
+EXIT=0

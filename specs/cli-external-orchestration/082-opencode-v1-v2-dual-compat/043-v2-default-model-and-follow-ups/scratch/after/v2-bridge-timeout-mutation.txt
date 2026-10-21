@@ -1,0 +1,14 @@
+# Mutation: the event stream's two announceSession calls (v2-bridge.js lines 414 and 427) replaced by a no-op; the transform-path call is kept.
+ .opencode/plugins/lib/v2-bridge.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+mutated exit=1 elapsed=4s
+# tests 51
+# pass 37
+# fail 11
+# cancelled 3
+testTimeoutFailure lines: 3
+restored diff lines: 0
+# tests 51
+# pass 51
+# fail 0
+restored exit=0

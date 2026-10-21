@@ -512,9 +512,10 @@ function acquireLoopStateBreakLock(breakPath, now) {
  * turns out to be a live replacement, and a contender can create a fresh lock
  * between that rename and the restore, leaving two owners updating one state. A
  * break lock installed by a hard link is never moved out from under a live
- * contender unless its breaker has died, in which case another process retires
- * it, and the per-session lock is unlinked only after a re-read held by the
- * break lock still finds it abandoned, so a live owner keeps its lock.
+ * contender unless its breaker has died or its record is unreadable and older
+ * than the stale window, in which case another process retires it, and the
+ * per-session lock is unlinked only after a re-read held by the break lock
+ * still finds it abandoned, so a live owner keeps its lock.
  *
  * Staleness is judged by owner liveness: a readable owner whose pid is dead is
  * abandoned immediately, while unreadable content (corruption, since acquisition

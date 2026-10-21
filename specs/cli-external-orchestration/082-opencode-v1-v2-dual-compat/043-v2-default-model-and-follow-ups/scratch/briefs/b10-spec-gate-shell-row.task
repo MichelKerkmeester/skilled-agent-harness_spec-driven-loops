@@ -1,0 +1,23 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/185-v2-default-model-and-follow-ups (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/043-v2-default-model-and-follow-ups (pre-approved, skip Gate 3)
+
+TASK (exactly one change): in `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md` (it is the file behind the symlink `.skilled/hooks/spec-gate/README.md`), the "Shell writes" table row says "`DENY_CAPABLE_TOOLS` is `write` and `edit` only, and the core resolves a target path only for the edit and write tools, so a shell command carries no path for the gate to check." That is wrong: `spec-gate-core.mjs` evaluates a target path for every tool except `bash` (`MUTATING_TOOLS` also holds patch, multiedit and apply_patch), and only `DENY_CAPABLE_TOOLS` (`write`, `edit`) can deny.
+
+Replace that sentence with exactly:
+
+`DENY_CAPABLE_TOOLS` is `write` and `edit` only, so `bash` is never deny-capable, and the core skips target-path evaluation for `bash`, so a shell command carries no path for the gate to check.
+
+Keep every other sentence of the row unchanged.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md
+
+BANNED OPERATIONS:
+- any git write (commit, push, stash, checkout, reset, branch, rebase)
+- any package install or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service
+
+Verify: grep -n '^| Shell writes' .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md ; grep -n "DENY_CAPABLE_TOOLS\|tool !== 'bash'" .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs | head
+
+Return report: the new row and the verify output.
