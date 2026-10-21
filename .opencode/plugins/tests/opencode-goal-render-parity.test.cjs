@@ -8,7 +8,9 @@
 // label set is a contract. Exactly two lines differ by design: `usage:`, where
 // OpenCode reports a native token count and an auto-turn ratio while the other
 // runtimes report an honest absence and a turn estimate, and the `Role:` line
-// inside `goal_prompt:`, which names the runtime doing the reading.
+// inside `goal_prompt:`, which names the runtime doing the reading. The
+// `[active_goal:<id>]` line also differs, because each renderer's run mints its
+// own goal id, so the comparison masks it too.
 'use strict';
 
 const assert = require('node:assert/strict');
