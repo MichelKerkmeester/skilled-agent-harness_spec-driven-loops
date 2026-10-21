@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Pi lint refuses an executor mention that sits inside a quote or a command substitution, because text there is shell syntax the operator quoted, not a request",
     "created_at": "2026-10-21T18:53:35Z",
-    "last_save_at": "2026-10-21T19:41:07.047Z",
+    "last_save_at": "2026-10-21T19:43:26.894Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e989607d33a6863d269c0917f4ada93286e4cb9001d4fcb7d60e9b88004e52e",
+    "source_fingerprint": "sha256:f975f42f862ae8de583ae104bf1328f4d00fa08ae3f06b2238bd83d31131171c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "159fcfb8816bc1f8b75546f96dbf3a26cfe963280e728019e96c65d5e16ea2b8",
+      "spec.md": "7a4ef411da4f9819a0ea2eddf1808cdf0702f05cc3ed4e29463e5ecbe3c834c1",
       "plan.md": "f73593edbacc8d7870aacfed3ca3ead4d478402d7fb8179cd7920029d155ee9d",
       "tasks.md": "71f164daeefbfbdde977c77ac10d0eeceddc17994992df93c923270562126e3c",
       "implementation-summary.md": "5bd43b175d698ca19e36c89272d164560ccb54dbb677d4a0a487fa46570878da"

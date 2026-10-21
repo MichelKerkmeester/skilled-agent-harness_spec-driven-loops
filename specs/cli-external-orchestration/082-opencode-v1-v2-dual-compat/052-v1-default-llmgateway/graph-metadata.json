@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway",
+  "spec_folder": "cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway",
+  "parent_id": "cli-external-orchestration/082-opencode-v1-v2-dual-compat",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v1 default llmgateway",
+      "make llmgateway the opencode 1 cli opencode default",
+      "phase 52 v1 default llmgateway",
+      "v1 default llmgateway plan",
+      "v1 default llmgateway tasks",
+      "v1 default llmgateway implementation summary"
+    ],
+    "key_topics": [
+      "default",
+      "llmgateway",
+      "opencode",
+      "cli",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "cli-opencode",
+      "model",
+      "chosen"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".hermes/skills/cli-opencode/SKILL.md",
+      "scratch/after/plugins.tap",
+      "scratch/after/hooks-node.tap",
+      "scratch/after/deep-loop-vitest.txt",
+      "scratch/live/v1-unpinned.txt",
+      "scratch/live/v2-unpinned.txt",
+      "scratch/briefs/r1-review.task"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-dispatch.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "default-model-id.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugins.tap",
+        "kind": "file",
+        "path": "scratch/after/plugins.tap",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-node.tap",
+        "kind": "file",
+        "path": "scratch/after/hooks-node.tap",
+        "source": "derived"
+      },
+      {
+        "name": "deep-loop-vitest.txt",
+        "kind": "file",
+        "path": "scratch/after/deep-loop-vitest.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v1-unpinned.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v2-unpinned.txt",
+        "source": "derived"
+      },
+      {
+        "name": "r1-review.task",
+        "kind": "file",
+        "path": "scratch/briefs/r1-review.task",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode's default model was chosen by version: OpenCode 1 took `opencode-go/deepseek-v4.1-flash --variant max` and OpenCode 2 took `llmgateway/deepseek-v4.1-flash#max`",
+    "created_at": "2026-10-21T18:58:27Z",
+    "last_save_at": "2026-10-21T19:35:47.942Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39a671df2eab1cbe8ef5ca9ed68d5b87c326c4682b436ce48c993d5ea783ecac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a4520ef81e7daee806efdef9b0095245c8ee8ba3c41a7084e231b7c4e814d787",
+      "plan.md": "995abb6b7af574ce4f0bdda42c802f8e20bbdc4c82caead7d68a24c25b193413",
+      "tasks.md": "88c061b33cddfaaf925fb85ca9b175b4cc46bb3cb8a10800a46bc5a1aa24bf07",
+      "implementation-summary.md": "8eb525891f0e6327824c90efc05b58228a913e1f4b9f6c6c0e1966186d2541f0"
+    },
+    "last_active_at": null
+  }
+}

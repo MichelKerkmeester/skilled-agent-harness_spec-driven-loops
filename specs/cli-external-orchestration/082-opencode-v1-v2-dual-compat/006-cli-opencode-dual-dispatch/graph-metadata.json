@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The cli-opencode guard in `SKILL.md` line 134 runs `opencode --version | grep -q '^1\\.'`",
     "created_at": "2026-10-18T12:45:05Z",
-    "last_save_at": "2026-10-21T08:07:10.545Z",
+    "last_save_at": "2026-10-21T19:33:44.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b3c227916bfd4bcbf0c5b02612a56d217306b11db83f1077c780366281e3b301",
+    "source_fingerprint": "sha256:523a48e8b53d4a9ebd6ed3fd1eb381b144c2f00738cb17075321435bc4a2cf68",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5c04558a5abf4b90f713e08d75c633433c76f78a7a5cc02503c9614a100b1e73",
       "plan.md": "b7a44557b222658356d00a19e802fb83dafd67e1ae1d59acdc1c69dea62c0a6f",
       "tasks.md": "4c427aba950b8d16c6136c6815ab6e038c5ca32c375c65bac937b76d57cd2c7d",
-      "implementation-summary.md": "1558929dd3fe7c997e4d0f06143d82604c6e8f45b2a9926096848f3afef17922"
+      "implementation-summary.md": "accd8af00382bfb5142607c5de1ee69324e4c9b12ea0ba217de54e4e71ad3a2e"
     },
     "last_active_at": null
   }

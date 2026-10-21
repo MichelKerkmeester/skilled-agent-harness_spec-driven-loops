@@ -1,0 +1,29 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (exactly one change):
+The operator decided that the cli-opencode default model is `llmgateway/deepseek-v4.1-flash` on BOTH OpenCode versions: OpenCode 1 dispatches `--model llmgateway/deepseek-v4.1-flash --variant max`, OpenCode 2 dispatches `-m llmgateway/deepseek-v4.1-flash#max`. The opencode-go provider stays documented but is no longer a default. Another worker is updating the docs in parallel: `references/providers-and-models.md` will mark exactly one `✓` row in the `### llmgateway` table (`llmgateway/deepseek-v4.1-flash`) and NO `✓` row in the `### opencode-go` table.
+
+Update `.skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs` to hold the tree to that:
+1. Replace `V1_DEFAULT_ID` and `V2_DEFAULT_ID` with one `DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash'`, commented as the `✓` row of the roster's `### llmgateway` table, the default on both versions.
+2. Replace 'the roster names one opencode-go default' with a test that the opencode-go table lists rows but marks none as the default (no cell 1 equal to `✓`). Keep 'the roster names one llmgateway default' against `DEFAULT_ID`.
+3. Replace 'the two version defaults differ only in the provider' with a test named 'both versions default to llmgateway, each in its own syntax': in SKILL.md's Default Invocation section, there is a `--model` selector for `DEFAULT_ID` and a `-m` selector whose raw text is `-m DEFAULT_ID#max`, and the section's text contains `--variant max`. You may fold this into the existing SKILL.md test instead if that is cleaner; either way, every `--model` and every `-m` selector there must pin `DEFAULT_ID`.
+4. Update the header comment so it says one default serves both versions and why (opencode-go quota spent on OpenCode 1; OpenCode 2 lists no opencode-go provider). Leave the retired-id test unchanged.
+
+Code standards: read the whole file first and match its style. Never put finding ids, task ids, spec paths, phase numbers or packet numbers in a comment or a test name.
+
+The test may fail until the parallel docs worker finishes; that is expected. Run the verify command anyway and report the failures by name.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+node --test --test-reporter=tap .skilled/skills/cli-external-orchestration/cli-opencode/scripts/tests/default-model-id.test.cjs 2>&1 | grep -E '^(not ok|ok|# (tests|pass|fail))'
+
+Return report: the tests in the file after your change and the verify output.

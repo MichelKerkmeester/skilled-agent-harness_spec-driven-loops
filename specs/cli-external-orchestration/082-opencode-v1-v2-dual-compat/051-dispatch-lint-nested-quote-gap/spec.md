@@ -25,7 +25,7 @@ contextType: "general"
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/195-dispatch-lint-nested-quote-gap` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 51 of 51 |
+| **Phase** | 51 of 52 |
 | **Predecessor** | 050-sk-doc-ci-outside-failures |
 | **Successor** | None |
 | **Handoff Criteria** | Every new deny row fails on the engine before this phase, the suites hold their baseline, and CI passes at the pushed commit |

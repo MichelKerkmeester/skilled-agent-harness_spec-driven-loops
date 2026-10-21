@@ -11,7 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.8.0
+version: 1.4.9.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -75,7 +75,7 @@ At the end of your response, include a structured handback inside delimiters:
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -90,7 +90,7 @@ cd "$REPO_ROOT" && opencode2 run --standalone \
   "<prompt-from-template>" 2>&1
 ```
 
-The default model differs by version: OpenCode 1 dispatches `opencode-go/deepseek-v4.1-flash` at `--variant max`, while OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash#max` (LLM Gateway, DevPass), so confirm that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. A typical v2 install lists no `opencode-go` provider; that route needs its own login first (`opencode2 providers login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
+The default model is `llmgateway/deepseek-v4.1-flash` (LLM Gateway, DevPass) on both versions, so one provider serves both: OpenCode 1 dispatches it at `--variant max`, while OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash#max`. Confirm that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is no longer the default, and a typical v2 install lists none, so that route needs its own login first (`opencode2 providers login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
 
 ---
 
@@ -123,7 +123,7 @@ Success criteria:
 # On OpenCode 1 (1.19.3):
 opencode run \
   --port 4096 \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -177,7 +177,7 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \
@@ -204,7 +204,7 @@ Dispatch a task to a specific agent slug. See `../references/agent-delegation.md
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -263,7 +263,7 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -307,7 +307,7 @@ Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That
 # On OpenCode 1 (1.19.3):
 opencode run \
   --command deep/research \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -345,7 +345,7 @@ Input: <input data path>
 # On OpenCode 1 (1.19.3):
 opencode run \
   --port 4097 \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -390,7 +390,7 @@ for n in $(seq 1 8); do
   port=$((4100 + n))
   opencode run \
     --port "$port" \
-    --model opencode-go/deepseek-v4.1-flash \
+    --model llmgateway/deepseek-v4.1-flash \
     --variant max \
     --format json \
     --dir /repo \
@@ -437,7 +437,7 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir /repo \
@@ -473,7 +473,7 @@ Target: an implementation-ready plan that another agent can execute.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent orchestrate \
   --variant max \
   --format json \
@@ -509,7 +509,7 @@ Format: markdown.
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --agent markdown \
   --variant max \
   --format json \
@@ -746,7 +746,7 @@ Output:
 ```bash
 # On OpenCode 1 (1.19.3):
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dir "$REPO_ROOT" \

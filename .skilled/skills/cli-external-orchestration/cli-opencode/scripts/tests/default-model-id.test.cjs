@@ -4,12 +4,14 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
-// Each version has its own default: OpenCode 1 dispatches the opencode-go route and
-// OpenCode 2 the llmgateway one, marked with a `✓` row in each provider table of the
-// roster. The roster, the skill's default invocation and every scenario document name
-// those defaults, and they drifted apart when the gateway retired an id: the roster
-// moved to the live slug while the docs kept dispatching the dead one. The roster is
-// the single source, and these tests hold the rest of the tree to it.
+// One default serves both OpenCode versions: the llmgateway route, marked with a `✓`
+// row in the roster's `### llmgateway` table. The opencode-go provider stays
+// documented but is no longer a default, because its quota is spent on OpenCode 1 and
+// OpenCode 2 lists no opencode-go provider at all. The roster, the skill's default
+// invocation and every scenario document name that default, and they drifted apart
+// when the gateway retired an id: the roster moved to the live slug while the docs kept
+// dispatching the dead one. The roster is the single source, and these tests hold the
+// rest of the tree to it.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS AND PATHS
@@ -29,12 +31,10 @@ const SKILL = path.join(SKILL_ROOT, 'SKILL.md');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..', '..');
 const HERMES_SKILL = path.join(REPO_ROOT, '.hermes', 'skills', 'cli-opencode', 'SKILL.md');
 
-// The OpenCode 1 default, the `✓` row of the roster's `### opencode-go` table, as
-// `opencode models opencode-go` lists it.
-const V1_DEFAULT_ID = 'opencode-go/deepseek-v4.1-flash';
-
-// The OpenCode 2 default, the `✓` row of the roster's `### llmgateway` table.
-const V2_DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash';
+// The default on both OpenCode versions, the `✓` row of the roster's `### llmgateway`
+// table: OpenCode 1 dispatches it at `--variant max`, OpenCode 2 with the `#max` effort
+// suffix on the id.
+const DEFAULT_ID = 'llmgateway/deepseek-v4.1-flash';
 
 // The id the gateway retired, assembled from fragments so this file does not itself
 // spell the dead slug: a search for it across the skill should return the dated
@@ -128,6 +128,20 @@ function assertSingleRosterDefault(provider, expectedId) {
   assert.equal(id, expectedId, `the ${provider} table marks ${id} as its default`);
 }
 
+// A provider that stays documented but is no longer a default must list its rows and
+// mark none of them, so the roster's silence and the single dispatch default agree.
+function assertNoRosterDefault(provider) {
+  const rows = rosterRows(read(ROSTER), provider);
+  assert.ok(rows.length > 0, `the ${provider} table lists no rows`);
+
+  const defaults = rows.filter((cells) => cells[1] === '✓');
+  assert.equal(
+    defaults.length,
+    0,
+    `the ${provider} table marks ${defaults.length} rows as the default`,
+  );
+}
+
 // Every document the skill ships, minus the historical trees.
 function documents(dir) {
   const found = [];
@@ -154,34 +168,15 @@ function relativeToRepoRoot(file) {
 // 3. THE ROSTER IS THE SINGLE SOURCE
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('the roster names one opencode-go default', () => {
-  assertSingleRosterDefault('opencode-go', V1_DEFAULT_ID);
+test('the roster lists opencode-go rows but marks no default', () => {
+  assertNoRosterDefault('opencode-go');
 });
 
 test('the roster names one llmgateway default', () => {
-  assertSingleRosterDefault('llmgateway', V2_DEFAULT_ID);
+  assertSingleRosterDefault('llmgateway', DEFAULT_ID);
 });
 
-test('the two version defaults differ only in the provider', () => {
-  const [v1Provider, ...v1Slug] = V1_DEFAULT_ID.split('/');
-  const [v2Provider, ...v2Slug] = V2_DEFAULT_ID.split('/');
-
-  assert.deepEqual(
-    [v1Provider, v2Provider],
-    ['opencode-go', 'llmgateway'],
-    `the version defaults name the providers ${v1Provider} and ${v2Provider}`,
-  );
-
-  // Same model behind two gateways: a default that moves one version to another model
-  // family, or gains a path segment, is a second difference and not this pair.
-  assert.equal(
-    v1Slug.join('/'),
-    v2Slug.join('/'),
-    `the version defaults name different model slugs: ${v1Slug.join('/')} and ${v2Slug.join('/')}`,
-  );
-});
-
-test("SKILL.md's default invocation names each version's roster default", () => {
+test('both versions default to llmgateway, each in its own syntax', () => {
   const lines = read(SKILL).split('\n');
   const start = lines.findIndex((line) => line.startsWith('### Default Invocation'));
   assert.notEqual(start, -1, 'SKILL.md has no "### Default Invocation" section');
@@ -192,29 +187,38 @@ test("SKILL.md's default invocation names each version's roster default", () => 
     section.push(line);
   }
 
-  // Both dispatch forms ship there as copyable commands, so every selector is a
-  // dispatch an operator may run: one that pins another model is drift, however the
-  // surrounding prose reads. The flag spells the version, so it also fixes the default.
-  const selectors = modelSelectors(section.join('\n'));
+  const text = section.join('\n');
+  const selectors = modelSelectors(text);
 
-  for (const [flag, id] of [
-    ['--model', V1_DEFAULT_ID],
-    ['-m', V2_DEFAULT_ID],
-  ]) {
-    assert.ok(
-      selectors.some((selector) => selector.flag === flag),
-      `the Default Invocation section has no "${flag} ${id}" selector`,
-    );
+  // Both dispatch forms ship there as copyable commands, so each version's syntax
+  // names the same default: OpenCode 1 through `--model` and OpenCode 2 through `-m`
+  // with the effort suffix on the id.
+  assert.ok(
+    selectors.some((selector) => selector.flag === '--model' && selector.id === DEFAULT_ID),
+    `the Default Invocation section has no "--model ${DEFAULT_ID}" selector`,
+  );
 
-    const differing = selectors
-      .filter((selector) => selector.flag === flag && selector.id !== id)
-      .map((selector) => selector.text);
-    assert.equal(
-      differing.join('\n'),
-      '',
-      `every "${flag} <id>" selector in the Default Invocation section must pin ${id}, but these do not:\n${differing.join('\n')}`,
-    );
-  }
+  const v2Selector = `-m ${DEFAULT_ID}#max`;
+  assert.ok(
+    selectors.some((selector) => selector.text === v2Selector),
+    `the Default Invocation section has no "${v2Selector}" selector`,
+  );
+
+  assert.ok(
+    text.includes('--variant max'),
+    'the Default Invocation section has no "--variant max"',
+  );
+
+  // Every selector there is a dispatch an operator may run: one that pins another
+  // model is drift, however the surrounding prose reads.
+  const differing = selectors
+    .filter((selector) => selector.id !== DEFAULT_ID)
+    .map((selector) => selector.text);
+  assert.equal(
+    differing.join('\n'),
+    '',
+    `every "--model <id>" and "-m <id>" selector in the Default Invocation section must pin ${DEFAULT_ID}, but these do not:\n${differing.join('\n')}`,
+  );
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

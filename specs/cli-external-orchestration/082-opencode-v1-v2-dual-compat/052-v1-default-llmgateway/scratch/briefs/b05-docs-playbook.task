@@ -1,0 +1,40 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory)
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+TASK (one change: move the playbook's stated default to llmgateway):
+
+FACTS (the operator decided this on 2026-10-21):
+- The cli-opencode default model is now `llmgateway/deepseek-v4.1-flash` (LLM Gateway, DevPass) on BOTH OpenCode versions.
+- OpenCode 1 dispatches it as `--model llmgateway/deepseek-v4.1-flash --variant max`. OpenCode 2 dispatches it as `-m llmgateway/deepseek-v4.1-flash#max` (unchanged).
+- Why: the opencode-go Go-plan quota is spent, so an OpenCode 1 dispatch on opencode-go hangs on "Go usage limit exceeded"; OpenCode 2 lists no opencode-go provider; one provider now serves both versions.
+- `opencode-go` stays a documented, selectable provider with its models. Only the DEFAULT moves. Do not delete opencode-go rows, sections or the opencode-go route; only stop calling it the default and stop using it in the canonical default command.
+- Example commands that show the skill default dispatch on OpenCode 1 (`--model opencode-go/deepseek-v4.1-flash`) change to `--model llmgateway/deepseek-v4.1-flash`. Commands whose point is the opencode-go provider itself (a provider check like `opencode models opencode-go`, a variant-range test of opencode-go) keep it.
+- Never edit lines inside `changelog/` or `benchmark/`, and never edit a line starting `Coverage note (2026-04-26):` (dated records).
+
+Scope: every file under `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/`. Find them with:
+grep -rln "opencode-go" .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+
+For each hit decide:
+- A default dispatch command or a sentence that names opencode-go as the default (including the OpenCode 2 twins written as `-m opencode-go/deepseek-v4.1-flash#...`, which OpenCode 2 cannot run because it lists no opencode-go provider) → switch to `llmgateway/deepseek-v4.1-flash` in that version's syntax.
+- The prerequisites item (manual-testing-playbook.md ~line 74) that says OpenCode 1 needs opencode-go configured for the default → say llmgateway must resolve on both versions (`opencode models llmgateway` on OpenCode 1, `opencode2 models --standalone` listing `llmgateway/` on OpenCode 2).
+- `opencode-goal` (the goal plugin) is a different word; never touch it.
+- `multi-provider/variant-levels-comparison.md` (CO-012) is a variant-range scenario; switch its model to the llmgateway default too, and fix its model table row (~59) so opencode-go is no longer called the default.
+- The line starting `Coverage note (2026-04-26):` is a dated record: never edit it.
+
+Read each file's relevant region before editing. Keep scenario ids, table layout and voice.
+
+ALLOWED WRITE PATHS:
+- any file under .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/
+
+BANNED OPERATIONS:
+- git commit, push, stash, checkout, reset, branch, rebase or any other git write
+- any package install, npm/bun/pip install, or network call
+- editing, creating or deleting any file not listed under ALLOWED WRITE PATHS
+- touching ~/.pi, the main checkout, or any OpenCode service; never run opencode or opencode2
+
+Verify by running (from the worktree root):
+grep -rn "opencode-go/" .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+and
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook 2>&1 | tail -5
+
+Return report: the files changed, the verify output with a one-line reason per remaining hit.

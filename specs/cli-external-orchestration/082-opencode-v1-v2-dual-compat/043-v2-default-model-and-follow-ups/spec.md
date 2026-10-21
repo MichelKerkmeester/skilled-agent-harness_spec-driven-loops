@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-21 |
 | **Branch** | `worktrees/185-v2-default-model-and-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -112,7 +112,7 @@ OpenCode 2 defaults to `llmgateway/deepseek-v4.1-flash#max` while OpenCode 1 kee
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | An unpinned OpenCode 2 dispatch uses `llmgateway/deepseek-v4.1-flash#max`, and OpenCode 1 keeps `opencode-go/deepseek-v4.1-flash --variant max`. | Unit tests cover both argvs; a live unpinned dispatch on each version exits 0. |
+| REQ-001 | An unpinned OpenCode 2 dispatch uses `llmgateway/deepseek-v4.1-flash#max`, and OpenCode 1 keeps `opencode-go/deepseek-v4.1-flash --variant max`. **Met**, with one change: in phase 052 the OpenCode 1 default moved to `llmgateway/deepseek-v4.1-flash` (`--variant max`) because the opencode-go Go-plan quota is spent, so both versions now share one default and opencode-go stays selectable. | Unit tests cover both argvs; a live unpinned dispatch on each version exits 0 (`../052-v1-default-llmgateway/scratch/live/`). |
 | REQ-002 | The docs state the per-version default. | The default-model test pins `--model` selectors to the v1 id and `-m` selectors to the v2 id, and the roster marks each. |
 | REQ-003 | The hook node:test files and the installer test gate merges. | A new workflow runs them; its CI run id and test count are recorded. |
 

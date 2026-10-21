@@ -1,0 +1,23 @@
+Worktree: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/196-v1-default-llmgateway (your current directory). READ-ONLY review: do not write, create or delete any file, and run no git write.
+Spec folder: specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/052-v1-default-llmgateway (pre-approved, skip Gate 3)
+
+CONTEXT: the operator decided on 2026-10-21 that the cli-opencode default model is `llmgateway/deepseek-v4.1-flash` on BOTH OpenCode versions: `--model llmgateway/deepseek-v4.1-flash --variant max` on OpenCode 1, `-m llmgateway/deepseek-v4.1-flash#max` on OpenCode 2. Before this change OpenCode 1 defaulted to `opencode-go/deepseek-v4.1-flash`, whose quota is spent. opencode-go stays a documented, selectable provider; only the default moves.
+
+TASK: review the uncommitted diff (`git diff`, 52 files) against that decision. Check each:
+1. Runtime `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`: an unpinned cli-opencode lineage gets llmgateway on both versions; a pinned `lineage.model` is never replaced; no other opencode-go route, provider map or flash-max pin entry changed; nothing still imports the removed `OPENCODE_V2_DEFAULT_MODEL` (grep the whole repo outside specs/).
+2. Tests: `opencode-dual-dispatch.vitest.ts` and `fanout-run.vitest.ts` changes match; `cli-opencode/scripts/tests/default-model-id.test.cjs` asserts the opencode-go table marks no default, the llmgateway table marks exactly one, and SKILL.md's Default Invocation pins llmgateway in each version's syntax.
+3. Docs (cli-opencode SKILL.md, README, references, assets, manual-testing-playbook, and the generated `.hermes/skills/cli-opencode/SKILL.md`): no remaining claim that opencode-go is the default on any version; every default claim names llmgateway with the right syntax per version; no opencode-go provider section, row or route was deleted; dated records (lines starting `Coverage note (2026-04-26):`, the 2026-05-04 incident) are untouched. Run `grep -rn "opencode-go" .skilled/skills/cli-external-orchestration/cli-opencode --exclude-dir=benchmark --exclude-dir=changelog` and judge each hit.
+4. Comments carry no spec paths, packet/phase numbers or ids.
+5. Wording a reader would find false: e.g. a sentence that still calls llmgateway "the OpenCode 2 default" in a way that implies OpenCode 1 differs.
+
+Severity: P0 broken/wrong behaviour, P1 inaccurate claim or missing required coverage, P2 minor. Cite file:line for each finding, with the evidence you ran or read. Do not report style preferences.
+
+ALLOWED WRITE PATHS:
+- none (read-only)
+
+BANNED OPERATIONS:
+- writing, creating or deleting any file
+- any git write, package install or network call
+- running opencode or opencode2, or touching ~/.pi or the main checkout
+
+Return report: verdict PASS (no P0/P1) or FAIL, then findings ranked by severity.

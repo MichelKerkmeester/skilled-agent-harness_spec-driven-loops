@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.5.0
+version: 1.4.6.0
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -122,7 +122,7 @@ git worktree add --detach /Users/<you>/MEGA/Development/Code_Environment/<short-
 # Dispatch INSIDE the worktree (no --agent flag; the default agent runs when --agent is omitted)
 # OpenCode 1 only
 opencode run \
-  --model opencode-go/deepseek-v4.1-flash \
+  --model llmgateway/deepseek-v4.1-flash \
   --variant max \
   --format json \
   --dangerously-skip-permissions \
@@ -164,7 +164,7 @@ The commit hash is the recovery baseline. Surface it to the operator before disp
 
 ### Layer 4 (FALLBACK): model selection
 
-The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:review:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-6-sol --reasoning-effort high`** (verify `gpt-6-sol` availability on the Copilot surface. This slug is carried over from a gpt-5.5-era Copilot-catalog check and is NOT re-verified. `opencode models openai` on OpenCode 1 does not cover Copilot. If Copilot does not expose it, pick an available Copilot model rather than silently falling back to the risky default) when available, and fall back to the version's flash default (`opencode-go/deepseek-v4.1-flash` on OpenCode 1, `llmgateway/deepseek-v4.1-flash` on OpenCode 2) only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches. Sequence the work accordingly.
+The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:review:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-6-sol --reasoning-effort high`** (verify `gpt-6-sol` availability on the Copilot surface. This slug is carried over from a gpt-5.5-era Copilot-catalog check and is NOT re-verified. `opencode models openai` on OpenCode 1 does not cover Copilot. If Copilot does not expose it, pick an available Copilot model rather than silently falling back to the risky default) when available, and fall back to the flash default `llmgateway/deepseek-v4.1-flash` — the default on both OpenCode versions — only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches. Sequence the work accordingly.
 
 ---
 
