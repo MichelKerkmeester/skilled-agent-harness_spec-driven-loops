@@ -302,9 +302,9 @@ not ok 50 - killer keeps a takeover directory a contender took over during an ow
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     false !== true
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: true

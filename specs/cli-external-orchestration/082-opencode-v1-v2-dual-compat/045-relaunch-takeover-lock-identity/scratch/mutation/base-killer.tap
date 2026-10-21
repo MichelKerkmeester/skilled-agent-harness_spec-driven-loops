@@ -290,9 +290,9 @@ not ok 48 - killer leaves a replaced takeover directory even when its inode is r
   failureType: 'testCodeFailure'
   error: |-
     a takeover directory the killer did not create should survive the release
-    
+
     false !== true
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: true

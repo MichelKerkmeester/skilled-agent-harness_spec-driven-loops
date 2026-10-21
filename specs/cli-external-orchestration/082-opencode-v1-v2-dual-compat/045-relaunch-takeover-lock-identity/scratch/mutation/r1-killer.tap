@@ -296,9 +296,9 @@ not ok 49 - killer does not remove a takeover directory whose owner write lost t
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     false !== true
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: true
@@ -319,9 +319,9 @@ not ok 50 - killer restores a takeover directory swapped in after its ownership 
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     false !== true
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: true
