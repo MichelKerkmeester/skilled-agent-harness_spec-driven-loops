@@ -65,6 +65,24 @@ function historyLines(sandbox) {
   return fs.readFileSync(historyPath, 'utf8').split('\n').filter(Boolean);
 }
 
+function seedHistory(sandbox, count) {
+  const historyPath = path.join(stateDirectory(sandbox), 'hop-history.log');
+  fs.mkdirSync(path.dirname(historyPath), { recursive: true });
+  const lines = [];
+  for (let index = 1; index <= count; index += 1) {
+    lines.push([
+      new Date(Date.UTC(2024, 0, index)).toISOString(),
+      'claimed',
+      'claude',
+      `hop ${index}`,
+      sandbox.repoRoot,
+      `goal ${index}`,
+      'handoff.md',
+    ].join('\t'));
+  }
+  fs.writeFileSync(historyPath, `${lines.join('\n')}\n`);
+}
+
 function writeNote(sandbox, fileName = 'handoff.md') {
   const handoffPath = path.join(stateDirectory(sandbox), 'handoffs', fileName);
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
@@ -165,6 +183,33 @@ test('history prints the latest lines and says when no hop is recorded yet', (t)
   assert.equal(printed.length, 1);
   assert.match(printed[0], /done/);
   assert.match(printed[0], new RegExp(GOAL.replace('.', '\\.')));
+});
+
+test('a zero count reads no history lines', (t) => {
+  const sandbox = createSandbox(t);
+  seedHistory(sandbox, 3);
+  assert.deepEqual(hopHistory.readHistory({ env: sandbox.env, last: 0 }), []);
+});
+
+test('a negative count reads the default number of newest lines', (t) => {
+  const sandbox = createSandbox(t);
+  const seeded = hopHistory.DEFAULT_HISTORY_LINES + 3;
+  seedHistory(sandbox, seeded);
+
+  const lines = hopHistory.readHistory({ env: sandbox.env, last: -5 });
+  assert.equal(lines.length, hopHistory.DEFAULT_HISTORY_LINES);
+  assert.match(lines[0], new RegExp(`goal ${seeded - hopHistory.DEFAULT_HISTORY_LINES + 1}\\b`));
+  assert.match(lines.at(-1), new RegExp(`goal ${seeded}\\b`));
+});
+
+test('a whole count reads that many of the newest lines', (t) => {
+  const sandbox = createSandbox(t);
+  seedHistory(sandbox, 5);
+
+  const lines = hopHistory.readHistory({ env: sandbox.env, last: 2 });
+  assert.equal(lines.length, 2);
+  assert.match(lines[0], /goal 4\b/);
+  assert.match(lines[1], /goal 5\b/);
 });
 
 test('history rejects a --last value that is not a positive whole number', (t) => {

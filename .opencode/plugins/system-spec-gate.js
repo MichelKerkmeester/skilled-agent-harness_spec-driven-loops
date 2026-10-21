@@ -58,12 +58,14 @@ function extractPrompt(input) {
   return null;
 }
 
-// Both classify (this function) and enforce (tool.execute.before, below)
-// resolve a missing sessionID to guardCore.UNKNOWN_SESSION_ID -- the SAME
-// token the core itself defaults to internally (sessionStateKey()). Two
-// different fallback strings here would key the same no-session turn to two
-// different state files, so once classify starts, enforce would
-// never see what classify wrote, and vice versa.
+// Every surface that keys gate state resolves a missing or empty sessionID to
+// guardCore.UNKNOWN_SESSION_ID -- the SAME token the core itself defaults to
+// internally (sessionStateKey()). classify (this function), enforce
+// (tool.execute.before, below) and the lifecycle events (sessionIdFromEvent,
+// below) must all agree: two different fallback strings would key the same
+// no-session turn to two different state files, so enforce would never see
+// what classify wrote, and a resume or delete with no id would advance or
+// evict a state file nothing else ever writes.
 function sessionIdFrom(input) {
   if (!input || typeof input !== 'object') return guardCore.UNKNOWN_SESSION_ID;
   const raw = input.sessionID || input.sessionId || input.session?.id || input.properties?.sessionID;
@@ -133,9 +135,12 @@ function sessionIdFromEvent(input) {
   const payload = eventPayloadFrom(input);
   const properties = payload.properties && typeof payload.properties === 'object' ? payload.properties : {};
   const info = properties.info && typeof properties.info === 'object' ? properties.info : {};
-  return payload.sessionID || payload.sessionId || payload.session?.id
+  const raw = payload.sessionID || payload.sessionId || payload.session?.id
     || properties.sessionID || properties.sessionId || properties.session?.id
-    || info.sessionID || info.sessionId || info.id || '__global__';
+    || info.sessionID || info.sessionId || info.id;
+  return raw === null || raw === undefined || raw === ''
+    ? guardCore.UNKNOWN_SESSION_ID
+    : String(raw);
 }
 
 function filePathFromArgs(args) {

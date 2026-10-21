@@ -1,0 +1,22 @@
+557e83052b .skilled/hooks/session-relaunch/lib/killer.cjs reverted -> # pass 52 # fail 2 
+f7afb8c441 .skilled/hooks/post-edit-quality/lib/post-edit-router.cjs reverted -> # pass 45 # fail 2 
+324a6b6cc0 APPLY-FAIL
+ba48e3f040 .skilled/hooks/shared/hook-adapter-shared.cjs reverted -> # pass 3 # fail 2 
+ae0d20a062 .opencode/plugins/system-skill-advisor.js reverted -> # pass 35 # fail 3 
+f32f7786c9 .skilled/hooks/session-relaunch/lib/hop-history.cjs reverted -> # pass 9 # fail 2 
+2c4801c55d .skilled/hooks/post-edit-quality/codex/post-edit-quality.cjs reverted -> # pass 2 # fail 1 
+2c4801c55d .skilled/hooks/post-edit-quality/devin/post-edit-quality.cjs reverted -> # pass 3 # fail 1 
+9dcf3168db .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs reverted -> # pass 0 # fail 1 
+f62953677e .opencode/plugins/session-relaunch.js reverted -> # pass 40 # fail 1 
+7deeac6287 .opencode/plugins/system-skill-advisor.js reverted -> # pass 37 # fail 1 
+b773d87964 .skilled/hooks/git/install-hooks.sh reverted -> FAIL  installs from a linked worktree's copy: installer exited 1: ln: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/install-hooks-test.CA16e2/worktree/.git/hooks/pre-commit: Not a directory FAIL  honours a custom core.hooksPath: pre-commit in /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//install-hooks-test.CA16e2/custom/custom-hooks points at 'nothing' FAIL  the default hooks folder stays untouched under core.hooksPath: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//install-hooks-test.CA16e2/custom/.git/hooks/pre-commit exists FAIL 3 (of 4) 
+a91c17d44b .skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs reverted -> # pass 0 # fail 1 
+015c39c1b4 .opencode/plugins/system-spec-gate.js reverted -> # pass 11 # fail 1 
+8c42fd499d .opencode/plugins/session-cleanup.js reverted -> # pass 12 # fail 4 
+fd7149c106 .skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs reverted -> # pass 0 # fail 1 
+324a6b6cc0 .skilled/hooks/task-dispatch/lib/dispatch-guard.cjs resolveCommandConfigPath body reverted by hand (later commit touches the same file) -> # AssertionError [ERR_ASSERTION]: a config at an absolute path outside the project must not exempt the dispatch # pass 0 # fail 1 
+bearer base64 (alphabet-only token): source reverted to HEAD -> plugin post-edit-quality test pass 50 fail 1; restored -> pass 51
+.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs source reverted to HEAD (039fa4d2f2) -> # pass 0 # fail 1 
+.opencode/plugins/system-skill-advisor.js source reverted to HEAD (039fa4d2f2) -> # pass 41 # fail 1 
+.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs source reverted to HEAD (cb8619244e) -> # pass 0 # fail 1 
+.opencode/plugins/system-skill-advisor.js source reverted to HEAD (cb8619244e) -> # pass 41 # fail 1 

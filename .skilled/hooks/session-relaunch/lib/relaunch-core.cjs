@@ -405,8 +405,16 @@ function arm({ loopId, cwd = process.cwd(), env = process.env, now }) {
 
   // The arm paths reach an armed record only once its killer is gone, and the wrapper
   // ages a record from armedAt. Keeping the first stamp would leave the replacement
-  // killer guarding a record the wrapper already declines as stale.
-  const armed = { ...record, status: 'armed', armedAt: toIsoTimestamp(now), cwd };
+  // killer guarding a record the wrapper already declines as stale. An arm that lands
+  // in the same millisecond as the record it replaces keeps the same armedAt, so each
+  // arm also carries an identity a killer can compare against the one it watched.
+  const armed = {
+    ...record,
+    status: 'armed',
+    armedAt: toIsoTimestamp(now),
+    armId: randomUUID(),
+    cwd,
+  };
   atomicWriteFile(relaunchFilePath(loopId, env), `${JSON.stringify(armed)}\n`);
   return armed;
 }
@@ -452,17 +460,26 @@ function armableRecord(record, { loopId, sessionId, runtime, env = process.env }
  * @param {string} [options.expectedStatus] - Required current status for the transition.
  * @param {string} [options.expectedHandoff] - Required current handoff for the transition.
  * @param {string} [options.expectedArmedAt] - Required current armedAt for the transition.
+ * @param {string} [options.expectedArmId] - Required current armId for the transition.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The disarmed record, or null when absent or conditions do not match.
  */
 function unarm({
-  loopId, env = process.env, reason, expectedStatus, expectedHandoff, expectedArmedAt, now,
+  loopId,
+  env = process.env,
+  reason,
+  expectedStatus,
+  expectedHandoff,
+  expectedArmedAt,
+  expectedArmId,
+  now,
 }) {
   const record = readRelaunchFile(loopId, env);
   if (record === null) return null;
   if (expectedStatus !== undefined && record.status !== expectedStatus) return null;
   if (expectedHandoff !== undefined && record.handoff !== expectedHandoff) return null;
   if (expectedArmedAt !== undefined && record.armedAt !== expectedArmedAt) return null;
+  if (expectedArmId !== undefined && record.armId !== expectedArmId) return null;
   const disarmed = {
     ...record,
     status: 'disarmed',

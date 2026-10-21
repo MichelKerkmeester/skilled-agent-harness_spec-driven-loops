@@ -1,0 +1,17 @@
+# session-relaunch hook flags timing
+
+Workspace: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/184-hooks-and-plugins-held-fixes
+
+Method: 2000 plugin event entries, each running the same `isEnabled` path once against a real
+hook-flags.env. Five samples of 2000 calls after 20 warm-up calls; median reported. The "before"
+source was an unmodified copy of the plugin under /tmp with its relative imports linked to the
+repo, deleted after the run. The "after" source used the same copied layout with the stat-keyed
+cache applied.
+
+before (read and parse the flags file on every call): median 87.765 ms / 2000 calls
+                                                     43.882 us per call
+                                                     samples 74.428, 85.746, 87.765, 90.099, 98.961 ms
+
+after  (stat the file, re-read only on change):       median 7.753 ms / 2000 calls
+                                                     3.876 us per call
+                                                     samples 6.370, 6.447, 7.753, 7.830, 8.012 ms

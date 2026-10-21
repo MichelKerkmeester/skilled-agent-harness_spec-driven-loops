@@ -17,24 +17,47 @@
 // A host that never closes stdin would otherwise hold the hook until the host's
 // own timeout kills it, so the read settles on whichever comes first: the end of
 // the stream, or the deadline with whatever has arrived by then.
-function readStdin({ timeoutMs = 3000 } = {}) {
+//
+// The byte cap bounds what a runaway stream can retain. It sits far above any
+// real hook payload, since the largest tool input and result across 40 recent
+// Claude Code transcripts are about 68 KB and 234 KB, and the largest tracked
+// file in this repository about 26 MB. A stream that crosses the cap resolves
+// to an empty string, the same no-input result every caller already fails open
+// on, rather than throwing.
+const MAX_STDIN_BYTES = 64 * 1024 * 1024;
+
+function readStdin({ timeoutMs = 3000, maxBytes = MAX_STDIN_BYTES } = {}) {
   return new Promise((resolve, reject) => {
     const chunks = [];
+    let bytesRead = 0;
+    let overCap = false;
     let settled = false;
     let timer = null;
 
-    const onData = (chunk) => chunks.push(chunk);
-    const onEnd = () => {
-      if (settled) return;
-      settled = true;
-      release();
-      resolve(Buffer.concat(chunks).toString('utf8'));
+    const onData = (chunk) => {
+      if (overCap) return;
+      bytesRead += chunk.length;
+      if (bytesRead > maxBytes) {
+        overCap = true;
+        // Pausing inside a data handler leaves the stdin handle referenced, so
+        // defer the release that lets a host keeping the pipe open exit.
+        setImmediate(() => settle(''));
+        return;
+      }
+      chunks.push(chunk);
     };
+    const onEnd = () => settle(overCap ? '' : Buffer.concat(chunks).toString('utf8'));
     const onError = (error) => {
       if (settled) return;
       settled = true;
       release();
       reject(error);
+    };
+    const settle = (text) => {
+      if (settled) return;
+      settled = true;
+      release();
+      resolve(text);
     };
     const release = () => {
       clearTimeout(timer);

@@ -56,6 +56,9 @@ const ADVISOR_PROMPT_MAX_CHARS = 10_000;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
 const DEFAULT_MAX_CACHE_ENTRIES = 1000;
 const MAX_BRIDGE_STDOUT_BYTES = 256 * 1024;
+// Unique prompts each need their own advisor child, so a burst must not multiply
+// live processes without limit.
+const MAX_CONCURRENT_ADVISOR_RUNS = 2;
 const BRIDGE_TERMINATION_GRACE_MS = 250;
 const COMPILED_ROUTE_BOUNDING_ENV = 'SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING';
 const DISABLED_ENV = 'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED';
@@ -268,6 +271,32 @@ function disabledEnvName() {
   return null;
 }
 
+// The signature runs on every advisor lookup, so the digest of a file whose
+// identity is unchanged is reused instead of read and hashed again. A difference
+// in mtimeMs, ctimeMs, size or ino falls back to the read, and a stat or read
+// failure stays missing.
+const fileDigestCache = new Map();
+
+function fileDigest(sourcePath, stat) {
+  const cached = fileDigestCache.get(sourcePath);
+  if (cached
+    && cached.mtimeMs === stat.mtimeMs
+    && cached.ctimeMs === stat.ctimeMs
+    && cached.size === stat.size
+    && cached.ino === stat.ino) {
+    return cached.digest;
+  }
+  const digest = createHash('sha256').update(readFileSync(sourcePath)).digest('hex');
+  fileDigestCache.set(sourcePath, {
+    mtimeMs: stat.mtimeMs,
+    ctimeMs: stat.ctimeMs,
+    size: stat.size,
+    ino: stat.ino,
+    digest,
+  });
+  return digest;
+}
+
 function addFileSignature(hash, label, sourcePath) {
   try {
     const stat = statSync(sourcePath);
@@ -282,7 +311,7 @@ function addFileSignature(hash, label, sourcePath) {
     hash.update('\u001f');
     hash.update(String(stat.size));
     hash.update('\u001f');
-    hash.update(createHash('sha256').update(readFileSync(sourcePath)).digest('hex'));
+    hash.update(fileDigest(sourcePath, stat));
     hash.update('\u001e');
   } catch {
     hash.update(label);
@@ -944,6 +973,9 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     advisorCache: new Map(),
     // In-flight promise dedup: concurrent identical-key requests share one advisor CLI spawn.
     inFlight: new Map(),
+    // Live advisor CLI runs and the FIFO of callers waiting for a free slot.
+    activeAdvisorRuns: 0,
+    advisorRunWaiters: [],
     // Per-session record of the constant directive block last delivered in
     // full, keyed by normalized session id. Cleared on session lifecycle
     // boundaries (created/resumed/compacted/deleted) so the full block is
@@ -967,6 +999,83 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       : null,
   };
 
+  function acquireAdvisorRunSlot(sessionID, timeoutMs) {
+    if (state.activeAdvisorRuns < MAX_CONCURRENT_ADVISOR_RUNS) {
+      state.activeAdvisorRuns += 1;
+      return Promise.resolve({ granted: true });
+    }
+    return new Promise((resolve) => {
+      const waiter = {
+        sessionID,
+        // A wall-clock step can move a deadline backwards, so elapsed queue time
+        // must come from a monotonic clock.
+        deadline: performance.now() + timeoutMs,
+        settled: false,
+        timer: null,
+        grant() {
+          if (waiter.settled) {
+            // The deadline already answered this caller, so the slot has to go
+            // to the next waiter instead of disappearing with nobody holding it.
+            releaseAdvisorRunSlot();
+            return;
+          }
+          waiter.settled = true;
+          clearTimeout(waiter.timer);
+          resolve({ granted: true });
+        },
+        deny(error) {
+          if (waiter.settled) {
+            return;
+          }
+          waiter.settled = true;
+          clearTimeout(waiter.timer);
+          const index = state.advisorRunWaiters.indexOf(waiter);
+          if (index !== -1) {
+            state.advisorRunWaiters.splice(index, 1);
+          }
+          resolve({ granted: false, error });
+        },
+      };
+      // Queue time counts against the same budget as the run, or a backlog makes
+      // the host transform wait far past the bridge timeout it was promised.
+      waiter.timer = setTimeout(() => waiter.deny('QUEUE_TIMEOUT'), timeoutMs);
+      waiter.timer.unref?.();
+      state.advisorRunWaiters.push(waiter);
+    });
+  }
+
+  function releaseAdvisorRunSlot() {
+    while (state.advisorRunWaiters.length > 0) {
+      const next = state.advisorRunWaiters.shift();
+      if (next.deadline > performance.now()) {
+        // Hand the slot to the oldest waiter still in time so the live count never dips.
+        next.grant();
+        return;
+      }
+      // A slot can free after a waiter's deadline but before its timer fires, and
+      // granting then would run the overdue lookup with a fresh timeout.
+      next.deny('QUEUE_TIMEOUT');
+    }
+    state.activeAdvisorRuns = Math.max(0, state.activeAdvisorRuns - 1);
+  }
+
+  // A reset must release queued callers, or their host transforms never settle.
+  function cancelAdvisorRunWaiters() {
+    while (state.advisorRunWaiters.length > 0) {
+      state.advisorRunWaiters.shift().deny('RUNTIME_RESET');
+    }
+  }
+
+  // Queued transforms for a deleted session fail open now instead of holding a
+  // queue position until their deadline.
+  function cancelAdvisorRunWaitersForSession(sessionID) {
+    for (const waiter of [...state.advisorRunWaiters]) {
+      if (waiter.sessionID === sessionID) {
+        waiter.deny('SESSION_DELETED');
+      }
+    }
+  }
+
   /**
    * Run the advisor CLI and render its JSON response.
    * The CLI receives the request on stdin from `advisorCliRequest`, returns stdout
@@ -976,12 +1085,31 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
    * @param {Object} params - CLI invocation parameters
    * @param {string} params.projectDir - Working directory for the advisor CLI subprocess
    * @param {string} params.prompt - Prompt passed to the advisor CLI
+   * @param {string} params.sessionID - Session that owns the queued slot request
    * @param {Object} params.options - Normalized plugin options
    * @param {string} params.options.nodeBinary - Node binary used to spawn the advisor CLI
-   * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent
+   * @param {number} params.options.bridgeTimeoutMs - Timeout before SIGTERM is sent, and the queue wait bound
    * @returns {Promise<Object>} Rendered response with `brief`, `status`, and `metadata`
    */
-  function runAdvisorCli({ projectDir, prompt, options }) {
+  async function runAdvisorCli({ projectDir, prompt, sessionID, options }) {
+    const slot = await acquireAdvisorRunSlot(sessionID, options.bridgeTimeoutMs);
+    if (!slot.granted) {
+      // A reset already reported itself; only a queue-side denial still needs the
+      // fail-open signal the other non-delivering paths leave in status.
+      if (slot.error !== 'RUNTIME_RESET') {
+        state.lastBridgeStatus = 'fail_open';
+        state.lastErrorCode = slot.error;
+      }
+      return { brief: null, status: 'fail_open', error: slot.error, metadata: {} };
+    }
+    try {
+      return await invokeAdvisorCli({ projectDir, prompt, options });
+    } finally {
+      releaseAdvisorRunSlot();
+    }
+  }
+
+  function invokeAdvisorCli({ projectDir, prompt, options }) {
     const startedAt = Date.now();
     state.bridgeInvocations += 1;
 
@@ -1141,7 +1269,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
     state.cacheMisses += 1;
     const epochAtStart = state.epoch;
-    const promise = runAdvisorCli({ projectDir, prompt, options }).finally(() => {
+    const promise = runAdvisorCli({ projectDir, prompt, sessionID, options }).finally(() => {
       if (state.inFlight.get(key) === promise) {
         state.inFlight.delete(key);
       }
@@ -1165,6 +1293,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     state.epoch += 1;
     state.advisorCache.clear();
     state.inFlight.clear();
+    cancelAdvisorRunWaiters();
     state.directiveDedupBySession.clear();
     state.directiveEpochBySession.clear();
     state.directiveGeneration += 1;
@@ -1424,6 +1553,7 @@ async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         // A deleted session never returns, so its epoch entry would otherwise
         // accumulate one leak per deleted session on a long-lived host.
         state.directiveEpochBySession.delete(sessionID);
+        cancelAdvisorRunWaitersForSession(sessionID);
         if (options.enabled) {
           await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
         }

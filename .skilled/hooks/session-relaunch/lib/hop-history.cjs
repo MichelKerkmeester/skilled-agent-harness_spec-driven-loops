@@ -57,6 +57,12 @@ function isTruthy(value) {
   return ['1', 'true', 'yes', 'on'].includes(String(value ?? '').trim().toLowerCase());
 }
 
+// A count, not a slice offset: a negative number would otherwise drop that many of the
+// oldest lines, and a zero would start at the first line and keep them all.
+function historyCount(last) {
+  return Number.isInteger(last) && last >= 0 ? last : DEFAULT_HISTORY_LINES;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -125,7 +131,9 @@ function notifyHandOver(handoffPath, { switches = process.env, runtime } = {}) {
 /**
  * Read the latest history lines, oldest first.
  *
- * @param {{env?: NodeJS.ProcessEnv, last?: number}} [options] - Environment and line count.
+ * @param {{env?: NodeJS.ProcessEnv, last?: number}} [options] - Environment and how many of
+ *   the newest lines to return. A whole number of zero or more is a count, so zero returns
+ *   nothing; any other value falls back to `DEFAULT_HISTORY_LINES`.
  * @returns {string[]} Formatted lines, empty when nothing is recorded.
  */
 function readHistory({ env = process.env, last = DEFAULT_HISTORY_LINES } = {}) {
@@ -136,7 +144,10 @@ function readHistory({ env = process.env, last = DEFAULT_HISTORY_LINES } = {}) {
     if (error.code === 'ENOENT') return [];
     throw error;
   }
-  return text.split('\n').filter(Boolean).slice(-last).map((line) => {
+  const lines = text.split('\n').filter(Boolean);
+  const count = historyCount(last);
+  const newest = count === 0 ? [] : lines.slice(-count);
+  return newest.map((line) => {
     const [time, event, runtime, hop, cwd, goal, note] = line.split('\t');
     const where = cwd ? path.basename(cwd) : '-';
     const hopLabel = hop && hop !== '-' ? ` (${hop})` : '';

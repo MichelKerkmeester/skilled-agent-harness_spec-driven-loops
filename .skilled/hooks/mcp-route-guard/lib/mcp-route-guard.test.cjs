@@ -17,6 +17,8 @@
 // (f) Claude-hook integration: piping a PreToolUse payload for a routable
 //     connector call yields additionalContext, exit 0, and no
 //     permissionDecision anywhere in the output.
+// (g) Cursor-hook integration: a payload workspace outside the checkout still
+//     resolves the shared guard and yields an advisory.
 
 const assert = require('node:assert/strict');
 const { spawnSync } = require('node:child_process');
@@ -27,6 +29,7 @@ const { join } = require('node:path');
 const guardCore = require('./mcp-route-guard.cjs');
 
 const CLAUDE_HOOK_PATH = join(__dirname, '..', 'claude', 'mcp-route-guard.cjs');
+const CURSOR_HOOK_PATH = join(__dirname, '..', 'cursor', 'mcp-route-guard.mjs');
 // Point the adapter at an absent flags file so nothing persisted on this machine
 // can disable the guard and hide the output these tests assert on.
 const ABSENT_FLAGS_CONFIG = join(tmpdir(), 'mcp-route-guard-absent-hook-flags.env');
@@ -254,6 +257,30 @@ function testKillSwitchDisablesEveryDecision() {
   assert.equal(result.warnings.length, 0, 'kill-switch suppresses every warning');
 }
 
+// The adapters gate through isHookEnabled, so every on-spelling it accepts has to
+// silence the core too -- otherwise the same flag value means two different
+// things depending on which layer read it.
+function testKillSwitchHonorsEveryOnSpelling() {
+  const projectDir = trackedProjectDir(['clickup_official']);
+  for (const value of ['true', 'yes', 'TRUE', 'Yes', 'on']) {
+    const result = guardCore.evaluateNativeMcpCall({
+      toolName: 'mcp__claude_ai_ClickUp__clickup_create_task',
+      projectDir,
+      env: { [guardCore.DISABLED_ENV]: value },
+    });
+    assert.equal(result.decision, 'allow', `kill-switch "${value}" forces allow on a routable match`);
+    assert.equal(result.warnings.length, 0, `kill-switch "${value}" suppresses every warning`);
+  }
+
+  const offResult = guardCore.evaluateNativeMcpCall({
+    toolName: 'mcp__claude_ai_ClickUp__clickup_create_task',
+    projectDir,
+    env: { [guardCore.DISABLED_ENV]: '0' },
+  });
+  assert.equal(offResult.decision, 'warn', 'kill-switch "0" leaves the advisory in place');
+  assert.equal(offResult.warnings.length, 1, 'kill-switch "0" still emits the advisory');
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // (f) Claude-hook integration: additionalContext, exit 0, no permissionDecision
 // ─────────────────────────────────────────────────────────────────────────────
@@ -319,6 +346,39 @@ function testClaudeHookFailsOpenOnMalformedStdin() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// (g) Cursor-hook integration: guard resolves outside the payload's workspace
+// ─────────────────────────────────────────────────────────────────────────────
+
+function runCursorHook(payload, extraEnv) {
+  return spawnSync(process.execPath, [CURSOR_HOOK_PATH], {
+    input: typeof payload === 'string' ? payload : JSON.stringify(payload),
+    encoding: 'utf8',
+    env: hookEnv(extraEnv),
+  });
+}
+
+function testCursorHookAdvisesFromForeignWorkspace() {
+  // Empty on purpose: the workspace the hook fires in carries no hook tree, so
+  // only a guard resolved from the adapter itself can run and advise.
+  const workspace = trackedEmptyProjectDir();
+  const proc = runCursorHook({
+    workspace_roots: [workspace],
+    mcp_server_name: 'claude_ai_ClickUp',
+    tool_name: 'clickup_create_task',
+  }, { MCP_ROUTE_GUARD_BROAD_MODE: '1' });
+
+  assert.equal(proc.status, 0, 'hook exits 0');
+  const parsed = JSON.parse(proc.stdout);
+  assert.equal(parsed.permission, 'allow', 'the advisory never denies');
+  assert.ok(
+    typeof parsed.agent_message === 'string'
+      && parsed.agent_message.includes('mcp-route-guard:')
+      && parsed.agent_message.includes('claude_ai_ClickUp'),
+    'agent_message carries the routing advisory',
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Run
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -336,9 +396,11 @@ const tests = [
   ['mtime cache expands warn-set on manifest edit', testMtimeCacheExpandsWarnSetOnManifestEdit],
   ['broad-mode env flag warns on unrouteable family', testBroadModeEnvFlagWarnsOnUnrouteableFamily],
   ['kill-switch disables every decision', testKillSwitchDisablesEveryDecision],
+  ['kill-switch honors every on-spelling', testKillSwitchHonorsEveryOnSpelling],
   ['Claude hook emits additionalContext for routable connector', testClaudeHookEmitsAdditionalContextForRoutableConnector],
   ['Claude hook silent for unrouteable family', testClaudeHookSilentForUnrouteableFamily],
   ['Claude hook fails open on malformed stdin', testClaudeHookFailsOpenOnMalformedStdin],
+  ['Cursor hook advises from a workspace outside the checkout', testCursorHookAdvisesFromForeignWorkspace],
 ];
 
 let passed = 0;

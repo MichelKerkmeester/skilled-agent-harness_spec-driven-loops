@@ -27,7 +27,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
-import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 
@@ -35,7 +35,11 @@ import { readStdin } from '../../shared/hook-adapter-shared.cjs';
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GUARD_SCRIPT_RELATIVE = '.skilled/hooks/mcp-route-guard/claude/mcp-route-guard.cjs';
+// Resolved from this adapter, never from the payload's workspace: the workspace
+// the hook fires in may carry no hook tree at all (a different checkout, or a
+// source root such as `.opencode`), and a path joined onto it silently disables
+// the guard.
+const GUARD_SCRIPT_PATH = fileURLToPath(new URL('../claude/mcp-route-guard.cjs', import.meta.url));
 const CHILD_TIMEOUT_MS = 3_000;
 const MAX_STDIO_BYTES = 1024 * 1024;
 
@@ -85,7 +89,7 @@ async function main() {
 
   let rawOutput = null;
   try {
-    const result = spawnSync(process.execPath, [join(projectDir, GUARD_SCRIPT_RELATIVE)], {
+    const result = spawnSync(process.execPath, [GUARD_SCRIPT_PATH], {
       cwd: projectDir,
       input: JSON.stringify(guardPayload),
       encoding: 'utf8',
