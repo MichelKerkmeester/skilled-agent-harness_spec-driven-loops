@@ -78,6 +78,26 @@ const EXECUTOR_BASENAMES = new Set([
   'jev-mcp',
 ]);
 const OPENCODE_EXECUTOR_RE = /^opencode\d*$/;
+// One binary-basename-to-skill table, shared by `directExecutor`'s classification and the
+// exported `executorSkill` lookup so the two can never name one executor differently. It also
+// carries the alias spellings (`cursor`, `claude-code`) another caller may hold for the same
+// binary; `isExecutorBasename` stays the only gate on what may actually run, so a key here
+// never widens what `directExecutor` accepts.
+const EXECUTOR_SKILLS = new Map([
+  ['claude', 'cli-claude-code'],
+  ['claude-code', 'cli-claude-code'],
+  ['codex', 'cli-codex'],
+  ['devin', 'cli-devin'],
+  ['cursor-agent', 'cli-cursor'],
+  ['cursor', 'cli-cursor'],
+  ['pi', 'cli-pi'],
+  ['hermes', 'cli-hermes'],
+  ['jev', 'cli-classifier'],
+  ['jev-mcp', 'cli-classifier'],
+]);
+// OpenCode's basenames vary by major version (`opencode`, `opencode2`), so a pattern rather
+// than a map key owns its skill name.
+const OPENCODE_SKILL = 'cli-opencode';
 const PRINT_FLAGS = new Set(['-p', '--print']);
 // Hermes's equivalents of a print flag, scoped to the hermes branch so `-q` on any other
 // command (grep, curl) never reads as dispatch evidence.
@@ -91,6 +111,29 @@ function basename(value) {
 
 function isExecutorBasename(value) {
   return OPENCODE_EXECUTOR_RE.test(value) || EXECUTOR_BASENAMES.has(value);
+}
+
+/**
+ * Resolve the skill one executor spelling belongs to, so two names for the same CLI compare
+ * equal. Accepts every shape a caller can hold: a binary basename (`cursor-agent`), a skill
+ * name (`cli-cursor`) and a packet folder name (`cli-jev`), in any case.
+ * @param {unknown} name - executor name as the caller writes it.
+ * @returns {string | null} the owning skill name, or null when the name is not an executor.
+ */
+export function executorSkill(name) {
+  if (typeof name !== 'string') return null;
+  const value = name.trim().toLowerCase();
+  if (value === '') return null;
+  // Shape-derived names resolve first: they are the registry's own spellings.
+  const shape = DISPATCH_SHAPES.find((entry) => (
+    entry.skill === value || basename(entry.packetPath) === value
+  ));
+  if (shape) return shape.skill;
+  // cursor-agent's skill is cli-cursor, so the prefixed spelling of that one binary does not
+  // follow from the map and needs its own entry.
+  if (value === 'cli-cursor-agent') return EXECUTOR_SKILLS.get('cursor-agent');
+  if (OPENCODE_EXECUTOR_RE.test(value)) return OPENCODE_SKILL;
+  return EXECUTOR_SKILLS.get(value) ?? null;
 }
 
 function isAssignmentToken(token) {
@@ -243,14 +286,14 @@ function directExecutor(tokens) {
   if (!isExecutorBasename(binary)) return null;
 
   if (OPENCODE_EXECUTOR_RE.test(binary) && tokens[start.index + 1]?.value === 'run') {
-    return 'cli-opencode';
+    return OPENCODE_SKILL;
   }
   // `exec` is Codex's headless subcommand and takes no print flag, so its presence alone
   // is the dispatch evidence; demanding a print flag here recorded no codex run at all.
-  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return 'cli-codex';
+  if (binary === 'codex' && tokens[start.index + 1]?.value === 'exec') return EXECUTOR_SKILLS.get(binary);
   if (binary === 'claude' || binary === 'devin' || binary === 'cursor-agent' || binary === 'pi') {
     return tokens.slice(start.index + 1).some((token) => PRINT_FLAGS.has(token.value))
-      ? `cli-${binary === 'cursor-agent' ? 'cursor' : binary === 'claude' ? 'claude-code' : binary}`
+      ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
   if (binary === 'hermes') {
@@ -259,17 +302,17 @@ function directExecutor(tokens) {
     const hasQueryFlag = rest.some((token) => HERMES_QUERY_FLAGS.has(token.value));
     // `hermes chat` plus a query flag, or the top-level `-z` oneshot, dispatches; a bare
     // `hermes chat`, `hermes status` or `hermes skills list` does not.
-    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return 'cli-hermes';
+    if ((isChat && hasQueryFlag) || rest.some((token) => token.value === '-z')) return EXECUTOR_SKILLS.get(binary);
     return null;
   }
   // Jev's judgment subcommands are its headless forms. `jev --version`, `jev auth status` and
   // `jev install-skills` are management commands, not dispatches; `jev-mcp` is classified so the
   // packet's host-only rule can refuse a shell start, which is the misuse rather than the use.
   if (binary === 'jev' || binary === 'jev-mcp') {
-    if (binary === 'jev-mcp') return 'cli-classifier';
+    if (binary === 'jev-mcp') return EXECUTOR_SKILLS.get(binary);
     const subcommand = tokens[start.index + 1]?.value;
     return subcommand === 'noul' || subcommand === 'choice' || subcommand === 'score' || subcommand === 'run'
-      ? 'cli-classifier'
+      ? EXECUTOR_SKILLS.get(binary)
       : null;
   }
   return null;

@@ -16,6 +16,7 @@ import {
   KILL_SWITCH_ENV,
   appendAuditLog,
   buildAuditLine,
+  executorSkill,
   extractDispatchMeta,
   inspectDispatch,
   isAuditDisabled,
@@ -558,6 +559,41 @@ describe('DISPATCH_SHAPES', () => {
     expect(skillFor('jev --version')).toBeNull();
     expect(skillFor('jev auth status')).toBeNull();
     expect(skillFor('jev install-skills --global')).toBeNull();
+  });
+});
+
+// ── executorSkill ────────────────────────────────────────────────────────────────────────────
+
+describe('executorSkill', () => {
+  it('maps every spelling of one executor to its skill and returns null otherwise', () => {
+    // Binary names, skill names and packet folder names all reach this lookup, so every pairing
+    // has to land on one skill or two callers read a single CLI as two different executors.
+    const cases = [
+      ['claude', 'cli-claude-code'],
+      ['CLI-CLAUDE-CODE', 'cli-claude-code'],
+      ['claude-code', 'cli-claude-code'],
+      ['codex', 'cli-codex'],
+      ['cli-codex', 'cli-codex'],
+      ['opencode', 'cli-opencode'],
+      ['opencode2', 'cli-opencode'],
+      ['cli-opencode', 'cli-opencode'],
+      ['devin', 'cli-devin'],
+      ['pi', 'cli-pi'],
+      ['cursor-agent', 'cli-cursor'],
+      ['cursor', 'cli-cursor'],
+      ['cli-cursor', 'cli-cursor'],
+      ['hermes', 'cli-hermes'],
+      ['jev', 'cli-classifier'],
+      ['jev-mcp', 'cli-classifier'],
+      ['cli-jev', 'cli-classifier'],
+      ['cli-classifier', 'cli-classifier'],
+    ];
+    for (const [name, skill] of cases) expect(executorSkill(name), name).toBe(skill);
+
+    // A non-executor name is never coerced onto a skill, because callers read null as
+    // "not this executor" rather than falling back to some default.
+    expect(executorSkill('git')).toBeNull();
+    expect(executorSkill('')).toBeNull();
   });
 });
 
