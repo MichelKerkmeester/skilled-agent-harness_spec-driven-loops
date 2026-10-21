@@ -1,0 +1,51 @@
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/182-dispatch-lint-held-fixes
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts (182 tests | 9 failed | 82 skipped) 11ms
+   ❯ Pi refusal phrasings (100)
+     × use “cli-devin” 3ms
+     × say “run /deep:review --executor cli-devin” 0ms
+     × use “cli-devin" 0ms
+     × use ”cli-devin“ 0ms
+     × use „cli-devin“ 0ms
+     × $(echo $(true) cli-devin) 0ms
+     × $(echo $(echo $(true)) cli-devin) 0ms
+     × $(a $(b) $(c) cli-devin) 0ms
+     × $(echo (1) cli-devin) 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “cli-devin”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > say “run /deep:review --executor cli-devin”
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use “cli-devin"
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use ”cli-devin“
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > use „cli-devin“
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo $(true) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo $(echo $(true)) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(a $(b) $(c) cli-devin)
+ FAIL  .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts > Pi refusal phrasings > $(echo (1) cli-devin)
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts:304:49
+    302|     ["it's fine to use cli-devin", false],
+    303|   ])('%s', (userText, expected) => {
+    304|     expect(denied('devin -p "task"', userText)).toBe(expected);
+       |                                                 ^
+    305|   });
+    306| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 91 passed | 82 skipped (182)
+   Start at  10:39:33
+   Duration  150ms (transform 55%, import 27%, tests 15%, worker 2%)
+
+b26-quotes-nesting: exit 1 against the base sources (.skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts)

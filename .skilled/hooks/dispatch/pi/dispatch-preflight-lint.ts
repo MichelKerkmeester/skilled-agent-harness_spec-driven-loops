@@ -160,13 +160,30 @@ function isInsideQuote(text: string, index: number): boolean {
   return quote !== undefined;
 }
 
+/* One pass over the text before the index keeps a nesting depth instead of comparing the last
+ * opener with the last closer: a closed inner substitution leaves its still-open outer one
+ * visible. `$(` opens a level, a bare `(` only nests inside an open level, and a `)` only
+ * closes an open level, so a parenthesis in ordinary prose never starts an expansion. A
+ * backtick is tracked as its own open span because it nests nothing. */
 function isInsideExpansion(text: string, index: number): boolean {
-  const prefix = text.slice(0, index);
-  const lastOpen = prefix.lastIndexOf('$(');
-  const lastClose = prefix.lastIndexOf(')');
-  if (lastOpen > lastClose) return true;
-  const backticks = (prefix.match(/`/g) ?? []).length;
-  return backticks % 2 === 1;
+  let depth = 0;
+  let inBacktick = false;
+  for (let cursor = 0; cursor < index; cursor += 1) {
+    const character = text[cursor];
+    if (character === '`') {
+      inBacktick = !inBacktick;
+      continue;
+    }
+    if (character === '$' && text[cursor + 1] === '(') {
+      depth += 1;
+      cursor += 1;
+      continue;
+    }
+    if (depth === 0) continue;
+    if (character === '(') depth += 1;
+    else if (character === ')') depth -= 1;
+  }
+  return depth > 0 || inBacktick;
 }
 
 function tokenStart(text: string, index: number): number {
@@ -219,10 +236,13 @@ function isResetForm(sentence: string, mentionToken: string): boolean {
 /** A mention authorizes only inside a sentence that carries no negation or refusal word, before
  * or after it; `not <other>, use <executor>` and `not <other> but <executor>` are the only
  * exceptions. A false deny is accepted, so `use cli-devin, it is not forbidden` stays refused:
- * the operator writes the request as its own sentence. Curly apostrophes read as straight ones,
- * and an apostrophe inside a word is a contraction rather than a quote delimiter. */
+ * the operator writes the request as its own sentence. Every curly and low quote reads as the
+ * straight quote it stands in for, so a mention the operator quoted is refused whichever form
+ * the pair mixes, and an apostrophe inside a word is a contraction rather than a delimiter.
+ * The substitution swaps one character for one character, so indexes into the original text
+ * still address the same characters. */
 function isUsableMention(userText: string, mentionIndex: number): boolean {
-  const text = userText.replace(/[’‘]/g, "'");
+  const text = userText.replace(/[“”„‟]/g, '"').replace(/[‘’‚‛]/g, "'");
   const quoteProbe = text.replace(/(?<=\w)'(?=\w)/g, '_');
   if (isInsideQuote(quoteProbe, mentionIndex) || isInsideExpansion(text, mentionIndex)) return false;
   const sentence = mentionSentence(text, mentionIndex).trim();

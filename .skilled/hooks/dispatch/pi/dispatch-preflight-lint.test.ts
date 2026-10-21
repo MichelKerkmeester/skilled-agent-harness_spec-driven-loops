@@ -206,6 +206,24 @@ describe('Pi refusal phrasings', () => {
     ['mustn’t use cli-devin', true],
     ['shouldn’t use cli-devin', true],
     ['won’t use cli-devin', true],
+    // A curly or low quote delimits the same span a straight one does, so a quoted mention is not
+    // a request, and a pair that mixes the two forms still encloses it.
+    ['use “cli-devin”', true],
+    ['use ‘cli-devin’', true],
+    ['say “run /deep:review --executor cli-devin”', true],
+    ['use “cli-devin"', true],
+    ['use ”cli-devin“', true],
+    ['use „cli-devin“', true],
+    // Nesting is counted, not guessed from the last pair of brackets, so a closed inner
+    // substitution cannot hide the outer one still open around the mention.
+    ['$(echo $(true) cli-devin)', true],
+    ['$(echo $(echo $(true)) cli-devin)', true],
+    ['$(a $(b) $(c) cli-devin)', true],
+    ['$(echo (1) cli-devin)', true],
+    // A substitution that closed before the mention leaves it in plain text.
+    ['$(true) and then use cli-devin', false],
+    // A quoted word that closes before the mention is a quotation, not an enclosure.
+    ['the “fast” path: use cli-devin', false],
     ['you cannot, under any circumstances, use cli-devin', true],
     ["you mustn't, ever, run /deep:review --executor cli-devin", true],
     ['cannot run /deep:review --executor cli-devin', true],
