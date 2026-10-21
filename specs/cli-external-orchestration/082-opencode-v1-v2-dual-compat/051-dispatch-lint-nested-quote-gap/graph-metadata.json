@@ -33,7 +33,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -134,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +147,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Pi lint refuses an executor mention that sits inside a quote or a command substitution, because text there is shell syntax the operator quoted, not a request",
     "created_at": "2026-10-21T18:53:35Z",
-    "last_save_at": "2026-10-21T19:51:54.845Z",
+    "last_save_at": "2026-10-21T20:24:20.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5c562eadaf330c48b725f6d9db418901275fb8ece67121ed62c6e5e31307f7ed",
+    "source_fingerprint": "sha256:a33d000612cbb8a7cb48f310bc93a438299d06ffe70d0e093389f776fa28a4dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7a4ef411da4f9819a0ea2eddf1808cdf0702f05cc3ed4e29463e5ecbe3c834c1",
+      "spec.md": "e820ad011ce119a6b4533c4d7f9c88d3a9f9391cbf9a85409ae3d02c6750876a",
       "plan.md": "f73593edbacc8d7870aacfed3ca3ead4d478402d7fb8179cd7920029d155ee9d",
-      "tasks.md": "71f164daeefbfbdde977c77ac10d0eeceddc17994992df93c923270562126e3c",
-      "implementation-summary.md": "f7cfd19cff810de7d024ed05a0b955292f2d2ae4650443dd89bd0776d12ff591"
+      "tasks.md": "0425c4da979a741c187afd26239af2019f529c771c3c0c8d70bf3537acb16d8f",
+      "implementation-summary.md": "2a0535974cdaa2371f53c82c70c8b71ed96d6b24142121c0b8cf53357aebb9a6"
     },
     "last_active_at": null
   }

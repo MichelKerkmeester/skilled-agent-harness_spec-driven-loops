@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/082-opencode-v1-v2-dual-compat/051-dispatch-lint-nested-quote-gap"
     last_updated_at: "2026-10-21T20:30:00Z"
     last_updated_by: "claude-opus-5.5"
-    recent_action: "Three review rounds closed, the post-round deep-loop P1 fixed, suites at baseline"
-    next_safe_action: "Push to main and record CI on the pushed commit and the tip"
+    recent_action: "Pushed 48efc4f6cc to main; CI green on it and on tip ffddf3560b"
+    next_safe_action: "None; phase complete"
     blockers: []
     key_files:
       - ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "051-dispatch-lint-nested-quote-gap"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 051-dispatch-lint-nested-quote-gap |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Completed** | 2026-10-21 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -104,7 +104,47 @@ Round 1 found seven leaks (comments, `case`, in-word apostrophes, curly and stra
 | Audit and rule-check engines | Unchanged since base, so the 260-command corpus cannot move |
 | Suites, baseline to after | Hooks node 872 to 872, hooks vitest 401 to 452, plugins 516, battery 51, rule-checks 42, audit 124 |
 | Review rows checker | 0 open P0/P1; §2 P1 table 47/47/18/0 matches the rows |
+| Recursive strict validation of 082 | `RESULT: PASSED`, 53 folders, 0 failed |
 | Read-only reviews | Round 1 FAIL (7 P1), round 2 FAIL (5 P1), round 3 FAIL (1 P1, fixed after); a focused check of that fix PASS with two P2s that base shares |
+
+### CI results
+
+**Commit `48efc4f6cc`** - the merge pushed to main as `977dc751a8..48efc4f6cc`. All 13 workflows success.
+
+| Workflow | Run id | Result |
+|----------|--------|--------|
+| Hook Node Tests | 39665347632 | Success |
+| Dispatch Enforcement Guard | 39665347699 | Success |
+| OpenCode Plugin Tests | 39665347904 | Success |
+| OpenCode Dual-Version Battery | 39665347905 | Success |
+| sk-doc Script Tests | 39665347611 | Success |
+| Changed Packet Validation | 39665347785 | Success |
+| Advisory Checks | 39665347613 | Success |
+| Message Contract | 39665347835 | Success |
+| Command Tree Parity | 39665347936 | Success |
+| Playbook Operator Contract | 39665347706 | Success |
+| Gate Inputs | 39665347863 | Success |
+| Rule Canary Sync | 39665347897 | Success |
+| Trigger Index Rebuild | 39665347829 | Success |
+
+**Commit `ffddf3560b`** - the tip afterwards, a trigger-index rebuild after another group's commit. 13 success, 1 skipped.
+
+| Workflow | Run id | Result |
+|----------|--------|--------|
+| Hook Node Tests | 39666225583 | Success |
+| Dispatch Enforcement Guard | 39666225724 | Success |
+| OpenCode Plugin Tests | 39666225658 | Success |
+| sk-doc Script Tests | 39666225479 | Success |
+| Spec-Kit Check | 39666225680 | Success |
+| Markdown Link Integrity | 39666225573 | Success |
+| Changed Packet Validation | 39666225509 | Success |
+| Advisory Checks | 39666225701 | Success |
+| Message Contract | 39666225625 | Success |
+| Command Tree Parity | 39666225743 | Success |
+| Playbook Operator Contract | 39666225700 | Success |
+| Gate Inputs | 39666225624 | Success |
+| Rule Canary Sync | 39666225525 | Success |
+| Trigger Index Rebuild | 39666225634 | Skipped |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -58,8 +58,8 @@ contextType: "general"
 - [x] T011 Pi corpus: 0 of 476 texts move (`scratch/pi-corpus-diff.txt`)
 - [x] T012 Three read-only reviews, each P1 fixed and covered by a row
 - [x] T013 Suites at or above baseline (`scratch/suites/`)
-- [ ] T014 Recursive strict validation of the parent prints `RESULT: PASSED`
-- [ ] T015 Push to main and record CI on the pushed commit and the tip
+- [x] T014 Recursive strict validation of the parent prints `RESULT: PASSED` - 53 folders passed, 0 failed, run on its own after the merge
+- [x] T015 Push to main and record CI on the pushed commit and the tip - pushed `977dc751a8..48efc4f6cc`; 13 of 13 workflows green on `48efc4f6cc`, and the tip `ffddf3560b` green with the trigger-index rebuild skipped
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -67,7 +67,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->
