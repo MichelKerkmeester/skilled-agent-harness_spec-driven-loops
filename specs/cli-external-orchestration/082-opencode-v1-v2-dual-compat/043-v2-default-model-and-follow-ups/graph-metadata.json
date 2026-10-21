@@ -45,12 +45,17 @@
       ".hermes/skills/cli-opencode/SKILL.md",
       ".opencode/plugins/tests/v2-bridge.test.cjs",
       ".opencode/plugins/README.md",
-      ".skilled/hooks/spec-gate/README.md",
-      ".github/workflows/trigger-index-rebuild.yml",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/README.md",
       ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
       ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".github/workflows/trigger-index-rebuild.yml",
+      ".github/workflows/hooks-node-tests.yml",
       ".github/workflows/README.md",
-      "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/spec.md"
+      "scratch/after/v2-bridge-timeout-mutation.txt",
+      "scratch/after/checks-2.txt",
+      "scratch/live/v2-unpinned.txt",
+      "scratch/live/v1-unpinned.txt",
+      ".skilled/hooks/spec-gate/README.md"
     ],
     "entities": [
       {
@@ -108,12 +113,6 @@
         "source": "derived"
       },
       {
-        "name": "trigger-index-rebuild.yml",
-        "kind": "config",
-        "path": ".github/workflows/trigger-index-rebuild.yml",
-        "source": "derived"
-      },
-      {
         "name": "dispatch-guard.cjs",
         "kind": "file",
         "path": ".skilled/hooks/task-dispatch/lib/dispatch-guard.cjs",
@@ -123,6 +122,42 @@
         "name": "post-edit-router.cjs",
         "kind": "file",
         "path": ".skilled/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index-rebuild.yml",
+        "kind": "config",
+        "path": ".github/workflows/trigger-index-rebuild.yml",
+        "source": "derived"
+      },
+      {
+        "name": "hooks-node-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/hooks-node-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge-timeout-mutation.txt",
+        "kind": "file",
+        "path": "scratch/after/v2-bridge-timeout-mutation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "checks-2.txt",
+        "kind": "file",
+        "path": "scratch/after/checks-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v2-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v2-unpinned.txt",
+        "source": "derived"
+      },
+      {
+        "name": "v1-unpinned.txt",
+        "kind": "file",
+        "path": "scratch/live/v1-unpinned.txt",
         "source": "derived"
       },
       {
@@ -166,41 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Targeted",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Default Invocation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode names `opencode-go/deepseek-v4.1-flash` as its default on both versions, but OpenCode 2 on this machine lists no `opencode-go` provider, so a v2 example or an unpinned v2 fan-out lineage fails as written",
     "created_at": "2026-10-21T07:17:06Z",
-    "last_save_at": "2026-10-21T07:27:52.187Z",
+    "last_save_at": "2026-10-21T08:56:25.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4edcb46b580c98062c69c9aaf5c0cf7f4d1d16b26f6d19ac069044b497d977e0",
+    "source_fingerprint": "sha256:db5fd7fb3b29d0f97c9baa304bcf9c828f6335b586acc4b4a0fde5b2d1c0b54e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1b1704e4903024c71e382b0d680a3e2ddc614d88f4e1455eef0c45c8d3af26ea",
       "plan.md": "384d6e44f9817f8906b86a7a38961ff87414ea3eddfff8da6ce35032abdd8bb8",
-      "tasks.md": "baee29ac187f0b3dcdb918921437e30b89ac229237b52d50bac0b5c2f90bff57",
-      "implementation-summary.md": "4582962a41b63e82c870c4aba46dc4a1d8cc4166f1da3d2997e3a434056c9de3"
+      "tasks.md": "86bb3d97a44b8a0c10dee0444791a64a4999bef4d33e3b7cfdedef21d4af860d",
+      "implementation-summary.md": "df3ae165a6db0ca7728f24eb164093996d731e971c54f6b6098bd7e8b51c592f"
     },
     "last_active_at": null
   }
