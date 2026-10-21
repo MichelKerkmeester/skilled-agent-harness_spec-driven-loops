@@ -1,7 +1,7 @@
 ---
 title: "CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2"
 description: "This scenario validates the system-spec-gate plugin for CO-055. It focuses on the deferred Gate 3 instruction and the enforced refusal of a write that has no bound spec folder."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # CO-055 -- system-spec-gate live utilization on OpenCode 1 and 2
@@ -16,7 +16,7 @@ This scenario validates the `system-spec-gate` plugin for `CO-055`. The transfor
 
 ### Why This Matters
 
-A write with no bound spec folder loses the documentation trail for the whole change. The gate is the last point that can stop it before the file exists. If the refusal stops firing, or the deferred instruction stops reaching the prompt, the only remaining signal is a file that quietly appears outside any packet. The `bash` mutation leg is a known separate path, so the scenario also records what it does not cover rather than implying full coverage.
+A write with no bound spec folder loses the documentation trail for the whole change. The gate is the last point that can stop it before the file exists. If the refusal stops firing, or the deferred instruction stops reaching the prompt, the only remaining signal is a file that quietly appears outside any packet. A shell write is not refused with the gate enforced, on either version, because only the `write` and `edit` tools are deny-capable and a shell command carries no target path for the gate to check; the `.skilled/hooks/spec-gate/README.md` section 7 row `Shell writes` records that limit, so the scenario also records what it does not cover rather than implying full coverage.
 
 ---
 

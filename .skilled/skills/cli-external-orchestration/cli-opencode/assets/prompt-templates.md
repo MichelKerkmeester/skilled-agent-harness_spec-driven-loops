@@ -11,7 +11,7 @@ trigger_phrases:
   - "mimo dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.7.0
+version: 1.4.8.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -85,12 +85,12 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt-from-template>" 2>&1
 ```
 
-On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode2 models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+The default model differs by version: OpenCode 1 dispatches `opencode-go/deepseek-v4.1-flash` at `--variant max`, while OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash#max` (LLM Gateway, DevPass), so confirm that `opencode2 models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. A typical v2 install lists no `opencode-go` provider; that route needs its own login first (`opencode2 providers login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
 
 ---
 
@@ -133,7 +133,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt-from-template>" 2>&1
 ```
@@ -187,7 +187,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt-from-template>" 2>&1
 ```
@@ -215,7 +215,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --agent orchestrate \
   --format json \
   "Use the <slug> subagent: <prompt>" 2>&1
@@ -273,7 +273,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt>" 2>&1
 ```
@@ -355,7 +355,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt>" 2>&1
 ```
@@ -403,7 +403,7 @@ wait
 # OpenCode 2 (2.0.32):
 for n in $(seq 1 8); do
   cd /repo && opencode2 run --standalone \
-    -m opencode-go/deepseek-v4.1-flash#max \
+    -m llmgateway/deepseek-v4.1-flash#max \
     --format json \
     "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
 done
@@ -447,7 +447,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt>" 2>&1
 ```
@@ -484,7 +484,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --agent orchestrate \
   --format json \
   "Dispatch @ai-council: <prompt>" 2>&1
@@ -520,7 +520,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --agent markdown \
   --format json \
   "<prompt>" 2>&1
@@ -756,7 +756,7 @@ opencode run \
 ```bash
 # OpenCode 2 (2.0.32):
 cd "$REPO_ROOT" && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt-from-template>" 2>&1
 ```

@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -96,7 +96,7 @@ opencode run \
 # OpenCode 2
 cd /repo && opencode2 run --standalone \
   --agent <slug> \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "<prompt>"
 ```
@@ -231,15 +231,15 @@ Pick the agent that matches the task type. Default to omitting `--agent` (the `g
 
 | Task type | Agent | Invocation pattern |
 |-----------|-------|---------------------|
-| Codebase exploration | `context` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the context subagent: map the dependency graph for src/"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the context subagent: map the dependency graph for src/"` |
-| Multi-agent coordination | `orchestrate` | On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Coordinate review and testing of auth module"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Coordinate review and testing of auth module"` |
-| Documentation generation | `markdown` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the markdown subagent: generate a README for the cli-opencode skill"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the markdown subagent: generate a README for the cli-opencode skill"` |
-| Code review | `review` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the review subagent: review @src/auth.ts for security issues"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the review subagent: review @src/auth.ts for security issues"`. Or use the `As @review:` prompt-prefix pattern in §5, with no `--agent` flag at all |
-| Root cause debugging | `debug` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Use the debug subagent: debug this error: <error>"` |
+| Codebase exploration | `context` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the context subagent: map the dependency graph for src/"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Use the context subagent: map the dependency graph for src/"` |
+| Multi-agent coordination | `orchestrate` | On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Coordinate review and testing of auth module"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Coordinate review and testing of auth module"` |
+| Documentation generation | `markdown` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the markdown subagent: generate a README for the cli-opencode skill"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Use the markdown subagent: generate a README for the cli-opencode skill"` |
+| Code review | `review` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the review subagent: review @src/auth.ts for security issues"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Use the review subagent: review @src/auth.ts for security issues"`. Or use the `As @review:` prompt-prefix pattern in §5, with no `--agent` flag at all |
+| Root cause debugging | `debug` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Use the debug subagent: debug this error: <error>"` |
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden. The parent command owns iteration state, JSONL, and convergence. |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden. The parent command owns iteration state and severity-weighted convergence. |
-| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m opencode-go/deepseek-v4.1-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
-| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because OpenCode 1 rejects it at the top level |
+| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode2 run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+| Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#high --format json "<prompt>"`. Never pass `--agent general`, because OpenCode 1 rejects it at the top level |
 
 ---
 
@@ -260,7 +260,7 @@ opencode run \
 ```bash
 # OpenCode 2
 cd /repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
 ```
@@ -301,7 +301,7 @@ opencode run \
 # OpenCode 2
 cd /repo && opencode2 run --standalone \
   --agent orchestrate \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "Coordinate a code review for the approved spec folder. Dispatch @review for the code. Aggregate findings."
 ```
@@ -353,7 +353,7 @@ opencode run \
 ```bash
 # OpenCode 2
 cd /path/to/repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "As @review: audit @src/auth/handler.ts for OWASP Top 10 issues. Surface findings as P0 / P1 / P2 with file:line citations. READ-ONLY — do not propose fixes."
 ```
@@ -382,7 +382,7 @@ opencode run \
 ```bash
 # OpenCode 2
 cd /path/to/repo && opencode2 run --standalone \
-  -m opencode-go/deepseek-v4.1-flash#max \
+  -m llmgateway/deepseek-v4.1-flash#max \
   --format json \
   "As @debug: Login returns 401 despite valid credentials. Error at @src/auth/handler.ts:45. Prior attempts: verified token expiry, checked DB connection, confirmed env vars. Run the Observe -> Analyze -> Hypothesize -> Fix methodology. Write findings to debug-delegation.md."
 ```
@@ -404,7 +404,7 @@ opencode run --variant high --format json --dir /repo \
   "As @review: review @src/auth.ts" > /tmp/review-events.jsonl
 
 # OpenCode 2
-cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json \
+cd /repo && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#high --format json \
   "As @review: review @src/auth.ts" > /tmp/review-events.jsonl
 
 # Capture stdout to a variable (no --agent; subagent role carried in the prompt)
@@ -413,7 +413,7 @@ RESULT=$(opencode run --variant high --format json --dir /repo \
   "As @context: list exported symbols in src/")
 
 # OpenCode 2
-RESULT=$(cd /repo && opencode2 run --standalone -m opencode-go/deepseek-v4.1-flash#high --format json \
+RESULT=$(cd /repo && opencode2 run --standalone -m llmgateway/deepseek-v4.1-flash#high --format json \
   "As @context: list exported symbols in src/")
 
 # Check exit status
