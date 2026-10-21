@@ -1,6 +1,7 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ goal-slice — the packet goal.md projections every goal surface shares    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Goal Slice
+// ───────────────────────────────────────────────────────────────────
+// The packet goal.md projections every goal surface shares
 'use strict';
 
 // A packet's goal.md carries three regions: YAML frontmatter that is bookkeeping

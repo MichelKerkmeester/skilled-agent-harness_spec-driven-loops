@@ -1,6 +1,7 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ goal-core — cross-runtime session goal state and the injected steering block║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Goal Core
+// ───────────────────────────────────────────────────────────────────
+// Cross-runtime session goal state and the injected steering block
 //
 // Reads fail open so a broken record never breaks a turn; management mutations
 // raise stable error codes instead. This module never writes stdout or stderr.

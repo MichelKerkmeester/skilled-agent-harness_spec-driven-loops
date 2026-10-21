@@ -1,6 +1,7 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ goal-slice tests — frontmatter never leaves the file, slices are stable  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Goal Slice Tests
+// ───────────────────────────────────────────────────────────────────
+// Frontmatter never leaves the file, slices are stable
 'use strict';
 
 const { test, beforeEach, afterEach } = require('node:test');

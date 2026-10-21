@@ -1,6 +1,7 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ goal-devin tests — injection envelope, reminder, fail-open on bad input   ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Goal-Devin Tests
+// ───────────────────────────────────────────────────────────────────
+// Injection envelope, reminder, fail-open on bad input
 
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';

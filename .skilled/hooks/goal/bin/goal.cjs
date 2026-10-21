@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ goal — the manage command for runtimes with no plugin tool surface       ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Goal
+// ───────────────────────────────────────────────────────────────────
+// The manage command for runtimes with no plugin tool surface
 //
 // A thin router over the shared core, preserving the status envelope and error
 // codes so a benchmark can compare this surface against the OpenCode plugin
